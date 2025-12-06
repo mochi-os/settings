@@ -16,13 +16,6 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import {
   Command,
   CommandEmpty,
   CommandGroup,
@@ -208,12 +201,7 @@ export function UserPreferences() {
           <h1 className='text-lg font-semibold'>Preferences</h1>
         </Header>
         <Main>
-          <Card>
-            <CardHeader>
-              <CardTitle>Preferences</CardTitle>
-              <CardDescription>Failed to load preferences</CardDescription>
-            </CardHeader>
-          </Card>
+          <p className='text-muted-foreground'>Failed to load preferences</p>
         </Main>
       </>
     )
@@ -226,57 +214,48 @@ export function UserPreferences() {
       </Header>
 
       <Main>
-        <Card>
-          <CardHeader>
-            <CardTitle>Preferences</CardTitle>
-            <CardDescription>
-              Customize your experience with theme, language, and timezone
-              settings.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {isLoading ? (
-              <div className='space-y-6'>
-                <Skeleton className='h-16 w-full' />
-                <Skeleton className='h-16 w-full' />
-                <Skeleton className='h-16 w-full' />
-              </div>
-            ) : data ? (
-              <div className='divide-y'>
-                <PreferenceRow
-                  label='Theme'
-                  description='Color scheme for the interface'
+        {isLoading ? (
+          <div className='space-y-6'>
+            <Skeleton className='h-16 w-full' />
+            <Skeleton className='h-16 w-full' />
+            <Skeleton className='h-16 w-full' />
+          </div>
+        ) : data ? (
+          <>
+            <div className='divide-y'>
+              <PreferenceRow
+                label='Theme'
+                description='Appearance'
+              >
+                <Select
+                  value={data.preferences.theme}
+                  onValueChange={(value) => handleChange('theme', value)}
+                  disabled={setPreference.isPending}
                 >
-                  <Select
-                    value={data.preferences.theme}
-                    onValueChange={(value) => handleChange('theme', value)}
-                    disabled={setPreference.isPending}
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {Object.entries(themeLabels).map(([value, label]) => (
-                        <SelectItem key={value} value={value}>
-                          {label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </PreferenceRow>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.entries(themeLabels).map(([value, label]) => (
+                      <SelectItem key={value} value={value}>
+                        {label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </PreferenceRow>
 
-                <PreferenceRow
-                  label='Timezone'
-                  description='Timezone for displaying dates and times'
-                >
-                  <TimezoneSelect
-                    value={data.preferences.timezone}
-                    onChange={(value) => handleChange('timezone', value)}
-                    disabled={setPreference.isPending}
-                  />
-                </PreferenceRow>
-              </div>
-            ) : null}
+              <PreferenceRow
+                label='Timezone'
+                description='Timezone for displaying dates and times'
+              >
+                <TimezoneSelect
+                  value={data.preferences.timezone}
+                  onChange={(value) => handleChange('timezone', value)}
+                  disabled={setPreference.isPending}
+                />
+              </PreferenceRow>
+            </div>
 
             <div className='mt-6 flex justify-end'>
               <AlertDialog>
@@ -309,8 +288,8 @@ export function UserPreferences() {
                 </AlertDialogContent>
               </AlertDialog>
             </div>
-          </CardContent>
-        </Card>
+          </>
+        ) : null}
       </Main>
     </>
   )

@@ -15,13 +15,6 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -228,12 +221,7 @@ export function SystemSettings() {
           <h1 className='text-lg font-semibold'>System Settings</h1>
         </Header>
         <Main>
-          <Card>
-            <CardHeader>
-              <CardTitle>System Configuration</CardTitle>
-              <CardDescription>Failed to load settings</CardDescription>
-            </CardHeader>
-          </Card>
+          <p className='text-muted-foreground'>Failed to load settings</p>
         </Main>
       </>
     )
@@ -250,36 +238,25 @@ export function SystemSettings() {
       </Header>
 
       <Main>
-        <Card>
-          <CardHeader>
-            <CardTitle>System Configuration</CardTitle>
-            <CardDescription>
-              Manage system-wide settings including registration, maintenance
-              mode, and more.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {isLoading ? (
-              <div className='space-y-6'>
-                <Skeleton className='h-16 w-full' />
-                <Skeleton className='h-16 w-full' />
-                <Skeleton className='h-16 w-full' />
-                <Skeleton className='h-16 w-full' />
-              </div>
-            ) : (
-              <div className='divide-y'>
-                {sortedSettings.map((setting) => (
-                  <SettingRow
-                    key={setting.name}
-                    setting={setting}
-                    onSave={handleSave}
-                    isSaving={savingName === setting.name}
-                  />
-                ))}
-              </div>
-            )}
-          </CardContent>
-        </Card>
+        {isLoading ? (
+          <div className='space-y-6'>
+            <Skeleton className='h-16 w-full' />
+            <Skeleton className='h-16 w-full' />
+            <Skeleton className='h-16 w-full' />
+            <Skeleton className='h-16 w-full' />
+          </div>
+        ) : (
+          <div className='divide-y'>
+            {sortedSettings.map((setting) => (
+              <SettingRow
+                key={setting.name}
+                setting={setting}
+                onSave={handleSave}
+                isSaving={savingName === setting.name}
+              />
+            ))}
+          </div>
+        )}
       </Main>
     </>
   )

@@ -17,13 +17,6 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import {
   Dialog,
   DialogContent,
   DialogDescription,
@@ -118,8 +111,8 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value='user'>User</SelectItem>
                   <SelectItem value='administrator'>Administrator</SelectItem>
+                  <SelectItem value='user'>User</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -207,8 +200,8 @@ function EditUserDialog({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value='user'>User</SelectItem>
                   <SelectItem value='administrator'>Administrator</SelectItem>
+                  <SelectItem value='user'>User</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -323,12 +316,7 @@ export function SystemUsers() {
           <h1 className='text-lg font-semibold'>Users</h1>
         </Header>
         <Main>
-          <Card>
-            <CardHeader>
-              <CardTitle>User Management</CardTitle>
-              <CardDescription>Failed to load users</CardDescription>
-            </CardHeader>
-          </Card>
+          <p className='text-muted-foreground'>Failed to load users</p>
         </Main>
       </>
     )
@@ -337,60 +325,50 @@ export function SystemUsers() {
   return (
     <>
       <Header>
-        <h1 className='text-lg font-semibold'>Users</h1>
+        <div className='flex items-center justify-between w-full'>
+          <h1 className='text-lg font-semibold'>
+            Users
+            {data?.count !== undefined && (
+              <span className='text-muted-foreground font-normal ml-2'>({data.count})</span>
+            )}
+          </h1>
+          <CreateUserDialog onSuccess={() => refetch()} />
+        </div>
       </Header>
 
       <Main>
-        <Card>
-          <CardHeader>
-            <div className='flex items-center justify-between'>
-              <div>
-                <CardTitle>User Management</CardTitle>
-                <CardDescription>
-                  View and manage all users in the system.
-                  {data?.count !== undefined && (
-                    <span className='ml-1'>({data.count} total)</span>
-                  )}
-                </CardDescription>
-              </div>
-              <CreateUserDialog onSuccess={() => refetch()} />
-            </div>
-          </CardHeader>
-          <CardContent>
-            {isLoading ? (
-              <div className='space-y-2'>
-                <Skeleton className='h-12 w-full' />
-                <Skeleton className='h-12 w-full' />
-                <Skeleton className='h-12 w-full' />
-              </div>
-            ) : data?.users && data.users.length > 0 ? (
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>User</TableHead>
-                    <TableHead>Role</TableHead>
-                    <TableHead className='w-[100px]' />
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {data.users.map((user) => (
-                    <UserRow
-                      key={user.id}
-                      user={user}
-                      onDelete={() => handleDelete(user.id)}
-                      isDeleting={deletingId === user.id}
-                      onUpdate={() => refetch()}
-                    />
-                  ))}
-                </TableBody>
-              </Table>
-            ) : (
-              <p className='text-sm text-muted-foreground text-center py-8'>
-                No users found
-              </p>
-            )}
-          </CardContent>
-        </Card>
+        {isLoading ? (
+          <div className='space-y-2'>
+            <Skeleton className='h-12 w-full' />
+            <Skeleton className='h-12 w-full' />
+            <Skeleton className='h-12 w-full' />
+          </div>
+        ) : data?.users && data.users.length > 0 ? (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>User</TableHead>
+                <TableHead>Role</TableHead>
+                <TableHead className='w-[100px]' />
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {data.users.map((user) => (
+                <UserRow
+                  key={user.id}
+                  user={user}
+                  onDelete={() => handleDelete(user.id)}
+                  isDeleting={deletingId === user.id}
+                  onUpdate={() => refetch()}
+                />
+              ))}
+            </TableBody>
+          </Table>
+        ) : (
+          <p className='text-sm text-muted-foreground text-center py-8'>
+            No users found
+          </p>
+        )}
       </Main>
     </>
   )

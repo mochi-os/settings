@@ -1,30 +1,49 @@
 export interface Domain {
   domain: string
-  entity?: string
-  created?: string
-}
-
-export interface Delegation {
-  domain: string
-  path: string
-  user: string
-  created?: string
+  verified: number
+  token: string
+  tls: number
+  created: number
+  updated: number
 }
 
 export interface Route {
   domain: string
   path: string
   entity: string
+  context: string
   priority: number
-  context?: string
-  created?: string
+  enabled: number
+  created: number
+  updated: number
 }
 
-export interface UserDomainsData {
+export interface Delegation {
+  id: number
+  domain: string
+  path: string
+  owner: number
+  username: string
+  created: number
+  updated: number
+}
+
+export interface UserSearchResult {
+  id: number
+  username: string
+  role: string
+}
+
+export interface DomainsData {
   domains: Domain[]
-  delegations: Delegation[]
+  delegations?: Delegation[]
+  count: number
+  admin: boolean
 }
 
-export interface RoutesData {
+export interface DomainDetails {
+  domain: Domain
   routes: Route[]
+  delegations: Delegation[]
+  admin: boolean
 }

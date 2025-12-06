@@ -11,17 +11,17 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedDomainsRouteImport } from './routes/_authenticated/domains'
 import { Route as errors503RouteImport } from './routes/(errors)/503'
 import { Route as errors500RouteImport } from './routes/(errors)/500'
 import { Route as errors404RouteImport } from './routes/(errors)/404'
 import { Route as errors403RouteImport } from './routes/(errors)/403'
 import { Route as errors401RouteImport } from './routes/(errors)/401'
+import { Route as AuthenticatedUserSessionsRouteImport } from './routes/_authenticated/user/sessions'
 import { Route as AuthenticatedUserPreferencesRouteImport } from './routes/_authenticated/user/preferences'
-import { Route as AuthenticatedUserDomainsRouteImport } from './routes/_authenticated/user/domains'
 import { Route as AuthenticatedUserAccountRouteImport } from './routes/_authenticated/user/account'
 import { Route as AuthenticatedSystemUsersRouteImport } from './routes/_authenticated/system/users'
 import { Route as AuthenticatedSystemSettingsRouteImport } from './routes/_authenticated/system/settings'
-import { Route as AuthenticatedSystemDomainsRouteImport } from './routes/_authenticated/system/domains'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
@@ -31,6 +31,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDomainsRoute = AuthenticatedDomainsRouteImport.update({
+  id: '/domains',
+  path: '/domains',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const errors503Route = errors503RouteImport.update({
@@ -58,16 +63,16 @@ const errors401Route = errors401RouteImport.update({
   path: '/401',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedUserSessionsRoute =
+  AuthenticatedUserSessionsRouteImport.update({
+    id: '/user/sessions',
+    path: '/user/sessions',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedUserPreferencesRoute =
   AuthenticatedUserPreferencesRouteImport.update({
     id: '/user/preferences',
     path: '/user/preferences',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedUserDomainsRoute =
-  AuthenticatedUserDomainsRouteImport.update({
-    id: '/user/domains',
-    path: '/user/domains',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedUserAccountRoute =
@@ -88,12 +93,6 @@ const AuthenticatedSystemSettingsRoute =
     path: '/system/settings',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedSystemDomainsRoute =
-  AuthenticatedSystemDomainsRouteImport.update({
-    id: '/system/domains',
-    path: '/system/domains',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
 const AuthenticatedErrorsErrorRoute =
   AuthenticatedErrorsErrorRouteImport.update({
     id: '/errors/$error',
@@ -107,14 +106,14 @@ export interface FileRoutesByFullPath {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
+  '/domains': typeof AuthenticatedDomainsRoute
   '/': typeof AuthenticatedIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
-  '/system/domains': typeof AuthenticatedSystemDomainsRoute
   '/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/system/users': typeof AuthenticatedSystemUsersRoute
   '/user/account': typeof AuthenticatedUserAccountRoute
-  '/user/domains': typeof AuthenticatedUserDomainsRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
+  '/user/sessions': typeof AuthenticatedUserSessionsRoute
 }
 export interface FileRoutesByTo {
   '/401': typeof errors401Route
@@ -122,14 +121,14 @@ export interface FileRoutesByTo {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
+  '/domains': typeof AuthenticatedDomainsRoute
   '/': typeof AuthenticatedIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
-  '/system/domains': typeof AuthenticatedSystemDomainsRoute
   '/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/system/users': typeof AuthenticatedSystemUsersRoute
   '/user/account': typeof AuthenticatedUserAccountRoute
-  '/user/domains': typeof AuthenticatedUserDomainsRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
+  '/user/sessions': typeof AuthenticatedUserSessionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -139,14 +138,14 @@ export interface FileRoutesById {
   '/(errors)/404': typeof errors404Route
   '/(errors)/500': typeof errors500Route
   '/(errors)/503': typeof errors503Route
+  '/_authenticated/domains': typeof AuthenticatedDomainsRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
-  '/_authenticated/system/domains': typeof AuthenticatedSystemDomainsRoute
   '/_authenticated/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/_authenticated/system/users': typeof AuthenticatedSystemUsersRoute
   '/_authenticated/user/account': typeof AuthenticatedUserAccountRoute
-  '/_authenticated/user/domains': typeof AuthenticatedUserDomainsRoute
   '/_authenticated/user/preferences': typeof AuthenticatedUserPreferencesRoute
+  '/_authenticated/user/sessions': typeof AuthenticatedUserSessionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -156,14 +155,14 @@ export interface FileRouteTypes {
     | '/404'
     | '/500'
     | '/503'
+    | '/domains'
     | '/'
     | '/errors/$error'
-    | '/system/domains'
     | '/system/settings'
     | '/system/users'
     | '/user/account'
-    | '/user/domains'
     | '/user/preferences'
+    | '/user/sessions'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/401'
@@ -171,14 +170,14 @@ export interface FileRouteTypes {
     | '/404'
     | '/500'
     | '/503'
+    | '/domains'
     | '/'
     | '/errors/$error'
-    | '/system/domains'
     | '/system/settings'
     | '/system/users'
     | '/user/account'
-    | '/user/domains'
     | '/user/preferences'
+    | '/user/sessions'
   id:
     | '__root__'
     | '/_authenticated'
@@ -187,14 +186,14 @@ export interface FileRouteTypes {
     | '/(errors)/404'
     | '/(errors)/500'
     | '/(errors)/503'
+    | '/_authenticated/domains'
     | '/_authenticated/'
     | '/_authenticated/errors/$error'
-    | '/_authenticated/system/domains'
     | '/_authenticated/system/settings'
     | '/_authenticated/system/users'
     | '/_authenticated/user/account'
-    | '/_authenticated/user/domains'
     | '/_authenticated/user/preferences'
+    | '/_authenticated/user/sessions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -220,6 +219,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/domains': {
+      id: '/_authenticated/domains'
+      path: '/domains'
+      fullPath: '/domains'
+      preLoaderRoute: typeof AuthenticatedDomainsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/(errors)/503': {
@@ -257,18 +263,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof errors401RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/user/sessions': {
+      id: '/_authenticated/user/sessions'
+      path: '/user/sessions'
+      fullPath: '/user/sessions'
+      preLoaderRoute: typeof AuthenticatedUserSessionsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/user/preferences': {
       id: '/_authenticated/user/preferences'
       path: '/user/preferences'
       fullPath: '/user/preferences'
       preLoaderRoute: typeof AuthenticatedUserPreferencesRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/user/domains': {
-      id: '/_authenticated/user/domains'
-      path: '/user/domains'
-      fullPath: '/user/domains'
-      preLoaderRoute: typeof AuthenticatedUserDomainsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/user/account': {
@@ -292,13 +298,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSystemSettingsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/system/domains': {
-      id: '/_authenticated/system/domains'
-      path: '/system/domains'
-      fullPath: '/system/domains'
-      preLoaderRoute: typeof AuthenticatedSystemDomainsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/errors/$error': {
       id: '/_authenticated/errors/$error'
       path: '/errors/$error'
@@ -310,25 +309,25 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDomainsRoute: typeof AuthenticatedDomainsRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
-  AuthenticatedSystemDomainsRoute: typeof AuthenticatedSystemDomainsRoute
   AuthenticatedSystemSettingsRoute: typeof AuthenticatedSystemSettingsRoute
   AuthenticatedSystemUsersRoute: typeof AuthenticatedSystemUsersRoute
   AuthenticatedUserAccountRoute: typeof AuthenticatedUserAccountRoute
-  AuthenticatedUserDomainsRoute: typeof AuthenticatedUserDomainsRoute
   AuthenticatedUserPreferencesRoute: typeof AuthenticatedUserPreferencesRoute
+  AuthenticatedUserSessionsRoute: typeof AuthenticatedUserSessionsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDomainsRoute: AuthenticatedDomainsRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
-  AuthenticatedSystemDomainsRoute: AuthenticatedSystemDomainsRoute,
   AuthenticatedSystemSettingsRoute: AuthenticatedSystemSettingsRoute,
   AuthenticatedSystemUsersRoute: AuthenticatedSystemUsersRoute,
   AuthenticatedUserAccountRoute: AuthenticatedUserAccountRoute,
-  AuthenticatedUserDomainsRoute: AuthenticatedUserDomainsRoute,
   AuthenticatedUserPreferencesRoute: AuthenticatedUserPreferencesRoute,
+  AuthenticatedUserSessionsRoute: AuthenticatedUserSessionsRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

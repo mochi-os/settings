@@ -22,14 +22,14 @@ export const APP_ROUTES = {
     HOME: '/',
     USER: {
       ACCOUNT: '/user/account',
+      SESSIONS: '/user/sessions',
       PREFERENCES: '/user/preferences',
-      DOMAINS: '/user/domains',
     },
     SYSTEM: {
       SETTINGS: '/system/settings',
       USERS: '/system/users',
-      DOMAINS: '/system/domains',
     },
+    DOMAINS: '/domains',
   },
 } as const
 

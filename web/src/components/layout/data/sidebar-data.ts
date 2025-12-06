@@ -1,5 +1,5 @@
 import { APP_ROUTES } from '@/config/routes'
-import { User, Palette, Globe, Settings, Users, Home } from 'lucide-react'
+import { User, Key, Palette, Globe, Settings, Users, Home } from 'lucide-react'
 import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
@@ -13,13 +13,23 @@ export const sidebarData: SidebarData = {
           icon: User,
         },
         {
+          title: 'Sessions',
+          url: APP_ROUTES.SETTINGS.USER.SESSIONS,
+          icon: Key,
+        },
+        {
           title: 'Preferences',
           url: APP_ROUTES.SETTINGS.USER.PREFERENCES,
           icon: Palette,
         },
+      ],
+    },
+    {
+      title: 'Management',
+      items: [
         {
-          title: 'My Domains',
-          url: APP_ROUTES.SETTINGS.USER.DOMAINS,
+          title: 'Domains',
+          url: APP_ROUTES.SETTINGS.DOMAINS,
           icon: Globe,
         },
       ],
@@ -36,11 +46,6 @@ export const sidebarData: SidebarData = {
           title: 'Users',
           url: APP_ROUTES.SETTINGS.SYSTEM.USERS,
           icon: Users,
-        },
-        {
-          title: 'Domains',
-          url: APP_ROUTES.SETTINGS.SYSTEM.DOMAINS,
-          icon: Globe,
         },
       ],
     },
