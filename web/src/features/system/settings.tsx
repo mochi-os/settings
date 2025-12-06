@@ -39,6 +39,18 @@ function formatSettingName(name: string): string {
     .join(' ')
 }
 
+function formatSettingValue(name: string, value: string): string {
+  if (name === 'server_started' && value) {
+    const timestamp = parseInt(value, 10)
+    if (!isNaN(timestamp)) {
+      const date = new Date(timestamp * 1000)
+      const pad = (n: number) => n.toString().padStart(2, '0')
+      return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
+    }
+  }
+  return value || '(empty)'
+}
+
 function isBooleanSetting(setting: SystemSetting): boolean {
   return setting.pattern === '^(true|false)$'
 }
@@ -91,7 +103,7 @@ function SettingRow({
       <div className='flex items-center gap-2'>
         {setting.read_only ? (
           <div className='text-sm font-mono text-muted-foreground'>
-            {setting.value || '(empty)'}
+            {formatSettingValue(setting.name, setting.value)}
           </div>
         ) : isBoolean ? (
           <>
