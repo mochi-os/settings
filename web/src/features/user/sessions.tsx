@@ -51,14 +51,11 @@ function SessionRow({ session, isCurrent }: { session: Session; isCurrent: boole
       <TableCell>
         <div className='flex flex-col'>
           <span className='font-medium'>
-            {session.name || 'Unnamed session'}
+            {session.agent || 'Unknown device'}
             {isCurrent && (
               <span className='text-muted-foreground ml-2 text-xs'>(current)</span>
             )}
           </span>
-          {session.agent && (
-            <span className='text-muted-foreground text-xs'>{session.agent}</span>
-          )}
         </div>
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
