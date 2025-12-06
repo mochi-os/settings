@@ -23,6 +23,7 @@ import {
   useSystemSettingsData,
   useSetSystemSetting,
 } from '@/hooks/use-system-settings'
+import { usePreferencesData } from '@/hooks/use-preferences'
 import type { SystemSetting } from '@/types/settings'
 
 function formatSettingName(name: string): string {
@@ -32,13 +33,13 @@ function formatSettingName(name: string): string {
     .join(' ')
 }
 
-function formatSettingValue(name: string, value: string): string {
+function formatSettingValue(name: string, value: string, timezone?: string): string {
   if (name === 'server_started' && value) {
     const timestamp = parseInt(value, 10)
     if (!isNaN(timestamp)) {
       const date = new Date(timestamp * 1000)
-      const pad = (n: number) => n.toString().padStart(2, '0')
-      return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
+      const tz = timezone === 'auto' || !timezone ? undefined : timezone
+      return date.toLocaleString('sv-SE', { timeZone: tz }).replace('T', ' ')
     }
   }
   return value || '(empty)'
@@ -52,10 +53,12 @@ function SettingRow({
   setting,
   onSave,
   isSaving,
+  timezone,
 }: {
   setting: SystemSetting
   onSave: (name: string, value: string) => void
   isSaving: boolean
+  timezone?: string
 }) {
   const [localValue, setLocalValue] = useState(setting.value)
   const isBoolean = isBooleanSetting(setting)
@@ -96,7 +99,7 @@ function SettingRow({
       <div className='flex items-center gap-2'>
         {setting.read_only ? (
           <div className='text-sm font-mono text-muted-foreground'>
-            {formatSettingValue(setting.name, setting.value)}
+            {formatSettingValue(setting.name, setting.value, timezone)}
           </div>
         ) : isBoolean ? (
           <>
@@ -194,8 +197,10 @@ function SettingRow({
 
 export function SystemSettings() {
   const { data, isLoading, error } = useSystemSettingsData()
+  const { data: prefsData } = usePreferencesData()
   const setSetting = useSetSystemSetting()
   const [savingName, setSavingName] = useState<string | null>(null)
+  const timezone = prefsData?.preferences.timezone
 
   const handleSave = (name: string, value: string) => {
     setSavingName(name)
@@ -253,6 +258,7 @@ export function SystemSettings() {
                 setting={setting}
                 onSave={handleSave}
                 isSaving={savingName === setting.name}
+                timezone={timezone}
               />
             ))}
           </div>

@@ -43,6 +43,7 @@ import {
   useSetPreference,
   useResetPreferences,
 } from '@/hooks/use-preferences'
+import { useTheme } from '@/context/theme-provider'
 
 const themeLabels: Record<string, string> = {
   light: 'Light',
@@ -168,8 +169,13 @@ export function UserPreferences() {
   const { data, isLoading, error } = usePreferencesData()
   const setPreference = useSetPreference()
   const resetPreferences = useResetPreferences()
+  const { setTheme } = useTheme()
 
   const handleChange = (key: string, value: string) => {
+    if (key === 'theme') {
+      const themeValue = value === 'auto' ? 'system' : value as 'light' | 'dark'
+      setTheme(themeValue)
+    }
     setPreference.mutate(
       { [key]: value },
       {

@@ -17,7 +17,11 @@ export function setCookie(
   value: string,
   options: CookieOptions = {}
 ): void {
-  Cookies.set(name, value, options)
+  const { maxAge, ...rest } = options
+  const cookieOptions = maxAge
+    ? { ...rest, expires: maxAge / 86400 } // Convert seconds to days for js-cookie
+    : rest
+  Cookies.set(name, value, cookieOptions)
 }
 
 export function removeCookie(name: string, path: string = '/'): void {
