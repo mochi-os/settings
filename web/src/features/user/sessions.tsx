@@ -1,4 +1,4 @@
-import { formatDistanceToNow } from 'date-fns'
+import { format } from 'date-fns'
 import { Loader2, LogOut } from 'lucide-react'
 import { toast } from 'sonner'
 import { Header } from '@/components/layout/header'
@@ -29,7 +29,7 @@ import type { Session } from '@/types/account'
 
 function formatTimestamp(timestamp: number): string {
   if (timestamp === 0) return 'Never'
-  return formatDistanceToNow(new Date(timestamp * 1000), { addSuffix: true })
+  return format(new Date(timestamp * 1000), 'yyyy-MM-dd HH:mm:ss')
 }
 
 function SessionRow({ session, isCurrent }: { session: Session; isCurrent: boolean }) {
