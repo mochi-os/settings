@@ -1,13 +1,6 @@
 # Mochi settings app: system/settings
 # Copyright Alistair Cunningham 2025
 
-def action_system_settings(a):
-    """System settings overview - returns all settings with metadata"""
-    if not require_admin(a):
-        return
-    settings = mochi.setting.list()
-    a.json({"settings": settings})
-
 def action_system_settings_list(a):
     """List all system settings with metadata"""
     if not require_admin(a):

@@ -3,7 +3,7 @@
 
 def is_admin(a):
     """Check if user is admin"""
-    return a.user != None and a.user.role == "administrator"
+    return a.user.role == "administrator"
 
 def can_manage_path(a, domain, path):
     """Check if user can manage a path on a domain"""
@@ -24,8 +24,6 @@ def enrich_delegations(delegations):
 
 def action_domains(a):
     """Domains overview - returns domains based on role"""
-    if not require_user(a):
-        return
     admin = is_admin(a)
     if admin:
         domains = mochi.domain.list()
@@ -43,8 +41,6 @@ def action_domains(a):
 
 def action_domains_get(a):
     """Get domain details with routes and delegations"""
-    if not require_user(a):
-        return
     domain = a.input("domain")
     if not domain:
         a.error(400, "Missing domain")
@@ -110,8 +106,6 @@ def action_domains_delete(a):
 
 def action_domains_route_create(a):
     """Create a route"""
-    if not require_user(a):
-        return
     domain = a.input("domain")
     path = a.input("path")
     entity = a.input("entity")
@@ -129,8 +123,6 @@ def action_domains_route_create(a):
 
 def action_domains_route_update(a):
     """Update a route"""
-    if not require_user(a):
-        return
     domain = a.input("domain")
     path = a.input("path")
     if not domain or path == None:
@@ -155,8 +147,6 @@ def action_domains_route_update(a):
 
 def action_domains_route_delete(a):
     """Delete a route"""
-    if not require_user(a):
-        return
     domain = a.input("domain")
     path = a.input("path")
     if not domain or path == None:

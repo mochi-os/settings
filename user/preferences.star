@@ -30,8 +30,6 @@ preferences_schema = [
 
 def action_user_preferences(a):
     """User preferences overview - returns all preferences with schema"""
-    if not require_user(a):
-        return
     prefs = {}
     for p in preferences_schema:
         value = a.user.preference.get(p["key"])
@@ -40,8 +38,6 @@ def action_user_preferences(a):
 
 def action_user_preferences_set(a):
     """Set user preferences"""
-    if not require_user(a):
-        return
     for p in preferences_schema:
         value = a.input(p["key"])
         if value:
@@ -53,8 +49,6 @@ def action_user_preferences_set(a):
 
 def action_user_preferences_reset(a):
     """Reset preferences to defaults"""
-    if not require_user(a):
-        return
     for p in preferences_schema:
         a.user.preference.delete(p["key"])
     a.json({"ok": True})
