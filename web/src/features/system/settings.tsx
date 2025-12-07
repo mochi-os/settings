@@ -232,8 +232,11 @@ export function SystemSettings() {
     )
   }
 
+  const statusSettings = ['server_version', 'server_started']
   const sortedSettings = data?.settings
-    ? [...data.settings].sort((a, b) => a.name.localeCompare(b.name))
+    ? [...data.settings]
+        .filter((s) => !statusSettings.includes(s.name))
+        .sort((a, b) => a.name.localeCompare(b.name))
     : []
 
   return (

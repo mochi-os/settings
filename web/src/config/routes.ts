@@ -28,6 +28,7 @@ export const APP_ROUTES = {
     SYSTEM: {
       SETTINGS: '/system/settings',
       USERS: '/system/users',
+      STATUS: '/system/status',
     },
     DOMAINS: '/domains',
   },

@@ -1,5 +1,5 @@
 import { APP_ROUTES } from '@/config/routes'
-import { User, Key, Palette, Globe, Settings, Users } from 'lucide-react'
+import { User, Key, Palette, Globe, Settings, Users, Activity } from 'lucide-react'
 import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
@@ -46,6 +46,11 @@ export const sidebarData: SidebarData = {
           title: 'Users',
           url: APP_ROUTES.SETTINGS.SYSTEM.USERS,
           icon: Users,
+        },
+        {
+          title: 'Status',
+          url: APP_ROUTES.SETTINGS.SYSTEM.STATUS,
+          icon: Activity,
         },
       ],
     },
