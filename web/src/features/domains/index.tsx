@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { Domain, Route as RouteType, Delegation } from '@/types/domains'
 import {
   Check,
   ChevronRight,
@@ -13,8 +14,17 @@ import {
   X,
 } from 'lucide-react'
 import { toast } from 'sonner'
-import { Header } from '@/components/layout/header'
-import { Main } from '@/components/layout/main'
+import {
+  useDomainsData,
+  useDomainDetails,
+  useUpdateDomain,
+  useDeleteDomain,
+  useCreateRoute,
+  useDeleteRoute,
+  useCreateDelegation,
+  useDeleteDelegation,
+  useUserSearch,
+} from '@/hooks/use-domains'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -49,18 +59,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import {
-  useDomainsData,
-  useDomainDetails,
-  useUpdateDomain,
-  useDeleteDomain,
-  useCreateRoute,
-  useDeleteRoute,
-  useCreateDelegation,
-  useDeleteDelegation,
-  useUserSearch,
-} from '@/hooks/use-domains'
-import type { Domain, Route as RouteType, Delegation } from '@/types/domains'
+import { Header } from '@/components/layout/header'
+import { Main } from '@/components/layout/main'
 
 function AddRouteDialog({
   domain,
@@ -118,7 +118,7 @@ function AddRouteDialog({
                 onChange={(e) => setPath(e.target.value)}
                 placeholder='/ or /blog'
               />
-              <p className='text-xs text-muted-foreground'>
+              <p className='text-muted-foreground text-xs'>
                 Leave empty for root path
               </p>
             </div>
@@ -141,7 +141,7 @@ function AddRouteDialog({
                 onChange={(e) => setPriority(e.target.value)}
                 placeholder='0'
               />
-              <p className='text-xs text-muted-foreground'>
+              <p className='text-muted-foreground text-xs'>
                 Higher priority routes are matched first
               </p>
             </div>
@@ -244,7 +244,7 @@ function AddDelegationDialog({
                 onChange={(e) => setPath(e.target.value)}
                 placeholder='/ or /blog'
               />
-              <p className='text-xs text-muted-foreground'>
+              <p className='text-muted-foreground text-xs'>
                 Empty path grants full domain access
               </p>
             </div>
@@ -261,9 +261,9 @@ function AddDelegationDialog({
                   autoComplete='off'
                 />
                 {showResults && searchQuery.length >= 2 && (
-                  <div className='absolute z-10 w-full mt-1 bg-popover border rounded-md shadow-lg max-h-48 overflow-auto'>
+                  <div className='bg-popover absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-md border shadow-lg'>
                     {isSearching ? (
-                      <div className='p-2 text-sm text-muted-foreground flex items-center gap-2'>
+                      <div className='text-muted-foreground flex items-center gap-2 p-2 text-sm'>
                         <Loader2 className='h-4 w-4 animate-spin' />
                         Searching...
                       </div>
@@ -272,17 +272,17 @@ function AddDelegationDialog({
                         <button
                           key={user.id}
                           type='button'
-                          className='w-full px-3 py-2 text-left text-sm hover:bg-accent hover:text-accent-foreground flex justify-between items-center'
+                          className='hover:bg-accent hover:text-accent-foreground flex w-full items-center justify-between px-3 py-2 text-left text-sm'
                           onClick={() => handleSelectUser(user)}
                         >
                           <span>{user.username}</span>
-                          <span className='text-xs text-muted-foreground'>
+                          <span className='text-muted-foreground text-xs'>
                             {user.role}
                           </span>
                         </button>
                       ))
                     ) : (
-                      <div className='p-2 text-sm text-muted-foreground'>
+                      <div className='text-muted-foreground p-2 text-sm'>
                         No users found
                       </div>
                     )}
@@ -290,7 +290,7 @@ function AddDelegationDialog({
                 )}
               </div>
               {selectedUser && (
-                <p className='text-xs text-muted-foreground'>
+                <p className='text-muted-foreground text-xs'>
                   Selected: {selectedUser.username} (ID: {selectedUser.id})
                 </p>
               )}
@@ -332,7 +332,7 @@ function RouteRow({
   return (
     <TableRow>
       <TableCell className='font-mono text-sm'>{route.path || '/'}</TableCell>
-      <TableCell className='font-mono text-sm truncate max-w-[200px]'>
+      <TableCell className='max-w-[200px] truncate font-mono text-sm'>
         {route.entity}
       </TableCell>
       <TableCell>{route.priority}</TableCell>
@@ -494,15 +494,15 @@ function DomainDetails({
   return (
     <div className='border-b last:border-b-0'>
       <div
-        className='flex items-center justify-between py-4 cursor-pointer'
+        className='flex cursor-pointer items-center justify-between py-4'
         onClick={() => setExpanded(!expanded)}
       >
         <div className='flex items-center gap-3'>
-          <Globe className='h-5 w-5 text-muted-foreground' />
+          <Globe className='text-muted-foreground h-5 w-5' />
           <div>
             <span className='text-base font-semibold'>{domain.domain}</span>
             {isAdmin && (
-              <div className='flex items-center gap-2 mt-1'>
+              <div className='mt-1 flex items-center gap-2'>
                 {domain.verified ? (
                   <Badge variant='default' className='text-xs'>
                     <Check className='mr-1 h-3 w-3' />
@@ -525,20 +525,20 @@ function DomainDetails({
           </div>
         </div>
         <ChevronRight
-          className={`h-5 w-5 text-muted-foreground transition-transform ${
+          className={`text-muted-foreground h-5 w-5 transition-transform ${
             expanded ? 'rotate-90' : ''
           }`}
         />
       </div>
       {expanded && (
-        <div className='pb-6 space-y-6'>
+        <div className='space-y-6 pb-6'>
           {/* Admin-only: Settings */}
           {isAdmin && (
             <div className='space-y-4'>
               <div className='flex items-center justify-between'>
                 <div className='space-y-0.5'>
                   <Label>Verified</Label>
-                  <p className='text-xs text-muted-foreground'>
+                  <p className='text-muted-foreground text-xs'>
                     Domain ownership has been verified
                   </p>
                 </div>
@@ -551,7 +551,7 @@ function DomainDetails({
               <div className='flex items-center justify-between'>
                 <div className='space-y-0.5'>
                   <Label>TLS Enabled</Label>
-                  <p className='text-xs text-muted-foreground'>
+                  <p className='text-muted-foreground text-xs'>
                     Automatic HTTPS certificates
                   </p>
                 </div>
@@ -564,7 +564,7 @@ function DomainDetails({
               {domain.token && (
                 <div className='space-y-1'>
                   <Label>Verification Token</Label>
-                  <p className='font-mono text-xs text-muted-foreground break-all'>
+                  <p className='text-muted-foreground font-mono text-xs break-all'>
                     mochi-verify={domain.token}
                   </p>
                 </div>
@@ -574,7 +574,7 @@ function DomainDetails({
 
           {/* Routes */}
           <div>
-            <div className='flex items-center justify-between mb-3'>
+            <div className='mb-3 flex items-center justify-between'>
               <div className='flex items-center gap-2 text-sm font-medium'>
                 <Route className='h-4 w-4' />
                 Routes
@@ -609,7 +609,7 @@ function DomainDetails({
                 </TableBody>
               </Table>
             ) : (
-              <p className='text-sm text-muted-foreground text-center py-4'>
+              <p className='text-muted-foreground py-4 text-center text-sm'>
                 No routes configured
               </p>
             )}
@@ -618,7 +618,7 @@ function DomainDetails({
           {/* Admin-only: Delegations */}
           {isAdmin && (
             <div>
-              <div className='flex items-center justify-between mb-3'>
+              <div className='mb-3 flex items-center justify-between'>
                 <div className='flex items-center gap-2 text-sm font-medium'>
                   <Users className='h-4 w-4' />
                   Delegations
@@ -654,7 +654,7 @@ function DomainDetails({
                   </TableBody>
                 </Table>
               ) : (
-                <p className='text-sm text-muted-foreground text-center py-4'>
+                <p className='text-muted-foreground py-4 text-center text-sm'>
                   No delegations configured
                 </p>
               )}
@@ -707,7 +707,9 @@ export function Domains() {
         <h1 className='text-lg font-semibold'>
           Domains
           {data?.count !== undefined && (
-            <span className='text-muted-foreground font-normal ml-2'>({data.count})</span>
+            <span className='text-muted-foreground ml-2 font-normal'>
+              ({data.count})
+            </span>
           )}
         </h1>
       </Header>
@@ -765,14 +767,14 @@ export function Domains() {
             ))}
           </div>
         ) : (
-          <div className='text-center text-muted-foreground py-8'>
-            <Shield className='mx-auto h-12 w-12 mb-4 opacity-50' />
+          <div className='text-muted-foreground py-8 text-center'>
+            <Shield className='mx-auto mb-4 h-12 w-12 opacity-50' />
             {isAdmin ? (
               <p>No domains configured</p>
             ) : (
               <>
                 <p>You don't have access to any domains.</p>
-                <p className='text-sm mt-1'>
+                <p className='mt-1 text-sm'>
                   Contact an administrator to get a delegation.
                 </p>
               </>

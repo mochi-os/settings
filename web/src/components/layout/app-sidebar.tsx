@@ -15,11 +15,14 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible={collapsible} variant={variant}>
       <SidebarHeader>
-        <a href="/" className="flex items-center justify-center py-2 group-data-[collapsible=icon]:py-0">
+        <a
+          href='/'
+          className='flex items-center justify-center py-2 group-data-[collapsible=icon]:py-0'
+        >
           <img
-            src="/images/logo-header.svg"
-            alt="mochi"
-            className="h-10 w-10 group-data-[collapsible=icon]:h-8 group-data-[collapsible=icon]:w-8"
+            src='/images/logo-header.svg'
+            alt='mochi'
+            className='h-10 w-10 group-data-[collapsible=icon]:h-8 group-data-[collapsible=icon]:w-8'
           />
         </a>
         <NavUser />
@@ -29,9 +32,7 @@ export function AppSidebar() {
           <NavGroup key={props.title} {...props} />
         ))}
       </SidebarContent>
-      <SidebarFooter>
-        {/* User dropdown moved to header */}
-      </SidebarFooter>
+      <SidebarFooter>{/* User dropdown moved to header */}</SidebarFooter>
       <SidebarRail />
     </Sidebar>
   )

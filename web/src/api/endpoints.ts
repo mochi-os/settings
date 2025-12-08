@@ -43,6 +43,11 @@ const endpoints = {
     usersCreate: 'system/users/create',
     usersUpdate: 'system/users/update',
     usersDelete: 'system/users/delete',
+    usersSuspend: 'system/users/suspend',
+    usersActivate: 'system/users/activate',
+    usersMfaRequired: 'system/users/mfa-required',
+    usersSessions: 'system/users/sessions',
+    usersSessionsRevoke: 'system/users/sessions/revoke',
   },
   domains: {
     data: 'domains/data',

@@ -1,13 +1,15 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { apiClient } from '@/lib/apiClient'
-import endpoints from '@/api/endpoints'
 import type { PreferencesData } from '@/types/preferences'
+import endpoints from '@/api/endpoints'
+import { apiClient } from '@/lib/apiClient'
 
 export function usePreferencesData() {
   return useQuery({
     queryKey: ['user', 'preferences'],
     queryFn: async () => {
-      const response = await apiClient.get<PreferencesData>(endpoints.user.preferences)
+      const response = await apiClient.get<PreferencesData>(
+        endpoints.user.preferences
+      )
       return response.data
     },
   })

@@ -41,9 +41,15 @@ function ResponsiveDialog({ children, ...props }: RootResponsiveDialogProps) {
   return <ResponsiveDialogRoot {...props}>{children}</ResponsiveDialogRoot>
 }
 
-function ResponsiveDialogTrigger({ className, children, ...props }: BaseProps & { className?: string; asChild?: boolean }) {
+function ResponsiveDialogTrigger({
+  className,
+  children,
+  ...props
+}: BaseProps & { className?: string; asChild?: boolean }) {
   const isDesktop = useMediaQuery(desktop)
-  const ResponsiveDialogTriggerComponent = isDesktop ? DialogTrigger : DrawerTrigger
+  const ResponsiveDialogTriggerComponent = isDesktop
+    ? DialogTrigger
+    : DrawerTrigger
 
   return (
     <ResponsiveDialogTriggerComponent className={className} {...props}>
@@ -52,7 +58,11 @@ function ResponsiveDialogTrigger({ className, children, ...props }: BaseProps & 
   )
 }
 
-function ResponsiveDialogClose({ className, children, ...props }: BaseProps & { className?: string; asChild?: boolean }) {
+function ResponsiveDialogClose({
+  className,
+  children,
+  ...props
+}: BaseProps & { className?: string; asChild?: boolean }) {
   const isDesktop = useMediaQuery(desktop)
   const ResponsiveDialogCloseComponent = isDesktop ? DialogClose : DrawerClose
 
@@ -63,9 +73,15 @@ function ResponsiveDialogClose({ className, children, ...props }: BaseProps & { 
   )
 }
 
-function ResponsiveDialogContent({ className, children, ...props }: BaseProps & { className?: string }) {
+function ResponsiveDialogContent({
+  className,
+  children,
+  ...props
+}: BaseProps & { className?: string }) {
   const isDesktop = useMediaQuery(desktop)
-  const ResponsiveDialogContentComponent = isDesktop ? DialogContent : DrawerContent
+  const ResponsiveDialogContentComponent = isDesktop
+    ? DialogContent
+    : DrawerContent
 
   return (
     <ResponsiveDialogContentComponent className={className} {...props}>
@@ -74,9 +90,15 @@ function ResponsiveDialogContent({ className, children, ...props }: BaseProps & 
   )
 }
 
-function ResponsiveDialogDescription({ className, children, ...props }: BaseProps & { className?: string }) {
+function ResponsiveDialogDescription({
+  className,
+  children,
+  ...props
+}: BaseProps & { className?: string }) {
   const isDesktop = useMediaQuery(desktop)
-  const ResponsiveDialogDescriptionComponent = isDesktop ? DialogDescription : DrawerDescription
+  const ResponsiveDialogDescriptionComponent = isDesktop
+    ? DialogDescription
+    : DrawerDescription
 
   return (
     <ResponsiveDialogDescriptionComponent className={className} {...props}>
@@ -85,9 +107,15 @@ function ResponsiveDialogDescription({ className, children, ...props }: BaseProp
   )
 }
 
-function ResponsiveDialogHeader({ className, children, ...props }: BaseProps & { className?: string }) {
+function ResponsiveDialogHeader({
+  className,
+  children,
+  ...props
+}: BaseProps & { className?: string }) {
   const isDesktop = useMediaQuery(desktop)
-  const ResponsiveDialogHeaderComponent = isDesktop ? DialogHeader : DrawerHeader
+  const ResponsiveDialogHeaderComponent = isDesktop
+    ? DialogHeader
+    : DrawerHeader
 
   return (
     <ResponsiveDialogHeaderComponent className={className} {...props}>
@@ -96,7 +124,11 @@ function ResponsiveDialogHeader({ className, children, ...props }: BaseProps & {
   )
 }
 
-function ResponsiveDialogTitle({ className, children, ...props }: BaseProps & { className?: string }) {
+function ResponsiveDialogTitle({
+  className,
+  children,
+  ...props
+}: BaseProps & { className?: string }) {
   const isDesktop = useMediaQuery(desktop)
   const ResponsiveDialogTitleComponent = isDesktop ? DialogTitle : DrawerTitle
 
@@ -107,9 +139,15 @@ function ResponsiveDialogTitle({ className, children, ...props }: BaseProps & { 
   )
 }
 
-function ResponsiveDialogFooter({ className, children, ...props }: BaseProps & { className?: string }) {
+function ResponsiveDialogFooter({
+  className,
+  children,
+  ...props
+}: BaseProps & { className?: string }) {
   const isDesktop = useMediaQuery(desktop)
-  const ResponsiveDialogFooterComponent = isDesktop ? DialogFooter : DrawerFooter
+  const ResponsiveDialogFooterComponent = isDesktop
+    ? DialogFooter
+    : DrawerFooter
 
   return (
     <ResponsiveDialogFooterComponent className={className} {...props}>
@@ -128,4 +166,3 @@ export {
   ResponsiveDialogTitle,
   ResponsiveDialogFooter,
 }
-

@@ -1,8 +1,12 @@
 import { useState } from 'react'
+import type { SystemSetting } from '@/types/settings'
 import { Loader2, Lock, RotateCcw } from 'lucide-react'
 import { toast } from 'sonner'
-import { Header } from '@/components/layout/header'
-import { Main } from '@/components/layout/main'
+import { usePreferencesData } from '@/hooks/use-preferences'
+import {
+  useSystemSettingsData,
+  useSetSystemSetting,
+} from '@/hooks/use-system-settings'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,12 +23,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Switch } from '@/components/ui/switch'
-import {
-  useSystemSettingsData,
-  useSetSystemSetting,
-} from '@/hooks/use-system-settings'
-import { usePreferencesData } from '@/hooks/use-preferences'
-import type { SystemSetting } from '@/types/settings'
+import { Header } from '@/components/layout/header'
+import { Main } from '@/components/layout/main'
 
 function formatSettingName(name: string): string {
   return name
@@ -33,7 +33,11 @@ function formatSettingName(name: string): string {
     .join(' ')
 }
 
-function formatSettingValue(name: string, value: string, timezone?: string): string {
+function formatSettingValue(
+  name: string,
+  value: string,
+  timezone?: string
+): string {
   if (name === 'server_started' && value) {
     const timestamp = parseInt(value, 10)
     if (!isNaN(timestamp)) {
@@ -82,23 +86,23 @@ function SettingRow({
 
   return (
     <div className='flex flex-col gap-4 py-4 sm:flex-row sm:items-start sm:justify-between'>
-      <div className='space-y-1 flex-1'>
+      <div className='flex-1 space-y-1'>
         <div className='flex items-center gap-2'>
           <Label className='text-base'>{formatSettingName(setting.name)}</Label>
           {setting.read_only && (
-            <Lock className='h-3.5 w-3.5 text-muted-foreground' />
+            <Lock className='text-muted-foreground h-3.5 w-3.5' />
           )}
         </div>
         <p className='text-muted-foreground text-sm'>{setting.description}</p>
         {!isDefault && !setting.read_only && (
-          <p className='text-xs text-muted-foreground'>
+          <p className='text-muted-foreground text-xs'>
             Default: {setting.default || '(empty)'}
           </p>
         )}
       </div>
       <div className='flex items-center gap-2'>
         {setting.read_only ? (
-          <div className='text-sm font-mono text-muted-foreground'>
+          <div className='text-muted-foreground font-mono text-sm'>
             {formatSettingValue(setting.name, setting.value, timezone)}
           </div>
         ) : isBoolean ? (
@@ -147,11 +151,7 @@ function SettingRow({
               disabled={isSaving}
             />
             {hasChanged && (
-              <Button
-                size='sm'
-                onClick={handleSave}
-                disabled={isSaving}
-              >
+              <Button size='sm' onClick={handleSave} disabled={isSaving}>
                 {isSaving ? (
                   <Loader2 className='h-4 w-4 animate-spin' />
                 ) : (

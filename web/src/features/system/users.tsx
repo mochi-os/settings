@@ -1,8 +1,36 @@
-import { useState } from 'react'
-import { Loader2, Pencil, Plus, Shield, Trash2, User as UserIcon } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { formatDistanceToNow } from 'date-fns'
+import type { User, Session } from '@/types/users'
+import {
+  Ban,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
+  Key,
+  Loader2,
+  MoreHorizontal,
+  Pencil,
+  Plus,
+  Search,
+  Shield,
+  ShieldCheck,
+  Trash2,
+  User as UserIcon,
+  UserCheck,
+} from 'lucide-react'
 import { toast } from 'sonner'
-import { Header } from '@/components/layout/header'
-import { Main } from '@/components/layout/main'
+import {
+  useSystemUsersData,
+  useCreateUser,
+  useUpdateUser,
+  useDeleteUser,
+  useSuspendUser,
+  useActivateUser,
+  useSetMfaRequired,
+  useUserSessions,
+  useRevokeUserSessions,
+} from '@/hooks/use-system-users'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,7 +40,6 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -25,6 +52,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
@@ -43,13 +77,17 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import {
-  useSystemUsersData,
-  useCreateUser,
-  useUpdateUser,
-  useDeleteUser,
-} from '@/hooks/use-system-users'
-import type { User } from '@/types/users'
+import { Header } from '@/components/layout/header'
+import { Main } from '@/components/layout/main'
+
+function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value)
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedValue(value), delay)
+    return () => clearTimeout(timer)
+  }, [value, delay])
+  return debouncedValue
+}
 
 function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
   const [open, setOpen] = useState(false)
@@ -88,9 +126,7 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Create User</DialogTitle>
-            <DialogDescription>
-              Add a new user to the system.
-            </DialogDescription>
+            <DialogDescription>Add a new user to the system.</DialogDescription>
           </DialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
@@ -170,17 +206,16 @@ function EditUserDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant='ghost' size='icon'>
-          <Pencil className='h-4 w-4' />
-        </Button>
+        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+          <Pencil className='mr-2 h-4 w-4' />
+          Edit User
+        </DropdownMenuItem>
       </DialogTrigger>
       <DialogContent>
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Edit User</DialogTitle>
-            <DialogDescription>
-              Update user details.
-            </DialogDescription>
+            <DialogDescription>Update user details.</DialogDescription>
           </DialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
@@ -227,29 +262,206 @@ function EditUserDialog({
   )
 }
 
-function UserRow({
-  user,
-  onDelete,
-  isDeleting,
-  onUpdate,
-}: {
-  user: User
-  onDelete: () => void
-  isDeleting: boolean
-  onUpdate: () => void
-}) {
-  const isAdmin = user.role === 'administrator'
+function SessionsDialog({ user }: { user: User }) {
+  const [open, setOpen] = useState(false)
+  const { data, isLoading, refetch } = useUserSessions(user.id)
+  const revokeSession = useRevokeUserSessions()
+
+  const handleRevoke = (code?: string) => {
+    revokeSession.mutate(
+      { id: user.id, code },
+      {
+        onSuccess: (result) => {
+          toast.success(
+            code
+              ? 'Session revoked'
+              : `Revoked ${result.revoked} session${result.revoked !== 1 ? 's' : ''}`
+          )
+          refetch()
+        },
+        onError: (error: Error) => {
+          toast.error(error.message || 'Failed to revoke session')
+        },
+      }
+    )
+  }
+
+  const formatSession = (session: Session) => {
+    const agent = session.agent || 'Unknown device'
+    const browser = agent.includes('Chrome')
+      ? 'Chrome'
+      : agent.includes('Firefox')
+        ? 'Firefox'
+        : agent.includes('Safari')
+          ? 'Safari'
+          : 'Unknown browser'
+    return browser
+  }
 
   return (
-    <TableRow>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+          <Key className='mr-2 h-4 w-4' />
+          Manage Sessions
+        </DropdownMenuItem>
+      </DialogTrigger>
+      <DialogContent className='max-w-2xl'>
+        <DialogHeader>
+          <DialogTitle>Sessions for {user.username}</DialogTitle>
+          <DialogDescription>
+            View and revoke active sessions for this user.
+          </DialogDescription>
+        </DialogHeader>
+        <div className='py-4'>
+          {isLoading ? (
+            <div className='space-y-2'>
+              <Skeleton className='h-12 w-full' />
+              <Skeleton className='h-12 w-full' />
+            </div>
+          ) : data?.sessions && data.sessions.length > 0 ? (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Device</TableHead>
+                  <TableHead>IP Address</TableHead>
+                  <TableHead>Last Accessed</TableHead>
+                  <TableHead className='w-[80px]' />
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {data.sessions.map((session) => (
+                  <TableRow key={session.code}>
+                    <TableCell>{formatSession(session)}</TableCell>
+                    <TableCell className='font-mono text-sm'>
+                      {session.address || 'Unknown'}
+                    </TableCell>
+                    <TableCell>
+                      {formatDistanceToNow(session.accessed * 1000, {
+                        addSuffix: true,
+                      })}
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        variant='ghost'
+                        size='sm'
+                        onClick={() => handleRevoke(session.code)}
+                        disabled={revokeSession.isPending}
+                      >
+                        Revoke
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          ) : (
+            <p className='text-muted-foreground py-4 text-center text-sm'>
+              No active sessions
+            </p>
+          )}
+        </div>
+        <DialogFooter>
+          <Button variant='outline' onClick={() => setOpen(false)}>
+            Close
+          </Button>
+          {data?.sessions && data.sessions.length > 0 && (
+            <Button
+              variant='destructive'
+              onClick={() => handleRevoke()}
+              disabled={revokeSession.isPending}
+            >
+              {revokeSession.isPending && (
+                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+              )}
+              Revoke All Sessions
+            </Button>
+          )}
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
+function UserRow({ user, onUpdate }: { user: User; onUpdate: () => void }) {
+  const [deleteOpen, setDeleteOpen] = useState(false)
+  const deleteUser = useDeleteUser()
+  const suspendUser = useSuspendUser()
+  const activateUser = useActivateUser()
+  const setMfaRequired = useSetMfaRequired()
+
+  const isAdmin = user.role === 'administrator'
+  const isSuspended = user.status === 'suspended'
+  const hasMfa = user.methods && user.methods !== 'email'
+
+  const handleDelete = () => {
+    deleteUser.mutate(user.id, {
+      onSuccess: () => {
+        toast.success('User deleted')
+        setDeleteOpen(false)
+        onUpdate()
+      },
+      onError: (error: Error) => {
+        toast.error(error.message || 'Failed to delete user')
+      },
+    })
+  }
+
+  const handleToggleStatus = () => {
+    const action = isSuspended ? activateUser : suspendUser
+    action.mutate(user.id, {
+      onSuccess: () => {
+        toast.success(isSuspended ? 'User activated' : 'User suspended')
+        onUpdate()
+      },
+      onError: (error: Error) => {
+        toast.error(error.message || 'Failed to update user status')
+      },
+    })
+  }
+
+  const handleToggleMfaRequired = () => {
+    setMfaRequired.mutate(
+      { id: user.id, required: !user.mfa_required },
+      {
+        onSuccess: () => {
+          toast.success(
+            user.mfa_required
+              ? 'MFA requirement cleared'
+              : 'MFA now required for this user'
+          )
+          onUpdate()
+        },
+        onError: (error: Error) => {
+          toast.error(error.message || 'Failed to update MFA requirement')
+        },
+      }
+    )
+  }
+
+  return (
+    <TableRow className={isSuspended ? 'opacity-60' : ''}>
       <TableCell>
         <div className='flex items-center gap-2'>
           {isAdmin ? (
             <Shield className='h-4 w-4 text-amber-500' />
           ) : (
-            <UserIcon className='h-4 w-4 text-muted-foreground' />
+            <UserIcon className='text-muted-foreground h-4 w-4' />
           )}
           <span className='font-medium'>{user.username}</span>
+          {hasMfa && (
+            <span title='MFA enabled'>
+              <ShieldCheck className='h-4 w-4 text-green-600' />
+            </span>
+          )}
+          {user.mfa_required && !hasMfa && (
+            <Badge
+              variant='outline'
+              className='ml-1 border-amber-600 text-xs text-amber-600'
+            >
+              MFA Required
+            </Badge>
+          )}
         </div>
       </TableCell>
       <TableCell>
@@ -257,57 +469,172 @@ function UserRow({
           {isAdmin ? 'Administrator' : 'User'}
         </Badge>
       </TableCell>
+      <TableCell>
+        {isSuspended ? (
+          <Badge variant='destructive'>Suspended</Badge>
+        ) : (
+          <Badge variant='outline'>Active</Badge>
+        )}
+      </TableCell>
+      <TableCell className='text-muted-foreground text-sm'>
+        {user.last_login ? (
+          formatDistanceToNow(user.last_login * 1000, { addSuffix: true })
+        ) : (
+          <span className='italic'>Never</span>
+        )}
+      </TableCell>
       <TableCell className='text-right'>
-        <div className='flex items-center justify-end gap-1'>
-          <EditUserDialog user={user} onSuccess={onUpdate} />
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button variant='ghost' size='icon' disabled={isDeleting}>
-                {isDeleting ? (
-                  <Loader2 className='h-4 w-4 animate-spin' />
-                ) : (
-                  <Trash2 className='h-4 w-4' />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant='ghost' size='icon'>
+              <MoreHorizontal className='h-4 w-4' />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align='end'>
+            <EditUserDialog user={user} onSuccess={onUpdate} />
+            <SessionsDialog user={user} />
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={handleToggleMfaRequired}>
+              <ShieldCheck className='mr-2 h-4 w-4' />
+              {user.mfa_required ? 'Clear MFA Requirement' : 'Require MFA'}
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={handleToggleStatus}>
+              {isSuspended ? (
+                <>
+                  <UserCheck className='mr-2 h-4 w-4' />
+                  Activate User
+                </>
+              ) : (
+                <>
+                  <Ban className='mr-2 h-4 w-4' />
+                  Suspend User
+                </>
+              )}
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className='text-destructive'
+              onClick={() => setDeleteOpen(true)}
+            >
+              <Trash2 className='mr-2 h-4 w-4' />
+              Delete User
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete user?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This will permanently delete the user "{user.username}". This
+                action cannot be undone.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={handleDelete}
+                disabled={deleteUser.isPending}
+              >
+                {deleteUser.isPending && (
+                  <Loader2 className='mr-2 h-4 w-4 animate-spin' />
                 )}
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Delete user?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This will permanently delete the user "{user.username}". This
-                  action cannot be undone.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction onClick={onDelete}>Delete</AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        </div>
+                Delete
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </TableCell>
     </TableRow>
   )
 }
 
-export function SystemUsers() {
-  const { data, isLoading, error, refetch } = useSystemUsersData()
-  const deleteUser = useDeleteUser()
-  const [deletingId, setDeletingId] = useState<number | null>(null)
+type SortColumn = 'username' | 'role' | 'status' | 'last_login'
+type SortOrder = 'asc' | 'desc'
 
-  const handleDelete = (id: number) => {
-    setDeletingId(id)
-    deleteUser.mutate(id, {
-      onSuccess: () => {
-        toast.success('User deleted')
-        setDeletingId(null)
-      },
-      onError: (error: Error) => {
-        toast.error(error.message || 'Failed to delete user')
-        setDeletingId(null)
-      },
-    })
+function SortableHeader({
+  column,
+  label,
+  currentSort,
+  currentOrder,
+  onSort,
+}: {
+  column: SortColumn
+  label: string
+  currentSort: SortColumn
+  currentOrder: SortOrder
+  onSort: (column: SortColumn) => void
+}) {
+  const isActive = currentSort === column
+  return (
+    <TableHead
+      className='hover:bg-muted/50 cursor-pointer select-none'
+      onClick={() => onSort(column)}
+    >
+      <div className='flex items-center gap-1'>
+        {label}
+        {isActive &&
+          (currentOrder === 'asc' ? (
+            <ChevronUp className='h-4 w-4' />
+          ) : (
+            <ChevronDown className='h-4 w-4' />
+          ))}
+      </div>
+    </TableHead>
+  )
+}
+
+export function SystemUsers() {
+  const [search, setSearch] = useState('')
+  const [limit, setLimit] = useState(25)
+  const [offset, setOffset] = useState(0)
+  const [sort, setSort] = useState<SortColumn>('username')
+  const [order, setOrder] = useState<SortOrder>('asc')
+
+  const debouncedSearch = useDebounce(search, 300)
+
+  // Reset offset when search changes
+  useEffect(() => {
+    setOffset(0)
+  }, [debouncedSearch])
+
+  const { data, isLoading, error, refetch } = useSystemUsersData(
+    limit,
+    offset,
+    debouncedSearch
+  )
+
+  const handleSort = (column: SortColumn) => {
+    if (sort === column) {
+      setOrder(order === 'asc' ? 'desc' : 'asc')
+    } else {
+      setSort(column)
+      setOrder('asc')
+    }
   }
+
+  // Client-side sorting (server-side would be better for large datasets)
+  const sortedUsers = data?.users
+    ? [...data.users].sort((a, b) => {
+        let comparison = 0
+        switch (sort) {
+          case 'username':
+            comparison = a.username.localeCompare(b.username)
+            break
+          case 'role':
+            comparison = a.role.localeCompare(b.role)
+            break
+          case 'status':
+            comparison = a.status.localeCompare(b.status)
+            break
+          case 'last_login':
+            comparison = (a.last_login || 0) - (b.last_login || 0)
+            break
+        }
+        return order === 'asc' ? comparison : -comparison
+      })
+    : []
 
   if (error) {
     return (
@@ -325,14 +652,27 @@ export function SystemUsers() {
   return (
     <>
       <Header>
-        <div className='flex items-center justify-between w-full'>
+        <div className='flex w-full items-center justify-between'>
           <h1 className='text-lg font-semibold'>
             Users
             {data?.count !== undefined && (
-              <span className='text-muted-foreground font-normal ml-2'>({data.count})</span>
+              <span className='text-muted-foreground ml-2 font-normal'>
+                ({data.count})
+              </span>
             )}
           </h1>
-          <CreateUserDialog onSuccess={() => refetch()} />
+          <div className='flex items-center gap-4'>
+            <div className='relative'>
+              <Search className='text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4' />
+              <Input
+                placeholder='Search users...'
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className='w-64 pl-8'
+              />
+            </div>
+            <CreateUserDialog onSuccess={() => refetch()} />
+          </div>
         </div>
       </Header>
 
@@ -343,30 +683,105 @@ export function SystemUsers() {
             <Skeleton className='h-12 w-full' />
             <Skeleton className='h-12 w-full' />
           </div>
-        ) : data?.users && data.users.length > 0 ? (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>User</TableHead>
-                <TableHead>Role</TableHead>
-                <TableHead className='w-[100px]' />
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {data.users.map((user) => (
-                <UserRow
-                  key={user.id}
-                  user={user}
-                  onDelete={() => handleDelete(user.id)}
-                  isDeleting={deletingId === user.id}
-                  onUpdate={() => refetch()}
-                />
-              ))}
-            </TableBody>
-          </Table>
+        ) : sortedUsers.length > 0 ? (
+          <>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <SortableHeader
+                    column='username'
+                    label='User'
+                    currentSort={sort}
+                    currentOrder={order}
+                    onSort={handleSort}
+                  />
+                  <SortableHeader
+                    column='role'
+                    label='Role'
+                    currentSort={sort}
+                    currentOrder={order}
+                    onSort={handleSort}
+                  />
+                  <SortableHeader
+                    column='status'
+                    label='Status'
+                    currentSort={sort}
+                    currentOrder={order}
+                    onSort={handleSort}
+                  />
+                  <SortableHeader
+                    column='last_login'
+                    label='Last Login'
+                    currentSort={sort}
+                    currentOrder={order}
+                    onSort={handleSort}
+                  />
+                  <TableHead className='w-[80px]' />
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {sortedUsers.map((user) => (
+                  <UserRow
+                    key={user.id}
+                    user={user}
+                    onUpdate={() => refetch()}
+                  />
+                ))}
+              </TableBody>
+            </Table>
+
+            {/* Pagination */}
+            {!debouncedSearch && data && data.count > limit && (
+              <div className='flex items-center justify-between py-4'>
+                <div className='text-muted-foreground flex items-center gap-2 text-sm'>
+                  <span>
+                    Showing {offset + 1}-{Math.min(offset + limit, data.count)}{' '}
+                    of {data.count} users
+                  </span>
+                  <Select
+                    value={String(limit)}
+                    onValueChange={(v) => {
+                      setLimit(Number(v))
+                      setOffset(0)
+                    }}
+                  >
+                    <SelectTrigger className='h-8 w-20'>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value='10'>10</SelectItem>
+                      <SelectItem value='25'>25</SelectItem>
+                      <SelectItem value='50'>50</SelectItem>
+                      <SelectItem value='100'>100</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className='flex items-center gap-2'>
+                  <Button
+                    variant='outline'
+                    size='sm'
+                    onClick={() => setOffset(Math.max(0, offset - limit))}
+                    disabled={offset === 0}
+                  >
+                    <ChevronLeft className='mr-1 h-4 w-4' />
+                    Previous
+                  </Button>
+                  <Button
+                    variant='outline'
+                    size='sm'
+                    onClick={() => setOffset(offset + limit)}
+                    disabled={offset + limit >= data.count}
+                  >
+                    Next
+                    <ChevronRight className='ml-1 h-4 w-4' />
+                  </Button>
+                </div>
+              </div>
+            )}
+          </>
         ) : (
-          <p className='text-sm text-muted-foreground text-center py-8'>
-            No users found
+          <p className='text-muted-foreground py-8 text-center text-sm'>
+            {debouncedSearch ? 'No users match your search' : 'No users found'}
           </p>
         )}
       </Main>

@@ -1,8 +1,8 @@
 import { format } from 'date-fns'
+import type { Session } from '@/types/account'
 import { Loader2, LogOut } from 'lucide-react'
 import { toast } from 'sonner'
-import { Header } from '@/components/layout/header'
-import { Main } from '@/components/layout/main'
+import { useAccountData, useRevokeSession } from '@/hooks/use-account'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -24,15 +24,21 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { useAccountData, useRevokeSession } from '@/hooks/use-account'
-import type { Session } from '@/types/account'
+import { Header } from '@/components/layout/header'
+import { Main } from '@/components/layout/main'
 
 function formatTimestamp(timestamp: number): string {
   if (timestamp === 0) return 'Never'
   return format(new Date(timestamp * 1000), 'yyyy-MM-dd HH:mm:ss')
 }
 
-function SessionRow({ session, isCurrent }: { session: Session; isCurrent: boolean }) {
+function SessionRow({
+  session,
+  isCurrent,
+}: {
+  session: Session
+  isCurrent: boolean
+}) {
   const revokeSession = useRevokeSession()
 
   const handleRevoke = () => {
@@ -53,7 +59,9 @@ function SessionRow({ session, isCurrent }: { session: Session; isCurrent: boole
           <span className='font-medium'>
             {session.agent || 'Unknown device'}
             {isCurrent && (
-              <span className='text-muted-foreground ml-2 text-xs'>(current)</span>
+              <span className='text-muted-foreground ml-2 text-xs'>
+                (current)
+              </span>
             )}
           </span>
         </div>
@@ -84,8 +92,8 @@ function SessionRow({ session, isCurrent }: { session: Session; isCurrent: boole
             <AlertDialogHeader>
               <AlertDialogTitle>Revoke session?</AlertDialogTitle>
               <AlertDialogDescription>
-                This will sign out this session. If this is your current session,
-                you will need to sign in again.
+                This will sign out this session. If this is your current
+                session, you will need to sign in again.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>

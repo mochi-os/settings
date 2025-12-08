@@ -91,32 +91,31 @@ export async function request<TResponse>(
   }
 
   try {
-    const response: AxiosResponse<TResponse> = await apiClient.request<
-      TResponse
-    >(requestConfig)
-    
+    const response: AxiosResponse<TResponse> =
+      await apiClient.request<TResponse>(requestConfig)
+
     // Check for application-level errors in successful HTTP responses
     // Some backends return HTTP 200 with error details in the response body
     const responseData = response.data as unknown
     if (
       responseData &&
       typeof responseData === 'object' &&
-      'error' in responseData &&
-      'status' in responseData
+      'error' in responseData
     ) {
       const errorData = responseData as { error?: string; status?: number }
-      if (errorData.error && errorData.status && errorData.status >= 400) {
+      // Throw if there's an error field (with optional status check)
+      if (errorData.error && (!errorData.status || errorData.status >= 400)) {
         // Throw an error for application-level errors
         const apiError = new ApiError({
           message: errorData.error,
-          status: errorData.status,
+          status: errorData.status ?? response.status,
           data: responseData,
         })
         logRequestError(apiError, requestConfig)
         throw apiError
       }
     }
-    
+
     return response.data
   } catch (unknownError) {
     const apiError = buildApiError(

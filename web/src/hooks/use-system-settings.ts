@@ -1,13 +1,15 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { apiClient } from '@/lib/apiClient'
-import endpoints from '@/api/endpoints'
 import type { SystemSettingsData } from '@/types/settings'
+import endpoints from '@/api/endpoints'
+import { apiClient } from '@/lib/apiClient'
 
 export function useSystemSettingsData() {
   return useQuery({
     queryKey: ['system', 'settings'],
     queryFn: async () => {
-      const response = await apiClient.get<SystemSettingsData>(endpoints.system.settings)
+      const response = await apiClient.get<SystemSettingsData>(
+        endpoints.system.settings
+      )
       return response.data
     },
   })

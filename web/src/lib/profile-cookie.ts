@@ -13,9 +13,7 @@ const PROFILE_COOKIE = 'mochi_me'
 const isIdentityPrivacy = (value: unknown): value is IdentityPrivacy =>
   value === 'public' || value === 'private'
 
-const sanitizeProfile = (
-  profile: ProfileCookieData
-): ProfileCookieData => {
+const sanitizeProfile = (profile: ProfileCookieData): ProfileCookieData => {
   const sanitized: ProfileCookieData = {}
 
   if (typeof profile.email === 'string' && profile.email.length > 0) {
@@ -51,4 +49,3 @@ export const readProfileCookie = (): ProfileCookieData => {
 export const clearProfileCookie = (): void => {
   removeCookie(PROFILE_COOKIE, '/')
 }
-

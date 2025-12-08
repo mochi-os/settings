@@ -48,10 +48,16 @@ export function NavGroup({ title, items }: NavGroupProps) {
 
           if (state === 'collapsed' && !isMobile)
             return (
-              <SidebarMenuCollapsedDropdown key={key} item={item} pathname={pathname} />
+              <SidebarMenuCollapsedDropdown
+                key={key}
+                item={item}
+                pathname={pathname}
+              />
             )
 
-          return <SidebarMenuCollapsible key={key} item={item} pathname={pathname} />
+          return (
+            <SidebarMenuCollapsible key={key} item={item} pathname={pathname} />
+          )
         })}
       </SidebarMenu>
     </SidebarGroup>
@@ -62,7 +68,13 @@ function NavBadge({ children }: { children: ReactNode }) {
   return <Badge className='rounded-full px-1 py-0 text-xs'>{children}</Badge>
 }
 
-function SidebarMenuLink({ item, pathname }: { item: NavLink; pathname: string }) {
+function SidebarMenuLink({
+  item,
+  pathname,
+}: {
+  item: NavLink
+  pathname: string
+}) {
   const { setOpenMobile } = useSidebar()
   if (item.external) {
     return (
@@ -198,15 +210,15 @@ function checkIsActive(pathname: string, item: NavItem, mainNav = false) {
     const trimmed = path.replace(/\/$/, '')
     return trimmed || '/'
   }
-  
+
   const normalizedPathname = normalizePath(pathname)
   const normalizedItemUrl = normalizePath(item.url as string)
-  
+
   // Check for exact match
   if (normalizedPathname === normalizedItemUrl) {
     return true
   }
-  
+
   // Check if any child nav item is active
   if (item?.items?.length) {
     const hasActiveChild = item.items.some((i) => {
@@ -217,7 +229,7 @@ function checkIsActive(pathname: string, item: NavItem, mainNav = false) {
       return true
     }
   }
-  
+
   // For main nav items, check if the first segment matches
   if (mainNav) {
     const pathnameSegments = normalizedPathname.split('/').filter(Boolean)
@@ -226,6 +238,6 @@ function checkIsActive(pathname: string, item: NavItem, mainNav = false) {
       return pathnameSegments[0] === itemUrlSegments[0]
     }
   }
-  
+
   return false
 }

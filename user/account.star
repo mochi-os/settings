@@ -35,7 +35,7 @@ def action_user_account_session_revoke(a):
         a.error(400, "Missing session code")
         return
 
-    mochi.user.session.revoke(code)
+    mochi.user.session.revoke(a.user.id, code)
     a.json({"ok": True})
 
 # ============================================================================
@@ -55,7 +55,17 @@ def action_user_account_methods_set(a):
 
     # Parse comma-separated or JSON array
     if type(methods) == "string":
-        methods = [m.strip() for m in methods.split(",") if m.strip()]
+        # Handle JSON array format: ["email","passkey"]
+        if methods.startswith("[") and methods.endswith("]"):
+            # Remove brackets and parse as comma-separated, stripping quotes
+            inner = methods[1:-1]
+            methods = []
+            for m in inner.split(","):
+                m = m.strip().strip('"').strip("'")
+                if m:
+                    methods.append(m)
+        else:
+            methods = [m.strip() for m in methods.split(",") if m.strip()]
 
     mochi.user.methods.set(methods)
     a.json({"ok": True, "methods": methods})

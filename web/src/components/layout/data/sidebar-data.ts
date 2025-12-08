@@ -1,5 +1,13 @@
 import { APP_ROUTES } from '@/config/routes'
-import { User, Key, Palette, Globe, Settings, Users, Activity } from 'lucide-react'
+import {
+  User,
+  Monitor,
+  Palette,
+  Globe,
+  Settings,
+  Users,
+  Activity,
+} from 'lucide-react'
 import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
@@ -15,7 +23,7 @@ export const sidebarData: SidebarData = {
         {
           title: 'Sessions',
           url: APP_ROUTES.SETTINGS.USER.SESSIONS,
-          icon: Key,
+          icon: Monitor,
         },
         {
           title: 'Preferences',

@@ -1,8 +1,13 @@
 import { useState, useMemo } from 'react'
 import { Check, ChevronsUpDown, Loader2, RotateCcw } from 'lucide-react'
 import { toast } from 'sonner'
-import { Header } from '@/components/layout/header'
-import { Main } from '@/components/layout/main'
+import { cn } from '@/lib/utils'
+import { useTheme } from '@/context/theme-provider'
+import {
+  usePreferencesData,
+  useSetPreference,
+  useResetPreferences,
+} from '@/hooks/use-preferences'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -37,13 +42,8 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
-import { cn } from '@/lib/utils'
-import {
-  usePreferencesData,
-  useSetPreference,
-  useResetPreferences,
-} from '@/hooks/use-preferences'
-import { useTheme } from '@/context/theme-provider'
+import { Header } from '@/components/layout/header'
+import { Main } from '@/components/layout/main'
 
 const themeLabels: Record<string, string> = {
   light: 'Light',
@@ -54,7 +54,11 @@ const themeLabels: Record<string, string> = {
 function getTimezones(): string[] {
   try {
     // TypeScript doesn't have types for supportedValuesOf yet
-    return (Intl as { supportedValuesOf?: (key: string) => string[] }).supportedValuesOf?.('timeZone') ?? []
+    return (
+      (
+        Intl as { supportedValuesOf?: (key: string) => string[] }
+      ).supportedValuesOf?.('timeZone') ?? []
+    )
   } catch {
     return []
   }
@@ -82,7 +86,10 @@ function TimezoneSelect({
   const browserTimezone = useMemo(() => getBrowserTimezone(), [])
 
   const formatTimezone = (tz: string) => tz.replace(/_/g, ' ')
-  const displayValue = value === 'auto' ? `Auto (${formatTimezone(browserTimezone)})` : formatTimezone(value)
+  const displayValue =
+    value === 'auto'
+      ? `Auto (${formatTimezone(browserTimezone)})`
+      : formatTimezone(value)
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -117,7 +124,9 @@ function TimezoneSelect({
                     value === 'auto' ? 'opacity-100' : 'opacity-0'
                   )}
                 />
-                <span className='truncate'>Auto ({formatTimezone(browserTimezone)})</span>
+                <span className='truncate'>
+                  Auto ({formatTimezone(browserTimezone)})
+                </span>
               </CommandItem>
               {timezones.map((tz) => (
                 <CommandItem
@@ -173,7 +182,8 @@ export function UserPreferences() {
 
   const handleChange = (key: string, value: string) => {
     if (key === 'theme') {
-      const themeValue = value === 'auto' ? 'system' : value as 'light' | 'dark'
+      const themeValue =
+        value === 'auto' ? 'system' : (value as 'light' | 'dark')
       setTheme(themeValue)
     }
     setPreference.mutate(
@@ -229,10 +239,7 @@ export function UserPreferences() {
         ) : data ? (
           <>
             <div className='divide-y'>
-              <PreferenceRow
-                label='Theme'
-                description='Appearance'
-              >
+              <PreferenceRow label='Theme' description='Appearance'>
                 <Select
                   value={data.preferences.theme}
                   onValueChange={(value) => handleChange('theme', value)}

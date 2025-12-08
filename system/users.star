@@ -10,13 +10,24 @@ def action_system_users(a):
     a.json({"users": users, "count": count})
 
 def action_system_users_list(a):
-    """List all users with pagination"""
+    """List all users with pagination and search"""
     if not require_admin(a):
         return
-    limit = int(a.input("limit") or "100")
+    limit = int(a.input("limit") or "25")
     offset = int(a.input("offset") or "0")
-    users = mochi.user.list(limit, offset)
-    count = mochi.user.count()
+    search = a.input("search") or ""
+
+    if search:
+        users = mochi.user.search(search, limit)
+        count = len(users)
+    else:
+        users = mochi.user.list(limit, offset)
+        count = mochi.user.count()
+
+    # Add last_login to each user
+    for user in users:
+        user["last_login"] = mochi.user.last_login(user["id"])
+
     a.json({"users": users, "count": count})
 
 def action_system_users_get(a):
@@ -68,3 +79,63 @@ def action_system_users_delete(a):
         return
     mochi.user.delete(int(id))
     a.json({"ok": True})
+
+def action_system_users_suspend(a):
+    """Suspend a user"""
+    if not require_admin(a):
+        return
+    id = a.input("id")
+    if not id:
+        a.error(400, "Missing user id")
+        return
+    mochi.user.suspend(int(id))
+    a.json({"ok": True})
+
+def action_system_users_activate(a):
+    """Activate a suspended user"""
+    if not require_admin(a):
+        return
+    id = a.input("id")
+    if not id:
+        a.error(400, "Missing user id")
+        return
+    mochi.user.activate(int(id))
+    a.json({"ok": True})
+
+def action_system_users_mfa_required(a):
+    """Set MFA requirement for a user"""
+    if not require_admin(a):
+        return
+    id = a.input("id")
+    if not id:
+        a.error(400, "Missing user id")
+        return
+    required = a.input("required") == "true"
+    mochi.user.mfa_required(int(id), required)
+    a.json({"ok": True})
+
+def action_system_users_sessions(a):
+    """Get sessions for a user"""
+    if not require_admin(a):
+        return
+    id = a.input("id")
+    if not id:
+        a.error(400, "Missing user id")
+        return
+    sessions = mochi.user.session.list(int(id))
+    a.json({"sessions": sessions})
+
+def action_system_users_sessions_revoke(a):
+    """Revoke session(s) for a user"""
+    if not require_admin(a):
+        return
+    id = a.input("id")
+    if not id:
+        a.error(400, "Missing user id")
+        return
+    code = a.input("code")
+    if code:
+        count = mochi.user.session.revoke(int(id), code)
+    else:
+        count = mochi.user.session.revoke(int(id))
+    a.json({"ok": True, "revoked": count})

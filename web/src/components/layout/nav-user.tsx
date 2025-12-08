@@ -10,9 +10,9 @@ import {
 } from 'lucide-react'
 import { useAuthStore } from '@/stores/auth-store'
 import { readProfileCookie } from '@/lib/profile-cookie'
-import useDialogState from '@/hooks/use-dialog-state'
-import { useTheme } from '@/context/theme-provider'
 import { cn } from '@/lib/utils'
+import { useTheme } from '@/context/theme-provider'
+import useDialogState from '@/hooks/use-dialog-state'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -77,17 +77,14 @@ export function NavUser() {
             >
               <DropdownMenuLabel className='p-0 font-normal'>
                 <div className='grid px-1 py-1.5 text-start text-sm leading-tight'>
-                  <span className='truncate font-semibold'>
-                    {displayName}
-                  </span>
+                  <span className='truncate font-semibold'>{displayName}</span>
                   <span className='truncate text-xs'>{displayEmail}</span>
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger>
-                  <Sun /> {' '}
-                  Theme
+                  <Sun /> Theme
                 </DropdownMenuSubTrigger>
                 <DropdownMenuSubContent>
                   <DropdownMenuItem onClick={() => setTheme('light')}>

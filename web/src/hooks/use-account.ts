@@ -1,6 +1,4 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import endpoints from '@/api/endpoints'
-import { requestHelpers } from '@/lib/request'
 import type {
   AccountData,
   SessionsResponse,
@@ -14,6 +12,8 @@ import type {
   RecoveryStatusResponse,
   RecoveryGenerateResponse,
 } from '@/types/account'
+import endpoints from '@/api/endpoints'
+import { requestHelpers } from '@/lib/request'
 
 export function useAccountData() {
   return useQuery({
@@ -34,9 +34,12 @@ export function useRevokeSession() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: (code: string) =>
-      requestHelpers.post<{ ok: boolean }>(endpoints.user.accountSessionRevoke, {
-        code,
-      }),
+      requestHelpers.post<{ ok: boolean }>(
+        endpoints.user.accountSessionRevoke,
+        {
+          code,
+        }
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account'] })
     },
@@ -50,7 +53,8 @@ export function useRevokeSession() {
 export function useMethods() {
   return useQuery({
     queryKey: ['account', 'methods'],
-    queryFn: () => requestHelpers.get<MethodsResponse>(endpoints.user.accountMethods),
+    queryFn: () =>
+      requestHelpers.get<MethodsResponse>(endpoints.user.accountMethods),
   })
 }
 
@@ -75,7 +79,8 @@ export function useSetMethods() {
 export function usePasskeys() {
   return useQuery({
     queryKey: ['account', 'passkeys'],
-    queryFn: () => requestHelpers.get<PasskeysResponse>(endpoints.user.accountPasskeys),
+    queryFn: () =>
+      requestHelpers.get<PasskeysResponse>(endpoints.user.accountPasskeys),
   })
 }
 
@@ -92,7 +97,11 @@ export function usePasskeyRegisterBegin() {
 export function usePasskeyRegisterFinish() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (data: { ceremony: string; credential: unknown; name?: string }) =>
+    mutationFn: (data: {
+      ceremony: string
+      credential: unknown
+      name?: string
+    }) =>
       requestHelpers.post<PasskeyRegisterFinishResponse>(
         endpoints.user.accountPasskeyRegisterFinish,
         data
@@ -107,7 +116,10 @@ export function usePasskeyRename() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: (data: { id: string; name: string }) =>
-      requestHelpers.post<{ ok: boolean }>(endpoints.user.accountPasskeyRename, data),
+      requestHelpers.post<{ ok: boolean }>(
+        endpoints.user.accountPasskeyRename,
+        data
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'passkeys'] })
     },
@@ -118,7 +130,10 @@ export function usePasskeyDelete() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: (id: string) =>
-      requestHelpers.post<{ ok: boolean }>(endpoints.user.accountPasskeyDelete, { id }),
+      requestHelpers.post<{ ok: boolean }>(
+        endpoints.user.accountPasskeyDelete,
+        { id }
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'passkeys'] })
     },
@@ -132,14 +147,18 @@ export function usePasskeyDelete() {
 export function useTotpStatus() {
   return useQuery({
     queryKey: ['account', 'totp'],
-    queryFn: () => requestHelpers.get<TotpStatusResponse>(endpoints.user.accountTotp),
+    queryFn: () =>
+      requestHelpers.get<TotpStatusResponse>(endpoints.user.accountTotp),
   })
 }
 
 export function useTotpSetup() {
   return useMutation({
     mutationFn: () =>
-      requestHelpers.post<TotpSetupResponse>(endpoints.user.accountTotpSetup, {}),
+      requestHelpers.post<TotpSetupResponse>(
+        endpoints.user.accountTotpSetup,
+        {}
+      ),
   })
 }
 
@@ -147,7 +166,10 @@ export function useTotpVerify() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: (code: string) =>
-      requestHelpers.post<TotpVerifyResponse>(endpoints.user.accountTotpVerify, { code }),
+      requestHelpers.post<TotpVerifyResponse>(
+        endpoints.user.accountTotpVerify,
+        { code }
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'totp'] })
     },
@@ -158,7 +180,10 @@ export function useTotpDisable() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: () =>
-      requestHelpers.post<{ ok: boolean }>(endpoints.user.accountTotpDisable, {}),
+      requestHelpers.post<{ ok: boolean }>(
+        endpoints.user.accountTotpDisable,
+        {}
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'totp'] })
     },
@@ -173,7 +198,9 @@ export function useRecoveryStatus() {
   return useQuery({
     queryKey: ['account', 'recovery'],
     queryFn: () =>
-      requestHelpers.get<RecoveryStatusResponse>(endpoints.user.accountRecovery),
+      requestHelpers.get<RecoveryStatusResponse>(
+        endpoints.user.accountRecovery
+      ),
   })
 }
 

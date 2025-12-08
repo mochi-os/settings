@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { toast } from 'sonner'
 import endpoints from '@/api/endpoints'
+import { removeCookie } from '@/lib/cookies'
 import { requestHelpers } from '@/lib/request'
 import { useAuth } from './useAuth'
-import { removeCookie } from '@/lib/cookies'
 
 export function useLogout() {
   const { logout: clearAuth, setLoading, isLoading } = useAuth()

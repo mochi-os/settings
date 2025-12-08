@@ -1,9 +1,9 @@
 import { format } from 'date-fns'
 import { Activity } from 'lucide-react'
+import { useSystemSettingsData } from '@/hooks/use-system-settings'
+import { Skeleton } from '@/components/ui/skeleton'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
-import { Skeleton } from '@/components/ui/skeleton'
-import { useSystemSettingsData } from '@/hooks/use-system-settings'
 
 function formatTimestamp(value: string): string {
   const timestamp = parseInt(value, 10)
@@ -28,8 +28,10 @@ export function SystemStatus() {
   }
 
   const settings = data?.settings ?? []
-  const serverVersion = settings.find((s) => s.name === 'server_version')?.value ?? ''
-  const serverStarted = settings.find((s) => s.name === 'server_started')?.value ?? ''
+  const serverVersion =
+    settings.find((s) => s.name === 'server_version')?.value ?? ''
+  const serverStarted =
+    settings.find((s) => s.name === 'server_started')?.value ?? ''
 
   return (
     <>
@@ -38,7 +40,7 @@ export function SystemStatus() {
       </Header>
 
       <Main>
-        <div className='flex items-center gap-2 mb-6'>
+        <div className='mb-6 flex items-center gap-2'>
           <Activity className='h-5 w-5' />
           <h2 className='text-lg font-semibold'>Server</h2>
         </div>
@@ -55,7 +57,9 @@ export function SystemStatus() {
             </div>
             <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
               <dt className='text-muted-foreground w-28 shrink-0'>Started</dt>
-              <dd className='font-mono text-xs'>{formatTimestamp(serverStarted)}</dd>
+              <dd className='font-mono text-xs'>
+                {formatTimestamp(serverStarted)}
+              </dd>
             </div>
           </dl>
         )}

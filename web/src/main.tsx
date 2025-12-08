@@ -97,9 +97,9 @@ if (!rootElement.innerHTML) {
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
           {/* <FontProvider> */}
-            {/* <DirectionProvider> */}
-              <RouterProvider router={router} />
-            {/* </DirectionProvider> */}
+          {/* <DirectionProvider> */}
+          <RouterProvider router={router} />
+          {/* </DirectionProvider> */}
           {/* </FontProvider> */}
         </ThemeProvider>
       </QueryClientProvider>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { startRegistration } from '@simplewebauthn/browser'
 import { format } from 'date-fns'
+import type { Passkey, TotpSetupResponse } from '@/types/account'
+import { startRegistration } from '@simplewebauthn/browser'
 import {
   Check,
   Copy,
@@ -16,8 +17,22 @@ import {
 } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
 import { toast } from 'sonner'
-import { Header } from '@/components/layout/header'
-import { Main } from '@/components/layout/main'
+import {
+  useAccountData,
+  useMethods,
+  usePasskeyDelete,
+  usePasskeyRegisterBegin,
+  usePasskeyRegisterFinish,
+  usePasskeyRename,
+  usePasskeys,
+  useRecoveryGenerate,
+  useRecoveryStatus,
+  useSetMethods,
+  useTotpDisable,
+  useTotpSetup,
+  useTotpStatus,
+  useTotpVerify,
+} from '@/hooks/use-account'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -51,23 +66,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import {
-  useAccountData,
-  useMethods,
-  usePasskeyDelete,
-  usePasskeyRegisterBegin,
-  usePasskeyRegisterFinish,
-  usePasskeyRename,
-  usePasskeys,
-  useRecoveryGenerate,
-  useRecoveryStatus,
-  useSetMethods,
-  useTotpDisable,
-  useTotpSetup,
-  useTotpStatus,
-  useTotpVerify,
-} from '@/hooks/use-account'
-import type { Passkey, TotpSetupResponse } from '@/types/account'
+import { Header } from '@/components/layout/header'
+import { Main } from '@/components/layout/main'
 
 function formatTimestamp(timestamp: number): string {
   if (timestamp === 0) return 'Never'
@@ -109,7 +109,9 @@ function IdentitySection() {
           </div>
           <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
             <dt className='text-muted-foreground w-28 shrink-0'>Entity ID</dt>
-            <dd className='font-mono text-xs break-all'>{data.identity.entity}</dd>
+            <dd className='font-mono text-xs break-all'>
+              {data.identity.entity}
+            </dd>
           </div>
         </dl>
       ) : null}
@@ -162,7 +164,7 @@ function LoginRequirementsSection() {
         <h2 className='text-lg font-semibold'>Login requirements</h2>
       </div>
       <p className='text-muted-foreground mb-4 text-sm'>
-        Choose which authentication methods are required when you sign in.
+        Require all selected methods to log in:
       </p>
       {isLoading ? (
         <div className='space-y-3'>
@@ -172,21 +174,6 @@ function LoginRequirementsSection() {
         </div>
       ) : (
         <div className='space-y-4'>
-          <div className='flex items-center justify-between'>
-            <div>
-              <Label htmlFor='method-email'>Email code</Label>
-              <p className='text-muted-foreground text-xs'>
-                Receive a code by email
-              </p>
-            </div>
-            <Switch
-              id='method-email'
-              checked={methods.includes('email')}
-              onCheckedChange={(checked) => handleToggleMethod('email', checked)}
-              disabled={setMethods.isPending || (methods.length === 1 && methods.includes('email'))}
-            />
-          </div>
-
           <div className='flex items-center justify-between'>
             <div>
               <Label htmlFor='method-passkey'>Passkey</Label>
@@ -199,7 +186,9 @@ function LoginRequirementsSection() {
             <Switch
               id='method-passkey'
               checked={methods.includes('passkey')}
-              onCheckedChange={(checked) => handleToggleMethod('passkey', checked)}
+              onCheckedChange={(checked) =>
+                handleToggleMethod('passkey', checked)
+              }
               disabled={setMethods.isPending || !hasPasskey}
             />
           </div>
@@ -218,6 +207,26 @@ function LoginRequirementsSection() {
               checked={methods.includes('totp')}
               onCheckedChange={(checked) => handleToggleMethod('totp', checked)}
               disabled={setMethods.isPending || !hasTOTP}
+            />
+          </div>
+
+          <div className='flex items-center justify-between'>
+            <div>
+              <Label htmlFor='method-email'>Email code</Label>
+              <p className='text-muted-foreground text-xs'>
+                Receive a code by email
+              </p>
+            </div>
+            <Switch
+              id='method-email'
+              checked={methods.includes('email')}
+              onCheckedChange={(checked) =>
+                handleToggleMethod('email', checked)
+              }
+              disabled={
+                setMethods.isPending ||
+                (methods.length === 1 && methods.includes('email'))
+              }
             />
           </div>
         </div>
@@ -280,11 +289,7 @@ function PasskeyRow({
       </TableCell>
       <TableCell className='text-right'>
         <div className='flex justify-end gap-1'>
-          <Button
-            variant='ghost'
-            size='sm'
-            onClick={() => setIsRenaming(true)}
-          >
+          <Button variant='ghost' size='sm' onClick={() => setIsRenaming(true)}>
             <Pencil className='h-4 w-4' />
           </Button>
           <AlertDialog>
@@ -333,7 +338,9 @@ function PasskeysSection() {
 
       // Perform WebAuthn ceremony
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const credential = await startRegistration({ optionsJSON: beginResult.options as any })
+      const credential = await startRegistration({
+        optionsJSON: beginResult.options as any,
+      })
 
       // Complete registration
       await registerFinish.mutateAsync({
@@ -393,8 +400,8 @@ function PasskeysSection() {
             size='sm'
             onClick={() => setRegisterDialogOpen(true)}
           >
-            <Plus className='mr-2 h-4 w-4' />
             Add passkey
+            <Plus className='ml-2 h-4 w-4' />
           </Button>
           <DialogContent>
             <DialogHeader>
@@ -415,12 +422,11 @@ function PasskeysSection() {
               />
             </div>
             <DialogFooter>
-              <Button
-                onClick={handleRegister}
-                disabled={isRegistering}
-              >
-                {isRegistering && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
+              <Button onClick={handleRegister} disabled={isRegistering}>
                 Register
+                {isRegistering && (
+                  <Loader2 className='ml-2 h-4 w-4 animate-spin' />
+                )}
               </Button>
             </DialogFooter>
           </DialogContent>
@@ -536,8 +542,7 @@ function AuthenticatorSection() {
       ) : setupData ? (
         <div className='space-y-4'>
           <p className='text-sm'>
-            Scan this QR code with your authenticator app (like Google
-            Authenticator or Authy):
+            Scan this QR code with your TOTP authenticator app:
           </p>
           <div className='flex justify-center rounded-lg border bg-white p-4'>
             <QRCodeSVG value={setupData.url} size={200} />
@@ -564,9 +569,14 @@ function AuthenticatorSection() {
                 className='w-32 font-mono'
                 maxLength={6}
               />
-              <Button onClick={handleVerify} disabled={isVerifying || !verifyCode}>
-                {isVerifying && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
+              <Button
+                onClick={handleVerify}
+                disabled={isVerifying || !verifyCode}
+              >
                 Verify
+                {isVerifying && (
+                  <Loader2 className='ml-2 h-4 w-4 animate-spin' />
+                )}
               </Button>
               <Button
                 variant='ghost'
@@ -623,10 +633,10 @@ function AuthenticatorSection() {
             onClick={handleSetup}
             disabled={setupTotp.isPending}
           >
-            {setupTotp.isPending && (
-              <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-            )}
             Set up
+            {setupTotp.isPending && (
+              <Loader2 className='ml-2 h-4 w-4 animate-spin' />
+            )}
           </Button>
         </div>
       )}
@@ -679,7 +689,7 @@ function RecoveryCodesSection() {
           <div className='bg-muted rounded-lg p-4'>
             <div className='grid grid-cols-2 gap-2 font-mono text-sm'>
               {showCodes.map((code, i) => (
-                <div key={i} className='rounded bg-background px-2 py-1'>
+                <div key={i} className='bg-background rounded px-2 py-1'>
                   {code}
                 </div>
               ))}
@@ -687,8 +697,8 @@ function RecoveryCodesSection() {
           </div>
           <div className='flex gap-2'>
             <Button variant='outline' size='sm' onClick={handleCopyCodes}>
-              <Copy className='mr-2 h-4 w-4' />
               Copy all
+              <Copy className='ml-2 h-4 w-4' />
             </Button>
             <Button
               variant='ghost'
@@ -724,16 +734,18 @@ function RecoveryCodesSection() {
                 size='sm'
                 disabled={generateCodes.isPending}
               >
-                {generateCodes.isPending && (
-                  <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-                )}
                 {count > 0 ? 'Regenerate' : 'Generate'}
+                {generateCodes.isPending && (
+                  <Loader2 className='ml-2 h-4 w-4 animate-spin' />
+                )}
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
                 <AlertDialogTitle>
-                  {count > 0 ? 'Regenerate recovery codes?' : 'Generate recovery codes?'}
+                  {count > 0
+                    ? 'Regenerate recovery codes?'
+                    : 'Generate recovery codes?'}
                 </AlertDialogTitle>
                 <AlertDialogDescription>
                   {count > 0

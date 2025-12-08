@@ -44,16 +44,16 @@ export function LayoutProvider({ children }: LayoutProviderProps) {
 
   const setCollapsible = (newCollapsible: Collapsible) => {
     _setCollapsible(newCollapsible)
-    setCookie(
-      LAYOUT_COLLAPSIBLE_COOKIE_NAME,
-      newCollapsible,
-      { maxAge: LAYOUT_COOKIE_MAX_AGE }
-    )
+    setCookie(LAYOUT_COLLAPSIBLE_COOKIE_NAME, newCollapsible, {
+      maxAge: LAYOUT_COOKIE_MAX_AGE,
+    })
   }
 
   const setVariant = (newVariant: Variant) => {
     _setVariant(newVariant)
-    setCookie(LAYOUT_VARIANT_COOKIE_NAME, newVariant, { maxAge: LAYOUT_COOKIE_MAX_AGE })
+    setCookie(LAYOUT_VARIANT_COOKIE_NAME, newVariant, {
+      maxAge: LAYOUT_COOKIE_MAX_AGE,
+    })
   }
 
   const resetLayout = () => {

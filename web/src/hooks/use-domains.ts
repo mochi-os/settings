@@ -1,7 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { apiClient } from '@/lib/apiClient'
+import type {
+  DomainsData,
+  DomainDetails,
+  UserSearchResult,
+} from '@/types/domains'
 import endpoints from '@/api/endpoints'
-import type { DomainsData, DomainDetails, UserSearchResult } from '@/types/domains'
+import { apiClient } from '@/lib/apiClient'
 
 export function useDomainsData() {
   return useQuery({
@@ -17,9 +21,12 @@ export function useDomainDetails(domain: string) {
   return useQuery({
     queryKey: ['domains', domain],
     queryFn: async () => {
-      const response = await apiClient.get<DomainDetails>(endpoints.domains.get, {
-        params: { domain },
-      })
+      const response = await apiClient.get<DomainDetails>(
+        endpoints.domains.get,
+        {
+          params: { domain },
+        }
+      )
       return response.data
     },
     enabled: !!domain,
@@ -29,7 +36,11 @@ export function useDomainDetails(domain: string) {
 export function useUpdateDomain() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async (data: { domain: string; verified?: boolean; tls?: boolean }) => {
+    mutationFn: async (data: {
+      domain: string
+      verified?: boolean
+      tls?: boolean
+    }) => {
       const response = await apiClient.post(endpoints.domains.update, data)
       return response.data
     },
@@ -44,7 +55,9 @@ export function useDeleteDomain() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (domain: string) => {
-      const response = await apiClient.post(endpoints.domains.delete, { domain })
+      const response = await apiClient.post(endpoints.domains.delete, {
+        domain,
+      })
       return response.data
     },
     onSuccess: () => {
@@ -107,8 +120,15 @@ export function useDeleteRoute() {
 export function useCreateDelegation() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async (data: { domain: string; path: string; owner: number }) => {
-      const response = await apiClient.post(endpoints.domains.delegationCreate, data)
+    mutationFn: async (data: {
+      domain: string
+      path: string
+      owner: number
+    }) => {
+      const response = await apiClient.post(
+        endpoints.domains.delegationCreate,
+        data
+      )
       return response.data
     },
     onSuccess: (_, variables) => {
@@ -120,8 +140,15 @@ export function useCreateDelegation() {
 export function useDeleteDelegation() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async (data: { domain: string; path: string; owner: number }) => {
-      const response = await apiClient.post(endpoints.domains.delegationDelete, data)
+    mutationFn: async (data: {
+      domain: string
+      path: string
+      owner: number
+    }) => {
+      const response = await apiClient.post(
+        endpoints.domains.delegationDelete,
+        data
+      )
       return response.data
     },
     onSuccess: (_, variables) => {
