@@ -195,7 +195,7 @@ function SettingRow({
   )
 }
 
-export function SystemSettings() {
+export function SystemSettingsContent() {
   const { data, isLoading, error } = useSystemSettingsData()
   const { data: prefsData } = usePreferencesData()
   const setSetting = useSetSystemSetting()
@@ -221,14 +221,9 @@ export function SystemSettings() {
 
   if (error) {
     return (
-      <>
-        <Header>
-          <h1 className='text-lg font-semibold'>System Settings</h1>
-        </Header>
-        <Main>
-          <p className='text-muted-foreground'>Failed to load settings</p>
-        </Main>
-      </>
+      <div className='p-6'>
+        <p className='text-muted-foreground'>Failed to load settings</p>
+      </div>
     )
   }
 
@@ -241,31 +236,38 @@ export function SystemSettings() {
 
   return (
     <>
+      {isLoading ? (
+        <div className='space-y-6'>
+          <Skeleton className='h-16 w-full' />
+          <Skeleton className='h-16 w-full' />
+          <Skeleton className='h-16 w-full' />
+          <Skeleton className='h-16 w-full' />
+        </div>
+      ) : (
+        <div className='divide-y'>
+          {sortedSettings.map((setting) => (
+            <SettingRow
+              key={setting.name}
+              setting={setting}
+              onSave={handleSave}
+              isSaving={savingName === setting.name}
+              timezone={timezone}
+            />
+          ))}
+        </div>
+      )}
+    </>
+  )
+}
+
+export function SystemSettings() {
+  return (
+    <>
       <Header>
         <h1 className='text-lg font-semibold'>System Settings</h1>
       </Header>
-
       <Main>
-        {isLoading ? (
-          <div className='space-y-6'>
-            <Skeleton className='h-16 w-full' />
-            <Skeleton className='h-16 w-full' />
-            <Skeleton className='h-16 w-full' />
-            <Skeleton className='h-16 w-full' />
-          </div>
-        ) : (
-          <div className='divide-y'>
-            {sortedSettings.map((setting) => (
-              <SettingRow
-                key={setting.name}
-                setting={setting}
-                onSave={handleSave}
-                isSaving={savingName === setting.name}
-                timezone={timezone}
-              />
-            ))}
-          </div>
-        )}
+        <SystemSettingsContent />
       </Main>
     </>
   )

@@ -550,12 +550,13 @@ function SortableHeader({
   )
 }
 
-export function SystemUsers() {
+export function SystemUsersContent() {
   const [search, setSearch] = useState('')
   const [limit, setLimit] = useState(25)
   const [offset, setOffset] = useState(0)
   const [sort, setSort] = useState<SortColumn>('username')
   const [order, setOrder] = useState<SortOrder>('asc')
+  const { refetch } = useSystemUsersData(limit, offset, search) // Need refetch for CreateUserDialog, but wait, data is fetched with debounced search
 
   const debouncedSearch = useDebounce(search, 300)
   const { data: accountData } = useAccountData()
@@ -566,7 +567,7 @@ export function SystemUsers() {
     setOffset(0)
   }, [debouncedSearch])
 
-  const { data, isLoading, error, refetch } = useSystemUsersData(
+  const { data, isLoading, error } = useSystemUsersData(
     limit,
     offset,
     debouncedSearch
@@ -605,43 +606,36 @@ export function SystemUsers() {
 
   if (error) {
     return (
-      <>
-        <Header>
-          <h1 className='text-lg font-semibold'>Users</h1>
-        </Header>
-        <Main>
-          <p className='text-muted-foreground'>Failed to load users</p>
-        </Main>
-      </>
+      <div className='p-6'>
+        <p className='text-muted-foreground'>Failed to load users</p>
+      </div>
     )
   }
 
   return (
     <>
-      <Header>
-        <div className='flex w-full items-center justify-between'>
-          <h1 className='text-lg font-semibold'>
-            Users
-            {data?.count !== undefined && (
-              <span className='text-muted-foreground ml-2 font-normal'>
-                ({data.count})
-              </span>
-            )}
-          </h1>
-          <div className='flex items-center gap-4'>
-            <div className='relative'>
-              <Search className='text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4' />
-              <Input
-                placeholder='Search users...'
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className='w-64 pl-8'
-              />
-            </div>
-            <CreateUserDialog onSuccess={() => refetch()} />
+      <div className='mb-6 flex w-full items-center justify-between'>
+        <h2 className='text-lg font-semibold'>
+          Users
+          {data?.count !== undefined && (
+            <span className='text-muted-foreground ml-2 font-normal'>
+              ({data.count})
+            </span>
+          )}
+        </h2>
+        <div className='flex items-center gap-4'>
+          <div className='relative'>
+            <Search className='text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4' />
+            <Input
+              placeholder='Search users...'
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className='w-64 pl-8'
+            />
           </div>
+          <CreateUserDialog onSuccess={() => refetch()} />
         </div>
-      </Header>
+      </div>
 
       <Main>
         {isLoading ? (
@@ -752,6 +746,19 @@ export function SystemUsers() {
             {debouncedSearch ? 'No users match your search' : 'No users found'}
           </p>
         )}
+      </Main>
+    </>
+  )
+}
+
+export function SystemUsers() {
+  return (
+    <>
+      <Header>
+        <h1 className='text-lg font-semibold'>Users</h1>
+      </Header>
+      <Main>
+        <SystemUsersContent />
       </Main>
     </>
   )

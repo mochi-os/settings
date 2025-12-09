@@ -16,11 +16,24 @@ export const APP_ROUTES = {
     BASE: '/notifications/',
     HOME: '/notifications/',
   },
+  FEEDS: {
+    BASE: '/feeds/',
+    HOME: '/feeds/',
+  },
+  FORUMS: {
+    BASE: '/forums/',
+    HOME: '/forums/',
+  },
+  TEMPLATE: {
+    BASE: '/template/',
+    HOME: '/template/',
+  },
   // Settings app (current)
   SETTINGS: {
-    BASE: '/',
-    HOME: '/',
+    BASE: './',
+    HOME: './',
     USER: {
+      SETTINGS: '/user',
       ACCOUNT: '/user/account',
       SESSIONS: '/user/sessions',
       PREFERENCES: '/user/preferences',
@@ -35,3 +48,4 @@ export const APP_ROUTES = {
 } as const
 
 export type AppRoutes = typeof APP_ROUTES
+
