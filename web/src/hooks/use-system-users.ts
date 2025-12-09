@@ -96,22 +96,6 @@ export function useActivateUser() {
   })
 }
 
-export function useSetMfaRequired() {
-  const queryClient = useQueryClient()
-  return useMutation({
-    mutationFn: async (data: { id: number; required: boolean }) => {
-      const response = await apiClient.post(endpoints.system.usersMfaRequired, {
-        id: data.id,
-        required: data.required ? 'true' : 'false',
-      })
-      return response.data
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['system', 'users'] })
-    },
-  })
-}
-
 export function useUserSessions(userId: number) {
   return useQuery({
     queryKey: ['system', 'users', userId, 'sessions'],

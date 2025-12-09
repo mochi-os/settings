@@ -4,7 +4,6 @@ export interface User {
   role: string
   status: 'active' | 'suspended'
   methods: string
-  mfa_required: boolean
   last_login: number | null
 }
 

@@ -14,7 +14,6 @@ import {
   Plus,
   Search,
   Shield,
-  ShieldCheck,
   Trash2,
   User as UserIcon,
   UserCheck,
@@ -27,7 +26,6 @@ import {
   useDeleteUser,
   useSuspendUser,
   useActivateUser,
-  useSetMfaRequired,
   useUserSessions,
   useRevokeUserSessions,
 } from '@/hooks/use-system-users'
@@ -56,7 +54,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
@@ -208,13 +205,13 @@ function EditUserDialog({
       <DialogTrigger asChild>
         <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
           <Pencil className='mr-2 h-4 w-4' />
-          Edit User
+          Edit user
         </DropdownMenuItem>
       </DialogTrigger>
       <DialogContent>
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>Edit User</DialogTitle>
+            <DialogTitle>Edit user</DialogTitle>
             <DialogDescription>Update user details.</DialogDescription>
           </DialogHeader>
           <div className='grid gap-4 py-4'>
@@ -303,7 +300,7 @@ function SessionsDialog({ user }: { user: User }) {
       <DialogTrigger asChild>
         <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
           <Key className='mr-2 h-4 w-4' />
-          Manage Sessions
+          Manage sessions
         </DropdownMenuItem>
       </DialogTrigger>
       <DialogContent className='max-w-2xl'>
@@ -388,7 +385,6 @@ function UserRow({ user, onUpdate }: { user: User; onUpdate: () => void }) {
   const deleteUser = useDeleteUser()
   const suspendUser = useSuspendUser()
   const activateUser = useActivateUser()
-  const setMfaRequired = useSetMfaRequired()
 
   const isAdmin = user.role === 'administrator'
   const isSuspended = user.status === 'suspended'
@@ -411,32 +407,13 @@ function UserRow({ user, onUpdate }: { user: User; onUpdate: () => void }) {
     const action = isSuspended ? activateUser : suspendUser
     action.mutate(user.id, {
       onSuccess: () => {
-        toast.success(isSuspended ? 'User activated' : 'User suspended')
+        toast.success(isSuspended ? 'Suspension removed' : 'User suspended')
         onUpdate()
       },
       onError: (error: Error) => {
         toast.error(error.message || 'Failed to update user status')
       },
     })
-  }
-
-  const handleToggleMfaRequired = () => {
-    setMfaRequired.mutate(
-      { id: user.id, required: !user.mfa_required },
-      {
-        onSuccess: () => {
-          toast.success(
-            user.mfa_required
-              ? 'MFA requirement cleared'
-              : 'MFA now required for this user'
-          )
-          onUpdate()
-        },
-        onError: (error: Error) => {
-          toast.error(error.message || 'Failed to update MFA requirement')
-        },
-      }
-    )
   }
 
   return (
@@ -451,16 +428,8 @@ function UserRow({ user, onUpdate }: { user: User; onUpdate: () => void }) {
           <span className='font-medium'>{user.username}</span>
           {hasMfa && (
             <span title='MFA enabled'>
-              <ShieldCheck className='h-4 w-4 text-green-600' />
+              <Shield className='h-4 w-4 text-green-600' />
             </span>
-          )}
-          {user.mfa_required && !hasMfa && (
-            <Badge
-              variant='outline'
-              className='ml-1 border-amber-600 text-xs text-amber-600'
-            >
-              MFA Required
-            </Badge>
           )}
         </div>
       </TableCell>
@@ -493,31 +462,25 @@ function UserRow({ user, onUpdate }: { user: User; onUpdate: () => void }) {
           <DropdownMenuContent align='end'>
             <EditUserDialog user={user} onSuccess={onUpdate} />
             <SessionsDialog user={user} />
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleToggleMfaRequired}>
-              <ShieldCheck className='mr-2 h-4 w-4' />
-              {user.mfa_required ? 'Clear MFA Requirement' : 'Require MFA'}
-            </DropdownMenuItem>
             <DropdownMenuItem onClick={handleToggleStatus}>
               {isSuspended ? (
                 <>
                   <UserCheck className='mr-2 h-4 w-4' />
-                  Activate User
+                  Remove suspension
                 </>
               ) : (
                 <>
                   <Ban className='mr-2 h-4 w-4' />
-                  Suspend User
+                  Suspend user
                 </>
               )}
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
             <DropdownMenuItem
               className='text-destructive'
               onClick={() => setDeleteOpen(true)}
             >
               <Trash2 className='mr-2 h-4 w-4' />
-              Delete User
+              Delete user
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

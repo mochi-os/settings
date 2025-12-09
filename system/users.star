@@ -102,18 +102,6 @@ def action_system_users_activate(a):
     mochi.user.activate(int(id))
     a.json({"ok": True})
 
-def action_system_users_mfa_required(a):
-    """Set MFA requirement for a user"""
-    if not require_admin(a):
-        return
-    id = a.input("id")
-    if not id:
-        a.error(400, "Missing user id")
-        return
-    required = a.input("required") == "true"
-    mochi.user.mfa_required(int(id), required)
-    a.json({"ok": True})
-
 def action_system_users_sessions(a):
     """Get sessions for a user"""
     if not require_admin(a):

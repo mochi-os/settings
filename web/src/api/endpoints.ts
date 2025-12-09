@@ -45,7 +45,6 @@ const endpoints = {
     usersDelete: 'system/users/delete',
     usersSuspend: 'system/users/suspend',
     usersActivate: 'system/users/activate',
-    usersMfaRequired: 'system/users/mfa-required',
     usersSessions: 'system/users/sessions',
     usersSessionsRevoke: 'system/users/sessions/revoke',
   },
