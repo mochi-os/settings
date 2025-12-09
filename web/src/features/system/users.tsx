@@ -585,12 +585,13 @@ function SortableHeader({
   )
 }
 
-export function SystemUsers() {
+export function SystemUsersContent() {
   const [search, setSearch] = useState('')
   const [limit, setLimit] = useState(25)
   const [offset, setOffset] = useState(0)
   const [sort, setSort] = useState<SortColumn>('username')
   const [order, setOrder] = useState<SortOrder>('asc')
+  const { refetch } = useSystemUsersData(limit, offset, search) // Need refetch for CreateUserDialog, but wait, data is fetched with debounced search
 
   const debouncedSearch = useDebounce(search, 300)
 
@@ -599,7 +600,7 @@ export function SystemUsers() {
     setOffset(0)
   }, [debouncedSearch])
 
-  const { data, isLoading, error, refetch } = useSystemUsersData(
+  const { data, isLoading, error } = useSystemUsersData(
     limit,
     offset,
     debouncedSearch
@@ -638,152 +639,156 @@ export function SystemUsers() {
 
   if (error) {
     return (
-      <>
-        <Header>
-          <h1 className='text-lg font-semibold'>Users</h1>
-        </Header>
-        <Main>
-          <p className='text-muted-foreground'>Failed to load users</p>
-        </Main>
-      </>
+      <div className='p-6'>
+        <p className='text-muted-foreground'>Failed to load users</p>
+      </div>
     )
   }
 
   return (
     <>
-      <Header>
-        <div className='flex w-full items-center justify-between'>
-          <h1 className='text-lg font-semibold'>
-            Users
-            {data?.count !== undefined && (
-              <span className='text-muted-foreground ml-2 font-normal'>
-                ({data.count})
-              </span>
-            )}
-          </h1>
-          <div className='flex items-center gap-4'>
-            <div className='relative'>
-              <Search className='text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4' />
-              <Input
-                placeholder='Search users...'
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className='w-64 pl-8'
-              />
-            </div>
-            <CreateUserDialog onSuccess={() => refetch()} />
+      <div className='mb-6 flex w-full items-center justify-between'>
+        <h2 className='text-lg font-semibold'>
+          Users
+          {data?.count !== undefined && (
+            <span className='text-muted-foreground ml-2 font-normal'>
+              ({data.count})
+            </span>
+          )}
+        </h2>
+        <div className='flex items-center gap-4'>
+          <div className='relative'>
+            <Search className='text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4' />
+            <Input
+              placeholder='Search users...'
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className='w-64 pl-8'
+            />
           </div>
+          <CreateUserDialog onSuccess={() => refetch()} />
         </div>
-      </Header>
+      </div>
 
-      <Main>
-        {isLoading ? (
-          <div className='space-y-2'>
-            <Skeleton className='h-12 w-full' />
-            <Skeleton className='h-12 w-full' />
-            <Skeleton className='h-12 w-full' />
-          </div>
-        ) : sortedUsers.length > 0 ? (
-          <>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <SortableHeader
-                    column='username'
-                    label='User'
-                    currentSort={sort}
-                    currentOrder={order}
-                    onSort={handleSort}
-                  />
-                  <SortableHeader
-                    column='role'
-                    label='Role'
-                    currentSort={sort}
-                    currentOrder={order}
-                    onSort={handleSort}
-                  />
-                  <SortableHeader
-                    column='status'
-                    label='Status'
-                    currentSort={sort}
-                    currentOrder={order}
-                    onSort={handleSort}
-                  />
-                  <SortableHeader
-                    column='last_login'
-                    label='Last Login'
-                    currentSort={sort}
-                    currentOrder={order}
-                    onSort={handleSort}
-                  />
-                  <TableHead className='w-[80px]' />
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {sortedUsers.map((user) => (
-                  <UserRow
-                    key={user.id}
-                    user={user}
-                    onUpdate={() => refetch()}
-                  />
-                ))}
-              </TableBody>
-            </Table>
+      {isLoading ? (
+        <div className='space-y-2'>
+          <Skeleton className='h-12 w-full' />
+          <Skeleton className='h-12 w-full' />
+          <Skeleton className='h-12 w-full' />
+        </div>
+      ) : sortedUsers.length > 0 ? (
+        <>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <SortableHeader
+                  column='username'
+                  label='User'
+                  currentSort={sort}
+                  currentOrder={order}
+                  onSort={handleSort}
+                />
+                <SortableHeader
+                  column='role'
+                  label='Role'
+                  currentSort={sort}
+                  currentOrder={order}
+                  onSort={handleSort}
+                />
+                <SortableHeader
+                  column='status'
+                  label='Status'
+                  currentSort={sort}
+                  currentOrder={order}
+                  onSort={handleSort}
+                />
+                <SortableHeader
+                  column='last_login'
+                  label='Last Login'
+                  currentSort={sort}
+                  currentOrder={order}
+                  onSort={handleSort}
+                />
+                <TableHead className='w-[80px]' />
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {sortedUsers.map((user) => (
+                <UserRow
+                  key={user.id}
+                  user={user}
+                  onUpdate={() => refetch()}
+                />
+              ))}
+            </TableBody>
+          </Table>
 
-            {/* Pagination */}
-            {!debouncedSearch && data && data.count > limit && (
-              <div className='flex items-center justify-between py-4'>
-                <div className='text-muted-foreground flex items-center gap-2 text-sm'>
-                  <span>
-                    Showing {offset + 1}-{Math.min(offset + limit, data.count)}{' '}
-                    of {data.count} users
-                  </span>
-                  <Select
-                    value={String(limit)}
-                    onValueChange={(v) => {
-                      setLimit(Number(v))
-                      setOffset(0)
-                    }}
-                  >
-                    <SelectTrigger className='h-8 w-20'>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value='10'>10</SelectItem>
-                      <SelectItem value='25'>25</SelectItem>
-                      <SelectItem value='50'>50</SelectItem>
-                      <SelectItem value='100'>100</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className='flex items-center gap-2'>
-                  <Button
-                    variant='outline'
-                    size='sm'
-                    onClick={() => setOffset(Math.max(0, offset - limit))}
-                    disabled={offset === 0}
-                  >
-                    <ChevronLeft className='mr-1 h-4 w-4' />
-                    Previous
-                  </Button>
-                  <Button
-                    variant='outline'
-                    size='sm'
-                    onClick={() => setOffset(offset + limit)}
-                    disabled={offset + limit >= data.count}
-                  >
-                    Next
-                    <ChevronRight className='ml-1 h-4 w-4' />
-                  </Button>
-                </div>
+          {/* Pagination */}
+          {!debouncedSearch && data && data.count > limit && (
+            <div className='flex items-center justify-between py-4'>
+              <div className='text-muted-foreground flex items-center gap-2 text-sm'>
+                <span>
+                  Showing {offset + 1}-{Math.min(offset + limit, data.count)}{' '}
+                  of {data.count} users
+                </span>
+                <Select
+                  value={String(limit)}
+                  onValueChange={(v) => {
+                    setLimit(Number(v))
+                    setOffset(0)
+                  }}
+                >
+                  <SelectTrigger className='h-8 w-20'>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value='10'>10</SelectItem>
+                    <SelectItem value='25'>25</SelectItem>
+                    <SelectItem value='50'>50</SelectItem>
+                    <SelectItem value='100'>100</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
-            )}
-          </>
-        ) : (
-          <p className='text-muted-foreground py-8 text-center text-sm'>
-            {debouncedSearch ? 'No users match your search' : 'No users found'}
-          </p>
-        )}
+              <div className='flex items-center gap-2'>
+                <Button
+                  variant='outline'
+                  size='sm'
+                  onClick={() => setOffset(Math.max(0, offset - limit))}
+                  disabled={offset === 0}
+                >
+                  <ChevronLeft className='mr-1 h-4 w-4' />
+                  Previous
+                </Button>
+                <Button
+                  variant='outline'
+                  size='sm'
+                  onClick={() => setOffset(offset + limit)}
+                  disabled={offset + limit >= data.count}
+                >
+                  Next
+                  <ChevronRight className='ml-1 h-4 w-4' />
+                </Button>
+              </div>
+            </div>
+          )}
+        </>
+      ) : (
+        <p className='text-muted-foreground py-8 text-center text-sm'>
+          {debouncedSearch ? 'No users match your search' : 'No users found'}
+        </p>
+      )}
+    </>
+  )
+}
+
+export function SystemUsers() {
+  return (
+    <>
+      <Header>
+        <h1 className='text-lg font-semibold'>Users</h1>
+      </Header>
+      <Main>
+        <SystemUsersContent />
       </Main>
     </>
   )
