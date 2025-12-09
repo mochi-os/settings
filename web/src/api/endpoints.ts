@@ -33,8 +33,7 @@ const endpoints = {
     preferencesReset: 'user/preferences/reset',
   },
   system: {
-    settings: 'system/settings/data',
-    settingsList: 'system/settings/list',
+    settings: 'system/settings/list',
     settingsGet: 'system/settings/get',
     settingsSet: 'system/settings/set',
     users: 'system/users/data',

@@ -29,6 +29,7 @@ import {
   useUserSessions,
   useRevokeUserSessions,
 } from '@/hooks/use-system-users'
+import { useAccountData } from '@/hooks/use-account'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -380,7 +381,7 @@ function SessionsDialog({ user }: { user: User }) {
   )
 }
 
-function UserRow({ user, onUpdate }: { user: User; onUpdate: () => void }) {
+function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void; isSelf: boolean }) {
   const [deleteOpen, setDeleteOpen] = useState(false)
   const deleteUser = useDeleteUser()
   const suspendUser = useSuspendUser()
@@ -462,26 +463,27 @@ function UserRow({ user, onUpdate }: { user: User; onUpdate: () => void }) {
           <DropdownMenuContent align='end'>
             <EditUserDialog user={user} onSuccess={onUpdate} />
             <SessionsDialog user={user} />
-            <DropdownMenuItem onClick={handleToggleStatus}>
-              {isSuspended ? (
-                <>
-                  <UserCheck className='mr-2 h-4 w-4' />
-                  Remove suspension
-                </>
-              ) : (
-                <>
-                  <Ban className='mr-2 h-4 w-4' />
-                  Suspend user
-                </>
-              )}
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              className='text-destructive'
-              onClick={() => setDeleteOpen(true)}
-            >
-              <Trash2 className='mr-2 h-4 w-4' />
-              Delete user
-            </DropdownMenuItem>
+            {!isSelf && (
+              <DropdownMenuItem onClick={handleToggleStatus}>
+                {isSuspended ? (
+                  <>
+                    <UserCheck className='mr-2 h-4 w-4' />
+                    Remove suspension
+                  </>
+                ) : (
+                  <>
+                    <Ban className='mr-2 h-4 w-4' />
+                    Suspend user
+                  </>
+                )}
+              </DropdownMenuItem>
+            )}
+            {!isSelf && (
+              <DropdownMenuItem onClick={() => setDeleteOpen(true)}>
+                <Trash2 className='mr-2 h-4 w-4' />
+                Delete user
+              </DropdownMenuItem>
+            )}
           </DropdownMenuContent>
         </DropdownMenu>
 
@@ -556,6 +558,8 @@ export function SystemUsers() {
   const [order, setOrder] = useState<SortOrder>('asc')
 
   const debouncedSearch = useDebounce(search, 300)
+  const { data: accountData } = useAccountData()
+  const currentUsername = accountData?.identity?.username
 
   // Reset offset when search changes
   useEffect(() => {
@@ -688,6 +692,7 @@ export function SystemUsers() {
                     key={user.id}
                     user={user}
                     onUpdate={() => refetch()}
+                    isSelf={user.username === currentUsername}
                   />
                 ))}
               </TableBody>
