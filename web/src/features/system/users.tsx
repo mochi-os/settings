@@ -13,9 +13,7 @@ import {
   Pencil,
   Plus,
   Search,
-  Shield,
   Trash2,
-  User as UserIcon,
   UserCheck,
 } from 'lucide-react'
 import { toast } from 'sonner'
@@ -141,7 +139,7 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
             <div className='grid gap-2'>
               <Label htmlFor='role'>Role</Label>
               <Select value={role} onValueChange={setRole}>
-                <SelectTrigger>
+                <SelectTrigger className='w-full'>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -229,7 +227,7 @@ function EditUserDialog({
             <div className='grid gap-2'>
               <Label htmlFor='edit-role'>Role</Label>
               <Select value={role} onValueChange={setRole}>
-                <SelectTrigger>
+                <SelectTrigger className='w-full'>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -389,7 +387,6 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
 
   const isAdmin = user.role === 'administrator'
   const isSuspended = user.status === 'suspended'
-  const hasMfa = user.methods && user.methods !== 'email'
 
   const handleDelete = () => {
     deleteUser.mutate(user.id, {
@@ -420,31 +417,17 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
   return (
     <TableRow className={isSuspended ? 'opacity-60' : ''}>
       <TableCell>
+        <span className='font-medium'>{user.username}</span>
+      </TableCell>
+      <TableCell>
         <div className='flex items-center gap-2'>
-          {isAdmin ? (
-            <Shield className='h-4 w-4 text-amber-500' />
-          ) : (
-            <UserIcon className='text-muted-foreground h-4 w-4' />
-          )}
-          <span className='font-medium'>{user.username}</span>
-          {hasMfa && (
-            <span title='MFA enabled'>
-              <Shield className='h-4 w-4 text-green-600' />
-            </span>
+          <Badge variant={isAdmin ? 'default' : 'secondary'}>
+            {isAdmin ? 'Admin' : 'User'}
+          </Badge>
+          {isSuspended && (
+            <Badge variant='destructive'>Suspended</Badge>
           )}
         </div>
-      </TableCell>
-      <TableCell>
-        <Badge variant={isAdmin ? 'default' : 'secondary'}>
-          {isAdmin ? 'Administrator' : 'User'}
-        </Badge>
-      </TableCell>
-      <TableCell>
-        {isSuspended ? (
-          <Badge variant='destructive'>Suspended</Badge>
-        ) : (
-          <Badge variant='outline'>Active</Badge>
-        )}
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
         {user.last_login ? (
@@ -453,7 +436,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
           <span className='italic'>Never</span>
         )}
       </TableCell>
-      <TableCell className='text-right'>
+      <TableCell className='w-[50px]'>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant='ghost' size='icon'>
@@ -515,7 +498,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
   )
 }
 
-type SortColumn = 'username' | 'role' | 'status' | 'last_login'
+type SortColumn = 'username' | 'status' | 'last_login'
 type SortOrder = 'asc' | 'desc'
 
 function SortableHeader({
@@ -589,9 +572,6 @@ export function SystemUsers() {
           case 'username':
             comparison = a.username.localeCompare(b.username)
             break
-          case 'role':
-            comparison = a.role.localeCompare(b.role)
-            break
           case 'status':
             comparison = a.status.localeCompare(b.status)
             break
@@ -663,13 +643,6 @@ export function SystemUsers() {
                     onSort={handleSort}
                   />
                   <SortableHeader
-                    column='role'
-                    label='Role'
-                    currentSort={sort}
-                    currentOrder={order}
-                    onSort={handleSort}
-                  />
-                  <SortableHeader
                     column='status'
                     label='Status'
                     currentSort={sort}
@@ -683,7 +656,7 @@ export function SystemUsers() {
                     currentOrder={order}
                     onSort={handleSort}
                   />
-                  <TableHead className='w-[80px]' />
+                  <TableHead className='w-[50px]' />
                 </TableRow>
               </TableHeader>
               <TableBody>
