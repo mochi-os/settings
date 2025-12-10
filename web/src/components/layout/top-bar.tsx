@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { CircleUser, LogOut, Settings } from 'lucide-react'
+import { CircleUser, LogOut } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useAuthStore } from '@/stores/auth-store'
 import { readProfileCookie } from '@/lib/profile-cookie'
@@ -14,7 +14,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { SignOutDialog } from '@/components/sign-out-dialog'
-import { APP_ROUTES } from '@/config/app-routes'
 
 export function TopBar() {
   const [offset, setOffset] = useState(0)
@@ -85,14 +84,6 @@ export function TopBar() {
                   </span>
                 </div>
               </DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => {
-                  window.location.href = APP_ROUTES.SETTINGS.HOME
-                }}
-              >
-                <Settings className="size-4" />
-                Settings
-              </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setOpen(true)}>
                 <LogOut className="size-4" />
                 Log out
