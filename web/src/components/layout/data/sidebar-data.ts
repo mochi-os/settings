@@ -1,67 +1,64 @@
-import { APP_ROUTES } from '@/config/app-routes'
+import { APP_ROUTES } from '@/config/routes'
 import {
-  Bell,
-  Home,
-  LayoutTemplate,
-  MessageCircle,
-  MessagesSquare,
-  Newspaper,
+  User,
+  Monitor,
+  Palette,
+  Globe,
   Settings,
-  UserPlus,
+  Users,
+  Activity,
 } from 'lucide-react'
 import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
   navGroups: [
     {
-      title: 'Apps',
+      title: 'User',
       items: [
         {
-          title: 'Home',
-          url: APP_ROUTES.HOME.HOME,
-          icon: Home,
-          external: true,
+          title: 'Account',
+          url: APP_ROUTES.SETTINGS.USER.ACCOUNT,
+          icon: User,
         },
         {
-          title: 'Chat',
-          url: APP_ROUTES.CHAT.HOME,
-          icon: MessagesSquare,
-          external: true,
+          title: 'Sessions',
+          url: APP_ROUTES.SETTINGS.USER.SESSIONS,
+          icon: Monitor,
         },
         {
-          title: 'Friends',
-          url: APP_ROUTES.FRIENDS.HOME,
-          icon: UserPlus,
-          external: true,
+          title: 'Preferences',
+          url: APP_ROUTES.SETTINGS.USER.PREFERENCES,
+          icon: Palette,
         },
+      ],
+    },
+    {
+      title: 'Management',
+      items: [
         {
-          title: 'Notifications',
-          url: APP_ROUTES.NOTIFICATIONS.HOME,
-          icon: Bell,
-          external: true,
+          title: 'Domains',
+          url: APP_ROUTES.SETTINGS.DOMAINS,
+          icon: Globe,
         },
-        {
-          title: 'Feeds',
-          url: APP_ROUTES.FEEDS.HOME,
-          icon: Newspaper,
-          external: true,
-        },
-        {
-          title: 'Forums',
-          url: APP_ROUTES.FORUMS.HOME,
-          icon: MessageCircle,
-          external: true,
-        },
-        {
-          title: 'Template',
-          url: APP_ROUTES.TEMPLATE.HOME,
-          icon: LayoutTemplate,
-          external: true,
-        },
+      ],
+    },
+    {
+      title: 'System',
+      items: [
         {
           title: 'Settings',
-          url: APP_ROUTES.SETTINGS.HOME,
+          url: APP_ROUTES.SETTINGS.SYSTEM.SETTINGS,
           icon: Settings,
+        },
+        {
+          title: 'Users',
+          url: APP_ROUTES.SETTINGS.SYSTEM.USERS,
+          icon: Users,
+        },
+        {
+          title: 'Status',
+          url: APP_ROUTES.SETTINGS.SYSTEM.STATUS,
+          icon: Activity,
         },
       ],
     },

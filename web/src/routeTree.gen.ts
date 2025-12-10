@@ -17,7 +17,6 @@ import { Route as errors500RouteImport } from './routes/(errors)/500'
 import { Route as errors404RouteImport } from './routes/(errors)/404'
 import { Route as errors403RouteImport } from './routes/(errors)/403'
 import { Route as errors401RouteImport } from './routes/(errors)/401'
-import { Route as AuthenticatedUserIndexRouteImport } from './routes/_authenticated/user/index'
 import { Route as AuthenticatedUserSessionsRouteImport } from './routes/_authenticated/user/sessions'
 import { Route as AuthenticatedUserPreferencesRouteImport } from './routes/_authenticated/user/preferences'
 import { Route as AuthenticatedUserAccountRouteImport } from './routes/_authenticated/user/account'
@@ -64,11 +63,6 @@ const errors401Route = errors401RouteImport.update({
   id: '/(errors)/401',
   path: '/401',
   getParentRoute: () => rootRouteImport,
-} as any)
-const AuthenticatedUserIndexRoute = AuthenticatedUserIndexRouteImport.update({
-  id: '/user/',
-  path: '/user/',
-  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedUserSessionsRoute =
   AuthenticatedUserSessionsRouteImport.update({
@@ -128,7 +122,6 @@ export interface FileRoutesByFullPath {
   '/user/account': typeof AuthenticatedUserAccountRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
   '/user/sessions': typeof AuthenticatedUserSessionsRoute
-  '/user': typeof AuthenticatedUserIndexRoute
 }
 export interface FileRoutesByTo {
   '/401': typeof errors401Route
@@ -145,7 +138,6 @@ export interface FileRoutesByTo {
   '/user/account': typeof AuthenticatedUserAccountRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
   '/user/sessions': typeof AuthenticatedUserSessionsRoute
-  '/user': typeof AuthenticatedUserIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -164,7 +156,6 @@ export interface FileRoutesById {
   '/_authenticated/user/account': typeof AuthenticatedUserAccountRoute
   '/_authenticated/user/preferences': typeof AuthenticatedUserPreferencesRoute
   '/_authenticated/user/sessions': typeof AuthenticatedUserSessionsRoute
-  '/_authenticated/user/': typeof AuthenticatedUserIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -183,7 +174,6 @@ export interface FileRouteTypes {
     | '/user/account'
     | '/user/preferences'
     | '/user/sessions'
-    | '/user'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/401'
@@ -200,7 +190,6 @@ export interface FileRouteTypes {
     | '/user/account'
     | '/user/preferences'
     | '/user/sessions'
-    | '/user'
   id:
     | '__root__'
     | '/_authenticated'
@@ -218,7 +207,6 @@ export interface FileRouteTypes {
     | '/_authenticated/user/account'
     | '/_authenticated/user/preferences'
     | '/_authenticated/user/sessions'
-    | '/_authenticated/user/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -288,13 +276,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof errors401RouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/user/': {
-      id: '/_authenticated/user/'
-      path: '/user'
-      fullPath: '/user'
-      preLoaderRoute: typeof AuthenticatedUserIndexRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/user/sessions': {
       id: '/_authenticated/user/sessions'
       path: '/user/sessions'
@@ -357,7 +338,6 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedUserAccountRoute: typeof AuthenticatedUserAccountRoute
   AuthenticatedUserPreferencesRoute: typeof AuthenticatedUserPreferencesRoute
   AuthenticatedUserSessionsRoute: typeof AuthenticatedUserSessionsRoute
-  AuthenticatedUserIndexRoute: typeof AuthenticatedUserIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -370,7 +350,6 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedUserAccountRoute: AuthenticatedUserAccountRoute,
   AuthenticatedUserPreferencesRoute: AuthenticatedUserPreferencesRoute,
   AuthenticatedUserSessionsRoute: AuthenticatedUserSessionsRoute,
-  AuthenticatedUserIndexRoute: AuthenticatedUserIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
