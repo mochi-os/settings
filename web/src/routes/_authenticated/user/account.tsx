@@ -1,7 +1,6 @@
-import { createFileRoute, redirect } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
+import { UserAccount } from '@/features/user/account'
 
 export const Route = createFileRoute('/_authenticated/user/account')({
-  beforeLoad: () => {
-    throw redirect({ to: '/user', search: { tab: 'account' } })
-  },
+  component: UserAccount,
 })

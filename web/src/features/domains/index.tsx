@@ -666,7 +666,7 @@ function DomainDetails({
   )
 }
 
-export function DomainsContent() {
+export function Domains() {
   const { data, isLoading, error, refetch } = useDomainsData()
   const deleteDomain = useDeleteDomain()
   const [deletingDomain, setDeletingDomain] = useState<string | null>(null)
@@ -690,86 +690,16 @@ export function DomainsContent() {
 
   if (error) {
     return (
-      <div className='p-6'>
-        <p className='text-muted-foreground'>Failed to load domains</p>
-      </div>
+      <>
+        <Header>
+          <h1 className='text-lg font-semibold'>Domains</h1>
+        </Header>
+        <Main>
+          <p className='text-muted-foreground'>Failed to load domains</p>
+        </Main>
+      </>
     )
   }
-
-  return (
-    <div className='divide-y'>
-      {isLoading ? (
-        <div className='space-y-4'>
-          <Skeleton className='h-20 w-full' />
-          <Skeleton className='h-20 w-full' />
-        </div>
-      ) : data?.domains && data.domains.length > 0 ? (
-        <>
-          {data.domains.map((domain) => (
-            <div key={domain.domain} className='relative'>
-              <DomainDetails domain={domain} isAdmin={isAdmin} />
-              {isAdmin && (
-                <div className='absolute top-4 right-8'>
-                  <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                      <Button
-                        variant='ghost'
-                        size='icon'
-                        className='h-8 w-8'
-                        disabled={deletingDomain === domain.domain}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        {deletingDomain === domain.domain ? (
-                          <Loader2 className='h-4 w-4 animate-spin' />
-                        ) : (
-                          <Trash2 className='h-4 w-4' />
-                        )}
-                      </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>Delete domain?</AlertDialogTitle>
-                        <AlertDialogDescription>
-                          This will permanently delete "{domain.domain}" and
-                          all its routes. This action cannot be undone.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction
-                          onClick={() => handleDelete(domain.domain)}
-                        >
-                          Delete
-                        </AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
-                </div>
-              )}
-            </div>
-          ))}
-        </>
-      ) : (
-        <div className='text-muted-foreground py-8 text-center'>
-          <Shield className='mx-auto mb-4 h-12 w-12 opacity-50' />
-          {isAdmin ? (
-            <p>No domains configured</p>
-          ) : (
-            <>
-              <p>You don't have access to any domains.</p>
-              <p className='mt-1 text-sm'>
-                Contact an administrator to get a delegation.
-              </p>
-            </>
-          )}
-        </div>
-      )}
-    </div>
-  )
-}
-
-export function Domains() {
-  const { data } = useDomainsData()
 
   return (
     <>
@@ -785,7 +715,72 @@ export function Domains() {
       </Header>
 
       <Main>
-        <DomainsContent />
+        {isLoading ? (
+          <div className='space-y-4'>
+            <Skeleton className='h-20 w-full' />
+            <Skeleton className='h-20 w-full' />
+          </div>
+        ) : data?.domains && data.domains.length > 0 ? (
+          <div className='divide-y'>
+            {data.domains.map((domain) => (
+              <div key={domain.domain} className='relative'>
+                <DomainDetails domain={domain} isAdmin={isAdmin} />
+                {isAdmin && (
+                  <div className='absolute top-4 right-8'>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant='ghost'
+                          size='icon'
+                          className='h-8 w-8'
+                          disabled={deletingDomain === domain.domain}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {deletingDomain === domain.domain ? (
+                            <Loader2 className='h-4 w-4 animate-spin' />
+                          ) : (
+                            <Trash2 className='h-4 w-4' />
+                          )}
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Delete domain?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This will permanently delete "{domain.domain}" and
+                            all its routes. This action cannot be undone.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => handleDelete(domain.domain)}
+                          >
+                            Delete
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className='text-muted-foreground py-8 text-center'>
+            <Shield className='mx-auto mb-4 h-12 w-12 opacity-50' />
+            {isAdmin ? (
+              <p>No domains configured</p>
+            ) : (
+              <>
+                <p>You don't have access to any domains.</p>
+                <p className='mt-1 text-sm'>
+                  Contact an administrator to get a delegation.
+                </p>
+              </>
+            )}
+          </div>
+        )}
       </Main>
     </>
   )
