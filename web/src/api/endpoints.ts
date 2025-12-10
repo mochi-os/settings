@@ -59,6 +59,8 @@ const endpoints = {
     delegationCreate: 'domains/delegation/create',
     delegationDelete: 'domains/delegation/delete',
     userSearch: 'domains/user/search',
+    apps: 'domains/apps',
+    entities: 'domains/entities',
   },
 } as const
 

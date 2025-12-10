@@ -3,6 +3,8 @@ import type {
   DomainsData,
   DomainDetails,
   UserSearchResult,
+  App,
+  Entity,
 } from '@/types/domains'
 import endpoints from '@/api/endpoints'
 import { apiClient } from '@/lib/apiClient'
@@ -87,7 +89,8 @@ export function useCreateRoute() {
     mutationFn: async (data: {
       domain: string
       path: string
-      entity: string
+      method: string
+      target: string
       priority?: number
       context?: string
     }) => {
@@ -106,7 +109,8 @@ export function useUpdateRoute() {
     mutationFn: async (data: {
       domain: string
       path: string
-      entity?: string
+      method?: string
+      target?: string
       priority?: number
       enabled?: boolean
     }) => {
@@ -183,5 +187,29 @@ export function useUserSearch(query: string) {
       return response.data.users
     },
     enabled: query.length >= 2,
+  })
+}
+
+export function useApps() {
+  return useQuery({
+    queryKey: ['apps'],
+    queryFn: async () => {
+      const response = await apiClient.get<{ apps: App[] }>(
+        endpoints.domains.apps
+      )
+      return response.data.apps
+    },
+  })
+}
+
+export function useEntities() {
+  return useQuery({
+    queryKey: ['entities'],
+    queryFn: async () => {
+      const response = await apiClient.get<{ entities: Entity[] }>(
+        endpoints.domains.entities
+      )
+      return response.data.entities
+    },
   })
 }

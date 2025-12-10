@@ -6,6 +6,7 @@ import {
   Globe,
   Loader2,
   Lock,
+  Pencil,
   Plus,
   Route,
   Shield,
@@ -21,10 +22,13 @@ import {
   useUpdateDomain,
   useDeleteDomain,
   useCreateRoute,
+  useUpdateRoute,
   useDeleteRoute,
   useCreateDelegation,
   useDeleteDelegation,
   useUserSearch,
+  useApps,
+  useEntities,
 } from '@/hooks/use-domains'
 import {
   AlertDialog,
@@ -144,20 +148,24 @@ function AddRouteDialog({
 }) {
   const [open, setOpen] = useState(false)
   const [path, setPath] = useState('')
-  const [entity, setEntity] = useState('')
+  const [method, setMethod] = useState('app')
+  const [target, setTarget] = useState('')
   const [priority, setPriority] = useState('0')
   const createRoute = useCreateRoute()
+  const { data: apps } = useApps()
+  const { data: entities } = useEntities()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     createRoute.mutate(
-      { domain, path, entity, priority: parseInt(priority, 10) },
+      { domain, path, method, target, priority: parseInt(priority, 10) },
       {
         onSuccess: () => {
           toast.success('Route created')
           setOpen(false)
           setPath('')
-          setEntity('')
+          setMethod('app')
+          setTarget('')
           setPriority('0')
           onSuccess()
         },
@@ -196,14 +204,67 @@ function AddRouteDialog({
               </p>
             </div>
             <div className='grid gap-2'>
-              <Label htmlFor='entity'>Entity</Label>
-              <Input
-                id='entity'
-                value={entity}
-                onChange={(e) => setEntity(e.target.value)}
-                placeholder='app:myapp or redirect:https://...'
-                required
-              />
+              <Label htmlFor='method'>Method</Label>
+              <select
+                id='method'
+                value={method}
+                onChange={(e) => {
+                  setMethod(e.target.value)
+                  setTarget('')
+                }}
+                className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
+              >
+                <option value='app'>App</option>
+                <option value='entity'>Entity</option>
+                <option value='redirect'>Redirect</option>
+              </select>
+            </div>
+            <div className='grid gap-2'>
+              <Label htmlFor='target'>Target</Label>
+              {method === 'app' ? (
+                <select
+                  id='target'
+                  value={target}
+                  onChange={(e) => setTarget(e.target.value)}
+                  required
+                  className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
+                >
+                  <option value=''>Select an app</option>
+                  {apps?.map((app) => (
+                    <option key={app.id} value={app.id}>
+                      {app.name}
+                    </option>
+                  ))}
+                </select>
+              ) : method === 'entity' ? (
+                <select
+                  id='target'
+                  value={target}
+                  onChange={(e) => setTarget(e.target.value)}
+                  required
+                  className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
+                >
+                  <option value=''>Select an entity</option>
+                  {entities?.map((entity) => (
+                    <option key={entity.id} value={entity.id}>
+                      {entity.name}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <Input
+                  id='target'
+                  value={target}
+                  onChange={(e) => setTarget(e.target.value)}
+                  placeholder='https://example.com'
+                  required
+                />
+              )}
+              <p className='text-muted-foreground text-xs'>
+                {method === 'app' && 'Select the app to route to'}
+                {method === 'redirect' && 'URL to redirect to'}
+                {method === 'entity' && 'Select the entity to route to'}
+              </p>
             </div>
             <div className='grid gap-2'>
               <Label htmlFor='priority'>Priority</Label>
@@ -232,6 +293,180 @@ function AddRouteDialog({
                 <Loader2 className='mr-2 h-4 w-4 animate-spin' />
               )}
               Add Route
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
+function EditRouteDialog({
+  route,
+  onSuccess,
+}: {
+  route: RouteType
+  onSuccess: () => void
+}) {
+  const [open, setOpen] = useState(false)
+  const [method, setMethod] = useState(route.method)
+  const [target, setTarget] = useState(route.target)
+  const [priority, setPriority] = useState(String(route.priority))
+  const [enabled, setEnabled] = useState(route.enabled === 1)
+  const updateRoute = useUpdateRoute()
+  const { data: apps } = useApps()
+  const { data: entities } = useEntities()
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    updateRoute.mutate(
+      {
+        domain: route.domain,
+        path: route.path,
+        method,
+        target,
+        priority: parseInt(priority, 10),
+        enabled,
+      },
+      {
+        onSuccess: () => {
+          toast.success('Route updated')
+          setOpen(false)
+          onSuccess()
+        },
+        onError: (error: Error) => {
+          toast.error(error.message || 'Failed to update route')
+        },
+      }
+    )
+  }
+
+  const handleOpenChange = (isOpen: boolean) => {
+    setOpen(isOpen)
+    if (isOpen) {
+      setMethod(route.method)
+      setTarget(route.target)
+      setPriority(String(route.priority))
+      setEnabled(route.enabled === 1)
+    }
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={handleOpenChange}>
+      <DialogTrigger asChild>
+        <Button variant='ghost' size='icon' className='h-8 w-8'>
+          <Pencil className='h-4 w-4' />
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <form onSubmit={handleSubmit}>
+          <DialogHeader>
+            <DialogTitle>Edit Route</DialogTitle>
+            <DialogDescription>
+              Edit route for path: {route.path || '/'}
+            </DialogDescription>
+          </DialogHeader>
+          <div className='grid gap-4 py-4'>
+            <div className='grid gap-2'>
+              <Label htmlFor='edit-method'>Method</Label>
+              <select
+                id='edit-method'
+                value={method}
+                onChange={(e) => {
+                  setMethod(e.target.value)
+                  setTarget('')
+                }}
+                className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
+              >
+                <option value='app'>App</option>
+                <option value='entity'>Entity</option>
+                <option value='redirect'>Redirect</option>
+              </select>
+            </div>
+            <div className='grid gap-2'>
+              <Label htmlFor='edit-target'>Target</Label>
+              {method === 'app' ? (
+                <select
+                  id='edit-target'
+                  value={target}
+                  onChange={(e) => setTarget(e.target.value)}
+                  required
+                  className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
+                >
+                  <option value=''>Select an app</option>
+                  {apps?.map((app) => (
+                    <option key={app.id} value={app.id}>
+                      {app.name}
+                    </option>
+                  ))}
+                </select>
+              ) : method === 'entity' ? (
+                <select
+                  id='edit-target'
+                  value={target}
+                  onChange={(e) => setTarget(e.target.value)}
+                  required
+                  className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
+                >
+                  <option value=''>Select an entity</option>
+                  {entities?.map((entity) => (
+                    <option key={entity.id} value={entity.id}>
+                      {entity.name}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <Input
+                  id='edit-target'
+                  value={target}
+                  onChange={(e) => setTarget(e.target.value)}
+                  placeholder='https://example.com'
+                  required
+                />
+              )}
+              <p className='text-muted-foreground text-xs'>
+                {method === 'app' && 'Select the app to route to'}
+                {method === 'redirect' && 'URL to redirect to'}
+                {method === 'entity' && 'Select the entity to route to'}
+              </p>
+            </div>
+            <div className='grid gap-2'>
+              <Label htmlFor='edit-priority'>Priority</Label>
+              <Input
+                id='edit-priority'
+                type='number'
+                value={priority}
+                onChange={(e) => setPriority(e.target.value)}
+                placeholder='0'
+              />
+              <p className='text-muted-foreground text-xs'>
+                Higher priority routes are matched first
+              </p>
+            </div>
+            <div className='flex items-center gap-2'>
+              <input
+                id='edit-enabled'
+                type='checkbox'
+                checked={enabled}
+                onChange={(e) => setEnabled(e.target.checked)}
+                className='h-4 w-4'
+              />
+              <Label htmlFor='edit-enabled'>Enabled</Label>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              type='button'
+              variant='outline'
+              onClick={() => setOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button type='submit' disabled={updateRoute.isPending}>
+              {updateRoute.isPending && (
+                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+              )}
+              Save Changes
             </Button>
           </DialogFooter>
         </form>
@@ -396,17 +631,22 @@ function AddDelegationDialog({
 function RouteRow({
   route,
   onDelete,
+  onUpdate,
   isDeleting,
 }: {
   route: RouteType
   onDelete: () => void
+  onUpdate: () => void
   isDeleting: boolean
 }) {
   return (
     <TableRow>
       <TableCell className='font-mono text-sm'>{route.path || '/'}</TableCell>
-      <TableCell className='max-w-[200px] truncate font-mono text-sm'>
-        {route.entity}
+      <TableCell>
+        <Badge variant='outline'>{route.method}</Badge>
+      </TableCell>
+      <TableCell className='max-w-[200px] truncate text-sm'>
+        {route.target_name || route.target}
       </TableCell>
       <TableCell>{route.priority}</TableCell>
       <TableCell>
@@ -417,29 +657,32 @@ function RouteRow({
         )}
       </TableCell>
       <TableCell className='text-right'>
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button variant='ghost' size='icon' disabled={isDeleting}>
-              {isDeleting ? (
-                <Loader2 className='h-4 w-4 animate-spin' />
-              ) : (
-                <Trash2 className='h-4 w-4' />
-              )}
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Delete route?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This will remove the route for path "{route.path || '/'}"
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={onDelete}>Delete</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <div className='flex justify-end gap-1'>
+          <EditRouteDialog route={route} onSuccess={onUpdate} />
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant='ghost' size='icon' className='h-8 w-8' disabled={isDeleting}>
+                {isDeleting ? (
+                  <Loader2 className='h-4 w-4 animate-spin' />
+                ) : (
+                  <Trash2 className='h-4 w-4' />
+                )}
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Delete route?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This will remove the route for path "{route.path || '/'}"
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={onDelete}>Delete</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
       </TableCell>
     </TableRow>
   )
@@ -664,7 +907,8 @@ function DomainDetails({
                 <TableHeader>
                   <TableRow>
                     <TableHead>Path</TableHead>
-                    <TableHead>Entity</TableHead>
+                    <TableHead>Method</TableHead>
+                    <TableHead>Target</TableHead>
                     <TableHead>Priority</TableHead>
                     <TableHead>Status</TableHead>
                     <TableHead className='w-[50px]' />
@@ -676,6 +920,7 @@ function DomainDetails({
                       key={`${route.domain}:${route.path}`}
                       route={route}
                       onDelete={() => handleDeleteRoute(route.path)}
+                      onUpdate={() => refetch()}
                       isDeleting={deletingRoute === route.path}
                     />
                   ))}

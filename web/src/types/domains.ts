@@ -10,12 +10,21 @@ export interface Domain {
 export interface Route {
   domain: string
   path: string
-  entity: string
+  method: string
+  target: string
   context: string
   priority: number
   enabled: number
   created: number
   updated: number
+  target_name?: string
+}
+
+export interface Entity {
+  id: string
+  fingerprint: string
+  class: string
+  name: string
 }
 
 export interface Delegation {
@@ -46,4 +55,10 @@ export interface DomainDetails {
   routes: Route[]
   delegations: Delegation[]
   admin: boolean
+}
+
+export interface App {
+  id: string
+  name: string
+  latest: string
 }

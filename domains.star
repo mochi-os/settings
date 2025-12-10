@@ -48,7 +48,7 @@ def action_domains(a):
                 if domain_info:
                     domain_map[d["domain"]] = domain_info
         domains = list(domain_map.values())
-        a.json({"domains": domains, "delegations": enrich_delegations(delegations), "count": len(domains), "admin": False})
+        a.json({"domains": domains, "delegations": delegations, "count": len(domains), "admin": False})
 
 def action_domains_get(a):
     """Get domain details with routes and delegations"""
@@ -62,7 +62,7 @@ def action_domains_get(a):
         if not info:
             a.error(404, "Domain not found")
             return
-        routes = mochi.domain.route.list(domain)
+        routes = enrich_routes_with_names(mochi.domain.route.list(domain))
         delegations = mochi.domain.delegation.list(domain, 0)
         a.json({"domain": info, "routes": routes, "delegations": enrich_delegations(delegations), "admin": True})
     else:
@@ -81,7 +81,7 @@ def action_domains_get(a):
                 if d["path"] == "" or route["path"].startswith(d["path"]):
                     accessible_routes.append(route)
                     break
-        a.json({"domain": info, "routes": accessible_routes, "delegations": enrich_delegations(delegations), "admin": False})
+        a.json({"domain": info, "routes": enrich_routes_with_names(accessible_routes), "delegations": delegations, "admin": False})
 
 def action_domains_update(a):
     """Update domain settings (admin only)"""
@@ -119,9 +119,10 @@ def action_domains_route_create(a):
     """Create a route"""
     domain = a.input("domain")
     path = a.input("path")
-    entity = a.input("entity")
-    if not domain or path == None or not entity:
-        a.error(400, "Missing required fields: domain, path, entity")
+    method = a.input("method")
+    target = a.input("target")
+    if not domain or path == None or not method or not target:
+        a.error(400, "Missing required fields: domain, path, method, target")
         return
     if not is_admin(a):
         if not can_manage_path(a, domain, path):
@@ -129,7 +130,7 @@ def action_domains_route_create(a):
             return
     priority = int(a.input("priority") or "0")
     context = a.input("context") or ""
-    result = mochi.domain.route.create(domain, path, entity, priority, context=context)
+    result = mochi.domain.route.create(domain, path, method, target, priority, context=context)
     a.json(result)
 
 def action_domains_route_update(a):
@@ -143,12 +144,15 @@ def action_domains_route_update(a):
         if not can_manage_path(a, domain, path):
             a.error(403, "No permission to manage this path")
             return
-    entity = a.input("entity")
+    method = a.input("method")
+    target = a.input("target")
     priority = a.input("priority")
     enabled = a.input("enabled")
     kwargs = {}
-    if entity:
-        kwargs["entity"] = entity
+    if method:
+        kwargs["method"] = method
+    if target:
+        kwargs["target"] = target
     if priority:
         kwargs["priority"] = int(priority)
     if enabled:
@@ -208,3 +212,32 @@ def action_domains_user_search(a):
         return
     users = mochi.user.search(query, 10)
     a.json({"users": users})
+
+def action_domains_apps(a):
+    """List available apps for route targets"""
+    apps = mochi.app.list()
+    a.json({"apps": apps})
+
+def action_domains_entities(a):
+    """List entities owned by the current user for route targets"""
+    entities = mochi.entity.owned()
+    a.json({"entities": entities})
+
+def enrich_routes_with_names(routes):
+    """Add app_name or entity_name to routes based on method"""
+    result = []
+    for route in routes:
+        if route["method"] == "app":
+            app = mochi.app.get(route["target"])
+            if app:
+                route = dict(route)
+                route["target_name"] = app["name"]
+        elif route["method"] == "entity":
+            entities = mochi.entity.owned()
+            for e in entities:
+                if e["id"] == route["target"]:
+                    route = dict(route)
+                    route["target_name"] = e["name"]
+                    break
+        result.append(route)
+    return result
