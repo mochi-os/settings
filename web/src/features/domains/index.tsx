@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AxiosError } from 'axios'
 import type { Domain, Route as RouteType, Delegation } from '@/types/domains'
 import {
   Check,
@@ -15,6 +16,17 @@ import {
   X,
 } from 'lucide-react'
 import { toast } from 'sonner'
+
+// Extract error message from Axios error or use fallback
+function getErrorMessage(error: unknown, fallback: string): string {
+  if (error instanceof AxiosError) {
+    return error.response?.data?.error || fallback
+  }
+  if (error instanceof Error) {
+    return error.message || fallback
+  }
+  return fallback
+}
 import {
   useDomainsData,
   useCreateDomain,
@@ -81,8 +93,8 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
         setDomain('')
         onSuccess()
       },
-      onError: (error: Error) => {
-        toast.error(error.message || 'Failed to create domain')
+      onError: (error: unknown) => {
+        toast.error(getErrorMessage(error, 'Failed to create domain'))
       },
     })
   }
@@ -142,9 +154,13 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
 function AddRouteDialog({
   domain,
   onSuccess,
+  delegations,
+  admin,
 }: {
   domain: string
   onSuccess: () => void
+  delegations?: Delegation[]
+  admin: boolean
 }) {
   const [open, setOpen] = useState(false)
   const [path, setPath] = useState('')
@@ -154,6 +170,19 @@ function AddRouteDialog({
   const createRoute = useCreateRoute()
   const { data: apps } = useApps()
   const { data: entities } = useEntities()
+
+  // Check if path is allowed for non-admin users
+  const isPathAllowed = (testPath: string): boolean => {
+    if (admin) return true
+    if (!delegations || delegations.length === 0) return false
+    return delegations.some((d) => {
+      if (d.path === '') return true // Root delegation allows all paths
+      return testPath === d.path || testPath.startsWith(d.path + '/')
+    })
+  }
+
+  const pathAllowed = isPathAllowed(path)
+  const allowedPaths = delegations?.map((d) => d.path || '/') || []
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -169,8 +198,8 @@ function AddRouteDialog({
           setPriority('0')
           onSuccess()
         },
-        onError: (error: Error) => {
-          toast.error(error.message || 'Failed to create route')
+        onError: (error: unknown) => {
+          toast.error(getErrorMessage(error, 'Failed to create route'))
         },
       }
     )
@@ -188,7 +217,20 @@ function AddRouteDialog({
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Add Route</DialogTitle>
-            <DialogDescription>Add a new route to {domain}</DialogDescription>
+            <DialogDescription>
+              Add a new route to {domain}
+              {!admin && allowedPaths.length > 0 && (
+                <>
+                  . You can manage paths:{' '}
+                  {allowedPaths.map((p, i) => (
+                    <code key={p} className='bg-muted rounded px-1'>
+                      {p}
+                      {i < allowedPaths.length - 1 ? ', ' : ''}
+                    </code>
+                  ))}
+                </>
+              )}
+            </DialogDescription>
           </DialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
@@ -198,10 +240,17 @@ function AddRouteDialog({
                 value={path}
                 onChange={(e) => setPath(e.target.value)}
                 placeholder='/ or /blog'
+                className={!admin && !pathAllowed && path ? 'border-destructive' : ''}
               />
-              <p className='text-muted-foreground text-xs'>
-                Leave empty for root path
-              </p>
+              {!admin && !pathAllowed && path ? (
+                <p className='text-destructive text-xs'>
+                  Path not allowed. You can only add routes under: {allowedPaths.join(', ')}
+                </p>
+              ) : (
+                <p className='text-muted-foreground text-xs'>
+                  Leave empty for root path
+                </p>
+              )}
             </div>
             <div className='grid gap-2'>
               <Label htmlFor='method'>Method</Label>
@@ -229,7 +278,9 @@ function AddRouteDialog({
                   required
                   className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
                 >
-                  <option value=''>Select an app</option>
+                  <option value='' disabled className='text-muted-foreground'>
+                    Select an app...
+                  </option>
                   {apps?.map((app) => (
                     <option key={app.id} value={app.id}>
                       {app.name}
@@ -244,7 +295,9 @@ function AddRouteDialog({
                   required
                   className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
                 >
-                  <option value=''>Select an entity</option>
+                  <option value='' disabled className='text-muted-foreground'>
+                    Select an entity...
+                  </option>
                   {entities?.map((entity) => (
                     <option key={entity.id} value={entity.id}>
                       {entity.name}
@@ -288,7 +341,7 @@ function AddRouteDialog({
             >
               Cancel
             </Button>
-            <Button type='submit' disabled={createRoute.isPending}>
+            <Button type='submit' disabled={createRoute.isPending || (!admin && !pathAllowed)}>
               {createRoute.isPending && (
                 <Loader2 className='mr-2 h-4 w-4 animate-spin' />
               )}
@@ -334,8 +387,8 @@ function EditRouteDialog({
           setOpen(false)
           onSuccess()
         },
-        onError: (error: Error) => {
-          toast.error(error.message || 'Failed to update route')
+        onError: (error: unknown) => {
+          toast.error(getErrorMessage(error, 'Failed to update route'))
         },
       }
     )
@@ -393,7 +446,9 @@ function EditRouteDialog({
                   required
                   className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
                 >
-                  <option value=''>Select an app</option>
+                  <option value='' disabled className='text-muted-foreground'>
+                    Select an app...
+                  </option>
                   {apps?.map((app) => (
                     <option key={app.id} value={app.id}>
                       {app.name}
@@ -408,7 +463,9 @@ function EditRouteDialog({
                   required
                   className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
                 >
-                  <option value=''>Select an entity</option>
+                  <option value='' disabled className='text-muted-foreground'>
+                    Select an entity...
+                  </option>
                   {entities?.map((entity) => (
                     <option key={entity.id} value={entity.id}>
                       {entity.name}
@@ -508,8 +565,8 @@ function AddDelegationDialog({
           setSelectedUser(null)
           onSuccess()
         },
-        onError: (error: Error) => {
-          toast.error(error.message || 'Failed to create delegation')
+        onError: (error: unknown) => {
+          toast.error(getErrorMessage(error, 'Failed to create delegation'))
         },
       }
     )
@@ -898,6 +955,8 @@ function DomainDetails({
               <AddRouteDialog
                 domain={domain.domain}
                 onSuccess={() => refetch()}
+                delegations={data?.delegations}
+                admin={data?.admin ?? false}
               />
             </div>
             {isLoading ? (
@@ -997,8 +1056,8 @@ export function Domains() {
         setDeletingDomain(null)
         refetch()
       },
-      onError: (error: Error) => {
-        toast.error(error.message || 'Failed to delete domain')
+      onError: (error: unknown) => {
+        toast.error(getErrorMessage(error, 'Failed to delete domain'))
         setDeletingDomain(null)
       },
     })

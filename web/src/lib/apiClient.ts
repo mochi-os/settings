@@ -116,10 +116,8 @@ apiClient.interceptors.response.use(
       }
 
       case 403: {
+        // Don't toast here - let the component's onError handler show the specific error
         logDevError('[API] 403 Forbidden', error)
-        toast.error('Access denied', {
-          description: "You don't have permission to perform this action.",
-        })
         break
       }
 
@@ -128,13 +126,17 @@ apiClient.interceptors.response.use(
         break
       }
 
-      case 500:
+      case 500: {
+        // Don't toast here - let the component's onError handler show the specific error
+        logDevError('[API] Server error', error)
+        break
+      }
+
       case 502:
       case 503: {
         logDevError('[API] Server error', error)
         toast.error('Server error', {
-          description:
-            'Something went wrong on our end. Please try again later.',
+          description: 'Something went wrong on our end. Please try again later.',
         })
         break
       }
