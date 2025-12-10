@@ -42,7 +42,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Header } from '@/components/layout/header'
+
 import { Main } from '@/components/layout/main'
 
 const themeLabels: Record<string, string> = {
@@ -212,22 +212,15 @@ export function UserPreferences() {
 
   if (error) {
     return (
-      <>
-        <Header>
-          <h1 className='text-lg font-semibold'>Preferences</h1>
-        </Header>
-        <Main>
-          <p className='text-muted-foreground'>Failed to load preferences</p>
-        </Main>
-      </>
+      <Main>
+        <h1 className='mb-6 text-lg font-semibold'>Preferences</h1>
+        <p className='text-muted-foreground'>Failed to load preferences</p>
+      </Main>
     )
   }
 
   return (
     <>
-      <Header>
-        <h1 className='text-lg font-semibold'>Preferences</h1>
-      </Header>
 
       <Main>
         {isLoading ? (

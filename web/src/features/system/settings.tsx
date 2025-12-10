@@ -23,7 +23,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Switch } from '@/components/ui/switch'
-import { Header } from '@/components/layout/header'
+
 import { Main } from '@/components/layout/main'
 
 function formatSettingName(name: string): string {
@@ -221,14 +221,10 @@ export function SystemSettings() {
 
   if (error) {
     return (
-      <>
-        <Header>
-          <h1 className='text-lg font-semibold'>System Settings</h1>
-        </Header>
-        <Main>
-          <p className='text-muted-foreground'>Failed to load settings</p>
-        </Main>
-      </>
+      <Main>
+        <h1 className='mb-6 text-lg font-semibold'>System Settings</h1>
+        <p className='text-muted-foreground'>Failed to load settings</p>
+      </Main>
     )
   }
 
@@ -241,9 +237,6 @@ export function SystemSettings() {
 
   return (
     <>
-      <Header>
-        <h1 className='text-lg font-semibold'>System Settings</h1>
-      </Header>
 
       <Main>
         {isLoading ? (

@@ -66,7 +66,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Header } from '@/components/layout/header'
+
 import { Main } from '@/components/layout/main'
 
 function formatTimestamp(timestamp: number): string {
@@ -776,24 +776,15 @@ export function UserAccount() {
 
   if (error) {
     return (
-      <>
-        <Header>
-          <h1 className='text-lg font-semibold'>Account</h1>
-        </Header>
-        <Main>
-          <p className='text-muted-foreground'>
-            Failed to load account information
-          </p>
-        </Main>
-      </>
+      <Main>
+        <h1 className='mb-6 text-lg font-semibold'>Account</h1>
+        <p className='text-muted-foreground'>Failed to load account</p>
+      </Main>
     )
   }
 
   return (
     <>
-      <Header>
-        <h1 className='text-lg font-semibold'>Account</h1>
-      </Header>
 
       <Main>
         <div className='space-y-8'>

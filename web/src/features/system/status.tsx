@@ -2,7 +2,7 @@ import { format } from 'date-fns'
 import { Activity } from 'lucide-react'
 import { useSystemSettingsData } from '@/hooks/use-system-settings'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Header } from '@/components/layout/header'
+
 import { Main } from '@/components/layout/main'
 
 function formatTimestamp(value: string): string {
@@ -16,14 +16,10 @@ export function SystemStatus() {
 
   if (error) {
     return (
-      <>
-        <Header>
-          <h1 className='text-lg font-semibold'>Status</h1>
-        </Header>
-        <Main>
-          <p className='text-muted-foreground'>Failed to load status</p>
-        </Main>
-      </>
+      <Main>
+        <h1 className='mb-6 text-lg font-semibold'>Status</h1>
+        <p className='text-muted-foreground'>Failed to load status</p>
+      </Main>
     )
   }
 
@@ -35,9 +31,6 @@ export function SystemStatus() {
 
   return (
     <>
-      <Header>
-        <h1 className='text-lg font-semibold'>Status</h1>
-      </Header>
 
       <Main>
         <div className='mb-6 flex items-center gap-2'>

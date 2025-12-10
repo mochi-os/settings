@@ -10,6 +10,7 @@ import {
   Pencil,
   Plus,
   Route,
+  Search,
   Shield,
   Trash2,
   Users,
@@ -76,7 +77,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Header } from '@/components/layout/header'
+
 import { Main } from '@/components/layout/main'
 
 function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
@@ -1046,6 +1047,7 @@ function DomainDetails({
 export function Domains() {
   const { data, isLoading, error, refetch } = useDomainsData()
   const deleteDomain = useDeleteDomain()
+  const [search, setSearch] = useState('')
   const [deletingDomain, setDeletingDomain] = useState<string | null>(null)
 
   const handleDelete = (domain: string) => {
@@ -1067,21 +1069,16 @@ export function Domains() {
 
   if (error) {
     return (
-      <>
-        <Header>
-          <h1 className='text-lg font-semibold'>Domains</h1>
-        </Header>
-        <Main>
-          <p className='text-muted-foreground'>Failed to load domains</p>
-        </Main>
-      </>
+      <Main>
+        <h1 className='mb-6 text-lg font-semibold'>Domains</h1>
+        <p className='text-muted-foreground'>Failed to load domains</p>
+      </Main>
     )
   }
 
   return (
-    <>
-      <Header>
-        <div className='flex w-full items-center justify-between'>
+      <Main>
+        <div className='mb-6 flex w-full items-center justify-between'>
           <h1 className='text-lg font-semibold'>
             Domains
             {data?.count !== undefined && (
@@ -1090,11 +1087,20 @@ export function Domains() {
               </span>
             )}
           </h1>
-          {isAdmin && <AddDomainDialog onSuccess={() => refetch()} />}
+          <div className='flex items-center gap-4'>
+            <div className='relative'>
+              <Search className='text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4' />
+              <Input
+                placeholder='Search domains...'
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className='w-64 pl-8'
+              />
+            </div>
+            {isAdmin && <AddDomainDialog onSuccess={() => refetch()} />}
+          </div>
         </div>
-      </Header>
 
-      <Main>
         {isLoading ? (
           <div className='space-y-4'>
             <Skeleton className='h-20 w-full' />
@@ -1112,7 +1118,7 @@ export function Domains() {
                         <Button
                           variant='ghost'
                           size='icon'
-                          className='h-8 w-8'
+                          className='h-8 w-8 text-muted-foreground hover:text-destructive'
                           disabled={deletingDomain === domain.domain}
                           onClick={(e) => e.stopPropagation()}
                         >
@@ -1162,6 +1168,6 @@ export function Domains() {
           </div>
         )}
       </Main>
-    </>
+
   )
 }

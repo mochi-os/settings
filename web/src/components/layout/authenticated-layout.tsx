@@ -6,6 +6,7 @@ import { SearchProvider } from '@/context/search-provider'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/layout/app-sidebar'
 import { TopBar } from '@/components/layout/top-bar'
+import { PageHeader } from '@/components/layout/page-header'
 
 type AuthenticatedLayoutProps = {
   children?: React.ReactNode
@@ -29,6 +30,7 @@ export function AuthenticatedLayout({ children }: AuthenticatedLayoutProps) {
                 'overflow-auto'
               )}
             >
+              <PageHeader />
               {children ?? <Outlet />}
             </SidebarInset>
           </SidebarProvider>

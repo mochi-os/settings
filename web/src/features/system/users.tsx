@@ -73,7 +73,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Header } from '@/components/layout/header'
+
 import { Main } from '@/components/layout/main'
 
 function useDebounce<T>(value: T, delay: number): T {
@@ -585,21 +585,18 @@ export function SystemUsers() {
 
   if (error) {
     return (
-      <>
-        <Header>
-          <h1 className='text-lg font-semibold'>Users</h1>
-        </Header>
-        <Main>
-          <p className='text-muted-foreground'>Failed to load users</p>
-        </Main>
-      </>
+      <Main>
+        <h1 className='mb-6 text-lg font-semibold'>Users</h1>
+        <p className='text-muted-foreground'>Failed to load users</p>
+      </Main>
     )
   }
 
   return (
     <>
-      <Header>
-        <div className='flex w-full items-center justify-between'>
+
+      <Main>
+        <div className='mb-6 flex w-full items-center justify-between'>
           <h1 className='text-lg font-semibold'>
             Users
             {data?.count !== undefined && (
@@ -621,9 +618,7 @@ export function SystemUsers() {
             <CreateUserDialog onSuccess={() => refetch()} />
           </div>
         </div>
-      </Header>
 
-      <Main>
         {isLoading ? (
           <div className='space-y-2'>
             <Skeleton className='h-12 w-full' />

@@ -24,7 +24,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Header } from '@/components/layout/header'
+
 import { Main } from '@/components/layout/main'
 
 function formatTimestamp(timestamp: number): string {
@@ -114,14 +114,10 @@ export function UserSessions() {
 
   if (error) {
     return (
-      <>
-        <Header>
-          <h1 className='text-lg font-semibold'>Sessions</h1>
-        </Header>
-        <Main>
-          <p className='text-muted-foreground'>Failed to load sessions</p>
-        </Main>
-      </>
+      <Main>
+        <h1 className='text-lg font-semibold'>Sessions</h1>
+        <p className='text-muted-foreground'>Failed to load sessions</p>
+      </Main>
     )
   }
 
@@ -130,9 +126,6 @@ export function UserSessions() {
 
   return (
     <>
-      <Header>
-        <h1 className='text-lg font-semibold'>Sessions</h1>
-      </Header>
 
       <Main>
         {isLoading ? (
