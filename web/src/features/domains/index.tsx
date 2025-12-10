@@ -16,6 +16,7 @@ import {
 import { toast } from 'sonner'
 import {
   useDomainsData,
+  useCreateDomain,
   useDomainDetails,
   useUpdateDomain,
   useDeleteDomain,
@@ -61,6 +62,78 @@ import {
 } from '@/components/ui/table'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
+
+function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
+  const [open, setOpen] = useState(false)
+  const [domain, setDomain] = useState('')
+  const createDomain = useCreateDomain()
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    createDomain.mutate(domain, {
+      onSuccess: () => {
+        toast.success('Domain created')
+        setOpen(false)
+        setDomain('')
+        onSuccess()
+      },
+      onError: (error: Error) => {
+        toast.error(error.message || 'Failed to create domain')
+      },
+    })
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button size='sm'>
+          <Plus className='mr-2 h-4 w-4' />
+          Add domain
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <form onSubmit={handleSubmit}>
+          <DialogHeader>
+            <DialogTitle>Add domain</DialogTitle>
+            <DialogDescription>
+              Add a new domain to the server
+            </DialogDescription>
+          </DialogHeader>
+          <div className='grid gap-4 py-4'>
+            <div className='grid gap-2'>
+              <Label htmlFor='domain'>Domain</Label>
+              <Input
+                id='domain'
+                value={domain}
+                onChange={(e) => setDomain(e.target.value)}
+                placeholder='example.com or *.example.com'
+                required
+              />
+              <p className='text-muted-foreground text-xs'>
+                Use *.domain.com for wildcard domains
+              </p>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              type='button'
+              variant='outline'
+              onClick={() => setOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button type='submit' disabled={createDomain.isPending}>
+              {createDomain.isPending && (
+                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+              )}
+              Add domain
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  )
+}
 
 function AddRouteDialog({
   domain,
@@ -704,14 +777,17 @@ export function Domains() {
   return (
     <>
       <Header>
-        <h1 className='text-lg font-semibold'>
-          Domains
-          {data?.count !== undefined && (
-            <span className='text-muted-foreground ml-2 font-normal'>
-              ({data.count})
-            </span>
-          )}
-        </h1>
+        <div className='flex w-full items-center justify-between'>
+          <h1 className='text-lg font-semibold'>
+            Domains
+            {data?.count !== undefined && (
+              <span className='text-muted-foreground ml-2 font-normal'>
+                ({data.count})
+              </span>
+            )}
+          </h1>
+          {isAdmin && <AddDomainDialog onSuccess={() => refetch()} />}
+        </div>
       </Header>
 
       <Main>

@@ -49,6 +49,7 @@ const endpoints = {
   },
   domains: {
     data: 'domains/data',
+    create: 'domains/create',
     get: 'domains/get',
     update: 'domains/update',
     delete: 'domains/delete',

@@ -17,6 +17,21 @@ export function useDomainsData() {
   })
 }
 
+export function useCreateDomain() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async (domain: string) => {
+      const response = await apiClient.post(endpoints.domains.create, {
+        domain,
+      })
+      return response.data
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['domains'] })
+    },
+  })
+}
+
 export function useDomainDetails(domain: string) {
   return useQuery({
     queryKey: ['domains', domain],

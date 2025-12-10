@@ -22,6 +22,17 @@ def enrich_delegations(delegations):
         result.append({"domain": d["domain"], "path": d["path"], "owner": d["owner"], "username": username})
     return result
 
+def action_domains_create(a):
+    """Create a new domain (admin only)"""
+    if not require_admin(a):
+        return
+    domain = a.input("domain")
+    if not domain:
+        a.error(400, "Missing domain")
+        return
+    result = mochi.domain.register(domain)
+    a.json(result)
+
 def action_domains(a):
     """Domains overview - returns domains based on role"""
     admin = is_admin(a)
