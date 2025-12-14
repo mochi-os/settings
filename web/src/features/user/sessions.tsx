@@ -2,7 +2,7 @@ import { format } from 'date-fns'
 import type { Session } from '@/types/account'
 import { Loader2, LogOut } from 'lucide-react'
 import { toast } from 'sonner'
-import { useAccountData, useRevokeSession } from '@/hooks/use-account'
+import { useSessions, useRevokeSession } from '@/hooks/use-account'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,19 +13,17 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { Button } from '@/components/ui/button'
-import { Skeleton } from '@/components/ui/skeleton'
-import {
+  Button,
+  Skeleton,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { Header } from '@/components/layout/header'
-import { Main } from '@/components/layout/main'
+  Header,
+  Main,
+} from '@mochi/common'
 
 function formatTimestamp(timestamp: number): string {
   if (timestamp === 0) return 'Never'
@@ -110,7 +108,7 @@ function SessionRow({
 }
 
 export function UserSessions() {
-  const { data, isLoading, error } = useAccountData()
+  const { data, isLoading, error } = useSessions()
 
   if (error) {
     return (

@@ -8,7 +8,7 @@ import {
   Users,
   Activity,
 } from 'lucide-react'
-import { type SidebarData } from '../types'
+import { type SidebarData } from '@mochi/common'
 
 export const sidebarData: SidebarData = {
   navGroups: [

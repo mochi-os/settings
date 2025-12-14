@@ -52,10 +52,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import {
+  Badge,
+  Button,
   Dialog,
   DialogContent,
   DialogDescription,
@@ -63,21 +61,19 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Skeleton } from '@/components/ui/skeleton'
-import { Switch } from '@/components/ui/switch'
-import {
+  Input,
+  Label,
+  Skeleton,
+  Switch,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { Header } from '@/components/layout/header'
-import { Main } from '@/components/layout/main'
+  Header,
+  Main,
+} from '@mochi/common'
 
 function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
   const [open, setOpen] = useState(false)

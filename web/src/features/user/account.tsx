@@ -43,31 +43,27 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { Button } from '@/components/ui/button'
-import {
+  Button,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Separator } from '@/components/ui/separator'
-import { Skeleton } from '@/components/ui/skeleton'
-import { Switch } from '@/components/ui/switch'
-import {
+  Input,
+  Label,
+  Separator,
+  Skeleton,
+  Switch,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { Header } from '@/components/layout/header'
-import { Main } from '@/components/layout/main'
+  Header,
+  Main,
+} from '@mochi/common'
 
 function formatTimestamp(timestamp: number): string {
   if (timestamp === 0) return 'Never'
@@ -93,7 +89,7 @@ function IdentitySection() {
           <Skeleton className='h-4 w-64' />
           <Skeleton className='h-4 w-32' />
         </div>
-      ) : data ? (
+      ) : data?.identity ? (
         <dl className='grid gap-3 text-sm'>
           <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
             <dt className='text-muted-foreground w-28 shrink-0'>Name</dt>

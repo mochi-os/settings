@@ -2,11 +2,6 @@ import { useState } from 'react'
 import type { SystemSetting } from '@/types/settings'
 import { Loader2, Lock, RotateCcw } from 'lucide-react'
 import { toast } from 'sonner'
-import { usePreferencesData } from '@/hooks/use-preferences'
-import {
-  useSystemSettingsData,
-  useSetSystemSetting,
-} from '@/hooks/use-system-settings'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,14 +12,19 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Skeleton } from '@/components/ui/skeleton'
-import { Switch } from '@/components/ui/switch'
-import { Header } from '@/components/layout/header'
-import { Main } from '@/components/layout/main'
+  Button,
+  Input,
+  Label,
+  Skeleton,
+  Switch,
+  Header,
+  Main,
+} from '@mochi/common'
+import { usePreferencesData } from '@/hooks/use-preferences'
+import {
+  useSystemSettingsData,
+  useSetSystemSetting,
+} from '@/hooks/use-system-settings'
 
 function formatSettingName(name: string): string {
   return name
