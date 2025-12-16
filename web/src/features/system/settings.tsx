@@ -26,7 +26,24 @@ import {
   useSetSystemSetting,
 } from '@/hooks/use-system-settings'
 
+const settingLabels: Record<string, string> = {
+  apps_install_user: 'Allow users to install apps',
+  auth_methods_allowed: 'Allowed login methods',
+  auth_methods_required: 'Required login methods',
+  auth_passkey_enabled: 'Passkey login',
+  auth_email_enabled: 'Email code login',
+  auth_recovery_enabled: 'Recovery code login',
+  domains_verification: 'Require domain verification',
+  email_from: 'Email default from address',
+  server_started: 'Server started',
+  server_version: 'Server version',
+  signup_enabled: 'Allow new signups',
+}
+
 function formatSettingName(name: string): string {
+  if (settingLabels[name]) {
+    return settingLabels[name]
+  }
   return name
     .split('_')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -236,7 +253,9 @@ export function SystemSettings() {
   const sortedSettings = data?.settings
     ? [...data.settings]
         .filter((s) => !statusSettings.includes(s.name))
-        .sort((a, b) => a.name.localeCompare(b.name))
+        .sort((a, b) =>
+          formatSettingName(a.name).localeCompare(formatSettingName(b.name))
+        )
     : []
 
   return (
