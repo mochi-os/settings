@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { format } from 'date-fns'
+import { usePageTitle } from '@/hooks/usePageTitle'
 import type { Passkey, TotpSetupResponse } from '@/types/account'
 import { startRegistration } from '@simplewebauthn/browser'
 import {
@@ -768,6 +769,7 @@ function RecoveryCodesSection() {
 // ============================================================================
 
 export function UserAccount() {
+  usePageTitle('Account')
   const { error } = useAccountData()
 
   if (error) {

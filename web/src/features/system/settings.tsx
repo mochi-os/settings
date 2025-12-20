@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { SystemSetting } from '@/types/settings'
 import { Loader2, Lock, RotateCcw } from 'lucide-react'
+import { usePageTitle } from '@/hooks/usePageTitle'
 import { toast } from 'sonner'
 import {
   AlertDialog,
@@ -213,6 +214,7 @@ function SettingRow({
 }
 
 export function SystemSettings() {
+  usePageTitle('System Settings')
   const { data, isLoading, error } = useSystemSettingsData()
   const { data: prefsData } = usePreferencesData()
   const setSetting = useSetSystemSetting()

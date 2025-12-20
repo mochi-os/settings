@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AxiosError } from 'axios'
 import type { Domain, Route as RouteType, Delegation } from '@/types/domains'
+import { usePageTitle } from '@/hooks/usePageTitle'
 import {
   Check,
   ChevronRight,
@@ -1040,6 +1041,7 @@ function DomainDetails({
 }
 
 export function Domains() {
+  usePageTitle('Domains')
   const { data, isLoading, error, refetch } = useDomainsData()
   const deleteDomain = useDeleteDomain()
   const [deletingDomain, setDeletingDomain] = useState<string | null>(null)
