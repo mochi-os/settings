@@ -1,7 +1,6 @@
 import { format } from 'date-fns'
 import { Activity } from 'lucide-react'
-import { Skeleton, Header, Main } from '@mochi/common'
-import { usePageTitle } from '@/hooks/usePageTitle'
+import { Skeleton, Header, Main, usePageTitle } from '@mochi/common'
 import { useSystemSettingsData } from '@/hooks/use-system-settings'
 
 function formatTimestamp(value: string): string {

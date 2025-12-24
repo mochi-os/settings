@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { AxiosError } from 'axios'
 import type { Domain, Route as RouteType, Delegation } from '@/types/domains'
-import { usePageTitle } from '@/hooks/usePageTitle'
 import {
   Check,
   ChevronRight,
@@ -74,6 +73,7 @@ import {
   TableRow,
   Header,
   Main,
+  usePageTitle,
 } from '@mochi/common'
 
 function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {

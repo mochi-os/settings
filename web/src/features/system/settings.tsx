@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import type { SystemSetting } from '@/types/settings'
 import { Loader2, Lock, RotateCcw } from 'lucide-react'
-import { usePageTitle } from '@/hooks/usePageTitle'
 import { toast } from 'sonner'
 import {
   AlertDialog,
@@ -20,6 +19,7 @@ import {
   Switch,
   Header,
   Main,
+  usePageTitle,
 } from '@mochi/common'
 import { usePreferencesData } from '@/hooks/use-preferences'
 import {

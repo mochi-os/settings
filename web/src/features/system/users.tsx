@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { formatDistanceToNow } from 'date-fns'
-import { usePageTitle } from '@/hooks/usePageTitle'
 import type { User, Session } from '@/types/users'
 import {
   Ban,
@@ -67,6 +66,7 @@ import {
   TableRow,
   Header,
   Main,
+  usePageTitle,
 } from '@mochi/common'
 
 function useDebounce<T>(value: T, delay: number): T {

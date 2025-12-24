@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { format } from 'date-fns'
-import { usePageTitle } from '@/hooks/usePageTitle'
 import type { Passkey, TotpSetupResponse } from '@/types/account'
 import { startRegistration } from '@simplewebauthn/browser'
 import {
@@ -64,6 +63,7 @@ import {
   TableRow,
   Header,
   Main,
+  usePageTitle,
 } from '@mochi/common'
 
 function formatTimestamp(timestamp: number): string {
