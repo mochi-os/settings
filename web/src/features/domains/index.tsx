@@ -696,9 +696,7 @@ function RouteRow({
   return (
     <TableRow>
       <TableCell className='font-mono text-sm'>{route.path || '/'}</TableCell>
-      <TableCell>
-        <Badge variant='outline'>{route.method}</Badge>
-      </TableCell>
+      <TableCell className='capitalize'>{route.method}</TableCell>
       <TableCell className='max-w-[200px] truncate text-sm'>
         {route.target_name || route.target}
       </TableCell>
