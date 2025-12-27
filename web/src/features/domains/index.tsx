@@ -651,11 +651,6 @@ function AddDelegationDialog({
                   </div>
                 )}
               </div>
-              {selectedUser && (
-                <p className='text-muted-foreground text-xs'>
-                  Selected: {selectedUser.username} (ID: {selectedUser.id})
-                </p>
-              )}
             </div>
           </div>
           <DialogFooter>
@@ -702,11 +697,7 @@ function RouteRow({
       </TableCell>
       <TableCell>{route.priority}</TableCell>
       <TableCell>
-        {route.enabled ? (
-          <Badge variant='default'>Enabled</Badge>
-        ) : (
-          <Badge variant='secondary'>Disabled</Badge>
-        )}
+        {route.enabled ? 'Enabled' : 'Disabled'}
       </TableCell>
       <TableCell className='text-right'>
         <div className='flex justify-end gap-1'>
