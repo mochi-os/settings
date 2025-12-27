@@ -207,13 +207,13 @@ function AddRouteDialog({
       <DialogTrigger asChild>
         <Button size='sm'>
           <Plus className='mr-2 h-4 w-4' />
-          Add Route
+          Add route
         </Button>
       </DialogTrigger>
       <DialogContent>
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>Add Route</DialogTitle>
+            <DialogTitle>Add route</DialogTitle>
             <DialogDescription>
               Add a new route to {domain}
               {!admin && allowedPaths.length > 0 && (
@@ -342,7 +342,7 @@ function AddRouteDialog({
               {createRoute.isPending && (
                 <Loader2 className='mr-2 h-4 w-4 animate-spin' />
               )}
-              Add Route
+              Add route
             </Button>
           </DialogFooter>
         </form>
@@ -586,13 +586,13 @@ function AddDelegationDialog({
       <DialogTrigger asChild>
         <Button size='sm' variant='outline'>
           <Plus className='mr-2 h-4 w-4' />
-          Add Delegation
+          Add delegation
         </Button>
       </DialogTrigger>
       <DialogContent>
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>Add Delegation</DialogTitle>
+            <DialogTitle>Add delegation</DialogTitle>
             <DialogDescription>
               Grant a user permission to manage routes on {domain}
             </DialogDescription>
@@ -668,7 +668,7 @@ function AddDelegationDialog({
               {createDelegation.isPending && (
                 <Loader2 className='mr-2 h-4 w-4 animate-spin' />
               )}
-              Add Delegation
+              Add delegation
             </Button>
           </DialogFooter>
         </form>
