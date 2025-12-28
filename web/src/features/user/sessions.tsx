@@ -24,6 +24,7 @@ import {
   Header,
   Main,
   usePageTitle,
+  getErrorMessage,
 } from '@mochi/common'
 
 function formatTimestamp(timestamp: number): string {
@@ -45,8 +46,8 @@ function SessionRow({
       onSuccess: () => {
         toast.success('Session revoked')
       },
-      onError: () => {
-        toast.error('Failed to revoke session')
+      onError: (error) => {
+        toast.error(getErrorMessage(error, 'Failed to revoke session'))
       },
     })
   }

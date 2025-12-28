@@ -33,6 +33,7 @@ import {
   Header,
   Main,
   usePageTitle,
+  getErrorMessage,
 } from '@mochi/common'
 import {
   usePreferencesData,
@@ -188,8 +189,8 @@ export function UserPreferences() {
         onSuccess: () => {
           toast.success('Preference updated')
         },
-        onError: () => {
-          toast.error('Failed to update preference')
+        onError: (error) => {
+          toast.error(getErrorMessage(error, 'Failed to update preference'))
         },
       }
     )
@@ -200,8 +201,8 @@ export function UserPreferences() {
       onSuccess: () => {
         toast.success('Preferences reset to defaults')
       },
-      onError: () => {
-        toast.error('Failed to reset preferences')
+      onError: (error) => {
+        toast.error(getErrorMessage(error, 'Failed to reset preferences'))
       },
     })
   }

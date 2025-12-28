@@ -800,7 +800,7 @@ function DomainDetails({
       { domain: domain.domain, verified: checked },
       {
         onSuccess: () => toast.success('Domain updated'),
-        onError: () => toast.error('Failed to update domain'),
+        onError: (error) => toast.error(getErrorMessage(error, 'Failed to update domain')),
       }
     )
   }
@@ -810,7 +810,7 @@ function DomainDetails({
       { domain: domain.domain, tls: checked },
       {
         onSuccess: () => toast.success('Domain updated'),
-        onError: () => toast.error('Failed to update domain'),
+        onError: (error) => toast.error(getErrorMessage(error, 'Failed to update domain')),
       }
     )
   }
@@ -824,8 +824,8 @@ function DomainDetails({
           toast.success('Route deleted')
           setDeletingRoute(null)
         },
-        onError: () => {
-          toast.error('Failed to delete route')
+        onError: (error) => {
+          toast.error(getErrorMessage(error, 'Failed to delete route'))
           setDeletingRoute(null)
         },
       }
@@ -842,8 +842,8 @@ function DomainDetails({
           toast.success('Delegation deleted')
           setDeletingDelegation(null)
         },
-        onError: () => {
-          toast.error('Failed to delete delegation')
+        onError: (error) => {
+          toast.error(getErrorMessage(error, 'Failed to delete delegation'))
           setDeletingDelegation(null)
         },
       }

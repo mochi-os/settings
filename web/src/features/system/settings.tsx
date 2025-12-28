@@ -20,6 +20,7 @@ import {
   Header,
   Main,
   usePageTitle,
+  getErrorMessage,
 } from '@mochi/common'
 import { usePreferencesData } from '@/hooks/use-preferences'
 import {
@@ -230,8 +231,8 @@ export function SystemSettings() {
           toast.success('Setting updated')
           setSavingName(null)
         },
-        onError: () => {
-          toast.error('Failed to update setting')
+        onError: (error) => {
+          toast.error(getErrorMessage(error, 'Failed to update setting'))
           setSavingName(null)
         },
       }
