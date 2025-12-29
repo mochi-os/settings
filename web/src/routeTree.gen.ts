@@ -20,12 +20,10 @@ import { Route as errors401RouteImport } from './routes/(errors)/401'
 import { Route as AuthenticatedUserTokensRouteImport } from './routes/_authenticated/user/tokens'
 import { Route as AuthenticatedUserSessionsRouteImport } from './routes/_authenticated/user/sessions'
 import { Route as AuthenticatedUserPreferencesRouteImport } from './routes/_authenticated/user/preferences'
-import { Route as AuthenticatedUserAppsRouteImport } from './routes/_authenticated/user/apps'
 import { Route as AuthenticatedUserAccountRouteImport } from './routes/_authenticated/user/account'
 import { Route as AuthenticatedSystemUsersRouteImport } from './routes/_authenticated/system/users'
 import { Route as AuthenticatedSystemStatusRouteImport } from './routes/_authenticated/system/status'
 import { Route as AuthenticatedSystemSettingsRouteImport } from './routes/_authenticated/system/settings'
-import { Route as AuthenticatedSystemAppsRouteImport } from './routes/_authenticated/system/apps'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
@@ -84,11 +82,6 @@ const AuthenticatedUserPreferencesRoute =
     path: '/user/preferences',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedUserAppsRoute = AuthenticatedUserAppsRouteImport.update({
-  id: '/user/apps',
-  path: '/user/apps',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 const AuthenticatedUserAccountRoute =
   AuthenticatedUserAccountRouteImport.update({
     id: '/user/account',
@@ -113,11 +106,6 @@ const AuthenticatedSystemSettingsRoute =
     path: '/system/settings',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedSystemAppsRoute = AuthenticatedSystemAppsRouteImport.update({
-  id: '/system/apps',
-  path: '/system/apps',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 const AuthenticatedErrorsErrorRoute =
   AuthenticatedErrorsErrorRouteImport.update({
     id: '/errors/$error',
@@ -134,12 +122,10 @@ export interface FileRoutesByFullPath {
   '/domains': typeof AuthenticatedDomainsRoute
   '/': typeof AuthenticatedIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
-  '/system/apps': typeof AuthenticatedSystemAppsRoute
   '/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/system/status': typeof AuthenticatedSystemStatusRoute
   '/system/users': typeof AuthenticatedSystemUsersRoute
   '/user/account': typeof AuthenticatedUserAccountRoute
-  '/user/apps': typeof AuthenticatedUserAppsRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
   '/user/sessions': typeof AuthenticatedUserSessionsRoute
   '/user/tokens': typeof AuthenticatedUserTokensRoute
@@ -153,12 +139,10 @@ export interface FileRoutesByTo {
   '/domains': typeof AuthenticatedDomainsRoute
   '/': typeof AuthenticatedIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
-  '/system/apps': typeof AuthenticatedSystemAppsRoute
   '/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/system/status': typeof AuthenticatedSystemStatusRoute
   '/system/users': typeof AuthenticatedSystemUsersRoute
   '/user/account': typeof AuthenticatedUserAccountRoute
-  '/user/apps': typeof AuthenticatedUserAppsRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
   '/user/sessions': typeof AuthenticatedUserSessionsRoute
   '/user/tokens': typeof AuthenticatedUserTokensRoute
@@ -174,12 +158,10 @@ export interface FileRoutesById {
   '/_authenticated/domains': typeof AuthenticatedDomainsRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
-  '/_authenticated/system/apps': typeof AuthenticatedSystemAppsRoute
   '/_authenticated/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/_authenticated/system/status': typeof AuthenticatedSystemStatusRoute
   '/_authenticated/system/users': typeof AuthenticatedSystemUsersRoute
   '/_authenticated/user/account': typeof AuthenticatedUserAccountRoute
-  '/_authenticated/user/apps': typeof AuthenticatedUserAppsRoute
   '/_authenticated/user/preferences': typeof AuthenticatedUserPreferencesRoute
   '/_authenticated/user/sessions': typeof AuthenticatedUserSessionsRoute
   '/_authenticated/user/tokens': typeof AuthenticatedUserTokensRoute
@@ -195,12 +177,10 @@ export interface FileRouteTypes {
     | '/domains'
     | '/'
     | '/errors/$error'
-    | '/system/apps'
     | '/system/settings'
     | '/system/status'
     | '/system/users'
     | '/user/account'
-    | '/user/apps'
     | '/user/preferences'
     | '/user/sessions'
     | '/user/tokens'
@@ -214,12 +194,10 @@ export interface FileRouteTypes {
     | '/domains'
     | '/'
     | '/errors/$error'
-    | '/system/apps'
     | '/system/settings'
     | '/system/status'
     | '/system/users'
     | '/user/account'
-    | '/user/apps'
     | '/user/preferences'
     | '/user/sessions'
     | '/user/tokens'
@@ -234,12 +212,10 @@ export interface FileRouteTypes {
     | '/_authenticated/domains'
     | '/_authenticated/'
     | '/_authenticated/errors/$error'
-    | '/_authenticated/system/apps'
     | '/_authenticated/system/settings'
     | '/_authenticated/system/status'
     | '/_authenticated/system/users'
     | '/_authenticated/user/account'
-    | '/_authenticated/user/apps'
     | '/_authenticated/user/preferences'
     | '/_authenticated/user/sessions'
     | '/_authenticated/user/tokens'
@@ -333,13 +309,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedUserPreferencesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/user/apps': {
-      id: '/_authenticated/user/apps'
-      path: '/user/apps'
-      fullPath: '/user/apps'
-      preLoaderRoute: typeof AuthenticatedUserAppsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/user/account': {
       id: '/_authenticated/user/account'
       path: '/user/account'
@@ -368,13 +337,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSystemSettingsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/system/apps': {
-      id: '/_authenticated/system/apps'
-      path: '/system/apps'
-      fullPath: '/system/apps'
-      preLoaderRoute: typeof AuthenticatedSystemAppsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/errors/$error': {
       id: '/_authenticated/errors/$error'
       path: '/errors/$error'
@@ -389,12 +351,10 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDomainsRoute: typeof AuthenticatedDomainsRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
-  AuthenticatedSystemAppsRoute: typeof AuthenticatedSystemAppsRoute
   AuthenticatedSystemSettingsRoute: typeof AuthenticatedSystemSettingsRoute
   AuthenticatedSystemStatusRoute: typeof AuthenticatedSystemStatusRoute
   AuthenticatedSystemUsersRoute: typeof AuthenticatedSystemUsersRoute
   AuthenticatedUserAccountRoute: typeof AuthenticatedUserAccountRoute
-  AuthenticatedUserAppsRoute: typeof AuthenticatedUserAppsRoute
   AuthenticatedUserPreferencesRoute: typeof AuthenticatedUserPreferencesRoute
   AuthenticatedUserSessionsRoute: typeof AuthenticatedUserSessionsRoute
   AuthenticatedUserTokensRoute: typeof AuthenticatedUserTokensRoute
@@ -404,12 +364,10 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDomainsRoute: AuthenticatedDomainsRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
-  AuthenticatedSystemAppsRoute: AuthenticatedSystemAppsRoute,
   AuthenticatedSystemSettingsRoute: AuthenticatedSystemSettingsRoute,
   AuthenticatedSystemStatusRoute: AuthenticatedSystemStatusRoute,
   AuthenticatedSystemUsersRoute: AuthenticatedSystemUsersRoute,
   AuthenticatedUserAccountRoute: AuthenticatedUserAccountRoute,
-  AuthenticatedUserAppsRoute: AuthenticatedUserAppsRoute,
   AuthenticatedUserPreferencesRoute: AuthenticatedUserPreferencesRoute,
   AuthenticatedUserSessionsRoute: AuthenticatedUserSessionsRoute,
   AuthenticatedUserTokensRoute: AuthenticatedUserTokensRoute,

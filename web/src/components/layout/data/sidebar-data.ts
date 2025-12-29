@@ -8,8 +8,6 @@ import {
   Settings,
   Users,
   Activity,
-  Package,
-  AppWindow,
 } from 'lucide-react'
 import { type SidebarData } from '@mochi/common'
 
@@ -23,9 +21,9 @@ const userNavGroup = {
       icon: User,
     },
     {
-      title: 'Sessions',
-      url: APP_ROUTES.SETTINGS.USER.SESSIONS,
-      icon: Monitor,
+      title: 'Preferences',
+      url: APP_ROUTES.SETTINGS.USER.PREFERENCES,
+      icon: Palette,
     },
     {
       title: 'API Tokens',
@@ -33,28 +31,18 @@ const userNavGroup = {
       icon: Key,
     },
     {
-      title: 'Preferences',
-      url: APP_ROUTES.SETTINGS.USER.PREFERENCES,
-      icon: Palette,
-    },
-    {
-      title: 'App preferences',
-      url: APP_ROUTES.SETTINGS.USER.APPS,
-      icon: AppWindow,
+      title: 'Sessions',
+      url: APP_ROUTES.SETTINGS.USER.SESSIONS,
+      icon: Monitor,
     },
   ],
 }
 
-// Management menu items (visible to all users)
-const managementNavGroup = {
-  title: 'Management',
-  items: [
-    {
-      title: 'Domains',
-      url: APP_ROUTES.SETTINGS.DOMAINS,
-      icon: Globe,
-    },
-  ],
+// Management menu items (visible to users with domain access)
+const domainsNavItem = {
+  title: 'Domains',
+  url: APP_ROUTES.SETTINGS.DOMAINS,
+  icon: Globe,
 }
 
 // System menu items (admin only)
@@ -72,11 +60,6 @@ const systemNavGroup = {
       icon: Users,
     },
     {
-      title: 'Apps',
-      url: APP_ROUTES.SETTINGS.SYSTEM.APPS,
-      icon: Package,
-    },
-    {
       title: 'Status',
       url: APP_ROUTES.SETTINGS.SYSTEM.STATUS,
       icon: Activity,
@@ -84,16 +67,34 @@ const systemNavGroup = {
   ],
 }
 
-// Build sidebar data based on admin status
-export function getSidebarData(isAdmin: boolean): SidebarData {
-  const navGroups = [userNavGroup, managementNavGroup]
+// Build sidebar data based on admin status and domain access
+export function getSidebarData(
+  isAdmin: boolean,
+  hasDomainAccess: boolean
+): SidebarData {
   if (isAdmin) {
+    // Admin: show grouped sections
+    const navGroups: SidebarData['navGroups'] = [userNavGroup]
+    if (hasDomainAccess) {
+      navGroups.push({
+        title: 'Management',
+        items: [domainsNavItem],
+      })
+    }
     navGroups.push(systemNavGroup)
+    return { navGroups }
   }
-  return { navGroups }
+
+  // Non-admin: flat list with no group titles
+  const items = hasDomainAccess
+    ? [...userNavGroup.items, domainsNavItem]
+    : userNavGroup.items
+  return {
+    navGroups: [{ title: '', items }],
+  }
 }
 
-// Default sidebar (for initial load, includes all items)
+// Default sidebar (for initial load, flat list until we know access)
 export const sidebarData: SidebarData = {
-  navGroups: [userNavGroup, managementNavGroup, systemNavGroup],
+  navGroups: [{ title: '', items: userNavGroup.items }],
 }

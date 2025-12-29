@@ -35,11 +35,6 @@ const endpoints = {
     preferences: '/settings/user/preferences/data',
     preferencesSet: '/settings/user/preferences/set',
     preferencesReset: '/settings/user/preferences/reset',
-    // App preferences
-    apps: '/settings/user/apps/data',
-    appsVersionSet: '/settings/user/apps/version/set',
-    appsRoutingSet: '/settings/user/apps/routing/set',
-    appsReset: '/settings/user/apps/reset',
   },
   system: {
     settings: '/settings/system/settings/list',
@@ -55,15 +50,6 @@ const endpoints = {
     usersActivate: '/settings/system/users/activate',
     usersSessions: '/settings/system/users/sessions',
     usersSessionsRevoke: '/settings/system/users/sessions/revoke',
-    // Multi-version apps (0.3+)
-    appsAvailable: '/settings/system/apps/available',
-    appsList: '/settings/system/apps/list',
-    appsGet: '/settings/system/apps/get',
-    appsVersionSet: '/settings/system/apps/version/set',
-    appsTrackSet: '/settings/system/apps/track/set',
-    appsCleanup: '/settings/system/apps/cleanup',
-    appsRouting: '/settings/system/apps/routing',
-    appsRoutingSet: '/settings/system/apps/routing/set',
   },
   domains: {
     data: '/settings/domains/data',

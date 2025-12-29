@@ -103,9 +103,9 @@ function TimezoneSelect({
       </PopoverTrigger>
       <PopoverContent className='w-[350px] p-0'>
         <Command>
-          <CommandInput placeholder='Search timezone...' />
+          <CommandInput placeholder='Search time zone...' />
           <CommandList>
-            <CommandEmpty>No timezone found.</CommandEmpty>
+            <CommandEmpty>No time zone found.</CommandEmpty>
             <CommandGroup>
               <CommandItem
                 value='auto'
@@ -242,7 +242,7 @@ export function UserPreferences() {
                   onValueChange={(value) => handleChange('theme', value)}
                   disabled={setPreference.isPending}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger className='w-full'>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -256,8 +256,8 @@ export function UserPreferences() {
               </PreferenceRow>
 
               <PreferenceRow
-                label='Timezone'
-                description='Timezone for displaying dates and times'
+                label='Time zone'
+                description='Time zone for displaying dates and times'
               >
                 <TimezoneSelect
                   value={data.preferences.timezone}
