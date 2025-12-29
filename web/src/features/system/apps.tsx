@@ -18,13 +18,10 @@ import {
   SelectTrigger,
   SelectValue,
   Badge,
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
   Alert,
   AlertDescription,
   getErrorMessage,
+  cn,
 } from '@mochi/common'
 import {
   useAppsAvailable,
@@ -490,8 +487,22 @@ function CleanupSection() {
   )
 }
 
+type TabId = 'apps' | 'routing'
+
+interface Tab {
+  id: TabId
+  label: string
+  icon: React.ReactNode
+}
+
+const tabs: Tab[] = [
+  { id: 'apps', label: 'Apps', icon: <Package className="h-4 w-4" /> },
+  { id: 'routing', label: 'Routing', icon: <Settings2 className="h-4 w-4" /> },
+]
+
 export function SystemApps() {
   usePageTitle('Apps')
+  const [activeTab, setActiveTab] = useState<TabId>('apps')
   const { data: available, isLoading: checkingAvailable } = useAppsAvailable()
 
   if (checkingAvailable) {
@@ -518,27 +529,38 @@ export function SystemApps() {
       </Header>
 
       <Main>
-        <Tabs defaultValue='apps' className='space-y-4'>
-          <TabsList>
-            <TabsTrigger value='apps'>
-              <Package className='h-4 w-4 mr-2' />
-              Apps
-            </TabsTrigger>
-            <TabsTrigger value='routing'>
-              <Settings2 className='h-4 w-4 mr-2' />
-              Routing
-            </TabsTrigger>
-          </TabsList>
+        <div className="space-y-6">
+          {/* Tabs */}
+          <div className="flex gap-1 border-b">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={cn(
+                  'flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors',
+                  'border-b-2 -mb-px',
+                  activeTab === tab.id
+                    ? 'border-primary text-foreground'
+                    : 'border-transparent text-muted-foreground hover:text-foreground'
+                )}
+              >
+                {tab.icon}
+                {tab.label}
+              </button>
+            ))}
+          </div>
 
-          <TabsContent value='apps' className='space-y-4'>
-            <AppsList />
-            <CleanupSection />
-          </TabsContent>
-
-          <TabsContent value='routing'>
-            <RoutingTab />
-          </TabsContent>
-        </Tabs>
+          {/* Tab content */}
+          <div>
+            {activeTab === 'apps' && (
+              <div className="space-y-4">
+                <AppsList />
+                <CleanupSection />
+              </div>
+            )}
+            {activeTab === 'routing' && <RoutingTab />}
+          </div>
+        </div>
       </Main>
     </>
   )

@@ -13,7 +13,12 @@ def action_system_apps_list(a):
         a.error(501, "Multi-version apps requires Mochi 0.3+")
         return
 
+    # Get all installed apps with their versions
     apps = mochi.app.list()
+    for app in apps:
+        app["versions"] = mochi.app.versions(app["id"])
+        app["tracks"] = mochi.app.tracks(app["id"])
+
     a.json({"apps": apps})
 
 def action_system_apps_get(a):

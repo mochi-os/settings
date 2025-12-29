@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Loader2, RotateCcw, Trash2 } from 'lucide-react'
+import { Loader2, RotateCcw, Trash2, Package, GitBranch } from 'lucide-react'
 import { toast } from 'sonner'
 import {
   AlertDialog,
@@ -26,12 +26,9 @@ import {
   SelectTrigger,
   SelectValue,
   Skeleton,
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
   usePageTitle,
   getErrorMessage,
+  cn,
 } from '@mochi/common'
 import {
   useUserAppsData,
@@ -338,8 +335,22 @@ function RoutingTab() {
   )
 }
 
+type TabId = 'versions' | 'routing'
+
+interface Tab {
+  id: TabId
+  label: string
+  icon: React.ReactNode
+}
+
+const tabs: Tab[] = [
+  { id: 'versions', label: 'Versions', icon: <Package className="h-4 w-4" /> },
+  { id: 'routing', label: 'Routing', icon: <GitBranch className="h-4 w-4" /> },
+]
+
 export function UserApps() {
   usePageTitle('App preferences')
+  const [activeTab, setActiveTab] = useState<TabId>('versions')
   const { data, isLoading } = useUserAppsData()
   const resetApps = useResetUserApps()
 
@@ -365,20 +376,33 @@ export function UserApps() {
       </Header>
 
       <Main>
-        <Tabs defaultValue='versions' className='space-y-4'>
-          <TabsList>
-            <TabsTrigger value='versions'>Versions</TabsTrigger>
-            <TabsTrigger value='routing'>Routing</TabsTrigger>
-          </TabsList>
+        <div className="space-y-6">
+          {/* Tabs */}
+          <div className="flex gap-1 border-b">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={cn(
+                  'flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors',
+                  'border-b-2 -mb-px',
+                  activeTab === tab.id
+                    ? 'border-primary text-foreground'
+                    : 'border-transparent text-muted-foreground hover:text-foreground'
+                )}
+              >
+                {tab.icon}
+                {tab.label}
+              </button>
+            ))}
+          </div>
 
-          <TabsContent value='versions'>
-            <VersionsTab />
-          </TabsContent>
-
-          <TabsContent value='routing'>
-            <RoutingTab />
-          </TabsContent>
-        </Tabs>
+          {/* Tab content */}
+          <div>
+            {activeTab === 'versions' && <VersionsTab />}
+            {activeTab === 'routing' && <RoutingTab />}
+          </div>
+        </div>
 
         {hasOverrides && (
           <div className='mt-6 flex justify-end'>

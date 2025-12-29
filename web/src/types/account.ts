@@ -16,6 +16,7 @@ export interface Session {
 
 export interface AccountData {
   identity: Identity
+  role: string
   sessions: Session[]
 }
 
@@ -74,4 +75,22 @@ export interface RecoveryStatusResponse {
 
 export interface RecoveryGenerateResponse {
   codes: string[]
+}
+
+// API Tokens
+export interface Token {
+  hash: string
+  name: string
+  scopes: string[]
+  expires: string
+  created: string
+  last_used: string
+}
+
+export interface TokensResponse {
+  tokens: Token[]
+}
+
+export interface TokenCreateResponse {
+  token: string
 }

@@ -9,8 +9,11 @@ def action_user_apps_data(a):
         a.error(501, "App preferences requires Mochi 0.3+")
         return
 
-    # Get all installed apps
+    # Get all installed apps with their versions
     apps = mochi.app.list()
+    for app in apps:
+        app["versions"] = mochi.app.versions(app["id"])
+        app["tracks"] = mochi.app.tracks(app["id"])
 
     # Get user's version preferences
     versions = {}

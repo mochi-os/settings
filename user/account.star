@@ -11,6 +11,7 @@ def action_user_account(a):
             "username": a.user.username,
             "name": a.user.identity.name,
         },
+        "role": a.user.role,
         "sessions": mochi.user.session.list(),
     })
 
@@ -158,3 +159,51 @@ def action_user_account_recovery_generate(a):
     """Generate new recovery codes"""
     codes = mochi.user.recovery.generate()
     a.json({"codes": codes})
+
+# ============================================================================
+# API Tokens
+# ============================================================================
+
+def action_user_account_tokens(a):
+    """List user's API tokens"""
+    a.json({"tokens": mochi.token.list()})
+
+def action_user_account_token_create(a):
+    """Create a new API token"""
+    name = a.input("name")
+    if not name:
+        a.error(400, "Missing token name")
+        return
+
+    scopes = a.input("scopes") or []
+    if type(scopes) == "string":
+        if scopes.startswith("[") and scopes.endswith("]"):
+            inner = scopes[1:-1]
+            scopes = []
+            for s in inner.split(","):
+                s = s.strip().strip('"').strip("'")
+                if s:
+                    scopes.append(s)
+        elif scopes:
+            scopes = [s.strip() for s in scopes.split(",") if s.strip()]
+        else:
+            scopes = []
+
+    expires = a.input("expires") or ""
+
+    token = mochi.token.create(name, scopes, expires)
+    if not token:
+        a.error(500, "Failed to create token")
+        return
+
+    a.json({"data": {"token": token, "name": name}})
+
+def action_user_account_token_delete(a):
+    """Delete an API token"""
+    hash = a.input("hash")
+    if not hash:
+        a.error(400, "Missing token hash")
+        return
+
+    ok = mochi.token.delete(hash)
+    a.json({"ok": ok})

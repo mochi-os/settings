@@ -1,6 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useAuthStore, getCookie, AuthenticatedLayout } from '@mochi/common'
-import { sidebarData } from '@/components/layout/data/sidebar-data'
+import { getSidebarData, sidebarData } from '@/components/layout/data/sidebar-data'
+import { useAccountData } from '@/hooks/use-account'
+
+function SettingsLayout() {
+  const { data: accountData } = useAccountData()
+  const isAdmin = accountData?.role === 'administrator'
+  const filteredSidebarData = accountData ? getSidebarData(isAdmin) : sidebarData
+
+  return <AuthenticatedLayout sidebarData={filteredSidebarData} />
+}
 
 export const Route = createFileRoute('/_authenticated')({
   beforeLoad: ({ location }) => {
@@ -26,5 +35,5 @@ export const Route = createFileRoute('/_authenticated')({
 
     return
   },
-  component: () => <AuthenticatedLayout sidebarData={sidebarData} />,
+  component: SettingsLayout,
 })
