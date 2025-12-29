@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Package, RefreshCw, Settings2, Trash2 } from 'lucide-react'
+import { toast } from 'sonner'
 import {
   Button,
   Header,
@@ -23,6 +24,7 @@ import {
   TabsTrigger,
   Alert,
   AlertDescription,
+  getErrorMessage,
 } from '@mochi/common'
 import {
   useAppsAvailable,
@@ -144,18 +146,36 @@ function AppDetail({ appId, onBack }: { appId: string; onBack: () => void }) {
 
   const handleSetVersion = () => {
     if (selectedVersion) {
-      setVersion.mutate({ app: appId, version: selectedVersion, track: '' })
+      setVersion.mutate(
+        { app: appId, version: selectedVersion, track: '' },
+        {
+          onSuccess: () => toast.success(`Default set to version ${selectedVersion}`),
+          onError: (err) => toast.error(getErrorMessage(err, 'Failed to set version')),
+        }
+      )
     }
   }
 
   const handleSetTrack = () => {
     if (selectedTrack) {
-      setVersion.mutate({ app: appId, version: '', track: selectedTrack })
+      setVersion.mutate(
+        { app: appId, version: '', track: selectedTrack },
+        {
+          onSuccess: () => toast.success(`Now following track: ${selectedTrack}`),
+          onError: (err) => toast.error(getErrorMessage(err, 'Failed to set track')),
+        }
+      )
     }
   }
 
   const handleClearDefault = () => {
-    setVersion.mutate({ app: appId, version: '', track: '' })
+    setVersion.mutate(
+      { app: appId, version: '', track: '' },
+      {
+        onSuccess: () => toast.success('Using highest version'),
+        onError: (err) => toast.error(getErrorMessage(err, 'Failed to clear default')),
+      }
+    )
   }
 
   return (
@@ -276,7 +296,13 @@ function RoutingTab() {
   const availablePaths = allPaths.filter((p) => !overriddenPaths.has(p))
 
   const handleDelete = (type: 'class' | 'service' | 'path', name: string) => {
-    setRouting.mutate({ type, name })
+    setRouting.mutate(
+      { type, name },
+      {
+        onSuccess: () => toast.success('Routing override removed'),
+        onError: (err) => toast.error(getErrorMessage(err, 'Failed to remove override')),
+      }
+    )
   }
 
   const handleAdd = () => {
@@ -285,10 +311,12 @@ function RoutingTab() {
         { type: addType, name: addName, app: addApp },
         {
           onSuccess: () => {
+            toast.success('Routing override added')
             setAddType(null)
             setAddName('')
             setAddApp('')
           },
+          onError: (err) => toast.error(getErrorMessage(err, 'Failed to add override')),
         }
       )
     }
@@ -418,6 +446,19 @@ function RoutingTab() {
 function CleanupSection() {
   const cleanup = useAppsCleanup()
 
+  const handleCleanup = () => {
+    cleanup.mutate(undefined, {
+      onSuccess: (data) => {
+        if (data.removed > 0) {
+          toast.success(`Removed ${data.removed} unused version(s)`)
+        } else {
+          toast.info('No unused versions to remove')
+        }
+      },
+      onError: (err) => toast.error(getErrorMessage(err, 'Failed to clean up')),
+    })
+  }
+
   return (
     <Card>
       <CardHeader>
@@ -432,7 +473,7 @@ function CleanupSection() {
       <CardContent>
         <Button
           variant='outline'
-          onClick={() => cleanup.mutate()}
+          onClick={handleCleanup}
           disabled={cleanup.isPending}
         >
           {cleanup.isPending ? (
@@ -444,11 +485,6 @@ function CleanupSection() {
             'Clean up unused versions'
           )}
         </Button>
-        {cleanup.isSuccess && (
-          <p className='text-sm text-muted-foreground mt-2'>
-            Removed {cleanup.data.removed} unused version(s)
-          </p>
-        )}
       </CardContent>
     </Card>
   )
