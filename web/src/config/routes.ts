@@ -23,12 +23,15 @@ export const APP_ROUTES = {
     USER: {
       ACCOUNT: '/user/account',
       SESSIONS: '/user/sessions',
+      TOKENS: '/user/tokens',
       PREFERENCES: '/user/preferences',
+      APPS: '/user/apps',
     },
     SYSTEM: {
       SETTINGS: '/system/settings',
       USERS: '/system/users',
       STATUS: '/system/status',
+      APPS: '/system/apps',
     },
     DOMAINS: '/domains',
   },
