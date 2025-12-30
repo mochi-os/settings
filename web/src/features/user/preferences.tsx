@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react'
 import { Check, ChevronsUpDown, Loader2, RotateCcw } from 'lucide-react'
-import { toast } from 'sonner'
 import {
   cn,
   useTheme,
@@ -34,6 +33,7 @@ import {
   Main,
   usePageTitle,
   getErrorMessage,
+  toast,
 } from '@mochi/common'
 import {
   usePreferencesData,

@@ -16,7 +16,6 @@ import {
   User,
 } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
-import { toast } from 'sonner'
 import {
   useAccountData,
   useMethods,
@@ -65,6 +64,7 @@ import {
   Main,
   usePageTitle,
   getErrorMessage,
+  toast,
 } from '@mochi/common'
 
 function formatTimestamp(timestamp: number): string {

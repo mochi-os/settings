@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import type { SystemSetting } from '@/types/settings'
 import { Loader2, Lock, RotateCcw } from 'lucide-react'
-import { toast } from 'sonner'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,6 +20,7 @@ import {
   Main,
   usePageTitle,
   getErrorMessage,
+  toast,
 } from '@mochi/common'
 import { usePreferencesData } from '@/hooks/use-preferences'
 import {

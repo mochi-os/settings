@@ -15,7 +15,6 @@ import {
   Users,
   X,
 } from 'lucide-react'
-import { toast } from 'sonner'
 
 // Extract error message from Axios error or use fallback
 function getErrorMessage(error: unknown, fallback: string): string {
@@ -74,6 +73,7 @@ import {
   Header,
   Main,
   usePageTitle,
+  toast,
 } from '@mochi/common'
 
 function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {

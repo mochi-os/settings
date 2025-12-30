@@ -16,7 +16,6 @@ import {
   Trash2,
   UserCheck,
 } from 'lucide-react'
-import { toast } from 'sonner'
 import {
   useSystemUsersData,
   useCreateUser,
@@ -68,6 +67,7 @@ import {
   Main,
   usePageTitle,
   getErrorMessage,
+  toast,
 } from '@mochi/common'
 
 function useDebounce<T>(value: T, delay: number): T {

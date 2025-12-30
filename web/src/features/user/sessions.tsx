@@ -1,7 +1,6 @@
 import { format } from 'date-fns'
 import type { Session } from '@/types/account'
 import { Loader2, LogOut } from 'lucide-react'
-import { toast } from 'sonner'
 import { useSessions, useRevokeSession } from '@/hooks/use-account'
 import {
   AlertDialog,
@@ -25,6 +24,7 @@ import {
   Main,
   usePageTitle,
   getErrorMessage,
+  toast,
 } from '@mochi/common'
 
 function formatTimestamp(timestamp: number): string {
