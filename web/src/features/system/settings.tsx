@@ -215,7 +215,7 @@ function SettingRow({
 }
 
 export function SystemSettings() {
-  usePageTitle('System Settings')
+  usePageTitle('System settings')
   const { data, isLoading, error } = useSystemSettingsData()
   const { data: prefsData } = usePreferencesData()
   const setSetting = useSetSystemSetting()
@@ -243,7 +243,7 @@ export function SystemSettings() {
     return (
       <>
         <Header>
-          <h1 className='text-lg font-semibold'>System Settings</h1>
+          <h1 className='text-lg font-semibold'>System settings</h1>
         </Header>
         <Main>
           <p className='text-muted-foreground'>Failed to load settings</p>
@@ -264,7 +264,7 @@ export function SystemSettings() {
   return (
     <>
       <Header>
-        <h1 className='text-lg font-semibold'>System Settings</h1>
+        <h1 className='text-lg font-semibold'>System settings</h1>
       </Header>
 
       <Main>

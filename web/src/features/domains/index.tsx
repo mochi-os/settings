@@ -411,7 +411,7 @@ function EditRouteDialog({
       <DialogContent>
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>Edit Route</DialogTitle>
+            <DialogTitle>Edit route</DialogTitle>
             <DialogDescription>
               Edit route for path: {route.path || '/'}
             </DialogDescription>
@@ -922,7 +922,7 @@ function DomainDetails({
               </div>
               {domain.token && (
                 <div className='space-y-1'>
-                  <Label>Verification Token</Label>
+                  <Label>Verification token</Label>
                   <p className='text-muted-foreground font-mono text-xs break-all'>
                     mochi-verify={domain.token}
                   </p>

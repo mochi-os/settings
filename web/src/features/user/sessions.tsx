@@ -150,7 +150,7 @@ export function UserSessions() {
               <TableRow>
                 <TableHead>Session</TableHead>
                 <TableHead>Created</TableHead>
-                <TableHead>Last Active</TableHead>
+                <TableHead>Last active</TableHead>
                 <TableHead className='w-12'></TableHead>
               </TableRow>
             </TableHeader>
