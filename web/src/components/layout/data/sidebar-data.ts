@@ -26,7 +26,7 @@ const userNavGroup = {
       icon: Palette,
     },
     {
-      title: 'API Tokens',
+      title: 'Tokens',
       url: APP_ROUTES.SETTINGS.USER.TOKENS,
       icon: Key,
     },
