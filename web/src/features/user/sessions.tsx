@@ -116,8 +116,8 @@ export function UserSessions() {
   if (error) {
     return (
       <>
-        <Header>
-          <h1 className='text-lg font-semibold'>Sessions</h1>
+        <Header compact>
+          <h1 className='text-xl font-semibold'>Sessions</h1>
         </Header>
         <Main>
           <p className='text-muted-foreground'>Failed to load sessions</p>
@@ -131,8 +131,8 @@ export function UserSessions() {
 
   return (
     <>
-      <Header>
-        <h1 className='text-lg font-semibold'>Sessions</h1>
+      <Header compact>
+        <h1 className='text-xl font-semibold'>Sessions</h1>
       </Header>
 
       <Main>

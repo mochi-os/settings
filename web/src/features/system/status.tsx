@@ -16,8 +16,8 @@ export function SystemStatus() {
   if (error) {
     return (
       <>
-        <Header>
-          <h1 className='text-lg font-semibold'>Status</h1>
+        <Header compact>
+          <h1 className='text-xl font-semibold'>Status</h1>
         </Header>
         <Main>
           <p className='text-muted-foreground'>Failed to load status</p>
@@ -34,14 +34,14 @@ export function SystemStatus() {
 
   return (
     <>
-      <Header>
-        <h1 className='text-lg font-semibold'>Status</h1>
+      <Header compact>
+        <h1 className='text-xl font-semibold'>Status</h1>
       </Header>
 
       <Main>
         <div className='mb-6 flex items-center gap-2'>
           <Activity className='h-5 w-5' />
-          <h2 className='text-lg font-semibold'>Server</h2>
+          <h2 className='text-xl font-semibold'>Server</h2>
         </div>
         {isLoading ? (
           <div className='space-y-3'>

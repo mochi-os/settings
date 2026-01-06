@@ -83,7 +83,7 @@ function IdentitySection() {
     <section>
       <div className='mb-4 flex items-center gap-2'>
         <User className='h-5 w-5' />
-        <h2 className='text-lg font-semibold'>Identity</h2>
+        <h2 className='text-xl font-semibold'>Identity</h2>
       </div>
       {isLoading ? (
         <div className='space-y-3'>
@@ -157,7 +157,7 @@ function LoginRequirementsSection() {
     <section>
       <div className='mb-4 flex items-center gap-2'>
         <Shield className='h-5 w-5' />
-        <h2 className='text-lg font-semibold'>Login requirements</h2>
+        <h2 className='text-xl font-semibold'>Login requirements</h2>
       </div>
       <p className='text-muted-foreground mb-4 text-sm'>
         Require all selected methods to log in:
@@ -383,7 +383,7 @@ function PasskeysSection() {
       <div className='mb-4 flex items-center justify-between'>
         <div className='flex items-center gap-2'>
           <Key className='h-5 w-5' />
-          <h2 className='text-lg font-semibold'>Passkeys</h2>
+          <h2 className='text-xl font-semibold'>Passkeys</h2>
         </div>
         <Dialog open={registerDialogOpen} onOpenChange={setRegisterDialogOpen}>
           <Button
@@ -522,7 +522,7 @@ function AuthenticatorSection() {
     <section>
       <div className='mb-4 flex items-center gap-2'>
         <Smartphone className='h-5 w-5' />
-        <h2 className='text-lg font-semibold'>Authenticator app</h2>
+        <h2 className='text-xl font-semibold'>Authenticator app</h2>
       </div>
 
       {isLoading ? (
@@ -663,7 +663,7 @@ function RecoveryCodesSection() {
     <section>
       <div className='mb-4 flex items-center gap-2'>
         <RefreshCw className='h-5 w-5' />
-        <h2 className='text-lg font-semibold'>Recovery codes</h2>
+        <h2 className='text-xl font-semibold'>Recovery codes</h2>
       </div>
 
       {isLoading ? (
@@ -766,8 +766,8 @@ export function UserAccount() {
   if (error) {
     return (
       <>
-        <Header>
-          <h1 className='text-lg font-semibold'>Account</h1>
+        <Header compact>
+          <h1 className='text-xl font-semibold'>Account</h1>
         </Header>
         <Main>
           <p className='text-muted-foreground'>
@@ -780,8 +780,8 @@ export function UserAccount() {
 
   return (
     <>
-      <Header>
-        <h1 className='text-lg font-semibold'>Account</h1>
+      <Header compact>
+        <h1 className='text-xl font-semibold'>Account</h1>
       </Header>
 
       <Main>

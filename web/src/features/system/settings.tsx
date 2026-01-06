@@ -242,8 +242,8 @@ export function SystemSettings() {
   if (error) {
     return (
       <>
-        <Header>
-          <h1 className='text-lg font-semibold'>System settings</h1>
+        <Header compact>
+          <h1 className='text-xl font-semibold'>System settings</h1>
         </Header>
         <Main>
           <p className='text-muted-foreground'>Failed to load settings</p>
@@ -263,8 +263,8 @@ export function SystemSettings() {
 
   return (
     <>
-      <Header>
-        <h1 className='text-lg font-semibold'>System settings</h1>
+      <Header compact>
+        <h1 className='text-xl font-semibold'>System settings</h1>
       </Header>
 
       <Main>

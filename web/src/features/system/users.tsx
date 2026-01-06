@@ -581,8 +581,8 @@ export function SystemUsers() {
   if (error) {
     return (
       <>
-        <Header>
-          <h1 className='text-lg font-semibold'>Users</h1>
+        <Header compact>
+          <h1 className='text-xl font-semibold'>Users</h1>
         </Header>
         <Main>
           <p className='text-muted-foreground'>Failed to load users</p>
@@ -593,9 +593,9 @@ export function SystemUsers() {
 
   return (
     <>
-      <Header>
+      <Header compact>
         <div className='flex w-full items-center justify-between'>
-          <h1 className='text-lg font-semibold'>
+          <h1 className='text-xl font-semibold'>
             Users
             {data?.count !== undefined && (
               <span className='text-muted-foreground ml-2 font-normal'>
