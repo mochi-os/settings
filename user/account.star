@@ -189,7 +189,9 @@ def action_user_account_token_create(a):
         else:
             scopes = []
 
-    expires = a.input("expires") or ""
+    expires = a.input("expires") or 0
+    if type(expires) == "string":
+        expires = int(expires) if expires else 0
 
     token = mochi.token.create(name, scopes, expires)
     if not token:
