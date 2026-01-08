@@ -6,12 +6,21 @@
 def action_accounts_providers(a):
     """List available account providers"""
     capability = a.input("capability")
-    a.json(mochi.account.providers(capability))
+    return {"data": mochi.account.providers(capability)}
 
 def action_accounts_list(a):
     """List user's connected accounts"""
     capability = a.input("capability")
-    a.json(mochi.account.list(capability))
+    return {"data": mochi.account.list(capability)}
+
+def action_accounts_get(a):
+    """Get a single connected account"""
+    id = a.input("id")
+    if not id:
+        a.error(400, "id is required")
+        return
+    result = mochi.account.get(int(id))
+    return {"data": result}
 
 def action_accounts_add(a):
     """Add a new connected account"""
@@ -28,7 +37,7 @@ def action_accounts_add(a):
             fields[key] = val
 
     result = mochi.account.add(type, fields)
-    a.json(result)
+    return {"data": result}
 
 def action_accounts_update(a):
     """Update a connected account"""
@@ -44,7 +53,7 @@ def action_accounts_update(a):
         fields["label"] = label
 
     result = mochi.account.update(int(id), fields)
-    a.json(result)
+    return {"data": result}
 
 def action_accounts_remove(a):
     """Remove a connected account"""
@@ -54,7 +63,7 @@ def action_accounts_remove(a):
         return
 
     result = mochi.account.remove(int(id))
-    a.json(result)
+    return {"data": result}
 
 def action_accounts_verify(a):
     """Verify an account or resend verification code"""
@@ -65,4 +74,4 @@ def action_accounts_verify(a):
 
     code = a.input("code")
     result = mochi.account.verify(int(id), code)
-    a.json(result)
+    return {"data": result}
