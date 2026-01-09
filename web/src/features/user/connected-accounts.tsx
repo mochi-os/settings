@@ -7,6 +7,7 @@ import {
   Loader2,
   Mail,
   MoreHorizontal,
+  Pencil,
   Plus,
   Server,
   Share2,
@@ -22,11 +23,18 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   Button,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
   Header,
+  Input,
+  Label,
   Main,
   Skeleton,
   Table,
@@ -35,7 +43,6 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-  Badge,
   AccountAdd,
   AccountVerify,
   useAccounts,
@@ -47,16 +54,6 @@ import type { Account, Provider } from '@mochi/common'
 
 const APP_BASE = '/settings'
 
-// Capability badge styles
-const CAPABILITY_STYLE: Record<string, string> = {
-  notify: 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
-  ai: 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300',
-  mcp: 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300',
-  social: 'bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-300',
-  identity:
-    'bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300',
-}
-
 function getProviderIcon(type: string) {
   switch (type) {
     case 'email':
@@ -65,8 +62,8 @@ function getProviderIcon(type: string) {
       return <Bell className='h-4 w-4' />
     case 'pushbullet':
       return (
-        <svg className='h-4 w-4' viewBox='0 0 24 24' fill='currentColor'>
-          <circle cx='12' cy='12' r='10' />
+        <svg className='h-4 w-4' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2'>
+          <circle cx='12' cy='12' r='9' />
         </svg>
       )
     case 'claude':
@@ -84,15 +81,12 @@ function getProviderLabel(providers: Provider[], type: string): string {
   return provider?.label || type
 }
 
-function getCapabilities(providers: Provider[], type: string): string[] {
-  const provider = providers.find((p) => p.type === type)
-  return provider?.capabilities || []
-}
 
 function formatDate(timestamp: number): string {
   if (!timestamp) return ''
   const date = new Date(timestamp * 1000)
-  return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+  const pad = (n: number) => n.toString().padStart(2, '0')
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
 }
 
 function getBrowserFromEndpoint(endpoint: string): string {
@@ -112,12 +106,17 @@ function getAccountDisplayName(
   // Use label if provided
   if (account.label) return account.label
 
+  // For email accounts, show the email address
+  if (account.type === 'email') {
+    return account.identifier || 'Email'
+  }
+
   // For browser accounts, detect browser from endpoint
   if (account.type === 'browser') {
     return getBrowserFromEndpoint(account.identifier)
   }
 
-  // For other accounts, use identifier (e.g., email address)
+  // For other accounts, use identifier
   if (account.identifier) return account.identifier
 
   // Fallback to provider label
@@ -129,64 +128,55 @@ function AccountRow({
   providers,
   onRemove,
   onVerify,
+  onRename,
   isRemoving,
 }: {
   account: Account
   providers: Provider[]
   onRemove: (id: number) => void
   onVerify: (account: Account) => void
+  onRename: (id: number, label: string) => void
   isRemoving: boolean
 }) {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+  const [showRenameDialog, setShowRenameDialog] = useState(false)
+  const [renameValue, setRenameValue] = useState(account.label || '')
   const isVerified = account.verified > 0
   const provider = providers.find((p) => p.type === account.type)
   const needsVerification = provider?.verify && !isVerified
-  const capabilities = getCapabilities(providers, account.type)
 
   const handleDelete = () => {
     onRemove(account.id)
     setShowDeleteDialog(false)
   }
 
+  const handleRename = () => {
+    onRename(account.id, renameValue)
+    setShowRenameDialog(false)
+  }
+
   const displayName = getAccountDisplayName(account, providers)
 
   return (
     <TableRow>
-      {/* Type */}
-      <TableCell>
-        <div className='flex items-center gap-2'>
-          <div className='flex h-8 w-8 items-center justify-center rounded-full bg-muted'>
-            {getProviderIcon(account.type)}
-          </div>
-          <span className='font-medium hidden sm:inline'>
-            {getProviderLabel(providers, account.type)}
-          </span>
-        </div>
-      </TableCell>
-
       {/* Name */}
       <TableCell>
-        <div className='flex flex-col'>
-          <span className='font-medium sm:font-normal'>{displayName}</span>
-          <span className='text-muted-foreground text-xs sm:hidden'>
-            {getProviderLabel(providers, account.type)}
-          </span>
+        <div className='flex items-center gap-3'>
+          <div className='flex h-8 w-8 items-center justify-center rounded-full bg-muted shrink-0'>
+            {getProviderIcon(account.type)}
+          </div>
+          <div className='flex flex-col'>
+            <span className='font-medium sm:font-normal'>{displayName}</span>
+            <span className='text-muted-foreground text-xs sm:hidden'>
+              {getProviderLabel(providers, account.type)}
+            </span>
+          </div>
         </div>
       </TableCell>
 
-      {/* Capabilities */}
-      <TableCell className='hidden md:table-cell'>
-        <div className='flex flex-wrap gap-1'>
-          {capabilities.map((cap) => (
-            <Badge
-              key={cap}
-              variant='secondary'
-              className={`text-xs ${CAPABILITY_STYLE[cap] || 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'}`}
-            >
-              {cap}
-            </Badge>
-          ))}
-        </div>
+      {/* Type */}
+      <TableCell className='hidden sm:table-cell'>
+        <span>{getProviderLabel(providers, account.type)}</span>
       </TableCell>
 
       {/* Status */}
@@ -196,13 +186,16 @@ function AccountRow({
             <Clock className='h-3 w-3' />
             Pending
           </span>
-        ) : isVerified ? (
+        ) : provider?.verify && isVerified ? (
           <span className='inline-flex items-center gap-1 text-xs text-green-600 dark:text-green-400'>
             <CheckCircle2 className='h-3 w-3' />
             Verified
           </span>
         ) : (
-          <span className='text-xs text-muted-foreground'>Connected</span>
+          <span className='inline-flex items-center gap-1 text-xs text-green-600 dark:text-green-400'>
+            <CheckCircle2 className='h-3 w-3' />
+            Connected
+          </span>
         )}
       </TableCell>
 
@@ -231,6 +224,13 @@ function AccountRow({
                 Verify
               </DropdownMenuItem>
             )}
+            <DropdownMenuItem onClick={() => {
+              setRenameValue(account.label || displayName)
+              setShowRenameDialog(true)
+            }}>
+              <Pencil className='mr-2 h-4 w-4' />
+              Rename
+            </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => setShowDeleteDialog(true)}
               className='text-destructive focus:text-destructive'
@@ -246,8 +246,7 @@ function AccountRow({
             <AlertDialogHeader>
               <AlertDialogTitle>Remove account?</AlertDialogTitle>
               <AlertDialogDescription>
-                This will remove the {getProviderLabel(providers, account.type)}{' '}
-                account &quot;{displayName}&quot;. You can add it again later.
+                This will remove the connected account &quot;{displayName}&quot;.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
@@ -256,6 +255,30 @@ function AccountRow({
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
+
+        <Dialog open={showRenameDialog} onOpenChange={setShowRenameDialog}>
+          <DialogContent className='sm:max-w-[425px]'>
+            <DialogHeader>
+              <DialogTitle>Rename account</DialogTitle>
+            </DialogHeader>
+            <div className='grid gap-4 py-4'>
+              <div className='grid gap-2'>
+                <Label htmlFor='label'>Name</Label>
+                <Input
+                  id='label'
+                  value={renameValue}
+                  onChange={(e) => setRenameValue(e.target.value)}
+                />
+              </div>
+            </div>
+            <DialogFooter>
+              <Button variant='outline' onClick={() => setShowRenameDialog(false)}>
+                Cancel
+              </Button>
+              <Button onClick={handleRename}>Save</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </TableCell>
     </TableRow>
   )
@@ -272,6 +295,7 @@ export function ConnectedAccounts() {
     isLoading,
     add,
     remove,
+    update,
     verify,
     isAdding,
     isRemoving,
@@ -331,6 +355,16 @@ export function ConnectedAccounts() {
     }
   }
 
+  const handleRename = async (id: number, label: string) => {
+    try {
+      await update(id, { label })
+      toast.success('Account renamed')
+    } catch (error) {
+      const message = getErrorMessage(error, 'Failed to rename account')
+      toast.error(message)
+    }
+  }
+
   return (
     <>
       <Header compact>
@@ -356,27 +390,31 @@ export function ConnectedAccounts() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className='w-12 sm:w-auto'>Type</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead className='hidden md:table-cell'>
-                  Capabilities
-                </TableHead>
+                <TableHead className='pl-14'>Name</TableHead>
+                <TableHead className='hidden sm:table-cell'>Type</TableHead>
                 <TableHead className='hidden sm:table-cell'>Status</TableHead>
                 <TableHead className='hidden lg:table-cell'>Added</TableHead>
                 <TableHead className='w-12'></TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {accounts.map((account) => (
-                <AccountRow
-                  key={account.id}
-                  account={account}
-                  providers={providers}
-                  onRemove={handleRemove}
-                  onVerify={setVerifyAccount}
-                  isRemoving={isRemoving}
-                />
-              ))}
+              {[...accounts]
+                .sort((a, b) =>
+                  getAccountDisplayName(a, providers).localeCompare(
+                    getAccountDisplayName(b, providers)
+                  )
+                )
+                .map((account) => (
+                  <AccountRow
+                    key={account.id}
+                    account={account}
+                    providers={providers}
+                    onRemove={handleRemove}
+                    onVerify={setVerifyAccount}
+                    onRename={handleRename}
+                    isRemoving={isRemoving}
+                  />
+                ))}
             </TableBody>
           </Table>
         )}
