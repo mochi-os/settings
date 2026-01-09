@@ -75,3 +75,10 @@ def action_accounts_verify(a):
     code = a.input("code")
     result = mochi.account.verify(int(id), code)
     return {"data": result}
+
+def action_accounts_vapid(a):
+    """Return VAPID public key for browser push subscription"""
+    key = mochi.webpush.key()
+    if not key:
+        return a.error(503, "Push notifications not available")
+    return {"data": {"key": key}}
