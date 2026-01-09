@@ -12,6 +12,7 @@ import {
   Server,
   Share2,
   Trash2,
+  Zap,
 } from 'lucide-react'
 import {
   AlertDialog,
@@ -129,14 +130,18 @@ function AccountRow({
   onRemove,
   onVerify,
   onRename,
+  onTest,
   isRemoving,
+  testingId,
 }: {
   account: Account
   providers: Provider[]
   onRemove: (id: number) => void
   onVerify: (account: Account) => void
   onRename: (id: number, label: string) => void
+  onTest: (id: number) => void
   isRemoving: boolean
+  testingId: number | null
 }) {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const [showRenameDialog, setShowRenameDialog] = useState(false)
@@ -208,8 +213,8 @@ function AccountRow({
       <TableCell className='text-right'>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant='ghost' size='sm' disabled={isRemoving}>
-              {isRemoving ? (
+            <Button variant='ghost' size='sm' disabled={isRemoving || testingId === account.id}>
+              {isRemoving || testingId === account.id ? (
                 <Loader2 className='h-4 w-4 animate-spin' />
               ) : (
                 <MoreHorizontal className='h-4 w-4' />
@@ -224,6 +229,10 @@ function AccountRow({
                 Verify
               </DropdownMenuItem>
             )}
+            <DropdownMenuItem onClick={() => onTest(account.id)}>
+              <Zap className='mr-2 h-4 w-4' />
+              Test
+            </DropdownMenuItem>
             <DropdownMenuItem onClick={() => {
               setRenameValue(account.label || displayName)
               setShowRenameDialog(true)
@@ -288,6 +297,7 @@ export function ConnectedAccounts() {
   usePageTitle('Connected accounts')
   const [isAddOpen, setIsAddOpen] = useState(false)
   const [verifyAccount, setVerifyAccount] = useState<Account | null>(null)
+  const [testingId, setTestingId] = useState<number | null>(null)
 
   const {
     providers,
@@ -297,6 +307,7 @@ export function ConnectedAccounts() {
     remove,
     update,
     verify,
+    test,
     isAdding,
     isRemoving,
     isVerifying,
@@ -365,6 +376,23 @@ export function ConnectedAccounts() {
     }
   }
 
+  const handleTest = async (id: number) => {
+    setTestingId(id)
+    try {
+      const result = await test(id)
+      if (result.success) {
+        toast.success(result.message)
+      } else {
+        toast.error(result.message)
+      }
+    } catch (error) {
+      const message = getErrorMessage(error, 'Test failed')
+      toast.error(message)
+    } finally {
+      setTestingId(null)
+    }
+  }
+
   return (
     <>
       <Header compact>
@@ -412,7 +440,9 @@ export function ConnectedAccounts() {
                     onRemove={handleRemove}
                     onVerify={setVerifyAccount}
                     onRename={handleRename}
+                    onTest={handleTest}
                     isRemoving={isRemoving}
+                    testingId={testingId}
                   />
                 ))}
             </TableBody>

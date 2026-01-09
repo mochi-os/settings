@@ -82,3 +82,13 @@ def action_accounts_vapid(a):
     if not key:
         return a.error(503, "Push notifications not available")
     return {"data": {"key": key}}
+
+def action_accounts_test(a):
+    """Test a connected account"""
+    id = a.input("id")
+    if not id:
+        a.error(400, "id is required")
+        return
+
+    result = mochi.account.test(int(id))
+    return {"data": result}
