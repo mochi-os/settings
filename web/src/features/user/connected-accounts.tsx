@@ -38,6 +38,7 @@ import {
   Label,
   Main,
   Skeleton,
+  Switch,
   Table,
   TableBody,
   TableCell,
@@ -124,6 +125,7 @@ function AccountRow({
   onVerify,
   onRename,
   onTest,
+  onToggleEnabled,
   isRemoving,
   testingId,
 }: {
@@ -133,6 +135,7 @@ function AccountRow({
   onVerify: (account: Account) => void
   onRename: (id: number, label: string) => void
   onTest: (id: number) => void
+  onToggleEnabled: (id: number, enabled: boolean) => void
   isRemoving: boolean
   testingId: number | null
 }) {
@@ -194,6 +197,17 @@ function AccountRow({
             <CheckCircle2 className='h-3 w-3' />
             Connected
           </span>
+        )}
+      </TableCell>
+
+      {/* Notify by default */}
+      <TableCell className='hidden md:table-cell'>
+        {provider?.capabilities?.includes('notify') && (
+          <Switch
+            checked={account.enabled > 0}
+            onCheckedChange={(checked) => onToggleEnabled(account.id, checked)}
+            aria-label='Notify by default'
+          />
         )}
       </TableCell>
 
@@ -386,6 +400,15 @@ export function ConnectedAccounts() {
     }
   }
 
+  const handleToggleEnabled = async (id: number, enabled: boolean) => {
+    try {
+      await update(id, { enabled: enabled ? '1' : '0' })
+    } catch (error) {
+      const message = getErrorMessage(error, 'Failed to update account')
+      toast.error(message)
+    }
+  }
+
   return (
     <>
       <Header compact>
@@ -414,6 +437,7 @@ export function ConnectedAccounts() {
                 <TableHead className='pl-14'>Name</TableHead>
                 <TableHead className='hidden sm:table-cell'>Type</TableHead>
                 <TableHead className='hidden sm:table-cell'>Status</TableHead>
+                <TableHead className='hidden md:table-cell'>Notify by default</TableHead>
                 <TableHead className='hidden lg:table-cell'>Added</TableHead>
                 <TableHead className='w-12'></TableHead>
               </TableRow>
@@ -438,6 +462,7 @@ export function ConnectedAccounts() {
                     onVerify={setVerifyAccount}
                     onRename={handleRename}
                     onTest={handleTest}
+                    onToggleEnabled={handleToggleEnabled}
                     isRemoving={isRemoving}
                     testingId={testingId}
                   />
