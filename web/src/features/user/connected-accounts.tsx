@@ -49,9 +49,11 @@ import {
   useAccounts,
   usePageTitle,
   getErrorMessage,
+  getProviderLabel,
   toast,
+  type Account,
+  type Provider,
 } from '@mochi/common'
-import type { Account, Provider } from '@mochi/common'
 
 const APP_BASE = '/settings'
 
@@ -77,12 +79,6 @@ function getProviderIcon(type: string) {
   }
 }
 
-function getProviderLabel(providers: Provider[], type: string): string {
-  const provider = providers.find((p) => p.type === type)
-  return provider?.label || type
-}
-
-
 function formatDate(timestamp: number): string {
   if (!timestamp) return ''
   const date = new Date(timestamp * 1000)
@@ -100,10 +96,7 @@ function getBrowserFromEndpoint(endpoint: string): string {
   return 'Browser'
 }
 
-function getAccountDisplayName(
-  account: Account,
-  providers: Provider[]
-): string {
+function getAccountDisplayName(account: Account): string {
   // Use label if provided
   if (account.label) return account.label
 
@@ -121,7 +114,7 @@ function getAccountDisplayName(
   if (account.identifier) return account.identifier
 
   // Fallback to provider label
-  return getProviderLabel(providers, account.type)
+  return getProviderLabel(account.type)
 }
 
 function AccountRow({
@@ -160,7 +153,7 @@ function AccountRow({
     setShowRenameDialog(false)
   }
 
-  const displayName = getAccountDisplayName(account, providers)
+  const displayName = getAccountDisplayName(account)
 
   return (
     <TableRow>
@@ -173,7 +166,7 @@ function AccountRow({
           <div className='flex flex-col'>
             <span className='font-medium sm:font-normal'>{displayName}</span>
             <span className='text-muted-foreground text-xs sm:hidden'>
-              {getProviderLabel(providers, account.type)}
+              {getProviderLabel(account.type)}
             </span>
           </div>
         </div>
@@ -181,7 +174,7 @@ function AccountRow({
 
       {/* Type */}
       <TableCell className='hidden sm:table-cell'>
-        <span>{getProviderLabel(providers, account.type)}</span>
+        <span>{getProviderLabel(account.type)}</span>
       </TableCell>
 
       {/* Status */}
@@ -427,11 +420,15 @@ export function ConnectedAccounts() {
             </TableHeader>
             <TableBody>
               {[...accounts]
-                .sort((a, b) =>
-                  getAccountDisplayName(a, providers).localeCompare(
-                    getAccountDisplayName(b, providers)
+                .sort((a, b) => {
+                  const nameCompare = getAccountDisplayName(a).localeCompare(
+                    getAccountDisplayName(b)
                   )
-                )
+                  if (nameCompare !== 0) return nameCompare
+                  return getProviderLabel(a.type).localeCompare(
+                    getProviderLabel(b.type)
+                  )
+                })
                 .map((account) => (
                   <AccountRow
                     key={account.id}
