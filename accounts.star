@@ -53,7 +53,7 @@ def action_accounts_update(a):
         fields["label"] = label
 
     enabled = a.input("enabled")
-    if enabled != None:
+    if enabled:
         fields["enabled"] = enabled == "true" or enabled == "1"
 
     result = mochi.account.update(int(id), fields)
