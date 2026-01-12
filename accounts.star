@@ -31,12 +31,23 @@ def action_accounts_add(a):
 
     # Build fields dict from form inputs
     fields = {}
-    for key in ["label", "address", "token", "api_key", "url", "endpoint", "auth", "p256dh"]:
+    for key in ["label", "address", "token", "api_key", "url", "endpoint", "auth", "p256dh", "secret", "topic", "server"]:
         val = a.input(key)
         if val:
             fields[key] = val
 
+    add_to_existing = a.input("add_to_existing", "1")
+    add_to_existing = add_to_existing == "1" or add_to_existing == "true"
+
     result = mochi.account.add(type, fields)
+
+    # Set enabled based on add_to_existing and add to existing subscriptions
+    if result and result.get("id"):
+        account_id = result["id"]
+        mochi.account.update(account_id, {"enabled": add_to_existing})
+        if add_to_existing:
+            mochi.service.call("notifications", "add_destination_to_all", "account", account_id)
+
     return {"data": result}
 
 def action_accounts_update(a):

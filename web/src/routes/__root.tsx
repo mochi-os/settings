@@ -5,6 +5,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import {
   Toaster,
   NavigationProgress,
+  NotificationTitle,
   GeneralError,
   NotFoundError,
 } from '@mochi/common'
@@ -15,6 +16,7 @@ export const Route = createRootRouteWithContext<{
   component: () => {
     return (
       <>
+        <NotificationTitle />
         <NavigationProgress />
         <Outlet />
         <Toaster duration={5000} />
