@@ -70,7 +70,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-  Header,
+  PageHeader,
   Main,
   usePageTitle,
   toast,
@@ -1055,9 +1055,7 @@ export function Domains() {
   if (error) {
     return (
       <>
-        <Header compact>
-          <h1 className='text-xl font-semibold'>Domains</h1>
-        </Header>
+        <PageHeader title="Domains" />
         <Main>
           <p className='text-muted-foreground'>Failed to load domains</p>
         </Main>
@@ -1067,19 +1065,19 @@ export function Domains() {
 
   return (
     <>
-      <Header compact>
-        <div className='flex w-full items-center justify-between'>
-          <h1 className='text-xl font-semibold'>
+      <PageHeader
+        title={
+          <div className='flex items-center gap-2'>
             Domains
             {data?.count !== undefined && (
-              <span className='text-muted-foreground ml-2 font-normal'>
+              <span className='text-muted-foreground font-normal'>
                 ({data.count})
               </span>
             )}
-          </h1>
-          {isAdmin && <AddDomainDialog onSuccess={() => refetch()} />}
-        </div>
-      </Header>
+          </div>
+        }
+        actions={isAdmin && <AddDomainDialog onSuccess={() => refetch()} />}
+      />
 
       <Main>
         {isLoading ? (

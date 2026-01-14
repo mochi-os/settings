@@ -20,7 +20,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-  Header,
+  PageHeader,
   Main,
   usePageTitle,
   getErrorMessage,
@@ -116,9 +116,7 @@ export function UserSessions() {
   if (error) {
     return (
       <>
-        <Header compact>
-          <h1 className='text-xl font-semibold'>Sessions</h1>
-        </Header>
+        <PageHeader title="Sessions" />
         <Main>
           <p className='text-muted-foreground'>Failed to load sessions</p>
         </Main>
@@ -131,9 +129,7 @@ export function UserSessions() {
 
   return (
     <>
-      <Header compact>
-        <h1 className='text-xl font-semibold'>Sessions</h1>
-      </Header>
+      <PageHeader title="Sessions" />
 
       <Main>
         {isLoading ? (

@@ -29,7 +29,7 @@ import {
   SelectTrigger,
   SelectValue,
   Skeleton,
-  Header,
+  PageHeader,
   Main,
   usePageTitle,
   getErrorMessage,
@@ -210,9 +210,7 @@ export function UserPreferences() {
   if (error) {
     return (
       <>
-        <Header compact>
-          <h1 className='text-xl font-semibold'>Preferences</h1>
-        </Header>
+        <PageHeader title="Preferences" />
         <Main>
           <p className='text-muted-foreground'>Failed to load preferences</p>
         </Main>
@@ -222,9 +220,7 @@ export function UserPreferences() {
 
   return (
     <>
-      <Header compact>
-        <h1 className='text-xl font-semibold'>Preferences</h1>
-      </Header>
+      <PageHeader title="Preferences" />
 
       <Main>
         {isLoading ? (

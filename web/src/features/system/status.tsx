@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { Activity } from 'lucide-react'
-import { Skeleton, Header, Main, usePageTitle } from '@mochi/common'
+import { Skeleton, PageHeader, Main, usePageTitle } from '@mochi/common'
 import { useSystemSettingsData } from '@/hooks/use-system-settings'
 
 function formatTimestamp(value: string): string {
@@ -16,9 +16,7 @@ export function SystemStatus() {
   if (error) {
     return (
       <>
-        <Header compact>
-          <h1 className='text-xl font-semibold'>Status</h1>
-        </Header>
+        <PageHeader title="Status" />
         <Main>
           <p className='text-muted-foreground'>Failed to load status</p>
         </Main>
@@ -34,9 +32,7 @@ export function SystemStatus() {
 
   return (
     <>
-      <Header compact>
-        <h1 className='text-xl font-semibold'>Status</h1>
-      </Header>
+      <PageHeader title="Status" />
 
       <Main>
         <div className='mb-6 flex items-center gap-2'>

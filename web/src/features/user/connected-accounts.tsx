@@ -33,7 +33,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  Header,
+  PageHeader,
   Input,
   Label,
   Main,
@@ -411,15 +411,15 @@ export function ConnectedAccounts() {
 
   return (
     <>
-      <Header compact>
-        <div className='flex w-full items-center justify-between'>
-          <h1 className='text-xl font-semibold'>Connected accounts</h1>
+      <PageHeader
+        title='Connected accounts'
+        actions={
           <Button size='sm' onClick={() => setIsAddOpen(true)}>
             <Plus className='mr-2 h-4 w-4' />
             Add account
           </Button>
-        </div>
-      </Header>
+        }
+      />
 
       <Main>
         {isLoading ? (

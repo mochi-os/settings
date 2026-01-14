@@ -29,7 +29,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-  Header,
+  PageHeader,
   Main,
   usePageTitle,
   getErrorMessage,
@@ -239,9 +239,7 @@ export function UserTokens() {
   if (error) {
     return (
       <>
-        <Header compact>
-          <h1 className='text-xl font-semibold'>Authentication tokens</h1>
-        </Header>
+        <PageHeader title="Authentication tokens" />
         <Main>
           <p className='text-muted-foreground'>Failed to load tokens</p>
         </Main>
@@ -253,12 +251,10 @@ export function UserTokens() {
 
   return (
     <>
-      <Header compact>
-        <div className='flex w-full items-center justify-between'>
-          <h1 className='text-xl font-semibold'>Authentication tokens</h1>
-          <CreateTokenDialog />
-        </div>
-      </Header>
+      <PageHeader
+        title="Authentication tokens"
+        actions={<CreateTokenDialog />}
+      />
 
       <Main>
         {isLoading ? (

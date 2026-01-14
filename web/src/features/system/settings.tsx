@@ -16,7 +16,7 @@ import {
   Label,
   Skeleton,
   Switch,
-  Header,
+  PageHeader,
   Main,
   usePageTitle,
   getErrorMessage,
@@ -242,9 +242,7 @@ export function SystemSettings() {
   if (error) {
     return (
       <>
-        <Header compact>
-          <h1 className='text-xl font-semibold'>System settings</h1>
-        </Header>
+        <PageHeader title="System settings" />
         <Main>
           <p className='text-muted-foreground'>Failed to load settings</p>
         </Main>
@@ -263,9 +261,7 @@ export function SystemSettings() {
 
   return (
     <>
-      <Header compact>
-        <h1 className='text-xl font-semibold'>System settings</h1>
-      </Header>
+      <PageHeader title="System settings" />
 
       <Main>
         {isLoading ? (

@@ -60,7 +60,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-  Header,
+  PageHeader,
   Main,
   usePageTitle,
   getErrorMessage,
@@ -766,9 +766,7 @@ export function UserAccount() {
   if (error) {
     return (
       <>
-        <Header compact>
-          <h1 className='text-xl font-semibold'>Account</h1>
-        </Header>
+        <PageHeader title="Account" />
         <Main>
           <p className='text-muted-foreground'>
             Failed to load account information
@@ -780,9 +778,7 @@ export function UserAccount() {
 
   return (
     <>
-      <Header compact>
-        <h1 className='text-xl font-semibold'>Account</h1>
-      </Header>
+      <PageHeader title="Account" />
 
       <Main>
         <div className='space-y-8'>
