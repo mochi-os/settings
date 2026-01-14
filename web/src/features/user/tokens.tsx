@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Token } from '@/types/account'
-import { Loader2, Plus, Trash2, Copy, Check } from 'lucide-react'
+import { Loader2, Plus, Trash2, Copy, Check, Key } from 'lucide-react'
 import { useTokens, useTokenCreate, useTokenDelete } from '@/hooks/use-account'
 import {
   AlertDialog,
@@ -31,6 +31,8 @@ import {
   TableRow,
   PageHeader,
   Main,
+  Card,
+  CardContent,
   usePageTitle,
   getErrorMessage,
   toast,
@@ -239,7 +241,7 @@ export function UserTokens() {
   if (error) {
     return (
       <>
-        <PageHeader title="Authentication tokens" />
+        <PageHeader title="Authentication tokens" icon={<Key className='size-4 md:size-5' />} />
         <Main>
           <p className='text-muted-foreground'>Failed to load tokens</p>
         </Main>
@@ -253,38 +255,43 @@ export function UserTokens() {
     <>
       <PageHeader
         title="Authentication tokens"
+        icon={<Key className='size-4 md:size-5' />}
         actions={<CreateTokenDialog />}
       />
 
       <Main>
-        {isLoading ? (
-          <div className='space-y-3'>
-            <Skeleton className='h-10 w-full' />
-            <Skeleton className='h-10 w-full' />
-            <Skeleton className='h-10 w-full' />
-          </div>
-        ) : tokens.length === 0 ? (
-          <p className='text-muted-foreground text-sm'>
-            No authentication tokens.
-          </p>
-        ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Created</TableHead>
-                <TableHead>Last used</TableHead>
-                <TableHead>Expires</TableHead>
-                <TableHead className='w-12'></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {tokens.map((token) => (
-                <TokenRow key={token.hash} token={token} />
-              ))}
-            </TableBody>
-          </Table>
-        )}
+        <Card>
+          <CardContent className="p-0 sm:p-6">
+            {isLoading ? (
+              <div className='space-y-3 p-6 sm:p-0'>
+                <Skeleton className='h-10 w-full' />
+                <Skeleton className='h-10 w-full' />
+                <Skeleton className='h-10 w-full' />
+              </div>
+            ) : tokens.length === 0 ? (
+              <p className='text-muted-foreground p-6 text-sm sm:p-0'>
+                No authentication tokens.
+              </p>
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="pl-4 sm:pl-0">Name</TableHead>
+                    <TableHead>Created</TableHead>
+                    <TableHead>Last used</TableHead>
+                    <TableHead>Expires</TableHead>
+                    <TableHead className='w-12'></TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {tokens.map((token) => (
+                    <TokenRow key={token.hash} token={token} />
+                  ))}
+                </TableBody>
+              </Table>
+            )}
+          </CardContent>
+        </Card>
       </Main>
     </>
   )

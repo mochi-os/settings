@@ -72,6 +72,8 @@ import {
   TableRow,
   PageHeader,
   Main,
+  Card,
+  CardContent,
   usePageTitle,
   toast,
 } from '@mochi/common'
@@ -1055,7 +1057,7 @@ export function Domains() {
   if (error) {
     return (
       <>
-        <PageHeader title="Domains" />
+        <PageHeader title="Domains" icon={<Globe className='size-4 md:size-5' />} />
         <Main>
           <p className='text-muted-foreground'>Failed to load domains</p>
         </Main>
@@ -1066,6 +1068,7 @@ export function Domains() {
   return (
     <>
       <PageHeader
+        icon={<Globe className='size-4 md:size-5' />}
         title={
           <div className='flex items-center gap-2'>
             Domains
@@ -1080,72 +1083,74 @@ export function Domains() {
       />
 
       <Main>
-        {isLoading ? (
-          <div className='space-y-4'>
-            <Skeleton className='h-20 w-full' />
-            <Skeleton className='h-20 w-full' />
-          </div>
-        ) : data?.domains && data.domains.length > 0 ? (
-          <div className='divide-y'>
-            {data.domains.map((domain) => (
-              <div key={domain.domain} className='relative'>
-                <DomainDetails domain={domain} isAdmin={isAdmin} />
-                {isAdmin && (
-                  <div className='absolute top-4 right-8'>
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button
-                          variant='ghost'
-                          size='icon'
-                          className='h-8 w-8'
-                          disabled={deletingDomain === domain.domain}
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          {deletingDomain === domain.domain ? (
-                            <Loader2 className='h-4 w-4 animate-spin' />
-                          ) : (
-                            <Trash2 className='h-4 w-4' />
-                          )}
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>Delete domain?</AlertDialogTitle>
-                          <AlertDialogDescription>
-                            This will permanently delete "{domain.domain}" and
-                            all its routes. This action cannot be undone.
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction
-                            onClick={() => handleDelete(domain.domain)}
+        <Card>
+          <CardContent className='p-6 divide-y'>
+            {isLoading ? (
+              <div className='space-y-4'>
+                <Skeleton className='h-20 w-full' />
+                <Skeleton className='h-20 w-full' />
+              </div>
+            ) : data?.domains && data.domains.length > 0 ? (
+              data.domains.map((domain) => (
+                <div key={domain.domain} className='relative'>
+                  <DomainDetails domain={domain} isAdmin={isAdmin} />
+                  {isAdmin && (
+                    <div className='absolute top-4 right-8'>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button
+                            variant='ghost'
+                            size='icon'
+                            className='h-8 w-8'
+                            disabled={deletingDomain === domain.domain}
+                            onClick={(e) => e.stopPropagation()}
                           >
-                            Delete
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-                  </div>
+                            {deletingDomain === domain.domain ? (
+                              <Loader2 className='h-4 w-4 animate-spin' />
+                            ) : (
+                              <Trash2 className='h-4 w-4' />
+                            )}
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Delete domain?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              This will permanently delete "{domain.domain}" and
+                              all its routes. This action cannot be undone.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction
+                              onClick={() => handleDelete(domain.domain)}
+                            >
+                              Delete
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
+                  )}
+                </div>
+              ))
+            ) : (
+              <div className='text-muted-foreground py-8 text-center'>
+                <Shield className='mx-auto mb-4 h-12 w-12 opacity-50' />
+                {isAdmin ? (
+                  <p>No domains configured</p>
+                ) : (
+                  <>
+                    <p>You don't have access to any domains.</p>
+                    <p className='mt-1 text-sm'>
+                      Contact an administrator to get a delegation.
+                    </p>
+                  </>
                 )}
               </div>
-            ))}
-          </div>
-        ) : (
-          <div className='text-muted-foreground py-8 text-center'>
-            <Shield className='mx-auto mb-4 h-12 w-12 opacity-50' />
-            {isAdmin ? (
-              <p>No domains configured</p>
-            ) : (
-              <>
-                <p>You don't have access to any domains.</p>
-                <p className='mt-1 text-sm'>
-                  Contact an administrator to get a delegation.
-                </p>
-              </>
             )}
-          </div>
-        )}
+          </CardContent>
+        </Card>
       </Main>
     </>
   )

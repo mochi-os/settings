@@ -1,7 +1,13 @@
 import { useState, useMemo } from 'react'
-import { Check, ChevronsUpDown, Loader2, RotateCcw } from 'lucide-react'
+import { Check, ChevronsUpDown, Loader2, RotateCcw, Sliders } from 'lucide-react'
 import {
   cn,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardDescription,
+  CardFooter,
   useTheme,
   AlertDialog,
   AlertDialogAction,
@@ -210,7 +216,7 @@ export function UserPreferences() {
   if (error) {
     return (
       <>
-        <PageHeader title="Preferences" />
+        <PageHeader title="Preferences" icon={<Sliders className='size-4 md:size-5' />} />
         <Main>
           <p className='text-muted-foreground'>Failed to load preferences</p>
         </Main>
@@ -220,7 +226,7 @@ export function UserPreferences() {
 
   return (
     <>
-      <PageHeader title="Preferences" />
+      <PageHeader title="Preferences" icon={<Sliders className='size-4 md:size-5' />} />
 
       <Main>
         {isLoading ? (
@@ -230,8 +236,14 @@ export function UserPreferences() {
             <Skeleton className='h-16 w-full' />
           </div>
         ) : data ? (
-          <>
-            <div className='divide-y'>
+          <Card>
+            <CardHeader>
+              <CardTitle>General</CardTitle>
+              <CardDescription>
+                Manage your display settings and preferences
+              </CardDescription>
+            </CardHeader>
+            <CardContent className='divide-y'>
               <PreferenceRow label='Theme' description='Appearance'>
                 <Select
                   value={data.preferences.theme}
@@ -261,40 +273,45 @@ export function UserPreferences() {
                   disabled={setPreference.isPending}
                 />
               </PreferenceRow>
-            </div>
-
-            <div className='mt-6 flex justify-end'>
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button
-                    variant='outline'
-                    disabled={isLoading || resetPreferences.isPending}
-                  >
-                    {resetPreferences.isPending ? (
-                      <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-                    ) : (
-                      <RotateCcw className='mr-2 h-4 w-4' />
-                    )}
-                    Reset to Defaults
-                  </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>Reset preferences?</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      This will reset all preferences to their default values.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={handleReset}>
-                      Reset
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-            </div>
-          </>
+            </CardContent>
+            <CardFooter className='border-t bg-muted/50 px-6 py-4'>
+              <div className='flex w-full items-center justify-between'>
+                <p className='text-sm text-muted-foreground'>
+                  Resetting will restore default settings.
+                </p>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      variant='outline'
+                      size='sm'
+                      disabled={isLoading || resetPreferences.isPending}
+                    >
+                      {resetPreferences.isPending ? (
+                        <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                      ) : (
+                        <RotateCcw className='mr-2 h-4 w-4' />
+                      )}
+                      Reset to Defaults
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Reset preferences?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This will reset all preferences to their default values.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction onClick={handleReset}>
+                        Reset
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
+            </CardFooter>
+          </Card>
         ) : null}
       </Main>
     </>
