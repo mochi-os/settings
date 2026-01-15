@@ -143,7 +143,9 @@ function AccountRow({
   const [showRenameDialog, setShowRenameDialog] = useState(false)
   const [renameValue, setRenameValue] = useState(account.label || '')
   const isVerified = account.verified > 0
-  const provider = providers.find((p) => p.type === account.type)
+  // Defensive check to ensure providers is an array
+  const providersList = Array.isArray(providers) ? providers : []
+  const provider = providersList.find((p) => p.type === account.type)
   const needsVerification = provider?.verify && !isVerified
 
   const handleDelete = () => {
@@ -307,8 +309,8 @@ export function ConnectedAccounts() {
   const [testingId, setTestingId] = useState<number | null>(null)
 
   const {
-    providers,
-    accounts,
+    providers: providersData,
+    accounts: accountsData,
     isLoading,
     add,
     remove,
@@ -319,6 +321,10 @@ export function ConnectedAccounts() {
     isRemoving,
     isVerifying,
   } = useAccounts(APP_BASE)
+
+  // Ensure arrays are always arrays (defensive check)
+  const providers = Array.isArray(providersData) ? providersData : []
+  const accounts = Array.isArray(accountsData) ? accountsData : []
 
   const handleAdd = async (type: string, fields: Record<string, string>, addToExisting: boolean) => {
     try {
