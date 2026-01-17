@@ -39,12 +39,12 @@ def action_accounts_add(a):
     add_to_existing = a.input("add_to_existing", "1")
     add_to_existing = add_to_existing == "1" or add_to_existing == "true"
 
-    result = mochi.account.add(type, fields)
+    result = mochi.account.add(type, **fields)
 
     # Set enabled based on add_to_existing and add to existing subscriptions
     if result and result.get("id"):
         account_id = result["id"]
-        mochi.account.update(account_id, {"enabled": add_to_existing})
+        mochi.account.update(account_id, enabled=add_to_existing)
         if add_to_existing:
             mochi.service.call("notifications", "add_destination_to_all", "account", account_id)
 
@@ -67,7 +67,7 @@ def action_accounts_update(a):
     if enabled:
         fields["enabled"] = enabled == "true" or enabled == "1"
 
-    result = mochi.account.update(int(id), fields)
+    result = mochi.account.update(int(id), **fields)
     return {"data": result}
 
 def action_accounts_remove(a):
