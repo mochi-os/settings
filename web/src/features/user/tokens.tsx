@@ -105,7 +105,7 @@ function TokenRow({ token }: { token: Token }) {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDelete}>
+              <AlertDialogAction variant='destructive' onClick={handleDelete}>
                 Delete
               </AlertDialogAction>
             </AlertDialogFooter>

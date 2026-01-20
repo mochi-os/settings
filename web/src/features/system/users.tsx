@@ -479,6 +479,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
               <AlertDialogAction
+                variant='destructive'
                 onClick={handleDelete}
                 disabled={deleteUser.isPending}
               >

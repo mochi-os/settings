@@ -319,7 +319,7 @@ function PasskeyRow({
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction onClick={() => onDelete(passkey.id)}>
+                <AlertDialogAction variant='destructive' onClick={() => onDelete(passkey.id)}>
                   Delete
                 </AlertDialogAction>
               </AlertDialogFooter>
