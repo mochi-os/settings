@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { SystemSetting } from '@/types/settings'
-import { Loader2, Lock, RotateCcw } from 'lucide-react'
+import { Loader2, Lock, RotateCcw, Settings } from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,6 +18,8 @@ import {
   Switch,
   PageHeader,
   Main,
+  Card,
+  CardContent,
   usePageTitle,
   getErrorMessage,
   toast,
@@ -242,7 +244,7 @@ export function SystemSettings() {
   if (error) {
     return (
       <>
-        <PageHeader title="System settings" />
+        <PageHeader title="System settings" icon={<Settings className='size-4 md:size-5' />} />
         <Main>
           <p className='text-muted-foreground'>Failed to load settings</p>
         </Main>
@@ -261,29 +263,31 @@ export function SystemSettings() {
 
   return (
     <>
-      <PageHeader title="System settings" />
+      <PageHeader title="System settings" icon={<Settings className='size-4 md:size-5' />} />
 
       <Main>
-        {isLoading ? (
-          <div className='space-y-6'>
-            <Skeleton className='h-16 w-full' />
-            <Skeleton className='h-16 w-full' />
-            <Skeleton className='h-16 w-full' />
-            <Skeleton className='h-16 w-full' />
-          </div>
-        ) : (
-          <div className='divide-y'>
-            {sortedSettings.map((setting) => (
-              <SettingRow
-                key={setting.name}
-                setting={setting}
-                onSave={handleSave}
-                isSaving={savingName === setting.name}
-                timezone={timezone}
-              />
-            ))}
-          </div>
-        )}
+        <Card>
+          <CardContent className='p-6 divide-y'>
+            {isLoading ? (
+              <div className='space-y-6'>
+                <Skeleton className='h-16 w-full' />
+                <Skeleton className='h-16 w-full' />
+                <Skeleton className='h-16 w-full' />
+                <Skeleton className='h-16 w-full' />
+              </div>
+            ) : (
+              sortedSettings.map((setting) => (
+                <SettingRow
+                  key={setting.name}
+                  setting={setting}
+                  onSave={handleSave}
+                  isSaving={savingName === setting.name}
+                  timezone={timezone}
+                />
+              ))
+            )}
+          </CardContent>
+        </Card>
       </Main>
     </>
   )

@@ -4,6 +4,7 @@ import {
   Brain,
   CheckCircle2,
   Clock,
+  Link,
   Loader2,
   Mail,
   MoreHorizontal,
@@ -37,6 +38,8 @@ import {
   Input,
   Label,
   Main,
+  Card,
+  CardContent,
   Skeleton,
   Switch,
   Table,
@@ -269,7 +272,7 @@ function AccountRow({
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDelete}>Remove</AlertDialogAction>
+              <AlertDialogAction variant='destructive' onClick={handleDelete}>Remove</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
@@ -419,6 +422,7 @@ export function ConnectedAccounts() {
     <>
       <PageHeader
         title='Connected accounts'
+        icon={<Link className='size-4 md:size-5' />}
         actions={
           <Button size='sm' onClick={() => setIsAddOpen(true)}>
             <Plus className='mr-2 h-4 w-4' />
@@ -428,54 +432,62 @@ export function ConnectedAccounts() {
       />
 
       <Main>
-        {isLoading ? (
-          <div className='space-y-3'>
-            <Skeleton className='h-12 w-full' />
-            <Skeleton className='h-12 w-full' />
-            <Skeleton className='h-12 w-full' />
-          </div>
-        ) : accounts.length === 0 ? (
-          <p className='text-muted-foreground text-sm'>No connected accounts.</p>
-        ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className='pl-14'>Name</TableHead>
-                <TableHead className='hidden sm:table-cell'>Type</TableHead>
-                <TableHead className='hidden sm:table-cell'>Status</TableHead>
-                <TableHead className='hidden md:table-cell'>Notify by default</TableHead>
-                <TableHead className='hidden lg:table-cell'>Added</TableHead>
-                <TableHead className='w-12'></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {[...accounts]
-                .sort((a, b) => {
-                  const nameCompare = getAccountDisplayName(a).localeCompare(
-                    getAccountDisplayName(b)
-                  )
-                  if (nameCompare !== 0) return nameCompare
-                  return getProviderLabel(a.type).localeCompare(
-                    getProviderLabel(b.type)
-                  )
-                })
-                .map((account) => (
-                  <AccountRow
-                    key={account.id}
-                    account={account}
-                    providers={providers}
-                    onRemove={handleRemove}
-                    onVerify={setVerifyAccount}
-                    onRename={handleRename}
-                    onTest={handleTest}
-                    onToggleEnabled={handleToggleEnabled}
-                    isRemoving={isRemoving}
-                    testingId={testingId}
-                  />
-                ))}
-            </TableBody>
-          </Table>
-        )}
+        <Card>
+          <CardContent className="p-0 sm:p-6">
+            {isLoading ? (
+              <div className='space-y-3 p-6 sm:p-0'>
+                <Skeleton className='h-12 w-full' />
+                <Skeleton className='h-12 w-full' />
+                <Skeleton className='h-12 w-full' />
+              </div>
+            ) : accounts.length === 0 ? (
+              <p className='text-muted-foreground p-6 text-sm sm:p-0'>
+                No connected accounts.
+              </p>
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className='pl-4 sm:pl-0'>Name</TableHead>
+                    <TableHead className='hidden sm:table-cell'>Type</TableHead>
+                    <TableHead className='hidden sm:table-cell'>Status</TableHead>
+                    <TableHead className='hidden md:table-cell'>
+                      Notify by default
+                    </TableHead>
+                    <TableHead className='hidden lg:table-cell'>Added</TableHead>
+                    <TableHead className='w-12'></TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {[...accounts]
+                    .sort((a, b) => {
+                      const nameCompare = getAccountDisplayName(a).localeCompare(
+                        getAccountDisplayName(b)
+                      )
+                      if (nameCompare !== 0) return nameCompare
+                      return getProviderLabel(a.type).localeCompare(
+                        getProviderLabel(b.type)
+                      )
+                    })
+                    .map((account) => (
+                      <AccountRow
+                        key={account.id}
+                        account={account}
+                        providers={providers}
+                        onRemove={handleRemove}
+                        onVerify={setVerifyAccount}
+                        onRename={handleRename}
+                        onTest={handleTest}
+                        onToggleEnabled={handleToggleEnabled}
+                        isRemoving={isRemoving}
+                        testingId={testingId}
+                      />
+                    ))}
+                </TableBody>
+              </Table>
+            )}
+          </CardContent>
+        </Card>
       </Main>
 
       <AccountAdd

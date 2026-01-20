@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import type { Session } from '@/types/account'
-import { Loader2, LogOut } from 'lucide-react'
+import { Loader2, LogOut, Monitor } from 'lucide-react'
 import { useSessions, useRevokeSession } from '@/hooks/use-account'
 import {
   AlertDialog,
@@ -22,6 +22,8 @@ import {
   TableRow,
   PageHeader,
   Main,
+  Card,
+  CardContent,
   usePageTitle,
   getErrorMessage,
   toast,
@@ -116,7 +118,7 @@ export function UserSessions() {
   if (error) {
     return (
       <>
-        <PageHeader title="Sessions" />
+        <PageHeader title="Sessions" icon={<Monitor className='size-4 md:size-5' />} />
         <Main>
           <p className='text-muted-foreground'>Failed to load sessions</p>
         </Main>
@@ -129,38 +131,44 @@ export function UserSessions() {
 
   return (
     <>
-      <PageHeader title="Sessions" />
+      <PageHeader title="Sessions" icon={<Monitor className='size-4 md:size-5' />} />
 
       <Main>
-        {isLoading ? (
-          <div className='space-y-3'>
-            <Skeleton className='h-10 w-full' />
-            <Skeleton className='h-10 w-full' />
-            <Skeleton className='h-10 w-full' />
-          </div>
-        ) : sessions.length === 0 ? (
-          <p className='text-muted-foreground text-sm'>No active sessions</p>
-        ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Session</TableHead>
-                <TableHead>Created</TableHead>
-                <TableHead>Last active</TableHead>
-                <TableHead className='w-12'></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {sortedSessions.map((session, index) => (
-                <SessionRow
-                  key={session.code}
-                  session={session}
-                  isCurrent={index === 0 && session.accessed > 0}
-                />
-              ))}
-            </TableBody>
-          </Table>
-        )}
+        <Card>
+          <CardContent className="p-0 sm:p-6">
+            {isLoading ? (
+              <div className='space-y-3 p-6 sm:p-0'>
+                <Skeleton className='h-10 w-full' />
+                <Skeleton className='h-10 w-full' />
+                <Skeleton className='h-10 w-full' />
+              </div>
+            ) : sessions.length === 0 ? (
+              <p className='text-muted-foreground p-6 text-sm sm:p-0'>
+                No active sessions
+              </p>
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="pl-4 sm:pl-0">Session</TableHead>
+                    <TableHead>Created</TableHead>
+                    <TableHead>Last active</TableHead>
+                    <TableHead className='w-12'></TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {sortedSessions.map((session, index) => (
+                    <SessionRow
+                      key={session.code}
+                      session={session}
+                      isCurrent={index === 0 && session.accessed > 0}
+                    />
+                  ))}
+                </TableBody>
+              </Table>
+            )}
+          </CardContent>
+        </Card>
       </Main>
     </>
   )
