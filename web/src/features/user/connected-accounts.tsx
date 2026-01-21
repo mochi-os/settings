@@ -39,6 +39,9 @@ import {
   Label,
   Main,
   Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
   CardContent,
   Skeleton,
   Switch,
@@ -433,22 +436,36 @@ export function ConnectedAccounts() {
 
       <Main>
         <Card>
-          <CardContent className="p-0 sm:p-6">
+          <CardHeader>
+            <CardTitle className='flex items-center gap-2'>
+              <Link className='h-5 w-5' />              Connected Accounts
+            </CardTitle>
+            <CardDescription>
+              Manage email and notification providers for your account
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
             {isLoading ? (
-              <div className='space-y-3 p-6 sm:p-0'>
+              <div className='space-y-3'>
                 <Skeleton className='h-12 w-full' />
                 <Skeleton className='h-12 w-full' />
                 <Skeleton className='h-12 w-full' />
               </div>
             ) : accounts.length === 0 ? (
-              <p className='text-muted-foreground p-6 text-sm sm:p-0'>
-                No connected accounts.
-              </p>
+              <div className='bg-muted/50 rounded-lg border border-dashed p-8 text-center'>
+                <Link className='text-muted-foreground mx-auto mb-3 h-10 w-10 opacity-50' />
+                <p className='text-muted-foreground mb-1 text-sm font-medium'>
+                  No connected accounts
+                </p>
+                <p className='text-muted-foreground text-xs'>
+                  Add an account to enable notifications and integrations
+                </p>
+              </div>
             ) : (
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className='pl-4 sm:pl-0'>Name</TableHead>
+                    <TableHead>Name</TableHead>
                     <TableHead className='hidden sm:table-cell'>Type</TableHead>
                     <TableHead className='hidden sm:table-cell'>Status</TableHead>
                     <TableHead className='hidden md:table-cell'>

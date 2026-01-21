@@ -14,7 +14,7 @@ import { type SidebarData } from '@mochi/common'
 
 // User menu items (visible to all users)
 const userNavGroup = {
-  title: 'User',
+  title: 'Settings',
   items: [
     {
       title: 'Account',
@@ -96,11 +96,11 @@ export function getSidebarData(
     ? [...userNavGroup.items, domainsNavItem]
     : userNavGroup.items
   return {
-    navGroups: [{ title: '', items }],
+    navGroups: [{ title: 'Settings', items }],
   }
 }
 
 // Default sidebar (for initial load, flat list until we know access)
 export const sidebarData: SidebarData = {
-  navGroups: [{ title: '', items: userNavGroup.items }],
+  navGroups: [{ title: 'Settings', items: userNavGroup.items }],
 }

@@ -93,35 +93,53 @@ function IdentitySection() {
           <User className='h-5 w-5' />
           Identity
         </CardTitle>
+        <CardDescription>
+          Your personal account information
+        </CardDescription>
       </CardHeader>
       <CardContent>
         {isLoading ? (
-          <div className='space-y-3'>
-            <Skeleton className='h-4 w-48' />
-            <Skeleton className='h-4 w-64' />
-            <Skeleton className='h-4 w-32' />
+          <div className='space-y-4'>
+            <Skeleton className='h-14 w-full' />
+            <Skeleton className='h-14 w-full' />
+            <Skeleton className='h-14 w-full' />
+            <Skeleton className='h-14 w-full' />
           </div>
         ) : data?.identity ? (
-          <dl className='grid gap-3 text-sm'>
-            <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-              <dt className='text-muted-foreground w-28 shrink-0'>Name</dt>
-              <dd className='font-medium'>{data.identity.name}</dd>
+          <div className='space-y-4'>
+            <div className='border-b pb-4 last:border-b-0 last:pb-0'>
+              <dt className='text-muted-foreground mb-1.5 text-xs font-medium uppercase tracking-wider'>
+                Name
+              </dt>
+              <dd className='text-foreground text-base font-medium'>
+                {data.identity.name}
+              </dd>
             </div>
-            <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-              <dt className='text-muted-foreground w-28 shrink-0'>Username</dt>
-              <dd className='font-medium'>{data.identity.username}</dd>
+            <div className='border-b pb-4 last:border-b-0 last:pb-0'>
+              <dt className='text-muted-foreground mb-1.5 text-xs font-medium uppercase tracking-wider'>
+                Username
+              </dt>
+              <dd className='text-foreground text-base font-medium'>
+                {data.identity.username}
+              </dd>
             </div>
-            <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-              <dt className='text-muted-foreground w-28 shrink-0'>Fingerprint</dt>
-              <dd className='font-mono text-xs'>{data.identity.fingerprint}</dd>
+            <div className='border-b pb-4 last:border-b-0 last:pb-0'>
+              <dt className='text-muted-foreground mb-1.5 text-xs font-medium uppercase tracking-wider'>
+                Fingerprint
+              </dt>
+              <dd className='text-foreground font-mono text-sm'>
+                {data.identity.fingerprint}
+              </dd>
             </div>
-            <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-              <dt className='text-muted-foreground w-28 shrink-0'>Entity ID</dt>
-              <dd className='font-mono text-xs break-all'>
+            <div className='border-b pb-4 last:border-b-0 last:pb-0'>
+              <dt className='text-muted-foreground mb-1.5 text-xs font-medium uppercase tracking-wider'>
+                Entity ID
+              </dt>
+              <dd className='text-foreground break-all font-mono text-sm'>
                 {data.identity.entity}
               </dd>
             </div>
-          </dl>
+          </div>
         ) : null}
       </CardContent>
     </Card>
@@ -172,24 +190,26 @@ function LoginRequirementsSection() {
           Login requirements
         </CardTitle>
         <CardDescription>
-          Require all selected methods to log in:
+          Require all selected methods to log in
         </CardDescription>
       </CardHeader>
       <CardContent>
         {isLoading ? (
-          <div className='space-y-3'>
-            <Skeleton className='h-8 w-full' />
-            <Skeleton className='h-8 w-full' />
-            <Skeleton className='h-8 w-full' />
+          <div className='space-y-4'>
+            <Skeleton className='h-16 w-full' />
+            <Skeleton className='h-16 w-full' />
+            <Skeleton className='h-16 w-full' />
           </div>
         ) : (
-          <div className='space-y-4'>
-            <div className='flex items-center justify-between'>
-              <div>
-                <Label htmlFor='method-passkey'>Passkey</Label>
-                <p className='text-muted-foreground text-xs'>
+          <div className='space-y-0 divide-y'>
+            <div className='flex items-center justify-between py-4 first:pt-0 last:pb-0'>
+              <div className='space-y-1 pr-4'>
+                <Label htmlFor='method-passkey' className='text-sm font-medium'>
+                  Passkey
+                </Label>
+                <p className='text-muted-foreground text-xs leading-relaxed'>
                   {hasPasskey
-                    ? 'Use a registered passkey'
+                    ? 'Use a registered passkey to sign in'
                     : 'Register a passkey below to enable'}
                 </p>
               </div>
@@ -203,12 +223,14 @@ function LoginRequirementsSection() {
               />
             </div>
 
-            <div className='flex items-center justify-between'>
-              <div>
-                <Label htmlFor='method-totp'>Authenticator app</Label>
-                <p className='text-muted-foreground text-xs'>
+            <div className='flex items-center justify-between py-4 first:pt-0 last:pb-0'>
+              <div className='space-y-1 pr-4'>
+                <Label htmlFor='method-totp' className='text-sm font-medium'>
+                  Authenticator app
+                </Label>
+                <p className='text-muted-foreground text-xs leading-relaxed'>
                   {hasTOTP
-                    ? 'Use an authenticator app code'
+                    ? 'Use an authenticator app code to sign in'
                     : 'Set up an authenticator below to enable'}
                 </p>
               </div>
@@ -220,11 +242,13 @@ function LoginRequirementsSection() {
               />
             </div>
 
-            <div className='flex items-center justify-between'>
-              <div>
-                <Label htmlFor='method-email'>Email code</Label>
-                <p className='text-muted-foreground text-xs'>
-                  Receive a code by email
+            <div className='flex items-center justify-between py-4 first:pt-0 last:pb-0'>
+              <div className='space-y-1 pr-4'>
+                <Label htmlFor='method-email' className='text-sm font-medium'>
+                  Email code
+                </Label>
+                <p className='text-muted-foreground text-xs leading-relaxed'>
+                  Receive a verification code by email
                 </p>
               </div>
               <Switch
@@ -400,6 +424,9 @@ function PasskeysSection() {
           <Key className='h-5 w-5' />
           Passkeys
         </CardTitle>
+        <CardDescription>
+          Sign in without a password using biometrics or security keys
+        </CardDescription>
         <CardAction>
           <Dialog open={registerDialogOpen} onOpenChange={setRegisterDialogOpen}>
             <Button
@@ -447,9 +474,15 @@ function PasskeysSection() {
             <Skeleton className='h-10 w-full' />
           </div>
         ) : passkeys.length === 0 ? (
-          <p className='text-muted-foreground text-sm'>
-            No passkeys registered. Add a passkey to sign in without a password.
-          </p>
+          <div className='bg-muted/50 rounded-lg border border-dashed p-8 text-center'>
+            <Key className='text-muted-foreground mx-auto mb-3 h-10 w-10 opacity-50' />
+            <p className='text-muted-foreground mb-1 text-sm font-medium'>
+              No passkeys registered
+            </p>
+            <p className='text-muted-foreground text-xs'>
+              Add a passkey to sign in without a password
+            </p>
+          </div>
         ) : (
           <Table>
             <TableHeader>
@@ -543,22 +576,29 @@ function AuthenticatorSection() {
           <Smartphone className='h-5 w-5' />
           Authenticator app
         </CardTitle>
+        <CardDescription>
+          Use time-based codes from an authenticator app
+        </CardDescription>
       </CardHeader>
       <CardContent>
         {isLoading ? (
-          <Skeleton className='h-8 w-48' />
+          <Skeleton className='h-16 w-full' />
         ) : setupData ? (
-          <div className='space-y-4'>
-            <p className='text-sm'>
-              Scan this QR code with your TOTP authenticator app:
-            </p>
-            <div className='flex justify-center rounded-lg border bg-white p-4'>
-              <QRCodeSVG value={setupData.url} size={200} />
+          <div className='space-y-6'>
+            <div className='space-y-3'>
+              <p className='text-sm font-medium'>
+                Scan this QR code with your TOTP authenticator app
+              </p>
+              <div className='flex justify-center rounded-xl border-2 bg-white p-6 shadow-sm'>
+                <QRCodeSVG value={setupData.url} size={200} />
+              </div>
             </div>
-            <div className='space-y-2'>
-              <Label>Or enter this secret manually:</Label>
+            <div className='space-y-2.5'>
+              <Label className='text-sm font-medium'>
+                Or enter this secret manually
+              </Label>
               <div className='flex items-center gap-2'>
-                <code className='bg-muted flex-1 rounded px-3 py-2 font-mono text-sm'>
+                <code className='bg-muted flex-1 rounded-md border px-3 py-2 font-mono text-sm'>
                   {setupData.secret}
                 </code>
                 <Button variant='outline' size='sm' onClick={handleCopySecret}>
@@ -566,15 +606,17 @@ function AuthenticatorSection() {
                 </Button>
               </div>
             </div>
-            <div className='space-y-2'>
-              <Label htmlFor='totp-verify'>Enter verification code:</Label>
+            <div className='border-t pt-4 space-y-2.5'>
+              <Label htmlFor='totp-verify' className='text-sm font-medium'>
+                Enter verification code
+              </Label>
               <div className='flex items-center gap-2'>
                 <Input
                   id='totp-verify'
                   placeholder='000000'
                   value={verifyCode}
                   onChange={(e) => setVerifyCode(e.target.value)}
-                  className='w-32 font-mono'
+                  className='w-32 font-mono text-center text-lg tracking-widest'
                   maxLength={6}
                 />
                 <Button
@@ -599,12 +641,19 @@ function AuthenticatorSection() {
             </div>
           </div>
         ) : isEnabled ? (
-          <div className='flex items-center justify-between'>
-            <div>
-              <p className='text-sm font-medium text-green-600'>Enabled</p>
-              <p className='text-muted-foreground text-xs'>
-                Your authenticator app is configured.
-              </p>
+          <div className='flex items-center justify-between rounded-lg border bg-green-50 dark:bg-green-950/20 px-4 py-3'>
+            <div className='flex items-center gap-3'>
+              <div className='flex h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30'>
+                <Check className='h-5 w-5 text-green-600 dark:text-green-500' />
+              </div>
+              <div>
+                <p className='text-sm font-medium text-green-900 dark:text-green-100'>
+                  Authenticator app is active
+                </p>
+                <p className='text-muted-foreground text-xs'>
+                  Your account is protected with 2FA
+                </p>
+              </div>
             </div>
             <AlertDialog>
               <AlertDialogTrigger asChild>
@@ -631,10 +680,15 @@ function AuthenticatorSection() {
             </AlertDialog>
           </div>
         ) : (
-          <div className='flex items-center justify-between'>
-            <p className='text-muted-foreground text-sm'>
-              Add an authenticator app for additional security.
-            </p>
+          <div className='flex items-center justify-between rounded-lg border border-dashed bg-muted/30 px-4 py-6'>
+            <div className='flex items-center gap-3'>
+              <div className='flex h-10 w-10 items-center justify-center rounded-full bg-muted'>
+                <Smartphone className='text-muted-foreground h-5 w-5' />
+              </div>
+              <p className='text-muted-foreground text-sm'>
+                Add an authenticator app for additional security
+              </p>
+            </div>
             <Button
               variant='outline'
               size='sm'
@@ -687,20 +741,31 @@ function RecoveryCodesSection() {
           <RefreshCw className='h-5 w-5' />
           Recovery codes
         </CardTitle>
+        <CardDescription>
+          One-time use codes for account recovery
+        </CardDescription>
       </CardHeader>
       <CardContent>
         {isLoading ? (
-          <Skeleton className='h-8 w-48' />
+          <Skeleton className='h-16 w-full' />
         ) : showCodes ? (
-          <div className='space-y-4'>
-            <p className='text-sm'>
-              Save these recovery codes in a secure place. Each code can only be
-              used once.
-            </p>
-            <div className='bg-muted rounded-lg p-4'>
-              <div className='grid grid-cols-2 gap-2 font-mono text-sm'>
+          <div className='space-y-5'>
+            <div className='rounded-lg border border-amber-200 bg-amber-50 dark:bg-amber-950/20 dark:border-amber-900 p-4'>
+              <p className='flex items-center gap-2 text-sm font-medium text-amber-900 dark:text-amber-100'>
+                <Shield className='h-4 w-4' />
+                Save these recovery codes in a secure place
+              </p>
+              <p className='text-muted-foreground mt-1 text-xs'>
+                Each code can only be used once. Store them safely.
+              </p>
+            </div>
+            <div className='bg-muted/50 rounded-xl border-2 p-5'>
+              <div className='grid grid-cols-2 gap-3 font-mono text-sm'>
                 {showCodes.map((code, i) => (
-                  <div key={i} className='bg-background rounded px-2 py-1'>
+                  <div
+                    key={i}
+                    className='bg-background flex items-center justify-center rounded-md border px-3 py-2.5 font-semibold tracking-wide shadow-sm'
+                  >
                     {code}
                   </div>
                 ))}
@@ -722,20 +787,30 @@ function RecoveryCodesSection() {
           </div>
         ) : (
           <div className='flex items-center justify-between'>
-            <div>
+            <div className='flex-1'>
               {count > 0 ? (
-                <>
-                  <p className='text-sm font-medium'>
-                    {count} code{count !== 1 ? 's' : ''} remaining
-                  </p>
-                  <p className='text-muted-foreground text-xs'>
-                    Use a recovery code if you lose access to other methods.
-                  </p>
-                </>
+                <div className='flex items-center gap-3'>
+                  <div className='flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30'>
+                    <RefreshCw className='h-5 w-5 text-blue-600 dark:text-blue-500' />
+                  </div>
+                  <div>
+                    <p className='text-sm font-medium'>
+                      {count} code{count !== 1 ? 's' : ''} remaining
+                    </p>
+                    <p className='text-muted-foreground text-xs leading-relaxed'>
+                      Use a recovery code if you lose access to other methods
+                    </p>
+                  </div>
+                </div>
               ) : (
-                <p className='text-muted-foreground text-sm'>
-                  Generate recovery codes as a backup login method.
-                </p>
+                <div className='flex items-center gap-3'>
+                  <div className='flex h-10 w-10 items-center justify-center rounded-full bg-muted'>
+                    <RefreshCw className='text-muted-foreground h-5 w-5' />
+                  </div>
+                  <p className='text-muted-foreground text-sm'>
+                    Generate recovery codes as a backup login method
+                  </p>
+                </div>
               )}
             </div>
             <AlertDialog>
@@ -805,7 +880,7 @@ export function UserAccount() {
       <PageHeader title="Account" icon={<User className='size-4 md:size-5' />} />
 
       <Main>
-        <div className='space-y-6'>
+        <div className='space-y-8'>
           <IdentitySection />
           <LoginRequirementsSection />
           <PasskeysSection />

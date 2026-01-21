@@ -32,6 +32,9 @@ import {
   PageHeader,
   Main,
   Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
   CardContent,
   usePageTitle,
   getErrorMessage,
@@ -261,22 +264,37 @@ export function UserTokens() {
 
       <Main>
         <Card>
-          <CardContent className="p-0 sm:p-6">
+          <CardHeader>
+            <CardTitle className='flex items-center gap-2'>
+              <Key className='h-5 w-5' />
+              Authentication Tokens
+            </CardTitle>
+            <CardDescription>
+              Manage API tokens for programmatic access
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
             {isLoading ? (
-              <div className='space-y-3 p-6 sm:p-0'>
+              <div className='space-y-3'>
                 <Skeleton className='h-10 w-full' />
                 <Skeleton className='h-10 w-full' />
                 <Skeleton className='h-10 w-full' />
               </div>
             ) : tokens.length === 0 ? (
-              <p className='text-muted-foreground p-6 text-sm sm:p-0'>
-                No authentication tokens.
-              </p>
+              <div className='bg-muted/50 rounded-lg border border-dashed p-8 text-center'>
+                <Key className='text-muted-foreground mx-auto mb-3 h-10 w-10 opacity-50' />
+                <p className='text-muted-foreground mb-1 text-sm font-medium'>
+                  No authentication tokens
+                </p>
+                <p className='text-muted-foreground text-xs'>
+                  Create a token to authenticate with git or the API
+                </p>
+              </div>
             ) : (
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="pl-4 sm:pl-0">Name</TableHead>
+                    <TableHead>Name</TableHead>
                     <TableHead>Created</TableHead>
                     <TableHead>Last used</TableHead>
                     <TableHead>Expires</TableHead>

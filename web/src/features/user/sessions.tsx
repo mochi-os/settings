@@ -23,6 +23,9 @@ import {
   PageHeader,
   Main,
   Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
   CardContent,
   usePageTitle,
   getErrorMessage,
@@ -135,22 +138,37 @@ export function UserSessions() {
 
       <Main>
         <Card>
-          <CardContent className="p-0 sm:p-6">
+          <CardHeader>
+            <CardTitle className='flex items-center gap-2'>
+              <Monitor className='h-5 w-5' />
+              Active Sessions
+            </CardTitle>
+            <CardDescription>
+              Manage your active sessions across different devices
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
             {isLoading ? (
-              <div className='space-y-3 p-6 sm:p-0'>
+              <div className='space-y-3'>
                 <Skeleton className='h-10 w-full' />
                 <Skeleton className='h-10 w-full' />
                 <Skeleton className='h-10 w-full' />
               </div>
             ) : sessions.length === 0 ? (
-              <p className='text-muted-foreground p-6 text-sm sm:p-0'>
-                No active sessions
-              </p>
+              <div className='bg-muted/50 rounded-lg border border-dashed p-8 text-center'>
+                <Monitor className='text-muted-foreground mx-auto mb-3 h-10 w-10 opacity-50' />
+                <p className='text-muted-foreground mb-1 text-sm font-medium'>
+                  No active sessions
+                </p>
+                <p className='text-muted-foreground text-xs'>
+                  Your active sessions will appear here
+                </p>
+              </div>
             ) : (
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="pl-4 sm:pl-0">Session</TableHead>
+                    <TableHead>Session</TableHead>
                     <TableHead>Created</TableHead>
                     <TableHead>Last active</TableHead>
                     <TableHead className='w-12'></TableHead>

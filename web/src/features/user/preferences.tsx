@@ -166,12 +166,12 @@ function PreferenceRow({
   children: React.ReactNode
 }) {
   return (
-    <div className='flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between'>
-      <div className='space-y-0.5'>
-        <Label className='text-base'>{label}</Label>
-        <p className='text-muted-foreground text-sm'>{description}</p>
+    <div className='flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between first:pt-0 last:pb-0'>
+      <div className='space-y-1 flex-1'>
+        <Label className='text-sm font-medium'>{label}</Label>
+        <p className='text-muted-foreground text-xs leading-relaxed'>{description}</p>
       </div>
-      <div className='w-full sm:w-48'>{children}</div>
+      <div className='w-full sm:w-64'>{children}</div>
     </div>
   )
 }
