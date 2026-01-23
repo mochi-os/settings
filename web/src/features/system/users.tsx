@@ -360,7 +360,7 @@ function SessionsDialog({ user }: { user: User }) {
           </Button>
           {data?.sessions && data.sessions.length > 0 && (
             <Button
-              variant='destructive'
+              variant='outline'
               onClick={() => handleRevoke()}
               disabled={revokeSession.isPending}
             >
