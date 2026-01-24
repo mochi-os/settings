@@ -110,8 +110,8 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Add domain</DialogTitle>
-            <DialogDescription>
-              Add a new domain to the server
+            <DialogDescription className="sr-only">
+              Add domain
             </DialogDescription>
           </DialogHeader>
           <div className='grid gap-4 py-4'>
