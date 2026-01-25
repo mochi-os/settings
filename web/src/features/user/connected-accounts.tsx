@@ -427,7 +427,7 @@ export function ConnectedAccounts() {
         title='Connected accounts'
         icon={<Link className='size-4 md:size-5' />}
         actions={
-          <Button size='sm' onClick={() => setIsAddOpen(true)}>
+          <Button variant='outline' size='sm' onClick={() => setIsAddOpen(true)}>
             <Plus className='mr-2 h-4 w-4' />
             Add account
           </Button>

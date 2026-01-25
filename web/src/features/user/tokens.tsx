@@ -200,7 +200,7 @@ function CreateTokenDialog() {
               </Button>
             </div>
             <DialogFooter>
-              <Button onClick={handleClose}>Done</Button>
+              <Button variant='outline' onClick={handleClose}>Done</Button>
             </DialogFooter>
           </div>
         ) : (
