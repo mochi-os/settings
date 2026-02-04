@@ -1,24 +1,34 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import type { UsersData, User, SessionsData } from '@/types/users'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useQueryWithError } from '@mochi/common'
+import type { User } from '@/types/users'
 import endpoints from '@/api/endpoints'
 import { apiClient } from '@mochi/common'
+import {
+  type SystemUsersResponse,
+  type SystemUserSessionsResponse,
+  systemUsersApi,
+} from '@/api/system-users'
 
-export function useSystemUsersData(limit = 25, offset = 0, search = '') {
-  return useQuery({
-    queryKey: ['system', 'users', limit, offset, search],
-    queryFn: async () => {
-      const response = await apiClient.get<UsersData>(
-        endpoints.system.usersList,
-        {
-          params: { limit, offset, search: search || undefined },
-        }
-      )
-      return response.data
-    },
+export const systemUserKeys = {
+  all: () => ['system-users'] as const,
+  list: (limit: number, offset: number, search: string) =>
+    [...systemUserKeys.all(), 'list', limit, offset, search] as const,
+  sessions: (userId: string) =>
+    [...systemUserKeys.all(), 'sessions', userId] as const,
+}
+
+export function useSystemUsersData(
+  limit: number,
+  offset: number,
+  search: string
+) {
+  return useQueryWithError<SystemUsersResponse, Error>({
+    queryKey: systemUserKeys.list(limit, offset, search),
+    queryFn: () => systemUsersApi.list(limit, offset, search),
   })
 }
 
-export function useCreateUser() {
+export const useCreateUser = () => {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (data: { username: string; role: string }) => {
@@ -97,17 +107,10 @@ export function useActivateUser() {
 }
 
 export function useUserSessions(userId: number) {
-  return useQuery({
-    queryKey: ['system', 'users', userId, 'sessions'],
-    queryFn: async () => {
-      const response = await apiClient.get<SessionsData>(
-        endpoints.system.usersSessions,
-        {
-          params: { id: userId },
-        }
-      )
-      return response.data
-    },
+  return useQueryWithError<SessionsData, Error>({
+    queryKey: systemUserKeys.sessions(String(userId)),
+    queryFn: () => systemUsersApi.getSessions(userId),
+    enabled: !!userId,
   })
 }
 

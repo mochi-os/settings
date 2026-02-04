@@ -71,6 +71,7 @@ import {
   usePageTitle,
   getErrorMessage,
   toast,
+  ListSkeleton,
 } from '@mochi/common'
 
 function useDebounce<T>(value: T, delay: number): T {
@@ -308,10 +309,7 @@ function SessionsDialog({ user }: { user: User }) {
         </DialogHeader>
         <div className='py-4'>
           {isLoading ? (
-            <div className='space-y-2'>
-              <Skeleton className='h-12 w-full' />
-              <Skeleton className='h-12 w-full' />
-            </div>
+            <ListSkeleton count={2} height='h-12' variant='simple' />
           ) : data?.sessions && data.sessions.length > 0 ? (
             <Table>
               <TableHeader>
@@ -548,7 +546,7 @@ export function SystemUsers() {
     setOffset(0)
   }, [debouncedSearch])
 
-  const { data, isLoading, error, refetch } = useSystemUsersData(
+  const { data, isLoading, ErrorComponent, refetch } = useSystemUsersData(
     limit,
     offset,
     debouncedSearch
@@ -582,12 +580,12 @@ export function SystemUsers() {
       })
     : []
 
-  if (error) {
+  if (ErrorComponent) {
     return (
       <>
         <PageHeader title="Users" icon={<Users className='size-4 md:size-5' />} />
         <Main>
-          <p className='text-muted-foreground'>Failed to load users</p>
+          {ErrorComponent}
         </Main>
       </>
     )
@@ -626,10 +624,8 @@ export function SystemUsers() {
         <Card>
           <CardContent className="p-0 sm:p-6">
             {isLoading ? (
-              <div className='space-y-2 p-6 sm:p-0'>
-                <Skeleton className='h-12 w-full' />
-                <Skeleton className='h-12 w-full' />
-                <Skeleton className='h-12 w-full' />
+              <div className='p-6 sm:p-0'>
+                 <ListSkeleton count={3} height='h-12' variant='simple' />
               </div>
             ) : sortedUsers.length > 0 ? (
               <>
