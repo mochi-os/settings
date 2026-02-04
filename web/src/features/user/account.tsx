@@ -71,6 +71,8 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
+  GeneralError,
+  EmptyState,
   getErrorMessage,
   toast,
 } from '@mochi/common'
@@ -430,10 +432,11 @@ function PasskeysSection() {
             <Skeleton className='h-10 w-full' />
           </div>
         ) : passkeys.length === 0 ? (
-          <div className='bg-muted/30 rounded-lg border border-dashed p-8 text-center my-4'>
-            <Key className='text-muted-foreground mx-auto mb-3 h-10 w-10 opacity-50' />
-            <p className='text-sm font-medium'>No passkeys registered</p>
-          </div>
+          <EmptyState
+            icon={Key}
+            title="No passkeys registered"
+            className="my-4"
+          />
         ) : (
           <Table>
             <TableHeader>
@@ -681,7 +684,9 @@ export function UserAccount() {
     return (
       <>
         <PageHeader title="Account" icon={<User className='size-4 md:size-5' />} />
-        <Main><p className='text-muted-foreground'>Failed to load account</p></Main>
+        <Main>
+          <GeneralError error={error} minimal />
+        </Main>
       </>
     )
   }

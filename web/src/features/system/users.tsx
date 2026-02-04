@@ -71,6 +71,7 @@ import {
   getErrorMessage,
   toast,
   ListSkeleton,
+  EmptyState,
 } from '@mochi/common'
 
 function useDebounce<T>(value: T, delay: number): T {
@@ -346,9 +347,11 @@ function SessionsDialog({ user }: { user: User }) {
               </TableBody>
             </Table>
           ) : (
-            <p className='text-muted-foreground py-4 text-center text-sm'>
-              No active sessions
-            </p>
+            <EmptyState
+              icon={Key}
+              title="No active sessions"
+              description="This user has no active sessions."
+            />
           )}
         </div>
         <DialogFooter>
@@ -717,9 +720,13 @@ export function SystemUsers() {
                 )}
               </>
             ) : (
-              <p className='text-muted-foreground py-8 text-center text-sm'>
-                {debouncedSearch ? 'No users match your search' : 'No users found'}
-              </p>
+              <div className='py-8'>
+                <EmptyState
+                  icon={Users}
+                  title={debouncedSearch ? 'No users match your search' : 'No users found'}
+                  description={debouncedSearch ? 'Try adjusting your search criteria' : undefined}
+                />
+              </div>
             )}
           </CardContent>
         </Card>
