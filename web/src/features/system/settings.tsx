@@ -13,16 +13,16 @@ import {
   AlertDialogTrigger,
   Button,
   Input,
-  Label,
   Skeleton,
   Switch,
   PageHeader,
   Main,
-  Card,
-  CardContent,
   usePageTitle,
   getErrorMessage,
   toast,
+  Section,
+  FieldRow,
+  DataChip,
 } from '@mochi/common'
 import { usePreferencesData } from '@/hooks/use-preferences'
 import {
@@ -74,7 +74,7 @@ function isBooleanSetting(setting: SystemSetting): boolean {
   return setting.pattern === '^(true|false)$'
 }
 
-function SettingRow({
+function SettingField({
   setting,
   onSave,
   isSaving,
@@ -106,28 +106,18 @@ function SettingRow({
   }
 
   return (
-    <div className='flex flex-col gap-4 py-4 sm:flex-row sm:items-start sm:justify-between'>
-      <div className='flex-1 space-y-1'>
-        <div className='flex items-center gap-2'>
-          <Label className='text-base'>{formatSettingName(setting.name)}</Label>
-          {setting.read_only && (
-            <Lock className='text-muted-foreground h-3.5 w-3.5' />
-          )}
-        </div>
-        <p className='text-muted-foreground text-sm'>{setting.description}</p>
-        {!isDefault && !setting.read_only && (
-          <p className='text-muted-foreground text-xs'>
-            Default: {setting.default || '(empty)'}
-          </p>
-        )}
-      </div>
+    <FieldRow 
+      label={formatSettingName(setting.name)}
+      description={setting.description}
+    >
       <div className='flex items-center gap-2'>
         {setting.read_only ? (
-          <div className='text-muted-foreground font-mono text-sm'>
-            {formatSettingValue(setting.name, setting.value, timezone)}
-          </div>
+          <DataChip 
+            value={formatSettingValue(setting.name, setting.value, timezone)} 
+            icon={setting.read_only ? <Lock className="size-3" /> : undefined}
+          />
         ) : isBoolean ? (
-          <>
+          <div className="flex items-center gap-3">
             <Switch
               checked={localValue === 'true'}
               onCheckedChange={handleToggle}
@@ -139,7 +129,7 @@ function SettingRow({
                   <Button
                     variant='ghost'
                     size='icon'
-                    className='h-8 w-8'
+                    className='h-8 w-8 text-muted-foreground'
                     disabled={isSaving}
                   >
                     <RotateCcw className='h-4 w-4' />
@@ -162,16 +152,16 @@ function SettingRow({
                 </AlertDialogContent>
               </AlertDialog>
             )}
-          </>
+          </div>
         ) : (
-          <>
+          <div className="flex items-center gap-2 w-full max-w-sm">
             <Input
               value={localValue}
               onChange={(e) => setLocalValue(e.target.value)}
-              className='w-64 font-mono text-sm'
+              className='h-9 font-mono text-sm'
               disabled={isSaving}
             />
-            {hasChanged && (
+            {hasChanged ? (
               <Button size='sm' onClick={handleSave} disabled={isSaving}>
                 {isSaving ? (
                   <Loader2 className='h-4 w-4 animate-spin' />
@@ -179,14 +169,13 @@ function SettingRow({
                   'Save'
                 )}
               </Button>
-            )}
-            {!hasChanged && !isDefault && (
+            ) : !isDefault && (
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button
                     variant='ghost'
                     size='icon'
-                    className='h-8 w-8'
+                    className='h-9 w-9 text-muted-foreground'
                     disabled={isSaving}
                   >
                     <RotateCcw className='h-4 w-4' />
@@ -209,10 +198,10 @@ function SettingRow({
                 </AlertDialogContent>
               </AlertDialog>
             )}
-          </>
+          </div>
         )}
       </div>
-    </div>
+    </FieldRow>
   )
 }
 
@@ -261,23 +250,30 @@ export function SystemSettings() {
         )
     : []
 
+  const infoSettings = data?.settings
+    ? data.settings.filter(s => statusSettings.includes(s.name))
+    : []
+
   return (
     <>
       <PageHeader title="System settings" icon={<Settings className='size-4 md:size-5' />} />
 
-      <Main>
-        <Card>
-          <CardContent className='p-6 divide-y'>
+      <Main className="space-y-8">
+        <Section 
+          title="Configuration" 
+          description="Global server settings"
+        >
+          <div className='divide-y-0'>
             {isLoading ? (
-              <div className='space-y-6'>
-                <Skeleton className='h-16 w-full' />
-                <Skeleton className='h-16 w-full' />
-                <Skeleton className='h-16 w-full' />
-                <Skeleton className='h-16 w-full' />
+              <div className='space-y-6 py-4'>
+                <Skeleton className='h-12 w-full' />
+                <Skeleton className='h-12 w-full' />
+                <Skeleton className='h-12 w-full' />
+                <Skeleton className='h-12 w-full' />
               </div>
             ) : (
               sortedSettings.map((setting) => (
-                <SettingRow
+                <SettingField
                   key={setting.name}
                   setting={setting}
                   onSave={handleSave}
@@ -286,8 +282,23 @@ export function SystemSettings() {
                 />
               ))
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </Section>
+
+        {infoSettings.length > 0 && (
+          <Section 
+            title="System Info" 
+            description="Server status information"
+          >
+            <div className="divide-y-0">
+               {infoSettings.map(setting => (
+                 <FieldRow key={setting.name} label={formatSettingName(setting.name)}>
+                    <DataChip value={formatSettingValue(setting.name, setting.value, timezone)} />
+                 </FieldRow>
+               ))}
+            </div>
+          </Section>
+        )}
       </Main>
     </>
   )

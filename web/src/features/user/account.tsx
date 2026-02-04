@@ -4,14 +4,12 @@ import type { Passkey, TotpSetupResponse } from '@/types/account'
 import { startRegistration } from '@simplewebauthn/browser'
 import {
   Check,
-  Copy,
   Key,
   Loader2,
   Pencil,
   Plus,
   RefreshCw,
   Shield,
-  Smartphone,
   Trash2,
   User,
 } from 'lucide-react'
@@ -51,7 +49,6 @@ import {
   DialogTitle,
   Input,
   Label,
-
   Skeleton,
   Switch,
   Table,
@@ -62,14 +59,18 @@ import {
   TableRow,
   PageHeader,
   Main,
+  usePageTitle,
+  Section,
+  FieldRow,
+  DataChip,
+  Alert,
+  AlertTitle,
+  AlertDescription,
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
   CardContent,
-  CardAction,
-  usePageTitle,
-
   getErrorMessage,
   toast,
 } from '@mochi/common'
@@ -87,62 +88,38 @@ function IdentitySection() {
   const { data, isLoading } = useAccountData()
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className='flex items-center gap-2'>
-          <User className='h-5 w-5' />
-          Identity
-        </CardTitle>
-        <CardDescription>
-          Your personal account information
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        {isLoading ? (
-          <div className='space-y-4'>
-            <Skeleton className='h-14 w-full' />
-            <Skeleton className='h-14 w-full' />
-            <Skeleton className='h-14 w-full' />
-            <Skeleton className='h-14 w-full' />
-          </div>
-        ) : data?.identity ? (
-          <div className='space-y-4'>
-            <div className='border-b pb-4 last:border-b-0 last:pb-0'>
-              <dt className='text-muted-foreground mb-1.5 text-xs font-medium uppercase tracking-wider'>
-                Name
-              </dt>
-              <dd className='text-foreground text-base font-medium'>
-                {data.identity.name}
-              </dd>
-            </div>
-            <div className='border-b pb-4 last:border-b-0 last:pb-0'>
-              <dt className='text-muted-foreground mb-1.5 text-xs font-medium uppercase tracking-wider'>
-                Username
-              </dt>
-              <dd className='text-foreground text-base font-medium'>
-                {data.identity.username}
-              </dd>
-            </div>
-            <div className='border-b pb-4 last:border-b-0 last:pb-0'>
-              <dt className='text-muted-foreground mb-1.5 text-xs font-medium uppercase tracking-wider'>
-                Fingerprint
-              </dt>
-              <dd className='text-foreground font-mono text-sm'>
-                {data.identity.fingerprint}
-              </dd>
-            </div>
-            <div className='border-b pb-4 last:border-b-0 last:pb-0'>
-              <dt className='text-muted-foreground mb-1.5 text-xs font-medium uppercase tracking-wider'>
-                Entity ID
-              </dt>
-              <dd className='text-foreground break-all font-mono text-sm'>
-                {data.identity.entity}
-              </dd>
-            </div>
-          </div>
-        ) : null}
-      </CardContent>
-    </Card>
+    <Section
+      title='Identity'
+      description='Your personal account information'
+    >
+      {isLoading ? (
+        <div className='space-y-4 py-2'>
+          <Skeleton className='h-12 w-full' />
+          <Skeleton className='h-12 w-full' />
+          <Skeleton className='h-12 w-full' />
+          <Skeleton className='h-12 w-full' />
+        </div>
+      ) : data?.identity ? (
+        <div className='divide-y-0'>
+          <FieldRow label="Name">
+            <span className='text-foreground text-base font-semibold'>
+              {data.identity.name}
+            </span>
+          </FieldRow>
+          <FieldRow label="Username">
+            <span className='text-foreground text-base'>
+              {data.identity.username}
+            </span>
+          </FieldRow>
+          <FieldRow label="Fingerprint">
+            <DataChip value={data.identity.fingerprint} />
+          </FieldRow>
+          <FieldRow label="Entity ID">
+            <DataChip value={data.identity.entity} />
+          </FieldRow>
+        </div>
+      ) : null}
+    </Section>
   )
 }
 
@@ -183,90 +160,82 @@ function LoginRequirementsSection() {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className='flex items-center gap-2'>
-          <Shield className='h-5 w-5' />
-          Login requirements
-        </CardTitle>
-        <CardDescription>
-          Require all selected methods to log in
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        {isLoading ? (
-          <div className='space-y-4'>
-            <Skeleton className='h-16 w-full' />
-            <Skeleton className='h-16 w-full' />
-            <Skeleton className='h-16 w-full' />
+    <Section
+      title='Login requirements'
+      description='Require all selected methods to log in'
+    >
+      {isLoading ? (
+        <div className='space-y-4 py-2'>
+          <Skeleton className='h-16 w-full' />
+          <Skeleton className='h-16 w-full' />
+          <Skeleton className='h-16 w-full' />
+        </div>
+      ) : (
+        <div className='space-y-0 divide-y-0'>
+          <div className='flex items-center justify-between py-4 border-b border-border/40'>
+            <div className='space-y-1 pr-4'>
+              <Label htmlFor='method-passkey' className='text-sm font-medium'>
+                Passkey
+              </Label>
+              <p className='text-muted-foreground text-xs leading-relaxed'>
+                {hasPasskey
+                  ? 'Use a registered passkey to sign in'
+                  : 'Register a passkey below to enable'}
+              </p>
+            </div>
+            <Switch
+              id='method-passkey'
+              checked={methods.includes('passkey')}
+              onCheckedChange={(checked) =>
+                handleToggleMethod('passkey', checked)
+              }
+              disabled={setMethods.isPending || !hasPasskey}
+            />
           </div>
-        ) : (
-          <div className='space-y-0 divide-y'>
-            <div className='flex items-center justify-between py-4 first:pt-0 last:pb-0'>
-              <div className='space-y-1 pr-4'>
-                <Label htmlFor='method-passkey' className='text-sm font-medium'>
-                  Passkey
-                </Label>
-                <p className='text-muted-foreground text-xs leading-relaxed'>
-                  {hasPasskey
-                    ? 'Use a registered passkey to sign in'
-                    : 'Register a passkey below to enable'}
-                </p>
-              </div>
-              <Switch
-                id='method-passkey'
-                checked={methods.includes('passkey')}
-                onCheckedChange={(checked) =>
-                  handleToggleMethod('passkey', checked)
-                }
-                disabled={setMethods.isPending || !hasPasskey}
-              />
-            </div>
 
-            <div className='flex items-center justify-between py-4 first:pt-0 last:pb-0'>
-              <div className='space-y-1 pr-4'>
-                <Label htmlFor='method-totp' className='text-sm font-medium'>
-                  Authenticator app
-                </Label>
-                <p className='text-muted-foreground text-xs leading-relaxed'>
-                  {hasTOTP
-                    ? 'Use an authenticator app code to sign in'
-                    : 'Set up an authenticator below to enable'}
-                </p>
-              </div>
-              <Switch
-                id='method-totp'
-                checked={methods.includes('totp')}
-                onCheckedChange={(checked) => handleToggleMethod('totp', checked)}
-                disabled={setMethods.isPending || !hasTOTP}
-              />
+          <div className='flex items-center justify-between py-4 border-b border-border/40'>
+            <div className='space-y-1 pr-4'>
+              <Label htmlFor='method-totp' className='text-sm font-medium'>
+                Authenticator app
+              </Label>
+              <p className='text-muted-foreground text-xs leading-relaxed'>
+                {hasTOTP
+                  ? 'Use an authenticator app code to sign in'
+                  : 'Set up an authenticator below to enable'}
+              </p>
             </div>
-
-            <div className='flex items-center justify-between py-4 first:pt-0 last:pb-0'>
-              <div className='space-y-1 pr-4'>
-                <Label htmlFor='method-email' className='text-sm font-medium'>
-                  Email code
-                </Label>
-                <p className='text-muted-foreground text-xs leading-relaxed'>
-                  Receive a verification code by email
-                </p>
-              </div>
-              <Switch
-                id='method-email'
-                checked={methods.includes('email')}
-                onCheckedChange={(checked) =>
-                  handleToggleMethod('email', checked)
-                }
-                disabled={
-                  setMethods.isPending ||
-                  (methods.length === 1 && methods.includes('email'))
-                }
-              />
-            </div>
+            <Switch
+              id='method-totp'
+              checked={methods.includes('totp')}
+              onCheckedChange={(checked) => handleToggleMethod('totp', checked)}
+              disabled={setMethods.isPending || !hasTOTP}
+            />
           </div>
-        )}
-      </CardContent>
-    </Card>
+
+          <div className='flex items-center justify-between py-4'>
+            <div className='space-y-1 pr-4'>
+              <Label htmlFor='method-email' className='text-sm font-medium'>
+                Email code
+              </Label>
+              <p className='text-muted-foreground text-xs leading-relaxed'>
+                Receive a verification code by email
+              </p>
+            </div>
+            <Switch
+              id='method-email'
+              checked={methods.includes('email')}
+              onCheckedChange={(checked) =>
+                handleToggleMethod('email', checked)
+              }
+              disabled={
+                setMethods.isPending ||
+                (methods.length === 1 && methods.includes('email'))
+              }
+            />
+          </div>
+        </div>
+      )}
+    </Section>
   )
 }
 
@@ -368,22 +337,15 @@ function PasskeysSection() {
   const handleRegister = async () => {
     setIsRegistering(true)
     try {
-      // Begin registration
       const beginResult = await registerBegin.mutateAsync()
-
-      // Perform WebAuthn ceremony
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const credential = await startRegistration({
         optionsJSON: beginResult.options as any,
       })
-
-      // Complete registration
       await registerFinish.mutateAsync({
         ceremony: beginResult.ceremony,
         credential,
         name: passkeyName || 'Passkey',
       })
-
       toast.success('Passkey registered')
       setRegisterDialogOpen(false)
       setPasskeyName('')
@@ -418,70 +380,59 @@ function PasskeysSection() {
   const passkeys = data?.passkeys ?? []
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className='flex items-center gap-2'>
-          <Key className='h-5 w-5' />
-          Passkeys
-        </CardTitle>
-        <CardDescription>
-          Sign in without a password using biometrics or security keys
-        </CardDescription>
-        <CardAction>
-          <Dialog open={registerDialogOpen} onOpenChange={setRegisterDialogOpen}>
-            <Button
-              variant='outline'
-              size='sm'
-              onClick={() => setRegisterDialogOpen(true)}
-            >
-              Add passkey
-              <Plus className='ml-2 h-4 w-4' />
-            </Button>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Register passkey</DialogTitle>
-                <DialogDescription>
-                  Use a security key, fingerprint, or face recognition to sign in
-                  without a password.
-                </DialogDescription>
-              </DialogHeader>
-              <div className='py-4'>
-                <Label htmlFor='passkey-name'>Passkey name</Label>
-                <Input
-                  id='passkey-name'
-                  placeholder='My passkey'
-                  value={passkeyName}
-                  onChange={(e) => setPasskeyName(e.target.value)}
-                  className='mt-2'
-                />
-              </div>
-              <DialogFooter>
-                <Button onClick={handleRegister} disabled={isRegistering}>
-                  Register
-                  {isRegistering && (
-                    <Loader2 className='ml-2 h-4 w-4 animate-spin' />
-                  )}
-                </Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-        </CardAction>
+    <Card className='shadow-md'>
+      <CardHeader className='border-b/60 border-b pb-4 flex flex-row items-center justify-between'>
+        <div className='space-y-1'>
+          <CardTitle className='text-lg'>Passkeys</CardTitle>
+          <CardDescription>Sign in with biometrics or security keys</CardDescription>
+        </div>
+        <Dialog open={registerDialogOpen} onOpenChange={setRegisterDialogOpen}>
+          <Button
+            variant='outline'
+            size='sm'
+            onClick={() => setRegisterDialogOpen(true)}
+          >
+            Add passkey
+            <Plus className='ml-2 h-4 w-4' />
+          </Button>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Register passkey</DialogTitle>
+              <DialogDescription>
+                Use a security key, fingerprint, or face recognition.
+              </DialogDescription>
+            </DialogHeader>
+            <div className='py-4'>
+              <Label htmlFor='passkey-name'>Passkey name</Label>
+              <Input
+                id='passkey-name'
+                placeholder='My passkey'
+                value={passkeyName}
+                onChange={(e) => setPasskeyName(e.target.value)}
+                className='mt-2'
+              />
+            </div>
+            <DialogFooter>
+              <Button onClick={handleRegister} disabled={isRegistering}>
+                Register
+                {isRegistering && (
+                  <Loader2 className='ml-2 h-4 w-4 animate-spin' />
+                )}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </CardHeader>
-      <CardContent>
+      <CardContent className='pt-2'>
         {isLoading ? (
-          <div className='space-y-3'>
+          <div className='space-y-3 py-4'>
             <Skeleton className='h-10 w-full' />
             <Skeleton className='h-10 w-full' />
           </div>
         ) : passkeys.length === 0 ? (
-          <div className='bg-muted/50 rounded-lg border border-dashed p-8 text-center'>
+          <div className='bg-muted/30 rounded-lg border border-dashed p-8 text-center my-4'>
             <Key className='text-muted-foreground mx-auto mb-3 h-10 w-10 opacity-50' />
-            <p className='text-muted-foreground mb-1 text-sm font-medium'>
-              No passkeys registered
-            </p>
-            <p className='text-muted-foreground text-xs'>
-              Add a passkey to sign in without a password
-            </p>
+            <p className='text-sm font-medium'>No passkeys registered</p>
           </div>
         ) : (
           <Table>
@@ -542,9 +493,7 @@ function AuthenticatorSection() {
         setSetupData(null)
         setVerifyCode('')
       } else {
-        toast.error('Invalid code', {
-          description: 'Please check the code and try again.',
-        })
+        toast.error('Invalid code')
       }
     } catch (error) {
       toast.error(getErrorMessage(error, 'Failed to verify code'))
@@ -560,150 +509,84 @@ function AuthenticatorSection() {
     })
   }
 
-  const handleCopySecret = () => {
-    if (setupData?.secret) {
-      navigator.clipboard.writeText(setupData.secret)
-      toast.success('Secret copied to clipboard')
-    }
-  }
-
   const isEnabled = data?.enabled ?? false
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className='flex items-center gap-2'>
-          <Smartphone className='h-5 w-5' />
-          Authenticator app
-        </CardTitle>
-        <CardDescription>
-          Use time-based codes from an authenticator app
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        {isLoading ? (
-          <Skeleton className='h-16 w-full' />
-        ) : setupData ? (
-          <div className='space-y-6'>
-            <div className='space-y-3'>
-              <p className='text-sm font-medium'>
-                Scan this QR code with your TOTP authenticator app
-              </p>
-              <div className='flex justify-center rounded-xl border-2 bg-white p-6 shadow-sm'>
-                <QRCodeSVG value={setupData.url} size={200} />
-              </div>
-            </div>
-            <div className='space-y-2.5'>
-              <Label className='text-sm font-medium'>
-                Or enter this secret manually
-              </Label>
-              <div className='flex items-center gap-2'>
-                <code className='bg-muted flex-1 rounded-md border px-3 py-2 font-mono text-sm'>
-                  {setupData.secret}
-                </code>
-                <Button variant='outline' size='sm' onClick={handleCopySecret}>
-                  <Copy className='h-4 w-4' />
-                </Button>
-              </div>
-            </div>
-            <div className='border-t pt-4 space-y-2.5'>
-              <Label htmlFor='totp-verify' className='text-sm font-medium'>
-                Enter verification code
-              </Label>
-              <div className='flex items-center gap-2'>
-                <Input
-                  id='totp-verify'
-                  placeholder='000000'
-                  value={verifyCode}
-                  onChange={(e) => setVerifyCode(e.target.value)}
-                  className='w-32 font-mono text-center text-lg tracking-widest'
-                  maxLength={6}
-                />
-                <Button
-                  onClick={handleVerify}
-                  disabled={isVerifying || !verifyCode}
-                >
-                  Verify
-                  {isVerifying && (
-                    <Loader2 className='ml-2 h-4 w-4 animate-spin' />
-                  )}
-                </Button>
-                <Button
-                  variant='ghost'
-                  onClick={() => {
-                    setSetupData(null)
-                    setVerifyCode('')
-                  }}
-                >
-                  Cancel
-                </Button>
-              </div>
+    <Section
+      title='Authenticator App'
+      description='Use an authenticator app to generate one-time codes'
+    >
+      {isLoading ? (
+        <div className='py-2'>
+          <Skeleton className='h-20 w-full' />
+        </div>
+      ) : setupData ? (
+        <div className='space-y-6 py-4'>
+          <div className='space-y-3'>
+            <p className='text-sm font-medium'>1. Scan QR Code</p>
+            <div className='flex justify-center rounded-xl border-2 bg-white p-6 shadow-sm'>
+              <QRCodeSVG value={setupData.url} size={200} />
             </div>
           </div>
-        ) : isEnabled ? (
-          <div className='flex items-center justify-between rounded-lg border bg-green-50 dark:bg-green-950/20 px-4 py-3'>
+          <div className='space-y-2.5'>
+            <Label className='text-sm font-medium'>2. Manual Entry</Label>
+            <DataChip value={setupData.secret} chipClassName='flex-1' />
+          </div>
+          <div className='border-t pt-6 space-y-4'>
+            <p className='text-sm font-medium'>3. Verify Code</p>
             <div className='flex items-center gap-3'>
-              <div className='flex h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30'>
-                <Check className='h-5 w-5 text-green-600 dark:text-green-500' />
-              </div>
-              <div>
-                <p className='text-sm font-medium text-green-900 dark:text-green-100'>
-                  Authenticator app is active
-                </p>
-                <p className='text-muted-foreground text-xs'>
-                  Your account is protected with 2FA
-                </p>
-              </div>
+              <Input
+                placeholder='000000'
+                value={verifyCode}
+                onChange={(e) => setVerifyCode(e.target.value)}
+                className='w-32 font-mono text-center'
+                maxLength={6}
+              />
+              <Button
+                onClick={handleVerify}
+                disabled={isVerifying || !verifyCode}
+              >
+                Verify & Enable
+                {isVerifying && <Loader2 className='ml-2 h-4 w-4 animate-spin' />}
+              </Button>
+              <Button variant='ghost' onClick={() => setSetupData(null)}>Cancel</Button>
             </div>
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button variant='outline' size='sm'>
-                  Disable
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Disable authenticator?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    This will remove the authenticator app from your account. If
-                    it's a required login method, you'll need to update your login
-                    requirements first.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleDisable}>
-                    Disable
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
           </div>
-        ) : (
-          <div className='flex items-center justify-between rounded-lg border border-dashed bg-muted/30 px-4 py-6'>
-            <div className='flex items-center gap-3'>
-              <div className='flex h-10 w-10 items-center justify-center rounded-full bg-muted'>
-                <Smartphone className='text-muted-foreground h-5 w-5' />
-              </div>
-              <p className='text-muted-foreground text-sm'>
-                Add an authenticator app for additional security
-              </p>
+        </div>
+      ) : isEnabled ? (
+        <div className='flex items-center justify-between py-4'>
+          <div className='flex items-center gap-3'>
+            <div className='flex h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30'>
+              <Check className='h-5 w-5 text-green-600 dark:text-green-500' />
             </div>
-            <Button
-              variant='outline'
-              size='sm'
-              onClick={handleSetup}
-              disabled={setupTotp.isPending}
-            >
-              Set up
-              {setupTotp.isPending && (
-                <Loader2 className='ml-2 h-4 w-4 animate-spin' />
-              )}
-            </Button>
+            <div>
+              <p className='text-sm font-medium'>Status: Enabled</p>
+              <p className='text-muted-foreground text-xs'>Authenticator app is active</p>
+            </div>
           </div>
-        )}
-      </CardContent>
-    </Card>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant='destructive' size='sm'>Disable</Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Disable authenticator?</AlertDialogTitle>
+                <AlertDialogDescription>This will remove the app from your account.</AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleDisable}>Disable</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
+      ) : (
+        <div className='py-6 text-center'>
+          <p className='text-muted-foreground mb-4 text-sm'>Add an app for additional security</p>
+          <Button onClick={handleSetup} disabled={setupTotp.isPending}>Set up authenticator</Button>
+        </div>
+      )}
+    </Section>
   )
 }
 
@@ -721,136 +604,68 @@ function RecoveryCodesSection() {
       const result = await generateCodes.mutateAsync()
       setShowCodes(result.codes)
     } catch (error) {
-      toast.error(getErrorMessage(error, 'Failed to generate recovery codes'))
-    }
-  }
-
-  const handleCopyCodes = () => {
-    if (showCodes) {
-      navigator.clipboard.writeText(showCodes.join('\n'))
-      toast.success('Recovery codes copied to clipboard')
+      toast.error(getErrorMessage(error, 'Failed to generate codes'))
     }
   }
 
   const count = data?.count ?? 0
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className='flex items-center gap-2'>
-          <RefreshCw className='h-5 w-5' />
-          Recovery codes
-        </CardTitle>
-        <CardDescription>
-          One-time use codes for account recovery
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        {isLoading ? (
-          <Skeleton className='h-16 w-full' />
-        ) : showCodes ? (
-          <div className='space-y-5'>
-            <div className='rounded-lg border border-amber-200 bg-amber-50 dark:bg-amber-950/20 dark:border-amber-900 p-4'>
-              <p className='flex items-center gap-2 text-sm font-medium text-amber-900 dark:text-amber-100'>
-                <Shield className='h-4 w-4' />
-                Save these recovery codes in a secure place
-              </p>
-              <p className='text-muted-foreground mt-1 text-xs'>
-                Each code can only be used once. Store them safely.
-              </p>
-            </div>
-            <div className='bg-muted/50 rounded-xl border-2 p-5'>
-              <div className='grid grid-cols-2 gap-3 font-mono text-sm'>
-                {showCodes.map((code, i) => (
-                  <div
-                    key={i}
-                    className='bg-background flex items-center justify-center rounded-md border px-3 py-2.5 font-semibold tracking-wide shadow-sm'
-                  >
-                    {code}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className='flex gap-2'>
-              <Button variant='outline' size='sm' onClick={handleCopyCodes}>
-                Copy all
-                <Copy className='ml-2 h-4 w-4' />
-              </Button>
-              <Button
-                variant='ghost'
-                size='sm'
-                onClick={() => setShowCodes(null)}
-              >
-                Done
-              </Button>
+    <Section
+      title='Recovery Codes'
+      description='Backup codes for account recovery'
+    >
+      {isLoading ? (
+        <div className='py-2'><Skeleton className='h-20 w-full' /></div>
+      ) : showCodes ? (
+        <div className='space-y-5 py-4'>
+          <Alert variant='destructive' className='bg-amber-50 dark:bg-amber-950/20 border-amber-200'>
+            <Shield className='h-4 w-4 text-amber-600' />
+            <AlertTitle>Save these codes</AlertTitle>
+            <AlertDescription>Each code can only be used once.</AlertDescription>
+          </Alert>
+          <div className='bg-muted/30 rounded-xl border p-5'>
+            <div className='grid grid-cols-2 gap-3 font-mono text-sm'>
+              {showCodes.map((code, i) => (
+                <div key={i} className='bg-background flex items-center justify-center rounded-md border py-2.5 font-semibold'>{code}</div>
+              ))}
             </div>
           </div>
-        ) : (
-          <div className='flex items-center justify-between'>
-            <div className='flex-1'>
-              {count > 0 ? (
-                <div className='flex items-center gap-3'>
-                  <div className='flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30'>
-                    <RefreshCw className='h-5 w-5 text-blue-600 dark:text-blue-500' />
-                  </div>
-                  <div>
-                    <p className='text-sm font-medium'>
-                      {count} code{count !== 1 ? 's' : ''} remaining
-                    </p>
-                    <p className='text-muted-foreground text-xs leading-relaxed'>
-                      Use a recovery code if you lose access to other methods
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                <div className='flex items-center gap-3'>
-                  <div className='flex h-10 w-10 items-center justify-center rounded-full bg-muted'>
-                    <RefreshCw className='text-muted-foreground h-5 w-5' />
-                  </div>
-                  <p className='text-muted-foreground text-sm'>
-                    Generate recovery codes as a backup login method
-                  </p>
-                </div>
-              )}
-            </div>
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button
-                  variant='outline'
-                  size='sm'
-                  disabled={generateCodes.isPending}
-                >
-                  {count > 0 ? 'Regenerate' : 'Generate'}
-                  {generateCodes.isPending && (
-                    <Loader2 className='ml-2 h-4 w-4 animate-spin' />
-                  )}
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>
-                    {count > 0
-                      ? 'Regenerate recovery codes?'
-                      : 'Generate recovery codes?'}
-                  </AlertDialogTitle>
-                  <AlertDialogDescription>
-                    {count > 0
-                      ? 'This will invalidate your existing recovery codes and generate new ones. Make sure to save the new codes.'
-                      : 'You will receive 10 recovery codes. Save them in a secure place.'}
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleGenerate}>
-                    {count > 0 ? 'Regenerate' : 'Generate'}
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+          <div className='flex gap-2'>
+            <Button variant='outline' size='sm' onClick={() => {
+              navigator.clipboard.writeText(showCodes.join('\n'))
+              toast.success('Codes copied')
+            }}>Copy all</Button>
+            <Button variant='ghost' size='sm' onClick={() => setShowCodes(null)}>Done</Button>
           </div>
-        )}
-      </CardContent>
-    </Card>
+        </div>
+      ) : (
+        <div className='flex items-center justify-between py-4'>
+          <div className='flex items-center gap-3'>
+            <div className='flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30'>
+              <RefreshCw className='h-5 w-5 text-blue-600 dark:text-blue-500' />
+            </div>
+            <div>
+              <p className='text-sm font-medium'>{count > 0 ? `${count} remaining` : 'No codes'}</p>
+              <p className='text-muted-foreground text-xs'>Recovery codes</p>
+            </div>
+          </div>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant='outline' size='sm'>{count > 0 ? 'Regenerate' : 'Generate'}</Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogTitle>{count > 0 ? 'Regenerate?' : 'Generate?'}</AlertDialogTitle>
+              <AlertDialogDescription>Make sure to save the new codes.</AlertDialogDescription>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleGenerate}>Proceed</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
+      )}
+    </Section>
   )
 }
 
@@ -866,11 +681,7 @@ export function UserAccount() {
     return (
       <>
         <PageHeader title="Account" icon={<User className='size-4 md:size-5' />} />
-        <Main>
-          <p className='text-muted-foreground'>
-            Failed to load account information
-          </p>
-        </Main>
+        <Main><p className='text-muted-foreground'>Failed to load account</p></Main>
       </>
     )
   }
@@ -878,9 +689,8 @@ export function UserAccount() {
   return (
     <>
       <PageHeader title="Account" icon={<User className='size-4 md:size-5' />} />
-
       <Main>
-        <div className='space-y-8'>
+        <div className='space-y-8 pb-10'>
           <IdentitySection />
           <LoginRequirementsSection />
           <PasskeysSection />

@@ -2,12 +2,6 @@ import { useState, useMemo } from 'react'
 import { Check, ChevronsUpDown, Loader2, RotateCcw, Sliders } from 'lucide-react'
 import {
   cn,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardDescription,
-  CardFooter,
   useTheme,
   AlertDialog,
   AlertDialogAction,
@@ -25,7 +19,6 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  Label,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -40,6 +33,8 @@ import {
   usePageTitle,
   getErrorMessage,
   toast,
+  Section,
+  FieldRow,
 } from '@mochi/common'
 import {
   usePreferencesData,
@@ -55,7 +50,6 @@ const themeLabels: Record<string, string> = {
 
 function getTimezones(): string[] {
   try {
-    // TypeScript doesn't have types for supportedValuesOf yet
     return (
       (
         Intl as { supportedValuesOf?: (key: string) => string[] }
@@ -107,7 +101,7 @@ function TimezoneSelect({
           <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='w-[350px] p-0'>
+      <PopoverContent className='w-[350px] p-0' align="start">
         <Command>
           <CommandInput placeholder='Search time zone...' />
           <CommandList>
@@ -153,26 +147,6 @@ function TimezoneSelect({
         </Command>
       </PopoverContent>
     </Popover>
-  )
-}
-
-function PreferenceRow({
-  label,
-  description,
-  children,
-}: {
-  label: string
-  description: string
-  children: React.ReactNode
-}) {
-  return (
-    <div className='flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between first:pt-0 last:pb-0'>
-      <div className='space-y-1 flex-1'>
-        <Label className='text-sm font-medium'>{label}</Label>
-        <p className='text-muted-foreground text-xs leading-relaxed'>{description}</p>
-      </div>
-      <div className='w-full sm:w-64'>{children}</div>
-    </div>
   )
 }
 
@@ -228,91 +202,89 @@ export function UserPreferences() {
     <>
       <PageHeader title="Preferences" icon={<Sliders className='size-4 md:size-5' />} />
 
-      <Main>
-        {isLoading ? (
-          <div className='space-y-6'>
-            <Skeleton className='h-16 w-full' />
-            <Skeleton className='h-16 w-full' />
-            <Skeleton className='h-16 w-full' />
-          </div>
-        ) : data ? (
-          <Card>
-            <CardHeader>
-              <CardTitle>General</CardTitle>
-              <CardDescription>
-                Manage your display settings and preferences
-              </CardDescription>
-            </CardHeader>
-            <CardContent className='divide-y'>
-              <PreferenceRow label='Theme' description='Appearance'>
-                <Select
-                  value={data.preferences.theme}
-                  onValueChange={(value) => handleChange('theme', value)}
-                  disabled={setPreference.isPending}
+      <Main className="space-y-8">
+        <Section 
+          title="General" 
+          description="Manage your display settings and preferences"
+          action={
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant='ghost'
+                  size='sm'
+                  disabled={isLoading || resetPreferences.isPending}
+                  className="text-muted-foreground hover:text-foreground"
                 >
-                  <SelectTrigger className='w-full'>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.entries(themeLabels).map(([value, label]) => (
-                      <SelectItem key={value} value={value}>
-                        {label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </PreferenceRow>
-
-              <PreferenceRow
-                label='Time zone'
-                description='Time zone for displaying dates and times'
-              >
-                <TimezoneSelect
-                  value={data.preferences.timezone}
-                  onChange={(value) => handleChange('timezone', value)}
-                  disabled={setPreference.isPending}
-                />
-              </PreferenceRow>
-            </CardContent>
-            <CardFooter className='border-t bg-muted/50 px-6 py-4'>
-              <div className='flex w-full items-center justify-between'>
-                <p className='text-sm text-muted-foreground'>
-                  Resetting will restore default settings.
-                </p>
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button
-                      variant='outline'
-                      size='sm'
-                      disabled={isLoading || resetPreferences.isPending}
-                    >
-                      {resetPreferences.isPending ? (
-                        <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-                      ) : (
-                        <RotateCcw className='mr-2 h-4 w-4' />
-                      )}
-                      Reset to Defaults
-                    </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>Reset preferences?</AlertDialogTitle>
-                      <AlertDialogDescription>
-                        This will reset all preferences to their default values.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction onClick={handleReset}>
-                        Reset
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
+                  {resetPreferences.isPending ? (
+                    <Loader2 className='mr-2 h-3.5 w-3.5 animate-spin' />
+                  ) : (
+                    <RotateCcw className='mr-2 h-3.5 w-3.5' />
+                  )}
+                  Reset to Defaults
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Reset preferences?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This will reset all preferences to their default values.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleReset}>
+                    Reset
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          }
+        >
+          <div className='divide-y-0'>
+            {isLoading ? (
+              <div className='space-y-6 py-4'>
+                <Skeleton className='h-12 w-full' />
+                <Skeleton className='h-12 w-full' />
               </div>
-            </CardFooter>
-          </Card>
-        ) : null}
+            ) : data ? (
+              <>
+                <FieldRow label='Theme' description='Appearance'>
+                  <div className="w-full sm:w-64">
+                    <Select
+                      value={data.preferences.theme}
+                      onValueChange={(value) => handleChange('theme', value)}
+                      disabled={setPreference.isPending}
+                    >
+                      <SelectTrigger className='w-full'>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {Object.entries(themeLabels).map(([value, label]) => (
+                          <SelectItem key={value} value={value}>
+                            {label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </FieldRow>
+
+                <FieldRow
+                  label='Time zone'
+                  description='Used for displaying dates and times'
+                >
+                  <div className="w-full sm:w-64">
+                    <TimezoneSelect
+                      value={data.preferences.timezone}
+                      onChange={(value) => handleChange('timezone', value)}
+                      disabled={setPreference.isPending}
+                    />
+                  </div>
+                </FieldRow>
+              </>
+            ) : null}
+          </div>
+        </Section>
       </Main>
     </>
   )
