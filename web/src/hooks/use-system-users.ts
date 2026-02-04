@@ -5,9 +5,9 @@ import endpoints from '@/api/endpoints'
 import { apiClient } from '@mochi/common'
 import {
   type SystemUsersResponse,
-  type SystemUserSessionsResponse,
   systemUsersApi,
 } from '@/api/system-users'
+import type { SessionsData } from '@/types/users'
 
 export const systemUserKeys = {
   all: () => ['system-users'] as const,

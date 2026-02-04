@@ -57,7 +57,6 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  Skeleton,
   Table,
   TableBody,
   TableCell,
@@ -321,7 +320,7 @@ function SessionsDialog({ user }: { user: User }) {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {data.sessions.map((session) => (
+                {data.sessions.map((session: Session) => (
                   <TableRow key={session.code}>
                     <TableCell>{formatSession(session)}</TableCell>
                     <TableCell className='font-mono text-sm'>
