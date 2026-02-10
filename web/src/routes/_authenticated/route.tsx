@@ -25,6 +25,15 @@ export const Route = createFileRoute('/_authenticated')({
   beforeLoad: ({ location }) => {
     const store = useAuthStore.getState()
 
+    if (!store.isInitialized) {
+      store.initialize()
+    } else {
+      const cookieToken = getCookie('token')
+      if (cookieToken && cookieToken !== store.token) {
+        store.initialize()
+      }
+    }
+
     const token = getCookie('token') || store.token
 
     if (!token) {
