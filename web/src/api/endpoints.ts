@@ -57,6 +57,7 @@ const endpoints = {
     get: '/settings/domains/get',
     update: '/settings/domains/update',
     delete: '/settings/domains/delete',
+    verify: '/settings/domains/verify',
     routeCreate: '/settings/domains/route/create',
     routeUpdate: '/settings/domains/route/update',
     routeDelete: '/settings/domains/route/delete',

@@ -83,6 +83,23 @@ export function useDeleteDomain() {
   })
 }
 
+export function useVerifyDomain() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async (domain: string) => {
+      const response = await apiClient.post<{ verified: boolean }>(
+        endpoints.domains.verify,
+        { domain }
+      )
+      return response.data
+    },
+    onSuccess: (_, domain) => {
+      queryClient.invalidateQueries({ queryKey: ['domains'] })
+      queryClient.invalidateQueries({ queryKey: ['domains', domain] })
+    },
+  })
+}
+
 export function useCreateRoute() {
   const queryClient = useQueryClient()
   return useMutation({

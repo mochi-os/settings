@@ -10,6 +10,7 @@ import {
   Pencil,
   Plus,
   Route,
+  Search,
   Shield,
   Trash2,
   Users,
@@ -32,6 +33,7 @@ import {
   useDomainDetails,
   useUpdateDomain,
   useDeleteDomain,
+  useVerifyDomain,
   useCreateRoute,
   useUpdateRoute,
   useDeleteRoute,
@@ -781,21 +783,27 @@ function DelegationRow({
 function DomainDetails({
   domain,
   isAdmin,
+  onDelete,
+  isDeleting,
 }: {
   domain: Domain
   isAdmin: boolean
+  onDelete?: () => void
+  isDeleting?: boolean
 }) {
   const [expanded, setExpanded] = useState(false)
   const { data, isLoading, refetch } = useDomainDetails(
     expanded ? domain.domain : ''
   )
   const updateDomain = useUpdateDomain()
+  const verifyDomain = useVerifyDomain()
   const deleteRoute = useDeleteRoute()
   const deleteDelegation = useDeleteDelegation()
   const [deletingRoute, setDeletingRoute] = useState<string | null>(null)
   const [deletingDelegation, setDeletingDelegation] = useState<string | null>(
     null
   )
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 
   const handleToggleVerified = (checked: boolean) => {
     updateDomain.mutate(
@@ -909,6 +917,47 @@ function DomainDetails({
                   disabled={updateDomain.isPending}
                 />
               </div>
+              {domain.token && (
+                <div className='flex items-center justify-between'>
+                  <div className='space-y-0.5'>
+                    <Label>DNS verification</Label>
+                    <p className='text-muted-foreground text-xs'>
+                      Create a TXT record for <code className='bg-muted rounded px-1'>_mochi-verify.{domain.domain}</code>
+                    </p>
+                    <p className='text-muted-foreground font-mono text-xs break-all'>
+                      mochi-verify={domain.token}
+                    </p>
+                  </div>
+                  {!domain.verified && (
+                    <Button
+                      size='sm'
+                      variant='outline'
+                      disabled={verifyDomain.isPending}
+                      onClick={() => {
+                        verifyDomain.mutate(domain.domain, {
+                          onSuccess: (data) => {
+                            if (data.verified) {
+                              toast.success('Domain verified')
+                            } else {
+                              toast.error('TXT record not found')
+                            }
+                          },
+                          onError: (error) => {
+                            toast.error(getErrorMessage(error, 'Failed to verify domain'))
+                          },
+                        })
+                      }}
+                    >
+                      {verifyDomain.isPending ? (
+                        <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                      ) : (
+                        <Search className='mr-2 h-4 w-4' />
+                      )}
+                      Verify DNS
+                    </Button>
+                  )}
+                </div>
+              )}
               <div className='flex items-center justify-between'>
                 <div className='space-y-0.5'>
                   <Label>TLS Enabled</Label>
@@ -922,14 +971,6 @@ function DomainDetails({
                   disabled={updateDomain.isPending}
                 />
               </div>
-              {domain.token && (
-                <div className='space-y-1'>
-                  <Label>Verification token</Label>
-                  <p className='text-muted-foreground font-mono text-xs break-all'>
-                    mochi-verify={domain.token}
-                  </p>
-                </div>
-              )}
             </div>
           )}
 
@@ -1025,6 +1066,47 @@ function DomainDetails({
               )}
             </div>
           )}
+
+          {/* Admin-only: Delete domain */}
+          {isAdmin && onDelete && (
+            <>
+              <hr className='border-border' />
+              <div className='flex items-center justify-between'>
+                <div className='space-y-0.5'>
+                  <Label>Delete domain</Label>
+                  <p className='text-muted-foreground text-xs'>
+                    Permanently delete this domain and all its routes.
+                  </p>
+                </div>
+                <Button
+                  variant='outline'
+                  size='sm'
+                  onClick={() => setShowDeleteDialog(true)}
+                  disabled={isDeleting}
+                >
+                  <Trash2 className='mr-2 size-4' />
+                  Delete
+                </Button>
+              </div>
+              <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Delete domain?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This will permanently delete "{domain.domain}" and
+                      all its routes. This action cannot be undone.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction variant='destructive' onClick={onDelete}>
+                      Delete domain
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </>
+          )}
         </div>
       )}
     </div>
@@ -1092,48 +1174,13 @@ export function Domains() {
               </div>
             ) : data?.domains && data.domains.length > 0 ? (
               data.domains.map((domain) => (
-                <div key={domain.domain} className='relative'>
-                  <DomainDetails domain={domain} isAdmin={isAdmin} />
-                  {isAdmin && (
-                    <div className='absolute top-4 right-8'>
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button
-                            variant='ghost'
-                            size='icon'
-                            className='h-8 w-8'
-                            disabled={deletingDomain === domain.domain}
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            {deletingDomain === domain.domain ? (
-                              <Loader2 className='h-4 w-4 animate-spin' />
-                            ) : (
-                              <Trash2 className='h-4 w-4' />
-                            )}
-                          </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>Delete domain?</AlertDialogTitle>
-                            <AlertDialogDescription>
-                              This will permanently delete "{domain.domain}" and
-                              all its routes. This action cannot be undone.
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogAction
-                              variant='destructive'
-                              onClick={() => handleDelete(domain.domain)}
-                            >
-                              Delete
-                            </AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
-                    </div>
-                  )}
-                </div>
+                <DomainDetails
+                  key={domain.domain}
+                  domain={domain}
+                  isAdmin={isAdmin}
+                  onDelete={() => handleDelete(domain.domain)}
+                  isDeleting={deletingDomain === domain.domain}
+                />
               ))
             ) : (
               <div className='text-muted-foreground py-8 text-center'>

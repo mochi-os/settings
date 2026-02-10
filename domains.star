@@ -113,6 +113,17 @@ def action_domains_delete(a):
     mochi.domain.delete(domain)
     a.json({"ok": True})
 
+def action_domains_verify(a):
+    """Verify domain ownership via DNS TXT record (admin only)"""
+    if not require_admin(a):
+        return
+    domain = a.input("domain")
+    if not domain:
+        a.error(400, "Missing domain")
+        return
+    result = mochi.domain.verify(domain)
+    a.json({"verified": result})
+
 # Route management
 
 def action_domains_route_create(a):
