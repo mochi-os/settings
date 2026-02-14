@@ -56,13 +56,14 @@ import {
   useAccounts,
   usePageTitle,
   getErrorMessage,
+  getAppPath,
   getProviderLabel,
   toast,
   type Account,
   type Provider,
 } from '@mochi/common'
 
-const APP_BASE = '/settings'
+const APP_BASE = getAppPath()
 
 function getProviderIcon(type: string) {
   switch (type) {

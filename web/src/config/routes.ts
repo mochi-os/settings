@@ -1,21 +1,4 @@
 export const APP_ROUTES = {
-  // External apps
-  HOME: {
-    BASE: '/',
-    HOME: '/',
-  },
-  CHAT: {
-    BASE: '/chat/',
-    HOME: '/chat/',
-  },
-  FRIENDS: {
-    BASE: '/friends/',
-    HOME: '/friends/',
-  },
-  NOTIFICATIONS: {
-    BASE: '/notifications/',
-    HOME: '/notifications/',
-  },
   // Settings app (current)
   SETTINGS: {
     BASE: '/',
