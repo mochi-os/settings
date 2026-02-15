@@ -2,13 +2,19 @@
 <html lang="en">
   <head>
     <script>
-      ;(function () {
-        var path = window.location.pathname
-        var match = path.match(/^\/[^/]+/)
-        var base = match ? match[0] + '/' : '/'
-        var baseEl = document.createElement('base')
-        baseEl.href = base
-        document.head.appendChild(baseEl)
+      (function() {
+        var app = document.querySelector('meta[name="mochi:app"]')
+        var fp = document.querySelector('meta[name="mochi:fingerprint"]')
+        var domain = document.querySelector('meta[name="mochi:domain"]')
+        var base = '/'
+        if (domain) base = '/'
+        else if (fp && app) base = '/' + app.content + '/' + fp.content + '/'
+        else if (fp) base = '/' + fp.content + '/'
+        else if (app) base = '/' + app.content + '/'
+        else { var m = location.pathname.match(/^\/([^/]+)/); if (m) base = '/' + m[1] + '/' }
+        var el = document.createElement('base')
+        el.href = base
+        document.head.appendChild(el)
       })()
     </script>
     <meta charset="UTF-8" />
