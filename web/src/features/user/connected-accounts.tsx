@@ -43,7 +43,8 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
-  Skeleton,
+  EmptyState,
+  ListSkeleton,
   Switch,
   Table,
   TableBody,
@@ -447,21 +448,14 @@ export function ConnectedAccounts() {
           </CardHeader>
           <CardContent>
             {isLoading ? (
-              <div className='space-y-3'>
-                <Skeleton className='h-12 w-full' />
-                <Skeleton className='h-12 w-full' />
-                <Skeleton className='h-12 w-full' />
-              </div>
+              <ListSkeleton variant='simple' height='h-12' count={3} />
             ) : accounts.length === 0 ? (
-              <div className='bg-muted/50 rounded-lg border border-dashed p-8 text-center'>
-                <Link className='text-muted-foreground mx-auto mb-3 h-10 w-10 opacity-50' />
-                <p className='text-muted-foreground mb-1 text-sm font-medium'>
-                  No connected accounts
-                </p>
-                <p className='text-muted-foreground text-xs'>
-                  Add an account to enable notifications and integrations
-                </p>
-              </div>
+              <EmptyState
+                icon={Link}
+                title='No connected accounts'
+                description='Add an account to enable notifications and integrations.'
+                className='py-8'
+              />
             ) : (
               <Table>
                 <TableHeader>

@@ -13,7 +13,8 @@ import {
   AlertDialogTrigger,
   Button,
   Input,
-  Skeleton,
+  GeneralError,
+  ListSkeleton,
   Switch,
   PageHeader,
   Main,
@@ -235,7 +236,7 @@ export function SystemSettings() {
       <>
         <PageHeader title="System settings" icon={<Settings className='size-4 md:size-5' />} />
         <Main>
-          <p className='text-muted-foreground'>Failed to load settings</p>
+          <GeneralError error={error} minimal mode='inline' />
         </Main>
       </>
     )
@@ -265,12 +266,7 @@ export function SystemSettings() {
         >
           <div className='divide-y-0'>
             {isLoading ? (
-              <div className='space-y-6 py-4'>
-                <Skeleton className='h-12 w-full' />
-                <Skeleton className='h-12 w-full' />
-                <Skeleton className='h-12 w-full' />
-                <Skeleton className='h-12 w-full' />
-              </div>
+              <ListSkeleton variant='simple' height='h-12' count={4} />
             ) : (
               sortedSettings.map((setting) => (
                 <SettingField

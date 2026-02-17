@@ -22,7 +22,9 @@ import {
   DialogTrigger,
   Input,
   Label,
-  Skeleton,
+  EmptyState,
+  GeneralError,
+  ListSkeleton,
   Table,
   TableBody,
   TableCell,
@@ -246,7 +248,7 @@ export function UserTokens() {
       <>
         <PageHeader title="Authentication tokens" icon={<Key className='size-4 md:size-5' />} />
         <Main>
-          <p className='text-muted-foreground'>Failed to load tokens</p>
+          <GeneralError error={error} minimal mode='inline' />
         </Main>
       </>
     )
@@ -275,21 +277,14 @@ export function UserTokens() {
           </CardHeader>
           <CardContent>
             {isLoading ? (
-              <div className='space-y-3'>
-                <Skeleton className='h-10 w-full' />
-                <Skeleton className='h-10 w-full' />
-                <Skeleton className='h-10 w-full' />
-              </div>
+              <ListSkeleton variant='simple' height='h-10' count={3} />
             ) : tokens.length === 0 ? (
-              <div className='bg-muted/50 rounded-lg border border-dashed p-8 text-center'>
-                <Key className='text-muted-foreground mx-auto mb-3 h-10 w-10 opacity-50' />
-                <p className='text-muted-foreground mb-1 text-sm font-medium'>
-                  No authentication tokens
-                </p>
-                <p className='text-muted-foreground text-xs'>
-                  Create a token to authenticate with git or the API
-                </p>
-              </div>
+              <EmptyState
+                icon={Key}
+                title='No authentication tokens'
+                description='Create a token to authenticate with git or the API.'
+                className='py-8'
+              />
             ) : (
               <Table>
                 <TableHeader>

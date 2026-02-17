@@ -62,8 +62,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  EmptyState,
+  GeneralError,
   Input,
   Label,
+  ListSkeleton,
   Skeleton,
   Switch,
   Table,
@@ -1141,7 +1144,7 @@ export function Domains() {
       <>
         <PageHeader title="Domains" icon={<Globe className='size-4 md:size-5' />} />
         <Main>
-          <p className='text-muted-foreground'>Failed to load domains</p>
+          <GeneralError error={error} minimal mode='inline' />
         </Main>
       </>
     )
@@ -1168,10 +1171,7 @@ export function Domains() {
         <Card>
           <CardContent className='p-6 divide-y'>
             {isLoading ? (
-              <div className='space-y-4'>
-                <Skeleton className='h-20 w-full' />
-                <Skeleton className='h-20 w-full' />
-              </div>
+              <ListSkeleton variant='simple' height='h-20' count={2} />
             ) : data?.domains && data.domains.length > 0 ? (
               data.domains.map((domain) => (
                 <DomainDetails
@@ -1183,19 +1183,14 @@ export function Domains() {
                 />
               ))
             ) : (
-              <div className='text-muted-foreground py-8 text-center'>
-                <Shield className='mx-auto mb-4 h-12 w-12 opacity-50' />
-                {isAdmin ? (
-                  <p>No domains configured</p>
-                ) : (
-                  <>
-                    <p>You don't have access to any domains.</p>
-                    <p className='mt-1 text-sm'>
-                      Contact an administrator to get a delegation.
-                    </p>
-                  </>
-                )}
-              </div>
+              <EmptyState
+                icon={Shield}
+                title={isAdmin ? 'No domains configured' : "You don't have access to any domains."}
+                description={
+                  isAdmin ? undefined : 'Contact an administrator to get a delegation.'
+                }
+                className='py-8'
+              />
             )}
           </CardContent>
         </Card>

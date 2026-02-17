@@ -49,6 +49,7 @@ import {
   DialogTitle,
   Input,
   Label,
+  ListSkeleton,
   Skeleton,
   Switch,
   Table,
@@ -95,12 +96,7 @@ function IdentitySection() {
       description='Your personal account information'
     >
       {isLoading ? (
-        <div className='space-y-4 py-2'>
-          <Skeleton className='h-12 w-full' />
-          <Skeleton className='h-12 w-full' />
-          <Skeleton className='h-12 w-full' />
-          <Skeleton className='h-12 w-full' />
-        </div>
+        <ListSkeleton variant='simple' height='h-12' count={4} />
       ) : data?.identity ? (
         <div className='divide-y-0'>
           <FieldRow label="Name">
@@ -167,11 +163,7 @@ function LoginRequirementsSection() {
       description='Require all selected methods to log in'
     >
       {isLoading ? (
-        <div className='space-y-4 py-2'>
-          <Skeleton className='h-16 w-full' />
-          <Skeleton className='h-16 w-full' />
-          <Skeleton className='h-16 w-full' />
-        </div>
+        <ListSkeleton variant='simple' height='h-16' count={3} />
       ) : (
         <div className='space-y-0 divide-y-0'>
           <div className='flex items-center justify-between py-4 border-b border-border/40'>
@@ -427,10 +419,7 @@ function PasskeysSection() {
       </CardHeader>
       <CardContent className='pt-2'>
         {isLoading ? (
-          <div className='space-y-3 py-4'>
-            <Skeleton className='h-10 w-full' />
-            <Skeleton className='h-10 w-full' />
-          </div>
+          <ListSkeleton variant='simple' height='h-10' count={2} />
         ) : passkeys.length === 0 ? (
           <EmptyState
             icon={Key}
@@ -685,7 +674,7 @@ export function UserAccount() {
       <>
         <PageHeader title="Account" icon={<User className='size-4 md:size-5' />} />
         <Main>
-          <GeneralError error={error} minimal />
+          <GeneralError error={error} minimal mode='inline' />
         </Main>
       </>
     )

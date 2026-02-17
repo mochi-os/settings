@@ -1,7 +1,8 @@
 import { format } from 'date-fns'
 import { Activity } from 'lucide-react'
 import {
-  Skeleton,
+  GeneralError,
+  ListSkeleton,
   PageHeader,
   Main,
   Card,
@@ -27,7 +28,7 @@ export function SystemStatus() {
       <>
         <PageHeader title="Status" icon={<Activity className='size-4 md:size-5' />} />
         <Main>
-          <p className='text-muted-foreground'>Failed to load status</p>
+          <GeneralError error={error} minimal mode='inline' />
         </Main>
       </>
     )
@@ -53,10 +54,7 @@ export function SystemStatus() {
           </CardHeader>
           <CardContent>
             {isLoading ? (
-              <div className='space-y-3'>
-                <Skeleton className='h-4 w-48' />
-                <Skeleton className='h-4 w-64' />
-              </div>
+              <ListSkeleton variant='simple' height='h-4' count={2} />
             ) : (
               <dl className='grid gap-3 text-sm'>
                 <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
