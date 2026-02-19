@@ -120,7 +120,6 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Create user</DialogTitle>
-            <DialogDescription className="sr-only">Create user</DialogDescription>
           </DialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
@@ -209,7 +208,6 @@ function EditUserDialog({
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Edit user</DialogTitle>
-            <DialogDescription className="sr-only">Edit user</DialogDescription>
           </DialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
@@ -258,7 +256,7 @@ function EditUserDialog({
 
 function SessionsDialog({ user }: { user: User }) {
   const [open, setOpen] = useState(false)
-  const { data, isLoading, refetch } = useUserSessions(user.id)
+  const { data, isLoading, refetch } = useUserSessions(user.id, open)
   const revokeSession = useRevokeUserSessions()
 
   const handleRevoke = (code?: string) => {

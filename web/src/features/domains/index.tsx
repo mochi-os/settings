@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { AxiosError } from 'axios'
 import type { Domain, Route as RouteType, Delegation } from '@/types/domains'
 import {
   Check,
@@ -17,16 +16,6 @@ import {
   X,
 } from 'lucide-react'
 
-// Extract error message from Axios error or use fallback
-function getErrorMessage(error: unknown, fallback: string): string {
-  if (error instanceof AxiosError) {
-    return error.response?.data?.error || fallback
-  }
-  if (error instanceof Error) {
-    return error.message || fallback
-  }
-  return fallback
-}
 import {
   useDomainsData,
   useCreateDomain,
@@ -81,6 +70,7 @@ import {
   CardContent,
   usePageTitle,
   toast,
+  getErrorMessage,
 } from '@mochi/common'
 
 function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { format } from 'date-fns'
 import type { Passkey, TotpSetupResponse } from '@/types/account'
 import { startRegistration } from '@simplewebauthn/browser'
 import {
@@ -76,12 +75,8 @@ import {
   EmptyState,
   getErrorMessage,
   toast,
+  formatTimestamp,
 } from '@mochi/common'
-
-function formatTimestamp(timestamp: number): string {
-  if (timestamp === 0) return 'Never'
-  return format(new Date(timestamp * 1000), 'yyyy-MM-dd HH:mm')
-}
 
 // ============================================================================
 // Identity Section
@@ -280,10 +275,10 @@ function PasskeyRow({
         )}
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {formatTimestamp(passkey.created)}
+        {formatTimestamp(passkey.created, 'Never')}
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {formatTimestamp(passkey.last_used)}
+        {formatTimestamp(passkey.last_used, 'Never')}
       </TableCell>
       <TableCell className='text-right'>
         <div className='flex justify-end gap-1'>

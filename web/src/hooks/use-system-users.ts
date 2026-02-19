@@ -39,7 +39,7 @@ export const useCreateUser = () => {
       return response.data
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['system', 'users'] })
+      queryClient.invalidateQueries({ queryKey: systemUserKeys.all() })
     },
   })
 }
@@ -56,7 +56,7 @@ export function useUpdateUser() {
       return response.data
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['system', 'users'] })
+      queryClient.invalidateQueries({ queryKey: systemUserKeys.all() })
     },
   })
 }
@@ -71,7 +71,7 @@ export function useDeleteUser() {
       return response.data
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['system', 'users'] })
+      queryClient.invalidateQueries({ queryKey: systemUserKeys.all() })
     },
   })
 }
@@ -86,7 +86,7 @@ export function useSuspendUser() {
       return response.data
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['system', 'users'] })
+      queryClient.invalidateQueries({ queryKey: systemUserKeys.all() })
     },
   })
 }
@@ -101,16 +101,16 @@ export function useActivateUser() {
       return response.data
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['system', 'users'] })
+      queryClient.invalidateQueries({ queryKey: systemUserKeys.all() })
     },
   })
 }
 
-export function useUserSessions(userId: number) {
+export function useUserSessions(userId: number, enabled: boolean) {
   return useQueryWithError<SessionsData, Error>({
     queryKey: systemUserKeys.sessions(String(userId)),
     queryFn: () => systemUsersApi.getSessions(userId),
-    enabled: !!userId,
+    enabled: enabled && !!userId,
   })
 }
 
@@ -126,7 +126,7 @@ export function useRevokeUserSessions() {
     },
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ['system', 'users', variables.id, 'sessions'],
+        queryKey: systemUserKeys.sessions(String(variables.id)),
       })
     },
   })

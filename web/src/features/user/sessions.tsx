@@ -1,4 +1,3 @@
-import { format } from 'date-fns'
 import type { Session } from '@/types/account'
 import { Loader2, LogOut, Monitor } from 'lucide-react'
 import { useSessions, useRevokeSession } from '@/hooks/use-account'
@@ -32,12 +31,8 @@ import {
   usePageTitle,
   getErrorMessage,
   toast,
+  formatTimestamp,
 } from '@mochi/common'
-
-function formatTimestamp(timestamp: number): string {
-  if (timestamp === 0) return 'Never'
-  return format(new Date(timestamp * 1000), 'yyyy-MM-dd HH:mm:ss')
-}
 
 function SessionRow({
   session,
@@ -74,10 +69,10 @@ function SessionRow({
         </div>
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {formatTimestamp(session.created)}
+        {formatTimestamp(session.created, 'Never')}
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {formatTimestamp(session.accessed)}
+        {formatTimestamp(session.accessed, 'Never')}
       </TableCell>
       <TableCell className='text-right'>
         <AlertDialog>

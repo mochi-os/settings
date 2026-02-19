@@ -1,4 +1,3 @@
-import { format } from 'date-fns'
 import { Activity } from 'lucide-react'
 import {
   GeneralError,
@@ -9,15 +8,10 @@ import {
   CardHeader,
   CardTitle,
   CardContent,
-  usePageTitle
+  usePageTitle,
+  formatTimestamp,
 } from '@mochi/common'
 import { useSystemSettingsData } from '@/hooks/use-system-settings'
-
-function formatTimestamp(value: string): string {
-  const timestamp = parseInt(value, 10)
-  if (isNaN(timestamp)) return value
-  return format(new Date(timestamp * 1000), 'yyyy-MM-dd HH:mm:ss')
-}
 
 export function SystemStatus() {
   usePageTitle('Status')
@@ -64,7 +58,7 @@ export function SystemStatus() {
                 <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
                   <dt className='text-muted-foreground w-28 shrink-0'>Started</dt>
                   <dd className='font-mono text-xs'>
-                    {formatTimestamp(serverStarted)}
+                    {formatTimestamp(parseInt(serverStarted, 10), serverStarted)}
                   </dd>
                 </div>
               </dl>
