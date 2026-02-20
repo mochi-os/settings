@@ -15,18 +15,7 @@ import { useSystemSettingsData } from '@/hooks/use-system-settings'
 
 export function SystemStatus() {
   usePageTitle('Status')
-  const { data, isLoading, error } = useSystemSettingsData()
-
-  if (error) {
-    return (
-      <>
-        <PageHeader title="Status" icon={<Activity className='size-4 md:size-5' />} />
-        <Main>
-          <GeneralError error={error} minimal mode='inline' />
-        </Main>
-      </>
-    )
-  }
+  const { data, isLoading, error, refetch } = useSystemSettingsData()
 
   const settings = data?.settings ?? []
   const serverVersion =
@@ -47,7 +36,9 @@ export function SystemStatus() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {isLoading ? (
+            {error ? (
+              <GeneralError error={error} minimal mode='inline' reset={refetch} />
+            ) : isLoading ? (
               <ListSkeleton variant='simple' height='h-4' count={2} />
             ) : (
               <dl className='grid gap-3 text-sm'>

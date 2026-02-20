@@ -153,7 +153,7 @@ function TimezoneSelect({
 
 export function UserPreferences() {
   usePageTitle('Preferences')
-  const { data, isLoading, error } = usePreferencesData()
+  const { data, isLoading, error, refetch } = usePreferencesData()
   const setPreference = useSetPreference()
   const resetPreferences = useResetPreferences()
   const { setTheme } = useTheme()
@@ -188,27 +188,16 @@ export function UserPreferences() {
     })
   }
 
-  if (error) {
-    return (
-      <>
-        <PageHeader title="Preferences" icon={<Sliders className='size-4 md:size-5' />} />
-        <Main>
-          <GeneralError error={error} minimal mode='inline' />
-        </Main>
-      </>
-    )
-  }
-
   return (
     <>
       <PageHeader title="Preferences" icon={<Sliders className='size-4 md:size-5' />} />
 
       <Main className="space-y-8">
-        <Section 
-          title="General" 
+        <Section
+          title="General"
           description="Manage your display settings and preferences"
           action={
-            <AlertDialog>
+            !error && <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button
                   variant='ghost'
@@ -242,7 +231,9 @@ export function UserPreferences() {
           }
         >
           <div className='divide-y-0'>
-            {isLoading ? (
+            {error ? (
+              <GeneralError error={error} minimal mode='inline' reset={refetch} />
+            ) : isLoading ? (
               <ListSkeleton variant='simple' height='h-12' count={2} />
             ) : data ? (
               <>

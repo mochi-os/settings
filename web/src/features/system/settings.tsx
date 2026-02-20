@@ -208,7 +208,7 @@ function SettingField({
 
 export function SystemSettings() {
   usePageTitle('System settings')
-  const { data, isLoading, error } = useSystemSettingsData()
+  const { data, isLoading, error, refetch } = useSystemSettingsData()
   const { data: prefsData } = usePreferencesData()
   const setSetting = useSetSystemSetting()
   const [savingName, setSavingName] = useState<string | null>(null)
@@ -231,17 +231,6 @@ export function SystemSettings() {
     )
   }
 
-  if (error) {
-    return (
-      <>
-        <PageHeader title="System settings" icon={<Settings className='size-4 md:size-5' />} />
-        <Main>
-          <GeneralError error={error} minimal mode='inline' />
-        </Main>
-      </>
-    )
-  }
-
   const statusSettings = ['server_version', 'server_started']
   const sortedSettings = data?.settings
     ? [...data.settings]
@@ -260,12 +249,14 @@ export function SystemSettings() {
       <PageHeader title="System settings" icon={<Settings className='size-4 md:size-5' />} />
 
       <Main className="space-y-8">
-        <Section 
-          title="Configuration" 
+        <Section
+          title="Configuration"
           description="Global server settings"
         >
           <div className='divide-y-0'>
-            {isLoading ? (
+            {error ? (
+              <GeneralError error={error} minimal mode='inline' reset={refetch} />
+            ) : isLoading ? (
               <ListSkeleton variant='simple' height='h-12' count={4} />
             ) : (
               sortedSettings.map((setting) => (

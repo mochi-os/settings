@@ -44,6 +44,7 @@ import {
   CardDescription,
   CardContent,
   EmptyState,
+  GeneralError,
   ListSkeleton,
   Switch,
   Table,
@@ -329,6 +330,8 @@ export function ConnectedAccounts() {
     providers: providersData,
     accounts: accountsData,
     isLoading,
+    providersError,
+    accountsError,
     add,
     remove,
     update,
@@ -337,6 +340,7 @@ export function ConnectedAccounts() {
     isAdding,
     isRemoving,
     isVerifying,
+    refetch,
   } = useAccounts(APP_BASE)
 
   // Ensure arrays are always arrays (defensive check)
@@ -438,10 +442,12 @@ export function ConnectedAccounts() {
         title='Connected accounts'
         icon={<Link className='size-4 md:size-5' />}
         actions={
-          <Button variant='outline' size='sm' onClick={() => setIsAddOpen(true)}>
-            <Plus className='mr-2 h-4 w-4' />
-            Add account
-          </Button>
+          !providersError && (
+            <Button variant='outline' size='sm' onClick={() => setIsAddOpen(true)}>
+              <Plus className='mr-2 h-4 w-4' />
+              Add account
+            </Button>
+          )
         }
       />
 
@@ -456,7 +462,11 @@ export function ConnectedAccounts() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {isLoading ? (
+            {providersError ? (
+              <GeneralError error={providersError} minimal mode='inline' reset={refetch} />
+            ) : accountsError ? (
+              <GeneralError error={accountsError} minimal mode='inline' reset={refetch} />
+            ) : isLoading ? (
               <ListSkeleton variant='simple' height='h-12' count={3} />
             ) : accounts.length === 0 ? (
               <EmptyState

@@ -241,18 +241,7 @@ function CreateTokenDialog() {
 
 export function UserTokens() {
   usePageTitle('Authentication tokens')
-  const { data, isLoading, error } = useTokens()
-
-  if (error) {
-    return (
-      <>
-        <PageHeader title="Authentication tokens" icon={<Key className='size-4 md:size-5' />} />
-        <Main>
-          <GeneralError error={error} minimal mode='inline' />
-        </Main>
-      </>
-    )
-  }
+  const { data, isLoading, error, refetch } = useTokens()
 
   const tokens = data?.tokens ?? []
 
@@ -276,7 +265,9 @@ export function UserTokens() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {isLoading ? (
+            {error ? (
+              <GeneralError error={error} minimal mode='inline' reset={refetch} />
+            ) : isLoading ? (
               <ListSkeleton variant='simple' height='h-10' count={3} />
             ) : tokens.length === 0 ? (
               <EmptyState

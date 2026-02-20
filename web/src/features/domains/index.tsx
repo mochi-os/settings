@@ -1129,17 +1129,6 @@ export function Domains() {
 
   const isAdmin = data?.admin ?? false
 
-  if (error) {
-    return (
-      <>
-        <PageHeader title="Domains" icon={<Globe className='size-4 md:size-5' />} />
-        <Main>
-          <GeneralError error={error} minimal mode='inline' />
-        </Main>
-      </>
-    )
-  }
-
   return (
     <>
       <PageHeader
@@ -1160,7 +1149,9 @@ export function Domains() {
       <Main>
         <Card>
           <CardContent className='p-6 divide-y'>
-            {isLoading ? (
+            {error ? (
+              <GeneralError error={error} minimal mode='inline' reset={refetch} />
+            ) : isLoading ? (
               <ListSkeleton variant='simple' height='h-20' count={2} />
             ) : data?.domains && data.domains.length > 0 ? (
               data.domains.map((domain) => (

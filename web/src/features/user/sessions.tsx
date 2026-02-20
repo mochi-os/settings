@@ -113,18 +113,7 @@ function SessionRow({
 
 export function UserSessions() {
   usePageTitle('Sessions')
-  const { data, isLoading, error } = useSessions()
-
-  if (error) {
-    return (
-      <>
-        <PageHeader title="Sessions" icon={<Monitor className='size-4 md:size-5' />} />
-        <Main>
-          <GeneralError error={error} minimal mode='inline' />
-        </Main>
-      </>
-    )
-  }
+  const { data, isLoading, error, refetch } = useSessions()
 
   const sessions = data?.sessions ?? []
   const sortedSessions = [...sessions].sort((a, b) => b.accessed - a.accessed)
@@ -145,7 +134,9 @@ export function UserSessions() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {isLoading ? (
+            {error ? (
+              <GeneralError error={error} minimal mode='inline' reset={refetch} />
+            ) : isLoading ? (
               <ListSkeleton variant='simple' height='h-10' count={3} />
             ) : sessions.length === 0 ? (
               <EmptyState
