@@ -41,12 +41,20 @@ def action_accounts_add(a):
 
     result = mochi.account.add(type, **fields)
 
-    # Set enabled based on add_to_existing and add to existing subscriptions
+    # For notify accounts, set enabled based on add_to_existing toggle
+    # and optionally add to all existing notification subscriptions.
+    # Non-notify accounts (AI, MCP) are always enabled.
     if result and result.get("id"):
         account_id = result["id"]
-        mochi.account.update(account_id, enabled=add_to_existing)
-        if add_to_existing:
-            mochi.service.call("notifications", "add_destination_to_all", "account", account_id)
+        providers = mochi.account.providers()
+        provider = [p for p in providers if p["type"] == type]
+        is_notify = provider and "notify" in provider[0].get("capabilities", [])
+        if is_notify:
+            mochi.account.update(account_id, enabled=add_to_existing)
+            if add_to_existing:
+                mochi.service.call("notifications", "add_destination_to_all", "account", account_id)
+        else:
+            mochi.account.update(account_id, enabled=True)
 
     return {"data": result}
 

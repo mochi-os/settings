@@ -180,6 +180,7 @@ function AccountRow({
             <span className='font-medium sm:font-normal'>{displayName}</span>
             <span className='text-muted-foreground text-xs sm:hidden'>
               {getProviderLabel(account.type)}
+              {(account.type === 'claude' || account.type === 'openai') && account.identifier && ` - ${account.identifier}`}
             </span>
           </div>
         </div>
@@ -187,7 +188,10 @@ function AccountRow({
 
       {/* Type */}
       <TableCell className='hidden sm:table-cell'>
-        <span>{getProviderLabel(account.type)}</span>
+        <span>
+          {getProviderLabel(account.type)}
+          {(account.type === 'claude' || account.type === 'openai') && account.identifier && ` - ${account.identifier}`}
+        </span>
       </TableCell>
 
       {/* Status */}
