@@ -119,6 +119,11 @@ function getAccountDisplayName(account: Account): string {
     return getBrowserFromEndpoint(account.identifier)
   }
 
+  // For AI accounts, use provider label as the name
+  if (account.type === 'claude' || account.type === 'openai') {
+    return getProviderLabel(account.type)
+  }
+
   // For other accounts, use identifier
   if (account.identifier) return account.identifier
 
@@ -293,7 +298,7 @@ function AccountRow({
             </DialogHeader>
             <div className='grid gap-4 py-4'>
               <div className='grid gap-2'>
-                <Label htmlFor='label'>Name</Label>
+                <Label htmlFor='rename-label'>Name</Label>
                 <Input
                   id='label'
                   value={renameValue}
