@@ -9,6 +9,10 @@ import type {
 import endpoints from '@/api/endpoints'
 import { apiClient } from '@mochi/common'
 
+const NO_GLOBAL_ERROR_TOAST_CONFIG = {
+  mochi: { showGlobalErrorToast: false },
+} as const
+
 export function useDomainsData() {
   return useQuery({
     queryKey: ['domains'],
@@ -23,9 +27,11 @@ export function useCreateDomain() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (domain: string) => {
-      const response = await apiClient.post(endpoints.domains.create, {
-        domain,
-      })
+      const response = await apiClient.post(
+        endpoints.domains.create,
+        { domain },
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      )
       return response.data
     },
     onSuccess: () => {
@@ -58,7 +64,11 @@ export function useUpdateDomain() {
       verified?: boolean
       tls?: boolean
     }) => {
-      const response = await apiClient.post(endpoints.domains.update, data)
+      const response = await apiClient.post(
+        endpoints.domains.update,
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      )
       return response.data
     },
     onSuccess: (_, variables) => {
@@ -72,9 +82,11 @@ export function useDeleteDomain() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (domain: string) => {
-      const response = await apiClient.post(endpoints.domains.delete, {
-        domain,
-      })
+      const response = await apiClient.post(
+        endpoints.domains.delete,
+        { domain },
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      )
       return response.data
     },
     onSuccess: () => {
@@ -89,7 +101,8 @@ export function useVerifyDomain() {
     mutationFn: async (domain: string) => {
       const response = await apiClient.post<{ verified: boolean }>(
         endpoints.domains.verify,
-        { domain }
+        { domain },
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       )
       return response.data
     },
@@ -111,7 +124,11 @@ export function useCreateRoute() {
       priority?: number
       context?: string
     }) => {
-      const response = await apiClient.post(endpoints.domains.routeCreate, data)
+      const response = await apiClient.post(
+        endpoints.domains.routeCreate,
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      )
       return response.data
     },
     onSuccess: (_, variables) => {
@@ -131,7 +148,11 @@ export function useUpdateRoute() {
       priority?: number
       enabled?: boolean
     }) => {
-      const response = await apiClient.post(endpoints.domains.routeUpdate, data)
+      const response = await apiClient.post(
+        endpoints.domains.routeUpdate,
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      )
       return response.data
     },
     onSuccess: (_, variables) => {
@@ -144,7 +165,11 @@ export function useDeleteRoute() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (data: { domain: string; path: string }) => {
-      const response = await apiClient.post(endpoints.domains.routeDelete, data)
+      const response = await apiClient.post(
+        endpoints.domains.routeDelete,
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      )
       return response.data
     },
     onSuccess: (_, variables) => {
@@ -163,7 +188,8 @@ export function useCreateDelegation() {
     }) => {
       const response = await apiClient.post(
         endpoints.domains.delegationCreate,
-        data
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       )
       return response.data
     },
@@ -183,7 +209,8 @@ export function useDeleteDelegation() {
     }) => {
       const response = await apiClient.post(
         endpoints.domains.delegationDelete,
-        data
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       )
       return response.data
     },

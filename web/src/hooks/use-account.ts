@@ -17,6 +17,10 @@ import type {
 import endpoints from '@/api/endpoints'
 import { requestHelpers } from '@mochi/common'
 
+const NO_GLOBAL_ERROR_TOAST_CONFIG = {
+  mochi: { showGlobalErrorToast: false },
+} as const
+
 export function useAccountData() {
   return useQuery({
     queryKey: ['account', 'data'],
@@ -40,7 +44,8 @@ export function useRevokeSession() {
         endpoints.user.accountSessionRevoke,
         {
           code,
-        }
+        },
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account'] })
@@ -66,7 +71,8 @@ export function useSetMethods() {
     mutationFn: (methods: string[]) =>
       requestHelpers.post<{ ok: boolean; methods: string[] }>(
         endpoints.user.accountMethodsSet,
-        { methods }
+        { methods },
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'methods'] })
@@ -91,7 +97,8 @@ export function usePasskeyRegisterBegin() {
     mutationFn: () =>
       requestHelpers.post<PasskeyRegisterBeginResponse>(
         endpoints.user.accountPasskeyRegisterBegin,
-        {}
+        {},
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
   })
 }
@@ -106,7 +113,8 @@ export function usePasskeyRegisterFinish() {
     }) =>
       requestHelpers.post<PasskeyRegisterFinishResponse>(
         endpoints.user.accountPasskeyRegisterFinish,
-        data
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'passkeys'] })
@@ -120,7 +128,8 @@ export function usePasskeyRename() {
     mutationFn: (data: { id: string; name: string }) =>
       requestHelpers.post<{ ok: boolean }>(
         endpoints.user.accountPasskeyRename,
-        data
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'passkeys'] })
@@ -134,7 +143,8 @@ export function usePasskeyDelete() {
     mutationFn: (id: string) =>
       requestHelpers.post<{ ok: boolean }>(
         endpoints.user.accountPasskeyDelete,
-        { id }
+        { id },
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'passkeys'] })
@@ -159,7 +169,8 @@ export function useTotpSetup() {
     mutationFn: () =>
       requestHelpers.post<TotpSetupResponse>(
         endpoints.user.accountTotpSetup,
-        {}
+        {},
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
   })
 }
@@ -170,7 +181,8 @@ export function useTotpVerify() {
     mutationFn: (code: string) =>
       requestHelpers.post<TotpVerifyResponse>(
         endpoints.user.accountTotpVerify,
-        { code }
+        { code },
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'totp'] })
@@ -184,7 +196,8 @@ export function useTotpDisable() {
     mutationFn: () =>
       requestHelpers.post<{ ok: boolean }>(
         endpoints.user.accountTotpDisable,
-        {}
+        {},
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'totp'] })
@@ -212,7 +225,8 @@ export function useRecoveryGenerate() {
     mutationFn: () =>
       requestHelpers.post<RecoveryGenerateResponse>(
         endpoints.user.accountRecoveryGenerate,
-        {}
+        {},
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'recovery'] })
@@ -238,7 +252,8 @@ export function useTokenCreate() {
     mutationFn: (data: { name: string; scopes?: string[]; expires?: string }) =>
       requestHelpers.post<TokenCreateResponse>(
         endpoints.user.accountTokenCreate,
-        data
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'tokens'] })
@@ -252,7 +267,7 @@ export function useTokenDelete() {
     mutationFn: (hash: string) =>
       requestHelpers.post<{ ok: boolean }>(endpoints.user.accountTokenDelete, {
         hash,
-      }),
+      }, NO_GLOBAL_ERROR_TOAST_CONFIG),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'tokens'] })
     },

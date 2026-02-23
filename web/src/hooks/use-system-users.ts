@@ -9,6 +9,10 @@ import {
 } from '@/api/system-users'
 import type { SessionsData } from '@/types/users'
 
+const NO_GLOBAL_ERROR_TOAST_CONFIG = {
+  mochi: { showGlobalErrorToast: false },
+} as const
+
 export const systemUserKeys = {
   all: () => ['system-users'] as const,
   list: (limit: number, offset: number, search: string) =>
@@ -34,7 +38,8 @@ export const useCreateUser = () => {
     mutationFn: async (data: { username: string; role: string }) => {
       const response = await apiClient.post<User>(
         endpoints.system.usersCreate,
-        data
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       )
       return response.data
     },
@@ -52,7 +57,11 @@ export function useUpdateUser() {
       username?: string
       role?: string
     }) => {
-      const response = await apiClient.post(endpoints.system.usersUpdate, data)
+      const response = await apiClient.post(
+        endpoints.system.usersUpdate,
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      )
       return response.data
     },
     onSuccess: () => {
@@ -65,9 +74,11 @@ export function useDeleteUser() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (id: number) => {
-      const response = await apiClient.post(endpoints.system.usersDelete, {
-        id,
-      })
+      const response = await apiClient.post(
+        endpoints.system.usersDelete,
+        { id },
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      )
       return response.data
     },
     onSuccess: () => {
@@ -80,9 +91,11 @@ export function useSuspendUser() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (id: number) => {
-      const response = await apiClient.post(endpoints.system.usersSuspend, {
-        id,
-      })
+      const response = await apiClient.post(
+        endpoints.system.usersSuspend,
+        { id },
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      )
       return response.data
     },
     onSuccess: () => {
@@ -95,9 +108,11 @@ export function useActivateUser() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (id: number) => {
-      const response = await apiClient.post(endpoints.system.usersActivate, {
-        id,
-      })
+      const response = await apiClient.post(
+        endpoints.system.usersActivate,
+        { id },
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      )
       return response.data
     },
     onSuccess: () => {
@@ -120,7 +135,8 @@ export function useRevokeUserSessions() {
     mutationFn: async (data: { id: number; code?: string }) => {
       const response = await apiClient.post<{ ok: boolean; revoked: number }>(
         endpoints.system.usersSessionsRevoke,
-        data
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
       )
       return response.data
     },
