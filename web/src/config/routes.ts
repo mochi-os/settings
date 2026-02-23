@@ -7,6 +7,7 @@ export const APP_ROUTES = {
       ACCOUNT: '/user/account',
       PREFERENCES: '/user/preferences',
       ACCOUNTS: '/user/accounts',
+      INTERESTS: '/user/interests',
       TOKENS: '/user/tokens',
       SESSIONS: '/user/sessions',
     },

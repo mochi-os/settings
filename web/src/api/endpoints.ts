@@ -35,6 +35,12 @@ const endpoints = {
     preferences: '-/user/preferences/data',
     preferencesSet: '-/user/preferences/set',
     preferencesReset: '-/user/preferences/reset',
+    // Interests
+    interests: '-/user/interests',
+    interestsSet: '-/user/interests/set',
+    interestsRemove: '-/user/interests/remove',
+    interestsSearch: '-/user/interests/search',
+    interestsSummary: '-/user/interests/summary',
   },
   system: {
     settings: '-/system/settings/list',
