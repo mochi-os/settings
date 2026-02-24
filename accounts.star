@@ -75,8 +75,22 @@ def action_accounts_update(a):
     if enabled:
         fields["enabled"] = enabled == "true" or enabled == "1"
 
+    model = a.input("model")
+    if model != None:
+        fields["model"] = model
+
     result = mochi.account.update(int(id), **fields)
     return {"data": result}
+
+def action_accounts_default(a):
+    """Set or clear the default account for a capability type"""
+    id = a.input("account")
+    if not id:
+        a.error(400, "account is required")
+        return
+    type = a.input("type", "")
+    mochi.account.update(int(id), default=type)
+    return {"data": {"ok": True}}
 
 def action_accounts_remove(a):
     """Remove a connected account"""

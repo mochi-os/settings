@@ -60,6 +60,7 @@ import {
   getErrorMessage,
   getAppPath,
   getProviderLabel,
+  requestHelpers,
   toast,
   type Account,
   type Provider,
@@ -137,7 +138,7 @@ function AccountRow({
   providers,
   onRemove,
   onVerify,
-  onRename,
+  onSettings,
   onTest,
   onToggleEnabled,
   isRemoving,
@@ -147,29 +148,23 @@ function AccountRow({
   providers: Provider[]
   onRemove: (id: number) => void
   onVerify: (account: Account) => void
-  onRename: (id: number, label: string) => void
+  onSettings: (account: Account) => void
   onTest: (id: number) => void
   onToggleEnabled: (id: number, enabled: boolean) => void
   isRemoving: boolean
   testingId: number | null
 }) {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
-  const [showRenameDialog, setShowRenameDialog] = useState(false)
-  const [renameValue, setRenameValue] = useState(account.label || '')
   const isVerified = account.verified > 0
   // Defensive check to ensure providers is an array
   const providersList = Array.isArray(providers) ? providers : []
   const provider = providersList.find((p) => p.type === account.type)
   const needsVerification = provider?.verify && !isVerified
+  const isAi = account.type === 'claude' || account.type === 'openai'
 
   const handleDelete = () => {
     onRemove(account.id)
     setShowDeleteDialog(false)
-  }
-
-  const handleRename = () => {
-    onRename(account.id, renameValue)
-    setShowRenameDialog(false)
   }
 
   const displayName = getAccountDisplayName(account)
@@ -183,10 +178,17 @@ function AccountRow({
             {getProviderIcon(account.type)}
           </div>
           <div className='flex flex-col'>
-            <span className='font-medium sm:font-normal'>{displayName}</span>
+            <div className='flex items-center gap-2'>
+              <span className='font-medium sm:font-normal'>{displayName}</span>
+              {isAi && account.default === 'ai' && (
+                <span className='inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary'>
+                  Default
+                </span>
+              )}
+            </div>
             <span className='text-muted-foreground text-xs sm:hidden'>
               {getProviderLabel(account.type)}
-              {(account.type === 'claude' || account.type === 'openai') && account.identifier && ` - ${account.identifier}`}
+              {isAi && account.identifier && ` - ${account.identifier}`}
             </span>
           </div>
         </div>
@@ -196,7 +198,7 @@ function AccountRow({
       <TableCell className='hidden sm:table-cell'>
         <span>
           {getProviderLabel(account.type)}
-          {(account.type === 'claude' || account.type === 'openai') && account.identifier && ` - ${account.identifier}`}
+          {isAi && account.identifier && ` - ${account.identifier}`}
         </span>
       </TableCell>
 
@@ -260,12 +262,9 @@ function AccountRow({
               <Zap className='mr-2 h-4 w-4' />
               Test
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => {
-              setRenameValue(account.label || displayName)
-              setShowRenameDialog(true)
-            }}>
+            <DropdownMenuItem onClick={() => onSettings(account)}>
               <Pencil className='mr-2 h-4 w-4' />
-              Rename
+              Settings
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => setShowDeleteDialog(true)}
@@ -291,30 +290,6 @@ function AccountRow({
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
-
-        <Dialog open={showRenameDialog} onOpenChange={setShowRenameDialog}>
-          <DialogContent className='sm:max-w-[425px]'>
-            <DialogHeader>
-              <DialogTitle>Rename account</DialogTitle>
-            </DialogHeader>
-            <div className='grid gap-4 py-4'>
-              <div className='grid gap-2'>
-                <Label htmlFor='rename-label'>Name</Label>
-                <Input
-                  id='label'
-                  value={renameValue}
-                  onChange={(e) => setRenameValue(e.target.value)}
-                />
-              </div>
-            </div>
-            <DialogFooter>
-              <Button variant='outline' onClick={() => setShowRenameDialog(false)}>
-                Cancel
-              </Button>
-              <Button onClick={handleRename}>Save</Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
       </TableCell>
     </TableRow>
   )
@@ -324,6 +299,7 @@ export function ConnectedAccounts() {
   usePageTitle('Connected accounts')
   const [isAddOpen, setIsAddOpen] = useState(false)
   const [verifyAccount, setVerifyAccount] = useState<Account | null>(null)
+  const [settingsAccount, setSettingsAccount] = useState<Account | null>(null)
   const [testingId, setTestingId] = useState<number | null>(null)
 
   const {
@@ -400,13 +376,28 @@ export function ConnectedAccounts() {
     }
   }
 
-  const handleRename = async (id: number, label: string) => {
+  const handleSaveSettings = async (id: number, fields: Record<string, string>) => {
     try {
-      await update(id, { label })
-      toast.success('Account renamed')
+      await update(id, fields)
+      toast.success('Account updated')
     } catch (error) {
-      const message = getErrorMessage(error, 'Failed to rename account')
+      const message = getErrorMessage(error, 'Failed to update account')
       toast.error(message)
+    }
+  }
+
+  const handleSetDefault = async (accountId: number, isDefault: boolean) => {
+    try {
+      const formData = new URLSearchParams()
+      formData.append('account', String(accountId))
+      formData.append('type', isDefault ? 'ai' : '')
+      await requestHelpers.post(`${APP_BASE}/-/accounts/default`, formData.toString(), {
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      })
+      refetch()
+      toast.success(isDefault ? 'Set as default AI account' : 'Removed as default')
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Failed to update default'))
     }
   }
 
@@ -507,7 +498,7 @@ export function ConnectedAccounts() {
                         providers={providers}
                         onRemove={handleRemove}
                         onVerify={setVerifyAccount}
-                        onRename={handleRename}
+                        onSettings={setSettingsAccount}
                         onTest={handleTest}
                         onToggleEnabled={handleToggleEnabled}
                         isRemoving={isRemoving}
@@ -540,6 +531,91 @@ export function ConnectedAccounts() {
           isVerifying={isVerifying}
         />
       )}
+
+      {settingsAccount && (
+        <AccountSettingsDialog
+          account={settingsAccount}
+          onOpenChange={(open) => { if (!open) setSettingsAccount(null) }}
+          onSave={handleSaveSettings}
+          onSetDefault={handleSetDefault}
+        />
+      )}
     </>
+  )
+}
+
+function AccountSettingsDialog({
+  account,
+  onOpenChange,
+  onSave,
+  onSetDefault,
+}: {
+  account: Account
+  onOpenChange: (open: boolean) => void
+  onSave: (id: number, fields: Record<string, string>) => Promise<void>
+  onSetDefault: (id: number, isDefault: boolean) => Promise<void>
+}) {
+  const [nameValue, setNameValue] = useState(account.label || getAccountDisplayName(account))
+  const [modelValue, setModelValue] = useState(account.identifier === 'default' ? '' : account.identifier || '')
+  const [isDefault, setIsDefault] = useState(account.default === 'ai')
+  const isAi = account.type === 'claude' || account.type === 'openai'
+
+  const handleSave = async () => {
+    const fields: Record<string, string> = { label: nameValue }
+    if (isAi) {
+      fields.model = modelValue
+    }
+    await onSave(account.id, fields)
+    onOpenChange(false)
+  }
+
+  return (
+    <Dialog open onOpenChange={onOpenChange}>
+      <DialogContent className='sm:max-w-[425px]'>
+        <DialogHeader>
+          <DialogTitle>Account settings</DialogTitle>
+        </DialogHeader>
+        <div className='grid gap-4 py-4'>
+          <div className='grid gap-2'>
+            <Label htmlFor='settings-name'>Name</Label>
+            <Input
+              id='settings-name'
+              value={nameValue}
+              onChange={(e) => setNameValue(e.target.value)}
+            />
+          </div>
+          {isAi && (
+            <>
+              <div className='grid gap-2'>
+                <Label htmlFor='settings-model'>Model</Label>
+                <Input
+                  id='settings-model'
+                  value={modelValue}
+                  onChange={(e) => setModelValue(e.target.value)}
+                  placeholder='default'
+                />
+              </div>
+              <div className='flex items-center justify-between'>
+                <Label htmlFor='settings-default'>Default AI account</Label>
+                <Switch
+                  id='settings-default'
+                  checked={isDefault}
+                  onCheckedChange={(checked) => {
+                    setIsDefault(checked)
+                    void onSetDefault(account.id, checked)
+                  }}
+                />
+              </div>
+            </>
+          )}
+        </div>
+        <DialogFooter>
+          <Button variant='outline' onClick={() => onOpenChange(false)}>
+            Cancel
+          </Button>
+          <Button onClick={() => void handleSave()}>Save</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   )
 }
