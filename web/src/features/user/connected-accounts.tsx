@@ -268,7 +268,6 @@ function AccountRow({
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => setShowDeleteDialog(true)}
-              className='text-destructive focus:text-destructive'
             >
               <Trash2 className='mr-2 h-4 w-4' />
               Remove
@@ -564,6 +563,9 @@ function AccountSettingsDialog({
     const fields: Record<string, string> = { label: nameValue }
     if (isAi) {
       fields.model = modelValue
+      if (isDefault !== (account.default === 'ai')) {
+        await onSetDefault(account.id, isDefault)
+      }
     }
     await onSave(account.id, fields)
     onOpenChange(false)
@@ -600,10 +602,7 @@ function AccountSettingsDialog({
                 <Switch
                   id='settings-default'
                   checked={isDefault}
-                  onCheckedChange={(checked) => {
-                    setIsDefault(checked)
-                    void onSetDefault(account.id, checked)
-                  }}
+                  onCheckedChange={setIsDefault}
                 />
               </div>
             </>
