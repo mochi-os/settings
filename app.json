@@ -12,11 +12,14 @@
 		"settings.star",
 		"user/account.star",
 		"user/preferences.star",
+		"user/interests.star",
 		"system/settings.star",
 		"system/users.star",
 		"domains.star",
 		"accounts.star"
 	],
+
+	"permissions": ["interests/read", "interests/write"],
 
 	"icons": [
 		{"action": "", "label": "app_name", "file": "images/icon.svg"}
@@ -56,6 +59,12 @@
 		"-/user/preferences/data": {"function": "action_user_preferences"},
 		"-/user/preferences/set": {"function": "action_user_preferences_set"},
 		"-/user/preferences/reset": {"function": "action_user_preferences_reset"},
+
+		"-/user/interests": {"function": "action_interests_list"},
+		"-/user/interests/set": {"function": "action_interests_set"},
+		"-/user/interests/remove": {"function": "action_interests_remove"},
+		"-/user/interests/search": {"function": "action_interests_search"},
+		"-/user/interests/summary": {"function": "action_interests_summary"},
 
 		"-/system/settings/list": {"function": "action_system_settings_list"},
 		"-/system/settings/get": {"function": "action_system_settings_get"},

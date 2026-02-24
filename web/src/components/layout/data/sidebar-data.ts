@@ -9,6 +9,7 @@ import {
   Users,
   Activity,
   Link2,
+  Star,
 } from 'lucide-react'
 import { type SidebarData } from '@mochi/common'
 
@@ -25,6 +26,11 @@ const userNavGroup = {
       title: 'Preferences',
       url: APP_ROUTES.SETTINGS.USER.PREFERENCES,
       icon: Palette,
+    },
+    {
+      title: 'Interests',
+      url: APP_ROUTES.SETTINGS.USER.INTERESTS,
+      icon: Star,
     },
     {
       title: 'Connected accounts',

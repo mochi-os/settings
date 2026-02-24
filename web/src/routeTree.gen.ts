@@ -20,6 +20,7 @@ import { Route as errors401RouteImport } from './routes/(errors)/401'
 import { Route as AuthenticatedUserTokensRouteImport } from './routes/_authenticated/user/tokens'
 import { Route as AuthenticatedUserSessionsRouteImport } from './routes/_authenticated/user/sessions'
 import { Route as AuthenticatedUserPreferencesRouteImport } from './routes/_authenticated/user/preferences'
+import { Route as AuthenticatedUserInterestsRouteImport } from './routes/_authenticated/user/interests'
 import { Route as AuthenticatedUserAccountsRouteImport } from './routes/_authenticated/user/accounts'
 import { Route as AuthenticatedUserAccountRouteImport } from './routes/_authenticated/user/account'
 import { Route as AuthenticatedSystemUsersRouteImport } from './routes/_authenticated/system/users'
@@ -83,6 +84,12 @@ const AuthenticatedUserPreferencesRoute =
     path: '/user/preferences',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedUserInterestsRoute =
+  AuthenticatedUserInterestsRouteImport.update({
+    id: '/user/interests',
+    path: '/user/interests',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedUserAccountsRoute =
   AuthenticatedUserAccountsRouteImport.update({
     id: '/user/accounts',
@@ -134,6 +141,7 @@ export interface FileRoutesByFullPath {
   '/system/users': typeof AuthenticatedSystemUsersRoute
   '/user/account': typeof AuthenticatedUserAccountRoute
   '/user/accounts': typeof AuthenticatedUserAccountsRoute
+  '/user/interests': typeof AuthenticatedUserInterestsRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
   '/user/sessions': typeof AuthenticatedUserSessionsRoute
   '/user/tokens': typeof AuthenticatedUserTokensRoute
@@ -152,6 +160,7 @@ export interface FileRoutesByTo {
   '/system/users': typeof AuthenticatedSystemUsersRoute
   '/user/account': typeof AuthenticatedUserAccountRoute
   '/user/accounts': typeof AuthenticatedUserAccountsRoute
+  '/user/interests': typeof AuthenticatedUserInterestsRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
   '/user/sessions': typeof AuthenticatedUserSessionsRoute
   '/user/tokens': typeof AuthenticatedUserTokensRoute
@@ -172,6 +181,7 @@ export interface FileRoutesById {
   '/_authenticated/system/users': typeof AuthenticatedSystemUsersRoute
   '/_authenticated/user/account': typeof AuthenticatedUserAccountRoute
   '/_authenticated/user/accounts': typeof AuthenticatedUserAccountsRoute
+  '/_authenticated/user/interests': typeof AuthenticatedUserInterestsRoute
   '/_authenticated/user/preferences': typeof AuthenticatedUserPreferencesRoute
   '/_authenticated/user/sessions': typeof AuthenticatedUserSessionsRoute
   '/_authenticated/user/tokens': typeof AuthenticatedUserTokensRoute
@@ -192,6 +202,7 @@ export interface FileRouteTypes {
     | '/system/users'
     | '/user/account'
     | '/user/accounts'
+    | '/user/interests'
     | '/user/preferences'
     | '/user/sessions'
     | '/user/tokens'
@@ -210,6 +221,7 @@ export interface FileRouteTypes {
     | '/system/users'
     | '/user/account'
     | '/user/accounts'
+    | '/user/interests'
     | '/user/preferences'
     | '/user/sessions'
     | '/user/tokens'
@@ -229,6 +241,7 @@ export interface FileRouteTypes {
     | '/_authenticated/system/users'
     | '/_authenticated/user/account'
     | '/_authenticated/user/accounts'
+    | '/_authenticated/user/interests'
     | '/_authenticated/user/preferences'
     | '/_authenticated/user/sessions'
     | '/_authenticated/user/tokens'
@@ -322,6 +335,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedUserPreferencesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/user/interests': {
+      id: '/_authenticated/user/interests'
+      path: '/user/interests'
+      fullPath: '/user/interests'
+      preLoaderRoute: typeof AuthenticatedUserInterestsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/user/accounts': {
       id: '/_authenticated/user/accounts'
       path: '/user/accounts'
@@ -376,6 +396,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedSystemUsersRoute: typeof AuthenticatedSystemUsersRoute
   AuthenticatedUserAccountRoute: typeof AuthenticatedUserAccountRoute
   AuthenticatedUserAccountsRoute: typeof AuthenticatedUserAccountsRoute
+  AuthenticatedUserInterestsRoute: typeof AuthenticatedUserInterestsRoute
   AuthenticatedUserPreferencesRoute: typeof AuthenticatedUserPreferencesRoute
   AuthenticatedUserSessionsRoute: typeof AuthenticatedUserSessionsRoute
   AuthenticatedUserTokensRoute: typeof AuthenticatedUserTokensRoute
@@ -390,6 +411,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSystemUsersRoute: AuthenticatedSystemUsersRoute,
   AuthenticatedUserAccountRoute: AuthenticatedUserAccountRoute,
   AuthenticatedUserAccountsRoute: AuthenticatedUserAccountsRoute,
+  AuthenticatedUserInterestsRoute: AuthenticatedUserInterestsRoute,
   AuthenticatedUserPreferencesRoute: AuthenticatedUserPreferencesRoute,
   AuthenticatedUserSessionsRoute: AuthenticatedUserSessionsRoute,
   AuthenticatedUserTokensRoute: AuthenticatedUserTokensRoute,
