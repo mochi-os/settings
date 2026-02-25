@@ -322,9 +322,12 @@ export function ConnectedAccounts() {
   const providers = Array.isArray(providersData) ? providersData : []
   const accounts = Array.isArray(accountsData) ? accountsData : []
 
-  const handleAdd = async (type: string, fields: Record<string, string>, addToExisting: boolean) => {
+  const handleAdd = async (type: string, fields: Record<string, string>, addToExisting: boolean, setAsDefault?: boolean) => {
     try {
       const account = await add(type, fields, addToExisting)
+      if (setAsDefault) {
+        await handleSetDefault(account.id, true)
+      }
       toast.success('Account added')
       setIsAddOpen(false)
 
@@ -394,7 +397,6 @@ export function ConnectedAccounts() {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       })
       refetch()
-      toast.success(isDefault ? 'Set as default AI account' : 'Removed as default')
     } catch (error) {
       toast.error(getErrorMessage(error, 'Failed to update default'))
     }
@@ -518,6 +520,7 @@ export function ConnectedAccounts() {
         onAdd={handleAdd}
         isAdding={isAdding}
         appBase={APP_BASE}
+        hasExistingAiAccount={accounts.some((a) => (a.type === 'claude' || a.type === 'openai') && a.default === 'ai')}
       />
 
       {verifyAccount && (
