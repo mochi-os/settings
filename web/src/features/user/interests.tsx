@@ -16,6 +16,7 @@ import {
   ListSkeleton,
   Main,
   PageHeader,
+  Slider,
   usePageTitle,
   getErrorMessage,
   toast,
@@ -52,8 +53,7 @@ function InterestRow({ interest }: { interest: Interest }) {
       <div className='min-w-0 flex-1'>
         <span className='text-sm font-medium'>{interest.label}</span>
       </div>
-      <input
-        type='range'
+      <Slider
         min={0}
         max={100}
         step={1}
@@ -65,7 +65,7 @@ function InterestRow({ interest }: { interest: Interest }) {
         onTouchEnd={(e) =>
           handleWeightCommit(Number((e.target as HTMLInputElement).value))
         }
-        className='w-32 shrink-0'
+        className='w-64 shrink-0'
       />
       <span className='text-muted-foreground w-8 shrink-0 text-right text-xs tabular-nums'>
         {weight}
