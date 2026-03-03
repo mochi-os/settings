@@ -259,13 +259,13 @@ function SessionsDialog({ user }: { user: User }) {
   const { data, isLoading, refetch } = useUserSessions(user.id, open)
   const revokeSession = useRevokeUserSessions()
 
-  const handleRevoke = (code?: string) => {
+  const handleRevoke = (session_id?: string) => {
     revokeSession.mutate(
-      { id: user.id, code },
+      { id: user.id, session_id },
       {
         onSuccess: (result) => {
           toast.success(
-            code
+            session_id
               ? 'Session revoked'
               : `Revoked ${result.revoked} session${result.revoked !== 1 ? 's' : ''}`
           )
@@ -320,7 +320,7 @@ function SessionsDialog({ user }: { user: User }) {
               </TableHeader>
               <TableBody>
                 {data.sessions.map((session: Session) => (
-                  <TableRow key={session.code}>
+                  <TableRow key={session.id}>
                     <TableCell>{formatSession(session)}</TableCell>
                     <TableCell className='font-mono text-sm'>
                       {session.address || 'Unknown'}
@@ -332,7 +332,7 @@ function SessionsDialog({ user }: { user: User }) {
                       <Button
                         variant='ghost'
                         size='sm'
-                        onClick={() => handleRevoke(session.code)}
+                        onClick={() => handleRevoke(session.id)}
                         disabled={revokeSession.isPending}
                       >
                         Revoke

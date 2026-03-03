@@ -6,7 +6,7 @@ export interface Identity {
 }
 
 export interface Session {
-  code: string
+  id: string
   address: string
   agent: string
   created: number

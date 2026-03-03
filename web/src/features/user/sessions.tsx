@@ -44,7 +44,7 @@ function SessionRow({
   const revokeSession = useRevokeSession()
 
   const handleRevoke = () => {
-    revokeSession.mutate(session.code, {
+    revokeSession.mutate(session.id, {
       onSuccess: () => {
         toast.success('Session revoked')
       },
@@ -158,7 +158,7 @@ export function UserSessions() {
                 <TableBody>
                   {sortedSessions.map((session, index) => (
                     <SessionRow
-                      key={session.code}
+                      key={session.id}
                       session={session}
                       isCurrent={index === 0 && session.accessed > 0}
                     />

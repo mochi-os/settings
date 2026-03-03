@@ -1,5 +1,5 @@
 # Mochi settings app: user/account
-# Copyright Alistair Cunningham 2025
+# Copyright Alistair Cunningham 2025-2026
 
 def action_user_account(a):
     """User account overview - returns identity and sessions"""
@@ -31,12 +31,12 @@ def action_user_account_sessions(a):
 
 def action_user_account_session_revoke(a):
     """Revoke a session"""
-    code = a.input("code")
-    if not code:
-        a.error(400, "Missing session code")
+    id = a.input("id")
+    if not id:
+        a.error(400, "Missing session id")
         return
 
-    mochi.user.session.revoke(a.user.id, code)
+    mochi.user.session.revoke(a.user.id, id)
     a.json({"ok": True})
 
 # ============================================================================

@@ -1,5 +1,5 @@
 # Mochi settings app: system/users
-# Copyright Alistair Cunningham 2025
+# Copyright Alistair Cunningham 2025-2026
 
 def action_system_users(a):
     """User management overview - returns users and count"""
@@ -121,9 +121,9 @@ def action_system_users_sessions_revoke(a):
     if not id:
         a.error(400, "Missing user id")
         return
-    code = a.input("code")
-    if code:
-        count = mochi.user.session.revoke(int(id), code)
+    session_id = a.input("session_id")
+    if session_id:
+        count = mochi.user.session.revoke(int(id), session_id)
     else:
         count = mochi.user.session.revoke(int(id))
     a.json({"ok": True, "revoked": count})

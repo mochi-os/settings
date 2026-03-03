@@ -39,11 +39,11 @@ export function useSessions() {
 export function useRevokeSession() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (code: string) =>
+    mutationFn: (id: string) =>
       requestHelpers.post<{ ok: boolean }>(
         endpoints.user.accountSessionRevoke,
         {
-          code,
+          id,
         },
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
