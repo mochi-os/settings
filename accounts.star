@@ -6,12 +6,12 @@
 def action_accounts_providers(a):
     """List available account providers"""
     capability = a.input("capability")
-    return {"data": mochi.account.providers(capability)}
+    a.json(mochi.account.providers(capability))
 
 def action_accounts_list(a):
     """List user's connected accounts"""
     capability = a.input("capability")
-    return {"data": mochi.account.list(capability)}
+    a.json(mochi.account.list(capability))
 
 def action_accounts_get(a):
     """Get a single connected account"""
@@ -20,7 +20,7 @@ def action_accounts_get(a):
         a.error(400, "id is required")
         return
     result = mochi.account.get(int(id))
-    return {"data": result}
+    a.json(result)
 
 def action_accounts_add(a):
     """Add a new connected account"""
@@ -56,7 +56,7 @@ def action_accounts_add(a):
         else:
             mochi.account.update(account_id, enabled=True)
 
-    return {"data": result}
+    a.json(result)
 
 def action_accounts_update(a):
     """Update a connected account"""
@@ -80,7 +80,7 @@ def action_accounts_update(a):
         fields["model"] = model
 
     result = mochi.account.update(int(id), **fields)
-    return {"data": result}
+    a.json(result)
 
 def action_accounts_default(a):
     """Set or clear the default account for a capability type"""
@@ -90,7 +90,7 @@ def action_accounts_default(a):
         return
     type = a.input("type", "")
     mochi.account.update(int(id), default=type)
-    return {"data": {"ok": True}}
+    a.json({"ok": True})
 
 def action_accounts_remove(a):
     """Remove a connected account"""
@@ -100,7 +100,7 @@ def action_accounts_remove(a):
         return
 
     result = mochi.account.remove(int(id))
-    return {"data": result}
+    a.json(result)
 
 def action_accounts_verify(a):
     """Verify an account or resend verification code"""
@@ -111,14 +111,14 @@ def action_accounts_verify(a):
 
     code = a.input("code")
     result = mochi.account.verify(int(id), code)
-    return {"data": result}
+    a.json(result)
 
 def action_accounts_vapid(a):
     """Return VAPID public key for browser push subscription"""
     key = mochi.webpush.key()
     if not key:
         return a.error(503, "Push notifications not available")
-    return {"data": {"key": key}}
+    a.json({"key": key})
 
 def action_accounts_test(a):
     """Test a connected account"""
@@ -128,4 +128,4 @@ def action_accounts_test(a):
         return
 
     result = mochi.account.test(int(id))
-    return {"data": result}
+    a.json(result)

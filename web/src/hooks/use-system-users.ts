@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useQueryWithError } from '@mochi/common'
+import { useQueryWithError, requestHelpers } from '@mochi/common'
 import type { User } from '@/types/users'
 import endpoints from '@/api/endpoints'
-import { apiClient } from '@mochi/common'
 import {
   type SystemUsersResponse,
   systemUsersApi,
@@ -35,14 +34,12 @@ export function useSystemUsersData(
 export const useCreateUser = () => {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async (data: { username: string; role: string }) => {
-      const response = await apiClient.post<User>(
+    mutationFn: (data: { username: string; role: string }) =>
+      requestHelpers.post<User>(
         endpoints.system.usersCreate,
         data,
         NO_GLOBAL_ERROR_TOAST_CONFIG
-      )
-      return response.data
-    },
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: systemUserKeys.all() })
     },
@@ -52,18 +49,16 @@ export const useCreateUser = () => {
 export function useUpdateUser() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async (data: {
+    mutationFn: (data: {
       id: number
       username?: string
       role?: string
-    }) => {
-      const response = await apiClient.post(
+    }) =>
+      requestHelpers.post(
         endpoints.system.usersUpdate,
         data,
         NO_GLOBAL_ERROR_TOAST_CONFIG
-      )
-      return response.data
-    },
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: systemUserKeys.all() })
     },
@@ -73,14 +68,12 @@ export function useUpdateUser() {
 export function useDeleteUser() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async (id: number) => {
-      const response = await apiClient.post(
+    mutationFn: (id: number) =>
+      requestHelpers.post(
         endpoints.system.usersDelete,
         { id },
         NO_GLOBAL_ERROR_TOAST_CONFIG
-      )
-      return response.data
-    },
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: systemUserKeys.all() })
     },
@@ -90,14 +83,12 @@ export function useDeleteUser() {
 export function useSuspendUser() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async (id: number) => {
-      const response = await apiClient.post(
+    mutationFn: (id: number) =>
+      requestHelpers.post(
         endpoints.system.usersSuspend,
         { id },
         NO_GLOBAL_ERROR_TOAST_CONFIG
-      )
-      return response.data
-    },
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: systemUserKeys.all() })
     },
@@ -107,14 +98,12 @@ export function useSuspendUser() {
 export function useActivateUser() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async (id: number) => {
-      const response = await apiClient.post(
+    mutationFn: (id: number) =>
+      requestHelpers.post(
         endpoints.system.usersActivate,
         { id },
         NO_GLOBAL_ERROR_TOAST_CONFIG
-      )
-      return response.data
-    },
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: systemUserKeys.all() })
     },
@@ -132,14 +121,12 @@ export function useUserSessions(userId: number, enabled: boolean) {
 export function useRevokeUserSessions() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async (data: { id: number; code?: string }) => {
-      const response = await apiClient.post<{ ok: boolean; revoked: number }>(
+    mutationFn: (data: { id: number; code?: string }) =>
+      requestHelpers.post<{ ok: boolean; revoked: number }>(
         endpoints.system.usersSessionsRevoke,
         data,
         NO_GLOBAL_ERROR_TOAST_CONFIG
-      )
-      return response.data
-    },
+      ),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
         queryKey: systemUserKeys.sessions(String(variables.id)),

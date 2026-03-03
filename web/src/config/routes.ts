@@ -19,5 +19,3 @@ export const APP_ROUTES = {
     DOMAINS: '/domains',
   },
 } as const
-
-export type AppRoutes = typeof APP_ROUTES

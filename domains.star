@@ -236,6 +236,7 @@ def action_domains_entities(a):
 
 def enrich_routes_with_names(routes):
     """Add app_name or entity_name to routes based on method"""
+    entities = None
     result = []
     for route in routes:
         if route["method"] == "app":
@@ -244,7 +245,8 @@ def enrich_routes_with_names(routes):
                 route = dict(route)
                 route["target_name"] = app["name"]
         elif route["method"] == "entity":
-            entities = mochi.entity.owned()
+            if entities == None:
+                entities = mochi.entity.owned()
             for e in entities:
                 if e["id"] == route["target"]:
                     route = dict(route)

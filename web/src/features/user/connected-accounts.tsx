@@ -62,6 +62,7 @@ import {
   getProviderLabel,
   requestHelpers,
   toast,
+  formatTimestamp,
   type Account,
   type Provider,
 } from '@mochi/common'
@@ -90,12 +91,6 @@ function getProviderIcon(type: string) {
   }
 }
 
-function formatDate(timestamp: number): string {
-  if (!timestamp) return ''
-  const date = new Date(timestamp * 1000)
-  const pad = (n: number) => n.toString().padStart(2, '0')
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
-}
 
 function getBrowserFromEndpoint(endpoint: string): string {
   if (!endpoint) return 'Browser'
@@ -235,7 +230,7 @@ function AccountRow({
 
       {/* Added */}
       <TableCell className='text-muted-foreground text-sm hidden lg:table-cell'>
-        {formatDate(account.created)}
+        {formatTimestamp(account.created)}
       </TableCell>
 
       {/* Actions */}

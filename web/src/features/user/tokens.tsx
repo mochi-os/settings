@@ -43,10 +43,6 @@ import {
   toast,
 } from '@mochi/common'
 
-function formatDate(dateStr: string): string {
-  if (!dateStr) return 'Never'
-  return dateStr
-}
 
 function TokenRow({ token }: { token: Token }) {
   const deleteToken = useTokenDelete()
@@ -75,10 +71,10 @@ function TokenRow({ token }: { token: Token }) {
         </div>
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {formatDate(token.created)}
+        {token.created || 'Never'}
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {formatDate(token.last_used)}
+        {token.last_used || 'Never'}
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
         {token.expires || 'Never'}
