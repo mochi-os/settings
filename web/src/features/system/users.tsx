@@ -320,7 +320,7 @@ function SessionsDialog({ user }: { user: User }) {
               </TableHeader>
               <TableBody>
                 {data.sessions.map((session: Session) => (
-                  <TableRow key={session.id}>
+                  <TableRow key={session.code}>
                     <TableCell>{formatSession(session)}</TableCell>
                     <TableCell className='font-mono text-sm'>
                       {session.address || 'Unknown'}
@@ -332,7 +332,7 @@ function SessionsDialog({ user }: { user: User }) {
                       <Button
                         variant='ghost'
                         size='sm'
-                        onClick={() => handleRevoke(session.id)}
+                        onClick={() => handleRevoke(session.code)}
                         disabled={revokeSession.isPending}
                       >
                         Revoke

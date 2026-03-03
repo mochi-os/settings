@@ -1,5 +1,5 @@
 # Mochi settings app
-# Copyright Alistair Cunningham 2025
+# Copyright Alistair Cunningham 2025-2026
 
 # Access control helper
 

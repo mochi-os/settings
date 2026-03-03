@@ -1,5 +1,5 @@
 # Mochi settings app: domains
-# Copyright Alistair Cunningham 2025
+# Copyright Alistair Cunningham 2025-2026
 
 def is_admin(a):
     """Check if user is admin"""

@@ -1,5 +1,5 @@
 # Mochi settings app: Connected accounts
-# Copyright Alistair Cunningham 2025
+# Copyright Alistair Cunningham 2025-2026
 #
 # Thin wrappers around mochi.account.* API for the settings app
 

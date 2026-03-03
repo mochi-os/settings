@@ -1,5 +1,5 @@
 # Mochi settings app: user/interests
-# Copyright Alistair Cunningham 2025
+# Copyright Alistair Cunningham 2025-2026
 
 # List user interests with resolved labels
 def action_interests_list(a):

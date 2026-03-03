@@ -1,5 +1,5 @@
 # Mochi settings app: system/settings
-# Copyright Alistair Cunningham 2025
+# Copyright Alistair Cunningham 2025-2026
 
 def action_system_settings_list(a):
     """List all system settings with metadata"""
