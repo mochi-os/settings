@@ -2,7 +2,7 @@ import { requestHelpers } from '@mochi/common'
 import endpoints from '@/api/endpoints'
 import type { Session, UsersData } from '@/types/users'
 
-export interface SystemUsersResponse extends UsersData {}
+export type SystemUsersResponse = UsersData
 
 export interface SystemUserSessionsResponse {
   sessions: Session[]

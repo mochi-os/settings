@@ -78,6 +78,8 @@ import {
   formatTimestamp,
 } from '@mochi/common'
 
+type RegistrationOptionsJSON = Parameters<typeof startRegistration>[0]['optionsJSON']
+
 // ============================================================================
 // Identity Section
 // ============================================================================
@@ -332,7 +334,7 @@ function PasskeysSection() {
     try {
       const beginResult = await registerBegin.mutateAsync()
       const credential = await startRegistration({
-        optionsJSON: beginResult.options as any,
+        optionsJSON: beginResult.options as RegistrationOptionsJSON,
       })
       await registerFinish.mutateAsync({
         ceremony: beginResult.ceremony,
