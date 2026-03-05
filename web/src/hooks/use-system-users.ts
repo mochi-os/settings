@@ -1,13 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useQueryWithError, requestHelpers } from '@mochi/common'
-import type { User } from '@/types/users'
+import type { User, SessionsData } from '@/types/users'
 import endpoints from '@/api/endpoints'
 import {
   type SystemUsersResponse,
   systemUsersApi,
 } from '@/api/system-users'
-import type { SessionsData } from '@/types/users'
-
 const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
 } as const

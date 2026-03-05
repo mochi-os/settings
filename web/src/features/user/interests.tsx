@@ -1,13 +1,6 @@
 import { useState, useRef } from 'react'
 import { Loader2, Search, Star, Trash2, RefreshCw } from 'lucide-react'
-import {
-  useInterests,
-  useInterestSet,
-  useInterestRemove,
-  useInterestSearch,
-  useInterestSummary,
-} from '@/hooks/use-interests'
-import type { Interest, SearchResult } from '@/hooks/use-interests'
+import { useInterests, useInterestSet, useInterestRemove, useInterestSearch, useInterestSummary, type Interest, type SearchResult } from '@/hooks/use-interests'
 import {
   Button,
   EmptyState,
