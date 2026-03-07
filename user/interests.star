@@ -32,8 +32,8 @@ def action_interests_set(a):
         return
 
     w = int(weight)
-    if w < 0 or w > 100:
-        a.error(400, "Weight must be 0-100")
+    if w < -100 or w > 100:
+        a.error(400, "Weight must be -100 to 100")
         return
 
     mochi.interests.set(qid, w)

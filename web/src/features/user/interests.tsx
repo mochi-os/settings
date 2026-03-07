@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { Loader2, Search, Star, Trash2, RefreshCw } from 'lucide-react'
 import { useInterests, useInterestSet, useInterestRemove, useInterestSearch, useInterestSummary, type Interest, type SearchResult } from '@/hooks/use-interests'
 import {
@@ -15,10 +15,29 @@ import {
   toast,
 } from '@mochi/common'
 
+function interestHue(weight: number): number {
+  // Continuous: red(-100) → blue(0) → green(+100)
+  return 240 - (weight / 100) * 120
+}
+
 function InterestRow({ interest }: { interest: Interest }) {
   const setInterest = useInterestSet()
   const removeInterest = useInterestRemove()
   const [weight, setWeight] = useState(interest.weight)
+  const lastSign = useRef(Math.sign(weight) || 1)
+
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = Number(e.target.value)
+    const sign = Math.sign(raw)
+    // Snap to 0 when crossing from one side to the other
+    if (sign !== 0 && sign !== lastSign.current && Math.abs(raw) <= 8) {
+      setWeight(0)
+      // Don't update lastSign — keep it on the old side so dragging further through updates it
+    } else {
+      if (sign !== 0) lastSign.current = sign
+      setWeight(raw)
+    }
+  }, [])
 
   const handleWeightCommit = (w: number) => {
     setWeight(w)
@@ -46,22 +65,29 @@ function InterestRow({ interest }: { interest: Interest }) {
       <div className='min-w-0 flex-1'>
         <span className='text-sm font-medium'>{interest.label}</span>
       </div>
-      <Slider
-        min={0}
-        max={100}
-        step={1}
-        value={weight}
-        onChange={(e) => setWeight(Number(e.target.value))}
-        onMouseUp={(e) =>
-          handleWeightCommit(Number((e.target as HTMLInputElement).value))
-        }
-        onTouchEnd={(e) =>
-          handleWeightCommit(Number((e.target as HTMLInputElement).value))
-        }
-        className='w-64 shrink-0'
-      />
-      <span className='text-muted-foreground w-8 shrink-0 text-right text-xs tabular-nums'>
-        {weight}
+      <div className='relative w-64 shrink-0 pb-1.5'>
+        <Slider
+          min={-100}
+          max={100}
+          step={1}
+          value={weight}
+          onChange={handleChange}
+          onMouseUp={(e) =>
+            handleWeightCommit(Number((e.target as HTMLInputElement).value))
+          }
+          onTouchEnd={(e) =>
+            handleWeightCommit(Number((e.target as HTMLInputElement).value))
+          }
+          className='w-full'
+          style={{ accentColor: weight === 0 ? undefined : `hsl(${interestHue(weight)}, 80%, 45%)` }}
+        />
+        <div className='bg-muted-foreground/50 pointer-events-none absolute bottom-0 left-1/2 h-2 w-px -translate-x-1/2' />
+      </div>
+      <span
+        className='w-8 shrink-0 text-right text-xs tabular-nums'
+        style={{ color: weight === 0 ? undefined : `hsl(${interestHue(weight)}, 80%, 45%)` }}
+      >
+        {weight > 0 ? '+' : ''}{weight}
       </span>
       <Button
         variant='ghost'
