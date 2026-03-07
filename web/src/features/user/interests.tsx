@@ -65,7 +65,7 @@ function InterestRow({ interest }: { interest: Interest }) {
       <div className='min-w-0 flex-1'>
         <span className='text-sm font-medium'>{interest.label}</span>
       </div>
-      <div className='relative w-64 shrink-0 pb-1.5'>
+      <div className='relative w-64 shrink-0 pb-2'>
         <Slider
           min={-100}
           max={100}
@@ -81,7 +81,7 @@ function InterestRow({ interest }: { interest: Interest }) {
           className='w-full'
           style={{ accentColor: weight === 0 ? undefined : `hsl(${interestHue(weight)}, 80%, 45%)` }}
         />
-        <div className='bg-muted-foreground/50 pointer-events-none absolute bottom-0 left-1/2 h-2 w-px -translate-x-1/2' />
+        <div className='bg-muted-foreground/50 pointer-events-none absolute top-full left-1/2 h-2 w-px -translate-x-1/2' />
       </div>
       <span
         className='w-8 shrink-0 text-right text-xs tabular-nums'
