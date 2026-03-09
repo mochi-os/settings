@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { useAuthStore, getCookie, AuthenticatedLayout } from '@mochi/common'
+import { useAuthStore, isInShell, AuthenticatedLayout } from '@mochi/common'
 import { getSidebarData, sidebarData } from '@/components/layout/data/sidebar-data'
 import { useAccountData } from '@/hooks/use-account'
 import { useDomainsData } from '@/hooks/use-domains'
@@ -22,33 +22,23 @@ function SettingsLayout() {
 }
 
 export const Route = createFileRoute('/_authenticated')({
-  beforeLoad: ({ location }) => {
+  beforeLoad: async ({ location }) => {
     const store = useAuthStore.getState()
 
     if (!store.isInitialized) {
-      store.initialize()
-    } else {
-      const cookieToken = getCookie('token')
-      if (cookieToken && cookieToken !== store.token) {
+      if (isInShell()) {
+        await store.initializeFromShell()
+      } else {
         store.initialize()
       }
     }
 
-    const token = getCookie('token') || store.token
-
-    if (!token) {
-      const returnUrl = encodeURIComponent(
-        location.href ||
-          window.location.pathname +
-            window.location.search +
-            window.location.hash
-      )
+    if (!isInShell() && !store.token) {
+      const returnUrl = encodeURIComponent(location.href)
       const redirectUrl = `${import.meta.env.VITE_AUTH_LOGIN_URL}?redirect=${returnUrl}`
       window.location.href = redirectUrl
       return
     }
-
-    return
   },
   component: SettingsLayout,
 })
