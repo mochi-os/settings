@@ -38,6 +38,7 @@ import {
   AlertDialogTitle,
   Badge,
   Button,
+  IconButton,
   Dialog,
   DialogContent,
   DialogDescription,
@@ -432,9 +433,9 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
       <TableCell className='w-[50px]'>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant='ghost' size='icon'>
+            <IconButton variant='ghost' label='Open user actions'>
               <MoreHorizontal className='h-4 w-4' />
-            </Button>
+            </IconButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent align='end'>
             <EditUserDialog user={user} onSuccess={onUpdate} />

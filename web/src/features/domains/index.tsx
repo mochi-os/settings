@@ -401,7 +401,7 @@ function EditRouteDialog({
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <Button variant='ghost' size='icon' className='h-8 w-8'>
+        <Button variant='ghost' size='icon' className='h-8 w-8' aria-label='Edit route'>
           <Pencil className='h-4 w-4' />
         </Button>
       </DialogTrigger>
@@ -701,7 +701,7 @@ function RouteRow({
           <EditRouteDialog route={route} onSuccess={onUpdate} />
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button variant='ghost' size='icon' className='h-8 w-8' disabled={isDeleting}>
+              <Button variant='ghost' size='icon' className='h-8 w-8' disabled={isDeleting} aria-label='Delete route'>
                 {isDeleting ? (
                   <Loader2 className='h-4 w-4 animate-spin' />
                 ) : (
@@ -746,7 +746,7 @@ function DelegationRow({
       <TableCell className='text-right'>
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <Button variant='ghost' size='icon' disabled={isDeleting}>
+            <Button variant='ghost' size='icon' disabled={isDeleting} aria-label='Delete delegation'>
               {isDeleting ? (
                 <Loader2 className='h-4 w-4 animate-spin' />
               ) : (
