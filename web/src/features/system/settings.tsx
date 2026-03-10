@@ -132,6 +132,8 @@ function SettingField({
                     size='icon'
                     className='h-8 w-8 text-muted-foreground'
                     disabled={isSaving}
+                    aria-label='Reset to default'
+                    title='Reset to default'
                   >
                     <RotateCcw className='h-4 w-4' />
                   </Button>
@@ -178,6 +180,8 @@ function SettingField({
                     size='icon'
                     className='h-9 w-9 text-muted-foreground'
                     disabled={isSaving}
+                    aria-label='Reset to default'
+                    title='Reset to default'
                   >
                     <RotateCcw className='h-4 w-4' />
                   </Button>
