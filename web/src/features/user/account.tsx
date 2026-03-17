@@ -76,7 +76,7 @@ import {
   getErrorMessage,
   toast,
   formatTimestamp,
-} from '@mochi/common'
+} from '@mochi/web'
 
 type RegistrationOptionsJSON = Parameters<typeof startRegistration>[0]['optionsJSON']
 

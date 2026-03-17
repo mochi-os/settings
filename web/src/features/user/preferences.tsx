@@ -36,7 +36,7 @@ import {
   toast,
   Section,
   FieldRow,
-} from '@mochi/common'
+} from '@mochi/web'
 import {
   usePreferencesData,
   useSetPreference,

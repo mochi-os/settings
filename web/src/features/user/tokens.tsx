@@ -41,7 +41,7 @@ import {
   usePageTitle,
   getErrorMessage,
   toast,
-} from '@mochi/common'
+} from '@mochi/web'
 
 
 function TokenRow({ token }: { token: Token }) {

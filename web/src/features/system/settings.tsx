@@ -24,7 +24,7 @@ import {
   Section,
   FieldRow,
   DataChip,
-} from '@mochi/common'
+} from '@mochi/web'
 import { usePreferencesData } from '@/hooks/use-preferences'
 import {
   useSystemSettingsData,

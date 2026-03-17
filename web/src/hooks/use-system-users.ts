@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useQueryWithError, requestHelpers } from '@mochi/common'
+import { useQueryWithError, requestHelpers } from '@mochi/web'
 import type { User, SessionsData } from '@/types/users'
 import endpoints from '@/api/endpoints'
 import {

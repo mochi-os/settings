@@ -1,7 +1,7 @@
 import {
   useSystemSettingsData as useSystemSettingsDataCommon,
   useSetSystemSetting as useSetSystemSettingCommon,
-} from '@mochi/common'
+} from '@mochi/web'
 import endpoints from '@/api/endpoints'
 
 export function useSystemSettingsData() {

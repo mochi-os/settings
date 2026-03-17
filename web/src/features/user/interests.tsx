@@ -13,7 +13,7 @@ import {
   usePageTitle,
   getErrorMessage,
   toast,
-} from '@mochi/common'
+} from '@mochi/web'
 
 function interestHue(weight: number): number {
   // Continuous: red(-100) → blue(0) → green(+100)

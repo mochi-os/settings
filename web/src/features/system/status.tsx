@@ -10,7 +10,7 @@ import {
   CardContent,
   usePageTitle,
   formatTimestamp,
-} from '@mochi/common'
+} from '@mochi/web'
 import { useSystemSettingsData } from '@/hooks/use-system-settings'
 
 export function SystemStatus() {

@@ -32,7 +32,7 @@ import {
   getErrorMessage,
   toast,
   formatTimestamp,
-} from '@mochi/common'
+} from '@mochi/web'
 
 function SessionRow({
   session,

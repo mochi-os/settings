@@ -1,1 +1,1 @@
-export type { User, Session, UsersData, SessionsData } from '@mochi/common'
+export type { User, Session, UsersData, SessionsData } from '@mochi/web'
