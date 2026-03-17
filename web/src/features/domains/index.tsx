@@ -71,7 +71,7 @@ import {
   usePageTitle,
   toast,
   getErrorMessage,
-} from '@mochi/common'
+} from '@mochi/web'
 
 function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
   const [open, setOpen] = useState(false)

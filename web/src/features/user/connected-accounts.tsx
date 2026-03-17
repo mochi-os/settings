@@ -65,7 +65,7 @@ import {
   formatTimestamp,
   type Account,
   type Provider,
-} from '@mochi/common'
+} from '@mochi/web'
 
 const APP_BASE = getAppPath()
 

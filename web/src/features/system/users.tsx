@@ -73,7 +73,7 @@ import {
   ListSkeleton,
   EmptyState,
   formatTimestamp,
-} from '@mochi/common'
+} from '@mochi/web'
 
 function useDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value)

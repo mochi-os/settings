@@ -11,7 +11,7 @@ import {
   Link2,
   Star,
 } from 'lucide-react'
-import { type SidebarData } from '@mochi/common'
+import { type SidebarData } from '@mochi/web'
 
 // User menu items (visible to all users)
 const userNavGroup = {

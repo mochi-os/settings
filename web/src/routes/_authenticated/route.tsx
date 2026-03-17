@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { useAuthStore, AuthenticatedLayout } from '@mochi/common'
+import { useAuthStore, AuthenticatedLayout } from '@mochi/web'
 import { getSidebarData, sidebarData } from '@/components/layout/data/sidebar-data'
 import { useAccountData } from '@/hooks/use-account'
 import { useDomainsData } from '@/hooks/use-domains'

@@ -1,1 +1,1 @@
-export type { SystemSetting, SystemSettingsData } from '@mochi/common'
+export type { SystemSetting, SystemSettingsData } from '@mochi/web'

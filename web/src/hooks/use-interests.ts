@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { requestHelpers } from '@mochi/common'
+import { requestHelpers } from '@mochi/web'
 import endpoints from '@/api/endpoints'
 
 interface Interest {
