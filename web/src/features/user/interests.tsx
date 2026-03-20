@@ -63,7 +63,14 @@ function InterestRow({ interest }: { interest: Interest }) {
   return (
     <div className='flex items-center gap-4 py-2.5'>
       <div className='min-w-0 flex-1'>
-        <span className='text-sm font-medium'>{interest.label}</span>
+        <a
+          href={`https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/${interest.qid}`}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='text-sm font-medium hover:underline'
+        >
+          {interest.label}
+        </a>
       </div>
       <div className='relative w-64 shrink-0 pb-2'>
         <Slider
