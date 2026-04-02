@@ -4,12 +4,12 @@
 # Preference schema
 preferences_schema = [
     {
-        "key": "theme",
+        "key": "appearance",
         "type": "select",
         "options": ["light", "dark", "auto"],
         "default": "auto",
-        "label": "Theme",
-        "description": "Color scheme for the interface"
+        "label": "Appearance",
+        "description": "Light or dark mode"
     },
     {
         "key": "language",
