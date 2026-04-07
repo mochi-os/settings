@@ -3,23 +3,15 @@ import type { Token } from '@/types/account'
 import { Loader2, Plus, Trash2, Copy, Check, Key } from 'lucide-react'
 import { useTokens, useTokenCreate, useTokenDelete } from '@/hooks/use-account'
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
   Button,
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+  ConfirmDialog,
+  ResponsiveDialog,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogFooter,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
   Input,
   Label,
   EmptyState,
@@ -45,11 +37,13 @@ import {
 
 
 function TokenRow({ token }: { token: Token }) {
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const deleteToken = useTokenDelete()
 
   const handleDelete = () => {
     deleteToken.mutate(token.hash, {
       onSuccess: () => {
+        setShowDeleteDialog(false)
         toast.success('Token deleted')
       },
       onError: (error) => {
@@ -80,38 +74,29 @@ function TokenRow({ token }: { token: Token }) {
         {token.expires || 'Never'}
       </TableCell>
       <TableCell className='text-right'>
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button
-              variant='ghost'
-              size='sm'
-              disabled={deleteToken.isPending}
-            >
-              {deleteToken.isPending ? (
-                <Loader2 className='h-4 w-4 animate-spin' />
-              ) : (
-                <Trash2 className='h-4 w-4' />
-              )}
-              <span className='sr-only'>Delete token</span>
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Delete token?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This will permanently delete the token &quot;{token.name}&quot;.
-                Any applications using this token will no longer be able to
-                authenticate.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction variant='destructive' onClick={handleDelete}>
-                Delete
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <Button
+          variant='ghost'
+          size='sm'
+          disabled={deleteToken.isPending}
+          onClick={() => setShowDeleteDialog(true)}
+        >
+          {deleteToken.isPending ? (
+            <Loader2 className='h-4 w-4 animate-spin' />
+          ) : (
+            <Trash2 className='h-4 w-4' />
+          )}
+          <span className='sr-only'>Delete token</span>
+        </Button>
+        <ConfirmDialog
+          open={showDeleteDialog}
+          onOpenChange={setShowDeleteDialog}
+          title='Delete token?'
+          desc={`This will permanently delete the token "${token.name}". Any applications using this token will no longer be able to authenticate.`}
+          confirmText='Delete'
+          destructive
+          handleConfirm={handleDelete}
+          isLoading={deleteToken.isPending}
+        />
       </TableCell>
     </TableRow>
   )
@@ -161,24 +146,24 @@ function CreateTokenDialog() {
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+    <ResponsiveDialog open={open} onOpenChange={setOpen}>
+      <ResponsiveDialogTrigger asChild>
         <Button size='sm'>
           <Plus className='mr-2 h-4 w-4' />
           Create token
         </Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>
+      </ResponsiveDialogTrigger>
+      <ResponsiveDialogContent>
+        <ResponsiveDialogHeader>
+          <ResponsiveDialogTitle>
             {newToken ? 'Token created' : 'Create token'}
-          </DialogTitle>
-          <DialogDescription>
+          </ResponsiveDialogTitle>
+          <ResponsiveDialogDescription>
             {newToken
               ? 'Copy your token now. You will not be able to see it again.'
               : 'Create a token to authenticate with git or the API.'}
-          </DialogDescription>
-        </DialogHeader>
+          </ResponsiveDialogDescription>
+        </ResponsiveDialogHeader>
 
         {newToken ? (
           <div className='space-y-4'>
@@ -197,9 +182,9 @@ function CreateTokenDialog() {
                 )}
               </Button>
             </div>
-            <DialogFooter>
+            <ResponsiveDialogFooter>
               <Button variant='outline' onClick={handleClose}>Done</Button>
-            </DialogFooter>
+            </ResponsiveDialogFooter>
           </div>
         ) : (
           <div className='space-y-4'>
@@ -217,7 +202,7 @@ function CreateTokenDialog() {
                 }}
               />
             </div>
-            <DialogFooter>
+            <ResponsiveDialogFooter>
               <Button
                 onClick={handleCreate}
                 disabled={createToken.isPending || !name.trim()}
@@ -227,11 +212,11 @@ function CreateTokenDialog() {
                 )}
                 Create token
               </Button>
-            </DialogFooter>
+            </ResponsiveDialogFooter>
           </div>
         )}
-      </DialogContent>
-    </Dialog>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   )
 }
 

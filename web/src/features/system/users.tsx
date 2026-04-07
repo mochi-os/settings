@@ -28,24 +28,17 @@ import {
 } from '@/hooks/use-system-users'
 import { useAccountData } from '@/hooks/use-account'
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
   Badge,
   Button,
+  ConfirmDialog,
   IconButton,
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+  ResponsiveDialog,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogFooter,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -110,18 +103,18 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+    <ResponsiveDialog open={open} onOpenChange={setOpen}>
+      <ResponsiveDialogTrigger asChild>
         <Button>
           <Plus className='mr-2 h-4 w-4' />
           Add User
         </Button>
-      </DialogTrigger>
-      <DialogContent>
+      </ResponsiveDialogTrigger>
+      <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
-          <DialogHeader>
-            <DialogTitle>Create user</DialogTitle>
-          </DialogHeader>
+          <ResponsiveDialogHeader>
+            <ResponsiveDialogTitle>Create user</ResponsiveDialogTitle>
+          </ResponsiveDialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
               <Label htmlFor='username'>Email</Label>
@@ -147,7 +140,7 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
               </Select>
             </div>
           </div>
-          <DialogFooter>
+          <ResponsiveDialogFooter>
             <Button
               type='button'
               variant='outline'
@@ -161,10 +154,10 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
               )}
               Create User
             </Button>
-          </DialogFooter>
+          </ResponsiveDialogFooter>
         </form>
-      </DialogContent>
-    </Dialog>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   )
 }
 
@@ -198,18 +191,18 @@ function EditUserDialog({
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+    <ResponsiveDialog open={open} onOpenChange={setOpen}>
+      <ResponsiveDialogTrigger asChild>
         <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
           <Pencil className='mr-2 h-4 w-4' />
           Edit user
         </DropdownMenuItem>
-      </DialogTrigger>
-      <DialogContent>
+      </ResponsiveDialogTrigger>
+      <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
-          <DialogHeader>
-            <DialogTitle>Edit user</DialogTitle>
-          </DialogHeader>
+          <ResponsiveDialogHeader>
+            <ResponsiveDialogTitle>Edit user</ResponsiveDialogTitle>
+          </ResponsiveDialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
               <Label htmlFor='edit-username'>Email</Label>
@@ -234,7 +227,7 @@ function EditUserDialog({
               </Select>
             </div>
           </div>
-          <DialogFooter>
+          <ResponsiveDialogFooter>
             <Button
               type='button'
               variant='outline'
@@ -248,10 +241,10 @@ function EditUserDialog({
               )}
               Save Changes
             </Button>
-          </DialogFooter>
+          </ResponsiveDialogFooter>
         </form>
-      </DialogContent>
-    </Dialog>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   )
 }
 
@@ -292,20 +285,20 @@ function SessionsDialog({ user }: { user: User }) {
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+    <ResponsiveDialog open={open} onOpenChange={setOpen}>
+      <ResponsiveDialogTrigger asChild>
         <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
           <Key className='mr-2 h-4 w-4' />
           Manage sessions
         </DropdownMenuItem>
-      </DialogTrigger>
-      <DialogContent className='max-w-2xl'>
-        <DialogHeader>
-          <DialogTitle>Sessions for {user.username}</DialogTitle>
-          <DialogDescription>
+      </ResponsiveDialogTrigger>
+      <ResponsiveDialogContent className='max-w-2xl'>
+        <ResponsiveDialogHeader>
+          <ResponsiveDialogTitle>Sessions for {user.username}</ResponsiveDialogTitle>
+          <ResponsiveDialogDescription>
             View and revoke active sessions for this user.
-          </DialogDescription>
-        </DialogHeader>
+          </ResponsiveDialogDescription>
+        </ResponsiveDialogHeader>
         <div className='py-4'>
           {isLoading ? (
             <ListSkeleton count={2} height='h-12' variant='simple' />
@@ -351,7 +344,7 @@ function SessionsDialog({ user }: { user: User }) {
             />
           )}
         </div>
-        <DialogFooter>
+        <ResponsiveDialogFooter>
           <Button variant='outline' onClick={() => setOpen(false)}>
             Close
           </Button>
@@ -367,9 +360,9 @@ function SessionsDialog({ user }: { user: User }) {
               Revoke All Sessions
             </Button>
           )}
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+        </ResponsiveDialogFooter>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   )
 }
 
@@ -464,30 +457,25 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Delete user?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This will permanently delete the user "{user.username}". This
-                action cannot be undone.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction
-                variant='destructive'
-                onClick={handleDelete}
-                disabled={deleteUser.isPending}
-              >
-                {deleteUser.isPending && (
-                  <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-                )}
-                Delete
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <ConfirmDialog
+          open={deleteOpen}
+          onOpenChange={setDeleteOpen}
+          title='Delete user?'
+          desc={`This will permanently delete the user "${user.username}". This action cannot be undone.`}
+          confirmText={
+            deleteUser.isPending ? (
+              <>
+                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                Deleting...
+              </>
+            ) : (
+              'Delete'
+            )
+          }
+          destructive
+          handleConfirm={handleDelete}
+          isLoading={deleteUser.isPending}
+        />
       </TableCell>
     </TableRow>
   )

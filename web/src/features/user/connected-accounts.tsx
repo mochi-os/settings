@@ -16,20 +16,13 @@ import {
   Zap,
 } from 'lucide-react'
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
   Button,
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
+  ConfirmDialog,
+  ResponsiveDialog,
+  ResponsiveDialogContent,
+  ResponsiveDialogFooter,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -270,20 +263,15 @@ function AccountRow({
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Remove account?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This will remove the connected account &quot;{displayName}&quot;.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction variant='destructive' onClick={handleDelete}>Remove</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <ConfirmDialog
+          open={showDeleteDialog}
+          onOpenChange={setShowDeleteDialog}
+          title='Remove account?'
+          desc={`This will remove the connected account "${displayName}".`}
+          confirmText='Remove'
+          destructive
+          handleConfirm={handleDelete}
+        />
       </TableCell>
     </TableRow>
   )
@@ -570,11 +558,11 @@ function AccountSettingsDialog({
   }
 
   return (
-    <Dialog open onOpenChange={onOpenChange}>
-      <DialogContent className='sm:max-w-[425px]'>
-        <DialogHeader>
-          <DialogTitle>Account settings</DialogTitle>
-        </DialogHeader>
+    <ResponsiveDialog open onOpenChange={onOpenChange}>
+      <ResponsiveDialogContent className='sm:max-w-[425px]'>
+        <ResponsiveDialogHeader>
+          <ResponsiveDialogTitle>Account settings</ResponsiveDialogTitle>
+        </ResponsiveDialogHeader>
         <div className='grid gap-4 py-4'>
           <div className='grid gap-2'>
             <Label htmlFor='settings-name'>Name</Label>
@@ -606,13 +594,13 @@ function AccountSettingsDialog({
             </>
           )}
         </div>
-        <DialogFooter>
+        <ResponsiveDialogFooter>
           <Button variant='outline' onClick={() => onOpenChange(false)}>
             Cancel
           </Button>
           <Button onClick={() => void handleSave()}>Save</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+        </ResponsiveDialogFooter>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   )
 }
