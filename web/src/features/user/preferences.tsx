@@ -73,11 +73,14 @@ export function UserPreferences() {
       {
         onSuccess: () => {
           if (theme) {
+            const overrides: Record<string, string> = { ...theme.overrides }
+            if (theme.background_url) overrides['--background-image'] = `url(${theme.background_url})`
+            if (theme.border_radius) overrides['--radius'] = theme.border_radius
             setColorTheme({
               hue: String(theme.hue),
               chroma: String(theme.chroma),
               hueBg: String(theme.hue_bg),
-              overrides: theme.overrides,
+              overrides,
             })
           } else {
             setColorTheme(null)
@@ -94,6 +97,8 @@ export function UserPreferences() {
   const handleReset = () => {
     resetPreferences.mutate(undefined, {
       onSuccess: () => {
+        setColorTheme(null)
+        setTheme('system')
         toast.success('Preferences reset to defaults')
       },
       onError: (error) => {
