@@ -1,4 +1,5 @@
-import { Loader2, RotateCcw, Sliders } from 'lucide-react'
+import { useState } from 'react'
+import { Loader2, RotateCcw, Sliders, Check, ChevronRight } from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,6 +11,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
   Button,
+  cn,
   FieldRow,
   GeneralError,
   ListSkeleton,
@@ -21,6 +23,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
   TimezoneSelect,
   getErrorMessage,
   appearanceLabels,
@@ -28,6 +34,7 @@ import {
   usePageTitle,
   useTheme,
 } from '@mochi/web'
+import type { ThemeInfo } from '@mochi/web'
 import {
   usePreferencesData,
   useSetPreference,
@@ -39,7 +46,8 @@ export function UserPreferences() {
   const { data, isLoading, error, refetch } = usePreferencesData()
   const setPreference = useSetPreference()
   const resetPreferences = useResetPreferences()
-  const { setTheme } = useTheme()
+  const { setTheme, setColorTheme } = useTheme()
+  const [themeSheetOpen, setThemeSheetOpen] = useState(false)
 
   const handleChange = (key: 'appearance' | 'timezone', value: string) => {
     setPreference.mutate(
@@ -53,6 +61,31 @@ export function UserPreferences() {
         },
         onError: (error) => {
           toast.error(getErrorMessage(error, 'Failed to update preference'))
+        },
+      }
+    )
+  }
+
+  const handleThemeChange = (theme: ThemeInfo | null) => {
+    const themeId = theme ? theme.id : ''
+    setPreference.mutate(
+      { theme: themeId },
+      {
+        onSuccess: () => {
+          if (theme) {
+            setColorTheme({
+              hue: String(theme.hue),
+              chroma: String(theme.chroma),
+              hueBg: String(theme.hue_bg),
+              overrides: theme.overrides,
+            })
+          } else {
+            setColorTheme(null)
+          }
+          toast.success('Theme updated')
+        },
+        onError: (error) => {
+          toast.error(getErrorMessage(error, 'Failed to update theme'))
         },
       }
     )
@@ -138,6 +171,71 @@ export function UserPreferences() {
                     </Select>
                   </div>
                 </FieldRow>
+
+                {data.themes && data.themes.length > 0 && (
+                  <FieldRow label='Theme' description='Color palette'>
+                    <Button
+                      variant="outline"
+                      className="w-full sm:w-64 justify-between"
+                      onClick={() => setThemeSheetOpen(true)}
+                    >
+                      <span className="flex items-center gap-2">
+                        {(() => {
+                          const current = data.themes.find(t => t.id === data.preferences.theme)
+                          if (current) {
+                            return (
+                              <>
+                                <span className="size-3.5 rounded-full shrink-0" style={{ backgroundColor: current.preview }} />
+                                {current.label}
+                              </>
+                            )
+                          }
+                          return 'Default'
+                        })()}
+                      </span>
+                      <ChevronRight className="size-4 text-muted-foreground" />
+                    </Button>
+                  </FieldRow>
+                )}
+                <Sheet open={themeSheetOpen} onOpenChange={setThemeSheetOpen}>
+                  <SheetContent className="overflow-y-auto" onInteractOutside={() => {}}>
+                    <SheetHeader>
+                      <SheetTitle>Theme</SheetTitle>
+                    </SheetHeader>
+                    <div className="grid gap-2 pt-4">
+                      {(() => {
+                        return (data.themes || []).map((theme) => {
+                        const isSelected = data.preferences.theme === theme.id
+                        return (
+                          <button
+                            key={theme.id}
+                            onClick={() => {
+                              handleThemeChange(isSelected ? null : theme)
+                              setThemeSheetOpen(false)
+                            }}
+                            disabled={setPreference.isPending}
+                            className={cn(
+                              'flex items-center gap-3 rounded-[10px] border p-3 text-left transition-colors',
+                              isSelected
+                                ? 'border-primary bg-primary/5'
+                                : 'border-border hover:border-primary/50'
+                            )}
+                          >
+                            <span
+                              className="size-8 rounded-[8px] shrink-0"
+                              style={{ backgroundColor: theme.preview }}
+                            />
+                            <div className="min-w-0 flex-1">
+                              <div className="text-sm font-medium">{theme.label}</div>
+                            </div>
+                            {isSelected && <Check className="size-4 text-primary shrink-0" />}
+                          </button>
+                        )
+                      })
+                      })()}
+                    </div>
+                  </SheetContent>
+                </Sheet>
 
                 <FieldRow
                   label='Time zone'

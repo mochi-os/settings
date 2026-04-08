@@ -38,6 +38,7 @@ const settingLabels: Record<string, string> = {
   auth_passkey_enabled: 'Passkey login',
   auth_email_enabled: 'Email code login',
   auth_recovery_enabled: 'Recovery code login',
+  default_theme: 'Default theme',
   domains_verification: 'Require domain verification',
   email_from: 'Email default from address',
   server_started: 'Server started',
@@ -111,7 +112,7 @@ function SettingField({
       label={formatSettingName(setting.name)}
       description={setting.description}
     >
-      <div className='flex items-center gap-2'>
+      <div className='flex items-center gap-2 w-full'>
         {setting.read_only ? (
           <DataChip 
             value={formatSettingValue(setting.name, setting.value, timezone)} 
@@ -157,7 +158,7 @@ function SettingField({
             )}
           </div>
         ) : (
-          <div className="flex items-center gap-2 w-full max-w-sm">
+          <div className="flex items-center gap-2 w-full">
             <Input
               value={localValue}
               onChange={(e) => setLocalValue(e.target.value)}
@@ -235,60 +236,64 @@ export function SystemSettings() {
     )
   }
 
-  const statusSettings = ['server_version', 'server_started']
-  const sortedSettings = data?.settings
+  const hiddenSettings = ['server_version', 'server_started']
+  const userDefaultSettings = ['default_theme']
+  const otherSettings = ['apps_install_user', 'email_from', 'domains_verification']
+
+  const allSettings = data?.settings
     ? [...data.settings]
-        .filter((s) => !statusSettings.includes(s.name))
+        .filter((s) => !hiddenSettings.includes(s.name))
         .sort((a, b) =>
           formatSettingName(a.name).localeCompare(formatSettingName(b.name))
         )
     : []
 
-  const infoSettings = data?.settings
-    ? data.settings.filter(s => statusSettings.includes(s.name))
-    : []
+  const loginSettings = allSettings.filter(
+    (s) => !userDefaultSettings.includes(s.name) && !otherSettings.includes(s.name)
+  )
+  const userDefaults = allSettings.filter((s) => userDefaultSettings.includes(s.name))
+  const other = allSettings.filter((s) => otherSettings.includes(s.name))
+
+  const renderSettings = (settings: typeof allSettings) =>
+    settings.map((setting) => (
+      <SettingField
+        key={setting.name}
+        setting={setting}
+        onSave={handleSave}
+        isSaving={savingName === setting.name}
+        timezone={timezone}
+      />
+    ))
 
   return (
     <>
       <PageHeader title="System settings" icon={<Settings className='size-4 md:size-5' />} />
 
       <Main className="space-y-8">
-        <Section
-          title="Configuration"
-          description="Global server settings"
-        >
-          <div className='divide-y-0'>
-            {error ? (
-              <GeneralError error={error} minimal mode='inline' reset={refetch} />
-            ) : isLoading ? (
-              <ListSkeleton variant='simple' height='h-12' count={4} />
-            ) : (
-              sortedSettings.map((setting) => (
-                <SettingField
-                  key={setting.name}
-                  setting={setting}
-                  onSave={handleSave}
-                  isSaving={savingName === setting.name}
-                  timezone={timezone}
-                />
-              ))
-            )}
-          </div>
-        </Section>
+        {error ? (
+          <GeneralError error={error} minimal mode='inline' reset={refetch} />
+        ) : isLoading ? (
+          <ListSkeleton variant='simple' height='h-12' count={4} />
+        ) : (
+          <>
+            <Section title="Login">
+              <div className='divide-y-0'>
+                {renderSettings(loginSettings)}
+              </div>
+            </Section>
 
-        {infoSettings.length > 0 && (
-          <Section 
-            title="System Info" 
-            description="Server status information"
-          >
-            <div className="divide-y-0">
-               {infoSettings.map(setting => (
-                 <FieldRow key={setting.name} label={formatSettingName(setting.name)}>
-                    <DataChip value={formatSettingValue(setting.name, setting.value, timezone)} />
-                 </FieldRow>
-               ))}
-            </div>
-          </Section>
+            <Section title="User defaults">
+              <div className='divide-y-0'>
+                {renderSettings(userDefaults)}
+              </div>
+            </Section>
+
+            <Section title="Other settings">
+              <div className='divide-y-0'>
+                {renderSettings(other)}
+              </div>
+            </Section>
+          </>
         )}
       </Main>
     </>

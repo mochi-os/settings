@@ -34,7 +34,11 @@ def action_user_preferences(a):
     for p in preferences_schema:
         value = a.user.preference.get(p["key"])
         prefs[p["key"]] = value if value != None else p["default"]
-    a.json({"preferences": prefs, "schema": preferences_schema})
+    # Include theme preference (not in schema since options are dynamic)
+    theme = a.user.preference.get("theme")
+    default_theme = mochi.setting.get("default_theme")
+    prefs["theme"] = theme if theme != None else default_theme
+    a.json({"preferences": prefs, "schema": preferences_schema, "themes": mochi.app.themes(), "default_theme": default_theme})
 
 def action_user_preferences_set(a):
     """Set user preferences"""
@@ -45,10 +49,18 @@ def action_user_preferences_set(a):
                 a.error(400, "Invalid value for " + p["key"])
                 return
             a.user.preference.set(p["key"], value)
+    # Handle theme preference (dynamic options, validated separately)
+    theme = a.input("theme")
+    if theme != None:
+        if theme == "":
+            a.user.preference.delete("theme")
+        else:
+            a.user.preference.set("theme", theme)
     a.json({"ok": True})
 
 def action_user_preferences_reset(a):
     """Reset preferences to defaults"""
     for p in preferences_schema:
         a.user.preference.delete(p["key"])
+    a.user.preference.delete("theme")
     a.json({"ok": True})
