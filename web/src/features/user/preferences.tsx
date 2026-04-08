@@ -73,11 +73,13 @@ export function UserPreferences() {
       {
         onSuccess: () => {
           if (theme) {
+            const overrides = { ...theme.overrides }
+            if (theme.border_radius) overrides['--radius'] = theme.border_radius
             setColorTheme({
               hue: String(theme.hue),
               chroma: String(theme.chroma),
               hueBg: String(theme.hue_bg),
-              overrides: theme.overrides,
+              overrides,
             })
           } else {
             setColorTheme(null)
