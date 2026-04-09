@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Loader2, RotateCcw, Sliders, Check, ChevronRight } from 'lucide-react'
 import {
   AlertDialog,
@@ -31,10 +31,10 @@ import {
   getErrorMessage,
   appearanceLabels,
   toast,
+  type ThemeInfo,
   usePageTitle,
   useTheme,
 } from '@mochi/web'
-import type { ThemeInfo } from '@mochi/web'
 import {
   usePreferencesData,
   useSetPreference,
@@ -48,6 +48,37 @@ export function UserPreferences() {
   const resetPreferences = useResetPreferences()
   const { setTheme, setColorTheme } = useTheme()
   const [themeSheetOpen, setThemeSheetOpen] = useState(false)
+
+  useEffect(() => {
+    if (!data) return
+
+    const appearance = data.preferences.appearance
+    if (appearance === 'light' || appearance === 'dark') {
+      setTheme(appearance)
+    } else {
+      setTheme('system')
+    }
+
+    const theme = data.themes?.find((t) => t.id === data.preferences.theme)
+    if (!theme) {
+      setColorTheme(null)
+      return
+    }
+
+    const overrides: Record<string, string> = { ...theme.overrides }
+    if (theme.background_url) {
+      overrides['--background-image'] = `url(${theme.background_url})`
+    }
+    if (theme.border_radius) {
+      overrides['--radius'] = theme.border_radius
+    }
+    setColorTheme({
+      hue: String(theme.hue),
+      chroma: String(theme.chroma),
+      hueBg: String(theme.hue_bg),
+      overrides,
+    })
+  }, [data, setColorTheme, setTheme])
 
   const handleChange = (key: 'appearance' | 'timezone', value: string) => {
     setPreference.mutate(
