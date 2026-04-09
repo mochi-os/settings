@@ -18,7 +18,12 @@ function SettingsLayout() {
     ? getSidebarData(isAdmin, hasDomainAccess)
     : sidebarData
 
-  return <AuthenticatedLayout sidebarData={filteredSidebarData} />
+  return (
+    <AuthenticatedLayout
+      sidebarData={filteredSidebarData}
+      usePageHeaderForMobileNav
+    />
+  )
 }
 
 export const Route = createFileRoute('/_authenticated')({

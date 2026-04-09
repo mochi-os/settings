@@ -416,9 +416,14 @@ export function ConnectedAccounts() {
       <PageHeader
         title='Connected accounts'
         icon={<Link className='size-4 md:size-5' />}
+        showSidebarTrigger
         actions={
           !providersError && (
-            <Button variant='outline' size='sm' onClick={() => setIsAddOpen(true)}>
+            <Button
+              variant='outline'
+              size='sm'
+              onClick={() => setIsAddOpen(true)}
+            >
               <Plus className='mr-2 h-4 w-4' />
               Add account
             </Button>

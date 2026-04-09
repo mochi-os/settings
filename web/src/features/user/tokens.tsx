@@ -102,7 +102,7 @@ function TokenRow({ token }: { token: Token }) {
   )
 }
 
-function CreateTokenDialog() {
+function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) {
   const [open, setOpen] = useState(false)
   const [name, setName] = useState('')
   const [newToken, setNewToken] = useState<string | null>(null)
@@ -148,7 +148,7 @@ function CreateTokenDialog() {
   return (
     <ResponsiveDialog open={open} onOpenChange={setOpen}>
       <ResponsiveDialogTrigger asChild>
-        <Button size='sm'>
+        <Button size='sm' className={triggerClassName}>
           <Plus className='mr-2 h-4 w-4' />
           Create token
         </Button>
@@ -231,6 +231,7 @@ export function UserTokens() {
       <PageHeader
         title="Authentication tokens"
         icon={<Key className='size-4 md:size-5' />}
+        showSidebarTrigger
         actions={<CreateTokenDialog />}
       />
 
