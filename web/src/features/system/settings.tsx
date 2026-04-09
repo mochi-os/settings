@@ -24,8 +24,8 @@ import {
   Section,
   FieldRow,
   DataChip,
+  formatSystemTimestamp,
 } from '@mochi/web'
-import { usePreferencesData } from '@/hooks/use-preferences'
 import {
   useSystemSettingsData,
   useSetSystemSetting,
@@ -59,14 +59,11 @@ function formatSettingName(name: string): string {
 function formatSettingValue(
   name: string,
   value: string,
-  timezone?: string
 ): string {
   if (name === 'server_started' && value) {
     const timestamp = parseInt(value, 10)
     if (!isNaN(timestamp)) {
-      const date = new Date(timestamp * 1000)
-      const tz = timezone === 'auto' || !timezone ? undefined : timezone
-      return date.toLocaleString('sv-SE', { timeZone: tz }).replace('T', ' ')
+      return formatSystemTimestamp(timestamp)
     }
   }
   return value || '(empty)'
@@ -80,12 +77,10 @@ function SettingField({
   setting,
   onSave,
   isSaving,
-  timezone,
 }: {
   setting: SystemSetting
   onSave: (name: string, value: string) => void
   isSaving: boolean
-  timezone?: string
 }) {
   const [localValue, setLocalValue] = useState(setting.value)
   const isBoolean = isBooleanSetting(setting)
@@ -115,7 +110,7 @@ function SettingField({
       <div className='flex items-center gap-2 w-full'>
         {setting.read_only ? (
           <DataChip 
-            value={formatSettingValue(setting.name, setting.value, timezone)} 
+            value={formatSettingValue(setting.name, setting.value)} 
             icon={setting.read_only ? <Lock className="size-3" /> : undefined}
           />
         ) : isBoolean ? (
@@ -214,10 +209,8 @@ function SettingField({
 export function SystemSettings() {
   usePageTitle('System settings')
   const { data, isLoading, error, refetch } = useSystemSettingsData()
-  const { data: prefsData } = usePreferencesData()
   const setSetting = useSetSystemSetting()
   const [savingName, setSavingName] = useState<string | null>(null)
-  const timezone = prefsData?.preferences.timezone
 
   const handleSave = (name: string, value: string) => {
     setSavingName(name)
@@ -261,7 +254,6 @@ export function SystemSettings() {
         setting={setting}
         onSave={handleSave}
         isSaving={savingName === setting.name}
-        timezone={timezone}
       />
     ))
 

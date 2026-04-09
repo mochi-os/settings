@@ -18,11 +18,6 @@ import {
   Main,
   PageHeader,
   Section,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
   Sheet,
   SheetContent,
   SheetHeader,
@@ -30,11 +25,27 @@ import {
   TimezoneSelect,
   getErrorMessage,
   appearanceLabels,
+  dateFormatLabels,
+  timeFormatLabels,
+  timestampDisplayLabels,
+  weekStartLabels,
+  numberFormatLabels,
+  unitLabels,
   toast,
   usePageTitle,
   useTheme,
+  shellSetLocale,
+  useLocale,
 } from '@mochi/web'
-import type { ThemeInfo } from '@mochi/web'
+import type { ThemeInfo, LocalePreferences } from '@mochi/web'
+import {
+  detectDateFormat,
+  detectTimeFormat,
+  detectWeekStart,
+  detectNumberFormat,
+  detectUnits,
+} from '@mochi/web'
+import { ComboSelect } from '@/components/combo-select'
 import {
   usePreferencesData,
   useSetPreference,
@@ -47,15 +58,22 @@ export function UserPreferences() {
   const setPreference = useSetPreference()
   const resetPreferences = useResetPreferences()
   const { setTheme, setColorTheme } = useTheme()
+  const { raw: currentLocale } = useLocale()
   const [themeSheetOpen, setThemeSheetOpen] = useState(false)
 
-  const handleChange = (key: 'appearance' | 'timezone', value: string) => {
+  const localeKeys = ['date_format', 'time_format', 'timestamp_display', 'week_start', 'number_format', 'units'] as const
+
+  const handleChange = (key: string, value: string) => {
     setPreference.mutate(
       { [key]: value },
       {
         onSuccess: () => {
           if (key === 'appearance') {
             setTheme(value === 'auto' ? 'system' : (value as 'light' | 'dark'))
+          }
+          if ((localeKeys as readonly string[]).includes(key) || key === 'timezone') {
+            const updated = { ...currentLocale, [key]: value } as LocalePreferences
+            shellSetLocale(updated)
           }
           toast.success('Preference updated')
         },
@@ -109,11 +127,9 @@ export function UserPreferences() {
       <PageHeader title="Preferences" icon={<Sliders className='size-4 md:size-5' />} />
 
       <Main className="space-y-8">
-        <Section
-          title="General"
-          description="Manage your display settings and preferences"
-          action={
-            !error && <AlertDialog>
+        {!error && (
+          <div className="flex justify-end">
+            <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button
                   variant='ghost'
@@ -126,7 +142,7 @@ export function UserPreferences() {
                   ) : (
                     <RotateCcw className='mr-2 h-3.5 w-3.5' />
                   )}
-                  Reset to Defaults
+                  Reset to defaults
                 </Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
@@ -144,8 +160,10 @@ export function UserPreferences() {
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
-          }
-        >
+          </div>
+        )}
+
+        <Section title="Display">
           <div className='divide-y-0'>
             {error ? (
               <GeneralError error={error} minimal mode='inline' reset={refetch} />
@@ -153,32 +171,22 @@ export function UserPreferences() {
               <ListSkeleton variant='simple' height='h-12' count={2} />
             ) : data ? (
               <>
-                <FieldRow label='Appearance' description='Light or dark mode'>
-                  <div className="w-full sm:w-64">
-                    <Select
+                <FieldRow label='Appearance'>
+                  <div className="w-full">
+                    <ComboSelect
                       value={data.preferences.appearance}
-                      onValueChange={(value) => handleChange('appearance', value)}
+                      options={appearanceLabels}
+                      onChange={(value) => handleChange('appearance', value)}
                       disabled={setPreference.isPending}
-                    >
-                      <SelectTrigger className='w-full'>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {Object.entries(appearanceLabels).map(([value, label]) => (
-                          <SelectItem key={value} value={value}>
-                            {label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    />
                   </div>
                 </FieldRow>
 
                 {data.themes && data.themes.length > 0 && (
-                  <FieldRow label='Theme' description='Color palette'>
+                  <FieldRow label='Theme'>
                     <Button
                       variant="outline"
-                      className="w-full sm:w-64 justify-between"
+                      className="w-full justify-between"
                       onClick={() => setThemeSheetOpen(true)}
                     >
                       <span className="flex items-center gap-2">
@@ -238,23 +246,95 @@ export function UserPreferences() {
                     </div>
                   </SheetContent>
                 </Sheet>
-
-                <FieldRow
-                  label='Time zone'
-                  description='Used for displaying dates and times'
-                >
-                  <div className="w-full sm:w-64">
-                    <TimezoneSelect
-                      value={data.preferences.timezone}
-                      onChange={(value) => handleChange('timezone', value)}
-                      disabled={setPreference.isPending}
-                    />
-                  </div>
-                </FieldRow>
               </>
             ) : null}
           </div>
         </Section>
+
+        {data && !error && (
+          <Section title="Regional">
+            <div className='divide-y-0'>
+              <FieldRow label='Time zone'>
+                <div className="w-full">
+                  <TimezoneSelect
+                    value={data.preferences.timezone}
+                    onChange={(value) => handleChange('timezone', value)}
+                    disabled={setPreference.isPending}
+                  />
+                </div>
+              </FieldRow>
+
+              <FieldRow label='Units'>
+                <div className="w-full">
+                  <ComboSelect
+                    value={data.preferences.units || 'auto'}
+                    options={{ ...unitLabels, auto: `${unitLabels.auto} (${unitLabels[detectUnits()] || detectUnits()})` }}
+                    onChange={(value) => handleChange('units', value)}
+                    disabled={setPreference.isPending}
+                  />
+                </div>
+              </FieldRow>
+
+              <FieldRow label='Number format'>
+                <div className="w-full">
+                  <ComboSelect
+                    value={data.preferences.number_format || 'auto'}
+                    options={{ ...numberFormatLabels, auto: `${numberFormatLabels.auto} (${detectNumberFormat()})` }}
+                    onChange={(value) => handleChange('number_format', value)}
+                    disabled={setPreference.isPending}
+                  />
+                </div>
+              </FieldRow>
+
+              <FieldRow label='Date format'>
+                <div className="w-full">
+                  <ComboSelect
+                    value={data.preferences.date_format || 'auto'}
+                    options={{ ...dateFormatLabels, auto: `${dateFormatLabels.auto} (${detectDateFormat()})` }}
+                    onChange={(value) => handleChange('date_format', value)}
+                    disabled={setPreference.isPending}
+                  />
+                </div>
+              </FieldRow>
+
+              <FieldRow label='Time format'>
+                <div className="w-full">
+                  <ComboSelect
+                    value={data.preferences.time_format || 'auto'}
+                    options={{ ...timeFormatLabels, auto: `${timeFormatLabels.auto} (${detectTimeFormat() === '12h' ? '12 hours' : '24 hours'})` }}
+                    onChange={(value) => handleChange('time_format', value)}
+                    disabled={setPreference.isPending}
+                  />
+                </div>
+              </FieldRow>
+
+              <FieldRow label='Timestamps'>
+                <div className="w-full">
+                  <ComboSelect
+                    value={data.preferences.timestamp_display || 'auto'}
+                    options={timestampDisplayLabels}
+                    onChange={(value) => handleChange('timestamp_display', value)}
+                    disabled={setPreference.isPending}
+                  />
+                </div>
+              </FieldRow>
+
+              <FieldRow label='Week starts on'>
+                <div className="w-full">
+                  <ComboSelect
+                    value={data.preferences.week_start || 'auto'}
+                    options={{
+                      ...weekStartLabels,
+                      auto: `${weekStartLabels.auto} (${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][detectWeekStart()]})`,
+                    }}
+                    onChange={(value) => handleChange('week_start', value)}
+                    disabled={setPreference.isPending}
+                  />
+                </div>
+              </FieldRow>
+            </div>
+          </Section>
+        )}
       </Main>
     </>
   )

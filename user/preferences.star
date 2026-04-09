@@ -26,6 +26,54 @@ preferences_schema = [
         "label": "Timezone",
         "description": "Timezone for displaying dates and times"
     },
+    {
+        "key": "date_format",
+        "type": "select",
+        "options": ["auto", "YYYY-MM-DD", "DD/MM/YYYY", "DD.MM.YYYY", "MM/DD/YYYY", "D MMM YYYY"],
+        "default": "auto",
+        "label": "Date format",
+        "description": "How dates are displayed"
+    },
+    {
+        "key": "time_format",
+        "type": "select",
+        "options": ["auto", "24h", "12h"],
+        "default": "auto",
+        "label": "Time format",
+        "description": "12-hour or 24-hour clock"
+    },
+    {
+        "key": "timestamp_display",
+        "type": "select",
+        "options": ["auto", "relative", "absolute"],
+        "default": "auto",
+        "label": "Timestamp display",
+        "description": "Show timestamps as relative (5m, 3h) or absolute (date and time)"
+    },
+    {
+        "key": "week_start",
+        "type": "select",
+        "options": ["auto", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+        "default": "auto",
+        "label": "Week starts on",
+        "description": "First day of the week in calendars"
+    },
+    {
+        "key": "number_format",
+        "type": "select",
+        "options": ["auto", "1,000.00", "1.000,00", "1 000,00", "1'000.00", "1,00,000.00"],
+        "default": "auto",
+        "label": "Number format",
+        "description": "How numbers are formatted"
+    },
+    {
+        "key": "units",
+        "type": "select",
+        "options": ["auto", "metric", "imperial", "usa"],
+        "default": "auto",
+        "label": "Units",
+        "description": "Measurement system for distances, weights, etc."
+    },
 ]
 
 def action_user_preferences(a):
