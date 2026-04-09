@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Loader2, RotateCcw, Sliders, Check, ChevronRight } from 'lucide-react'
 import {
   AlertDialog,
@@ -32,12 +32,13 @@ import {
   numberFormatLabels,
   unitLabels,
   toast,
+  type ThemeInfo,
   usePageTitle,
   useTheme,
   shellSetLocale,
   useLocale,
 } from '@mochi/web'
-import type { ThemeInfo, LocalePreferences } from '@mochi/web'
+import type { LocalePreferences } from '@mochi/web'
 import {
   detectDateFormat,
   detectTimeFormat,
@@ -62,6 +63,37 @@ export function UserPreferences() {
   const [themeSheetOpen, setThemeSheetOpen] = useState(false)
 
   const localeKeys = ['date_format', 'time_format', 'timestamp_display', 'week_start', 'number_format', 'units'] as const
+
+  useEffect(() => {
+    if (!data) return
+
+    const appearance = data.preferences.appearance
+    if (appearance === 'light' || appearance === 'dark') {
+      setTheme(appearance)
+    } else {
+      setTheme('system')
+    }
+
+    const theme = data.themes?.find((t) => t.id === data.preferences.theme)
+    if (!theme) {
+      setColorTheme(null)
+      return
+    }
+
+    const overrides: Record<string, string> = { ...theme.overrides }
+    if (theme.background_url) {
+      overrides['--background-image'] = `url(${theme.background_url})`
+    }
+    if (theme.border_radius) {
+      overrides['--radius'] = theme.border_radius
+    }
+    setColorTheme({
+      hue: String(theme.hue),
+      chroma: String(theme.chroma),
+      hueBg: String(theme.hue_bg),
+      overrides,
+    })
+  }, [data, setColorTheme, setTheme])
 
   const handleChange = (key: string, value: string) => {
     setPreference.mutate(
@@ -91,7 +123,8 @@ export function UserPreferences() {
       {
         onSuccess: () => {
           if (theme) {
-            const overrides = { ...theme.overrides }
+            const overrides: Record<string, string> = { ...theme.overrides }
+            if (theme.background_url) overrides['--background-image'] = `url(${theme.background_url})`
             if (theme.border_radius) overrides['--radius'] = theme.border_radius
             setColorTheme({
               hue: String(theme.hue),
@@ -114,6 +147,8 @@ export function UserPreferences() {
   const handleReset = () => {
     resetPreferences.mutate(undefined, {
       onSuccess: () => {
+        setColorTheme(null)
+        setTheme('system')
         toast.success('Preferences reset to defaults')
       },
       onError: (error) => {

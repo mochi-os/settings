@@ -33,24 +33,16 @@ import {
   useEntities,
 } from '@/hooks/use-domains'
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
   Badge,
   Button,
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+  ConfirmDialog,
+  ResponsiveDialog,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogFooter,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
   EmptyState,
   GeneralError,
   Input,
@@ -94,21 +86,21 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+    <ResponsiveDialog open={open} onOpenChange={setOpen}>
+      <ResponsiveDialogTrigger asChild>
         <Button size='sm'>
           <Plus className='mr-2 h-4 w-4' />
           Add domain
         </Button>
-      </DialogTrigger>
-      <DialogContent>
+      </ResponsiveDialogTrigger>
+      <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
-          <DialogHeader>
-            <DialogTitle>Add domain</DialogTitle>
-            <DialogDescription className="sr-only">
+          <ResponsiveDialogHeader>
+            <ResponsiveDialogTitle>Add domain</ResponsiveDialogTitle>
+            <ResponsiveDialogDescription className="sr-only">
               Add domain
-            </DialogDescription>
-          </DialogHeader>
+            </ResponsiveDialogDescription>
+          </ResponsiveDialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
               <Label htmlFor='domain'>Domain</Label>
@@ -124,7 +116,7 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
               </p>
             </div>
           </div>
-          <DialogFooter>
+          <ResponsiveDialogFooter>
             <Button
               type='button'
               variant='outline'
@@ -138,10 +130,10 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
               )}
               Add domain
             </Button>
-          </DialogFooter>
+          </ResponsiveDialogFooter>
         </form>
-      </DialogContent>
-    </Dialog>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   )
 }
 
@@ -200,18 +192,18 @@ function AddRouteDialog({
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+    <ResponsiveDialog open={open} onOpenChange={setOpen}>
+      <ResponsiveDialogTrigger asChild>
         <Button size='sm'>
           <Plus className='mr-2 h-4 w-4' />
           Add route
         </Button>
-      </DialogTrigger>
-      <DialogContent>
+      </ResponsiveDialogTrigger>
+      <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
-          <DialogHeader>
-            <DialogTitle>Add route</DialogTitle>
-            <DialogDescription>
+          <ResponsiveDialogHeader>
+            <ResponsiveDialogTitle>Add route</ResponsiveDialogTitle>
+            <ResponsiveDialogDescription>
               Add a new route to {domain}
               {!admin && allowedPaths.length > 0 && (
                 <>
@@ -224,8 +216,8 @@ function AddRouteDialog({
                   ))}
                 </>
               )}
-            </DialogDescription>
-          </DialogHeader>
+            </ResponsiveDialogDescription>
+          </ResponsiveDialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
               <Label htmlFor='path'>Path</Label>
@@ -327,7 +319,7 @@ function AddRouteDialog({
               </p>
             </div>
           </div>
-          <DialogFooter>
+          <ResponsiveDialogFooter>
             <Button
               type='button'
               variant='outline'
@@ -341,10 +333,10 @@ function AddRouteDialog({
               )}
               Add route
             </Button>
-          </DialogFooter>
+          </ResponsiveDialogFooter>
         </form>
-      </DialogContent>
-    </Dialog>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   )
 }
 
@@ -399,20 +391,20 @@ function EditRouteDialog({
   }
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogTrigger asChild>
+    <ResponsiveDialog open={open} onOpenChange={handleOpenChange}>
+      <ResponsiveDialogTrigger asChild>
         <Button variant='ghost' size='icon' className='h-8 w-8' aria-label='Edit route'>
           <Pencil className='h-4 w-4' />
         </Button>
-      </DialogTrigger>
-      <DialogContent>
+      </ResponsiveDialogTrigger>
+      <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
-          <DialogHeader>
-            <DialogTitle>Edit route</DialogTitle>
-            <DialogDescription>
+          <ResponsiveDialogHeader>
+            <ResponsiveDialogTitle>Edit route</ResponsiveDialogTitle>
+            <ResponsiveDialogDescription>
               Edit route for path: {route.path || '/'}
-            </DialogDescription>
-          </DialogHeader>
+            </ResponsiveDialogDescription>
+          </ResponsiveDialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
               <Label htmlFor='edit-method'>Method</Label>
@@ -505,7 +497,7 @@ function EditRouteDialog({
               <Label htmlFor='edit-enabled'>Enabled</Label>
             </div>
           </div>
-          <DialogFooter>
+          <ResponsiveDialogFooter>
             <Button
               type='button'
               variant='outline'
@@ -519,10 +511,10 @@ function EditRouteDialog({
               )}
               Save Changes
             </Button>
-          </DialogFooter>
+          </ResponsiveDialogFooter>
         </form>
-      </DialogContent>
-    </Dialog>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   )
 }
 
@@ -579,21 +571,21 @@ function AddDelegationDialog({
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+    <ResponsiveDialog open={open} onOpenChange={setOpen}>
+      <ResponsiveDialogTrigger asChild>
         <Button size='sm' variant='outline'>
           <Plus className='mr-2 h-4 w-4' />
           Add delegation
         </Button>
-      </DialogTrigger>
-      <DialogContent>
+      </ResponsiveDialogTrigger>
+      <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
-          <DialogHeader>
-            <DialogTitle>Add delegation</DialogTitle>
-            <DialogDescription>
+          <ResponsiveDialogHeader>
+            <ResponsiveDialogTitle>Add delegation</ResponsiveDialogTitle>
+            <ResponsiveDialogDescription>
               Grant a user permission to manage routes on {domain}
-            </DialogDescription>
-          </DialogHeader>
+            </ResponsiveDialogDescription>
+          </ResponsiveDialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
               <Label htmlFor='path'>Path</Label>
@@ -650,7 +642,7 @@ function AddDelegationDialog({
               </div>
             </div>
           </div>
-          <DialogFooter>
+          <ResponsiveDialogFooter>
             <Button
               type='button'
               variant='outline'
@@ -667,10 +659,10 @@ function AddDelegationDialog({
               )}
               Add delegation
             </Button>
-          </DialogFooter>
+          </ResponsiveDialogFooter>
         </form>
-      </DialogContent>
-    </Dialog>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   )
 }
 
@@ -685,6 +677,8 @@ function RouteRow({
   onUpdate: () => void
   isDeleting: boolean
 }) {
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+
   return (
     <TableRow>
       <TableCell className='font-mono text-sm'>{route.path || '/'}</TableCell>
@@ -699,29 +693,33 @@ function RouteRow({
       <TableCell className='text-right'>
         <div className='flex justify-end gap-1'>
           <EditRouteDialog route={route} onSuccess={onUpdate} />
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button variant='ghost' size='icon' className='h-8 w-8' disabled={isDeleting} aria-label='Delete route'>
-                {isDeleting ? (
-                  <Loader2 className='h-4 w-4 animate-spin' />
-                ) : (
-                  <Trash2 className='h-4 w-4' />
-                )}
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Delete route?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This will remove the route for path "{route.path || '/'}"
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction variant='destructive' onClick={onDelete}>Delete</AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+          <Button
+            variant='ghost'
+            size='icon'
+            className='h-8 w-8'
+            disabled={isDeleting}
+            aria-label='Delete route'
+            onClick={() => setShowDeleteDialog(true)}
+          >
+            {isDeleting ? (
+              <Loader2 className='h-4 w-4 animate-spin' />
+            ) : (
+              <Trash2 className='h-4 w-4' />
+            )}
+          </Button>
+          <ConfirmDialog
+            open={showDeleteDialog}
+            onOpenChange={setShowDeleteDialog}
+            title='Delete route?'
+            desc={`This will remove the route for path "${route.path || '/'}".`}
+            confirmText='Delete'
+            destructive
+            handleConfirm={() => {
+              onDelete()
+              setShowDeleteDialog(false)
+            }}
+            isLoading={isDeleting}
+          />
         </div>
       </TableCell>
     </TableRow>
@@ -737,6 +735,8 @@ function DelegationRow({
   onDelete: () => void
   isDeleting: boolean
 }) {
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+
   return (
     <TableRow>
       <TableCell className='font-mono text-sm'>
@@ -744,30 +744,32 @@ function DelegationRow({
       </TableCell>
       <TableCell>{delegation.username}</TableCell>
       <TableCell className='text-right'>
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button variant='ghost' size='icon' disabled={isDeleting} aria-label='Delete delegation'>
-              {isDeleting ? (
-                <Loader2 className='h-4 w-4 animate-spin' />
-              ) : (
-                <Trash2 className='h-4 w-4' />
-              )}
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Delete delegation?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This will remove the delegation for {delegation.username} on
-                path "{delegation.path || '/'}"
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction variant='destructive' onClick={onDelete}>Delete</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <Button
+          variant='ghost'
+          size='icon'
+          disabled={isDeleting}
+          aria-label='Delete delegation'
+          onClick={() => setShowDeleteDialog(true)}
+        >
+          {isDeleting ? (
+            <Loader2 className='h-4 w-4 animate-spin' />
+          ) : (
+            <Trash2 className='h-4 w-4' />
+          )}
+        </Button>
+        <ConfirmDialog
+          open={showDeleteDialog}
+          onOpenChange={setShowDeleteDialog}
+          title='Delete delegation?'
+          desc={`This will remove the delegation for ${delegation.username} on path "${delegation.path || '/'}".`}
+          confirmText='Delete'
+          destructive
+          handleConfirm={() => {
+            onDelete()
+            setShowDeleteDialog(false)
+          }}
+          isLoading={isDeleting}
+        />
       </TableCell>
     </TableRow>
   )
@@ -1081,23 +1083,19 @@ function DomainDetails({
                   Delete
                 </Button>
               </div>
-              <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>Delete domain?</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      This will permanently delete "{domain.domain}" and
-                      all its routes. This action cannot be undone.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction variant='destructive' onClick={onDelete}>
-                      Delete domain
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
+              <ConfirmDialog
+                open={showDeleteDialog}
+                onOpenChange={setShowDeleteDialog}
+                title='Delete domain?'
+                desc={`This will permanently delete "${domain.domain}" and all its routes. This action cannot be undone.`}
+                confirmText='Delete domain'
+                destructive
+                handleConfirm={() => {
+                  onDelete()
+                  setShowDeleteDialog(false)
+                }}
+                isLoading={isDeleting}
+              />
             </>
           )}
         </div>
