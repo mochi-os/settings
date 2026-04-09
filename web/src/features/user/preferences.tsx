@@ -124,44 +124,45 @@ export function UserPreferences() {
 
   return (
     <>
-      <PageHeader title="Preferences" icon={<Sliders className='size-4 md:size-5' />} />
+      <PageHeader
+        title="Preferences"
+        icon={<Sliders className='size-4 md:size-5' />}
+        actions={!error ? (
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button
+                variant='ghost'
+                size='sm'
+                disabled={isLoading || resetPreferences.isPending}
+                className="text-muted-foreground hover:text-foreground"
+              >
+                {resetPreferences.isPending ? (
+                  <Loader2 className='mr-2 h-3.5 w-3.5 animate-spin' />
+                ) : (
+                  <RotateCcw className='mr-2 h-3.5 w-3.5' />
+                )}
+                Reset to defaults
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Reset preferences?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This will reset all preferences to their default values.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleReset}>
+                  Reset
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        ) : undefined}
+      />
 
       <Main className="space-y-8">
-        {!error && (
-          <div className="flex justify-end">
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button
-                  variant='ghost'
-                  size='sm'
-                  disabled={isLoading || resetPreferences.isPending}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  {resetPreferences.isPending ? (
-                    <Loader2 className='mr-2 h-3.5 w-3.5 animate-spin' />
-                  ) : (
-                    <RotateCcw className='mr-2 h-3.5 w-3.5' />
-                  )}
-                  Reset to defaults
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Reset preferences?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    This will reset all preferences to their default values.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleReset}>
-                    Reset
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          </div>
-        )}
 
         <Section title="Display">
           <div className='divide-y-0'>
@@ -308,17 +309,6 @@ export function UserPreferences() {
                 </div>
               </FieldRow>
 
-              <FieldRow label='Timestamps'>
-                <div className="w-full">
-                  <ComboSelect
-                    value={data.preferences.timestamp_display || 'auto'}
-                    options={timestampDisplayLabels}
-                    onChange={(value) => handleChange('timestamp_display', value)}
-                    disabled={setPreference.isPending}
-                  />
-                </div>
-              </FieldRow>
-
               <FieldRow label='Week starts on'>
                 <div className="w-full">
                   <ComboSelect
@@ -328,6 +318,17 @@ export function UserPreferences() {
                       auto: `${weekStartLabels.auto} (${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][detectWeekStart()]})`,
                     }}
                     onChange={(value) => handleChange('week_start', value)}
+                    disabled={setPreference.isPending}
+                  />
+                </div>
+              </FieldRow>
+
+              <FieldRow label='Timestamps'>
+                <div className="w-full">
+                  <ComboSelect
+                    value={data.preferences.timestamp_display || 'auto'}
+                    options={timestampDisplayLabels}
+                    onChange={(value) => handleChange('timestamp_display', value)}
                     disabled={setPreference.isPending}
                   />
                 </div>
