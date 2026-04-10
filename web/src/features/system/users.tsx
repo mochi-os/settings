@@ -65,7 +65,7 @@ import {
   toast,
   ListSkeleton,
   EmptyState,
-  formatTimestamp,
+  useFormat,
 } from '@mochi/web'
 
 function useDebounce<T>(value: T, delay: number): T {
@@ -249,6 +249,7 @@ function EditUserDialog({
 }
 
 function SessionsDialog({ user }: { user: User }) {
+  const { formatTimestamp } = useFormat()
   const [open, setOpen] = useState(false)
   const { data, isLoading, refetch } = useUserSessions(user.id, open)
   const revokeSession = useRevokeUserSessions()
@@ -367,6 +368,7 @@ function SessionsDialog({ user }: { user: User }) {
 }
 
 function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void; isSelf: boolean }) {
+  const { formatTimestamp } = useFormat()
   const [deleteOpen, setDeleteOpen] = useState(false)
   const deleteUser = useDeleteUser()
   const suspendUser = useSuspendUser()

@@ -55,7 +55,7 @@ import {
   getProviderLabel,
   requestHelpers,
   toast,
-  formatTimestamp,
+  useFormat,
   type Account,
   type Provider,
 } from '@mochi/web'
@@ -142,6 +142,7 @@ function AccountRow({
   isRemoving: boolean
   testingId: number | null
 }) {
+  const { formatTimestamp } = useFormat()
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const isVerified = account.verified > 0
   // Defensive check to ensure providers is an array

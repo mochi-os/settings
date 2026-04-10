@@ -31,7 +31,7 @@ import {
   usePageTitle,
   getErrorMessage,
   toast,
-  formatTimestamp,
+  useFormat,
 } from '@mochi/web'
 
 function SessionRow({
@@ -41,6 +41,7 @@ function SessionRow({
   session: Session
   isCurrent: boolean
 }) {
+  const { formatTimestamp } = useFormat()
   const revokeSession = useRevokeSession()
 
   const handleRevoke = () => {

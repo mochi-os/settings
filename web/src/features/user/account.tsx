@@ -67,7 +67,7 @@ import {
   EmptyState,
   getErrorMessage,
   toast,
-  formatTimestamp,
+  useFormat,
 } from '@mochi/web'
 
 type RegistrationOptionsJSON = Parameters<typeof startRegistration>[0]['optionsJSON']
@@ -239,6 +239,7 @@ function PasskeyRow({
   onRename: (id: string, name: string) => void
   onDelete: (id: string) => void
 }) {
+  const { formatTimestamp } = useFormat()
   const [isRenaming, setIsRenaming] = useState(false)
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const [newName, setNewName] = useState(passkey.name)
