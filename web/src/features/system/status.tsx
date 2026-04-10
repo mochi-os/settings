@@ -9,7 +9,7 @@ import {
   CardTitle,
   CardContent,
   usePageTitle,
-  formatTimestamp,
+  formatSystemTimestamp,
 } from '@mochi/web'
 import { useSystemSettingsData } from '@/hooks/use-system-settings'
 
@@ -49,7 +49,7 @@ export function SystemStatus() {
                 <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
                   <dt className='text-muted-foreground w-28 shrink-0'>Started</dt>
                   <dd className='font-mono text-xs'>
-                    {formatTimestamp(parseInt(serverStarted, 10), serverStarted)}
+                    {formatSystemTimestamp(parseInt(serverStarted, 10), serverStarted)}
                   </dd>
                 </div>
               </dl>
