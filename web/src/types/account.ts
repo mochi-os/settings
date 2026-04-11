@@ -77,6 +77,46 @@ export interface RecoveryGenerateResponse {
   codes: string[]
 }
 
+// OAuth
+export type OAuthProvider =
+  | 'facebook'
+  | 'github'
+  | 'google'
+  | 'microsoft'
+  | 'x'
+
+export interface OAuthIdentity {
+  provider: OAuthProvider
+  email: string
+  name: string
+  created: number
+  used: number
+}
+
+export interface OAuthIdentitiesResponse {
+  identities: OAuthIdentity[]
+}
+
+export interface OAuthProvidersEnabled {
+  facebook: boolean
+  github: boolean
+  google: boolean
+  microsoft: boolean
+  x: boolean
+}
+
+export interface AuthMethodsResponse {
+  email: boolean
+  passkey: boolean
+  recovery: boolean
+  signup: boolean
+  oauth?: OAuthProvidersEnabled
+}
+
+export interface OAuthBeginResponse {
+  url: string
+}
+
 // API Tokens
 export interface Token {
   hash: string

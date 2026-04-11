@@ -1,9 +1,16 @@
-import { useState } from 'react'
-import type { Passkey, TotpSetupResponse } from '@/types/account'
+import { useEffect, useState } from 'react'
+import type {
+  AuthMethodsResponse,
+  OAuthIdentity,
+  OAuthProvider,
+  Passkey,
+  TotpSetupResponse,
+} from '@/types/account'
 import { startRegistration } from '@simplewebauthn/browser'
 import {
   Check,
   Key,
+  Link2,
   Loader2,
   Pencil,
   Plus,
@@ -15,7 +22,11 @@ import {
 import { QRCodeSVG } from 'qrcode.react'
 import {
   useAccountData,
+  useAuthMethods,
   useMethods,
+  useOauthBegin,
+  useOauthIdentities,
+  useOauthUnlink,
   usePasskeyDelete,
   usePasskeyRegisterBegin,
   usePasskeyRegisterFinish,
@@ -659,6 +670,214 @@ function RecoveryCodesSection() {
 }
 
 // ============================================================================
+// OAuth Section (third-party sign-in linking)
+// ============================================================================
+
+const oauthProviderOrder: OAuthProvider[] = [
+  'facebook',
+  'github',
+  'google',
+  'microsoft',
+  'x',
+]
+
+const oauthProviderLabel: Record<OAuthProvider, string> = {
+  facebook: 'Facebook',
+  github: 'GitHub',
+  google: 'Google',
+  microsoft: 'Microsoft',
+  x: 'X',
+}
+
+function OauthIdentityRow({
+  identity,
+  onUnlink,
+}: {
+  identity: OAuthIdentity
+  onUnlink: (provider: OAuthProvider) => void
+}) {
+  const { formatTimestamp } = useFormat()
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+
+  return (
+    <TableRow>
+      <TableCell>
+        <span className='font-medium'>
+          {oauthProviderLabel[identity.provider] ?? identity.provider}
+        </span>
+      </TableCell>
+      <TableCell className='text-muted-foreground text-sm'>
+        {identity.email || '—'}
+      </TableCell>
+      <TableCell className='text-muted-foreground text-sm'>
+        {formatTimestamp(identity.used, 'Never')}
+      </TableCell>
+      <TableCell className='text-right'>
+        <Button
+          variant='ghost'
+          size='sm'
+          onClick={() => setShowDeleteDialog(true)}
+        >
+          <Trash2 className='h-4 w-4' />
+        </Button>
+        <ConfirmDialog
+          open={showDeleteDialog}
+          onOpenChange={setShowDeleteDialog}
+          title='Unlink provider?'
+          desc={`You won't be able to sign in with ${oauthProviderLabel[identity.provider] ?? identity.provider} anymore. Make sure you still have another way to log in.`}
+          confirmText='Unlink'
+          destructive
+          handleConfirm={() => {
+            onUnlink(identity.provider)
+            setShowDeleteDialog(false)
+          }}
+        />
+      </TableCell>
+    </TableRow>
+  )
+}
+
+function OauthSection() {
+  const identities = useOauthIdentities()
+  const authMethods = useAuthMethods()
+  const oauthBegin = useOauthBegin()
+  const oauthUnlink = useOauthUnlink()
+
+  // Read a one-shot result from the callback so the user sees a confirmation
+  // toast after returning from the provider's consent page.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const linked = params.get('oauth_linked')
+    const errored = params.get('oauth_error')
+    if (linked) {
+      toast.success(
+        `Linked ${oauthProviderLabel[linked as OAuthProvider] ?? linked}`
+      )
+    } else if (errored === 'already_linked') {
+      toast.error('That account is already linked to another user')
+    } else if (errored) {
+      toast.error('Could not link account')
+    }
+    if (linked || errored) {
+      params.delete('oauth_linked')
+      params.delete('oauth_error')
+      const qs = params.toString()
+      const next = qs
+        ? `${window.location.pathname}?${qs}`
+        : window.location.pathname
+      window.history.replaceState({}, '', next + window.location.hash)
+    }
+  }, [])
+
+  const enabled = (authMethods.data as AuthMethodsResponse | undefined)?.oauth
+  const linked = identities.data?.identities ?? []
+  const linkedSet = new Set(linked.map((i) => i.provider))
+  const availableToLink = oauthProviderOrder.filter(
+    (p) => enabled?.[p] && !linkedSet.has(p)
+  )
+
+  const handleLink = async (provider: OAuthProvider) => {
+    try {
+      const { url } = await oauthBegin.mutateAsync({ provider, link: true })
+      window.location.href = url
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Could not start linking'))
+    }
+  }
+
+  const handleUnlink = async (provider: OAuthProvider) => {
+    try {
+      await oauthUnlink.mutateAsync(provider)
+      toast.success(`Unlinked ${oauthProviderLabel[provider] ?? provider}`)
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Could not unlink provider'))
+    }
+  }
+
+  // If no providers are enabled server-side AND none are linked, omit the
+  // whole card so it doesn't clutter the settings page.
+  const anyEnabled =
+    enabled &&
+    (enabled.google ||
+      enabled.github ||
+      enabled.microsoft ||
+      enabled.facebook ||
+      enabled.x)
+  if (!anyEnabled && linked.length === 0 && !identities.isLoading) {
+    return null
+  }
+
+  return (
+    <Card className='shadow-md'>
+      <CardHeader className='border-b/60 border-b pb-4'>
+        <div className='space-y-1'>
+          <CardTitle className='text-lg'>Third-party login</CardTitle>
+          <CardDescription>
+            Link Google, GitHub, Microsoft, Facebook or X to log in with one
+            click
+          </CardDescription>
+        </div>
+      </CardHeader>
+      <CardContent className='pt-4 space-y-4'>
+        {identities.error ? (
+          <GeneralError
+            error={identities.error}
+            minimal
+            mode='inline'
+            reset={identities.refetch}
+          />
+        ) : identities.isLoading ? (
+          <ListSkeleton variant='simple' height='h-10' count={2} />
+        ) : linked.length === 0 ? (
+          <EmptyState
+            icon={Link2}
+            title='No providers linked'
+            className='my-4'
+          />
+        ) : (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Provider</TableHead>
+                <TableHead>Email</TableHead>
+                <TableHead>Last used</TableHead>
+                <TableHead className='w-16'></TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {linked.map((identity) => (
+                <OauthIdentityRow
+                  key={identity.provider}
+                  identity={identity}
+                  onUnlink={handleUnlink}
+                />
+              ))}
+            </TableBody>
+          </Table>
+        )}
+
+        {availableToLink.length > 0 && (
+          <div className='flex flex-wrap gap-2 pt-2'>
+            {availableToLink.map((provider) => (
+              <Button
+                key={provider}
+                variant='outline'
+                size='sm'
+                onClick={() => handleLink(provider)}
+                disabled={oauthBegin.isPending}
+              >
+                <Plus className='mr-1 h-3 w-3' />
+                Link {oauthProviderLabel[provider]}
+              </Button>
+            ))}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  )
+}
+
+// ============================================================================
 // Main Component
 // ============================================================================
 
@@ -675,6 +894,7 @@ export function UserAccount() {
           <PasskeysSection />
           <AuthenticatorSection />
           <RecoveryCodesSection />
+          <OauthSection />
         </div>
       </Main>
     </>

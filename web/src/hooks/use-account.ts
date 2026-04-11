@@ -1,6 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import type {
   AccountData,
+  AuthMethodsResponse,
+  OAuthBeginResponse,
+  OAuthIdentitiesResponse,
+  OAuthProvider,
   SessionsResponse,
   MethodsResponse,
   PasskeysResponse,
@@ -230,6 +234,58 @@ export function useRecoveryGenerate() {
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'recovery'] })
+    },
+  })
+}
+
+// ============================================================================
+// OAuth (third-party sign-in linking)
+// ============================================================================
+
+export function useOauthIdentities() {
+  return useQuery({
+    queryKey: ['account', 'oauth'],
+    queryFn: () =>
+      requestHelpers.get<OAuthIdentitiesResponse>(endpoints.user.accountOauth),
+  })
+}
+
+export function useAuthMethods() {
+  return useQuery({
+    queryKey: ['auth', 'methods'],
+    queryFn: () =>
+      requestHelpers.get<AuthMethodsResponse>(endpoints.user.authMethods),
+  })
+}
+
+export function useOauthBegin() {
+  return useMutation({
+    mutationFn: ({
+      provider,
+      link,
+    }: {
+      provider: OAuthProvider
+      link?: boolean
+    }) =>
+      requestHelpers.post<OAuthBeginResponse>(
+        endpoints.user.authOauthBegin(provider),
+        { link: link ?? false, target: window.location.pathname },
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      ),
+  })
+}
+
+export function useOauthUnlink() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (provider: OAuthProvider) =>
+      requestHelpers.post<{ ok: boolean }>(
+        endpoints.user.accountOauthUnlink,
+        { provider },
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      ),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['account', 'oauth'] })
     },
   })
 }
