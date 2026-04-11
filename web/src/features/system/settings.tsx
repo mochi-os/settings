@@ -101,7 +101,7 @@ function enumOptions(setting: SystemSetting): string[] | null {
 // across rows regardless of whether a setting supports "required". Returns
 // null for any enum pattern that isn't part of the required/allowed/disabled
 // family.
-const methodStateSlots = ['required', 'allowed', 'disabled'] as const
+const methodStateSlots = ['disabled', 'allowed', 'required'] as const
 function methodStateOptions(opts: string[] | null): Set<string> | null {
   if (!opts) return null
   if (!opts.every((o) => (methodStateSlots as readonly string[]).includes(o))) {
@@ -160,8 +160,9 @@ function SettingField({
         ) : methodStates ? (
           <div className='flex items-center gap-2'>
             <div className='inline-flex rounded-md border bg-background p-0.5'>
-              {methodStateSlots.map((slot) =>
-                methodStates.has(slot) ? (
+              {methodStateSlots
+                .filter((slot) => methodStates.has(slot))
+                .map((slot) => (
                   <button
                     key={slot}
                     type='button'
@@ -176,16 +177,7 @@ function SettingField({
                   >
                     {slot}
                   </button>
-                ) : (
-                  <span
-                    key={slot}
-                    aria-hidden
-                    className='invisible w-20 py-1 text-xs'
-                  >
-                    {slot}
-                  </span>
-                )
-              )}
+                ))}
             </div>
             {!isDefault && (
               <AlertDialog>
