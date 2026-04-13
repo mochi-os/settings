@@ -276,8 +276,7 @@ export function UserInterests() {
           <EmptyState
             icon={Star}
             title='No interests yet'
-            description='Search for topics above to personalise your feed rankings.'
-            className='py-8'
+            className='p-4'
           />
         ) : (
           <div className='divide-border divide-y'>

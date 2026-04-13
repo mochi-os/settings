@@ -43,6 +43,10 @@ import {
 import {
   Button,
   ConfirmDialog,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
   ResponsiveDialog,
   ResponsiveDialogContent,
   ResponsiveDialogDescription,
@@ -69,14 +73,10 @@ import {
   Alert,
   AlertTitle,
   AlertDescription,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
   GeneralError,
   EmptyState,
   getErrorMessage,
+  shellNavigateTop,
   toast,
   useFormat,
 } from '@mochi/web'
@@ -93,7 +93,6 @@ function IdentitySection() {
   return (
     <Section
       title='Identity'
-      description='Your personal account information'
     >
       {error ? (
         <GeneralError error={error} minimal mode='inline' reset={refetch} />
@@ -114,8 +113,12 @@ function IdentitySection() {
           <FieldRow label="Fingerprint">
             <DataChip value={data.identity.fingerprint} truncate='middle' />
           </FieldRow>
-          <FieldRow label="Entity ID">
-            <DataChip value={data.identity.entity} truncate='middle' />
+          <FieldRow label="Entity">
+            <DataChip
+              value={data.identity.entity}
+              className='w-full'
+              chipClassName='flex-1'
+            />
           </FieldRow>
         </div>
       ) : null}
@@ -162,7 +165,6 @@ function LoginRequirementsSection() {
   return (
     <Section
       title='Login requirements'
-      description='Require all selected methods to log in'
     >
       {error ? (
         <GeneralError error={error} minimal mode='inline' reset={refetch} />
@@ -372,85 +374,79 @@ function PasskeysSection() {
 
   const passkeys = data?.passkeys ?? []
 
-  return (
-    <Card className='shadow-md'>
-      <CardHeader className='border-b/60 border-b pb-4 flex flex-row items-center justify-between'>
-        <div className='space-y-1'>
-          <CardTitle className='text-lg'>Passkeys</CardTitle>
-          <CardDescription>Sign in with biometrics or security keys</CardDescription>
-        </div>
-        <ResponsiveDialog open={registerDialogOpen} onOpenChange={setRegisterDialogOpen}>
-          <Button
-            variant='outline'
-            size='sm'
-            onClick={() => setRegisterDialogOpen(true)}
-          >
-            Add passkey
-            <Plus className='ml-2 h-4 w-4' />
-          </Button>
-          <ResponsiveDialogContent>
-            <ResponsiveDialogHeader>
-              <ResponsiveDialogTitle>Register passkey</ResponsiveDialogTitle>
-              <ResponsiveDialogDescription>
-                Use a security key, fingerprint, or face recognition.
-              </ResponsiveDialogDescription>
-            </ResponsiveDialogHeader>
-            <div className='py-4'>
-              <Label htmlFor='passkey-name'>Passkey name</Label>
-              <Input
-                id='passkey-name'
-                placeholder='My passkey'
-                value={passkeyName}
-                onChange={(e) => setPasskeyName(e.target.value)}
-                className='mt-2'
-              />
-            </div>
-            <ResponsiveDialogFooter>
-              <Button onClick={handleRegister} disabled={isRegistering}>
-                Register
-                {isRegistering && (
-                  <Loader2 className='ml-2 h-4 w-4 animate-spin' />
-                )}
-              </Button>
-            </ResponsiveDialogFooter>
-          </ResponsiveDialogContent>
-        </ResponsiveDialog>
-      </CardHeader>
-      <CardContent className='pt-2'>
-        {error ? (
-          <GeneralError error={error} minimal mode='inline' reset={refetch} />
-        ) : isLoading ? (
-          <ListSkeleton variant='simple' height='h-10' count={2} />
-        ) : passkeys.length === 0 ? (
-          <EmptyState
-            icon={Key}
-            title="No passkeys registered"
-            className="my-4"
+  const addButton = (
+    <ResponsiveDialog open={registerDialogOpen} onOpenChange={setRegisterDialogOpen}>
+      <Button
+        variant='outline'
+        size='sm'
+        onClick={() => setRegisterDialogOpen(true)}
+      >
+        <Plus className='mr-2 h-4 w-4' />
+        Add passkey
+      </Button>
+      <ResponsiveDialogContent>
+        <ResponsiveDialogHeader>
+          <ResponsiveDialogTitle>Register passkey</ResponsiveDialogTitle>
+          <ResponsiveDialogDescription>
+            Use a security key, fingerprint, or face recognition.
+          </ResponsiveDialogDescription>
+        </ResponsiveDialogHeader>
+        <div className='py-4'>
+          <Label htmlFor='passkey-name'>Passkey name</Label>
+          <Input
+            id='passkey-name'
+            placeholder='My passkey'
+            value={passkeyName}
+            onChange={(e) => setPasskeyName(e.target.value)}
+            className='mt-2'
           />
-        ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Created</TableHead>
-                <TableHead>Last used</TableHead>
-                <TableHead className='w-24'></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {passkeys.map((passkey) => (
-                <PasskeyRow
-                  key={passkey.id}
-                  passkey={passkey}
-                  onRename={handleRename}
-                  onDelete={handleDelete}
-                />
-              ))}
-            </TableBody>
-          </Table>
-        )}
-      </CardContent>
-    </Card>
+        </div>
+        <ResponsiveDialogFooter>
+          <Button onClick={handleRegister} disabled={isRegistering}>
+            Register
+            {isRegistering && (
+              <Loader2 className='ml-2 h-4 w-4 animate-spin' />
+            )}
+          </Button>
+        </ResponsiveDialogFooter>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
+  )
+
+  return (
+    <Section
+      title='Passkeys'
+      action={addButton}
+    >
+      {error ? (
+        <GeneralError error={error} minimal mode='inline' reset={refetch} />
+      ) : isLoading ? (
+        <ListSkeleton variant='simple' height='h-10' count={2} />
+      ) : passkeys.length === 0 ? (
+        <EmptyState icon={Key} title='No passkeys registered' className='p-4' />
+      ) : (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>Created</TableHead>
+              <TableHead>Last used</TableHead>
+              <TableHead className='w-24'></TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {passkeys.map((passkey) => (
+              <PasskeyRow
+                key={passkey.id}
+                passkey={passkey}
+                onRename={handleRename}
+                onDelete={handleDelete}
+              />
+            ))}
+          </TableBody>
+        </Table>
+      )}
+    </Section>
   )
 }
 
@@ -505,10 +501,33 @@ function AuthenticatorSection() {
 
   const isEnabled = data?.enabled ?? false
 
+  const action = setupData
+    ? null
+    : isEnabled ? (
+      <Button
+        variant='outline'
+        size='sm'
+        onClick={() => setShowDisableDialog(true)}
+      >
+        <Trash2 className='mr-2 h-4 w-4' />
+        Disable
+      </Button>
+    ) : (
+      <Button
+        variant='outline'
+        size='sm'
+        onClick={handleSetup}
+        disabled={setupTotp.isPending}
+      >
+        <Plus className='mr-2 h-4 w-4' />
+        Set up
+      </Button>
+    )
+
   return (
     <Section
-      title='Authenticator App'
-      description='Use an authenticator app to generate one-time codes'
+      title='Authenticator app'
+      action={action}
     >
       {error ? (
         <GeneralError error={error} minimal mode='inline' reset={refetch} />
@@ -550,44 +569,36 @@ function AuthenticatorSection() {
           </div>
         </div>
       ) : isEnabled ? (
-        <div className='flex items-center justify-between py-4'>
-          <div className='flex items-center gap-3'>
-            <div className='flex h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30'>
-              <Check className='h-5 w-5 text-green-600 dark:text-green-500' />
-            </div>
-            <div>
-              <p className='text-sm font-medium'>Status: Enabled</p>
-              <p className='text-muted-foreground text-xs'>Authenticator app is active</p>
-            </div>
+        <div className='flex items-center gap-3 py-4'>
+          <div className='flex h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30'>
+            <Check className='h-5 w-5 text-green-600 dark:text-green-500' />
           </div>
-          <Button variant='destructive' size='sm' onClick={() => setShowDisableDialog(true)}>
-            Disable
-          </Button>
-          <ConfirmDialog
-            open={showDisableDialog}
-            onOpenChange={setShowDisableDialog}
-            title='Disable authenticator?'
-            desc='This will remove the app from your account.'
-            confirmText='Disable'
-            destructive
-            handleConfirm={() => {
-              handleDisable()
-              setShowDisableDialog(false)
-            }}
-          />
+          <div>
+            <p className='text-sm font-medium'>Enabled</p>
+            <p className='text-muted-foreground text-xs'>Authenticator app is active</p>
+          </div>
         </div>
       ) : (
-        <div className='py-6 text-center'>
-          <p className='text-muted-foreground mb-4 text-sm'>Add an app for additional security</p>
-          <Button onClick={handleSetup} disabled={setupTotp.isPending}>Set up authenticator</Button>
-        </div>
+        <EmptyState icon={Shield} title='No authenticator set up' className='p-4' />
       )}
+      <ConfirmDialog
+        open={showDisableDialog}
+        onOpenChange={setShowDisableDialog}
+        title='Disable authenticator?'
+        desc='This will remove the app from your account.'
+        confirmText='Disable'
+        destructive
+        handleConfirm={() => {
+          handleDisable()
+          setShowDisableDialog(false)
+        }}
+      />
     </Section>
   )
 }
 
 // ============================================================================
-// Recovery Codes Section
+// Recovery codes section
 // ============================================================================
 
 function RecoveryCodesSection() {
@@ -607,10 +618,25 @@ function RecoveryCodesSection() {
 
   const count = data?.count ?? 0
 
+  const action = showCodes ? null : (
+    <Button
+      variant='outline'
+      size='sm'
+      onClick={() => setShowGenerateDialog(true)}
+    >
+      {count > 0 ? (
+        <RefreshCw className='mr-2 h-4 w-4' />
+      ) : (
+        <Plus className='mr-2 h-4 w-4' />
+      )}
+      {count > 0 ? 'Regenerate' : 'Generate'}
+    </Button>
+  )
+
   return (
     <Section
-      title='Recovery Codes'
-      description='Backup codes for account recovery'
+      title='Recovery codes'
+      action={action}
     >
       {error ? (
         <GeneralError error={error} minimal mode='inline' reset={refetch} />
@@ -638,33 +664,30 @@ function RecoveryCodesSection() {
             <Button variant='ghost' size='sm' onClick={() => setShowCodes(null)}>Done</Button>
           </div>
         </div>
-      ) : (
-        <div className='flex items-center justify-between py-4'>
-          <div className='flex items-center gap-3'>
-            <div className='flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20'>
-              <RefreshCw className='h-5 w-5 text-primary' />
-            </div>
-            <div>
-              <p className='text-sm font-medium'>{count > 0 ? `${count} remaining` : 'No codes'}</p>
-              <p className='text-muted-foreground text-xs'>Recovery codes</p>
-            </div>
+      ) : count > 0 ? (
+        <div className='flex items-center gap-3 py-4'>
+          <div className='flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20'>
+            <RefreshCw className='h-5 w-5 text-primary' />
           </div>
-          <Button variant='outline' size='sm' onClick={() => setShowGenerateDialog(true)}>
-            {count > 0 ? 'Regenerate' : 'Generate'}
-          </Button>
-          <ConfirmDialog
-            open={showGenerateDialog}
-            onOpenChange={setShowGenerateDialog}
-            title={count > 0 ? 'Regenerate?' : 'Generate?'}
-            desc='Make sure to save the new codes.'
-            confirmText='Proceed'
-            handleConfirm={() => {
-              void handleGenerate()
-              setShowGenerateDialog(false)
-            }}
-          />
+          <div>
+            <p className='text-sm font-medium'>{count} remaining</p>
+            <p className='text-muted-foreground text-xs'>Recovery codes</p>
+          </div>
         </div>
+      ) : (
+        <EmptyState icon={RefreshCw} title='No recovery codes' className='p-4' />
       )}
+      <ConfirmDialog
+        open={showGenerateDialog}
+        onOpenChange={setShowGenerateDialog}
+        title={count > 0 ? 'Regenerate?' : 'Generate?'}
+        desc='Make sure to save the new codes.'
+        confirmText='Proceed'
+        handleConfirm={() => {
+          void handleGenerate()
+          setShowGenerateDialog(false)
+        }}
+      />
     </Section>
   )
 }
@@ -688,6 +711,9 @@ const oauthProviderLabel: Record<OAuthProvider, string> = {
   microsoft: 'Microsoft',
   x: 'X',
 }
+
+// Guard against React StrictMode double-invoking the one-shot result toast.
+let oauthResultShown = false
 
 function OauthIdentityRow({
   identity,
@@ -744,29 +770,35 @@ function OauthSection() {
   const oauthUnlink = useOauthUnlink()
 
   // Read a one-shot result from the callback so the user sees a confirmation
-  // toast after returning from the provider's consent page.
+  // toast after returning from the provider's consent page. Guarded against
+  // React StrictMode double-mount so the toast fires exactly once per visit.
   useEffect(() => {
+    if (oauthResultShown) return
     const params = new URLSearchParams(window.location.search)
     const linked = params.get('oauth_linked')
     const errored = params.get('oauth_error')
+    if (!linked && !errored) return
+    oauthResultShown = true
+
     if (linked) {
       toast.success(
         `Linked ${oauthProviderLabel[linked as OAuthProvider] ?? linked}`
       )
     } else if (errored === 'already_linked') {
       toast.error('That account is already linked to another user')
-    } else if (errored) {
+    } else if (errored === 'email_exists') {
+      toast.error('That email is already registered to another account')
+    } else {
       toast.error('Could not link account')
     }
-    if (linked || errored) {
-      params.delete('oauth_linked')
-      params.delete('oauth_error')
-      const qs = params.toString()
-      const next = qs
-        ? `${window.location.pathname}?${qs}`
-        : window.location.pathname
-      window.history.replaceState({}, '', next + window.location.hash)
-    }
+
+    params.delete('oauth_linked')
+    params.delete('oauth_error')
+    const qs = params.toString()
+    const next = qs
+      ? `${window.location.pathname}?${qs}`
+      : window.location.pathname
+    window.history.replaceState({}, '', next + window.location.hash)
   }, [])
 
   const enabled = (authMethods.data as AuthMethodsResponse | undefined)?.oauth
@@ -779,7 +811,7 @@ function OauthSection() {
   const handleLink = async (provider: OAuthProvider) => {
     try {
       const { url } = await oauthBegin.mutateAsync({ provider, link: true })
-      window.location.href = url
+      shellNavigateTop(url)
     } catch (error) {
       toast.error(getErrorMessage(error, 'Could not start linking'))
     }
@@ -807,73 +839,69 @@ function OauthSection() {
     return null
   }
 
-  return (
-    <Card className='shadow-md'>
-      <CardHeader className='border-b/60 border-b pb-4'>
-        <div className='space-y-1'>
-          <CardTitle className='text-lg'>Third-party login</CardTitle>
-          <CardDescription>
-            Link Google, GitHub, Microsoft, Facebook or X to log in with one
-            click
-          </CardDescription>
-        </div>
-      </CardHeader>
-      <CardContent className='pt-4 space-y-4'>
-        {identities.error ? (
-          <GeneralError
-            error={identities.error}
-            minimal
-            mode='inline'
-            reset={identities.refetch}
-          />
-        ) : identities.isLoading ? (
-          <ListSkeleton variant='simple' height='h-10' count={2} />
-        ) : linked.length === 0 ? (
-          <EmptyState
-            icon={Link2}
-            title='No providers linked'
-            className='my-4'
-          />
-        ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Provider</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead>Last used</TableHead>
-                <TableHead className='w-16'></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {linked.map((identity) => (
-                <OauthIdentityRow
-                  key={identity.provider}
-                  identity={identity}
-                  onUnlink={handleUnlink}
-                />
-              ))}
-            </TableBody>
-          </Table>
-        )}
+  const linkButton = availableToLink.length > 0 ? (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant='outline'
+          size='sm'
+          disabled={oauthBegin.isPending}
+        >
+          <Plus className='mr-2 h-4 w-4' />
+          Link account
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align='end'>
+        {availableToLink.map((provider) => (
+          <DropdownMenuItem
+            key={provider}
+            onClick={() => handleLink(provider)}
+          >
+            {oauthProviderLabel[provider]}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  ) : null
 
-        {availableToLink.length > 0 && (
-          <div className='flex flex-wrap gap-2 pt-2'>
-            {availableToLink.map((provider) => (
-              <Button
-                key={provider}
-                variant='outline'
-                size='sm'
-                onClick={() => handleLink(provider)}
-                disabled={oauthBegin.isPending}
-              >
-                <Plus className='mr-1 h-3 w-3' />
-                Link {oauthProviderLabel[provider]}
-              </Button>
+  return (
+    <Section
+      title='Third-party login'
+      action={linkButton}
+    >
+      {identities.error ? (
+        <GeneralError
+          error={identities.error}
+          minimal
+          mode='inline'
+          reset={identities.refetch}
+        />
+      ) : identities.isLoading ? (
+        <ListSkeleton variant='simple' height='h-10' count={2} />
+      ) : linked.length === 0 ? (
+        <EmptyState icon={Link2} title='No accounts linked' className='p-4' />
+      ) : (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Provider</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Last used</TableHead>
+              <TableHead className='w-16'></TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {linked.map((identity) => (
+              <OauthIdentityRow
+                key={identity.provider}
+                identity={identity}
+                onUnlink={handleUnlink}
+              />
             ))}
-          </div>
-        )}
-      </CardContent>
-    </Card>
+          </TableBody>
+        </Table>
+      )}
+    </Section>
   )
 }
 

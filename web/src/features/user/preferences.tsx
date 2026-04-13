@@ -166,10 +166,9 @@ export function UserPreferences() {
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button
-                variant='ghost'
+                variant='outline'
                 size='sm'
                 disabled={isLoading || resetPreferences.isPending}
-                className="text-muted-foreground hover:text-foreground"
               >
                 {resetPreferences.isPending ? (
                   <Loader2 className='mr-2 h-3.5 w-3.5 animate-spin' />

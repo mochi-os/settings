@@ -25,11 +25,6 @@ import {
   TableRow,
   PageHeader,
   Main,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
   usePageTitle,
   getErrorMessage,
   toast,
@@ -148,7 +143,7 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
   return (
     <ResponsiveDialog open={open} onOpenChange={setOpen}>
       <ResponsiveDialogTrigger asChild>
-        <Button size='sm' className={triggerClassName}>
+        <Button size='sm' variant='outline' className={triggerClassName}>
           <Plus className='mr-2 h-4 w-4' />
           Create token
         </Button>
@@ -236,48 +231,34 @@ export function UserTokens() {
       />
 
       <Main>
-        <Card>
-          <CardHeader>
-            <CardTitle className='flex items-center gap-2'>
-              <Key className='h-5 w-5' />
-              Authentication Tokens
-            </CardTitle>
-            <CardDescription>
-              Manage API tokens for programmatic access
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {error ? (
-              <GeneralError error={error} minimal mode='inline' reset={refetch} />
-            ) : isLoading ? (
-              <ListSkeleton variant='simple' height='h-10' count={3} />
-            ) : tokens.length === 0 ? (
-              <EmptyState
-                icon={Key}
-                title='No authentication tokens'
-                description='Create a token to authenticate with git or the API.'
-                className='py-8'
-              />
-            ) : (
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Name</TableHead>
-                    <TableHead>Created</TableHead>
-                    <TableHead>Last used</TableHead>
-                    <TableHead>Expires</TableHead>
-                    <TableHead className='w-12'></TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {tokens.map((token) => (
-                    <TokenRow key={token.hash} token={token} />
-                  ))}
-                </TableBody>
-              </Table>
-            )}
-          </CardContent>
-        </Card>
+        {error ? (
+          <GeneralError error={error} minimal mode='inline' reset={refetch} />
+        ) : isLoading ? (
+          <ListSkeleton variant='simple' height='h-10' count={3} />
+        ) : tokens.length === 0 ? (
+          <EmptyState
+            icon={Key}
+            title='No authentication tokens'
+            className='p-4'
+          />
+        ) : (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead>Created</TableHead>
+                <TableHead>Last used</TableHead>
+                <TableHead>Expires</TableHead>
+                <TableHead className='w-12'></TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {tokens.map((token) => (
+                <TokenRow key={token.hash} token={token} />
+              ))}
+            </TableBody>
+          </Table>
+        )}
       </Main>
     </>
   )
