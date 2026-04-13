@@ -712,8 +712,10 @@ const oauthProviderLabel: Record<OAuthProvider, string> = {
   x: 'X',
 }
 
-// Guard against React StrictMode double-invoking the one-shot result toast.
-let oauthResultShown = false
+// Guard against the one-shot toast firing more than once per OAuth callback.
+function oauthResultKey(): string {
+  return 'oauth_result_shown:' + window.location.search
+}
 
 function OauthIdentityRow({
   identity,
@@ -768,38 +770,6 @@ function OauthSection() {
   const authMethods = useAuthMethods()
   const oauthBegin = useOauthBegin()
   const oauthUnlink = useOauthUnlink()
-
-  // Read a one-shot result from the callback so the user sees a confirmation
-  // toast after returning from the provider's consent page. Guarded against
-  // React StrictMode double-mount so the toast fires exactly once per visit.
-  useEffect(() => {
-    if (oauthResultShown) return
-    const params = new URLSearchParams(window.location.search)
-    const linked = params.get('oauth_linked')
-    const errored = params.get('oauth_error')
-    if (!linked && !errored) return
-    oauthResultShown = true
-
-    if (linked) {
-      toast.success(
-        `Linked ${oauthProviderLabel[linked as OAuthProvider] ?? linked}`
-      )
-    } else if (errored === 'already_linked') {
-      toast.error('That account is already linked to another user')
-    } else if (errored === 'email_exists') {
-      toast.error('That email is already registered to another account')
-    } else {
-      toast.error('Could not link account')
-    }
-
-    params.delete('oauth_linked')
-    params.delete('oauth_error')
-    const qs = params.toString()
-    const next = qs
-      ? `${window.location.pathname}?${qs}`
-      : window.location.pathname
-    window.history.replaceState({}, '', next + window.location.hash)
-  }, [])
 
   const enabled = (authMethods.data as AuthMethodsResponse | undefined)?.oauth
   const linked = identities.data?.identities ?? []
@@ -911,6 +881,37 @@ function OauthSection() {
 
 export function UserAccount() {
   usePageTitle('Account')
+
+  // Read a one-shot OAuth callback result so the user sees a confirmation toast
+  // after returning from a provider's consent page. Guarded against React
+  // StrictMode double-mount so the toast fires exactly once per visit.
+  useEffect(() => {
+    const key = oauthResultKey()
+    try { if (sessionStorage.getItem(key)) return } catch {}
+    const params = new URLSearchParams(window.location.search)
+    const linked = params.get('oauth_linked')
+    const errored = params.get('oauth_error')
+    if (!linked && !errored) return
+    try { sessionStorage.setItem(key, '1') } catch {}
+
+    // Defer by a tick so Sonner's Toaster has mounted and subscribed to the
+    // toast store before we publish. Without this delay the toast is published
+    // to zero subscribers (UserAccount's effect runs before Toaster's sibling
+    // effect) and is silently dropped.
+    setTimeout(() => {
+      if (linked) {
+        toast.success(
+          `Linked ${oauthProviderLabel[linked as OAuthProvider] ?? linked}`
+        )
+      } else if (errored === 'already_linked') {
+        toast.error('That account is already linked to another user')
+      } else if (errored === 'email_exists') {
+        toast.error('That email is already registered to another account')
+      } else {
+        toast.error('Could not link account')
+      }
+    }, 0)
+  }, [])
 
   return (
     <>
