@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { Loader2, Search, Star, Trash2, RefreshCw } from 'lucide-react'
 import { useInterests, useInterestSet, useInterestRemove, useInterestSearch, useInterestSummary, type Interest, type SearchResult } from '@/hooks/use-interests'
 import {
@@ -151,6 +151,14 @@ function InterestSearch() {
   const setInterest = useInterestSet()
   const inputRef = useRef<HTMLInputElement>(null)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const blurTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current)
+      if (blurTimerRef.current) clearTimeout(blurTimerRef.current)
+    }
+  }, [])
 
   const handleSearch = (value: string) => {
     setQuery(value)
@@ -199,7 +207,10 @@ function InterestSearch() {
           ref={inputRef}
           value={query}
           onChange={(e) => handleSearch(e.target.value)}
-          onBlur={() => setTimeout(() => setShowResults(false), 200)}
+          onBlur={() => {
+            if (blurTimerRef.current) clearTimeout(blurTimerRef.current)
+            blurTimerRef.current = setTimeout(() => setShowResults(false), 200)
+          }}
           onFocus={() => results.length > 0 && setShowResults(true)}
           placeholder='Search topics to add...'
           className='pl-9'
