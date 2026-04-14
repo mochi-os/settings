@@ -27,6 +27,12 @@ const endpoints = {
     // Recovery
     accountRecovery: '-/user/account/recovery',
     accountRecoveryGenerate: '-/user/account/recovery/generate',
+    // OAuth identities
+    accountOauth: '-/user/account/oauth',
+    accountOauthUnlink: '-/user/account/oauth/unlink',
+    // Auth methods available on the server (public) - for OAuth begin flow
+    authMethods: '/_/auth/methods',
+    authOauthBegin: (provider: string) => `/_/auth/oauth/${provider}/begin`,
     // API Tokens
     accountTokens: '-/user/account/tokens',
     accountTokenCreate: '-/user/account/token/create',

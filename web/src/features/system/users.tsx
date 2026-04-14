@@ -58,8 +58,6 @@ import {
   TableRow,
   PageHeader,
   Main,
-  Card,
-  CardContent,
   usePageTitle,
   getErrorMessage,
   toast,
@@ -105,7 +103,7 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
   return (
     <ResponsiveDialog open={open} onOpenChange={setOpen}>
       <ResponsiveDialogTrigger asChild>
-        <Button>
+        <Button variant='outline' size='sm'>
           <Plus className='mr-2 h-4 w-4' />
           Add User
         </Button>
@@ -610,113 +608,106 @@ export function SystemUsers() {
       />
 
       <Main>
-        <Card>
-          <CardContent className="p-0 sm:p-6">
-            {isLoading ? (
-              <div className='p-6 sm:p-0'>
-                 <ListSkeleton count={3} height='h-12' variant='simple' />
-              </div>
-            ) : sortedUsers.length > 0 ? (
-              <>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <SortableHeader
-                        column='username'
-                        label='User'
-                        currentSort={sort}
-                        currentOrder={order}
-                        onSort={handleSort}
-                      />
-                      <SortableHeader
-                        column='status'
-                        label='Status'
-                        currentSort={sort}
-                        currentOrder={order}
-                        onSort={handleSort}
-                      />
-                      <SortableHeader
-                        column='last_login'
-                        label='Last login'
-                        currentSort={sort}
-                        currentOrder={order}
-                        onSort={handleSort}
-                      />
-                      <TableHead className='w-[50px]' />
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {sortedUsers.map((user) => (
-                      <UserRow
-                        key={user.id}
-                        user={user}
-                        onUpdate={() => refetch()}
-                        isSelf={user.username === currentUsername}
-                      />
-                    ))}
-                  </TableBody>
-                </Table>
+        {isLoading ? (
+          <ListSkeleton count={3} height='h-12' variant='simple' />
+        ) : sortedUsers.length > 0 ? (
+          <>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <SortableHeader
+                    column='username'
+                    label='User'
+                    currentSort={sort}
+                    currentOrder={order}
+                    onSort={handleSort}
+                  />
+                  <SortableHeader
+                    column='status'
+                    label='Status'
+                    currentSort={sort}
+                    currentOrder={order}
+                    onSort={handleSort}
+                  />
+                  <SortableHeader
+                    column='last_login'
+                    label='Last login'
+                    currentSort={sort}
+                    currentOrder={order}
+                    onSort={handleSort}
+                  />
+                  <TableHead className='w-[50px]' />
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {sortedUsers.map((user) => (
+                  <UserRow
+                    key={user.id}
+                    user={user}
+                    onUpdate={() => refetch()}
+                    isSelf={user.username === currentUsername}
+                  />
+                ))}
+              </TableBody>
+            </Table>
 
-                {/* Pagination */}
-                {!debouncedSearch && data && data.count > limit && (
-                  <div className='flex items-center justify-between py-4 px-6 sm:px-0 border-t sm:border-t-0 mt-4 sm:mt-0'>
-                    <div className='text-muted-foreground flex items-center gap-2 text-sm'>
-                      <span>
-                        Showing {offset + 1}-{Math.min(offset + limit, data.count)}{' '}
-                        of {data.count} users
-                      </span>
-                      <Select
-                        value={String(limit)}
-                        onValueChange={(v) => {
-                          setLimit(Number(v))
-                          setOffset(0)
-                        }}
-                      >
-                        <SelectTrigger className='h-8 w-20'>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value='10'>10</SelectItem>
-                          <SelectItem value='25'>25</SelectItem>
-                          <SelectItem value='50'>50</SelectItem>
-                          <SelectItem value='100'>100</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className='flex items-center gap-2'>
-                      <Button
-                        variant='outline'
-                        size='sm'
-                        onClick={() => setOffset(Math.max(0, offset - limit))}
-                        disabled={offset === 0}
-                      >
-                        <ChevronLeft className='mr-1 h-4 w-4' />
-                        Previous
-                      </Button>
-                      <Button
-                        variant='outline'
-                        size='sm'
-                        onClick={() => setOffset(offset + limit)}
-                        disabled={offset + limit >= data.count}
-                      >
-                        Next
-                        <ChevronRight className='ml-1 h-4 w-4' />
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </>
-            ) : (
-              <div className='py-8'>
-                <EmptyState
-                  icon={Users}
-                  title={debouncedSearch ? 'No users match your search' : 'No users found'}
-                  description={debouncedSearch ? 'Try adjusting your search criteria' : undefined}
-                />
+            {/* Pagination */}
+            {!debouncedSearch && data && data.count > limit && (
+              <div className='flex items-center justify-between py-4 mt-4'>
+                <div className='text-muted-foreground flex items-center gap-2 text-sm'>
+                  <span>
+                    Showing {offset + 1}-{Math.min(offset + limit, data.count)}{' '}
+                    of {data.count} users
+                  </span>
+                  <Select
+                    value={String(limit)}
+                    onValueChange={(v) => {
+                      setLimit(Number(v))
+                      setOffset(0)
+                    }}
+                  >
+                    <SelectTrigger className='h-8 w-20'>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value='10'>10</SelectItem>
+                      <SelectItem value='25'>25</SelectItem>
+                      <SelectItem value='50'>50</SelectItem>
+                      <SelectItem value='100'>100</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className='flex items-center gap-2'>
+                  <Button
+                    variant='outline'
+                    size='sm'
+                    onClick={() => setOffset(Math.max(0, offset - limit))}
+                    disabled={offset === 0}
+                  >
+                    <ChevronLeft className='mr-1 h-4 w-4' />
+                    Previous
+                  </Button>
+                  <Button
+                    variant='outline'
+                    size='sm'
+                    onClick={() => setOffset(offset + limit)}
+                    disabled={offset + limit >= data.count}
+                  >
+                    Next
+                    <ChevronRight className='ml-1 h-4 w-4' />
+                  </Button>
+                </div>
               </div>
             )}
-          </CardContent>
-        </Card>
+          </>
+        ) : (
+          <EmptyState
+            icon={Users}
+            title={debouncedSearch ? 'No users match your search' : 'No users found'}
+            description={debouncedSearch ? 'Try adjusting your search criteria' : undefined}
+            className='p-4'
+          />
+        )}
       </Main>
     </>
   )

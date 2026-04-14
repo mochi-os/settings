@@ -58,8 +58,7 @@ import {
   TableRow,
   PageHeader,
   Main,
-  Card,
-  CardContent,
+  Section,
   usePageTitle,
   toast,
   getErrorMessage,
@@ -88,7 +87,7 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
   return (
     <ResponsiveDialog open={open} onOpenChange={setOpen}>
       <ResponsiveDialogTrigger asChild>
-        <Button size='sm'>
+        <Button size='sm' variant='outline'>
           <Plus className='mr-2 h-4 w-4' />
           Add domain
         </Button>
@@ -194,7 +193,7 @@ function AddRouteDialog({
   return (
     <ResponsiveDialog open={open} onOpenChange={setOpen}>
       <ResponsiveDialogTrigger asChild>
-        <Button size='sm'>
+        <Button size='sm' variant='outline'>
           <Plus className='mr-2 h-4 w-4' />
           Add route
         </Button>
@@ -1145,8 +1144,8 @@ export function Domains() {
       />
 
       <Main>
-        <Card>
-          <CardContent className='p-6 divide-y'>
+        <Section title='Domains'>
+          <div className='divide-y'>
             {error ? (
               <GeneralError error={error} minimal mode='inline' reset={refetch} />
             ) : isLoading ? (
@@ -1168,11 +1167,11 @@ export function Domains() {
                 description={
                   isAdmin ? undefined : 'Contact an administrator to get a delegation.'
                 }
-                className='py-8'
+                className='p-4'
               />
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </Section>
       </Main>
     </>
   )

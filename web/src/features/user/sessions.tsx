@@ -23,11 +23,6 @@ import {
   TableRow,
   PageHeader,
   Main,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
   usePageTitle,
   getErrorMessage,
   toast,
@@ -124,51 +119,37 @@ export function UserSessions() {
       <PageHeader title="Sessions" icon={<Monitor className='size-4 md:size-5' />} />
 
       <Main>
-        <Card>
-          <CardHeader>
-            <CardTitle className='flex items-center gap-2'>
-              <Monitor className='h-5 w-5' />
-              Active Sessions
-            </CardTitle>
-            <CardDescription>
-              Manage your active sessions across different devices
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {error ? (
-              <GeneralError error={error} minimal mode='inline' reset={refetch} />
-            ) : isLoading ? (
-              <ListSkeleton variant='simple' height='h-10' count={3} />
-            ) : sessions.length === 0 ? (
-              <EmptyState
-                icon={Monitor}
-                title='No active sessions'
-                description='Your active sessions will appear here.'
-                className='py-8'
-              />
-            ) : (
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Session</TableHead>
-                    <TableHead>Created</TableHead>
-                    <TableHead>Last active</TableHead>
-                    <TableHead className='w-12'></TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {sortedSessions.map((session, index) => (
-                    <SessionRow
-                      key={session.id}
-                      session={session}
-                      isCurrent={index === 0 && session.accessed > 0}
-                    />
-                  ))}
-                </TableBody>
-              </Table>
-            )}
-          </CardContent>
-        </Card>
+        {error ? (
+          <GeneralError error={error} minimal mode='inline' reset={refetch} />
+        ) : isLoading ? (
+          <ListSkeleton variant='simple' height='h-10' count={3} />
+        ) : sessions.length === 0 ? (
+          <EmptyState
+            icon={Monitor}
+            title='No active sessions'
+            className='p-4'
+          />
+        ) : (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Session</TableHead>
+                <TableHead>Created</TableHead>
+                <TableHead>Last active</TableHead>
+                <TableHead className='w-12'></TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {sortedSessions.map((session, index) => (
+                <SessionRow
+                  key={session.id}
+                  session={session}
+                  isCurrent={index === 0 && session.accessed > 0}
+                />
+              ))}
+            </TableBody>
+          </Table>
+        )}
       </Main>
     </>
   )

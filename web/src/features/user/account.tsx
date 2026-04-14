@@ -1,9 +1,16 @@
-import { useState } from 'react'
-import type { Passkey, TotpSetupResponse } from '@/types/account'
+import { useEffect, useState } from 'react'
+import type {
+  AuthMethodsResponse,
+  OAuthIdentity,
+  OAuthProvider,
+  Passkey,
+  TotpSetupResponse,
+} from '@/types/account'
 import { startRegistration } from '@simplewebauthn/browser'
 import {
   Check,
   Key,
+  Link2,
   Loader2,
   Pencil,
   Plus,
@@ -15,7 +22,11 @@ import {
 import { QRCodeSVG } from 'qrcode.react'
 import {
   useAccountData,
+  useAuthMethods,
   useMethods,
+  useOauthBegin,
+  useOauthIdentities,
+  useOauthUnlink,
   usePasskeyDelete,
   usePasskeyRegisterBegin,
   usePasskeyRegisterFinish,
@@ -32,6 +43,10 @@ import {
 import {
   Button,
   ConfirmDialog,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
   ResponsiveDialog,
   ResponsiveDialogContent,
   ResponsiveDialogDescription,
@@ -58,14 +73,10 @@ import {
   Alert,
   AlertTitle,
   AlertDescription,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
   GeneralError,
   EmptyState,
   getErrorMessage,
+  shellNavigateTop,
   toast,
   useFormat,
 } from '@mochi/web'
@@ -82,7 +93,6 @@ function IdentitySection() {
   return (
     <Section
       title='Identity'
-      description='Your personal account information'
     >
       {error ? (
         <GeneralError error={error} minimal mode='inline' reset={refetch} />
@@ -103,8 +113,12 @@ function IdentitySection() {
           <FieldRow label="Fingerprint">
             <DataChip value={data.identity.fingerprint} truncate='middle' />
           </FieldRow>
-          <FieldRow label="Entity ID">
-            <DataChip value={data.identity.entity} truncate='middle' />
+          <FieldRow label="Entity">
+            <DataChip
+              value={data.identity.entity}
+              className='w-full'
+              chipClassName='flex-1'
+            />
           </FieldRow>
         </div>
       ) : null}
@@ -151,7 +165,6 @@ function LoginRequirementsSection() {
   return (
     <Section
       title='Login requirements'
-      description='Require all selected methods to log in'
     >
       {error ? (
         <GeneralError error={error} minimal mode='inline' reset={refetch} />
@@ -361,85 +374,79 @@ function PasskeysSection() {
 
   const passkeys = data?.passkeys ?? []
 
-  return (
-    <Card className='shadow-md'>
-      <CardHeader className='border-b/60 border-b pb-4 flex flex-row items-center justify-between'>
-        <div className='space-y-1'>
-          <CardTitle className='text-lg'>Passkeys</CardTitle>
-          <CardDescription>Sign in with biometrics or security keys</CardDescription>
-        </div>
-        <ResponsiveDialog open={registerDialogOpen} onOpenChange={setRegisterDialogOpen}>
-          <Button
-            variant='outline'
-            size='sm'
-            onClick={() => setRegisterDialogOpen(true)}
-          >
-            Add passkey
-            <Plus className='ml-2 h-4 w-4' />
-          </Button>
-          <ResponsiveDialogContent>
-            <ResponsiveDialogHeader>
-              <ResponsiveDialogTitle>Register passkey</ResponsiveDialogTitle>
-              <ResponsiveDialogDescription>
-                Use a security key, fingerprint, or face recognition.
-              </ResponsiveDialogDescription>
-            </ResponsiveDialogHeader>
-            <div className='py-4'>
-              <Label htmlFor='passkey-name'>Passkey name</Label>
-              <Input
-                id='passkey-name'
-                placeholder='My passkey'
-                value={passkeyName}
-                onChange={(e) => setPasskeyName(e.target.value)}
-                className='mt-2'
-              />
-            </div>
-            <ResponsiveDialogFooter>
-              <Button onClick={handleRegister} disabled={isRegistering}>
-                Register
-                {isRegistering && (
-                  <Loader2 className='ml-2 h-4 w-4 animate-spin' />
-                )}
-              </Button>
-            </ResponsiveDialogFooter>
-          </ResponsiveDialogContent>
-        </ResponsiveDialog>
-      </CardHeader>
-      <CardContent className='pt-2'>
-        {error ? (
-          <GeneralError error={error} minimal mode='inline' reset={refetch} />
-        ) : isLoading ? (
-          <ListSkeleton variant='simple' height='h-10' count={2} />
-        ) : passkeys.length === 0 ? (
-          <EmptyState
-            icon={Key}
-            title="No passkeys registered"
-            className="my-4"
+  const addButton = (
+    <ResponsiveDialog open={registerDialogOpen} onOpenChange={setRegisterDialogOpen}>
+      <Button
+        variant='outline'
+        size='sm'
+        onClick={() => setRegisterDialogOpen(true)}
+      >
+        <Plus className='mr-2 h-4 w-4' />
+        Add passkey
+      </Button>
+      <ResponsiveDialogContent>
+        <ResponsiveDialogHeader>
+          <ResponsiveDialogTitle>Register passkey</ResponsiveDialogTitle>
+          <ResponsiveDialogDescription>
+            Use a security key, fingerprint, or face recognition.
+          </ResponsiveDialogDescription>
+        </ResponsiveDialogHeader>
+        <div className='py-4'>
+          <Label htmlFor='passkey-name'>Passkey name</Label>
+          <Input
+            id='passkey-name'
+            placeholder='My passkey'
+            value={passkeyName}
+            onChange={(e) => setPasskeyName(e.target.value)}
+            className='mt-2'
           />
-        ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Created</TableHead>
-                <TableHead>Last used</TableHead>
-                <TableHead className='w-24'></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {passkeys.map((passkey) => (
-                <PasskeyRow
-                  key={passkey.id}
-                  passkey={passkey}
-                  onRename={handleRename}
-                  onDelete={handleDelete}
-                />
-              ))}
-            </TableBody>
-          </Table>
-        )}
-      </CardContent>
-    </Card>
+        </div>
+        <ResponsiveDialogFooter>
+          <Button onClick={handleRegister} disabled={isRegistering}>
+            Register
+            {isRegistering && (
+              <Loader2 className='ml-2 h-4 w-4 animate-spin' />
+            )}
+          </Button>
+        </ResponsiveDialogFooter>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
+  )
+
+  return (
+    <Section
+      title='Passkeys'
+      action={addButton}
+    >
+      {error ? (
+        <GeneralError error={error} minimal mode='inline' reset={refetch} />
+      ) : isLoading ? (
+        <ListSkeleton variant='simple' height='h-10' count={2} />
+      ) : passkeys.length === 0 ? (
+        <EmptyState icon={Key} title='No passkeys registered' className='p-4' />
+      ) : (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>Created</TableHead>
+              <TableHead>Last used</TableHead>
+              <TableHead className='w-24'></TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {passkeys.map((passkey) => (
+              <PasskeyRow
+                key={passkey.id}
+                passkey={passkey}
+                onRename={handleRename}
+                onDelete={handleDelete}
+              />
+            ))}
+          </TableBody>
+        </Table>
+      )}
+    </Section>
   )
 }
 
@@ -494,10 +501,33 @@ function AuthenticatorSection() {
 
   const isEnabled = data?.enabled ?? false
 
+  const action = setupData
+    ? null
+    : isEnabled ? (
+      <Button
+        variant='outline'
+        size='sm'
+        onClick={() => setShowDisableDialog(true)}
+      >
+        <Trash2 className='mr-2 h-4 w-4' />
+        Disable
+      </Button>
+    ) : (
+      <Button
+        variant='outline'
+        size='sm'
+        onClick={handleSetup}
+        disabled={setupTotp.isPending}
+      >
+        <Plus className='mr-2 h-4 w-4' />
+        Set up
+      </Button>
+    )
+
   return (
     <Section
-      title='Authenticator App'
-      description='Use an authenticator app to generate one-time codes'
+      title='Authenticator app'
+      action={action}
     >
       {error ? (
         <GeneralError error={error} minimal mode='inline' reset={refetch} />
@@ -539,44 +569,36 @@ function AuthenticatorSection() {
           </div>
         </div>
       ) : isEnabled ? (
-        <div className='flex items-center justify-between py-4'>
-          <div className='flex items-center gap-3'>
-            <div className='flex h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30'>
-              <Check className='h-5 w-5 text-green-600 dark:text-green-500' />
-            </div>
-            <div>
-              <p className='text-sm font-medium'>Status: Enabled</p>
-              <p className='text-muted-foreground text-xs'>Authenticator app is active</p>
-            </div>
+        <div className='flex items-center gap-3 py-4'>
+          <div className='flex h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30'>
+            <Check className='h-5 w-5 text-green-600 dark:text-green-500' />
           </div>
-          <Button variant='destructive' size='sm' onClick={() => setShowDisableDialog(true)}>
-            Disable
-          </Button>
-          <ConfirmDialog
-            open={showDisableDialog}
-            onOpenChange={setShowDisableDialog}
-            title='Disable authenticator?'
-            desc='This will remove the app from your account.'
-            confirmText='Disable'
-            destructive
-            handleConfirm={() => {
-              handleDisable()
-              setShowDisableDialog(false)
-            }}
-          />
+          <div>
+            <p className='text-sm font-medium'>Enabled</p>
+            <p className='text-muted-foreground text-xs'>Authenticator app is active</p>
+          </div>
         </div>
       ) : (
-        <div className='py-6 text-center'>
-          <p className='text-muted-foreground mb-4 text-sm'>Add an app for additional security</p>
-          <Button onClick={handleSetup} disabled={setupTotp.isPending}>Set up authenticator</Button>
-        </div>
+        <EmptyState icon={Shield} title='No authenticator set up' className='p-4' />
       )}
+      <ConfirmDialog
+        open={showDisableDialog}
+        onOpenChange={setShowDisableDialog}
+        title='Disable authenticator?'
+        desc='This will remove the app from your account.'
+        confirmText='Disable'
+        destructive
+        handleConfirm={() => {
+          handleDisable()
+          setShowDisableDialog(false)
+        }}
+      />
     </Section>
   )
 }
 
 // ============================================================================
-// Recovery Codes Section
+// Recovery codes section
 // ============================================================================
 
 function RecoveryCodesSection() {
@@ -596,10 +618,25 @@ function RecoveryCodesSection() {
 
   const count = data?.count ?? 0
 
+  const action = showCodes ? null : (
+    <Button
+      variant='outline'
+      size='sm'
+      onClick={() => setShowGenerateDialog(true)}
+    >
+      {count > 0 ? (
+        <RefreshCw className='mr-2 h-4 w-4' />
+      ) : (
+        <Plus className='mr-2 h-4 w-4' />
+      )}
+      {count > 0 ? 'Regenerate' : 'Generate'}
+    </Button>
+  )
+
   return (
     <Section
-      title='Recovery Codes'
-      description='Backup codes for account recovery'
+      title='Recovery codes'
+      action={action}
     >
       {error ? (
         <GeneralError error={error} minimal mode='inline' reset={refetch} />
@@ -627,32 +664,212 @@ function RecoveryCodesSection() {
             <Button variant='ghost' size='sm' onClick={() => setShowCodes(null)}>Done</Button>
           </div>
         </div>
-      ) : (
-        <div className='flex items-center justify-between py-4'>
-          <div className='flex items-center gap-3'>
-            <div className='flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20'>
-              <RefreshCw className='h-5 w-5 text-primary' />
-            </div>
-            <div>
-              <p className='text-sm font-medium'>{count > 0 ? `${count} remaining` : 'No codes'}</p>
-              <p className='text-muted-foreground text-xs'>Recovery codes</p>
-            </div>
+      ) : count > 0 ? (
+        <div className='flex items-center gap-3 py-4'>
+          <div className='flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20'>
+            <RefreshCw className='h-5 w-5 text-primary' />
           </div>
-          <Button variant='outline' size='sm' onClick={() => setShowGenerateDialog(true)}>
-            {count > 0 ? 'Regenerate' : 'Generate'}
-          </Button>
-          <ConfirmDialog
-            open={showGenerateDialog}
-            onOpenChange={setShowGenerateDialog}
-            title={count > 0 ? 'Regenerate?' : 'Generate?'}
-            desc='Make sure to save the new codes.'
-            confirmText='Proceed'
-            handleConfirm={() => {
-              void handleGenerate()
-              setShowGenerateDialog(false)
-            }}
-          />
+          <div>
+            <p className='text-sm font-medium'>{count} remaining</p>
+            <p className='text-muted-foreground text-xs'>Recovery codes</p>
+          </div>
         </div>
+      ) : (
+        <EmptyState icon={RefreshCw} title='No recovery codes' className='p-4' />
+      )}
+      <ConfirmDialog
+        open={showGenerateDialog}
+        onOpenChange={setShowGenerateDialog}
+        title={count > 0 ? 'Regenerate?' : 'Generate?'}
+        desc='Make sure to save the new codes.'
+        confirmText='Proceed'
+        handleConfirm={() => {
+          void handleGenerate()
+          setShowGenerateDialog(false)
+        }}
+      />
+    </Section>
+  )
+}
+
+// ============================================================================
+// OAuth Section (third-party sign-in linking)
+// ============================================================================
+
+const oauthProviderOrder: OAuthProvider[] = [
+  'facebook',
+  'github',
+  'google',
+  'microsoft',
+  'x',
+]
+
+const oauthProviderLabel: Record<OAuthProvider, string> = {
+  facebook: 'Facebook',
+  github: 'GitHub',
+  google: 'Google',
+  microsoft: 'Microsoft',
+  x: 'X',
+}
+
+// Guard against the one-shot toast firing more than once per OAuth callback.
+function oauthResultKey(): string {
+  return 'oauth_result_shown:' + window.location.search
+}
+
+function OauthIdentityRow({
+  identity,
+  onUnlink,
+}: {
+  identity: OAuthIdentity
+  onUnlink: (provider: OAuthProvider) => void
+}) {
+  const { formatTimestamp } = useFormat()
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+
+  return (
+    <TableRow>
+      <TableCell>
+        <span className='font-medium'>
+          {oauthProviderLabel[identity.provider] ?? identity.provider}
+        </span>
+      </TableCell>
+      <TableCell className='text-muted-foreground text-sm'>
+        {identity.email || '—'}
+      </TableCell>
+      <TableCell className='text-muted-foreground text-sm'>
+        {formatTimestamp(identity.used, 'Never')}
+      </TableCell>
+      <TableCell className='text-right'>
+        <Button
+          variant='ghost'
+          size='sm'
+          onClick={() => setShowDeleteDialog(true)}
+        >
+          <Trash2 className='h-4 w-4' />
+        </Button>
+        <ConfirmDialog
+          open={showDeleteDialog}
+          onOpenChange={setShowDeleteDialog}
+          title='Unlink provider?'
+          desc={`You won't be able to sign in with ${oauthProviderLabel[identity.provider] ?? identity.provider} anymore. Make sure you still have another way to log in.`}
+          confirmText='Unlink'
+          destructive
+          handleConfirm={() => {
+            onUnlink(identity.provider)
+            setShowDeleteDialog(false)
+          }}
+        />
+      </TableCell>
+    </TableRow>
+  )
+}
+
+function OauthSection() {
+  const identities = useOauthIdentities()
+  const authMethods = useAuthMethods()
+  const oauthBegin = useOauthBegin()
+  const oauthUnlink = useOauthUnlink()
+
+  const enabled = (authMethods.data as AuthMethodsResponse | undefined)?.oauth
+  const linked = identities.data?.identities ?? []
+  const linkedSet = new Set(linked.map((i) => i.provider))
+  const availableToLink = oauthProviderOrder.filter(
+    (p) => enabled?.[p] && !linkedSet.has(p)
+  )
+
+  const handleLink = async (provider: OAuthProvider) => {
+    try {
+      const { url } = await oauthBegin.mutateAsync({ provider, link: true })
+      shellNavigateTop(url)
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Could not start linking'))
+    }
+  }
+
+  const handleUnlink = async (provider: OAuthProvider) => {
+    try {
+      await oauthUnlink.mutateAsync(provider)
+      toast.success(`Unlinked ${oauthProviderLabel[provider] ?? provider}`)
+    } catch (error) {
+      toast.error(getErrorMessage(error, 'Could not unlink provider'))
+    }
+  }
+
+  // If no providers are enabled server-side AND none are linked, omit the
+  // whole card so it doesn't clutter the settings page.
+  const anyEnabled =
+    enabled &&
+    (enabled.google ||
+      enabled.github ||
+      enabled.microsoft ||
+      enabled.facebook ||
+      enabled.x)
+  if (!anyEnabled && linked.length === 0 && !identities.isLoading) {
+    return null
+  }
+
+  const linkButton = availableToLink.length > 0 ? (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant='outline'
+          size='sm'
+          disabled={oauthBegin.isPending}
+        >
+          <Plus className='mr-2 h-4 w-4' />
+          Link account
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align='end'>
+        {availableToLink.map((provider) => (
+          <DropdownMenuItem
+            key={provider}
+            onClick={() => handleLink(provider)}
+          >
+            {oauthProviderLabel[provider]}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  ) : null
+
+  return (
+    <Section
+      title='Third-party login'
+      action={linkButton}
+    >
+      {identities.error ? (
+        <GeneralError
+          error={identities.error}
+          minimal
+          mode='inline'
+          reset={identities.refetch}
+        />
+      ) : identities.isLoading ? (
+        <ListSkeleton variant='simple' height='h-10' count={2} />
+      ) : linked.length === 0 ? (
+        <EmptyState icon={Link2} title='No accounts linked' className='p-4' />
+      ) : (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Provider</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Last used</TableHead>
+              <TableHead className='w-16'></TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {linked.map((identity) => (
+              <OauthIdentityRow
+                key={identity.provider}
+                identity={identity}
+                onUnlink={handleUnlink}
+              />
+            ))}
+          </TableBody>
+        </Table>
       )}
     </Section>
   )
@@ -665,6 +882,37 @@ function RecoveryCodesSection() {
 export function UserAccount() {
   usePageTitle('Account')
 
+  // Read a one-shot OAuth callback result so the user sees a confirmation toast
+  // after returning from a provider's consent page. Guarded against React
+  // StrictMode double-mount so the toast fires exactly once per visit.
+  useEffect(() => {
+    const key = oauthResultKey()
+    try { if (sessionStorage.getItem(key)) return } catch {}
+    const params = new URLSearchParams(window.location.search)
+    const linked = params.get('oauth_linked')
+    const errored = params.get('oauth_error')
+    if (!linked && !errored) return
+    try { sessionStorage.setItem(key, '1') } catch {}
+
+    // Defer by a tick so Sonner's Toaster has mounted and subscribed to the
+    // toast store before we publish. Without this delay the toast is published
+    // to zero subscribers (UserAccount's effect runs before Toaster's sibling
+    // effect) and is silently dropped.
+    setTimeout(() => {
+      if (linked) {
+        toast.success(
+          `Linked ${oauthProviderLabel[linked as OAuthProvider] ?? linked}`
+        )
+      } else if (errored === 'already_linked') {
+        toast.error('That account is already linked to another user')
+      } else if (errored === 'email_exists') {
+        toast.error('That email is already registered to another account')
+      } else {
+        toast.error('Could not link account')
+      }
+    }, 0)
+  }, [])
+
   return (
     <>
       <PageHeader title="Account" icon={<User className='size-4 md:size-5' />} />
@@ -675,6 +923,7 @@ export function UserAccount() {
           <PasskeysSection />
           <AuthenticatorSection />
           <RecoveryCodesSection />
+          <OauthSection />
         </div>
       </Main>
     </>

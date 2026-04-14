@@ -31,11 +31,6 @@ import {
   Input,
   Label,
   Main,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
   EmptyState,
   GeneralError,
   ListSkeleton,
@@ -433,73 +428,60 @@ export function ConnectedAccounts() {
       />
 
       <Main>
-        <Card>
-          <CardHeader>
-            <CardTitle className='flex items-center gap-2'>
-              <Link className='h-5 w-5' />              Connected Accounts
-            </CardTitle>
-            <CardDescription>
-              Manage email and notification providers for your account
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {providersError ? (
-              <GeneralError error={providersError} minimal mode='inline' reset={refetch} />
-            ) : accountsError ? (
-              <GeneralError error={accountsError} minimal mode='inline' reset={refetch} />
-            ) : isLoading ? (
-              <ListSkeleton variant='simple' height='h-12' count={3} />
-            ) : accounts.length === 0 ? (
-              <EmptyState
-                icon={Link}
-                title='No connected accounts'
-                description='Add an account to enable notifications and integrations.'
-                className='py-8'
-              />
-            ) : (
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Name</TableHead>
-                    <TableHead className='hidden sm:table-cell'>Type</TableHead>
-                    <TableHead className='hidden sm:table-cell'>Status</TableHead>
-                    <TableHead className='hidden md:table-cell'>
-                      Notify by default
-                    </TableHead>
-                    <TableHead className='hidden lg:table-cell'>Added</TableHead>
-                    <TableHead className='w-12'></TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {[...accounts]
-                    .sort((a, b) => {
-                      const nameCompare = getAccountDisplayName(a).localeCompare(
-                        getAccountDisplayName(b)
-                      )
-                      if (nameCompare !== 0) return nameCompare
-                      return getProviderLabel(a.type).localeCompare(
-                        getProviderLabel(b.type)
-                      )
-                    })
-                    .map((account) => (
-                      <AccountRow
-                        key={account.id}
-                        account={account}
-                        providers={providers}
-                        onRemove={handleRemove}
-                        onVerify={setVerifyAccount}
-                        onSettings={setSettingsAccount}
-                        onTest={handleTest}
-                        onToggleEnabled={handleToggleEnabled}
-                        isRemoving={isRemoving}
-                        testingId={testingId}
-                      />
-                    ))}
-                </TableBody>
-              </Table>
-            )}
-          </CardContent>
-        </Card>
+        {providersError ? (
+          <GeneralError error={providersError} minimal mode='inline' reset={refetch} />
+        ) : accountsError ? (
+          <GeneralError error={accountsError} minimal mode='inline' reset={refetch} />
+        ) : isLoading ? (
+          <ListSkeleton variant='simple' height='h-12' count={3} />
+        ) : accounts.length === 0 ? (
+          <EmptyState
+            icon={Link}
+            title='No connected accounts'
+            className='p-4'
+          />
+        ) : (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead className='hidden sm:table-cell'>Type</TableHead>
+                <TableHead className='hidden sm:table-cell'>Status</TableHead>
+                <TableHead className='hidden md:table-cell'>
+                  Notify by default
+                </TableHead>
+                <TableHead className='hidden lg:table-cell'>Added</TableHead>
+                <TableHead className='w-12'></TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {[...accounts]
+                .sort((a, b) => {
+                  const nameCompare = getAccountDisplayName(a).localeCompare(
+                    getAccountDisplayName(b)
+                  )
+                  if (nameCompare !== 0) return nameCompare
+                  return getProviderLabel(a.type).localeCompare(
+                    getProviderLabel(b.type)
+                  )
+                })
+                .map((account) => (
+                  <AccountRow
+                    key={account.id}
+                    account={account}
+                    providers={providers}
+                    onRemove={handleRemove}
+                    onVerify={setVerifyAccount}
+                    onSettings={setSettingsAccount}
+                    onTest={handleTest}
+                    onToggleEnabled={handleToggleEnabled}
+                    isRemoving={isRemoving}
+                    testingId={testingId}
+                  />
+                ))}
+            </TableBody>
+          </Table>
+        )}
       </Main>
 
       <AccountAdd

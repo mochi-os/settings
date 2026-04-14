@@ -161,6 +161,23 @@ def action_user_account_recovery_generate(a):
     a.json({"codes": codes})
 
 # ============================================================================
+# OAuth (third-party sign-in linking)
+# ============================================================================
+
+def action_user_account_oauth(a):
+    """List OAuth providers linked to the current user"""
+    a.json({"identities": mochi.user.oauth.list()})
+
+def action_user_account_oauth_unlink(a):
+    """Unlink an OAuth provider from the current user"""
+    provider = a.input("provider")
+    if not provider:
+        a.error(400, "Missing provider")
+        return
+    mochi.user.oauth.unlink(provider)
+    a.json({"ok": True})
+
+# ============================================================================
 # API Tokens
 # ============================================================================
 
