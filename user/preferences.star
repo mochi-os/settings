@@ -12,6 +12,14 @@ preferences_schema = [
         "description": "Light or dark mode"
     },
     {
+        "key": "border_radius",
+        "type": "select",
+        "options": ["default", "none", "small", "medium", "large"],
+        "default": "default",
+        "label": "Border radius",
+        "description": "Corner radius for UI elements"
+    },
+    {
         "key": "language",
         "type": "select",
         "options": ["en", "de", "fr", "es", "ja", "zh"],

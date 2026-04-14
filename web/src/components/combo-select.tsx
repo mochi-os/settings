@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type React from 'react'
 import { Check, ChevronsUpDown } from 'lucide-react'
 import {
   cn,
@@ -19,9 +20,10 @@ interface ComboSelectProps {
   onChange: (value: string) => void
   disabled?: boolean
   placeholder?: string
+  renderOption?: (optValue: string, label: string) => React.ReactNode
 }
 
-export function ComboSelect({ value, options, onChange, disabled, placeholder = 'Select...' }: ComboSelectProps) {
+export function ComboSelect({ value, options, onChange, disabled, placeholder = 'Select...', renderOption }: ComboSelectProps) {
   const [open, setOpen] = useState(false)
   const displayValue = options[value] ?? value
 
@@ -59,7 +61,7 @@ export function ComboSelect({ value, options, onChange, disabled, placeholder = 
                       value === optValue ? 'opacity-100' : 'opacity-0'
                     )}
                   />
-                  <span className='truncate'>{label}</span>
+                  {renderOption ? renderOption(optValue, label) : <span className='truncate'>{label}</span>}
                 </CommandItem>
               ))}
             </CommandGroup>
