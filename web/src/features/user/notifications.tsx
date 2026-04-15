@@ -56,7 +56,6 @@ interface DestinationRow {
 interface Category {
   id: number
   label: string
-  badge: number
   default: number
   created: number
   destinations: DestinationRow[]
@@ -287,9 +286,6 @@ function CategoryRow({
           {category.default === 1 && (
             <span className="rounded bg-muted px-2 py-0.5 text-xs text-muted-foreground">Default</span>
           )}
-          {category.badge === 0 && (
-            <span className="rounded bg-muted px-2 py-0.5 text-xs text-muted-foreground">No badge</span>
-          )}
         </div>
         <p className="text-sm text-muted-foreground">{destSummary}</p>
       </div>
@@ -337,7 +333,6 @@ function CategoryDialog({
 }) {
   const isSuppress = category?.id === 0
   const [label, setLabel] = useState(category?.label ?? '')
-  const [badge, setBadge] = useState<number>(category?.badge ?? 1)
   const [isDefault, setIsDefault] = useState<boolean>(category?.default === 1)
   const [saving, setSaving] = useState(false)
 
@@ -381,7 +376,6 @@ function CategoryDialog({
       const params = new URLSearchParams()
       params.append('label', label.trim())
       if (!isSuppress) {
-        params.append('badge', String(badge))
         params.append('destinations', JSON.stringify(destinations))
         if (isDefault) params.append('default', '1')
       }
@@ -421,16 +415,6 @@ function CategoryDialog({
           </div>
           {!isSuppress && (
             <>
-              <div className="flex items-center justify-between">
-                <Label htmlFor="cat-badge" className="cursor-pointer">
-                  Show in badge count
-                </Label>
-                <Switch
-                  id="cat-badge"
-                  checked={badge === 1}
-                  onCheckedChange={(v) => setBadge(v ? 1 : 0)}
-                />
-              </div>
               <div className="flex items-center justify-between">
                 <Label htmlFor="cat-default" className="cursor-pointer">
                   Default category

@@ -11,13 +11,11 @@ def action_notifications_categories_create(a):
 	label = a.input("label", "").strip()
 	if not label:
 		return a.error(400, "label is required")
-	badge_raw = a.input("badge", "1")
-	badge = 1 if badge_raw == "1" or badge_raw == "true" else 0
 	default_raw = a.input("default", "")
 	default = 1 if default_raw == "1" or default_raw == "true" else None
 	destinations_raw = a.input("destinations", "").strip()
 	destinations = json.decode(destinations_raw) if destinations_raw else None
-	result = mochi.service.call("notifications", "category/create", label, badge, destinations, default)
+	result = mochi.service.call("notifications", "category/create", label, destinations, default)
 	if not result:
 		return a.error(400, "Invalid category")
 	return {"data": {"id": result}}
@@ -27,18 +25,14 @@ def action_notifications_categories_update(a):
 	if not id or not id.isdigit():
 		return a.error(400, "Invalid id")
 	label_raw = a.input("label")
-	badge_raw = a.input("badge")
 	default_raw = a.input("default")
 	destinations_raw = a.input("destinations", "").strip()
 	label = label_raw if label_raw != None and label_raw != "" else None
-	badge = None
-	if badge_raw != None and badge_raw != "":
-		badge = 1 if badge_raw == "1" or badge_raw == "true" else 0
 	default = None
 	if default_raw != None and default_raw != "":
 		default = 1 if default_raw == "1" or default_raw == "true" else 0
 	destinations = json.decode(destinations_raw) if destinations_raw else None
-	ok = mochi.service.call("notifications", "category/update", int(id), label, badge, destinations, default)
+	ok = mochi.service.call("notifications", "category/update", int(id), label, destinations, default)
 	if not ok:
 		return a.error(404, "Not found")
 	return {"data": {}}
