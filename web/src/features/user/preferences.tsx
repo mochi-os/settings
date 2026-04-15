@@ -38,14 +38,12 @@ import {
   useTheme,
   shellSetLocale,
   useLocale,
-} from '@mochi/web'
-import type { LocalePreferences } from '@mochi/web'
-import {
   detectDateFormat,
   detectTimeFormat,
   detectWeekStart,
   detectNumberFormat,
   detectUnits,
+  type LocalePreferences,
 } from '@mochi/web'
 type RadiusOverrides = Record<string, string>
 type StyleOverrides = Record<string, string>
@@ -120,60 +118,94 @@ function buildStylePresetOverrides(
 }
 
 const stylePresetOverrides: Record<string, StyleOverrides> = {
-  vega: buildStylePresetOverrides(
-    '0.25rem',
-    "'Inter', 'Geist', sans-serif",
-    "'JetBrains Mono', 'Geist Mono', monospace",
-    'rgba(0, 0, 0, 0.15)',
-    'comfortable',
-    '0.75rem',
-    '1px'
-  ),
-  nova: buildStylePresetOverrides(
-    '0.235rem',
-    "'Inter Tight', 'Geist', sans-serif",
-    "'IBM Plex Mono', 'Geist Mono', monospace",
-    'rgba(0, 0, 0, 0.2)',
-    'compact',
-    '0.75rem',
+  default: buildStylePresetOverrides(
+    '0.3rem',
+    "'Nunito Sans', 'Inter', sans-serif",
+    "'Fira Code', 'Geist Mono', monospace",
+    'rgba(0, 0, 0, 0.12)',
+    'spacious',
+    '1.35rem',
     '1px'
   ),
   maia: buildStylePresetOverrides(
-    '0.265rem',
+    '0.3rem',
     "'Nunito Sans', 'Inter', sans-serif",
     "'Fira Code', 'Geist Mono', monospace",
-    'rgba(0, 0, 0, 0.13)',
+    'rgba(0, 0, 0, 0.12)',
     'spacious',
-    '1.25rem',
+    '1.35rem',
     '1px'
   ),
-  lyra: buildStylePresetOverrides(
-    '0.26rem',
+  vega: buildStylePresetOverrides(
+    '0.215rem',
+    "'Public Sans', 'Inter', sans-serif",
+    "'IBM Plex Mono', 'Geist Mono', monospace",
+    'rgba(0, 0, 0, 0.17)',
+    'compact',
+    '0.35rem',
+    '1px'
+  ),
+  luma: buildStylePresetOverrides(
+    '0.27rem',
+    "'Manrope', 'Inter', sans-serif",
+    "'IBM Plex Mono', 'Geist Mono', monospace",
+    'rgba(0, 0, 0, 0.1)',
+    'comfortable',
+    '2rem',
+    '1px'
+  ),
+  nova: buildStylePresetOverrides(
+    '0.255rem',
     "'Poppins', 'Inter', sans-serif",
     "'JetBrains Mono', 'Geist Mono', monospace",
-    'rgba(0, 0, 0, 0.16)',
-    'spacious',
-    '0.375rem',
+    'rgba(0, 0, 0, 0.18)',
+    'comfortable',
+    '0.95rem',
+    '1.25px'
+  ),
+  lyra: buildStylePresetOverrides(
+    '0.235rem',
+    "'Inter Tight', 'Inter', sans-serif",
+    "'JetBrains Mono', 'Geist Mono', monospace",
+    'rgba(0, 0, 0, 0.22)',
+    'compact',
+    '0.2rem',
     '1.5px'
   ),
   mira: buildStylePresetOverrides(
-    '0.24rem',
+    '0.285rem',
     "'DM Sans', 'Inter', sans-serif",
     "'Space Mono', 'Geist Mono', monospace",
     'rgba(0, 0, 0, 0.14)',
-    'compact',
-    '0.25rem',
-    '1.5px'
+    'spacious',
+    '1.6rem',
+    '1.25px'
   ),
-  luma: buildStylePresetOverrides(
-    '0.255rem',
-    "'Public Sans', 'Inter', sans-serif",
-    "'IBM Plex Mono', 'Geist Mono', monospace",
-    'rgba(0, 0, 0, 0.12)',
-    'comfortable',
-    '1rem',
-    '1px'
-  ),
+}
+
+function normalizeStylePreset(
+  value: string
+): 'default' | 'vega' | 'nova' | 'maia' | 'lyra' | 'mira' | 'luma' {
+  switch (value) {
+    case 'default':
+    case 'vega':
+    case 'nova':
+    case 'maia':
+    case 'lyra':
+    case 'mira':
+    case 'luma':
+      return value
+    case 'soft':
+      return 'maia'
+    case 'sharp':
+      return 'lyra'
+    case 'round':
+      return 'luma'
+    case '':
+      return 'maia'
+    default:
+      return 'maia'
+  }
 }
 
 function radiusOverridesFromThemeBase(baseRadius: string): RadiusOverrides {
@@ -192,7 +224,7 @@ function radiusOverridesFromPreference(value: string): RadiusOverrides | null {
 }
 
 function stylePresetOverridesFromPreference(value: string): StyleOverrides | null {
-  const preset = !value || value === 'default' ? 'maia' : value
+  const preset = normalizeStylePreset(value || 'maia')
   return stylePresetOverrides[preset] ?? null
 }
 
@@ -209,7 +241,7 @@ function colorThemeFromSelections(
   stylePreset: string | undefined,
   borderRadius: string | undefined
 ): ColorThemeState | null {
-  const styleOverrides = stylePresetOverridesFromPreference(stylePreset || 'default')
+  const styleOverrides = stylePresetOverridesFromPreference(stylePreset || 'maia')
   const radiusOverrides = radiusOverridesFromPreference(borderRadius || 'default')
   const theme = themes?.find((t) => t.id === selectedThemeId)
 
@@ -272,18 +304,31 @@ function PresetStrokeIcon({
 }
 
 function StylePresetIcon({ value }: { value: string }) {
-  const preset = value === 'default' ? 'maia' : value
+  const preset = normalizeStylePreset(value)
   switch (preset) {
-    case 'nova':
-      return (
-        <PresetStrokeIcon>
-          <rect x='2.25' y='4.25' width='11.5' height='7.5' rx='3.75' stroke='currentColor' strokeWidth='1.5' />
-        </PresetStrokeIcon>
-      )
+    case 'default':
     case 'maia':
       return (
         <PresetStrokeIcon>
           <circle cx='8' cy='8' r='5.75' stroke='currentColor' strokeWidth='1.5' />
+        </PresetStrokeIcon>
+      )
+    case 'vega':
+      return (
+        <PresetStrokeIcon>
+          <rect x='2.5' y='2.5' width='11' height='11' rx='1.75' stroke='currentColor' strokeWidth='1.5' />
+        </PresetStrokeIcon>
+      )
+    case 'nova':
+      return (
+        <PresetStrokeIcon>
+          <rect x='2.25' y='4.25' width='11.5' height='7.5' rx='2.5' stroke='currentColor' strokeWidth='1.5' />
+        </PresetStrokeIcon>
+      )
+    case 'luma':
+      return (
+        <PresetStrokeIcon>
+          <rect x='2.25' y='4.25' width='11.5' height='7.5' rx='3.75' stroke='currentColor' strokeWidth='1.5' />
         </PresetStrokeIcon>
       )
     case 'lyra':
@@ -300,28 +345,12 @@ function StylePresetIcon({ value }: { value: string }) {
     case 'mira':
       return (
         <PresetStrokeIcon>
-          <rect
-            x='3.2'
-            y='3.2'
-            width='9.6'
-            height='9.6'
-            rx='2.1'
-            transform='rotate(45 8 8)'
+          <path
+            d='M8 1.75 13 8 8 14.25 3 8 8 1.75Z'
             stroke='currentColor'
             strokeWidth='1.5'
+            strokeLinejoin='round'
           />
-        </PresetStrokeIcon>
-      )
-    case 'luma':
-      return (
-        <PresetStrokeIcon>
-          <rect x='2.25' y='4.25' width='11.5' height='7.5' rx='3.75' stroke='currentColor' strokeWidth='1.5' />
-        </PresetStrokeIcon>
-      )
-    case 'vega':
-      return (
-        <PresetStrokeIcon>
-          <rect x='2.25' y='2.25' width='11.5' height='11.5' rx='3' stroke='currentColor' strokeWidth='1.5' />
         </PresetStrokeIcon>
       )
     default:
@@ -544,7 +573,7 @@ export function UserPreferences() {
                   <div className="w-full">
                     <ComboSelect
                       value={data.preferences.border_radius || 'default'}
-                      options={{ default: 'Default', none: 'None', small: 'Small', medium: 'Medium', large: 'Large' }}
+                      options={{ default: 'Preset', none: 'None', small: 'Small', medium: 'Medium', large: 'Large' }}
                       onChange={(value) => handleChange('border_radius', value)}
                       disabled={setPreference.isPending}
                       renderOption={(optValue, label) => (
@@ -559,7 +588,7 @@ export function UserPreferences() {
                 <FieldRow label='Style preset'>
                   <div className="w-full">
                     <ComboSelect
-                      value={data.preferences.style_preset || 'maia'}
+                      value={normalizeStylePreset(data.preferences.style_preset || 'maia')}
                       options={stylePresetLabels}
                       onChange={(value) => handleChange('style_preset', value)}
                       disabled={setPreference.isPending}

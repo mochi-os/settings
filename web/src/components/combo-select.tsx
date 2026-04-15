@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import type React from 'react'
+import { useState, type ReactNode } from 'react'
 import { Check, ChevronsUpDown } from 'lucide-react'
 import {
   cn,
@@ -20,8 +19,8 @@ interface ComboSelectProps {
   onChange: (value: string) => void
   disabled?: boolean
   placeholder?: string
-  renderOption?: (optValue: string, label: string) => React.ReactNode
-  renderValue?: (optValue: string, label: string) => React.ReactNode
+  renderOption?: (optValue: string, label: string) => ReactNode
+  renderValue?: (optValue: string, label: string) => ReactNode
 }
 
 export function ComboSelect({

@@ -25,7 +25,7 @@ preferences_schema = [
         "options": ["default", "none", "small", "medium", "large"],
         "default": "default",
         "label": "Border radius",
-        "description": "Corner radius for UI elements"
+        "description": "Use Preset to follow style preset corners, or choose an explicit override"
     },
     {
         "key": "language",
