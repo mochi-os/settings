@@ -2,7 +2,7 @@
 // Copyright Alistair Cunningham 2025-2026
 
 {
-	"version": "3.8",
+	"version": "3.9",
 	"label": "app_name",
 	"paths": ["settings"],
 	"services": ["settings"],
@@ -16,7 +16,8 @@
 		"system/settings.star",
 		"system/users.star",
 		"domains.star",
-		"accounts.star"
+		"accounts.star",
+		"notifications.star"
 	],
 
 	"permissions": ["interests/read", "interests/write"],
@@ -108,6 +109,17 @@
 		"-/accounts/verify": {"function": "action_accounts_verify"},
 		"-/accounts/test": {"function": "action_accounts_test"},
 		"-/accounts/vapid": {"function": "action_accounts_vapid"},
-		"-/accounts/default": {"function": "action_accounts_default"}
+		"-/accounts/default": {"function": "action_accounts_default"},
+
+		"-/notifications/categories": {"function": "action_notifications_categories"},
+		"-/notifications/categories/create": {"function": "action_notifications_categories_create"},
+		"-/notifications/categories/update": {"function": "action_notifications_categories_update"},
+		"-/notifications/categories/delete": {"function": "action_notifications_categories_delete"},
+		"-/notifications/categories/test": {"function": "action_notifications_categories_test"},
+		"-/notifications/subscriptions": {"function": "action_notifications_subscriptions"},
+		"-/notifications/subscriptions/set_category": {"function": "action_notifications_subscriptions_set_category"},
+		"-/notifications/subscriptions/reset": {"function": "action_notifications_subscriptions_reset"},
+		"-/notifications/subscriptions/delete": {"function": "action_notifications_subscriptions_delete"},
+		"-/notifications/destinations": {"function": "action_notifications_destinations"}
 	}
 }

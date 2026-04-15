@@ -63,6 +63,18 @@ const endpoints = {
     usersSessions: '-/system/users/sessions',
     usersSessionsRevoke: '-/system/users/sessions/revoke',
   },
+  notifications: {
+    categories: '-/notifications/categories',
+    categoriesCreate: '-/notifications/categories/create',
+    categoriesUpdate: '-/notifications/categories/update',
+    categoriesDelete: '-/notifications/categories/delete',
+    categoriesTest: '-/notifications/categories/test',
+    subscriptions: '-/notifications/subscriptions',
+    subscriptionsSetCategory: '-/notifications/subscriptions/set_category',
+    subscriptionsReset: '-/notifications/subscriptions/reset',
+    subscriptionsDelete: '-/notifications/subscriptions/delete',
+    destinations: '-/notifications/destinations',
+  },
   domains: {
     data: '-/domains/data',
     create: '-/domains/create',
