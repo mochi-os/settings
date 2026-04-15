@@ -43,6 +43,7 @@ import {
   requestHelpers,
   toast,
   usePageTitle,
+  usePush,
 } from '@mochi/web'
 import endpoints from '@/api/endpoints'
 
@@ -115,10 +116,12 @@ export function UserNotifications() {
     void navigate({ search: (prev: Record<string, unknown>) => ({ ...prev, tab: next }), replace: true } as never)
   }
   const [creating, setCreating] = useState(false)
+  const [reloadKey, setReloadKey] = useState(0)
+  const bumpReload = () => setReloadKey((k) => k + 1)
 
   return (
     <>
-      <PageHeader title="Notifications" />
+      <PageHeader title="Notifications" primaryAction={<BrowserPushButton onChanged={bumpReload} />} />
       <Main>
         <div className="mb-4 flex items-center justify-between border-b">
           <div className="flex gap-1">
@@ -144,10 +147,42 @@ export function UserNotifications() {
           )}
         </div>
         {activeTab === 'categories'
-          ? <CategoriesTab creating={creating} setCreating={setCreating} />
+          ? <CategoriesTab creating={creating} setCreating={setCreating} reloadKey={reloadKey} />
           : <AppsTab />}
       </Main>
     </>
+  )
+}
+
+// ──────────────────────── Browser push toggle ────────────────────────────
+
+function BrowserPushButton({ onChanged }: { onChanged: () => void }) {
+  const { supported, supportChecked, permission, subscribed, isSubscribing, isUnsubscribing, subscribe, unsubscribe } = usePush()
+
+  if (!supportChecked || !supported) return null
+
+  const busy = isSubscribing || isUnsubscribing
+  const denied = permission === 'denied'
+
+  const onCheckedChange = async (next: boolean) => {
+    try {
+      if (next) await subscribe()
+      else await unsubscribe()
+      onChanged()
+    } catch (e) {
+      toast.error(getErrorMessage(e, 'Failed to update browser notifications'))
+    }
+  }
+
+  return (
+    <Label className="flex items-center gap-2 text-sm font-normal">
+      Browser notifications
+      <Switch
+        checked={subscribed}
+        disabled={busy || denied}
+        onCheckedChange={onCheckedChange}
+      />
+    </Label>
   )
 }
 
@@ -156,9 +191,11 @@ export function UserNotifications() {
 function CategoriesTab({
   creating,
   setCreating,
+  reloadKey,
 }: {
   creating: boolean
   setCreating: (v: boolean) => void
+  reloadKey: number
 }) {
   const [categories, setCategories] = useState<Category[] | null>(null)
   const [available, setAvailable] = useState<DestinationsAvailable | null>(null)
@@ -181,7 +218,7 @@ function CategoriesTab({
 
   useEffect(() => {
     void load()
-  }, [])
+  }, [reloadKey])
 
   if (error) return <GeneralError error={error} />
   if (!categories || !available) {
@@ -402,11 +439,11 @@ function CategoryDialog({
       <DialogContent className="max-w-lg" onOpenAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader>
           <DialogTitle>{category ? 'Edit category' : 'New category'}</DialogTitle>
-          <DialogDescription>
-            {isSuppress
-              ? 'The "No notifications" category silences any subscription assigned to it.'
-              : 'Choose the destinations notifications routed to this category should deliver to.'}
-          </DialogDescription>
+          {isSuppress && (
+            <DialogDescription>
+              The "No notifications" category silences any subscription assigned to it.
+            </DialogDescription>
+          )}
         </DialogHeader>
         <div className="space-y-6 py-2">
           <div className="space-y-2">
@@ -462,8 +499,9 @@ function DestinationsGrid({
   checked: Set<string>
   onToggle: (key: string) => void
 }) {
-  const rows: { key: string; label: string }[] = []
-  rows.push({ key: destKey('web', ''), label: 'Mochi web' })
+  const rows: { key: string; label: string }[] = [
+    { key: destKey('web', ''), label: 'Mochi web' },
+  ]
   for (const acc of available.accounts) {
     rows.push({
       key: destKey('account', String(acc.id)),
@@ -473,6 +511,7 @@ function DestinationsGrid({
   for (const feed of available.feeds) {
     rows.push({ key: destKey('rss', feed.id), label: `RSS: ${feed.name}` })
   }
+  rows.sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: 'base' }))
   return (
     <div className="flex flex-col">
       {rows.map((r) => (
