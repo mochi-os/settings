@@ -10,6 +10,7 @@ import {
   Activity,
   Link2,
   Star,
+  Bell,
 } from 'lucide-react'
 import { type SidebarData } from '@mochi/web'
 
@@ -38,6 +39,11 @@ const userNavGroup = {
       icon: Link2,
     },
     {
+      title: 'Notifications',
+      url: APP_ROUTES.SETTINGS.USER.NOTIFICATIONS,
+      icon: Bell,
+    },
+    {
       title: 'Tokens',
       url: APP_ROUTES.SETTINGS.USER.TOKENS,
       icon: Key,
@@ -62,7 +68,7 @@ const systemNavGroup = {
   title: 'System',
   items: [
     {
-      title: 'Settings',
+      title: 'System settings',
       url: APP_ROUTES.SETTINGS.SYSTEM.SETTINGS,
       icon: Settings,
     },
