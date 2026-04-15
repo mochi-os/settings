@@ -21,11 +21,23 @@ interface ComboSelectProps {
   disabled?: boolean
   placeholder?: string
   renderOption?: (optValue: string, label: string) => React.ReactNode
+  renderValue?: (optValue: string, label: string) => React.ReactNode
 }
 
-export function ComboSelect({ value, options, onChange, disabled, placeholder = 'Select...', renderOption }: ComboSelectProps) {
+export function ComboSelect({
+  value,
+  options,
+  onChange,
+  disabled,
+  placeholder = 'Select...',
+  renderOption,
+  renderValue,
+}: ComboSelectProps) {
   const [open, setOpen] = useState(false)
   const displayValue = options[value] ?? value
+  const renderedValue = renderValue
+    ? renderValue(value, displayValue)
+    : <span className='truncate text-left'>{displayValue || placeholder}</span>
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -37,7 +49,7 @@ export function ComboSelect({ value, options, onChange, disabled, placeholder = 
           className='w-full justify-between'
           disabled={disabled}
         >
-          <span className='truncate'>{displayValue || placeholder}</span>
+          <span className='min-w-0 flex-1 text-left'>{renderedValue}</span>
           <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
         </Button>
       </PopoverTrigger>

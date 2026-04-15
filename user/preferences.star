@@ -12,6 +12,14 @@ preferences_schema = [
         "description": "Light or dark mode"
     },
     {
+        "key": "style_preset",
+        "type": "select",
+        "options": ["default", "vega", "nova", "maia", "lyra", "mira", "luma"],
+        "default": "maia",
+        "label": "Style preset",
+        "description": "Preset bundle for spacing, typography, shadows, and density"
+    },
+    {
         "key": "border_radius",
         "type": "select",
         "options": ["default", "none", "small", "medium", "large"],

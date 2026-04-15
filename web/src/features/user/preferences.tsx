@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { Loader2, RotateCcw, Sliders, Check, ChevronRight } from 'lucide-react'
 import {
   AlertDialog,
@@ -25,6 +25,7 @@ import {
   TimezoneSelect,
   getErrorMessage,
   appearanceLabels,
+  stylePresetLabels,
   dateFormatLabels,
   timeFormatLabels,
   timestampDisplayLabels,
@@ -47,6 +48,7 @@ import {
   detectUnits,
 } from '@mochi/web'
 type RadiusOverrides = Record<string, string>
+type StyleOverrides = Record<string, string>
 
 // All five radius vars must be set together — the derived vars (--radius-sm/md/lg/xl)
 // are hardcoded in :root in theme.css (unlayered), which wins over @theme inline (layered),
@@ -57,7 +59,122 @@ const radiusPresetOverrides: Record<string, RadiusOverrides> = {
   medium: { '--radius': '0.75rem', '--radius-sm': '0.5rem',  '--radius-md': '0.625rem','--radius-lg': '0.75rem', '--radius-xl': '1rem'    },
   large:  { '--radius': '1.75rem', '--radius-sm': '1.5rem',  '--radius-md': '1.625rem','--radius-lg': '1.75rem', '--radius-xl': '2rem'    },
 }
-const radiusVarKeys = ['--radius', '--radius-sm', '--radius-md', '--radius-lg', '--radius-xl'] as const
+
+const densityPresetOverrides: Record<string, StyleOverrides> = {
+  compact: {
+    '--control-height-xs': '1.5rem',
+    '--control-height-sm': '1.75rem',
+    '--control-height-md': '2rem',
+    '--control-height-lg': '2.25rem',
+    '--input-h': '2rem',
+    '--card-px': '1.25rem',
+    '--card-py': '0.875rem',
+  },
+  comfortable: {
+    '--control-height-xs': '1.75rem',
+    '--control-height-sm': '2rem',
+    '--control-height-md': '2.25rem',
+    '--control-height-lg': '2.5rem',
+    '--input-h': '2.25rem',
+    '--card-px': '1.5rem',
+    '--card-py': '1rem',
+  },
+  spacious: {
+    '--control-height-xs': '1.875rem',
+    '--control-height-sm': '2.125rem',
+    '--control-height-md': '2.5rem',
+    '--control-height-lg': '2.75rem',
+    '--input-h': '2.5rem',
+    '--card-px': '1.75rem',
+    '--card-py': '1.25rem',
+  },
+}
+
+function buildStylePresetOverrides(
+  spacingBase: string,
+  fontSans: string,
+  fontMono: string,
+  shadowColor: string,
+  density: 'compact' | 'comfortable' | 'spacious',
+  baseRadius: string,
+  borderWidth: string
+): StyleOverrides {
+  return {
+    '--spacing-base': spacingBase,
+    '--spacing': spacingBase,
+    '--font-sans': fontSans,
+    '--font-mono': fontMono,
+    '--border-width': borderWidth,
+    '--shadow-color': shadowColor,
+    '--shadow-2xs': `0 1px 2px ${shadowColor}`,
+    '--shadow-xs': `0 1px 3px ${shadowColor}`,
+    '--shadow-sm': `0 1px 2px ${shadowColor}, 0 2px 6px ${shadowColor}`,
+    '--shadow': `0 2px 8px ${shadowColor}, 0 10px 28px ${shadowColor}`,
+    '--shadow-md': `0 4px 12px ${shadowColor}, 0 14px 36px ${shadowColor}`,
+    '--shadow-lg': `0 8px 20px ${shadowColor}, 0 20px 48px ${shadowColor}`,
+    '--shadow-xl': `0 12px 28px ${shadowColor}, 0 28px 56px ${shadowColor}`,
+    '--shadow-2xl': `0 16px 34px ${shadowColor}, 0 36px 72px ${shadowColor}`,
+    ...radiusOverridesFromThemeBase(baseRadius),
+    ...densityPresetOverrides[density],
+  }
+}
+
+const stylePresetOverrides: Record<string, StyleOverrides> = {
+  vega: buildStylePresetOverrides(
+    '0.25rem',
+    "'Inter', 'Geist', sans-serif",
+    "'JetBrains Mono', 'Geist Mono', monospace",
+    'rgba(0, 0, 0, 0.15)',
+    'comfortable',
+    '0.75rem',
+    '1px'
+  ),
+  nova: buildStylePresetOverrides(
+    '0.235rem',
+    "'Inter Tight', 'Geist', sans-serif",
+    "'IBM Plex Mono', 'Geist Mono', monospace",
+    'rgba(0, 0, 0, 0.2)',
+    'compact',
+    '0.75rem',
+    '1px'
+  ),
+  maia: buildStylePresetOverrides(
+    '0.265rem',
+    "'Nunito Sans', 'Inter', sans-serif",
+    "'Fira Code', 'Geist Mono', monospace",
+    'rgba(0, 0, 0, 0.13)',
+    'spacious',
+    '1.25rem',
+    '1px'
+  ),
+  lyra: buildStylePresetOverrides(
+    '0.26rem',
+    "'Poppins', 'Inter', sans-serif",
+    "'JetBrains Mono', 'Geist Mono', monospace",
+    'rgba(0, 0, 0, 0.16)',
+    'spacious',
+    '0.375rem',
+    '1.5px'
+  ),
+  mira: buildStylePresetOverrides(
+    '0.24rem',
+    "'DM Sans', 'Inter', sans-serif",
+    "'Space Mono', 'Geist Mono', monospace",
+    'rgba(0, 0, 0, 0.14)',
+    'compact',
+    '0.25rem',
+    '1.5px'
+  ),
+  luma: buildStylePresetOverrides(
+    '0.255rem',
+    "'Public Sans', 'Inter', sans-serif",
+    "'IBM Plex Mono', 'Geist Mono', monospace",
+    'rgba(0, 0, 0, 0.12)',
+    'comfortable',
+    '1rem',
+    '1px'
+  ),
+}
 
 function radiusOverridesFromThemeBase(baseRadius: string): RadiusOverrides {
   return {
@@ -74,6 +191,54 @@ function radiusOverridesFromPreference(value: string): RadiusOverrides | null {
   return radiusPresetOverrides[value] ?? null
 }
 
+function stylePresetOverridesFromPreference(value: string): StyleOverrides | null {
+  const preset = !value || value === 'default' ? 'maia' : value
+  return stylePresetOverrides[preset] ?? null
+}
+
+type ColorThemeState = {
+  hue: string
+  chroma: string
+  hueBg: string
+  overrides: Record<string, string>
+}
+
+function colorThemeFromSelections(
+  themes: ThemeInfo[] | undefined,
+  selectedThemeId: string | undefined,
+  stylePreset: string | undefined,
+  borderRadius: string | undefined
+): ColorThemeState | null {
+  const styleOverrides = stylePresetOverridesFromPreference(stylePreset || 'default')
+  const radiusOverrides = radiusOverridesFromPreference(borderRadius || 'default')
+  const theme = themes?.find((t) => t.id === selectedThemeId)
+
+  if (!theme) {
+    const overrides: Record<string, string> = {}
+    if (styleOverrides) Object.assign(overrides, styleOverrides)
+    if (radiusOverrides) Object.assign(overrides, radiusOverrides)
+    if (Object.keys(overrides).length === 0) return null
+    return { hue: '', chroma: '', hueBg: '', overrides }
+  }
+
+  const overrides: Record<string, string> = { ...theme.overrides }
+  if (theme.background_url) {
+    overrides['--background-image'] = `url(${theme.background_url})`
+  }
+  if (theme.border_radius) {
+    Object.assign(overrides, radiusOverridesFromThemeBase(theme.border_radius))
+  }
+  if (styleOverrides) Object.assign(overrides, styleOverrides)
+  if (radiusOverrides) Object.assign(overrides, radiusOverrides)
+
+  return {
+    hue: String(theme.hue),
+    chroma: String(theme.chroma),
+    hueBg: String(theme.hue_bg),
+    overrides,
+  }
+}
+
 const radiusRx: Record<string, number> = { none: 0, small: 2, medium: 4, default: 6, large: 9 }
 
 function RadiusIcon({ value }: { value: string }) {
@@ -82,6 +247,104 @@ function RadiusIcon({ value }: { value: string }) {
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 text-foreground" aria-hidden>
       <rect x="1.5" y="1.5" width="13" height="13" rx={rx} stroke="currentColor" strokeWidth="1.5" />
     </svg>
+  )
+}
+
+function PresetStrokeIcon({
+  children,
+  className,
+}: {
+  children: ReactNode
+  className?: string
+}) {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      className={cn('size-4 shrink-0 text-muted-foreground', className)}
+      aria-hidden
+    >
+      {children}
+    </svg>
+  )
+}
+
+function StylePresetIcon({ value }: { value: string }) {
+  const preset = value === 'default' ? 'maia' : value
+  switch (preset) {
+    case 'nova':
+      return (
+        <PresetStrokeIcon>
+          <rect x='2.25' y='4.25' width='11.5' height='7.5' rx='3.75' stroke='currentColor' strokeWidth='1.5' />
+        </PresetStrokeIcon>
+      )
+    case 'maia':
+      return (
+        <PresetStrokeIcon>
+          <circle cx='8' cy='8' r='5.75' stroke='currentColor' strokeWidth='1.5' />
+        </PresetStrokeIcon>
+      )
+    case 'lyra':
+      return (
+        <PresetStrokeIcon>
+          <path
+            d='M8 1.75 13.1 4.7v6.6L8 14.25 2.9 11.3V4.7L8 1.75Z'
+            stroke='currentColor'
+            strokeWidth='1.5'
+            strokeLinejoin='round'
+          />
+        </PresetStrokeIcon>
+      )
+    case 'mira':
+      return (
+        <PresetStrokeIcon>
+          <rect
+            x='3.2'
+            y='3.2'
+            width='9.6'
+            height='9.6'
+            rx='2.1'
+            transform='rotate(45 8 8)'
+            stroke='currentColor'
+            strokeWidth='1.5'
+          />
+        </PresetStrokeIcon>
+      )
+    case 'luma':
+      return (
+        <PresetStrokeIcon>
+          <rect x='2.25' y='4.25' width='11.5' height='7.5' rx='3.75' stroke='currentColor' strokeWidth='1.5' />
+        </PresetStrokeIcon>
+      )
+    case 'vega':
+      return (
+        <PresetStrokeIcon>
+          <rect x='2.25' y='2.25' width='11.5' height='11.5' rx='3' stroke='currentColor' strokeWidth='1.5' />
+        </PresetStrokeIcon>
+      )
+    default:
+      return (
+        <PresetStrokeIcon>
+          <circle cx='8' cy='8' r='5.75' stroke='currentColor' strokeWidth='1.5' />
+        </PresetStrokeIcon>
+      )
+  }
+}
+
+function StylePresetLabel({
+  value,
+  label,
+}: {
+  value: string
+  label: string
+}) {
+  return (
+    <span className='flex min-w-0 items-center gap-2'>
+      <StylePresetIcon value={value} />
+      <span className='truncate'>{label}</span>
+    </span>
   )
 }
 
@@ -97,7 +360,7 @@ export function UserPreferences() {
   const { data, isLoading, error, refetch } = usePreferencesData()
   const setPreference = useSetPreference()
   const resetPreferences = useResetPreferences()
-  const { setTheme, setColorTheme, colorTheme } = useTheme()
+  const { setTheme, setColorTheme } = useTheme()
   const { raw: currentLocale } = useLocale()
   const [themeSheetOpen, setThemeSheetOpen] = useState(false)
 
@@ -113,33 +376,14 @@ export function UserPreferences() {
       setTheme('system')
     }
 
-    const rOvr = radiusOverridesFromPreference(data.preferences.border_radius)
-
-    const theme = data.themes?.find((t) => t.id === data.preferences.theme)
-    if (!theme) {
-      setColorTheme(
-        rOvr
-          ? { hue: '250', chroma: '0.16', hueBg: '250', overrides: rOvr }
-          : null
+    setColorTheme(
+      colorThemeFromSelections(
+        data.themes,
+        data.preferences.theme,
+        data.preferences.style_preset,
+        data.preferences.border_radius
       )
-      return
-    }
-
-    const overrides: Record<string, string> = { ...theme.overrides }
-    if (theme.background_url) {
-      overrides['--background-image'] = `url(${theme.background_url})`
-    }
-    if (theme.border_radius) Object.assign(overrides, radiusOverridesFromThemeBase(theme.border_radius))
-    // User radius pref overrides theme's border_radius — set all derived vars
-    if (rOvr) {
-      Object.assign(overrides, rOvr)
-    }
-    setColorTheme({
-      hue: String(theme.hue),
-      chroma: String(theme.chroma),
-      hueBg: String(theme.hue_bg),
-      overrides,
-    })
+    )
   }, [data, setColorTheme, setTheme])
 
   const handleChange = (key: string, value: string) => {
@@ -154,16 +398,17 @@ export function UserPreferences() {
             const updated = { ...currentLocale, [key]: value } as LocalePreferences
             shellSetLocale(updated)
           }
-          if (key === 'border_radius') {
-            const rOvr = radiusOverridesFromPreference(value)
-            const updatedOverrides = { ...colorTheme?.overrides }
-            for (const k of radiusVarKeys) delete updatedOverrides[k]
-            if (rOvr) Object.assign(updatedOverrides, rOvr)
-            if (colorTheme) {
-              setColorTheme({ ...colorTheme, overrides: updatedOverrides })
-            } else if (rOvr) {
-              setColorTheme({ hue: '250', chroma: '0.16', hueBg: '250', overrides: rOvr })
-            }
+          if ((key === 'border_radius' || key === 'style_preset') && data) {
+            const nextStylePreset = key === 'style_preset' ? value : data.preferences.style_preset
+            const nextBorderRadius = key === 'border_radius' ? value : data.preferences.border_radius
+            setColorTheme(
+              colorThemeFromSelections(
+                data.themes,
+                data.preferences.theme,
+                nextStylePreset,
+                nextBorderRadius
+              )
+            )
           }
           toast.success('Preference updated')
         },
@@ -176,29 +421,18 @@ export function UserPreferences() {
 
   const handleThemeChange = (theme: ThemeInfo | null) => {
     const themeId = theme ? theme.id : ''
-    const userRadiusOverride = radiusOverridesFromPreference(data?.preferences.border_radius || 'default')
     setPreference.mutate(
       { theme: themeId },
       {
         onSuccess: () => {
-          if (theme) {
-            const overrides: Record<string, string> = { ...theme.overrides }
-            if (theme.background_url) overrides['--background-image'] = `url(${theme.background_url})`
-            if (theme.border_radius) Object.assign(overrides, radiusOverridesFromThemeBase(theme.border_radius))
-            if (userRadiusOverride) Object.assign(overrides, userRadiusOverride)
-            setColorTheme({
-              hue: String(theme.hue),
-              chroma: String(theme.chroma),
-              hueBg: String(theme.hue_bg),
-              overrides,
-            })
-          } else {
-            if (userRadiusOverride) {
-              setColorTheme({ hue: '250', chroma: '0.16', hueBg: '250', overrides: userRadiusOverride })
-            } else {
-              setColorTheme(null)
-            }
-          }
+          setColorTheme(
+            colorThemeFromSelections(
+              data?.themes,
+              themeId,
+              data?.preferences.style_preset,
+              data?.preferences.border_radius
+            )
+          )
           toast.success('Theme updated')
         },
         onError: (error) => {
@@ -322,6 +556,22 @@ export function UserPreferences() {
                     />
                   </div>
                 </FieldRow>
+                <FieldRow label='Style preset'>
+                  <div className="w-full">
+                    <ComboSelect
+                      value={data.preferences.style_preset || 'maia'}
+                      options={stylePresetLabels}
+                      onChange={(value) => handleChange('style_preset', value)}
+                      disabled={setPreference.isPending}
+                      renderOption={(optValue, label) => (
+                        <StylePresetLabel value={optValue} label={label} />
+                      )}
+                      renderValue={(optValue, label) => (
+                        <StylePresetLabel value={optValue} label={label} />
+                      )}
+                    />
+                  </div>
+                </FieldRow>
 
                 <Sheet open={themeSheetOpen} onOpenChange={setThemeSheetOpen}>
                   <SheetContent className="overflow-y-auto" onInteractOutside={() => {}}>
@@ -341,14 +591,14 @@ export function UserPreferences() {
                             }}
                             disabled={setPreference.isPending}
                             className={cn(
-                              'flex items-center gap-3 rounded-[10px] border p-3 text-left transition-colors',
+                              'flex items-center gap-3 rounded-md border-[length:var(--border-width)] p-3 text-left transition-colors',
                               isSelected
                                 ? 'border-primary bg-primary/5'
                                 : 'border-border hover:border-primary/50'
                             )}
                           >
                             <span
-                              className="size-8 rounded-[8px] shrink-0"
+                              className="size-8 rounded-sm shrink-0"
                               style={{ backgroundColor: theme.preview }}
                             />
                             <div className="min-w-0 flex-1">
