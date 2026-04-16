@@ -590,7 +590,7 @@ export function UserPreferences() {
                   <div className="w-full">
                     <ComboSelect
                       value={data.preferences.border_radius || 'default'}
-                      options={{ default: 'Preset', none: 'None', small: 'Small', medium: 'Medium', large: 'Large' }}
+                      options={{ default: 'Follow theme', none: 'None', small: 'Small', medium: 'Medium', large: 'Large' }}
                       onChange={(value) => handleChange('border_radius', value)}
                       disabled={setPreference.isPending}
                       renderOption={(optValue, label) => (

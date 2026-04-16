@@ -25,7 +25,7 @@ preferences_schema = [
         "options": ["default", "none", "small", "medium", "large"],
         "default": "default",
         "label": "Border radius",
-        "description": "Use Preset to follow style preset corners, or choose an explicit override"
+        "description": "Follow theme uses the active theme or style preset radius; explicit options override it"
     },
     {
         "key": "language",
