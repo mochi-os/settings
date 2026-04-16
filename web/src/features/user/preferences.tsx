@@ -48,14 +48,11 @@ import {
 type RadiusOverrides = Record<string, string>
 type StyleOverrides = Record<string, string>
 
-// All five radius vars must be set together — the derived vars (--radius-sm/md/lg/xl)
-// are hardcoded in :root in theme.css (unlayered), which wins over @theme inline (layered),
-// so setting only --radius is insufficient.
 const radiusPresetOverrides: Record<string, RadiusOverrides> = {
-  none:   { '--radius': '0rem',    '--radius-sm': '0rem',    '--radius-md': '0rem',    '--radius-lg': '0rem',    '--radius-xl': '0rem'    },
-  small:  { '--radius': '0.375rem','--radius-sm': '0.125rem','--radius-md': '0.25rem', '--radius-lg': '0.375rem','--radius-xl': '0.625rem'},
-  medium: { '--radius': '0.75rem', '--radius-sm': '0.5rem',  '--radius-md': '0.625rem','--radius-lg': '0.75rem', '--radius-xl': '1rem'    },
-  large:  { '--radius': '1.75rem', '--radius-sm': '1.5rem',  '--radius-md': '1.625rem','--radius-lg': '1.75rem', '--radius-xl': '2rem'    },
+  none:   { '--radius': '0rem' },
+  small:  { '--radius': '0.375rem' },
+  medium: { '--radius': '0.75rem' },
+  large:  { '--radius': '1.75rem' },
 }
 
 const densityPresetOverrides: Record<string, StyleOverrides> = {
@@ -228,10 +225,6 @@ function normalizeStylePresetForSelect(
 function radiusOverridesFromThemeBase(baseRadius: string): RadiusOverrides {
   return {
     '--radius': baseRadius,
-    '--radius-sm': `calc(${baseRadius} - 4px)`,
-    '--radius-md': `calc(${baseRadius} - 2px)`,
-    '--radius-lg': baseRadius,
-    '--radius-xl': `calc(${baseRadius} + 4px)`,
   }
 }
 
