@@ -15,7 +15,7 @@ preferences_schema = [
         "key": "style_preset",
         "type": "select",
         "options": ["default", "vega", "nova", "maia", "lyra", "mira", "luma"],
-        "default": "maia",
+        "default": "luma",
         "label": "Style preset",
         "description": "Preset bundle for spacing, typography, shadows, and density"
     },

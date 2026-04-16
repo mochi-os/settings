@@ -151,7 +151,7 @@ const stylePresetOverrides: Record<string, StyleOverrides> = {
     "'IBM Plex Mono', 'Geist Mono', monospace",
     'rgba(0, 0, 0, 0.1)',
     'comfortable',
-    '2rem',
+    '1.35rem',
     '1px'
   ),
   nova: buildStylePresetOverrides(
@@ -183,11 +183,21 @@ const stylePresetOverrides: Record<string, StyleOverrides> = {
   ),
 }
 
+const stylePresetSelectLabels: Record<string, string> = {
+  vega: stylePresetLabels.vega,
+  nova: stylePresetLabels.nova,
+  maia: stylePresetLabels.maia,
+  lyra: stylePresetLabels.lyra,
+  mira: stylePresetLabels.mira,
+  luma: stylePresetLabels.default,
+}
+
 function normalizeStylePreset(
   value: string
 ): 'default' | 'vega' | 'nova' | 'maia' | 'lyra' | 'mira' | 'luma' {
   switch (value) {
     case 'default':
+      return 'luma'
     case 'vega':
     case 'nova':
     case 'maia':
@@ -202,10 +212,17 @@ function normalizeStylePreset(
     case 'round':
       return 'luma'
     case '':
-      return 'maia'
+      return 'luma'
     default:
-      return 'maia'
+      return 'luma'
   }
+}
+
+function normalizeStylePresetForSelect(
+  value: string
+): 'vega' | 'nova' | 'maia' | 'lyra' | 'mira' | 'luma' {
+  const preset = normalizeStylePreset(value)
+  return preset === 'default' ? 'luma' : preset
 }
 
 function radiusOverridesFromThemeBase(baseRadius: string): RadiusOverrides {
@@ -224,7 +241,7 @@ function radiusOverridesFromPreference(value: string): RadiusOverrides | null {
 }
 
 function stylePresetOverridesFromPreference(value: string): StyleOverrides | null {
-  const preset = normalizeStylePreset(value || 'maia')
+  const preset = normalizeStylePreset(value || 'luma')
   return stylePresetOverrides[preset] ?? null
 }
 
@@ -241,7 +258,7 @@ function colorThemeFromSelections(
   stylePreset: string | undefined,
   borderRadius: string | undefined
 ): ColorThemeState | null {
-  const styleOverrides = stylePresetOverridesFromPreference(stylePreset || 'maia')
+  const styleOverrides = stylePresetOverridesFromPreference(stylePreset || 'luma')
   const radiusOverrides = radiusOverridesFromPreference(borderRadius || 'default')
   const theme = themes?.find((t) => t.id === selectedThemeId)
 
@@ -588,8 +605,8 @@ export function UserPreferences() {
                 <FieldRow label='Style preset'>
                   <div className="w-full">
                     <ComboSelect
-                      value={normalizeStylePreset(data.preferences.style_preset || 'maia')}
-                      options={stylePresetLabels}
+                      value={normalizeStylePresetForSelect(data.preferences.style_preset || 'luma')}
+                      options={stylePresetSelectLabels}
                       onChange={(value) => handleChange('style_preset', value)}
                       disabled={setPreference.isPending}
                       renderOption={(optValue, label) => (
