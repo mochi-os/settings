@@ -285,7 +285,7 @@ function SettingField({
                     <AlertDialogTitle>Reset to default?</AlertDialogTitle>
                     <AlertDialogDescription>
                       This will reset "{formatSettingName(setting.name)}" to its
-                      default value ({setting.default || '(empty)'}).
+                      default {setting.default ? `value (${setting.default})` : '(empty)'}.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
