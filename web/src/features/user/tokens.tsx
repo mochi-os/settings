@@ -28,6 +28,7 @@ import {
   usePageTitle,
   getErrorMessage,
   toast,
+  shellClipboardWrite,
 } from '@mochi/web'
 
 
@@ -126,10 +127,12 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
 
   const handleCopy = async () => {
     if (newToken) {
-      await navigator.clipboard.writeText(newToken)
-      setCopied(true)
-      toast.success('Token copied to clipboard')
-      setTimeout(() => setCopied(false), 2000)
+      const ok = await shellClipboardWrite(newToken)
+      if (ok) {
+        setCopied(true)
+        toast.success('Token copied to clipboard')
+        setTimeout(() => setCopied(false), 2000)
+      }
     }
   }
 
