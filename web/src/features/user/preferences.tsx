@@ -1,5 +1,14 @@
 import { useEffect, useState, type ReactNode } from 'react'
-import { Loader2, RotateCcw, Sliders, Check, ChevronRight } from 'lucide-react'
+import {
+  Loader2,
+  RotateCcw,
+  Sliders,
+  Check,
+  ChevronRight,
+  Monitor,
+  Moon,
+  Sun,
+} from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -275,14 +284,117 @@ function colorThemeFromSelections(
   }
 }
 
-const radiusRx: Record<string, number> = { none: 0, small: 2, medium: 4, default: 6, large: 9 }
+const radiusRx: Record<string, number> = { none: 0, small: 2.25, medium: 4.25, large: 6.5 }
 
-function RadiusIcon({ value }: { value: string }) {
-  const rx = radiusRx[value] ?? 6
+function parseRadiusToRem(value: string | undefined): number | null {
+  if (!value) return null
+
+  const trimmed = value.trim()
+  if (!trimmed) return null
+
+  if (trimmed.endsWith('rem')) {
+    const parsed = Number.parseFloat(trimmed)
+    return Number.isFinite(parsed) ? parsed : null
+  }
+
+  if (trimmed.endsWith('px')) {
+    const parsed = Number.parseFloat(trimmed)
+    return Number.isFinite(parsed) ? parsed / 16 : null
+  }
+
+  const parsed = Number.parseFloat(trimmed)
+  return Number.isFinite(parsed) ? parsed : null
+}
+
+function radiusRemToIconRx(radiusRem: number): number {
+  const normalized = Math.max(0, Math.min(radiusRem / 1.6, 1))
+  return Number((normalized * 6.5).toFixed(2))
+}
+
+function resolveFollowThemeRadius(
+  themes: ThemeInfo[] | undefined,
+  selectedThemeId: string | undefined,
+  stylePreset: string | undefined
+): string | undefined {
+  const themeRadius = themes?.find((theme) => theme.id === selectedThemeId)?.border_radius
+  if (themeRadius) return themeRadius
+
+  return stylePresetOverridesFromPreference(stylePreset || 'luma')?.['--radius']
+}
+
+function RadiusIcon({
+  value,
+  themes,
+  selectedThemeId,
+  stylePreset,
+}: {
+  value: string
+  themes?: ThemeInfo[]
+  selectedThemeId?: string
+  stylePreset?: string
+}) {
+  const rx = value === 'default'
+    ? radiusRemToIconRx(
+        parseRadiusToRem(resolveFollowThemeRadius(themes, selectedThemeId, stylePreset)) ?? 0.75
+      )
+    : (radiusRx[value] ?? 4.25)
+
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 text-foreground" aria-hidden>
       <rect x="1.5" y="1.5" width="13" height="13" rx={rx} stroke="currentColor" strokeWidth="1.5" />
     </svg>
+  )
+}
+
+function AppearanceIcon({ value }: { value: string }) {
+  switch (value) {
+    case 'light':
+      return <Sun className='size-4 shrink-0 text-muted-foreground' strokeWidth={1.8} aria-hidden />
+    case 'dark':
+      return <Moon className='size-4 shrink-0 text-muted-foreground' strokeWidth={1.8} aria-hidden />
+    default:
+      return <Monitor className='size-4 shrink-0 text-muted-foreground' strokeWidth={1.8} aria-hidden />
+  }
+}
+
+function AppearanceLabel({
+  value,
+  label,
+}: {
+  value: string
+  label: string
+}) {
+  return (
+    <span className='flex min-w-0 items-center gap-2'>
+      <AppearanceIcon value={value} />
+      <span className='truncate'>{label}</span>
+    </span>
+  )
+}
+
+function RadiusLabel({
+  value,
+  label,
+  themes,
+  selectedThemeId,
+  stylePreset,
+}: {
+  value: string
+  label: string
+  themes?: ThemeInfo[]
+  selectedThemeId?: string
+  stylePreset?: string
+}) {
+  return (
+    <span className='flex min-w-0 items-center gap-2'>
+      <RadiusIcon
+        value={value}
+        themes={themes}
+        selectedThemeId={selectedThemeId}
+        stylePreset={stylePreset}
+      />
+      <span className='truncate'>{label}</span>
+    </span>
   )
 }
 
@@ -544,6 +656,12 @@ export function UserPreferences() {
                       options={appearanceLabels}
                       onChange={(value) => handleChange('appearance', value)}
                       disabled={setPreference.isPending}
+                      renderOption={(optValue, label) => (
+                        <AppearanceLabel value={optValue} label={label} />
+                      )}
+                      renderValue={(optValue, label) => (
+                        <AppearanceLabel value={optValue} label={label} />
+                      )}
                     />
                   </div>
                 </FieldRow>
@@ -581,10 +699,22 @@ export function UserPreferences() {
                       onChange={(value) => handleChange('border_radius', value)}
                       disabled={setPreference.isPending}
                       renderOption={(optValue, label) => (
-                        <span className="flex items-center gap-2">
-                          <RadiusIcon value={optValue} />
-                          {label}
-                        </span>
+                        <RadiusLabel
+                          value={optValue}
+                          label={label}
+                          themes={data.themes}
+                          selectedThemeId={data.preferences.theme}
+                          stylePreset={data.preferences.style_preset}
+                        />
+                      )}
+                      renderValue={(optValue, label) => (
+                        <RadiusLabel
+                          value={optValue}
+                          label={label}
+                          themes={data.themes}
+                          selectedThemeId={data.preferences.theme}
+                          stylePreset={data.preferences.style_preset}
+                        />
                       )}
                     />
                   </div>
