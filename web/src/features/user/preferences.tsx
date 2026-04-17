@@ -202,12 +202,6 @@ function normalizeStylePreset(
     case 'mira':
     case 'luma':
       return value
-    case 'soft':
-      return 'maia'
-    case 'sharp':
-      return 'lyra'
-    case 'round':
-      return 'luma'
     case '':
       return 'luma'
     default:
