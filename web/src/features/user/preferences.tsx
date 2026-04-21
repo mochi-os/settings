@@ -100,7 +100,6 @@ function buildStylePresetOverrides(
   fontMono: string,
   shadowColor: string,
   density: 'compact' | 'comfortable' | 'spacious',
-  baseRadius: string,
   borderWidth: string
 ): StyleOverrides {
   return {
@@ -118,7 +117,6 @@ function buildStylePresetOverrides(
     '--shadow-lg': `0 8px 20px ${shadowColor}, 0 20px 48px ${shadowColor}`,
     '--shadow-xl': `0 12px 28px ${shadowColor}, 0 28px 56px ${shadowColor}`,
     '--shadow-2xl': `0 16px 34px ${shadowColor}, 0 36px 72px ${shadowColor}`,
-    ...radiusOverridesFromThemeBase(baseRadius),
     ...densityPresetOverrides[density],
   }
 }
@@ -130,7 +128,6 @@ const stylePresetOverrides: Record<string, StyleOverrides> = {
     "'Fira Code', 'Geist Mono', monospace",
     'rgba(0, 0, 0, 0.12)',
     'spacious',
-    '1.35rem',
     '1px'
   ),
   maia: buildStylePresetOverrides(
@@ -139,7 +136,6 @@ const stylePresetOverrides: Record<string, StyleOverrides> = {
     "'Fira Code', 'Geist Mono', monospace",
     'rgba(0, 0, 0, 0.12)',
     'spacious',
-    '1.35rem',
     '1px'
   ),
   vega: buildStylePresetOverrides(
@@ -148,7 +144,6 @@ const stylePresetOverrides: Record<string, StyleOverrides> = {
     "'IBM Plex Mono', 'Geist Mono', monospace",
     'rgba(0, 0, 0, 0.17)',
     'compact',
-    '0.35rem',
     '1px'
   ),
   luma: buildStylePresetOverrides(
@@ -157,7 +152,6 @@ const stylePresetOverrides: Record<string, StyleOverrides> = {
     "'IBM Plex Mono', 'Geist Mono', monospace",
     'rgba(0, 0, 0, 0.1)',
     'comfortable',
-    '1.35rem',
     '1px'
   ),
   nova: buildStylePresetOverrides(
@@ -166,7 +160,6 @@ const stylePresetOverrides: Record<string, StyleOverrides> = {
     "'JetBrains Mono', 'Geist Mono', monospace",
     'rgba(0, 0, 0, 0.18)',
     'comfortable',
-    '0.95rem',
     '1.25px'
   ),
   lyra: buildStylePresetOverrides(
@@ -175,7 +168,6 @@ const stylePresetOverrides: Record<string, StyleOverrides> = {
     "'JetBrains Mono', 'Geist Mono', monospace",
     'rgba(0, 0, 0, 0.22)',
     'compact',
-    '0.2rem',
     '1.5px'
   ),
   mira: buildStylePresetOverrides(
@@ -184,7 +176,6 @@ const stylePresetOverrides: Record<string, StyleOverrides> = {
     "'Space Mono', 'Geist Mono', monospace",
     'rgba(0, 0, 0, 0.14)',
     'spacious',
-    '1.6rem',
     '1.25px'
   ),
 }
@@ -313,29 +304,23 @@ function radiusRemToIconRx(radiusRem: number): number {
 
 function resolveFollowThemeRadius(
   themes: ThemeInfo[] | undefined,
-  selectedThemeId: string | undefined,
-  stylePreset: string | undefined
+  selectedThemeId: string | undefined
 ): string | undefined {
-  const themeRadius = themes?.find((theme) => theme.id === selectedThemeId)?.border_radius
-  if (themeRadius) return themeRadius
-
-  return stylePresetOverridesFromPreference(stylePreset || 'luma')?.['--radius']
+  return themes?.find((theme) => theme.id === selectedThemeId)?.border_radius
 }
 
 function RadiusIcon({
   value,
   themes,
   selectedThemeId,
-  stylePreset,
 }: {
   value: string
   themes?: ThemeInfo[]
   selectedThemeId?: string
-  stylePreset?: string
 }) {
   const rx = value === 'default'
     ? radiusRemToIconRx(
-        parseRadiusToRem(resolveFollowThemeRadius(themes, selectedThemeId, stylePreset)) ?? 0.75
+        parseRadiusToRem(resolveFollowThemeRadius(themes, selectedThemeId)) ?? 0.625
       )
     : (radiusRx[value] ?? 4.25)
 
@@ -377,13 +362,11 @@ function RadiusLabel({
   label,
   themes,
   selectedThemeId,
-  stylePreset,
 }: {
   value: string
   label: string
   themes?: ThemeInfo[]
   selectedThemeId?: string
-  stylePreset?: string
 }) {
   return (
     <span className='flex min-w-0 items-center gap-2'>
@@ -391,7 +374,6 @@ function RadiusLabel({
         value={value}
         themes={themes}
         selectedThemeId={selectedThemeId}
-        stylePreset={stylePreset}
       />
       <span className='truncate'>{label}</span>
     </span>
@@ -704,7 +686,6 @@ export function UserPreferences() {
                           label={label}
                           themes={data.themes}
                           selectedThemeId={data.preferences.theme}
-                          stylePreset={data.preferences.style_preset}
                         />
                       )}
                       renderValue={(optValue, label) => (
@@ -713,7 +694,6 @@ export function UserPreferences() {
                           label={label}
                           themes={data.themes}
                           selectedThemeId={data.preferences.theme}
-                          stylePreset={data.preferences.style_preset}
                         />
                       )}
                     />

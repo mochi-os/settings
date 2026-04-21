@@ -123,7 +123,7 @@ function SearchResults({
   if (results.length === 0) return null
 
   return (
-    <div className='border-border bg-popover absolute top-full right-0 left-0 z-10 mt-1 overflow-hidden rounded-[10px] border shadow-md'>
+    <div className='border-border bg-popover absolute top-full right-0 left-0 z-10 mt-1 overflow-hidden rounded-lg border shadow-md'>
       {results.map((result) => (
         <button
           key={result.qid}
