@@ -135,13 +135,13 @@ const AuthenticatedErrorsErrorRoute =
   } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof AuthenticatedIndexRoute
   '/401': typeof errors401Route
   '/403': typeof errors403Route
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
   '/domains': typeof AuthenticatedDomainsRoute
-  '/': typeof AuthenticatedIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/system/status': typeof AuthenticatedSystemStatusRoute
@@ -199,13 +199,13 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/401'
     | '/403'
     | '/404'
     | '/500'
     | '/503'
     | '/domains'
-    | '/'
     | '/errors/$error'
     | '/system/settings'
     | '/system/status'
@@ -274,7 +274,7 @@ declare module '@tanstack/react-router' {
     '/_authenticated': {
       id: '/_authenticated'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }

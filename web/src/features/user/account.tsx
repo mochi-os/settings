@@ -9,6 +9,7 @@ import type {
 import { startRegistration } from '@simplewebauthn/browser'
 import {
   Check,
+  ExternalLink,
   Key,
   Link2,
   Loader2,
@@ -120,6 +121,14 @@ function IdentitySection() {
               className='w-full'
               chipClassName='flex-1'
             />
+          </FieldRow>
+          <FieldRow label="Profile">
+            <Button variant='outline' size='sm' asChild>
+              <a href='/people/'>
+                <ExternalLink className='size-3.5' />
+                Edit profile
+              </a>
+            </Button>
           </FieldRow>
         </div>
       ) : null}
