@@ -491,6 +491,9 @@ export function UserPreferences() {
   const { raw: currentLocale } = useLocale()
   const [themeSheetOpen, setThemeSheetOpen] = useState(false)
 
+  const { resolvedTheme } = useTheme()
+  const isDark = resolvedTheme === 'dark'
+
   const localeKeys = ['date_format', 'time_format', 'timestamp_display', 'week_start', 'number_format', 'units'] as const
 
   useEffect(() => {
@@ -661,7 +664,7 @@ export function UserPreferences() {
                           if (current) {
                             return (
                               <>
-                                <span className="size-3.5 rounded-full shrink-0" style={{ backgroundColor: current.preview }} />
+                                <span className="size-3.5 rounded-full shrink-0" style={{ backgroundColor: isDark && current.preview_dark ? current.preview_dark : current.preview }} />
                                 {current.label}
                               </>
                             )
@@ -742,7 +745,7 @@ export function UserPreferences() {
                           >
                             <span
                               className="size-8 rounded-sm shrink-0"
-                              style={{ backgroundColor: theme.preview }}
+                              style={{ backgroundColor: isDark && theme.preview_dark ? theme.preview_dark : theme.preview }}
                             />
                             <div className="min-w-0 flex-1">
                               <div className="text-sm font-medium">{theme.label}</div>
