@@ -417,8 +417,8 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
         </div>
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {user.last_login ? (
-          formatTimestamp(user.last_login)
+        {user.last ? (
+          formatTimestamp(user.last)
         ) : (
           <span className='italic'>Never</span>
         )}
@@ -481,7 +481,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
   )
 }
 
-type SortColumn = 'username' | 'status' | 'last_login'
+type SortColumn = 'username' | 'status' | 'last'
 type SortOrder = 'asc' | 'desc'
 
 function SortableHeader({
@@ -528,15 +528,17 @@ export function SystemUsers() {
   const { data: accountData } = useAccountData()
   const currentUsername = accountData?.identity?.username
 
-  // Reset offset when search changes
+  // Reset offset when search or sort changes
   useEffect(() => {
     setOffset(0)
-  }, [debouncedSearch])
+  }, [debouncedSearch, sort, order])
 
   const { data, isLoading, ErrorComponent, refetch } = useSystemUsersData(
     limit,
     offset,
-    debouncedSearch
+    debouncedSearch,
+    sort,
+    order
   )
 
   const handleSort = (column: SortColumn) => {
@@ -548,24 +550,7 @@ export function SystemUsers() {
     }
   }
 
-  // Client-side sorting (server-side would be better for large datasets)
-  const sortedUsers = data?.users
-    ? [...data.users].sort((a, b) => {
-        let comparison = 0
-        switch (sort) {
-          case 'username':
-            comparison = a.username.localeCompare(b.username)
-            break
-          case 'status':
-            comparison = a.status.localeCompare(b.status)
-            break
-          case 'last_login':
-            comparison = (a.last_login || 0) - (b.last_login || 0)
-            break
-        }
-        return order === 'asc' ? comparison : -comparison
-      })
-    : []
+  const users = data?.users ?? []
 
   if (ErrorComponent) {
     return (
@@ -610,7 +595,7 @@ export function SystemUsers() {
       <Main>
         {isLoading ? (
           <ListSkeleton count={3} height='h-12' variant='simple' />
-        ) : sortedUsers.length > 0 ? (
+        ) : users.length > 0 ? (
           <>
             <Table>
               <TableHeader>
@@ -630,7 +615,7 @@ export function SystemUsers() {
                     onSort={handleSort}
                   />
                   <SortableHeader
-                    column='last_login'
+                    column='last'
                     label='Last login'
                     currentSort={sort}
                     currentOrder={order}
@@ -640,7 +625,7 @@ export function SystemUsers() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {sortedUsers.map((user) => (
+                {users.map((user) => (
                   <UserRow
                     key={user.id}
                     user={user}

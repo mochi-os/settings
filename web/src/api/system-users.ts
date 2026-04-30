@@ -11,11 +11,13 @@ export interface SystemUserSessionsResponse {
 const list = async (
   limit: number,
   offset: number,
-  search: string
+  search: string,
+  sort: string,
+  order: string
 ): Promise<SystemUsersResponse> => {
   const response = await requestHelpers.post<SystemUsersResponse>(
     endpoints.system.usersList,
-    { limit, offset, search }
+    { limit, offset, search, sort, order }
   )
   return response
 }

@@ -12,8 +12,8 @@ const NO_GLOBAL_ERROR_TOAST_CONFIG = {
 
 export const systemUserKeys = {
   all: () => ['system-users'] as const,
-  list: (limit: number, offset: number, search: string) =>
-    [...systemUserKeys.all(), 'list', limit, offset, search] as const,
+  list: (limit: number, offset: number, search: string, sort: string, order: string) =>
+    [...systemUserKeys.all(), 'list', limit, offset, search, sort, order] as const,
   sessions: (userId: string) =>
     [...systemUserKeys.all(), 'sessions', userId] as const,
 }
@@ -21,11 +21,13 @@ export const systemUserKeys = {
 export function useSystemUsersData(
   limit: number,
   offset: number,
-  search: string
+  search: string,
+  sort: string,
+  order: string
 ) {
   return useQueryWithError<SystemUsersResponse, Error>({
-    queryKey: systemUserKeys.list(limit, offset, search),
-    queryFn: () => systemUsersApi.list(limit, offset, search),
+    queryKey: systemUserKeys.list(limit, offset, search, sort, order),
+    queryFn: () => systemUsersApi.list(limit, offset, search, sort, order),
   })
 }
 
