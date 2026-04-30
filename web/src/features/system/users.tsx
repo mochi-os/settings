@@ -409,7 +409,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
       <TableCell>
         <div className='flex items-center gap-2'>
           <Badge variant={isAdmin ? 'default' : 'secondary'}>
-            {isAdmin ? 'Admin' : 'User'}
+            {isAdmin ? 'Administrator' : 'User'}
           </Badge>
           {isSuspended && (
             <Badge variant='destructive'>Suspended</Badge>
