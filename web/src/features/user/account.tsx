@@ -199,7 +199,7 @@ function IdentitySection() {
           <FieldRow label="Fingerprint">
             <DataChip value={data.identity.fingerprint} truncate='middle' />
           </FieldRow>
-          <FieldRow label="Entity">
+          <FieldRow label="Identity">
             <DataChip
               value={data.identity.entity}
               className='w-full'
