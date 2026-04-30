@@ -33,19 +33,19 @@ def action_user_account_identity_update(a):
     privacy = a.input("privacy")
 
     if name == None and privacy == None:
-        a.error(400, "Nothing to update")
+        a.error_label(400, "errors.nothing_to_update")
         return
 
     kwargs = {}
     if name != None:
         name = name.strip()
         if not name:
-            a.error(400, "Name cannot be empty")
+            a.error_label(400, "errors.name_cannot_be_empty")
             return
         kwargs["name"] = name
     if privacy != None:
         if privacy != "public" and privacy != "private":
-            a.error(400, "Privacy must be 'public' or 'private'")
+            a.error_label(400, "errors.privacy_must_be_public_or_private")
             return
         kwargs["privacy"] = privacy
 
@@ -60,7 +60,7 @@ def action_user_account_session_revoke(a):
     """Revoke a session"""
     id = a.input("id")
     if not id:
-        a.error(400, "Missing session id")
+        a.error_label(400, "errors.missing_session_id")
         return
 
     mochi.user.session.revoke(a.user.id, id)
@@ -78,7 +78,7 @@ def action_user_account_methods_set(a):
     """Set user's required login methods"""
     methods = a.input("methods")
     if not methods:
-        a.error(400, "Missing methods")
+        a.error_label(400, "errors.missing_methods")
         return
 
     # Parse comma-separated or JSON array
@@ -118,7 +118,7 @@ def action_user_account_passkey_register_finish(a):
     name = a.input("name") or "Passkey"
 
     if not ceremony or not credential:
-        a.error(400, "Missing ceremony or credential")
+        a.error_label(400, "errors.missing_ceremony_or_credential")
         return
 
     result = mochi.user.passkey.register.finish(ceremony, credential, name)
@@ -130,7 +130,7 @@ def action_user_account_passkey_rename(a):
     name = a.input("name")
 
     if not id or not name:
-        a.error(400, "Missing id or name")
+        a.error_label(400, "errors.missing_id_or_name")
         return
 
     mochi.user.passkey.rename(id, name)
@@ -140,7 +140,7 @@ def action_user_account_passkey_delete(a):
     """Delete a passkey"""
     id = a.input("id")
     if not id:
-        a.error(400, "Missing passkey id")
+        a.error_label(400, "errors.missing_passkey_id")
         return
 
     mochi.user.passkey.delete(id)
@@ -163,7 +163,7 @@ def action_user_account_totp_verify(a):
     """Verify TOTP code to complete setup"""
     code = a.input("code")
     if not code:
-        a.error(400, "Missing code")
+        a.error_label(400, "errors.missing_code")
         return
 
     ok = mochi.user.totp.verify(code)
@@ -199,7 +199,7 @@ def action_user_account_oauth_unlink(a):
     """Unlink an OAuth provider from the current user"""
     provider = a.input("provider")
     if not provider:
-        a.error(400, "Missing provider")
+        a.error_label(400, "errors.missing_provider")
         return
     mochi.user.oauth.unlink(provider)
     a.json({"ok": True})
@@ -216,7 +216,7 @@ def action_user_account_token_create(a):
     """Create a new API token"""
     name = a.input("name")
     if not name:
-        a.error(400, "Missing token name")
+        a.error_label(400, "errors.missing_token_name")
         return
 
     scopes = a.input("scopes") or []
@@ -239,7 +239,7 @@ def action_user_account_token_create(a):
 
     token = mochi.token.create(name, scopes, expires)
     if not token:
-        a.error(500, "Failed to create token")
+        a.error_label(500, "errors.failed_to_create_token")
         return
 
     a.json({"data": {"token": token, "name": name}})
@@ -248,7 +248,7 @@ def action_user_account_token_delete(a):
     """Delete an API token"""
     hash = a.input("hash")
     if not hash:
-        a.error(400, "Missing token hash")
+        a.error_label(400, "errors.missing_token_hash")
         return
 
     ok = mochi.token.delete(hash)

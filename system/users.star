@@ -34,11 +34,11 @@ def action_system_users_get(a):
         return
     id = a.input("id")
     if not id:
-        a.error(400, "Missing user id")
+        a.error_label(400, "errors.missing_user_id")
         return
     user = mochi.user.get.id(int(id))
     if not user:
-        a.error(404, "User not found")
+        a.error_label(404, "errors.user_not_found")
         return
     a.json(user)
 
@@ -49,7 +49,7 @@ def action_system_users_create(a):
     username = a.input("username")
     role = a.input("role") or "user"
     if not username:
-        a.error(400, "Missing username")
+        a.error_label(400, "errors.missing_username")
         return
     user = mochi.user.create(username, role)
     a.json(user)
@@ -60,7 +60,7 @@ def action_system_users_update(a):
         return
     id = a.input("id")
     if not id:
-        a.error(400, "Missing user id")
+        a.error_label(400, "errors.missing_user_id")
         return
     username = a.input("username")
     role = a.input("role")
@@ -73,7 +73,7 @@ def action_system_users_delete(a):
         return
     id = a.input("id")
     if not id:
-        a.error(400, "Missing user id")
+        a.error_label(400, "errors.missing_user_id")
         return
     mochi.user.delete(int(id))
     a.json({"ok": True})
@@ -84,7 +84,7 @@ def action_system_users_suspend(a):
         return
     id = a.input("id")
     if not id:
-        a.error(400, "Missing user id")
+        a.error_label(400, "errors.missing_user_id")
         return
     mochi.user.suspend(int(id))
     a.json({"ok": True})
@@ -95,7 +95,7 @@ def action_system_users_activate(a):
         return
     id = a.input("id")
     if not id:
-        a.error(400, "Missing user id")
+        a.error_label(400, "errors.missing_user_id")
         return
     mochi.user.activate(int(id))
     a.json({"ok": True})
@@ -106,7 +106,7 @@ def action_system_users_sessions(a):
         return
     id = a.input("id")
     if not id:
-        a.error(400, "Missing user id")
+        a.error_label(400, "errors.missing_user_id")
         return
     sessions = mochi.user.session.list(int(id))
     a.json({"sessions": sessions})
@@ -117,7 +117,7 @@ def action_system_users_sessions_revoke(a):
         return
     id = a.input("id")
     if not id:
-        a.error(400, "Missing user id")
+        a.error_label(400, "errors.missing_user_id")
         return
     session_id = a.input("session_id")
     if session_id:

@@ -28,7 +28,7 @@ def action_domains_create(a):
         return
     domain = a.input("domain")
     if not domain:
-        a.error(400, "Missing domain")
+        a.error_label(400, "errors.missing_domain")
         return
     result = mochi.domain.register(domain)
     a.json(result)
@@ -54,13 +54,13 @@ def action_domains_get(a):
     """Get domain details with routes and delegations"""
     domain = a.input("domain")
     if not domain:
-        a.error(400, "Missing domain")
+        a.error_label(400, "errors.missing_domain")
         return
     admin = is_admin(a)
     if admin:
         info = mochi.domain.get(domain)
         if not info:
-            a.error(404, "Domain not found")
+            a.error_label(404, "errors.domain_not_found")
             return
         routes = enrich_routes_with_names(mochi.domain.route.list(domain))
         delegations = mochi.domain.delegation.list(domain, 0)
@@ -68,11 +68,11 @@ def action_domains_get(a):
     else:
         delegations = mochi.domain.delegation.list(domain, a.user.id)
         if not delegations:
-            a.error(403, "No access to domain")
+            a.error_label(403, "errors.no_access_to_domain")
             return
         info = mochi.domain.get(domain)
         if not info:
-            a.error(404, "Domain not found")
+            a.error_label(404, "errors.domain_not_found")
             return
         routes = mochi.domain.route.list(domain)
         accessible_routes = []
@@ -89,7 +89,7 @@ def action_domains_update(a):
         return
     domain = a.input("domain")
     if not domain:
-        a.error(400, "Missing domain")
+        a.error_label(400, "errors.missing_domain")
         return
     verified = a.input("verified")
     tls = a.input("tls")
@@ -108,7 +108,7 @@ def action_domains_delete(a):
         return
     domain = a.input("domain")
     if not domain:
-        a.error(400, "Missing domain")
+        a.error_label(400, "errors.missing_domain")
         return
     mochi.domain.delete(domain)
     a.json({"ok": True})
@@ -119,7 +119,7 @@ def action_domains_verify(a):
         return
     domain = a.input("domain")
     if not domain:
-        a.error(400, "Missing domain")
+        a.error_label(400, "errors.missing_domain")
         return
     result = mochi.domain.verify(domain)
     a.json({"verified": result})
@@ -133,11 +133,11 @@ def action_domains_route_create(a):
     method = a.input("method")
     target = a.input("target")
     if not domain or path == None or not method or not target:
-        a.error(400, "Missing required fields: domain, path, method, target")
+        a.error_label(400, "errors.missing_required_fields_domain_path_method_target")
         return
     if not is_admin(a):
         if not can_manage_path(a, domain, path):
-            a.error(403, "No permission to manage this path")
+            a.error_label(403, "errors.no_permission_to_manage_this_path")
             return
     priority = int(a.input("priority") or "0")
     context = a.input("context") or ""
@@ -149,11 +149,11 @@ def action_domains_route_update(a):
     domain = a.input("domain")
     path = a.input("path")
     if not domain or path == None:
-        a.error(400, "Missing required fields: domain, path")
+        a.error_label(400, "errors.missing_required_fields_domain_path")
         return
     if not is_admin(a):
         if not can_manage_path(a, domain, path):
-            a.error(403, "No permission to manage this path")
+            a.error_label(403, "errors.no_permission_to_manage_this_path")
             return
     method = a.input("method")
     target = a.input("target")
@@ -176,11 +176,11 @@ def action_domains_route_delete(a):
     domain = a.input("domain")
     path = a.input("path")
     if not domain or path == None:
-        a.error(400, "Missing required fields: domain, path")
+        a.error_label(400, "errors.missing_required_fields_domain_path")
         return
     if not is_admin(a):
         if not can_manage_path(a, domain, path):
-            a.error(403, "No permission to manage this path")
+            a.error_label(403, "errors.no_permission_to_manage_this_path")
             return
     mochi.domain.route.delete(domain, path)
     a.json({"ok": True})
@@ -195,7 +195,7 @@ def action_domains_delegation_create(a):
     path = a.input("path")
     owner = a.input("owner")
     if not domain or path == None or not owner:
-        a.error(400, "Missing required fields: domain, path, owner")
+        a.error_label(400, "errors.missing_required_fields_domain_path_owner")
         return
     mochi.domain.delegation.create(domain, path, int(owner))
     a.json({"ok": True})
@@ -208,7 +208,7 @@ def action_domains_delegation_delete(a):
     path = a.input("path")
     owner = a.input("owner")
     if not domain or path == None or not owner:
-        a.error(400, "Missing required fields: domain, path, owner")
+        a.error_label(400, "errors.missing_required_fields_domain_path_owner")
         return
     mochi.domain.delegation.delete(domain, path, int(owner))
     a.json({"ok": True})

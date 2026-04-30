@@ -17,7 +17,7 @@ def action_accounts_get(a):
     """Get a single connected account"""
     id = a.input("id")
     if not id:
-        a.error(400, "id is required")
+        a.error_label(400, "errors.id_is_required")
         return
     result = mochi.account.get(int(id))
     a.json(result)
@@ -26,7 +26,7 @@ def action_accounts_add(a):
     """Add a new connected account"""
     type = a.input("type")
     if not type:
-        a.error(400, "type is required")
+        a.error_label(400, "errors.type_is_required")
         return
 
     # Build fields dict from form inputs
@@ -62,7 +62,7 @@ def action_accounts_update(a):
     """Update a connected account"""
     id = a.input("id")
     if not id:
-        a.error(400, "id is required")
+        a.error_label(400, "errors.id_is_required")
         return
 
     # Build fields dict from form inputs
@@ -86,7 +86,7 @@ def action_accounts_default(a):
     """Set or clear the default account for a capability type"""
     id = a.input("account")
     if not id:
-        a.error(400, "account is required")
+        a.error_label(400, "errors.account_is_required")
         return
     type = a.input("type", "")
     mochi.account.update(int(id), default=type)
@@ -96,7 +96,7 @@ def action_accounts_remove(a):
     """Remove a connected account"""
     id = a.input("id")
     if not id:
-        a.error(400, "id is required")
+        a.error_label(400, "errors.id_is_required")
         return
 
     result = mochi.account.remove(int(id))
@@ -106,7 +106,7 @@ def action_accounts_verify(a):
     """Verify an account or resend verification code"""
     id = a.input("id")
     if not id:
-        a.error(400, "id is required")
+        a.error_label(400, "errors.id_is_required")
         return
 
     code = a.input("code")
@@ -117,14 +117,14 @@ def action_accounts_vapid(a):
     """Return VAPID public key for browser push subscription"""
     key = mochi.webpush.key()
     if not key:
-        return a.error(503, "Push notifications not available")
+        return a.error_label(503, "errors.push_notifications_not_available")
     a.json({"key": key})
 
 def action_accounts_test(a):
     """Test a connected account"""
     id = a.input("id")
     if not id:
-        a.error(400, "id is required")
+        a.error_label(400, "errors.id_is_required")
         return
 
     result = mochi.account.test(int(id))

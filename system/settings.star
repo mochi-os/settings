@@ -14,7 +14,7 @@ def action_system_settings_get(a):
         return
     name = a.input("name")
     if not name:
-        a.error(400, "Missing setting name")
+        a.error_label(400, "errors.missing_setting_name")
         return
     value = mochi.setting.get(name)
     a.json({"name": name, "value": value})
@@ -26,10 +26,10 @@ def action_system_settings_set(a):
     name = a.input("name")
     value = a.input("value")
     if not name:
-        a.error(400, "Missing setting name")
+        a.error_label(400, "errors.missing_setting_name")
         return
     if value == None:
-        a.error(400, "Missing setting value")
+        a.error_label(400, "errors.missing_setting_value")
         return
     mochi.setting.set(name, value)
     a.json({"ok": True})
