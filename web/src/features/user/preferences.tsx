@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { Trans, useLingui } from '@lingui/react/macro'
 import {
   Loader2,
   RotateCcw,
@@ -485,7 +486,8 @@ import {
 } from '@/hooks/use-preferences'
 
 export function UserPreferences() {
-  usePageTitle('Preferences')
+  const { t } = useLingui()
+  usePageTitle(t`Preferences`)
   const { data, isLoading, error, refetch } = usePreferencesData()
   const setPreference = useSetPreference()
   const resetPreferences = useResetPreferences()
@@ -610,7 +612,7 @@ export function UserPreferences() {
         toast.success('Preferences reset to defaults')
       },
       onError: (error) => {
-        toast.error(getErrorMessage(error, 'Failed to reset preferences'))
+        toast.error(getErrorMessage(error, t`Failed to reset preferences`))
       },
     })
   }
@@ -618,7 +620,7 @@ export function UserPreferences() {
   return (
     <>
       <PageHeader
-        title="Preferences"
+        title={t`Preferences`}
         icon={<Sliders className='size-4 md:size-5' />}
         actions={!error ? (
           <AlertDialog>
@@ -633,20 +635,20 @@ export function UserPreferences() {
                 ) : (
                   <RotateCcw className='mr-2 h-3.5 w-3.5' />
                 )}
-                Reset to defaults
+                <Trans>Reset to defaults</Trans>
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Reset preferences?</AlertDialogTitle>
+                <AlertDialogTitle><Trans>Reset preferences?</Trans></AlertDialogTitle>
                 <AlertDialogDescription>
-                  This will reset all preferences to their default values.
+                  <Trans>This will reset all preferences to their default values.</Trans>
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogCancel><Trans>Cancel</Trans></AlertDialogCancel>
                 <AlertDialogAction onClick={handleReset}>
-                  Reset
+                  <Trans>Reset</Trans>
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
@@ -656,7 +658,7 @@ export function UserPreferences() {
 
       <Main className="space-y-8">
 
-        <Section title="Display">
+        <Section title={t`Display`}>
           <div className='divide-y-0'>
             {error ? (
               <GeneralError error={error} minimal mode='inline' reset={refetch} />
@@ -664,7 +666,7 @@ export function UserPreferences() {
               <ListSkeleton variant='simple' height='h-12' count={2} />
             ) : data ? (
               <>
-                <FieldRow label='Appearance'>
+                <FieldRow label={t`Appearance`}>
                   <div className="w-full">
                     <ComboSelect
                       value={data.preferences.appearance}
@@ -682,7 +684,7 @@ export function UserPreferences() {
                 </FieldRow>
 
                 {data.themes && data.themes.length > 0 && (
-                  <FieldRow label='Theme'>
+                  <FieldRow label={t`Theme`}>
                     <Button
                       variant="outline"
                       className="w-full justify-between"
@@ -699,18 +701,18 @@ export function UserPreferences() {
                               </>
                             )
                           }
-                          return 'Default'
+                          return t`Default`
                         })()}
                       </span>
                       <ChevronRight className="size-4 text-muted-foreground" />
                     </Button>
                   </FieldRow>
                 )}
-                <FieldRow label='Border radius'>
+                <FieldRow label={t`Border radius`}>
                   <div className="w-full">
                     <ComboSelect
                       value={data.preferences.border_radius || 'default'}
-                      options={{ default: 'Follow theme', none: 'None', small: 'Small', medium: 'Medium', large: 'Large' }}
+                      options={{ default: t`Follow theme`, none: t`None`, small: t`Small`, medium: t`Medium`, large: t`Large` }}
                       onChange={(value) => handleChange('border_radius', value)}
                       disabled={setPreference.isPending}
                       renderOption={(optValue, label) => (
@@ -732,7 +734,7 @@ export function UserPreferences() {
                     />
                   </div>
                 </FieldRow>
-                <FieldRow label='Style preset'>
+                <FieldRow label={t`Style preset`}>
                   <div className="w-full">
                     <ComboSelect
                       value={normalizeStylePresetForSelect(data.preferences.style_preset || 'luma')}
@@ -794,9 +796,9 @@ export function UserPreferences() {
         </Section>
 
         {data && !error && showLanguagePicker && (
-          <Section title="Language">
+          <Section title={t`Language`}>
             <div className='divide-y-0'>
-              <FieldRow label='Language'>
+              <FieldRow label={t`Language`}>
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.language || 'en'}
@@ -811,9 +813,9 @@ export function UserPreferences() {
         )}
 
         {data && !error && (
-          <Section title="Regional">
+          <Section title={t`Regional`}>
             <div className='divide-y-0'>
-              <FieldRow label='Time zone'>
+              <FieldRow label={t`Time zone`}>
                 <div className="w-full">
                   <TimezoneSelect
                     value={data.preferences.timezone}
@@ -823,7 +825,7 @@ export function UserPreferences() {
                 </div>
               </FieldRow>
 
-              <FieldRow label='Units'>
+              <FieldRow label={t`Units`}>
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.units || 'auto'}
@@ -834,7 +836,7 @@ export function UserPreferences() {
                 </div>
               </FieldRow>
 
-              <FieldRow label='Number format'>
+              <FieldRow label={t`Number format`}>
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.number_format || 'auto'}
@@ -845,7 +847,7 @@ export function UserPreferences() {
                 </div>
               </FieldRow>
 
-              <FieldRow label='Date format'>
+              <FieldRow label={t`Date format`}>
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.date_format || 'auto'}
@@ -856,7 +858,7 @@ export function UserPreferences() {
                 </div>
               </FieldRow>
 
-              <FieldRow label='Time format'>
+              <FieldRow label={t`Time format`}>
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.time_format || 'auto'}
@@ -867,7 +869,7 @@ export function UserPreferences() {
                 </div>
               </FieldRow>
 
-              <FieldRow label='Week starts on'>
+              <FieldRow label={t`Week starts on`}>
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.week_start || 'auto'}
@@ -881,7 +883,7 @@ export function UserPreferences() {
                 </div>
               </FieldRow>
 
-              <FieldRow label='Timestamps'>
+              <FieldRow label={t`Timestamps`}>
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.timestamp_display || 'auto'}
