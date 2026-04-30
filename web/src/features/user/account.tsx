@@ -39,6 +39,7 @@ import {
   useTotpSetup,
   useTotpStatus,
   useTotpVerify,
+  useUpdateIdentity,
 } from '@/hooks/use-account'
 import {
   Button,
@@ -90,6 +91,53 @@ type RegistrationOptionsJSON = Parameters<typeof startRegistration>[0]['optionsJ
 
 function IdentitySection() {
   const { data, isLoading, error, refetch } = useAccountData()
+  const updateIdentity = useUpdateIdentity()
+  const [isRenaming, setIsRenaming] = useState(false)
+  const [draftName, setDraftName] = useState('')
+
+  const startRename = () => {
+    setDraftName(data?.identity?.name ?? '')
+    setIsRenaming(true)
+  }
+
+  const handleRename = () => {
+    const name = draftName.trim()
+    if (!name || name === data?.identity?.name) {
+      setIsRenaming(false)
+      return
+    }
+    updateIdentity.mutate(
+      { name },
+      {
+        onSuccess: () => {
+          toast.success('Name updated')
+          setIsRenaming(false)
+        },
+        onError: (err) => {
+          toast.error(getErrorMessage(err, 'Failed to update name'))
+        },
+      }
+    )
+  }
+
+  const handleTogglePublic = (checked: boolean) => {
+    const privacy = checked ? 'public' : 'private'
+    updateIdentity.mutate(
+      { privacy },
+      {
+        onSuccess: () => {
+          toast.success(
+            privacy === 'public'
+              ? 'Identity is now listed in the directory'
+              : 'Identity is no longer listed in the directory'
+          )
+        },
+        onError: (err) => {
+          toast.error(getErrorMessage(err, 'Failed to update privacy'))
+        },
+      }
+    )
+  }
 
   return (
     <Section
@@ -102,9 +150,46 @@ function IdentitySection() {
       ) : data?.identity ? (
         <div className='divide-y-0'>
           <FieldRow label="Name">
-            <span className='text-foreground text-base font-semibold'>
-              {data.identity.name}
-            </span>
+            {isRenaming ? (
+              <div className='flex items-center gap-2'>
+                <Input
+                  value={draftName}
+                  onChange={(e) => setDraftName(e.target.value)}
+                  className='h-8 w-64'
+                  autoFocus
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') handleRename()
+                    if (e.key === 'Escape') setIsRenaming(false)
+                  }}
+                  disabled={updateIdentity.isPending}
+                />
+                <Button
+                  size='sm'
+                  variant='ghost'
+                  onClick={handleRename}
+                  disabled={updateIdentity.isPending}
+                >
+                  <Check className='h-4 w-4' />
+                </Button>
+                <Button
+                  size='sm'
+                  variant='ghost'
+                  onClick={() => setIsRenaming(false)}
+                  disabled={updateIdentity.isPending}
+                >
+                  Cancel
+                </Button>
+              </div>
+            ) : (
+              <div className='flex items-center gap-2'>
+                <span className='text-foreground text-base font-semibold'>
+                  {data.identity.name}
+                </span>
+                <Button variant='ghost' size='sm' onClick={startRename}>
+                  <Pencil className='h-4 w-4' />
+                </Button>
+              </div>
+            )}
           </FieldRow>
           <FieldRow label="Username">
             <span className='text-foreground text-base'>
@@ -121,6 +206,17 @@ function IdentitySection() {
               chipClassName='flex-1'
             />
           </FieldRow>
+          <div className='flex items-center justify-between py-4 border-t border-border/40'>
+            <Label htmlFor='identity-public' className='text-muted-foreground pr-4 text-sm font-medium'>
+              Allow others to find you in directory
+            </Label>
+            <Switch
+              id='identity-public'
+              checked={data.identity.privacy === 'public'}
+              onCheckedChange={handleTogglePublic}
+              disabled={updateIdentity.isPending}
+            />
+          </div>
         </div>
       ) : null}
     </Section>

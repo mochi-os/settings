@@ -10,6 +10,7 @@ def action_user_account(a):
             "fingerprint": mochi.entity.fingerprint(entity_id, True),
             "username": a.user.username,
             "name": a.user.identity.name,
+            "privacy": a.user.identity.privacy,
         },
         "role": a.user.role,
         "sessions": mochi.user.session.list(),
@@ -23,7 +24,33 @@ def action_user_account_identity(a):
         "fingerprint": mochi.entity.fingerprint(entity_id, True),
         "username": a.user.username,
         "name": a.user.identity.name,
+        "privacy": a.user.identity.privacy,
     })
+
+def action_user_account_identity_update(a):
+    """Update the current user's identity (name, privacy)"""
+    name = a.input("name")
+    privacy = a.input("privacy")
+
+    if name == None and privacy == None:
+        a.error(400, "Nothing to update")
+        return
+
+    kwargs = {}
+    if name != None:
+        name = name.strip()
+        if not name:
+            a.error(400, "Name cannot be empty")
+            return
+        kwargs["name"] = name
+    if privacy != None:
+        if privacy != "public" and privacy != "private":
+            a.error(400, "Privacy must be 'public' or 'private'")
+            return
+        kwargs["privacy"] = privacy
+
+    mochi.user.identity.update(**kwargs)
+    a.json({"ok": True})
 
 def action_user_account_sessions(a):
     """List active sessions for current user"""

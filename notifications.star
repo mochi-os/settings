@@ -1,6 +1,6 @@
 # Mochi Settings — notifications management
 # Proxies to the notifications service so the settings UI can manage categories
-# and subscriptions without app-level coupling.
+# and topics without app-level coupling.
 # Copyright Alistair Cunningham 2026
 
 def action_notifications_categories(a):
@@ -56,11 +56,11 @@ def action_notifications_categories_test(a):
 	result = mochi.service.call("notifications", "category/test", int(id))
 	return {"data": result or {"sent": 0, "web": False}}
 
-def action_notifications_subscriptions(a):
-	result = mochi.service.call("notifications", "subscription/list")
+def action_notifications_topics(a):
+	result = mochi.service.call("notifications", "topic/list")
 	return {"data": result or []}
 
-def action_notifications_subscriptions_set_category(a):
+def action_notifications_topics_set_category(a):
 	id = a.input("id", "").strip()
 	if not id or not id.isdigit():
 		return a.error(400, "Invalid id")
@@ -68,23 +68,16 @@ def action_notifications_subscriptions_set_category(a):
 	category = None
 	if cat_raw != "" and cat_raw.lstrip("-").isdigit():
 		category = int(cat_raw)
-	ok = mochi.service.call("notifications", "subscription/set_category", int(id), category)
+	ok = mochi.service.call("notifications", "topic/set_category", int(id), category)
 	if not ok:
 		return a.error(404, "Not found")
 	return {"data": {}}
 
-def action_notifications_subscriptions_reset(a):
+def action_notifications_topics_delete(a):
 	id = a.input("id", "").strip()
 	if not id or not id.isdigit():
 		return a.error(400, "Invalid id")
-	mochi.service.call("notifications", "subscription/reset", int(id))
-	return {"data": {}}
-
-def action_notifications_subscriptions_delete(a):
-	id = a.input("id", "").strip()
-	if not id or not id.isdigit():
-		return a.error(400, "Invalid id")
-	mochi.service.call("notifications", "subscription/delete", int(id))
+	mochi.service.call("notifications", "topic/delete", int(id))
 	return {"data": {}}
 
 def action_notifications_destinations(a):

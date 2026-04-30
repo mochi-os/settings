@@ -8,6 +8,7 @@ const endpoints = {
   user: {
     account: '-/user/account/data',
     accountIdentity: '-/user/account/identity',
+    accountIdentityUpdate: '-/user/account/identity/update',
     accountSessions: '-/user/account/sessions',
     accountSessionRevoke: '-/user/account/session/revoke',
     // Login methods
@@ -69,10 +70,9 @@ const endpoints = {
     categoriesUpdate: '-/notifications/categories/update',
     categoriesDelete: '-/notifications/categories/delete',
     categoriesTest: '-/notifications/categories/test',
-    subscriptions: '-/notifications/subscriptions',
-    subscriptionsSetCategory: '-/notifications/subscriptions/set_category',
-    subscriptionsReset: '-/notifications/subscriptions/reset',
-    subscriptionsDelete: '-/notifications/subscriptions/delete',
+    topics: '-/notifications/topics',
+    topicsSetCategory: '-/notifications/topics/set_category',
+    topicsDelete: '-/notifications/topics/delete',
     destinations: '-/notifications/destinations',
   },
   domains: {

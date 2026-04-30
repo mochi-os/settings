@@ -32,6 +32,21 @@ export function useAccountData() {
   })
 }
 
+export function useUpdateIdentity() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (data: { name?: string; privacy?: 'public' | 'private' }) =>
+      requestHelpers.post<{ ok: boolean }>(
+        endpoints.user.accountIdentityUpdate,
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      ),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['account', 'data'] })
+    },
+  })
+}
+
 export function useSessions() {
   return useQuery({
     queryKey: ['account', 'sessions'],

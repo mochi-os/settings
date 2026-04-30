@@ -47,7 +47,7 @@ import {
 } from '@mochi/web'
 import endpoints from '@/api/endpoints'
 
-type TabId = 'categories' | 'apps'
+type TabId = 'categories' | 'topics'
 
 interface DestinationRow {
   type: string
@@ -81,12 +81,13 @@ interface DestinationsAvailable {
   feeds: Feed[]
 }
 
-interface Subscription {
+interface Topic {
   id: number
   app: string
   app_name: string
   topic: string
   object: string
+  object_name: string
   label: string
   category: number | null
   created: number
@@ -94,7 +95,7 @@ interface Subscription {
 
 const tabs: { id: TabId; label: string }[] = [
   { id: 'categories', label: 'Categories' },
-  { id: 'apps', label: 'Apps' },
+  { id: 'topics', label: 'Topics' },
 ]
 
 // Sort categories alphabetically by label, with "No notifications" (id 0) last.
@@ -148,7 +149,7 @@ export function UserNotifications() {
         </div>
         {activeTab === 'categories'
           ? <CategoriesTab creating={creating} setCreating={setCreating} reloadKey={reloadKey} />
-          : <AppsTab />}
+          : <TopicsTab />}
       </Main>
     </>
   )
@@ -441,7 +442,7 @@ function CategoryDialog({
           <DialogTitle>{category ? 'Edit category' : 'New category'}</DialogTitle>
           {isSuppress && (
             <DialogDescription>
-              The "No notifications" category silences any subscription assigned to it.
+              The "No notifications" category silences any topic assigned to it.
             </DialogDescription>
           )}
         </DialogHeader>
@@ -587,20 +588,20 @@ function CategoryDeleteDialog({
   )
 }
 
-// ───────────────────────────── Subscriptions tab ─────────────────────────────
+// ───────────────────────────── Topics tab ─────────────────────────────
 
-function AppsTab() {
-  const [subs, setSubs] = useState<Subscription[] | null>(null)
+function TopicsTab() {
+  const [topics, setTopics] = useState<Topic[] | null>(null)
   const [categories, setCategories] = useState<Category[] | null>(null)
   const [error, setError] = useState<unknown>(null)
 
   const load = async () => {
     try {
-      const [subsRes, catsRes] = await Promise.all([
-        requestHelpers.getRaw<{ data: Subscription[] }>(endpoints.notifications.subscriptions),
+      const [topicsRes, catsRes] = await Promise.all([
+        requestHelpers.getRaw<{ data: Topic[] }>(endpoints.notifications.topics),
         requestHelpers.getRaw<{ data: Category[] }>(endpoints.notifications.categories),
       ])
-      setSubs(subsRes?.data ?? [])
+      setTopics(topicsRes?.data ?? [])
       setCategories(catsRes?.data ?? [])
     } catch (e) {
       setError(e)
@@ -611,43 +612,43 @@ function AppsTab() {
     void load()
   }, [])
 
-  const setCategory = async (sub: Subscription, value: string) => {
+  const setCategory = async (t: Topic, value: string) => {
     try {
-      const params = new URLSearchParams({ id: String(sub.id), category: value })
-      await requestHelpers.post(endpoints.notifications.subscriptionsSetCategory, params.toString(), {
+      const params = new URLSearchParams({ id: String(t.id), category: value })
+      await requestHelpers.post(endpoints.notifications.topicsSetCategory, params.toString(), {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       })
       await load()
     } catch (e) {
-      toast.error(getErrorMessage(e, 'Failed to update subscription'))
+      toast.error(getErrorMessage(e, 'Failed to update topic'))
     }
   }
 
-  const remove = async (sub: Subscription) => {
+  const remove = async (t: Topic) => {
     try {
-      const params = new URLSearchParams({ id: String(sub.id) })
-      await requestHelpers.post(endpoints.notifications.subscriptionsDelete, params.toString(), {
+      const params = new URLSearchParams({ id: String(t.id) })
+      await requestHelpers.post(endpoints.notifications.topicsDelete, params.toString(), {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       })
       await load()
     } catch (e) {
-      toast.error(getErrorMessage(e, 'Failed to remove subscription'))
+      toast.error(getErrorMessage(e, 'Failed to remove topic'))
     }
   }
 
   const groups = useMemo(() => {
-    if (!subs) return []
-    const map = new Map<string, { app: string; app_name: string; items: Subscription[] }>()
-    for (const sub of subs) {
-      const g = map.get(sub.app) ?? { app: sub.app, app_name: sub.app_name, items: [] }
-      g.items.push(sub)
-      map.set(sub.app, g)
+    if (!topics) return []
+    const map = new Map<string, { app: string; app_name: string; items: Topic[] }>()
+    for (const t of topics) {
+      const g = map.get(t.app) ?? { app: t.app, app_name: t.app_name, items: [] }
+      g.items.push(t)
+      map.set(t.app, g)
     }
     return Array.from(map.values()).sort((a, b) => a.app_name.localeCompare(b.app_name))
-  }, [subs])
+  }, [topics])
 
   if (error) return <GeneralError error={error} />
-  if (!subs || !categories) {
+  if (!topics || !categories) {
     return (
       <div className="space-y-2">
         <Skeleton className="h-12 w-full" />
@@ -656,8 +657,8 @@ function AppsTab() {
     )
   }
 
-  if (subs.length === 0) {
-    return <EmptyState icon={Bell} title="No notifications configured" />
+  if (topics.length === 0) {
+    return <EmptyState icon={Bell} title="No topics yet" />
   }
 
   return (
@@ -668,19 +669,19 @@ function AppsTab() {
             {group.app_name}
           </h2>
           <div className="divide-border divide-y">
-            {group.items.map((sub) => (
+            {group.items.map((t) => (
               <div
-                key={sub.id}
+                key={t.id}
                 className="flex flex-col gap-3 py-2 pl-6 sm:flex-row sm:items-center sm:justify-between"
               >
                 <p className="text-sm">
-                  {sub.label}
-                  {sub.object ? ` (${sub.object})` : ''}
+                  {t.label || t.topic}
+                  {t.object_name ? `: ${t.object_name}` : ''}
                 </p>
                 <div className="flex items-center gap-2">
                   <Select
-                    value={sub.category != null ? String(sub.category) : ''}
-                    onValueChange={(v) => setCategory(sub, v)}
+                    value={t.category != null ? String(t.category) : ''}
+                    onValueChange={(v) => setCategory(t, v)}
                   >
                     <SelectTrigger className="w-48">
                       <SelectValue placeholder="Unassigned" />
@@ -691,7 +692,7 @@ function AppsTab() {
                       ))}
                     </SelectContent>
                   </Select>
-                  <Button variant="outline" size="sm" onClick={() => remove(sub)} title="Remove (re-prompt on next app open)">
+                  <Button variant="outline" size="sm" onClick={() => remove(t)} title="Remove (re-create on next notification)">
                     <X className="h-4 w-4" />
                   </Button>
                 </div>

@@ -3,6 +3,7 @@ export interface Identity {
   fingerprint: string
   username: string
   name: string
+  privacy: 'public' | 'private'
 }
 
 export interface Session {
