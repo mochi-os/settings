@@ -29,8 +29,7 @@ preferences_schema = [
     },
     {
         "key": "language",
-        "type": "select",
-        "options": ["en", "de", "fr", "es", "ja", "zh"],
+        "type": "locale-language",
         "default": "en",
         "label": "Language",
         "description": "Interface language"
@@ -112,6 +111,17 @@ def action_user_preferences_set(a):
             if p["type"] == "select" and value not in p["options"]:
                 a.error(400, "Invalid value for " + p["key"])
                 return
+            # locale-language: BCP 47 tag, lowercase. Accept the value if it
+            # looks plausible — server-side resolver falls back gracefully if
+            # no catalog matches, so we don't need to enforce an installed list.
+            if p["type"] == "locale-language":
+                if len(value) > 35 or len(value) < 2:
+                    a.error(400, "Invalid value for " + p["key"])
+                    return
+                for ch in value.elems():
+                    if not (ch.isalnum() or ch == "-"):
+                        a.error(400, "Invalid value for " + p["key"])
+                        return
             a.user.preference.set(p["key"], value)
     # Handle theme preference (dynamic options, validated separately)
     theme = a.input("theme")

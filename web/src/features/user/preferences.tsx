@@ -1,4 +1,5 @@
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import {
   Loader2,
   RotateCcw,
@@ -46,6 +47,7 @@ import {
   usePageTitle,
   useTheme,
   shellSetLocale,
+  shellSetLanguage,
   useLocale,
   detectDateFormat,
   detectTimeFormat,
@@ -493,6 +495,32 @@ export function UserPreferences() {
 
   const localeKeys = ['date_format', 'time_format', 'timestamp_display', 'week_start', 'number_format', 'units'] as const
 
+  // Languages installed across all apps' labels/<lang>.conf files. The picker
+  // hides the field when only English is present (no real choice yet) — once
+  // Phase 2 ships fr/ja/en-US catalogs the picker reveals itself.
+  const { data: languagesData } = useQuery<{ languages: string[] }>({
+    queryKey: ['_', 'languages'],
+    queryFn: () => fetch('/_/languages').then((r) => r.json()),
+    staleTime: 5 * 60 * 1000,
+  })
+  const languageOptions = useMemo(() => {
+    const tags = languagesData?.languages ?? ['en']
+    const out: Record<string, string> = {}
+    for (const tag of tags) {
+      let nativeName = tag
+      let exonym = tag
+      try {
+        nativeName = new Intl.DisplayNames([tag], { type: 'language' }).of(tag) ?? tag
+        exonym = new Intl.DisplayNames(['en'], { type: 'language' }).of(tag) ?? tag
+      } catch {
+        /* fall back to raw tag */
+      }
+      out[tag] = nativeName === exonym ? nativeName : `${nativeName} - ${exonym}`
+    }
+    return out
+  }, [languagesData])
+  const showLanguagePicker = (languagesData?.languages?.length ?? 1) > 1
+
   useEffect(() => {
     if (!data) return
 
@@ -524,6 +552,11 @@ export function UserPreferences() {
           if ((localeKeys as readonly string[]).includes(key) || key === 'timezone') {
             const updated = { ...currentLocale, [key]: value } as LocalePreferences
             shellSetLocale(updated)
+          }
+          if (key === 'language') {
+            // Broadcast to the shell so every open iframe re-activates its
+            // Lingui catalog without a page reload.
+            shellSetLanguage(value)
           }
           if ((key === 'border_radius' || key === 'style_preset') && data) {
             const nextStylePreset = key === 'style_preset' ? value : data.preferences.style_preset
@@ -759,6 +792,23 @@ export function UserPreferences() {
             ) : null}
           </div>
         </Section>
+
+        {data && !error && showLanguagePicker && (
+          <Section title="Language">
+            <div className='divide-y-0'>
+              <FieldRow label='Language'>
+                <div className="w-full">
+                  <ComboSelect
+                    value={data.preferences.language || 'en'}
+                    options={languageOptions}
+                    onChange={(value) => handleChange('language', value)}
+                    disabled={setPreference.isPending}
+                  />
+                </div>
+              </FieldRow>
+            </div>
+          </Section>
+        )}
 
         {data && !error && (
           <Section title="Regional">
