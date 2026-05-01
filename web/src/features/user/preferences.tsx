@@ -510,14 +510,12 @@ export function UserPreferences() {
     const out: Record<string, string> = {}
     for (const tag of tags) {
       let nativeName = tag
-      let exonym = tag
       try {
         nativeName = new Intl.DisplayNames([tag], { type: 'language' }).of(tag) ?? tag
-        exonym = new Intl.DisplayNames(['en'], { type: 'language' }).of(tag) ?? tag
       } catch {
         /* fall back to raw tag */
       }
-      out[tag] = nativeName === exonym ? nativeName : `${nativeName} - ${exonym}`
+      out[tag] = nativeName
     }
     return out
   }, [languagesData])
