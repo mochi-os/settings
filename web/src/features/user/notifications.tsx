@@ -94,8 +94,8 @@ interface Topic {
 }
 
 const tabs: { id: TabId; label: string }[] = [
-  { id: 'categories', label: 'Categories' },
-  { id: 'topics', label: 'Topics' },
+  { id: 'categories', label: "Categories" },
+  { id: 'topics', label: "Topics" },
 ]
 
 // Sort categories alphabetically by label, with "No notifications" (id 0) last.
@@ -439,7 +439,7 @@ function CategoryDialog({
     <Dialog open onOpenChange={(v) => { if (!v) onClose() }}>
       <DialogContent className="max-w-lg" onOpenAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader>
-          <DialogTitle>{category ? 'Edit category' : 'New category'}</DialogTitle>
+          <DialogTitle>{category ? "Edit category" : "New category"}</DialogTitle>
           {isSuppress && (
             <DialogDescription>
               The "No notifications" category silences any topic assigned to it.
@@ -501,7 +501,7 @@ function DestinationsGrid({
   onToggle: (key: string) => void
 }) {
   const rows: { key: string; label: string }[] = [
-    { key: destKey('web', ''), label: 'Mochi web' },
+    { key: destKey('web', ''), label: "Mochi web" },
   ]
   for (const acc of available.accounts) {
     rows.push({

@@ -16,40 +16,40 @@ import { type SidebarData } from '@mochi/web'
 
 // User menu items (visible to all users)
 const userNavGroup = {
-  title: 'Settings',
+  title: "Settings",
   items: [
     {
-      title: 'Account',
+      title: "Account",
       url: APP_ROUTES.SETTINGS.USER.ACCOUNT,
       icon: User,
     },
     {
-      title: 'Preferences',
+      title: "Preferences",
       url: APP_ROUTES.SETTINGS.USER.PREFERENCES,
       icon: Palette,
     },
     {
-      title: 'Interests',
+      title: "Interests",
       url: APP_ROUTES.SETTINGS.USER.INTERESTS,
       icon: Star,
     },
     {
-      title: 'Connected accounts',
+      title: "Connected accounts",
       url: APP_ROUTES.SETTINGS.USER.ACCOUNTS,
       icon: Link2,
     },
     {
-      title: 'Notifications',
+      title: "Notifications",
       url: APP_ROUTES.SETTINGS.USER.NOTIFICATIONS,
       icon: Bell,
     },
     {
-      title: 'Tokens',
+      title: "Tokens",
       url: APP_ROUTES.SETTINGS.USER.TOKENS,
       icon: Key,
     },
     {
-      title: 'Sessions',
+      title: "Sessions",
       url: APP_ROUTES.SETTINGS.USER.SESSIONS,
       icon: Monitor,
     },
@@ -58,27 +58,27 @@ const userNavGroup = {
 
 // Management menu items (visible to users with domain access)
 const domainsNavItem = {
-  title: 'Domains',
+  title: "Domains",
   url: APP_ROUTES.SETTINGS.DOMAINS,
   icon: Globe,
 }
 
 // System menu items (admin only)
 const systemNavGroup = {
-  title: 'System',
+  title: "System",
   items: [
     {
-      title: 'System settings',
+      title: "System settings",
       url: APP_ROUTES.SETTINGS.SYSTEM.SETTINGS,
       icon: Settings,
     },
     {
-      title: 'Users',
+      title: "Users",
       url: APP_ROUTES.SETTINGS.SYSTEM.USERS,
       icon: Users,
     },
     {
-      title: 'Status',
+      title: "Status",
       url: APP_ROUTES.SETTINGS.SYSTEM.STATUS,
       icon: Activity,
     },
@@ -95,7 +95,7 @@ export function getSidebarData(
     const navGroups: SidebarData['navGroups'] = [userNavGroup]
     if (hasDomainAccess) {
       navGroups.push({
-        title: 'Management',
+        title: "Management",
         items: [domainsNavItem],
       })
     }
@@ -108,11 +108,11 @@ export function getSidebarData(
     ? [...userNavGroup.items, domainsNavItem]
     : userNavGroup.items
   return {
-    navGroups: [{ title: 'Settings', items }],
+    navGroups: [{ title: "Settings", items }],
   }
 }
 
 // Default sidebar (for initial load, flat list until we know access)
 export const sidebarData: SidebarData = {
-  navGroups: [{ title: 'Settings', items: userNavGroup.items }],
+  navGroups: [{ title: "Settings", items: userNavGroup.items }],
 }

@@ -612,7 +612,7 @@ export function UserPreferences() {
         toast.success('Preferences reset to defaults')
       },
       onError: (error) => {
-        toast.error(getErrorMessage(error, t`Failed to reset preferences`))
+        toast.error(getErrorMessage(error, "Failed to reset preferences"))
       },
     })
   }
@@ -620,7 +620,7 @@ export function UserPreferences() {
   return (
     <>
       <PageHeader
-        title={t`Preferences`}
+        title={"Preferences"}
         icon={<Sliders className='size-4 md:size-5' />}
         actions={!error ? (
           <AlertDialog>
@@ -658,7 +658,7 @@ export function UserPreferences() {
 
       <Main className="space-y-8">
 
-        <Section title={t`Display`}>
+        <Section title={"Display"}>
           <div className='divide-y-0'>
             {error ? (
               <GeneralError error={error} minimal mode='inline' reset={refetch} />
@@ -666,7 +666,7 @@ export function UserPreferences() {
               <ListSkeleton variant='simple' height='h-12' count={2} />
             ) : data ? (
               <>
-                <FieldRow label={t`Appearance`}>
+                <FieldRow label={"Appearance"}>
                   <div className="w-full">
                     <ComboSelect
                       value={data.preferences.appearance}
@@ -684,7 +684,7 @@ export function UserPreferences() {
                 </FieldRow>
 
                 {data.themes && data.themes.length > 0 && (
-                  <FieldRow label={t`Theme`}>
+                  <FieldRow label={"Theme"}>
                     <Button
                       variant="outline"
                       className="w-full justify-between"
@@ -701,18 +701,18 @@ export function UserPreferences() {
                               </>
                             )
                           }
-                          return t`Default`
+                          return "Default"
                         })()}
                       </span>
                       <ChevronRight className="size-4 text-muted-foreground" />
                     </Button>
                   </FieldRow>
                 )}
-                <FieldRow label={t`Border radius`}>
+                <FieldRow label={"Border radius"}>
                   <div className="w-full">
                     <ComboSelect
                       value={data.preferences.border_radius || 'default'}
-                      options={{ default: t`Follow theme`, none: t`None`, small: t`Small`, medium: t`Medium`, large: t`Large` }}
+                      options={{ default: "Follow theme", none: "None", small: "Small", medium: "Medium", large: "Large" }}
                       onChange={(value) => handleChange('border_radius', value)}
                       disabled={setPreference.isPending}
                       renderOption={(optValue, label) => (
@@ -734,7 +734,7 @@ export function UserPreferences() {
                     />
                   </div>
                 </FieldRow>
-                <FieldRow label={t`Style preset`}>
+                <FieldRow label={"Style preset"}>
                   <div className="w-full">
                     <ComboSelect
                       value={normalizeStylePresetForSelect(data.preferences.style_preset || 'luma')}
@@ -796,9 +796,9 @@ export function UserPreferences() {
         </Section>
 
         {data && !error && showLanguagePicker && (
-          <Section title={t`Language`}>
+          <Section title={"Language"}>
             <div className='divide-y-0'>
-              <FieldRow label={t`Language`}>
+              <FieldRow label={"Language"}>
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.language || 'en'}
@@ -813,9 +813,9 @@ export function UserPreferences() {
         )}
 
         {data && !error && (
-          <Section title={t`Regional`}>
+          <Section title={"Regional"}>
             <div className='divide-y-0'>
-              <FieldRow label={t`Time zone`}>
+              <FieldRow label={"Time zone"}>
                 <div className="w-full">
                   <TimezoneSelect
                     value={data.preferences.timezone}
@@ -825,7 +825,7 @@ export function UserPreferences() {
                 </div>
               </FieldRow>
 
-              <FieldRow label={t`Units`}>
+              <FieldRow label={"Units"}>
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.units || 'auto'}
@@ -836,7 +836,7 @@ export function UserPreferences() {
                 </div>
               </FieldRow>
 
-              <FieldRow label={t`Number format`}>
+              <FieldRow label={"Number format"}>
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.number_format || 'auto'}
@@ -847,7 +847,7 @@ export function UserPreferences() {
                 </div>
               </FieldRow>
 
-              <FieldRow label={t`Date format`}>
+              <FieldRow label={"Date format"}>
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.date_format || 'auto'}
@@ -858,7 +858,7 @@ export function UserPreferences() {
                 </div>
               </FieldRow>
 
-              <FieldRow label={t`Time format`}>
+              <FieldRow label={"Time format"}>
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.time_format || 'auto'}
@@ -869,7 +869,7 @@ export function UserPreferences() {
                 </div>
               </FieldRow>
 
-              <FieldRow label={t`Week starts on`}>
+              <FieldRow label={"Week starts on"}>
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.week_start || 'auto'}
@@ -883,7 +883,7 @@ export function UserPreferences() {
                 </div>
               </FieldRow>
 
-              <FieldRow label={t`Timestamps`}>
+              <FieldRow label={"Timestamps"}>
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.timestamp_display || 'auto'}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLingui } from '@lingui/react/macro'
 import type { Domain, Route as RouteType, Delegation } from '@/types/domains'
 import {
   Check,
@@ -687,7 +688,7 @@ function RouteRow({
       </TableCell>
       <TableCell>{route.priority}</TableCell>
       <TableCell>
-        {route.enabled ? 'Enabled' : 'Disabled'}
+        {route.enabled ? "Enabled" : "Disabled"}
       </TableCell>
       <TableCell className='text-right'>
         <div className='flex justify-end gap-1'>
@@ -1104,6 +1105,7 @@ function DomainDetails({
 }
 
 export function Domains() {
+  const { t } = useLingui()
   usePageTitle('Domains')
   const { data, isLoading, error, refetch } = useDomainsData()
   const deleteDomain = useDeleteDomain()
@@ -1163,7 +1165,7 @@ export function Domains() {
             ) : (
               <EmptyState
                 icon={Shield}
-                title={isAdmin ? 'No domains configured' : "You don't have access to any domains."}
+                title={isAdmin ? t`No domains configured` : t`You don't have access to any domains.`}
                 description={
                   isAdmin ? undefined : 'Contact an administrator to get a delegation.'
                 }

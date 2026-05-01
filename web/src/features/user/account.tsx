@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useLingui } from '@lingui/react/macro'
 import type {
   AuthMethodsResponse,
   OAuthIdentity,
@@ -90,6 +91,7 @@ type RegistrationOptionsJSON = Parameters<typeof startRegistration>[0]['optionsJ
 // ============================================================================
 
 function IdentitySection() {
+  const { t } = useLingui()
   const { data, isLoading, error, refetch } = useAccountData()
   const updateIdentity = useUpdateIdentity()
   const [isRenaming, setIsRenaming] = useState(false)
@@ -128,8 +130,7 @@ function IdentitySection() {
         onSuccess: () => {
           toast.success(
             privacy === 'public'
-              ? 'Identity is now listed in the directory'
-              : 'Identity is no longer listed in the directory'
+              ? t`Identity is now listed in the directory` : t`Identity is no longer listed in the directory`
           )
         },
         onError: (err) => {
@@ -228,6 +229,7 @@ function IdentitySection() {
 // ============================================================================
 
 function LoginRequirementsSection() {
+  const { t } = useLingui()
   const { data: methodsData, isLoading, error, refetch } = useMethods()
   const { data: passkeysData, error: passkeysError } = usePasskeys()
   const { data: totpData, error: totpError } = useTotpStatus()
@@ -276,8 +278,7 @@ function LoginRequirementsSection() {
               </Label>
               <p className='text-muted-foreground text-xs leading-relaxed'>
                 {hasPasskey
-                  ? 'Use a registered passkey to sign in'
-                  : 'Register a passkey below to enable'}
+                  ? t`Use a registered passkey to sign in` : t`Register a passkey below to enable`}
               </p>
             </div>
             <Switch
@@ -297,8 +298,7 @@ function LoginRequirementsSection() {
               </Label>
               <p className='text-muted-foreground text-xs leading-relaxed'>
                 {hasTOTP
-                  ? 'Use an authenticator app code to sign in'
-                  : 'Set up an authenticator below to enable'}
+                  ? t`Use an authenticator app code to sign in` : t`Set up an authenticator below to enable`}
               </p>
             </div>
             <Switch
@@ -699,6 +699,7 @@ function AuthenticatorSection() {
 // ============================================================================
 
 function RecoveryCodesSection() {
+  const { t } = useLingui()
   const { data, isLoading, error, refetch } = useRecoveryStatus()
   const generateCodes = useRecoveryGenerate()
   const [showGenerateDialog, setShowGenerateDialog] = useState(false)
@@ -726,7 +727,7 @@ function RecoveryCodesSection() {
       ) : (
         <Plus className='mr-2 h-4 w-4' />
       )}
-      {count > 0 ? 'Regenerate' : 'Generate'}
+      {count > 0 ? t`Regenerate` : t`Generate`}
     </Button>
   )
 
@@ -778,7 +779,7 @@ function RecoveryCodesSection() {
       <ConfirmDialog
         open={showGenerateDialog}
         onOpenChange={setShowGenerateDialog}
-        title={count > 0 ? 'Regenerate?' : 'Generate?'}
+        title={count > 0 ? t`Regenerate?` : t`Generate?`}
         desc='Make sure to save the new codes.'
         confirmText='Proceed'
         handleConfirm={() => {

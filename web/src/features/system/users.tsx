@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useLingui } from '@lingui/react/macro'
 import type { User, Session } from '@/types/users'
 import {
   Ban,
@@ -278,8 +279,7 @@ function SessionsDialog({ user }: { user: User }) {
       : agent.includes('Firefox')
         ? 'Firefox'
         : agent.includes('Safari')
-          ? 'Safari'
-          : 'Unknown browser'
+          ? "Safari" : "Unknown browser"
     return browser
   }
 
@@ -392,7 +392,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
     const action = isSuspended ? activateUser : suspendUser
     action.mutate(user.id, {
       onSuccess: () => {
-        toast.success(isSuspended ? 'Suspension removed' : 'User suspended')
+        toast.success(isSuspended ? "Suspension removed" : "User suspended")
         onUpdate()
       },
       onError: (error) => {
@@ -409,7 +409,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
       <TableCell>
         <div className='flex items-center gap-2'>
           <Badge variant={isAdmin ? 'default' : 'secondary'}>
-            {isAdmin ? 'Administrator' : 'User'}
+            {isAdmin ? "Administrator" : "User"}
           </Badge>
           {isSuspended && (
             <Badge variant='destructive'>Suspended</Badge>
@@ -517,6 +517,7 @@ function SortableHeader({
 }
 
 export function SystemUsers() {
+  const { t } = useLingui()
   usePageTitle('Users')
   const [search, setSearch] = useState('')
   const [limit, setLimit] = useState(25)
@@ -688,7 +689,7 @@ export function SystemUsers() {
         ) : (
           <EmptyState
             icon={Users}
-            title={debouncedSearch ? 'No users match your search' : 'No users found'}
+            title={debouncedSearch ? t`No users match your search` : t`No users found`}
             description={debouncedSearch ? 'Try adjusting your search criteria' : undefined}
             className='p-4'
           />
