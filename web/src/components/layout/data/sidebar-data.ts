@@ -15,10 +15,29 @@ import {
 import { type SidebarData } from '@mochi/web'
 import { useLingui } from '@lingui/react/macro'
 
-type T = (s: TemplateStringsArray, ...args: unknown[]) => string
-
-function buildUserNavGroup(t: T) {
+export function useSidebarData(): SidebarData {
+  const { t } = useLingui()
   return {
+    navGroups: [
+      {
+        title: t`Settings`,
+        items: [
+          { title: t`Account`, url: APP_ROUTES.SETTINGS.USER.ACCOUNT, icon: User },
+          { title: t`Preferences`, url: APP_ROUTES.SETTINGS.USER.PREFERENCES, icon: Palette },
+          { title: t`Interests`, url: APP_ROUTES.SETTINGS.USER.INTERESTS, icon: Star },
+          { title: t`Connected accounts`, url: APP_ROUTES.SETTINGS.USER.ACCOUNTS, icon: Link2 },
+          { title: t`Notifications`, url: APP_ROUTES.SETTINGS.USER.NOTIFICATIONS, icon: Bell },
+          { title: t`Tokens`, url: APP_ROUTES.SETTINGS.USER.TOKENS, icon: Key },
+          { title: t`Sessions`, url: APP_ROUTES.SETTINGS.USER.SESSIONS, icon: Monitor },
+        ],
+      },
+    ],
+  }
+}
+
+export function useFilteredSidebarData(isAdmin: boolean, hasDomainAccess: boolean): SidebarData {
+  const { t } = useLingui()
+  const userNavGroup = {
     title: t`Settings`,
     items: [
       { title: t`Account`, url: APP_ROUTES.SETTINGS.USER.ACCOUNT, icon: User },
@@ -30,10 +49,7 @@ function buildUserNavGroup(t: T) {
       { title: t`Sessions`, url: APP_ROUTES.SETTINGS.USER.SESSIONS, icon: Monitor },
     ],
   }
-}
-
-function buildSystemNavGroup(t: T) {
-  return {
+  const systemNavGroup = {
     title: t`System`,
     items: [
       { title: t`System settings`, url: APP_ROUTES.SETTINGS.SYSTEM.SETTINGS, icon: Settings },
@@ -41,16 +57,6 @@ function buildSystemNavGroup(t: T) {
       { title: t`Status`, url: APP_ROUTES.SETTINGS.SYSTEM.STATUS, icon: Activity },
     ],
   }
-}
-
-export function useSidebarData(): SidebarData {
-  const { t } = useLingui()
-  return { navGroups: [{ title: t`Settings`, items: buildUserNavGroup(t).items }] }
-}
-
-export function useFilteredSidebarData(isAdmin: boolean, hasDomainAccess: boolean): SidebarData {
-  const { t } = useLingui()
-  const userNavGroup = buildUserNavGroup(t)
   const domainsNavItem = {
     title: t`Domains`,
     url: APP_ROUTES.SETTINGS.DOMAINS,
@@ -62,7 +68,7 @@ export function useFilteredSidebarData(isAdmin: boolean, hasDomainAccess: boolea
     if (hasDomainAccess) {
       navGroups.push({ title: t`Management`, items: [domainsNavItem] })
     }
-    navGroups.push(buildSystemNavGroup(t))
+    navGroups.push(systemNavGroup)
     return { navGroups }
   }
 
