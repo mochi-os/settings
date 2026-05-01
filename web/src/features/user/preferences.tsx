@@ -536,12 +536,12 @@ export function UserPreferences() {
     const out: Record<string, string> = {}
     // "auto" pinned to the top — matches the date_format / time_format /
     // number_format / units pickers; resolves server-side via Accept-Language.
-    out['auto'] = `Detect from web browser (${describe(detectLanguage())})`
+    out['auto'] = `${t`Detect from web browser`} (${describe(detectLanguage())})`
     for (const tag of tags) {
       out[tag] = describe(tag)
     }
     return out
-  }, [languagesData])
+  }, [languagesData, t])
   const showLanguagePicker = (languagesData?.languages?.length ?? 1) > 1
 
   useEffect(() => {
