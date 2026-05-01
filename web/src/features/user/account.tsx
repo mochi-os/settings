@@ -349,6 +349,7 @@ function PasskeyRow({
   onRename: (id: string, name: string) => void
   onDelete: (id: string) => void
 }) {
+  const { t } = useLingui()
   const { formatTimestamp } = useFormat()
   const [isRenaming, setIsRenaming] = useState(false)
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
@@ -401,7 +402,7 @@ function PasskeyRow({
           <ConfirmDialog
             open={showDeleteDialog}
             onOpenChange={setShowDeleteDialog}
-            title={"Delete passkey?"}
+            title={t`Delete passkey?`}
             desc={`This will remove "${passkey.name}" from your account. You won't be able to use it to sign in anymore.`}
             confirmText='Delete'
             destructive
@@ -825,6 +826,7 @@ function OauthIdentityRow({
   identity: OAuthIdentity
   onUnlink: (provider: OAuthProvider) => void
 }) {
+  const { t } = useLingui()
   const { formatTimestamp } = useFormat()
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 
@@ -852,7 +854,7 @@ function OauthIdentityRow({
         <ConfirmDialog
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
-          title={"Unlink provider?"}
+          title={t`Unlink provider?`}
           desc={`You won't be able to sign in with ${oauthProviderLabel[identity.provider] ?? identity.provider} anymore. Make sure you still have another way to log in.`}
           confirmText='Unlink'
           destructive
@@ -938,7 +940,7 @@ function OauthSection() {
 
   return (
     <Section
-      title={"Third-party login"}
+      title={t`Third-party login`}
       action={linkButton}
     >
       {identities.error ? (
@@ -951,7 +953,7 @@ function OauthSection() {
       ) : identities.isLoading ? (
         <ListSkeleton variant='simple' height='h-10' count={2} />
       ) : linked.length === 0 ? (
-        <EmptyState icon={Link2} title={"No accounts linked"} className='p-4' />
+        <EmptyState icon={Link2} title={t`No accounts linked`} className='p-4' />
       ) : (
         <Table>
           <TableHeader>
@@ -1018,7 +1020,7 @@ export function UserAccount() {
 
   return (
     <>
-      <PageHeader title={"Account"} icon={<User className='size-4 md:size-5' />} />
+      <PageHeader title={t`Account`} icon={<User className='size-4 md:size-5' />} />
       <Main>
         <div className='space-y-8 pb-10'>
           <IdentitySection />

@@ -341,7 +341,7 @@ function SessionsDialog({ user }: { user: User }) {
           ) : (
             <EmptyState
               icon={Key}
-              title={"No active sessions"}
+              title={t`No active sessions`}
               description={"This user has no active sessions."}
             />
           )}
@@ -430,7 +430,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
       <TableCell className='w-[50px]'>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <IconButton variant='ghost' label={"Open user actions"}>
+            <IconButton variant='ghost' label={t`Open user actions`}>
               <MoreHorizontal className='h-4 w-4' />
             </IconButton>
           </DropdownMenuTrigger>
@@ -464,7 +464,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
         <ConfirmDialog
           open={deleteOpen}
           onOpenChange={setDeleteOpen}
-          title={"Delete user?"}
+          title={t`Delete user?`}
           desc={`This will permanently delete the user "${user.username}". This action cannot be undone.`}
           confirmText={
             deleteUser.isPending ? (
