@@ -142,7 +142,7 @@ function IdentitySection() {
 
   return (
     <Section
-      title='Identity'
+      title={t`Identity`}
     >
       {error ? (
         <GeneralError error={error} minimal mode='inline' reset={refetch} />
@@ -150,7 +150,7 @@ function IdentitySection() {
         <ListSkeleton variant='simple' height='h-12' count={4} />
       ) : data?.identity ? (
         <div className='divide-y-0'>
-          <FieldRow label="Name">
+          <FieldRow label={t`Name`}>
             {isRenaming ? (
               <div className='flex items-center gap-2'>
                 <Input
@@ -192,15 +192,15 @@ function IdentitySection() {
               </div>
             )}
           </FieldRow>
-          <FieldRow label="Username">
+          <FieldRow label={t`Username`}>
             <span className='text-foreground text-base'>
               {data.identity.username}
             </span>
           </FieldRow>
-          <FieldRow label="Fingerprint">
+          <FieldRow label={t`Fingerprint`}>
             <DataChip value={data.identity.fingerprint} truncate='middle' />
           </FieldRow>
-          <FieldRow label="Identity">
+          <FieldRow label={t`Identity`}>
             <DataChip
               value={data.identity.entity}
               className='w-full'
@@ -263,7 +263,7 @@ function LoginRequirementsSection() {
 
   return (
     <Section
-      title='Login requirements'
+      title={t`Login requirements`}
     >
       {error ? (
         <GeneralError error={error} minimal mode='inline' reset={refetch} />
@@ -401,7 +401,7 @@ function PasskeyRow({
           <ConfirmDialog
             open={showDeleteDialog}
             onOpenChange={setShowDeleteDialog}
-            title='Delete passkey?'
+            title={"Delete passkey?"}
             desc={`This will remove "${passkey.name}" from your account. You won't be able to use it to sign in anymore.`}
             confirmText='Delete'
             destructive
@@ -417,6 +417,7 @@ function PasskeyRow({
 }
 
 function PasskeysSection() {
+  const { t } = useLingui()
   const { data, isLoading, error, refetch } = usePasskeys()
   const registerBegin = usePasskeyRegisterBegin()
   const registerFinish = usePasskeyRegisterFinish()
@@ -492,7 +493,7 @@ function PasskeysSection() {
           <Label htmlFor='passkey-name'>Passkey name</Label>
           <Input
             id='passkey-name'
-            placeholder='My passkey'
+            placeholder={t`My passkey`}
             value={passkeyName}
             onChange={(e) => setPasskeyName(e.target.value)}
             className='mt-2'
@@ -512,7 +513,7 @@ function PasskeysSection() {
 
   return (
     <Section
-      title='Passkeys'
+      title={t`Passkeys`}
       action={addButton}
     >
       {error ? (
@@ -520,7 +521,7 @@ function PasskeysSection() {
       ) : isLoading ? (
         <ListSkeleton variant='simple' height='h-10' count={2} />
       ) : passkeys.length === 0 ? (
-        <EmptyState icon={Key} title='No passkeys registered' className='p-4' />
+        <EmptyState icon={Key} title={t`No passkeys registered`} className='p-4' />
       ) : (
         <Table>
           <TableHeader>
@@ -552,6 +553,7 @@ function PasskeysSection() {
 // ============================================================================
 
 function AuthenticatorSection() {
+  const { t } = useLingui()
   const { data, isLoading, error, refetch } = useTotpStatus()
   const setupTotp = useTotpSetup()
   const verifyTotp = useTotpVerify()
@@ -623,7 +625,7 @@ function AuthenticatorSection() {
 
   return (
     <Section
-      title='Authenticator app'
+      title={t`Authenticator app`}
       action={action}
     >
       {error ? (
@@ -676,12 +678,12 @@ function AuthenticatorSection() {
           </div>
         </div>
       ) : (
-        <EmptyState icon={Shield} title='No authenticator set up' className='p-4' />
+        <EmptyState icon={Shield} title={t`No authenticator set up`} className='p-4' />
       )}
       <ConfirmDialog
         open={showDisableDialog}
         onOpenChange={setShowDisableDialog}
-        title='Disable authenticator?'
+        title={t`Disable authenticator?`}
         desc='This will remove the app from your account.'
         confirmText='Disable'
         destructive
@@ -733,7 +735,7 @@ function RecoveryCodesSection() {
 
   return (
     <Section
-      title='Recovery codes'
+      title={t`Recovery codes`}
       action={action}
     >
       {error ? (
@@ -774,7 +776,7 @@ function RecoveryCodesSection() {
           </div>
         </div>
       ) : (
-        <EmptyState icon={RefreshCw} title='No recovery codes' className='p-4' />
+        <EmptyState icon={RefreshCw} title={t`No recovery codes`} className='p-4' />
       )}
       <ConfirmDialog
         open={showGenerateDialog}
@@ -850,7 +852,7 @@ function OauthIdentityRow({
         <ConfirmDialog
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
-          title='Unlink provider?'
+          title={"Unlink provider?"}
           desc={`You won't be able to sign in with ${oauthProviderLabel[identity.provider] ?? identity.provider} anymore. Make sure you still have another way to log in.`}
           confirmText='Unlink'
           destructive
@@ -935,7 +937,7 @@ function OauthSection() {
 
   return (
     <Section
-      title='Third-party login'
+      title={"Third-party login"}
       action={linkButton}
     >
       {identities.error ? (
@@ -948,7 +950,7 @@ function OauthSection() {
       ) : identities.isLoading ? (
         <ListSkeleton variant='simple' height='h-10' count={2} />
       ) : linked.length === 0 ? (
-        <EmptyState icon={Link2} title='No accounts linked' className='p-4' />
+        <EmptyState icon={Link2} title={"No accounts linked"} className='p-4' />
       ) : (
         <Table>
           <TableHeader>
@@ -1014,7 +1016,7 @@ export function UserAccount() {
 
   return (
     <>
-      <PageHeader title="Account" icon={<User className='size-4 md:size-5' />} />
+      <PageHeader title={"Account"} icon={<User className='size-4 md:size-5' />} />
       <Main>
         <div className='space-y-8 pb-10'>
           <IdentitySection />

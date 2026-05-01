@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useAuthStore, AuthenticatedLayout } from '@mochi/web'
-import { getSidebarData, sidebarData } from '@/components/layout/data/sidebar-data'
+import { useFilteredSidebarData, useSidebarData } from '@/components/layout/data/sidebar-data'
 import { useAccountData } from '@/hooks/use-account'
 import { useDomainsData } from '@/hooks/use-domains'
 
@@ -12,11 +12,13 @@ function SettingsLayout() {
   const hasDomainAccess =
     isAdmin || (domainsData?.delegations?.length ?? 0) > 0
 
-  // Only show full sidebar once we know what's available
+  // Only show full sidebar once we know what's available.
+  // Both hooks are called unconditionally to satisfy the rules of hooks; we
+  // pick which result to use based on isLoaded.
   const isLoaded = accountData !== undefined && domainsData !== undefined
-  const filteredSidebarData = isLoaded
-    ? getSidebarData(isAdmin, hasDomainAccess)
-    : sidebarData
+  const fallback = useSidebarData()
+  const filtered = useFilteredSidebarData(isAdmin, hasDomainAccess)
+  const filteredSidebarData = isLoaded ? filtered : fallback
 
   return (
     <AuthenticatedLayout

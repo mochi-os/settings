@@ -393,7 +393,7 @@ function EditRouteDialog({
   return (
     <ResponsiveDialog open={open} onOpenChange={handleOpenChange}>
       <ResponsiveDialogTrigger asChild>
-        <Button variant='ghost' size='icon' className='h-8 w-8' aria-label='Edit route'>
+        <Button variant='ghost' size='icon' className='h-8 w-8' aria-label={"Edit route"}>
           <Pencil className='h-4 w-4' />
         </Button>
       </ResponsiveDialogTrigger>
@@ -608,7 +608,7 @@ function AddDelegationDialog({
                   onChange={(e) => handleSearchChange(e.target.value)}
                   onFocus={() => setShowResults(true)}
                   onBlur={() => setTimeout(() => setShowResults(false), 200)}
-                  placeholder='Search for a user...'
+                  placeholder={"Search for a user..."}
                   autoComplete='off'
                 />
                 {showResults && searchQuery.length >= 2 && (
@@ -698,7 +698,7 @@ function RouteRow({
             size='icon'
             className='h-8 w-8'
             disabled={isDeleting}
-            aria-label='Delete route'
+            aria-label={"Delete route"}
             onClick={() => setShowDeleteDialog(true)}
           >
             {isDeleting ? (
@@ -710,7 +710,7 @@ function RouteRow({
           <ConfirmDialog
             open={showDeleteDialog}
             onOpenChange={setShowDeleteDialog}
-            title='Delete route?'
+            title={"Delete route?"}
             desc={`This will remove the route for path "${route.path || '/'}".`}
             confirmText='Delete'
             destructive
@@ -748,7 +748,7 @@ function DelegationRow({
           variant='ghost'
           size='icon'
           disabled={isDeleting}
-          aria-label='Delete delegation'
+          aria-label={"Delete delegation"}
           onClick={() => setShowDeleteDialog(true)}
         >
           {isDeleting ? (
@@ -760,7 +760,7 @@ function DelegationRow({
         <ConfirmDialog
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
-          title='Delete delegation?'
+          title={"Delete delegation?"}
           desc={`This will remove the delegation for ${delegation.username} on path "${delegation.path || '/'}".`}
           confirmText='Delete'
           destructive
@@ -1086,7 +1086,7 @@ function DomainDetails({
               <ConfirmDialog
                 open={showDeleteDialog}
                 onOpenChange={setShowDeleteDialog}
-                title='Delete domain?'
+                title={"Delete domain?"}
                 desc={`This will permanently delete "${domain.domain}" and all its routes. This action cannot be undone.`}
                 confirmText='Delete domain'
                 destructive
@@ -1146,7 +1146,7 @@ export function Domains() {
       />
 
       <Main>
-        <Section title='Domains'>
+        <Section title={t`Domains`}>
           <div className='divide-y'>
             {error ? (
               <GeneralError error={error} minimal mode='inline' reset={refetch} />

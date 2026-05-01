@@ -13,106 +13,61 @@ import {
   Bell,
 } from 'lucide-react'
 import { type SidebarData } from '@mochi/web'
+import { useLingui } from '@lingui/react/macro'
 
-// User menu items (visible to all users)
-const userNavGroup = {
-  title: "Settings",
-  items: [
-    {
-      title: "Account",
-      url: APP_ROUTES.SETTINGS.USER.ACCOUNT,
-      icon: User,
-    },
-    {
-      title: "Preferences",
-      url: APP_ROUTES.SETTINGS.USER.PREFERENCES,
-      icon: Palette,
-    },
-    {
-      title: "Interests",
-      url: APP_ROUTES.SETTINGS.USER.INTERESTS,
-      icon: Star,
-    },
-    {
-      title: "Connected accounts",
-      url: APP_ROUTES.SETTINGS.USER.ACCOUNTS,
-      icon: Link2,
-    },
-    {
-      title: "Notifications",
-      url: APP_ROUTES.SETTINGS.USER.NOTIFICATIONS,
-      icon: Bell,
-    },
-    {
-      title: "Tokens",
-      url: APP_ROUTES.SETTINGS.USER.TOKENS,
-      icon: Key,
-    },
-    {
-      title: "Sessions",
-      url: APP_ROUTES.SETTINGS.USER.SESSIONS,
-      icon: Monitor,
-    },
-  ],
+type T = (s: TemplateStringsArray, ...args: unknown[]) => string
+
+function buildUserNavGroup(t: T) {
+  return {
+    title: t`Settings`,
+    items: [
+      { title: t`Account`, url: APP_ROUTES.SETTINGS.USER.ACCOUNT, icon: User },
+      { title: t`Preferences`, url: APP_ROUTES.SETTINGS.USER.PREFERENCES, icon: Palette },
+      { title: t`Interests`, url: APP_ROUTES.SETTINGS.USER.INTERESTS, icon: Star },
+      { title: t`Connected accounts`, url: APP_ROUTES.SETTINGS.USER.ACCOUNTS, icon: Link2 },
+      { title: t`Notifications`, url: APP_ROUTES.SETTINGS.USER.NOTIFICATIONS, icon: Bell },
+      { title: t`Tokens`, url: APP_ROUTES.SETTINGS.USER.TOKENS, icon: Key },
+      { title: t`Sessions`, url: APP_ROUTES.SETTINGS.USER.SESSIONS, icon: Monitor },
+    ],
+  }
 }
 
-// Management menu items (visible to users with domain access)
-const domainsNavItem = {
-  title: "Domains",
-  url: APP_ROUTES.SETTINGS.DOMAINS,
-  icon: Globe,
+function buildSystemNavGroup(t: T) {
+  return {
+    title: t`System`,
+    items: [
+      { title: t`System settings`, url: APP_ROUTES.SETTINGS.SYSTEM.SETTINGS, icon: Settings },
+      { title: t`Users`, url: APP_ROUTES.SETTINGS.SYSTEM.USERS, icon: Users },
+      { title: t`Status`, url: APP_ROUTES.SETTINGS.SYSTEM.STATUS, icon: Activity },
+    ],
+  }
 }
 
-// System menu items (admin only)
-const systemNavGroup = {
-  title: "System",
-  items: [
-    {
-      title: "System settings",
-      url: APP_ROUTES.SETTINGS.SYSTEM.SETTINGS,
-      icon: Settings,
-    },
-    {
-      title: "Users",
-      url: APP_ROUTES.SETTINGS.SYSTEM.USERS,
-      icon: Users,
-    },
-    {
-      title: "Status",
-      url: APP_ROUTES.SETTINGS.SYSTEM.STATUS,
-      icon: Activity,
-    },
-  ],
+export function useSidebarData(): SidebarData {
+  const { t } = useLingui()
+  return { navGroups: [{ title: t`Settings`, items: buildUserNavGroup(t).items }] }
 }
 
-// Build sidebar data based on admin status and domain access
-export function getSidebarData(
-  isAdmin: boolean,
-  hasDomainAccess: boolean
-): SidebarData {
+export function useFilteredSidebarData(isAdmin: boolean, hasDomainAccess: boolean): SidebarData {
+  const { t } = useLingui()
+  const userNavGroup = buildUserNavGroup(t)
+  const domainsNavItem = {
+    title: t`Domains`,
+    url: APP_ROUTES.SETTINGS.DOMAINS,
+    icon: Globe,
+  }
+
   if (isAdmin) {
-    // Admin: show grouped sections
     const navGroups: SidebarData['navGroups'] = [userNavGroup]
     if (hasDomainAccess) {
-      navGroups.push({
-        title: "Management",
-        items: [domainsNavItem],
-      })
+      navGroups.push({ title: t`Management`, items: [domainsNavItem] })
     }
-    navGroups.push(systemNavGroup)
+    navGroups.push(buildSystemNavGroup(t))
     return { navGroups }
   }
 
-  // Non-admin: flat list with no group titles
   const items = hasDomainAccess
     ? [...userNavGroup.items, domainsNavItem]
     : userNavGroup.items
-  return {
-    navGroups: [{ title: "Settings", items }],
-  }
-}
-
-// Default sidebar (for initial load, flat list until we know access)
-export const sidebarData: SidebarData = {
-  navGroups: [{ title: "Settings", items: userNavGroup.items }],
+  return { navGroups: [{ title: t`Settings`, items }] }
 }

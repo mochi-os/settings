@@ -338,8 +338,8 @@ function SessionsDialog({ user }: { user: User }) {
           ) : (
             <EmptyState
               icon={Key}
-              title="No active sessions"
-              description="This user has no active sessions."
+              title={"No active sessions"}
+              description={"This user has no active sessions."}
             />
           )}
         </div>
@@ -426,7 +426,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
       <TableCell className='w-[50px]'>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <IconButton variant='ghost' label='Open user actions'>
+            <IconButton variant='ghost' label={"Open user actions"}>
               <MoreHorizontal className='h-4 w-4' />
             </IconButton>
           </DropdownMenuTrigger>
@@ -460,7 +460,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
         <ConfirmDialog
           open={deleteOpen}
           onOpenChange={setDeleteOpen}
-          title='Delete user?'
+          title={"Delete user?"}
           desc={`This will permanently delete the user "${user.username}". This action cannot be undone.`}
           confirmText={
             deleteUser.isPending ? (
@@ -556,7 +556,7 @@ export function SystemUsers() {
   if (ErrorComponent) {
     return (
       <>
-        <PageHeader title="Users" icon={<Users className='size-4 md:size-5' />} />
+        <PageHeader title={t`Users`} icon={<Users className='size-4 md:size-5' />} />
         <Main>
           {ErrorComponent}
         </Main>
@@ -582,7 +582,7 @@ export function SystemUsers() {
             <div className='relative'>
               <Search className='text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4' />
               <Input
-                placeholder='Search users...'
+                placeholder={t`Search users...`}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className='w-64 pl-8'
@@ -603,21 +603,21 @@ export function SystemUsers() {
                 <TableRow>
                   <SortableHeader
                     column='username'
-                    label='User'
+                    label={t`User`}
                     currentSort={sort}
                     currentOrder={order}
                     onSort={handleSort}
                   />
                   <SortableHeader
                     column='status'
-                    label='Status'
+                    label={t`Status`}
                     currentSort={sort}
                     currentOrder={order}
                     onSort={handleSort}
                   />
                   <SortableHeader
                     column='last'
-                    label='Last login'
+                    label={t`Last login`}
                     currentSort={sort}
                     currentOrder={order}
                     onSort={handleSort}
