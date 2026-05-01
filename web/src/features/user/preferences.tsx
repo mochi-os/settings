@@ -55,6 +55,7 @@ import {
   detectWeekStart,
   detectNumberFormat,
   detectUnits,
+  detectLanguage,
   type LocalePreferences,
 } from '@mochi/web'
 type RadiusOverrides = Record<string, string>
@@ -515,26 +516,29 @@ export function UserPreferences() {
       'en': 'English (international)',
       'en-us': 'English (USA)',
     }
-    const tags = languagesData?.languages ?? ['en']
-    const out: Record<string, string> = {}
-    for (const tag of tags) {
+    const describe = (tag: string): string => {
       const override = overrides[tag.toLowerCase()]
-      if (override) {
-        out[tag] = override
-        continue
-      }
-      let nativeName = tag
+      if (override) return override
+      let name = tag
       try {
-        nativeName = new Intl.DisplayNames([tag], { type: 'language' }).of(tag) ?? tag
+        name = new Intl.DisplayNames([tag], { type: 'language' }).of(tag) ?? tag
       } catch {
         /* fall back to raw tag */
       }
       // Some locales (e.g. fr) lowercase language exonyms; capitalise the
       // first letter so the dropdown reads "Français" not "français".
-      if (nativeName.length > 0) {
-        nativeName = nativeName.charAt(0).toLocaleUpperCase() + nativeName.slice(1)
+      if (name.length > 0) {
+        name = name.charAt(0).toLocaleUpperCase() + name.slice(1)
       }
-      out[tag] = nativeName
+      return name
+    }
+    const tags = languagesData?.languages ?? ['en']
+    const out: Record<string, string> = {}
+    // "auto" pinned to the top — matches the date_format / time_format /
+    // number_format / units pickers; resolves server-side via Accept-Language.
+    out['auto'] = `Detect from web browser (${describe(detectLanguage())})`
+    for (const tag of tags) {
+      out[tag] = describe(tag)
     }
     return out
   }, [languagesData])
@@ -574,8 +578,10 @@ export function UserPreferences() {
           }
           if (key === 'language') {
             // Broadcast to the shell so every open iframe re-activates its
-            // Lingui catalog without a page reload.
-            shellSetLanguage(value)
+            // Lingui catalog without a page reload. "auto" is stored as the
+            // server-side preference but iframes need a concrete tag, so
+            // resolve it locally before broadcasting.
+            shellSetLanguage(value === 'auto' ? detectLanguage() : value)
           }
           if ((key === 'border_radius' || key === 'style_preset') && data) {
             const nextStylePreset = key === 'style_preset' ? value : data.preferences.style_preset
@@ -819,7 +825,7 @@ export function UserPreferences() {
                 <FieldRow label={t`Language`}>
                   <div className="w-full">
                     <ComboSelect
-                      value={data.preferences.language || 'en'}
+                      value={data.preferences.language || 'auto'}
                       options={languageOptions}
                       onChange={(value) => handleChange('language', value)}
                       disabled={setPreference.isPending}
