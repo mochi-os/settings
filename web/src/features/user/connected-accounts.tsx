@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Trans, useLingui } from '@lingui/react/macro'
 import {
   Bell,
   Brain,
@@ -137,6 +138,7 @@ function AccountRow({
   isRemoving: boolean
   testingId: number | null
 }) {
+  const { t } = useLingui()
   const { formatTimestamp } = useFormat()
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const isVerified = account.verified > 0
@@ -166,7 +168,7 @@ function AccountRow({
               <span className='font-medium sm:font-normal'>{displayName}</span>
               {isAi && account.default === 'ai' && (
                 <span className='inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary'>
-                  Default
+                  <Trans>Default</Trans>
                 </span>
               )}
             </div>
@@ -191,17 +193,17 @@ function AccountRow({
         {needsVerification ? (
           <span className='inline-flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400'>
             <Clock className='h-3 w-3' />
-            Pending
+            <Trans>Pending</Trans>
           </span>
         ) : provider?.verify && isVerified ? (
           <span className='inline-flex items-center gap-1 text-xs text-green-600 dark:text-green-400'>
             <CheckCircle2 className='h-3 w-3' />
-            Verified
+            <Trans>Verified</Trans>
           </span>
         ) : (
           <span className='inline-flex items-center gap-1 text-xs text-green-600 dark:text-green-400'>
             <CheckCircle2 className='h-3 w-3' />
-            Connected
+            <Trans>Connected</Trans>
           </span>
         )}
       </TableCell>
@@ -212,7 +214,7 @@ function AccountRow({
           <Switch
             checked={account.enabled > 0}
             onCheckedChange={(checked) => onToggleEnabled(account.id, checked)}
-            aria-label='Notify by default'
+            aria-label={t`Notify by default`}
           />
         )}
       </TableCell>
@@ -232,29 +234,29 @@ function AccountRow({
               ) : (
                 <MoreHorizontal className='h-4 w-4' />
               )}
-              <span className='sr-only'>Actions</span>
+              <span className='sr-only'><Trans>Actions</Trans></span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align='end'>
             {needsVerification && (
               <DropdownMenuItem onClick={() => onVerify(account)}>
                 <Mail className='mr-2 h-4 w-4' />
-                Verify
+                <Trans>Verify</Trans>
               </DropdownMenuItem>
             )}
             <DropdownMenuItem onClick={() => onTest(account.id)}>
               <Zap className='mr-2 h-4 w-4' />
-              Test
+              <Trans>Test</Trans>
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => onSettings(account)}>
               <Pencil className='mr-2 h-4 w-4' />
-              Settings
+              <Trans>Settings</Trans>
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => setShowDeleteDialog(true)}
             >
               <Trash2 className='mr-2 h-4 w-4' />
-              Remove
+              <Trans>Remove</Trans>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -262,7 +264,7 @@ function AccountRow({
         <ConfirmDialog
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
-          title='Remove account?'
+          title={t`Remove account?`}
           desc={`This will remove the connected account "${displayName}".`}
           confirmText='Remove'
           destructive
@@ -274,7 +276,8 @@ function AccountRow({
 }
 
 export function ConnectedAccounts() {
-  usePageTitle('Connected accounts')
+  const { t } = useLingui()
+  usePageTitle(t`Connected accounts`)
   const [isAddOpen, setIsAddOpen] = useState(false)
   const [verifyAccount, setVerifyAccount] = useState<Account | null>(null)
   const [settingsAccount, setSettingsAccount] = useState<Account | null>(null)
@@ -307,7 +310,7 @@ export function ConnectedAccounts() {
       if (setAsDefault) {
         await handleSetDefault(account.id, true)
       }
-      toast.success('Account added')
+      toast.success(t`Account added`)
       setIsAddOpen(false)
 
       // If verification is required, show verify dialog
@@ -316,7 +319,7 @@ export function ConnectedAccounts() {
         setVerifyAccount(account)
       }
     } catch (error) {
-      const message = getErrorMessage(error, 'Failed to add account')
+      const message = getErrorMessage(error, t`Failed to add account`)
       toast.error(message)
       throw error
     }
@@ -325,9 +328,9 @@ export function ConnectedAccounts() {
   const handleRemove = async (id: number) => {
     try {
       await remove(id)
-      toast.success('Account removed')
+      toast.success(t`Account removed`)
     } catch (error) {
-      const message = getErrorMessage(error, 'Failed to remove account')
+      const message = getErrorMessage(error, t`Failed to remove account`)
       toast.error(message)
     }
   }
@@ -336,13 +339,13 @@ export function ConnectedAccounts() {
     try {
       const result = await verify(id, code)
       if (result) {
-        toast.success('Account verified')
+        toast.success(t`Account verified`)
         setVerifyAccount(null)
       } else {
-        toast.error('Invalid verification code')
+        toast.error(t`Invalid verification code`)
       }
     } catch (error) {
-      const message = getErrorMessage(error, 'Verification failed')
+      const message = getErrorMessage(error, t`Verification failed`)
       toast.error(message)
     }
   }
@@ -350,9 +353,9 @@ export function ConnectedAccounts() {
   const handleResend = async (id: number) => {
     try {
       await verify(id)
-      toast.success('Verification code sent')
+      toast.success(t`Verification code sent`)
     } catch (error) {
-      const message = getErrorMessage(error, 'Failed to send verification code')
+      const message = getErrorMessage(error, t`Failed to send verification code`)
       toast.error(message)
     }
   }
@@ -360,9 +363,9 @@ export function ConnectedAccounts() {
   const handleSaveSettings = async (id: number, fields: Record<string, string>) => {
     try {
       await update(id, fields)
-      toast.success('Account updated')
+      toast.success(t`Account updated`)
     } catch (error) {
-      const message = getErrorMessage(error, 'Failed to update account')
+      const message = getErrorMessage(error, t`Failed to update account`)
       toast.error(message)
     }
   }
@@ -377,7 +380,7 @@ export function ConnectedAccounts() {
       })
       refetch()
     } catch (error) {
-      toast.error(getErrorMessage(error, 'Failed to update default'))
+      toast.error(getErrorMessage(error, t`Failed to update default`))
     }
   }
 
@@ -391,7 +394,7 @@ export function ConnectedAccounts() {
         toast.error(result.message)
       }
     } catch (error) {
-      const message = getErrorMessage(error, 'Test failed')
+      const message = getErrorMessage(error, t`Test failed`)
       toast.error(message)
     } finally {
       setTestingId(null)
@@ -402,7 +405,7 @@ export function ConnectedAccounts() {
     try {
       await update(id, { enabled: enabled ? '1' : '0' })
     } catch (error) {
-      const message = getErrorMessage(error, 'Failed to update account')
+      const message = getErrorMessage(error, t`Failed to update account`)
       toast.error(message)
     }
   }
@@ -410,7 +413,7 @@ export function ConnectedAccounts() {
   return (
     <>
       <PageHeader
-        title='Connected accounts'
+        title={t`Connected accounts`}
         icon={<Link className='size-4 md:size-5' />}
         showSidebarTrigger
         actions={
@@ -421,7 +424,7 @@ export function ConnectedAccounts() {
               onClick={() => setIsAddOpen(true)}
             >
               <Plus className='mr-2 h-4 w-4' />
-              Add account
+              <Trans>Add account</Trans>
             </Button>
           )
         }
@@ -437,20 +440,20 @@ export function ConnectedAccounts() {
         ) : accounts.length === 0 ? (
           <EmptyState
             icon={Link}
-            title='No connected accounts'
+            title={t`No connected accounts`}
             className='p-4'
           />
         ) : (
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead className='hidden sm:table-cell'>Type</TableHead>
-                <TableHead className='hidden sm:table-cell'>Status</TableHead>
+                <TableHead><Trans>Name</Trans></TableHead>
+                <TableHead className='hidden sm:table-cell'><Trans>Type</Trans></TableHead>
+                <TableHead className='hidden sm:table-cell'><Trans>Status</Trans></TableHead>
                 <TableHead className='hidden md:table-cell'>
-                  Notify by default
+                  <Trans>Notify by default</Trans>
                 </TableHead>
-                <TableHead className='hidden lg:table-cell'>Added</TableHead>
+                <TableHead className='hidden lg:table-cell'><Trans>Added</Trans></TableHead>
                 <TableHead className='w-12'></TableHead>
               </TableRow>
             </TableHeader>
@@ -549,11 +552,11 @@ function AccountSettingsDialog({
     <ResponsiveDialog open onOpenChange={onOpenChange}>
       <ResponsiveDialogContent className='sm:max-w-[425px]'>
         <ResponsiveDialogHeader>
-          <ResponsiveDialogTitle>Account settings</ResponsiveDialogTitle>
+          <ResponsiveDialogTitle><Trans>Account settings</Trans></ResponsiveDialogTitle>
         </ResponsiveDialogHeader>
         <div className='grid gap-4 py-4'>
           <div className='grid gap-2'>
-            <Label htmlFor='settings-name'>Name</Label>
+            <Label htmlFor='settings-name'><Trans>Name</Trans></Label>
             <Input
               id='settings-name'
               value={nameValue}
@@ -563,7 +566,7 @@ function AccountSettingsDialog({
           {isAi && (
             <>
               <div className='grid gap-2'>
-                <Label htmlFor='settings-model'>Model</Label>
+                <Label htmlFor='settings-model'><Trans>Model</Trans></Label>
                 <Input
                   id='settings-model'
                   value={modelValue}
@@ -572,7 +575,7 @@ function AccountSettingsDialog({
                 />
               </div>
               <div className='flex items-center justify-between'>
-                <Label htmlFor='settings-default'>Default AI account</Label>
+                <Label htmlFor='settings-default'><Trans>Default AI account</Trans></Label>
                 <Switch
                   id='settings-default'
                   checked={isDefault}
@@ -584,9 +587,9 @@ function AccountSettingsDialog({
         </div>
         <ResponsiveDialogFooter>
           <Button variant='outline' onClick={() => onOpenChange(false)}>
-            Cancel
+            <Trans>Cancel</Trans>
           </Button>
-          <Button onClick={() => void handleSave()}>Save</Button>
+          <Button onClick={() => void handleSave()}><Trans>Save</Trans></Button>
         </ResponsiveDialogFooter>
       </ResponsiveDialogContent>
     </ResponsiveDialog>

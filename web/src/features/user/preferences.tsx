@@ -572,10 +572,10 @@ export function UserPreferences() {
               )
             )
           }
-          toast.success('Preference updated')
+          toast.success(t`Preference updated`)
         },
         onError: (error) => {
-          toast.error(getErrorMessage(error, 'Failed to update preference'))
+          toast.error(getErrorMessage(error, t`Failed to update preference`))
         },
       }
     )
@@ -595,10 +595,10 @@ export function UserPreferences() {
               data?.preferences.border_radius
             )
           )
-          toast.success('Theme updated')
+          toast.success(t`Theme updated`)
         },
         onError: (error) => {
-          toast.error(getErrorMessage(error, 'Failed to update theme'))
+          toast.error(getErrorMessage(error, t`Failed to update theme`))
         },
       }
     )
@@ -609,10 +609,10 @@ export function UserPreferences() {
       onSuccess: () => {
         setColorTheme(null)
         setTheme('system')
-        toast.success('Preferences reset to defaults')
+        toast.success(t`Preferences reset to defaults`)
       },
       onError: (error) => {
-        toast.error(getErrorMessage(error, "Failed to reset preferences"))
+        toast.error(getErrorMessage(error, t`Failed to reset preferences`))
       },
     })
   }
@@ -754,7 +754,7 @@ export function UserPreferences() {
                 <Sheet open={themeSheetOpen} onOpenChange={setThemeSheetOpen}>
                   <SheetContent className="overflow-y-auto" onInteractOutside={() => {}}>
                     <SheetHeader>
-                      <SheetTitle>Theme</SheetTitle>
+                      <SheetTitle><Trans>Theme</Trans></SheetTitle>
                     </SheetHeader>
                     <div className="grid gap-2 pt-4">
                       {(() => {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLingui } from '@lingui/react/macro'
+import { useLingui, Trans } from '@lingui/react/macro'
 import type {
   AuthMethodsResponse,
   OAuthIdentity,
@@ -112,11 +112,11 @@ function IdentitySection() {
       { name },
       {
         onSuccess: () => {
-          toast.success('Name updated')
+          toast.success(t`Name updated`)
           setIsRenaming(false)
         },
         onError: (err) => {
-          toast.error(getErrorMessage(err, 'Failed to update name'))
+          toast.error(getErrorMessage(err, t`Failed to update name`))
         },
       }
     )
@@ -134,7 +134,7 @@ function IdentitySection() {
           )
         },
         onError: (err) => {
-          toast.error(getErrorMessage(err, 'Failed to update privacy'))
+          toast.error(getErrorMessage(err, t`Failed to update privacy`))
         },
       }
     )
@@ -178,7 +178,7 @@ function IdentitySection() {
                   onClick={() => setIsRenaming(false)}
                   disabled={updateIdentity.isPending}
                 >
-                  Cancel
+                  <Trans>Cancel</Trans>
                 </Button>
               </div>
             ) : (
@@ -209,7 +209,7 @@ function IdentitySection() {
           </FieldRow>
           <div className='flex items-center justify-between py-4 border-t border-border/40'>
             <Label htmlFor='identity-public' className='text-muted-foreground pr-4 text-sm font-medium'>
-              Allow others to find you in directory
+              <Trans>Allow others to find you in directory</Trans>
             </Label>
             <Switch
               id='identity-public'
@@ -253,10 +253,10 @@ function LoginRequirementsSection() {
 
     setMethods.mutate(newMethods, {
       onSuccess: () => {
-        toast.success('Login requirements updated')
+        toast.success(t`Login requirements updated`)
       },
       onError: (error) => {
-        toast.error(getErrorMessage(error, 'Failed to update login requirements'))
+        toast.error(getErrorMessage(error, t`Failed to update login requirements`))
       },
     })
   }
@@ -274,7 +274,7 @@ function LoginRequirementsSection() {
           <div className='flex items-center justify-between py-4 border-b border-border/40'>
             <div className='space-y-1 pr-4'>
               <Label htmlFor='method-passkey' className='text-sm font-medium'>
-                Passkey
+                <Trans>Passkey</Trans>
               </Label>
               <p className='text-muted-foreground text-xs leading-relaxed'>
                 {hasPasskey
@@ -294,7 +294,7 @@ function LoginRequirementsSection() {
           <div className='flex items-center justify-between py-4 border-b border-border/40'>
             <div className='space-y-1 pr-4'>
               <Label htmlFor='method-totp' className='text-sm font-medium'>
-                Authenticator app
+                <Trans>Authenticator app</Trans>
               </Label>
               <p className='text-muted-foreground text-xs leading-relaxed'>
                 {hasTOTP
@@ -312,10 +312,10 @@ function LoginRequirementsSection() {
           <div className='flex items-center justify-between py-4'>
             <div className='space-y-1 pr-4'>
               <Label htmlFor='method-email' className='text-sm font-medium'>
-                Email code
+                <Trans>Email code</Trans>
               </Label>
               <p className='text-muted-foreground text-xs leading-relaxed'>
-                Receive a verification code by email
+                <Trans>Receive a verification code by email</Trans>
               </p>
             </div>
             <Switch
@@ -439,14 +439,14 @@ function PasskeysSection() {
         credential,
         name: passkeyName || 'Passkey',
       })
-      toast.success('Passkey registered')
+      toast.success(t`Passkey registered`)
       setRegisterDialogOpen(false)
       setPasskeyName('')
     } catch (error) {
       if (error instanceof Error && error.name === 'NotAllowedError') {
-        toast.error('Registration cancelled')
+        toast.error(t`Registration cancelled`)
       } else {
-        toast.error(getErrorMessage(error, 'Failed to register passkey'))
+        toast.error(getErrorMessage(error, t`Failed to register passkey`))
       }
     } finally {
       setIsRegistering(false)
@@ -457,16 +457,16 @@ function PasskeysSection() {
     renamePasskey.mutate(
       { id, name },
       {
-        onSuccess: () => toast.success('Passkey renamed'),
-        onError: (error) => toast.error(getErrorMessage(error, 'Failed to rename passkey')),
+        onSuccess: () => toast.success(t`Passkey renamed`),
+        onError: (error) => toast.error(getErrorMessage(error, t`Failed to rename passkey`)),
       }
     )
   }
 
   const handleDelete = (id: string) => {
     deletePasskey.mutate(id, {
-      onSuccess: () => toast.success('Passkey deleted'),
-      onError: (error) => toast.error(getErrorMessage(error, 'Failed to delete passkey')),
+      onSuccess: () => toast.success(t`Passkey deleted`),
+      onError: (error) => toast.error(getErrorMessage(error, t`Failed to delete passkey`)),
     })
   }
 
@@ -480,17 +480,17 @@ function PasskeysSection() {
         onClick={() => setRegisterDialogOpen(true)}
       >
         <Plus className='mr-2 h-4 w-4' />
-        Add passkey
+        <Trans>Add passkey</Trans>
       </Button>
       <ResponsiveDialogContent>
         <ResponsiveDialogHeader>
-          <ResponsiveDialogTitle>Register passkey</ResponsiveDialogTitle>
+          <ResponsiveDialogTitle><Trans>Register passkey</Trans></ResponsiveDialogTitle>
           <ResponsiveDialogDescription>
-            Use a security key, fingerprint, or face recognition.
+            <Trans>Use a security key, fingerprint, or face recognition.</Trans>
           </ResponsiveDialogDescription>
         </ResponsiveDialogHeader>
         <div className='py-4'>
-          <Label htmlFor='passkey-name'>Passkey name</Label>
+          <Label htmlFor='passkey-name'><Trans>Passkey name</Trans></Label>
           <Input
             id='passkey-name'
             placeholder={t`My passkey`}
@@ -526,9 +526,9 @@ function PasskeysSection() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Name</TableHead>
-              <TableHead>Created</TableHead>
-              <TableHead>Last used</TableHead>
+              <TableHead><Trans>Name</Trans></TableHead>
+              <TableHead><Trans>Created</Trans></TableHead>
+              <TableHead><Trans>Last used</Trans></TableHead>
               <TableHead className='w-24'></TableHead>
             </TableRow>
           </TableHeader>
@@ -568,7 +568,7 @@ function AuthenticatorSection() {
       const result = await setupTotp.mutateAsync()
       setSetupData(result)
     } catch (error) {
-      toast.error(getErrorMessage(error, 'Failed to set up authenticator'))
+      toast.error(getErrorMessage(error, t`Failed to set up authenticator`))
     }
   }
 
@@ -578,14 +578,14 @@ function AuthenticatorSection() {
     try {
       const result = await verifyTotp.mutateAsync(verifyCode)
       if (result.ok) {
-        toast.success('Authenticator app enabled')
+        toast.success(t`Authenticator app enabled`)
         setSetupData(null)
         setVerifyCode('')
       } else {
-        toast.error('Invalid code')
+        toast.error(t`Invalid code`)
       }
     } catch (error) {
-      toast.error(getErrorMessage(error, 'Failed to verify code'))
+      toast.error(getErrorMessage(error, t`Failed to verify code`))
     } finally {
       setIsVerifying(false)
     }
@@ -593,8 +593,8 @@ function AuthenticatorSection() {
 
   const handleDisable = () => {
     disableTotp.mutate(undefined, {
-      onSuccess: () => toast.success('Authenticator app disabled'),
-      onError: (error) => toast.error(getErrorMessage(error, 'Failed to disable authenticator')),
+      onSuccess: () => toast.success(t`Authenticator app disabled`),
+      onError: (error) => toast.error(getErrorMessage(error, t`Failed to disable authenticator`)),
     })
   }
 
@@ -609,7 +609,7 @@ function AuthenticatorSection() {
         onClick={() => setShowDisableDialog(true)}
       >
         <Trash2 className='mr-2 h-4 w-4' />
-        Disable
+        <Trans>Disable</Trans>
       </Button>
     ) : (
       <Button
@@ -619,7 +619,7 @@ function AuthenticatorSection() {
         disabled={setupTotp.isPending}
       >
         <Plus className='mr-2 h-4 w-4' />
-        Set up
+        <Trans>Set up</Trans>
       </Button>
     )
 
@@ -663,7 +663,7 @@ function AuthenticatorSection() {
                 Verify & Enable
                 {isVerifying && <Loader2 className='ml-2 h-4 w-4 animate-spin' />}
               </Button>
-              <Button variant='ghost' onClick={() => setSetupData(null)}>Cancel</Button>
+              <Button variant='ghost' onClick={() => setSetupData(null)}><Trans>Cancel</Trans></Button>
             </div>
           </div>
         </div>
@@ -673,8 +673,8 @@ function AuthenticatorSection() {
             <Check className='h-5 w-5 text-green-600 dark:text-green-500' />
           </div>
           <div>
-            <p className='text-sm font-medium'>Enabled</p>
-            <p className='text-muted-foreground text-xs'>Authenticator app is active</p>
+            <p className='text-sm font-medium'><Trans>Enabled</Trans></p>
+            <p className='text-muted-foreground text-xs'><Trans>Authenticator app is active</Trans></p>
           </div>
         </div>
       ) : (
@@ -712,7 +712,7 @@ function RecoveryCodesSection() {
       const result = await generateCodes.mutateAsync()
       setShowCodes(result.codes)
     } catch (error) {
-      toast.error(getErrorMessage(error, 'Failed to generate codes'))
+      toast.error(getErrorMessage(error, t`Failed to generate codes`))
     }
   }
 
@@ -746,8 +746,8 @@ function RecoveryCodesSection() {
         <div className='space-y-5 py-4'>
           <Alert variant='destructive' className='bg-amber-50 dark:bg-amber-950/20 border-amber-200'>
             <Shield className='h-4 w-4 text-amber-600' />
-            <AlertTitle>Save these codes</AlertTitle>
-            <AlertDescription>Each code can only be used once.</AlertDescription>
+            <AlertTitle><Trans>Save these codes</Trans></AlertTitle>
+            <AlertDescription><Trans>Each code can only be used once.</Trans></AlertDescription>
           </Alert>
           <div className='bg-muted/30 rounded-xl border p-5'>
             <div className='grid grid-cols-2 gap-3 font-mono text-sm'>
@@ -759,10 +759,10 @@ function RecoveryCodesSection() {
           <div className='flex gap-2'>
             <Button variant='outline' size='sm' onClick={() => {
               void shellClipboardWrite(showCodes.join('\n')).then((ok) => {
-                if (ok) toast.success('Codes copied')
+                if (ok) toast.success(t`Codes copied`)
               })
-            }}>Copy all</Button>
-            <Button variant='ghost' size='sm' onClick={() => setShowCodes(null)}>Done</Button>
+            }}><Trans>Copy all</Trans></Button>
+            <Button variant='ghost' size='sm' onClick={() => setShowCodes(null)}><Trans>Done</Trans></Button>
           </div>
         </div>
       ) : count > 0 ? (
@@ -772,7 +772,7 @@ function RecoveryCodesSection() {
           </div>
           <div>
             <p className='text-sm font-medium'>{count} remaining</p>
-            <p className='text-muted-foreground text-xs'>Recovery codes</p>
+            <p className='text-muted-foreground text-xs'><Trans>Recovery codes</Trans></p>
           </div>
         </div>
       ) : (
@@ -867,6 +867,7 @@ function OauthIdentityRow({
 }
 
 function OauthSection() {
+  const { t } = useLingui()
   const identities = useOauthIdentities()
   const authMethods = useAuthMethods()
   const oauthBegin = useOauthBegin()
@@ -884,7 +885,7 @@ function OauthSection() {
       const { url } = await oauthBegin.mutateAsync({ provider, link: true })
       shellNavigateTop(url)
     } catch (error) {
-      toast.error(getErrorMessage(error, 'Could not start linking'))
+      toast.error(getErrorMessage(error, t`Could not start linking`))
     }
   }
 
@@ -893,7 +894,7 @@ function OauthSection() {
       await oauthUnlink.mutateAsync(provider)
       toast.success(`Unlinked ${oauthProviderLabel[provider] ?? provider}`)
     } catch (error) {
-      toast.error(getErrorMessage(error, 'Could not unlink provider'))
+      toast.error(getErrorMessage(error, t`Could not unlink provider`))
     }
   }
 
@@ -919,7 +920,7 @@ function OauthSection() {
           disabled={oauthBegin.isPending}
         >
           <Plus className='mr-2 h-4 w-4' />
-          Link account
+          <Trans>Link account</Trans>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end'>
@@ -955,9 +956,9 @@ function OauthSection() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Provider</TableHead>
-              <TableHead>Email</TableHead>
-              <TableHead>Last used</TableHead>
+              <TableHead><Trans>Provider</Trans></TableHead>
+              <TableHead><Trans>Email</Trans></TableHead>
+              <TableHead><Trans>Last used</Trans></TableHead>
               <TableHead className='w-16'></TableHead>
             </TableRow>
           </TableHeader>
@@ -981,7 +982,8 @@ function OauthSection() {
 // ============================================================================
 
 export function UserAccount() {
-  usePageTitle('Account')
+  const { t } = useLingui()
+  usePageTitle(t`Account`)
 
   // Read a one-shot OAuth callback result so the user sees a confirmation toast
   // after returning from a provider's consent page. Guarded against React
@@ -1005,11 +1007,11 @@ export function UserAccount() {
           `Linked ${oauthProviderLabel[linked as OAuthProvider] ?? linked}`
         )
       } else if (errored === 'already_linked') {
-        toast.error('That account is already linked to another user')
+        toast.error(t`That account is already linked to another user`)
       } else if (errored === 'email_exists') {
-        toast.error('That email is already registered to another account')
+        toast.error(t`That email is already registered to another account`)
       } else {
-        toast.error('Could not link account')
+        toast.error(t`Could not link account`)
       }
     }, 0)
   }, [])

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLingui } from '@lingui/react/macro'
+import { useLingui, Trans } from '@lingui/react/macro'
 import type { User, Session } from '@/types/users'
 import {
   Ban,
@@ -77,6 +77,7 @@ function useDebounce<T>(value: T, delay: number): T {
 }
 
 function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
+  const { t } = useLingui()
   const [open, setOpen] = useState(false)
   const [username, setUsername] = useState('')
   const [role, setRole] = useState('user')
@@ -88,14 +89,14 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
       { username, role },
       {
         onSuccess: () => {
-          toast.success('User created')
+          toast.success(t`User created`)
           setOpen(false)
           setUsername('')
           setRole('user')
           onSuccess()
         },
         onError: (error) => {
-          toast.error(getErrorMessage(error, 'Failed to create user'))
+          toast.error(getErrorMessage(error, t`Failed to create user`))
         },
       }
     )
@@ -106,17 +107,17 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
       <ResponsiveDialogTrigger asChild>
         <Button variant='outline' size='sm'>
           <Plus className='mr-2 h-4 w-4' />
-          Add User
+          <Trans>Add User</Trans>
         </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
           <ResponsiveDialogHeader>
-            <ResponsiveDialogTitle>Create user</ResponsiveDialogTitle>
+            <ResponsiveDialogTitle><Trans>Create user</Trans></ResponsiveDialogTitle>
           </ResponsiveDialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
-              <Label htmlFor='username'>Email</Label>
+              <Label htmlFor='username'><Trans>Email</Trans></Label>
               <Input
                 id='username'
                 type='email'
@@ -127,14 +128,14 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
               />
             </div>
             <div className='grid gap-2'>
-              <Label htmlFor='role'>Role</Label>
+              <Label htmlFor='role'><Trans>Role</Trans></Label>
               <Select value={role} onValueChange={setRole}>
                 <SelectTrigger className='w-full'>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value='administrator'>Administrator</SelectItem>
-                  <SelectItem value='user'>User</SelectItem>
+                  <SelectItem value='administrator'><Trans>Administrator</Trans></SelectItem>
+                  <SelectItem value='user'><Trans>User</Trans></SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -145,7 +146,7 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
               variant='outline'
               onClick={() => setOpen(false)}
             >
-              Cancel
+              <Trans>Cancel</Trans>
             </Button>
             <Button type='submit' disabled={createUser.isPending}>
               {createUser.isPending && (
@@ -167,6 +168,7 @@ function EditUserDialog({
   user: User
   onSuccess: () => void
 }) {
+  const { t } = useLingui()
   const [open, setOpen] = useState(false)
   const [username, setUsername] = useState(user.username)
   const [role, setRole] = useState(user.role)
@@ -178,12 +180,12 @@ function EditUserDialog({
       { id: user.id, username, role },
       {
         onSuccess: () => {
-          toast.success('User updated')
+          toast.success(t`User updated`)
           setOpen(false)
           onSuccess()
         },
         onError: (error) => {
-          toast.error(getErrorMessage(error, 'Failed to update user'))
+          toast.error(getErrorMessage(error, t`Failed to update user`))
         },
       }
     )
@@ -194,17 +196,17 @@ function EditUserDialog({
       <ResponsiveDialogTrigger asChild>
         <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
           <Pencil className='mr-2 h-4 w-4' />
-          Edit user
+          <Trans>Edit user</Trans>
         </DropdownMenuItem>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
           <ResponsiveDialogHeader>
-            <ResponsiveDialogTitle>Edit user</ResponsiveDialogTitle>
+            <ResponsiveDialogTitle><Trans>Edit user</Trans></ResponsiveDialogTitle>
           </ResponsiveDialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
-              <Label htmlFor='edit-username'>Email</Label>
+              <Label htmlFor='edit-username'><Trans>Email</Trans></Label>
               <Input
                 id='edit-username'
                 type='email'
@@ -214,14 +216,14 @@ function EditUserDialog({
               />
             </div>
             <div className='grid gap-2'>
-              <Label htmlFor='edit-role'>Role</Label>
+              <Label htmlFor='edit-role'><Trans>Role</Trans></Label>
               <Select value={role} onValueChange={setRole}>
                 <SelectTrigger className='w-full'>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value='administrator'>Administrator</SelectItem>
-                  <SelectItem value='user'>User</SelectItem>
+                  <SelectItem value='administrator'><Trans>Administrator</Trans></SelectItem>
+                  <SelectItem value='user'><Trans>User</Trans></SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -232,7 +234,7 @@ function EditUserDialog({
               variant='outline'
               onClick={() => setOpen(false)}
             >
-              Cancel
+              <Trans>Cancel</Trans>
             </Button>
             <Button type='submit' disabled={updateUser.isPending}>
               {updateUser.isPending && (
@@ -248,6 +250,7 @@ function EditUserDialog({
 }
 
 function SessionsDialog({ user }: { user: User }) {
+  const { t } = useLingui()
   const { formatTimestamp } = useFormat()
   const [open, setOpen] = useState(false)
   const { data, isLoading, refetch } = useUserSessions(user.id, open)
@@ -266,7 +269,7 @@ function SessionsDialog({ user }: { user: User }) {
           refetch()
         },
         onError: (error) => {
-          toast.error(getErrorMessage(error, 'Failed to revoke session'))
+          toast.error(getErrorMessage(error, t`Failed to revoke session`))
         },
       }
     )
@@ -288,14 +291,14 @@ function SessionsDialog({ user }: { user: User }) {
       <ResponsiveDialogTrigger asChild>
         <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
           <Key className='mr-2 h-4 w-4' />
-          Manage sessions
+          <Trans>Manage sessions</Trans>
         </DropdownMenuItem>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent className='max-w-2xl'>
         <ResponsiveDialogHeader>
           <ResponsiveDialogTitle>Sessions for {user.username}</ResponsiveDialogTitle>
           <ResponsiveDialogDescription>
-            View and revoke active sessions for this user.
+            <Trans>View and revoke active sessions for this user.</Trans>
           </ResponsiveDialogDescription>
         </ResponsiveDialogHeader>
         <div className='py-4'>
@@ -305,9 +308,9 @@ function SessionsDialog({ user }: { user: User }) {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Device</TableHead>
-                  <TableHead>IP Address</TableHead>
-                  <TableHead>Last accessed</TableHead>
+                  <TableHead><Trans>Device</Trans></TableHead>
+                  <TableHead><Trans>IP Address</Trans></TableHead>
+                  <TableHead><Trans>Last accessed</Trans></TableHead>
                   <TableHead className='w-[80px]' />
                 </TableRow>
               </TableHeader>
@@ -328,7 +331,7 @@ function SessionsDialog({ user }: { user: User }) {
                         onClick={() => handleRevoke(session.id)}
                         disabled={revokeSession.isPending}
                       >
-                        Revoke
+                        <Trans>Revoke</Trans>
                       </Button>
                     </TableCell>
                   </TableRow>
@@ -345,7 +348,7 @@ function SessionsDialog({ user }: { user: User }) {
         </div>
         <ResponsiveDialogFooter>
           <Button variant='outline' onClick={() => setOpen(false)}>
-            Close
+            <Trans>Close</Trans>
           </Button>
           {data?.sessions && data.sessions.length > 0 && (
             <Button
@@ -366,6 +369,7 @@ function SessionsDialog({ user }: { user: User }) {
 }
 
 function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void; isSelf: boolean }) {
+  const { t } = useLingui()
   const { formatTimestamp } = useFormat()
   const [deleteOpen, setDeleteOpen] = useState(false)
   const deleteUser = useDeleteUser()
@@ -378,12 +382,12 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
   const handleDelete = () => {
     deleteUser.mutate(user.id, {
       onSuccess: () => {
-        toast.success('User deleted')
+        toast.success(t`User deleted`)
         setDeleteOpen(false)
         onUpdate()
       },
       onError: (error) => {
-        toast.error(getErrorMessage(error, 'Failed to delete user'))
+        toast.error(getErrorMessage(error, t`Failed to delete user`))
       },
     })
   }
@@ -396,7 +400,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
         onUpdate()
       },
       onError: (error) => {
-        toast.error(getErrorMessage(error, 'Failed to update user status'))
+        toast.error(getErrorMessage(error, t`Failed to update user status`))
       },
     })
   }
@@ -412,7 +416,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
             {isAdmin ? "Administrator" : "User"}
           </Badge>
           {isSuspended && (
-            <Badge variant='destructive'>Suspended</Badge>
+            <Badge variant='destructive'><Trans>Suspended</Trans></Badge>
           )}
         </div>
       </TableCell>
@@ -420,7 +424,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
         {user.last ? (
           formatTimestamp(user.last)
         ) : (
-          <span className='italic'>Never</span>
+          <span className='italic'><Trans>Never</Trans></span>
         )}
       </TableCell>
       <TableCell className='w-[50px]'>
@@ -438,12 +442,12 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
                 {isSuspended ? (
                   <>
                     <UserCheck className='mr-2 h-4 w-4' />
-                    Remove suspension
+                    <Trans>Remove suspension</Trans>
                   </>
                 ) : (
                   <>
                     <Ban className='mr-2 h-4 w-4' />
-                    Suspend user
+                    <Trans>Suspend user</Trans>
                   </>
                 )}
               </DropdownMenuItem>
@@ -451,7 +455,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
             {!isSelf && (
               <DropdownMenuItem onClick={() => setDeleteOpen(true)}>
                 <Trash2 className='mr-2 h-4 w-4' />
-                Delete user
+                <Trans>Delete user</Trans>
               </DropdownMenuItem>
             )}
           </DropdownMenuContent>
@@ -466,7 +470,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
             deleteUser.isPending ? (
               <>
                 <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-                Deleting...
+                <Trans>Deleting...</Trans>
               </>
             ) : (
               'Delete'
@@ -518,7 +522,7 @@ function SortableHeader({
 
 export function SystemUsers() {
   const { t } = useLingui()
-  usePageTitle('Users')
+  usePageTitle(t`Users`)
   const [search, setSearch] = useState('')
   const [limit, setLimit] = useState(25)
   const [offset, setOffset] = useState(0)
@@ -671,7 +675,7 @@ export function SystemUsers() {
                     disabled={offset === 0}
                   >
                     <ChevronLeft className='mr-1 h-4 w-4' />
-                    Previous
+                    <Trans>Previous</Trans>
                   </Button>
                   <Button
                     variant='outline'

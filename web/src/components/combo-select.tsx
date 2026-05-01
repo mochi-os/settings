@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from 'react'
+import { Trans } from '@lingui/react/macro'
 import { Check, ChevronsUpDown } from 'lucide-react'
 import {
   cn,
@@ -55,7 +56,7 @@ export function ComboSelect({
       <PopoverContent className='w-[--radix-popover-trigger-width] p-0' align='start'>
         <Command>
           <CommandList>
-            <CommandEmpty>No options found.</CommandEmpty>
+            <CommandEmpty><Trans>No options found.</Trans></CommandEmpty>
             <CommandGroup>
               {Object.entries(options).map(([optValue, label]) => (
                 <CommandItem

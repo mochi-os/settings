@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Trans, useLingui } from '@lingui/react/macro'
 import type { SystemSetting } from '@/types/settings'
 import { Loader2, Lock, RotateCcw, Settings } from 'lucide-react'
 import {
@@ -119,6 +120,7 @@ function SettingField({
   onSave: (name: string, value: string) => void
   isSaving: boolean
 }) {
+  const { t } = useLingui()
   const [localValue, setLocalValue] = useState(setting.value)
   const isBoolean = isBooleanSetting(setting)
   const enumOpts = enumOptions(setting)
@@ -187,24 +189,24 @@ function SettingField({
                     size='icon'
                     className='h-8 w-8 text-muted-foreground'
                     disabled={isSaving}
-                    aria-label='Reset to default'
-                    title='Reset to default'
+                    aria-label={t`Reset to default`}
+                    title={t`Reset to default`}
                   >
                     <RotateCcw className='h-4 w-4' />
                   </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>Reset to default?</AlertDialogTitle>
+                    <AlertDialogTitle><Trans>Reset to default?</Trans></AlertDialogTitle>
                     <AlertDialogDescription>
                       This will reset "{formatSettingName(setting.name)}" to its
                       default value ({setting.default}).
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogCancel><Trans>Cancel</Trans></AlertDialogCancel>
                     <AlertDialogAction onClick={handleReset}>
-                      Reset
+                      <Trans>Reset</Trans>
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
@@ -226,24 +228,24 @@ function SettingField({
                     size='icon'
                     className='h-8 w-8 text-muted-foreground'
                     disabled={isSaving}
-                    aria-label='Reset to default'
-                    title='Reset to default'
+                    aria-label={t`Reset to default`}
+                    title={t`Reset to default`}
                   >
                     <RotateCcw className='h-4 w-4' />
                   </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>Reset to default?</AlertDialogTitle>
+                    <AlertDialogTitle><Trans>Reset to default?</Trans></AlertDialogTitle>
                     <AlertDialogDescription>
                       This will reset "{formatSettingName(setting.name)}" to its
                       default value ({setting.default}).
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogCancel><Trans>Cancel</Trans></AlertDialogCancel>
                     <AlertDialogAction onClick={handleReset}>
-                      Reset
+                      <Trans>Reset</Trans>
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
@@ -274,24 +276,24 @@ function SettingField({
                     size='icon'
                     className='h-9 w-9 text-muted-foreground'
                     disabled={isSaving}
-                    aria-label='Reset to default'
-                    title='Reset to default'
+                    aria-label={t`Reset to default`}
+                    title={t`Reset to default`}
                   >
                     <RotateCcw className='h-4 w-4' />
                   </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>Reset to default?</AlertDialogTitle>
+                    <AlertDialogTitle><Trans>Reset to default?</Trans></AlertDialogTitle>
                     <AlertDialogDescription>
                       This will reset "{formatSettingName(setting.name)}" to its
                       default {setting.default ? `value (${setting.default})` : '(empty)'}.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogCancel><Trans>Cancel</Trans></AlertDialogCancel>
                     <AlertDialogAction onClick={handleReset}>
-                      Reset
+                      <Trans>Reset</Trans>
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
@@ -305,7 +307,8 @@ function SettingField({
 }
 
 export function SystemSettings() {
-  usePageTitle('System settings')
+  const { t } = useLingui()
+  usePageTitle(t`System settings`)
   const { data, isLoading, error, refetch } = useSystemSettingsData()
   const setSetting = useSetSystemSetting()
   const [savingName, setSavingName] = useState<string | null>(null)
@@ -316,11 +319,11 @@ export function SystemSettings() {
       { name, value },
       {
         onSuccess: () => {
-          toast.success('Setting updated')
+          toast.success(t`Setting updated`)
           setSavingName(null)
         },
         onError: (error) => {
-          toast.error(getErrorMessage(error, 'Failed to update setting'))
+          toast.error(getErrorMessage(error, t`Failed to update setting`))
           setSavingName(null)
         },
       }
@@ -365,7 +368,7 @@ export function SystemSettings() {
 
   return (
     <>
-      <PageHeader title="System settings" icon={<Settings className='size-4 md:size-5' />} />
+      <PageHeader title={t`System settings`} icon={<Settings className='size-4 md:size-5' />} />
 
       <Main className="space-y-8">
         {error ? (
@@ -374,27 +377,27 @@ export function SystemSettings() {
           <ListSkeleton variant='simple' height='h-12' count={4} />
         ) : (
           <>
-            <Section title="Login">
+            <Section title={t`Login`}>
               <div className='divide-y-0'>
                 {renderSettings(loginSettings)}
               </div>
             </Section>
 
             {oauthSettings.length > 0 && (
-              <Section title="Third-party login">
+              <Section title={t`Third-party login`}>
                 <div className='divide-y-0'>
                   {renderSettings(oauthSettings)}
                 </div>
               </Section>
             )}
 
-            <Section title="User defaults">
+            <Section title={t`User defaults`}>
               <div className='divide-y-0'>
                 {renderSettings(userDefaults)}
               </div>
             </Section>
 
-            <Section title="Other settings">
+            <Section title={t`Other settings`}>
               <div className='divide-y-0'>
                 {renderSettings(other)}
               </div>

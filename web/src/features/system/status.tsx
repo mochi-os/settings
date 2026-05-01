@@ -1,4 +1,5 @@
 import { Activity } from 'lucide-react'
+import { Trans, useLingui } from '@lingui/react/macro'
 import {
   GeneralError,
   ListSkeleton,
@@ -10,7 +11,8 @@ import {
 import { useSystemSettingsData } from '@/hooks/use-system-settings'
 
 export function SystemStatus() {
-  usePageTitle('Status')
+  const { t } = useLingui()
+  usePageTitle(t`Status`)
   const { data, isLoading, error, refetch } = useSystemSettingsData()
 
   const settings = data?.settings ?? []
@@ -21,7 +23,7 @@ export function SystemStatus() {
 
   return (
     <>
-      <PageHeader title="Status" icon={<Activity className='size-4 md:size-5' />} />
+      <PageHeader title={t`Status`} icon={<Activity className='size-4 md:size-5' />} />
 
       <Main>
         {error ? (
@@ -31,11 +33,11 @@ export function SystemStatus() {
         ) : (
           <dl className='grid gap-3 text-sm'>
             <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-              <dt className='text-muted-foreground w-28 shrink-0'>Version</dt>
+              <dt className='text-muted-foreground w-28 shrink-0'><Trans>Version</Trans></dt>
               <dd className='font-medium'>{serverVersion}</dd>
             </div>
             <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-              <dt className='text-muted-foreground w-28 shrink-0'>Started</dt>
+              <dt className='text-muted-foreground w-28 shrink-0'><Trans>Started</Trans></dt>
               <dd className='font-mono text-xs'>
                 {formatSystemTimestamp(parseInt(serverStarted, 10), serverStarted)}
               </dd>

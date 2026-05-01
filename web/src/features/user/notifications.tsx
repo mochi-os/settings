@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
+import { Trans, useLingui } from '@lingui/react/macro'
 import { useNavigate, useSearch } from '@tanstack/react-router'
 import {
   Bell,
@@ -108,7 +109,8 @@ function sortCategories(cats: Category[]): Category[] {
 }
 
 export function UserNotifications() {
-  usePageTitle('Notifications')
+  const { t } = useLingui()
+  usePageTitle(t`Notifications`)
 
   const search = useSearch({ strict: false }) as { tab?: TabId }
   const navigate = useNavigate()
@@ -122,7 +124,7 @@ export function UserNotifications() {
 
   return (
     <>
-      <PageHeader title="Notifications" primaryAction={<BrowserPushButton onChanged={bumpReload} />} />
+      <PageHeader title={t`Notifications`} primaryAction={<BrowserPushButton onChanged={bumpReload} />} />
       <Main>
         <div className="mb-4 flex items-center justify-between border-b">
           <div className="flex gap-1">
@@ -143,7 +145,7 @@ export function UserNotifications() {
           </div>
           {activeTab === 'categories' && (
             <Button variant="outline" size="sm" onClick={() => setCreating(true)} className="mb-1">
-              <Plus className="mr-2 h-4 w-4" /> Add category
+              <Plus className="mr-2 h-4 w-4" /> <Trans>Add category</Trans>
             </Button>
           )}
         </div>
@@ -171,7 +173,7 @@ function BrowserPushButton({ onChanged }: { onChanged: () => void }) {
       else await unsubscribe()
       onChanged()
     } catch (e) {
-      toast.error(getErrorMessage(e, 'Failed to update browser notifications'))
+      toast.error(getErrorMessage(e, "Failed to update browser notifications"))
     }
   }
 
@@ -254,12 +256,12 @@ function CategoriesTab({
                   )
                   const sent = res?.sent ?? 0
                   if (sent === 0) {
-                    toast.error('No destinations configured')
+                    toast.error("No destinations configured")
                   } else {
                     toast.success(`Test sent to ${sent} destination${sent === 1 ? '' : 's'}`)
                   }
                 } catch (e) {
-                  toast.error(getErrorMessage(e, 'Failed to send test'))
+                  toast.error(getErrorMessage(e, "Failed to send test"))
                 }
               }}
             />
@@ -322,20 +324,20 @@ function CategoryRow({
         <div className="flex items-center gap-2">
           <span className="font-medium">{category.label}</span>
           {category.default === 1 && (
-            <span className="rounded bg-muted px-2 py-0.5 text-xs text-muted-foreground">Default</span>
+            <span className="rounded bg-muted px-2 py-0.5 text-xs text-muted-foreground"><Trans>Default</Trans></span>
           )}
         </div>
         <p className="text-sm text-muted-foreground">{destSummary}</p>
       </div>
       <div className="flex flex-wrap gap-2">
         <Button variant="outline" size="sm" onClick={onTest}>
-          <Send className="mr-2 h-4 w-4" /> Test
+          <Send className="mr-2 h-4 w-4" /> <Trans>Test</Trans>
         </Button>
         <Button variant="outline" size="sm" onClick={onEdit}>
-          <Pencil className="mr-2 h-4 w-4" /> Edit
+          <Pencil className="mr-2 h-4 w-4" /> <Trans>Edit</Trans>
         </Button>
         <Button variant="outline" size="sm" onClick={onDelete}>
-          <Trash2 className="mr-2 h-4 w-4" /> Delete
+          <Trash2 className="mr-2 h-4 w-4" /> <Trans>Delete</Trans>
         </Button>
       </div>
     </div>
@@ -399,7 +401,7 @@ function CategoryDialog({
 
   const handleSave = async () => {
     if (!label.trim()) {
-      toast.error('Label is required')
+      toast.error("Label is required")
       return
     }
     setSaving(true)
@@ -429,7 +431,7 @@ function CategoryDialog({
       }
       await onSaved()
     } catch (e) {
-      toast.error(getErrorMessage(e, 'Failed to save category'))
+      toast.error(getErrorMessage(e, "Failed to save category"))
     } finally {
       setSaving(false)
     }
@@ -448,14 +450,14 @@ function CategoryDialog({
         </DialogHeader>
         <div className="space-y-6 py-2">
           <div className="space-y-2">
-            <Label htmlFor="cat-label">Name</Label>
+            <Label htmlFor="cat-label"><Trans>Name</Trans></Label>
             <Input id="cat-label" value={label} onChange={(e) => setLabel(e.target.value)} />
           </div>
           {!isSuppress && (
             <>
               <div className="flex items-center justify-between">
                 <Label htmlFor="cat-default" className="cursor-pointer">
-                  Default category
+                  <Trans>Default category</Trans>
                 </Label>
                 <Switch
                   id="cat-default"
@@ -465,7 +467,7 @@ function CategoryDialog({
                 />
               </div>
               <div className="space-y-2">
-                <Label>Destinations</Label>
+                <Label><Trans>Destinations</Trans></Label>
                 <DestinationsGrid
                   available={available}
                   checked={checked}
@@ -476,7 +478,7 @@ function CategoryDialog({
           )}
         </div>
         <DialogFooter>
-          <Button variant="outline" onClick={onClose} disabled={saving}>Cancel</Button>
+          <Button variant="outline" onClick={onClose} disabled={saving}><Trans>Cancel</Trans></Button>
           <Button onClick={handleSave} disabled={saving}>
             {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             Save
@@ -550,7 +552,7 @@ function CategoryDeleteDialog({
       })
       await onDeleted()
     } catch (e) {
-      toast.error(getErrorMessage(e, 'Failed to delete category'))
+      toast.error(getErrorMessage(e, "Failed to delete category"))
     } finally {
       setDeleting(false)
     }
@@ -564,7 +566,7 @@ function CategoryDeleteDialog({
           <AlertDialogDescription />
         </AlertDialogHeader>
         <div className="flex items-center justify-between gap-3 py-2">
-          <Label htmlFor="reassign-target">Change current notifications to</Label>
+          <Label htmlFor="reassign-target"><Trans>Change current notifications to</Trans></Label>
           <Select value={target} onValueChange={setTarget}>
             <SelectTrigger id="reassign-target" className="w-48">
               <SelectValue />
@@ -577,7 +579,7 @@ function CategoryDeleteDialog({
           </Select>
         </div>
         <AlertDialogFooter>
-          <AlertDialogCancel disabled={deleting}>Cancel</AlertDialogCancel>
+          <AlertDialogCancel disabled={deleting}><Trans>Cancel</Trans></AlertDialogCancel>
           <AlertDialogAction onClick={run} disabled={deleting}>
             {deleting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             Delete
@@ -591,6 +593,7 @@ function CategoryDeleteDialog({
 // ───────────────────────────── Topics tab ─────────────────────────────
 
 function TopicsTab() {
+  const { t } = useLingui()
   const [topics, setTopics] = useState<Topic[] | null>(null)
   const [categories, setCategories] = useState<Category[] | null>(null)
   const [error, setError] = useState<unknown>(null)
@@ -612,27 +615,27 @@ function TopicsTab() {
     void load()
   }, [])
 
-  const setCategory = async (t: Topic, value: string) => {
+  const setCategory = async (topic: Topic, value: string) => {
     try {
-      const params = new URLSearchParams({ id: String(t.id), category: value })
+      const params = new URLSearchParams({ id: String(topic.id), category: value })
       await requestHelpers.post(endpoints.notifications.topicsSetCategory, params.toString(), {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       })
       await load()
     } catch (e) {
-      toast.error(getErrorMessage(e, 'Failed to update topic'))
+      toast.error(getErrorMessage(e, t`Failed to update topic`))
     }
   }
 
-  const remove = async (t: Topic) => {
+  const remove = async (topic: Topic) => {
     try {
-      const params = new URLSearchParams({ id: String(t.id) })
+      const params = new URLSearchParams({ id: String(topic.id) })
       await requestHelpers.post(endpoints.notifications.topicsDelete, params.toString(), {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       })
       await load()
     } catch (e) {
-      toast.error(getErrorMessage(e, 'Failed to remove topic'))
+      toast.error(getErrorMessage(e, t`Failed to remove topic`))
     }
   }
 
@@ -658,7 +661,7 @@ function TopicsTab() {
   }
 
   if (topics.length === 0) {
-    return <EmptyState icon={Bell} title="No topics yet" />
+    return <EmptyState icon={Bell} title={t`No topics yet`} />
   }
 
   return (
@@ -669,22 +672,22 @@ function TopicsTab() {
             {group.app_name}
           </h2>
           <div className="divide-border divide-y">
-            {group.items.map((t) => (
+            {group.items.map((topic) => (
               <div
-                key={t.id}
+                key={topic.id}
                 className="flex flex-col gap-3 py-2 pl-6 sm:flex-row sm:items-center sm:justify-between"
               >
                 <p className="text-sm">
-                  {t.label || t.topic}
-                  {t.object_name ? `: ${t.object_name}` : ''}
+                  {topic.label || topic.topic}
+                  {topic.object_name ? `: ${topic.object_name}` : ''}
                 </p>
                 <div className="flex items-center gap-2">
                   <Select
-                    value={t.category != null ? String(t.category) : ''}
-                    onValueChange={(v) => setCategory(t, v)}
+                    value={topic.category != null ? String(topic.category) : ''}
+                    onValueChange={(v) => setCategory(topic, v)}
                   >
                     <SelectTrigger className="w-48">
-                      <SelectValue placeholder="Unassigned" />
+                      <SelectValue placeholder={t`Unassigned`} />
                     </SelectTrigger>
                     <SelectContent>
                       {sortCategories(categories).map((c) => (
@@ -692,7 +695,7 @@ function TopicsTab() {
                       ))}
                     </SelectContent>
                   </Select>
-                  <Button variant="outline" size="sm" onClick={() => remove(t)} title="Remove (re-create on next notification)">
+                  <Button variant="outline" size="sm" onClick={() => remove(topic)} title={t`Remove (re-create on next notification)`}>
                     <X className="h-4 w-4" />
                   </Button>
                 </div>

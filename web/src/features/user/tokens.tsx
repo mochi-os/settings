@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Trans, useLingui } from '@lingui/react/macro'
 import type { Token } from '@/types/account'
 import { Loader2, Plus, Trash2, Copy, Check, Key } from 'lucide-react'
 import { useTokens, useTokenCreate, useTokenDelete } from '@/hooks/use-account'
@@ -33,6 +34,7 @@ import {
 
 
 function TokenRow({ token }: { token: Token }) {
+  const { t } = useLingui()
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const deleteToken = useTokenDelete()
 
@@ -40,10 +42,10 @@ function TokenRow({ token }: { token: Token }) {
     deleteToken.mutate(token.hash, {
       onSuccess: () => {
         setShowDeleteDialog(false)
-        toast.success('Token deleted')
+        toast.success(t`Token deleted`)
       },
       onError: (error) => {
-        toast.error(getErrorMessage(error, 'Failed to delete token'))
+        toast.error(getErrorMessage(error, t`Failed to delete token`))
       },
     })
   }
@@ -81,12 +83,12 @@ function TokenRow({ token }: { token: Token }) {
           ) : (
             <Trash2 className='h-4 w-4' />
           )}
-          <span className='sr-only'>Delete token</span>
+          <span className='sr-only'><Trans>Delete token</Trans></span>
         </Button>
         <ConfirmDialog
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
-          title='Delete token?'
+          title={t`Delete token?`}
           desc={`This will permanently delete the token "${token.name}". Any applications using this token will no longer be able to authenticate.`}
           confirmText='Delete'
           destructive
@@ -99,6 +101,7 @@ function TokenRow({ token }: { token: Token }) {
 }
 
 function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) {
+  const { t } = useLingui()
   const [open, setOpen] = useState(false)
   const [name, setName] = useState('')
   const [newToken, setNewToken] = useState<string | null>(null)
@@ -107,7 +110,7 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
 
   const handleCreate = () => {
     if (!name.trim()) {
-      toast.error('Please enter a token name')
+      toast.error(t`Please enter a token name`)
       return
     }
 
@@ -119,7 +122,7 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
           setName('')
         },
         onError: (error) => {
-          toast.error(getErrorMessage(error, 'Failed to create token'))
+          toast.error(getErrorMessage(error, t`Failed to create token`))
         },
       }
     )
@@ -130,7 +133,7 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
       const ok = await shellClipboardWrite(newToken)
       if (ok) {
         setCopied(true)
-        toast.success('Token copied to clipboard')
+        toast.success(t`Token copied to clipboard`)
         setTimeout(() => setCopied(false), 2000)
       }
     }
@@ -148,7 +151,7 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
       <ResponsiveDialogTrigger asChild>
         <Button size='sm' variant='outline' className={triggerClassName}>
           <Plus className='mr-2 h-4 w-4' />
-          Create token
+          <Trans>Create token</Trans>
         </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent>
@@ -180,16 +183,16 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
               </Button>
             </div>
             <ResponsiveDialogFooter>
-              <Button variant='outline' onClick={handleClose}>Done</Button>
+              <Button variant='outline' onClick={handleClose}><Trans>Done</Trans></Button>
             </ResponsiveDialogFooter>
           </div>
         ) : (
           <div className='space-y-4'>
             <div className='space-y-2'>
-              <Label htmlFor='token-name'>Token name</Label>
+              <Label htmlFor='token-name'><Trans>Token name</Trans></Label>
               <Input
                 id='token-name'
-                placeholder='My application'
+                placeholder={t`My application`}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 onKeyDown={(e) => {
@@ -218,7 +221,8 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
 }
 
 export function UserTokens() {
-  usePageTitle('Authentication tokens')
+  const { t } = useLingui()
+  usePageTitle(t`Authentication tokens`)
   const { data, isLoading, error, refetch } = useTokens()
 
   const tokens = data?.tokens ?? []
@@ -226,7 +230,7 @@ export function UserTokens() {
   return (
     <>
       <PageHeader
-        title="Authentication tokens"
+        title={t`Authentication tokens`}
         icon={<Key className='size-4 md:size-5' />}
         showSidebarTrigger
         actions={<CreateTokenDialog />}
@@ -240,17 +244,17 @@ export function UserTokens() {
         ) : tokens.length === 0 ? (
           <EmptyState
             icon={Key}
-            title='No authentication tokens'
+            title={t`No authentication tokens`}
             className='p-4'
           />
         ) : (
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Created</TableHead>
-                <TableHead>Last used</TableHead>
-                <TableHead>Expires</TableHead>
+                <TableHead><Trans>Name</Trans></TableHead>
+                <TableHead><Trans>Created</Trans></TableHead>
+                <TableHead><Trans>Last used</Trans></TableHead>
+                <TableHead><Trans>Expires</Trans></TableHead>
                 <TableHead className='w-12'></TableHead>
               </TableRow>
             </TableHeader>

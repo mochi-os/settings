@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
+import { Trans, useLingui } from '@lingui/react/macro'
 import { Loader2, Search, Star, Trash2, RefreshCw } from 'lucide-react'
 import { useInterests, useInterestSet, useInterestRemove, useInterestSearch, useInterestSummary, type Interest, type SearchResult } from '@/hooks/use-interests'
 import {
@@ -21,6 +22,7 @@ function interestHue(weight: number): number {
 }
 
 function InterestRow({ interest }: { interest: Interest }) {
+  const { t } = useLingui()
   const setInterest = useInterestSet()
   const removeInterest = useInterestRemove()
   const [weight, setWeight] = useState(interest.weight)
@@ -46,7 +48,7 @@ function InterestRow({ interest }: { interest: Interest }) {
       {
         onError: (error) => {
           setWeight(interest.weight)
-          toast.error(getErrorMessage(error, 'Failed to update interest'))
+          toast.error(getErrorMessage(error, t`Failed to update interest`))
         },
       }
     )
@@ -55,7 +57,7 @@ function InterestRow({ interest }: { interest: Interest }) {
   const handleRemove = () => {
     removeInterest.mutate(interest.qid, {
       onError: (error) => {
-        toast.error(getErrorMessage(error, 'Failed to remove interest'))
+        toast.error(getErrorMessage(error, t`Failed to remove interest`))
       },
     })
   }
@@ -144,6 +146,7 @@ function SearchResults({
 }
 
 function InterestSearch() {
+  const { t } = useLingui()
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchResult[]>([])
   const [showResults, setShowResults] = useState(false)
@@ -175,7 +178,7 @@ function InterestSearch() {
           setShowResults(true)
         },
         onError: (error) => {
-          toast.error(getErrorMessage(error, 'Search failed'))
+          toast.error(getErrorMessage(error, t`Search failed`))
         },
       })
     }, 300)
@@ -189,7 +192,7 @@ function InterestSearch() {
           toast.success(`Added "${result.label}"`)
         },
         onError: (error) => {
-          toast.error(getErrorMessage(error, 'Failed to add interest'))
+          toast.error(getErrorMessage(error, t`Failed to add interest`))
         },
       }
     )
@@ -212,7 +215,7 @@ function InterestSearch() {
             blurTimerRef.current = setTimeout(() => setShowResults(false), 200)
           }}
           onFocus={() => results.length > 0 && setShowResults(true)}
-          placeholder='Search topics to add...'
+          placeholder={t`Search topics to add...`}
           className='pl-9'
         />
       </div>
@@ -224,7 +227,8 @@ function InterestSearch() {
 }
 
 export function UserInterests() {
-  usePageTitle('Interests')
+  const { t } = useLingui()
+  usePageTitle(t`Interests`)
   const { data, isLoading, error, refetch } = useInterests()
   const regenerateSummary = useInterestSummary()
 
@@ -234,10 +238,10 @@ export function UserInterests() {
   const handleRegenerate = () => {
     regenerateSummary.mutate(undefined, {
       onSuccess: () => {
-        toast.success('Summary regenerated')
+        toast.success(t`Summary regenerated`)
       },
       onError: (error) => {
-        toast.error(getErrorMessage(error, 'Failed to regenerate summary'))
+        toast.error(getErrorMessage(error, t`Failed to regenerate summary`))
       },
     })
   }
@@ -245,7 +249,7 @@ export function UserInterests() {
   return (
     <>
       <PageHeader
-        title='Interests'
+        title={t`Interests`}
         icon={<Star className='size-4 md:size-5' />}
       />
 
@@ -253,7 +257,7 @@ export function UserInterests() {
         {summary && (
           <div className='space-y-1.5'>
             <div className='flex items-center gap-2'>
-              <h4 className='text-sm font-medium'>Summary</h4>
+              <h4 className='text-sm font-medium'><Trans>Summary</Trans></h4>
               <Button
                 variant='ghost'
                 size='sm'
@@ -286,7 +290,7 @@ export function UserInterests() {
         ) : interests.length === 0 ? (
           <EmptyState
             icon={Star}
-            title='No interests yet'
+            title={t`No interests yet`}
             className='p-4'
           />
         ) : (

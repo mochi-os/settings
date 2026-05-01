@@ -1,4 +1,5 @@
 import type { Session } from '@/types/account'
+import { Trans, useLingui } from '@lingui/react/macro'
 import { Loader2, LogOut, Monitor } from 'lucide-react'
 import { useSessions, useRevokeSession } from '@/hooks/use-account'
 import {
@@ -36,16 +37,17 @@ function SessionRow({
   session: Session
   isCurrent: boolean
 }) {
+  const { t } = useLingui()
   const { formatTimestamp } = useFormat()
   const revokeSession = useRevokeSession()
 
   const handleRevoke = () => {
     revokeSession.mutate(session.id, {
       onSuccess: () => {
-        toast.success('Session revoked')
+        toast.success(t`Session revoked`)
       },
       onError: (error) => {
-        toast.error(getErrorMessage(error, 'Failed to revoke session'))
+        toast.error(getErrorMessage(error, t`Failed to revoke session`))
       },
     })
   }
@@ -83,21 +85,21 @@ function SessionRow({
               ) : (
                 <LogOut className='h-4 w-4' />
               )}
-              <span className='sr-only'>Revoke session</span>
+              <span className='sr-only'><Trans>Revoke session</Trans></span>
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Revoke session?</AlertDialogTitle>
+              <AlertDialogTitle><Trans>Revoke session?</Trans></AlertDialogTitle>
               <AlertDialogDescription>
                 This will sign out this session. If this is your current
                 session, you will need to sign in again.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogCancel><Trans>Cancel</Trans></AlertDialogCancel>
               <AlertDialogAction onClick={handleRevoke}>
-                Revoke
+                <Trans>Revoke</Trans>
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
@@ -108,7 +110,8 @@ function SessionRow({
 }
 
 export function UserSessions() {
-  usePageTitle('Sessions')
+  const { t } = useLingui()
+  usePageTitle(t`Sessions`)
   const { data, isLoading, error, refetch } = useSessions()
 
   const sessions = data?.sessions ?? []
@@ -116,7 +119,7 @@ export function UserSessions() {
 
   return (
     <>
-      <PageHeader title="Sessions" icon={<Monitor className='size-4 md:size-5' />} />
+      <PageHeader title={t`Sessions`} icon={<Monitor className='size-4 md:size-5' />} />
 
       <Main>
         {error ? (
@@ -126,16 +129,16 @@ export function UserSessions() {
         ) : sessions.length === 0 ? (
           <EmptyState
             icon={Monitor}
-            title='No active sessions'
+            title={t`No active sessions`}
             className='p-4'
           />
         ) : (
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Session</TableHead>
-                <TableHead>Created</TableHead>
-                <TableHead>Last active</TableHead>
+                <TableHead><Trans>Session</Trans></TableHead>
+                <TableHead><Trans>Created</Trans></TableHead>
+                <TableHead><Trans>Last active</Trans></TableHead>
                 <TableHead className='w-12'></TableHead>
               </TableRow>
             </TableHeader>
