@@ -109,18 +109,18 @@ def action_user_preferences_set(a):
         value = a.input(p["key"])
         if value:
             if p["type"] == "select" and value not in p["options"]:
-                a.error(400, "Invalid value for " + p["key"])
+                a.error_label(400, "errors.invalid_value_for_key", key=p["key"])
                 return
             # locale-language: BCP 47 tag, lowercase. Accept the value if it
             # looks plausible — server-side resolver falls back gracefully if
             # no catalog matches, so we don't need to enforce an installed list.
             if p["type"] == "locale-language":
                 if len(value) > 35 or len(value) < 2:
-                    a.error(400, "Invalid value for " + p["key"])
+                    a.error_label(400, "errors.invalid_value_for_key", key=p["key"])
                     return
                 for ch in value.elems():
                     if not (ch.isalnum() or ch == "-"):
-                        a.error(400, "Invalid value for " + p["key"])
+                        a.error_label(400, "errors.invalid_value_for_key", key=p["key"])
                         return
             a.user.preference.set(p["key"], value)
     # Handle theme preference (dynamic options, validated separately)
