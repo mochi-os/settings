@@ -188,7 +188,7 @@ function InterestSearch() {
       { qid: result.qid, weight: 50 },
       {
         onSuccess: () => {
-          toast.success(`Added "${result.label}"`)
+          toast.success(t`Added "${result.label}"`)
         },
         onError: (error) => {
           toast.error(getErrorMessage(error, t`Failed to add interest`))

@@ -342,7 +342,7 @@ function SessionsDialog({ user }: { user: User }) {
             <EmptyState
               icon={Key}
               title={t`No active sessions`}
-              description={"This user has no active sessions."}
+              description={t`This user has no active sessions.`}
             />
           )}
         </div>

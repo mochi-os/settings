@@ -894,7 +894,7 @@ function OauthSection() {
   const handleUnlink = async (provider: OAuthProvider) => {
     try {
       await oauthUnlink.mutateAsync(provider)
-      toast.success(`Unlinked ${oauthProviderLabel[provider] ?? provider}`)
+      toast.success(t`Unlinked ${oauthProviderLabel[provider] ?? provider}`)
     } catch (error) {
       toast.error(getErrorMessage(error, t`Could not unlink provider`))
     }
