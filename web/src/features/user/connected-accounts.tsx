@@ -224,7 +224,7 @@ function AccountRow({
       </TableCell>
 
       {/* Actions */}
-      <TableCell className='text-right'>
+      <TableCell className='text-end'>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant='ghost' size='sm' disabled={isRemoving || testingId === account.id}>
@@ -239,22 +239,22 @@ function AccountRow({
           <DropdownMenuContent align='end'>
             {needsVerification && (
               <DropdownMenuItem onClick={() => onVerify(account)}>
-                <Mail className='mr-2 h-4 w-4' />
+                <Mail className='me-2 h-4 w-4' />
                 <Trans>Verify</Trans>
               </DropdownMenuItem>
             )}
             <DropdownMenuItem onClick={() => onTest(account.id)}>
-              <Zap className='mr-2 h-4 w-4' />
+              <Zap className='me-2 h-4 w-4' />
               <Trans>Test</Trans>
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => onSettings(account)}>
-              <Pencil className='mr-2 h-4 w-4' />
+              <Pencil className='me-2 h-4 w-4' />
               <Trans>Settings</Trans>
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => setShowDeleteDialog(true)}
             >
-              <Trash2 className='mr-2 h-4 w-4' />
+              <Trash2 className='me-2 h-4 w-4' />
               <Trans>Remove</Trans>
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -422,7 +422,7 @@ export function ConnectedAccounts() {
               size='sm'
               onClick={() => setIsAddOpen(true)}
             >
-              <Plus className='mr-2 h-4 w-4' />
+              <Plus className='me-2 h-4 w-4' />
               <Trans>Add account</Trans>
             </Button>
           )

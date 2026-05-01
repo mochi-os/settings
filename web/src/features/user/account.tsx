@@ -208,7 +208,7 @@ function IdentitySection() {
             />
           </FieldRow>
           <div className='flex items-center justify-between py-4 border-t border-border/40'>
-            <Label htmlFor='identity-public' className='text-muted-foreground pr-4 text-sm font-medium'>
+            <Label htmlFor='identity-public' className='text-muted-foreground pe-4 text-sm font-medium'>
               <Trans>Allow others to find you in directory</Trans>
             </Label>
             <Switch
@@ -272,7 +272,7 @@ function LoginRequirementsSection() {
       ) : (
         <div className='space-y-0 divide-y-0'>
           <div className='flex items-center justify-between py-4 border-b border-border/40'>
-            <div className='space-y-1 pr-4'>
+            <div className='space-y-1 pe-4'>
               <Label htmlFor='method-passkey' className='text-sm font-medium'>
                 <Trans>Passkey</Trans>
               </Label>
@@ -292,7 +292,7 @@ function LoginRequirementsSection() {
           </div>
 
           <div className='flex items-center justify-between py-4 border-b border-border/40'>
-            <div className='space-y-1 pr-4'>
+            <div className='space-y-1 pe-4'>
               <Label htmlFor='method-totp' className='text-sm font-medium'>
                 <Trans>Authenticator app</Trans>
               </Label>
@@ -310,7 +310,7 @@ function LoginRequirementsSection() {
           </div>
 
           <div className='flex items-center justify-between py-4'>
-            <div className='space-y-1 pr-4'>
+            <div className='space-y-1 pe-4'>
               <Label htmlFor='method-email' className='text-sm font-medium'>
                 <Trans>Email code</Trans>
               </Label>
@@ -391,7 +391,7 @@ function PasskeyRow({
       <TableCell className='text-muted-foreground text-sm'>
         {formatTimestamp(passkey.last_used, 'Never')}
       </TableCell>
-      <TableCell className='text-right'>
+      <TableCell className='text-end'>
         <div className='flex justify-end gap-1'>
           <Button variant='ghost' size='sm' onClick={() => setIsRenaming(true)}>
             <Pencil className='h-4 w-4' />
@@ -480,7 +480,7 @@ function PasskeysSection() {
         size='sm'
         onClick={() => setRegisterDialogOpen(true)}
       >
-        <Plus className='mr-2 h-4 w-4' />
+        <Plus className='me-2 h-4 w-4' />
         <Trans>Add passkey</Trans>
       </Button>
       <ResponsiveDialogContent>
@@ -504,7 +504,7 @@ function PasskeysSection() {
           <Button onClick={handleRegister} disabled={isRegistering}>
             Register
             {isRegistering && (
-              <Loader2 className='ml-2 h-4 w-4 animate-spin' />
+              <Loader2 className='ms-2 h-4 w-4 animate-spin' />
             )}
           </Button>
         </ResponsiveDialogFooter>
@@ -609,7 +609,7 @@ function AuthenticatorSection() {
         size='sm'
         onClick={() => setShowDisableDialog(true)}
       >
-        <Trash2 className='mr-2 h-4 w-4' />
+        <Trash2 className='me-2 h-4 w-4' />
         <Trans>Disable</Trans>
       </Button>
     ) : (
@@ -619,7 +619,7 @@ function AuthenticatorSection() {
         onClick={handleSetup}
         disabled={setupTotp.isPending}
       >
-        <Plus className='mr-2 h-4 w-4' />
+        <Plus className='me-2 h-4 w-4' />
         <Trans>Set up</Trans>
       </Button>
     )
@@ -662,7 +662,7 @@ function AuthenticatorSection() {
                 disabled={isVerifying || !verifyCode}
               >
                 Verify & Enable
-                {isVerifying && <Loader2 className='ml-2 h-4 w-4 animate-spin' />}
+                {isVerifying && <Loader2 className='ms-2 h-4 w-4 animate-spin' />}
               </Button>
               <Button variant='ghost' onClick={() => setSetupData(null)}><Trans>Cancel</Trans></Button>
             </div>
@@ -726,9 +726,9 @@ function RecoveryCodesSection() {
       onClick={() => setShowGenerateDialog(true)}
     >
       {count > 0 ? (
-        <RefreshCw className='mr-2 h-4 w-4' />
+        <RefreshCw className='me-2 h-4 w-4' />
       ) : (
-        <Plus className='mr-2 h-4 w-4' />
+        <Plus className='me-2 h-4 w-4' />
       )}
       {count > 0 ? t`Regenerate` : t`Generate`}
     </Button>
@@ -843,7 +843,7 @@ function OauthIdentityRow({
       <TableCell className='text-muted-foreground text-sm'>
         {formatTimestamp(identity.used, 'Never')}
       </TableCell>
-      <TableCell className='text-right'>
+      <TableCell className='text-end'>
         <Button
           variant='ghost'
           size='sm'
@@ -921,7 +921,7 @@ function OauthSection() {
           size='sm'
           disabled={oauthBegin.isPending}
         >
-          <Plus className='mr-2 h-4 w-4' />
+          <Plus className='me-2 h-4 w-4' />
           <Trans>Link account</Trans>
         </Button>
       </DropdownMenuTrigger>

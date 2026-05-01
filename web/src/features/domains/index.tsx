@@ -90,7 +90,7 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
     <ResponsiveDialog open={open} onOpenChange={setOpen}>
       <ResponsiveDialogTrigger asChild>
         <Button size='sm' variant='outline'>
-          <Plus className='mr-2 h-4 w-4' />
+          <Plus className='me-2 h-4 w-4' />
           <Trans>Add domain</Trans>
         </Button>
       </ResponsiveDialogTrigger>
@@ -127,7 +127,7 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
             </Button>
             <Button type='submit' disabled={createDomain.isPending}>
               {createDomain.isPending && (
-                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}
               Add domain
             </Button>
@@ -197,7 +197,7 @@ function AddRouteDialog({
     <ResponsiveDialog open={open} onOpenChange={setOpen}>
       <ResponsiveDialogTrigger asChild>
         <Button size='sm' variant='outline'>
-          <Plus className='mr-2 h-4 w-4' />
+          <Plus className='me-2 h-4 w-4' />
           <Trans>Add route</Trans>
         </Button>
       </ResponsiveDialogTrigger>
@@ -331,7 +331,7 @@ function AddRouteDialog({
             </Button>
             <Button type='submit' disabled={createRoute.isPending || (!admin && !pathAllowed)}>
               {createRoute.isPending && (
-                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}
               Add route
             </Button>
@@ -510,7 +510,7 @@ function EditRouteDialog({
             </Button>
             <Button type='submit' disabled={updateRoute.isPending}>
               {updateRoute.isPending && (
-                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}
               Save Changes
             </Button>
@@ -578,7 +578,7 @@ function AddDelegationDialog({
     <ResponsiveDialog open={open} onOpenChange={setOpen}>
       <ResponsiveDialogTrigger asChild>
         <Button size='sm' variant='outline'>
-          <Plus className='mr-2 h-4 w-4' />
+          <Plus className='me-2 h-4 w-4' />
           <Trans>Add delegation</Trans>
         </Button>
       </ResponsiveDialogTrigger>
@@ -627,7 +627,7 @@ function AddDelegationDialog({
                         <button
                           key={user.id}
                           type='button'
-                          className='hover:bg-accent hover:text-accent-foreground flex w-full items-center justify-between px-3 py-2 text-left text-sm'
+                          className='hover:bg-accent hover:text-accent-foreground flex w-full items-center justify-between px-3 py-2 text-start text-sm'
                           onClick={() => handleSelectUser(user)}
                         >
                           <span>{user.username}</span>
@@ -659,7 +659,7 @@ function AddDelegationDialog({
               disabled={createDelegation.isPending || !selectedUser}
             >
               {createDelegation.isPending && (
-                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}
               Add delegation
             </Button>
@@ -695,7 +695,7 @@ function RouteRow({
       <TableCell>
         {route.enabled ? "Enabled" : "Disabled"}
       </TableCell>
-      <TableCell className='text-right'>
+      <TableCell className='text-end'>
         <div className='flex justify-end gap-1'>
           <EditRouteDialog route={route} onSuccess={onUpdate} />
           <Button
@@ -749,7 +749,7 @@ function DelegationRow({
         {delegation.path || '/'}
       </TableCell>
       <TableCell>{delegation.username}</TableCell>
-      <TableCell className='text-right'>
+      <TableCell className='text-end'>
         <Button
           variant='ghost'
           size='icon'
@@ -876,18 +876,18 @@ function DomainDetails({
               <div className='mt-1 flex items-center gap-2'>
                 {domain.verified ? (
                   <Badge variant='default' className='text-xs'>
-                    <Check className='mr-1 h-3 w-3' />
+                    <Check className='me-1 h-3 w-3' />
                     <Trans>Verified</Trans>
                   </Badge>
                 ) : (
                   <Badge variant='secondary' className='text-xs'>
-                    <X className='mr-1 h-3 w-3' />
+                    <X className='me-1 h-3 w-3' />
                     <Trans>Unverified</Trans>
                   </Badge>
                 )}
                 {domain.tls ? (
                   <Badge variant='outline' className='text-xs'>
-                    <Lock className='mr-1 h-3 w-3' />
+                    <Lock className='me-1 h-3 w-3' />
                     TLS
                   </Badge>
                 ) : null}
@@ -951,9 +951,9 @@ function DomainDetails({
                       }}
                     >
                       {verifyDomain.isPending ? (
-                        <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                        <Loader2 className='me-2 h-4 w-4 animate-spin' />
                       ) : (
-                        <Search className='mr-2 h-4 w-4' />
+                        <Search className='me-2 h-4 w-4' />
                       )}
                       Verify DNS
                     </Button>
@@ -1086,7 +1086,7 @@ function DomainDetails({
                   onClick={() => setShowDeleteDialog(true)}
                   disabled={isDeleting}
                 >
-                  <Trash2 className='mr-2 size-4' />
+                  <Trash2 className='me-2 size-4' />
                   <Trans>Delete</Trans>
                 </Button>
               </div>

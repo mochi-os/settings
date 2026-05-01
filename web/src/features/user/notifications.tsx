@@ -143,7 +143,7 @@ export function UserNotifications() {
           </div>
           {activeTab === 'categories' && (
             <Button variant="outline" size="sm" onClick={() => setCreating(true)} className="mb-1">
-              <Plus className="mr-2 h-4 w-4" /> <Trans>Add category</Trans>
+              <Plus className="me-2 h-4 w-4" /> <Trans>Add category</Trans>
             </Button>
           )}
         </div>
@@ -331,13 +331,13 @@ function CategoryRow({
       </div>
       <div className="flex flex-wrap gap-2">
         <Button variant="outline" size="sm" onClick={onTest}>
-          <Send className="mr-2 h-4 w-4" /> <Trans>Test</Trans>
+          <Send className="me-2 h-4 w-4" /> <Trans>Test</Trans>
         </Button>
         <Button variant="outline" size="sm" onClick={onEdit}>
-          <Pencil className="mr-2 h-4 w-4" /> <Trans>Edit</Trans>
+          <Pencil className="me-2 h-4 w-4" /> <Trans>Edit</Trans>
         </Button>
         <Button variant="outline" size="sm" onClick={onDelete}>
-          <Trash2 className="mr-2 h-4 w-4" /> <Trans>Delete</Trans>
+          <Trash2 className="me-2 h-4 w-4" /> <Trans>Delete</Trans>
         </Button>
       </div>
     </div>
@@ -481,7 +481,7 @@ function CategoryDialog({
         <DialogFooter>
           <Button variant="outline" onClick={onClose} disabled={saving}><Trans>Cancel</Trans></Button>
           <Button onClick={handleSave} disabled={saving}>
-            {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            {saving && <Loader2 className="me-2 h-4 w-4 animate-spin" />}
             Save
           </Button>
         </DialogFooter>
@@ -584,7 +584,7 @@ function CategoryDeleteDialog({
         <AlertDialogFooter>
           <AlertDialogCancel disabled={deleting}><Trans>Cancel</Trans></AlertDialogCancel>
           <AlertDialogAction onClick={run} disabled={deleting}>
-            {deleting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            {deleting && <Loader2 className="me-2 h-4 w-4 animate-spin" />}
             <Trans>Delete</Trans>
           </AlertDialogAction>
         </AlertDialogFooter>
@@ -678,7 +678,7 @@ function TopicsTab() {
             {group.items.map((topic) => (
               <div
                 key={topic.id}
-                className="flex flex-col gap-3 py-2 pl-6 sm:flex-row sm:items-center sm:justify-between"
+                className="flex flex-col gap-3 py-2 ps-6 sm:flex-row sm:items-center sm:justify-between"
               >
                 <p className="text-sm">
                   {topic.label || topic.topic}

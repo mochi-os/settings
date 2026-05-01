@@ -37,7 +37,7 @@ export function ComboSelect({
   const displayValue = options[value] ?? value
   const renderedValue = renderValue
     ? renderValue(value, displayValue)
-    : <span className='truncate text-left'>{displayValue || placeholder}</span>
+    : <span className='truncate text-start'>{displayValue || placeholder}</span>
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -49,8 +49,8 @@ export function ComboSelect({
           className='w-full justify-between'
           disabled={disabled}
         >
-          <span className='min-w-0 flex-1 text-left'>{renderedValue}</span>
-          <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+          <span className='min-w-0 flex-1 text-start'>{renderedValue}</span>
+          <ChevronsUpDown className='ms-2 h-4 w-4 shrink-0 opacity-50' />
         </Button>
       </PopoverTrigger>
       <PopoverContent className='w-[--radix-popover-trigger-width] p-0' align='start'>
@@ -69,7 +69,7 @@ export function ComboSelect({
                 >
                   <Check
                     className={cn(
-                      'mr-2 h-4 w-4 shrink-0',
+                      'me-2 h-4 w-4 shrink-0',
                       value === optValue ? 'opacity-100' : 'opacity-0'
                     )}
                   />

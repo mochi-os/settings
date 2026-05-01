@@ -106,7 +106,7 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
     <ResponsiveDialog open={open} onOpenChange={setOpen}>
       <ResponsiveDialogTrigger asChild>
         <Button variant='outline' size='sm'>
-          <Plus className='mr-2 h-4 w-4' />
+          <Plus className='me-2 h-4 w-4' />
           <Trans>Add User</Trans>
         </Button>
       </ResponsiveDialogTrigger>
@@ -150,7 +150,7 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
             </Button>
             <Button type='submit' disabled={createUser.isPending}>
               {createUser.isPending && (
-                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}
               Create User
             </Button>
@@ -195,7 +195,7 @@ function EditUserDialog({
     <ResponsiveDialog open={open} onOpenChange={setOpen}>
       <ResponsiveDialogTrigger asChild>
         <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-          <Pencil className='mr-2 h-4 w-4' />
+          <Pencil className='me-2 h-4 w-4' />
           <Trans>Edit user</Trans>
         </DropdownMenuItem>
       </ResponsiveDialogTrigger>
@@ -238,7 +238,7 @@ function EditUserDialog({
             </Button>
             <Button type='submit' disabled={updateUser.isPending}>
               {updateUser.isPending && (
-                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}
               Save Changes
             </Button>
@@ -290,7 +290,7 @@ function SessionsDialog({ user }: { user: User }) {
     <ResponsiveDialog open={open} onOpenChange={setOpen}>
       <ResponsiveDialogTrigger asChild>
         <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-          <Key className='mr-2 h-4 w-4' />
+          <Key className='me-2 h-4 w-4' />
           <Trans>Manage sessions</Trans>
         </DropdownMenuItem>
       </ResponsiveDialogTrigger>
@@ -357,7 +357,7 @@ function SessionsDialog({ user }: { user: User }) {
               disabled={revokeSession.isPending}
             >
               {revokeSession.isPending && (
-                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}
               Revoke All Sessions
             </Button>
@@ -441,12 +441,12 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
               <DropdownMenuItem onClick={handleToggleStatus}>
                 {isSuspended ? (
                   <>
-                    <UserCheck className='mr-2 h-4 w-4' />
+                    <UserCheck className='me-2 h-4 w-4' />
                     <Trans>Remove suspension</Trans>
                   </>
                 ) : (
                   <>
-                    <Ban className='mr-2 h-4 w-4' />
+                    <Ban className='me-2 h-4 w-4' />
                     <Trans>Suspend user</Trans>
                   </>
                 )}
@@ -454,7 +454,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
             )}
             {!isSelf && (
               <DropdownMenuItem onClick={() => setDeleteOpen(true)}>
-                <Trash2 className='mr-2 h-4 w-4' />
+                <Trash2 className='me-2 h-4 w-4' />
                 <Trans>Delete user</Trans>
               </DropdownMenuItem>
             )}
@@ -469,7 +469,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
           confirmText={
             deleteUser.isPending ? (
               <>
-                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                <Loader2 className='me-2 h-4 w-4 animate-spin' />
                 <Trans>Deleting...</Trans>
               </>
             ) : (
@@ -589,7 +589,7 @@ export function SystemUsers() {
                 placeholder={t`Search users...`}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className='w-64 pl-8'
+                className='w-64 ps-8'
               />
             </div>
             <CreateUserDialog onSuccess={() => refetch()} />
@@ -674,7 +674,7 @@ export function SystemUsers() {
                     onClick={() => setOffset(Math.max(0, offset - limit))}
                     disabled={offset === 0}
                   >
-                    <ChevronLeft className='mr-1 h-4 w-4' />
+                    <ChevronLeft className='me-1 h-4 w-4 rtl:rotate-180' />
                     <Trans>Previous</Trans>
                   </Button>
                   <Button
@@ -684,7 +684,7 @@ export function SystemUsers() {
                     disabled={offset + limit >= data.count}
                   >
                     Next
-                    <ChevronRight className='ml-1 h-4 w-4' />
+                    <ChevronRight className='ms-1 h-4 w-4 rtl:rotate-180' />
                   </Button>
                 </div>
               </div>

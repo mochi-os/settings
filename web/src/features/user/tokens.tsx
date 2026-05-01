@@ -71,7 +71,7 @@ function TokenRow({ token }: { token: Token }) {
       <TableCell className='text-muted-foreground text-sm'>
         {token.expires || 'Never'}
       </TableCell>
-      <TableCell className='text-right'>
+      <TableCell className='text-end'>
         <Button
           variant='ghost'
           size='sm'
@@ -150,7 +150,7 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
     <ResponsiveDialog open={open} onOpenChange={setOpen}>
       <ResponsiveDialogTrigger asChild>
         <Button size='sm' variant='outline' className={triggerClassName}>
-          <Plus className='mr-2 h-4 w-4' />
+          <Plus className='me-2 h-4 w-4' />
           <Trans>Create token</Trans>
         </Button>
       </ResponsiveDialogTrigger>
@@ -208,7 +208,7 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
                 disabled={createToken.isPending || !name.trim()}
               >
                 {createToken.isPending && (
-                  <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                  <Loader2 className='me-2 h-4 w-4 animate-spin' />
                 )}
                 Create token
               </Button>

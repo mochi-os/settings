@@ -35,14 +35,14 @@ import {
   SheetTitle,
   TimezoneSelect,
   getErrorMessage,
-  appearanceLabels,
-  stylePresetLabels,
-  dateFormatLabels,
-  timeFormatLabels,
-  timestampDisplayLabels,
-  weekStartLabels,
-  numberFormatLabels,
-  unitLabels,
+  useAppearanceLabels,
+  useStylePresetLabels,
+  useDateFormatLabels,
+  useTimeFormatLabels,
+  useTimestampDisplayLabels,
+  useWeekStartLabels,
+  useNumberFormatLabels,
+  useUnitLabels,
   toast,
   type ThemeInfo,
   usePageTitle,
@@ -184,14 +184,6 @@ const stylePresetOverrides: Record<string, StyleOverrides> = {
   ),
 }
 
-const stylePresetSelectLabels: Record<string, string> = {
-  vega: stylePresetLabels.vega,
-  nova: stylePresetLabels.nova,
-  maia: stylePresetLabels.maia,
-  lyra: stylePresetLabels.lyra,
-  mira: stylePresetLabels.mira,
-  luma: stylePresetLabels.default,
-}
 
 function normalizeStylePreset(
   value: string
@@ -488,6 +480,22 @@ import {
 
 export function UserPreferences() {
   const { t } = useLingui()
+  const appearanceLabels = useAppearanceLabels()
+  const stylePresetLabels = useStylePresetLabels()
+  const dateFormatLabels = useDateFormatLabels()
+  const timeFormatLabels = useTimeFormatLabels()
+  const timestampDisplayLabels = useTimestampDisplayLabels()
+  const weekStartLabels = useWeekStartLabels()
+  const numberFormatLabels = useNumberFormatLabels()
+  const unitLabels = useUnitLabels()
+  const stylePresetSelectLabels: Record<string, string> = useMemo(() => ({
+    vega: stylePresetLabels.vega,
+    nova: stylePresetLabels.nova,
+    maia: stylePresetLabels.maia,
+    lyra: stylePresetLabels.lyra,
+    mira: stylePresetLabels.mira,
+    luma: stylePresetLabels.default,
+  }), [stylePresetLabels])
   usePageTitle(t`Preferences`)
   const { data, isLoading, error, refetch } = usePreferencesData()
   const setPreference = useSetPreference()
@@ -654,9 +662,9 @@ export function UserPreferences() {
                 disabled={isLoading || resetPreferences.isPending}
               >
                 {resetPreferences.isPending ? (
-                  <Loader2 className='mr-2 h-3.5 w-3.5 animate-spin' />
+                  <Loader2 className='me-2 h-3.5 w-3.5 animate-spin' />
                 ) : (
-                  <RotateCcw className='mr-2 h-3.5 w-3.5' />
+                  <RotateCcw className='me-2 h-3.5 w-3.5' />
                 )}
                 <Trans>Reset to defaults</Trans>
               </Button>
@@ -727,7 +735,7 @@ export function UserPreferences() {
                           return "Default"
                         })()}
                       </span>
-                      <ChevronRight className="size-4 text-muted-foreground" />
+                      <ChevronRight className="size-4 text-muted-foreground rtl:rotate-180" />
                     </Button>
                   </FieldRow>
                 )}
@@ -792,7 +800,7 @@ export function UserPreferences() {
                             }}
                             disabled={setPreference.isPending}
                             className={cn(
-                              'flex items-center gap-3 rounded-md border-[length:var(--border-width)] p-3 text-left transition-colors',
+                              'flex items-center gap-3 rounded-md border-[length:var(--border-width)] p-3 text-start transition-colors',
                               isSelected
                                 ? 'border-primary bg-primary/5'
                                 : 'border-border hover:border-primary/50'
@@ -881,7 +889,7 @@ export function UserPreferences() {
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.time_format || 'auto'}
-                    options={{ ...timeFormatLabels, auto: `${timeFormatLabels.auto} (${detectTimeFormat() === '12h' ? '12 hours' : '24 hours'})` }}
+                    options={{ ...timeFormatLabels, auto: `${timeFormatLabels.auto} (${timeFormatLabels[detectTimeFormat()] ?? detectTimeFormat()})` }}
                     onChange={(value) => handleChange('time_format', value)}
                     disabled={setPreference.isPending}
                   />
@@ -894,7 +902,7 @@ export function UserPreferences() {
                     value={data.preferences.week_start || 'auto'}
                     options={{
                       ...weekStartLabels,
-                      auto: `${weekStartLabels.auto} (${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][detectWeekStart()]})`,
+                      auto: `${weekStartLabels.auto} (${weekStartLabels[(['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][detectWeekStart()]) ?? 'monday'] ?? ''})`,
                     }}
                     onChange={(value) => handleChange('week_start', value)}
                     disabled={setPreference.isPending}

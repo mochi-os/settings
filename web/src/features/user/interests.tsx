@@ -92,7 +92,7 @@ function InterestRow({ interest }: { interest: Interest }) {
         <div className='bg-muted-foreground/50 pointer-events-none absolute top-full left-1/2 h-2 w-px -translate-x-1/2' />
       </div>
       <span
-        className='w-8 shrink-0 text-right text-xs tabular-nums'
+        className='w-8 shrink-0 text-end text-xs tabular-nums'
         style={{ color: weight === 0 ? undefined : `hsl(${interestHue(weight)}, 80%, 45%)` }}
       >
         {weight > 0 ? '+' : ''}{weight}
@@ -129,7 +129,7 @@ function SearchResults({
         <button
           key={result.qid}
           type='button'
-          className='hover:bg-accent w-full px-3 py-2 text-left'
+          className='hover:bg-accent w-full px-3 py-2 text-start'
           onClick={() => onSelect(result)}
         >
           <div className='text-sm font-medium'>{result.label}</div>
@@ -215,7 +215,7 @@ function InterestSearch() {
           }}
           onFocus={() => results.length > 0 && setShowResults(true)}
           placeholder={t`Search topics to add...`}
-          className='pl-9'
+          className='ps-9'
         />
       </div>
       {showResults && (
