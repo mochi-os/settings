@@ -44,8 +44,7 @@ import {
   requestHelpers,
   toast,
   usePageTitle,
-  usePush,
-} from '@mochi/web'
+  usePush, naturalCompare,} from '@mochi/web'
 import endpoints from '@/api/endpoints'
 
 type TabId = 'categories' | 'topics'
@@ -94,23 +93,22 @@ interface Topic {
   created: number
 }
 
-const tabs: { id: TabId; label: string }[] = [
-  { id: 'categories', label: "Categories" },
-  { id: 'topics', label: "Topics" },
-]
-
 // Sort categories alphabetically by label, with "No notifications" (id 0) last.
 function sortCategories(cats: Category[]): Category[] {
   return [...cats].sort((a, b) => {
     if (a.id === 0) return 1
     if (b.id === 0) return -1
-    return a.label.localeCompare(b.label)
+    return naturalCompare(a.label, b.label)
   })
 }
 
 export function UserNotifications() {
   const { t } = useLingui()
   usePageTitle(t`Notifications`)
+  const tabs: { id: TabId; label: string }[] = [
+    { id: 'categories', label: t`Categories` },
+    { id: 'topics', label: t`Topics` },
+  ]
 
   const search = useSearch({ strict: false }) as { tab?: TabId }
   const navigate = useNavigate()
@@ -128,18 +126,18 @@ export function UserNotifications() {
       <Main>
         <div className="mb-4 flex items-center justify-between border-b">
           <div className="flex gap-1">
-            {tabs.map((t) => (
+            {tabs.map((tab) => (
               <button
-                key={t.id}
-                onClick={() => setActiveTab(t.id)}
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
                 className={cn(
                   'flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px',
-                  activeTab === t.id
+                  activeTab === tab.id
                     ? 'border-primary text-foreground'
                     : 'border-transparent text-muted-foreground hover:text-foreground'
                 )}
               >
-                {t.label}
+                {tab.label}
               </button>
             ))}
           </div>
@@ -160,6 +158,7 @@ export function UserNotifications() {
 // ──────────────────────── Browser push toggle ────────────────────────────
 
 function BrowserPushButton({ onChanged }: { onChanged: () => void }) {
+  const { t } = useLingui()
   const { supported, supportChecked, permission, subscribed, isSubscribing, isUnsubscribing, subscribe, unsubscribe } = usePush()
 
   if (!supportChecked || !supported) return null
@@ -173,13 +172,13 @@ function BrowserPushButton({ onChanged }: { onChanged: () => void }) {
       else await unsubscribe()
       onChanged()
     } catch (e) {
-      toast.error(getErrorMessage(e, "Failed to update browser notifications"))
+      toast.error(getErrorMessage(e, t`Failed to update browser notifications`))
     }
   }
 
   return (
     <Label className="flex items-center gap-2 text-sm font-normal">
-      Browser notifications
+      <Trans>Browser notifications</Trans>
       <Switch
         checked={subscribed}
         disabled={busy || denied}
@@ -200,6 +199,7 @@ function CategoriesTab({
   setCreating: (v: boolean) => void
   reloadKey: number
 }) {
+  const { t } = useLingui()
   const [categories, setCategories] = useState<Category[] | null>(null)
   const [available, setAvailable] = useState<DestinationsAvailable | null>(null)
   const [error, setError] = useState<unknown>(null)
@@ -256,12 +256,12 @@ function CategoriesTab({
                   )
                   const sent = res?.sent ?? 0
                   if (sent === 0) {
-                    toast.error("No destinations configured")
+                    toast.error(t`No destinations configured`)
                   } else {
-                    toast.success(`Test sent to ${sent} destination${sent === 1 ? '' : 's'}`)
+                    toast.success(t`Test sent to ${sent} destination${sent === 1 ? '' : 's'}`)
                   }
                 } catch (e) {
-                  toast.error(getErrorMessage(e, "Failed to send test"))
+                  toast.error(getErrorMessage(e, t`Failed to send test`))
                 }
               }}
             />
@@ -371,6 +371,7 @@ function CategoryDialog({
   onClose: () => void
   onSaved: () => void | Promise<void>
 }) {
+  const { t } = useLingui()
   const isSuppress = category?.id === 0
   const [label, setLabel] = useState(category?.label ?? '')
   const [isDefault, setIsDefault] = useState<boolean>(category?.default === 1)
@@ -401,7 +402,7 @@ function CategoryDialog({
 
   const handleSave = async () => {
     if (!label.trim()) {
-      toast.error("Label is required")
+      toast.error(t`Label is required`)
       return
     }
     setSaving(true)
@@ -431,7 +432,7 @@ function CategoryDialog({
       }
       await onSaved()
     } catch (e) {
-      toast.error(getErrorMessage(e, "Failed to save category"))
+      toast.error(getErrorMessage(e, t`Failed to save category`))
     } finally {
       setSaving(false)
     }
@@ -441,10 +442,10 @@ function CategoryDialog({
     <Dialog open onOpenChange={(v) => { if (!v) onClose() }}>
       <DialogContent className="max-w-lg" onOpenAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader>
-          <DialogTitle>{category ? "Edit category" : "New category"}</DialogTitle>
+          <DialogTitle>{category ? <Trans>Edit category</Trans> : <Trans>New category</Trans>}</DialogTitle>
           {isSuppress && (
             <DialogDescription>
-              The "No notifications" category silences any topic assigned to it.
+              <Trans>The "No notifications" category silences any topic assigned to it.</Trans>
             </DialogDescription>
           )}
         </DialogHeader>
@@ -502,8 +503,9 @@ function DestinationsGrid({
   checked: Set<string>
   onToggle: (key: string) => void
 }) {
+  const { t } = useLingui()
   const rows: { key: string; label: string }[] = [
-    { key: destKey('web', ''), label: "Mochi web" },
+    { key: destKey('web', ''), label: t`Mochi web` },
   ]
   for (const acc of available.accounts) {
     rows.push({
@@ -514,7 +516,7 @@ function DestinationsGrid({
   for (const feed of available.feeds) {
     rows.push({ key: destKey('rss', feed.id), label: `RSS: ${feed.name}` })
   }
-  rows.sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: 'base' }))
+  rows.sort((a, b) => naturalCompare(a.label, b.label))
   return (
     <div className="flex flex-col">
       {rows.map((r) => (
@@ -538,6 +540,7 @@ function CategoryDeleteDialog({
   onClose: () => void
   onDeleted: () => void | Promise<void>
 }) {
+  const { t } = useLingui()
   const others = sortCategories(categories.filter((c) => c.id !== category.id))
   const preferred = others.find((c) => c.default === 1) ?? others.find((c) => c.id !== 0) ?? others[0]
   const [target, setTarget] = useState<string>(String(preferred?.id ?? 0))
@@ -552,7 +555,7 @@ function CategoryDeleteDialog({
       })
       await onDeleted()
     } catch (e) {
-      toast.error(getErrorMessage(e, "Failed to delete category"))
+      toast.error(getErrorMessage(e, t`Failed to delete category`))
     } finally {
       setDeleting(false)
     }
@@ -562,7 +565,7 @@ function CategoryDeleteDialog({
     <AlertDialog open onOpenChange={(v) => { if (!v) onClose() }}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Delete "{category.label}"?</AlertDialogTitle>
+          <AlertDialogTitle><Trans>Delete "{category.label}"?</Trans></AlertDialogTitle>
           <AlertDialogDescription />
         </AlertDialogHeader>
         <div className="flex items-center justify-between gap-3 py-2">
@@ -582,7 +585,7 @@ function CategoryDeleteDialog({
           <AlertDialogCancel disabled={deleting}><Trans>Cancel</Trans></AlertDialogCancel>
           <AlertDialogAction onClick={run} disabled={deleting}>
             {deleting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            Delete
+            <Trans>Delete</Trans>
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
@@ -647,7 +650,7 @@ function TopicsTab() {
       g.items.push(t)
       map.set(t.app, g)
     }
-    return Array.from(map.values()).sort((a, b) => a.app_name.localeCompare(b.app_name))
+    return Array.from(map.values()).sort((a, b) => naturalCompare(a.app_name, b.app_name))
   }, [topics])
 
   if (error) return <GeneralError error={error} />

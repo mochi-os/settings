@@ -25,43 +25,45 @@ import {
   Section,
   FieldRow,
   DataChip,
-  formatSystemTimestamp,
-} from '@mochi/web'
+  formatSystemTimestamp, naturalCompare,} from '@mochi/web'
 import {
   useSystemSettingsData,
   useSetSystemSetting,
 } from '@/hooks/use-system-settings'
 
-const settingLabels: Record<string, string> = {
-  apps_install_user: 'Allow users to install apps',
-  auth_email: 'Login using email code',
-  auth_passkey: 'Login using passkey',
-  auth_totp: 'Login using TOTP authenticator app',
-  auth_recovery: 'Login using recovery code',
-  auth_oauth: 'Login using OAuth 2.0',
-  default_theme: 'Default theme',
-  domains_verification: 'Require domain verification',
-  email_from: 'Default from address for system emails',
-  oauth_public_url: 'Public URL for OAuth redirects',
-  oauth_google_client_id: 'Google client ID',
-  oauth_google_client_secret: 'Google client secret',
-  oauth_github_client_id: 'GitHub client ID',
-  oauth_github_client_secret: 'GitHub client secret',
-  oauth_microsoft_client_id: 'Microsoft client ID',
-  oauth_microsoft_client_secret: 'Microsoft client secret',
-  oauth_microsoft_tenant: 'Microsoft tenant',
-  oauth_facebook_client_id: 'Facebook App ID',
-  oauth_facebook_client_secret: 'Facebook App secret',
-  oauth_x_client_id: 'X client ID',
-  oauth_x_client_secret: 'X client secret',
-  server_started: 'Server started',
-  server_version: 'Server version',
-  signup_enabled: 'Allow new signups',
+function useSettingLabels(): Record<string, string> {
+  const { t } = useLingui()
+  return {
+    apps_install_user: t`Allow users to install apps`,
+    auth_email: t`Login using email code`,
+    auth_passkey: t`Login using passkey`,
+    auth_totp: t`Login using TOTP authenticator app`,
+    auth_recovery: t`Login using recovery code`,
+    auth_oauth: t`Login using OAuth 2.0`,
+    default_theme: t`Default theme`,
+    domains_verification: t`Require domain verification`,
+    email_from: t`Default from address for system emails`,
+    oauth_public_url: t`Public URL for OAuth redirects`,
+    oauth_google_client_id: t`Google client ID`,
+    oauth_google_client_secret: t`Google client secret`,
+    oauth_github_client_id: t`GitHub client ID`,
+    oauth_github_client_secret: t`GitHub client secret`,
+    oauth_microsoft_client_id: t`Microsoft client ID`,
+    oauth_microsoft_client_secret: t`Microsoft client secret`,
+    oauth_microsoft_tenant: t`Microsoft tenant`,
+    oauth_facebook_client_id: t`Facebook App ID`,
+    oauth_facebook_client_secret: t`Facebook App secret`,
+    oauth_x_client_id: t`X client ID`,
+    oauth_x_client_secret: t`X client secret`,
+    server_started: t`Server started`,
+    server_version: t`Server version`,
+    signup_enabled: t`Allow new signups`,
+  }
 }
 
-function formatSettingName(name: string): string {
-  if (settingLabels[name]) {
-    return settingLabels[name]
+function formatSettingName(name: string, labels: Record<string, string>): string {
+  if (labels[name]) {
+    return labels[name]
   }
   return name
     .split('_')
@@ -69,17 +71,33 @@ function formatSettingName(name: string): string {
     .join(' ')
 }
 
-function formatSettingValue(
-  name: string,
-  value: string,
-): string {
-  if (name === 'server_started' && value) {
-    const timestamp = parseInt(value, 10)
-    if (!isNaN(timestamp)) {
-      return formatSystemTimestamp(timestamp)
+function useFormatSettingValue() {
+  const { t } = useLingui()
+  return function formatSettingValue(name: string, value: string): string {
+    if (name === 'server_started' && value) {
+      const timestamp = parseInt(value, 10)
+      if (!isNaN(timestamp)) {
+        return formatSystemTimestamp(timestamp)
+      }
+    }
+    return value || t`(empty)`
+  }
+}
+
+function useMethodStateLabel() {
+  const { t } = useLingui()
+  return (slot: string): string => {
+    switch (slot) {
+      case 'disabled':
+        return t`Disabled`
+      case 'allowed':
+        return t`Allowed`
+      case 'required':
+        return t`Required`
+      default:
+        return slot
     }
   }
-  return value || '(empty)'
 }
 
 function isBooleanSetting(setting: SystemSetting): boolean {
@@ -121,12 +139,16 @@ function SettingField({
   isSaving: boolean
 }) {
   const { t } = useLingui()
+  const labels = useSettingLabels()
+  const formatSettingValue = useFormatSettingValue()
+  const methodStateLabel = useMethodStateLabel()
   const [localValue, setLocalValue] = useState(setting.value)
   const isBoolean = isBooleanSetting(setting)
   const enumOpts = enumOptions(setting)
   const methodStates = methodStateOptions(enumOpts)
   const hasChanged = localValue !== setting.value
   const isDefault = setting.value === setting.default
+  const settingNameLabel = formatSettingName(setting.name, labels)
 
   const handleSave = () => {
     onSave(setting.name, localValue)
@@ -150,7 +172,7 @@ function SettingField({
 
   return (
     <FieldRow
-      label={formatSettingName(setting.name)}
+      label={settingNameLabel}
       className='sm:grid-cols-[400px_minmax(0,1fr)]'
     >
       <div className='flex items-center gap-2 w-full'>
@@ -171,13 +193,13 @@ function SettingField({
                     onClick={() => handlePick(slot)}
                     disabled={isSaving || localValue === slot}
                     className={
-                      'w-20 py-1 text-xs font-medium rounded-sm capitalize transition-colors ' +
+                      'w-20 py-1 text-xs font-medium rounded-sm transition-colors ' +
                       (localValue === slot
                         ? 'bg-primary text-primary-foreground'
                         : 'text-muted-foreground hover:text-foreground')
                     }
                   >
-                    {slot}
+                    {methodStateLabel(slot)}
                   </button>
                 ))}
             </div>
@@ -199,8 +221,7 @@ function SettingField({
                   <AlertDialogHeader>
                     <AlertDialogTitle><Trans>Reset to default?</Trans></AlertDialogTitle>
                     <AlertDialogDescription>
-                      This will reset "{formatSettingName(setting.name)}" to its
-                      default value ({setting.default}).
+                      <Trans>This will reset "{settingNameLabel}" to its default value ({setting.default}).</Trans>
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
@@ -238,8 +259,7 @@ function SettingField({
                   <AlertDialogHeader>
                     <AlertDialogTitle><Trans>Reset to default?</Trans></AlertDialogTitle>
                     <AlertDialogDescription>
-                      This will reset "{formatSettingName(setting.name)}" to its
-                      default value ({setting.default}).
+                      <Trans>This will reset "{settingNameLabel}" to its default value ({setting.default}).</Trans>
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
@@ -265,7 +285,7 @@ function SettingField({
                 {isSaving ? (
                   <Loader2 className='h-4 w-4 animate-spin' />
                 ) : (
-                  'Save'
+                  <Trans>Save</Trans>
                 )}
               </Button>
             ) : !isDefault && (
@@ -286,8 +306,9 @@ function SettingField({
                   <AlertDialogHeader>
                     <AlertDialogTitle><Trans>Reset to default?</Trans></AlertDialogTitle>
                     <AlertDialogDescription>
-                      This will reset "{formatSettingName(setting.name)}" to its
-                      default {setting.default ? `value (${setting.default})` : '(empty)'}.
+                      {setting.default
+                        ? <Trans>This will reset "{settingNameLabel}" to its default value ({setting.default}).</Trans>
+                        : <Trans>This will reset "{settingNameLabel}" to its default (empty).</Trans>}
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
@@ -308,6 +329,7 @@ function SettingField({
 
 export function SystemSettings() {
   const { t } = useLingui()
+  const labels = useSettingLabels()
   usePageTitle(t`System settings`)
   const { data, isLoading, error, refetch } = useSystemSettingsData()
   const setSetting = useSetSystemSetting()
@@ -340,7 +362,7 @@ export function SystemSettings() {
     ? [...data.settings]
         .filter((s) => !hiddenSettings.includes(s.name))
         .sort((a, b) =>
-          formatSettingName(a.name).localeCompare(formatSettingName(b.name))
+          naturalCompare(formatSettingName(a.name, labels), formatSettingName(b.name, labels))
         )
     : []
 

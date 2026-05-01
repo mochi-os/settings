@@ -53,8 +53,7 @@ import {
   toast,
   useFormat,
   type Account,
-  type Provider,
-} from '@mochi/web'
+  type Provider, naturalCompare,} from '@mochi/web'
 
 const APP_BASE = getAppPath()
 
@@ -460,13 +459,9 @@ export function ConnectedAccounts() {
             <TableBody>
               {[...accounts]
                 .sort((a, b) => {
-                  const nameCompare = getAccountDisplayName(a).localeCompare(
-                    getAccountDisplayName(b)
-                  )
+                  const nameCompare = naturalCompare(getAccountDisplayName(a), getAccountDisplayName(b))
                   if (nameCompare !== 0) return nameCompare
-                  return getProviderLabel(a.type).localeCompare(
-                    getProviderLabel(b.type)
-                  )
+                  return naturalCompare(getProviderLabel(a.type), getProviderLabel(b.type))
                 })
                 .map((account) => (
                   <AccountRow

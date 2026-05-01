@@ -506,9 +506,23 @@ export function UserPreferences() {
     staleTime: 5 * 60 * 1000,
   })
   const languageOptions = useMemo(() => {
+    // Explicit display-name overrides keyed by lower-cased BCP 47 tag. Used
+    // where Intl.DisplayNames would return wording that doesn't match
+    // Mochi's choice (e.g. en-us → "American English") or that wouldn't
+    // sort alongside its parent language in the picker. `en` is overridden
+    // because Mochi's source catalog uses neutral English, not UK or US.
+    const overrides: Record<string, string> = {
+      'en': 'English (international)',
+      'en-us': 'English (USA)',
+    }
     const tags = languagesData?.languages ?? ['en']
     const out: Record<string, string> = {}
     for (const tag of tags) {
+      const override = overrides[tag.toLowerCase()]
+      if (override) {
+        out[tag] = override
+        continue
+      }
       let nativeName = tag
       try {
         nativeName = new Intl.DisplayNames([tag], { type: 'language' }).of(tag) ?? tag

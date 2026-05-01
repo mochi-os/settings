@@ -13,8 +13,7 @@ import {
   Slider,
   usePageTitle,
   getErrorMessage,
-  toast,
-} from '@mochi/web'
+  toast, naturalCompare,} from '@mochi/web'
 
 function interestHue(weight: number): number {
   // Continuous: red(-100) → blue(0) → green(+100)
@@ -232,7 +231,7 @@ export function UserInterests() {
   const { data, isLoading, error, refetch } = useInterests()
   const regenerateSummary = useInterestSummary()
 
-  const interests = [...(data?.interests ?? [])].sort((a, b) => a.label.localeCompare(b.label))
+  const interests = [...(data?.interests ?? [])].sort((a, b) => naturalCompare(a.label, b.label))
   const summary = data?.summary ?? ''
 
   const handleRegenerate = () => {
