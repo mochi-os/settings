@@ -543,9 +543,31 @@ export function UserPreferences() {
       return name
     }
     const tags = languagesData?.languages ?? ['en']
+    // Sort: Latin-script natives first (English, Français, Deutsch, …), then
+    // non-Latin (العربية, 日本語, 한국어, עברית, …). Within each bucket sort by
+    // displayed native name. Backend returns tags alphabetically, which puts
+    // 'ar' at the top — visually wrong for English-speaking users who expect
+    // their language near the top.
+    const scriptBucket = (native: string): number => {
+      for (const ch of native) {
+        if (/\p{L}/u.test(ch)) {
+          return /[A-Za-zÀ-ÿĀ-ſƀ-ɏ]/.test(ch) ? 0 : 1
+        }
+      }
+      return 0
+    }
+    const sortedTags = [...tags]
+      .map((tag) => ({ tag, name: describe(tag) }))
+      .sort((a, b) => {
+        const ba = scriptBucket(a.name)
+        const bb = scriptBucket(b.name)
+        if (ba !== bb) return ba - bb
+        return a.name.localeCompare(b.name)
+      })
+      .map(({ tag }) => tag)
     const out: Record<string, string> = {}
     out['auto'] = `${t`Detect from web browser`} (${describe(detectLanguage(), i18n.locale)})`
-    for (const tag of tags) {
+    for (const tag of sortedTags) {
       out[tag] = describe(tag)
     }
     return out
