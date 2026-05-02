@@ -523,6 +523,7 @@ export function UserPreferences() {
     const overrides: Record<string, string> = {
       'en': 'English (international)',
       'en-us': 'English (USA)',
+      'es-419': 'Español (latinoamericano)',
     }
     // Each installed language renders as its native exonym so users recognise
     // their own language by sight (Français, 日本語). The Auto row's
@@ -566,7 +567,18 @@ export function UserPreferences() {
       })
       .map(({ tag }) => tag)
     const out: Record<string, string> = {}
-    out['auto'] = `${t`Detect from web browser`} (${describe(detectLanguage(), i18n.locale)})`
+    // The Auto suffix should reflect the catalog the resolver will actually
+    // load, not the literal browser tag — walk parent chain to closest
+    // installed locale (e.g. en-gb → en → "English (international)").
+    const installed = new Set(tags.map((s) => s.toLowerCase()))
+    let resolved = detectLanguage().toLowerCase()
+    while (resolved !== '') {
+      if (installed.has(resolved)) break
+      const i = resolved.lastIndexOf('-')
+      if (i < 0) { resolved = 'en'; break }
+      resolved = resolved.slice(0, i)
+    }
+    out['auto'] = `${t`Detect from web browser`}: ${describe(resolved, i18n.locale)}`
     for (const tag of sortedTags) {
       out[tag] = describe(tag)
     }
