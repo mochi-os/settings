@@ -24,16 +24,16 @@ def action_interests_set(a):
     weight = a.input("weight")
 
     if not qid:
-        a.error_label(400, "errors.qid_required")
+        a.error.label(400, "errors.qid_required")
         return
 
     if weight == None:
-        a.error_label(400, "errors.weight_required")
+        a.error.label(400, "errors.weight_required")
         return
 
     w = int(weight)
     if w < -100 or w > 100:
-        a.error_label(400, "errors.weight_must_be_100_to_100")
+        a.error.label(400, "errors.weight_must_be_100_to_100")
         return
 
     mochi.interests.set(qid, w)
@@ -43,7 +43,7 @@ def action_interests_set(a):
 def action_interests_remove(a):
     qid = a.input("qid")
     if not qid:
-        a.error_label(400, "errors.qid_required")
+        a.error.label(400, "errors.qid_required")
         return
 
     mochi.interests.remove(qid)
@@ -53,7 +53,7 @@ def action_interests_remove(a):
 def action_interests_search(a):
     query = a.input("query")
     if not query or len(query) < 2:
-        a.error_label(400, "errors.query_too_short")
+        a.error.label(400, "errors.query_too_short")
         return
 
     results = mochi.qid.search(query, "en")
