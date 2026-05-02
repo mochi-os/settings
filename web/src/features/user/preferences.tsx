@@ -890,7 +890,7 @@ export function UserPreferences() {
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.units || 'auto'}
-                    options={{ ...unitLabels, auto: `${unitLabels.auto} (${unitLabels[detectUnits()] || detectUnits()})` }}
+                    options={{ ...unitLabels, auto: `${unitLabels.auto}: ${unitLabels[detectUnits()] || detectUnits()}` }}
                     onChange={(value) => handleChange('units', value)}
                     disabled={setPreference.isPending}
                   />
@@ -901,7 +901,7 @@ export function UserPreferences() {
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.number_format || 'auto'}
-                    options={{ ...numberFormatLabels, auto: `${numberFormatLabels.auto} (${detectNumberFormat()})` }}
+                    options={{ ...numberFormatLabels, auto: `${numberFormatLabels.auto}: ${detectNumberFormat()}` }}
                     onChange={(value) => handleChange('number_format', value)}
                     disabled={setPreference.isPending}
                   />
@@ -912,7 +912,7 @@ export function UserPreferences() {
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.date_format || 'auto'}
-                    options={{ ...dateFormatLabels, auto: `${dateFormatLabels.auto} (${detectDateFormat()})` }}
+                    options={{ ...dateFormatLabels, auto: `${dateFormatLabels.auto}: ${detectDateFormat()}` }}
                     onChange={(value) => handleChange('date_format', value)}
                     disabled={setPreference.isPending}
                   />
@@ -923,7 +923,7 @@ export function UserPreferences() {
                 <div className="w-full">
                   <ComboSelect
                     value={data.preferences.time_format || 'auto'}
-                    options={{ ...timeFormatLabels, auto: `${timeFormatLabels.auto} (${timeFormatLabels[detectTimeFormat()] ?? detectTimeFormat()})` }}
+                    options={{ ...timeFormatLabels, auto: `${timeFormatLabels.auto}: ${timeFormatLabels[detectTimeFormat()] ?? detectTimeFormat()}` }}
                     onChange={(value) => handleChange('time_format', value)}
                     disabled={setPreference.isPending}
                   />
@@ -936,7 +936,7 @@ export function UserPreferences() {
                     value={data.preferences.week_start || 'auto'}
                     options={{
                       ...weekStartLabels,
-                      auto: `${weekStartLabels.auto} (${weekStartLabels[(['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][detectWeekStart()]) ?? 'monday'] ?? ''})`,
+                      auto: `${weekStartLabels.auto}: ${weekStartLabels[(['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][detectWeekStart()]) ?? 'monday'] ?? ''}`,
                     }}
                     onChange={(value) => handleChange('week_start', value)}
                     disabled={setPreference.isPending}
