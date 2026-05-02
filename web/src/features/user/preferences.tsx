@@ -479,7 +479,7 @@ import {
 } from '@/hooks/use-preferences'
 
 export function UserPreferences() {
-  const { t } = useLingui()
+  const { t, i18n } = useLingui()
   const appearanceLabels = useAppearanceLabels()
   const stylePresetLabels = useStylePresetLabels()
   const dateFormatLabels = useDateFormatLabels()
@@ -524,17 +524,19 @@ export function UserPreferences() {
       'en': 'English (international)',
       'en-us': 'English (USA)',
     }
-    const describe = (tag: string): string => {
+    // Each installed language renders as its native exonym so users recognise
+    // their own language by sight (Français, 日本語). The Auto row's
+    // parenthetical is descriptive metadata about what Auto would pick, so it
+    // renders in the active UI language instead.
+    const describe = (tag: string, displayLocale?: string): string => {
       const override = overrides[tag.toLowerCase()]
       if (override) return override
       let name = tag
       try {
-        name = new Intl.DisplayNames([tag], { type: 'language' }).of(tag) ?? tag
+        name = new Intl.DisplayNames([displayLocale ?? tag], { type: 'language' }).of(tag) ?? tag
       } catch {
         /* fall back to raw tag */
       }
-      // Some locales (e.g. fr) lowercase language exonyms; capitalise the
-      // first letter so the dropdown reads "Français" not "français".
       if (name.length > 0) {
         name = name.charAt(0).toLocaleUpperCase() + name.slice(1)
       }
@@ -542,14 +544,12 @@ export function UserPreferences() {
     }
     const tags = languagesData?.languages ?? ['en']
     const out: Record<string, string> = {}
-    // "auto" pinned to the top — matches the date_format / time_format /
-    // number_format / units pickers; resolves server-side via Accept-Language.
-    out['auto'] = `${t`Detect from web browser`} (${describe(detectLanguage())})`
+    out['auto'] = `${t`Detect from web browser`} (${describe(detectLanguage(), i18n.locale)})`
     for (const tag of tags) {
       out[tag] = describe(tag)
     }
     return out
-  }, [languagesData, t])
+  }, [languagesData, t, i18n.locale])
   const showLanguagePicker = (languagesData?.languages?.length ?? 1) > 1
 
   useEffect(() => {
@@ -743,7 +743,7 @@ export function UserPreferences() {
                   <div className="w-full">
                     <ComboSelect
                       value={data.preferences.border_radius || 'default'}
-                      options={{ default: "Follow theme", none: "None", small: "Small", medium: "Medium", large: "Large" }}
+                      options={{ default: t`Follow theme`, none: t`None`, small: t`Small`, medium: t`Medium`, large: t`Large` }}
                       onChange={(value) => handleChange('border_radius', value)}
                       disabled={setPreference.isPending}
                       renderOption={(optValue, label) => (
