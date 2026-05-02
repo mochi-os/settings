@@ -508,7 +508,7 @@ export function UserPreferences() {
 
   // Languages installed across all apps' labels/<lang>.conf files. The picker
   // hides the field when only English is present (no real choice yet) — once
-  // Phase 2 ships fr/ja/en-US catalogs the picker reveals itself.
+  // Phase 2 ships fr/ja/en-us catalogs the picker reveals itself.
   const { data: languagesData } = useQuery<{ languages: string[] }>({
     queryKey: ['_', 'languages'],
     queryFn: () => fetch('/_/languages').then((r) => r.json()),
