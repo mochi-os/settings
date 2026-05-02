@@ -36,7 +36,7 @@ def action_system_users_get(a):
     if not id:
         a.error_label(400, "errors.missing_user_id")
         return
-    user = mochi.user.get.id(int(id))
+    user = mochi.user.get(int(id))
     if not user:
         a.error_label(404, "errors.user_not_found")
         return

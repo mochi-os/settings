@@ -17,7 +17,7 @@ def enrich_delegations(delegations):
     """Add username to delegation records"""
     result = []
     for d in delegations:
-        user = mochi.user.get.id(d["owner"])
+        user = mochi.user.get(d["owner"])
         username = user["username"] if user else "Unknown"
         result.append({"domain": d["domain"], "path": d["path"], "owner": d["owner"], "username": username})
     return result
