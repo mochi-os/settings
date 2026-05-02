@@ -4,10 +4,11 @@
 def action_user_account(a):
     """User account overview - returns identity and sessions"""
     entity_id = a.user.identity.id
+    fp = mochi.entity.fingerprint(entity_id)
     a.json({
         "identity": {
             "entity": entity_id,
-            "fingerprint": mochi.entity.fingerprint(entity_id, True),
+            "fingerprint": fp[:3] + "-" + fp[3:6] + "-" + fp[6:],
             "username": a.user.username,
             "name": a.user.identity.name,
             "privacy": a.user.identity.privacy,
@@ -19,9 +20,10 @@ def action_user_account(a):
 def action_user_account_identity(a):
     """Get user identity information"""
     entity_id = a.user.identity.id
+    fp = mochi.entity.fingerprint(entity_id)
     a.json({
         "entity": entity_id,
-        "fingerprint": mochi.entity.fingerprint(entity_id, True),
+        "fingerprint": fp[:3] + "-" + fp[3:6] + "-" + fp[6:],
         "username": a.user.username,
         "name": a.user.identity.name,
         "privacy": a.user.identity.privacy,
