@@ -523,6 +523,7 @@ export function UserPreferences() {
     const overrides: Record<string, string> = {
       'en': 'English (international)',
       'en-us': 'English (USA)',
+      'es': 'Español (España)',
       'es-419': 'Español (latinoamericano)',
     }
     // Each installed language renders as its native exonym so users recognise
