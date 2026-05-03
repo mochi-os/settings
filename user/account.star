@@ -47,7 +47,7 @@ def action_user_account_identity_update(a):
         kwargs["name"] = name
     if privacy != None:
         if privacy != "public" and privacy != "private":
-            a.error.label(400, "errors.privacy_must_be_public_or_private")
+            a.error.label(400, "errors.invalid_privacy")
             return
         kwargs["privacy"] = privacy
 

@@ -133,7 +133,7 @@ def action_domains_route_create(a):
     method = a.input("method")
     target = a.input("target")
     if not domain or path == None or not method or not target:
-        a.error.label(400, "errors.missing_required_fields_domain_path_method_target")
+        a.error.label(400, "errors.missing_required_fields")
         return
     if not is_admin(a):
         if not can_manage_path(a, domain, path):
