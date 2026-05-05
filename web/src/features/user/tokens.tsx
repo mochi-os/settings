@@ -57,19 +57,19 @@ function TokenRow({ token }: { token: Token }) {
           <span className='font-medium'>{token.name}</span>
           {token.scopes && token.scopes.length > 0 && (
             <span className='text-muted-foreground text-xs'>
-              Scopes: {token.scopes.join(', ')}
+              <Trans>Scopes: {token.scopes.join(', ')}</Trans>
             </span>
           )}
         </div>
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {token.created || 'Never'}
+        {token.created || t`Never`}
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {token.last_used || 'Never'}
+        {token.last_used || t`Never`}
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {token.expires || 'Never'}
+        {token.expires || t`Never`}
       </TableCell>
       <TableCell className='text-end'>
         <Button
@@ -89,8 +89,8 @@ function TokenRow({ token }: { token: Token }) {
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
           title={t`Delete token?`}
-          desc={`This will permanently delete the token "${token.name}". Any applications using this token will no longer be able to authenticate.`}
-          confirmText='Delete'
+          desc={t`This will permanently delete the token "${token.name}". Any applications using this token will no longer be able to authenticate.`}
+          confirmText={t`Delete`}
           destructive
           handleConfirm={handleDelete}
           isLoading={deleteToken.isPending}
@@ -157,11 +157,12 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
       <ResponsiveDialogContent>
         <ResponsiveDialogHeader>
           <ResponsiveDialogTitle>
-            {newToken ? "Token created" : "Create token"}
+            {newToken ? <Trans>Token created</Trans> : <Trans>Create token</Trans>}
           </ResponsiveDialogTitle>
           <ResponsiveDialogDescription>
             {newToken
-              ? "Copy your token now. You will not be able to see it again." : "Create a token to authenticate with git or the API."}
+              ? <Trans>Copy your token now. You will not be able to see it again.</Trans>
+              : <Trans>Create a token to authenticate with git or the API.</Trans>}
           </ResponsiveDialogDescription>
         </ResponsiveDialogHeader>
 
@@ -210,7 +211,7 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
                 {createToken.isPending && (
                   <Loader2 className='me-2 h-4 w-4 animate-spin' />
                 )}
-                Create token
+                <Trans>Create token</Trans>
               </Button>
             </ResponsiveDialogFooter>
           </div>

@@ -87,6 +87,7 @@ function InterestRow({ interest }: { interest: Interest }) {
             handleWeightCommit(Number((e.target as HTMLInputElement).value))
           }
           className='w-full'
+          // eslint-disable-next-line lingui/no-unlocalized-strings -- CSS color value
           style={{ accentColor: weight === 0 ? undefined : `hsl(${interestHue(weight)}, 80%, 45%)` }}
         />
         <div className='bg-muted-foreground/50 pointer-events-none absolute top-full left-1/2 h-2 w-px -translate-x-1/2' />

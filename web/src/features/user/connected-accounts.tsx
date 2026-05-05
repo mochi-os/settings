@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Trans, useLingui } from '@lingui/react/macro'
+import { msg } from '@lingui/core/macro'
+import { i18n } from '@lingui/core'
 import {
   Bell,
   Brain,
@@ -81,6 +83,7 @@ function getProviderIcon(type: string) {
 
 
 function getBrowserFromEndpoint(endpoint: string): string {
+  /* eslint-disable lingui/no-unlocalized-strings -- browser names are proper nouns */
   if (!endpoint) return 'Browser'
   if (endpoint.includes('push.services.mozilla.com')) return 'Firefox'
   if (endpoint.includes('fcm.googleapis.com')) return 'Chrome'
@@ -88,6 +91,7 @@ function getBrowserFromEndpoint(endpoint: string): string {
   if (endpoint.includes('wns.windows.com')) return 'Edge'
   if (endpoint.includes('push.api.opera.com')) return 'Opera'
   return 'Browser'
+  /* eslint-enable lingui/no-unlocalized-strings */
 }
 
 function getAccountDisplayName(account: Account): string {
@@ -96,7 +100,7 @@ function getAccountDisplayName(account: Account): string {
 
   // For email accounts, show the email address
   if (account.type === 'email') {
-    return account.identifier || 'Email'
+    return account.identifier || i18n._(msg`Email`)
   }
 
   // For browser accounts, detect browser from endpoint
@@ -264,8 +268,8 @@ function AccountRow({
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
           title={t`Remove account?`}
-          desc={`This will remove the connected account "${displayName}".`}
-          confirmText='Remove'
+          desc={t`This will remove the connected account "${displayName}".`}
+          confirmText={t`Remove`}
           destructive
           handleConfirm={handleDelete}
         />
@@ -526,10 +530,12 @@ function AccountSettingsDialog({
   onSave: (id: number, fields: Record<string, string>) => Promise<void>
   onSetDefault: (id: number, isDefault: boolean) => Promise<void>
 }) {
+  const { t } = useLingui()
   const [nameValue, setNameValue] = useState(account.label || getAccountDisplayName(account))
   const [modelValue, setModelValue] = useState(account.identifier === 'default' ? '' : account.identifier || '')
   const [isDefault, setIsDefault] = useState(account.default === 'ai')
   const isAi = account.type === 'claude' || account.type === 'openai'
+  const modelPlaceholder = t`default`
 
   const handleSave = async () => {
     const fields: Record<string, string> = { label: nameValue }
@@ -566,7 +572,7 @@ function AccountSettingsDialog({
                   id='settings-model'
                   value={modelValue}
                   onChange={(e) => setModelValue(e.target.value)}
-                  placeholder='default'
+                  placeholder={modelPlaceholder}
                 />
               </div>
               <div className='flex items-center justify-between'>

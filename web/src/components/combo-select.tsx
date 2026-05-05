@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from 'react'
-import { Trans } from '@lingui/react/macro'
+import { Trans, useLingui } from '@lingui/react/macro'
 import { Check, ChevronsUpDown } from 'lucide-react'
 import {
   cn,
@@ -29,15 +29,17 @@ export function ComboSelect({
   options,
   onChange,
   disabled,
-  placeholder = 'Select...',
+  placeholder,
   renderOption,
   renderValue,
 }: ComboSelectProps) {
+  const { t } = useLingui()
   const [open, setOpen] = useState(false)
+  const placeholderText = placeholder ?? t`Select...`
   const displayValue = options[value] ?? value
   const renderedValue = renderValue
     ? renderValue(value, displayValue)
-    : <span className='truncate text-start'>{displayValue || placeholder}</span>
+    : <span className='truncate text-start'>{displayValue || placeholderText}</span>
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

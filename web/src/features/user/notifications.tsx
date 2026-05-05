@@ -317,7 +317,11 @@ function CategoryRow({
   onDelete: () => void
   onTest: () => void
 }) {
-  const destSummary = useMemo(() => summariseDestinations(category.destinations, available), [category, available])
+  const { t } = useLingui()
+  const destSummary = useMemo(
+    () => summariseDestinations(category.destinations, available, t),
+    [category, available, t],
+  )
   return (
     <div className="flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:justify-between">
       <div>
@@ -344,17 +348,21 @@ function CategoryRow({
   )
 }
 
-function summariseDestinations(dests: DestinationRow[], avail: DestinationsAvailable): string {
-  if (dests.length === 0) return 'No destinations'
+function summariseDestinations(
+  dests: DestinationRow[],
+  avail: DestinationsAvailable,
+  t: ReturnType<typeof useLingui>['t'],
+): string {
+  if (dests.length === 0) return t`No destinations`
   const labels: string[] = []
   for (const d of dests) {
-    if (d.type === 'web') labels.push('Mochi web')
+    if (d.type === 'web') labels.push(t`Mochi web`)
     else if (d.type === 'account') {
       const acc = avail.accounts.find((a) => String(a.id) === d.target)
-      labels.push(acc ? acc.label || acc.identifier || acc.type : `Account #${d.target}`)
+      labels.push(acc ? acc.label || acc.identifier || acc.type : t`Account #${d.target}`)
     } else if (d.type === 'rss') {
       const f = avail.feeds.find((x) => x.id === d.target)
-      labels.push(f ? f.name : `RSS #${d.target}`)
+      labels.push(f ? f.name : t`RSS #${d.target}`)
     }
   }
   return labels.join(', ')
@@ -482,7 +490,7 @@ function CategoryDialog({
           <Button variant="outline" onClick={onClose} disabled={saving}><Trans>Cancel</Trans></Button>
           <Button onClick={handleSave} disabled={saving}>
             {saving && <Loader2 className="me-2 h-4 w-4 animate-spin" />}
-            Save
+            <Trans>Save</Trans>
           </Button>
         </DialogFooter>
       </DialogContent>
@@ -514,7 +522,7 @@ function DestinationsGrid({
     })
   }
   for (const feed of available.feeds) {
-    rows.push({ key: destKey('rss', feed.id), label: `RSS: ${feed.name}` })
+    rows.push({ key: destKey('rss', feed.id), label: t`RSS: ${feed.name}` })
   }
   rows.sort((a, b) => naturalCompare(a.label, b.label))
   return (
