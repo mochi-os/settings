@@ -1,32 +1,12 @@
 import type { CSSProperties } from 'react'
 import { Check } from 'lucide-react'
+import { useLingui } from '@lingui/react/macro'
 import { cn, type ThemeInfo } from '@mochi/web'
-
-// Spacing values from most compact to widest
-const SPACING_LABEL: Record<string, string> = {
-  compact:     'Compact',
-  comfortable: 'Comfortable',
-  spacious:    'Spacious',
-}
 
 const SPACING_VARS: Record<string, { cardPy: string; ctrlH: string }> = {
   compact:     { cardPy: '0.875rem', ctrlH: '2rem'    },
   comfortable: { cardPy: '1rem',     ctrlH: '2.25rem' },
   spacious:    { cardPy: '1.25rem',  ctrlH: '2.5rem'  },
-}
-
-function spacingLabel(spacing: string | undefined): string {
-  return SPACING_LABEL[spacing ?? 'comfortable'] ?? 'Comfortable'
-}
-
-function radiusDescription(borderRadius: string | undefined): string {
-  switch (borderRadius) {
-    case '0rem':     return 'No radius'
-    case '0.375rem': return 'Small radius'
-    case '0.75rem':  return 'Medium radius'
-    case '1.75rem':  return 'Large radius'
-    default:         return 'Medium radius'
-  }
 }
 
 function buildPreviewVars(theme: ThemeInfo): CSSProperties {
@@ -126,6 +106,23 @@ interface ThemePreviewCardProps {
 }
 
 export function ThemePreviewCard({ theme, isSelected, onClick, disabled }: ThemePreviewCardProps) {
+  const { t } = useLingui()
+
+  const spacingLabels: Record<string, string> = {
+    compact:     t`Compact`,
+    comfortable: t`Comfortable`,
+    spacious:    t`Spacious`,
+  }
+  const spacingLabel = spacingLabels[theme.spacing ?? 'comfortable'] ?? t`Comfortable`
+
+  const radiusLabels: Record<string, string> = {
+    '0rem':     t`No radius`,
+    '0.375rem': t`Small radius`,
+    '0.75rem':  t`Medium radius`,
+    '1.75rem':  t`Large radius`,
+  }
+  const radiusDescription = radiusLabels[theme.border_radius ?? ''] ?? t`Medium radius`
+
   return (
     <button
       style={buildPreviewVars(theme)}
@@ -152,7 +149,7 @@ export function ThemePreviewCard({ theme, isSelected, onClick, disabled }: Theme
       <div className="px-2.5 py-2 space-y-0.5 border-t border-border">
         <div className="text-sm font-medium truncate">{theme.label}</div>
         <div className="text-xs text-muted-foreground truncate">
-          {spacingLabel(theme.spacing)} · {radiusDescription(theme.border_radius)}
+          {spacingLabel} · {radiusDescription}
         </div>
       </div>
     </button>
