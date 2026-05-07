@@ -14,6 +14,7 @@ export const APP_ROUTES = {
     },
     SYSTEM: {
       SETTINGS: '/system/settings',
+      DOCUMENTS: '/system/documents',
       USERS: '/system/users',
       STATUS: '/system/status',
     },

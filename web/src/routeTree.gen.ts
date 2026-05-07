@@ -27,6 +27,7 @@ import { Route as AuthenticatedUserAccountRouteImport } from './routes/_authenti
 import { Route as AuthenticatedSystemUsersRouteImport } from './routes/_authenticated/system/users'
 import { Route as AuthenticatedSystemStatusRouteImport } from './routes/_authenticated/system/status'
 import { Route as AuthenticatedSystemSettingsRouteImport } from './routes/_authenticated/system/settings'
+import { Route as AuthenticatedSystemDocumentsRouteImport } from './routes/_authenticated/system/documents'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
@@ -127,6 +128,12 @@ const AuthenticatedSystemSettingsRoute =
     path: '/system/settings',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedSystemDocumentsRoute =
+  AuthenticatedSystemDocumentsRouteImport.update({
+    id: '/system/documents',
+    path: '/system/documents',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedErrorsErrorRoute =
   AuthenticatedErrorsErrorRouteImport.update({
     id: '/errors/$error',
@@ -143,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/domains': typeof AuthenticatedDomainsRoute
   '/': typeof AuthenticatedIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/system/documents': typeof AuthenticatedSystemDocumentsRoute
   '/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/system/status': typeof AuthenticatedSystemStatusRoute
   '/system/users': typeof AuthenticatedSystemUsersRoute
@@ -163,6 +171,7 @@ export interface FileRoutesByTo {
   '/domains': typeof AuthenticatedDomainsRoute
   '/': typeof AuthenticatedIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/system/documents': typeof AuthenticatedSystemDocumentsRoute
   '/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/system/status': typeof AuthenticatedSystemStatusRoute
   '/system/users': typeof AuthenticatedSystemUsersRoute
@@ -185,6 +194,7 @@ export interface FileRoutesById {
   '/_authenticated/domains': typeof AuthenticatedDomainsRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/_authenticated/system/documents': typeof AuthenticatedSystemDocumentsRoute
   '/_authenticated/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/_authenticated/system/status': typeof AuthenticatedSystemStatusRoute
   '/_authenticated/system/users': typeof AuthenticatedSystemUsersRoute
@@ -207,6 +217,7 @@ export interface FileRouteTypes {
     | '/domains'
     | '/'
     | '/errors/$error'
+    | '/system/documents'
     | '/system/settings'
     | '/system/status'
     | '/system/users'
@@ -227,6 +238,7 @@ export interface FileRouteTypes {
     | '/domains'
     | '/'
     | '/errors/$error'
+    | '/system/documents'
     | '/system/settings'
     | '/system/status'
     | '/system/users'
@@ -248,6 +260,7 @@ export interface FileRouteTypes {
     | '/_authenticated/domains'
     | '/_authenticated/'
     | '/_authenticated/errors/$error'
+    | '/_authenticated/system/documents'
     | '/_authenticated/system/settings'
     | '/_authenticated/system/status'
     | '/_authenticated/system/users'
@@ -397,6 +410,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSystemSettingsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/system/documents': {
+      id: '/_authenticated/system/documents'
+      path: '/system/documents'
+      fullPath: '/system/documents'
+      preLoaderRoute: typeof AuthenticatedSystemDocumentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/errors/$error': {
       id: '/_authenticated/errors/$error'
       path: '/errors/$error'
@@ -411,6 +431,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDomainsRoute: typeof AuthenticatedDomainsRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
+  AuthenticatedSystemDocumentsRoute: typeof AuthenticatedSystemDocumentsRoute
   AuthenticatedSystemSettingsRoute: typeof AuthenticatedSystemSettingsRoute
   AuthenticatedSystemStatusRoute: typeof AuthenticatedSystemStatusRoute
   AuthenticatedSystemUsersRoute: typeof AuthenticatedSystemUsersRoute
@@ -427,6 +448,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDomainsRoute: AuthenticatedDomainsRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
+  AuthenticatedSystemDocumentsRoute: AuthenticatedSystemDocumentsRoute,
   AuthenticatedSystemSettingsRoute: AuthenticatedSystemSettingsRoute,
   AuthenticatedSystemStatusRoute: AuthenticatedSystemStatusRoute,
   AuthenticatedSystemUsersRoute: AuthenticatedSystemUsersRoute,

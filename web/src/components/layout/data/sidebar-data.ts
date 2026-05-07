@@ -11,6 +11,7 @@ import {
   Link2,
   Star,
   Bell,
+  FileText,
 } from 'lucide-react'
 import { type SidebarData } from '@mochi/web'
 import { useLingui } from '@lingui/react/macro'
@@ -53,6 +54,7 @@ export function useFilteredSidebarData(isAdmin: boolean, hasDomainAccess: boolea
     title: t`System`,
     items: [
       { title: t`System settings`, url: APP_ROUTES.SETTINGS.SYSTEM.SETTINGS, icon: Settings },
+      { title: t`Documents`, url: APP_ROUTES.SETTINGS.SYSTEM.DOCUMENTS, icon: FileText },
       { title: t`Users`, url: APP_ROUTES.SETTINGS.SYSTEM.USERS, icon: Users },
       { title: t`Status`, url: APP_ROUTES.SETTINGS.SYSTEM.STATUS, icon: Activity },
     ],

@@ -1031,8 +1031,34 @@ export function UserAccount() {
           <AuthenticatorSection />
           <RecoveryCodesSection />
           <OauthSection />
+          <ServerDocumentsSection />
         </div>
       </Main>
     </>
+  )
+}
+
+function ServerDocumentsSection() {
+  const { t } = useLingui()
+  return (
+    <Section title={t`Server documents`}>
+      <ul className='space-y-1 text-sm'>
+        <li>
+          <a href='/login/rules' className='underline-offset-4 hover:underline'>
+            <Trans>Server rules</Trans>
+          </a>
+        </li>
+        <li>
+          <a href='/login/terms' className='underline-offset-4 hover:underline'>
+            <Trans>Terms and conditions</Trans>
+          </a>
+        </li>
+        <li>
+          <a href='/login/privacy' className='underline-offset-4 hover:underline'>
+            <Trans>Privacy</Trans>
+          </a>
+        </li>
+      </ul>
+    </Section>
   )
 }
