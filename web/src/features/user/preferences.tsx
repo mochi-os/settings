@@ -1,11 +1,10 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Trans, useLingui } from '@lingui/react/macro'
 import {
   Loader2,
   RotateCcw,
   Sliders,
-  Check,
   ChevronRight,
   Monitor,
   Moon,
@@ -22,7 +21,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
   Button,
-  cn,
   FieldRow,
   GeneralError,
   ListSkeleton,
@@ -36,7 +34,6 @@ import {
   TimezoneSelect,
   getErrorMessage,
   useAppearanceLabels,
-  useStylePresetLabels,
   useDateFormatLabels,
   useTimeFormatLabels,
   useTimestampDisplayLabels,
@@ -58,16 +55,7 @@ import {
   detectLanguage,
   type LocalePreferences,
 } from '@mochi/web'
-type RadiusOverrides = Record<string, string>
 type StyleOverrides = Record<string, string>
-
-/* eslint-disable lingui/no-unlocalized-strings -- CSS custom property values, not user-facing text */
-const radiusPresetOverrides: Record<string, RadiusOverrides> = {
-  none:   { '--radius': '0rem' },
-  small:  { '--radius': '0.375rem' },
-  medium: { '--radius': '0.75rem' },
-  large:  { '--radius': '1.75rem' },
-}
 
 const densityPresetOverrides: Record<string, StyleOverrides> = {
   compact: {
@@ -207,22 +195,10 @@ function normalizeStylePreset(
   }
 }
 
-function normalizeStylePresetForSelect(
-  value: string
-): 'vega' | 'nova' | 'maia' | 'lyra' | 'mira' | 'luma' {
-  const preset = normalizeStylePreset(value)
-  return preset === 'default' ? 'luma' : preset
-}
-
-function radiusOverridesFromThemeBase(baseRadius: string): RadiusOverrides {
+function radiusOverridesFromThemeBase(baseRadius: string): Record<string, string> {
   return {
     '--radius': baseRadius,
   }
-}
-
-function radiusOverridesFromPreference(value: string): RadiusOverrides | null {
-  if (!value || value === 'default') return null
-  return radiusPresetOverrides[value] ?? null
 }
 
 function stylePresetOverridesFromPreference(value: string): StyleOverrides | null {
@@ -240,17 +216,14 @@ type ColorThemeState = {
 function colorThemeFromSelections(
   themes: ThemeInfo[] | undefined,
   selectedThemeId: string | undefined,
-  stylePreset: string | undefined,
-  borderRadius: string | undefined
 ): ColorThemeState | null {
-  const styleOverrides = stylePresetOverridesFromPreference(stylePreset || 'luma')
-  const radiusOverrides = radiusOverridesFromPreference(borderRadius || 'default')
   const theme = themes?.find((t) => t.id === selectedThemeId)
+  const spacingToPreset: Record<string, string> = { compact: 'vega', comfortable: 'luma', spacious: 'mira' }
+  const styleOverrides = stylePresetOverridesFromPreference(spacingToPreset[theme?.spacing ?? ''] || 'luma')
 
   if (!theme) {
     const overrides: Record<string, string> = {}
     if (styleOverrides) Object.assign(overrides, styleOverrides)
-    if (radiusOverrides) Object.assign(overrides, radiusOverrides)
     if (Object.keys(overrides).length === 0) return null
     return { hue: '', chroma: '', hueBg: '', overrides }
   }
@@ -263,7 +236,6 @@ function colorThemeFromSelections(
     Object.assign(overrides, radiusOverridesFromThemeBase(theme.border_radius))
   }
   if (styleOverrides) Object.assign(overrides, styleOverrides)
-  if (radiusOverrides) Object.assign(overrides, radiusOverrides)
 
   return {
     hue: String(theme.hue),
@@ -271,62 +243,6 @@ function colorThemeFromSelections(
     hueBg: String(theme.hue_bg),
     overrides,
   }
-}
-
-const radiusRx: Record<string, number> = { none: 0, small: 2.25, medium: 4.25, large: 6.5 }
-
-function parseRadiusToRem(value: string | undefined): number | null {
-  if (!value) return null
-
-  const trimmed = value.trim()
-  if (!trimmed) return null
-
-  if (trimmed.endsWith('rem')) {
-    const parsed = Number.parseFloat(trimmed)
-    return Number.isFinite(parsed) ? parsed : null
-  }
-
-  if (trimmed.endsWith('px')) {
-    const parsed = Number.parseFloat(trimmed)
-    return Number.isFinite(parsed) ? parsed / 16 : null
-  }
-
-  const parsed = Number.parseFloat(trimmed)
-  return Number.isFinite(parsed) ? parsed : null
-}
-
-function radiusRemToIconRx(radiusRem: number): number {
-  const normalized = Math.max(0, Math.min(radiusRem / 1.6, 1))
-  return Number((normalized * 6.5).toFixed(2)) // i18n-format-ok: arithmetic round, not display
-}
-
-function resolveFollowThemeRadius(
-  themes: ThemeInfo[] | undefined,
-  selectedThemeId: string | undefined
-): string | undefined {
-  return themes?.find((theme) => theme.id === selectedThemeId)?.border_radius
-}
-
-function RadiusIcon({
-  value,
-  themes,
-  selectedThemeId,
-}: {
-  value: string
-  themes?: ThemeInfo[]
-  selectedThemeId?: string
-}) {
-  const rx = value === 'default'
-    ? radiusRemToIconRx(
-        parseRadiusToRem(resolveFollowThemeRadius(themes, selectedThemeId)) ?? 0.625
-      )
-    : (radiusRx[value] ?? 4.25)
-
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 text-foreground" aria-hidden>
-      <rect x="1.5" y="1.5" width="13" height="13" rx={rx} stroke="currentColor" strokeWidth="1.5" />
-    </svg>
-  )
 }
 
 function AppearanceIcon({ value }: { value: string }) {
@@ -355,125 +271,8 @@ function AppearanceLabel({
   )
 }
 
-function RadiusLabel({
-  value,
-  label,
-  themes,
-  selectedThemeId,
-}: {
-  value: string
-  label: string
-  themes?: ThemeInfo[]
-  selectedThemeId?: string
-}) {
-  return (
-    <span className='flex min-w-0 items-center gap-2'>
-      <RadiusIcon
-        value={value}
-        themes={themes}
-        selectedThemeId={selectedThemeId}
-      />
-      <span className='truncate'>{label}</span>
-    </span>
-  )
-}
-
-function PresetStrokeIcon({
-  children,
-  className,
-}: {
-  children: ReactNode
-  className?: string
-}) {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      className={cn('size-4 shrink-0 text-muted-foreground', className)}
-      aria-hidden
-    >
-      {children}
-    </svg>
-  )
-}
-
-function StylePresetIcon({ value }: { value: string }) {
-  const preset = normalizeStylePreset(value)
-  switch (preset) {
-    case 'default':
-    case 'maia':
-      return (
-        <PresetStrokeIcon>
-          <circle cx='8' cy='8' r='5.75' stroke='currentColor' strokeWidth='1.5' />
-        </PresetStrokeIcon>
-      )
-    case 'vega':
-      return (
-        <PresetStrokeIcon>
-          <rect x='2.5' y='2.5' width='11' height='11' rx='1.75' stroke='currentColor' strokeWidth='1.5' />
-        </PresetStrokeIcon>
-      )
-    case 'nova':
-      return (
-        <PresetStrokeIcon>
-          <rect x='2.25' y='4.25' width='11.5' height='7.5' rx='2.5' stroke='currentColor' strokeWidth='1.5' />
-        </PresetStrokeIcon>
-      )
-    case 'luma':
-      return (
-        <PresetStrokeIcon>
-          <rect x='2.25' y='4.25' width='11.5' height='7.5' rx='3.75' stroke='currentColor' strokeWidth='1.5' />
-        </PresetStrokeIcon>
-      )
-    case 'lyra':
-      return (
-        <PresetStrokeIcon>
-          <path
-            d='M8 1.75 13.1 4.7v6.6L8 14.25 2.9 11.3V4.7L8 1.75Z'
-            stroke='currentColor'
-            strokeWidth='1.5'
-            strokeLinejoin='round'
-          />
-        </PresetStrokeIcon>
-      )
-    case 'mira':
-      return (
-        <PresetStrokeIcon>
-          <path
-            d='M8 1.75 13 8 8 14.25 3 8 8 1.75Z'
-            stroke='currentColor'
-            strokeWidth='1.5'
-            strokeLinejoin='round'
-          />
-        </PresetStrokeIcon>
-      )
-    default:
-      return (
-        <PresetStrokeIcon>
-          <circle cx='8' cy='8' r='5.75' stroke='currentColor' strokeWidth='1.5' />
-        </PresetStrokeIcon>
-      )
-  }
-}
-
-function StylePresetLabel({
-  value,
-  label,
-}: {
-  value: string
-  label: string
-}) {
-  return (
-    <span className='flex min-w-0 items-center gap-2'>
-      <StylePresetIcon value={value} />
-      <span className='truncate'>{label}</span>
-    </span>
-  )
-}
-
 import { ComboSelect } from '@/components/combo-select'
+import { ThemePreviewCard } from '@/components/theme-preview-card'
 import {
   usePreferencesData,
   useSetPreference,
@@ -483,21 +282,12 @@ import {
 export function UserPreferences() {
   const { t, i18n } = useLingui()
   const appearanceLabels = useAppearanceLabels()
-  const stylePresetLabels = useStylePresetLabels()
   const dateFormatLabels = useDateFormatLabels()
   const timeFormatLabels = useTimeFormatLabels()
   const timestampDisplayLabels = useTimestampDisplayLabels()
   const weekStartLabels = useWeekStartLabels()
   const numberFormatLabels = useNumberFormatLabels()
   const unitLabels = useUnitLabels()
-  const stylePresetSelectLabels: Record<string, string> = useMemo(() => ({
-    vega: stylePresetLabels.vega,
-    nova: stylePresetLabels.nova,
-    maia: stylePresetLabels.maia,
-    lyra: stylePresetLabels.lyra,
-    mira: stylePresetLabels.mira,
-    luma: stylePresetLabels.default,
-  }), [stylePresetLabels])
   usePageTitle(t`Preferences`)
   const { data, isLoading, error, refetch } = usePreferencesData()
   const setPreference = useSetPreference()
@@ -505,6 +295,33 @@ export function UserPreferences() {
   const { setTheme, setColorTheme } = useTheme()
   const { raw: currentLocale } = useLocale()
   const [themeSheetOpen, setThemeSheetOpen] = useState(false)
+
+  // Server may emit duplicate theme entries (e.g. dev_reload during app
+  // reloads, or multiple apps registering the same theme id/label). Dedupe
+  // by id AND by label, preferring the entry with more populated metadata
+  // (spacing + border_radius), so each card has a unique React key, a
+  // visible label line, and selection (preference === id) can never match
+  // two cards at once.
+  const uniqueThemes = useMemo(() => {
+    const completeness = (t: ThemeInfo) =>
+      (t.spacing ? 1 : 0) + (t.border_radius ? 1 : 0)
+    const byKey = new Map<string, ThemeInfo>()
+    const keyFor = (t: ThemeInfo) => `${t.label || ''} ${t.id}`
+    for (const t of data?.themes ?? []) {
+      // First pass: dedupe by exact id
+      if (!byKey.has(`id:${t.id}`)) byKey.set(`id:${t.id}`, t)
+    }
+    // Second pass: collapse same-label survivors, preferring complete data
+    const byLabel = new Map<string, ThemeInfo>()
+    for (const t of byKey.values()) {
+      const label = t.label || keyFor(t)
+      const existing = byLabel.get(label)
+      if (!existing || completeness(t) > completeness(existing)) {
+        byLabel.set(label, t)
+      }
+    }
+    return Array.from(byLabel.values())
+  }, [data?.themes])
 
   const localeKeys = ['date_format', 'time_format', 'timestamp_display', 'week_start', 'number_format', 'units'] as const
 
@@ -605,8 +422,6 @@ export function UserPreferences() {
       colorThemeFromSelections(
         data.themes,
         data.preferences.theme,
-        data.preferences.style_preset,
-        data.preferences.border_radius
       )
     )
   }, [data, setColorTheme, setTheme])
@@ -630,18 +445,6 @@ export function UserPreferences() {
             // resolve it locally before broadcasting.
             shellSetLanguage(value === 'auto' ? detectLanguage() : value)
           }
-          if ((key === 'border_radius' || key === 'style_preset') && data) {
-            const nextStylePreset = key === 'style_preset' ? value : data.preferences.style_preset
-            const nextBorderRadius = key === 'border_radius' ? value : data.preferences.border_radius
-            setColorTheme(
-              colorThemeFromSelections(
-                data.themes,
-                data.preferences.theme,
-                nextStylePreset,
-                nextBorderRadius
-              )
-            )
-          }
           toast.success(t`Preference updated`)
         },
         onError: (error) => {
@@ -661,8 +464,6 @@ export function UserPreferences() {
             colorThemeFromSelections(
               data?.themes,
               themeId,
-              data?.preferences.style_preset,
-              data?.preferences.border_radius
             )
           )
           toast.success(t`Theme updated`)
@@ -753,7 +554,7 @@ export function UserPreferences() {
                   </div>
                 </FieldRow>
 
-                {data.themes && data.themes.length > 0 && (
+                {uniqueThemes.length > 0 && (
                   <FieldRow label={t`Theme`}>
                     <Button
                       variant="outline"
@@ -762,7 +563,7 @@ export function UserPreferences() {
                     >
                       <span className="flex items-center gap-2">
                         {(() => {
-                          const current = data.themes.find(theme => theme.id === data.preferences.theme)
+                          const current = uniqueThemes.find(theme => theme.id === data.preferences.theme)
                           if (current) {
                             return (
                               <>
@@ -778,85 +579,26 @@ export function UserPreferences() {
                     </Button>
                   </FieldRow>
                 )}
-                <FieldRow label={t`Border radius`}>
-                  <div className="w-full">
-                    <ComboSelect
-                      value={data.preferences.border_radius || 'default'}
-                      options={{ default: t`Follow theme`, none: t`None`, small: t`Small`, medium: t`Medium`, large: t`Large` }}
-                      onChange={(value) => handleChange('border_radius', value)}
-                      disabled={setPreference.isPending}
-                      renderOption={(optValue, label) => (
-                        <RadiusLabel
-                          value={optValue}
-                          label={label}
-                          themes={data.themes}
-                          selectedThemeId={data.preferences.theme}
-                        />
-                      )}
-                      renderValue={(optValue, label) => (
-                        <RadiusLabel
-                          value={optValue}
-                          label={label}
-                          themes={data.themes}
-                          selectedThemeId={data.preferences.theme}
-                        />
-                      )}
-                    />
-                  </div>
-                </FieldRow>
-                <FieldRow label={t`Style preset`}>
-                  <div className="w-full">
-                    <ComboSelect
-                      value={normalizeStylePresetForSelect(data.preferences.style_preset || 'luma')}
-                      options={stylePresetSelectLabels}
-                      onChange={(value) => handleChange('style_preset', value)}
-                      disabled={setPreference.isPending}
-                      renderOption={(optValue, label) => (
-                        <StylePresetLabel value={optValue} label={label} />
-                      )}
-                      renderValue={(optValue, label) => (
-                        <StylePresetLabel value={optValue} label={label} />
-                      )}
-                    />
-                  </div>
-                </FieldRow>
-
                 <Sheet open={themeSheetOpen} onOpenChange={setThemeSheetOpen}>
-                  <SheetContent className="overflow-y-auto" onInteractOutside={() => {}}>
+                  <SheetContent className="overflow-y-auto sm:max-w-md" onInteractOutside={() => {}}>
                     <SheetHeader>
                       <SheetTitle><Trans>Theme</Trans></SheetTitle>
                     </SheetHeader>
-                    <div className="grid gap-2 pt-4">
-                      {(() => {
-                        return (data.themes || []).map((theme) => {
+                    <div className="grid grid-cols-2 gap-4 px-1 pt-4 pb-6">
+                      {uniqueThemes.map((theme) => {
                         const isSelected = data.preferences.theme === theme.id
                         return (
-                          <button
+                          <ThemePreviewCard
                             key={theme.id}
+                            theme={theme}
+                            isSelected={isSelected}
                             onClick={() => {
                               handleThemeChange(isSelected ? null : theme)
-                              setThemeSheetOpen(false)
                             }}
                             disabled={setPreference.isPending}
-                            className={cn(
-                              'flex items-center gap-3 rounded-md border-[length:var(--border-width)] p-3 text-start transition-colors',
-                              isSelected
-                                ? 'border-primary bg-primary/5'
-                                : 'border-border hover:border-primary/50'
-                            )}
-                          >
-                            <span
-                              className="size-8 rounded-sm shrink-0"
-                              style={{ backgroundColor: theme.preview }}
-                            />
-                            <div className="min-w-0 flex-1">
-                              <div className="text-sm font-medium">{theme.label}</div>
-                            </div>
-                            {isSelected && <Check className="size-4 text-primary shrink-0" />}
-                          </button>
+                          />
                         )
-                      })
-                      })()}
+                      })}
                     </div>
                   </SheetContent>
                 </Sheet>
