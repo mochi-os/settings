@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLingui, Trans } from '@lingui/react/macro'
+import { plural } from '@lingui/core/macro'
 import type { User, Session } from '@/types/users'
 import {
   Ban,
@@ -152,7 +153,7 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
               {createUser.isPending && (
                 <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}
-              Create User
+              <Trans>Create user</Trans>
             </Button>
           </ResponsiveDialogFooter>
         </form>
@@ -240,7 +241,7 @@ function EditUserDialog({
               {updateUser.isPending && (
                 <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}
-              Save Changes
+              <Trans>Save changes</Trans>
             </Button>
           </ResponsiveDialogFooter>
         </form>
@@ -263,8 +264,8 @@ function SessionsDialog({ user }: { user: User }) {
         onSuccess: (result) => {
           toast.success(
             session_id
-              ? 'Session revoked'
-              : `Revoked ${result.revoked} session${result.revoked !== 1 ? 's' : ''}`
+              ? t`Session revoked`
+              : plural(result.revoked, { one: 'Revoked 1 session', other: 'Revoked # sessions' })
           )
           refetch()
         },
@@ -276,14 +277,14 @@ function SessionsDialog({ user }: { user: User }) {
   }
 
   const formatSession = (session: Session) => {
-    const agent = session.agent || 'Unknown device'
-    const browser = agent.includes('Chrome')
-      ? 'Chrome'
-      : agent.includes('Firefox')
-        ? 'Firefox'
-        : agent.includes('Safari')
-          ? "Safari" : "Unknown browser"
-    return browser
+    const agent = session.agent || ''
+    // eslint-disable-next-line lingui/no-unlocalized-strings -- browser names are proper nouns
+    if (agent.includes('Chrome')) return 'Chrome'
+    // eslint-disable-next-line lingui/no-unlocalized-strings -- browser names are proper nouns
+    if (agent.includes('Firefox')) return 'Firefox'
+    // eslint-disable-next-line lingui/no-unlocalized-strings -- browser names are proper nouns
+    if (agent.includes('Safari')) return 'Safari'
+    return t`Unknown browser`
   }
 
   return (
@@ -296,7 +297,7 @@ function SessionsDialog({ user }: { user: User }) {
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent className='max-w-2xl'>
         <ResponsiveDialogHeader>
-          <ResponsiveDialogTitle>Sessions for {user.username}</ResponsiveDialogTitle>
+          <ResponsiveDialogTitle><Trans>Sessions for {user.username}</Trans></ResponsiveDialogTitle>
           <ResponsiveDialogDescription>
             <Trans>View and revoke active sessions for this user.</Trans>
           </ResponsiveDialogDescription>
@@ -319,7 +320,7 @@ function SessionsDialog({ user }: { user: User }) {
                   <TableRow key={session.id}>
                     <TableCell>{formatSession(session)}</TableCell>
                     <TableCell className='font-mono text-sm'>
-                      {session.address || 'Unknown'}
+                      {session.address || t`Unknown`}
                     </TableCell>
                     <TableCell>
                       {formatTimestamp(session.accessed)}
@@ -359,7 +360,7 @@ function SessionsDialog({ user }: { user: User }) {
               {revokeSession.isPending && (
                 <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}
-              Revoke All Sessions
+              <Trans>Revoke all sessions</Trans>
             </Button>
           )}
         </ResponsiveDialogFooter>
@@ -396,7 +397,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
     const action = isSuspended ? activateUser : suspendUser
     action.mutate(user.id, {
       onSuccess: () => {
-        toast.success(isSuspended ? "Suspension removed" : "User suspended")
+        toast.success(isSuspended ? t`Suspension removed` : t`User suspended`)
         onUpdate()
       },
       onError: (error) => {
@@ -413,7 +414,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
       <TableCell>
         <div className='flex items-center gap-2'>
           <Badge variant={isAdmin ? 'default' : 'secondary'}>
-            {isAdmin ? "Administrator" : "User"}
+            {isAdmin ? <Trans>Administrator</Trans> : <Trans>User</Trans>}
           </Badge>
           {isSuspended && (
             <Badge variant='destructive'><Trans>Suspended</Trans></Badge>
@@ -465,7 +466,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
           open={deleteOpen}
           onOpenChange={setDeleteOpen}
           title={t`Delete user?`}
-          desc={`This will permanently delete the user "${user.username}". This action cannot be undone.`}
+          desc={t`This will permanently delete the user "${user.username}". This action cannot be undone.`}
           confirmText={
             deleteUser.isPending ? (
               <>
@@ -473,7 +474,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
                 <Trans>Deleting...</Trans>
               </>
             ) : (
-              'Delete'
+              t`Delete`
             )
           }
           destructive
@@ -573,7 +574,7 @@ export function SystemUsers() {
       <PageHeader
         title={
           <div className='flex items-center gap-2'>
-            Users
+            <Trans>Users</Trans>
             {data?.count !== undefined && (
               <span className='text-muted-foreground font-normal'>
                 ({data.count})
@@ -646,8 +647,7 @@ export function SystemUsers() {
               <div className='flex items-center justify-between py-4 mt-4'>
                 <div className='text-muted-foreground flex items-center gap-2 text-sm'>
                   <span>
-                    Showing {offset + 1}-{Math.min(offset + limit, data.count)}{' '}
-                    of {data.count} users
+                    <Trans>Showing {offset + 1}-{Math.min(offset + limit, data.count)} of {data.count} users</Trans>
                   </span>
                   <Select
                     value={String(limit)}
@@ -683,7 +683,7 @@ export function SystemUsers() {
                     onClick={() => setOffset(offset + limit)}
                     disabled={offset + limit >= data.count}
                   >
-                    Next
+                    <Trans>Next</Trans>
                     <ChevronRight className='ms-1 h-4 w-4 rtl:rotate-180' />
                   </Button>
                 </div>
@@ -694,7 +694,7 @@ export function SystemUsers() {
           <EmptyState
             icon={Users}
             title={debouncedSearch ? t`No users match your search` : t`No users found`}
-            description={debouncedSearch ? 'Try adjusting your search criteria' : undefined}
+            description={debouncedSearch ? t`Try adjusting your search criteria` : undefined}
             className='p-4'
           />
         )}

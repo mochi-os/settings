@@ -109,11 +109,11 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
                 id='domain'
                 value={domain}
                 onChange={(e) => setDomain(e.target.value)}
-                placeholder='example.com or *.example.com'
+                placeholder={t`example.com or *.example.com`}
                 required
               />
               <p className='text-muted-foreground text-xs'>
-                Use *.domain.com for wildcard domains
+                <Trans>Use *.domain.com for wildcard domains</Trans>
               </p>
             </div>
           </div>
@@ -129,7 +129,7 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
               {createDomain.isPending && (
                 <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}
-              Add domain
+              <Trans>Add domain</Trans>
             </Button>
           </ResponsiveDialogFooter>
         </form>
@@ -206,10 +206,10 @@ function AddRouteDialog({
           <ResponsiveDialogHeader>
             <ResponsiveDialogTitle><Trans>Add route</Trans></ResponsiveDialogTitle>
             <ResponsiveDialogDescription>
-              Add a new route to {domain}
+              <Trans>Add a new route to {domain}</Trans>
               {!admin && allowedPaths.length > 0 && (
                 <>
-                  . You can manage paths:{' '}
+                  <Trans>. You can manage paths:</Trans>{' '}
                   {allowedPaths.map((p, i) => (
                     <code key={p} className='bg-muted rounded px-1'>
                       {p}
@@ -227,12 +227,12 @@ function AddRouteDialog({
                 id='path'
                 value={path}
                 onChange={(e) => setPath(e.target.value)}
-                placeholder='/ or /blog'
+                placeholder={t`/ or /blog`}
                 className={!admin && !pathAllowed && path ? 'border-destructive' : ''}
               />
               {!admin && !pathAllowed && path ? (
                 <p className='text-destructive text-xs'>
-                  Path not allowed. You can only add routes under: {allowedPaths.join(', ')}
+                  <Trans>Path not allowed. You can only add routes under: {allowedPaths.join(', ')}</Trans>
                 </p>
               ) : (
                 <p className='text-muted-foreground text-xs'>
@@ -302,9 +302,9 @@ function AddRouteDialog({
                 />
               )}
               <p className='text-muted-foreground text-xs'>
-                {method === 'app' && 'Select the app to route to'}
-                {method === 'redirect' && 'URL to redirect to'}
-                {method === 'entity' && 'Select the entity to route to'}
+                {method === 'app' && <Trans>Select the app to route to</Trans>}
+                {method === 'redirect' && <Trans>URL to redirect to</Trans>}
+                {method === 'entity' && <Trans>Select the entity to route to</Trans>}
               </p>
             </div>
             <div className='grid gap-2'>
@@ -333,7 +333,7 @@ function AddRouteDialog({
               {createRoute.isPending && (
                 <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}
-              Add route
+              <Trans>Add route</Trans>
             </Button>
           </ResponsiveDialogFooter>
         </form>
@@ -405,7 +405,7 @@ function EditRouteDialog({
           <ResponsiveDialogHeader>
             <ResponsiveDialogTitle><Trans>Edit route</Trans></ResponsiveDialogTitle>
             <ResponsiveDialogDescription>
-              Edit route for path: {route.path || '/'}
+              <Trans>Edit route for path: {route.path || '/'}</Trans>
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>
           <div className='grid gap-4 py-4'>
@@ -471,9 +471,9 @@ function EditRouteDialog({
                 />
               )}
               <p className='text-muted-foreground text-xs'>
-                {method === 'app' && 'Select the app to route to'}
-                {method === 'redirect' && 'URL to redirect to'}
-                {method === 'entity' && 'Select the entity to route to'}
+                {method === 'app' && <Trans>Select the app to route to</Trans>}
+                {method === 'redirect' && <Trans>URL to redirect to</Trans>}
+                {method === 'entity' && <Trans>Select the entity to route to</Trans>}
               </p>
             </div>
             <div className='grid gap-2'>
@@ -512,7 +512,7 @@ function EditRouteDialog({
               {updateRoute.isPending && (
                 <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}
-              Save Changes
+              <Trans>Save changes</Trans>
             </Button>
           </ResponsiveDialogFooter>
         </form>
@@ -587,7 +587,7 @@ function AddDelegationDialog({
           <ResponsiveDialogHeader>
             <ResponsiveDialogTitle><Trans>Add delegation</Trans></ResponsiveDialogTitle>
             <ResponsiveDialogDescription>
-              Grant a user permission to manage routes on {domain}
+              <Trans>Grant a user permission to manage routes on {domain}</Trans>
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>
           <div className='grid gap-4 py-4'>
@@ -597,7 +597,7 @@ function AddDelegationDialog({
                 id='path'
                 value={path}
                 onChange={(e) => setPath(e.target.value)}
-                placeholder='/ or /blog'
+                placeholder={t`/ or /blog`}
               />
               <p className='text-muted-foreground text-xs'>
                 <Trans>Empty path grants full domain access</Trans>
@@ -661,7 +661,7 @@ function AddDelegationDialog({
               {createDelegation.isPending && (
                 <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}
-              Add delegation
+              <Trans>Add delegation</Trans>
             </Button>
           </ResponsiveDialogFooter>
         </form>
@@ -693,7 +693,7 @@ function RouteRow({
       </TableCell>
       <TableCell>{route.priority}</TableCell>
       <TableCell>
-        {route.enabled ? "Enabled" : "Disabled"}
+        {route.enabled ? <Trans>Enabled</Trans> : <Trans>Disabled</Trans>}
       </TableCell>
       <TableCell className='text-end'>
         <div className='flex justify-end gap-1'>
@@ -716,8 +716,8 @@ function RouteRow({
             open={showDeleteDialog}
             onOpenChange={setShowDeleteDialog}
             title={t`Delete route?`}
-            desc={`This will remove the route for path "${route.path || '/'}".`}
-            confirmText='Delete'
+            desc={t`This will remove the route for path "${route.path || '/'}".`}
+            confirmText={t`Delete`}
             destructive
             handleConfirm={() => {
               onDelete()
@@ -767,8 +767,8 @@ function DelegationRow({
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
           title={t`Delete delegation?`}
-          desc={`This will remove the delegation for ${delegation.username} on path "${delegation.path || '/'}".`}
-          confirmText='Delete'
+          desc={t`This will remove the delegation for ${delegation.username} on path "${delegation.path || '/'}".`}
+          confirmText={t`Delete`}
           destructive
           handleConfirm={() => {
             onDelete()
@@ -924,7 +924,7 @@ function DomainDetails({
                   <div className='space-y-0.5'>
                     <Label><Trans>DNS verification</Trans></Label>
                     <p className='text-muted-foreground text-xs'>
-                      Create a TXT record for <code className='bg-muted rounded px-1'>_mochi-verify.{domain.domain}</code>
+                      <Trans>Create a TXT record for</Trans> <code className='bg-muted rounded px-1'>_mochi-verify.{domain.domain}</code>
                     </p>
                     <p className='text-muted-foreground font-mono text-xs break-all'>
                       mochi-verify={domain.token}
@@ -955,7 +955,7 @@ function DomainDetails({
                       ) : (
                         <Search className='me-2 h-4 w-4' />
                       )}
-                      Verify DNS
+                      <Trans>Verify DNS</Trans>
                     </Button>
                   )}
                 </div>
@@ -1094,8 +1094,8 @@ function DomainDetails({
                 open={showDeleteDialog}
                 onOpenChange={setShowDeleteDialog}
                 title={t`Delete domain?`}
-                desc={`This will permanently delete "${domain.domain}" and all its routes. This action cannot be undone.`}
-                confirmText='Delete domain'
+                desc={t`This will permanently delete "${domain.domain}" and all its routes. This action cannot be undone.`}
+                confirmText={t`Delete domain`}
                 destructive
                 handleConfirm={() => {
                   onDelete()
@@ -1141,7 +1141,7 @@ export function Domains() {
         icon={<Globe className='size-4 md:size-5' />}
         title={
           <div className='flex items-center gap-2'>
-            Domains
+            <Trans>Domains</Trans>
             {data?.count !== undefined && (
               <span className='text-muted-foreground font-normal'>
                 ({data.count})
@@ -1174,7 +1174,7 @@ export function Domains() {
                 icon={Shield}
                 title={isAdmin ? t`No domains configured` : t`You don't have access to any domains.`}
                 description={
-                  isAdmin ? undefined : 'Contact an administrator to get a delegation.'
+                  isAdmin ? undefined : t`Contact an administrator to get a delegation.`
                 }
                 className='p-4'
               />

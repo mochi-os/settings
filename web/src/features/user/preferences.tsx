@@ -172,6 +172,7 @@ const stylePresetOverrides: Record<string, StyleOverrides> = {
     '1.25px'
   ),
 }
+/* eslint-enable lingui/no-unlocalized-strings */
 
 
 function normalizeStylePreset(
@@ -311,12 +312,14 @@ export function UserPreferences() {
     // Mochi's choice (e.g. en-us → "American English") or that wouldn't
     // sort alongside its parent language in the picker. `en` is overridden
     // because Mochi's source catalog uses neutral English, not UK or US.
+    /* eslint-disable lingui/no-unlocalized-strings -- language names display in their native form for self-identification */
     const overrides: Record<string, string> = {
       'en': 'English (international)',
       'en-us': 'English (USA)',
       'es': 'Español (España)',
       'es-419': 'Español (latinoamericano)',
     }
+    /* eslint-enable lingui/no-unlocalized-strings */
     // Each installed language renders as its native exonym so users recognise
     // their own language by sight (Français, 日本語). The Auto row's
     // parenthetical is descriptive metadata about what Auto would pick, so it
@@ -533,7 +536,7 @@ export function UserPreferences() {
                     >
                       <span className="flex items-center gap-2">
                         {(() => {
-                          const current = data.themes.find(t => t.id === data.preferences.theme)
+                          const current = data.themes.find(theme => theme.id === data.preferences.theme)
                           if (current) {
                             return (
                               <>
@@ -542,7 +545,7 @@ export function UserPreferences() {
                               </>
                             )
                           }
-                          return "Default"
+                          return t`Default`
                         })()}
                       </span>
                       <ChevronRight className="size-4 text-muted-foreground rtl:rotate-180" />

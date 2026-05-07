@@ -386,10 +386,10 @@ function PasskeyRow({
         )}
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {formatTimestamp(passkey.created, 'Never')}
+        {formatTimestamp(passkey.created, t`Never`)}
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {formatTimestamp(passkey.last_used, 'Never')}
+        {formatTimestamp(passkey.last_used, t`Never`)}
       </TableCell>
       <TableCell className='text-end'>
         <div className='flex justify-end gap-1'>
@@ -403,8 +403,8 @@ function PasskeyRow({
             open={showDeleteDialog}
             onOpenChange={setShowDeleteDialog}
             title={t`Delete passkey?`}
-            desc={`This will remove "${passkey.name}" from your account. You won't be able to use it to sign in anymore.`}
-            confirmText='Delete'
+            desc={t`This will remove "${passkey.name}" from your account. You won't be able to use it to sign in anymore.`}
+            confirmText={t`Delete`}
             destructive
             handleConfirm={() => {
               onDelete(passkey.id)
@@ -438,7 +438,7 @@ function PasskeysSection() {
       await registerFinish.mutateAsync({
         ceremony: beginResult.ceremony,
         credential,
-        name: passkeyName || 'Passkey',
+        name: passkeyName || t`Passkey`,
       })
       toast.success(t`Passkey registered`)
       setRegisterDialogOpen(false)
@@ -502,7 +502,7 @@ function PasskeysSection() {
         </div>
         <ResponsiveDialogFooter>
           <Button onClick={handleRegister} disabled={isRegistering}>
-            Register
+            <Trans>Register</Trans>
             {isRegistering && (
               <Loader2 className='ms-2 h-4 w-4 animate-spin' />
             )}
@@ -638,17 +638,17 @@ function AuthenticatorSection() {
       ) : setupData ? (
         <div className='space-y-6 py-4'>
           <div className='space-y-3'>
-            <p className='text-sm font-medium'>1. Scan QR Code</p>
+            <p className='text-sm font-medium'><Trans>1. Scan QR code</Trans></p>
             <div className='flex justify-center rounded-xl border-2 bg-white p-6 shadow-sm'>
               <QRCodeSVG value={setupData.url} size={200} />
             </div>
           </div>
           <div className='space-y-2.5'>
-            <Label className='text-sm font-medium'>2. Manual Entry</Label>
+            <Label className='text-sm font-medium'><Trans>2. Manual entry</Trans></Label>
             <DataChip value={setupData.secret} chipClassName='flex-1' />
           </div>
           <div className='border-t pt-6 space-y-4'>
-            <p className='text-sm font-medium'>3. Verify Code</p>
+            <p className='text-sm font-medium'><Trans>3. Verify code</Trans></p>
             <div className='flex items-center gap-3'>
               <Input
                 placeholder='000000'
@@ -661,7 +661,7 @@ function AuthenticatorSection() {
                 onClick={handleVerify}
                 disabled={isVerifying || !verifyCode}
               >
-                Verify & Enable
+                <Trans>Verify and enable</Trans>
                 {isVerifying && <Loader2 className='ms-2 h-4 w-4 animate-spin' />}
               </Button>
               <Button variant='ghost' onClick={() => setSetupData(null)}><Trans>Cancel</Trans></Button>
@@ -685,8 +685,8 @@ function AuthenticatorSection() {
         open={showDisableDialog}
         onOpenChange={setShowDisableDialog}
         title={t`Disable authenticator?`}
-        desc='This will remove the app from your account.'
-        confirmText='Disable'
+        desc={t`This will remove the app from your account.`}
+        confirmText={t`Disable`}
         destructive
         handleConfirm={() => {
           handleDisable()
@@ -772,7 +772,7 @@ function RecoveryCodesSection() {
             <RefreshCw className='h-5 w-5 text-primary' />
           </div>
           <div>
-            <p className='text-sm font-medium'>{count} remaining</p>
+            <p className='text-sm font-medium'><Trans>{count} remaining</Trans></p>
             <p className='text-muted-foreground text-xs'><Trans>Recovery codes</Trans></p>
           </div>
         </div>
@@ -783,8 +783,8 @@ function RecoveryCodesSection() {
         open={showGenerateDialog}
         onOpenChange={setShowGenerateDialog}
         title={count > 0 ? t`Regenerate?` : t`Generate?`}
-        desc='Make sure to save the new codes.'
-        confirmText='Proceed'
+        desc={t`Make sure to save the new codes.`}
+        confirmText={t`Proceed`}
         handleConfirm={() => {
           void handleGenerate()
           setShowGenerateDialog(false)
@@ -806,6 +806,7 @@ const oauthProviderOrder: OAuthProvider[] = [
   'x',
 ]
 
+/* eslint-disable lingui/no-unlocalized-strings -- OAuth provider names are proper nouns */
 const oauthProviderLabel: Record<OAuthProvider, string> = {
   facebook: 'Facebook',
   github: 'GitHub',
@@ -813,6 +814,7 @@ const oauthProviderLabel: Record<OAuthProvider, string> = {
   microsoft: 'Microsoft',
   x: 'X',
 }
+/* eslint-enable lingui/no-unlocalized-strings */
 
 // Guard against the one-shot toast firing more than once per OAuth callback.
 function oauthResultKey(): string {
@@ -841,7 +843,7 @@ function OauthIdentityRow({
         {identity.email || '—'}
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {formatTimestamp(identity.used, 'Never')}
+        {formatTimestamp(identity.used, t`Never`)}
       </TableCell>
       <TableCell className='text-end'>
         <Button
@@ -855,8 +857,8 @@ function OauthIdentityRow({
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
           title={t`Unlink provider?`}
-          desc={`You won't be able to sign in with ${oauthProviderLabel[identity.provider] ?? identity.provider} anymore. Make sure you still have another way to log in.`}
-          confirmText='Unlink'
+          desc={t`You won't be able to sign in with ${oauthProviderLabel[identity.provider] ?? identity.provider} anymore. Make sure you still have another way to log in.`}
+          confirmText={t`Unlink`}
           destructive
           handleConfirm={() => {
             onUnlink(identity.provider)
@@ -992,12 +994,12 @@ export function UserAccount() {
   // StrictMode double-mount so the toast fires exactly once per visit.
   useEffect(() => {
     const key = oauthResultKey()
-    try { if (sessionStorage.getItem(key)) return } catch {}
+    try { if (sessionStorage.getItem(key)) return } catch { /* ignore */ }
     const params = new URLSearchParams(window.location.search)
     const linked = params.get('oauth_linked')
     const errored = params.get('oauth_error')
     if (!linked && !errored) return
-    try { sessionStorage.setItem(key, '1') } catch {}
+    try { sessionStorage.setItem(key, '1') } catch { /* ignore */ }
 
     // Defer by a tick so Sonner's Toaster has mounted and subscribed to the
     // toast store before we publish. Without this delay the toast is published
@@ -1006,7 +1008,7 @@ export function UserAccount() {
     setTimeout(() => {
       if (linked) {
         toast.success(
-          `Linked ${oauthProviderLabel[linked as OAuthProvider] ?? linked}`
+          t`Linked ${oauthProviderLabel[linked as OAuthProvider] ?? linked}`
         )
       } else if (errored === 'already_linked') {
         toast.error(t`That account is already linked to another user`)
@@ -1016,7 +1018,7 @@ export function UserAccount() {
         toast.error(t`Could not link account`)
       }
     }, 0)
-  }, [])
+  }, [t])
 
   return (
     <>
