@@ -55,11 +55,18 @@ function useSettingLabels(): Record<string, string> {
     oauth_facebook_client_secret: t`Facebook App secret`,
     oauth_x_client_id: t`X client ID`,
     oauth_x_client_secret: t`X client secret`,
+    operator_name: t`Operator name`,
+    operator_email: t`Operator email`,
+    operator_jurisdiction: t`Operator jurisdiction`,
     server_started: t`Server started`,
     server_version: t`Server version`,
     signup_enabled: t`Allow new signups`,
   }
 }
+
+// Operator info — displayed in policy documents shown to users; manually
+// ordered (name first) rather than sorted alphabetically.
+const OPERATOR_SETTINGS = ['operator_name', 'operator_email', 'operator_jurisdiction']
 
 function formatSettingName(name: string, labels: Record<string, string>): string {
   if (labels[name]) {
@@ -357,6 +364,7 @@ export function SystemSettings() {
   const isOauthCredential = (name: string) => name.startsWith('oauth_')
   const isLoginSetting = (name: string) =>
     name.startsWith('auth_') || name === 'signup_enabled'
+  const isOperatorSetting = (name: string) => OPERATOR_SETTINGS.includes(name)
 
   const allSettings = data?.settings
     ? [...data.settings]
@@ -371,10 +379,14 @@ export function SystemSettings() {
   const userDefaults = allSettings.filter((s) =>
     userDefaultSettings.includes(s.name)
   )
+  const operatorSettings = OPERATOR_SETTINGS
+    .map((n) => allSettings.find((s) => s.name === n))
+    .filter((s): s is NonNullable<typeof s> => s !== undefined)
   const other = allSettings.filter(
     (s) =>
       !isLoginSetting(s.name) &&
       !isOauthCredential(s.name) &&
+      !isOperatorSetting(s.name) &&
       !userDefaultSettings.includes(s.name)
   )
 
@@ -418,6 +430,14 @@ export function SystemSettings() {
                 {renderSettings(userDefaults)}
               </div>
             </Section>
+
+            {operatorSettings.length > 0 && (
+              <Section title={t`Operator`}>
+                <div className='divide-y-0'>
+                  {renderSettings(operatorSettings)}
+                </div>
+              </Section>
+            )}
 
             <Section title={t`Other settings`}>
               <div className='divide-y-0'>
