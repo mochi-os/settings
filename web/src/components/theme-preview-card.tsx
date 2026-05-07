@@ -113,7 +113,10 @@ export function ThemePreviewCard({ theme, isSelected, onClick, disabled }: Theme
     comfortable: t`Comfortable`,
     spacious:    t`Spacious`,
   }
-  const spacingLabel = spacingLabels[theme.spacing ?? 'comfortable'] ?? t`Comfortable`
+  // Only show a label when the value matches a known token. Falling back to
+  // a default ("Comfortable") would silently mislabel themes whose spacing
+  // value is missing or non-canonical, so we render nothing instead.
+  const spacingLabel = theme.spacing ? spacingLabels[theme.spacing] : null
 
   const radiusLabels: Record<string, string> = {
     '0rem':     t`No radius`,
@@ -121,7 +124,8 @@ export function ThemePreviewCard({ theme, isSelected, onClick, disabled }: Theme
     '0.75rem':  t`Medium radius`,
     '1.75rem':  t`Large radius`,
   }
-  const radiusDescription = radiusLabels[theme.border_radius ?? ''] ?? t`Medium radius`
+  const radiusDescription = theme.border_radius ? radiusLabels[theme.border_radius] : null
+  const metaParts = [spacingLabel, radiusDescription].filter(Boolean)
 
   return (
     <button
@@ -148,9 +152,11 @@ export function ThemePreviewCard({ theme, isSelected, onClick, disabled }: Theme
 
       <div className="px-2.5 py-2 space-y-0.5 border-t border-border">
         <div className="text-sm font-medium truncate">{theme.label}</div>
-        <div className="text-xs text-muted-foreground truncate">
-          {spacingLabel} · {radiusDescription}
-        </div>
+        {metaParts.length > 0 && (
+          <div className="text-xs text-muted-foreground truncate">
+            {metaParts.join(' · ')}
+          </div>
+        )}
       </div>
     </button>
   )

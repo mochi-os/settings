@@ -296,6 +296,33 @@ export function UserPreferences() {
   const { raw: currentLocale } = useLocale()
   const [themeSheetOpen, setThemeSheetOpen] = useState(false)
 
+  // Server may emit duplicate theme entries (e.g. dev_reload during app
+  // reloads, or multiple apps registering the same theme id/label). Dedupe
+  // by id AND by label, preferring the entry with more populated metadata
+  // (spacing + border_radius), so each card has a unique React key, a
+  // visible label line, and selection (preference === id) can never match
+  // two cards at once.
+  const uniqueThemes = useMemo(() => {
+    const completeness = (t: ThemeInfo) =>
+      (t.spacing ? 1 : 0) + (t.border_radius ? 1 : 0)
+    const byKey = new Map<string, ThemeInfo>()
+    const keyFor = (t: ThemeInfo) => `${t.label || ''} ${t.id}`
+    for (const t of data?.themes ?? []) {
+      // First pass: dedupe by exact id
+      if (!byKey.has(`id:${t.id}`)) byKey.set(`id:${t.id}`, t)
+    }
+    // Second pass: collapse same-label survivors, preferring complete data
+    const byLabel = new Map<string, ThemeInfo>()
+    for (const t of byKey.values()) {
+      const label = t.label || keyFor(t)
+      const existing = byLabel.get(label)
+      if (!existing || completeness(t) > completeness(existing)) {
+        byLabel.set(label, t)
+      }
+    }
+    return Array.from(byLabel.values())
+  }, [data?.themes])
+
   const localeKeys = ['date_format', 'time_format', 'timestamp_display', 'week_start', 'number_format', 'units'] as const
 
   // Languages installed across all apps' labels/<lang>.conf files. The picker
@@ -527,7 +554,7 @@ export function UserPreferences() {
                   </div>
                 </FieldRow>
 
-                {data.themes && data.themes.length > 0 && (
+                {uniqueThemes.length > 0 && (
                   <FieldRow label={t`Theme`}>
                     <Button
                       variant="outline"
@@ -536,7 +563,7 @@ export function UserPreferences() {
                     >
                       <span className="flex items-center gap-2">
                         {(() => {
-                          const current = data.themes.find(theme => theme.id === data.preferences.theme)
+                          const current = uniqueThemes.find(theme => theme.id === data.preferences.theme)
                           if (current) {
                             return (
                               <>
@@ -558,7 +585,7 @@ export function UserPreferences() {
                       <SheetTitle><Trans>Theme</Trans></SheetTitle>
                     </SheetHeader>
                     <div className="grid grid-cols-2 gap-4 px-1 pt-4 pb-6">
-                      {(data.themes || []).map((theme) => {
+                      {uniqueThemes.map((theme) => {
                         const isSelected = data.preferences.theme === theme.id
                         return (
                           <ThemePreviewCard
@@ -567,7 +594,6 @@ export function UserPreferences() {
                             isSelected={isSelected}
                             onClick={() => {
                               handleThemeChange(isSelected ? null : theme)
-                              setThemeSheetOpen(false)
                             }}
                             disabled={setPreference.isPending}
                           />
