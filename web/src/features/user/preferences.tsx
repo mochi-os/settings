@@ -297,7 +297,7 @@ function parseRadiusToRem(value: string | undefined): number | null {
 
 function radiusRemToIconRx(radiusRem: number): number {
   const normalized = Math.max(0, Math.min(radiusRem / 1.6, 1))
-  return Number((normalized * 6.5).toFixed(2))
+  return Number((normalized * 6.5).toFixed(2)) // i18n-format-ok: arithmetic round, not display
 }
 
 function resolveFollowThemeRadius(
