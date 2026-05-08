@@ -1,6 +1,20 @@
 # Mochi settings app: system/documents
 # Copyright Alistair Cunningham 2026
 
+def action_document_get(a):
+    """Return one of the server documents (rules / terms / privacy) rendered
+    to sanitised HTML, with placeholders interpolated. Settings runs inside
+    the Mochi shell sandboxed iframe — apps must call their own actions
+    rather than fetching cross-app, otherwise the iframe's null origin
+    strips cookies and the server can't resolve the user's language."""
+    name = a.input("name", "")
+    if name not in ("rules", "terms", "privacy"):
+        a.error.label(404, "errors.unknown_document")
+        return
+    body = mochi.document.get(name)
+    html = mochi.text.markdown(body)
+    a.json({"name": name, "body": body, "html": html})
+
 def action_system_documents_list(a):
     """List all (name x language) documents with body and bundled default"""
     if not require_admin(a):

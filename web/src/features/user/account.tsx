@@ -9,10 +9,14 @@ import type {
 } from '@/types/account'
 import { startRegistration } from '@simplewebauthn/browser'
 import {
+  BookOpen,
   Check,
+  ChevronRight,
+  FileText,
   Key,
   Link2,
   Loader2,
+  Lock,
   Pencil,
   Plus,
   RefreshCw,
@@ -1040,25 +1044,28 @@ export function UserAccount() {
 
 function ServerDocumentsSection() {
   const { t } = useLingui()
+  const docs = [
+    { href: '/settings/document/rules', icon: BookOpen, title: t`Server rules` },
+    { href: '/settings/document/terms', icon: FileText, title: t`Terms and conditions` },
+    { href: '/settings/document/privacy', icon: Lock, title: t`Privacy` },
+  ]
   return (
     <Section title={t`Server documents`}>
-      <ul className='space-y-1 text-sm'>
-        <li>
-          <a href='/login/rules' className='underline-offset-4 hover:underline'>
-            <Trans>Server rules</Trans>
+      <div className='grid gap-3 py-2 sm:grid-cols-3'>
+        {docs.map(({ href, icon: Icon, title }) => (
+          <a
+            key={href}
+            href={href}
+            className='group bg-card hover:bg-accent hover:border-primary/40 flex items-center gap-3 rounded-xl border p-4 transition-colors'
+          >
+            <div className='bg-primary/10 dark:bg-primary/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-full'>
+              <Icon className='text-primary h-5 w-5' />
+            </div>
+            <p className='text-sm font-medium'>{title}</p>
+            <ChevronRight className='text-muted-foreground ms-auto h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5' />
           </a>
-        </li>
-        <li>
-          <a href='/login/terms' className='underline-offset-4 hover:underline'>
-            <Trans>Terms and conditions</Trans>
-          </a>
-        </li>
-        <li>
-          <a href='/login/privacy' className='underline-offset-4 hover:underline'>
-            <Trans>Privacy</Trans>
-          </a>
-        </li>
-      </ul>
+        ))}
+      </div>
     </Section>
   )
 }

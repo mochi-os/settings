@@ -29,6 +29,9 @@ import { Route as AuthenticatedSystemStatusRouteImport } from './routes/_authent
 import { Route as AuthenticatedSystemSettingsRouteImport } from './routes/_authenticated/system/settings'
 import { Route as AuthenticatedSystemDocumentsRouteImport } from './routes/_authenticated/system/documents'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
+import { Route as AuthenticatedDocumentTermsRouteImport } from './routes/_authenticated/document/terms'
+import { Route as AuthenticatedDocumentRulesRouteImport } from './routes/_authenticated/document/rules'
+import { Route as AuthenticatedDocumentPrivacyRouteImport } from './routes/_authenticated/document/privacy'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
@@ -140,6 +143,24 @@ const AuthenticatedErrorsErrorRoute =
     path: '/errors/$error',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedDocumentTermsRoute =
+  AuthenticatedDocumentTermsRouteImport.update({
+    id: '/document/terms',
+    path: '/document/terms',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDocumentRulesRoute =
+  AuthenticatedDocumentRulesRouteImport.update({
+    id: '/document/rules',
+    path: '/document/rules',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDocumentPrivacyRoute =
+  AuthenticatedDocumentPrivacyRouteImport.update({
+    id: '/document/privacy',
+    path: '/document/privacy',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/401': typeof errors401Route
@@ -149,6 +170,9 @@ export interface FileRoutesByFullPath {
   '/503': typeof errors503Route
   '/domains': typeof AuthenticatedDomainsRoute
   '/': typeof AuthenticatedIndexRoute
+  '/document/privacy': typeof AuthenticatedDocumentPrivacyRoute
+  '/document/rules': typeof AuthenticatedDocumentRulesRoute
+  '/document/terms': typeof AuthenticatedDocumentTermsRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/system/documents': typeof AuthenticatedSystemDocumentsRoute
   '/system/settings': typeof AuthenticatedSystemSettingsRoute
@@ -170,6 +194,9 @@ export interface FileRoutesByTo {
   '/503': typeof errors503Route
   '/domains': typeof AuthenticatedDomainsRoute
   '/': typeof AuthenticatedIndexRoute
+  '/document/privacy': typeof AuthenticatedDocumentPrivacyRoute
+  '/document/rules': typeof AuthenticatedDocumentRulesRoute
+  '/document/terms': typeof AuthenticatedDocumentTermsRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/system/documents': typeof AuthenticatedSystemDocumentsRoute
   '/system/settings': typeof AuthenticatedSystemSettingsRoute
@@ -193,6 +220,9 @@ export interface FileRoutesById {
   '/(errors)/503': typeof errors503Route
   '/_authenticated/domains': typeof AuthenticatedDomainsRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/document/privacy': typeof AuthenticatedDocumentPrivacyRoute
+  '/_authenticated/document/rules': typeof AuthenticatedDocumentRulesRoute
+  '/_authenticated/document/terms': typeof AuthenticatedDocumentTermsRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/_authenticated/system/documents': typeof AuthenticatedSystemDocumentsRoute
   '/_authenticated/system/settings': typeof AuthenticatedSystemSettingsRoute
@@ -216,6 +246,9 @@ export interface FileRouteTypes {
     | '/503'
     | '/domains'
     | '/'
+    | '/document/privacy'
+    | '/document/rules'
+    | '/document/terms'
     | '/errors/$error'
     | '/system/documents'
     | '/system/settings'
@@ -237,6 +270,9 @@ export interface FileRouteTypes {
     | '/503'
     | '/domains'
     | '/'
+    | '/document/privacy'
+    | '/document/rules'
+    | '/document/terms'
     | '/errors/$error'
     | '/system/documents'
     | '/system/settings'
@@ -259,6 +295,9 @@ export interface FileRouteTypes {
     | '/(errors)/503'
     | '/_authenticated/domains'
     | '/_authenticated/'
+    | '/_authenticated/document/privacy'
+    | '/_authenticated/document/rules'
+    | '/_authenticated/document/terms'
     | '/_authenticated/errors/$error'
     | '/_authenticated/system/documents'
     | '/_authenticated/system/settings'
@@ -424,12 +463,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedErrorsErrorRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/document/terms': {
+      id: '/_authenticated/document/terms'
+      path: '/document/terms'
+      fullPath: '/document/terms'
+      preLoaderRoute: typeof AuthenticatedDocumentTermsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/document/rules': {
+      id: '/_authenticated/document/rules'
+      path: '/document/rules'
+      fullPath: '/document/rules'
+      preLoaderRoute: typeof AuthenticatedDocumentRulesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/document/privacy': {
+      id: '/_authenticated/document/privacy'
+      path: '/document/privacy'
+      fullPath: '/document/privacy'
+      preLoaderRoute: typeof AuthenticatedDocumentPrivacyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDomainsRoute: typeof AuthenticatedDomainsRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedDocumentPrivacyRoute: typeof AuthenticatedDocumentPrivacyRoute
+  AuthenticatedDocumentRulesRoute: typeof AuthenticatedDocumentRulesRoute
+  AuthenticatedDocumentTermsRoute: typeof AuthenticatedDocumentTermsRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
   AuthenticatedSystemDocumentsRoute: typeof AuthenticatedSystemDocumentsRoute
   AuthenticatedSystemSettingsRoute: typeof AuthenticatedSystemSettingsRoute
@@ -447,6 +510,9 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDomainsRoute: AuthenticatedDomainsRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedDocumentPrivacyRoute: AuthenticatedDocumentPrivacyRoute,
+  AuthenticatedDocumentRulesRoute: AuthenticatedDocumentRulesRoute,
+  AuthenticatedDocumentTermsRoute: AuthenticatedDocumentTermsRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
   AuthenticatedSystemDocumentsRoute: AuthenticatedSystemDocumentsRoute,
   AuthenticatedSystemSettingsRoute: AuthenticatedSystemSettingsRoute,
