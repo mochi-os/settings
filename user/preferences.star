@@ -12,6 +12,38 @@ preferences_schema = [
         "description": "Light or dark mode"
     },
     {
+        "key": "density",
+        "type": "select",
+        "options": ["theme", "compact", "comfortable", "spacious"],
+        "default": "theme",
+        "label": "Density",
+        "description": "Layout density override"
+    },
+    {
+        "key": "radius",
+        "type": "select",
+        "options": ["theme", "0rem", "0.375rem", "0.75rem", "1.75rem"],
+        "default": "theme",
+        "label": "Radius",
+        "description": "Corner radius override"
+    },
+    {
+        "key": "background",
+        "type": "select",
+        "options": ["theme", "off"],
+        "default": "theme",
+        "label": "Background",
+        "description": "Theme background image"
+    },
+    {
+        "key": "font_size",
+        "type": "select",
+        "options": ["theme", "small", "normal", "large", "extra-large"],
+        "default": "theme",
+        "label": "Font size",
+        "description": "Base font size"
+    },
+    {
         "key": "language",
         "type": "locale-language",
         "default": "en",

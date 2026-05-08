@@ -40,6 +40,10 @@ import {
   useWeekStartLabels,
   useNumberFormatLabels,
   useUnitLabels,
+  useDensityLabels,
+  useRadiusLabels,
+  useBackgroundLabels,
+  useFontSizeLabels,
   toast,
   type ThemeInfo,
   usePageTitle,
@@ -55,6 +59,20 @@ import {
   detectLanguage,
   type LocalePreferences,
 } from '@mochi/web'
+
+type ThemeOverridePrefs = {
+  density: string
+  radius: string
+  background: string
+  font_size: string
+}
+
+const FONT_SIZE_PCT: Record<string, string> = {
+  small: '87.5%',
+  normal: '100%',
+  large: '112.5%',
+  'extra-large': '125%',
+}
 type StyleOverrides = Record<string, string>
 
 const densityPresetOverrides: Record<string, StyleOverrides> = {
@@ -216,32 +234,53 @@ type ColorThemeState = {
 function colorThemeFromSelections(
   themes: ThemeInfo[] | undefined,
   selectedThemeId: string | undefined,
+  prefs: ThemeOverridePrefs,
 ): ColorThemeState | null {
   const theme = themes?.find((t) => t.id === selectedThemeId)
+
+  // Effective values: user override (anything other than "theme") wins,
+  // else inherit from the active theme.
+  const effectiveDensity =
+    prefs.density !== 'theme' ? prefs.density : (theme?.spacing ?? '')
+  const effectiveRadius =
+    prefs.radius !== 'theme' ? prefs.radius : theme?.border_radius
+  const showBackground = prefs.background !== 'off'
+
   const spacingToPreset: Record<string, string> = { compact: 'vega', comfortable: 'luma', spacious: 'mira' }
-  const styleOverrides = stylePresetOverridesFromPreference(spacingToPreset[theme?.spacing ?? ''] || 'luma')
+  const styleOverrides = effectiveDensity
+    ? stylePresetOverridesFromPreference(spacingToPreset[effectiveDensity] || 'luma')
+    : null
 
-  if (!theme) {
-    const overrides: Record<string, string> = {}
-    if (styleOverrides) Object.assign(overrides, styleOverrides)
-    if (Object.keys(overrides).length === 0) return null
-    return { hue: '', chroma: '', hueBg: '', overrides }
-  }
-
-  const overrides: Record<string, string> = { ...theme.overrides }
-  if (theme.background_url) {
+  const overrides: Record<string, string> = { ...(theme?.overrides ?? {}) }
+  if (theme?.background_url && showBackground) {
     overrides['--background-image'] = `url(${theme.background_url})`
   }
-  if (theme.border_radius) {
-    Object.assign(overrides, radiusOverridesFromThemeBase(theme.border_radius))
+  if (effectiveRadius) {
+    Object.assign(overrides, radiusOverridesFromThemeBase(effectiveRadius))
   }
   if (styleOverrides) Object.assign(overrides, styleOverrides)
+  if (FONT_SIZE_PCT[prefs.font_size]) {
+    overrides['font-size'] = FONT_SIZE_PCT[prefs.font_size]
+  }
 
+  if (theme) {
+    return {
+      hue: String(theme.hue),
+      chroma: String(theme.chroma),
+      hueBg: String(theme.hue_bg),
+      overrides,
+    }
+  }
+  if (Object.keys(overrides).length === 0) return null
+  return { hue: '', chroma: '', hueBg: '', overrides }
+}
+
+function prefsFromData(prefs: Record<string, string>): ThemeOverridePrefs {
   return {
-    hue: String(theme.hue),
-    chroma: String(theme.chroma),
-    hueBg: String(theme.hue_bg),
-    overrides,
+    density: prefs.density || 'theme',
+    radius: prefs.radius || 'theme',
+    background: prefs.background || 'theme',
+    font_size: prefs.font_size || 'theme',
   }
 }
 
@@ -288,6 +327,10 @@ export function UserPreferences() {
   const weekStartLabels = useWeekStartLabels()
   const numberFormatLabels = useNumberFormatLabels()
   const unitLabels = useUnitLabels()
+  const densityLabels = useDensityLabels()
+  const radiusLabels = useRadiusLabels()
+  const backgroundLabels = useBackgroundLabels()
+  const fontSizeLabels = useFontSizeLabels()
   usePageTitle(t`Preferences`)
   const { data, isLoading, error, refetch } = usePreferencesData()
   const setPreference = useSetPreference()
@@ -395,9 +438,12 @@ export function UserPreferences() {
       colorThemeFromSelections(
         data.themes,
         data.preferences.theme,
+        prefsFromData(data.preferences),
       )
     )
   }, [data, setColorTheme, setTheme])
+
+  const themeOverrideKeys = ['density', 'radius', 'background', 'font_size'] as const
 
   const handleChange = (key: string, value: string) => {
     setPreference.mutate(
@@ -418,6 +464,12 @@ export function UserPreferences() {
             // resolve it locally before broadcasting.
             shellSetLanguage(value === 'auto' ? detectLanguage() : value)
           }
+          if ((themeOverrideKeys as readonly string[]).includes(key) && data) {
+            const updated = { ...prefsFromData(data.preferences), [key]: value }
+            setColorTheme(
+              colorThemeFromSelections(data.themes, data.preferences.theme, updated)
+            )
+          }
           toast.success(t`Preference updated`)
         },
         onError: (error) => {
@@ -437,6 +489,7 @@ export function UserPreferences() {
             colorThemeFromSelections(
               data?.themes,
               themeId,
+              data ? prefsFromData(data.preferences) : { density: 'theme', radius: 'theme', background: 'theme', font_size: 'theme' },
             )
           )
           toast.success(t`Theme updated`)
@@ -575,6 +628,50 @@ export function UserPreferences() {
                     </div>
                   </SheetContent>
                 </Sheet>
+
+                <FieldRow label={t`Density`}>
+                  <div className="w-full">
+                    <ComboSelect
+                      value={data.preferences.density || 'theme'}
+                      options={densityLabels}
+                      onChange={(value) => handleChange('density', value)}
+                      disabled={setPreference.isPending}
+                    />
+                  </div>
+                </FieldRow>
+
+                <FieldRow label={t`Radius`}>
+                  <div className="w-full">
+                    <ComboSelect
+                      value={data.preferences.radius || 'theme'}
+                      options={radiusLabels}
+                      onChange={(value) => handleChange('radius', value)}
+                      disabled={setPreference.isPending}
+                    />
+                  </div>
+                </FieldRow>
+
+                <FieldRow label={t`Background`}>
+                  <div className="w-full">
+                    <ComboSelect
+                      value={data.preferences.background || 'theme'}
+                      options={backgroundLabels}
+                      onChange={(value) => handleChange('background', value)}
+                      disabled={setPreference.isPending}
+                    />
+                  </div>
+                </FieldRow>
+
+                <FieldRow label={t`Font size`}>
+                  <div className="w-full">
+                    <ComboSelect
+                      value={data.preferences.font_size || 'theme'}
+                      options={fontSizeLabels}
+                      onChange={(value) => handleChange('font_size', value)}
+                      disabled={setPreference.isPending}
+                    />
+                  </div>
+                </FieldRow>
               </>
             ) : null}
           </div>
