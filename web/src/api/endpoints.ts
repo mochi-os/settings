@@ -66,6 +66,7 @@ const endpoints = {
     usersActivate: '-/system/users/activate',
     usersSessions: '-/system/users/sessions',
     usersSessionsRevoke: '-/system/users/sessions/revoke',
+    update: '-/system/update',
   },
   notifications: {
     categories: '-/notifications/categories',
