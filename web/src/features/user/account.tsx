@@ -9,14 +9,10 @@ import type {
 } from '@/types/account'
 import { startRegistration } from '@simplewebauthn/browser'
 import {
-  BookOpen,
   Check,
-  ChevronRight,
-  FileText,
   Key,
   Link2,
   Loader2,
-  Lock,
   Pencil,
   Plus,
   RefreshCw,
@@ -1028,44 +1024,34 @@ export function UserAccount() {
     <>
       <PageHeader title={t`Account`} icon={<User className='size-4 md:size-5' />} />
       <Main>
-        <div className='space-y-8 pb-10'>
+        <div className='space-y-8 pb-6'>
           <IdentitySection />
           <LoginRequirementsSection />
           <PasskeysSection />
           <AuthenticatorSection />
           <RecoveryCodesSection />
           <OauthSection />
-          <ServerDocumentsSection />
         </div>
+        <ServerDocumentsFooter />
       </Main>
     </>
   )
 }
 
-function ServerDocumentsSection() {
-  const { t } = useLingui()
-  const docs = [
-    { href: '/settings/document/rules', icon: BookOpen, title: t`Server rules` },
-    { href: '/settings/document/terms', icon: FileText, title: t`Terms and conditions` },
-    { href: '/settings/document/privacy', icon: Lock, title: t`Privacy` },
-  ]
+function ServerDocumentsFooter() {
   return (
-    <Section title={t`Server documents`}>
-      <div className='grid gap-3 py-2 sm:grid-cols-3'>
-        {docs.map(({ href, icon: Icon, title }) => (
-          <a
-            key={href}
-            href={href}
-            className='group bg-card hover:bg-accent hover:border-primary/40 flex items-center gap-3 rounded-xl border p-4 transition-colors'
-          >
-            <div className='bg-primary/10 dark:bg-primary/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-full'>
-              <Icon className='text-primary h-5 w-5' />
-            </div>
-            <p className='text-sm font-medium'>{title}</p>
-            <ChevronRight className='text-muted-foreground ms-auto h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5' />
-          </a>
-        ))}
-      </div>
-    </Section>
+    <p className='text-muted-foreground space-x-2 pb-6 pt-2 text-center text-sm'>
+      <a href='/settings/document/rules' className='hover:text-foreground transition-colors'>
+        <Trans>Server rules</Trans>
+      </a>
+      <span aria-hidden='true'>·</span>
+      <a href='/settings/document/terms' className='hover:text-foreground transition-colors'>
+        <Trans>Terms and conditions</Trans>
+      </a>
+      <span aria-hidden='true'>·</span>
+      <a href='/settings/document/privacy' className='hover:text-foreground transition-colors'>
+        <Trans>Privacy</Trans>
+      </a>
+    </p>
   )
 }

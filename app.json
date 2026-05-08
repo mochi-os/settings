@@ -2,7 +2,7 @@
 // Copyright Alistair Cunningham 2025-2026
 
 {
-	"version": "3.38",
+	"version": "3.39",
 	"label": "app.name",
 	"paths": ["settings"],
 	"services": ["settings"],
@@ -15,7 +15,9 @@
 		"user/interests.star",
 		"system/settings.star",
 		"system/documents.star",
+		"system/update.star",
 		"system/users.star",
+
 		"domains.star",
 		"accounts.star",
 		"notifications.star"
@@ -82,6 +84,8 @@
 		"document/rules": {"file": "web/dist/index.html"},
 		"document/terms": {"file": "web/dist/index.html"},
 		"document/privacy": {"file": "web/dist/index.html"},
+
+		"-/system/update": {"function": "action_system_update"},
 
 		"-/system/users/data": {"function": "action_system_users"},
 		"-/system/users/list": {"function": "action_system_users_list"},
