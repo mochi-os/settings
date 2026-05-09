@@ -125,7 +125,7 @@ def action_user_preferences(a):
     theme = a.user.preference.get("theme")
     default_theme = mochi.setting.get("default_theme")
     prefs["theme"] = theme if theme != None else default_theme
-    a.json({"preferences": prefs, "schema": preferences_schema, "themes": mochi.app.themes(), "presets": mochi.app.theme_presets(), "default_theme": default_theme})
+    a.json({"preferences": prefs, "schema": preferences_schema, "themes": mochi.app.themes(), "presets": mochi.app.presets(), "default_theme": default_theme})
 
 def action_user_preferences_set(a):
     """Set user preferences"""

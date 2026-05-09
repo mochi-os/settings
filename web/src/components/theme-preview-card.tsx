@@ -14,7 +14,7 @@ function buildPreviewVars(theme: ThemeInfo, presets: Presets | undefined): CSSPr
   // borders, and muted text are pure neutrals — adding tint here makes the
   // preview look like a different theme than the one the user actually gets.
   // Density-driven dimensions (--card-py, --control-height-md) come straight
-  // from the server's mochi.app.theme_presets() so the table doesn't drift.
+  // from the server's mochi.app.presets() so the table doesn't drift.
   return {
     '--preview-primary': `oklch(0.488 ${c} ${h})`,
     '--preview-bg':      'oklch(1 0 0)',

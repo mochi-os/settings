@@ -96,7 +96,7 @@ function colorThemeFromSelections(
     prefs.radius !== 'theme' ? prefs.radius : theme?.border_radius
   const showBackground = prefs.background !== 'off'
 
-  // Density preset bundle comes from the server (mochi.app.theme_presets)
+  // Density preset bundle comes from the server (mochi.app.presets)
   // so the table doesn't drift from the SSR copy in core/server/themes.go.
   const styleOverrides = effectiveDensity ? presets?.[effectiveDensity] : null
 
