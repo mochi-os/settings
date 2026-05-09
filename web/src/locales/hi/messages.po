@@ -30,6 +30,13 @@ msgstr "(खाली)"
 msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
 msgstr "{0, plural, one {1 सत्र निरस्त किया गया} other {# सत्र निरस्त किए गए}}"
 
+#. placeholder {0}: current.label
+#. placeholder {0}: theme.label
+#: src/components/theme-preview-card.tsx:110
+#: src/features/user/display.tsx:359
+msgid "{0} (development)"
+msgstr "{0} (विकास)"
+
 #: src/features/user/account.tsx:775
 msgid "{count} remaining"
 msgstr "{count} शेष"
@@ -71,8 +78,8 @@ msgstr "एक्सेस वर्जित"
 msgid "Access level"
 msgstr "एक्सेस स्तर"
 
-#: src/components/layout/data/sidebar-data.ts:26
-#: src/components/layout/data/sidebar-data.ts:44
+#: src/components/layout/data/sidebar-data.ts:27
+#: src/components/layout/data/sidebar-data.ts:46
 #: src/features/user/account.tsx:990
 #: src/features/user/account.tsx:1025
 msgid "Account"
@@ -230,7 +237,7 @@ msgstr "अनुमत"
 msgid "App"
 msgstr "ऐप"
 
-#: src/features/user/preferences.tsx:566
+#: src/features/user/display.tsx:328
 msgid "Appearance"
 msgstr "दिखावट"
 
@@ -278,7 +285,7 @@ msgstr "वापस"
 msgid "Back to Home"
 msgstr "होम पर वापस"
 
-#: src/features/user/preferences.tsx:654
+#: src/features/user/display.tsx:417
 msgid "Background"
 msgstr "पृष्ठभूमि"
 
@@ -309,9 +316,10 @@ msgstr "ब्राउज़र नोटिफ़िकेशन"
 #: src/features/user/account.tsx:181
 #: src/features/user/account.tsx:667
 #: src/features/user/connected-accounts.tsx:591
+#: src/features/user/display.tsx:311
 #: src/features/user/notifications.tsx:490
 #: src/features/user/notifications.tsx:593
-#: src/features/user/preferences.tsx:546
+#: src/features/user/preferences.tsx:226
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "रद्द करें"
@@ -401,7 +409,6 @@ msgid "Collapse sidebar"
 msgstr "साइडबार समेटें"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:93
-#: src/components/theme-preview-card.tsx:113
 msgid "Comfortable"
 msgstr "आरामदायक"
 
@@ -411,7 +418,6 @@ msgstr "जल्द आ रहा है!"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:302
 #: ../../../lib/web/src/lib/preference-utils.ts:92
-#: src/components/theme-preview-card.tsx:112
 msgid "Compact"
 msgstr "कॉम्पैक्ट"
 
@@ -424,8 +430,8 @@ msgstr "पुष्टि करें"
 msgid "Connected"
 msgstr "कनेक्ट किया गया"
 
-#: src/components/layout/data/sidebar-data.ts:29
-#: src/components/layout/data/sidebar-data.ts:47
+#: src/components/layout/data/sidebar-data.ts:31
+#: src/components/layout/data/sidebar-data.ts:50
 #: src/features/user/connected-accounts.tsx:283
 #: src/features/user/connected-accounts.tsx:419
 msgid "Connected accounts"
@@ -517,7 +523,7 @@ msgstr "डार्क"
 msgid "Dark mode"
 msgstr "डार्क मोड"
 
-#: src/features/user/preferences.tsx:728
+#: src/features/user/preferences.tsx:288
 msgid "Date format"
 msgstr "दिनांक प्रारूप"
 
@@ -527,8 +533,8 @@ msgstr "डिफ़ॉल्ट"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:297
 #: src/features/user/connected-accounts.tsx:174
+#: src/features/user/display.tsx:363
 #: src/features/user/notifications.tsx:331
-#: src/features/user/preferences.tsx:601
 msgid "Default"
 msgstr "डिफ़ॉल्ट"
 
@@ -626,7 +632,7 @@ msgstr "उपयोगकर्ता हटाएँ?"
 msgid "Deleting..."
 msgstr "हटा रहे हैं..."
 
-#: src/features/user/preferences.tsx:632
+#: src/features/user/display.tsx:395
 msgid "Density"
 msgstr "घनत्व"
 
@@ -650,7 +656,7 @@ msgstr "विवरण पैनल"
 #: ../../../lib/web/src/lib/preference-utils.ts:55
 #: ../../../lib/web/src/lib/preference-utils.ts:69
 #: ../../../lib/web/src/lib/preference-utils.ts:81
-#: src/features/user/preferences.tsx:419
+#: src/features/user/preferences.tsx:147
 msgid "Detect from web browser"
 msgstr "वेब ब्राउज़र से पता लगाएँ"
 
@@ -676,9 +682,16 @@ msgstr "ऑथेंटिकेटर अक्षम करें?"
 msgid "Disabled"
 msgstr "अक्षम"
 
-#: src/features/user/preferences.tsx:558
+#: src/components/layout/data/sidebar-data.ts:29
+#: src/components/layout/data/sidebar-data.ts:48
+#: src/features/user/display.tsx:190
+#: src/features/user/display.tsx:285
 msgid "Display"
 msgstr "प्रदर्शन"
+
+#: src/features/user/display.tsx:274
+msgid "Display reset to defaults"
+msgstr "डिस्प्ले डिफ़ॉल्ट पर रीसेट किया गया"
 
 #: ../../../lib/web/src/components/ui/sidebar.tsx:235
 msgid "Displays the mobile sidebar."
@@ -692,7 +705,7 @@ msgstr "DNS सत्यापन"
 msgid "Document saved"
 msgstr "दस्तावेज़ सहेजा गया"
 
-#: src/components/layout/data/sidebar-data.ts:57
+#: src/components/layout/data/sidebar-data.ts:60
 #: src/features/system/documents.tsx:161
 #: src/features/system/documents.tsx:230
 msgid "Documents"
@@ -723,7 +736,7 @@ msgstr "डोमेन अपडेट किया गया"
 msgid "Domain verified"
 msgstr "डोमेन सत्यापित"
 
-#: src/components/layout/data/sidebar-data.ts:63
+#: src/components/layout/data/sidebar-data.ts:66
 #: src/features/domains/index.tsx:1116
 #: src/features/domains/index.tsx:1144
 #: src/features/domains/index.tsx:1156
@@ -751,6 +764,10 @@ msgstr "इंस्टॉलर डाउनलोड करें"
 #: src/features/system/status.tsx:139
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Mochi {latest} डाउनलोड करें और सर्वर पुनरारंभ करें"
+
+#: ../../../lib/web/src/lib/preference-utils.ts:134
+msgid "Dyslexia-friendly"
+msgstr "डिस्लेक्सिया-अनुकूल"
 
 #: src/features/user/account.tsx:751
 msgid "Each code can only be used once."
@@ -923,7 +940,11 @@ msgstr "विषय हटाने में विफल"
 msgid "Failed to rename passkey"
 msgstr "पासकी का नाम बदलने में विफल"
 
-#: src/features/user/preferences.tsx:512
+#: src/features/user/display.tsx:277
+msgid "Failed to reset display"
+msgstr "डिस्प्ले रीसेट करने में विफल"
+
+#: src/features/user/preferences.tsx:192
 msgid "Failed to reset preferences"
 msgstr "प्राथमिकताएँ रीसेट करने में विफल"
 
@@ -987,7 +1008,8 @@ msgstr "लॉगिन आवश्यकताएँ अपडेट करन
 msgid "Failed to update name"
 msgstr "नाम अपडेट करने में विफल"
 
-#: src/features/user/preferences.tsx:476
+#: src/features/user/display.tsx:234
+#: src/features/user/preferences.tsx:174
 msgid "Failed to update preference"
 msgstr "प्राथमिकता अपडेट करने में विफल"
 
@@ -1003,7 +1025,7 @@ msgstr "रूट अपडेट करने में विफल"
 msgid "Failed to update setting"
 msgstr "सेटिंग अपडेट करने में विफल"
 
-#: src/features/user/preferences.tsx:498
+#: src/features/user/display.tsx:257
 msgid "Failed to update theme"
 msgstr "थीम अपडेट करने में विफल"
 
@@ -1035,7 +1057,11 @@ msgstr "फिंगरप्रिंट"
 msgid "Floating"
 msgstr "फ़्लोटिंग"
 
-#: src/features/user/preferences.tsx:665
+#: src/features/user/display.tsx:428
+msgid "Font"
+msgstr "फ़ॉन्ट"
+
+#: src/features/user/display.tsx:439
 msgid "Font size"
 msgstr "फ़ॉन्ट आकार"
 
@@ -1051,6 +1077,7 @@ msgstr "से"
 #: ../../../lib/web/src/lib/preference-utils.ts:101
 #: ../../../lib/web/src/lib/preference-utils.ts:112
 #: ../../../lib/web/src/lib/preference-utils.ts:120
+#: ../../../lib/web/src/lib/preference-utils.ts:131
 msgid "From theme"
 msgstr "थीम से"
 
@@ -1163,8 +1190,8 @@ msgid "Installing {0}…"
 msgstr "{0} इंस्टॉल हो रहा है…"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:39
-#: src/components/layout/data/sidebar-data.ts:28
-#: src/components/layout/data/sidebar-data.ts:46
+#: src/components/layout/data/sidebar-data.ts:30
+#: src/components/layout/data/sidebar-data.ts:49
 #: src/features/user/interests.tsx:231
 #: src/features/user/interests.tsx:252
 msgid "Interests"
@@ -1188,7 +1215,7 @@ msgid "Label is required"
 msgstr "लेबल आवश्यक है"
 
 #: src/features/system/documents.tsx:252
-#: src/features/user/preferences.tsx:684
+#: src/features/user/preferences.tsx:244
 msgid "Language"
 msgstr "भाषा"
 
@@ -1196,10 +1223,6 @@ msgstr "भाषा"
 #: ../../../lib/web/src/lib/preference-utils.ts:123
 msgid "Large"
 msgstr "बड़ा"
-
-#: src/components/theme-preview-card.tsx:125
-msgid "Large radius"
-msgstr "बड़ी गोलाई"
 
 #: src/features/system/users.tsx:314
 msgid "Last accessed"
@@ -1325,7 +1348,7 @@ msgstr "नए कोड सहेजना सुनिश्चित कर�
 msgid "Manage sessions"
 msgstr "सेशन्स प्रबंधित करें"
 
-#: src/components/layout/data/sidebar-data.ts:71
+#: src/components/layout/data/sidebar-data.ts:74
 msgid "Management"
 msgstr "प्रबंधन"
 
@@ -1337,10 +1360,6 @@ msgstr "सभी को पढ़ा हुआ मार्क करें"
 #: ../../../lib/web/src/lib/preference-utils.ts:104
 msgid "Medium"
 msgstr "मध्यम"
-
-#: src/components/theme-preview-card.tsx:124
-msgid "Medium radius"
-msgstr "मध्यम गोलाई"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:152
 msgid "Menu"
@@ -1504,10 +1523,6 @@ msgstr "कोई स्थान नहीं मिले"
 msgid "No profile"
 msgstr "कोई प्रोफ़ाइल नहीं"
 
-#: src/components/theme-preview-card.tsx:122
-msgid "No radius"
-msgstr "कोई गोलाई नहीं"
-
 #: src/features/user/account.tsx:780
 msgid "No recovery codes"
 msgstr "कोई रिकवरी कोड नहीं"
@@ -1556,8 +1571,8 @@ msgstr "सामान्य"
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:132
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:146
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:247
-#: src/components/layout/data/sidebar-data.ts:30
-#: src/components/layout/data/sidebar-data.ts:48
+#: src/components/layout/data/sidebar-data.ts:32
+#: src/components/layout/data/sidebar-data.ts:51
 #: src/features/user/notifications.tsx:107
 #: src/features/user/notifications.tsx:125
 msgid "Notifications"
@@ -1568,7 +1583,7 @@ msgstr "नोटिफ़िकेशन"
 msgid "Notify by default"
 msgstr "डिफ़ॉल्ट रूप से सूचित करें"
 
-#: src/features/user/preferences.tsx:717
+#: src/features/user/preferences.tsx:277
 msgid "Number format"
 msgstr "संख्या फ़ॉर्मेट"
 
@@ -1675,18 +1690,19 @@ msgstr "इस डोमेन और इसके सभी रूट्स क
 msgid "Please enter a token name"
 msgstr "कृपया टोकन नाम दर्ज करें"
 
-#: src/features/user/preferences.tsx:473
+#: src/features/user/display.tsx:231
+#: src/features/user/preferences.tsx:171
 msgid "Preference updated"
 msgstr "प्राथमिकता अपडेट हो गई"
 
-#: src/components/layout/data/sidebar-data.ts:27
-#: src/components/layout/data/sidebar-data.ts:45
-#: src/features/user/preferences.tsx:334
-#: src/features/user/preferences.tsx:520
+#: src/components/layout/data/sidebar-data.ts:28
+#: src/components/layout/data/sidebar-data.ts:47
+#: src/features/user/preferences.tsx:64
+#: src/features/user/preferences.tsx:200
 msgid "Preferences"
 msgstr "प्राथमिकताएँ"
 
-#: src/features/user/preferences.tsx:509
+#: src/features/user/preferences.tsx:189
 msgid "Preferences reset to defaults"
 msgstr "प्राथमिकताएँ डिफ़ॉल्ट पर रीसेट कर दी गईं"
 
@@ -1727,7 +1743,7 @@ msgstr "प्रदाता"
 msgid "Public URL for OAuth redirects"
 msgstr "OAuth रीडायरेक्ट्स के लिए सार्वजनिक URL"
 
-#: src/features/user/preferences.tsx:643
+#: src/features/user/display.tsx:406
 msgid "Radius"
 msgstr "त्रिज्या"
 
@@ -1765,10 +1781,6 @@ msgstr "पुनर्जनित करें"
 #: src/features/user/account.tsx:785
 msgid "Regenerate?"
 msgstr "पुनर्जनित करें?"
-
-#: src/features/user/preferences.tsx:681
-msgid "Regional"
-msgstr "क्षेत्रीय"
 
 #: src/features/user/account.tsx:505
 msgid "Register"
@@ -1838,7 +1850,8 @@ msgstr "आवश्यक"
 #: src/features/system/settings.tsx:237
 #: src/features/system/settings.tsx:275
 #: src/features/system/settings.tsx:324
-#: src/features/user/preferences.tsx:548
+#: src/features/user/display.tsx:313
+#: src/features/user/preferences.tsx:228
 msgid "Reset"
 msgstr "रीसेट"
 
@@ -1846,7 +1859,11 @@ msgstr "रीसेट"
 msgid "Reset all settings to default values"
 msgstr "सभी सेटिंग्स को डिफ़ॉल्ट मानों पर रीसेट करें"
 
-#: src/features/user/preferences.tsx:540
+#: src/features/user/display.tsx:305
+msgid "Reset display?"
+msgstr "डिस्प्ले रीसेट करें?"
+
+#: src/features/user/preferences.tsx:220
 msgid "Reset preferences?"
 msgstr "प्राथमिकताएँ रीसेट करें?"
 
@@ -1865,7 +1882,8 @@ msgstr "डिफ़ॉल्ट पर रीसेट करें"
 msgid "Reset to default?"
 msgstr "डिफ़ॉल्ट पर रीसेट करें?"
 
-#: src/features/user/preferences.tsx:535
+#: src/features/user/display.tsx:300
+#: src/features/user/preferences.tsx:215
 msgid "Reset to defaults"
 msgstr "डिफ़ॉल्ट पर रीसेट करें"
 
@@ -2056,6 +2074,10 @@ msgstr "थीम प्राथमिकता चुनें"
 msgid "Select..."
 msgstr "चुनें..."
 
+#: ../../../lib/web/src/lib/preference-utils.ts:133
+msgid "Serif"
+msgstr "सेरिफ़"
+
 #: src/features/document/document-page.tsx:40
 #: src/features/system/documents.tsx:43
 #: src/features/user/account.tsx:1045
@@ -2087,8 +2109,8 @@ msgstr "सेशन समाप्त हो गया"
 msgid "Session revoked"
 msgstr "सेशन रद्द किया गया"
 
-#: src/components/layout/data/sidebar-data.ts:32
-#: src/components/layout/data/sidebar-data.ts:50
+#: src/components/layout/data/sidebar-data.ts:34
+#: src/components/layout/data/sidebar-data.ts:53
 #: src/features/user/sessions.tsx:116
 #: src/features/user/sessions.tsx:124
 msgid "Sessions"
@@ -2118,9 +2140,9 @@ msgstr "सेटिंग अपडेट की गई"
 #: ../../../lib/web/src/components/layout/nav-user.tsx:81
 #: ../../../lib/web/src/components/layout/nav-user.tsx:145
 #: ../../../lib/web/src/components/layout/nav-user.tsx:195
-#: src/components/layout/data/sidebar-data.ts:24
-#: src/components/layout/data/sidebar-data.ts:42
-#: src/components/layout/data/sidebar-data.ts:80
+#: src/components/layout/data/sidebar-data.ts:25
+#: src/components/layout/data/sidebar-data.ts:44
+#: src/components/layout/data/sidebar-data.ts:83
 #: src/features/user/connected-accounts.tsx:256
 msgid "Settings"
 msgstr "सेटिंग्स"
@@ -2155,12 +2177,7 @@ msgstr "मेन पर जाएँ"
 msgid "Small"
 msgstr "छोटा"
 
-#: src/components/theme-preview-card.tsx:123
-msgid "Small radius"
-msgstr "छोटी गोलाई"
-
 #: ../../../lib/web/src/lib/preference-utils.ts:94
-#: src/components/theme-preview-card.tsx:114
 msgid "Spacious"
 msgstr "विशाल"
 
@@ -2168,7 +2185,7 @@ msgstr "विशाल"
 msgid "Started"
 msgstr "शुरू हुआ"
 
-#: src/components/layout/data/sidebar-data.ts:59
+#: src/components/layout/data/sidebar-data.ts:62
 #: src/features/domains/index.tsx:1003
 #: src/features/system/status.tsx:24
 #: src/features/system/status.tsx:38
@@ -2211,11 +2228,12 @@ msgstr "निलंबन हटाया गया"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:195
 #: ../../../lib/web/src/lib/preference-utils.ts:18
-#: src/components/layout/data/sidebar-data.ts:54
+#: ../../../lib/web/src/lib/preference-utils.ts:132
+#: src/components/layout/data/sidebar-data.ts:57
 msgid "System"
 msgstr "सिस्टम"
 
-#: src/components/layout/data/sidebar-data.ts:56
+#: src/components/layout/data/sidebar-data.ts:59
 #: src/features/system/settings.tsx:340
 #: src/features/system/settings.tsx:405
 msgid "System settings"
@@ -2268,8 +2286,8 @@ msgid "The \"No notifications\" category silences any topic assigned to it."
 msgstr "\"कोई नोटिफ़िकेशन नहीं\" कैटेगरी इसमें असाइन किए गए किसी भी टॉपिक को साइलेंट कर देती है।"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:181
-#: src/features/user/preferences.tsx:584
-#: src/features/user/preferences.tsx:611
+#: src/features/user/display.tsx:346
+#: src/features/user/display.tsx:373
 msgid "Theme"
 msgstr "थीम"
 
@@ -2277,7 +2295,7 @@ msgstr "थीम"
 msgid "Theme Settings"
 msgstr "थीम सेटिंग्स"
 
-#: src/features/user/preferences.tsx:495
+#: src/features/user/display.tsx:254
 msgid "Theme updated"
 msgstr "थीम अपडेट की गई"
 
@@ -2340,9 +2358,13 @@ msgstr "यह \"{settingNameLabel}\" को इसके डिफ़ॉल्�
 msgid "This will reset \"{settingNameLabel}\" to its default value ({0})."
 msgstr "यह \"{settingNameLabel}\" को इसके डिफ़ॉल्ट मान ({0}) पर रीसेट कर देगा।"
 
-#: src/features/user/preferences.tsx:542
+#: src/features/user/preferences.tsx:222
 msgid "This will reset all preferences to their default values."
 msgstr "यह सभी प्राथमिकताओं को उनके डिफ़ॉल्ट मान पर रीसेट कर देगा।"
+
+#: src/features/user/display.tsx:307
+msgid "This will reset display settings to their default values."
+msgstr "यह डिस्प्ले सेटिंग्स को उनके डिफ़ॉल्ट मानों पर रीसेट कर देगा।"
 
 #: src/features/user/sessions.tsx:95
 msgid "This will sign out this session. If this is your current session, you will need to sign in again."
@@ -2352,15 +2374,15 @@ msgstr "यह इस सत्र से साइन आउट कर दे�
 msgid "Thursday"
 msgstr "गुरुवार"
 
-#: src/features/user/preferences.tsx:739
+#: src/features/user/preferences.tsx:299
 msgid "Time format"
 msgstr "समय फ़ॉर्मेट"
 
-#: src/features/user/preferences.tsx:696
+#: src/features/user/preferences.tsx:256
 msgid "Time zone"
 msgstr "टाइम ज़ोन"
 
-#: src/features/user/preferences.tsx:764
+#: src/features/user/preferences.tsx:324
 msgid "Timestamps"
 msgstr "टाइमस्टैम्प"
 
@@ -2402,8 +2424,8 @@ msgstr "टोकन डिलीट किया गया"
 msgid "Token name"
 msgstr "टोकन नाम"
 
-#: src/components/layout/data/sidebar-data.ts:31
-#: src/components/layout/data/sidebar-data.ts:49
+#: src/components/layout/data/sidebar-data.ts:33
+#: src/components/layout/data/sidebar-data.ts:52
 msgid "Tokens"
 msgstr "टोकन"
 
@@ -2476,7 +2498,7 @@ msgstr "अनधिकृत एक्सेस"
 msgid "United States"
 msgstr "संयुक्त राज्य अमेरिका"
 
-#: src/features/user/preferences.tsx:706
+#: src/features/user/preferences.tsx:266
 msgid "Units"
 msgstr "यूनिट"
 
@@ -2569,7 +2591,7 @@ msgstr "यूज़र अपडेट किया गया"
 msgid "Username"
 msgstr "यूज़रनेम"
 
-#: src/components/layout/data/sidebar-data.ts:58
+#: src/components/layout/data/sidebar-data.ts:61
 #: src/features/system/users.tsx:526
 #: src/features/system/users.tsx:564
 #: src/features/system/users.tsx:577
@@ -2649,7 +2671,7 @@ msgstr "वेबसाइट मेंटेनेंस के अंतर्
 msgid "Wednesday"
 msgstr "बुधवार"
 
-#: src/features/user/preferences.tsx:750
+#: src/features/user/preferences.tsx:310
 msgid "Week starts on"
 msgstr "सप्ताह शुरू होता है"
 

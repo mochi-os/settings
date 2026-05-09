@@ -30,6 +30,13 @@ msgstr "(gwag)"
 msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
 msgstr "{0, plural, zero {Diddymwyd 1 sesiwn} one {Diddymwyd 1 sesiwn} two {Diddymwyd # sesiwn} few {Diddymwyd # sesiwn} many {Diddymwyd # sesiwn} other {Diddymwyd # sesiwn}}"
 
+#. placeholder {0}: current.label
+#. placeholder {0}: theme.label
+#: src/components/theme-preview-card.tsx:110
+#: src/features/user/display.tsx:359
+msgid "{0} (development)"
+msgstr "{0} (datblygu)"
+
 #: src/features/user/account.tsx:775
 msgid "{count} remaining"
 msgstr "{count} ar ôl"
@@ -71,8 +78,8 @@ msgstr "Mynediad wedi'i wahardd"
 msgid "Access level"
 msgstr "Lefel mynediad"
 
-#: src/components/layout/data/sidebar-data.ts:26
-#: src/components/layout/data/sidebar-data.ts:44
+#: src/components/layout/data/sidebar-data.ts:27
+#: src/components/layout/data/sidebar-data.ts:46
 #: src/features/user/account.tsx:990
 #: src/features/user/account.tsx:1025
 msgid "Account"
@@ -230,7 +237,7 @@ msgstr "Caniateir"
 msgid "App"
 msgstr "App"
 
-#: src/features/user/preferences.tsx:566
+#: src/features/user/display.tsx:328
 msgid "Appearance"
 msgstr "Ymddangosiad"
 
@@ -278,7 +285,7 @@ msgstr "Yn ôl"
 msgid "Back to Home"
 msgstr "Yn ôl i'r Hafan"
 
-#: src/features/user/preferences.tsx:654
+#: src/features/user/display.tsx:417
 msgid "Background"
 msgstr "Cefndir"
 
@@ -309,9 +316,10 @@ msgstr "Hysbysiadau porwr"
 #: src/features/user/account.tsx:181
 #: src/features/user/account.tsx:667
 #: src/features/user/connected-accounts.tsx:591
+#: src/features/user/display.tsx:311
 #: src/features/user/notifications.tsx:490
 #: src/features/user/notifications.tsx:593
-#: src/features/user/preferences.tsx:546
+#: src/features/user/preferences.tsx:226
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Canslo"
@@ -401,7 +409,6 @@ msgid "Collapse sidebar"
 msgstr "Cwympo'r bar ochr"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:93
-#: src/components/theme-preview-card.tsx:113
 msgid "Comfortable"
 msgstr "Cyfforddus"
 
@@ -411,7 +418,6 @@ msgstr "Yn dod yn fuan!"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:302
 #: ../../../lib/web/src/lib/preference-utils.ts:92
-#: src/components/theme-preview-card.tsx:112
 msgid "Compact"
 msgstr "Cryno"
 
@@ -424,8 +430,8 @@ msgstr "Cadarnhau"
 msgid "Connected"
 msgstr "Wedi cysylltu"
 
-#: src/components/layout/data/sidebar-data.ts:29
-#: src/components/layout/data/sidebar-data.ts:47
+#: src/components/layout/data/sidebar-data.ts:31
+#: src/components/layout/data/sidebar-data.ts:50
 #: src/features/user/connected-accounts.tsx:283
 #: src/features/user/connected-accounts.tsx:419
 msgid "Connected accounts"
@@ -517,7 +523,7 @@ msgstr "Tywyll"
 msgid "Dark mode"
 msgstr "Modd tywyll"
 
-#: src/features/user/preferences.tsx:728
+#: src/features/user/preferences.tsx:288
 msgid "Date format"
 msgstr "Fformat dyddiad"
 
@@ -527,8 +533,8 @@ msgstr "diofyn"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:297
 #: src/features/user/connected-accounts.tsx:174
+#: src/features/user/display.tsx:363
 #: src/features/user/notifications.tsx:331
-#: src/features/user/preferences.tsx:601
 msgid "Default"
 msgstr "Diofyn"
 
@@ -626,7 +632,7 @@ msgstr "Dileu defnyddiwr?"
 msgid "Deleting..."
 msgstr "Yn dileu..."
 
-#: src/features/user/preferences.tsx:632
+#: src/features/user/display.tsx:395
 msgid "Density"
 msgstr "Dwysedd"
 
@@ -650,7 +656,7 @@ msgstr "Panel manylion"
 #: ../../../lib/web/src/lib/preference-utils.ts:55
 #: ../../../lib/web/src/lib/preference-utils.ts:69
 #: ../../../lib/web/src/lib/preference-utils.ts:81
-#: src/features/user/preferences.tsx:419
+#: src/features/user/preferences.tsx:147
 msgid "Detect from web browser"
 msgstr "Adnabod o'r porwr gwe"
 
@@ -676,9 +682,16 @@ msgstr "Analluogi'r dilyswr?"
 msgid "Disabled"
 msgstr "Wedi'i analluogi"
 
-#: src/features/user/preferences.tsx:558
+#: src/components/layout/data/sidebar-data.ts:29
+#: src/components/layout/data/sidebar-data.ts:48
+#: src/features/user/display.tsx:190
+#: src/features/user/display.tsx:285
 msgid "Display"
 msgstr "Arddangos"
+
+#: src/features/user/display.tsx:274
+msgid "Display reset to defaults"
+msgstr "Arddangos wedi'i ailosod i'r rhagosodiadau"
 
 #: ../../../lib/web/src/components/ui/sidebar.tsx:235
 msgid "Displays the mobile sidebar."
@@ -692,7 +705,7 @@ msgstr "Dilysu DNS"
 msgid "Document saved"
 msgstr "Dogfen wedi'i chadw"
 
-#: src/components/layout/data/sidebar-data.ts:57
+#: src/components/layout/data/sidebar-data.ts:60
 #: src/features/system/documents.tsx:161
 #: src/features/system/documents.tsx:230
 msgid "Documents"
@@ -723,7 +736,7 @@ msgstr "Parth wedi'i ddiweddaru"
 msgid "Domain verified"
 msgstr "Parth wedi'i wirio"
 
-#: src/components/layout/data/sidebar-data.ts:63
+#: src/components/layout/data/sidebar-data.ts:66
 #: src/features/domains/index.tsx:1116
 #: src/features/domains/index.tsx:1144
 #: src/features/domains/index.tsx:1156
@@ -751,6 +764,10 @@ msgstr "Lawrlwytho'r gosodwr"
 #: src/features/system/status.tsx:139
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Lawrlwythwch Mochi {latest} ac ailgychwynnwch y gweinydd"
+
+#: ../../../lib/web/src/lib/preference-utils.ts:134
+msgid "Dyslexia-friendly"
+msgstr "Cyfeillgar i ddyslecsia"
 
 #: src/features/user/account.tsx:751
 msgid "Each code can only be used once."
@@ -923,7 +940,11 @@ msgstr "Methwyd dileu'r pwnc"
 msgid "Failed to rename passkey"
 msgstr "Methwyd ailenwi'r allwedd mynediad"
 
-#: src/features/user/preferences.tsx:512
+#: src/features/user/display.tsx:277
+msgid "Failed to reset display"
+msgstr "Methwyd ag ailosod yr arddangos"
+
+#: src/features/user/preferences.tsx:192
 msgid "Failed to reset preferences"
 msgstr "Methwyd ailosod dewisiadau"
 
@@ -987,7 +1008,8 @@ msgstr "Methwyd diweddaru gofynion mewngofnodi"
 msgid "Failed to update name"
 msgstr "Methwyd diweddaru'r enw"
 
-#: src/features/user/preferences.tsx:476
+#: src/features/user/display.tsx:234
+#: src/features/user/preferences.tsx:174
 msgid "Failed to update preference"
 msgstr "Methwyd diweddaru'r dewis"
 
@@ -1003,7 +1025,7 @@ msgstr "Methwyd diweddaru'r llwybr"
 msgid "Failed to update setting"
 msgstr "Methwyd diweddaru'r gosodiad"
 
-#: src/features/user/preferences.tsx:498
+#: src/features/user/display.tsx:257
 msgid "Failed to update theme"
 msgstr "Methwyd diweddaru'r thema"
 
@@ -1035,7 +1057,11 @@ msgstr "Olion bysedd"
 msgid "Floating"
 msgstr "Arnofiol"
 
-#: src/features/user/preferences.tsx:665
+#: src/features/user/display.tsx:428
+msgid "Font"
+msgstr "Ffont"
+
+#: src/features/user/display.tsx:439
 msgid "Font size"
 msgstr "Maint y ffont"
 
@@ -1051,6 +1077,7 @@ msgstr "O"
 #: ../../../lib/web/src/lib/preference-utils.ts:101
 #: ../../../lib/web/src/lib/preference-utils.ts:112
 #: ../../../lib/web/src/lib/preference-utils.ts:120
+#: ../../../lib/web/src/lib/preference-utils.ts:131
 msgid "From theme"
 msgstr "O'r thema"
 
@@ -1163,8 +1190,8 @@ msgid "Installing {0}…"
 msgstr "Yn gosod {0}…"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:39
-#: src/components/layout/data/sidebar-data.ts:28
-#: src/components/layout/data/sidebar-data.ts:46
+#: src/components/layout/data/sidebar-data.ts:30
+#: src/components/layout/data/sidebar-data.ts:49
 #: src/features/user/interests.tsx:231
 #: src/features/user/interests.tsx:252
 msgid "Interests"
@@ -1188,7 +1215,7 @@ msgid "Label is required"
 msgstr "Mae angen label"
 
 #: src/features/system/documents.tsx:252
-#: src/features/user/preferences.tsx:684
+#: src/features/user/preferences.tsx:244
 msgid "Language"
 msgstr "Iaith"
 
@@ -1196,10 +1223,6 @@ msgstr "Iaith"
 #: ../../../lib/web/src/lib/preference-utils.ts:123
 msgid "Large"
 msgstr "Mawr"
-
-#: src/components/theme-preview-card.tsx:125
-msgid "Large radius"
-msgstr "Radiws mawr"
 
 #: src/features/system/users.tsx:314
 msgid "Last accessed"
@@ -1325,7 +1348,7 @@ msgstr "Gwnewch yn siŵr eich bod yn cadw'r codau newydd."
 msgid "Manage sessions"
 msgstr "Rheoli sesiynau"
 
-#: src/components/layout/data/sidebar-data.ts:71
+#: src/components/layout/data/sidebar-data.ts:74
 msgid "Management"
 msgstr "Rheolaeth"
 
@@ -1337,10 +1360,6 @@ msgstr "Marcio'r cyfan fel wedi'u darllen"
 #: ../../../lib/web/src/lib/preference-utils.ts:104
 msgid "Medium"
 msgstr "Canolig"
-
-#: src/components/theme-preview-card.tsx:124
-msgid "Medium radius"
-msgstr "Radiws canolig"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:152
 msgid "Menu"
@@ -1504,10 +1523,6 @@ msgstr "Heb ddod o hyd i leoedd"
 msgid "No profile"
 msgstr "Dim proffil"
 
-#: src/components/theme-preview-card.tsx:122
-msgid "No radius"
-msgstr "Dim radiws"
-
 #: src/features/user/account.tsx:780
 msgid "No recovery codes"
 msgstr "Dim codau adfer"
@@ -1556,8 +1571,8 @@ msgstr "Arferol"
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:132
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:146
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:247
-#: src/components/layout/data/sidebar-data.ts:30
-#: src/components/layout/data/sidebar-data.ts:48
+#: src/components/layout/data/sidebar-data.ts:32
+#: src/components/layout/data/sidebar-data.ts:51
 #: src/features/user/notifications.tsx:107
 #: src/features/user/notifications.tsx:125
 msgid "Notifications"
@@ -1568,7 +1583,7 @@ msgstr "Hysbysiadau"
 msgid "Notify by default"
 msgstr "Hysbysu yn ddiofyn"
 
-#: src/features/user/preferences.tsx:717
+#: src/features/user/preferences.tsx:277
 msgid "Number format"
 msgstr "Fformat rhifau"
 
@@ -1675,18 +1690,19 @@ msgstr "Dileu'r parth hwn a'i holl lwybrau yn barhaol."
 msgid "Please enter a token name"
 msgstr "Rhowch enw tocyn"
 
-#: src/features/user/preferences.tsx:473
+#: src/features/user/display.tsx:231
+#: src/features/user/preferences.tsx:171
 msgid "Preference updated"
 msgstr "Dewis wedi'i ddiweddaru"
 
-#: src/components/layout/data/sidebar-data.ts:27
-#: src/components/layout/data/sidebar-data.ts:45
-#: src/features/user/preferences.tsx:334
-#: src/features/user/preferences.tsx:520
+#: src/components/layout/data/sidebar-data.ts:28
+#: src/components/layout/data/sidebar-data.ts:47
+#: src/features/user/preferences.tsx:64
+#: src/features/user/preferences.tsx:200
 msgid "Preferences"
 msgstr "Dewisiadau"
 
-#: src/features/user/preferences.tsx:509
+#: src/features/user/preferences.tsx:189
 msgid "Preferences reset to defaults"
 msgstr "Dewisiadau wedi'u hailosod i'r diofyn"
 
@@ -1727,7 +1743,7 @@ msgstr "Darparwr"
 msgid "Public URL for OAuth redirects"
 msgstr "URL cyhoeddus ar gyfer ailgyfeiriadau OAuth"
 
-#: src/features/user/preferences.tsx:643
+#: src/features/user/display.tsx:406
 msgid "Radius"
 msgstr "Radiws"
 
@@ -1765,10 +1781,6 @@ msgstr "Aildryd"
 #: src/features/user/account.tsx:785
 msgid "Regenerate?"
 msgstr "Aildryd?"
-
-#: src/features/user/preferences.tsx:681
-msgid "Regional"
-msgstr "Rhanbarthol"
 
 #: src/features/user/account.tsx:505
 msgid "Register"
@@ -1838,7 +1850,8 @@ msgstr "Gofynnol"
 #: src/features/system/settings.tsx:237
 #: src/features/system/settings.tsx:275
 #: src/features/system/settings.tsx:324
-#: src/features/user/preferences.tsx:548
+#: src/features/user/display.tsx:313
+#: src/features/user/preferences.tsx:228
 msgid "Reset"
 msgstr "Ailosod"
 
@@ -1846,7 +1859,11 @@ msgstr "Ailosod"
 msgid "Reset all settings to default values"
 msgstr "Ailosod yr holl osodiadau i'r gwerthoedd diofyn"
 
-#: src/features/user/preferences.tsx:540
+#: src/features/user/display.tsx:305
+msgid "Reset display?"
+msgstr "Ailosod yr arddangos?"
+
+#: src/features/user/preferences.tsx:220
 msgid "Reset preferences?"
 msgstr "Ailosod dewisiadau?"
 
@@ -1865,7 +1882,8 @@ msgstr "Ailosod i'r diofyn"
 msgid "Reset to default?"
 msgstr "Ailosod i'r diofyn?"
 
-#: src/features/user/preferences.tsx:535
+#: src/features/user/display.tsx:300
+#: src/features/user/preferences.tsx:215
 msgid "Reset to defaults"
 msgstr "Ailosod i'r diofynnau"
 
@@ -2056,6 +2074,10 @@ msgstr "Dewis dewis thema"
 msgid "Select..."
 msgstr "Dewis..."
 
+#: ../../../lib/web/src/lib/preference-utils.ts:133
+msgid "Serif"
+msgstr "Serif"
+
 #: src/features/document/document-page.tsx:40
 #: src/features/system/documents.tsx:43
 #: src/features/user/account.tsx:1045
@@ -2087,8 +2109,8 @@ msgstr "Sesiwn wedi dod i ben"
 msgid "Session revoked"
 msgstr "Sesiwn wedi'i diddymu"
 
-#: src/components/layout/data/sidebar-data.ts:32
-#: src/components/layout/data/sidebar-data.ts:50
+#: src/components/layout/data/sidebar-data.ts:34
+#: src/components/layout/data/sidebar-data.ts:53
 #: src/features/user/sessions.tsx:116
 #: src/features/user/sessions.tsx:124
 msgid "Sessions"
@@ -2118,9 +2140,9 @@ msgstr "Gosodiad wedi'i ddiweddaru"
 #: ../../../lib/web/src/components/layout/nav-user.tsx:81
 #: ../../../lib/web/src/components/layout/nav-user.tsx:145
 #: ../../../lib/web/src/components/layout/nav-user.tsx:195
-#: src/components/layout/data/sidebar-data.ts:24
-#: src/components/layout/data/sidebar-data.ts:42
-#: src/components/layout/data/sidebar-data.ts:80
+#: src/components/layout/data/sidebar-data.ts:25
+#: src/components/layout/data/sidebar-data.ts:44
+#: src/components/layout/data/sidebar-data.ts:83
 #: src/features/user/connected-accounts.tsx:256
 msgid "Settings"
 msgstr "Gosodiadau"
@@ -2155,12 +2177,7 @@ msgstr "Sgipio i'r Prif"
 msgid "Small"
 msgstr "Bach"
 
-#: src/components/theme-preview-card.tsx:123
-msgid "Small radius"
-msgstr "Radiws bach"
-
 #: ../../../lib/web/src/lib/preference-utils.ts:94
-#: src/components/theme-preview-card.tsx:114
 msgid "Spacious"
 msgstr "Helaeth"
 
@@ -2168,7 +2185,7 @@ msgstr "Helaeth"
 msgid "Started"
 msgstr "Wedi cychwyn"
 
-#: src/components/layout/data/sidebar-data.ts:59
+#: src/components/layout/data/sidebar-data.ts:62
 #: src/features/domains/index.tsx:1003
 #: src/features/system/status.tsx:24
 #: src/features/system/status.tsx:38
@@ -2211,11 +2228,12 @@ msgstr "Ataliad wedi'i dynnu"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:195
 #: ../../../lib/web/src/lib/preference-utils.ts:18
-#: src/components/layout/data/sidebar-data.ts:54
+#: ../../../lib/web/src/lib/preference-utils.ts:132
+#: src/components/layout/data/sidebar-data.ts:57
 msgid "System"
 msgstr "System"
 
-#: src/components/layout/data/sidebar-data.ts:56
+#: src/components/layout/data/sidebar-data.ts:59
 #: src/features/system/settings.tsx:340
 #: src/features/system/settings.tsx:405
 msgid "System settings"
@@ -2268,8 +2286,8 @@ msgid "The \"No notifications\" category silences any topic assigned to it."
 msgstr "Mae'r categori \"Dim hysbysiadau\" yn distewi unrhyw bwnc a neilltuir iddo."
 
 #: ../../../lib/web/src/components/config-drawer.tsx:181
-#: src/features/user/preferences.tsx:584
-#: src/features/user/preferences.tsx:611
+#: src/features/user/display.tsx:346
+#: src/features/user/display.tsx:373
 msgid "Theme"
 msgstr "Thema"
 
@@ -2277,7 +2295,7 @@ msgstr "Thema"
 msgid "Theme Settings"
 msgstr "Gosodiadau Thema"
 
-#: src/features/user/preferences.tsx:495
+#: src/features/user/display.tsx:254
 msgid "Theme updated"
 msgstr "Thema wedi'i diweddaru"
 
@@ -2340,9 +2358,13 @@ msgstr "Bydd hyn yn ailosod \"{settingNameLabel}\" i'w ddiofyn (gwag)."
 msgid "This will reset \"{settingNameLabel}\" to its default value ({0})."
 msgstr "Bydd hyn yn ailosod \"{settingNameLabel}\" i'w werth diofyn ({0})."
 
-#: src/features/user/preferences.tsx:542
+#: src/features/user/preferences.tsx:222
 msgid "This will reset all preferences to their default values."
 msgstr "Bydd hyn yn ailosod yr holl ddewisiadau i'w gwerthoedd diofyn."
+
+#: src/features/user/display.tsx:307
+msgid "This will reset display settings to their default values."
+msgstr "Bydd hyn yn ailosod gosodiadau arddangos i'w gwerthoedd rhagosodedig."
 
 #: src/features/user/sessions.tsx:95
 msgid "This will sign out this session. If this is your current session, you will need to sign in again."
@@ -2352,15 +2374,15 @@ msgstr "Bydd hyn yn allgofnodi'r sesiwn hon. Os mai dyma'ch sesiwn gyfredol, byd
 msgid "Thursday"
 msgstr "Dydd Iau"
 
-#: src/features/user/preferences.tsx:739
+#: src/features/user/preferences.tsx:299
 msgid "Time format"
 msgstr "Fformat amser"
 
-#: src/features/user/preferences.tsx:696
+#: src/features/user/preferences.tsx:256
 msgid "Time zone"
 msgstr "Cylchfa amser"
 
-#: src/features/user/preferences.tsx:764
+#: src/features/user/preferences.tsx:324
 msgid "Timestamps"
 msgstr "Stampiau amser"
 
@@ -2402,8 +2424,8 @@ msgstr "Tocyn wedi'i ddileu"
 msgid "Token name"
 msgstr "Enw'r tocyn"
 
-#: src/components/layout/data/sidebar-data.ts:31
-#: src/components/layout/data/sidebar-data.ts:49
+#: src/components/layout/data/sidebar-data.ts:33
+#: src/components/layout/data/sidebar-data.ts:52
 msgid "Tokens"
 msgstr "Tocynnau"
 
@@ -2476,7 +2498,7 @@ msgstr "Mynediad Heb Awdurdod"
 msgid "United States"
 msgstr "Yr Unol Daleithiau"
 
-#: src/features/user/preferences.tsx:706
+#: src/features/user/preferences.tsx:266
 msgid "Units"
 msgstr "Unedau"
 
@@ -2569,7 +2591,7 @@ msgstr "Defnyddiwr wedi'i ddiweddaru"
 msgid "Username"
 msgstr "Enw defnyddiwr"
 
-#: src/components/layout/data/sidebar-data.ts:58
+#: src/components/layout/data/sidebar-data.ts:61
 #: src/features/system/users.tsx:526
 #: src/features/system/users.tsx:564
 #: src/features/system/users.tsx:577
@@ -2649,7 +2671,7 @@ msgstr "Mae'r wefan yn cael ei chynnal!"
 msgid "Wednesday"
 msgstr "Dydd Mercher"
 
-#: src/features/user/preferences.tsx:750
+#: src/features/user/preferences.tsx:310
 msgid "Week starts on"
 msgstr "Mae'r wythnos yn cychwyn ar"
 

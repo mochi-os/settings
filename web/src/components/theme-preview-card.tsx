@@ -3,28 +3,27 @@ import { Check } from 'lucide-react'
 import { useLingui } from '@lingui/react/macro'
 import { cn, type ThemeInfo } from '@mochi/web'
 
-const SPACING_VARS: Record<string, { cardPy: string; ctrlH: string }> = {
-  compact:     { cardPy: '0.875rem', ctrlH: '2rem'    },
-  comfortable: { cardPy: '1rem',     ctrlH: '2.25rem' },
-  spacious:    { cardPy: '1.25rem',  ctrlH: '2.5rem'  },
-}
+type Presets = Record<string, Record<string, string>>
 
-function buildPreviewVars(theme: ThemeInfo): CSSProperties {
-  const h       = theme.hue
-  const c       = theme.chroma
-  const bg      = theme.hue_bg
-  const density = SPACING_VARS[theme.spacing ?? 'comfortable'] ?? SPACING_VARS.comfortable
+function buildPreviewVars(theme: ThemeInfo, presets: Presets | undefined): CSSProperties {
+  const h     = theme.hue
+  const c     = theme.chroma
+  const bundle = presets?.[theme.spacing ?? 'comfortable'] ?? presets?.comfortable ?? {}
 
+  // Mirror theme.css: only --primary (and friends) carry the hue. Surfaces,
+  // borders, and muted text are pure neutrals — adding tint here makes the
+  // preview look like a different theme than the one the user actually gets.
+  // Density-driven dimensions (--card-py, --control-height-md) come straight
+  // from the server's mochi.app.theme_presets() so the table doesn't drift.
   return {
-    '--preview-primary':    `oklch(0.488 ${c} ${h})`,
-    '--preview-primary-fg': 'oklch(1 0 0)',
-    '--preview-bg':         `oklch(0.985 ${c * 0.02} ${bg})`,
-    '--preview-sidebar':    `oklch(0.97 ${c * 0.03} ${bg})`,
-    '--preview-muted-2':    'oklch(0.9 0 0)',
-    '--preview-border':     `oklch(0.905 ${c * 0.02} ${bg})`,
-    '--preview-radius':     theme.border_radius || '0.75rem',
-    '--preview-card-py':    density.cardPy,
-    '--preview-ctrl-h':     density.ctrlH,
+    '--preview-primary': `oklch(0.488 ${c} ${h})`,
+    '--preview-bg':      'oklch(1 0 0)',
+    '--preview-sidebar': 'oklch(0.985 0 0)',
+    '--preview-border':  'oklch(0.922 0 0)',
+    '--preview-muted':   'oklch(0.85 0 0)',
+    '--preview-radius':  theme.border_radius || '0.75rem',
+    '--preview-card-py': bundle['--card-py'] ?? '1rem',
+    '--preview-ctrl-h':  bundle['--control-height-md'] ?? '2.25rem',
   } as CSSProperties
 }
 
@@ -54,8 +53,8 @@ function ThemeMiniMockup() {
         }}
       >
         <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--preview-primary)' }} />
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--preview-muted-2)' }} />
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--preview-muted-2)' }} />
+        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--preview-muted)' }} />
+        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--preview-muted)' }} />
       </div>
 
       {/* Content */}
@@ -65,7 +64,7 @@ function ThemeMiniMockup() {
           style={{
             height: '16px',
             flexShrink: 0,
-            background: 'var(--preview-muted-2)',
+            background: 'var(--preview-bg)',
             borderBottom: '1px solid var(--preview-border)',
           }}
         />
@@ -80,8 +79,8 @@ function ThemeMiniMockup() {
             gap: 'calc(var(--preview-card-py) * 0.45)',
           }}
         >
-          <div style={{ height: '5px', borderRadius: '2px', background: 'var(--preview-muted-2)', width: '68%' }} />
-          <div style={{ height: '5px', borderRadius: '2px', background: 'var(--preview-muted-2)', width: '48%' }} />
+          <div style={{ height: '5px', borderRadius: '2px', background: 'var(--preview-muted)', width: '68%' }} />
+          <div style={{ height: '5px', borderRadius: '2px', background: 'var(--preview-muted)', width: '48%' }} />
           <div style={{ flex: 1 }} />
           {/* Button — shows radius + density */}
           <div
@@ -100,36 +99,18 @@ function ThemeMiniMockup() {
 
 interface ThemePreviewCardProps {
   theme: ThemeInfo
+  presets: Presets | undefined
   isSelected: boolean
   onClick: () => void
   disabled?: boolean
 }
 
-export function ThemePreviewCard({ theme, isSelected, onClick, disabled }: ThemePreviewCardProps) {
+export function ThemePreviewCard({ theme, presets, isSelected, onClick, disabled }: ThemePreviewCardProps) {
   const { t } = useLingui()
-
-  const spacingLabels: Record<string, string> = {
-    compact:     t`Compact`,
-    comfortable: t`Comfortable`,
-    spacious:    t`Spacious`,
-  }
-  // Only show a label when the value matches a known token. Falling back to
-  // a default ("Comfortable") would silently mislabel themes whose spacing
-  // value is missing or non-canonical, so we render nothing instead.
-  const spacingLabel = theme.spacing ? spacingLabels[theme.spacing] : null
-
-  const radiusLabels: Record<string, string> = {
-    '0rem':     t`No radius`,
-    '0.375rem': t`Small radius`,
-    '0.75rem':  t`Medium radius`,
-    '1.75rem':  t`Large radius`,
-  }
-  const radiusDescription = theme.border_radius ? radiusLabels[theme.border_radius] : null
-  const metaParts = [spacingLabel, radiusDescription].filter(Boolean)
-
+  const label = theme.development ? t`${theme.label} (development)` : theme.label
   return (
     <button
-      style={buildPreviewVars(theme)}
+      style={buildPreviewVars(theme, presets)}
       className={cn(
         'flex flex-col overflow-hidden rounded-lg border text-start transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
         isSelected
@@ -150,13 +131,8 @@ export function ThemePreviewCard({ theme, isSelected, onClick, disabled }: Theme
         )}
       </div>
 
-      <div className="px-2.5 py-2 space-y-0.5 border-t border-border">
-        <div className="text-sm font-medium truncate">{theme.label}</div>
-        {metaParts.length > 0 && (
-          <div className="text-xs text-muted-foreground truncate">
-            {metaParts.join(' · ')}
-          </div>
-        )}
+      <div className="px-2.5 py-2 border-t border-border">
+        <div className="text-sm font-medium truncate">{label}</div>
       </div>
     </button>
   )

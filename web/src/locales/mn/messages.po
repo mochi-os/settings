@@ -30,6 +30,13 @@ msgstr "(хоосон)"
 msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
 msgstr "{0, plural, one {1 сесс цуцалсан} other {# сесс цуцалсан}}"
 
+#. placeholder {0}: current.label
+#. placeholder {0}: theme.label
+#: src/components/theme-preview-card.tsx:110
+#: src/features/user/display.tsx:359
+msgid "{0} (development)"
+msgstr "{0} (хөгжүүлэлт)"
+
 #: src/features/user/account.tsx:775
 msgid "{count} remaining"
 msgstr "{count} үлдсэн"
@@ -71,8 +78,8 @@ msgstr "Хандалт хориотой"
 msgid "Access level"
 msgstr "Хандалтын түвшин"
 
-#: src/components/layout/data/sidebar-data.ts:26
-#: src/components/layout/data/sidebar-data.ts:44
+#: src/components/layout/data/sidebar-data.ts:27
+#: src/components/layout/data/sidebar-data.ts:46
 #: src/features/user/account.tsx:990
 #: src/features/user/account.tsx:1025
 msgid "Account"
@@ -230,7 +237,7 @@ msgstr "Зөвшөөрөгдсөн"
 msgid "App"
 msgstr "Апп"
 
-#: src/features/user/preferences.tsx:566
+#: src/features/user/display.tsx:328
 msgid "Appearance"
 msgstr "Дүр төрх"
 
@@ -278,7 +285,7 @@ msgstr "Буцах"
 msgid "Back to Home"
 msgstr "Нүүр хуудас руу буцах"
 
-#: src/features/user/preferences.tsx:654
+#: src/features/user/display.tsx:417
 msgid "Background"
 msgstr "Дэвсгэр"
 
@@ -309,9 +316,10 @@ msgstr "Хөтчийн мэдэгдэл"
 #: src/features/user/account.tsx:181
 #: src/features/user/account.tsx:667
 #: src/features/user/connected-accounts.tsx:591
+#: src/features/user/display.tsx:311
 #: src/features/user/notifications.tsx:490
 #: src/features/user/notifications.tsx:593
-#: src/features/user/preferences.tsx:546
+#: src/features/user/preferences.tsx:226
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Цуцлах"
@@ -401,7 +409,6 @@ msgid "Collapse sidebar"
 msgstr "Sidebar хумих"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:93
-#: src/components/theme-preview-card.tsx:113
 msgid "Comfortable"
 msgstr "Тав тухтай"
 
@@ -411,7 +418,6 @@ msgstr "Удахгүй!"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:302
 #: ../../../lib/web/src/lib/preference-utils.ts:92
-#: src/components/theme-preview-card.tsx:112
 msgid "Compact"
 msgstr "Хумисан"
 
@@ -424,8 +430,8 @@ msgstr "Баталгаажуулах"
 msgid "Connected"
 msgstr "Холбогдсон"
 
-#: src/components/layout/data/sidebar-data.ts:29
-#: src/components/layout/data/sidebar-data.ts:47
+#: src/components/layout/data/sidebar-data.ts:31
+#: src/components/layout/data/sidebar-data.ts:50
 #: src/features/user/connected-accounts.tsx:283
 #: src/features/user/connected-accounts.tsx:419
 msgid "Connected accounts"
@@ -517,7 +523,7 @@ msgstr "Харанхуй"
 msgid "Dark mode"
 msgstr "Харанхуй горим"
 
-#: src/features/user/preferences.tsx:728
+#: src/features/user/preferences.tsx:288
 msgid "Date format"
 msgstr "Огнооны формат"
 
@@ -527,8 +533,8 @@ msgstr "анхдагч"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:297
 #: src/features/user/connected-accounts.tsx:174
+#: src/features/user/display.tsx:363
 #: src/features/user/notifications.tsx:331
-#: src/features/user/preferences.tsx:601
 msgid "Default"
 msgstr "Үндсэн"
 
@@ -626,7 +632,7 @@ msgstr "Хэрэглэгч устгах уу?"
 msgid "Deleting..."
 msgstr "Устгаж байна..."
 
-#: src/features/user/preferences.tsx:632
+#: src/features/user/display.tsx:395
 msgid "Density"
 msgstr "Нягт"
 
@@ -650,7 +656,7 @@ msgstr "Дэлгэрэнгүй самбар"
 #: ../../../lib/web/src/lib/preference-utils.ts:55
 #: ../../../lib/web/src/lib/preference-utils.ts:69
 #: ../../../lib/web/src/lib/preference-utils.ts:81
-#: src/features/user/preferences.tsx:419
+#: src/features/user/preferences.tsx:147
 msgid "Detect from web browser"
 msgstr "Хөтчөөс илрүүлэх"
 
@@ -676,9 +682,16 @@ msgstr "Authenticator-ийг идэвхгүй болгох уу?"
 msgid "Disabled"
 msgstr "Идэвхгүй"
 
-#: src/features/user/preferences.tsx:558
+#: src/components/layout/data/sidebar-data.ts:29
+#: src/components/layout/data/sidebar-data.ts:48
+#: src/features/user/display.tsx:190
+#: src/features/user/display.tsx:285
 msgid "Display"
 msgstr "Дэлгэц"
+
+#: src/features/user/display.tsx:274
+msgid "Display reset to defaults"
+msgstr "Дэлгэцийг үндсэнд нь буцаалаа"
 
 #: ../../../lib/web/src/components/ui/sidebar.tsx:235
 msgid "Displays the mobile sidebar."
@@ -692,7 +705,7 @@ msgstr "DNS баталгаажуулалт"
 msgid "Document saved"
 msgstr "Баримт хадгалагдсан"
 
-#: src/components/layout/data/sidebar-data.ts:57
+#: src/components/layout/data/sidebar-data.ts:60
 #: src/features/system/documents.tsx:161
 #: src/features/system/documents.tsx:230
 msgid "Documents"
@@ -723,7 +736,7 @@ msgstr "Домэйн шинэчлэгдсэн"
 msgid "Domain verified"
 msgstr "Домэйн баталгаажсан"
 
-#: src/components/layout/data/sidebar-data.ts:63
+#: src/components/layout/data/sidebar-data.ts:66
 #: src/features/domains/index.tsx:1116
 #: src/features/domains/index.tsx:1144
 #: src/features/domains/index.tsx:1156
@@ -751,6 +764,10 @@ msgstr "Суулгагч татах"
 #: src/features/system/status.tsx:139
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Mochi {latest}-г татаж серверээ дахин эхлүүлнэ үү"
+
+#: ../../../lib/web/src/lib/preference-utils.ts:134
+msgid "Dyslexia-friendly"
+msgstr "Дислексид зориулсан"
 
 #: src/features/user/account.tsx:751
 msgid "Each code can only be used once."
@@ -923,7 +940,11 @@ msgstr "Сэдэв хасч чадсангүй"
 msgid "Failed to rename passkey"
 msgstr "Passkey-н нэрийг өөрчилж чадсангүй"
 
-#: src/features/user/preferences.tsx:512
+#: src/features/user/display.tsx:277
+msgid "Failed to reset display"
+msgstr "Дэлгэцийг буцаах амжилтгүй боллоо"
+
+#: src/features/user/preferences.tsx:192
 msgid "Failed to reset preferences"
 msgstr "Тохиргоог дахин тохируулж чадсангүй"
 
@@ -987,7 +1008,8 @@ msgstr "Нэвтрэх шаардлагыг шинэчилж чадсангүй"
 msgid "Failed to update name"
 msgstr "Нэр шинэчилж чадсангүй"
 
-#: src/features/user/preferences.tsx:476
+#: src/features/user/display.tsx:234
+#: src/features/user/preferences.tsx:174
 msgid "Failed to update preference"
 msgstr "Тохиргоог шинэчилж чадсангүй"
 
@@ -1003,7 +1025,7 @@ msgstr "Зам шинэчилж чадсангүй"
 msgid "Failed to update setting"
 msgstr "Тохиргоо шинэчилж чадсангүй"
 
-#: src/features/user/preferences.tsx:498
+#: src/features/user/display.tsx:257
 msgid "Failed to update theme"
 msgstr "Загварыг шинэчилж чадсангүй"
 
@@ -1035,7 +1057,11 @@ msgstr "Fingerprint"
 msgid "Floating"
 msgstr "Хөвөгч"
 
-#: src/features/user/preferences.tsx:665
+#: src/features/user/display.tsx:428
+msgid "Font"
+msgstr "Фонт"
+
+#: src/features/user/display.tsx:439
 msgid "Font size"
 msgstr "Фонтын хэмжээ"
 
@@ -1051,6 +1077,7 @@ msgstr "Эхлэх"
 #: ../../../lib/web/src/lib/preference-utils.ts:101
 #: ../../../lib/web/src/lib/preference-utils.ts:112
 #: ../../../lib/web/src/lib/preference-utils.ts:120
+#: ../../../lib/web/src/lib/preference-utils.ts:131
 msgid "From theme"
 msgstr "Загвараас"
 
@@ -1163,8 +1190,8 @@ msgid "Installing {0}…"
 msgstr "{0}-г суулгаж байна…"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:39
-#: src/components/layout/data/sidebar-data.ts:28
-#: src/components/layout/data/sidebar-data.ts:46
+#: src/components/layout/data/sidebar-data.ts:30
+#: src/components/layout/data/sidebar-data.ts:49
 #: src/features/user/interests.tsx:231
 #: src/features/user/interests.tsx:252
 msgid "Interests"
@@ -1188,7 +1215,7 @@ msgid "Label is required"
 msgstr "Шошго шаардлагатай"
 
 #: src/features/system/documents.tsx:252
-#: src/features/user/preferences.tsx:684
+#: src/features/user/preferences.tsx:244
 msgid "Language"
 msgstr "Хэл"
 
@@ -1196,10 +1223,6 @@ msgstr "Хэл"
 #: ../../../lib/web/src/lib/preference-utils.ts:123
 msgid "Large"
 msgstr "Том"
-
-#: src/components/theme-preview-card.tsx:125
-msgid "Large radius"
-msgstr "Том радиус"
 
 #: src/features/system/users.tsx:314
 msgid "Last accessed"
@@ -1325,7 +1348,7 @@ msgstr "Шинэ кодуудаа хадгалаа эсэхээ шалгана �
 msgid "Manage sessions"
 msgstr "Сешн удирдах"
 
-#: src/components/layout/data/sidebar-data.ts:71
+#: src/components/layout/data/sidebar-data.ts:74
 msgid "Management"
 msgstr "Удирдлага"
 
@@ -1337,10 +1360,6 @@ msgstr "Бүгдийг уншсан гэж тэмдэглэх"
 #: ../../../lib/web/src/lib/preference-utils.ts:104
 msgid "Medium"
 msgstr "Дунд"
-
-#: src/components/theme-preview-card.tsx:124
-msgid "Medium radius"
-msgstr "Дунд радиус"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:152
 msgid "Menu"
@@ -1504,10 +1523,6 @@ msgstr "Газар олдсонгүй"
 msgid "No profile"
 msgstr "Профайл алга"
 
-#: src/components/theme-preview-card.tsx:122
-msgid "No radius"
-msgstr "Радиус алга"
-
 #: src/features/user/account.tsx:780
 msgid "No recovery codes"
 msgstr "Сэргээх код алга"
@@ -1556,8 +1571,8 @@ msgstr "Энгийн"
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:132
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:146
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:247
-#: src/components/layout/data/sidebar-data.ts:30
-#: src/components/layout/data/sidebar-data.ts:48
+#: src/components/layout/data/sidebar-data.ts:32
+#: src/components/layout/data/sidebar-data.ts:51
 #: src/features/user/notifications.tsx:107
 #: src/features/user/notifications.tsx:125
 msgid "Notifications"
@@ -1568,7 +1583,7 @@ msgstr "Мэдэгдэл"
 msgid "Notify by default"
 msgstr "Анхдагчаар мэдэгдэх"
 
-#: src/features/user/preferences.tsx:717
+#: src/features/user/preferences.tsx:277
 msgid "Number format"
 msgstr "Тооны формат"
 
@@ -1675,18 +1690,19 @@ msgstr "Энэ домэйнийг түүний бүх маршрутуудтай
 msgid "Please enter a token name"
 msgstr "Токены нэрийг оруулна уу"
 
-#: src/features/user/preferences.tsx:473
+#: src/features/user/display.tsx:231
+#: src/features/user/preferences.tsx:171
 msgid "Preference updated"
 msgstr "Тохиргоо шинэчлэгдсэн"
 
-#: src/components/layout/data/sidebar-data.ts:27
-#: src/components/layout/data/sidebar-data.ts:45
-#: src/features/user/preferences.tsx:334
-#: src/features/user/preferences.tsx:520
+#: src/components/layout/data/sidebar-data.ts:28
+#: src/components/layout/data/sidebar-data.ts:47
+#: src/features/user/preferences.tsx:64
+#: src/features/user/preferences.tsx:200
 msgid "Preferences"
 msgstr "Тохиргоонууд"
 
-#: src/features/user/preferences.tsx:509
+#: src/features/user/preferences.tsx:189
 msgid "Preferences reset to defaults"
 msgstr "Тохиргоо анхдагчаар нь сэргээгдсэн"
 
@@ -1727,7 +1743,7 @@ msgstr "Үйлчилгээ үзүүлэгч"
 msgid "Public URL for OAuth redirects"
 msgstr "OAuth дахин чиглүүлэлтийн нийтийн URL"
 
-#: src/features/user/preferences.tsx:643
+#: src/features/user/display.tsx:406
 msgid "Radius"
 msgstr "Радиус"
 
@@ -1765,10 +1781,6 @@ msgstr "Дахин үүсгэх"
 #: src/features/user/account.tsx:785
 msgid "Regenerate?"
 msgstr "Дахин үүсгэх үү?"
-
-#: src/features/user/preferences.tsx:681
-msgid "Regional"
-msgstr "Бүсийн"
 
 #: src/features/user/account.tsx:505
 msgid "Register"
@@ -1838,7 +1850,8 @@ msgstr "Шаардлагатай"
 #: src/features/system/settings.tsx:237
 #: src/features/system/settings.tsx:275
 #: src/features/system/settings.tsx:324
-#: src/features/user/preferences.tsx:548
+#: src/features/user/display.tsx:313
+#: src/features/user/preferences.tsx:228
 msgid "Reset"
 msgstr "Шинэчлэх"
 
@@ -1846,7 +1859,11 @@ msgstr "Шинэчлэх"
 msgid "Reset all settings to default values"
 msgstr "Бүх тохиргоог анхдагч утгад нь сэргээх"
 
-#: src/features/user/preferences.tsx:540
+#: src/features/user/display.tsx:305
+msgid "Reset display?"
+msgstr "Дэлгэцийг буцаах уу?"
+
+#: src/features/user/preferences.tsx:220
 msgid "Reset preferences?"
 msgstr "Тохиргоог сэргээх үү?"
 
@@ -1865,7 +1882,8 @@ msgstr "Анхдагчид буцаах"
 msgid "Reset to default?"
 msgstr "Анхдагчид буцаах уу?"
 
-#: src/features/user/preferences.tsx:535
+#: src/features/user/display.tsx:300
+#: src/features/user/preferences.tsx:215
 msgid "Reset to defaults"
 msgstr "Анхдагчид буцаах"
 
@@ -2056,6 +2074,10 @@ msgstr "Загварын тохируулга сонгох"
 msgid "Select..."
 msgstr "Сонгох..."
 
+#: ../../../lib/web/src/lib/preference-utils.ts:133
+msgid "Serif"
+msgstr "Сериф"
+
 #: src/features/document/document-page.tsx:40
 #: src/features/system/documents.tsx:43
 #: src/features/user/account.tsx:1045
@@ -2087,8 +2109,8 @@ msgstr "Сесс хугацаа дууссан"
 msgid "Session revoked"
 msgstr "Сесс цуцалсан"
 
-#: src/components/layout/data/sidebar-data.ts:32
-#: src/components/layout/data/sidebar-data.ts:50
+#: src/components/layout/data/sidebar-data.ts:34
+#: src/components/layout/data/sidebar-data.ts:53
 #: src/features/user/sessions.tsx:116
 #: src/features/user/sessions.tsx:124
 msgid "Sessions"
@@ -2118,9 +2140,9 @@ msgstr "Тохиргоо шинэчлэгдсэн"
 #: ../../../lib/web/src/components/layout/nav-user.tsx:81
 #: ../../../lib/web/src/components/layout/nav-user.tsx:145
 #: ../../../lib/web/src/components/layout/nav-user.tsx:195
-#: src/components/layout/data/sidebar-data.ts:24
-#: src/components/layout/data/sidebar-data.ts:42
-#: src/components/layout/data/sidebar-data.ts:80
+#: src/components/layout/data/sidebar-data.ts:25
+#: src/components/layout/data/sidebar-data.ts:44
+#: src/components/layout/data/sidebar-data.ts:83
 #: src/features/user/connected-accounts.tsx:256
 msgid "Settings"
 msgstr "Тохиргоо"
@@ -2155,12 +2177,7 @@ msgstr "Үндсэн рүү алгасах"
 msgid "Small"
 msgstr "Жижиг"
 
-#: src/components/theme-preview-card.tsx:123
-msgid "Small radius"
-msgstr "Жижиг радиус"
-
 #: ../../../lib/web/src/lib/preference-utils.ts:94
-#: src/components/theme-preview-card.tsx:114
 msgid "Spacious"
 msgstr "Уужим"
 
@@ -2168,7 +2185,7 @@ msgstr "Уужим"
 msgid "Started"
 msgstr "Эхэлсэн"
 
-#: src/components/layout/data/sidebar-data.ts:59
+#: src/components/layout/data/sidebar-data.ts:62
 #: src/features/domains/index.tsx:1003
 #: src/features/system/status.tsx:24
 #: src/features/system/status.tsx:38
@@ -2211,11 +2228,12 @@ msgstr "Түр зогсоолт хасагдсан"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:195
 #: ../../../lib/web/src/lib/preference-utils.ts:18
-#: src/components/layout/data/sidebar-data.ts:54
+#: ../../../lib/web/src/lib/preference-utils.ts:132
+#: src/components/layout/data/sidebar-data.ts:57
 msgid "System"
 msgstr "Систем"
 
-#: src/components/layout/data/sidebar-data.ts:56
+#: src/components/layout/data/sidebar-data.ts:59
 #: src/features/system/settings.tsx:340
 #: src/features/system/settings.tsx:405
 msgid "System settings"
@@ -2268,8 +2286,8 @@ msgid "The \"No notifications\" category silences any topic assigned to it."
 msgstr "\"Мэдэгдэл алга\" гэсэн ангилалд хамаарагдсан сэдвүүдийг чимээгүй болгоно."
 
 #: ../../../lib/web/src/components/config-drawer.tsx:181
-#: src/features/user/preferences.tsx:584
-#: src/features/user/preferences.tsx:611
+#: src/features/user/display.tsx:346
+#: src/features/user/display.tsx:373
 msgid "Theme"
 msgstr "Загвар"
 
@@ -2277,7 +2295,7 @@ msgstr "Загвар"
 msgid "Theme Settings"
 msgstr "Загварын тохиргоо"
 
-#: src/features/user/preferences.tsx:495
+#: src/features/user/display.tsx:254
 msgid "Theme updated"
 msgstr "Загвар шинэчлэгдсэн"
 
@@ -2340,9 +2358,13 @@ msgstr "Энэ нь \"{settingNameLabel}\"-г үндсэн (хоосон) утг
 msgid "This will reset \"{settingNameLabel}\" to its default value ({0})."
 msgstr "Энэ нь \"{settingNameLabel}\"-г үндсэн утга ({0})-д буцаана."
 
-#: src/features/user/preferences.tsx:542
+#: src/features/user/preferences.tsx:222
 msgid "This will reset all preferences to their default values."
 msgstr "Энэ нь бүх тохиргоог үндсэн утганд буцаана."
+
+#: src/features/user/display.tsx:307
+msgid "This will reset display settings to their default values."
+msgstr "Энэ нь дэлгэцийн тохиргоог үндсэн утгад нь буцаана."
 
 #: src/features/user/sessions.tsx:95
 msgid "This will sign out this session. If this is your current session, you will need to sign in again."
@@ -2352,15 +2374,15 @@ msgstr "Энэ нь энэ сессээс гарна. Хэрэв энэ нь т�
 msgid "Thursday"
 msgstr "Пүрэв гараг"
 
-#: src/features/user/preferences.tsx:739
+#: src/features/user/preferences.tsx:299
 msgid "Time format"
 msgstr "Цагийн формат"
 
-#: src/features/user/preferences.tsx:696
+#: src/features/user/preferences.tsx:256
 msgid "Time zone"
 msgstr "Цагийн бүс"
 
-#: src/features/user/preferences.tsx:764
+#: src/features/user/preferences.tsx:324
 msgid "Timestamps"
 msgstr "Цагийн тэмдэгүүд"
 
@@ -2402,8 +2424,8 @@ msgstr "Токен устгагдсан"
 msgid "Token name"
 msgstr "Токены нэр"
 
-#: src/components/layout/data/sidebar-data.ts:31
-#: src/components/layout/data/sidebar-data.ts:49
+#: src/components/layout/data/sidebar-data.ts:33
+#: src/components/layout/data/sidebar-data.ts:52
 msgid "Tokens"
 msgstr "Токенууд"
 
@@ -2476,7 +2498,7 @@ msgstr "Зөвшөөрөлгүй хандалт"
 msgid "United States"
 msgstr "АНУ"
 
-#: src/features/user/preferences.tsx:706
+#: src/features/user/preferences.tsx:266
 msgid "Units"
 msgstr "Нэгж"
 
@@ -2569,7 +2591,7 @@ msgstr "Хэрэглэгч шинэчлэгдсэн"
 msgid "Username"
 msgstr "Хэрэглэгчийн нэр"
 
-#: src/components/layout/data/sidebar-data.ts:58
+#: src/components/layout/data/sidebar-data.ts:61
 #: src/features/system/users.tsx:526
 #: src/features/system/users.tsx:564
 #: src/features/system/users.tsx:577
@@ -2649,7 +2671,7 @@ msgstr "Вэбсайт засвартай байна!"
 msgid "Wednesday"
 msgstr "Лхагва гараг"
 
-#: src/features/user/preferences.tsx:750
+#: src/features/user/preferences.tsx:310
 msgid "Week starts on"
 msgstr "Долоо хоног эхлэх өдөр"
 

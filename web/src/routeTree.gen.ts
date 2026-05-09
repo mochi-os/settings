@@ -22,6 +22,7 @@ import { Route as AuthenticatedUserSessionsRouteImport } from './routes/_authent
 import { Route as AuthenticatedUserPreferencesRouteImport } from './routes/_authenticated/user/preferences'
 import { Route as AuthenticatedUserNotificationsRouteImport } from './routes/_authenticated/user/notifications'
 import { Route as AuthenticatedUserInterestsRouteImport } from './routes/_authenticated/user/interests'
+import { Route as AuthenticatedUserDisplayRouteImport } from './routes/_authenticated/user/display'
 import { Route as AuthenticatedUserAccountsRouteImport } from './routes/_authenticated/user/accounts'
 import { Route as AuthenticatedUserAccountRouteImport } from './routes/_authenticated/user/account'
 import { Route as AuthenticatedSystemUsersRouteImport } from './routes/_authenticated/system/users'
@@ -99,6 +100,12 @@ const AuthenticatedUserInterestsRoute =
   AuthenticatedUserInterestsRouteImport.update({
     id: '/user/interests',
     path: '/user/interests',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedUserDisplayRoute =
+  AuthenticatedUserDisplayRouteImport.update({
+    id: '/user/display',
+    path: '/user/display',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedUserAccountsRoute =
@@ -180,6 +187,7 @@ export interface FileRoutesByFullPath {
   '/system/users': typeof AuthenticatedSystemUsersRoute
   '/user/account': typeof AuthenticatedUserAccountRoute
   '/user/accounts': typeof AuthenticatedUserAccountsRoute
+  '/user/display': typeof AuthenticatedUserDisplayRoute
   '/user/interests': typeof AuthenticatedUserInterestsRoute
   '/user/notifications': typeof AuthenticatedUserNotificationsRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
@@ -204,6 +212,7 @@ export interface FileRoutesByTo {
   '/system/users': typeof AuthenticatedSystemUsersRoute
   '/user/account': typeof AuthenticatedUserAccountRoute
   '/user/accounts': typeof AuthenticatedUserAccountsRoute
+  '/user/display': typeof AuthenticatedUserDisplayRoute
   '/user/interests': typeof AuthenticatedUserInterestsRoute
   '/user/notifications': typeof AuthenticatedUserNotificationsRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
@@ -230,6 +239,7 @@ export interface FileRoutesById {
   '/_authenticated/system/users': typeof AuthenticatedSystemUsersRoute
   '/_authenticated/user/account': typeof AuthenticatedUserAccountRoute
   '/_authenticated/user/accounts': typeof AuthenticatedUserAccountsRoute
+  '/_authenticated/user/display': typeof AuthenticatedUserDisplayRoute
   '/_authenticated/user/interests': typeof AuthenticatedUserInterestsRoute
   '/_authenticated/user/notifications': typeof AuthenticatedUserNotificationsRoute
   '/_authenticated/user/preferences': typeof AuthenticatedUserPreferencesRoute
@@ -256,6 +266,7 @@ export interface FileRouteTypes {
     | '/system/users'
     | '/user/account'
     | '/user/accounts'
+    | '/user/display'
     | '/user/interests'
     | '/user/notifications'
     | '/user/preferences'
@@ -280,6 +291,7 @@ export interface FileRouteTypes {
     | '/system/users'
     | '/user/account'
     | '/user/accounts'
+    | '/user/display'
     | '/user/interests'
     | '/user/notifications'
     | '/user/preferences'
@@ -305,6 +317,7 @@ export interface FileRouteTypes {
     | '/_authenticated/system/users'
     | '/_authenticated/user/account'
     | '/_authenticated/user/accounts'
+    | '/_authenticated/user/display'
     | '/_authenticated/user/interests'
     | '/_authenticated/user/notifications'
     | '/_authenticated/user/preferences'
@@ -414,6 +427,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedUserInterestsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/user/display': {
+      id: '/_authenticated/user/display'
+      path: '/user/display'
+      fullPath: '/user/display'
+      preLoaderRoute: typeof AuthenticatedUserDisplayRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/user/accounts': {
       id: '/_authenticated/user/accounts'
       path: '/user/accounts'
@@ -500,6 +520,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedSystemUsersRoute: typeof AuthenticatedSystemUsersRoute
   AuthenticatedUserAccountRoute: typeof AuthenticatedUserAccountRoute
   AuthenticatedUserAccountsRoute: typeof AuthenticatedUserAccountsRoute
+  AuthenticatedUserDisplayRoute: typeof AuthenticatedUserDisplayRoute
   AuthenticatedUserInterestsRoute: typeof AuthenticatedUserInterestsRoute
   AuthenticatedUserNotificationsRoute: typeof AuthenticatedUserNotificationsRoute
   AuthenticatedUserPreferencesRoute: typeof AuthenticatedUserPreferencesRoute
@@ -520,6 +541,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSystemUsersRoute: AuthenticatedSystemUsersRoute,
   AuthenticatedUserAccountRoute: AuthenticatedUserAccountRoute,
   AuthenticatedUserAccountsRoute: AuthenticatedUserAccountsRoute,
+  AuthenticatedUserDisplayRoute: AuthenticatedUserDisplayRoute,
   AuthenticatedUserInterestsRoute: AuthenticatedUserInterestsRoute,
   AuthenticatedUserNotificationsRoute: AuthenticatedUserNotificationsRoute,
   AuthenticatedUserPreferencesRoute: AuthenticatedUserPreferencesRoute,

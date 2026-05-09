@@ -36,6 +36,14 @@ preferences_schema = [
         "description": "Theme background image"
     },
     {
+        "key": "font",
+        "type": "select",
+        "options": ["theme", "system", "serif", "dyslexia"],
+        "default": "theme",
+        "label": "Font",
+        "description": "Interface font family"
+    },
+    {
         "key": "font_size",
         "type": "select",
         "options": ["theme", "small", "normal", "large", "extra-large"],
@@ -117,28 +125,36 @@ def action_user_preferences(a):
     theme = a.user.preference.get("theme")
     default_theme = mochi.setting.get("default_theme")
     prefs["theme"] = theme if theme != None else default_theme
-    a.json({"preferences": prefs, "schema": preferences_schema, "themes": mochi.app.themes(), "default_theme": default_theme})
+    a.json({"preferences": prefs, "schema": preferences_schema, "themes": mochi.app.themes(), "presets": mochi.app.theme_presets(), "default_theme": default_theme})
 
 def action_user_preferences_set(a):
     """Set user preferences"""
+    # Three input states:
+    #   None — key not provided in request, leave the preference alone
+    #   ""   — explicit reset, delete the preference (falls back to default)
+    #   any  — validate and set
     for p in preferences_schema:
         value = a.input(p["key"])
-        if value:
-            if p["type"] == "select" and value not in p["options"]:
+        if value == None:
+            continue
+        if value == "":
+            a.user.preference.delete(p["key"])
+            continue
+        if p["type"] == "select" and value not in p["options"]:
+            a.error.label(400, "errors.invalid_value_for_key", key=p["key"])
+            return
+        # locale-language: BCP 47 tag, lowercase. Accept the value if it
+        # looks plausible — server-side resolver falls back gracefully if
+        # no catalog matches, so we don't need to enforce an installed list.
+        if p["type"] == "locale-language":
+            if len(value) > 35 or len(value) < 2:
                 a.error.label(400, "errors.invalid_value_for_key", key=p["key"])
                 return
-            # locale-language: BCP 47 tag, lowercase. Accept the value if it
-            # looks plausible — server-side resolver falls back gracefully if
-            # no catalog matches, so we don't need to enforce an installed list.
-            if p["type"] == "locale-language":
-                if len(value) > 35 or len(value) < 2:
+            for ch in value.elems():
+                if not (ch.isalnum() or ch == "-"):
                     a.error.label(400, "errors.invalid_value_for_key", key=p["key"])
                     return
-                for ch in value.elems():
-                    if not (ch.isalnum() or ch == "-"):
-                        a.error.label(400, "errors.invalid_value_for_key", key=p["key"])
-                        return
-            a.user.preference.set(p["key"], value)
+        a.user.preference.set(p["key"], value)
     # Handle theme preference (dynamic options, validated separately)
     theme = a.input("theme")
     if theme != None:

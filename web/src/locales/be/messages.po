@@ -30,6 +30,13 @@ msgstr "(пуста)"
 msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
 msgstr "{0, plural, one {Адклікана 1 сесія} few {Адклікана # сесіі} many {Адклікана # сесій} other {Адклікана # сесіі}}"
 
+#. placeholder {0}: current.label
+#. placeholder {0}: theme.label
+#: src/components/theme-preview-card.tsx:110
+#: src/features/user/display.tsx:359
+msgid "{0} (development)"
+msgstr "{0} (распрацоўка)"
+
 #: src/features/user/account.tsx:775
 msgid "{count} remaining"
 msgstr "{count} засталося"
@@ -71,8 +78,8 @@ msgstr "Доступ забаронены"
 msgid "Access level"
 msgstr "Узровень доступу"
 
-#: src/components/layout/data/sidebar-data.ts:26
-#: src/components/layout/data/sidebar-data.ts:44
+#: src/components/layout/data/sidebar-data.ts:27
+#: src/components/layout/data/sidebar-data.ts:46
 #: src/features/user/account.tsx:990
 #: src/features/user/account.tsx:1025
 msgid "Account"
@@ -230,7 +237,7 @@ msgstr "Дазволена"
 msgid "App"
 msgstr "Дадатак"
 
-#: src/features/user/preferences.tsx:566
+#: src/features/user/display.tsx:328
 msgid "Appearance"
 msgstr "Знешні выгляд"
 
@@ -278,7 +285,7 @@ msgstr "Назад"
 msgid "Back to Home"
 msgstr "Назад на галоўную"
 
-#: src/features/user/preferences.tsx:654
+#: src/features/user/display.tsx:417
 msgid "Background"
 msgstr "Фон"
 
@@ -309,9 +316,10 @@ msgstr "Апавяшчэнні браўзера"
 #: src/features/user/account.tsx:181
 #: src/features/user/account.tsx:667
 #: src/features/user/connected-accounts.tsx:591
+#: src/features/user/display.tsx:311
 #: src/features/user/notifications.tsx:490
 #: src/features/user/notifications.tsx:593
-#: src/features/user/preferences.tsx:546
+#: src/features/user/preferences.tsx:226
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Адмена"
@@ -401,7 +409,6 @@ msgid "Collapse sidebar"
 msgstr "Згарнуць бакавую панэль"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:93
-#: src/components/theme-preview-card.tsx:113
 msgid "Comfortable"
 msgstr "Камфортна"
 
@@ -411,7 +418,6 @@ msgstr "Хутка!"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:302
 #: ../../../lib/web/src/lib/preference-utils.ts:92
-#: src/components/theme-preview-card.tsx:112
 msgid "Compact"
 msgstr "Кампактна"
 
@@ -424,8 +430,8 @@ msgstr "Пацвердзіць"
 msgid "Connected"
 msgstr "Падключана"
 
-#: src/components/layout/data/sidebar-data.ts:29
-#: src/components/layout/data/sidebar-data.ts:47
+#: src/components/layout/data/sidebar-data.ts:31
+#: src/components/layout/data/sidebar-data.ts:50
 #: src/features/user/connected-accounts.tsx:283
 #: src/features/user/connected-accounts.tsx:419
 msgid "Connected accounts"
@@ -517,7 +523,7 @@ msgstr "Цёмны"
 msgid "Dark mode"
 msgstr "Цёмны рэжым"
 
-#: src/features/user/preferences.tsx:728
+#: src/features/user/preferences.tsx:288
 msgid "Date format"
 msgstr "Фармат даты"
 
@@ -527,8 +533,8 @@ msgstr "па змаўчанні"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:297
 #: src/features/user/connected-accounts.tsx:174
+#: src/features/user/display.tsx:363
 #: src/features/user/notifications.tsx:331
-#: src/features/user/preferences.tsx:601
 msgid "Default"
 msgstr "Па змаўчанні"
 
@@ -626,7 +632,7 @@ msgstr "Выдаліць карыстальніка?"
 msgid "Deleting..."
 msgstr "Выдаленне..."
 
-#: src/features/user/preferences.tsx:632
+#: src/features/user/display.tsx:395
 msgid "Density"
 msgstr "Шчыльнасць"
 
@@ -650,7 +656,7 @@ msgstr "Панэль дэталяў"
 #: ../../../lib/web/src/lib/preference-utils.ts:55
 #: ../../../lib/web/src/lib/preference-utils.ts:69
 #: ../../../lib/web/src/lib/preference-utils.ts:81
-#: src/features/user/preferences.tsx:419
+#: src/features/user/preferences.tsx:147
 msgid "Detect from web browser"
 msgstr "Вызначыць з вэб-браўзера"
 
@@ -676,9 +682,16 @@ msgstr "Адключыць аўтэнтыфікатар?"
 msgid "Disabled"
 msgstr "Адключана"
 
-#: src/features/user/preferences.tsx:558
+#: src/components/layout/data/sidebar-data.ts:29
+#: src/components/layout/data/sidebar-data.ts:48
+#: src/features/user/display.tsx:190
+#: src/features/user/display.tsx:285
 msgid "Display"
 msgstr "Адлюстраванне"
+
+#: src/features/user/display.tsx:274
+msgid "Display reset to defaults"
+msgstr "Адлюстраванне скінута да значэнняў па змаўчанні"
 
 #: ../../../lib/web/src/components/ui/sidebar.tsx:235
 msgid "Displays the mobile sidebar."
@@ -692,7 +705,7 @@ msgstr "Праверка DNS"
 msgid "Document saved"
 msgstr "Дакумент захаваны"
 
-#: src/components/layout/data/sidebar-data.ts:57
+#: src/components/layout/data/sidebar-data.ts:60
 #: src/features/system/documents.tsx:161
 #: src/features/system/documents.tsx:230
 msgid "Documents"
@@ -723,7 +736,7 @@ msgstr "Дамен абноўлены"
 msgid "Domain verified"
 msgstr "Дамен пацверджаны"
 
-#: src/components/layout/data/sidebar-data.ts:63
+#: src/components/layout/data/sidebar-data.ts:66
 #: src/features/domains/index.tsx:1116
 #: src/features/domains/index.tsx:1144
 #: src/features/domains/index.tsx:1156
@@ -751,6 +764,10 @@ msgstr "Спампаваць усталёўшчык"
 #: src/features/system/status.tsx:139
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Спампуйце Mochi {latest} і перазапусціце сервер"
+
+#: ../../../lib/web/src/lib/preference-utils.ts:134
+msgid "Dyslexia-friendly"
+msgstr "Сябар дыслексіі"
 
 #: src/features/user/account.tsx:751
 msgid "Each code can only be used once."
@@ -923,7 +940,11 @@ msgstr "Не ўдалося выдаліць тэму"
 msgid "Failed to rename passkey"
 msgstr "Не ўдалося перайменаваць passkey"
 
-#: src/features/user/preferences.tsx:512
+#: src/features/user/display.tsx:277
+msgid "Failed to reset display"
+msgstr "Не атрымалася скінуць адлюстраванне"
+
+#: src/features/user/preferences.tsx:192
 msgid "Failed to reset preferences"
 msgstr "Не ўдалося скінуць налады"
 
@@ -987,7 +1008,8 @@ msgstr "Не ўдалося абнавіць патрабаванні да ўв�
 msgid "Failed to update name"
 msgstr "Не ўдалося абнавіць імя"
 
-#: src/features/user/preferences.tsx:476
+#: src/features/user/display.tsx:234
+#: src/features/user/preferences.tsx:174
 msgid "Failed to update preference"
 msgstr "Не ўдалося абнавіць налады"
 
@@ -1003,7 +1025,7 @@ msgstr "Не ўдалося абнавіць маршрут"
 msgid "Failed to update setting"
 msgstr "Не ўдалося абнавіць наладу"
 
-#: src/features/user/preferences.tsx:498
+#: src/features/user/display.tsx:257
 msgid "Failed to update theme"
 msgstr "Не ўдалося абнавіць тэму афармлення"
 
@@ -1035,7 +1057,11 @@ msgstr "Адбітак пальца"
 msgid "Floating"
 msgstr "Плаваючы"
 
-#: src/features/user/preferences.tsx:665
+#: src/features/user/display.tsx:428
+msgid "Font"
+msgstr "Шрыфт"
+
+#: src/features/user/display.tsx:439
 msgid "Font size"
 msgstr "Памер шрыфта"
 
@@ -1051,6 +1077,7 @@ msgstr "Ад"
 #: ../../../lib/web/src/lib/preference-utils.ts:101
 #: ../../../lib/web/src/lib/preference-utils.ts:112
 #: ../../../lib/web/src/lib/preference-utils.ts:120
+#: ../../../lib/web/src/lib/preference-utils.ts:131
 msgid "From theme"
 msgstr "З тэмы"
 
@@ -1163,8 +1190,8 @@ msgid "Installing {0}…"
 msgstr "Усталёўка {0}…"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:39
-#: src/components/layout/data/sidebar-data.ts:28
-#: src/components/layout/data/sidebar-data.ts:46
+#: src/components/layout/data/sidebar-data.ts:30
+#: src/components/layout/data/sidebar-data.ts:49
 #: src/features/user/interests.tsx:231
 #: src/features/user/interests.tsx:252
 msgid "Interests"
@@ -1188,7 +1215,7 @@ msgid "Label is required"
 msgstr "Патрабуецца цэтлік"
 
 #: src/features/system/documents.tsx:252
-#: src/features/user/preferences.tsx:684
+#: src/features/user/preferences.tsx:244
 msgid "Language"
 msgstr "Мова"
 
@@ -1196,10 +1223,6 @@ msgstr "Мова"
 #: ../../../lib/web/src/lib/preference-utils.ts:123
 msgid "Large"
 msgstr "Вялікі"
-
-#: src/components/theme-preview-card.tsx:125
-msgid "Large radius"
-msgstr "Вялікі радыус"
 
 #: src/features/system/users.tsx:314
 msgid "Last accessed"
@@ -1325,7 +1348,7 @@ msgstr "Не забудзьцеся захаваць новыя коды."
 msgid "Manage sessions"
 msgstr "Кіраваць сесіямі"
 
-#: src/components/layout/data/sidebar-data.ts:71
+#: src/components/layout/data/sidebar-data.ts:74
 msgid "Management"
 msgstr "Кіраванне"
 
@@ -1337,10 +1360,6 @@ msgstr "Адзначыць усё як прачытанае"
 #: ../../../lib/web/src/lib/preference-utils.ts:104
 msgid "Medium"
 msgstr "Сярэдні"
-
-#: src/components/theme-preview-card.tsx:124
-msgid "Medium radius"
-msgstr "Сярэдні радыус"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:152
 msgid "Menu"
@@ -1504,10 +1523,6 @@ msgstr "Месцы не знойдзены"
 msgid "No profile"
 msgstr "Профілю няма"
 
-#: src/components/theme-preview-card.tsx:122
-msgid "No radius"
-msgstr "Без радыусу"
-
 #: src/features/user/account.tsx:780
 msgid "No recovery codes"
 msgstr "Кодаў аднаўлення няма"
@@ -1556,8 +1571,8 @@ msgstr "Звычайны"
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:132
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:146
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:247
-#: src/components/layout/data/sidebar-data.ts:30
-#: src/components/layout/data/sidebar-data.ts:48
+#: src/components/layout/data/sidebar-data.ts:32
+#: src/components/layout/data/sidebar-data.ts:51
 #: src/features/user/notifications.tsx:107
 #: src/features/user/notifications.tsx:125
 msgid "Notifications"
@@ -1568,7 +1583,7 @@ msgstr "Апавяшчэнні"
 msgid "Notify by default"
 msgstr "Апавяшчаць па змаўчанні"
 
-#: src/features/user/preferences.tsx:717
+#: src/features/user/preferences.tsx:277
 msgid "Number format"
 msgstr "Фармат лікаў"
 
@@ -1675,18 +1690,19 @@ msgstr "Назаўжды выдаліць гэты дамен і ўсе яго �
 msgid "Please enter a token name"
 msgstr "Увядзіце назву токена"
 
-#: src/features/user/preferences.tsx:473
+#: src/features/user/display.tsx:231
+#: src/features/user/preferences.tsx:171
 msgid "Preference updated"
 msgstr "Налада абноўлена"
 
-#: src/components/layout/data/sidebar-data.ts:27
-#: src/components/layout/data/sidebar-data.ts:45
-#: src/features/user/preferences.tsx:334
-#: src/features/user/preferences.tsx:520
+#: src/components/layout/data/sidebar-data.ts:28
+#: src/components/layout/data/sidebar-data.ts:47
+#: src/features/user/preferences.tsx:64
+#: src/features/user/preferences.tsx:200
 msgid "Preferences"
 msgstr "Налады"
 
-#: src/features/user/preferences.tsx:509
+#: src/features/user/preferences.tsx:189
 msgid "Preferences reset to defaults"
 msgstr "Налады скінутыя да змаўчання"
 
@@ -1727,7 +1743,7 @@ msgstr "Правайдэр"
 msgid "Public URL for OAuth redirects"
 msgstr "Публічны URL для перанакіраванняў OAuth"
 
-#: src/features/user/preferences.tsx:643
+#: src/features/user/display.tsx:406
 msgid "Radius"
 msgstr "Радыус"
 
@@ -1765,10 +1781,6 @@ msgstr "Перагенераваць"
 #: src/features/user/account.tsx:785
 msgid "Regenerate?"
 msgstr "Перагенераваць?"
-
-#: src/features/user/preferences.tsx:681
-msgid "Regional"
-msgstr "Рэгіянальны"
 
 #: src/features/user/account.tsx:505
 msgid "Register"
@@ -1838,7 +1850,8 @@ msgstr "Абавязкова"
 #: src/features/system/settings.tsx:237
 #: src/features/system/settings.tsx:275
 #: src/features/system/settings.tsx:324
-#: src/features/user/preferences.tsx:548
+#: src/features/user/display.tsx:313
+#: src/features/user/preferences.tsx:228
 msgid "Reset"
 msgstr "Скід"
 
@@ -1846,7 +1859,11 @@ msgstr "Скід"
 msgid "Reset all settings to default values"
 msgstr "Скінуць усе налады да значэнняў па змаўчанні"
 
-#: src/features/user/preferences.tsx:540
+#: src/features/user/display.tsx:305
+msgid "Reset display?"
+msgstr "Скінуць адлюстраванне?"
+
+#: src/features/user/preferences.tsx:220
 msgid "Reset preferences?"
 msgstr "Скінуць налады?"
 
@@ -1865,7 +1882,8 @@ msgstr "Скінуць да змаўчання"
 msgid "Reset to default?"
 msgstr "Скінуць да змаўчання?"
 
-#: src/features/user/preferences.tsx:535
+#: src/features/user/display.tsx:300
+#: src/features/user/preferences.tsx:215
 msgid "Reset to defaults"
 msgstr "Скінуць да змаўчання"
 
@@ -2056,6 +2074,10 @@ msgstr "Выбраць перавагу тэмы"
 msgid "Select..."
 msgstr "Выбраць..."
 
+#: ../../../lib/web/src/lib/preference-utils.ts:133
+msgid "Serif"
+msgstr "З засечкамі"
+
 #: src/features/document/document-page.tsx:40
 #: src/features/system/documents.tsx:43
 #: src/features/user/account.tsx:1045
@@ -2087,8 +2109,8 @@ msgstr "Тэрмін сесіі скончыўся"
 msgid "Session revoked"
 msgstr "Сесія адклікана"
 
-#: src/components/layout/data/sidebar-data.ts:32
-#: src/components/layout/data/sidebar-data.ts:50
+#: src/components/layout/data/sidebar-data.ts:34
+#: src/components/layout/data/sidebar-data.ts:53
 #: src/features/user/sessions.tsx:116
 #: src/features/user/sessions.tsx:124
 msgid "Sessions"
@@ -2118,9 +2140,9 @@ msgstr "Налада абноўлена"
 #: ../../../lib/web/src/components/layout/nav-user.tsx:81
 #: ../../../lib/web/src/components/layout/nav-user.tsx:145
 #: ../../../lib/web/src/components/layout/nav-user.tsx:195
-#: src/components/layout/data/sidebar-data.ts:24
-#: src/components/layout/data/sidebar-data.ts:42
-#: src/components/layout/data/sidebar-data.ts:80
+#: src/components/layout/data/sidebar-data.ts:25
+#: src/components/layout/data/sidebar-data.ts:44
+#: src/components/layout/data/sidebar-data.ts:83
 #: src/features/user/connected-accounts.tsx:256
 msgid "Settings"
 msgstr "Налады"
@@ -2155,12 +2177,7 @@ msgstr "Перайсці да галоўнага"
 msgid "Small"
 msgstr "Малы"
 
-#: src/components/theme-preview-card.tsx:123
-msgid "Small radius"
-msgstr "Малы радыус"
-
 #: ../../../lib/web/src/lib/preference-utils.ts:94
-#: src/components/theme-preview-card.tsx:114
 msgid "Spacious"
 msgstr "Прасторны"
 
@@ -2168,7 +2185,7 @@ msgstr "Прасторны"
 msgid "Started"
 msgstr "Пачата"
 
-#: src/components/layout/data/sidebar-data.ts:59
+#: src/components/layout/data/sidebar-data.ts:62
 #: src/features/domains/index.tsx:1003
 #: src/features/system/status.tsx:24
 #: src/features/system/status.tsx:38
@@ -2211,11 +2228,12 @@ msgstr "Прыпыненне знята"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:195
 #: ../../../lib/web/src/lib/preference-utils.ts:18
-#: src/components/layout/data/sidebar-data.ts:54
+#: ../../../lib/web/src/lib/preference-utils.ts:132
+#: src/components/layout/data/sidebar-data.ts:57
 msgid "System"
 msgstr "Сістэма"
 
-#: src/components/layout/data/sidebar-data.ts:56
+#: src/components/layout/data/sidebar-data.ts:59
 #: src/features/system/settings.tsx:340
 #: src/features/system/settings.tsx:405
 msgid "System settings"
@@ -2268,8 +2286,8 @@ msgid "The \"No notifications\" category silences any topic assigned to it."
 msgstr "Катэгорыя «Без апавяшчэнняў» адключае гук для любой прызначанай ёй тэмы."
 
 #: ../../../lib/web/src/components/config-drawer.tsx:181
-#: src/features/user/preferences.tsx:584
-#: src/features/user/preferences.tsx:611
+#: src/features/user/display.tsx:346
+#: src/features/user/display.tsx:373
 msgid "Theme"
 msgstr "Тэма"
 
@@ -2277,7 +2295,7 @@ msgstr "Тэма"
 msgid "Theme Settings"
 msgstr "Налады тэмы"
 
-#: src/features/user/preferences.tsx:495
+#: src/features/user/display.tsx:254
 msgid "Theme updated"
 msgstr "Тэма абноўлена"
 
@@ -2340,9 +2358,13 @@ msgstr "Гэта скіне «{settingNameLabel}» да значэння па з
 msgid "This will reset \"{settingNameLabel}\" to its default value ({0})."
 msgstr "Гэта скіне «{settingNameLabel}» да значэння па змаўчанні ({0})."
 
-#: src/features/user/preferences.tsx:542
+#: src/features/user/preferences.tsx:222
 msgid "This will reset all preferences to their default values."
 msgstr "Гэта скіне ўсе перавагі да значэнняў па змаўчанні."
+
+#: src/features/user/display.tsx:307
+msgid "This will reset display settings to their default values."
+msgstr "Гэта скіне налады адлюстравання да значэнняў па змаўчанні."
 
 #: src/features/user/sessions.tsx:95
 msgid "This will sign out this session. If this is your current session, you will need to sign in again."
@@ -2352,15 +2374,15 @@ msgstr "Гэта завершыць гэтую сесію. Калі гэта в�
 msgid "Thursday"
 msgstr "Чацвер"
 
-#: src/features/user/preferences.tsx:739
+#: src/features/user/preferences.tsx:299
 msgid "Time format"
 msgstr "Фармат часу"
 
-#: src/features/user/preferences.tsx:696
+#: src/features/user/preferences.tsx:256
 msgid "Time zone"
 msgstr "Часавы пояс"
 
-#: src/features/user/preferences.tsx:764
+#: src/features/user/preferences.tsx:324
 msgid "Timestamps"
 msgstr "Адзнакі часу"
 
@@ -2402,8 +2424,8 @@ msgstr "Токен выдалены"
 msgid "Token name"
 msgstr "Назва токена"
 
-#: src/components/layout/data/sidebar-data.ts:31
-#: src/components/layout/data/sidebar-data.ts:49
+#: src/components/layout/data/sidebar-data.ts:33
+#: src/components/layout/data/sidebar-data.ts:52
 msgid "Tokens"
 msgstr "Токены"
 
@@ -2476,7 +2498,7 @@ msgstr "Несанкцыянаваны доступ"
 msgid "United States"
 msgstr "Злучаныя Штаты"
 
-#: src/features/user/preferences.tsx:706
+#: src/features/user/preferences.tsx:266
 msgid "Units"
 msgstr "Адзінкі"
 
@@ -2569,7 +2591,7 @@ msgstr "Карыстальнік абноўлены"
 msgid "Username"
 msgstr "Імя карыстальніка"
 
-#: src/components/layout/data/sidebar-data.ts:58
+#: src/components/layout/data/sidebar-data.ts:61
 #: src/features/system/users.tsx:526
 #: src/features/system/users.tsx:564
 #: src/features/system/users.tsx:577
@@ -2649,7 +2671,7 @@ msgstr "Сайт на тэхнічным абслугоўванні!"
 msgid "Wednesday"
 msgstr "Серада"
 
-#: src/features/user/preferences.tsx:750
+#: src/features/user/preferences.tsx:310
 msgid "Week starts on"
 msgstr "Тыдзень пачынаецца з"
 

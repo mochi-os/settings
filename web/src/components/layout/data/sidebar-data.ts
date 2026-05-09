@@ -4,6 +4,7 @@ import {
   Monitor,
   Key,
   Palette,
+  Sliders,
   Globe,
   Settings,
   Users,
@@ -24,7 +25,8 @@ export function useSidebarData(): SidebarData {
         title: t`Settings`,
         items: [
           { title: t`Account`, url: APP_ROUTES.SETTINGS.USER.ACCOUNT, icon: User },
-          { title: t`Preferences`, url: APP_ROUTES.SETTINGS.USER.PREFERENCES, icon: Palette },
+          { title: t`Preferences`, url: APP_ROUTES.SETTINGS.USER.PREFERENCES, icon: Sliders },
+          { title: t`Display`, url: APP_ROUTES.SETTINGS.USER.DISPLAY, icon: Palette },
           { title: t`Interests`, url: APP_ROUTES.SETTINGS.USER.INTERESTS, icon: Star },
           { title: t`Connected accounts`, url: APP_ROUTES.SETTINGS.USER.ACCOUNTS, icon: Link2 },
           { title: t`Notifications`, url: APP_ROUTES.SETTINGS.USER.NOTIFICATIONS, icon: Bell },
@@ -42,7 +44,8 @@ export function useFilteredSidebarData(isAdmin: boolean, hasDomainAccess: boolea
     title: t`Settings`,
     items: [
       { title: t`Account`, url: APP_ROUTES.SETTINGS.USER.ACCOUNT, icon: User },
-      { title: t`Preferences`, url: APP_ROUTES.SETTINGS.USER.PREFERENCES, icon: Palette },
+      { title: t`Preferences`, url: APP_ROUTES.SETTINGS.USER.PREFERENCES, icon: Sliders },
+      { title: t`Display`, url: APP_ROUTES.SETTINGS.USER.DISPLAY, icon: Palette },
       { title: t`Interests`, url: APP_ROUTES.SETTINGS.USER.INTERESTS, icon: Star },
       { title: t`Connected accounts`, url: APP_ROUTES.SETTINGS.USER.ACCOUNTS, icon: Link2 },
       { title: t`Notifications`, url: APP_ROUTES.SETTINGS.USER.NOTIFICATIONS, icon: Bell },
