@@ -177,7 +177,7 @@ function AccountRow({
             </div>
             <span className='text-muted-foreground text-xs sm:hidden'>
               {getProviderLabel(account.type)}
-              {isAi && account.identifier && ` - ${account.identifier}`}
+              {isAi && account.identifier && account.identifier !== 'default' && ` - ${account.identifier}`}
             </span>
           </div>
         </div>
@@ -187,7 +187,7 @@ function AccountRow({
       <TableCell className='hidden sm:table-cell'>
         <span>
           {getProviderLabel(account.type)}
-          {isAi && account.identifier && ` - ${account.identifier}`}
+          {isAi && account.identifier && account.identifier !== 'default' && ` - ${account.identifier}`}
         </span>
       </TableCell>
 

@@ -44,7 +44,7 @@ import {
   requestHelpers,
   toast,
   usePageTitle,
-  usePush, naturalCompare,} from '@mochi/web'
+  usePush, naturalCompare, getProviderLabel,} from '@mochi/web'
 import endpoints from '@/api/endpoints'
 
 type TabId = 'categories' | 'topics'
@@ -91,6 +91,22 @@ interface Topic {
   label: string
   category: number | null
   created: number
+}
+
+// Mochi entity IDs are 49–51 alphanumeric chars starting with a digit;
+// older clients (e.g. UnifiedPush) leaked them into `account.label`, where
+// they shouldn't surface in user-visible text.
+function isEntityIdShape(s: string): boolean {
+  return /^[1-9][a-zA-Z0-9]{48,51}$/.test(s)
+}
+
+// Resolve an account's display name. Honours user-set label, falls back to
+// type-aware names (Pushbullet / Push notification / Email address / etc.)
+// rather than dumping the raw `type` machine string.
+function accountDisplayName(acc: Account): string {
+  if (acc.label && !isEntityIdShape(acc.label)) return acc.label
+  if (acc.type === 'email' && acc.identifier) return acc.identifier
+  return getProviderLabel(acc.type)
 }
 
 // Sort categories alphabetically by label, with "No notifications" (id 0) last.
@@ -318,10 +334,23 @@ function CategoryRow({
   onTest: () => void
 }) {
   const { t } = useLingui()
-  const destSummary = useMemo(
-    () => summariseDestinations(category.destinations, available, t),
-    [category, available, t],
-  )
+  const destSummary = useMemo(() => {
+    const dests = category.destinations
+    if (dests.length === 0) return t`No destinations`
+    const labels: string[] = []
+    for (const d of dests) {
+      if (d.type === 'web') labels.push(t`Mochi web`)
+      else if (d.type === 'account') {
+        const acc = available.accounts.find((a) => String(a.id) === d.target)
+        if (acc) labels.push(accountDisplayName(acc))
+      } else if (d.type === 'rss') {
+        const feed = available.feeds.find((x) => x.id === d.target)
+        if (feed && feed.name) labels.push(feed.name)
+      }
+    }
+    labels.sort(naturalCompare)
+    return labels.length > 0 ? labels.join(', ') : t`No destinations`
+  }, [category, available, t])
   return (
     <div className="flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:justify-between">
       <div>
@@ -346,26 +375,6 @@ function CategoryRow({
       </div>
     </div>
   )
-}
-
-function summariseDestinations(
-  dests: DestinationRow[],
-  avail: DestinationsAvailable,
-  t: ReturnType<typeof useLingui>['t'],
-): string {
-  if (dests.length === 0) return t`No destinations`
-  const labels: string[] = []
-  for (const d of dests) {
-    if (d.type === 'web') labels.push(t`Mochi web`)
-    else if (d.type === 'account') {
-      const acc = avail.accounts.find((a) => String(a.id) === d.target)
-      labels.push(acc ? acc.label || acc.identifier || acc.type : t`Account #${d.target}`)
-    } else if (d.type === 'rss') {
-      const f = avail.feeds.find((x) => x.id === d.target)
-      labels.push(f ? f.name : t`RSS #${d.target}`)
-    }
-  }
-  return labels.join(', ')
 }
 
 function CategoryDialog({
@@ -518,7 +527,7 @@ function DestinationsGrid({
   for (const acc of available.accounts) {
     rows.push({
       key: destKey('account', String(acc.id)),
-      label: acc.label || acc.identifier || acc.type,
+      label: accountDisplayName(acc),
     })
   }
   for (const feed of available.feeds) {
