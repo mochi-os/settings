@@ -82,6 +82,7 @@ import {
   toast,
   useFormat,
   shellClipboardWrite,
+  ServerDocumentsFooter,
 } from '@mochi/web'
 
 type RegistrationOptionsJSON = Parameters<typeof startRegistration>[0]['optionsJSON']
@@ -1038,20 +1039,3 @@ export function UserAccount() {
   )
 }
 
-function ServerDocumentsFooter() {
-  return (
-    <p className='text-muted-foreground space-x-2 pb-6 pt-2 text-center text-sm'>
-      <a href='/settings/document/rules' className='hover:text-foreground transition-colors'>
-        <Trans>Server rules</Trans>
-      </a>
-      <span aria-hidden='true'>·</span>
-      <a href='/settings/document/terms' className='hover:text-foreground transition-colors'>
-        <Trans>Terms and conditions</Trans>
-      </a>
-      <span aria-hidden='true'>·</span>
-      <a href='/settings/document/privacy' className='hover:text-foreground transition-colors'>
-        <Trans>Privacy</Trans>
-      </a>
-    </p>
-  )
-}
