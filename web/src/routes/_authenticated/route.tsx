@@ -3,8 +3,10 @@ import { useAuthStore, AuthenticatedLayout } from '@mochi/web'
 import { useFilteredSidebarData, useSidebarData } from '@/components/layout/data/sidebar-data'
 import { useAccountData } from '@/hooks/use-account'
 import { useDomainsData } from '@/hooks/use-domains'
+import { useApplyDisplayPreferences } from '@/hooks/use-preferences'
 
 function SettingsLayout() {
+  useApplyDisplayPreferences()
   const { data: accountData } = useAccountData()
   const { data: domainsData } = useDomainsData()
 

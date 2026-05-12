@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Trans, useLingui } from '@lingui/react/macro'
 import {
   Loader2,
@@ -41,107 +41,7 @@ import {
   usePageTitle,
   useTheme,
 } from '@mochi/web'
-
-type ThemeOverridePrefs = {
-  density: string
-  radius: string
-  background: string
-  font: string
-  font_size: string
-}
-
-const FONT_SIZE_PCT: Record<string, string> = {
-  small: '87.5%',
-  normal: '100%',
-  large: '112.5%',
-  'extra-large': '125%',
-}
-
-// Mirror of font_stacks() in core/server/themes.go. Empty string means
-// "no override" — the density preset (or theme's font_sans/font_mono)
-// keeps its value.
-const FONT_STACKS: Record<string, { sans: string; mono?: string }> = {
-  system: {
-    sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
-    mono: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
-  },
-  serif: {
-    sans: 'Georgia, "Times New Roman", Cambria, "Source Serif Pro", serif',
-  },
-  dyslexia: {
-    sans: '"Atkinson Hyperlegible", "OpenDyslexic", "Comic Sans MS", sans-serif',
-  },
-}
-
-type ColorThemeState = {
-  hue: string
-  chroma: string
-  hueBg: string
-  overrides: Record<string, string>
-}
-
-function colorThemeFromSelections(
-  themes: ThemeInfo[] | undefined,
-  selectedThemeId: string | undefined,
-  prefs: ThemeOverridePrefs,
-  presets: Record<string, Record<string, string>> | undefined,
-): ColorThemeState | null {
-  const theme = themes?.find((t) => t.id === selectedThemeId)
-
-  // Effective values: user override (anything other than "theme") wins,
-  // else inherit from the active theme.
-  const effectiveDensity =
-    prefs.density !== 'theme' ? prefs.density : (theme?.spacing ?? '')
-  const effectiveRadius =
-    prefs.radius !== 'theme' ? prefs.radius : theme?.border_radius
-  const showBackground = prefs.background !== 'off'
-
-  // Density preset bundle comes from the server (mochi.app.presets)
-  // so the table doesn't drift from the SSR copy in core/server/themes.go.
-  const styleOverrides = effectiveDensity ? presets?.[effectiveDensity] : null
-
-  const overrides: Record<string, string> = { ...(theme?.overrides ?? {}) }
-  if (theme?.background_url && showBackground) {
-    overrides['--background-image'] = `url(${theme.background_url})`
-  }
-  if (effectiveRadius) {
-    overrides['--radius'] = effectiveRadius
-  }
-  if (styleOverrides) Object.assign(overrides, styleOverrides)
-  // Theme's own font_sans/font_mono override the density preset.
-  if (theme?.font_sans) overrides['--font-sans'] = theme.font_sans
-  if (theme?.font_mono) overrides['--font-mono'] = theme.font_mono
-  // User's font preference overrides theme.
-  const fontStack = FONT_STACKS[prefs.font]
-  if (fontStack) {
-    overrides['--font-sans'] = fontStack.sans
-    if (fontStack.mono) overrides['--font-mono'] = fontStack.mono
-  }
-  if (FONT_SIZE_PCT[prefs.font_size]) {
-    overrides['font-size'] = FONT_SIZE_PCT[prefs.font_size]
-  }
-
-  if (theme) {
-    return {
-      hue: String(theme.hue),
-      chroma: String(theme.chroma),
-      hueBg: String(theme.hue_bg),
-      overrides,
-    }
-  }
-  if (Object.keys(overrides).length === 0) return null
-  return { hue: '', chroma: '', hueBg: '', overrides }
-}
-
-function prefsFromData(prefs: Record<string, string>): ThemeOverridePrefs {
-  return {
-    density: prefs.density || 'theme',
-    radius: prefs.radius || 'theme',
-    background: prefs.background || 'theme',
-    font: prefs.font || 'theme',
-    font_size: prefs.font_size || 'theme',
-  }
-}
+import { colorThemeFromSelections, prefsFromData } from '@/lib/color-theme'
 
 function AppearanceIcon({ value }: { value: string }) {
   switch (value) {
@@ -193,24 +93,6 @@ export function UserDisplay() {
   const resetPreferences = useResetPreferences()
   const { setTheme, setColorTheme } = useTheme()
   const [themeSheetOpen, setThemeSheetOpen] = useState(false)
-
-  useEffect(() => {
-    if (!data) return
-    const appearance = data.preferences.appearance
-    if (appearance === 'light' || appearance === 'dark') {
-      setTheme(appearance)
-    } else {
-      setTheme('system')
-    }
-    setColorTheme(
-      colorThemeFromSelections(
-        data.themes,
-        data.preferences.theme,
-        prefsFromData(data.preferences),
-        data.presets,
-      )
-    )
-  }, [data, setColorTheme, setTheme])
 
   const themeOverrideKeys = ['density', 'radius', 'background', 'font', 'font_size'] as const
 
