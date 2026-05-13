@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Trans, useLingui } from '@lingui/react/macro'
 import type { SystemSetting } from '@/types/settings'
-import { Loader2, Lock, RotateCcw, Settings } from 'lucide-react'
+import { Check, Loader2, Lock, RotateCcw, Settings, Upload, X } from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -55,6 +55,8 @@ function useSettingLabels(): Record<string, string> {
     oauth_facebook_client_secret: t`Facebook App secret`,
     oauth_x_client_id: t`X client ID`,
     oauth_x_client_secret: t`X client secret`,
+    'fcm.firebase_config': t`Firebase google-services.json file`,
+    'fcm.service_account': t`Firebase private key file`,
     operator_name: t`Operator name`,
     operator_email: t`Operator email`,
     operator_jurisdiction: t`Operator jurisdiction`,
@@ -111,6 +113,15 @@ function isBooleanSetting(setting: SystemSetting): boolean {
   return setting.pattern === '^(true|false)$'
 }
 
+// File-upload settings (FCM credentials JSON, future TLS certs etc.)
+// declare pattern "text". The value is the full file contents and is too
+// large / multi-line to edit in place, so the UI is a file picker rather
+// than a text input: choose file → browser reads it → POSTs the contents
+// via the same setting-set endpoint.
+function isFileUploadSetting(setting: SystemSetting): boolean {
+  return setting.pattern === 'text'
+}
+
 // Parse an enum pattern like "^(required|allowed|disabled)$" into its option list.
 function enumOptions(setting: SystemSetting): string[] | null {
   const m = setting.pattern.match(/^\^\(([^)]+)\)\$$/)
@@ -151,8 +162,10 @@ function SettingField({
   const methodStateLabel = useMethodStateLabel()
   const [localValue, setLocalValue] = useState(setting.value)
   const isBoolean = isBooleanSetting(setting)
+  const isFileUpload = isFileUploadSetting(setting)
   const enumOpts = enumOptions(setting)
   const methodStates = methodStateOptions(enumOpts)
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
   const hasChanged = localValue !== setting.value
   const isDefault = setting.value === setting.default
   const settingNameLabel = formatSettingName(setting.name, labels)
@@ -175,6 +188,22 @@ function SettingField({
   const handlePick = (value: string) => {
     setLocalValue(value)
     onSave(setting.name, value)
+  }
+
+  const handleFileChosen = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    // Reset the input so re-uploading the same filename re-fires onChange.
+    event.target.value = ''
+    if (!file) return
+    file.text().then((text) => {
+      setLocalValue(text)
+      onSave(setting.name, text)
+    })
+  }
+
+  const handleClearFile = () => {
+    setLocalValue('')
+    onSave(setting.name, '')
   }
 
   return (
@@ -279,8 +308,68 @@ function SettingField({
               </AlertDialog>
             )}
           </div>
+        ) : isFileUpload ? (
+          <div className='flex items-center gap-2 w-full'>
+            <input
+              ref={fileInputRef}
+              type='file'
+              accept='application/json,.json'
+              onChange={handleFileChosen}
+              className='hidden'
+              disabled={isSaving}
+            />
+            {localValue ? (
+              <>
+                <DataChip
+                  value={t`Configured`}
+                  icon={<Check className='size-3' />}
+                />
+                <Button
+                  variant='outline'
+                  size='sm'
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={isSaving}
+                >
+                  {isSaving ? (
+                    <Loader2 className='h-4 w-4 animate-spin' />
+                  ) : (
+                    <>
+                      <Upload className='h-4 w-4' />
+                      <Trans>Replace</Trans>
+                    </>
+                  )}
+                </Button>
+                <Button
+                  variant='ghost'
+                  size='icon'
+                  onClick={handleClearFile}
+                  disabled={isSaving}
+                  aria-label={t`Clear`}
+                  title={t`Clear`}
+                >
+                  <X className='h-4 w-4' />
+                </Button>
+              </>
+            ) : (
+              <Button
+                variant='outline'
+                size='sm'
+                onClick={() => fileInputRef.current?.click()}
+                disabled={isSaving}
+              >
+                {isSaving ? (
+                  <Loader2 className='h-4 w-4 animate-spin' />
+                ) : (
+                  <>
+                    <Upload className='h-4 w-4' />
+                    <Trans>Choose file</Trans>
+                  </>
+                )}
+              </Button>
+            )}
+          </div>
         ) : (
-          <div className="flex items-center gap-2 w-full">
+          <div className='flex items-center gap-2 w-full'>
             <Input
               value={localValue}
               onChange={(e) => setLocalValue(e.target.value)}
@@ -365,6 +454,7 @@ export function SystemSettings() {
   const isLoginSetting = (name: string) =>
     name.startsWith('auth_') || name === 'signup_enabled'
   const isOperatorSetting = (name: string) => OPERATOR_SETTINGS.includes(name)
+  const isPushSetting = (name: string) => name.startsWith('fcm.')
 
   const allSettings = data?.settings
     ? [...data.settings]
@@ -382,11 +472,13 @@ export function SystemSettings() {
   const operatorSettings = OPERATOR_SETTINGS
     .map((n) => allSettings.find((s) => s.name === n))
     .filter((s): s is NonNullable<typeof s> => s !== undefined)
+  const pushSettings = allSettings.filter((s) => isPushSetting(s.name))
   const other = allSettings.filter(
     (s) =>
       !isLoginSetting(s.name) &&
       !isOauthCredential(s.name) &&
       !isOperatorSetting(s.name) &&
+      !isPushSetting(s.name) &&
       !userDefaultSettings.includes(s.name)
   )
 
@@ -435,6 +527,14 @@ export function SystemSettings() {
               <Section title={t`Operator`}>
                 <div className='divide-y-0'>
                   {renderSettings(operatorSettings)}
+                </div>
+              </Section>
+            )}
+
+            {pushSettings.length > 0 && (
+              <Section title={t`Push notifications`}>
+                <div className='divide-y-0'>
+                  {renderSettings(pushSettings)}
                 </div>
               </Section>
             )}

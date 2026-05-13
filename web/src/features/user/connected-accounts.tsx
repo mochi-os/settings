@@ -15,6 +15,7 @@ import {
   Plus,
   Server,
   Share2,
+  Smartphone,
   Trash2,
   Zap,
 } from 'lucide-react'
@@ -65,6 +66,9 @@ function getProviderIcon(type: string) {
       return <Mail className='h-4 w-4' />
     case 'browser':
       return <Bell className='h-4 w-4' />
+    case 'fcm':
+    case 'unifiedpush':
+      return <Smartphone className='h-4 w-4' />
     case 'pushbullet':
       return (
         <svg className='h-4 w-4' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2'>
@@ -110,6 +114,12 @@ function getAccountDisplayName(account: Account): string {
 
   // For AI accounts, use provider label as the name
   if (account.type === 'claude' || account.type === 'openai') {
+    return getProviderLabel(account.type)
+  }
+
+  // Mobile-push tokens / UnifiedPush endpoints are 100+ char opaque strings
+  // that overflow the row. Fall back to the provider label.
+  if (account.type === 'fcm' || account.type === 'unifiedpush') {
     return getProviderLabel(account.type)
   }
 
@@ -171,7 +181,7 @@ function AccountRow({
               <span className='font-medium sm:font-normal'>{displayName}</span>
               {isAi && account.default === 'ai' && (
                 <span className='inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary'>
-                  <Trans>Default</Trans>
+                  <Trans>Default for AI</Trans>
                 </span>
               )}
             </div>
