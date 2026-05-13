@@ -48,6 +48,11 @@ const endpoints = {
     interestsRemove: '-/user/interests/remove',
     interestsSearch: '-/user/interests/search',
     interestsSummary: '-/user/interests/summary',
+    // Replication
+    replication: '-/user/replication/data',
+    replicationApprove: '-/user/replication/approve',
+    replicationDeny: '-/user/replication/deny',
+    replicationRemove: '-/user/replication/remove',
   },
   system: {
     settings: '-/system/settings/list',

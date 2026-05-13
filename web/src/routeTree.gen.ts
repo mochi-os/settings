@@ -19,6 +19,7 @@ import { Route as errors403RouteImport } from './routes/(errors)/403'
 import { Route as errors401RouteImport } from './routes/(errors)/401'
 import { Route as AuthenticatedUserTokensRouteImport } from './routes/_authenticated/user/tokens'
 import { Route as AuthenticatedUserSessionsRouteImport } from './routes/_authenticated/user/sessions'
+import { Route as AuthenticatedUserReplicationRouteImport } from './routes/_authenticated/user/replication'
 import { Route as AuthenticatedUserPreferencesRouteImport } from './routes/_authenticated/user/preferences'
 import { Route as AuthenticatedUserNotificationsRouteImport } from './routes/_authenticated/user/notifications'
 import { Route as AuthenticatedUserInterestsRouteImport } from './routes/_authenticated/user/interests'
@@ -82,6 +83,12 @@ const AuthenticatedUserSessionsRoute =
   AuthenticatedUserSessionsRouteImport.update({
     id: '/user/sessions',
     path: '/user/sessions',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedUserReplicationRoute =
+  AuthenticatedUserReplicationRouteImport.update({
+    id: '/user/replication',
+    path: '/user/replication',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedUserPreferencesRoute =
@@ -191,6 +198,7 @@ export interface FileRoutesByFullPath {
   '/user/interests': typeof AuthenticatedUserInterestsRoute
   '/user/notifications': typeof AuthenticatedUserNotificationsRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
+  '/user/replication': typeof AuthenticatedUserReplicationRoute
   '/user/sessions': typeof AuthenticatedUserSessionsRoute
   '/user/tokens': typeof AuthenticatedUserTokensRoute
 }
@@ -216,6 +224,7 @@ export interface FileRoutesByTo {
   '/user/interests': typeof AuthenticatedUserInterestsRoute
   '/user/notifications': typeof AuthenticatedUserNotificationsRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
+  '/user/replication': typeof AuthenticatedUserReplicationRoute
   '/user/sessions': typeof AuthenticatedUserSessionsRoute
   '/user/tokens': typeof AuthenticatedUserTokensRoute
 }
@@ -243,6 +252,7 @@ export interface FileRoutesById {
   '/_authenticated/user/interests': typeof AuthenticatedUserInterestsRoute
   '/_authenticated/user/notifications': typeof AuthenticatedUserNotificationsRoute
   '/_authenticated/user/preferences': typeof AuthenticatedUserPreferencesRoute
+  '/_authenticated/user/replication': typeof AuthenticatedUserReplicationRoute
   '/_authenticated/user/sessions': typeof AuthenticatedUserSessionsRoute
   '/_authenticated/user/tokens': typeof AuthenticatedUserTokensRoute
 }
@@ -270,6 +280,7 @@ export interface FileRouteTypes {
     | '/user/interests'
     | '/user/notifications'
     | '/user/preferences'
+    | '/user/replication'
     | '/user/sessions'
     | '/user/tokens'
   fileRoutesByTo: FileRoutesByTo
@@ -295,6 +306,7 @@ export interface FileRouteTypes {
     | '/user/interests'
     | '/user/notifications'
     | '/user/preferences'
+    | '/user/replication'
     | '/user/sessions'
     | '/user/tokens'
   id:
@@ -321,6 +333,7 @@ export interface FileRouteTypes {
     | '/_authenticated/user/interests'
     | '/_authenticated/user/notifications'
     | '/_authenticated/user/preferences'
+    | '/_authenticated/user/replication'
     | '/_authenticated/user/sessions'
     | '/_authenticated/user/tokens'
   fileRoutesById: FileRoutesById
@@ -404,6 +417,13 @@ declare module '@tanstack/react-router' {
       path: '/user/sessions'
       fullPath: '/user/sessions'
       preLoaderRoute: typeof AuthenticatedUserSessionsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/user/replication': {
+      id: '/_authenticated/user/replication'
+      path: '/user/replication'
+      fullPath: '/user/replication'
+      preLoaderRoute: typeof AuthenticatedUserReplicationRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/user/preferences': {
@@ -524,6 +544,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedUserInterestsRoute: typeof AuthenticatedUserInterestsRoute
   AuthenticatedUserNotificationsRoute: typeof AuthenticatedUserNotificationsRoute
   AuthenticatedUserPreferencesRoute: typeof AuthenticatedUserPreferencesRoute
+  AuthenticatedUserReplicationRoute: typeof AuthenticatedUserReplicationRoute
   AuthenticatedUserSessionsRoute: typeof AuthenticatedUserSessionsRoute
   AuthenticatedUserTokensRoute: typeof AuthenticatedUserTokensRoute
 }
@@ -545,6 +566,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedUserInterestsRoute: AuthenticatedUserInterestsRoute,
   AuthenticatedUserNotificationsRoute: AuthenticatedUserNotificationsRoute,
   AuthenticatedUserPreferencesRoute: AuthenticatedUserPreferencesRoute,
+  AuthenticatedUserReplicationRoute: AuthenticatedUserReplicationRoute,
   AuthenticatedUserSessionsRoute: AuthenticatedUserSessionsRoute,
   AuthenticatedUserTokensRoute: AuthenticatedUserTokensRoute,
 }

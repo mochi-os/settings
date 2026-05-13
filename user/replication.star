@@ -1,0 +1,45 @@
+# Mochi settings app: user/replication
+# Copyright Alistair Cunningham 2026
+#
+# Per-user replication settings — surfaces pending inbound link-requests
+# and the current host set. Adding a host is not a settings action; it's
+# the signup-form "Advanced → replicate existing account" flow on the
+# destination server (apps/login). This page handles approval of
+# inbound requests + ongoing management of the active host set only.
+#
+# Backed by mochi.replication.{links, hosts, link_approve, link_deny,
+# host_remove}.
+
+def action_user_replication(a):
+    """Per-user replication page data: pending requests + my hosts."""
+    a.json({
+        "links": mochi.replication.links(),
+        "hosts": mochi.replication.hosts(),
+    })
+
+def action_user_replication_approve(a):
+    """Approve a pending inbound link-request from `peer`."""
+    peer = a.input("peer", "")
+    if peer == "":
+        a.error.label(400, "errors.missing_peer")
+        return
+    result = mochi.replication.link_approve(peer)
+    a.json({"result": result})
+
+def action_user_replication_deny(a):
+    """Deny a pending inbound link-request from `peer`."""
+    peer = a.input("peer", "")
+    if peer == "":
+        a.error.label(400, "errors.missing_peer")
+        return
+    result = mochi.replication.link_deny(peer)
+    a.json({"result": result})
+
+def action_user_replication_remove(a):
+    """Remove `peer` from the active per-user host set."""
+    peer = a.input("peer", "")
+    if peer == "":
+        a.error.label(400, "errors.missing_peer")
+        return
+    result = mochi.replication.host_remove(peer)
+    a.json({"result": result})

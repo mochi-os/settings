@@ -12,6 +12,7 @@ export const APP_ROUTES = {
       NOTIFICATIONS: '/user/notifications',
       TOKENS: '/user/tokens',
       SESSIONS: '/user/sessions',
+      REPLICATION: '/user/replication',
     },
     SYSTEM: {
       SETTINGS: '/system/settings',
