@@ -217,6 +217,10 @@ msgstr "AI"
 msgid "All"
 msgstr "すべて"
 
+#: src/features/system/replication.tsx:218
+msgid "All scopes are caught up. Live replication is the only ongoing activity."
+msgstr "すべてのスコープは最新です。ライブ複製のみが進行中の動作です。"
+
 #: src/features/system/settings.tsx:65
 msgid "Allow new signups"
 msgstr "新規登録を許可"
@@ -237,7 +241,7 @@ msgstr "許可"
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "別のサーバーがあなたのアカウントのコピーをホストしたいと要求しています。コピーを送信するには承認してください。"
 
-#: src/features/system/replication.tsx:191
+#: src/features/system/replication.tsx:193
 msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
 msgstr "別のサーバーがこのサーバーとのペアリングを要求しています。承認すると、完全なレプリケーションピアとして登録されます。"
 
@@ -315,6 +319,10 @@ msgstr "関心を高める"
 #: src/features/user/notifications.tsx:197
 msgid "Browser notifications"
 msgstr "ブラウザ通知"
+
+#: src/features/system/replication.tsx:213
+msgid "Bulk bootstrap"
+msgstr "一括初期転送"
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx:64
 #: ../../../lib/web/src/components/travelling-picker.tsx:292
@@ -492,7 +500,7 @@ msgstr "コピー"
 msgid "Copy all"
 msgstr "すべてコピー"
 
-#: src/features/system/replication.tsx:182
+#: src/features/system/replication.tsx:184
 msgid "Copy peer id"
 msgstr "ピアIDをコピー"
 
@@ -911,7 +919,7 @@ msgstr "アカウントの追加に失敗しました"
 msgid "Failed to add interest"
 msgstr "興味の追加に失敗しました"
 
-#: src/features/system/replication.tsx:178
+#: src/features/system/replication.tsx:180
 msgid "Failed to copy"
 msgstr "コピーに失敗しました"
 
@@ -1138,7 +1146,7 @@ msgid "Friday"
 msgstr "金曜日"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
-#: src/features/system/replication.tsx:198
+#: src/features/system/replication.tsx:200
 #: src/features/user/replication.tsx:167
 msgid "From"
 msgstr "差出元"
@@ -1733,11 +1741,11 @@ msgstr "オーナー"
 msgid "Pair member removed"
 msgstr "ペアメンバーを削除しました"
 
-#: src/features/system/replication.tsx:210
+#: src/features/system/replication.tsx:247
 msgid "Pair members"
 msgstr "ペアメンバー"
 
-#: src/features/system/replication.tsx:215
+#: src/features/system/replication.tsx:252
 msgid "Pair with another freshly-installed server using \"mochictl replica join <existing-peer-id>\" on the new server."
 msgstr "新しいサーバーで「mochictl replica join <existing-peer-id>」を実行して、新しくインストールされた別のサーバーとペアリングします。"
 
@@ -1778,12 +1786,13 @@ msgstr "パス"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "パスは許可されていません。次の下にのみルートを追加できます: {0}"
 
-#: src/features/system/replication.tsx:222
+#: src/features/system/replication.tsx:224
+#: src/features/system/replication.tsx:259
 #: src/features/user/replication.tsx:191
 msgid "Peer"
 msgstr "ピア"
 
-#: src/features/system/replication.tsx:177
+#: src/features/system/replication.tsx:179
 msgid "Peer id copied"
 msgstr "ピアIDをコピーしました"
 
@@ -1791,7 +1800,7 @@ msgstr "ピアIDをコピーしました"
 msgid "Pending"
 msgstr "保留中"
 
-#: src/features/system/replication.tsx:189
+#: src/features/system/replication.tsx:191
 msgid "Pending join requests"
 msgstr "保留中の参加要求"
 
@@ -1927,6 +1936,10 @@ msgstr "相対 (5分、3時間、2日)"
 msgid "Relative within 24 hours, else absolute"
 msgstr "24時間以内は相対、それ以外は絶対"
 
+#: src/features/system/replication.tsx:227
+msgid "Remaining"
+msgstr "残り"
+
 #: ../../../lib/web/src/features/access/access-list.tsx:257
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:172
 #: src/features/system/replication.tsx:132
@@ -1985,7 +1998,7 @@ msgstr "置き換える"
 #: src/components/layout/data/sidebar-data.ts:56
 #: src/components/layout/data/sidebar-data.ts:65
 #: src/features/system/replication.tsx:144
-#: src/features/system/replication.tsx:153
+#: src/features/system/replication.tsx:155
 #: src/features/user/replication.tsx:141
 #: src/features/user/replication.tsx:149
 msgid "Replication"
@@ -2122,6 +2135,10 @@ msgstr "変更を保存"
 #: src/features/user/account.tsx:751
 msgid "Save these codes"
 msgstr "これらのコードを保存"
+
+#: src/features/system/replication.tsx:225
+msgid "Scope"
+msgstr "スコープ"
 
 #. placeholder {0}: token.scopes.join(', ')
 #: src/features/user/tokens.tsx:60
@@ -2304,7 +2321,7 @@ msgstr "設定を更新しました"
 msgid "Settings"
 msgstr "設定"
 
-#: src/features/system/replication.tsx:165
+#: src/features/system/replication.tsx:167
 msgid "Share this peer id with another operator to start a server pair from there using <0>mochictl replica join</0>."
 msgstr "このピアIDを別のオペレーターと共有し、そちらから <0>mochictl replica join</0> を使ってサーバーペアを開始してもらいます。"
 
@@ -2345,6 +2362,10 @@ msgstr "ゆったり"
 #: src/features/system/status.tsx:52
 msgid "Started"
 msgstr "開始済み"
+
+#: src/features/system/replication.tsx:226
+msgid "State"
+msgstr "状態"
 
 #: src/components/layout/data/sidebar-data.ts:66
 #: src/features/domains/index.tsx:1003
@@ -2469,11 +2490,11 @@ msgstr "サードパーティログイン"
 msgid "This account is on this server only"
 msgstr "このアカウントはこのサーバーのみにあります"
 
-#: src/features/system/replication.tsx:163
+#: src/features/system/replication.tsx:165
 msgid "This server"
 msgstr "このサーバー"
 
-#: src/features/system/replication.tsx:214
+#: src/features/system/replication.tsx:251
 msgid "This server is not paired"
 msgstr "このサーバーはペアリングされていません"
 
@@ -2621,6 +2642,10 @@ msgstr "トップ"
 #: src/features/user/notifications.tsx:126
 msgid "Topics"
 msgstr "トピック"
+
+#: src/features/system/replication.tsx:216
+msgid "Transferring data from pair members. Each scope completes independently."
+msgstr "ペアメンバーからデータを転送しています。各スコープは独立して完了します。"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:141
 msgid "Travelling"
