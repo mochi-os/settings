@@ -12,7 +12,8 @@
 # pair_remove}. All actions require_admin (server-wide mutation).
 
 def action_system_replication(a):
-    """System replication page data: status + pending join requests."""
+    """System replication page data: status + pending join requests +
+    bulk-bootstrap progress (per (peer, scope))."""
     if not require_admin(a):
         return
     status = mochi.replication.status()
@@ -20,6 +21,8 @@ def action_system_replication(a):
         "peer": status["peer"],
         "pair": status["pair"],
         "joins": mochi.replication.joins(),
+        "bootstrap": mochi.replication.bootstrap_progress(),
+        "bootstrap_pending": status["bootstrap_pending"],
     })
 
 def action_system_replication_join_approve(a):

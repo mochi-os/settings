@@ -10,10 +10,19 @@ export interface PendingJoin {
   expires: number
 }
 
+export interface BootstrapEntry {
+  peer: string
+  scope: string
+  state: 'queued' | 'active' | 'done'
+  position: string
+}
+
 export interface SystemReplicationData {
   peer: string
   pair: string[]
   joins: PendingJoin[]
+  bootstrap: BootstrapEntry[]
+  bootstrap_pending: number
 }
 
 export function useSystemReplication() {

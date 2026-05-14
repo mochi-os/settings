@@ -147,6 +147,8 @@ export function SystemReplication() {
   const peer = data?.peer ?? ''
   const pair = data?.pair ?? []
   const joins = data?.joins ?? []
+  const bootstrap = data?.bootstrap ?? []
+  const bootstrapPending = data?.bootstrap_pending ?? 0
 
   return (
     <>
@@ -201,6 +203,41 @@ export function SystemReplication() {
                   </TableHeader>
                   <TableBody>
                     {joins.map((j) => <PendingJoinRow key={j.peer} join={j} />)}
+                  </TableBody>
+                </Table>
+              </section>
+            )}
+
+            {bootstrap.length > 0 && (
+              <section className='space-y-2'>
+                <h2 className='text-base font-medium'><Trans>Bulk bootstrap</Trans></h2>
+                <p className='text-muted-foreground text-sm'>
+                  {bootstrapPending > 0 ? (
+                    <Trans>Transferring data from pair members. Each scope completes independently.</Trans>
+                  ) : (
+                    <Trans>All scopes are caught up. Live replication is the only ongoing activity.</Trans>
+                  )}
+                </p>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead><Trans>Peer</Trans></TableHead>
+                      <TableHead><Trans>Scope</Trans></TableHead>
+                      <TableHead><Trans>State</Trans></TableHead>
+                      <TableHead><Trans>Remaining</Trans></TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {bootstrap.map((b) => (
+                      <TableRow key={`${b.peer}-${b.scope}`}>
+                        <TableCell className='font-mono text-xs'>{shortPeer(b.peer)}</TableCell>
+                        <TableCell>{b.scope}</TableCell>
+                        <TableCell className='text-muted-foreground text-sm'>{b.state}</TableCell>
+                        <TableCell className='text-muted-foreground text-sm'>
+                          {b.state === 'active' && b.position ? b.position : '—'}
+                        </TableCell>
+                      </TableRow>
+                    ))}
                   </TableBody>
                 </Table>
               </section>
