@@ -19,6 +19,7 @@ export const APP_ROUTES = {
       DOCUMENTS: '/system/documents',
       USERS: '/system/users',
       STATUS: '/system/status',
+      REPLICATION: '/system/replication',
     },
     DOMAINS: '/domains',
   },

@@ -62,6 +62,7 @@ export function useFilteredSidebarData(isAdmin: boolean, hasDomainAccess: boolea
       { title: t`System settings`, url: APP_ROUTES.SETTINGS.SYSTEM.SETTINGS, icon: Settings },
       { title: t`Documents`, url: APP_ROUTES.SETTINGS.SYSTEM.DOCUMENTS, icon: FileText },
       { title: t`Users`, url: APP_ROUTES.SETTINGS.SYSTEM.USERS, icon: Users },
+      { title: t`Replication`, url: APP_ROUTES.SETTINGS.SYSTEM.REPLICATION, icon: Copy },
       { title: t`Status`, url: APP_ROUTES.SETTINGS.SYSTEM.STATUS, icon: Activity },
     ],
   }

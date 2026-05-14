@@ -72,6 +72,11 @@ const endpoints = {
     usersSessions: '-/system/users/sessions',
     usersSessionsRevoke: '-/system/users/sessions/revoke',
     update: '-/system/update',
+    // System replication (Pair page)
+    replication: '-/system/replication/data',
+    replicationJoinApprove: '-/system/replication/join/approve',
+    replicationJoinDeny: '-/system/replication/join/deny',
+    replicationPairRemove: '-/system/replication/pair/remove',
   },
   notifications: {
     categories: '-/notifications/categories',

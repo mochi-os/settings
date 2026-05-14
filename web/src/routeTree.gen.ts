@@ -29,6 +29,7 @@ import { Route as AuthenticatedUserAccountRouteImport } from './routes/_authenti
 import { Route as AuthenticatedSystemUsersRouteImport } from './routes/_authenticated/system/users'
 import { Route as AuthenticatedSystemStatusRouteImport } from './routes/_authenticated/system/status'
 import { Route as AuthenticatedSystemSettingsRouteImport } from './routes/_authenticated/system/settings'
+import { Route as AuthenticatedSystemReplicationRouteImport } from './routes/_authenticated/system/replication'
 import { Route as AuthenticatedSystemDocumentsRouteImport } from './routes/_authenticated/system/documents'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 import { Route as AuthenticatedDocumentTermsRouteImport } from './routes/_authenticated/document/terms'
@@ -145,6 +146,12 @@ const AuthenticatedSystemSettingsRoute =
     path: '/system/settings',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedSystemReplicationRoute =
+  AuthenticatedSystemReplicationRouteImport.update({
+    id: '/system/replication',
+    path: '/system/replication',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedSystemDocumentsRoute =
   AuthenticatedSystemDocumentsRouteImport.update({
     id: '/system/documents',
@@ -189,6 +196,7 @@ export interface FileRoutesByFullPath {
   '/document/terms': typeof AuthenticatedDocumentTermsRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/system/documents': typeof AuthenticatedSystemDocumentsRoute
+  '/system/replication': typeof AuthenticatedSystemReplicationRoute
   '/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/system/status': typeof AuthenticatedSystemStatusRoute
   '/system/users': typeof AuthenticatedSystemUsersRoute
@@ -215,6 +223,7 @@ export interface FileRoutesByTo {
   '/document/terms': typeof AuthenticatedDocumentTermsRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/system/documents': typeof AuthenticatedSystemDocumentsRoute
+  '/system/replication': typeof AuthenticatedSystemReplicationRoute
   '/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/system/status': typeof AuthenticatedSystemStatusRoute
   '/system/users': typeof AuthenticatedSystemUsersRoute
@@ -243,6 +252,7 @@ export interface FileRoutesById {
   '/_authenticated/document/terms': typeof AuthenticatedDocumentTermsRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/_authenticated/system/documents': typeof AuthenticatedSystemDocumentsRoute
+  '/_authenticated/system/replication': typeof AuthenticatedSystemReplicationRoute
   '/_authenticated/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/_authenticated/system/status': typeof AuthenticatedSystemStatusRoute
   '/_authenticated/system/users': typeof AuthenticatedSystemUsersRoute
@@ -271,6 +281,7 @@ export interface FileRouteTypes {
     | '/document/terms'
     | '/errors/$error'
     | '/system/documents'
+    | '/system/replication'
     | '/system/settings'
     | '/system/status'
     | '/system/users'
@@ -297,6 +308,7 @@ export interface FileRouteTypes {
     | '/document/terms'
     | '/errors/$error'
     | '/system/documents'
+    | '/system/replication'
     | '/system/settings'
     | '/system/status'
     | '/system/users'
@@ -324,6 +336,7 @@ export interface FileRouteTypes {
     | '/_authenticated/document/terms'
     | '/_authenticated/errors/$error'
     | '/_authenticated/system/documents'
+    | '/_authenticated/system/replication'
     | '/_authenticated/system/settings'
     | '/_authenticated/system/status'
     | '/_authenticated/system/users'
@@ -489,6 +502,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSystemSettingsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/system/replication': {
+      id: '/_authenticated/system/replication'
+      path: '/system/replication'
+      fullPath: '/system/replication'
+      preLoaderRoute: typeof AuthenticatedSystemReplicationRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/system/documents': {
       id: '/_authenticated/system/documents'
       path: '/system/documents'
@@ -535,6 +555,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDocumentTermsRoute: typeof AuthenticatedDocumentTermsRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
   AuthenticatedSystemDocumentsRoute: typeof AuthenticatedSystemDocumentsRoute
+  AuthenticatedSystemReplicationRoute: typeof AuthenticatedSystemReplicationRoute
   AuthenticatedSystemSettingsRoute: typeof AuthenticatedSystemSettingsRoute
   AuthenticatedSystemStatusRoute: typeof AuthenticatedSystemStatusRoute
   AuthenticatedSystemUsersRoute: typeof AuthenticatedSystemUsersRoute
@@ -557,6 +578,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDocumentTermsRoute: AuthenticatedDocumentTermsRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
   AuthenticatedSystemDocumentsRoute: AuthenticatedSystemDocumentsRoute,
+  AuthenticatedSystemReplicationRoute: AuthenticatedSystemReplicationRoute,
   AuthenticatedSystemSettingsRoute: AuthenticatedSystemSettingsRoute,
   AuthenticatedSystemStatusRoute: AuthenticatedSystemStatusRoute,
   AuthenticatedSystemUsersRoute: AuthenticatedSystemUsersRoute,
