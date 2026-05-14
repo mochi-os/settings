@@ -237,6 +237,10 @@ msgstr "اجازت ہے"
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "ایک اور سرور آپ کے اکاؤنٹ کی ایک کاپی میزبانی کرنے کی درخواست کر رہا ہے۔ کاپی بھیجنے کے لیے منظوری دیں۔"
 
+#: src/features/system/replication.tsx:191
+msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
+msgstr "ایک اور سرور اس کے ساتھ جوڑا بنانے کی درخواست کر رہا ہے۔ منظوری دیں تاکہ اسے مکمل ریپلیکیشن پیئر کے طور پر درج کیا جا سکے۔"
+
 #: src/features/domains/index.tsx:254
 #: src/features/domains/index.tsx:423
 msgid "App"
@@ -246,10 +250,12 @@ msgstr "ایپ"
 msgid "Appearance"
 msgstr "ظاہری شکل"
 
+#: src/features/system/replication.tsx:68
 #: src/features/user/replication.tsx:53
 msgid "Approval failed"
 msgstr "منظوری ناکام"
 
+#: src/features/system/replication.tsx:73
 #: src/features/user/replication.tsx:76
 msgid "Approve"
 msgstr "منظور کریں"
@@ -321,6 +327,7 @@ msgstr "براؤزر نوٹیفکیشنز"
 #: src/features/domains/index.tsx:330
 #: src/features/domains/index.tsx:509
 #: src/features/domains/index.tsx:655
+#: src/features/system/replication.tsx:123
 #: src/features/system/settings.tsx:264
 #: src/features/system/settings.tsx:302
 #: src/features/system/settings.tsx:411
@@ -485,10 +492,15 @@ msgstr "کاپی کریں"
 msgid "Copy all"
 msgstr "سب کاپی کریں"
 
+#: src/features/system/replication.tsx:182
+msgid "Copy peer id"
+msgstr "پیئر آئی ڈی کاپی کریں"
+
 #: src/features/user/tokens.tsx:164
 msgid "Copy your token now. You will not be able to see it again."
 msgstr "ابھی اپنا ٹوکن کاپی کریں۔ آپ اسے دوبارہ نہیں دیکھ سکیں گے۔"
 
+#: src/features/system/replication.tsx:82
 #: src/features/user/replication.tsx:59
 msgid "Could not deny request"
 msgstr "درخواست رد نہیں کی جا سکی"
@@ -504,6 +516,10 @@ msgstr "یہ دستاویز لوڈ نہیں ہو سکی۔ براہِ کرم بع
 #: src/features/user/replication.tsx:125
 msgid "Could not remove host"
 msgstr "ہوسٹ ہٹایا نہیں جا سکا"
+
+#: src/features/system/replication.tsx:128
+msgid "Could not remove pair member"
+msgstr "جوڑا ممبر کو ہٹایا نہیں جا سکا"
 
 #: src/features/user/account.tsx:893
 msgid "Could not start linking"
@@ -671,6 +687,7 @@ msgstr "حذف ہو رہا ہے..."
 msgid "Density"
 msgstr "کثافت"
 
+#: src/features/system/replication.tsx:87
 #: src/features/user/replication.tsx:80
 msgid "Deny"
 msgstr "مسترد کریں"
@@ -775,7 +792,7 @@ msgstr "ڈومین اپڈیٹ کر دیا گیا"
 msgid "Domain verified"
 msgstr "ڈومین کی تصدیق ہو گئی"
 
-#: src/components/layout/data/sidebar-data.ts:69
+#: src/components/layout/data/sidebar-data.ts:70
 #: src/features/domains/index.tsx:1116
 #: src/features/domains/index.tsx:1144
 #: src/features/domains/index.tsx:1156
@@ -893,6 +910,10 @@ msgstr "اکاؤنٹ شامل کرنے میں ناکامی"
 #: src/features/user/interests.tsx:195
 msgid "Failed to add interest"
 msgstr "دلچسپی شامل کرنے میں ناکامی"
+
+#: src/features/system/replication.tsx:178
+msgid "Failed to copy"
+msgstr "کاپی کرنے میں ناکامی"
 
 #: src/features/domains/index.tsx:559
 msgid "Failed to create delegation"
@@ -1117,6 +1138,7 @@ msgid "Friday"
 msgstr "جمعہ"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
+#: src/features/system/replication.tsx:198
 #: src/features/user/replication.tsx:167
 msgid "From"
 msgstr "سے"
@@ -1262,6 +1284,14 @@ msgstr "غلط تصدیقی کوڈ"
 msgid "IP Address"
 msgstr "IP ایڈریس"
 
+#: src/features/system/replication.tsx:67
+msgid "Join request approved"
+msgstr "شمولیت کی درخواست منظور"
+
+#: src/features/system/replication.tsx:81
+msgid "Join request denied"
+msgstr "شمولیت کی درخواست مسترد"
+
 #: src/features/user/notifications.tsx:422
 msgid "Label is required"
 msgstr "لیبل درکار ہے"
@@ -1400,7 +1430,7 @@ msgstr "نئے کوڈز ضرور محفوظ کر لیں۔"
 msgid "Manage sessions"
 msgstr "sessions کا انتظام کریں"
 
-#: src/components/layout/data/sidebar-data.ts:77
+#: src/components/layout/data/sidebar-data.ts:78
 msgid "Management"
 msgstr "انتظام"
 
@@ -1699,6 +1729,18 @@ msgstr "دیگر سیٹنگز"
 msgid "Owner"
 msgstr "مالک"
 
+#: src/features/system/replication.tsx:127
+msgid "Pair member removed"
+msgstr "جوڑا ممبر ہٹا دیا گیا"
+
+#: src/features/system/replication.tsx:210
+msgid "Pair members"
+msgstr "جوڑا ممبران"
+
+#: src/features/system/replication.tsx:215
+msgid "Pair with another freshly-installed server using \"mochictl replica join <existing-peer-id>\" on the new server."
+msgstr "نئے سرور پر \"mochictl replica join <existing-peer-id>\" چلا کر کسی دوسرے تازہ نصب شدہ سرور کے ساتھ جوڑا بنائیں۔"
+
 #: src/features/user/account.tsx:278
 #: src/features/user/account.tsx:442
 msgid "Passkey"
@@ -1736,13 +1778,22 @@ msgstr "path"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "راستہ مجاز نہیں ہے۔ آپ صرف {0} کے تحت راستے شامل کر سکتے ہیں"
 
+#: src/features/system/replication.tsx:222
 #: src/features/user/replication.tsx:191
 msgid "Peer"
 msgstr "ساتھی"
 
+#: src/features/system/replication.tsx:177
+msgid "Peer id copied"
+msgstr "پیئر آئی ڈی کاپی ہو گئی"
+
 #: src/features/user/connected-accounts.tsx:209
 msgid "Pending"
 msgstr "زیر التوا"
+
+#: src/features/system/replication.tsx:189
+msgid "Pending join requests"
+msgstr "زیرِ التواء شمولیت کی درخواستیں"
 
 #: src/features/user/replication.tsx:160
 msgid "Pending requests"
@@ -1878,6 +1929,7 @@ msgstr "24 گھنٹوں کے اندر نسبتی، ورنہ مطلق"
 
 #: ../../../lib/web/src/features/access/access-list.tsx:257
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:172
+#: src/features/system/replication.tsx:132
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
 #: src/features/user/replication.tsx:129
@@ -1913,6 +1965,14 @@ msgstr "ہوسٹ ہٹائیں؟"
 msgid "Remove interest"
 msgstr "دلچسپی ہٹائیں"
 
+#: src/features/system/replication.tsx:109
+msgid "Remove pair member"
+msgstr "جوڑا ممبر ہٹائیں"
+
+#: src/features/system/replication.tsx:114
+msgid "Remove pair member?"
+msgstr "جوڑا ممبر ہٹایا جائے؟"
+
 #: src/features/system/users.tsx:446
 msgid "Remove suspension"
 msgstr "معطلی ہٹائیں"
@@ -1923,6 +1983,9 @@ msgstr "بدلیں"
 
 #: src/components/layout/data/sidebar-data.ts:36
 #: src/components/layout/data/sidebar-data.ts:56
+#: src/components/layout/data/sidebar-data.ts:65
+#: src/features/system/replication.tsx:144
+#: src/features/system/replication.tsx:153
 #: src/features/user/replication.tsx:141
 #: src/features/user/replication.tsx:149
 msgid "Replication"
@@ -2236,10 +2299,14 @@ msgstr "سیٹنگ اپ ڈیٹ ہو گئی"
 #: ../../../lib/web/src/components/layout/nav-user.tsx:195
 #: src/components/layout/data/sidebar-data.ts:26
 #: src/components/layout/data/sidebar-data.ts:46
-#: src/components/layout/data/sidebar-data.ts:86
+#: src/components/layout/data/sidebar-data.ts:87
 #: src/features/user/connected-accounts.tsx:266
 msgid "Settings"
 msgstr "سیٹنگز"
+
+#: src/features/system/replication.tsx:165
+msgid "Share this peer id with another operator to start a server pair from there using <0>mochictl replica join</0>."
+msgstr "یہ پیئر آئی ڈی کسی اور آپریٹر کے ساتھ شیئر کریں تاکہ وہ وہاں سے <0>mochictl replica join</0> استعمال کر کے سرور جوڑا شروع کر سکیں۔"
 
 #. placeholder {0}: offset + 1
 #. placeholder {1}: Math.min(offset + limit, data.count)
@@ -2279,7 +2346,7 @@ msgstr "کشادہ"
 msgid "Started"
 msgstr "شروع ہو گیا"
 
-#: src/components/layout/data/sidebar-data.ts:65
+#: src/components/layout/data/sidebar-data.ts:66
 #: src/features/domains/index.tsx:1003
 #: src/features/system/status.tsx:24
 #: src/features/system/status.tsx:38
@@ -2401,6 +2468,18 @@ msgstr "تھرڈ پارٹی لاگ ان"
 #: src/features/user/replication.tsx:183
 msgid "This account is on this server only"
 msgstr "یہ اکاؤنٹ صرف اس سرور پر ہے"
+
+#: src/features/system/replication.tsx:163
+msgid "This server"
+msgstr "یہ سرور"
+
+#: src/features/system/replication.tsx:214
+msgid "This server is not paired"
+msgstr "یہ سرور جوڑا نہیں ہے"
+
+#: src/features/system/replication.tsx:116
+msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
+msgstr "یہ سرور اُس پیئر کے ساتھ جوڑا بنانا بند کر دے گا۔ ہٹایا گیا سرور ہر صارف کی مقامی نقل رکھتا ہے؛ وہاں کے آپریٹر کو اسے دستی طور پر مٹانا ہوگا۔"
 
 #: src/features/user/replication.tsx:113
 msgid "This server will stop replicating your account to that host. The host's local copy stays in place until that operator removes it."

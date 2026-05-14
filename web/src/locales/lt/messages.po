@@ -237,6 +237,10 @@ msgstr "Leidžiama"
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Kitas serveris prašo priglobti jūsų paskyros kopiją. Patvirtinkite, kad išsiųstumėte kopiją."
 
+#: src/features/system/replication.tsx:191
+msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
+msgstr "Kitas serveris prašo susieti su šiuo. Patvirtinkite, kad užregistruotumėte jį kaip visateisį replikacijos porininką."
+
 #: src/features/domains/index.tsx:254
 #: src/features/domains/index.tsx:423
 msgid "App"
@@ -246,10 +250,12 @@ msgstr "Programėlė"
 msgid "Appearance"
 msgstr "Išvaizda"
 
+#: src/features/system/replication.tsx:68
 #: src/features/user/replication.tsx:53
 msgid "Approval failed"
 msgstr "Patvirtinimas nepavyko"
 
+#: src/features/system/replication.tsx:73
 #: src/features/user/replication.tsx:76
 msgid "Approve"
 msgstr "Patvirtinti"
@@ -321,6 +327,7 @@ msgstr "Naršyklės pranešimai"
 #: src/features/domains/index.tsx:330
 #: src/features/domains/index.tsx:509
 #: src/features/domains/index.tsx:655
+#: src/features/system/replication.tsx:123
 #: src/features/system/settings.tsx:264
 #: src/features/system/settings.tsx:302
 #: src/features/system/settings.tsx:411
@@ -485,10 +492,15 @@ msgstr "Kopijuoti"
 msgid "Copy all"
 msgstr "Kopijuoti viską"
 
+#: src/features/system/replication.tsx:182
+msgid "Copy peer id"
+msgstr "Kopijuoti porininko ID"
+
 #: src/features/user/tokens.tsx:164
 msgid "Copy your token now. You will not be able to see it again."
 msgstr "Dabar nukopijuokite žetoną. Jo daugiau nematysite."
 
+#: src/features/system/replication.tsx:82
 #: src/features/user/replication.tsx:59
 msgid "Could not deny request"
 msgstr "Nepavyko atmesti užklausos"
@@ -504,6 +516,10 @@ msgstr "Nepavyko įkelti šio dokumento. Pabandykite dar kartą vėliau."
 #: src/features/user/replication.tsx:125
 msgid "Could not remove host"
 msgstr "Nepavyko pašalinti pagrindinio kompiuterio"
+
+#: src/features/system/replication.tsx:128
+msgid "Could not remove pair member"
+msgstr "Nepavyko pašalinti poros nario"
 
 #: src/features/user/account.tsx:893
 msgid "Could not start linking"
@@ -671,6 +687,7 @@ msgstr "Ištrinama..."
 msgid "Density"
 msgstr "Tankis"
 
+#: src/features/system/replication.tsx:87
 #: src/features/user/replication.tsx:80
 msgid "Deny"
 msgstr "Atmesti"
@@ -775,7 +792,7 @@ msgstr "Domenas atnaujintas"
 msgid "Domain verified"
 msgstr "Domenas patvirtintas"
 
-#: src/components/layout/data/sidebar-data.ts:69
+#: src/components/layout/data/sidebar-data.ts:70
 #: src/features/domains/index.tsx:1116
 #: src/features/domains/index.tsx:1144
 #: src/features/domains/index.tsx:1156
@@ -893,6 +910,10 @@ msgstr "Nepavyko pridėti paskyros"
 #: src/features/user/interests.tsx:195
 msgid "Failed to add interest"
 msgstr "Nepavyko pridėti pomėgio"
+
+#: src/features/system/replication.tsx:178
+msgid "Failed to copy"
+msgstr "Nepavyko nukopijuoti"
 
 #: src/features/domains/index.tsx:559
 msgid "Failed to create delegation"
@@ -1117,6 +1138,7 @@ msgid "Friday"
 msgstr "Penktadienis"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
+#: src/features/system/replication.tsx:198
 #: src/features/user/replication.tsx:167
 msgid "From"
 msgstr "Nuo"
@@ -1262,6 +1284,14 @@ msgstr "Netinkamas patvirtinimo kodas"
 msgid "IP Address"
 msgstr "IP adresas"
 
+#: src/features/system/replication.tsx:67
+msgid "Join request approved"
+msgstr "Prisijungimo užklausa patvirtinta"
+
+#: src/features/system/replication.tsx:81
+msgid "Join request denied"
+msgstr "Prisijungimo užklausa atmesta"
+
 #: src/features/user/notifications.tsx:422
 msgid "Label is required"
 msgstr "Reikalinga etiketė"
@@ -1400,7 +1430,7 @@ msgstr "Būtinai išsaugokite naujus kodus."
 msgid "Manage sessions"
 msgstr "Tvarkyti seansus"
 
-#: src/components/layout/data/sidebar-data.ts:77
+#: src/components/layout/data/sidebar-data.ts:78
 msgid "Management"
 msgstr "Valdymas"
 
@@ -1699,6 +1729,18 @@ msgstr "Kiti nustatymai"
 msgid "Owner"
 msgstr "Savininkas"
 
+#: src/features/system/replication.tsx:127
+msgid "Pair member removed"
+msgstr "Poros narys pašalintas"
+
+#: src/features/system/replication.tsx:210
+msgid "Pair members"
+msgstr "Poros nariai"
+
+#: src/features/system/replication.tsx:215
+msgid "Pair with another freshly-installed server using \"mochictl replica join <existing-peer-id>\" on the new server."
+msgstr "Susiekite su kitu ką tik įdiegtu serveriu, naujajame serveryje paleisdami „mochictl replica join <existing-peer-id>“."
+
 #: src/features/user/account.tsx:278
 #: src/features/user/account.tsx:442
 msgid "Passkey"
@@ -1736,13 +1778,22 @@ msgstr "Kelias"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Kelias neleidžiamas. Galite pridėti maršrutus tik po: {0}"
 
+#: src/features/system/replication.tsx:222
 #: src/features/user/replication.tsx:191
 msgid "Peer"
 msgstr "Lygiavertis"
 
+#: src/features/system/replication.tsx:177
+msgid "Peer id copied"
+msgstr "Porininko ID nukopijuotas"
+
 #: src/features/user/connected-accounts.tsx:209
 msgid "Pending"
 msgstr "Laukiama"
+
+#: src/features/system/replication.tsx:189
+msgid "Pending join requests"
+msgstr "Laukiančios prisijungimo užklausos"
 
 #: src/features/user/replication.tsx:160
 msgid "Pending requests"
@@ -1878,6 +1929,7 @@ msgstr "Santykinis per 24 val., kitaip absoliutus"
 
 #: ../../../lib/web/src/features/access/access-list.tsx:257
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:172
+#: src/features/system/replication.tsx:132
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
 #: src/features/user/replication.tsx:129
@@ -1913,6 +1965,14 @@ msgstr "Pašalinti pagrindinį kompiuterį?"
 msgid "Remove interest"
 msgstr "Šalinti susidomėjimą"
 
+#: src/features/system/replication.tsx:109
+msgid "Remove pair member"
+msgstr "Pašalinti poros narį"
+
+#: src/features/system/replication.tsx:114
+msgid "Remove pair member?"
+msgstr "Pašalinti poros narį?"
+
 #: src/features/system/users.tsx:446
 msgid "Remove suspension"
 msgstr "Šalinti suspendavimą"
@@ -1923,6 +1983,9 @@ msgstr "Pakeisti"
 
 #: src/components/layout/data/sidebar-data.ts:36
 #: src/components/layout/data/sidebar-data.ts:56
+#: src/components/layout/data/sidebar-data.ts:65
+#: src/features/system/replication.tsx:144
+#: src/features/system/replication.tsx:153
 #: src/features/user/replication.tsx:141
 #: src/features/user/replication.tsx:149
 msgid "Replication"
@@ -2236,10 +2299,14 @@ msgstr "Nustatymas atnaujintas"
 #: ../../../lib/web/src/components/layout/nav-user.tsx:195
 #: src/components/layout/data/sidebar-data.ts:26
 #: src/components/layout/data/sidebar-data.ts:46
-#: src/components/layout/data/sidebar-data.ts:86
+#: src/components/layout/data/sidebar-data.ts:87
 #: src/features/user/connected-accounts.tsx:266
 msgid "Settings"
 msgstr "Nustatymai"
+
+#: src/features/system/replication.tsx:165
+msgid "Share this peer id with another operator to start a server pair from there using <0>mochictl replica join</0>."
+msgstr "Pasidalykite šiuo porininko ID su kitu operatoriumi, kad jis iš savo pusės pradėtų serverių susiejimą komanda <0>mochictl replica join</0>."
 
 #. placeholder {0}: offset + 1
 #. placeholder {1}: Math.min(offset + limit, data.count)
@@ -2279,7 +2346,7 @@ msgstr "Erdvus"
 msgid "Started"
 msgstr "Pradėta"
 
-#: src/components/layout/data/sidebar-data.ts:65
+#: src/components/layout/data/sidebar-data.ts:66
 #: src/features/domains/index.tsx:1003
 #: src/features/system/status.tsx:24
 #: src/features/system/status.tsx:38
@@ -2401,6 +2468,18 @@ msgstr "Trečiosios šalies prisijungimas"
 #: src/features/user/replication.tsx:183
 msgid "This account is on this server only"
 msgstr "Ši paskyra yra tik šiame serveryje"
+
+#: src/features/system/replication.tsx:163
+msgid "This server"
+msgstr "Šis serveris"
+
+#: src/features/system/replication.tsx:214
+msgid "This server is not paired"
+msgstr "Šis serveris nesusietas"
+
+#: src/features/system/replication.tsx:116
+msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
+msgstr "Šis serveris nutrauks susiejimą su tuo porininku. Pašalintas serveris išlaiko vietines kiekvieno naudotojo kopijas; tos pusės operatorius turi ištrinti jas rankiniu būdu."
 
 #: src/features/user/replication.tsx:113
 msgid "This server will stop replicating your account to that host. The host's local copy stays in place until that operator removes it."

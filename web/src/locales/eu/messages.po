@@ -237,6 +237,10 @@ msgstr "Baimendua"
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Beste zerbitzari batek zure kontuaren kopia bat ostatatzeko eskatzen du. Onartu kopia bidaltzeko."
 
+#: src/features/system/replication.tsx:191
+msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
+msgstr "Beste zerbitzari batek hau berarekin parekatzeko eskaera egiten du. Onartu erreplikazio-kide oso gisa erregistratzeko."
+
 #: src/features/domains/index.tsx:254
 #: src/features/domains/index.tsx:423
 msgid "App"
@@ -246,10 +250,12 @@ msgstr "Aplikazioa"
 msgid "Appearance"
 msgstr "Itxura"
 
+#: src/features/system/replication.tsx:68
 #: src/features/user/replication.tsx:53
 msgid "Approval failed"
 msgstr "Onarpenak huts egin du"
 
+#: src/features/system/replication.tsx:73
 #: src/features/user/replication.tsx:76
 msgid "Approve"
 msgstr "Onartu"
@@ -321,6 +327,7 @@ msgstr "Nabigatzaile jakinarazpenak"
 #: src/features/domains/index.tsx:330
 #: src/features/domains/index.tsx:509
 #: src/features/domains/index.tsx:655
+#: src/features/system/replication.tsx:123
 #: src/features/system/settings.tsx:264
 #: src/features/system/settings.tsx:302
 #: src/features/system/settings.tsx:411
@@ -485,10 +492,15 @@ msgstr "Kopiatu"
 msgid "Copy all"
 msgstr "Kopiatu dena"
 
+#: src/features/system/replication.tsx:182
+msgid "Copy peer id"
+msgstr "Kopiatu kidearen IDa"
+
 #: src/features/user/tokens.tsx:164
 msgid "Copy your token now. You will not be able to see it again."
 msgstr "Kopiatu zure tokena orain. Ez duzu berriro ikusterik izango."
 
+#: src/features/system/replication.tsx:82
 #: src/features/user/replication.tsx:59
 msgid "Could not deny request"
 msgstr "Ezin izan da eskaera ukatu"
@@ -504,6 +516,10 @@ msgstr "Ezin izan da dokumentu hau kargatu. Saiatu berriro geroago."
 #: src/features/user/replication.tsx:125
 msgid "Could not remove host"
 msgstr "Ezin izan da ostalaria kendu"
+
+#: src/features/system/replication.tsx:128
+msgid "Could not remove pair member"
+msgstr "Ezin izan da pareko kidea kendu"
 
 #: src/features/user/account.tsx:893
 msgid "Could not start linking"
@@ -671,6 +687,7 @@ msgstr "Ezabatzen..."
 msgid "Density"
 msgstr "Dentsitatea"
 
+#: src/features/system/replication.tsx:87
 #: src/features/user/replication.tsx:80
 msgid "Deny"
 msgstr "Ukatu"
@@ -775,7 +792,7 @@ msgstr "Domeinua eguneratu da"
 msgid "Domain verified"
 msgstr "Domeinua egiaztatuta"
 
-#: src/components/layout/data/sidebar-data.ts:69
+#: src/components/layout/data/sidebar-data.ts:70
 #: src/features/domains/index.tsx:1116
 #: src/features/domains/index.tsx:1144
 #: src/features/domains/index.tsx:1156
@@ -893,6 +910,10 @@ msgstr "Ezin izan da kontua gehitu"
 #: src/features/user/interests.tsx:195
 msgid "Failed to add interest"
 msgstr "Ezin izan da interesa gehitu"
+
+#: src/features/system/replication.tsx:178
+msgid "Failed to copy"
+msgstr "Ezin izan da kopiatu"
 
 #: src/features/domains/index.tsx:559
 msgid "Failed to create delegation"
@@ -1117,6 +1138,7 @@ msgid "Friday"
 msgstr "Ostirala"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
+#: src/features/system/replication.tsx:198
 #: src/features/user/replication.tsx:167
 msgid "From"
 msgstr "Nondik"
@@ -1262,6 +1284,14 @@ msgstr "Egiaztapen-kode baliogabea"
 msgid "IP Address"
 msgstr "IP helbidea"
 
+#: src/features/system/replication.tsx:67
+msgid "Join request approved"
+msgstr "Elkartzeko eskaera onartu da"
+
+#: src/features/system/replication.tsx:81
+msgid "Join request denied"
+msgstr "Elkartzeko eskaera ukatu da"
+
 #: src/features/user/notifications.tsx:422
 msgid "Label is required"
 msgstr "Etiketa beharrezkoa da"
@@ -1400,7 +1430,7 @@ msgstr "Ziurtatu kode berriak gordetzea."
 msgid "Manage sessions"
 msgstr "Kudeatu saioak"
 
-#: src/components/layout/data/sidebar-data.ts:77
+#: src/components/layout/data/sidebar-data.ts:78
 msgid "Management"
 msgstr "Kudeaketa"
 
@@ -1699,6 +1729,18 @@ msgstr "Bestelako ezarpenak"
 msgid "Owner"
 msgstr "Jabea"
 
+#: src/features/system/replication.tsx:127
+msgid "Pair member removed"
+msgstr "Pareko kidea kendu da"
+
+#: src/features/system/replication.tsx:210
+msgid "Pair members"
+msgstr "Pareko kideak"
+
+#: src/features/system/replication.tsx:215
+msgid "Pair with another freshly-installed server using \"mochictl replica join <existing-peer-id>\" on the new server."
+msgstr "Parekatu berriki instalatutako beste zerbitzari batekin, zerbitzari berrian „mochictl replica join <existing-peer-id>” exekutatuz."
+
 #: src/features/user/account.tsx:278
 #: src/features/user/account.tsx:442
 msgid "Passkey"
@@ -1736,13 +1778,22 @@ msgstr "Bidea"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Bidea ez da onartzen. Ibilbideak hemen bakarrik gehi ditzakezu: {0}"
 
+#: src/features/system/replication.tsx:222
 #: src/features/user/replication.tsx:191
 msgid "Peer"
 msgstr "Parekoa"
 
+#: src/features/system/replication.tsx:177
+msgid "Peer id copied"
+msgstr "Kidearen IDa kopiatu da"
+
 #: src/features/user/connected-accounts.tsx:209
 msgid "Pending"
 msgstr "Zain"
+
+#: src/features/system/replication.tsx:189
+msgid "Pending join requests"
+msgstr "Elkartzeko eskaera zain"
 
 #: src/features/user/replication.tsx:160
 msgid "Pending requests"
@@ -1878,6 +1929,7 @@ msgstr "Erlatiboa 24 ordu barruan, bestela absolutua"
 
 #: ../../../lib/web/src/features/access/access-list.tsx:257
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:172
+#: src/features/system/replication.tsx:132
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
 #: src/features/user/replication.tsx:129
@@ -1913,6 +1965,14 @@ msgstr "Ostalaria kendu?"
 msgid "Remove interest"
 msgstr "Kendu interesa"
 
+#: src/features/system/replication.tsx:109
+msgid "Remove pair member"
+msgstr "Kendu pareko kidea"
+
+#: src/features/system/replication.tsx:114
+msgid "Remove pair member?"
+msgstr "Kendu pareko kidea?"
+
 #: src/features/system/users.tsx:446
 msgid "Remove suspension"
 msgstr "Kendu eteneta"
@@ -1923,6 +1983,9 @@ msgstr "Ordeztu"
 
 #: src/components/layout/data/sidebar-data.ts:36
 #: src/components/layout/data/sidebar-data.ts:56
+#: src/components/layout/data/sidebar-data.ts:65
+#: src/features/system/replication.tsx:144
+#: src/features/system/replication.tsx:153
 #: src/features/user/replication.tsx:141
 #: src/features/user/replication.tsx:149
 msgid "Replication"
@@ -2236,10 +2299,14 @@ msgstr "Ezarpena eguneratu da"
 #: ../../../lib/web/src/components/layout/nav-user.tsx:195
 #: src/components/layout/data/sidebar-data.ts:26
 #: src/components/layout/data/sidebar-data.ts:46
-#: src/components/layout/data/sidebar-data.ts:86
+#: src/components/layout/data/sidebar-data.ts:87
 #: src/features/user/connected-accounts.tsx:266
 msgid "Settings"
 msgstr "Ezarpenak"
+
+#: src/features/system/replication.tsx:165
+msgid "Share this peer id with another operator to start a server pair from there using <0>mochictl replica join</0>."
+msgstr "Partekatu kide ID hau beste operadore batekin, hark bere aldetik <0>mochictl replica join</0> erabiliz zerbitzari-parekatzea hasteko."
 
 #. placeholder {0}: offset + 1
 #. placeholder {1}: Math.min(offset + limit, data.count)
@@ -2279,7 +2346,7 @@ msgstr "Lasaia"
 msgid "Started"
 msgstr "Hasita"
 
-#: src/components/layout/data/sidebar-data.ts:65
+#: src/components/layout/data/sidebar-data.ts:66
 #: src/features/domains/index.tsx:1003
 #: src/features/system/status.tsx:24
 #: src/features/system/status.tsx:38
@@ -2401,6 +2468,18 @@ msgstr "Hirugarrenen saio-hasiera"
 #: src/features/user/replication.tsx:183
 msgid "This account is on this server only"
 msgstr "Kontu hau zerbitzari honetan bakarrik dago"
+
+#: src/features/system/replication.tsx:163
+msgid "This server"
+msgstr "Zerbitzari hau"
+
+#: src/features/system/replication.tsx:214
+msgid "This server is not paired"
+msgstr "Zerbitzari hau ez dago parekatuta"
+
+#: src/features/system/replication.tsx:116
+msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
+msgstr "Zerbitzari honek kide horrekiko parekatzea eteten du. Kendutako zerbitzariak erabiltzaile bakoitzaren kopia lokala mantentzen du; hango operadoreak eskuz ezabatu behar du."
 
 #: src/features/user/replication.tsx:113
 msgid "This server will stop replicating your account to that host. The host's local copy stays in place until that operator removes it."

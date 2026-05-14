@@ -237,6 +237,10 @@ msgstr "Toegelaat"
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "'n Ander bediener vra om 'n kopie van jou rekening te huisves. Keur goed om 'n kopie te stuur."
 
+#: src/features/system/replication.tsx:191
+msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
+msgstr "'n Ander bediener vra om met hierdie een gepaar te word. Keur goed om dit as 'n volledige replikasie-eweknie te registreer."
+
 #: src/features/domains/index.tsx:254
 #: src/features/domains/index.tsx:423
 msgid "App"
@@ -246,10 +250,12 @@ msgstr "App"
 msgid "Appearance"
 msgstr "Voorkoms"
 
+#: src/features/system/replication.tsx:68
 #: src/features/user/replication.tsx:53
 msgid "Approval failed"
 msgstr "Goedkeuring het misluk"
 
+#: src/features/system/replication.tsx:73
 #: src/features/user/replication.tsx:76
 msgid "Approve"
 msgstr "Keur goed"
@@ -321,6 +327,7 @@ msgstr "Blaaierkennisgewings"
 #: src/features/domains/index.tsx:330
 #: src/features/domains/index.tsx:509
 #: src/features/domains/index.tsx:655
+#: src/features/system/replication.tsx:123
 #: src/features/system/settings.tsx:264
 #: src/features/system/settings.tsx:302
 #: src/features/system/settings.tsx:411
@@ -485,10 +492,15 @@ msgstr "Kopieer"
 msgid "Copy all"
 msgstr "Kopieer alles"
 
+#: src/features/system/replication.tsx:182
+msgid "Copy peer id"
+msgstr "Kopieer eweknie-ID"
+
 #: src/features/user/tokens.tsx:164
 msgid "Copy your token now. You will not be able to see it again."
 msgstr "Kopieer jou teken nou. Jy sal dit nie weer kan sien nie."
 
+#: src/features/system/replication.tsx:82
 #: src/features/user/replication.tsx:59
 msgid "Could not deny request"
 msgstr "Kon nie versoek weier nie"
@@ -504,6 +516,10 @@ msgstr "Kon nie hierdie dokument laai nie. Probeer later weer."
 #: src/features/user/replication.tsx:125
 msgid "Could not remove host"
 msgstr "Kon nie gasheer verwyder nie"
+
+#: src/features/system/replication.tsx:128
+msgid "Could not remove pair member"
+msgstr "Kon nie paarlid verwyder nie"
 
 #: src/features/user/account.tsx:893
 msgid "Could not start linking"
@@ -671,6 +687,7 @@ msgstr "Verwyder..."
 msgid "Density"
 msgstr "Digtheid"
 
+#: src/features/system/replication.tsx:87
 #: src/features/user/replication.tsx:80
 msgid "Deny"
 msgstr "Weier"
@@ -775,7 +792,7 @@ msgstr "Domein opgedateer"
 msgid "Domain verified"
 msgstr "Domein geverifieer"
 
-#: src/components/layout/data/sidebar-data.ts:69
+#: src/components/layout/data/sidebar-data.ts:70
 #: src/features/domains/index.tsx:1116
 #: src/features/domains/index.tsx:1144
 #: src/features/domains/index.tsx:1156
@@ -893,6 +910,10 @@ msgstr "Kon nie rekening byvoeg nie"
 #: src/features/user/interests.tsx:195
 msgid "Failed to add interest"
 msgstr "Kon nie belang byvoeg nie"
+
+#: src/features/system/replication.tsx:178
+msgid "Failed to copy"
+msgstr "Kon nie kopieer nie"
 
 #: src/features/domains/index.tsx:559
 msgid "Failed to create delegation"
@@ -1117,6 +1138,7 @@ msgid "Friday"
 msgstr "Vrydag"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
+#: src/features/system/replication.tsx:198
 #: src/features/user/replication.tsx:167
 msgid "From"
 msgstr "Van"
@@ -1262,6 +1284,14 @@ msgstr "Ongeldige verifikasiekode"
 msgid "IP Address"
 msgstr "IP-adres"
 
+#: src/features/system/replication.tsx:67
+msgid "Join request approved"
+msgstr "Aansluitingsversoek goedgekeur"
+
+#: src/features/system/replication.tsx:81
+msgid "Join request denied"
+msgstr "Aansluitingsversoek geweier"
+
 #: src/features/user/notifications.tsx:422
 msgid "Label is required"
 msgstr "Etiket word vereis"
@@ -1400,7 +1430,7 @@ msgstr "Maak seker dat jy die nuwe kodes stoor."
 msgid "Manage sessions"
 msgstr "Bestuur sessies"
 
-#: src/components/layout/data/sidebar-data.ts:77
+#: src/components/layout/data/sidebar-data.ts:78
 msgid "Management"
 msgstr "Bestuur"
 
@@ -1699,6 +1729,18 @@ msgstr "Ander instellings"
 msgid "Owner"
 msgstr "Eienaar"
 
+#: src/features/system/replication.tsx:127
+msgid "Pair member removed"
+msgstr "Paarlid verwyder"
+
+#: src/features/system/replication.tsx:210
+msgid "Pair members"
+msgstr "Paarlede"
+
+#: src/features/system/replication.tsx:215
+msgid "Pair with another freshly-installed server using \"mochictl replica join <existing-peer-id>\" on the new server."
+msgstr "Paar met 'n ander pas-geïnstalleerde bediener deur „mochictl replica join <existing-peer-id>” op die nuwe bediener te laat loop."
+
 #: src/features/user/account.tsx:278
 #: src/features/user/account.tsx:442
 msgid "Passkey"
@@ -1736,13 +1778,22 @@ msgstr "Pad"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Pad nie toegelaat nie. Jy kan slegs roetes onder {0} byvoeg"
 
+#: src/features/system/replication.tsx:222
 #: src/features/user/replication.tsx:191
 msgid "Peer"
 msgstr "Eweknie"
 
+#: src/features/system/replication.tsx:177
+msgid "Peer id copied"
+msgstr "Eweknie-ID gekopieer"
+
 #: src/features/user/connected-accounts.tsx:209
 msgid "Pending"
 msgstr "Hangend"
+
+#: src/features/system/replication.tsx:189
+msgid "Pending join requests"
+msgstr "Hangende aansluitingsversoeke"
 
 #: src/features/user/replication.tsx:160
 msgid "Pending requests"
@@ -1878,6 +1929,7 @@ msgstr "Relatief binne 24 uur, andersins absoluut"
 
 #: ../../../lib/web/src/features/access/access-list.tsx:257
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:172
+#: src/features/system/replication.tsx:132
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
 #: src/features/user/replication.tsx:129
@@ -1913,6 +1965,14 @@ msgstr "Verwyder gasheer?"
 msgid "Remove interest"
 msgstr "Verwyder belangstelling"
 
+#: src/features/system/replication.tsx:109
+msgid "Remove pair member"
+msgstr "Verwyder paarlid"
+
+#: src/features/system/replication.tsx:114
+msgid "Remove pair member?"
+msgstr "Verwyder paarlid?"
+
 #: src/features/system/users.tsx:446
 msgid "Remove suspension"
 msgstr "Verwyder skorsing"
@@ -1923,6 +1983,9 @@ msgstr "Vervang"
 
 #: src/components/layout/data/sidebar-data.ts:36
 #: src/components/layout/data/sidebar-data.ts:56
+#: src/components/layout/data/sidebar-data.ts:65
+#: src/features/system/replication.tsx:144
+#: src/features/system/replication.tsx:153
 #: src/features/user/replication.tsx:141
 #: src/features/user/replication.tsx:149
 msgid "Replication"
@@ -2236,10 +2299,14 @@ msgstr "Instelling opgedateer"
 #: ../../../lib/web/src/components/layout/nav-user.tsx:195
 #: src/components/layout/data/sidebar-data.ts:26
 #: src/components/layout/data/sidebar-data.ts:46
-#: src/components/layout/data/sidebar-data.ts:86
+#: src/components/layout/data/sidebar-data.ts:87
 #: src/features/user/connected-accounts.tsx:266
 msgid "Settings"
 msgstr "Instellings"
+
+#: src/features/system/replication.tsx:165
+msgid "Share this peer id with another operator to start a server pair from there using <0>mochictl replica join</0>."
+msgstr "Deel hierdie eweknie-ID met 'n ander operateur sodat hulle van daardie kant af 'n bedienerparring met <0>mochictl replica join</0> kan begin."
 
 #. placeholder {0}: offset + 1
 #. placeholder {1}: Math.min(offset + limit, data.count)
@@ -2279,7 +2346,7 @@ msgstr "Ruim"
 msgid "Started"
 msgstr "Begin"
 
-#: src/components/layout/data/sidebar-data.ts:65
+#: src/components/layout/data/sidebar-data.ts:66
 #: src/features/domains/index.tsx:1003
 #: src/features/system/status.tsx:24
 #: src/features/system/status.tsx:38
@@ -2401,6 +2468,18 @@ msgstr "Derde-party aanmelding"
 #: src/features/user/replication.tsx:183
 msgid "This account is on this server only"
 msgstr "Hierdie rekening is slegs op hierdie bediener"
+
+#: src/features/system/replication.tsx:163
+msgid "This server"
+msgstr "Hierdie bediener"
+
+#: src/features/system/replication.tsx:214
+msgid "This server is not paired"
+msgstr "Hierdie bediener is nie gepaar nie"
+
+#: src/features/system/replication.tsx:116
+msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
+msgstr "Hierdie bediener sal ophou om met daardie eweknie te paar. Die verwyderde bediener behou sy plaaslike kopie van elke gebruiker; die operateur daar moet dit handmatig uitvee."
 
 #: src/features/user/replication.tsx:113
 msgid "This server will stop replicating your account to that host. The host's local copy stays in place until that operator removes it."
