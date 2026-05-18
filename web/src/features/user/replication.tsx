@@ -1,5 +1,5 @@
 import { Trans, useLingui } from '@lingui/react/macro'
-import { Check, Copy, Loader2, Trash2, X } from 'lucide-react'
+import { Check, Copy, Loader2, Unlink, X } from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -96,7 +96,7 @@ function HostRow({ host }: { host: ReplicationHost }) {
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button variant='ghost' size='sm' disabled={remove.isPending}>
-              {remove.isPending ? <Loader2 className='h-4 w-4 animate-spin' /> : <Trash2 className='h-4 w-4' />}
+              {remove.isPending ? <Loader2 className='h-4 w-4 animate-spin' /> : <Unlink className='h-4 w-4' />}
               <span className='sr-only'><Trans>Remove host</Trans></span>
             </Button>
           </AlertDialogTrigger>
@@ -151,7 +151,7 @@ export function UserReplication() {
           <div className='space-y-8'>
             {links.length > 0 && (
               <section className='space-y-2'>
-                <h2 className='text-base font-medium'><Trans>Pending requests</Trans></h2>
+                <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'><Trans>Pending requests</Trans></h2>
                 <p className='text-muted-foreground text-sm'>
                   <Trans>Another server is asking to host a copy of your account. Approve to send a copy.</Trans>
                 </p>
@@ -170,7 +170,7 @@ export function UserReplication() {
             )}
 
             <section className='space-y-2'>
-              <h2 className='text-base font-medium'><Trans>My hosts</Trans></h2>
+              <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'><Trans>My hosts</Trans></h2>
               {hosts.length === 0 ? (
                 <EmptyState
                   icon={Copy}

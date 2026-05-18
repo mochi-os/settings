@@ -1,5 +1,5 @@
 import { Trans, useLingui } from '@lingui/react/macro'
-import { Check, Copy, Loader2, Trash2, X } from 'lucide-react'
+import { Check, Copy, Loader2, Unlink, X } from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -114,7 +114,7 @@ function PairMemberRow({ peer, status }: { peer: string; status: 'synced' | 'syn
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button variant='ghost' size='sm' disabled={remove.isPending}>
-              {remove.isPending ? <Loader2 className='h-4 w-4 animate-spin' /> : <Trash2 className='h-4 w-4' />}
+              {remove.isPending ? <Loader2 className='h-4 w-4 animate-spin' /> : <Unlink className='h-4 w-4' />}
               <span className='sr-only'><Trans>Remove pair member</Trans></span>
             </Button>
           </AlertDialogTrigger>
@@ -170,7 +170,7 @@ export function SystemReplication() {
         ) : (
           <div className='space-y-8'>
             <section className='space-y-2'>
-              <h2 className='text-base font-medium'><Trans>This server</Trans></h2>
+              <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'><Trans>This server</Trans></h2>
               <div className='flex items-center gap-2'>
                 <code className='bg-muted rounded px-2 py-1 font-mono text-xs break-all'>{peer}</code>
                 <Button
@@ -190,7 +190,7 @@ export function SystemReplication() {
 
             {joins.length > 0 && (
               <section className='space-y-2'>
-                <h2 className='text-base font-medium'><Trans>Pending join requests</Trans></h2>
+                <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'><Trans>Pending join requests</Trans></h2>
                 <p className='text-muted-foreground text-sm'>
                   <Trans>
                     Another server is asking to pair with this one. Approve to enrol it as a full replication peer.
@@ -211,12 +211,12 @@ export function SystemReplication() {
             )}
 
             <section className='space-y-2'>
-              <h2 className='text-base font-medium'><Trans>Pair members</Trans></h2>
+              <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'><Trans>Pair members</Trans></h2>
               {pair.length === 0 ? (
                 <EmptyState
                   icon={Copy}
-                  title={t`This server is not paired`}
-                  description={t`Pair with another freshly-installed server using "mochictl replica join <existing-peer-id>" on the new server.`}
+                  title={t`This server is not paired.`}
+                  description={t`Use "mochictl replica join ${peer}" on a newly installed server to pair with this server.`}
                   className='p-4'
                 />
               ) : (
