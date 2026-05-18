@@ -1,5 +1,5 @@
 import { Trans, useLingui } from '@lingui/react/macro'
-import { Check, Copy, Loader2, Unlink, X } from 'lucide-react'
+import { Check, Copy, Loader2, ServerOff, X } from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -96,7 +96,7 @@ function HostRow({ host }: { host: ReplicationHost }) {
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button variant='ghost' size='sm' disabled={remove.isPending}>
-              {remove.isPending ? <Loader2 className='h-4 w-4 animate-spin' /> : <Unlink className='h-4 w-4' />}
+              {remove.isPending ? <Loader2 className='h-4 w-4 animate-spin' /> : <ServerOff className='h-4 w-4' />}
               <span className='sr-only'><Trans>Remove host</Trans></span>
             </Button>
           </AlertDialogTrigger>

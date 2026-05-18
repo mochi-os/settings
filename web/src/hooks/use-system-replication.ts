@@ -17,12 +17,32 @@ export interface BootstrapEntry {
   position: string
 }
 
+export interface ServingEntry {
+  peer: string
+  scope: string
+  started: number
+}
+
 export interface SystemReplicationData {
   peer: string
   pair: string[]
   joins: PendingJoin[]
   bootstrap: BootstrapEntry[]
+  serving: ServingEntry[]
   bootstrap_pending: number
+}
+
+// Poll faster while anything is actively changing (bootstrap in flight,
+// pending join requests) and slower once the pair has settled. Keeps
+// the operator UI responsive during a join+bootstrap (which can run for
+// many minutes on the apps scope) without hammering the admin socket
+// when nothing's happening.
+function systemReplicationInterval(data: SystemReplicationData | undefined): number {
+  if (!data) return 2000
+  if (data.serving && data.serving.length > 0) return 2000
+  if (data.bootstrap.some((b) => b.state !== 'done')) return 2000
+  if (data.joins.length > 0) return 2000
+  return 15000
 }
 
 export function useSystemReplication() {
@@ -30,6 +50,7 @@ export function useSystemReplication() {
     queryKey: ['system', 'replication'],
     queryFn: () =>
       requestHelpers.get<SystemReplicationData>(endpoints.system.replication),
+    refetchInterval: (query) => systemReplicationInterval(query.state.data),
   })
 }
 

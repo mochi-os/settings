@@ -1,5 +1,5 @@
 import { Trans, useLingui } from '@lingui/react/macro'
-import { Check, Copy, Loader2, Unlink, X } from 'lucide-react'
+import { Check, Copy, Loader2, ServerOff, X } from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -34,17 +34,24 @@ import {
   useSystemReplication,
   type BootstrapEntry,
   type PendingJoin,
+  type ServingEntry,
 } from '@/hooks/use-system-replication'
 
-// pairMemberSyncStatus returns one of:
-//   "synced"  — every known bootstrap scope for this peer is 'done',
-//               OR this server has no inbound bootstrap rows for the peer
-//               (we were the source, so there's nothing to track on our side)
-//   "syncing" — at least one scope is still queued or active
-function pairMemberSyncStatus(peer: string, bootstrap: BootstrapEntry[]): 'synced' | 'syncing' {
-  const rows = bootstrap.filter((b) => b.peer === peer)
-  if (rows.length === 0) return 'synced'
-  return rows.every((r) => r.state === 'done') ? 'synced' : 'syncing'
+// pairMemberSyncStatus returns "synced" only when both directions are
+// caught up: every inbound bootstrap row for this peer is 'done' AND
+// every outbound `serving` row has been acked (deleted). Source side
+// no longer flips to "synced" the instant the join is approved; both
+// peers settle together.
+function pairMemberSyncStatus(
+  peer: string,
+  bootstrap: BootstrapEntry[],
+  serving: ServingEntry[],
+): 'synced' | 'syncing' {
+  const outbound = serving.filter((s) => s.peer === peer)
+  if (outbound.length > 0) return 'syncing'
+  const inbound = bootstrap.filter((b) => b.peer === peer)
+  if (inbound.length === 0) return 'synced'
+  return inbound.every((r) => r.state === 'done') ? 'synced' : 'syncing'
 }
 
 function PendingJoinRow({ join }: { join: PendingJoin }) {
@@ -114,7 +121,7 @@ function PairMemberRow({ peer, status }: { peer: string; status: 'synced' | 'syn
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button variant='ghost' size='sm' disabled={remove.isPending}>
-              {remove.isPending ? <Loader2 className='h-4 w-4 animate-spin' /> : <Unlink className='h-4 w-4' />}
+              {remove.isPending ? <Loader2 className='h-4 w-4 animate-spin' /> : <ServerOff className='h-4 w-4' />}
               <span className='sr-only'><Trans>Remove pair member</Trans></span>
             </Button>
           </AlertDialogTrigger>
@@ -157,6 +164,7 @@ export function SystemReplication() {
   const pair = data?.pair ?? []
   const joins = data?.joins ?? []
   const bootstrap = data?.bootstrap ?? []
+  const serving = data?.serving ?? []
 
   return (
     <>
@@ -229,7 +237,7 @@ export function SystemReplication() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {pair.map((p) => <PairMemberRow key={p} peer={p} status={pairMemberSyncStatus(p, bootstrap)} />)}
+                    {pair.map((p) => <PairMemberRow key={p} peer={p} status={pairMemberSyncStatus(p, bootstrap, serving)} />)}
                   </TableBody>
                 </Table>
               )}

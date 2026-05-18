@@ -21,11 +21,21 @@ export interface ReplicationData {
   hosts: ReplicationHost[]
 }
 
+// Poll faster while pending link-requests are visible so an Approve /
+// Deny click from the other side reflects on this page quickly; slow
+// down once the table is settled.
+function userReplicationInterval(data: ReplicationData | undefined): number {
+  if (!data) return 2000
+  if (data.links.length > 0) return 2000
+  return 15000
+}
+
 export function useReplication() {
   return useQuery({
     queryKey: ['replication', 'user'],
     queryFn: () =>
       requestHelpers.get<ReplicationData>(endpoints.user.replication),
+    refetchInterval: (query) => userReplicationInterval(query.state.data),
   })
 }
 

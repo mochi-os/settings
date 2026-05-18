@@ -22,6 +22,7 @@ def action_system_replication(a):
         "pair": status["pair"],
         "joins": mochi.replication.joins(),
         "bootstrap": mochi.replication.bootstrap_progress(),
+        "serving": mochi.replication.bootstrap_serving(),
         "bootstrap_pending": status["bootstrap_pending"],
     })
 
