@@ -32,12 +32,19 @@ import {
   useDenyJoin,
   useRemovePair,
   useSystemReplication,
+  type BootstrapEntry,
   type PendingJoin,
 } from '@/hooks/use-system-replication'
 
-function shortPeer(peer: string): string {
-  if (peer.length <= 16) return peer
-  return `${peer.slice(0, 8)}…${peer.slice(-6)}`
+// pairMemberSyncStatus returns one of:
+//   "synced"  — every known bootstrap scope for this peer is 'done',
+//               OR this server has no inbound bootstrap rows for the peer
+//               (we were the source, so there's nothing to track on our side)
+//   "syncing" — at least one scope is still queued or active
+function pairMemberSyncStatus(peer: string, bootstrap: BootstrapEntry[]): 'synced' | 'syncing' {
+  const rows = bootstrap.filter((b) => b.peer === peer)
+  if (rows.length === 0) return 'synced'
+  return rows.every((r) => r.state === 'done') ? 'synced' : 'syncing'
 }
 
 function PendingJoinRow({ join }: { join: PendingJoin }) {
@@ -49,11 +56,10 @@ function PendingJoinRow({ join }: { join: PendingJoin }) {
   return (
     <TableRow>
       <TableCell>
-        <span className='font-medium'>{join.label || shortPeer(join.peer)}</span>
-        {join.label && (
-          <div className='text-muted-foreground font-mono text-xs'>
-            {shortPeer(join.peer)}
-          </div>
+        {join.label ? (
+          <span className='font-medium'>{join.label}</span>
+        ) : (
+          <span className='font-mono text-xs break-all'>{join.peer}</span>
         )}
       </TableCell>
       <TableCell className='text-end'>
@@ -92,14 +98,17 @@ function PendingJoinRow({ join }: { join: PendingJoin }) {
   )
 }
 
-function PairMemberRow({ peer }: { peer: string }) {
+function PairMemberRow({ peer, status }: { peer: string; status: 'synced' | 'syncing' }) {
   const { t } = useLingui()
   const remove = useRemovePair()
 
   return (
     <TableRow>
       <TableCell>
-        <span className='font-mono text-sm'>{shortPeer(peer)}</span>
+        <span className='font-mono text-xs break-all'>{peer}</span>
+      </TableCell>
+      <TableCell className='text-muted-foreground text-sm'>
+        {status === 'synced' ? <Trans>Synced</Trans> : <Trans>Syncing</Trans>}
       </TableCell>
       <TableCell className='text-end'>
         <AlertDialog>
@@ -148,7 +157,6 @@ export function SystemReplication() {
   const pair = data?.pair ?? []
   const joins = data?.joins ?? []
   const bootstrap = data?.bootstrap ?? []
-  const bootstrapPending = data?.bootstrap_pending ?? 0
 
   return (
     <>
@@ -163,12 +171,6 @@ export function SystemReplication() {
           <div className='space-y-8'>
             <section className='space-y-2'>
               <h2 className='text-base font-medium'><Trans>This server</Trans></h2>
-              <p className='text-muted-foreground text-sm'>
-                <Trans>
-                  Share this peer id with another operator to start a server pair from there using{' '}
-                  <span className='font-mono'>mochictl replica join</span>.
-                </Trans>
-              </p>
               <div className='flex items-center gap-2'>
                 <code className='bg-muted rounded px-2 py-1 font-mono text-xs break-all'>{peer}</code>
                 <Button
@@ -208,41 +210,6 @@ export function SystemReplication() {
               </section>
             )}
 
-            {bootstrap.length > 0 && (
-              <section className='space-y-2'>
-                <h2 className='text-base font-medium'><Trans>Bulk bootstrap</Trans></h2>
-                <p className='text-muted-foreground text-sm'>
-                  {bootstrapPending > 0 ? (
-                    <Trans>Transferring data from pair members. Each scope completes independently.</Trans>
-                  ) : (
-                    <Trans>All scopes are caught up. Live replication is the only ongoing activity.</Trans>
-                  )}
-                </p>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead><Trans>Peer</Trans></TableHead>
-                      <TableHead><Trans>Scope</Trans></TableHead>
-                      <TableHead><Trans>State</Trans></TableHead>
-                      <TableHead><Trans>Remaining</Trans></TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {bootstrap.map((b) => (
-                      <TableRow key={`${b.peer}-${b.scope}`}>
-                        <TableCell className='font-mono text-xs'>{shortPeer(b.peer)}</TableCell>
-                        <TableCell>{b.scope}</TableCell>
-                        <TableCell className='text-muted-foreground text-sm'>{b.state}</TableCell>
-                        <TableCell className='text-muted-foreground text-sm'>
-                          {b.state === 'active' && b.position ? b.position : '—'}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </section>
-            )}
-
             <section className='space-y-2'>
               <h2 className='text-base font-medium'><Trans>Pair members</Trans></h2>
               {pair.length === 0 ? (
@@ -257,11 +224,12 @@ export function SystemReplication() {
                   <TableHeader>
                     <TableRow>
                       <TableHead><Trans>Peer</Trans></TableHead>
+                      <TableHead><Trans>Status</Trans></TableHead>
                       <TableHead className='w-12'></TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {pair.map((p) => <PairMemberRow key={p} peer={p} />)}
+                    {pair.map((p) => <PairMemberRow key={p} peer={p} status={pairMemberSyncStatus(p, bootstrap)} />)}
                   </TableBody>
                 </Table>
               )}

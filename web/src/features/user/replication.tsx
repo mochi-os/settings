@@ -36,11 +36,6 @@ import {
   type ReplicationLink,
 } from '@/hooks/use-replication'
 
-function shortPeer(peer: string): string {
-  if (peer.length <= 16) return peer
-  return `${peer.slice(0, 8)}…${peer.slice(-6)}`
-}
-
 function PendingRow({ link }: { link: ReplicationLink }) {
   const { t } = useLingui()
   const approve = useApproveLink()
@@ -62,11 +57,10 @@ function PendingRow({ link }: { link: ReplicationLink }) {
   return (
     <TableRow>
       <TableCell>
-        <span className='font-medium'>{link.label || shortPeer(link.peer)}</span>
-        {link.label && (
-          <div className='text-muted-foreground font-mono text-xs'>
-            {shortPeer(link.peer)}
-          </div>
+        {link.label ? (
+          <span className='font-medium'>{link.label}</span>
+        ) : (
+          <span className='font-mono text-xs break-all'>{link.peer}</span>
         )}
       </TableCell>
       <TableCell className='text-end'>
@@ -93,7 +87,7 @@ function HostRow({ host }: { host: ReplicationHost }) {
   return (
     <TableRow>
       <TableCell>
-        <span className='font-mono text-sm'>{shortPeer(host.peer)}</span>
+        <span className='font-mono text-xs break-all'>{host.peer}</span>
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
         {formatTimestamp(host.added, t`Unknown`)}
