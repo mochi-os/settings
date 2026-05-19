@@ -108,7 +108,7 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
       <ResponsiveDialogTrigger asChild>
         <Button variant='outline' size='sm'>
           <Plus className='me-2 h-4 w-4' />
-          <Trans>Add User</Trans>
+          <Trans>Add user</Trans>
         </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent>
@@ -164,13 +164,16 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
 
 function EditUserDialog({
   user,
+  open,
+  onOpenChange,
   onSuccess,
 }: {
   user: User
+  open: boolean
+  onOpenChange: (open: boolean) => void
   onSuccess: () => void
 }) {
   const { t } = useLingui()
-  const [open, setOpen] = useState(false)
   const [username, setUsername] = useState(user.username)
   const [role, setRole] = useState(user.role)
   const updateUser = useUpdateUser()
@@ -178,11 +181,11 @@ function EditUserDialog({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     updateUser.mutate(
-      { id: user.id, username, role },
+      { uid: user.uid, username, role },
       {
         onSuccess: () => {
           toast.success(t`User updated`)
-          setOpen(false)
+          onOpenChange(false)
           onSuccess()
         },
         onError: (error) => {
@@ -193,13 +196,7 @@ function EditUserDialog({
   }
 
   return (
-    <ResponsiveDialog open={open} onOpenChange={setOpen}>
-      <ResponsiveDialogTrigger asChild>
-        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-          <Pencil className='me-2 h-4 w-4' />
-          <Trans>Edit user</Trans>
-        </DropdownMenuItem>
-      </ResponsiveDialogTrigger>
+    <ResponsiveDialog open={open} onOpenChange={onOpenChange}>
       <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
           <ResponsiveDialogHeader>
@@ -233,7 +230,7 @@ function EditUserDialog({
             <Button
               type='button'
               variant='outline'
-              onClick={() => setOpen(false)}
+              onClick={() => onOpenChange(false)}
             >
               <Trans>Cancel</Trans>
             </Button>
@@ -250,16 +247,23 @@ function EditUserDialog({
   )
 }
 
-function SessionsDialog({ user }: { user: User }) {
+function SessionsDialog({
+  user,
+  open,
+  onOpenChange,
+}: {
+  user: User
+  open: boolean
+  onOpenChange: (open: boolean) => void
+}) {
   const { t } = useLingui()
   const { formatTimestamp } = useFormat()
-  const [open, setOpen] = useState(false)
-  const { data, isLoading, refetch } = useUserSessions(user.id, open)
+  const { data, isLoading, refetch } = useUserSessions(user.uid, open)
   const revokeSession = useRevokeUserSessions()
 
   const handleRevoke = (session_id?: string) => {
     revokeSession.mutate(
-      { id: user.id, session_id },
+      { uid: user.uid, session_id },
       {
         onSuccess: (result) => {
           toast.success(
@@ -288,13 +292,7 @@ function SessionsDialog({ user }: { user: User }) {
   }
 
   return (
-    <ResponsiveDialog open={open} onOpenChange={setOpen}>
-      <ResponsiveDialogTrigger asChild>
-        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-          <Key className='me-2 h-4 w-4' />
-          <Trans>Manage sessions</Trans>
-        </DropdownMenuItem>
-      </ResponsiveDialogTrigger>
+    <ResponsiveDialog open={open} onOpenChange={onOpenChange}>
       <ResponsiveDialogContent className='max-w-2xl'>
         <ResponsiveDialogHeader>
           <ResponsiveDialogTitle><Trans>Sessions for {user.username}</Trans></ResponsiveDialogTitle>
@@ -348,7 +346,7 @@ function SessionsDialog({ user }: { user: User }) {
           )}
         </div>
         <ResponsiveDialogFooter>
-          <Button variant='outline' onClick={() => setOpen(false)}>
+          <Button variant='outline' onClick={() => onOpenChange(false)}>
             <Trans>Close</Trans>
           </Button>
           {data?.sessions && data.sessions.length > 0 && (
@@ -372,6 +370,8 @@ function SessionsDialog({ user }: { user: User }) {
 function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void; isSelf: boolean }) {
   const { t } = useLingui()
   const { formatTimestamp } = useFormat()
+  const [editOpen, setEditOpen] = useState(false)
+  const [sessionsOpen, setSessionsOpen] = useState(false)
   const [deleteOpen, setDeleteOpen] = useState(false)
   const deleteUser = useDeleteUser()
   const suspendUser = useSuspendUser()
@@ -381,7 +381,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
   const isSuspended = user.status === 'suspended'
 
   const handleDelete = () => {
-    deleteUser.mutate(user.id, {
+    deleteUser.mutate(user.uid, {
       onSuccess: () => {
         toast.success(t`User deleted`)
         setDeleteOpen(false)
@@ -395,7 +395,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
 
   const handleToggleStatus = () => {
     const action = isSuspended ? activateUser : suspendUser
-    action.mutate(user.id, {
+    action.mutate(user.uid, {
       onSuccess: () => {
         toast.success(isSuspended ? t`Suspension removed` : t`User suspended`)
         onUpdate()
@@ -436,8 +436,14 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
             </IconButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent align='end'>
-            <EditUserDialog user={user} onSuccess={onUpdate} />
-            <SessionsDialog user={user} />
+            <DropdownMenuItem onSelect={() => setEditOpen(true)}>
+              <Pencil className='me-2 h-4 w-4' />
+              <Trans>Edit user</Trans>
+            </DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => setSessionsOpen(true)}>
+              <Key className='me-2 h-4 w-4' />
+              <Trans>Manage sessions</Trans>
+            </DropdownMenuItem>
             {!isSelf && (
               <DropdownMenuItem onClick={handleToggleStatus}>
                 {isSuspended ? (
@@ -461,6 +467,18 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
             )}
           </DropdownMenuContent>
         </DropdownMenu>
+
+        <EditUserDialog
+          user={user}
+          open={editOpen}
+          onOpenChange={setEditOpen}
+          onSuccess={onUpdate}
+        />
+        <SessionsDialog
+          user={user}
+          open={sessionsOpen}
+          onOpenChange={setSessionsOpen}
+        />
 
         <ConfirmDialog
           open={deleteOpen}
@@ -633,7 +651,7 @@ export function SystemUsers() {
               <TableBody>
                 {users.map((user) => (
                   <UserRow
-                    key={user.id}
+                    key={user.uid}
                     user={user}
                     onUpdate={() => refetch()}
                     isSelf={user.username === currentUsername}

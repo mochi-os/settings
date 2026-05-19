@@ -7,9 +7,10 @@ import type {
   Passkey,
   TotpSetupResponse,
 } from '@/types/account'
-import { startRegistration } from '@simplewebauthn/browser'
+import type { startRegistration } from '@simplewebauthn/browser'
 import {
   Check,
+  Copy,
   Key,
   Link2,
   Loader2,
@@ -79,6 +80,7 @@ import {
   EmptyState,
   getErrorMessage,
   shellNavigateTop,
+  shellWebauthnCreate,
   toast,
   useFormat,
   shellClipboardWrite,
@@ -170,6 +172,7 @@ function IdentitySection() {
                   variant='ghost'
                   onClick={handleRename}
                   disabled={updateIdentity.isPending}
+                  aria-label={t`Save name`}
                 >
                   <Check className='h-4 w-4' />
                 </Button>
@@ -187,7 +190,7 @@ function IdentitySection() {
                 <span className='text-foreground text-base font-semibold'>
                   {data.identity.name}
                 </span>
-                <Button variant='ghost' size='sm' onClick={startRename}>
+                <Button variant='ghost' size='sm' onClick={startRename} aria-label={t`Edit name`}>
                   <Pencil className='h-4 w-4' />
                 </Button>
               </div>
@@ -378,7 +381,7 @@ function PasskeyRow({
                 if (e.key === 'Escape') setIsRenaming(false)
               }}
             />
-            <Button size='sm' variant='ghost' onClick={handleRename}>
+            <Button size='sm' variant='ghost' onClick={handleRename} aria-label={t`Save passkey name`}>
               <Check className='h-4 w-4' />
             </Button>
           </div>
@@ -394,10 +397,10 @@ function PasskeyRow({
       </TableCell>
       <TableCell className='text-end'>
         <div className='flex justify-end gap-1'>
-          <Button variant='ghost' size='sm' onClick={() => setIsRenaming(true)}>
+          <Button variant='ghost' size='sm' onClick={() => setIsRenaming(true)} aria-label={t`Rename passkey`}>
             <Pencil className='h-4 w-4' />
           </Button>
-          <Button variant='ghost' size='sm' onClick={() => setShowDeleteDialog(true)}>
+          <Button variant='ghost' size='sm' onClick={() => setShowDeleteDialog(true)} aria-label={t`Delete passkey`}>
             <Trash2 className='h-4 w-4' />
           </Button>
           <ConfirmDialog
@@ -433,9 +436,9 @@ function PasskeysSection() {
     setIsRegistering(true)
     try {
       const beginResult = await registerBegin.mutateAsync()
-      const credential = await startRegistration({
-        optionsJSON: beginResult.options as RegistrationOptionsJSON,
-      })
+      const credential = await shellWebauthnCreate(
+        beginResult.options as RegistrationOptionsJSON
+      )
       await registerFinish.mutateAsync({
         ceremony: beginResult.ceremony,
         credential,
@@ -763,7 +766,7 @@ function RecoveryCodesSection() {
               void shellClipboardWrite(showCodes.join('\n')).then((ok) => {
                 if (ok) toast.success(t`Codes copied`)
               })
-            }}><Trans>Copy all</Trans></Button>
+            }}><Copy className='size-3.5' /><Trans>Copy all</Trans></Button>
             <Button variant='ghost' size='sm' onClick={() => setShowCodes(null)}><Trans>Done</Trans></Button>
           </div>
         </div>
@@ -851,6 +854,7 @@ function OauthIdentityRow({
           variant='ghost'
           size='sm'
           onClick={() => setShowDeleteDialog(true)}
+          aria-label={t`Unlink provider`}
         >
           <Trash2 className='h-4 w-4' />
         </Button>

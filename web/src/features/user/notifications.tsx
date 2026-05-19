@@ -715,7 +715,7 @@ function TopicsTab() {
                       ))}
                     </SelectContent>
                   </Select>
-                  <Button variant="outline" size="sm" onClick={() => remove(topic)} title={t`Remove (re-create on next notification)`}>
+                  <Button variant="outline" size="sm" onClick={() => remove(topic)} title={t`Remove (re-create on next notification)`} aria-label={t`Remove (re-create on next notification)`}>
                     <X className="h-4 w-4" />
                   </Button>
                 </div>
