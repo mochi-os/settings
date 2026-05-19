@@ -22,10 +22,10 @@ const list = async (
   return response
 }
 
-const getSessions = async (id: number): Promise<SystemUserSessionsResponse> => {
+const getSessions = async (uid: string): Promise<SystemUserSessionsResponse> => {
   const response = await requestHelpers.post<SystemUserSessionsResponse>(
     endpoints.system.usersSessions,
-    { id }
+    { uid }
   )
   return response
 }

@@ -52,7 +52,7 @@ def action_accounts_add(a):
         if is_notify:
             mochi.account.update(account_id, enabled=add_to_existing)
             if add_to_existing:
-                mochi.service.call("notifications", "add_destination_to_all", "account", account_id)
+                mochi.service.call("notifications", "destinations/add", "account", account_id)
         else:
             mochi.account.update(account_id, enabled=True)
 

@@ -32,11 +32,11 @@ def action_system_users_get(a):
     """Get user details"""
     if not require_admin(a):
         return
-    id = a.input("id")
-    if not id:
+    uid = a.input("uid")
+    if not uid:
         a.error.label(400, "errors.missing_user_id")
         return
-    user = mochi.user.get(int(id))
+    user = mochi.user.get(uid)
     if not user:
         a.error.label(404, "errors.user_not_found")
         return
@@ -58,70 +58,70 @@ def action_system_users_update(a):
     """Update user"""
     if not require_admin(a):
         return
-    id = a.input("id")
-    if not id:
+    uid = a.input("uid")
+    if not uid:
         a.error.label(400, "errors.missing_user_id")
         return
     username = a.input("username")
     role = a.input("role")
-    mochi.user.update(int(id), username, role)
+    mochi.user.update(uid, username, role)
     a.json({"ok": True})
 
 def action_system_users_delete(a):
     """Delete a user"""
     if not require_admin(a):
         return
-    id = a.input("id")
-    if not id:
+    uid = a.input("uid")
+    if not uid:
         a.error.label(400, "errors.missing_user_id")
         return
-    mochi.user.delete(int(id))
+    mochi.user.delete(uid)
     a.json({"ok": True})
 
 def action_system_users_suspend(a):
     """Suspend a user"""
     if not require_admin(a):
         return
-    id = a.input("id")
-    if not id:
+    uid = a.input("uid")
+    if not uid:
         a.error.label(400, "errors.missing_user_id")
         return
-    mochi.user.suspend(int(id))
+    mochi.user.suspend(uid)
     a.json({"ok": True})
 
 def action_system_users_activate(a):
     """Activate a suspended user"""
     if not require_admin(a):
         return
-    id = a.input("id")
-    if not id:
+    uid = a.input("uid")
+    if not uid:
         a.error.label(400, "errors.missing_user_id")
         return
-    mochi.user.activate(int(id))
+    mochi.user.activate(uid)
     a.json({"ok": True})
 
 def action_system_users_sessions(a):
     """Get sessions for a user"""
     if not require_admin(a):
         return
-    id = a.input("id")
-    if not id:
+    uid = a.input("uid")
+    if not uid:
         a.error.label(400, "errors.missing_user_id")
         return
-    sessions = mochi.user.session.list(int(id))
+    sessions = mochi.user.session.list(uid)
     a.json({"sessions": sessions})
 
 def action_system_users_sessions_revoke(a):
     """Revoke session(s) for a user"""
     if not require_admin(a):
         return
-    id = a.input("id")
-    if not id:
+    uid = a.input("uid")
+    if not uid:
         a.error.label(400, "errors.missing_user_id")
         return
     session_id = a.input("session_id")
     if session_id:
-        count = mochi.user.session.revoke(int(id), session_id)
+        count = mochi.user.session.revoke(uid, session_id)
     else:
-        count = mochi.user.session.revoke(int(id))
+        count = mochi.user.session.revoke(uid)
     a.json({"ok": True, "revoked": count})

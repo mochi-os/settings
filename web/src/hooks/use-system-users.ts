@@ -14,8 +14,8 @@ export const systemUserKeys = {
   all: () => ['system-users'] as const,
   list: (limit: number, offset: number, search: string, sort: string, order: string) =>
     [...systemUserKeys.all(), 'list', limit, offset, search, sort, order] as const,
-  sessions: (userId: string) =>
-    [...systemUserKeys.all(), 'sessions', userId] as const,
+  sessions: (uid: string) =>
+    [...systemUserKeys.all(), 'sessions', uid] as const,
 }
 
 export function useSystemUsersData(
@@ -50,7 +50,7 @@ export function useUpdateUser() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: (data: {
-      id: number
+      uid: string
       username?: string
       role?: string
     }) =>
@@ -68,10 +68,10 @@ export function useUpdateUser() {
 export function useDeleteUser() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (id: number) =>
+    mutationFn: (uid: string) =>
       requestHelpers.post(
         endpoints.system.usersDelete,
-        { id },
+        { uid },
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
@@ -83,10 +83,10 @@ export function useDeleteUser() {
 export function useSuspendUser() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (id: number) =>
+    mutationFn: (uid: string) =>
       requestHelpers.post(
         endpoints.system.usersSuspend,
-        { id },
+        { uid },
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
@@ -98,10 +98,10 @@ export function useSuspendUser() {
 export function useActivateUser() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (id: number) =>
+    mutationFn: (uid: string) =>
       requestHelpers.post(
         endpoints.system.usersActivate,
-        { id },
+        { uid },
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
@@ -110,18 +110,18 @@ export function useActivateUser() {
   })
 }
 
-export function useUserSessions(userId: number, enabled: boolean) {
+export function useUserSessions(uid: string, enabled: boolean) {
   return useQueryWithError<SessionsData, Error>({
-    queryKey: systemUserKeys.sessions(String(userId)),
-    queryFn: () => systemUsersApi.getSessions(userId),
-    enabled: enabled && !!userId,
+    queryKey: systemUserKeys.sessions(uid),
+    queryFn: () => systemUsersApi.getSessions(uid),
+    enabled: enabled && !!uid,
   })
 }
 
 export function useRevokeUserSessions() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (data: { id: number; session_id?: string }) =>
+    mutationFn: (data: { uid: string; session_id?: string }) =>
       requestHelpers.post<{ ok: boolean; revoked: number }>(
         endpoints.system.usersSessionsRevoke,
         data,
@@ -129,7 +129,7 @@ export function useRevokeUserSessions() {
       ),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: systemUserKeys.sessions(String(variables.id)),
+        queryKey: systemUserKeys.sessions(variables.uid),
       })
     },
   })
