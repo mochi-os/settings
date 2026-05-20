@@ -11,6 +11,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
   Button,
+  DataChip,
   EmptyState,
   GeneralError,
   ListSkeleton,
@@ -137,6 +138,8 @@ export function UserReplication() {
 
   const links = data?.links ?? []
   const hosts = data?.hosts ?? []
+  const username = data?.user?.username ?? ''
+  const peerId = data?.server?.id ?? ''
 
   return (
     <>
@@ -149,6 +152,33 @@ export function UserReplication() {
           <ListSkeleton variant='simple' height='h-10' count={3} />
         ) : (
           <div className='space-y-8'>
+            {(username || peerId) && (
+              <section className='space-y-2'>
+                <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'><Trans>This account</Trans></h2>
+                <p className='text-muted-foreground text-sm'>
+                  <Trans>Quote both values on the destination server's sign-up form to replicate this account there.</Trans>
+                </p>
+                <dl className='grid gap-3 text-sm'>
+                  {username && (
+                    <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
+                      <dt className='text-muted-foreground w-40 shrink-0'><Trans>Username</Trans></dt>
+                      <dd className='min-w-0 flex-1'>
+                        <DataChip value={username} truncate='none' />
+                      </dd>
+                    </div>
+                  )}
+                  {peerId && (
+                    <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
+                      <dt className='text-muted-foreground w-40 shrink-0'><Trans>Server peer ID</Trans></dt>
+                      <dd className='min-w-0 flex-1'>
+                        <DataChip value={peerId} truncate='none' />
+                      </dd>
+                    </div>
+                  )}
+                </dl>
+              </section>
+            )}
+
             {links.length > 0 && (
               <section className='space-y-2'>
                 <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'><Trans>Pending requests</Trans></h2>

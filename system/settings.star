@@ -2,11 +2,12 @@
 # Copyright Alistair Cunningham 2025-2026
 
 def action_system_settings_list(a):
-    """List all system settings with metadata"""
+    """List all system settings with metadata, plus the server's
+    libp2p peer ID so the System Status page can surface it."""
     if not require_admin(a):
         return
     settings = mochi.setting.list()
-    a.json({"settings": settings})
+    a.json({"settings": settings, "server": {"id": mochi.server.id()}})
 
 def action_system_settings_get(a):
     """Get a single setting"""

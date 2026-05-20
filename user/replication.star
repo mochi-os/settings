@@ -11,8 +11,14 @@
 # host_remove}.
 
 def action_user_replication(a):
-    """Per-user replication page data: pending requests + my hosts."""
+    """Per-user replication page data: pending requests + my hosts.
+
+    Also returns the local username and this server's peer id so the
+    page can prompt the user with the exact values to type into the
+    "replicate an existing account" form on the destination server."""
     a.json({
+        "user": {"username": a.user.username},
+        "server": {"id": mochi.server.id()},
         "links": mochi.replication.links(),
         "hosts": mochi.replication.hosts(),
     })

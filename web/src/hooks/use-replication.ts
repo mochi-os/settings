@@ -17,6 +17,8 @@ export interface ReplicationHost {
 }
 
 export interface ReplicationData {
+  user?: { username: string }
+  server?: { id: string }
   links: ReplicationLink[]
   hosts: ReplicationHost[]
 }

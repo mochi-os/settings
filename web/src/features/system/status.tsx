@@ -3,6 +3,7 @@ import { Trans, useLingui } from '@lingui/react/macro'
 import {
   Button,
   CopyButton,
+  DataChip,
   GeneralError,
   ListSkeleton,
   PageHeader,
@@ -30,6 +31,7 @@ export function SystemStatus() {
     settings.find((s) => s.name === 'server_version')?.value ?? ''
   const serverStarted =
     settings.find((s) => s.name === 'server_started')?.value ?? ''
+  const peerId = data?.server?.id ?? ''
 
   const showUpdate = update && (update.available || update.pending)
 
@@ -54,6 +56,14 @@ export function SystemStatus() {
                 {formatSystemTimestamp(parseInt(serverStarted, 10), serverStarted)}
               </dd>
             </div>
+            {peerId && (
+              <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
+                <dt className='text-muted-foreground w-28 shrink-0'><Trans>Peer ID</Trans></dt>
+                <dd className='min-w-0 flex-1'>
+                  <DataChip value={peerId} truncate='none' />
+                </dd>
+              </div>
+            )}
             {showUpdate && (
               <div className='flex flex-col gap-2 sm:flex-row sm:gap-4'>
                 <dt className='text-muted-foreground w-28 shrink-0'><Trans>Update</Trans></dt>
