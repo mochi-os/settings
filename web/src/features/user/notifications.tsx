@@ -82,12 +82,11 @@ interface DestinationsAvailable {
 }
 
 interface Topic {
-  id: number
   app: string
   app_name: string
   topic: string
   object: string
-  object_name: string
+  name: string
   label: string
   category: number | null
   created: number
@@ -116,6 +115,26 @@ function sortCategories(cats: Category[]): Category[] {
     if (b.id === 0) return -1
     return naturalCompare(a.label, b.label)
   })
+}
+
+// A "raw label key" (dotted, lowercase, no spaces) leaks into the topics table
+// when an app calls mochi.app.label() before adding the matching key to its
+// labels/<lang>.conf — the label resolver returns the literal key. We can't
+// retroactively re-resolve old rows (the calling app's labels aren't reachable
+// from here), so fall back to a humanized topic name for display.
+function isRawLabelKey(s: string): boolean {
+  return /^[a-z0-9_]+(\.[a-z0-9_]+)+$/i.test(s)
+}
+
+function humanizeTopic(topic: string): string {
+  const flat = topic.replace(/[/_]/g, ' ').trim()
+  if (!flat) return topic
+  return flat.charAt(0).toUpperCase() + flat.slice(1)
+}
+
+function topicDisplayName(topic: Topic): string {
+  if (topic.label && !isRawLabelKey(topic.label)) return topic.label
+  return humanizeTopic(topic.topic)
 }
 
 export function UserNotifications() {
@@ -637,7 +656,12 @@ function TopicsTab() {
 
   const setCategory = async (topic: Topic, value: string) => {
     try {
-      const params = new URLSearchParams({ id: String(topic.id), category: value })
+      const params = new URLSearchParams({
+        app: topic.app,
+        topic: topic.topic,
+        object: topic.object,
+        category: value,
+      })
       await requestHelpers.post(endpoints.notifications.topicsSetCategory, params.toString(), {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       })
@@ -649,7 +673,11 @@ function TopicsTab() {
 
   const remove = async (topic: Topic) => {
     try {
-      const params = new URLSearchParams({ id: String(topic.id) })
+      const params = new URLSearchParams({
+        app: topic.app,
+        topic: topic.topic,
+        object: topic.object,
+      })
       await requestHelpers.post(endpoints.notifications.topicsDelete, params.toString(), {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       })
@@ -666,6 +694,13 @@ function TopicsTab() {
       const g = map.get(t.app) ?? { app: t.app, app_name: t.app_name, items: [] }
       g.items.push(t)
       map.set(t.app, g)
+    }
+    for (const g of map.values()) {
+      g.items.sort((a, b) => {
+        const cmp = naturalCompare(topicDisplayName(a), topicDisplayName(b))
+        if (cmp !== 0) return cmp
+        return naturalCompare(a.name ?? '', b.name ?? '')
+      })
     }
     return Array.from(map.values()).sort((a, b) => naturalCompare(a.app_name, b.app_name))
   }, [topics])
@@ -685,21 +720,21 @@ function TopicsTab() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col divide-y divide-border">
       {groups.map((group) => (
-        <div key={group.app}>
+        <div key={group.app} className="py-4 first:pt-0 last:pb-0">
           <h2 className="text-[1.125rem] leading-tight font-semibold md:text-lg">
             {group.app_name}
           </h2>
-          <div className="divide-border divide-y">
+          <div>
             {group.items.map((topic) => (
               <div
-                key={topic.id}
+                key={`${topic.app}|${topic.topic}|${topic.object}`}
                 className="flex flex-col gap-3 py-2 ps-6 sm:flex-row sm:items-center sm:justify-between"
               >
                 <p className="text-sm">
-                  {topic.label || topic.topic}
-                  {topic.object_name ? `: ${topic.object_name}` : ''}
+                  {topicDisplayName(topic)}
+                  {topic.name ? `: ${topic.name}` : ''}
                 </p>
                 <div className="flex items-center gap-2">
                   <Select

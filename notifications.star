@@ -61,23 +61,27 @@ def action_notifications_topics(a):
 	return {"data": result or []}
 
 def action_notifications_topics_set_category(a):
-	id = a.input("id", "").strip()
-	if not id or not id.isdigit():
-		return a.error.label(400, "errors.invalid_id")
+	app = a.input("app", "").strip()
+	topic = a.input("topic", "").strip()
+	object = a.input("object", "")
+	if not app:
+		return a.error.label(400, "errors.app_is_required")
 	cat_raw = a.input("category", "")
 	category = None
 	if cat_raw != "" and cat_raw.lstrip("-").isdigit():
 		category = int(cat_raw)
-	ok = mochi.service.call("notifications", "topic/set_category", int(id), category)
+	ok = mochi.service.call("notifications", "topic/set_category", app, topic, object, category)
 	if not ok:
 		return a.error.label(404, "errors.not_found")
 	return {"data": {}}
 
 def action_notifications_topics_delete(a):
-	id = a.input("id", "").strip()
-	if not id or not id.isdigit():
-		return a.error.label(400, "errors.invalid_id")
-	mochi.service.call("notifications", "topic/delete", int(id))
+	app = a.input("app", "").strip()
+	topic = a.input("topic", "").strip()
+	object = a.input("object", "")
+	if not app:
+		return a.error.label(400, "errors.app_is_required")
+	mochi.service.call("notifications", "topic/delete", app, topic, object)
 	return {"data": {}}
 
 def action_notifications_destinations(a):
