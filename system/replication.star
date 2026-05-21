@@ -8,8 +8,8 @@
 # `mochictl replica join <existing-peer>` (the destination server must
 # be freshly installed; see claude/plans/replication.md).
 #
-# Backed by mochi.replication.{status, joins, join_approve, join_deny,
-# pair_remove}. All actions require_admin (server-wide mutation).
+# Backed by mochi.replication.{status, joins, join.approve, join.deny,
+# pair.remove}. All actions require_admin (server-wide mutation).
 
 def action_system_replication(a):
     """System replication page data: status + pending join requests +
@@ -21,8 +21,8 @@ def action_system_replication(a):
         "peer": status["peer"],
         "pair": status["pair"],
         "joins": mochi.replication.joins(),
-        "bootstrap": mochi.replication.bootstrap_progress(),
-        "serving": mochi.replication.bootstrap_serving(),
+        "bootstrap": mochi.replication.bootstrap.progress(),
+        "serving": mochi.replication.bootstrap.serving(),
         "bootstrap_pending": status["bootstrap_pending"],
     })
 
@@ -34,7 +34,7 @@ def action_system_replication_join_approve(a):
     if peer == "":
         a.error.label(400, "errors.missing_peer")
         return
-    result = mochi.replication.join_approve(peer)
+    result = mochi.replication.join.approve(peer)
     a.json({"result": result})
 
 def action_system_replication_join_deny(a):
@@ -45,7 +45,7 @@ def action_system_replication_join_deny(a):
     if peer == "":
         a.error.label(400, "errors.missing_peer")
         return
-    result = mochi.replication.join_deny(peer)
+    result = mochi.replication.join.deny(peer)
     a.json({"result": result})
 
 def action_system_replication_pair_remove(a):
@@ -56,5 +56,5 @@ def action_system_replication_pair_remove(a):
     if peer == "":
         a.error.label(400, "errors.missing_peer")
         return
-    result = mochi.replication.pair_remove(peer)
+    result = mochi.replication.pair.remove(peer)
     a.json({"result": result})

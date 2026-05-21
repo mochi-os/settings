@@ -7,8 +7,8 @@
 # destination server (apps/login). This page handles approval of
 # inbound requests + ongoing management of the active host set only.
 #
-# Backed by mochi.replication.{links, hosts, link_approve, link_deny,
-# host_remove}.
+# Backed by mochi.replication.{links, hosts, link.approve, link.deny,
+# host.remove}.
 
 def action_user_replication(a):
     """Per-user replication page data: pending requests + my hosts.
@@ -29,7 +29,7 @@ def action_user_replication_approve(a):
     if peer == "":
         a.error.label(400, "errors.missing_peer")
         return
-    result = mochi.replication.link_approve(peer)
+    result = mochi.replication.link.approve(peer)
     a.json({"result": result})
 
 def action_user_replication_deny(a):
@@ -38,7 +38,7 @@ def action_user_replication_deny(a):
     if peer == "":
         a.error.label(400, "errors.missing_peer")
         return
-    result = mochi.replication.link_deny(peer)
+    result = mochi.replication.link.deny(peer)
     a.json({"result": result})
 
 def action_user_replication_remove(a):
@@ -47,5 +47,5 @@ def action_user_replication_remove(a):
     if peer == "":
         a.error.label(400, "errors.missing_peer")
         return
-    result = mochi.replication.host_remove(peer)
+    result = mochi.replication.host.remove(peer)
     a.json({"result": result})
