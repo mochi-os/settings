@@ -61,11 +61,10 @@ def action_notifications_topics(a):
 	return {"data": result or []}
 
 def action_notifications_topics_set_category(a):
+	# app="" identifies server-originated topics (upgrade alerts etc.).
 	app = a.input("app", "").strip()
 	topic = a.input("topic", "").strip()
 	object = a.input("object", "")
-	if not app:
-		return a.error.label(400, "errors.app_is_required")
 	cat_raw = a.input("category", "")
 	category = None
 	if cat_raw != "" and cat_raw.lstrip("-").isdigit():
@@ -76,11 +75,10 @@ def action_notifications_topics_set_category(a):
 	return {"data": {}}
 
 def action_notifications_topics_delete(a):
+	# app="" identifies server-originated topics.
 	app = a.input("app", "").strip()
 	topic = a.input("topic", "").strip()
 	object = a.input("object", "")
-	if not app:
-		return a.error.label(400, "errors.app_is_required")
 	mochi.service.call("notifications", "topic/delete", app, topic, object)
 	return {"data": {}}
 
