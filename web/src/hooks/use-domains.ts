@@ -7,7 +7,7 @@ import type {
   Entity,
 } from '@/types/domains'
 import endpoints from '@/api/endpoints'
-import { requestHelpers } from '@mochi/web'
+import { naturalCompare, requestHelpers } from '@mochi/web'
 
 const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
@@ -215,7 +215,7 @@ export function useApps() {
       const result = await requestHelpers.get<{ apps: App[] }>(
         endpoints.domains.apps
       )
-      return result.apps
+      return [...result.apps].sort((a, b) => naturalCompare(a.name, b.name))
     },
   })
 }
@@ -227,7 +227,7 @@ export function useEntities() {
       const result = await requestHelpers.get<{ entities: Entity[] }>(
         endpoints.domains.entities
       )
-      return result.entities
+      return [...result.entities].sort((a, b) => naturalCompare(a.name, b.name))
     },
   })
 }
