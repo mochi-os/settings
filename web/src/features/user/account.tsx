@@ -70,6 +70,7 @@ import {
   TableRow,
   PageHeader,
   Main,
+  RestoreBanner,
   usePageTitle,
   Section,
   FieldRow,
@@ -1030,6 +1031,7 @@ export function UserAccount() {
     <>
       <PageHeader title={t`Account`} icon={<User className='size-4 md:size-5' />} />
       <Main>
+        <RestoreBanner />
         <div className='space-y-8 pb-6'>
           <IdentitySection />
           <LoginRequirementsSection />
