@@ -162,7 +162,7 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
           <ResponsiveDialogDescription>
             {newToken
               ? <Trans>Copy your token now. You will not be able to see it again.</Trans>
-              : <Trans>Create a token to authenticate with git or the API.</Trans>}
+              : <Trans>Create a token to authenticate with the API.</Trans>}
           </ResponsiveDialogDescription>
         </ResponsiveDialogHeader>
 
