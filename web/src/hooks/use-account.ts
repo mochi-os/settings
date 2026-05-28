@@ -19,7 +19,7 @@ import type {
   TokenCreateResponse,
 } from '@/types/account'
 import endpoints from '@/api/endpoints'
-import { requestHelpers } from '@mochi/web'
+import { requestHelpers, requestRaw } from '@mochi/web'
 
 const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
@@ -342,5 +342,27 @@ export function useTokenDelete() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'tokens'] })
     },
+  })
+}
+
+// ============================================================================
+// Data export
+// ============================================================================
+
+export function useExportData() {
+  return useMutation({
+    mutationFn: ({
+      keys,
+      passphrase,
+    }: {
+      keys: boolean
+      passphrase: string
+    }) =>
+      requestRaw<Blob>({
+        method: 'POST',
+        url: endpoints.user.accountExport,
+        data: { keys: keys ? 'true' : 'false', passphrase },
+        responseType: 'blob',
+      }),
   })
 }

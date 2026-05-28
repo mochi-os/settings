@@ -48,6 +48,8 @@ const endpoints = {
     interestsRemove: '-/user/interests/remove',
     interestsSearch: '-/user/interests/search',
     interestsSummary: '-/user/interests/summary',
+    // Export
+    accountExport: '-/user/account/export',
     // Replication
     replication: '-/user/replication/data',
     replicationApprove: '-/user/replication/approve',

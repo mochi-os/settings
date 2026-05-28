@@ -17,6 +17,24 @@ def action_user_account(a):
         "sessions": mochi.user.session.list(),
     })
 
+def action_user_account_export(a):
+    """Build a data export bundle and stream it to the browser.
+
+    keys="true" produces a migration bundle (passphrase-encrypted entity
+    private keys included); otherwise a GDPR data download with no keys.
+    """
+    keys = a.input("keys", "") == "true"
+    passphrase = a.input("passphrase", "")
+    if keys and not passphrase:
+        a.error.label(400, "errors.passphrase_required")
+        return
+
+    path = mochi.user.export(keys, passphrase)
+    name = path.split("/")[-1]
+    a.header("Content-Type", "application/zip")
+    a.header("Content-Disposition", 'attachment; filename="' + name + '"')
+    a.write.file(path)
+
 def action_user_account_identity(a):
     """Get user identity information"""
     entity_id = a.user.identity.id

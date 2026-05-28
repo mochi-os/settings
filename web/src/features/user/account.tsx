@@ -43,6 +43,7 @@ import {
   useTotpVerify,
   useUpdateIdentity,
 } from '@/hooks/use-account'
+import { DataSection } from './data'
 import {
   Button,
   ConfirmDialog,
@@ -1036,6 +1037,7 @@ export function UserAccount() {
           <AuthenticatorSection />
           <RecoveryCodesSection />
           <OauthSection />
+          <DataSection />
         </div>
         <ServerDocumentsFooter />
       </Main>
