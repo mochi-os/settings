@@ -58,7 +58,11 @@ def action_user_account_export_download(a):
         download = name
     a.header("Content-Type", "application/zip")
     a.header("Content-Disposition", 'attachment; filename="' + download + '"')
+    # a.write.file streams synchronously, so by the time it returns the
+    # bundle has been served; delete it so the (multi-GB) backup with
+    # encrypted keys doesn't linger in the user's files.
     a.write.file("mochi-export/" + name)
+    mochi.file.delete("mochi-export/" + name)
 
 def action_user_account_identity(a):
     """Get user identity information"""
