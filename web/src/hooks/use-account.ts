@@ -349,12 +349,26 @@ export function useTokenDelete() {
 // Data export
 // ============================================================================
 
+// Email the user a one-time code before an export. The bundle carries
+// the account's private keys, so the export requires this second factor;
+// the email also alerts the user if a stolen session is attempting one.
+export function useSendExportCode() {
+  return useMutation({
+    mutationFn: () =>
+      requestHelpers.post<{ ok: boolean }>(
+        endpoints.user.accountExportCode,
+        {},
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      ),
+  })
+}
+
 export function useExportData() {
   return useMutation({
-    mutationFn: ({ passphrase }: { passphrase: string }) =>
+    mutationFn: ({ passphrase, code }: { passphrase: string; code: string }) =>
       requestHelpers.post<{ filename: string }>(
         endpoints.user.accountExport,
-        { passphrase },
+        { passphrase, code },
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
   })

@@ -17,20 +17,39 @@ def action_user_account(a):
         "sessions": mochi.user.session.list(),
     })
 
+def action_user_account_export_code(a):
+    """Email the user a one-time code to authorise an export.
+
+    The bundle includes the user's private keys, so the export requires a
+    second factor: the same email code used for login. Sent when the
+    download dialog opens; the user enters it alongside the passphrase.
+    """
+    mochi.user.code.send()
+    a.json({"ok": True})
+
 def action_user_account_export(a):
     """Build a backup bundle and return its filename.
 
     Every export is a complete, restorable backup: the user's data plus
-    their passphrase-encrypted private keys. The bundle is streamed
-    separately by export/download so the browser can save multi-GB files
-    straight to disk rather than buffering them.
+    their passphrase-encrypted private keys. Because the bundle can
+    extract the account's identity keys, it is gated on a second factor:
+    an emailed login code the user must enter alongside the passphrase.
+    The bundle is streamed separately by export/download so the browser
+    can save multi-GB files straight to disk rather than buffering them.
     """
+    code = a.input("code", "")
+    if not code:
+        a.error.label(400, "errors.missing_code")
+        return
     passphrase = a.input("passphrase", "")
     if not passphrase:
         a.error.label(400, "errors.passphrase_required")
         return
 
-    path = mochi.user.export(passphrase)
+    path = mochi.user.export(passphrase, code)
+    if path == None:
+        a.error.label(400, "errors.code_invalid")
+        return
     a.json({"filename": path.split("/")[-1]})
 
 def action_user_account_export_download(a):

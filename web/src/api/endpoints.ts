@@ -50,6 +50,7 @@ const endpoints = {
     interestsSummary: '-/user/interests/summary',
     // Export
     accountExport: '-/user/account/export',
+    accountExportCode: '-/user/account/export/code',
     // Replication
     replication: '-/user/replication/data',
     replicationApprove: '-/user/replication/approve',
