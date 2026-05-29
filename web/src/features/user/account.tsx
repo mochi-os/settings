@@ -70,7 +70,6 @@ import {
   TableRow,
   PageHeader,
   Main,
-  RestoreBanner,
   usePageTitle,
   Section,
   FieldRow,
@@ -1027,18 +1026,31 @@ export function UserAccount() {
     }, 0)
   }, [t])
 
+  // The post-restore banner links here with #oauth to take the user
+  // straight to re-linking. In the shell the page scrolls an inner
+  // container, so native hash-scroll is unreliable; scroll the section
+  // into view once it has rendered.
+  useEffect(() => {
+    if (window.location.hash !== '#oauth') return
+    const timer = setTimeout(() => {
+      document.getElementById('oauth')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 150)
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <>
       <PageHeader title={t`Account`} icon={<User className='size-4 md:size-5' />} />
       <Main>
-        <RestoreBanner />
         <div className='space-y-8 pb-6'>
           <IdentitySection />
           <LoginRequirementsSection />
           <PasskeysSection />
           <AuthenticatorSection />
           <RecoveryCodesSection />
-          <OauthSection />
+          <div id='oauth' className='scroll-mt-20'>
+            <OauthSection />
+          </div>
           <DataSection />
         </div>
         <ServerDocumentsFooter />
