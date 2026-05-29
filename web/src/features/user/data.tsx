@@ -12,7 +12,9 @@ import {
   Input,
   Label,
   Section,
+  getApiBasepath,
   getErrorMessage,
+  isInShell,
   toast,
 } from '@mochi/web'
 import { useExportData } from '@/hooks/use-account'
@@ -36,22 +38,49 @@ function generatePassphrase(): string {
 // Download helper
 // ============================================================================
 
-function triggerDownload(blob: Blob, filename: string): void {
-  const url = URL.createObjectURL(blob)
-  const anchor = document.createElement('a')
-  anchor.href = url
-  anchor.download = filename
-  document.body.appendChild(anchor)
-  anchor.click()
-  document.body.removeChild(anchor)
-  URL.revokeObjectURL(url)
+// A friendly, filesystem-safe download name in the browser's local time.
+// The server's on-disk name is UTC for stability; this is what the user
+// actually sees saved. Fixed YYYY-MM-DD-HHMM layout, not a localised date
+// format, so it stays sortable and valid as a filename everywhere.
+function localExportName(): string {
+  const now = new Date()
+  const pad = (n: number) => String(n).padStart(2, '0')
+  const stamp = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}`
+  return `mochi-export-${stamp}.zip`
+}
+
+// The bundle can be many gigabytes, so we never buffer it in the iframe.
+// The build action returns a filename; the browser then streams the file
+// straight to disk via a top-window navigation to the public download
+// action (which serves it with Content-Disposition: attachment, so the
+// shell page stays put). The navigation must run in the top window
+// because only it carries the session cookie. `_shell=1` tells the server
+// to serve the raw app response rather than wrap it in the menu shell —
+// the same signal the shell's own iframe uses for app content.
+function startDownload(filename: string): void {
+  let base = getApiBasepath()
+  if (!base.endsWith('-/')) {
+    base = (base.endsWith('/') ? base : base + '/') + '-/'
+  }
+  const url =
+    base +
+    'user/account/export/download?file=' +
+    encodeURIComponent(filename) +
+    '&name=' +
+    encodeURIComponent(localExportName()) +
+    '&_shell=1'
+  if (isInShell()) {
+    window.parent.postMessage({ type: 'navigate-top', url }, '*')
+  } else {
+    window.location.href = url
+  }
 }
 
 // ============================================================================
-// Migration bundle dialog
+// Download dialog
 // ============================================================================
 
-function MigrationDialog({
+function DownloadDialog({
   open,
   onOpenChange,
 }: {
@@ -66,22 +95,6 @@ function MigrationDialog({
     setPassphrase(generatePassphrase())
   }
 
-  const handleDownload = async () => {
-    if (!passphrase.trim()) {
-      toast.error(t`Enter a passphrase before downloading`)
-      return
-    }
-    try {
-      const blob = await exportData.mutateAsync({ keys: true, passphrase: passphrase.trim() })
-      triggerDownload(blob, 'mochi-export.zip')
-      onOpenChange(false)
-      setPassphrase('')
-      toast.success(t`Migration bundle downloaded`)
-    } catch (err) {
-      toast.error(getErrorMessage(err, t`Export failed`))
-    }
-  }
-
   const handleOpenChange = (next: boolean) => {
     if (!next) {
       setPassphrase('')
@@ -89,15 +102,30 @@ function MigrationDialog({
     onOpenChange(next)
   }
 
+  const handleDownload = async () => {
+    if (!passphrase.trim()) {
+      toast.error(t`Enter a passphrase before downloading`)
+      return
+    }
+    try {
+      const { filename } = await exportData.mutateAsync({ passphrase: passphrase.trim() })
+      startDownload(filename)
+      handleOpenChange(false)
+      toast.success(t`Your data is downloading`)
+    } catch (err) {
+      toast.error(getErrorMessage(err, t`Export failed`))
+    }
+  }
+
   return (
     <ResponsiveDialog open={open} onOpenChange={handleOpenChange}>
       <ResponsiveDialogContent>
         <ResponsiveDialogHeader>
           <ResponsiveDialogTitle>
-            <Trans>Download migration bundle</Trans>
+            <Trans>Download your data</Trans>
           </ResponsiveDialogTitle>
           <ResponsiveDialogDescription>
-            <Trans>Your private keys will be included, encrypted with the passphrase below.</Trans>
+            <Trans>This is a complete backup you can restore on this or another Mochi server.</Trans>
           </ResponsiveDialogDescription>
         </ResponsiveDialogHeader>
         <div className='space-y-4 py-2'>
@@ -126,7 +154,7 @@ function MigrationDialog({
               </Button>
             </div>
             <p className='text-muted-foreground text-xs leading-relaxed'>
-              <Trans>Store this passphrase safely — it's the only thing protecting the keys inside the bundle, and Mochi has no way to recover it.</Trans>
+              <Trans>Your private keys are included, encrypted with this passphrase. Store it safely. You'll need it to restore.</Trans>
             </p>
           </div>
         </div>
@@ -161,55 +189,20 @@ function MigrationDialog({
 
 export function DataSection() {
   const { t } = useLingui()
-  const exportData = useExportData()
-  const [migrationDialogOpen, setMigrationDialogOpen] = useState(false)
-
-  const handleGdprDownload = async () => {
-    try {
-      const blob = await exportData.mutateAsync({ keys: false, passphrase: '' })
-      triggerDownload(blob, 'mochi-export.zip')
-      toast.success(t`Data downloaded`)
-    } catch (err) {
-      toast.error(getErrorMessage(err, t`Export failed`))
-    }
-  }
+  const [dialogOpen, setDialogOpen] = useState(false)
 
   return (
-    <Section title={t`Your data`}>
-      <div className='space-y-4 py-2'>
-        <p className='text-muted-foreground text-sm'>
-          <Trans>Download a copy of your account data. The migration bundle also includes your private keys so you can move to a different server.</Trans>
-        </p>
-        <div className='flex flex-wrap gap-3'>
-          <Button
-            variant='outline'
-            onClick={handleGdprDownload}
-            disabled={exportData.isPending}
-          >
-            {exportData.isPending ? (
-              <Loader2 className='me-2 h-4 w-4 animate-spin' />
-            ) : (
-              <Download className='me-2 h-4 w-4' />
-            )}
-            <Trans>Download my data</Trans>
-          </Button>
-          <Button
-            variant='outline'
-            onClick={() => setMigrationDialogOpen(true)}
-            disabled={exportData.isPending}
-          >
+    <>
+      <Section
+        title={t`Your data`}
+        action={
+          <Button variant='outline' size='sm' onClick={() => setDialogOpen(true)}>
             <Download className='me-2 h-4 w-4' />
-            <Trans>Download migration bundle</Trans>
+            <Trans>Download</Trans>
           </Button>
-        </div>
-        <p className='text-muted-foreground text-xs'>
-          <Trans>This captures your account as of now. Anything received after won't be in the download.</Trans>
-        </p>
-      </div>
-      <MigrationDialog
-        open={migrationDialogOpen}
-        onOpenChange={setMigrationDialogOpen}
+        }
       />
-    </Section>
+      <DownloadDialog open={dialogOpen} onOpenChange={setDialogOpen} />
+    </>
   )
 }

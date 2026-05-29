@@ -340,7 +340,7 @@ msgstr "Blaaierkennisgewings"
 #: src/features/user/account.tsx:187
 #: src/features/user/account.tsx:673
 #: src/features/user/connected-accounts.tsx:601
-#: src/features/user/data.tsx:139
+#: src/features/user/data.tsx:167
 #: src/features/user/display.tsx:193
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
@@ -575,10 +575,6 @@ msgstr "Donker"
 #: ../../../lib/web/src/components/profile-dropdown.tsx:120
 msgid "Dark mode"
 msgstr "Donker modus"
-
-#: src/features/user/data.tsx:171
-msgid "Data downloaded"
-msgstr "Data afgelaai"
 
 #: src/features/user/preferences.tsx:288
 msgid "Date format"
@@ -826,13 +822,10 @@ msgid "Done"
 msgstr "Klaar"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:312
-#: src/features/user/data.tsx:150
+#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:201
 msgid "Download"
 msgstr "Laai af"
-
-#: src/features/user/data.tsx:181
-msgid "Download a copy of your account data. The migration bundle also includes your private keys so you can move to a different server."
-msgstr "Laai 'n kopie van jou rekeningdata af. Die migrasiepakket sluit ook jou privaat sleutels in sodat jy na 'n ander bediener kan skuif."
 
 #: src/features/system/status.tsx:127
 msgid "Download from packages.mochi-os.org"
@@ -843,18 +836,13 @@ msgstr "Laai af van packages.mochi-os.org"
 msgid "Download installer"
 msgstr "Laai installeerder af"
 
-#: src/features/user/data.tsx:97
-#: src/features/user/data.tsx:202
-msgid "Download migration bundle"
-msgstr "Laai migrasiepakket af"
-
 #: src/features/system/status.tsx:149
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Laai Mochi {latest} af en herbegin die bediener"
 
-#: src/features/user/data.tsx:194
-msgid "Download my data"
-msgstr "Laai my data af"
+#: src/features/user/data.tsx:125
+msgid "Download your data"
+msgstr "Laai jou data af"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:134
 msgid "Dyslexia-friendly"
@@ -912,11 +900,11 @@ msgstr "Leë pad gee volle domeintoegang"
 msgid "Enabled"
 msgstr "Geaktiveer"
 
-#: src/features/user/data.tsx:71
+#: src/features/user/data.tsx:107
 msgid "Enter a passphrase before downloading"
 msgstr "'n Wagfrase is nodig voor aflaai"
 
-#: src/features/user/data.tsx:113
+#: src/features/user/data.tsx:141
 msgid "Enter or generate a passphrase"
 msgstr "Voer 'n wagfrase in of genereer een"
 
@@ -937,8 +925,7 @@ msgstr "Brei sybalk uit"
 msgid "Expires"
 msgstr "Verval"
 
-#: src/features/user/data.tsx:81
-#: src/features/user/data.tsx:173
+#: src/features/user/data.tsx:116
 msgid "Export failed"
 msgstr "Uitvoer het misluk"
 
@@ -1215,7 +1202,7 @@ msgstr "Volle uitleg"
 msgid "Generate"
 msgstr "Genereer"
 
-#: src/features/user/data.tsx:123
+#: src/features/user/data.tsx:151
 msgid "Generate passphrase"
 msgstr "Genereer wagfrase"
 
@@ -1533,10 +1520,6 @@ msgstr "Microsoft kliëntgeheim"
 msgid "Microsoft tenant"
 msgstr "Microsoft-huurder"
 
-#: src/features/user/data.tsx:79
-msgid "Migration bundle downloaded"
-msgstr "Migrasiepakket afgelaai"
-
 #. placeholder {0}: info.latest
 #: src/features/system/status.tsx:95
 msgid "Mochi {0} is available"
@@ -1830,7 +1813,7 @@ msgstr "Passkey hernoem"
 msgid "Passkeys"
 msgstr "Passkeys"
 
-#: src/features/user/data.tsx:106
+#: src/features/user/data.tsx:134
 msgid "Passphrase"
 msgstr "Wagfrase"
 
@@ -2458,10 +2441,6 @@ msgstr "Status"
 msgid "Stay tuned though!"
 msgstr "Bly egter ingeskakel!"
 
-#: src/features/user/data.tsx:129
-msgid "Store this passphrase safely — it's the only thing protecting the keys inside the bundle, and Mochi has no way to recover it."
-msgstr "Stoor hierdie wagfrase veilig — dit is die enigste beskerming vir die sleutels in die pakket, en Mochi het geen manier om dit te herstel nie."
-
 #: ../../../lib/web/src/features/access/access-list.tsx:187
 msgid "Subject"
 msgstr "Onderwerp"
@@ -2584,9 +2563,9 @@ msgstr "Hierdie rekening"
 msgid "This account is on this server only"
 msgstr "Hierdie rekening is slegs op hierdie bediener"
 
-#: src/features/user/data.tsx:206
-msgid "This captures your account as of now. Anything received after won't be in the download."
-msgstr "Dit sluit jou rekening soos dit nou is in. Enigiets wat daarna ontvang word, sal nie in die aflaai wees nie."
+#: src/features/user/data.tsx:128
+msgid "This is a complete backup you can restore on this or another Mochi server."
+msgstr "Dit is 'n volledige rugsteun wat jy op hierdie of 'n ander Mochi-bediener kan herstel."
 
 #: src/features/system/replication.tsx:181
 msgid "This server"
@@ -3018,10 +2997,14 @@ msgstr "Jy sal nie meer met {0} kan aanmeld nie. Maak seker jy het nog 'n ander 
 msgid "Your account was moved here from {source}. Until you delete it there, messages and notifications may reach both servers, some of your content keeps being served from the old server, and followers may take a few minutes to find you here."
 msgstr "Jou rekening is hierheen geskuif vanaf {source}. Totdat jy dit daar uitvee, kan boodskappe en kennisgewings albei bedieners bereik, word sommige van jou inhoud steeds vanaf die ou bediener bedien, en kan volgelinge 'n paar minute neem om jou hier te vind."
 
-#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:197
 msgid "Your data"
 msgstr "Jou data"
 
-#: src/features/user/data.tsx:100
-msgid "Your private keys will be included, encrypted with the passphrase below."
-msgstr "Jou privaat sleutels sal ingesluit word, versleutel met die wagfrase hieronder."
+#: src/features/user/data.tsx:114
+msgid "Your data is downloading"
+msgstr "Jou data laai af"
+
+#: src/features/user/data.tsx:157
+msgid "Your private keys are included, encrypted with this passphrase. Store it safely. You'll need it to restore."
+msgstr "Jou private sleutels is ingesluit, versleutel met hierdie wagfrase. Stoor dit veilig. Jy sal dit nodig hê om te herstel."

@@ -340,7 +340,7 @@ msgstr "Browser-Benachrichtigungen"
 #: src/features/user/account.tsx:187
 #: src/features/user/account.tsx:673
 #: src/features/user/connected-accounts.tsx:601
-#: src/features/user/data.tsx:139
+#: src/features/user/data.tsx:167
 #: src/features/user/display.tsx:193
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
@@ -575,10 +575,6 @@ msgstr "Dunkel"
 #: ../../../lib/web/src/components/profile-dropdown.tsx:120
 msgid "Dark mode"
 msgstr "Dunkler Modus"
-
-#: src/features/user/data.tsx:171
-msgid "Data downloaded"
-msgstr "Daten heruntergeladen"
 
 #: src/features/user/preferences.tsx:288
 msgid "Date format"
@@ -826,13 +822,10 @@ msgid "Done"
 msgstr "Fertig"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:312
-#: src/features/user/data.tsx:150
+#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:201
 msgid "Download"
 msgstr "Herunterladen"
-
-#: src/features/user/data.tsx:181
-msgid "Download a copy of your account data. The migration bundle also includes your private keys so you can move to a different server."
-msgstr "Lade eine Kopie deiner Kontodaten herunter. Das Migrationspaket enthält auch deine privaten Schlüssel, sodass du zu einem anderen Server wechseln kannst."
 
 #: src/features/system/status.tsx:127
 msgid "Download from packages.mochi-os.org"
@@ -843,18 +836,13 @@ msgstr "Von packages.mochi-os.org herunterladen"
 msgid "Download installer"
 msgstr "Installer herunterladen"
 
-#: src/features/user/data.tsx:97
-#: src/features/user/data.tsx:202
-msgid "Download migration bundle"
-msgstr "Migrationspaket herunterladen"
-
 #: src/features/system/status.tsx:149
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Mochi {latest} herunterladen und den Server neu starten"
 
-#: src/features/user/data.tsx:194
-msgid "Download my data"
-msgstr "Meine Daten herunterladen"
+#: src/features/user/data.tsx:125
+msgid "Download your data"
+msgstr "Eigene Daten herunterladen"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:134
 msgid "Dyslexia-friendly"
@@ -912,11 +900,11 @@ msgstr "Leerer Pfad gewährt vollen Domain-Zugriff"
 msgid "Enabled"
 msgstr "Aktiviert"
 
-#: src/features/user/data.tsx:71
+#: src/features/user/data.tsx:107
 msgid "Enter a passphrase before downloading"
 msgstr "Passphrase vor dem Herunterladen eingeben"
 
-#: src/features/user/data.tsx:113
+#: src/features/user/data.tsx:141
 msgid "Enter or generate a passphrase"
 msgstr "Passphrase eingeben oder generieren"
 
@@ -937,8 +925,7 @@ msgstr "Seitenleiste erweitern"
 msgid "Expires"
 msgstr "Läuft ab"
 
-#: src/features/user/data.tsx:81
-#: src/features/user/data.tsx:173
+#: src/features/user/data.tsx:116
 msgid "Export failed"
 msgstr "Export fehlgeschlagen"
 
@@ -1215,7 +1202,7 @@ msgstr "Vollständiges Layout"
 msgid "Generate"
 msgstr "Generieren"
 
-#: src/features/user/data.tsx:123
+#: src/features/user/data.tsx:151
 msgid "Generate passphrase"
 msgstr "Passphrase generieren"
 
@@ -1533,10 +1520,6 @@ msgstr "Microsoft Client Secret"
 msgid "Microsoft tenant"
 msgstr "Microsoft-Tenant"
 
-#: src/features/user/data.tsx:79
-msgid "Migration bundle downloaded"
-msgstr "Migrationspaket heruntergeladen"
-
 #. placeholder {0}: info.latest
 #: src/features/system/status.tsx:95
 msgid "Mochi {0} is available"
@@ -1830,7 +1813,7 @@ msgstr "Passkey umbenannt"
 msgid "Passkeys"
 msgstr "Passkeys"
 
-#: src/features/user/data.tsx:106
+#: src/features/user/data.tsx:134
 msgid "Passphrase"
 msgstr "Passphrase"
 
@@ -2458,10 +2441,6 @@ msgstr "Status"
 msgid "Stay tuned though!"
 msgstr "Bleiben Sie aber dran!"
 
-#: src/features/user/data.tsx:129
-msgid "Store this passphrase safely — it's the only thing protecting the keys inside the bundle, and Mochi has no way to recover it."
-msgstr "Bewahre diese Passphrase sicher auf — sie ist das Einzige, was die Schlüssel im Paket schützt, und Mochi hat keine Möglichkeit, sie wiederherzustellen."
-
 #: ../../../lib/web/src/features/access/access-list.tsx:187
 msgid "Subject"
 msgstr "Betreff"
@@ -2584,9 +2563,9 @@ msgstr "Dieses Konto"
 msgid "This account is on this server only"
 msgstr "Dieses Konto ist nur auf diesem Server"
 
-#: src/features/user/data.tsx:206
-msgid "This captures your account as of now. Anything received after won't be in the download."
-msgstr "Dies erfasst dein Konto zum jetzigen Zeitpunkt. Alles, was danach empfangen wird, ist nicht im Download enthalten."
+#: src/features/user/data.tsx:128
+msgid "This is a complete backup you can restore on this or another Mochi server."
+msgstr "Dies ist eine vollständige Sicherungskopie, die Sie auf diesem oder einem anderen Mochi-Server wiederherstellen können."
 
 #: src/features/system/replication.tsx:181
 msgid "This server"
@@ -3018,10 +2997,14 @@ msgstr "Sie können sich nicht mehr mit {0} anmelden. Stellen Sie sicher, dass S
 msgid "Your account was moved here from {source}. Until you delete it there, messages and notifications may reach both servers, some of your content keeps being served from the old server, and followers may take a few minutes to find you here."
 msgstr "Ihr Konto wurde von {source} hierher verschoben. Bis Sie es dort löschen, können Nachrichten und Benachrichtigungen beide Server erreichen, ein Teil Ihrer Inhalte wird weiterhin vom alten Server bereitgestellt, und Follower benötigen möglicherweise ein paar Minuten, um Sie hier zu finden."
 
-#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:197
 msgid "Your data"
 msgstr "Deine Daten"
 
-#: src/features/user/data.tsx:100
-msgid "Your private keys will be included, encrypted with the passphrase below."
-msgstr "Deine privaten Schlüssel werden mit der unten stehenden Passphrase verschlüsselt enthalten sein."
+#: src/features/user/data.tsx:114
+msgid "Your data is downloading"
+msgstr "Ihre Daten werden heruntergeladen"
+
+#: src/features/user/data.tsx:157
+msgid "Your private keys are included, encrypted with this passphrase. Store it safely. You'll need it to restore."
+msgstr "Ihre privaten Schlüssel sind enthalten, verschlüsselt mit dieser Passphrase. Bewahren Sie sie sicher auf. Sie benötigen sie zur Wiederherstellung."

@@ -340,7 +340,7 @@ msgstr "Tilkynningar vafra"
 #: src/features/user/account.tsx:187
 #: src/features/user/account.tsx:673
 #: src/features/user/connected-accounts.tsx:601
-#: src/features/user/data.tsx:139
+#: src/features/user/data.tsx:167
 #: src/features/user/display.tsx:193
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
@@ -575,10 +575,6 @@ msgstr "Dökkt"
 #: ../../../lib/web/src/components/profile-dropdown.tsx:120
 msgid "Dark mode"
 msgstr "Dökkur hamur"
-
-#: src/features/user/data.tsx:171
-msgid "Data downloaded"
-msgstr "Gögn sótt"
 
 #: src/features/user/preferences.tsx:288
 msgid "Date format"
@@ -826,13 +822,10 @@ msgid "Done"
 msgstr "Lokið"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:312
-#: src/features/user/data.tsx:150
+#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:201
 msgid "Download"
 msgstr "Hlaða niður"
-
-#: src/features/user/data.tsx:181
-msgid "Download a copy of your account data. The migration bundle also includes your private keys so you can move to a different server."
-msgstr "Sæktu afrit af gögnum reikningsins þíns. Flutningspakkinn inniheldur einnig einkalykla þína svo þú getir flutt þig á annan þjón."
 
 #: src/features/system/status.tsx:127
 msgid "Download from packages.mochi-os.org"
@@ -843,18 +836,13 @@ msgstr "Hlaða niður frá packages.mochi-os.org"
 msgid "Download installer"
 msgstr "Hlaða niður uppsetningarforriti"
 
-#: src/features/user/data.tsx:97
-#: src/features/user/data.tsx:202
-msgid "Download migration bundle"
-msgstr "Sækja flutningspakka"
-
 #: src/features/system/status.tsx:149
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Hlaða niður Mochi {latest} og endurræsa þjóninn"
 
-#: src/features/user/data.tsx:194
-msgid "Download my data"
-msgstr "Sækja gögn mín"
+#: src/features/user/data.tsx:125
+msgid "Download your data"
+msgstr "Sæktu gögnin þín"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:134
 msgid "Dyslexia-friendly"
@@ -912,11 +900,11 @@ msgstr "Tóm slóð veitir fullan aðgang að léni"
 msgid "Enabled"
 msgstr "Virkt"
 
-#: src/features/user/data.tsx:71
+#: src/features/user/data.tsx:107
 msgid "Enter a passphrase before downloading"
 msgstr "Sláðu inn lykilsetningu fyrir niðurhal"
 
-#: src/features/user/data.tsx:113
+#: src/features/user/data.tsx:141
 msgid "Enter or generate a passphrase"
 msgstr "Sláðu inn eða búðu til lykilsetningu"
 
@@ -937,8 +925,7 @@ msgstr "Útvíkka hliðarstiku"
 msgid "Expires"
 msgstr "Rennur út"
 
-#: src/features/user/data.tsx:81
-#: src/features/user/data.tsx:173
+#: src/features/user/data.tsx:116
 msgid "Export failed"
 msgstr "Útflutningur mistókst"
 
@@ -1215,7 +1202,7 @@ msgstr "Full umgjörð"
 msgid "Generate"
 msgstr "Mynda"
 
-#: src/features/user/data.tsx:123
+#: src/features/user/data.tsx:151
 msgid "Generate passphrase"
 msgstr "Búa til lykilsetningu"
 
@@ -1533,10 +1520,6 @@ msgstr "Microsoft viðskiptavinarleyndarmál"
 msgid "Microsoft tenant"
 msgstr "Microsoft leigjandi"
 
-#: src/features/user/data.tsx:79
-msgid "Migration bundle downloaded"
-msgstr "Flutningspakki sóttur"
-
 #. placeholder {0}: info.latest
 #: src/features/system/status.tsx:95
 msgid "Mochi {0} is available"
@@ -1830,7 +1813,7 @@ msgstr "Aðgangslykli endurnefnt"
 msgid "Passkeys"
 msgstr "Aðgangslyklar"
 
-#: src/features/user/data.tsx:106
+#: src/features/user/data.tsx:134
 msgid "Passphrase"
 msgstr "Lykilsetning"
 
@@ -2458,10 +2441,6 @@ msgstr "Staða"
 msgid "Stay tuned though!"
 msgstr "En haltu áfram að fylgjast með!"
 
-#: src/features/user/data.tsx:129
-msgid "Store this passphrase safely — it's the only thing protecting the keys inside the bundle, and Mochi has no way to recover it."
-msgstr "Geymdu þessa lykilsetningu öruggt — hún er eina vernd lyklanna í pakkanum og Mochi getur ekki endurheimt hana."
-
 #: ../../../lib/web/src/features/access/access-list.tsx:187
 msgid "Subject"
 msgstr "Efni"
@@ -2584,9 +2563,9 @@ msgstr "Þessi reikningur"
 msgid "This account is on this server only"
 msgstr "Þessi reikningur er aðeins á þessum þjóni"
 
-#: src/features/user/data.tsx:206
-msgid "This captures your account as of now. Anything received after won't be in the download."
-msgstr "Þetta tekur upp reikninginn þinn eins og hann er núna. Allt sem berst á eftir verður ekki í niðurhalinu."
+#: src/features/user/data.tsx:128
+msgid "This is a complete backup you can restore on this or another Mochi server."
+msgstr "Þetta er heildstæð öryggisafrit sem þú getur endurheimt á þessum eða öðrum Mochi þjóni."
 
 #: src/features/system/replication.tsx:181
 msgid "This server"
@@ -3018,10 +2997,14 @@ msgstr "Þú munt ekki geta skráð þig inn með {0} lengur. Vertu viss um að 
 msgid "Your account was moved here from {source}. Until you delete it there, messages and notifications may reach both servers, some of your content keeps being served from the old server, and followers may take a few minutes to find you here."
 msgstr "Reikningurinn þinn var fluttur hingað frá {source}. Þar til þú eyðir honum þar, geta skilaboð og tilkynningar náð til beggja þjóna, hluti af efni þínu heldur áfram að vera þjónað af gamla þjóninum og fylgjendur gætu þurft nokkrar mínútur að finna þig hér."
 
-#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:197
 msgid "Your data"
 msgstr "Gögn þín"
 
-#: src/features/user/data.tsx:100
-msgid "Your private keys will be included, encrypted with the passphrase below."
-msgstr "Einkalyklar þínir verða hluti af pakkanum, dulkóðaðir með lykilsetningunni hér að neðan."
+#: src/features/user/data.tsx:114
+msgid "Your data is downloading"
+msgstr "Gögnin þín eru að sækjast"
+
+#: src/features/user/data.tsx:157
+msgid "Your private keys are included, encrypted with this passphrase. Store it safely. You'll need it to restore."
+msgstr "Einkalykillar þínir eru innifaldir, dulkóðaðir með þessari lykilsetningu. Geymdu hana á öruggum stað. Þú þarft hana til að endurheimta."

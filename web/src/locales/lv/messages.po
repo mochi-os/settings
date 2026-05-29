@@ -340,7 +340,7 @@ msgstr "Pārlūka paziņojumi"
 #: src/features/user/account.tsx:187
 #: src/features/user/account.tsx:673
 #: src/features/user/connected-accounts.tsx:601
-#: src/features/user/data.tsx:139
+#: src/features/user/data.tsx:167
 #: src/features/user/display.tsx:193
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
@@ -575,10 +575,6 @@ msgstr "Tumšs"
 #: ../../../lib/web/src/components/profile-dropdown.tsx:120
 msgid "Dark mode"
 msgstr "Tumšais režīms"
-
-#: src/features/user/data.tsx:171
-msgid "Data downloaded"
-msgstr "Dati lejupielādēti"
 
 #: src/features/user/preferences.tsx:288
 msgid "Date format"
@@ -826,13 +822,10 @@ msgid "Done"
 msgstr "Pabeigts"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:312
-#: src/features/user/data.tsx:150
+#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:201
 msgid "Download"
 msgstr "Lejupielādēt"
-
-#: src/features/user/data.tsx:181
-msgid "Download a copy of your account data. The migration bundle also includes your private keys so you can move to a different server."
-msgstr "Lejupielādējiet sava konta datu kopiju. Migrācijas pakotne ietver arī jūsu privātās atslēgas, lai jūs varētu pārvietoties uz citu serveri."
 
 #: src/features/system/status.tsx:127
 msgid "Download from packages.mochi-os.org"
@@ -843,18 +836,13 @@ msgstr "Lejupielādēt no packages.mochi-os.org"
 msgid "Download installer"
 msgstr "Lejupielādēt instalētāju"
 
-#: src/features/user/data.tsx:97
-#: src/features/user/data.tsx:202
-msgid "Download migration bundle"
-msgstr "Lejupielādēt migrācijas pakotni"
-
 #: src/features/system/status.tsx:149
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Lejupielādējiet Mochi {latest} un restartējiet serveri"
 
-#: src/features/user/data.tsx:194
-msgid "Download my data"
-msgstr "Lejupielādēt manus datus"
+#: src/features/user/data.tsx:125
+msgid "Download your data"
+msgstr "Lejupielādēt savus datus"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:134
 msgid "Dyslexia-friendly"
@@ -912,11 +900,11 @@ msgstr "Tukšs ceļš piešķir pilnu domēna piekļuvi"
 msgid "Enabled"
 msgstr "Iespējots"
 
-#: src/features/user/data.tsx:71
+#: src/features/user/data.tsx:107
 msgid "Enter a passphrase before downloading"
 msgstr "Ievadiet ieejas frāzi pirms lejupielādes"
 
-#: src/features/user/data.tsx:113
+#: src/features/user/data.tsx:141
 msgid "Enter or generate a passphrase"
 msgstr "Ievadiet vai ģenerējiet ieejas frāzi"
 
@@ -937,8 +925,7 @@ msgstr "Izvērst sānjoslu"
 msgid "Expires"
 msgstr "Beidzas"
 
-#: src/features/user/data.tsx:81
-#: src/features/user/data.tsx:173
+#: src/features/user/data.tsx:116
 msgid "Export failed"
 msgstr "Eksports neizdevās"
 
@@ -1215,7 +1202,7 @@ msgstr "Pilns izkārtojums"
 msgid "Generate"
 msgstr "Ģenerēt"
 
-#: src/features/user/data.tsx:123
+#: src/features/user/data.tsx:151
 msgid "Generate passphrase"
 msgstr "Ģenerēt ieejas frāzi"
 
@@ -1533,10 +1520,6 @@ msgstr "Microsoft klienta noslēpums"
 msgid "Microsoft tenant"
 msgstr "Microsoft nomnieks"
 
-#: src/features/user/data.tsx:79
-msgid "Migration bundle downloaded"
-msgstr "Migrācijas pakotne lejupielādēta"
-
 #. placeholder {0}: info.latest
 #: src/features/system/status.tsx:95
 msgid "Mochi {0} is available"
@@ -1830,7 +1813,7 @@ msgstr "Piekļuves atslēga pārdēvēta"
 msgid "Passkeys"
 msgstr "Piekļuves atslēgas"
 
-#: src/features/user/data.tsx:106
+#: src/features/user/data.tsx:134
 msgid "Passphrase"
 msgstr "Ieejas frāze"
 
@@ -2458,10 +2441,6 @@ msgstr "Statuss"
 msgid "Stay tuned though!"
 msgstr "Tomēr palieciet uz viļņa!"
 
-#: src/features/user/data.tsx:129
-msgid "Store this passphrase safely — it's the only thing protecting the keys inside the bundle, and Mochi has no way to recover it."
-msgstr "Glabājiet šo ieejas frāzi droši — tā ir vienīgā lieta, kas aizsargā pakotnes iekšienes atslēgas, un Mochi tai nav atkopšanas iespējas."
-
 #: ../../../lib/web/src/features/access/access-list.tsx:187
 msgid "Subject"
 msgstr "Tēma"
@@ -2584,9 +2563,9 @@ msgstr "Šis konts"
 msgid "This account is on this server only"
 msgstr "Šis konts ir tikai šajā serverī"
 
-#: src/features/user/data.tsx:206
-msgid "This captures your account as of now. Anything received after won't be in the download."
-msgstr "Tas uzglabā jūsu kontu tādu, kāds tas ir tagad. Viss, kas saņemts pēc tam, nebūs lejupielādē."
+#: src/features/user/data.tsx:128
+msgid "This is a complete backup you can restore on this or another Mochi server."
+msgstr "Šī ir pilnīga dublējumkopija, kuru varat atjaunot šajā vai citā Mochi serverī."
 
 #: src/features/system/replication.tsx:181
 msgid "This server"
@@ -3018,10 +2997,14 @@ msgstr "Jūs vairs nevarēsit pierakstīties ar {0}. Pārliecinieties, ka jums j
 msgid "Your account was moved here from {source}. Until you delete it there, messages and notifications may reach both servers, some of your content keeps being served from the old server, and followers may take a few minutes to find you here."
 msgstr "Jūsu konts tika pārvietots šeit no {source}. Kamēr to tur nedzēšat, ziņojumi un paziņojumi var sasniegt abus serverus, daļa jūsu satura joprojām tiek apkalpota no vecā servera un sekotājiem var paiet dažas minūtes, lai atrastu jūs šeit."
 
-#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:197
 msgid "Your data"
 msgstr "Jūsu dati"
 
-#: src/features/user/data.tsx:100
-msgid "Your private keys will be included, encrypted with the passphrase below."
-msgstr "Jūsu privātās atslēgas tiks iekļautas, šifrētas ar zemāk norādīto ieejas frāzi."
+#: src/features/user/data.tsx:114
+msgid "Your data is downloading"
+msgstr "Jūsu dati tiek lejupielādēti"
+
+#: src/features/user/data.tsx:157
+msgid "Your private keys are included, encrypted with this passphrase. Store it safely. You'll need it to restore."
+msgstr "Jūsu privātās atslēgas ir iekļautas, šifrētas ar šo paroles frāzi. Glabājiet to drošā vietā. Tā būs nepieciešama atjaunošanai."

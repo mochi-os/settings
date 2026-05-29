@@ -340,7 +340,7 @@ msgstr "ブラウザ通知"
 #: src/features/user/account.tsx:187
 #: src/features/user/account.tsx:673
 #: src/features/user/connected-accounts.tsx:601
-#: src/features/user/data.tsx:139
+#: src/features/user/data.tsx:167
 #: src/features/user/display.tsx:193
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
@@ -575,10 +575,6 @@ msgstr "ダーク"
 #: ../../../lib/web/src/components/profile-dropdown.tsx:120
 msgid "Dark mode"
 msgstr "ダークモード"
-
-#: src/features/user/data.tsx:171
-msgid "Data downloaded"
-msgstr "データをダウンロードしました"
 
 #: src/features/user/preferences.tsx:288
 msgid "Date format"
@@ -826,13 +822,10 @@ msgid "Done"
 msgstr "完了"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:312
-#: src/features/user/data.tsx:150
+#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:201
 msgid "Download"
 msgstr "ダウンロード"
-
-#: src/features/user/data.tsx:181
-msgid "Download a copy of your account data. The migration bundle also includes your private keys so you can move to a different server."
-msgstr "アカウントデータのコピーをダウンロードします。移行バンドルには秘密鍵も含まれており、別のサーバーに移動できます。"
 
 #: src/features/system/status.tsx:127
 msgid "Download from packages.mochi-os.org"
@@ -843,17 +836,12 @@ msgstr "packages.mochi-os.org からダウンロード"
 msgid "Download installer"
 msgstr "インストーラーをダウンロード"
 
-#: src/features/user/data.tsx:97
-#: src/features/user/data.tsx:202
-msgid "Download migration bundle"
-msgstr "移行バンドルをダウンロード"
-
 #: src/features/system/status.tsx:149
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Mochi {latest} をダウンロードしてサーバーを再起動"
 
-#: src/features/user/data.tsx:194
-msgid "Download my data"
+#: src/features/user/data.tsx:125
+msgid "Download your data"
 msgstr "データをダウンロード"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:134
@@ -912,11 +900,11 @@ msgstr "パスを空にするとドメイン全体へのアクセスが許可さ
 msgid "Enabled"
 msgstr "有効"
 
-#: src/features/user/data.tsx:71
+#: src/features/user/data.tsx:107
 msgid "Enter a passphrase before downloading"
 msgstr "ダウンロード前にパスフレーズを入力してください"
 
-#: src/features/user/data.tsx:113
+#: src/features/user/data.tsx:141
 msgid "Enter or generate a passphrase"
 msgstr "パスフレーズを入力または生成してください"
 
@@ -937,8 +925,7 @@ msgstr "サイドバーを展開"
 msgid "Expires"
 msgstr "有効期限"
 
-#: src/features/user/data.tsx:81
-#: src/features/user/data.tsx:173
+#: src/features/user/data.tsx:116
 msgid "Export failed"
 msgstr "エクスポートに失敗しました"
 
@@ -1215,7 +1202,7 @@ msgstr "フルレイアウト"
 msgid "Generate"
 msgstr "生成"
 
-#: src/features/user/data.tsx:123
+#: src/features/user/data.tsx:151
 msgid "Generate passphrase"
 msgstr "パスフレーズを生成"
 
@@ -1533,10 +1520,6 @@ msgstr "Microsoftクライアントシークレット"
 msgid "Microsoft tenant"
 msgstr "Microsoftテナント"
 
-#: src/features/user/data.tsx:79
-msgid "Migration bundle downloaded"
-msgstr "移行バンドルをダウンロードしました"
-
 #. placeholder {0}: info.latest
 #: src/features/system/status.tsx:95
 msgid "Mochi {0} is available"
@@ -1830,7 +1813,7 @@ msgstr "パスキー名を変更しました"
 msgid "Passkeys"
 msgstr "パスキー"
 
-#: src/features/user/data.tsx:106
+#: src/features/user/data.tsx:134
 msgid "Passphrase"
 msgstr "パスフレーズ"
 
@@ -2458,10 +2441,6 @@ msgstr "ステータス"
 msgid "Stay tuned though!"
 msgstr "今後の更新にご期待ください!"
 
-#: src/features/user/data.tsx:129
-msgid "Store this passphrase safely — it's the only thing protecting the keys inside the bundle, and Mochi has no way to recover it."
-msgstr "このパスフレーズを安全に保管してください — バンドル内の鍵を保護する唯一のものであり、Mochi は復元する手段を持ちません。"
-
 #: ../../../lib/web/src/features/access/access-list.tsx:187
 msgid "Subject"
 msgstr "件名"
@@ -2584,9 +2563,9 @@ msgstr "このアカウント"
 msgid "This account is on this server only"
 msgstr "このアカウントはこのサーバーのみにあります"
 
-#: src/features/user/data.tsx:206
-msgid "This captures your account as of now. Anything received after won't be in the download."
-msgstr "これは現時点のアカウントを記録します。以降に受信したものはダウンロードに含まれません。"
+#: src/features/user/data.tsx:128
+msgid "This is a complete backup you can restore on this or another Mochi server."
+msgstr "これは、このまたは別の Mochi サーバーに復元できる完全なバックアップです。"
 
 #: src/features/system/replication.tsx:181
 msgid "This server"
@@ -3018,10 +2997,14 @@ msgstr "{0}でサインインできなくなります。他のログイン方法
 msgid "Your account was moved here from {source}. Until you delete it there, messages and notifications may reach both servers, some of your content keeps being served from the old server, and followers may take a few minutes to find you here."
 msgstr "アカウントが{source}からここに移行されました。そちらで削除するまで、メッセージや通知が両方のサーバーに届く場合があり、一部のコンテンツは旧サーバーから引き続き提供され、フォロワーがここであなたを見つけるまで数分かかる場合があります。"
 
-#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:197
 msgid "Your data"
 msgstr "あなたのデータ"
 
-#: src/features/user/data.tsx:100
-msgid "Your private keys will be included, encrypted with the passphrase below."
-msgstr "秘密鍵が含まれ、以下のパスフレーズで暗号化されます。"
+#: src/features/user/data.tsx:114
+msgid "Your data is downloading"
+msgstr "データをダウンロード中"
+
+#: src/features/user/data.tsx:157
+msgid "Your private keys are included, encrypted with this passphrase. Store it safely. You'll need it to restore."
+msgstr "あなたの秘密鍵が含まれており、このパスフレーズで暗号化されています。安全な場所に保管してください。復元に必要になります。"

@@ -340,7 +340,7 @@ msgstr "Oznámení prohlížeče"
 #: src/features/user/account.tsx:187
 #: src/features/user/account.tsx:673
 #: src/features/user/connected-accounts.tsx:601
-#: src/features/user/data.tsx:139
+#: src/features/user/data.tsx:167
 #: src/features/user/display.tsx:193
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
@@ -575,10 +575,6 @@ msgstr "Tmavá"
 #: ../../../lib/web/src/components/profile-dropdown.tsx:120
 msgid "Dark mode"
 msgstr "Tmavý režim"
-
-#: src/features/user/data.tsx:171
-msgid "Data downloaded"
-msgstr "Data stažena"
 
 #: src/features/user/preferences.tsx:288
 msgid "Date format"
@@ -826,13 +822,10 @@ msgid "Done"
 msgstr "Hotovo"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:312
-#: src/features/user/data.tsx:150
+#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:201
 msgid "Download"
 msgstr "Stáhnout"
-
-#: src/features/user/data.tsx:181
-msgid "Download a copy of your account data. The migration bundle also includes your private keys so you can move to a different server."
-msgstr "Stáhněte kopii dat svého účtu. Migrační balíček také obsahuje vaše soukromé klíče, abyste mohli přejít na jiný server."
 
 #: src/features/system/status.tsx:127
 msgid "Download from packages.mochi-os.org"
@@ -843,18 +836,13 @@ msgstr "Stáhnout z packages.mochi-os.org"
 msgid "Download installer"
 msgstr "Stáhnout instalační program"
 
-#: src/features/user/data.tsx:97
-#: src/features/user/data.tsx:202
-msgid "Download migration bundle"
-msgstr "Stáhnout migrační balíček"
-
 #: src/features/system/status.tsx:149
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Stáhnout Mochi {latest} a restartovat server"
 
-#: src/features/user/data.tsx:194
-msgid "Download my data"
-msgstr "Stáhnout moje data"
+#: src/features/user/data.tsx:125
+msgid "Download your data"
+msgstr "Stáhněte svá data"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:134
 msgid "Dyslexia-friendly"
@@ -912,11 +900,11 @@ msgstr "Prázdná cesta uděluje plný přístup k doméně"
 msgid "Enabled"
 msgstr "Povoleno"
 
-#: src/features/user/data.tsx:71
+#: src/features/user/data.tsx:107
 msgid "Enter a passphrase before downloading"
 msgstr "Před stažením zadejte přístupové heslo"
 
-#: src/features/user/data.tsx:113
+#: src/features/user/data.tsx:141
 msgid "Enter or generate a passphrase"
 msgstr "Zadejte nebo vygenerujte přístupové heslo"
 
@@ -937,8 +925,7 @@ msgstr "Rozbalit postranní panel"
 msgid "Expires"
 msgstr "Vyprší"
 
-#: src/features/user/data.tsx:81
-#: src/features/user/data.tsx:173
+#: src/features/user/data.tsx:116
 msgid "Export failed"
 msgstr "Export se nezdařil"
 
@@ -1215,7 +1202,7 @@ msgstr "Plné rozvržení"
 msgid "Generate"
 msgstr "Vygenerovat"
 
-#: src/features/user/data.tsx:123
+#: src/features/user/data.tsx:151
 msgid "Generate passphrase"
 msgstr "Vygenerovat přístupové heslo"
 
@@ -1533,10 +1520,6 @@ msgstr "Microsoft client secret"
 msgid "Microsoft tenant"
 msgstr "Microsoft tenant"
 
-#: src/features/user/data.tsx:79
-msgid "Migration bundle downloaded"
-msgstr "Migrační balíček stažen"
-
 #. placeholder {0}: info.latest
 #: src/features/system/status.tsx:95
 msgid "Mochi {0} is available"
@@ -1830,7 +1813,7 @@ msgstr "Passkey přejmenován"
 msgid "Passkeys"
 msgstr "Passkeys"
 
-#: src/features/user/data.tsx:106
+#: src/features/user/data.tsx:134
 msgid "Passphrase"
 msgstr "Přístupové heslo"
 
@@ -2458,10 +2441,6 @@ msgstr "Stav"
 msgid "Stay tuned though!"
 msgstr "Zůstaňte ale naladěni!"
 
-#: src/features/user/data.tsx:129
-msgid "Store this passphrase safely — it's the only thing protecting the keys inside the bundle, and Mochi has no way to recover it."
-msgstr "Uložte toto přístupové heslo bezpečně — je to jediná věc chránící klíče uvnitř balíčku a Mochi jej nemůže obnovit."
-
 #: ../../../lib/web/src/features/access/access-list.tsx:187
 msgid "Subject"
 msgstr "Předmět"
@@ -2584,9 +2563,9 @@ msgstr "Tento účet"
 msgid "This account is on this server only"
 msgstr "Tento účet je pouze na tomto serveru"
 
-#: src/features/user/data.tsx:206
-msgid "This captures your account as of now. Anything received after won't be in the download."
-msgstr "Toto zachycuje váš účet k aktuálnímu okamžiku. Cokoliv přijatého poté nebude součástí stahování."
+#: src/features/user/data.tsx:128
+msgid "This is a complete backup you can restore on this or another Mochi server."
+msgstr "Toto je úplná záloha, kterou můžete obnovit na tomto nebo jiném serveru Mochi."
 
 #: src/features/system/replication.tsx:181
 msgid "This server"
@@ -3018,10 +2997,14 @@ msgstr "Nebudete se moct přihlásit pomocí {0}. Ujistěte se, že máte jiný 
 msgid "Your account was moved here from {source}. Until you delete it there, messages and notifications may reach both servers, some of your content keeps being served from the old server, and followers may take a few minutes to find you here."
 msgstr "Váš účet byl přesunut sem z {source}. Dokud ho tam nesmažete, zprávy a upozornění mohou dosahovat na oba servery, část vašeho obsahu je nadále obsluhována ze starého serveru a sledující vás mohou potřebovat několik minut, než vás zde najdou."
 
-#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:197
 msgid "Your data"
 msgstr "Vaše data"
 
-#: src/features/user/data.tsx:100
-msgid "Your private keys will be included, encrypted with the passphrase below."
-msgstr "Vaše soukromé klíče budou zahrnuty, zašifrovány níže uvedeným přístupovým heslem."
+#: src/features/user/data.tsx:114
+msgid "Your data is downloading"
+msgstr "Vaše data se stahují"
+
+#: src/features/user/data.tsx:157
+msgid "Your private keys are included, encrypted with this passphrase. Store it safely. You'll need it to restore."
+msgstr "Vaše soukromé klíče jsou zahrnuty, zašifrovány tímto přístupovým heslem. Uložte je na bezpečném místě. Budete je potřebovat k obnovení."

@@ -340,7 +340,7 @@ msgstr "Powiadomienia przeglądarki"
 #: src/features/user/account.tsx:187
 #: src/features/user/account.tsx:673
 #: src/features/user/connected-accounts.tsx:601
-#: src/features/user/data.tsx:139
+#: src/features/user/data.tsx:167
 #: src/features/user/display.tsx:193
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
@@ -575,10 +575,6 @@ msgstr "Ciemny"
 #: ../../../lib/web/src/components/profile-dropdown.tsx:120
 msgid "Dark mode"
 msgstr "Tryb ciemny"
-
-#: src/features/user/data.tsx:171
-msgid "Data downloaded"
-msgstr "Dane pobrane"
 
 #: src/features/user/preferences.tsx:288
 msgid "Date format"
@@ -826,13 +822,10 @@ msgid "Done"
 msgstr "Gotowe"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:312
-#: src/features/user/data.tsx:150
+#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:201
 msgid "Download"
 msgstr "Pobierz"
-
-#: src/features/user/data.tsx:181
-msgid "Download a copy of your account data. The migration bundle also includes your private keys so you can move to a different server."
-msgstr "Pobierz kopię danych swojego konta. Pakiet migracji zawiera również Twoje klucze prywatne, dzięki czemu możesz przenieść się na inny serwer."
 
 #: src/features/system/status.tsx:127
 msgid "Download from packages.mochi-os.org"
@@ -843,18 +836,13 @@ msgstr "Pobierz z packages.mochi-os.org"
 msgid "Download installer"
 msgstr "Pobierz instalator"
 
-#: src/features/user/data.tsx:97
-#: src/features/user/data.tsx:202
-msgid "Download migration bundle"
-msgstr "Pobierz pakiet migracji"
-
 #: src/features/system/status.tsx:149
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Pobierz Mochi {latest} i zrestartuj serwer"
 
-#: src/features/user/data.tsx:194
-msgid "Download my data"
-msgstr "Pobierz moje dane"
+#: src/features/user/data.tsx:125
+msgid "Download your data"
+msgstr "Pobierz swoje dane"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:134
 msgid "Dyslexia-friendly"
@@ -912,11 +900,11 @@ msgstr "Pusta ścieżka udziela pełnego dostępu do domeny"
 msgid "Enabled"
 msgstr "Włączone"
 
-#: src/features/user/data.tsx:71
+#: src/features/user/data.tsx:107
 msgid "Enter a passphrase before downloading"
 msgstr "Wprowadź hasło przed pobraniem"
 
-#: src/features/user/data.tsx:113
+#: src/features/user/data.tsx:141
 msgid "Enter or generate a passphrase"
 msgstr "Wprowadź lub wygeneruj hasło"
 
@@ -937,8 +925,7 @@ msgstr "Rozwiń pasek boczny"
 msgid "Expires"
 msgstr "Wygasa"
 
-#: src/features/user/data.tsx:81
-#: src/features/user/data.tsx:173
+#: src/features/user/data.tsx:116
 msgid "Export failed"
 msgstr "Eksport nie powiódł się"
 
@@ -1215,7 +1202,7 @@ msgstr "Pełny układ"
 msgid "Generate"
 msgstr "Generuj"
 
-#: src/features/user/data.tsx:123
+#: src/features/user/data.tsx:151
 msgid "Generate passphrase"
 msgstr "Generuj hasło"
 
@@ -1533,10 +1520,6 @@ msgstr "Sekret klienta Microsoft"
 msgid "Microsoft tenant"
 msgstr "Dzierżawca Microsoft"
 
-#: src/features/user/data.tsx:79
-msgid "Migration bundle downloaded"
-msgstr "Pakiet migracji pobrany"
-
 #. placeholder {0}: info.latest
 #: src/features/system/status.tsx:95
 msgid "Mochi {0} is available"
@@ -1830,7 +1813,7 @@ msgstr "Zmieniono nazwę klucza dostępu"
 msgid "Passkeys"
 msgstr "Klucze dostępu"
 
-#: src/features/user/data.tsx:106
+#: src/features/user/data.tsx:134
 msgid "Passphrase"
 msgstr "Hasło"
 
@@ -2458,10 +2441,6 @@ msgstr "Status"
 msgid "Stay tuned though!"
 msgstr "Bądź jednak na bieżąco!"
 
-#: src/features/user/data.tsx:129
-msgid "Store this passphrase safely — it's the only thing protecting the keys inside the bundle, and Mochi has no way to recover it."
-msgstr "Przechowuj to hasło bezpiecznie — to jedyna rzecz chroniąca klucze wewnątrz pakietu, a Mochi nie ma możliwości jego odzyskania."
-
 #: ../../../lib/web/src/features/access/access-list.tsx:187
 msgid "Subject"
 msgstr "Temat"
@@ -2584,9 +2563,9 @@ msgstr "To konto"
 msgid "This account is on this server only"
 msgstr "To konto jest tylko na tym serwerze"
 
-#: src/features/user/data.tsx:206
-msgid "This captures your account as of now. Anything received after won't be in the download."
-msgstr "To rejestruje stan Twojego konta w tej chwili. Wszystko otrzymane po tym czasie nie będzie w pobraniu."
+#: src/features/user/data.tsx:128
+msgid "This is a complete backup you can restore on this or another Mochi server."
+msgstr "To jest pełna kopia zapasowa, którą możesz przywrócić na tym lub innym serwerze Mochi."
 
 #: src/features/system/replication.tsx:181
 msgid "This server"
@@ -3018,10 +2997,14 @@ msgstr "Nie będziesz mógł już logować się przy użyciu {0}. Upewnij się, 
 msgid "Your account was moved here from {source}. Until you delete it there, messages and notifications may reach both servers, some of your content keeps being served from the old server, and followers may take a few minutes to find you here."
 msgstr "Twoje konto zostało przeniesione tutaj z {source}. Dopóki go tam nie usuniesz, wiadomości i powiadomienia mogą docierać do obu serwerów, część twoich treści nadal jest serwowana ze starego serwera, a obserwujący mogą potrzebować kilku minut, aby cię tu znaleźć."
 
-#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:197
 msgid "Your data"
 msgstr "Twoje dane"
 
-#: src/features/user/data.tsx:100
-msgid "Your private keys will be included, encrypted with the passphrase below."
-msgstr "Twoje klucze prywatne zostaną dołączone, zaszyfrowane poniższym hasłem."
+#: src/features/user/data.tsx:114
+msgid "Your data is downloading"
+msgstr "Twoje dane są pobierane"
+
+#: src/features/user/data.tsx:157
+msgid "Your private keys are included, encrypted with this passphrase. Store it safely. You'll need it to restore."
+msgstr "Twoje klucze prywatne są dołączone, zaszyfrowane tym hasłem-frazą. Przechowuj je w bezpiecznym miejscu. Będziesz ich potrzebować do przywrócenia."

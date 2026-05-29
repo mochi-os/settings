@@ -18,22 +18,47 @@ def action_user_account(a):
     })
 
 def action_user_account_export(a):
-    """Build a data export bundle and stream it to the browser.
+    """Build a backup bundle and return its filename.
 
-    keys="true" produces a migration bundle (passphrase-encrypted entity
-    private keys included); otherwise a GDPR data download with no keys.
+    Every export is a complete, restorable backup: the user's data plus
+    their passphrase-encrypted private keys. The bundle is streamed
+    separately by export/download so the browser can save multi-GB files
+    straight to disk rather than buffering them.
     """
-    keys = a.input("keys", "") == "true"
     passphrase = a.input("passphrase", "")
-    if keys and not passphrase:
+    if not passphrase:
         a.error.label(400, "errors.passphrase_required")
         return
 
-    path = mochi.user.export(keys, passphrase)
-    name = path.split("/")[-1]
+    path = mochi.user.export(passphrase)
+    a.json({"filename": path.split("/")[-1]})
+
+def action_user_account_export_download(a):
+    """Stream a previously built export bundle to the browser.
+
+    Public so a top-window navigation can reach it: that navigation
+    carries the session cookie but no app token. The bundle is served
+    only from the requesting user's own files (owner follows the
+    session), so a logged-in session is still required.
+    """
+    if a.user == None:
+        a.error.label(401, "errors.authentication_required")
+        return
+    name = a.input("file", "")
+    if not name or "/" in name or "\\" in name or ".." in name:
+        a.error.label(400, "errors.invalid_file")
+        return
+    # The browser supplies a friendly download name in the user's local
+    # time (the on-disk name is UTC for stability). Fall back to the
+    # on-disk name if it's missing or unsafe to place in a header.
+    download = a.input("name", "")
+    if (not download or not download.endswith(".zip") or len(download) > 128 or
+            "/" in download or "\\" in download or '"' in download or
+            "\n" in download or "\r" in download):
+        download = name
     a.header("Content-Type", "application/zip")
-    a.header("Content-Disposition", 'attachment; filename="' + name + '"')
-    a.write.file(path)
+    a.header("Content-Disposition", 'attachment; filename="' + download + '"')
+    a.write.file("mochi-export/" + name)
 
 def action_user_account_identity(a):
     """Get user identity information"""

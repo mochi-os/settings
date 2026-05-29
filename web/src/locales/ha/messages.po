@@ -340,7 +340,7 @@ msgstr "Sanarwar browser"
 #: src/features/user/account.tsx:187
 #: src/features/user/account.tsx:673
 #: src/features/user/connected-accounts.tsx:601
-#: src/features/user/data.tsx:139
+#: src/features/user/data.tsx:167
 #: src/features/user/display.tsx:193
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
@@ -575,10 +575,6 @@ msgstr "Duhu"
 #: ../../../lib/web/src/components/profile-dropdown.tsx:120
 msgid "Dark mode"
 msgstr "Dark mode"
-
-#: src/features/user/data.tsx:171
-msgid "Data downloaded"
-msgstr "An sauke bayanai"
 
 #: src/features/user/preferences.tsx:288
 msgid "Date format"
@@ -826,13 +822,10 @@ msgid "Done"
 msgstr "An gama"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:312
-#: src/features/user/data.tsx:150
+#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:201
 msgid "Download"
 msgstr "Sauke"
-
-#: src/features/user/data.tsx:181
-msgid "Download a copy of your account data. The migration bundle also includes your private keys so you can move to a different server."
-msgstr "Sauke kwafin bayanan asusunka. Fakitin ƙaura ya ƙunshi maɓallan sirri naka kuma don ku iya ƙaura zuwa sabar daban."
 
 #: src/features/system/status.tsx:127
 msgid "Download from packages.mochi-os.org"
@@ -843,18 +836,13 @@ msgstr "Sauke daga packages.mochi-os.org"
 msgid "Download installer"
 msgstr "Sauke mai shigarwa"
 
-#: src/features/user/data.tsx:97
-#: src/features/user/data.tsx:202
-msgid "Download migration bundle"
-msgstr "Sauke fakitin ƙaura"
-
 #: src/features/system/status.tsx:149
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Sauke Mochi {latest} sannan ka sake fara uwar garken"
 
-#: src/features/user/data.tsx:194
-msgid "Download my data"
-msgstr "Sauke bayananina"
+#: src/features/user/data.tsx:125
+msgid "Download your data"
+msgstr "Sauke bayananku"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:134
 msgid "Dyslexia-friendly"
@@ -912,11 +900,11 @@ msgstr "Babu path yana ba da cikakken iznin domain"
 msgid "Enabled"
 msgstr "An kunna"
 
-#: src/features/user/data.tsx:71
+#: src/features/user/data.tsx:107
 msgid "Enter a passphrase before downloading"
 msgstr "Shigar da kalmar sirri kafin saukewa"
 
-#: src/features/user/data.tsx:113
+#: src/features/user/data.tsx:141
 msgid "Enter or generate a passphrase"
 msgstr "Shigar ko ƙirƙiri kalmar sirri"
 
@@ -937,8 +925,7 @@ msgstr "Faɗaɗa sidebar"
 msgid "Expires"
 msgstr "Yana ƙarewa"
 
-#: src/features/user/data.tsx:81
-#: src/features/user/data.tsx:173
+#: src/features/user/data.tsx:116
 msgid "Export failed"
 msgstr "Fitar da bayanai ta kasa"
 
@@ -1215,7 +1202,7 @@ msgstr "Cikakken layout"
 msgid "Generate"
 msgstr "Ƙirƙira"
 
-#: src/features/user/data.tsx:123
+#: src/features/user/data.tsx:151
 msgid "Generate passphrase"
 msgstr "Ƙirƙiri kalmar sirri"
 
@@ -1533,10 +1520,6 @@ msgstr "Microsoft client secret"
 msgid "Microsoft tenant"
 msgstr "Microsoft tenant"
 
-#: src/features/user/data.tsx:79
-msgid "Migration bundle downloaded"
-msgstr "An sauke fakitin ƙaura"
-
 #. placeholder {0}: info.latest
 #: src/features/system/status.tsx:95
 msgid "Mochi {0} is available"
@@ -1830,7 +1813,7 @@ msgstr "An sake suna passkey"
 msgid "Passkeys"
 msgstr "Passkeys"
 
-#: src/features/user/data.tsx:106
+#: src/features/user/data.tsx:134
 msgid "Passphrase"
 msgstr "Kalmar sirri"
 
@@ -2458,10 +2441,6 @@ msgstr "Matsayi"
 msgid "Stay tuned though!"
 msgstr "Ku kasance da mu!"
 
-#: src/features/user/data.tsx:129
-msgid "Store this passphrase safely — it's the only thing protecting the keys inside the bundle, and Mochi has no way to recover it."
-msgstr "Adana wannan kalmar sirri cikin aminci — ita ce kawai ke kare maɓallan da ke cikin fakitin, kuma Mochi ba shi da wata hanya ta dawo da ita."
-
 #: ../../../lib/web/src/features/access/access-list.tsx:187
 msgid "Subject"
 msgstr "Batu"
@@ -2584,9 +2563,9 @@ msgstr "Wannan asusu"
 msgid "This account is on this server only"
 msgstr "Wannan asusun yana wannan sabar ne kawai"
 
-#: src/features/user/data.tsx:206
-msgid "This captures your account as of now. Anything received after won't be in the download."
-msgstr "Wannan yana ɗaukar asusunka kamar yadda yake yanzu. Ba za a saka abin da aka karɓa daga baya ba a cikin saukewa."
+#: src/features/user/data.tsx:128
+msgid "This is a complete backup you can restore on this or another Mochi server."
+msgstr "Wannan cikakken ajiya ne da kake iya maido dashi akan wannan ko wani sabar Mochi."
 
 #: src/features/system/replication.tsx:181
 msgid "This server"
@@ -3018,10 +2997,14 @@ msgstr "Ba za ka iya shiga da {0} kuma. Tabbatar har yanzu kana da wata hanya ta
 msgid "Your account was moved here from {source}. Until you delete it there, messages and notifications may reach both servers, some of your content keeps being served from the old server, and followers may take a few minutes to find you here."
 msgstr "An ƙauri asusunka zuwa nan daga {source}. Sai ka goge shi a can, saƙonni da sanarwa na iya kai ga uwar garken biyu, wasu abubuwan ka suna ci gaba da samarwa daga tsohon uwar garken, kuma mabiyanka na iya ɗaukar 'yan mintoci don su same ka nan."
 
-#: src/features/user/data.tsx:178
+#: src/features/user/data.tsx:197
 msgid "Your data"
 msgstr "Bayananka"
 
-#: src/features/user/data.tsx:100
-msgid "Your private keys will be included, encrypted with the passphrase below."
-msgstr "Za a haɗa maɓallan sirri naka, an ɓoye su da kalmar sirri da ke ƙasa."
+#: src/features/user/data.tsx:114
+msgid "Your data is downloading"
+msgstr "Ana sauke bayananka"
+
+#: src/features/user/data.tsx:157
+msgid "Your private keys are included, encrypted with this passphrase. Store it safely. You'll need it to restore."
+msgstr "An haɗa makullinku na sirri, mai ɓoye da wannan jumla ta sirri. Ajiye shi a aminci. Za ka bukata shi don maido."
