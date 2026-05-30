@@ -24,10 +24,18 @@ def action_user_replication(a):
     })
 
 def action_user_replication_approve(a):
-    """Approve a pending inbound link-request from `peer`."""
+    """Approve a pending inbound link-request from `peer`.
+
+    Approving replicates the user's private keys to `peer`, so it requires
+    step-up re-authentication: the user re-verifies their login factor(s)
+    to earn a proof token, consumed by the approve.
+    """
     peer = a.input("peer", "")
     if peer == "":
         a.error.label(400, "errors.missing_peer")
+        return
+    if not mochi.user.session.reauthenticate(a.input("token", "")):
+        a.error.label(400, "errors.reauthentication_required")
         return
     result = mochi.replication.link.approve(peer)
     a.json({"result": result})

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Trans, useLingui } from '@lingui/react/macro'
 import { Check, Copy, Loader2, ServerOff, X } from 'lucide-react'
 import {
@@ -17,6 +18,7 @@ import {
   ListSkeleton,
   Main,
   PageHeader,
+  StepUpDialog,
   Table,
   TableBody,
   TableCell,
@@ -36,18 +38,26 @@ import {
   type ReplicationHost,
   type ReplicationLink,
 } from '@/hooks/use-replication'
+import { stepUpClient } from '@/lib/step-up-client'
 
 function PendingRow({ link }: { link: ReplicationLink }) {
   const { t } = useLingui()
   const approve = useApproveLink()
   const deny = useDenyLink()
+  const [confirmOpen, setConfirmOpen] = useState(false)
   const busy = approve.isPending || deny.isPending
 
-  const onApprove = () =>
-    approve.mutate(link.peer, {
-      onSuccess: () => toast.success(t`Request approved`),
-      onError: (e) => toast.error(getErrorMessage(e, t`Approval failed`)),
-    })
+  const onVerified = (token: string) =>
+    approve.mutate(
+      { peer: link.peer, token },
+      {
+        onSuccess: () => {
+          setConfirmOpen(false)
+          toast.success(t`Request approved`)
+        },
+        onError: (e) => toast.error(getErrorMessage(e, t`Approval failed`)),
+      },
+    )
 
   const onDeny = () =>
     deny.mutate(link.peer, {
@@ -66,7 +76,7 @@ function PendingRow({ link }: { link: ReplicationLink }) {
       </TableCell>
       <TableCell className='text-end'>
         <div className='inline-flex gap-2'>
-          <Button variant='outline' size='sm' disabled={busy} onClick={onApprove}>
+          <Button variant='outline' size='sm' disabled={busy} onClick={() => setConfirmOpen(true)}>
             {approve.isPending ? <Loader2 className='h-4 w-4 animate-spin' /> : <Check className='h-4 w-4' />}
             <Trans>Approve</Trans>
           </Button>
@@ -75,6 +85,14 @@ function PendingRow({ link }: { link: ReplicationLink }) {
             <Trans>Deny</Trans>
           </Button>
         </div>
+        <StepUpDialog
+          open={confirmOpen}
+          onOpenChange={setConfirmOpen}
+          title={t`Approve request`}
+          description={t`Approving replicates private keys to that server. Verify it's you to continue.`}
+          client={stepUpClient}
+          onVerified={onVerified}
+        />
       </TableCell>
     </TableRow>
   )

@@ -57,10 +57,10 @@ export function useSystemReplication() {
 export function useApproveJoin() {
   const qc = useQueryClient()
   return useMutation({
-    mutationFn: (peer: string) =>
+    mutationFn: ({ peer, token }: { peer: string; token: string }) =>
       requestHelpers.post<{ result: string }>(
         endpoints.system.replicationJoinApprove,
-        { peer },
+        { peer, token },
         NO_TOAST,
       ),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['system', 'replication'] }),

@@ -3,6 +3,7 @@ import { Trans, useLingui } from '@lingui/react/macro'
 import type { Token } from '@/types/account'
 import { Loader2, Plus, Trash2, Copy, Check, Key } from 'lucide-react'
 import { useTokens, useTokenCreate, useTokenDelete } from '@/hooks/use-account'
+import { useStepUp } from '@/lib/use-step-up'
 import {
   Button,
   ConfirmDialog,
@@ -27,6 +28,7 @@ import {
   PageHeader,
   Main,
   usePageTitle,
+  useFormat,
   getErrorMessage,
   toast,
   shellClipboardWrite,
@@ -35,6 +37,7 @@ import {
 
 function TokenRow({ token }: { token: Token }) {
   const { t } = useLingui()
+  const { formatTimestamp } = useFormat()
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const deleteToken = useTokenDelete()
 
@@ -63,13 +66,13 @@ function TokenRow({ token }: { token: Token }) {
         </div>
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {token.created || t`Never`}
+        {formatTimestamp(token.created, t`Never`)}
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {token.last_used || t`Never`}
+        {formatTimestamp(token.last_used, t`Never`)}
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {token.expires || t`Never`}
+        {formatTimestamp(token.expires, t`Never`)}
       </TableCell>
       <TableCell className='text-end'>
         <Button
@@ -107,6 +110,7 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
   const [newToken, setNewToken] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
   const createToken = useTokenCreate()
+  const stepUp = useStepUp()
 
   const handleCreate = () => {
     if (!name.trim()) {
@@ -114,17 +118,21 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
       return
     }
 
-    createToken.mutate(
-      { name: name.trim() },
-      {
-        onSuccess: (data) => {
-          setNewToken(data.token)
-          setName('')
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to create token`))
-        },
-      }
+    // An API token is a long-lived bearer credential, so re-authenticate
+    // before minting one.
+    stepUp.request((token) =>
+      createToken.mutate(
+        { name: name.trim(), token },
+        {
+          onSuccess: (data) => {
+            setNewToken(data.token)
+            setName('')
+          },
+          onError: (error) => {
+            toast.error(getErrorMessage(error, t`Failed to create token`))
+          },
+        }
+      )
     )
   }
 
@@ -147,6 +155,7 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
   }
 
   return (
+    <>
     <ResponsiveDialog open={open} onOpenChange={setOpen}>
       <ResponsiveDialogTrigger asChild>
         <Button size='sm' variant='outline' className={triggerClassName}>
@@ -208,8 +217,10 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
                 onClick={handleCreate}
                 disabled={createToken.isPending || !name.trim()}
               >
-                {createToken.isPending && (
+                {createToken.isPending ? (
                   <Loader2 className='me-2 h-4 w-4 animate-spin' />
+                ) : (
+                  <Plus className='me-2 h-4 w-4' />
                 )}
                 <Trans>Create token</Trans>
               </Button>
@@ -218,6 +229,8 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
         )}
       </ResponsiveDialogContent>
     </ResponsiveDialog>
+    {stepUp.dialog}
+    </>
   )
 }
 

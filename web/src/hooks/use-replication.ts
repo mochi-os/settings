@@ -44,10 +44,10 @@ export function useReplication() {
 export function useApproveLink() {
   const qc = useQueryClient()
   return useMutation({
-    mutationFn: (peer: string) =>
+    mutationFn: ({ peer, token }: { peer: string; token: string }) =>
       requestHelpers.post<{ result: string }>(
         endpoints.user.replicationApprove,
-        { peer },
+        { peer, token },
         NO_TOAST,
       ),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['replication'] }),

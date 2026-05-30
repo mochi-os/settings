@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Trans, useLingui } from '@lingui/react/macro'
 import { Check, Copy, Loader2, ServerOff, X } from 'lucide-react'
 import {
@@ -16,6 +17,7 @@ import {
   ListSkeleton,
   Main,
   PageHeader,
+  StepUpDialog,
   Table,
   TableBody,
   TableCell,
@@ -36,6 +38,7 @@ import {
   type PendingJoin,
   type ServingEntry,
 } from '@/hooks/use-system-replication'
+import { stepUpClient } from '@/lib/step-up-client'
 
 // pairMemberSyncStatus returns "synced" only when both directions are
 // caught up: every inbound bootstrap row for this peer is 'done' AND
@@ -58,7 +61,20 @@ function PendingJoinRow({ join }: { join: PendingJoin }) {
   const { t } = useLingui()
   const approve = useApproveJoin()
   const deny = useDenyJoin()
+  const [confirmOpen, setConfirmOpen] = useState(false)
   const busy = approve.isPending || deny.isPending
+
+  const onVerified = (token: string) =>
+    approve.mutate(
+      { peer: join.peer, token },
+      {
+        onSuccess: () => {
+          setConfirmOpen(false)
+          toast.success(t`Join request approved`)
+        },
+        onError: (e) => toast.error(getErrorMessage(e, t`Approval failed`)),
+      },
+    )
 
   return (
     <TableRow>
@@ -71,17 +87,7 @@ function PendingJoinRow({ join }: { join: PendingJoin }) {
       </TableCell>
       <TableCell className='text-end'>
         <div className='inline-flex gap-2'>
-          <Button
-            variant='outline'
-            size='sm'
-            disabled={busy}
-            onClick={() =>
-              approve.mutate(join.peer, {
-                onSuccess: () => toast.success(t`Join request approved`),
-                onError: (e) => toast.error(getErrorMessage(e, t`Approval failed`)),
-              })
-            }
-          >
+          <Button variant='outline' size='sm' disabled={busy} onClick={() => setConfirmOpen(true)}>
             {approve.isPending ? <Loader2 className='h-4 w-4 animate-spin' /> : <Check className='h-4 w-4' />}
             <Trans>Approve</Trans>
           </Button>
@@ -100,6 +106,14 @@ function PendingJoinRow({ join }: { join: PendingJoin }) {
             <Trans>Deny</Trans>
           </Button>
         </div>
+        <StepUpDialog
+          open={confirmOpen}
+          onOpenChange={setConfirmOpen}
+          title={t`Approve request`}
+          description={t`Approving replicates private keys to that server. Verify it's you to continue.`}
+          client={stepUpClient}
+          onVerified={onVerified}
+        />
       </TableCell>
     </TableRow>
   )

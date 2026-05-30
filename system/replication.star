@@ -27,12 +27,20 @@ def action_system_replication(a):
     })
 
 def action_system_replication_join_approve(a):
-    """Approve a pending inbound pair join-request from `peer`."""
+    """Approve a pending inbound pair join-request from `peer`.
+
+    Pairing replicates every user's private keys to `peer`, so it requires
+    step-up re-authentication: the operator re-verifies their login
+    factor(s) to earn a proof token, consumed by the approve.
+    """
     if not require_admin(a):
         return
     peer = a.input("peer", "")
     if peer == "":
         a.error.label(400, "errors.missing_peer")
+        return
+    if not mochi.user.session.reauthenticate(a.input("token", "")):
+        a.error.label(400, "errors.reauthentication_required")
         return
     result = mochi.replication.join.approve(peer)
     a.json({"result": result})

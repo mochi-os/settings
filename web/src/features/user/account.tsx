@@ -43,6 +43,7 @@ import {
   useTotpVerify,
   useUpdateIdentity,
 } from '@/hooks/use-account'
+import { useStepUp } from '@/lib/use-step-up'
 import { DataSection } from './data'
 import {
   Button,
@@ -239,6 +240,7 @@ function LoginRequirementsSection() {
   const { data: passkeysData, error: passkeysError } = usePasskeys()
   const { data: totpData, error: totpError } = useTotpStatus()
   const setMethods = useSetMethods()
+  const stepUp = useStepUp()
 
   const methods = methodsData?.methods ?? ['email']
   const hasPasskey = passkeysError ? false : (passkeysData?.passkeys?.length ?? 0) > 0
@@ -256,17 +258,23 @@ function LoginRequirementsSection() {
       newMethods = ['email']
     }
 
-    setMethods.mutate(newMethods, {
-      onSuccess: () => {
-        toast.success(t`Login requirements updated`)
-      },
-      onError: (error) => {
-        toast.error(getErrorMessage(error, t`Failed to update login requirements`))
-      },
-    })
+    stepUp.request((token) =>
+      setMethods.mutate(
+        { methods: newMethods, token },
+        {
+          onSuccess: () => {
+            toast.success(t`Login requirements updated`)
+          },
+          onError: (error) => {
+            toast.error(getErrorMessage(error, t`Failed to update login requirements`))
+          },
+        },
+      ),
+    )
   }
 
   return (
+    <>
     <Section
       title={t`Login requirements`}
     >
@@ -338,6 +346,8 @@ function LoginRequirementsSection() {
         </div>
       )}
     </Section>
+    {stepUp.dialog}
+    </>
   )
 }
 
@@ -429,34 +439,40 @@ function PasskeysSection() {
   const registerFinish = usePasskeyRegisterFinish()
   const renamePasskey = usePasskeyRename()
   const deletePasskey = usePasskeyDelete()
+  const stepUp = useStepUp()
   const [isRegistering, setIsRegistering] = useState(false)
   const [registerDialogOpen, setRegisterDialogOpen] = useState(false)
   const [passkeyName, setPasskeyName] = useState('')
 
-  const handleRegister = async () => {
-    setIsRegistering(true)
-    try {
-      const beginResult = await registerBegin.mutateAsync()
-      const credential = await shellWebauthnCreate(
-        beginResult.options as RegistrationOptionsJSON
-      )
-      await registerFinish.mutateAsync({
-        ceremony: beginResult.ceremony,
-        credential,
-        name: passkeyName || t`Passkey`,
-      })
-      toast.success(t`Passkey registered`)
-      setRegisterDialogOpen(false)
-      setPasskeyName('')
-    } catch (error) {
-      if (error instanceof Error && error.name === 'NotAllowedError') {
-        toast.error(t`Registration cancelled`)
-      } else {
-        toast.error(getErrorMessage(error, t`Failed to register passkey`))
+  const handleRegister = () => {
+    // Re-authenticate first (adding a login credential is a security
+    // change), then run the registration ceremony with the proof token.
+    setRegisterDialogOpen(false)
+    stepUp.request(async (token) => {
+      setIsRegistering(true)
+      try {
+        const beginResult = await registerBegin.mutateAsync()
+        const credential = await shellWebauthnCreate(
+          beginResult.options as RegistrationOptionsJSON
+        )
+        await registerFinish.mutateAsync({
+          ceremony: beginResult.ceremony,
+          credential,
+          name: passkeyName || t`Passkey`,
+          token,
+        })
+        toast.success(t`Passkey registered`)
+        setPasskeyName('')
+      } catch (error) {
+        if ((error as { name?: string })?.name === 'NotAllowedError') {
+          toast.error(t`Registration cancelled`)
+        } else {
+          toast.error(getErrorMessage(error, t`Failed to register passkey`))
+        }
+      } finally {
+        setIsRegistering(false)
       }
-    } finally {
-      setIsRegistering(false)
-    }
+    })
   }
 
   const handleRename = (id: string, name: string) => {
@@ -518,6 +534,7 @@ function PasskeysSection() {
   )
 
   return (
+    <>
     <Section
       title={t`Passkeys`}
       action={addButton}
@@ -551,6 +568,8 @@ function PasskeysSection() {
         </Table>
       )}
     </Section>
+    {stepUp.dialog}
+    </>
   )
 }
 
@@ -564,18 +583,22 @@ function AuthenticatorSection() {
   const setupTotp = useTotpSetup()
   const verifyTotp = useTotpVerify()
   const disableTotp = useTotpDisable()
+  const stepUp = useStepUp()
   const [setupData, setSetupData] = useState<TotpSetupResponse | null>(null)
   const [showDisableDialog, setShowDisableDialog] = useState(false)
   const [verifyCode, setVerifyCode] = useState('')
   const [isVerifying, setIsVerifying] = useState(false)
 
-  const handleSetup = async () => {
-    try {
-      const result = await setupTotp.mutateAsync()
-      setSetupData(result)
-    } catch (error) {
-      toast.error(getErrorMessage(error, t`Failed to set up authenticator`))
-    }
+  const handleSetup = () => {
+    // Re-authenticate before enabling a new factor.
+    stepUp.request(async (token) => {
+      try {
+        const result = await setupTotp.mutateAsync(token)
+        setSetupData(result)
+      } catch (error) {
+        toast.error(getErrorMessage(error, t`Failed to set up authenticator`))
+      }
+    })
   }
 
   const handleVerify = async () => {
@@ -598,10 +621,11 @@ function AuthenticatorSection() {
   }
 
   const handleDisable = () => {
-    disableTotp.mutate(undefined, {
-      onSuccess: () => toast.success(t`Authenticator app disabled`),
-      onError: (error) => toast.error(getErrorMessage(error, t`Failed to disable authenticator`)),
-    })
+    stepUp.request((token) =>
+      disableTotp.mutate(token, {
+        onSuccess: () => toast.success(t`Authenticator app disabled`),
+        onError: (error) => toast.error(getErrorMessage(error, t`Failed to disable authenticator`)),
+      }))
   }
 
   const isEnabled = data?.enabled ?? false
@@ -630,6 +654,7 @@ function AuthenticatorSection() {
     )
 
   return (
+    <>
     <Section
       title={t`Authenticator app`}
       action={action}
@@ -699,6 +724,8 @@ function AuthenticatorSection() {
         }}
       />
     </Section>
+    {stepUp.dialog}
+    </>
   )
 }
 
@@ -710,16 +737,19 @@ function RecoveryCodesSection() {
   const { t } = useLingui()
   const { data, isLoading, error, refetch } = useRecoveryStatus()
   const generateCodes = useRecoveryGenerate()
+  const stepUp = useStepUp()
   const [showGenerateDialog, setShowGenerateDialog] = useState(false)
   const [showCodes, setShowCodes] = useState<string[] | null>(null)
 
-  const handleGenerate = async () => {
-    try {
-      const result = await generateCodes.mutateAsync()
-      setShowCodes(result.codes)
-    } catch (error) {
-      toast.error(getErrorMessage(error, t`Failed to generate codes`))
-    }
+  const handleGenerate = () => {
+    stepUp.request(async (token) => {
+      try {
+        const result = await generateCodes.mutateAsync(token)
+        setShowCodes(result.codes)
+      } catch (error) {
+        toast.error(getErrorMessage(error, t`Failed to generate codes`))
+      }
+    })
   }
 
   const count = data?.count ?? 0
@@ -740,6 +770,7 @@ function RecoveryCodesSection() {
   )
 
   return (
+    <>
     <Section
       title={t`Recovery codes`}
       action={action}
@@ -796,6 +827,8 @@ function RecoveryCodesSection() {
         }}
       />
     </Section>
+    {stepUp.dialog}
+    </>
   )
 }
 

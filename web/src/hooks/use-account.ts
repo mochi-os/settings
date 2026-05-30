@@ -87,10 +87,10 @@ export function useMethods() {
 export function useSetMethods() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (methods: string[]) =>
+    mutationFn: ({ methods, token }: { methods: string[]; token: string }) =>
       requestHelpers.post<{ ok: boolean; methods: string[] }>(
         endpoints.user.accountMethodsSet,
-        { methods },
+        { methods, token },
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
@@ -129,6 +129,7 @@ export function usePasskeyRegisterFinish() {
       ceremony: string
       credential: unknown
       name?: string
+      token: string
     }) =>
       requestHelpers.post<PasskeyRegisterFinishResponse>(
         endpoints.user.accountPasskeyRegisterFinish,
@@ -185,10 +186,10 @@ export function useTotpStatus() {
 
 export function useTotpSetup() {
   return useMutation({
-    mutationFn: () =>
+    mutationFn: (token: string) =>
       requestHelpers.post<TotpSetupResponse>(
         endpoints.user.accountTotpSetup,
-        {},
+        { token },
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
   })
@@ -212,10 +213,10 @@ export function useTotpVerify() {
 export function useTotpDisable() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: () =>
+    mutationFn: (token: string) =>
       requestHelpers.post<{ ok: boolean }>(
         endpoints.user.accountTotpDisable,
-        {},
+        { token },
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
@@ -241,10 +242,10 @@ export function useRecoveryStatus() {
 export function useRecoveryGenerate() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: () =>
+    mutationFn: (token: string) =>
       requestHelpers.post<RecoveryGenerateResponse>(
         endpoints.user.accountRecoveryGenerate,
-        {},
+        { token },
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
@@ -320,7 +321,7 @@ export function useTokens() {
 export function useTokenCreate() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (data: { name: string; scopes?: string[]; expires?: string }) =>
+    mutationFn: (data: { name: string; scopes?: string[]; expires?: string; token: string }) =>
       requestHelpers.post<TokenCreateResponse>(
         endpoints.user.accountTokenCreate,
         data,
@@ -349,26 +350,15 @@ export function useTokenDelete() {
 // Data export
 // ============================================================================
 
-// Email the user a one-time code before an export. The bundle carries
-// the account's private keys, so the export requires this second factor;
-// the email also alerts the user if a stolen session is attempting one.
-export function useSendExportCode() {
-  return useMutation({
-    mutationFn: () =>
-      requestHelpers.post<{ ok: boolean }>(
-        endpoints.user.accountExportCode,
-        {},
-        NO_GLOBAL_ERROR_TOAST_CONFIG
-      ),
-  })
-}
-
+// Build the export bundle. Gated by step-up re-authentication: the caller
+// runs the StepUpDialog to earn a proof token (passed here) and supplies
+// the passphrase that encrypts the keys.
 export function useExportData() {
   return useMutation({
-    mutationFn: ({ passphrase, code }: { passphrase: string; code: string }) =>
+    mutationFn: ({ passphrase, token }: { passphrase: string; token: string }) =>
       requestHelpers.post<{ filename: string }>(
         endpoints.user.accountExport,
-        { passphrase, code },
+        { passphrase, token },
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
   })

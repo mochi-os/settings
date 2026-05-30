@@ -31,6 +31,8 @@ const endpoints = {
     // OAuth identities
     accountOauth: '-/user/account/oauth',
     accountOauthUnlink: '-/user/account/oauth/unlink',
+    accountOauthVerifyBegin: '-/user/account/oauth/verify/begin',
+    accountOauthVerifyFinish: '-/user/account/oauth/verify/finish',
     // Auth methods available on the server (public) - for OAuth begin flow
     authMethods: '/_/auth/methods',
     authOauthBegin: (provider: string) => `/_/auth/oauth/${provider}/begin`,
@@ -50,7 +52,12 @@ const endpoints = {
     interestsSummary: '-/user/interests/summary',
     // Export
     accountExport: '-/user/account/export',
-    accountExportCode: '-/user/account/export/code',
+    // Step-up re-authentication: send/verify the email code, and the
+    // passkey assertion ceremony. (methods + totp/verify are reused.)
+    accountCode: '-/user/account/code',
+    accountCodeVerify: '-/user/account/code/verify',
+    accountPasskeyVerifyBegin: '-/user/account/passkey/verify/begin',
+    accountPasskeyVerifyFinish: '-/user/account/passkey/verify/finish',
     // Replication
     replication: '-/user/replication/data',
     replicationApprove: '-/user/replication/approve',

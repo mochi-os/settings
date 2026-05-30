@@ -123,9 +123,9 @@ export interface Token {
   hash: string
   name: string
   scopes: string[]
-  expires: string
-  created: string
-  last_used: string
+  expires: number
+  created: number
+  last_used: number
 }
 
 export interface TokensResponse {

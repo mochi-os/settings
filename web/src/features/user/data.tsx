@@ -1,23 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useLingui, Trans } from '@lingui/react/macro'
-import { Download, Loader2, RefreshCw } from 'lucide-react'
+import { Download, RefreshCw } from 'lucide-react'
 import {
   Button,
-  ResponsiveDialog,
-  ResponsiveDialogContent,
-  ResponsiveDialogDescription,
-  ResponsiveDialogFooter,
-  ResponsiveDialogHeader,
-  ResponsiveDialogTitle,
   Input,
   Label,
   Section,
+  StepUpDialog,
   getApiBasepath,
   getErrorMessage,
   isInShell,
   toast,
 } from '@mochi/web'
-import { useExportData, useSendExportCode } from '@/hooks/use-account'
+import { useExportData } from '@/hooks/use-account'
+import { stepUpClient } from '@/lib/step-up-client'
 import WORDS from './data-words'
 
 // ============================================================================
@@ -89,49 +85,23 @@ function DownloadDialog({
 }) {
   const { t } = useLingui()
   const exportData = useExportData()
-  const sendCode = useSendExportCode()
   const [passphrase, setPassphrase] = useState('')
-  const [code, setCode] = useState('')
-
-  // Email a one-time code the moment the dialog opens (the export's
-  // second factor). Sending here, not on submit, puts the code in the
-  // user's inbox while they're still choosing a passphrase — and alerts
-  // them immediately if a stolen session opened this dialog.
-  useEffect(() => {
-    if (!open) return
-    sendCode.mutate(undefined, {
-      onError: (err) => toast.error(getErrorMessage(err, t`Couldn't send the code`)),
-    })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open])
-
-  const handleGenerate = () => {
-    setPassphrase(generatePassphrase())
-  }
-
-  const handleResend = () => {
-    sendCode.mutate(undefined, {
-      onSuccess: () => toast.success(t`Code sent`),
-      onError: (err) => toast.error(getErrorMessage(err, t`Couldn't send the code`)),
-    })
-  }
 
   const handleOpenChange = (next: boolean) => {
     if (!next) {
       setPassphrase('')
-      setCode('')
     }
     onOpenChange(next)
   }
 
-  const handleDownload = async () => {
-    if (!passphrase.trim() || !code.trim()) {
-      return
-    }
+  // The StepUpDialog hands back a proof token once the user has re-verified
+  // their login factor(s); combine it with the passphrase to build the
+  // bundle and stream it down.
+  const onVerified = async (token: string) => {
     try {
       const { filename } = await exportData.mutateAsync({
         passphrase: passphrase.trim(),
-        code: code.trim(),
+        token,
       })
       startDownload(filename)
       handleOpenChange(false)
@@ -142,95 +112,43 @@ function DownloadDialog({
   }
 
   return (
-    <ResponsiveDialog open={open} onOpenChange={handleOpenChange}>
-      <ResponsiveDialogContent>
-        <ResponsiveDialogHeader>
-          <ResponsiveDialogTitle>
-            <Trans>Download your data</Trans>
-          </ResponsiveDialogTitle>
-          <ResponsiveDialogDescription>
-            <Trans>This is a complete backup you can restore on this or another Mochi server.</Trans>
-          </ResponsiveDialogDescription>
-        </ResponsiveDialogHeader>
-        <div className='space-y-4 py-2'>
-          <div className='space-y-2'>
-            <Label htmlFor='export-code' className='text-base font-semibold'>
-              <Trans>Email code</Trans>
-            </Label>
-            <div className='flex items-center gap-2'>
-              <Input
-                id='export-code'
-                value={code}
-                onChange={(e) => setCode(e.target.value)}
-                placeholder={t`Enter the code from your email`}
-                className='font-mono'
-                autoComplete='one-time-code'
-                disabled={exportData.isPending}
-              />
-              <Button
-                variant='outline'
-                size='sm'
-                onClick={handleResend}
-                disabled={sendCode.isPending || exportData.isPending}
-              >
-                <Trans>Resend</Trans>
-              </Button>
-            </div>
-            <p className='text-muted-foreground text-xs leading-relaxed'>
-              <Trans>We emailed a code to your account address. Enter it to authorise this download.</Trans>
-            </p>
-          </div>
-          <div className='space-y-2'>
-            <Label htmlFor='export-passphrase' className='text-base font-semibold'>
-              <Trans>Passphrase</Trans>
-            </Label>
-            <div className='flex items-center gap-2'>
-              <Input
-                id='export-passphrase'
-                value={passphrase}
-                onChange={(e) => setPassphrase(e.target.value)}
-                placeholder={t`Enter or generate a passphrase`}
-                className='font-mono'
-                autoComplete='off'
-                disabled={exportData.isPending}
-              />
-              <Button
-                variant='outline'
-                size='sm'
-                onClick={handleGenerate}
-                disabled={exportData.isPending}
-                aria-label={t`Generate passphrase`}
-              >
-                <RefreshCw className='h-4 w-4' />
-              </Button>
-            </div>
-            <p className='text-muted-foreground text-xs leading-relaxed'>
-              <Trans>Your private keys are included, encrypted with this passphrase. Store it safely. You'll need it to restore.</Trans>
-            </p>
-          </div>
-        </div>
-        <ResponsiveDialogFooter>
+    <StepUpDialog
+      open={open}
+      onOpenChange={handleOpenChange}
+      title={t`Download your data`}
+      description={t`This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue.`}
+      client={stepUpClient}
+      canVerify={!!passphrase.trim()}
+      submitLabel={t`Download`}
+      onVerified={onVerified}
+    >
+      <div className='space-y-2'>
+        <Label htmlFor='export-passphrase' className='text-base font-semibold'>
+          <Trans>Passphrase</Trans>
+        </Label>
+        <div className='flex items-center gap-2'>
+          <Input
+            id='export-passphrase'
+            value={passphrase}
+            onChange={(e) => setPassphrase(e.target.value)}
+            placeholder={t`Enter or generate a passphrase`}
+            className='font-mono'
+            autoComplete='off'
+          />
           <Button
             variant='outline'
-            onClick={() => handleOpenChange(false)}
-            disabled={exportData.isPending}
+            size='sm'
+            onClick={() => setPassphrase(generatePassphrase())}
+            aria-label={t`Generate passphrase`}
           >
-            <Trans>Cancel</Trans>
+            <RefreshCw className='h-4 w-4' />
           </Button>
-          <Button
-            onClick={handleDownload}
-            disabled={exportData.isPending || !passphrase.trim() || !code.trim()}
-          >
-            {exportData.isPending ? (
-              <Loader2 className='me-2 h-4 w-4 animate-spin' />
-            ) : (
-              <Download className='me-2 h-4 w-4' />
-            )}
-            <Trans>Download</Trans>
-          </Button>
-        </ResponsiveDialogFooter>
-      </ResponsiveDialogContent>
-    </ResponsiveDialog>
+        </div>
+        <p className='text-muted-foreground text-xs leading-relaxed'>
+          <Trans>Your private keys are included, encrypted with this passphrase. Store it safely. You'll need it to restore.</Trans>
+        </p>
+      </div>
+    </StepUpDialog>
   )
 }
 
