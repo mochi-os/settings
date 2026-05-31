@@ -4,6 +4,25 @@ import endpoints from '@/api/endpoints'
 // Errors surface inline in the StepUpDialog, so suppress the global toast.
 const NO_TOAST = { mochi: { showGlobalErrorToast: false } } as const
 
+type MethodStateMap = Record<string, { state: string }>
+
+async function fetchMethodStates(): Promise<MethodStateMap> {
+  return (
+    await requestHelpers.get<{ methods: MethodStateMap }>(endpoints.user.accountMethods)
+  ).methods
+}
+
+// The required step-up factors, mirroring the server's reauthentication_required:
+// the methods whose per-user state is "required", with OAuth re-verified as its
+// own oauth factor and recovery excluded. Empty when nothing is required.
+function requiredFactors(map: MethodStateMap): string[] {
+  const required = Object.entries(map)
+    .filter(([, info]) => info.state === 'required')
+    .map(([method]) => method)
+    .filter((m) => m !== 'recovery')
+  return Array.from(new Set(required))
+}
+
 // base64url(bytes), no padding - matches Go's base64.RawURLEncoding so the
 // server can recompute the challenge from the verifier.
 function base64url(bytes: Uint8Array): string {
@@ -32,13 +51,19 @@ async function challengeFor(verifier: string): Promise<string> {
 // these paths itself, so the app injects this.
 export const stepUpClient: StepUpClient = {
   methods: async () => {
-    const raw = (await requestHelpers.get<{ methods: string[] }>(endpoints.user.accountMethods))
-      .methods
-    // Mirror the server's reauthentication_required: OAuth re-verifies the
-    // email factor, recovery codes are not a step-up factor.
-    const mapped = raw.map((m) => (m === 'oauth' ? 'email' : m)).filter((m) => m !== 'recovery')
-    const deduped = Array.from(new Set(mapped))
-    return deduped.length ? deduped : ['email']
+    const map = await fetchMethodStates()
+    const required = requiredFactors(map)
+    // OAuth is surfaced separately via oauthProviders, never as a code field,
+    // so drop it here. An oauth-only requirement leaves no code factor - the
+    // dialog then shows just the provider button(s).
+    if (required.length) return required.filter((m) => m !== 'oauth')
+    // Nothing is required: offer every usable code/credential factor so any
+    // one satisfies the step-up (OAuth is offered separately via
+    // oauthProviders). A factor's state is "disabled" when the user turned it
+    // off or its credential is missing.
+    return ['email', 'passkey', 'totp'].filter(
+      (m) => map[m] && map[m].state !== 'disabled',
+    )
   },
   send: async () => {
     await requestHelpers.post<{ ok: boolean }>(endpoints.user.accountCode, {}, NO_TOAST)
@@ -60,6 +85,17 @@ export const stepUpClient: StepUpClient = {
       NO_TOAST,
     ),
   oauthProviders: async () => {
+    // OAuth re-verifies the oauth factor (a linked provider proves the provider
+    // account, not the email inbox). It satisfies a step-up only when oauth is
+    // required, or nothing is required (any one factor) and the user hasn't
+    // disabled OAuth. A required email factor therefore needs a real email
+    // code, not a provider sign-in - so hide the buttons in that case.
+    const map = await fetchMethodStates()
+    const required = requiredFactors(map)
+    const acceptable =
+      required.includes('oauth') ||
+      (required.length === 0 && Boolean(map.oauth) && map.oauth.state !== 'disabled')
+    if (!acceptable) return []
     const { identities } = await requestHelpers.get<{ identities: Array<{ provider: string }> }>(
       endpoints.user.accountOauth,
     )

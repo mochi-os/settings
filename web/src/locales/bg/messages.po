@@ -37,7 +37,7 @@ msgstr "{0, plural, one {Отменена 1 сесия} other {Отменени 
 msgid "{0} (development)"
 msgstr "{0} (разработка)"
 
-#: src/features/user/account.tsx:811
+#: src/features/user/login.tsx:665
 msgid "{count} remaining"
 msgstr "{count} остават"
 
@@ -46,7 +46,7 @@ msgstr "{count} остават"
 msgid "/ or /blog"
 msgstr "/ или /blog"
 
-#: src/features/user/account.tsx:671
+#: src/features/user/login.tsx:525
 msgid "1. Scan QR code"
 msgstr "1. Сканирайте QR кода"
 
@@ -54,7 +54,7 @@ msgstr "1. Сканирайте QR кода"
 msgid "12 hours"
 msgstr "12 часа"
 
-#: src/features/user/account.tsx:677
+#: src/features/user/login.tsx:531
 msgid "2. Manual entry"
 msgstr "2. Ръчно въвеждане"
 
@@ -62,7 +62,7 @@ msgstr "2. Ръчно въвеждане"
 msgid "24 hours"
 msgstr "24 часа"
 
-#: src/features/user/account.tsx:681
+#: src/features/user/login.tsx:535
 msgid "3. Verify code"
 msgstr "3. Проверка на кода"
 
@@ -78,10 +78,10 @@ msgstr "Достъпът е забранен"
 msgid "Access level"
 msgstr "Ниво на достъп"
 
-#: src/components/layout/data/sidebar-data.ts:28
-#: src/components/layout/data/sidebar-data.ts:48
-#: src/features/user/account.tsx:1029
-#: src/features/user/account.tsx:1076
+#: src/components/layout/data/sidebar-data.ts:29
+#: src/components/layout/data/sidebar-data.ts:50
+#: src/features/user/account.tsx:169
+#: src/features/user/account.tsx:173
 msgid "Account"
 msgstr "Акаунт"
 
@@ -163,7 +163,7 @@ msgstr "Добави домейн"
 msgid "Add new account"
 msgstr "Добави нов акаунт"
 
-#: src/features/user/account.tsx:505
+#: src/features/user/login.tsx:359
 msgid "Add passkey"
 msgstr "Добави passkey"
 
@@ -225,7 +225,7 @@ msgstr "Всички"
 msgid "Allow new signups"
 msgstr "Позволи нови регистрации"
 
-#: src/features/user/account.tsx:218
+#: src/features/user/account.tsx:148
 msgid "Allow others to find you in directory"
 msgstr "Позволи на другите да ви намират в директорията"
 
@@ -233,6 +233,7 @@ msgstr "Позволи на другите да ви намират в дире�
 msgid "Allow users to install apps"
 msgstr "Позволи на потребителите да инсталират приложения"
 
+#: src/components/method-state-control.tsx:28
 #: src/features/system/settings.tsx:103
 msgid "Allowed"
 msgstr "Позволено"
@@ -282,29 +283,29 @@ msgstr "Сигурни ли сте, че искате да излезете? Щ�
 msgid "Asc"
 msgstr "Възх."
 
-#: src/features/user/tokens.tsx:235
-#: src/features/user/tokens.tsx:243
+#: src/features/user/tokens.tsx:239
+#: src/features/user/tokens.tsx:247
 msgid "Authentication tokens"
 msgstr "Токени за удостоверяване"
 
-#: src/features/user/account.tsx:310
-#: src/features/user/account.tsx:659
+#: src/features/user/login.tsx:123
+#: src/features/user/login.tsx:513
 msgid "Authenticator app"
 msgstr "Authenticator приложение"
 
-#: src/features/user/account.tsx:626
+#: src/features/user/login.tsx:480
 msgid "Authenticator app disabled"
 msgstr "Authenticator приложението е изключено"
 
-#: src/features/user/account.tsx:610
+#: src/features/user/login.tsx:464
 msgid "Authenticator app enabled"
 msgstr "Authenticator приложението е включено"
 
-#: src/features/user/account.tsx:708
+#: src/features/user/login.tsx:562
 msgid "Authenticator app is active"
 msgstr "Authenticator приложението е активно"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:278
+#: ../../../lib/web/src/components/step-up-dialog.tsx:298
 msgid "Authenticator code"
 msgstr "Код от authenticator"
 
@@ -335,7 +336,7 @@ msgid "Browser notifications"
 msgstr "Известия в браузъра"
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx:64
-#: ../../../lib/web/src/components/step-up-dialog.tsx:320
+#: ../../../lib/web/src/components/step-up-dialog.tsx:346
 #: ../../../lib/web/src/components/travelling-picker.tsx:292
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:245
 #: ../../../lib/web/src/features/access/access-dialog.tsx:325
@@ -352,10 +353,10 @@ msgstr "Известия в браузъра"
 #: src/features/system/settings.tsx:411
 #: src/features/system/users.tsx:150
 #: src/features/system/users.tsx:235
-#: src/features/user/account.tsx:187
-#: src/features/user/account.tsx:697
+#: src/features/user/account.tsx:117
 #: src/features/user/connected-accounts.tsx:601
 #: src/features/user/display.tsx:193
+#: src/features/user/login.tsx:551
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
@@ -446,7 +447,7 @@ msgstr "Затвори панела"
 msgid "Close search"
 msgstr "Затвори търсенето"
 
-#: src/features/user/account.tsx:799
+#: src/features/user/login.tsx:653
 msgid "Codes copied"
 msgstr "Кодовете са копирани"
 
@@ -484,8 +485,8 @@ msgstr "Потвърдете, че сте вие"
 msgid "Connected"
 msgstr "Свързано"
 
-#: src/components/layout/data/sidebar-data.ts:32
-#: src/components/layout/data/sidebar-data.ts:52
+#: src/components/layout/data/sidebar-data.ts:33
+#: src/components/layout/data/sidebar-data.ts:54
 #: src/features/user/connected-accounts.tsx:293
 #: src/features/user/connected-accounts.tsx:429
 msgid "Connected accounts"
@@ -507,7 +508,7 @@ msgstr "Контекстуална информация и детайли."
 msgid "Continue"
 msgstr "Продължи"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:269
+#: ../../../lib/web/src/components/step-up-dialog.tsx:335
 msgid "Continue with {label}"
 msgstr "Продължи с {label}"
 
@@ -515,7 +516,7 @@ msgstr "Продължи с {label}"
 msgid "Copy"
 msgstr "Копирай"
 
-#: src/features/user/account.tsx:801
+#: src/features/user/login.tsx:655
 msgid "Copy all"
 msgstr "Копирай всичко"
 
@@ -523,7 +524,7 @@ msgstr "Копирай всичко"
 msgid "Copy peer id"
 msgstr "Копирай ID на партньора"
 
-#: src/features/user/tokens.tsx:171
+#: src/features/user/tokens.tsx:173
 msgid "Copy your token now. You will not be able to see it again."
 msgstr "Копирайте токена си сега. Няма да можете да го видите отново."
 
@@ -532,7 +533,7 @@ msgstr "Копирайте токена си сега. Няма да может�
 msgid "Could not deny request"
 msgstr "Заявката не може да бъде отказана"
 
-#: src/features/user/account.tsx:1057
+#: src/features/user/login.tsx:911
 msgid "Could not link account"
 msgstr "Акаунтът не може да бъде свързан"
 
@@ -548,27 +549,27 @@ msgstr "Хостът не може да бъде премахнат"
 msgid "Could not remove pair member"
 msgstr "Неуспешно премахване на член на сдвояването"
 
-#: src/features/user/account.tsx:931
+#: src/features/user/login.tsx:785
 msgid "Could not start linking"
 msgstr "Свързването не може да започне"
 
-#: src/features/user/account.tsx:940
+#: src/features/user/login.tsx:794
 msgid "Could not unlink provider"
 msgstr "Доставчикът не може да бъде разкачен"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:151
+#: ../../../lib/web/src/components/step-up-dialog.tsx:170
 msgid "Couldn't send the code. Please try again."
 msgstr "Кодът не можа да бъде изпратен. Моля, опитайте отново."
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:120
+#: ../../../lib/web/src/components/step-up-dialog.tsx:133
 msgid "Couldn't start re-authentication. Please try again."
 msgstr "Повторното удостоверяване не можа да започне. Моля, опитайте отново."
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:188
+#: ../../../lib/web/src/components/step-up-dialog.tsx:207
 msgid "Couldn't verify with that account. Please try again."
 msgstr "Потвърждаването с този акаунт не бе успешно. Моля, опитайте отново."
 
-#: src/features/user/tokens.tsx:172
+#: src/features/user/tokens.tsx:174
 msgid "Create a token to authenticate with the API."
 msgstr "Създайте токен за удостоверяване с API."
 
@@ -576,9 +577,9 @@ msgstr "Създайте токен за удостоверяване с API."
 msgid "Create a TXT record for"
 msgstr "Създайте TXT запис за"
 
-#: src/features/user/tokens.tsx:161
-#: src/features/user/tokens.tsx:167
-#: src/features/user/tokens.tsx:221
+#: src/features/user/tokens.tsx:163
+#: src/features/user/tokens.tsx:169
+#: src/features/user/tokens.tsx:225
 msgid "Create token"
 msgstr "Създай токен"
 
@@ -587,9 +588,9 @@ msgstr "Създай токен"
 msgid "Create user"
 msgstr "Създай потребител"
 
-#: src/features/user/account.tsx:553
+#: src/features/user/login.tsx:407
 #: src/features/user/sessions.tsx:142
-#: src/features/user/tokens.tsx:265
+#: src/features/user/tokens.tsx:269
 msgid "Created"
 msgstr "Създадено"
 
@@ -661,10 +662,10 @@ msgstr "Делегирания"
 #: src/features/domains/index.tsx:771
 #: src/features/domains/index.tsx:1090
 #: src/features/system/users.tsx:495
-#: src/features/user/account.tsx:422
+#: src/features/user/login.tsx:276
 #: src/features/user/notifications.tsx:392
 #: src/features/user/notifications.tsx:624
-#: src/features/user/tokens.tsx:94
+#: src/features/user/tokens.tsx:96
 msgid "Delete"
 msgstr "Изтрий"
 
@@ -690,11 +691,11 @@ msgstr "Изтрий домейна"
 msgid "Delete domain?"
 msgstr "Изтриване на домейна?"
 
-#: src/features/user/account.tsx:414
+#: src/features/user/login.tsx:268
 msgid "Delete passkey"
 msgstr "Изтрий ключа за достъп"
 
-#: src/features/user/account.tsx:420
+#: src/features/user/login.tsx:274
 msgid "Delete passkey?"
 msgstr "Изтриване на passkey?"
 
@@ -706,11 +707,11 @@ msgstr "Изтрий маршрута"
 msgid "Delete route?"
 msgstr "Изтриване на маршрута?"
 
-#: src/features/user/tokens.tsx:87
+#: src/features/user/tokens.tsx:89
 msgid "Delete token"
 msgstr "Изтрий токена"
 
-#: src/features/user/tokens.tsx:92
+#: src/features/user/tokens.tsx:94
 msgid "Delete token?"
 msgstr "Изтриване на токена?"
 
@@ -771,15 +772,16 @@ msgstr "Устройство"
 msgid "Direction"
 msgstr "Посока"
 
-#: src/features/user/account.tsx:642
-#: src/features/user/account.tsx:719
+#: src/features/user/login.tsx:496
+#: src/features/user/login.tsx:573
 msgid "Disable"
 msgstr "Изключи"
 
-#: src/features/user/account.tsx:717
+#: src/features/user/login.tsx:571
 msgid "Disable authenticator?"
 msgstr "Изключване на authenticator?"
 
+#: src/components/method-state-control.tsx:28
 #: src/features/domains/index.tsx:696
 #: src/features/system/settings.tsx:101
 msgid "Disabled"
@@ -789,8 +791,8 @@ msgstr "Изключено"
 msgid "Dismiss"
 msgstr "Отхвърли"
 
-#: src/components/layout/data/sidebar-data.ts:30
-#: src/components/layout/data/sidebar-data.ts:50
+#: src/components/layout/data/sidebar-data.ts:32
+#: src/components/layout/data/sidebar-data.ts:53
 #: src/features/user/display.tsx:90
 #: src/features/user/display.tsx:167
 msgid "Display"
@@ -812,7 +814,7 @@ msgstr "DNS проверка"
 msgid "Document saved"
 msgstr "Документът е запазен"
 
-#: src/components/layout/data/sidebar-data.ts:63
+#: src/components/layout/data/sidebar-data.ts:66
 #: src/features/system/documents.tsx:161
 #: src/features/system/documents.tsx:230
 msgid "Documents"
@@ -843,15 +845,15 @@ msgstr "Домейнът е обновен"
 msgid "Domain verified"
 msgstr "Домейнът е потвърден"
 
-#: src/components/layout/data/sidebar-data.ts:70
+#: src/components/layout/data/sidebar-data.ts:73
 #: src/features/domains/index.tsx:1116
 #: src/features/domains/index.tsx:1144
 #: src/features/domains/index.tsx:1156
 msgid "Domains"
 msgstr "Домейни"
 
-#: src/features/user/account.tsx:802
-#: src/features/user/tokens.tsx:194
+#: src/features/user/login.tsx:656
+#: src/features/user/tokens.tsx:196
 msgid "Done"
 msgstr "Готово"
 
@@ -882,7 +884,7 @@ msgstr "Изтеглете данните си"
 msgid "Dyslexia-friendly"
 msgstr "Подходящ за дислексия"
 
-#: src/features/user/account.tsx:787
+#: src/features/user/login.tsx:641
 msgid "Each code can only be used once."
 msgstr "Всеки код може да се използва само веднъж."
 
@@ -894,7 +896,7 @@ msgstr "Редактиране"
 msgid "Edit category"
 msgstr "Редактиране на категория"
 
-#: src/features/user/account.tsx:195
+#: src/features/user/account.tsx:125
 msgid "Edit name"
 msgstr "Редактиране на име"
 
@@ -915,13 +917,13 @@ msgstr "Редактиране на потребител"
 
 #: src/features/system/users.tsx:121
 #: src/features/system/users.tsx:207
-#: src/features/user/account.tsx:1003
 #: src/features/user/connected-accounts.tsx:107
+#: src/features/user/login.tsx:857
 msgid "Email"
 msgstr "Имейл"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:234
-#: src/features/user/account.tsx:328
+#: ../../../lib/web/src/components/step-up-dialog.tsx:273
+#: src/features/user/login.tsx:119
 msgid "Email code"
 msgstr "Имейл код"
 
@@ -931,7 +933,7 @@ msgstr "Празният път дава пълен достъп до домей
 
 #: src/features/domains/index.tsx:500
 #: src/features/domains/index.tsx:696
-#: src/features/user/account.tsx:707
+#: src/features/user/login.tsx:561
 msgid "Enabled"
 msgstr "Активирано"
 
@@ -939,11 +941,11 @@ msgstr "Активирано"
 msgid "Enter or generate a passphrase"
 msgstr "Въведете или генерирайте парола-фраза"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:241
+#: ../../../lib/web/src/components/step-up-dialog.tsx:282
 msgid "Enter the code from your email"
 msgstr "Въведете кода от имейла си"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:285
+#: ../../../lib/web/src/components/step-up-dialog.tsx:307
 msgid "Enter your authenticator code"
 msgstr "Въведете кода от приложението за удостоверяване"
 
@@ -960,7 +962,7 @@ msgstr "example.com или *.example.com"
 msgid "Expand sidebar"
 msgstr "Разгъване на страничната лента"
 
-#: src/features/user/tokens.tsx:267
+#: src/features/user/tokens.tsx:271
 msgid "Expires"
 msgstr "Изтича"
 
@@ -1005,7 +1007,7 @@ msgstr "Неуспешно създаване на домейн"
 msgid "Failed to create route"
 msgstr "Неуспешно създаване на маршрут"
 
-#: src/features/user/tokens.tsx:130
+#: src/features/user/tokens.tsx:132
 msgid "Failed to create token"
 msgstr "Неуспешно създаване на токен"
 
@@ -1025,7 +1027,7 @@ msgstr "Неуспешно изтриване на делегиране"
 msgid "Failed to delete domain"
 msgstr "Неуспешно изтриване на домейн"
 
-#: src/features/user/account.tsx:491
+#: src/features/user/login.tsx:345
 msgid "Failed to delete passkey"
 msgstr "Неуспешно изтриване на passkey"
 
@@ -1033,7 +1035,7 @@ msgstr "Неуспешно изтриване на passkey"
 msgid "Failed to delete route"
 msgstr "Неуспешно изтриване на маршрут"
 
-#: src/features/user/tokens.tsx:49
+#: src/features/user/tokens.tsx:51
 msgid "Failed to delete token"
 msgstr "Неуспешно изтриване на токен"
 
@@ -1041,11 +1043,11 @@ msgstr "Неуспешно изтриване на токен"
 msgid "Failed to delete user"
 msgstr "Неуспешно изтриване на потребител"
 
-#: src/features/user/account.tsx:627
+#: src/features/user/login.tsx:481
 msgid "Failed to disable authenticator"
 msgstr "Неуспешно изключване на удостоверителя"
 
-#: src/features/user/account.tsx:750
+#: src/features/user/login.tsx:604
 msgid "Failed to generate codes"
 msgstr "Неуспешно генериране на кодове"
 
@@ -1057,7 +1059,7 @@ msgstr "Неуспешно инсталиране на актуализация"
 msgid "Failed to regenerate summary"
 msgstr "Неуспешно регенериране на резюме"
 
-#: src/features/user/account.tsx:470
+#: src/features/user/login.tsx:324
 msgid "Failed to register passkey"
 msgstr "Неуспешна регистрация на passkey"
 
@@ -1074,7 +1076,7 @@ msgstr "Неуспешно премахване на интерес"
 msgid "Failed to remove topic"
 msgstr "Неуспешно премахване на тема"
 
-#: src/features/user/account.tsx:483
+#: src/features/user/login.tsx:337
 msgid "Failed to rename passkey"
 msgstr "Неуспешно преименуване на passkey"
 
@@ -1108,7 +1110,7 @@ msgstr "Неуспешен тест за изпращане"
 msgid "Failed to send verification code"
 msgstr "Неуспешно изпращане на код за потвърждение"
 
-#: src/features/user/account.tsx:599
+#: src/features/user/login.tsx:453
 msgid "Failed to set up authenticator"
 msgstr "Неуспешна настройка на удостоверителя"
 
@@ -1138,11 +1140,11 @@ msgstr "Неуспешна актуализация на домейн"
 msgid "Failed to update interest"
 msgstr "Неуспешна актуализация на интерес"
 
-#: src/features/user/account.tsx:269
-msgid "Failed to update login requirements"
-msgstr "Неуспешна актуализация на изискванията за вход"
+#: src/features/user/login.tsx:148
+msgid "Failed to update login methods"
+msgstr "Неуспешно актуализиране на методите за вход"
 
-#: src/features/user/account.tsx:124
+#: src/features/user/account.tsx:54
 msgid "Failed to update name"
 msgstr "Неуспешна актуализация на име"
 
@@ -1151,7 +1153,7 @@ msgstr "Неуспешна актуализация на име"
 msgid "Failed to update preference"
 msgstr "Неуспешна актуализация на предпочитание"
 
-#: src/features/user/account.tsx:142
+#: src/features/user/account.tsx:72
 msgid "Failed to update privacy"
 msgstr "Неуспешна актуализация на поверителност"
 
@@ -1179,7 +1181,7 @@ msgstr "Неуспешна актуализация на потребител"
 msgid "Failed to update user status"
 msgstr "Неуспешна актуализация на статус на потребител"
 
-#: src/features/user/account.tsx:617
+#: src/features/user/login.tsx:471
 msgid "Failed to verify code"
 msgstr "Неуспешна проверка на код"
 
@@ -1187,7 +1189,7 @@ msgstr "Неуспешна проверка на код"
 msgid "Failed to verify domain"
 msgstr "Неуспешна проверка на домейн"
 
-#: src/features/user/account.tsx:206
+#: src/features/user/account.tsx:136
 msgid "Fingerprint"
 msgstr "Отпечатък"
 
@@ -1237,7 +1239,7 @@ msgstr "От темата"
 msgid "Full layout"
 msgstr "Пълно оформление"
 
-#: src/features/user/account.tsx:768
+#: src/features/user/login.tsx:622
 msgid "Generate"
 msgstr "Генериране"
 
@@ -1245,7 +1247,7 @@ msgstr "Генериране"
 msgid "Generate passphrase"
 msgstr "Генерирайте парола-фраза"
 
-#: src/features/user/account.tsx:821
+#: src/features/user/login.tsx:675
 msgid "Generate?"
 msgstr "Генериране?"
 
@@ -1323,16 +1325,16 @@ msgstr "Хостът е премахнат"
 msgid "Hot"
 msgstr "Горещо"
 
-#: src/features/user/account.tsx:150
-#: src/features/user/account.tsx:209
+#: src/features/user/account.tsx:80
+#: src/features/user/account.tsx:139
 msgid "Identity"
 msgstr "Самоличност"
 
-#: src/features/user/account.tsx:138
+#: src/features/user/account.tsx:68
 msgid "Identity is no longer listed in the directory"
 msgstr "Самоличността вече не е в директорията"
 
-#: src/features/user/account.tsx:138
+#: src/features/user/account.tsx:68
 msgid "Identity is now listed in the directory"
 msgstr "Самоличността вече е в директорията"
 
@@ -1354,14 +1356,14 @@ msgid "Installing {0}…"
 msgstr "Инсталиране на {0}…"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:39
-#: src/components/layout/data/sidebar-data.ts:31
-#: src/components/layout/data/sidebar-data.ts:51
+#: src/components/layout/data/sidebar-data.ts:38
+#: src/components/layout/data/sidebar-data.ts:59
 #: src/features/user/interests.tsx:231
 #: src/features/user/interests.tsx:252
 msgid "Interests"
 msgstr "Интереси"
 
-#: src/features/user/account.tsx:614
+#: src/features/user/login.tsx:468
 msgid "Invalid code"
 msgstr "Невалиден код"
 
@@ -1413,9 +1415,9 @@ msgstr "Последно редактирано {0}"
 msgid "Last login"
 msgstr "Последен вход"
 
-#: src/features/user/account.tsx:554
-#: src/features/user/account.tsx:1004
-#: src/features/user/tokens.tsx:266
+#: src/features/user/login.tsx:408
+#: src/features/user/login.tsx:858
+#: src/features/user/tokens.tsx:270
 msgid "Last used"
 msgstr "Последно използвано"
 
@@ -1440,12 +1442,12 @@ msgstr "От ляво на дясно"
 msgid "Light"
 msgstr "Светъл"
 
-#: src/features/user/account.tsx:966
+#: src/features/user/login.tsx:820
 msgid "Link account"
 msgstr "Свържи акаунт"
 
 #. placeholder {0}: oauthProviderLabel[linked as OAuthProvider] ?? linked
-#: src/features/user/account.tsx:1050
+#: src/features/user/login.tsx:904
 msgid "Linked {0}"
 msgstr "Свързано {0}"
 
@@ -1480,17 +1482,21 @@ msgstr "Успешен изход"
 msgid "Logging out…"
 msgstr "Излизане…"
 
+#: src/components/layout/data/sidebar-data.ts:30
+#: src/components/layout/data/sidebar-data.ts:51
 #: src/features/system/settings.tsx:506
+#: src/features/user/login.tsx:883
+#: src/features/user/login.tsx:930
 msgid "Login"
 msgstr "Вход"
 
-#: src/features/user/account.tsx:279
-msgid "Login requirements"
-msgstr "Изисквания за вход"
+#: src/features/user/login.tsx:156
+msgid "Login methods"
+msgstr "Методи за вход"
 
-#: src/features/user/account.tsx:266
-msgid "Login requirements updated"
-msgstr "Изискванията за вход са актуализирани"
+#: src/features/user/login.tsx:147
+msgid "Login methods updated"
+msgstr "Методите за вход са актуализирани"
 
 #: src/features/system/settings.tsx:38
 msgid "Login using email code"
@@ -1512,7 +1518,7 @@ msgstr "Вход с код за възстановяване"
 msgid "Login using TOTP authenticator app"
 msgstr "Вход с TOTP приложение за удостоверяване"
 
-#: src/features/user/account.tsx:822
+#: src/features/user/login.tsx:676
 msgid "Make sure to save the new codes."
 msgstr "Не забравяйте да запазите новите кодове."
 
@@ -1520,7 +1526,7 @@ msgstr "Не забравяйте да запазите новите кодов�
 msgid "Manage sessions"
 msgstr "Управление на сесии"
 
-#: src/components/layout/data/sidebar-data.ts:78
+#: src/components/layout/data/sidebar-data.ts:81
 msgid "Management"
 msgstr "Управление"
 
@@ -1577,7 +1583,7 @@ msgstr "Модел"
 msgid "Monday"
 msgstr "Понеделник"
 
-#: src/features/user/tokens.tsx:203
+#: src/features/user/tokens.tsx:205
 msgid "My application"
 msgstr "Моето приложение"
 
@@ -1585,32 +1591,32 @@ msgstr "Моето приложение"
 msgid "My hosts"
 msgstr "Моите хостове"
 
-#: src/features/user/account.tsx:518
+#: src/features/user/login.tsx:372
 msgid "My passkey"
 msgstr "Моят passkey"
 
-#: src/features/user/account.tsx:158
-#: src/features/user/account.tsx:552
+#: src/features/user/account.tsx:88
 #: src/features/user/connected-accounts.tsx:463
 #: src/features/user/connected-accounts.tsx:570
+#: src/features/user/login.tsx:406
 #: src/features/user/notifications.tsx:490
-#: src/features/user/tokens.tsx:264
+#: src/features/user/tokens.tsx:268
 msgid "Name"
 msgstr "Име"
 
-#: src/features/user/account.tsx:120
+#: src/features/user/account.tsx:50
 msgid "Name updated"
 msgstr "Името е обновено"
 
 #: src/features/system/users.tsx:428
-#: src/features/user/account.tsx:404
-#: src/features/user/account.tsx:407
-#: src/features/user/account.tsx:884
+#: src/features/user/login.tsx:258
+#: src/features/user/login.tsx:261
+#: src/features/user/login.tsx:738
 #: src/features/user/sessions.tsx:70
 #: src/features/user/sessions.tsx:73
-#: src/features/user/tokens.tsx:67
-#: src/features/user/tokens.tsx:70
-#: src/features/user/tokens.tsx:73
+#: src/features/user/tokens.tsx:69
+#: src/features/user/tokens.tsx:72
+#: src/features/user/tokens.tsx:75
 msgid "Never"
 msgstr "Никога"
 
@@ -1634,7 +1640,7 @@ msgstr "Следващо изображение"
 msgid "No access rules configured. Add rules to control who can access this resource."
 msgstr "Няма конфигурирани правила за достъп. Добавете правила, за да контролирате кой има достъп до този ресурс."
 
-#: src/features/user/account.tsx:997
+#: src/features/user/login.tsx:851
 msgid "No accounts linked"
 msgstr "Няма свързани акаунти"
 
@@ -1643,11 +1649,11 @@ msgstr "Няма свързани акаунти"
 msgid "No active sessions"
 msgstr "Няма активни сесии"
 
-#: src/features/user/tokens.tsx:257
+#: src/features/user/tokens.tsx:261
 msgid "No authentication tokens"
 msgstr "Няма автентикационни токени"
 
-#: src/features/user/account.tsx:712
+#: src/features/user/login.tsx:566
 msgid "No authenticator set up"
 msgstr "Няма настроен authenticator"
 
@@ -1689,7 +1695,7 @@ msgstr "Все още няма интереси"
 msgid "No options found."
 msgstr "Не са намерени опции."
 
-#: src/features/user/account.tsx:547
+#: src/features/user/login.tsx:401
 msgid "No passkeys registered"
 msgstr "Няма регистрирани passkeys"
 
@@ -1701,7 +1707,7 @@ msgstr "Не са намерени места"
 msgid "No profile"
 msgstr "Няма профил"
 
-#: src/features/user/account.tsx:816
+#: src/features/user/login.tsx:670
 msgid "No recovery codes"
 msgstr "Няма кодове за възстановяване"
 
@@ -1749,8 +1755,8 @@ msgstr "Нормален"
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:132
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:146
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:247
-#: src/components/layout/data/sidebar-data.ts:33
-#: src/components/layout/data/sidebar-data.ts:53
+#: src/components/layout/data/sidebar-data.ts:34
+#: src/components/layout/data/sidebar-data.ts:55
 #: src/features/user/notifications.tsx:142
 #: src/features/user/notifications.tsx:160
 msgid "Notifications"
@@ -1827,33 +1833,33 @@ msgstr "Членът на сдвояването е премахнат"
 msgid "Pair members"
 msgstr "Членове на сдвояването"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:305
-#: src/features/user/account.tsx:290
-#: src/features/user/account.tsx:461
+#: ../../../lib/web/src/components/step-up-dialog.tsx:317
+#: src/features/user/login.tsx:121
+#: src/features/user/login.tsx:315
 msgid "Passkey"
 msgstr "Passkey"
 
-#: src/features/user/account.tsx:490
+#: src/features/user/login.tsx:344
 msgid "Passkey deleted"
 msgstr "Passkey е изтрит"
 
-#: src/features/user/account.tsx:515
+#: src/features/user/login.tsx:369
 msgid "Passkey name"
 msgstr "Име на passkey"
 
-#: src/features/user/account.tsx:464
+#: src/features/user/login.tsx:318
 msgid "Passkey registered"
 msgstr "Passkey е регистриран"
 
-#: src/features/user/account.tsx:482
+#: src/features/user/login.tsx:336
 msgid "Passkey renamed"
 msgstr "Passkey е преименуван"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:176
+#: ../../../lib/web/src/components/step-up-dialog.tsx:195
 msgid "Passkey verification failed. Please try again."
 msgstr "Проверката на ключа за достъп беше неуспешна. Моля, опитайте отново."
 
-#: src/features/user/account.tsx:539
+#: src/features/user/login.tsx:393
 msgid "Passkeys"
 msgstr "Passkeys"
 
@@ -1902,7 +1908,7 @@ msgstr "Чакащи заявки"
 msgid "Permanently delete this domain and all its routes."
 msgstr "Изтрий завинаги този домейн и всичките му маршрути."
 
-#: src/features/user/tokens.tsx:115
+#: src/features/user/tokens.tsx:117
 msgid "Please enter a token name"
 msgstr "Моля, въведете име на токена"
 
@@ -1911,8 +1917,8 @@ msgstr "Моля, въведете име на токена"
 msgid "Preference updated"
 msgstr "Предпочитанието е обновено"
 
-#: src/components/layout/data/sidebar-data.ts:29
-#: src/components/layout/data/sidebar-data.ts:49
+#: src/components/layout/data/sidebar-data.ts:31
+#: src/components/layout/data/sidebar-data.ts:52
 #: src/features/user/preferences.tsx:64
 #: src/features/user/preferences.tsx:200
 msgid "Preferences"
@@ -1942,7 +1948,7 @@ msgstr "Приоритет"
 msgid "Privacy"
 msgstr "Поверителност"
 
-#: src/features/user/account.tsx:823
+#: src/features/user/login.tsx:677
 msgid "Proceed"
 msgstr "Продължи"
 
@@ -1951,7 +1957,7 @@ msgstr "Продължи"
 msgid "Profile"
 msgstr "Профил"
 
-#: src/features/user/account.tsx:1002
+#: src/features/user/login.tsx:856
 msgid "Provider"
 msgstr "Доставчик"
 
@@ -1975,17 +1981,14 @@ msgstr "Радиус"
 msgid "Re-link your accounts on this server"
 msgstr "Свържете отново профилите си на този сървър"
 
-#: src/features/user/account.tsx:331
-msgid "Receive a verification code by email"
-msgstr "Получете код за верификация по имейл"
-
 #: ../../../lib/web/src/components/search-entity-dialog.tsx:216
 #: ../../../lib/web/src/components/search-entity-page.tsx:191
 msgid "Recommended"
 msgstr "Препоръчано"
 
-#: src/features/user/account.tsx:775
-#: src/features/user/account.tsx:812
+#: src/features/user/login.tsx:127
+#: src/features/user/login.tsx:629
+#: src/features/user/login.tsx:666
 msgid "Recovery codes"
 msgstr "Кодове за възстановяване"
 
@@ -2002,27 +2005,23 @@ msgstr "Пренасочване към вход."
 msgid "Reduce interest"
 msgstr "Намали лихвата"
 
-#: src/features/user/account.tsx:768
+#: src/features/user/login.tsx:622
 msgid "Regenerate"
 msgstr "Регенерирай"
 
-#: src/features/user/account.tsx:821
+#: src/features/user/login.tsx:675
 msgid "Regenerate?"
 msgstr "Регенерирай?"
 
-#: src/features/user/account.tsx:526
+#: src/features/user/login.tsx:380
 msgid "Register"
 msgstr "Регистрация"
 
-#: src/features/user/account.tsx:294
-msgid "Register a passkey below to enable"
-msgstr "Регистрирайте passkey по-долу, за да активирате"
-
-#: src/features/user/account.tsx:509
+#: src/features/user/login.tsx:363
 msgid "Register passkey"
 msgstr "Регистрирай passkey"
 
-#: src/features/user/account.tsx:468
+#: src/features/user/login.tsx:322
 msgid "Registration cancelled"
 msgstr "Регистрацията е отказана"
 
@@ -2085,7 +2084,7 @@ msgstr "Да се премахне ли членът на сдвояването
 msgid "Remove suspension"
 msgstr "Премахни спирането"
 
-#: src/features/user/account.tsx:411
+#: src/features/user/login.tsx:265
 msgid "Rename passkey"
 msgstr "Преименувай ключа за достъп"
 
@@ -2093,9 +2092,9 @@ msgstr "Преименувай ключа за достъп"
 msgid "Replace"
 msgstr "Замени"
 
-#: src/components/layout/data/sidebar-data.ts:36
-#: src/components/layout/data/sidebar-data.ts:56
-#: src/components/layout/data/sidebar-data.ts:65
+#: src/components/layout/data/sidebar-data.ts:37
+#: src/components/layout/data/sidebar-data.ts:58
+#: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/replication.tsx:174
 #: src/features/system/replication.tsx:185
 #: src/features/user/replication.tsx:154
@@ -2115,13 +2114,14 @@ msgstr "Заявката е отказана"
 msgid "Require domain verification"
 msgstr "Изисквай верификация на домейна"
 
+#: src/components/method-state-control.tsx:28
 #: src/features/system/settings.tsx:105
 msgid "Required"
 msgstr "Задължително"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:247
-msgid "Resend"
-msgstr "Изпрати отново"
+#: ../../../lib/web/src/components/step-up-dialog.tsx:350
+msgid "Resend email"
+msgstr "Изпрати имейла отново"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:77
 #: ../../../lib/web/src/components/data-table/toolbar.tsx:78
@@ -2236,20 +2236,20 @@ msgstr "Запази"
 msgid "Save changes"
 msgstr "Запази промените"
 
-#: src/features/user/account.tsx:177
+#: src/features/user/account.tsx:107
 msgid "Save name"
 msgstr "Запази името"
 
-#: src/features/user/account.tsx:395
+#: src/features/user/login.tsx:249
 msgid "Save passkey name"
 msgstr "Запази името на ключа"
 
-#: src/features/user/account.tsx:786
+#: src/features/user/login.tsx:640
 msgid "Save these codes"
 msgstr "Запазете тези кодове"
 
 #. placeholder {0}: token.scopes.join(', ')
-#: src/features/user/tokens.tsx:61
+#: src/features/user/tokens.tsx:63
 msgid "Scopes: {0}"
 msgstr "Scopes: {0}"
 
@@ -2360,7 +2360,7 @@ msgstr "Избор..."
 msgid "Send again"
 msgstr "Изпрати отново"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:247
+#: ../../../lib/web/src/components/step-up-dialog.tsx:290
 msgid "Send email"
 msgstr "Изпрати имейл"
 
@@ -2403,8 +2403,8 @@ msgstr "Сесията изтече"
 msgid "Session revoked"
 msgstr "Сесията е отменена"
 
-#: src/components/layout/data/sidebar-data.ts:35
-#: src/components/layout/data/sidebar-data.ts:55
+#: src/components/layout/data/sidebar-data.ts:36
+#: src/components/layout/data/sidebar-data.ts:57
 #: src/features/user/sessions.tsx:116
 #: src/features/user/sessions.tsx:124
 msgid "Sessions"
@@ -2419,13 +2419,9 @@ msgstr "Сесии за {0}"
 msgid "Set origin and destination"
 msgstr "Задай начало и край"
 
-#: src/features/user/account.tsx:652
+#: src/features/user/login.tsx:506
 msgid "Set up"
 msgstr "Настройка"
-
-#: src/features/user/account.tsx:314
-msgid "Set up an authenticator below to enable"
-msgstr "Настройте автентикатор по-долу, за да активирате"
 
 #: src/features/system/settings.tsx:440
 msgid "Setting updated"
@@ -2434,9 +2430,9 @@ msgstr "Настройката е обновена"
 #: ../../../lib/web/src/components/layout/nav-user.tsx:81
 #: ../../../lib/web/src/components/layout/nav-user.tsx:145
 #: ../../../lib/web/src/components/layout/nav-user.tsx:195
-#: src/components/layout/data/sidebar-data.ts:26
-#: src/components/layout/data/sidebar-data.ts:46
-#: src/components/layout/data/sidebar-data.ts:87
+#: src/components/layout/data/sidebar-data.ts:27
+#: src/components/layout/data/sidebar-data.ts:48
+#: src/components/layout/data/sidebar-data.ts:90
 #: src/features/user/connected-accounts.tsx:266
 msgid "Settings"
 msgstr "Настройки"
@@ -2479,7 +2475,7 @@ msgstr "Просторно"
 msgid "Started"
 msgstr "Стартирано"
 
-#: src/components/layout/data/sidebar-data.ts:66
+#: src/components/layout/data/sidebar-data.ts:69
 #: src/features/domains/index.tsx:1003
 #: src/features/system/replication.tsx:249
 #: src/features/system/status.tsx:25
@@ -2532,11 +2528,11 @@ msgstr "Синхронизиране"
 #: ../../../lib/web/src/components/config-drawer.tsx:195
 #: ../../../lib/web/src/lib/preference-utils.ts:18
 #: ../../../lib/web/src/lib/preference-utils.ts:132
-#: src/components/layout/data/sidebar-data.ts:60
+#: src/components/layout/data/sidebar-data.ts:63
 msgid "System"
 msgstr "Система"
 
-#: src/components/layout/data/sidebar-data.ts:62
+#: src/components/layout/data/sidebar-data.ts:65
 #: src/features/system/settings.tsx:429
 #: src/features/system/settings.tsx:497
 msgid "System settings"
@@ -2576,15 +2572,15 @@ msgstr "Тестът не успя"
 msgid "Test sent to {sent} destination{0}"
 msgstr "Тестът е изпратен на {sent} получател{0}"
 
-#: src/features/user/account.tsx:1053
+#: src/features/user/login.tsx:907
 msgid "That account is already linked to another user"
 msgstr "Този профил вече е свързан с друг потребител"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:162
+#: ../../../lib/web/src/components/step-up-dialog.tsx:181
 msgid "That code is incorrect or has expired."
 msgstr "Този код е неправилен или е изтекъл."
 
-#: src/features/user/account.tsx:1055
+#: src/features/user/login.tsx:909
 msgid "That email is already registered to another account"
 msgstr "Този имейл вече е регистриран към друг профил"
 
@@ -2607,7 +2603,8 @@ msgid "Theme updated"
 msgstr "Темата е обновена"
 
 #: src/features/system/settings.tsx:513
-#: src/features/user/account.tsx:984
+#: src/features/user/login.tsx:125
+#: src/features/user/login.tsx:838
 msgid "Third-party login"
 msgstr "Вход чрез трета страна"
 
@@ -2653,7 +2650,7 @@ msgid "This will permanently delete \"{0}\" and all its routes. This action cann
 msgstr "Това ще изтрие окончателно „{0}“ и всичките му маршрути. Това действие не може да бъде отменено."
 
 #. placeholder {0}: token.name
-#: src/features/user/tokens.tsx:93
+#: src/features/user/tokens.tsx:95
 msgid "This will permanently delete the token \"{0}\". Any applications using this token will no longer be able to authenticate."
 msgstr "Това ще изтрие окончателно токена „{0}“. Всички приложения, използващи този токен, повече няма да могат да се удостоверяват."
 
@@ -2663,11 +2660,11 @@ msgid "This will permanently delete the user \"{0}\". This action cannot be undo
 msgstr "Това ще изтрие окончателно потребителя „{0}“. Това действие не може да бъде отменено."
 
 #. placeholder {0}: passkey.name
-#: src/features/user/account.tsx:421
+#: src/features/user/login.tsx:275
 msgid "This will remove \"{0}\" from your account. You won't be able to use it to sign in anymore."
 msgstr "Това ще премахне „{0}“ от вашия профил. Повече няма да можете да го използвате за вход."
 
-#: src/features/user/account.tsx:718
+#: src/features/user/login.tsx:572
 msgid "This will remove the app from your account."
 msgstr "Това ще премахне приложението от вашия профил."
 
@@ -2754,24 +2751,24 @@ msgstr "Превключи страничната лента"
 msgid "Toggle theme"
 msgstr "Превключи темата"
 
-#: src/features/user/tokens.tsx:142
+#: src/features/user/tokens.tsx:144
 msgid "Token copied to clipboard"
 msgstr "Токенът е копиран в клипборда"
 
-#: src/features/user/tokens.tsx:167
+#: src/features/user/tokens.tsx:169
 msgid "Token created"
 msgstr "Токенът е създаден"
 
-#: src/features/user/tokens.tsx:46
+#: src/features/user/tokens.tsx:48
 msgid "Token deleted"
 msgstr "Токенът е изтрит"
 
-#: src/features/user/tokens.tsx:200
+#: src/features/user/tokens.tsx:202
 msgid "Token name"
 msgstr "Име на токена"
 
-#: src/components/layout/data/sidebar-data.ts:34
-#: src/components/layout/data/sidebar-data.ts:54
+#: src/components/layout/data/sidebar-data.ts:35
+#: src/components/layout/data/sidebar-data.ts:56
 msgid "Tokens"
 msgstr "Токени"
 
@@ -2861,20 +2858,20 @@ msgstr "Неизвестен браузър"
 msgid "Unknown device"
 msgstr "Неизвестно устройство"
 
-#: src/features/user/account.tsx:900
+#: src/features/user/login.tsx:754
 msgid "Unlink"
 msgstr "Прекъсни връзката"
 
-#: src/features/user/account.tsx:891
+#: src/features/user/login.tsx:745
 msgid "Unlink provider"
 msgstr "Откачи доставчика"
 
-#: src/features/user/account.tsx:898
+#: src/features/user/login.tsx:752
 msgid "Unlink provider?"
 msgstr "Прекъсване на връзката с доставчика?"
 
 #. placeholder {0}: oauthProviderLabel[provider] ?? provider
-#: src/features/user/account.tsx:938
+#: src/features/user/login.tsx:792
 msgid "Unlinked {0}"
 msgstr "Връзката с {0} е прекъсната"
 
@@ -2900,19 +2897,11 @@ msgstr "Използвайте \"mochictl replica join {peer}\" на новои�
 msgid "Use *.domain.com for wildcard domains"
 msgstr "Използвайте *.domain.com за wildcard домейни"
 
-#: src/features/user/account.tsx:294
-msgid "Use a registered passkey to sign in"
-msgstr "Използвайте регистриран passkey, за да влезете"
-
-#: src/features/user/account.tsx:511
+#: src/features/user/login.tsx:365
 msgid "Use a security key, fingerprint, or face recognition."
 msgstr "Използвайте ключ за сигурност, пръстов отпечатък или разпознаване на лица."
 
-#: src/features/user/account.tsx:314
-msgid "Use an authenticator app code to sign in"
-msgstr "Използвайте код от приложение за автентикация, за да влезете"
-
-#: ../../../lib/web/src/components/step-up-dialog.tsx:309
+#: ../../../lib/web/src/components/step-up-dialog.tsx:321
 msgid "Use your passkey"
 msgstr "Използвайте своя ключ за достъп"
 
@@ -2946,12 +2935,12 @@ msgstr "Потребителят е спрян"
 msgid "User updated"
 msgstr "Потребителят е обновен"
 
-#: src/features/user/account.tsx:201
+#: src/features/user/account.tsx:131
 #: src/features/user/replication.tsx:182
 msgid "Username"
 msgstr "Потребителско име"
 
-#: src/components/layout/data/sidebar-data.ts:64
+#: src/components/layout/data/sidebar-data.ts:67
 #: src/features/system/users.tsx:544
 #: src/features/system/users.tsx:582
 #: src/features/system/users.tsx:595
@@ -2982,15 +2971,14 @@ msgstr "Потвърждението не успя"
 msgid "Verified"
 msgstr "Потвърдено"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:255
-#: ../../../lib/web/src/components/step-up-dialog.tsx:296
+#: ../../../lib/web/src/components/step-up-dialog.tsx:371
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:164
 #: ../../../lib/web/src/features/accounts/account-verify.tsx:106
 #: src/features/user/connected-accounts.tsx:257
 msgid "Verify"
 msgstr "Потвърди"
 
-#: src/features/user/account.tsx:694
+#: src/features/user/login.tsx:548
 msgid "Verify and enable"
 msgstr "Потвърди и активирай"
 
@@ -3055,7 +3043,7 @@ msgid "You don't have access to any domains."
 msgstr "Нямате достъп до никакви домейни."
 
 #. placeholder {0}: oauthProviderLabel[identity.provider] ?? identity.provider
-#: src/features/user/account.tsx:899
+#: src/features/user/login.tsx:753
 msgid "You won't be able to sign in with {0} anymore. Make sure you still have another way to log in."
 msgstr "Повече няма да можете да влизате с {0}. Уверете се, че имате друг начин да влезете."
 

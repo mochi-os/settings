@@ -25,9 +25,18 @@ export interface SessionsResponse {
   sessions: Session[]
 }
 
-// Login methods
+// Login methods — per-method tri-state, plus the operator policy and
+// credential availability so the settings UI can grey out invalid options.
+export type MethodState = 'disabled' | 'allowed' | 'required'
+
+export interface MethodInfo {
+  state: MethodState
+  system: MethodState
+  available: boolean
+}
+
 export interface MethodsResponse {
-  methods: string[]
+  methods: Record<string, MethodInfo>
 }
 
 // Passkeys

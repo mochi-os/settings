@@ -1,6 +1,7 @@
 import { APP_ROUTES } from '@/config/routes'
 import {
   User,
+  Lock,
   Monitor,
   Key,
   Palette,
@@ -26,14 +27,15 @@ export function useSidebarData(): SidebarData {
         title: t`Settings`,
         items: [
           { title: t`Account`, url: APP_ROUTES.SETTINGS.USER.ACCOUNT, icon: User },
+          { title: t`Login`, url: APP_ROUTES.SETTINGS.USER.LOGIN, icon: Lock },
           { title: t`Preferences`, url: APP_ROUTES.SETTINGS.USER.PREFERENCES, icon: Sliders },
           { title: t`Display`, url: APP_ROUTES.SETTINGS.USER.DISPLAY, icon: Palette },
-          { title: t`Interests`, url: APP_ROUTES.SETTINGS.USER.INTERESTS, icon: Star },
           { title: t`Connected accounts`, url: APP_ROUTES.SETTINGS.USER.ACCOUNTS, icon: Link2 },
           { title: t`Notifications`, url: APP_ROUTES.SETTINGS.USER.NOTIFICATIONS, icon: Bell },
           { title: t`Tokens`, url: APP_ROUTES.SETTINGS.USER.TOKENS, icon: Key },
           { title: t`Sessions`, url: APP_ROUTES.SETTINGS.USER.SESSIONS, icon: Monitor },
           { title: t`Replication`, url: APP_ROUTES.SETTINGS.USER.REPLICATION, icon: Copy },
+          { title: t`Interests`, url: APP_ROUTES.SETTINGS.USER.INTERESTS, icon: Star },
         ],
       },
     ],
@@ -46,14 +48,15 @@ export function useFilteredSidebarData(isAdmin: boolean, hasDomainAccess: boolea
     title: t`Settings`,
     items: [
       { title: t`Account`, url: APP_ROUTES.SETTINGS.USER.ACCOUNT, icon: User },
+      { title: t`Login`, url: APP_ROUTES.SETTINGS.USER.LOGIN, icon: Lock },
       { title: t`Preferences`, url: APP_ROUTES.SETTINGS.USER.PREFERENCES, icon: Sliders },
       { title: t`Display`, url: APP_ROUTES.SETTINGS.USER.DISPLAY, icon: Palette },
-      { title: t`Interests`, url: APP_ROUTES.SETTINGS.USER.INTERESTS, icon: Star },
       { title: t`Connected accounts`, url: APP_ROUTES.SETTINGS.USER.ACCOUNTS, icon: Link2 },
       { title: t`Notifications`, url: APP_ROUTES.SETTINGS.USER.NOTIFICATIONS, icon: Bell },
       { title: t`Tokens`, url: APP_ROUTES.SETTINGS.USER.TOKENS, icon: Key },
       { title: t`Sessions`, url: APP_ROUTES.SETTINGS.USER.SESSIONS, icon: Monitor },
       { title: t`Replication`, url: APP_ROUTES.SETTINGS.USER.REPLICATION, icon: Copy },
+      { title: t`Interests`, url: APP_ROUTES.SETTINGS.USER.INTERESTS, icon: Star },
     ],
   }
   const systemNavGroup = {

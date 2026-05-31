@@ -5,6 +5,7 @@ export const APP_ROUTES = {
     HOME: '/',
     USER: {
       ACCOUNT: '/user/account',
+      LOGIN: '/user/login',
       PREFERENCES: '/user/preferences',
       DISPLAY: '/user/display',
       ACCOUNTS: '/user/accounts',

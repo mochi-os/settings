@@ -37,7 +37,7 @@ msgstr "{0, plural, one {Tühistatud 1 sessioon} other {Tühistatud # sessiooni}
 msgid "{0} (development)"
 msgstr "{0} (arendus)"
 
-#: src/features/user/account.tsx:811
+#: src/features/user/login.tsx:665
 msgid "{count} remaining"
 msgstr "{count} jäänud"
 
@@ -46,7 +46,7 @@ msgstr "{count} jäänud"
 msgid "/ or /blog"
 msgstr "/ või /blog"
 
-#: src/features/user/account.tsx:671
+#: src/features/user/login.tsx:525
 msgid "1. Scan QR code"
 msgstr "1. Skaneeri QR-kood"
 
@@ -54,7 +54,7 @@ msgstr "1. Skaneeri QR-kood"
 msgid "12 hours"
 msgstr "12 tundi"
 
-#: src/features/user/account.tsx:677
+#: src/features/user/login.tsx:531
 msgid "2. Manual entry"
 msgstr "2. Käsitsi sisestus"
 
@@ -62,7 +62,7 @@ msgstr "2. Käsitsi sisestus"
 msgid "24 hours"
 msgstr "24 tundi"
 
-#: src/features/user/account.tsx:681
+#: src/features/user/login.tsx:535
 msgid "3. Verify code"
 msgstr "3. Kinnita kood"
 
@@ -78,10 +78,10 @@ msgstr "Juurdepääs keelatud"
 msgid "Access level"
 msgstr "Juurdepääsu tase"
 
-#: src/components/layout/data/sidebar-data.ts:28
-#: src/components/layout/data/sidebar-data.ts:48
-#: src/features/user/account.tsx:1029
-#: src/features/user/account.tsx:1076
+#: src/components/layout/data/sidebar-data.ts:29
+#: src/components/layout/data/sidebar-data.ts:50
+#: src/features/user/account.tsx:169
+#: src/features/user/account.tsx:173
 msgid "Account"
 msgstr "Konto"
 
@@ -163,7 +163,7 @@ msgstr "Lisa domeen"
 msgid "Add new account"
 msgstr "Lisa uus konto"
 
-#: src/features/user/account.tsx:505
+#: src/features/user/login.tsx:359
 msgid "Add passkey"
 msgstr "Lisa pääsuvõti"
 
@@ -225,7 +225,7 @@ msgstr "Kõik"
 msgid "Allow new signups"
 msgstr "Luba uued registreerumised"
 
-#: src/features/user/account.tsx:218
+#: src/features/user/account.tsx:148
 msgid "Allow others to find you in directory"
 msgstr "Luba teistel sind kataloogist leida"
 
@@ -233,6 +233,7 @@ msgstr "Luba teistel sind kataloogist leida"
 msgid "Allow users to install apps"
 msgstr "Luba kasutajatel rakendusi paigaldada"
 
+#: src/components/method-state-control.tsx:28
 #: src/features/system/settings.tsx:103
 msgid "Allowed"
 msgstr "Lubatud"
@@ -282,29 +283,29 @@ msgstr "Kas oled kindel, et soovid välja logida? Konto kasutamiseks pead uuesti
 msgid "Asc"
 msgstr "Tõusev"
 
-#: src/features/user/tokens.tsx:235
-#: src/features/user/tokens.tsx:243
+#: src/features/user/tokens.tsx:239
+#: src/features/user/tokens.tsx:247
 msgid "Authentication tokens"
 msgstr "Autentimise lubad"
 
-#: src/features/user/account.tsx:310
-#: src/features/user/account.tsx:659
+#: src/features/user/login.tsx:123
+#: src/features/user/login.tsx:513
 msgid "Authenticator app"
 msgstr "Autentija rakendus"
 
-#: src/features/user/account.tsx:626
+#: src/features/user/login.tsx:480
 msgid "Authenticator app disabled"
 msgstr "Autentija rakendus keelatud"
 
-#: src/features/user/account.tsx:610
+#: src/features/user/login.tsx:464
 msgid "Authenticator app enabled"
 msgstr "Autentija rakendus lubatud"
 
-#: src/features/user/account.tsx:708
+#: src/features/user/login.tsx:562
 msgid "Authenticator app is active"
 msgstr "Autentija rakendus on aktiivne"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:278
+#: ../../../lib/web/src/components/step-up-dialog.tsx:298
 msgid "Authenticator code"
 msgstr "Autentija kood"
 
@@ -335,7 +336,7 @@ msgid "Browser notifications"
 msgstr "Brauseri teavitused"
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx:64
-#: ../../../lib/web/src/components/step-up-dialog.tsx:320
+#: ../../../lib/web/src/components/step-up-dialog.tsx:346
 #: ../../../lib/web/src/components/travelling-picker.tsx:292
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:245
 #: ../../../lib/web/src/features/access/access-dialog.tsx:325
@@ -352,10 +353,10 @@ msgstr "Brauseri teavitused"
 #: src/features/system/settings.tsx:411
 #: src/features/system/users.tsx:150
 #: src/features/system/users.tsx:235
-#: src/features/user/account.tsx:187
-#: src/features/user/account.tsx:697
+#: src/features/user/account.tsx:117
 #: src/features/user/connected-accounts.tsx:601
 #: src/features/user/display.tsx:193
+#: src/features/user/login.tsx:551
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
@@ -446,7 +447,7 @@ msgstr "Sulge paneel"
 msgid "Close search"
 msgstr "Sulge otsing"
 
-#: src/features/user/account.tsx:799
+#: src/features/user/login.tsx:653
 msgid "Codes copied"
 msgstr "Koodid kopeeritud"
 
@@ -484,8 +485,8 @@ msgstr "Kinnitage, et see olete teie"
 msgid "Connected"
 msgstr "Ühendatud"
 
-#: src/components/layout/data/sidebar-data.ts:32
-#: src/components/layout/data/sidebar-data.ts:52
+#: src/components/layout/data/sidebar-data.ts:33
+#: src/components/layout/data/sidebar-data.ts:54
 #: src/features/user/connected-accounts.tsx:293
 #: src/features/user/connected-accounts.tsx:429
 msgid "Connected accounts"
@@ -507,7 +508,7 @@ msgstr "Kontekstuaalne teave ja üksikasjad."
 msgid "Continue"
 msgstr "Jätka"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:269
+#: ../../../lib/web/src/components/step-up-dialog.tsx:335
 msgid "Continue with {label}"
 msgstr "Jätka teenusega {label}"
 
@@ -515,7 +516,7 @@ msgstr "Jätka teenusega {label}"
 msgid "Copy"
 msgstr "Kopeeri"
 
-#: src/features/user/account.tsx:801
+#: src/features/user/login.tsx:655
 msgid "Copy all"
 msgstr "Kopeeri kõik"
 
@@ -523,7 +524,7 @@ msgstr "Kopeeri kõik"
 msgid "Copy peer id"
 msgstr "Kopeeri partneri ID"
 
-#: src/features/user/tokens.tsx:171
+#: src/features/user/tokens.tsx:173
 msgid "Copy your token now. You will not be able to see it again."
 msgstr "Kopeeri oma luba kohe. Sa ei näe seda enam."
 
@@ -532,7 +533,7 @@ msgstr "Kopeeri oma luba kohe. Sa ei näe seda enam."
 msgid "Could not deny request"
 msgstr "Päringut ei saanud tagasi lükata"
 
-#: src/features/user/account.tsx:1057
+#: src/features/user/login.tsx:911
 msgid "Could not link account"
 msgstr "Konto sidumine ebaõnnestus"
 
@@ -548,27 +549,27 @@ msgstr "Hosti ei õnnestunud eemaldada"
 msgid "Could not remove pair member"
 msgstr "Paari liiget ei õnnestunud eemaldada"
 
-#: src/features/user/account.tsx:931
+#: src/features/user/login.tsx:785
 msgid "Could not start linking"
 msgstr "Sidumise alustamine ebaõnnestus"
 
-#: src/features/user/account.tsx:940
+#: src/features/user/login.tsx:794
 msgid "Could not unlink provider"
 msgstr "Pakkuja lahutamine ebaõnnestus"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:151
+#: ../../../lib/web/src/components/step-up-dialog.tsx:170
 msgid "Couldn't send the code. Please try again."
 msgstr "Koodi ei õnnestunud saata. Proovige uuesti."
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:120
+#: ../../../lib/web/src/components/step-up-dialog.tsx:133
 msgid "Couldn't start re-authentication. Please try again."
 msgstr "Taasautentimist ei õnnestunud alustada. Proovige uuesti."
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:188
+#: ../../../lib/web/src/components/step-up-dialog.tsx:207
 msgid "Couldn't verify with that account. Please try again."
 msgstr "Selle kontoga ei õnnestunud kinnitada. Palun proovi uuesti."
 
-#: src/features/user/tokens.tsx:172
+#: src/features/user/tokens.tsx:174
 msgid "Create a token to authenticate with the API."
 msgstr "Loo luba API-ga autentimiseks."
 
@@ -576,9 +577,9 @@ msgstr "Loo luba API-ga autentimiseks."
 msgid "Create a TXT record for"
 msgstr "Loo TXT-kirje"
 
-#: src/features/user/tokens.tsx:161
-#: src/features/user/tokens.tsx:167
-#: src/features/user/tokens.tsx:221
+#: src/features/user/tokens.tsx:163
+#: src/features/user/tokens.tsx:169
+#: src/features/user/tokens.tsx:225
 msgid "Create token"
 msgstr "Loo luba"
 
@@ -587,9 +588,9 @@ msgstr "Loo luba"
 msgid "Create user"
 msgstr "Loo kasutaja"
 
-#: src/features/user/account.tsx:553
+#: src/features/user/login.tsx:407
 #: src/features/user/sessions.tsx:142
-#: src/features/user/tokens.tsx:265
+#: src/features/user/tokens.tsx:269
 msgid "Created"
 msgstr "Loodud"
 
@@ -661,10 +662,10 @@ msgstr "Delegeerimised"
 #: src/features/domains/index.tsx:771
 #: src/features/domains/index.tsx:1090
 #: src/features/system/users.tsx:495
-#: src/features/user/account.tsx:422
+#: src/features/user/login.tsx:276
 #: src/features/user/notifications.tsx:392
 #: src/features/user/notifications.tsx:624
-#: src/features/user/tokens.tsx:94
+#: src/features/user/tokens.tsx:96
 msgid "Delete"
 msgstr "Kustuta"
 
@@ -690,11 +691,11 @@ msgstr "Kustuta domeen"
 msgid "Delete domain?"
 msgstr "Kustutada domeen?"
 
-#: src/features/user/account.tsx:414
+#: src/features/user/login.tsx:268
 msgid "Delete passkey"
 msgstr "Kustuta pääsuvõti"
 
-#: src/features/user/account.tsx:420
+#: src/features/user/login.tsx:274
 msgid "Delete passkey?"
 msgstr "Kustutada pääsuvõti?"
 
@@ -706,11 +707,11 @@ msgstr "Kustuta tee"
 msgid "Delete route?"
 msgstr "Kustutada tee?"
 
-#: src/features/user/tokens.tsx:87
+#: src/features/user/tokens.tsx:89
 msgid "Delete token"
 msgstr "Kustuta luba"
 
-#: src/features/user/tokens.tsx:92
+#: src/features/user/tokens.tsx:94
 msgid "Delete token?"
 msgstr "Kustutada luba?"
 
@@ -771,15 +772,16 @@ msgstr "Seade"
 msgid "Direction"
 msgstr "Suund"
 
-#: src/features/user/account.tsx:642
-#: src/features/user/account.tsx:719
+#: src/features/user/login.tsx:496
+#: src/features/user/login.tsx:573
 msgid "Disable"
 msgstr "Keela"
 
-#: src/features/user/account.tsx:717
+#: src/features/user/login.tsx:571
 msgid "Disable authenticator?"
 msgstr "Keelata autentija?"
 
+#: src/components/method-state-control.tsx:28
 #: src/features/domains/index.tsx:696
 #: src/features/system/settings.tsx:101
 msgid "Disabled"
@@ -789,8 +791,8 @@ msgstr "Keelatud"
 msgid "Dismiss"
 msgstr "Sulge"
 
-#: src/components/layout/data/sidebar-data.ts:30
-#: src/components/layout/data/sidebar-data.ts:50
+#: src/components/layout/data/sidebar-data.ts:32
+#: src/components/layout/data/sidebar-data.ts:53
 #: src/features/user/display.tsx:90
 #: src/features/user/display.tsx:167
 msgid "Display"
@@ -812,7 +814,7 @@ msgstr "DNS-i kontroll"
 msgid "Document saved"
 msgstr "Dokument salvestatud"
 
-#: src/components/layout/data/sidebar-data.ts:63
+#: src/components/layout/data/sidebar-data.ts:66
 #: src/features/system/documents.tsx:161
 #: src/features/system/documents.tsx:230
 msgid "Documents"
@@ -843,15 +845,15 @@ msgstr "Domeen uuendatud"
 msgid "Domain verified"
 msgstr "Domeen kinnitatud"
 
-#: src/components/layout/data/sidebar-data.ts:70
+#: src/components/layout/data/sidebar-data.ts:73
 #: src/features/domains/index.tsx:1116
 #: src/features/domains/index.tsx:1144
 #: src/features/domains/index.tsx:1156
 msgid "Domains"
 msgstr "Domeenid"
 
-#: src/features/user/account.tsx:802
-#: src/features/user/tokens.tsx:194
+#: src/features/user/login.tsx:656
+#: src/features/user/tokens.tsx:196
 msgid "Done"
 msgstr "Tehtud"
 
@@ -882,7 +884,7 @@ msgstr "Laadige oma andmed alla"
 msgid "Dyslexia-friendly"
 msgstr "Düsleksiasõbralik"
 
-#: src/features/user/account.tsx:787
+#: src/features/user/login.tsx:641
 msgid "Each code can only be used once."
 msgstr "Iga koodi saab kasutada ainult ühe korra."
 
@@ -894,7 +896,7 @@ msgstr "Muuda"
 msgid "Edit category"
 msgstr "Muuda kategooriat"
 
-#: src/features/user/account.tsx:195
+#: src/features/user/account.tsx:125
 msgid "Edit name"
 msgstr "Muuda nime"
 
@@ -915,13 +917,13 @@ msgstr "Muuda kasutajat"
 
 #: src/features/system/users.tsx:121
 #: src/features/system/users.tsx:207
-#: src/features/user/account.tsx:1003
 #: src/features/user/connected-accounts.tsx:107
+#: src/features/user/login.tsx:857
 msgid "Email"
 msgstr "E-post"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:234
-#: src/features/user/account.tsx:328
+#: ../../../lib/web/src/components/step-up-dialog.tsx:273
+#: src/features/user/login.tsx:119
 msgid "Email code"
 msgstr "E-posti kood"
 
@@ -931,7 +933,7 @@ msgstr "Tühi tee annab täieliku domeeni juurdepääsu"
 
 #: src/features/domains/index.tsx:500
 #: src/features/domains/index.tsx:696
-#: src/features/user/account.tsx:707
+#: src/features/user/login.tsx:561
 msgid "Enabled"
 msgstr "Lubatud"
 
@@ -939,11 +941,11 @@ msgstr "Lubatud"
 msgid "Enter or generate a passphrase"
 msgstr "Sisesta või loo paroolifraas"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:241
+#: ../../../lib/web/src/components/step-up-dialog.tsx:282
 msgid "Enter the code from your email"
 msgstr "Sisesta e-kirjas saadud kood"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:285
+#: ../../../lib/web/src/components/step-up-dialog.tsx:307
 msgid "Enter your authenticator code"
 msgstr "Sisestage oma autentimisrakenduse kood"
 
@@ -960,7 +962,7 @@ msgstr "example.com või *.example.com"
 msgid "Expand sidebar"
 msgstr "Laienda külgriba"
 
-#: src/features/user/tokens.tsx:267
+#: src/features/user/tokens.tsx:271
 msgid "Expires"
 msgstr "Aegub"
 
@@ -1005,7 +1007,7 @@ msgstr "Domeeni loomine ebaõnnestus"
 msgid "Failed to create route"
 msgstr "Marsruudi loomine ebaõnnestus"
 
-#: src/features/user/tokens.tsx:130
+#: src/features/user/tokens.tsx:132
 msgid "Failed to create token"
 msgstr "Tokeni loomine ebaõnnestus"
 
@@ -1025,7 +1027,7 @@ msgstr "Delegeeringu kustutamine ebaõnnestus"
 msgid "Failed to delete domain"
 msgstr "Domeeni kustutamine ebaõnnestus"
 
-#: src/features/user/account.tsx:491
+#: src/features/user/login.tsx:345
 msgid "Failed to delete passkey"
 msgstr "Pääsuvõtme kustutamine ebaõnnestus"
 
@@ -1033,7 +1035,7 @@ msgstr "Pääsuvõtme kustutamine ebaõnnestus"
 msgid "Failed to delete route"
 msgstr "Marsruudi kustutamine ebaõnnestus"
 
-#: src/features/user/tokens.tsx:49
+#: src/features/user/tokens.tsx:51
 msgid "Failed to delete token"
 msgstr "Tokeni kustutamine ebaõnnestus"
 
@@ -1041,11 +1043,11 @@ msgstr "Tokeni kustutamine ebaõnnestus"
 msgid "Failed to delete user"
 msgstr "Kasutaja kustutamine ebaõnnestus"
 
-#: src/features/user/account.tsx:627
+#: src/features/user/login.tsx:481
 msgid "Failed to disable authenticator"
 msgstr "Autentija keelamine ebaõnnestus"
 
-#: src/features/user/account.tsx:750
+#: src/features/user/login.tsx:604
 msgid "Failed to generate codes"
 msgstr "Koodide genereerimine ebaõnnestus"
 
@@ -1057,7 +1059,7 @@ msgstr "Värskenduse paigaldamine ebaõnnestus"
 msgid "Failed to regenerate summary"
 msgstr "Kokkuvõtte uuesti loomine ebaõnnestus"
 
-#: src/features/user/account.tsx:470
+#: src/features/user/login.tsx:324
 msgid "Failed to register passkey"
 msgstr "Pääsuvõtme registreerimine ebaõnnestus"
 
@@ -1074,7 +1076,7 @@ msgstr "Huvi eemaldamine ebaõnnestus"
 msgid "Failed to remove topic"
 msgstr "Teema eemaldamine ebaõnnestus"
 
-#: src/features/user/account.tsx:483
+#: src/features/user/login.tsx:337
 msgid "Failed to rename passkey"
 msgstr "Pääsuvõtme ümbernimetamine ebaõnnestus"
 
@@ -1108,7 +1110,7 @@ msgstr "Testi saatmine ebaõnnestus"
 msgid "Failed to send verification code"
 msgstr "Kinnituskoodi saatmine ebaõnnestus"
 
-#: src/features/user/account.tsx:599
+#: src/features/user/login.tsx:453
 msgid "Failed to set up authenticator"
 msgstr "Autentija seadistamine ebaõnnestus"
 
@@ -1138,11 +1140,11 @@ msgstr "Domeeni värskendamine ebaõnnestus"
 msgid "Failed to update interest"
 msgstr "Huvi värskendamine ebaõnnestus"
 
-#: src/features/user/account.tsx:269
-msgid "Failed to update login requirements"
-msgstr "Sisselogimisnõuete värskendamine ebaõnnestus"
+#: src/features/user/login.tsx:148
+msgid "Failed to update login methods"
+msgstr "Sisselogimismeetodite uuendamine ebaõnnestus"
 
-#: src/features/user/account.tsx:124
+#: src/features/user/account.tsx:54
 msgid "Failed to update name"
 msgstr "Nime värskendamine ebaõnnestus"
 
@@ -1151,7 +1153,7 @@ msgstr "Nime värskendamine ebaõnnestus"
 msgid "Failed to update preference"
 msgstr "Eelistuse värskendamine ebaõnnestus"
 
-#: src/features/user/account.tsx:142
+#: src/features/user/account.tsx:72
 msgid "Failed to update privacy"
 msgstr "Privaatsuse värskendamine ebaõnnestus"
 
@@ -1179,7 +1181,7 @@ msgstr "Kasutaja värskendamine ebaõnnestus"
 msgid "Failed to update user status"
 msgstr "Kasutaja oleku värskendamine ebaõnnestus"
 
-#: src/features/user/account.tsx:617
+#: src/features/user/login.tsx:471
 msgid "Failed to verify code"
 msgstr "Koodi kontrollimine ebaõnnestus"
 
@@ -1187,7 +1189,7 @@ msgstr "Koodi kontrollimine ebaõnnestus"
 msgid "Failed to verify domain"
 msgstr "Domeeni kontrollimine ebaõnnestus"
 
-#: src/features/user/account.tsx:206
+#: src/features/user/account.tsx:136
 msgid "Fingerprint"
 msgstr "Sõrmejälg"
 
@@ -1237,7 +1239,7 @@ msgstr "Teemast"
 msgid "Full layout"
 msgstr "Täislaotus"
 
-#: src/features/user/account.tsx:768
+#: src/features/user/login.tsx:622
 msgid "Generate"
 msgstr "Genereeri"
 
@@ -1245,7 +1247,7 @@ msgstr "Genereeri"
 msgid "Generate passphrase"
 msgstr "Loo paroolifraas"
 
-#: src/features/user/account.tsx:821
+#: src/features/user/login.tsx:675
 msgid "Generate?"
 msgstr "Kas genereerida?"
 
@@ -1323,16 +1325,16 @@ msgstr "Host eemaldatud"
 msgid "Hot"
 msgstr "Kuum"
 
-#: src/features/user/account.tsx:150
-#: src/features/user/account.tsx:209
+#: src/features/user/account.tsx:80
+#: src/features/user/account.tsx:139
 msgid "Identity"
 msgstr "Identiteet"
 
-#: src/features/user/account.tsx:138
+#: src/features/user/account.tsx:68
 msgid "Identity is no longer listed in the directory"
 msgstr "Identiteet pole enam kataloogis loetletud"
 
-#: src/features/user/account.tsx:138
+#: src/features/user/account.tsx:68
 msgid "Identity is now listed in the directory"
 msgstr "Identiteet on nüüd kataloogis loetletud"
 
@@ -1354,14 +1356,14 @@ msgid "Installing {0}…"
 msgstr "Paigaldatakse {0}…"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:39
-#: src/components/layout/data/sidebar-data.ts:31
-#: src/components/layout/data/sidebar-data.ts:51
+#: src/components/layout/data/sidebar-data.ts:38
+#: src/components/layout/data/sidebar-data.ts:59
 #: src/features/user/interests.tsx:231
 #: src/features/user/interests.tsx:252
 msgid "Interests"
 msgstr "Huvid"
 
-#: src/features/user/account.tsx:614
+#: src/features/user/login.tsx:468
 msgid "Invalid code"
 msgstr "Vigane kood"
 
@@ -1413,9 +1415,9 @@ msgstr "Viimati muudetud {0}"
 msgid "Last login"
 msgstr "Viimane sisselogimine"
 
-#: src/features/user/account.tsx:554
-#: src/features/user/account.tsx:1004
-#: src/features/user/tokens.tsx:266
+#: src/features/user/login.tsx:408
+#: src/features/user/login.tsx:858
+#: src/features/user/tokens.tsx:270
 msgid "Last used"
 msgstr "Viimati kasutatud"
 
@@ -1440,12 +1442,12 @@ msgstr "Vasakult paremale"
 msgid "Light"
 msgstr "Hele"
 
-#: src/features/user/account.tsx:966
+#: src/features/user/login.tsx:820
 msgid "Link account"
 msgstr "Lingi konto"
 
 #. placeholder {0}: oauthProviderLabel[linked as OAuthProvider] ?? linked
-#: src/features/user/account.tsx:1050
+#: src/features/user/login.tsx:904
 msgid "Linked {0}"
 msgstr "Lingitud {0}"
 
@@ -1480,17 +1482,21 @@ msgstr "Edukalt välja logitud"
 msgid "Logging out…"
 msgstr "Välja logimine…"
 
+#: src/components/layout/data/sidebar-data.ts:30
+#: src/components/layout/data/sidebar-data.ts:51
 #: src/features/system/settings.tsx:506
+#: src/features/user/login.tsx:883
+#: src/features/user/login.tsx:930
 msgid "Login"
 msgstr "Sisselogimine"
 
-#: src/features/user/account.tsx:279
-msgid "Login requirements"
-msgstr "Sisselogimisnõuded"
+#: src/features/user/login.tsx:156
+msgid "Login methods"
+msgstr "Sisselogimismeetodid"
 
-#: src/features/user/account.tsx:266
-msgid "Login requirements updated"
-msgstr "Sisselogimisnõuded värskendatud"
+#: src/features/user/login.tsx:147
+msgid "Login methods updated"
+msgstr "Sisselogimismeetodid uuendatud"
 
 #: src/features/system/settings.tsx:38
 msgid "Login using email code"
@@ -1512,7 +1518,7 @@ msgstr "Sisselogimine taastekoodiga"
 msgid "Login using TOTP authenticator app"
 msgstr "Sisselogimine TOTP autentimisrakendusega"
 
-#: src/features/user/account.tsx:822
+#: src/features/user/login.tsx:676
 msgid "Make sure to save the new codes."
 msgstr "Salvesta uued koodid kindlasti."
 
@@ -1520,7 +1526,7 @@ msgstr "Salvesta uued koodid kindlasti."
 msgid "Manage sessions"
 msgstr "Halda seansse"
 
-#: src/components/layout/data/sidebar-data.ts:78
+#: src/components/layout/data/sidebar-data.ts:81
 msgid "Management"
 msgstr "Haldus"
 
@@ -1577,7 +1583,7 @@ msgstr "Mudel"
 msgid "Monday"
 msgstr "Esmaspäev"
 
-#: src/features/user/tokens.tsx:203
+#: src/features/user/tokens.tsx:205
 msgid "My application"
 msgstr "Minu rakendus"
 
@@ -1585,32 +1591,32 @@ msgstr "Minu rakendus"
 msgid "My hosts"
 msgstr "Minu hostid"
 
-#: src/features/user/account.tsx:518
+#: src/features/user/login.tsx:372
 msgid "My passkey"
 msgstr "Minu pääsuvõti"
 
-#: src/features/user/account.tsx:158
-#: src/features/user/account.tsx:552
+#: src/features/user/account.tsx:88
 #: src/features/user/connected-accounts.tsx:463
 #: src/features/user/connected-accounts.tsx:570
+#: src/features/user/login.tsx:406
 #: src/features/user/notifications.tsx:490
-#: src/features/user/tokens.tsx:264
+#: src/features/user/tokens.tsx:268
 msgid "Name"
 msgstr "Nimi"
 
-#: src/features/user/account.tsx:120
+#: src/features/user/account.tsx:50
 msgid "Name updated"
 msgstr "Nimi uuendatud"
 
 #: src/features/system/users.tsx:428
-#: src/features/user/account.tsx:404
-#: src/features/user/account.tsx:407
-#: src/features/user/account.tsx:884
+#: src/features/user/login.tsx:258
+#: src/features/user/login.tsx:261
+#: src/features/user/login.tsx:738
 #: src/features/user/sessions.tsx:70
 #: src/features/user/sessions.tsx:73
-#: src/features/user/tokens.tsx:67
-#: src/features/user/tokens.tsx:70
-#: src/features/user/tokens.tsx:73
+#: src/features/user/tokens.tsx:69
+#: src/features/user/tokens.tsx:72
+#: src/features/user/tokens.tsx:75
 msgid "Never"
 msgstr "Mitte kunagi"
 
@@ -1634,7 +1640,7 @@ msgstr "Järgmine pilt"
 msgid "No access rules configured. Add rules to control who can access this resource."
 msgstr "Juurdepääsureegleid pole seadistatud. Lisa reeglid, et määrata, kes pääseb sellele ressursile ligi."
 
-#: src/features/user/account.tsx:997
+#: src/features/user/login.tsx:851
 msgid "No accounts linked"
 msgstr "Kontosid pole seotud"
 
@@ -1643,11 +1649,11 @@ msgstr "Kontosid pole seotud"
 msgid "No active sessions"
 msgstr "Aktiivseid sessioone pole"
 
-#: src/features/user/tokens.tsx:257
+#: src/features/user/tokens.tsx:261
 msgid "No authentication tokens"
 msgstr "Autentimisvõtmeid pole"
 
-#: src/features/user/account.tsx:712
+#: src/features/user/login.tsx:566
 msgid "No authenticator set up"
 msgstr "Autentijat pole seadistatud"
 
@@ -1689,7 +1695,7 @@ msgstr "Huvisid veel pole"
 msgid "No options found."
 msgstr "Valikuid ei leitud."
 
-#: src/features/user/account.tsx:547
+#: src/features/user/login.tsx:401
 msgid "No passkeys registered"
 msgstr "Pääsuvõtmeid pole registreeritud"
 
@@ -1701,7 +1707,7 @@ msgstr "Kohti ei leitud"
 msgid "No profile"
 msgstr "Profiili pole"
 
-#: src/features/user/account.tsx:816
+#: src/features/user/login.tsx:670
 msgid "No recovery codes"
 msgstr "Taastekoode pole"
 
@@ -1749,8 +1755,8 @@ msgstr "Tavaline"
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:132
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:146
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:247
-#: src/components/layout/data/sidebar-data.ts:33
-#: src/components/layout/data/sidebar-data.ts:53
+#: src/components/layout/data/sidebar-data.ts:34
+#: src/components/layout/data/sidebar-data.ts:55
 #: src/features/user/notifications.tsx:142
 #: src/features/user/notifications.tsx:160
 msgid "Notifications"
@@ -1827,33 +1833,33 @@ msgstr "Paari liige eemaldatud"
 msgid "Pair members"
 msgstr "Paari liikmed"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:305
-#: src/features/user/account.tsx:290
-#: src/features/user/account.tsx:461
+#: ../../../lib/web/src/components/step-up-dialog.tsx:317
+#: src/features/user/login.tsx:121
+#: src/features/user/login.tsx:315
 msgid "Passkey"
 msgstr "Pääsuvõti"
 
-#: src/features/user/account.tsx:490
+#: src/features/user/login.tsx:344
 msgid "Passkey deleted"
 msgstr "Pääsuvõti kustutatud"
 
-#: src/features/user/account.tsx:515
+#: src/features/user/login.tsx:369
 msgid "Passkey name"
 msgstr "Pääsuvõtme nimi"
 
-#: src/features/user/account.tsx:464
+#: src/features/user/login.tsx:318
 msgid "Passkey registered"
 msgstr "Pääsuvõti registreeritud"
 
-#: src/features/user/account.tsx:482
+#: src/features/user/login.tsx:336
 msgid "Passkey renamed"
 msgstr "Pääsuvõti ümber nimetatud"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:176
+#: ../../../lib/web/src/components/step-up-dialog.tsx:195
 msgid "Passkey verification failed. Please try again."
 msgstr "Pääsuvõtmega kinnitamine ebaõnnestus. Proovige uuesti."
 
-#: src/features/user/account.tsx:539
+#: src/features/user/login.tsx:393
 msgid "Passkeys"
 msgstr "Pääsuvõtmed"
 
@@ -1902,7 +1908,7 @@ msgstr "Ootel päringud"
 msgid "Permanently delete this domain and all its routes."
 msgstr "Kustuta see domeen ja kõik selle marsruudid jäädavalt."
 
-#: src/features/user/tokens.tsx:115
+#: src/features/user/tokens.tsx:117
 msgid "Please enter a token name"
 msgstr "Palun sisesta tokeni nimi"
 
@@ -1911,8 +1917,8 @@ msgstr "Palun sisesta tokeni nimi"
 msgid "Preference updated"
 msgstr "Eelistus uuendatud"
 
-#: src/components/layout/data/sidebar-data.ts:29
-#: src/components/layout/data/sidebar-data.ts:49
+#: src/components/layout/data/sidebar-data.ts:31
+#: src/components/layout/data/sidebar-data.ts:52
 #: src/features/user/preferences.tsx:64
 #: src/features/user/preferences.tsx:200
 msgid "Preferences"
@@ -1942,7 +1948,7 @@ msgstr "Prioriteet"
 msgid "Privacy"
 msgstr "Privaatsus"
 
-#: src/features/user/account.tsx:823
+#: src/features/user/login.tsx:677
 msgid "Proceed"
 msgstr "Jätka"
 
@@ -1951,7 +1957,7 @@ msgstr "Jätka"
 msgid "Profile"
 msgstr "Profiil"
 
-#: src/features/user/account.tsx:1002
+#: src/features/user/login.tsx:856
 msgid "Provider"
 msgstr "Pakkuja"
 
@@ -1975,17 +1981,14 @@ msgstr "Raadius"
 msgid "Re-link your accounts on this server"
 msgstr "Ühenda kontod uuesti selle serveriga"
 
-#: src/features/user/account.tsx:331
-msgid "Receive a verification code by email"
-msgstr "Saa kinnituskood e-postiga"
-
 #: ../../../lib/web/src/components/search-entity-dialog.tsx:216
 #: ../../../lib/web/src/components/search-entity-page.tsx:191
 msgid "Recommended"
 msgstr "Soovitatud"
 
-#: src/features/user/account.tsx:775
-#: src/features/user/account.tsx:812
+#: src/features/user/login.tsx:127
+#: src/features/user/login.tsx:629
+#: src/features/user/login.tsx:666
 msgid "Recovery codes"
 msgstr "Taastekoodid"
 
@@ -2002,27 +2005,23 @@ msgstr "Ümbersuunamine sisselogimisele."
 msgid "Reduce interest"
 msgstr "Vähenda huvi"
 
-#: src/features/user/account.tsx:768
+#: src/features/user/login.tsx:622
 msgid "Regenerate"
 msgstr "Genereeri uuesti"
 
-#: src/features/user/account.tsx:821
+#: src/features/user/login.tsx:675
 msgid "Regenerate?"
 msgstr "Genereerida uuesti?"
 
-#: src/features/user/account.tsx:526
+#: src/features/user/login.tsx:380
 msgid "Register"
 msgstr "Registreeru"
 
-#: src/features/user/account.tsx:294
-msgid "Register a passkey below to enable"
-msgstr "Lubamiseks registreeri allpool pääsuvõti"
-
-#: src/features/user/account.tsx:509
+#: src/features/user/login.tsx:363
 msgid "Register passkey"
 msgstr "Registreeri pääsuvõti"
 
-#: src/features/user/account.tsx:468
+#: src/features/user/login.tsx:322
 msgid "Registration cancelled"
 msgstr "Registreerimine tühistatud"
 
@@ -2085,7 +2084,7 @@ msgstr "Kas eemaldada paari liige?"
 msgid "Remove suspension"
 msgstr "Eemalda peatamine"
 
-#: src/features/user/account.tsx:411
+#: src/features/user/login.tsx:265
 msgid "Rename passkey"
 msgstr "Nimeta pääsuvõti ümber"
 
@@ -2093,9 +2092,9 @@ msgstr "Nimeta pääsuvõti ümber"
 msgid "Replace"
 msgstr "Asenda"
 
-#: src/components/layout/data/sidebar-data.ts:36
-#: src/components/layout/data/sidebar-data.ts:56
-#: src/components/layout/data/sidebar-data.ts:65
+#: src/components/layout/data/sidebar-data.ts:37
+#: src/components/layout/data/sidebar-data.ts:58
+#: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/replication.tsx:174
 #: src/features/system/replication.tsx:185
 #: src/features/user/replication.tsx:154
@@ -2115,13 +2114,14 @@ msgstr "Päring tagasi lükatud"
 msgid "Require domain verification"
 msgstr "Nõua domeeni kinnitamist"
 
+#: src/components/method-state-control.tsx:28
 #: src/features/system/settings.tsx:105
 msgid "Required"
 msgstr "Kohustuslik"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:247
-msgid "Resend"
-msgstr "Saada uuesti"
+#: ../../../lib/web/src/components/step-up-dialog.tsx:350
+msgid "Resend email"
+msgstr "Saada e-kiri uuesti"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:77
 #: ../../../lib/web/src/components/data-table/toolbar.tsx:78
@@ -2236,20 +2236,20 @@ msgstr "Salvesta"
 msgid "Save changes"
 msgstr "Salvesta muudatused"
 
-#: src/features/user/account.tsx:177
+#: src/features/user/account.tsx:107
 msgid "Save name"
 msgstr "Salvesta nimi"
 
-#: src/features/user/account.tsx:395
+#: src/features/user/login.tsx:249
 msgid "Save passkey name"
 msgstr "Salvesta pääsuvõtme nimi"
 
-#: src/features/user/account.tsx:786
+#: src/features/user/login.tsx:640
 msgid "Save these codes"
 msgstr "Salvesta need koodid"
 
 #. placeholder {0}: token.scopes.join(', ')
-#: src/features/user/tokens.tsx:61
+#: src/features/user/tokens.tsx:63
 msgid "Scopes: {0}"
 msgstr "Ulatused: {0}"
 
@@ -2360,7 +2360,7 @@ msgstr "Vali..."
 msgid "Send again"
 msgstr "Saada uuesti"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:247
+#: ../../../lib/web/src/components/step-up-dialog.tsx:290
 msgid "Send email"
 msgstr "Saada e-kiri"
 
@@ -2403,8 +2403,8 @@ msgstr "Sessioon aegunud"
 msgid "Session revoked"
 msgstr "Sessioon tühistatud"
 
-#: src/components/layout/data/sidebar-data.ts:35
-#: src/components/layout/data/sidebar-data.ts:55
+#: src/components/layout/data/sidebar-data.ts:36
+#: src/components/layout/data/sidebar-data.ts:57
 #: src/features/user/sessions.tsx:116
 #: src/features/user/sessions.tsx:124
 msgid "Sessions"
@@ -2419,13 +2419,9 @@ msgstr "Sessioonid kasutajale {0}"
 msgid "Set origin and destination"
 msgstr "Määra lähtekoht ja sihtkoht"
 
-#: src/features/user/account.tsx:652
+#: src/features/user/login.tsx:506
 msgid "Set up"
 msgstr "Seadista"
-
-#: src/features/user/account.tsx:314
-msgid "Set up an authenticator below to enable"
-msgstr "Sisselogimise lubamiseks seadista allpool autentija"
 
 #: src/features/system/settings.tsx:440
 msgid "Setting updated"
@@ -2434,9 +2430,9 @@ msgstr "Säte uuendatud"
 #: ../../../lib/web/src/components/layout/nav-user.tsx:81
 #: ../../../lib/web/src/components/layout/nav-user.tsx:145
 #: ../../../lib/web/src/components/layout/nav-user.tsx:195
-#: src/components/layout/data/sidebar-data.ts:26
-#: src/components/layout/data/sidebar-data.ts:46
-#: src/components/layout/data/sidebar-data.ts:87
+#: src/components/layout/data/sidebar-data.ts:27
+#: src/components/layout/data/sidebar-data.ts:48
+#: src/components/layout/data/sidebar-data.ts:90
 #: src/features/user/connected-accounts.tsx:266
 msgid "Settings"
 msgstr "Seaded"
@@ -2479,7 +2475,7 @@ msgstr "Avar"
 msgid "Started"
 msgstr "Alustatud"
 
-#: src/components/layout/data/sidebar-data.ts:66
+#: src/components/layout/data/sidebar-data.ts:69
 #: src/features/domains/index.tsx:1003
 #: src/features/system/replication.tsx:249
 #: src/features/system/status.tsx:25
@@ -2532,11 +2528,11 @@ msgstr "Sünkroonimine"
 #: ../../../lib/web/src/components/config-drawer.tsx:195
 #: ../../../lib/web/src/lib/preference-utils.ts:18
 #: ../../../lib/web/src/lib/preference-utils.ts:132
-#: src/components/layout/data/sidebar-data.ts:60
+#: src/components/layout/data/sidebar-data.ts:63
 msgid "System"
 msgstr "Süsteem"
 
-#: src/components/layout/data/sidebar-data.ts:62
+#: src/components/layout/data/sidebar-data.ts:65
 #: src/features/system/settings.tsx:429
 #: src/features/system/settings.tsx:497
 msgid "System settings"
@@ -2576,15 +2572,15 @@ msgstr "Test ebaõnnestus"
 msgid "Test sent to {sent} destination{0}"
 msgstr "Test saadetud {sent} sihtkohta{0}"
 
-#: src/features/user/account.tsx:1053
+#: src/features/user/login.tsx:907
 msgid "That account is already linked to another user"
 msgstr "See konto on juba lingitud teise kasutajaga"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:162
+#: ../../../lib/web/src/components/step-up-dialog.tsx:181
 msgid "That code is incorrect or has expired."
 msgstr "See kood on vale või aegunud."
 
-#: src/features/user/account.tsx:1055
+#: src/features/user/login.tsx:909
 msgid "That email is already registered to another account"
 msgstr "See e-post on juba registreeritud teisele kontole"
 
@@ -2607,7 +2603,8 @@ msgid "Theme updated"
 msgstr "Teema uuendatud"
 
 #: src/features/system/settings.tsx:513
-#: src/features/user/account.tsx:984
+#: src/features/user/login.tsx:125
+#: src/features/user/login.tsx:838
 msgid "Third-party login"
 msgstr "Kolmanda osapoole sisselogimine"
 
@@ -2653,7 +2650,7 @@ msgid "This will permanently delete \"{0}\" and all its routes. This action cann
 msgstr "See kustutab jäädavalt \"{0}\" ja kõik selle marsruudid. Seda toimingut ei saa tagasi võtta."
 
 #. placeholder {0}: token.name
-#: src/features/user/tokens.tsx:93
+#: src/features/user/tokens.tsx:95
 msgid "This will permanently delete the token \"{0}\". Any applications using this token will no longer be able to authenticate."
 msgstr "See kustutab jäädavalt loa \"{0}\". Ükski seda luba kasutav rakendus ei saa enam autentida."
 
@@ -2663,11 +2660,11 @@ msgid "This will permanently delete the user \"{0}\". This action cannot be undo
 msgstr "See kustutab jäädavalt kasutaja \"{0}\". Seda toimingut ei saa tagasi võtta."
 
 #. placeholder {0}: passkey.name
-#: src/features/user/account.tsx:421
+#: src/features/user/login.tsx:275
 msgid "This will remove \"{0}\" from your account. You won't be able to use it to sign in anymore."
 msgstr "See eemaldab \"{0}\" sinu kontolt. Sa ei saa seda enam sisselogimiseks kasutada."
 
-#: src/features/user/account.tsx:718
+#: src/features/user/login.tsx:572
 msgid "This will remove the app from your account."
 msgstr "See eemaldab rakenduse sinu kontolt."
 
@@ -2754,24 +2751,24 @@ msgstr "Lülita külgriba"
 msgid "Toggle theme"
 msgstr "Lülita teema"
 
-#: src/features/user/tokens.tsx:142
+#: src/features/user/tokens.tsx:144
 msgid "Token copied to clipboard"
 msgstr "Luba kopeeriti lõikelauale"
 
-#: src/features/user/tokens.tsx:167
+#: src/features/user/tokens.tsx:169
 msgid "Token created"
 msgstr "Luba loodud"
 
-#: src/features/user/tokens.tsx:46
+#: src/features/user/tokens.tsx:48
 msgid "Token deleted"
 msgstr "Luba kustutatud"
 
-#: src/features/user/tokens.tsx:200
+#: src/features/user/tokens.tsx:202
 msgid "Token name"
 msgstr "Loa nimi"
 
-#: src/components/layout/data/sidebar-data.ts:34
-#: src/components/layout/data/sidebar-data.ts:54
+#: src/components/layout/data/sidebar-data.ts:35
+#: src/components/layout/data/sidebar-data.ts:56
 msgid "Tokens"
 msgstr "Load"
 
@@ -2861,20 +2858,20 @@ msgstr "Tundmatu brauser"
 msgid "Unknown device"
 msgstr "Tundmatu seade"
 
-#: src/features/user/account.tsx:900
+#: src/features/user/login.tsx:754
 msgid "Unlink"
 msgstr "Eemalda link"
 
-#: src/features/user/account.tsx:891
+#: src/features/user/login.tsx:745
 msgid "Unlink provider"
 msgstr "Lahuta pakkuja"
 
-#: src/features/user/account.tsx:898
+#: src/features/user/login.tsx:752
 msgid "Unlink provider?"
 msgstr "Eemaldada lingitud teenusepakkuja?"
 
 #. placeholder {0}: oauthProviderLabel[provider] ?? provider
-#: src/features/user/account.tsx:938
+#: src/features/user/login.tsx:792
 msgid "Unlinked {0}"
 msgstr "{0} link eemaldatud"
 
@@ -2900,19 +2897,11 @@ msgstr "Selle serveriga paaritamiseks kasutage uues paigaldatud serveris käsku 
 msgid "Use *.domain.com for wildcard domains"
 msgstr "Kasuta metamärgiga domeenide jaoks *.domain.com"
 
-#: src/features/user/account.tsx:294
-msgid "Use a registered passkey to sign in"
-msgstr "Kasuta sisselogimiseks registreeritud pääsuvõtit"
-
-#: src/features/user/account.tsx:511
+#: src/features/user/login.tsx:365
 msgid "Use a security key, fingerprint, or face recognition."
 msgstr "Kasuta turvavõtit, sõrmejälge või näotuvastust."
 
-#: src/features/user/account.tsx:314
-msgid "Use an authenticator app code to sign in"
-msgstr "Kasuta sisselogimiseks autentija rakenduse koodi"
-
-#: ../../../lib/web/src/components/step-up-dialog.tsx:309
+#: ../../../lib/web/src/components/step-up-dialog.tsx:321
 msgid "Use your passkey"
 msgstr "Kasutage oma pääsuvõtit"
 
@@ -2946,12 +2935,12 @@ msgstr "Kasutaja peatatud"
 msgid "User updated"
 msgstr "Kasutaja uuendatud"
 
-#: src/features/user/account.tsx:201
+#: src/features/user/account.tsx:131
 #: src/features/user/replication.tsx:182
 msgid "Username"
 msgstr "Kasutajanimi"
 
-#: src/components/layout/data/sidebar-data.ts:64
+#: src/components/layout/data/sidebar-data.ts:67
 #: src/features/system/users.tsx:544
 #: src/features/system/users.tsx:582
 #: src/features/system/users.tsx:595
@@ -2982,15 +2971,14 @@ msgstr "Kontrollimine ebaõnnestus"
 msgid "Verified"
 msgstr "Kontrollitud"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:255
-#: ../../../lib/web/src/components/step-up-dialog.tsx:296
+#: ../../../lib/web/src/components/step-up-dialog.tsx:371
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:164
 #: ../../../lib/web/src/features/accounts/account-verify.tsx:106
 #: src/features/user/connected-accounts.tsx:257
 msgid "Verify"
 msgstr "Kontrolli"
 
-#: src/features/user/account.tsx:694
+#: src/features/user/login.tsx:548
 msgid "Verify and enable"
 msgstr "Kontrolli ja luba"
 
@@ -3055,7 +3043,7 @@ msgid "You don't have access to any domains."
 msgstr "Sul pole juurdepääsu ühelegi domeenile."
 
 #. placeholder {0}: oauthProviderLabel[identity.provider] ?? identity.provider
-#: src/features/user/account.tsx:899
+#: src/features/user/login.tsx:753
 msgid "You won't be able to sign in with {0} anymore. Make sure you still have another way to log in."
 msgstr "Sa ei saa enam kasutada {0} sisselogimiseks. Veendu, et sul on muu sisselogimisviis olemas."
 

@@ -150,11 +150,11 @@ def action_user_account_session_revoke(a):
 # ============================================================================
 
 def action_user_account_methods(a):
-    """Get user's required login methods"""
-    a.json({"methods": mochi.user.methods.get()})
+    """Get the user's per-method login state (disabled/allowed/required)."""
+    a.json({"methods": mochi.user.methods.states()})
 
 def action_user_account_methods_set(a):
-    """Set user's required login methods.
+    """Set one login method's state (disabled/allowed/required).
 
     Changing how you log in is gated on step-up re-authentication so a
     stolen session can't weaken the account's factors.
@@ -162,27 +162,27 @@ def action_user_account_methods_set(a):
     if not mochi.user.session.reauthenticate(a.input("token", "")):
         a.error.label(400, "errors.reauthentication_required")
         return
-    methods = a.input("methods")
-    if not methods:
+    method = a.input("method")
+    state = a.input("state")
+    if not method or not state:
         a.error.label(400, "errors.missing_methods")
         return
 
-    # Parse comma-separated or JSON array
-    if type(methods) == "string":
-        # Handle JSON array format: ["email","passkey"]
-        if methods.startswith("[") and methods.endswith("]"):
-            # Remove brackets and parse as comma-separated, stripping quotes
-            inner = methods[1:-1]
-            methods = []
-            for m in inner.split(","):
-                m = m.strip().strip('"').strip("'")
-                if m:
-                    methods.append(m)
-        else:
-            methods = [m.strip() for m in methods.split(",") if m.strip()]
+    error = mochi.user.methods.configure(method, state)
+    if error == "last":
+        a.error.label(400, "errors.method_last_factor")
+        return
+    if error == "blocked":
+        a.error.label(400, "errors.method_blocked")
+        return
+    if error == "credential":
+        a.error.label(400, "errors.method_not_configured")
+        return
+    if error:
+        a.error.label(400, "errors.method_invalid")
+        return
 
-    mochi.user.methods.set(methods)
-    a.json({"ok": True, "methods": methods})
+    a.json({"ok": True})
 
 # ============================================================================
 # Passkeys

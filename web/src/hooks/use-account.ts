@@ -84,13 +84,13 @@ export function useMethods() {
   })
 }
 
-export function useSetMethods() {
+export function useSetMethod() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: ({ methods, token }: { methods: string[]; token: string }) =>
-      requestHelpers.post<{ ok: boolean; methods: string[] }>(
+    mutationFn: ({ method, state, token }: { method: string; state: string; token: string }) =>
+      requestHelpers.post<{ ok: boolean }>(
         endpoints.user.accountMethodsSet,
-        { methods, token },
+        { method, state, token },
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
