@@ -94,14 +94,14 @@ type RegistrationOptionsJSON = Parameters<typeof startRegistration>[0]['optionsJ
 // Login Methods Section
 // ============================================================================
 
-// One row per login method. "required" is offered only for the primary
-// factors — third-party login and recovery are sufficient-or-off, never an
-// AND-ed requirement (OAuth proves the email factor; recovery is break-glass).
+// One row per login method. "required" is offered for the primary factors
+// (email, passkey, authenticator, third-party login). Recovery is two-state
+// (sufficient-or-off): single-use break-glass, never an AND-ed requirement.
 const LOGIN_METHOD_ROWS: { method: string; twoState: boolean }[] = [
   { method: 'email', twoState: false },
   { method: 'passkey', twoState: false },
   { method: 'totp', twoState: false },
-  { method: 'oauth', twoState: true },
+  { method: 'oauth', twoState: false },
   { method: 'recovery', twoState: true },
 ]
 
