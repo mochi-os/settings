@@ -289,6 +289,9 @@ function PasskeyRow({
 function PasskeysSection() {
   const { t } = useLingui()
   const { data, isLoading, error, refetch } = usePasskeys()
+  const { data: methodsData } = useMethods()
+  // Passkeys disabled server-wide: block registration to match the server.
+  const passkeyDisabled = methodsData?.methods?.passkey?.system === 'disabled'
   const registerBegin = usePasskeyRegisterBegin()
   const registerFinish = usePasskeyRegisterFinish()
   const renamePasskey = usePasskeyRename()
@@ -354,6 +357,7 @@ function PasskeysSection() {
         variant='outline'
         size='sm'
         onClick={() => setRegisterDialogOpen(true)}
+        disabled={passkeyDisabled}
       >
         <Plus className='me-2 h-4 w-4' />
         <Trans>Add passkey</Trans>
@@ -393,6 +397,11 @@ function PasskeysSection() {
       title={t`Passkeys`}
       action={addButton}
     >
+      {passkeyDisabled && (
+        <p className='text-muted-foreground mb-2 px-4 text-sm leading-relaxed'>
+          <Trans>Passkeys are turned off by the server administrator.</Trans>
+        </p>
+      )}
       {error ? (
         <GeneralError error={error} minimal mode='inline' reset={refetch} />
       ) : isLoading ? (
