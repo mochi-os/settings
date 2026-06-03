@@ -11,6 +11,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
+  Badge,
   Button,
   DataChip,
   EmptyState,
@@ -107,6 +108,9 @@ function HostRow({ host }: { host: ReplicationHost }) {
     <TableRow>
       <TableCell>
         <span className='font-mono text-xs break-all'>{host.peer}</span>
+        {host.irreparable && (
+          <Badge variant='destructive' className='ml-2 align-middle'><Trans>Irreparable</Trans></Badge>
+        )}
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
         {formatTimestamp(host.added, t`Unknown`)}

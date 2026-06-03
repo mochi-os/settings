@@ -11,6 +11,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
+  Badge,
   Button,
   EmptyState,
   GeneralError,
@@ -119,7 +120,15 @@ function PendingJoinRow({ join }: { join: PendingJoin }) {
   )
 }
 
-function PairMemberRow({ peer, status }: { peer: string; status: 'synced' | 'syncing' }) {
+function PairMemberRow({
+  peer,
+  status,
+  irreparable,
+}: {
+  peer: string
+  status: 'synced' | 'syncing'
+  irreparable: boolean
+}) {
   const { t } = useLingui()
   const remove = useRemovePair()
 
@@ -129,7 +138,13 @@ function PairMemberRow({ peer, status }: { peer: string; status: 'synced' | 'syn
         <span className='font-mono text-xs break-all'>{peer}</span>
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {status === 'synced' ? <Trans>Synced</Trans> : <Trans>Syncing</Trans>}
+        {irreparable ? (
+          <Badge variant='destructive'><Trans>Irreparable</Trans></Badge>
+        ) : status === 'synced' ? (
+          <Trans>Synced</Trans>
+        ) : (
+          <Trans>Syncing</Trans>
+        )}
       </TableCell>
       <TableCell className='text-end'>
         <AlertDialog>
@@ -176,6 +191,7 @@ export function SystemReplication() {
 
   const peer = data?.peer ?? ''
   const pair = data?.pair ?? []
+  const irreparable = data?.irreparable ?? []
   const joins = data?.joins ?? []
   const bootstrap = data?.bootstrap ?? []
   const serving = data?.serving ?? []
@@ -251,7 +267,14 @@ export function SystemReplication() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {pair.map((p) => <PairMemberRow key={p} peer={p} status={pairMemberSyncStatus(p, bootstrap, serving)} />)}
+                    {pair.map((p) => (
+                      <PairMemberRow
+                        key={p}
+                        peer={p}
+                        status={pairMemberSyncStatus(p, bootstrap, serving)}
+                        irreparable={irreparable.includes(p)}
+                      />
+                    ))}
                   </TableBody>
                 </Table>
               )}

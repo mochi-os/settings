@@ -14,6 +14,7 @@ export interface ReplicationHost {
   peer: string
   added: number
   ack: number
+  irreparable: boolean
 }
 
 export interface ReplicationData {

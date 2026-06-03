@@ -20,6 +20,7 @@ def action_system_replication(a):
     a.json({
         "peer": status["peer"],
         "pair": status["pair"],
+        "irreparable": status["irreparable"],
         "joins": mochi.replication.joins(),
         "bootstrap": mochi.replication.bootstrap.progress(),
         "serving": mochi.replication.bootstrap.serving(),

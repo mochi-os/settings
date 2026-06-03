@@ -26,6 +26,7 @@ export interface ServingEntry {
 export interface SystemReplicationData {
   peer: string
   pair: string[]
+  irreparable: string[]
   joins: PendingJoin[]
   bootstrap: BootstrapEntry[]
   serving: ServingEntry[]
