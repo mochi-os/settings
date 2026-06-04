@@ -22,7 +22,7 @@ def action_notifications_categories_create(a):
 
 def action_notifications_categories_update(a):
 	id = a.input("id", "").strip()
-	if not id or not id.isdigit():
+	if not id or len(id) > 64:
 		return a.error.label(400, "errors.invalid_id")
 	label_raw = a.input("label")
 	default_raw = a.input("default")
@@ -32,7 +32,7 @@ def action_notifications_categories_update(a):
 	if default_raw != None and default_raw != "":
 		default = 1 if default_raw == "1" or default_raw == "true" else 0
 	destinations = json.decode(destinations_raw) if destinations_raw else None
-	ok = mochi.service.call("notifications", "category/update", int(id), label, destinations, default)
+	ok = mochi.service.call("notifications", "category/update", id, label, destinations, default)
 	if not ok:
 		return a.error.label(404, "errors.not_found")
 	return {"data": {}}
@@ -40,20 +40,20 @@ def action_notifications_categories_update(a):
 def action_notifications_categories_delete(a):
 	id = a.input("id", "").strip()
 	reassign = a.input("reassign_to", "").strip()
-	if not id or not id.isdigit():
+	if not id or len(id) > 64:
 		return a.error.label(400, "errors.invalid_id")
-	if reassign == "" or not reassign.lstrip("-").isdigit():
+	if reassign == "" or len(reassign) > 64:
 		return a.error.label(400, "errors.reassign_to_is_required")
-	ok = mochi.service.call("notifications", "category/delete", int(id), int(reassign))
+	ok = mochi.service.call("notifications", "category/delete", id, reassign)
 	if not ok:
 		return a.error.label(400, "errors.could_not_delete")
 	return {"data": {}}
 
 def action_notifications_categories_test(a):
 	id = a.input("id", "").strip()
-	if not id or not id.isdigit():
+	if not id or len(id) > 64:
 		return a.error.label(400, "errors.invalid_id")
-	result = mochi.service.call("notifications", "category/test", int(id))
+	result = mochi.service.call("notifications", "category/test", id)
 	return {"data": result or {"sent": 0, "web": False}}
 
 def action_notifications_topics(a):
@@ -65,10 +65,10 @@ def action_notifications_topics_set_category(a):
 	app = a.input("app", "").strip()
 	topic = a.input("topic", "").strip()
 	object = a.input("object", "")
-	cat_raw = a.input("category", "")
+	cat_raw = a.input("category", "").strip()
 	category = None
-	if cat_raw != "" and cat_raw.lstrip("-").isdigit():
-		category = int(cat_raw)
+	if cat_raw != "" and len(cat_raw) <= 64:
+		category = cat_raw
 	ok = mochi.service.call("notifications", "topic/set_category", app, topic, object, category)
 	if not ok:
 		return a.error.label(404, "errors.not_found")

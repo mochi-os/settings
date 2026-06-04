@@ -55,7 +55,7 @@ interface DestinationRow {
 }
 
 interface Category {
-  id: number
+  id: string
   label: string
   default: number
   created: number
@@ -88,7 +88,7 @@ interface Topic {
   object: string
   name: string
   label: string
-  category: number | null
+  category: string | null
   created: number
 }
 
@@ -111,8 +111,8 @@ function accountDisplayName(acc: Account): string {
 // Sort categories alphabetically by label, with "No notifications" (id 0) last.
 function sortCategories(cats: Category[]): Category[] {
   return [...cats].sort((a, b) => {
-    if (a.id === 0) return 1
-    if (b.id === 0) return -1
+    if (a.id === '0') return 1
+    if (b.id === '0') return -1
     return naturalCompare(a.label, b.label)
   })
 }
@@ -268,7 +268,7 @@ function CategoriesTab({
     )
   }
 
-  const visibleCategories = sortCategories(categories.filter((c) => c.id !== 0))
+  const visibleCategories = sortCategories(categories.filter((c) => c.id !== '0'))
 
   return (
     <>
@@ -408,7 +408,7 @@ function CategoryDialog({
   onSaved: () => void | Promise<void>
 }) {
   const { t } = useLingui()
-  const isSuppress = category?.id === 0
+  const isSuppress = category?.id === '0'
   const [label, setLabel] = useState(category?.label ?? '')
   const [isDefault, setIsDefault] = useState<boolean>(category?.default === 1)
   const [saving, setSaving] = useState(false)
@@ -578,8 +578,8 @@ function CategoryDeleteDialog({
 }) {
   const { t } = useLingui()
   const others = sortCategories(categories.filter((c) => c.id !== category.id))
-  const preferred = others.find((c) => c.default === 1) ?? others.find((c) => c.id !== 0) ?? others[0]
-  const [target, setTarget] = useState<string>(String(preferred?.id ?? 0))
+  const preferred = others.find((c) => c.default === 1) ?? others.find((c) => c.id !== '0') ?? others[0]
+  const [target, setTarget] = useState<string>(String(preferred?.id ?? '0'))
   const [deleting, setDeleting] = useState(false)
 
   const run = async () => {
