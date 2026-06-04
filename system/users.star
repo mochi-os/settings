@@ -13,8 +13,14 @@ def action_system_users_list(a):
     """List all users with pagination, search, and sort"""
     if not require_admin(a):
         return
-    limit = int(a.input("limit") or "25")
-    offset = int(a.input("offset") or "0")
+    limit = parse_int(a.input("limit"), 25)
+    offset = parse_int(a.input("offset"), 0)
+    # Bound to a sane window so a malformed or hostile value can't request an
+    # unbounded page.
+    if limit < 1 or limit > 100:
+        limit = 25
+    if offset < 0:
+        offset = 0
     search = a.input("search") or ""
     sort = a.input("sort") or "username"
     order = a.input("order") or "asc"

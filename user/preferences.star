@@ -1,117 +1,92 @@
 # Mochi settings app: user/preferences
 # Copyright Alistair Cunningham 2025-2026
 
-# Preference schema
+# Preference schema. Only the fields the server uses are kept: `key` and
+# `default` populate the overview, `type`/`options` drive validation in
+# action_user_preferences_set. The client renders its own translated labels and
+# option lists, so no label/description is stored or sent here.
 preferences_schema = [
     {
         "key": "appearance",
         "type": "select",
         "options": ["light", "dark", "auto"],
         "default": "auto",
-        "label": "Appearance",
-        "description": "Light or dark mode"
     },
     {
         "key": "density",
         "type": "select",
         "options": ["theme", "compact", "comfortable", "spacious"],
         "default": "theme",
-        "label": "Density",
-        "description": "Layout density override"
     },
     {
         "key": "radius",
         "type": "select",
         "options": ["theme", "0rem", "0.375rem", "0.75rem", "1.75rem"],
         "default": "theme",
-        "label": "Radius",
-        "description": "Corner radius override"
     },
     {
         "key": "background",
         "type": "select",
         "options": ["theme", "off"],
         "default": "theme",
-        "label": "Background",
-        "description": "Theme background image"
     },
     {
         "key": "font",
         "type": "select",
         "options": ["theme", "system", "serif", "dyslexia"],
         "default": "theme",
-        "label": "Font",
-        "description": "Interface font family"
     },
     {
         "key": "font_size",
         "type": "select",
         "options": ["theme", "small", "normal", "large", "extra-large"],
         "default": "theme",
-        "label": "Font size",
-        "description": "Base font size"
     },
     {
         "key": "language",
         "type": "locale-language",
         "default": "en",
-        "label": "Language",
-        "description": "Interface language"
     },
     {
         "key": "timezone",
         "type": "timezone",
         "default": "auto",
-        "label": "Timezone",
-        "description": "Timezone for displaying dates and times"
     },
     {
         "key": "date_format",
         "type": "select",
         "options": ["auto", "YYYY-MM-DD", "DD/MM/YYYY", "DD.MM.YYYY", "MM/DD/YYYY", "D MMM YYYY"],
         "default": "auto",
-        "label": "Date format",
-        "description": "How dates are displayed"
     },
     {
         "key": "time_format",
         "type": "select",
         "options": ["auto", "24h", "12h"],
         "default": "auto",
-        "label": "Time format",
-        "description": "12-hour or 24-hour clock"
     },
     {
         "key": "timestamp_display",
         "type": "select",
         "options": ["auto", "relative", "absolute"],
         "default": "auto",
-        "label": "Timestamp display",
-        "description": "Show timestamps as relative (5m, 3h) or absolute (date and time)"
     },
     {
         "key": "week_start",
         "type": "select",
         "options": ["auto", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
         "default": "auto",
-        "label": "Week starts on",
-        "description": "First day of the week in calendars"
     },
     {
         "key": "number_format",
         "type": "select",
         "options": ["auto", "1,000.00", "1.000,00", "1 000,00", "1'000.00", "1,00,000.00"],
         "default": "auto",
-        "label": "Number format",
-        "description": "How numbers are formatted"
     },
     {
         "key": "units",
         "type": "select",
         "options": ["auto", "metric", "imperial", "usa"],
         "default": "auto",
-        "label": "Units",
-        "description": "Measurement system for distances, weights, etc."
     },
 ]
 
@@ -125,7 +100,7 @@ def action_user_preferences(a):
     theme = a.user.preference.get("theme")
     default_theme = mochi.setting.get("default_theme")
     prefs["theme"] = theme if theme != None else default_theme
-    a.json({"preferences": prefs, "schema": preferences_schema, "themes": mochi.app.themes(), "presets": mochi.app.presets(), "default_theme": default_theme})
+    a.json({"preferences": prefs, "themes": mochi.app.themes(), "presets": mochi.app.presets(), "default_theme": default_theme})
 
 def action_user_preferences_set(a):
     """Set user preferences"""

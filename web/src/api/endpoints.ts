@@ -95,7 +95,7 @@ const endpoints = {
     categoriesDelete: '-/notifications/categories/delete',
     categoriesTest: '-/notifications/categories/test',
     topics: '-/notifications/topics',
-    topicsSetCategory: '-/notifications/topics/set_category',
+    topicsSetCategory: '-/notifications/topics/set/category',
     topicsDelete: '-/notifications/topics/delete',
     destinations: '-/notifications/destinations',
   },

@@ -139,7 +139,7 @@ def action_domains_route_create(a):
         if not can_manage_path(a, domain, path):
             a.error.label(403, "errors.no_permission_to_manage_this_path")
             return
-    priority = int(a.input("priority") or "0")
+    priority = parse_int(a.input("priority"), 0)
     context = a.input("context") or ""
     result = mochi.domain.route.create(domain, path, method, target, priority, context=context)
     a.json(result)
@@ -165,7 +165,9 @@ def action_domains_route_update(a):
     if target:
         kwargs["target"] = target
     if priority:
-        kwargs["priority"] = int(priority)
+        parsed = parse_int(priority, None)
+        if parsed != None:
+            kwargs["priority"] = parsed
     if enabled:
         kwargs["enabled"] = enabled == "true"
     mochi.domain.route.update(domain, path, **kwargs)

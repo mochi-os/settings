@@ -1,18 +1,23 @@
 # Mochi settings app: user/account
 # Copyright Alistair Cunningham 2025-2026
 
-def action_user_account(a):
-    """User account overview - returns identity and sessions"""
+def user_identity(a):
+    """Build the current user's identity payload, shared by the account
+    overview and the identity endpoint."""
     entity_id = a.user.identity.id
     fp = mochi.entity.fingerprint(entity_id)
+    return {
+        "entity": entity_id,
+        "fingerprint": fp[:3] + "-" + fp[3:6] + "-" + fp[6:],
+        "username": a.user.username,
+        "name": a.user.identity.name,
+        "privacy": a.user.identity.privacy,
+    }
+
+def action_user_account(a):
+    """User account overview - returns identity and sessions"""
     a.json({
-        "identity": {
-            "entity": entity_id,
-            "fingerprint": fp[:3] + "-" + fp[3:6] + "-" + fp[6:],
-            "username": a.user.username,
-            "name": a.user.identity.name,
-            "privacy": a.user.identity.privacy,
-        },
+        "identity": user_identity(a),
         "role": a.user.role,
         "sessions": mochi.user.session.list(),
     })
@@ -75,7 +80,17 @@ def action_user_account_export_download(a):
         a.error.label(401, "errors.authentication_required")
         return
     name = a.input("file", "")
-    if not name or "/" in name or "\\" in name or ".." in name:
+    # Allowlist: export bundles are named mochi-export-<stamp>-<fingerprint>-<suffix>.zip,
+    # so only letters, digits, dot, hyphen and underscore are ever valid. Validate
+    # against that set (and reject any "..") rather than blocklisting known-bad chars.
+    allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.-_"
+    valid = name.endswith(".zip") and ".." not in name
+    if valid:
+        for c in name.elems():
+            if c not in allowed:
+                valid = False
+                break
+    if not valid:
         a.error.label(400, "errors.invalid_file")
         return
     # The browser supplies a friendly download name in the user's local
@@ -96,15 +111,7 @@ def action_user_account_export_download(a):
 
 def action_user_account_identity(a):
     """Get user identity information"""
-    entity_id = a.user.identity.id
-    fp = mochi.entity.fingerprint(entity_id)
-    a.json({
-        "entity": entity_id,
-        "fingerprint": fp[:3] + "-" + fp[3:6] + "-" + fp[6:],
-        "username": a.user.username,
-        "name": a.user.identity.name,
-        "privacy": a.user.identity.privacy,
-    })
+    a.json(user_identity(a))
 
 def action_user_account_identity_update(a):
     """Update the current user's identity (name, privacy)"""
