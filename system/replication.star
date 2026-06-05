@@ -21,6 +21,7 @@ def action_system_replication(a):
         "peer": status["peer"],
         "pair": status["pair"],
         "irreparable": status["irreparable"],
+        "offline": status["offline"],
         "joins": mochi.replication.joins(),
         "bootstrap": mochi.replication.bootstrap.progress(),
         "serving": mochi.replication.bootstrap.serving(),

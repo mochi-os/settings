@@ -39,6 +39,7 @@ import {
   type ReplicationHost,
   type ReplicationLink,
 } from '@/hooks/use-replication'
+import { offlineActive, offlineDuration } from '@/lib/offline'
 import { stepUpClient } from '@/lib/step-up-client'
 
 function PendingRow({ link }: { link: ReplicationLink }) {
@@ -108,9 +109,13 @@ function HostRow({ host }: { host: ReplicationHost }) {
     <TableRow>
       <TableCell>
         <span className='font-mono text-xs break-all'>{host.peer}</span>
-        {host.irreparable && (
+        {host.irreparable ? (
           <Badge variant='destructive' className='ml-2 align-middle'><Trans>Irreparable</Trans></Badge>
-        )}
+        ) : offlineActive(host.offline) ? (
+          <Badge variant='outline' className='ml-2 align-middle border-amber-500 text-amber-600 dark:text-amber-500'>
+            {t`Offline ${offlineDuration(host.offline)}`}
+          </Badge>
+        ) : null}
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
         {formatTimestamp(host.added, t`Unknown`)}

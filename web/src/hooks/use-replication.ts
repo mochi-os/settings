@@ -15,6 +15,7 @@ export interface ReplicationHost {
   added: number
   ack: number
   irreparable: boolean
+  offline: number
 }
 
 export interface ReplicationData {

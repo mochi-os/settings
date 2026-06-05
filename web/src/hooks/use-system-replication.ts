@@ -23,10 +23,16 @@ export interface ServingEntry {
   started: number
 }
 
+export interface OfflineMember {
+  peer: string
+  since: number
+}
+
 export interface SystemReplicationData {
   peer: string
   pair: string[]
   irreparable: string[]
+  offline: OfflineMember[]
   joins: PendingJoin[]
   bootstrap: BootstrapEntry[]
   serving: ServingEntry[]

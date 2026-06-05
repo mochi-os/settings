@@ -40,6 +40,7 @@ import {
   type ServingEntry,
 } from '@/hooks/use-system-replication'
 import { stepUpClient } from '@/lib/step-up-client'
+import { offlineActive, offlineDuration } from '@/lib/offline'
 
 // pairMemberSyncStatus returns "synced" only when both directions are
 // caught up: every inbound bootstrap row for this peer is 'done' AND
@@ -124,10 +125,12 @@ function PairMemberRow({
   peer,
   status,
   irreparable,
+  offline,
 }: {
   peer: string
   status: 'synced' | 'syncing'
   irreparable: boolean
+  offline: number
 }) {
   const { t } = useLingui()
   const remove = useRemovePair()
@@ -140,6 +143,10 @@ function PairMemberRow({
       <TableCell className='text-muted-foreground text-sm'>
         {irreparable ? (
           <Badge variant='destructive'><Trans>Irreparable</Trans></Badge>
+        ) : offlineActive(offline) ? (
+          <Badge variant='outline' className='border-amber-500 text-amber-600 dark:text-amber-500'>
+            {t`Offline ${offlineDuration(offline)}`}
+          </Badge>
         ) : status === 'synced' ? (
           <Trans>Synced</Trans>
         ) : (
@@ -192,6 +199,7 @@ export function SystemReplication() {
   const peer = data?.peer ?? ''
   const pair = data?.pair ?? []
   const irreparable = data?.irreparable ?? []
+  const offline = new Map((data?.offline ?? []).map((o) => [o.peer, o.since]))
   const joins = data?.joins ?? []
   const bootstrap = data?.bootstrap ?? []
   const serving = data?.serving ?? []
@@ -273,6 +281,7 @@ export function SystemReplication() {
                         peer={p}
                         status={pairMemberSyncStatus(p, bootstrap, serving)}
                         irreparable={irreparable.includes(p)}
+                        offline={offline.get(p) ?? 0}
                       />
                     ))}
                   </TableBody>
