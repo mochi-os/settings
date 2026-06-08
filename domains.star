@@ -63,7 +63,7 @@ def action_domains_get(a):
             a.error.label(404, "errors.domain_not_found")
             return
         routes = enrich_routes_with_names(mochi.domain.route.list(domain))
-        delegations = mochi.domain.delegation.list(domain, 0)
+        delegations = mochi.domain.delegation.list(domain, "")
         a.json({"domain": info, "routes": routes, "delegations": enrich_delegations(delegations), "admin": True})
     else:
         delegations = mochi.domain.delegation.list(domain, a.user.id)
@@ -199,7 +199,7 @@ def action_domains_delegation_create(a):
     if not domain or path == None or not owner:
         a.error.label(400, "errors.missing_required_fields_domain_path_owner")
         return
-    mochi.domain.delegation.create(domain, path, int(owner))
+    mochi.domain.delegation.create(domain, path, owner)
     a.json({"ok": True})
 
 def action_domains_delegation_delete(a):
@@ -212,7 +212,7 @@ def action_domains_delegation_delete(a):
     if not domain or path == None or not owner:
         a.error.label(400, "errors.missing_required_fields_domain_path_owner")
         return
-    mochi.domain.delegation.delete(domain, path, int(owner))
+    mochi.domain.delegation.delete(domain, path, owner)
     a.json({"ok": True})
 
 def action_domains_user_search(a):
