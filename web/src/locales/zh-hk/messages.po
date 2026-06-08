@@ -80,8 +80,8 @@ msgstr ""
 
 #: src/components/layout/data/sidebar-data.ts:29
 #: src/components/layout/data/sidebar-data.ts:50
-#: src/features/user/account.tsx:169
-#: src/features/user/account.tsx:173
+#: src/features/user/account.tsx:170
+#: src/features/user/account.tsx:174
 msgid "Account"
 msgstr "賬戶"
 
@@ -225,7 +225,7 @@ msgstr ""
 msgid "Allow new signups"
 msgstr ""
 
-#: src/features/user/account.tsx:148
+#: src/features/user/account.tsx:149
 msgid "Allow others to find you in directory"
 msgstr ""
 
@@ -361,7 +361,8 @@ msgstr ""
 #: src/features/system/settings.tsx:411
 #: src/features/system/users.tsx:150
 #: src/features/system/users.tsx:235
-#: src/features/user/account.tsx:117
+#: src/features/user/account.tsx:118
+#: src/features/user/close-account.tsx:86
 #: src/features/user/connected-accounts.tsx:601
 #: src/features/user/display.tsx:193
 #: src/features/user/login.tsx:560
@@ -409,7 +410,7 @@ msgstr ""
 msgid "Choose file"
 msgstr ""
 
-#: ../../../lib/web/src/components/language-picker.tsx:174
+#: ../../../lib/web/src/components/language-picker.tsx:294
 msgid "Choose language"
 msgstr ""
 
@@ -443,6 +444,12 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
+#: src/features/user/close-account.tsx:64
+#: src/features/user/close-account.tsx:70
+#: src/features/user/close-account.tsx:92
+msgid "Close account"
+msgstr "關閉帳戶"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx:97
 msgid "Close navigation"
 msgstr ""
@@ -454,6 +461,10 @@ msgstr ""
 #: ../../../lib/web/src/components/header-search.tsx:51
 msgid "Close search"
 msgstr ""
+
+#: src/features/user/close-account.tsx:76
+msgid "Close your account?"
+msgstr "關閉你的帳戶？"
 
 #: src/features/user/login.tsx:662
 msgid "Codes copied"
@@ -535,6 +546,10 @@ msgstr ""
 #: src/features/user/tokens.tsx:173
 msgid "Copy your token now. You will not be able to see it again."
 msgstr ""
+
+#: src/features/user/close-account.tsx:55
+msgid "Could not close your account"
+msgstr "無法關閉你的帳戶"
 
 #: src/features/system/replication.tsx:103
 #: src/features/user/replication.tsx:67
@@ -760,7 +775,7 @@ msgstr ""
 msgid "Details Panel"
 msgstr ""
 
-#: ../../../lib/web/src/components/language-picker.tsx:152
+#: ../../../lib/web/src/components/language-picker.tsx:272
 #: ../../../lib/web/src/components/timezone-select.tsx:43
 #: ../../../lib/web/src/components/timezone-select.tsx:80
 #: ../../../lib/web/src/lib/preference-utils.ts:25
@@ -904,7 +919,7 @@ msgstr ""
 msgid "Edit category"
 msgstr ""
 
-#: src/features/user/account.tsx:125
+#: src/features/user/account.tsx:126
 msgid "Edit name"
 msgstr ""
 
@@ -1152,7 +1167,7 @@ msgstr ""
 msgid "Failed to update login methods"
 msgstr ""
 
-#: src/features/user/account.tsx:54
+#: src/features/user/account.tsx:55
 msgid "Failed to update name"
 msgstr ""
 
@@ -1161,7 +1176,7 @@ msgstr ""
 msgid "Failed to update preference"
 msgstr ""
 
-#: src/features/user/account.tsx:72
+#: src/features/user/account.tsx:73
 msgid "Failed to update privacy"
 msgstr ""
 
@@ -1197,7 +1212,7 @@ msgstr ""
 msgid "Failed to verify domain"
 msgstr ""
 
-#: src/features/user/account.tsx:136
+#: src/features/user/account.tsx:137
 msgid "Fingerprint"
 msgstr ""
 
@@ -1333,16 +1348,16 @@ msgstr ""
 msgid "Hot"
 msgstr ""
 
-#: src/features/user/account.tsx:80
-#: src/features/user/account.tsx:139
+#: src/features/user/account.tsx:81
+#: src/features/user/account.tsx:140
 msgid "Identity"
 msgstr ""
 
-#: src/features/user/account.tsx:68
+#: src/features/user/account.tsx:69
 msgid "Identity is no longer listed in the directory"
 msgstr ""
 
-#: src/features/user/account.tsx:68
+#: src/features/user/account.tsx:69
 msgid "Identity is now listed in the directory"
 msgstr ""
 
@@ -1608,7 +1623,7 @@ msgstr ""
 msgid "My passkey"
 msgstr ""
 
-#: src/features/user/account.tsx:88
+#: src/features/user/account.tsx:89
 #: src/features/user/connected-accounts.tsx:463
 #: src/features/user/connected-accounts.tsx:570
 #: src/features/user/login.tsx:415
@@ -1617,7 +1632,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: src/features/user/account.tsx:50
+#: src/features/user/account.tsx:51
 msgid "Name updated"
 msgstr ""
 
@@ -2273,7 +2288,7 @@ msgstr ""
 msgid "Save changes"
 msgstr ""
 
-#: src/features/user/account.tsx:107
+#: src/features/user/account.tsx:108
 msgid "Save name"
 msgstr ""
 
@@ -2981,7 +2996,7 @@ msgstr "用戶已停權"
 msgid "User updated"
 msgstr "用戶已更新"
 
-#: src/features/user/account.tsx:131
+#: src/features/user/account.tsx:132
 #: src/features/user/replication.tsx:191
 msgid "Username"
 msgstr ""
@@ -3093,9 +3108,18 @@ msgstr ""
 msgid "You won't be able to sign in with {0} anymore. Make sure you still have another way to log in."
 msgstr ""
 
+#. placeholder {0}: formatTimestamp(purge)
+#: src/features/user/close-account.tsx:50
+msgid "Your account is scheduled for deletion on {0}. Log in before then to cancel."
+msgstr "你的帳戶已排定於 {0} 刪除。請在此之前登入以取消。"
+
 #: ../../../lib/web/src/components/restore-banner.tsx:82
 msgid "Your account was moved here from {source}. Until you delete it there, messages and notifications may reach both servers, some of your content keeps being served from the old server, and followers may take a few minutes to find you here."
 msgstr "您的帳戶已從 {source} 移轉至此。在您於那裡刪除它之前，訊息和通知可能會抵達兩個伺服器，您的部分內容仍會從舊伺服器提供，而追蹤者可能需要幾分鐘才能在此找到您。"
+
+#: src/features/user/close-account.tsx:79
+msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
+msgstr "你的帳戶將被排定刪除，而且你將被登出。在刪除日期之前，你隨時可以重新登入以取消。如果你想保留副本，請先下載你的資料。"
 
 #: src/features/user/data.tsx:166
 msgid "Your data"

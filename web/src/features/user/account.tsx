@@ -3,6 +3,7 @@ import { useLingui, Trans } from '@lingui/react/macro'
 import { Check, Pencil, User } from 'lucide-react'
 import { useAccountData, useUpdateIdentity } from '@/hooks/use-account'
 import { DataSection } from './data'
+import { CloseAccountSection } from './close-account'
 import {
   Button,
   Input,
@@ -167,6 +168,10 @@ function IdentitySection() {
 export function UserAccount() {
   const { t } = useLingui()
   usePageTitle(t`Account`)
+  // Administrators can't close their own account (a self-closed sole admin
+  // would strand the server — enforced server-side too), so don't offer it.
+  const { data } = useAccountData()
+  const isAdministrator = data?.role === 'administrator'
 
   return (
     <>
@@ -175,6 +180,7 @@ export function UserAccount() {
         <div className='space-y-8 pb-6'>
           <IdentitySection />
           <DataSection />
+          {!isAdministrator && <CloseAccountSection />}
         </div>
         <ServerDocumentsFooter />
       </Main>

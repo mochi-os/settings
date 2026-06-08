@@ -52,6 +52,8 @@ const endpoints = {
     interestsSummary: '-/user/interests/summary',
     // Export
     accountExport: '-/user/account/export',
+    // Self-service account closure (soft delete)
+    accountClose: '-/user/account/close',
     // Step-up re-authentication: send/verify the email code, and the
     // passkey assertion ceremony. (methods + totp/verify are reused.)
     accountCode: '-/user/account/code',

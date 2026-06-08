@@ -68,6 +68,24 @@ def action_user_account_export(a):
     path = mochi.user.export(passphrase)
     a.json({"filename": path.split("/")[-1]})
 
+def action_user_account_close(a):
+    """Close the current user's own account (self-service soft delete).
+
+    Gated by step-up re-authentication, mirroring export: the user
+    re-verifies their login factor(s) to earn a proof token, supplied
+    here. The account is marked for deletion after a grace period, every
+    session is revoked, and a cancellation email is sent. Returns the
+    purge timestamp (unix seconds) so the UI can show the deletion date.
+    Administrators are refused server-side (a self-closed sole admin would
+    strand the server).
+    """
+    if not mochi.user.session.reauthenticate(a.input("token", "")):
+        a.error.label(400, "errors.reauthentication_required")
+        return
+
+    purge = mochi.user.close()
+    a.json({"purge": purge})
+
 def action_user_account_export_download(a):
     """Stream a previously built export bundle to the browser.
 

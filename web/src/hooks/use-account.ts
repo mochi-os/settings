@@ -363,3 +363,17 @@ export function useExportData() {
       ),
   })
 }
+
+// useCloseAccount marks the user's own account for deletion after the grace
+// period. Step-up gated: the token comes from the re-auth ceremony. Returns
+// the purge timestamp (unix seconds) so the UI can show the deletion date.
+export function useCloseAccount() {
+  return useMutation({
+    mutationFn: ({ token }: { token: string }) =>
+      requestHelpers.post<{ purge: number }>(
+        endpoints.user.accountClose,
+        { token },
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      ),
+  })
+}

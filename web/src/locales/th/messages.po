@@ -80,8 +80,8 @@ msgstr "ระดับการเข้าถึง"
 
 #: src/components/layout/data/sidebar-data.ts:29
 #: src/components/layout/data/sidebar-data.ts:50
-#: src/features/user/account.tsx:169
-#: src/features/user/account.tsx:173
+#: src/features/user/account.tsx:170
+#: src/features/user/account.tsx:174
 msgid "Account"
 msgstr "บัญชี"
 
@@ -225,7 +225,7 @@ msgstr "ทั้งหมด"
 msgid "Allow new signups"
 msgstr "อนุญาตการสมัครใหม่"
 
-#: src/features/user/account.tsx:148
+#: src/features/user/account.tsx:149
 msgid "Allow others to find you in directory"
 msgstr "อนุญาตให้ผู้อื่นค้นหาคุณในไดเรกทอรี"
 
@@ -361,7 +361,8 @@ msgstr "การแจ้งเตือนของเบราว์เซอ
 #: src/features/system/settings.tsx:411
 #: src/features/system/users.tsx:150
 #: src/features/system/users.tsx:235
-#: src/features/user/account.tsx:117
+#: src/features/user/account.tsx:118
+#: src/features/user/close-account.tsx:86
 #: src/features/user/connected-accounts.tsx:601
 #: src/features/user/display.tsx:193
 #: src/features/user/login.tsx:560
@@ -409,7 +410,7 @@ msgstr "เลือกระหว่างการตั้งค่าระ
 msgid "Choose file"
 msgstr "เลือกไฟล์"
 
-#: ../../../lib/web/src/components/language-picker.tsx:174
+#: ../../../lib/web/src/components/language-picker.tsx:294
 msgid "Choose language"
 msgstr "เลือกภาษา"
 
@@ -443,6 +444,12 @@ msgstr "ล้างการเลือก (Escape)"
 msgid "Close"
 msgstr "ปิด"
 
+#: src/features/user/close-account.tsx:64
+#: src/features/user/close-account.tsx:70
+#: src/features/user/close-account.tsx:92
+msgid "Close account"
+msgstr "ปิดบัญชี"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx:97
 msgid "Close navigation"
 msgstr "ปิดการนำทาง"
@@ -454,6 +461,10 @@ msgstr "ปิดแผง"
 #: ../../../lib/web/src/components/header-search.tsx:51
 msgid "Close search"
 msgstr "ปิดการค้นหา"
+
+#: src/features/user/close-account.tsx:76
+msgid "Close your account?"
+msgstr "ปิดบัญชีของคุณหรือไม่?"
 
 #: src/features/user/login.tsx:662
 msgid "Codes copied"
@@ -535,6 +546,10 @@ msgstr "คัดลอกรหัสเพียร์"
 #: src/features/user/tokens.tsx:173
 msgid "Copy your token now. You will not be able to see it again."
 msgstr "คัดลอกโทเค็นของคุณตอนนี้ คุณจะไม่สามารถดูได้อีก"
+
+#: src/features/user/close-account.tsx:55
+msgid "Could not close your account"
+msgstr "ไม่สามารถปิดบัญชีของคุณได้"
 
 #: src/features/system/replication.tsx:103
 #: src/features/user/replication.tsx:67
@@ -760,7 +775,7 @@ msgstr "ปลายทาง"
 msgid "Details Panel"
 msgstr "แผงรายละเอียด"
 
-#: ../../../lib/web/src/components/language-picker.tsx:152
+#: ../../../lib/web/src/components/language-picker.tsx:272
 #: ../../../lib/web/src/components/timezone-select.tsx:43
 #: ../../../lib/web/src/components/timezone-select.tsx:80
 #: ../../../lib/web/src/lib/preference-utils.ts:25
@@ -904,7 +919,7 @@ msgstr "แก้ไข"
 msgid "Edit category"
 msgstr "แก้ไขหมวดหมู่"
 
-#: src/features/user/account.tsx:125
+#: src/features/user/account.tsx:126
 msgid "Edit name"
 msgstr "แก้ไขชื่อ"
 
@@ -1152,7 +1167,7 @@ msgstr "ไม่สามารถอัปเดตความสนใจไ
 msgid "Failed to update login methods"
 msgstr "อัปเดตวิธีการเข้าสู่ระบบไม่สำเร็จ"
 
-#: src/features/user/account.tsx:54
+#: src/features/user/account.tsx:55
 msgid "Failed to update name"
 msgstr "ไม่สามารถอัปเดตชื่อได้"
 
@@ -1161,7 +1176,7 @@ msgstr "ไม่สามารถอัปเดตชื่อได้"
 msgid "Failed to update preference"
 msgstr "ไม่สามารถอัปเดตการตั้งค่าได้"
 
-#: src/features/user/account.tsx:72
+#: src/features/user/account.tsx:73
 msgid "Failed to update privacy"
 msgstr "ไม่สามารถอัปเดตความเป็นส่วนตัวได้"
 
@@ -1197,7 +1212,7 @@ msgstr "ไม่สามารถยืนยันรหัสได้"
 msgid "Failed to verify domain"
 msgstr "ไม่สามารถยืนยันโดเมนได้"
 
-#: src/features/user/account.tsx:136
+#: src/features/user/account.tsx:137
 msgid "Fingerprint"
 msgstr "Fingerprint"
 
@@ -1333,16 +1348,16 @@ msgstr "ลบโฮสต์แล้ว"
 msgid "Hot"
 msgstr "ยอดนิยม"
 
-#: src/features/user/account.tsx:80
-#: src/features/user/account.tsx:139
+#: src/features/user/account.tsx:81
+#: src/features/user/account.tsx:140
 msgid "Identity"
 msgstr "Identity"
 
-#: src/features/user/account.tsx:68
+#: src/features/user/account.tsx:69
 msgid "Identity is no longer listed in the directory"
 msgstr "Identity ไม่แสดงในไดเรกทอรีอีกต่อไป"
 
-#: src/features/user/account.tsx:68
+#: src/features/user/account.tsx:69
 msgid "Identity is now listed in the directory"
 msgstr "ขณะนี้ Identity แสดงในไดเรกทอรีแล้ว"
 
@@ -1608,7 +1623,7 @@ msgstr "โฮสต์ของฉัน"
 msgid "My passkey"
 msgstr "passkey ของฉัน"
 
-#: src/features/user/account.tsx:88
+#: src/features/user/account.tsx:89
 #: src/features/user/connected-accounts.tsx:463
 #: src/features/user/connected-accounts.tsx:570
 #: src/features/user/login.tsx:415
@@ -1617,7 +1632,7 @@ msgstr "passkey ของฉัน"
 msgid "Name"
 msgstr "ชื่อ"
 
-#: src/features/user/account.tsx:50
+#: src/features/user/account.tsx:51
 msgid "Name updated"
 msgstr "อัปเดตชื่อแล้ว"
 
@@ -2273,7 +2288,7 @@ msgstr "บันทึก"
 msgid "Save changes"
 msgstr "บันทึกการเปลี่ยนแปลง"
 
-#: src/features/user/account.tsx:107
+#: src/features/user/account.tsx:108
 msgid "Save name"
 msgstr "บันทึกชื่อ"
 
@@ -2981,7 +2996,7 @@ msgstr "ผู้ใช้ถูกระงับ"
 msgid "User updated"
 msgstr "อัปเดตผู้ใช้แล้ว"
 
-#: src/features/user/account.tsx:131
+#: src/features/user/account.tsx:132
 #: src/features/user/replication.tsx:191
 msgid "Username"
 msgstr "ชื่อผู้ใช้"
@@ -3093,9 +3108,18 @@ msgstr "คุณไม่มีสิทธิ์เข้าถึงโดเ
 msgid "You won't be able to sign in with {0} anymore. Make sure you still have another way to log in."
 msgstr "คุณจะไม่สามารถลงชื่อเข้าใช้ด้วย {0} ได้อีกต่อไป ตรวจสอบให้แน่ใจว่าคุณยังมีวิธีอื่นในการเข้าสู่ระบบ"
 
+#. placeholder {0}: formatTimestamp(purge)
+#: src/features/user/close-account.tsx:50
+msgid "Your account is scheduled for deletion on {0}. Log in before then to cancel."
+msgstr "บัญชีของคุณถูกกำหนดให้ลบในวันที่ {0} เข้าสู่ระบบก่อนหน้านั้นเพื่อยกเลิก"
+
 #: ../../../lib/web/src/components/restore-banner.tsx:82
 msgid "Your account was moved here from {source}. Until you delete it there, messages and notifications may reach both servers, some of your content keeps being served from the old server, and followers may take a few minutes to find you here."
 msgstr "บัญชีของคุณถูกย้ายมาที่นี่จาก {source} จนกว่าคุณจะลบออกที่นั่น ข้อความและการแจ้งเตือนอาจไปถึงทั้งสองเซิร์ฟเวอร์ เนื้อหาบางส่วนของคุณยังคงให้บริการจากเซิร์ฟเวอร์เดิม และผู้ติดตามอาจต้องใช้เวลาสักครู่เพื่อพบคุณที่นี่"
+
+#: src/features/user/close-account.tsx:79
+msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
+msgstr "บัญชีของคุณจะถูกกำหนดให้ลบและคุณจะถูกออกจากระบบ คุณสามารถยกเลิกได้ทุกเมื่อก่อนถึงวันที่ลบโดยการเข้าสู่ระบบอีกครั้ง ดาวน์โหลดข้อมูลของคุณก่อนหากต้องการเก็บสำเนาไว้"
 
 #: src/features/user/data.tsx:166
 msgid "Your data"

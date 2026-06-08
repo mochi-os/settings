@@ -80,8 +80,8 @@ msgstr "Επίπεδο πρόσβασης"
 
 #: src/components/layout/data/sidebar-data.ts:29
 #: src/components/layout/data/sidebar-data.ts:50
-#: src/features/user/account.tsx:169
-#: src/features/user/account.tsx:173
+#: src/features/user/account.tsx:170
+#: src/features/user/account.tsx:174
 msgid "Account"
 msgstr "Λογαριασμός"
 
@@ -225,7 +225,7 @@ msgstr "Όλα"
 msgid "Allow new signups"
 msgstr "Να επιτρέπονται νέες εγγραφές"
 
-#: src/features/user/account.tsx:148
+#: src/features/user/account.tsx:149
 msgid "Allow others to find you in directory"
 msgstr "Να επιτρέπεται σε άλλους να σας βρίσκουν στον κατάλογο"
 
@@ -361,7 +361,8 @@ msgstr "Ειδοποιήσεις προγράμματος περιήγησης"
 #: src/features/system/settings.tsx:411
 #: src/features/system/users.tsx:150
 #: src/features/system/users.tsx:235
-#: src/features/user/account.tsx:117
+#: src/features/user/account.tsx:118
+#: src/features/user/close-account.tsx:86
 #: src/features/user/connected-accounts.tsx:601
 #: src/features/user/display.tsx:193
 #: src/features/user/login.tsx:560
@@ -409,7 +410,7 @@ msgstr "Επιλέξτε ανάμεσα σε προτίμηση συστήματ
 msgid "Choose file"
 msgstr "Επιλογή αρχείου"
 
-#: ../../../lib/web/src/components/language-picker.tsx:174
+#: ../../../lib/web/src/components/language-picker.tsx:294
 msgid "Choose language"
 msgstr "Επιλογή γλώσσας"
 
@@ -443,6 +444,12 @@ msgstr "Εκκαθάριση επιλογής (Escape)"
 msgid "Close"
 msgstr "Κλείσιμο"
 
+#: src/features/user/close-account.tsx:64
+#: src/features/user/close-account.tsx:70
+#: src/features/user/close-account.tsx:92
+msgid "Close account"
+msgstr "Κλείσιμο λογαριασμού"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx:97
 msgid "Close navigation"
 msgstr "Κλείσιμο πλοήγησης"
@@ -454,6 +461,10 @@ msgstr "Κλείσιμο πίνακα"
 #: ../../../lib/web/src/components/header-search.tsx:51
 msgid "Close search"
 msgstr "Κλείσιμο αναζήτησης"
+
+#: src/features/user/close-account.tsx:76
+msgid "Close your account?"
+msgstr "Κλείσιμο του λογαριασμού σας;"
 
 #: src/features/user/login.tsx:662
 msgid "Codes copied"
@@ -535,6 +546,10 @@ msgstr "Αντιγραφή αναγνωριστικού ομότιμου"
 #: src/features/user/tokens.tsx:173
 msgid "Copy your token now. You will not be able to see it again."
 msgstr "Αντιγράψτε το διακριτικό σας τώρα. Δεν θα μπορείτε να το δείτε ξανά."
+
+#: src/features/user/close-account.tsx:55
+msgid "Could not close your account"
+msgstr "Δεν ήταν δυνατό το κλείσιμο του λογαριασμού σας"
 
 #: src/features/system/replication.tsx:103
 #: src/features/user/replication.tsx:67
@@ -760,7 +775,7 @@ msgstr "Προορισμοί"
 msgid "Details Panel"
 msgstr "Πίνακας λεπτομερειών"
 
-#: ../../../lib/web/src/components/language-picker.tsx:152
+#: ../../../lib/web/src/components/language-picker.tsx:272
 #: ../../../lib/web/src/components/timezone-select.tsx:43
 #: ../../../lib/web/src/components/timezone-select.tsx:80
 #: ../../../lib/web/src/lib/preference-utils.ts:25
@@ -904,7 +919,7 @@ msgstr "Επεξεργασία"
 msgid "Edit category"
 msgstr "Επεξεργασία κατηγορίας"
 
-#: src/features/user/account.tsx:125
+#: src/features/user/account.tsx:126
 msgid "Edit name"
 msgstr "Επεξεργασία ονόματος"
 
@@ -1152,7 +1167,7 @@ msgstr "Αποτυχία ενημέρωσης ενδιαφέροντος"
 msgid "Failed to update login methods"
 msgstr "Η ενημέρωση των μεθόδων σύνδεσης απέτυχε"
 
-#: src/features/user/account.tsx:54
+#: src/features/user/account.tsx:55
 msgid "Failed to update name"
 msgstr "Αποτυχία ενημέρωσης ονόματος"
 
@@ -1161,7 +1176,7 @@ msgstr "Αποτυχία ενημέρωσης ονόματος"
 msgid "Failed to update preference"
 msgstr "Αποτυχία ενημέρωσης προτίμησης"
 
-#: src/features/user/account.tsx:72
+#: src/features/user/account.tsx:73
 msgid "Failed to update privacy"
 msgstr "Αποτυχία ενημέρωσης απορρήτου"
 
@@ -1197,7 +1212,7 @@ msgstr "Αποτυχία επαλήθευσης κωδικού"
 msgid "Failed to verify domain"
 msgstr "Αποτυχία επαλήθευσης τομέα"
 
-#: src/features/user/account.tsx:136
+#: src/features/user/account.tsx:137
 msgid "Fingerprint"
 msgstr "Αποτύπωμα"
 
@@ -1333,16 +1348,16 @@ msgstr "Ο οικοδεσπότης αφαιρέθηκε"
 msgid "Hot"
 msgstr "Δημοφιλή"
 
-#: src/features/user/account.tsx:80
-#: src/features/user/account.tsx:139
+#: src/features/user/account.tsx:81
+#: src/features/user/account.tsx:140
 msgid "Identity"
 msgstr "Ταυτότητα"
 
-#: src/features/user/account.tsx:68
+#: src/features/user/account.tsx:69
 msgid "Identity is no longer listed in the directory"
 msgstr "Η ταυτότητα δεν εμφανίζεται πλέον στον κατάλογο"
 
-#: src/features/user/account.tsx:68
+#: src/features/user/account.tsx:69
 msgid "Identity is now listed in the directory"
 msgstr "Η ταυτότητα εμφανίζεται πλέον στον κατάλογο"
 
@@ -1608,7 +1623,7 @@ msgstr "Οι οικοδεσπότες μου"
 msgid "My passkey"
 msgstr "Το passkey μου"
 
-#: src/features/user/account.tsx:88
+#: src/features/user/account.tsx:89
 #: src/features/user/connected-accounts.tsx:463
 #: src/features/user/connected-accounts.tsx:570
 #: src/features/user/login.tsx:415
@@ -1617,7 +1632,7 @@ msgstr "Το passkey μου"
 msgid "Name"
 msgstr "Όνομα"
 
-#: src/features/user/account.tsx:50
+#: src/features/user/account.tsx:51
 msgid "Name updated"
 msgstr "Το όνομα ενημερώθηκε"
 
@@ -2273,7 +2288,7 @@ msgstr "Αποθήκευση"
 msgid "Save changes"
 msgstr "Αποθήκευση αλλαγών"
 
-#: src/features/user/account.tsx:107
+#: src/features/user/account.tsx:108
 msgid "Save name"
 msgstr "Αποθήκευση ονόματος"
 
@@ -2981,7 +2996,7 @@ msgstr "Ο χρήστης αναστάλθηκε"
 msgid "User updated"
 msgstr "Ο χρήστης ενημερώθηκε"
 
-#: src/features/user/account.tsx:131
+#: src/features/user/account.tsx:132
 #: src/features/user/replication.tsx:191
 msgid "Username"
 msgstr "Όνομα χρήστη"
@@ -3093,9 +3108,18 @@ msgstr "Δεν έχετε πρόσβαση σε κανέναν τομέα."
 msgid "You won't be able to sign in with {0} anymore. Make sure you still have another way to log in."
 msgstr "Δεν θα μπορείτε πλέον να συνδεθείτε με {0}. Βεβαιωθείτε ότι έχετε ακόμα άλλον τρόπο σύνδεσης."
 
+#. placeholder {0}: formatTimestamp(purge)
+#: src/features/user/close-account.tsx:50
+msgid "Your account is scheduled for deletion on {0}. Log in before then to cancel."
+msgstr "Ο λογαριασμός σας έχει προγραμματιστεί για διαγραφή στις {0}. Συνδεθείτε πριν από τότε για ακύρωση."
+
 #: ../../../lib/web/src/components/restore-banner.tsx:82
 msgid "Your account was moved here from {source}. Until you delete it there, messages and notifications may reach both servers, some of your content keeps being served from the old server, and followers may take a few minutes to find you here."
 msgstr "Ο λογαριασμός σας μεταφέρθηκε εδώ από {source}. Μέχρι να τον διαγράψετε εκεί, τα μηνύματα και οι ειδοποιήσεις μπορεί να φτάνουν και στους δύο διακομιστές, μέρος του περιεχομένου σας συνεχίζει να εξυπηρετείται από τον παλιό διακομιστή και οι ακόλουθοί σας ενδέχεται να χρειαστούν λίγα λεπτά για να σας βρουν εδώ."
+
+#: src/features/user/close-account.tsx:79
+msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
+msgstr "Ο λογαριασμός σας θα προγραμματιστεί για διαγραφή και θα αποσυνδεθείτε. Μπορείτε να ακυρώσετε οποιαδήποτε στιγμή πριν από την ημερομηνία διαγραφής συνδεόμενοι ξανά. Κατεβάστε πρώτα τα δεδομένα σας αν θέλετε να κρατήσετε ένα αντίγραφο."
 
 #: src/features/user/data.tsx:166
 msgid "Your data"
