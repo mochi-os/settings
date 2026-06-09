@@ -16,16 +16,21 @@ def action_system_replication(a):
     bulk-bootstrap progress (per (peer, scope))."""
     if not require_admin(a):
         return
+    # Read status keys defensively: this published app hot-reloads
+    # independently of the server binary, so a user on an older server
+    # may hit a build whose status() predates a key (e.g. "offline",
+    # added in 0.4.115). Fall back to empty/zero rather than crashing
+    # the whole page on a missing optional key.
     status = mochi.replication.status()
     a.json({
-        "peer": status["peer"],
-        "pair": status["pair"],
-        "irreparable": status["irreparable"],
-        "offline": status["offline"],
+        "peer": status.get("peer", ""),
+        "pair": status.get("pair", []),
+        "irreparable": status.get("irreparable", []),
+        "offline": status.get("offline", []),
         "joins": mochi.replication.joins(),
         "bootstrap": mochi.replication.bootstrap.progress(),
         "serving": mochi.replication.bootstrap.serving(),
-        "bootstrap_pending": status["bootstrap_pending"],
+        "bootstrap_pending": status.get("bootstrap_pending", 0),
     })
 
 def action_system_replication_join_approve(a):
