@@ -125,30 +125,31 @@ function HostRow({ host }: { host: ReplicationHost }) {
           <AlertDialogTrigger asChild>
             <Button variant='ghost' size='sm' disabled={remove.isPending}>
               {remove.isPending ? <Loader2 className='h-4 w-4 animate-spin' /> : <ServerOff className='h-4 w-4' />}
-              <span className='sr-only'><Trans>Remove host</Trans></span>
+              <span className='sr-only'><Trans>Delete this replica</Trans></span>
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle><Trans>Remove host?</Trans></AlertDialogTitle>
+              <AlertDialogTitle><Trans>Delete this replica?</Trans></AlertDialogTitle>
               <AlertDialogDescription>
                 <Trans>
-                  This server will stop replicating your account to that host. The host's local copy stays
-                  in place until that operator removes it.
+                  Your account's data on this host will be permanently deleted. Your account stays
+                  on your other hosts.
                 </Trans>
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel><Trans>Cancel</Trans></AlertDialogCancel>
               <AlertDialogAction
+                variant='destructive'
                 onClick={() =>
                   remove.mutate(host.peer, {
-                    onSuccess: () => toast.success(t`Host removed`),
-                    onError: (e) => toast.error(getErrorMessage(e, t`Could not remove host`)),
+                    onSuccess: () => toast.success(t`Replica deleted`),
+                    onError: (e) => toast.error(getErrorMessage(e, t`Could not delete replica`)),
                   })
                 }
               >
-                <Trans>Remove</Trans>
+                <Trans>Delete</Trans>
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
