@@ -23,6 +23,7 @@ import {
   getErrorMessage,
   toast,
   Section,
+  SecretField,
   FieldRow,
   DataChip,
   formatSystemTimestamp, naturalCompare,} from '@mochi/web'
@@ -150,10 +151,12 @@ function methodStateOptions(opts: string[] | null): Set<string> | null {
 function SettingField({
   setting,
   onSave,
+  onSaveAsync,
   isSaving,
 }: {
   setting: SystemSetting
   onSave: (name: string, value: string) => void
+  onSaveAsync: (name: string, value: string) => Promise<void>
   isSaving: boolean
 }) {
   const { t } = useLingui()
@@ -161,6 +164,12 @@ function SettingField({
   const formatSettingValue = useFormatSettingValue()
   const methodStateLabel = useMethodStateLabel()
   const [localValue, setLocalValue] = useState(setting.value)
+  // Whether a value is stored. For secret settings the server redacts the value
+  // to "" and reports it via `set`, so this is the source of truth for the
+  // "Configured" / bullet-placeholder state rather than the (empty) value.
+  const [storedSet, setStoredSet] = useState<boolean>(
+    setting.set ?? setting.value !== ''
+  )
   const isBoolean = isBooleanSetting(setting)
   const isFileUpload = isFileUploadSetting(setting)
   const enumOpts = enumOptions(setting)
@@ -197,12 +206,14 @@ function SettingField({
     if (!file) return
     file.text().then((text) => {
       setLocalValue(text)
+      setStoredSet(true)
       onSave(setting.name, text)
     })
   }
 
   const handleClearFile = () => {
     setLocalValue('')
+    setStoredSet(false)
     onSave(setting.name, '')
   }
 
@@ -318,7 +329,7 @@ function SettingField({
               className='hidden'
               disabled={isSaving}
             />
-            {localValue ? (
+            {storedSet ? (
               <>
                 <DataChip
                   value={t`Configured`}
@@ -368,6 +379,12 @@ function SettingField({
               </Button>
             )}
           </div>
+        ) : setting.secret ? (
+          <SecretField
+            configured={storedSet}
+            onSave={(v) => onSaveAsync(setting.name, v)}
+            inputClassName='h-9 font-mono text-sm'
+          />
         ) : (
           <div className='flex items-center gap-2 w-full'>
             <Input
@@ -448,6 +465,21 @@ export function SystemSettings() {
     )
   }
 
+  // SecretField needs a promise so it can clear and mark itself set only on a
+  // successful save; rethrow so it keeps the typed value on failure.
+  const saveSecret = async (name: string, value: string): Promise<void> => {
+    setSavingName(name)
+    try {
+      await setSetting.mutateAsync({ name, value })
+      toast.success(t`Setting updated`)
+    } catch (error) {
+      toast.error(getErrorMessage(error, t`Failed to update setting`))
+      throw error
+    } finally {
+      setSavingName(null)
+    }
+  }
+
   const hiddenSettings = ['server_version', 'server_started']
   const userDefaultSettings = ['default_theme']
   const isOauthCredential = (name: string) => name.startsWith('oauth_')
@@ -488,6 +520,7 @@ export function SystemSettings() {
         key={setting.name}
         setting={setting}
         onSave={handleSave}
+        onSaveAsync={saveSecret}
         isSaving={savingName === setting.name}
       />
     ))
