@@ -33,7 +33,6 @@ import {
   useAppearanceLabels,
   useDensityLabels,
   useRadiusLabels,
-  useBackgroundLabels,
   useFontLabels,
   useFontSizeLabels,
   toast,
@@ -84,7 +83,6 @@ export function UserDisplay() {
   const appearanceLabels = useAppearanceLabels()
   const densityLabels = useDensityLabels()
   const radiusLabels = useRadiusLabels()
-  const backgroundLabels = useBackgroundLabels()
   const fontLabels = useFontLabels()
   const fontSizeLabels = useFontSizeLabels()
   usePageTitle(t`Display`)
@@ -291,17 +289,6 @@ export function UserDisplay() {
                   value={data.preferences.radius || 'theme'}
                   options={radiusLabels}
                   onChange={(value) => handleChange('radius', value)}
-                  disabled={setPreference.isPending}
-                />
-              </div>
-            </FieldRow>
-
-            <FieldRow label={t`Background`}>
-              <div className="w-full">
-                <ComboSelect
-                  value={data.preferences.background || 'theme'}
-                  options={backgroundLabels}
-                  onChange={(value) => handleChange('background', value)}
                   disabled={setPreference.isPending}
                 />
               </div>
