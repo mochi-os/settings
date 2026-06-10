@@ -198,7 +198,7 @@ msgid "Add view"
 msgstr "Ajoute vi"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:244
+#: src/features/user/replication.tsx:326
 msgid "Added"
 msgstr "Ajoute"
 
@@ -250,7 +250,7 @@ msgstr "Yon erè te rive"
 msgid "An unexpected error occurred"
 msgstr "Yon erè inatandi te rive"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:291
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Yon lòt sèvè ap mande pou li resevwa yon kopi kont ou. Apwouve pou voye yon kopi."
 
@@ -268,22 +268,22 @@ msgid "Appearance"
 msgstr "Aparans"
 
 #: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:60
+#: src/features/user/replication.tsx:70
 msgid "Approval failed"
 msgstr "Apwobasyon echwe"
 
 #: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:83
+#: src/features/user/replication.tsx:93
 msgid "Approve"
 msgstr "Apwouve"
 
 #: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:93
+#: src/features/user/replication.tsx:103
 msgid "Approve request"
 msgstr "Apwouve demann lan"
 
 #: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:94
+#: src/features/user/replication.tsx:104
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "Apwouve a kopye kle prive yo sou sèvè sa a. Verifye se ou menm pou kontinye."
 
@@ -369,7 +369,7 @@ msgstr "Notifikasyon navigatè"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:142
+#: src/features/user/replication.tsx:201
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Anile"
@@ -496,6 +496,7 @@ msgstr "Konfigire"
 msgid "Confirm"
 msgstr "Konfime"
 
+#: src/features/user/replication.tsx:214
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "Konfime se ou menm"
@@ -551,14 +552,14 @@ msgstr "Kopye token ou kounye a. Ou p ap kapab wè li ankò."
 msgid "Could not close your account"
 msgstr "Nou pa t kapab fèmen kont ou an"
 
-#: src/features/user/replication.tsx:148
-msgid "Could not delete replica"
-msgstr "Pa t kapab efase replika a"
-
 #: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:67
+#: src/features/user/replication.tsx:77
 msgid "Could not deny request"
 msgstr "Pa kapab refize demann nan"
+
+#: src/features/user/replication.tsx:162
+msgid "Could not forget host"
+msgstr "Pa t kapab bliye sèvè a"
 
 #: src/features/user/login.tsx:920
 msgid "Could not link account"
@@ -568,13 +569,13 @@ msgstr "Pa t kapab lye kont"
 msgid "Could not load this document. Please try again later."
 msgstr "Pa t kapab chaje dokiman sa a. Tanpri eseye ankò pita."
 
-#: src/features/user/replication.tsx:147
-#~ msgid "Could not remove host"
-#~ msgstr "Pa kapab retire lotèl"
-
 #: src/features/system/replication.tsx:180
 msgid "Could not remove pair member"
 msgstr "Pa t kapab retire manm pè a"
+
+#: src/features/user/replication.tsx:224
+msgid "Could not remove your account from this server"
+msgstr "Pa t kapab retire kont ou sou sèvè sa a"
 
 #: src/features/user/login.tsx:794
 msgid "Could not start linking"
@@ -692,7 +693,6 @@ msgstr "Delegasyon yo"
 #: src/features/user/login.tsx:276
 #: src/features/user/notifications.tsx:392
 #: src/features/user/notifications.tsx:624
-#: src/features/user/replication.tsx:152
 #: src/features/user/tokens.tsx:96
 msgid "Delete"
 msgstr "Efase"
@@ -735,14 +735,6 @@ msgstr "Efase wout"
 msgid "Delete route?"
 msgstr "Efase wout?"
 
-#: src/features/user/replication.tsx:128
-msgid "Delete this replica"
-msgstr "Efase replika sa a"
-
-#: src/features/user/replication.tsx:133
-msgid "Delete this replica?"
-msgstr "Efase replika sa a?"
-
 #: src/features/user/tokens.tsx:89
 msgid "Delete token"
 msgstr "Efase token"
@@ -772,7 +764,7 @@ msgid "Density"
 msgstr "Dansite"
 
 #: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:87
+#: src/features/user/replication.tsx:97
 msgid "Deny"
 msgstr "Refize"
 
@@ -1254,13 +1246,21 @@ msgstr "Font"
 msgid "Font size"
 msgstr "Gwosè polis"
 
+#: src/features/user/replication.tsx:149
+msgid "Forget this unreachable host"
+msgstr "Bliye sèvè sa a ki pa aksesib"
+
+#: src/features/user/replication.tsx:154
+msgid "Forget this unreachable host?"
+msgstr "Bliye sèvè sa a ki pa aksesib?"
+
 #: ../../../lib/web/src/lib/preference-utils.ts:60
 msgid "Friday"
 msgstr "Vandredi"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
 #: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:219
+#: src/features/user/replication.tsx:296
 msgid "From"
 msgstr "Soti nan"
 
@@ -1358,9 +1358,9 @@ msgstr "Wout ki gen pi gwo priyorite matche an premye"
 msgid "Home"
 msgstr "Akèy"
 
-#: src/features/user/replication.tsx:146
-#~ msgid "Host removed"
-#~ msgstr "Lotèl retire"
+#: src/features/user/replication.tsx:161
+msgid "Host forgotten"
+msgstr "Sèvè a bliye"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1418,9 +1418,13 @@ msgid "IP Address"
 msgstr "Adrès IP"
 
 #: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:113
+#: src/features/user/replication.tsx:129
 msgid "Irreparable"
 msgstr "Pa ka repare"
+
+#: src/features/user/replication.tsx:155
+msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
+msgstr "Y ap retire l nan ansanm replik ou a epi y ap mande l efase kopi li lè l rekonekte. Pou retire yon sèvè ki aksesib, konekte la epi sèvi ak \"Retire kont mwen sou sèvè sa a\". Verifye se ou menm pou kontinye."
 
 #: src/features/system/replication.tsx:75
 msgid "Join request approved"
@@ -1633,7 +1637,7 @@ msgstr "Lendi"
 msgid "My application"
 msgstr "Aplikasyon mwen"
 
-#: src/features/user/replication.tsx:231
+#: src/features/user/replication.tsx:308
 msgid "My hosts"
 msgstr "Lotèl mwen yo"
 
@@ -1824,7 +1828,7 @@ msgstr "Fòma nimewo"
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
 #: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:116
+#: src/features/user/replication.tsx:132
 msgid "Offline {0}"
 msgstr "Òfline {0}"
 
@@ -1873,6 +1877,10 @@ msgstr "Non operatè"
 #: ../../../lib/web/src/features/access/access-dialog.tsx:163
 msgid "Other"
 msgstr "Lòt"
+
+#: src/features/user/replication.tsx:311
+msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
+msgstr "Lòt sèvè ki gen yon kopi kont ou tou. Pou retire youn, konekte sou sèvè sa a epi sèvi ak \"Retire kont mwen sou sèvè sa a\"."
 
 #: src/features/system/settings.tsx:575
 msgid "Other settings"
@@ -1942,7 +1950,7 @@ msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Chemen pa pèmèt. Ou ka sèlman ajoute wout anba: {0}"
 
 #: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:243
+#: src/features/user/replication.tsx:325
 msgid "Peer"
 msgstr "Patnè"
 
@@ -1962,7 +1970,7 @@ msgstr "Annatant"
 msgid "Pending join requests"
 msgstr "Demand pou rantre k ap tann"
 
-#: src/features/user/replication.tsx:212
+#: src/features/user/replication.tsx:289
 msgid "Pending requests"
 msgstr "Demann ki annatant"
 
@@ -2035,7 +2043,7 @@ msgstr "URL piblik pou redireksyon OAuth"
 msgid "Push notifications"
 msgstr "Notifikasyon push"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:259
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "Antre toulède valè yo nan fòm enskripsyon sèvè destinasyon an pou repwodui kont sa a la."
 
@@ -2108,6 +2116,7 @@ msgstr "Relatif nan 24 èdtan, sinon absoli"
 #: src/features/system/replication.tsx:184
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
+#: src/features/user/replication.tsx:206
 msgid "Remove"
 msgstr "Retire"
 
@@ -2129,17 +2138,13 @@ msgstr "Retire aksè?"
 msgid "Remove account?"
 msgstr "Retire kont?"
 
-#: src/features/user/replication.tsx:128
-#~ msgid "Remove host"
-#~ msgstr "Retire lotèl"
-
-#: src/features/user/replication.tsx:133
-#~ msgid "Remove host?"
-#~ msgstr "Retire lotèl?"
-
 #: ../../../lib/web/src/components/post-tags.tsx:190
 msgid "Remove interest"
 msgstr "Retire enterè"
+
+#: src/features/user/replication.tsx:187
+msgid "Remove my account from this server"
+msgstr "Retire kont mwen sou sèvè sa a"
 
 #: src/features/system/replication.tsx:161
 msgid "Remove pair member"
@@ -2153,6 +2158,10 @@ msgstr "Retire manm pè a?"
 msgid "Remove suspension"
 msgstr "Retire sispansyon"
 
+#: src/features/user/replication.tsx:192
+msgid "Remove your account from this server?"
+msgstr "Retire kont ou sou sèvè sa a?"
+
 #: src/features/user/login.tsx:265
 msgid "Rename passkey"
 msgstr "Chanje non passkey"
@@ -2161,25 +2170,21 @@ msgstr "Chanje non passkey"
 msgid "Replace"
 msgstr "Ranplase"
 
-#: src/features/user/replication.tsx:147
-msgid "Replica deleted"
-msgstr "Replika efase"
-
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/replication.tsx:196
 #: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:164
-#: src/features/user/replication.tsx:174
+#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:246
 msgid "Replication"
 msgstr "Repliyasyon"
 
-#: src/features/user/replication.tsx:58
+#: src/features/user/replication.tsx:68
 msgid "Request approved"
 msgstr "Demann apwouve"
 
-#: src/features/user/replication.tsx:66
+#: src/features/user/replication.tsx:76
 msgid "Request denied"
 msgstr "Demann refize"
 
@@ -2447,7 +2452,7 @@ msgstr "Serif"
 msgid "Server error"
 msgstr "Erè sèvè"
 
-#: src/features/user/replication.tsx:200
+#: src/features/user/replication.tsx:272
 msgid "Server peer ID"
 msgstr "ID parèy sèvè a"
 
@@ -2688,11 +2693,11 @@ msgstr "Tèm mete ajou"
 msgid "Third-party login"
 msgstr "Koneksyon twazyèm pati"
 
-#: src/features/user/replication.tsx:185
+#: src/features/user/replication.tsx:257
 msgid "This account"
 msgstr "Kont sa a"
 
-#: src/features/user/replication.tsx:235
+#: src/features/user/replication.tsx:317
 msgid "This account is on this server only"
 msgstr "Kont sa a sou sèvè sa a sèlman"
 
@@ -2703,6 +2708,10 @@ msgstr "Sa a se yon backup konplè ou ka restore sou sèvè Mochi sa a oswa yon 
 #: src/lib/use-step-up.tsx:29
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Sa a se yon chanjman sekirite nan kont ou. Verifye se ou menm pou kontinye."
+
+#: src/features/user/replication.tsx:215
+msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
+msgstr "Sa a efase done kont ou yo sou sèvè sa a pou tout tan. Verifye se ou menm pou kontinye."
 
 #: src/features/system/replication.tsx:219
 msgid "This server"
@@ -2715,10 +2724,6 @@ msgstr "Sèvè sa a pa janmen koble."
 #: src/features/system/replication.tsx:168
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "Sèvè sa a ap sispann marye ak konpayèl sa a. Sèvè ki retire a kenbe kopi lokal chak itilizatè; operatè a la a dwe efase l ak men."
-
-#: src/features/user/replication.tsx:135
-#~ msgid "This server will stop replicating your account to that host. The host's local copy stays in place until that operator removes it."
-#~ msgstr "Sèvè sa a ap sispann replike kont ou nan lotèl sa a. Kopi lokal lotèl la rete an plas jiska operatè a retire l."
 
 #: src/features/system/users.tsx:344
 msgid "This user has no active sessions."
@@ -2806,7 +2811,7 @@ msgstr "Tanp tan"
 msgid "TLS Enabled"
 msgstr "TLS Aktive"
 
-#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:318
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "Pou replike li sou yon lòt sèvè, enskri pou yon kont la epi sèvi ak opsyon \"Replike yon kont ki egziste\"."
 
@@ -2930,7 +2935,7 @@ msgid "Units"
 msgstr "Inite"
 
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:121
+#: src/features/user/replication.tsx:137
 msgid "Unknown"
 msgstr "Enkoni"
 
@@ -3020,7 +3025,7 @@ msgid "User updated"
 msgstr "Itilizatè mete ajou"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:264
 msgid "Username"
 msgstr "Non itilizatè"
 
@@ -3143,9 +3148,9 @@ msgstr "Kont ou pral efase nèt sou {purgeDate}. Yo dekonekte ou. Pou anile, kon
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "Kont ou an pral pwograme pou efase epi y ap dekonekte ou. Ou kapab anile li nenpòt lè anvan dat efasman an lè ou rekonekte. Telechaje done ou yo anvan si ou vle kenbe yon kopi."
 
-#: src/features/user/replication.tsx:135
-msgid "Your account's data on this host will be permanently deleted. Your account stays on your other hosts."
-msgstr "Done kont ou sou òt sa a pral efase nèt. Kont ou rete sou lòt òt ou yo."
+#: src/features/user/replication.tsx:194
+msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
+msgstr "Done kont ou yo sou sèvè sa a ap efase pou tout tan epi w ap dekonekte isit la. Kont ou rete sou lòt sèvè ou yo, epi ou ka ajoute sa a ankò pita."
 
 #: src/features/user/data.tsx:166
 msgid "Your data"

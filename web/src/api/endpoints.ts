@@ -64,6 +64,7 @@ const endpoints = {
     replication: '-/user/replication/data',
     replicationApprove: '-/user/replication/approve',
     replicationDeny: '-/user/replication/deny',
+    replicationLeave: '-/user/replication/leave',
     replicationRemove: '-/user/replication/remove',
   },
   system: {

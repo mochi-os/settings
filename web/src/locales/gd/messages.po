@@ -198,7 +198,7 @@ msgid "Add view"
 msgstr "Cuir sealladh ris"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:244
+#: src/features/user/replication.tsx:326
 msgid "Added"
 msgstr "Air a chur ris"
 
@@ -250,7 +250,7 @@ msgstr "Thachair mearachd"
 msgid "An unexpected error occurred"
 msgstr "Thachair mearachd ris nach robh dùil"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:291
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Tha frithealaiche eile ag iarraidh lethbhreac dhen chunntas agad a òstadh. Aontaich gus lethbhreac a chur."
 
@@ -268,22 +268,22 @@ msgid "Appearance"
 msgstr "Coltas"
 
 #: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:60
+#: src/features/user/replication.tsx:70
 msgid "Approval failed"
 msgstr "Dh'fhàillig an t-aontachadh"
 
 #: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:83
+#: src/features/user/replication.tsx:93
 msgid "Approve"
 msgstr "Aontaich"
 
 #: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:93
+#: src/features/user/replication.tsx:103
 msgid "Approve request"
 msgstr "Aontaich ris an iarrtas"
 
 #: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:94
+#: src/features/user/replication.tsx:104
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "Le bhith ag aontachadh, thèid iuchraichean prìobhaideach a lethbhreacadh dhan fhrithealaiche sin. Dearbhaich gur tusa a th' ann gus leantainn air adhart."
 
@@ -369,7 +369,7 @@ msgstr "Brathan brabhsair"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:142
+#: src/features/user/replication.tsx:201
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Sguir dheth"
@@ -496,6 +496,7 @@ msgstr "Air a rèiteachadh"
 msgid "Confirm"
 msgstr "Dearbhaich"
 
+#: src/features/user/replication.tsx:214
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "Dearbhaich gur tusa a th' ann"
@@ -551,14 +552,14 @@ msgstr "Dèan lethbhreac den tòcan agad a-nis. Cha bhi e comasach dhut fhaicinn
 msgid "Could not close your account"
 msgstr "Cha b' urrainn do chunntas a dhùnadh"
 
-#: src/features/user/replication.tsx:148
-msgid "Could not delete replica"
-msgstr "Cha b' urrainn an mac-samhail a sguabadh às"
-
 #: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:67
+#: src/features/user/replication.tsx:77
 msgid "Could not deny request"
 msgstr "Cha b' urrainn an t-iarrtas a dhiùltadh"
+
+#: src/features/user/replication.tsx:162
+msgid "Could not forget host"
+msgstr "Cha b' urrainn dha an t-òstair a dhìochuimhneachadh"
 
 #: src/features/user/login.tsx:920
 msgid "Could not link account"
@@ -568,13 +569,13 @@ msgstr "Cha b' urrainn an cunntas a cheangal"
 msgid "Could not load this document. Please try again later."
 msgstr "Cha b' urrainn an sgrìobhainn seo a luchdachadh. Feuch ris a-rithist nas anmoiche."
 
-#: src/features/user/replication.tsx:147
-#~ msgid "Could not remove host"
-#~ msgstr "Cha b' urrainn an t-òstair a thoirt air falbh"
-
 #: src/features/system/replication.tsx:180
 msgid "Could not remove pair member"
 msgstr "Cha b' urrainn ball a' phaidhre a thoirt air falbh"
+
+#: src/features/user/replication.tsx:224
+msgid "Could not remove your account from this server"
+msgstr "Cha b' urrainn dhuinn an cunntas agad a thoirt air falbh on fhrithealaiche seo"
 
 #: src/features/user/login.tsx:794
 msgid "Could not start linking"
@@ -692,7 +693,6 @@ msgstr "Tiomnaidhean"
 #: src/features/user/login.tsx:276
 #: src/features/user/notifications.tsx:392
 #: src/features/user/notifications.tsx:624
-#: src/features/user/replication.tsx:152
 #: src/features/user/tokens.tsx:96
 msgid "Delete"
 msgstr "Sguab às"
@@ -735,14 +735,6 @@ msgstr "Sguab às slighe"
 msgid "Delete route?"
 msgstr "Sguab às slighe?"
 
-#: src/features/user/replication.tsx:128
-msgid "Delete this replica"
-msgstr "Sguab às am mac-samhail seo"
-
-#: src/features/user/replication.tsx:133
-msgid "Delete this replica?"
-msgstr "Sguab às am mac-samhail seo?"
-
 #: src/features/user/tokens.tsx:89
 msgid "Delete token"
 msgstr "Sguab às tòcan"
@@ -772,7 +764,7 @@ msgid "Density"
 msgstr "Dùmhlachd"
 
 #: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:87
+#: src/features/user/replication.tsx:97
 msgid "Deny"
 msgstr "Diùlt"
 
@@ -1254,13 +1246,21 @@ msgstr "Cruth-clò"
 msgid "Font size"
 msgstr "Meud a' chrutha-chlò"
 
+#: src/features/user/replication.tsx:149
+msgid "Forget this unreachable host"
+msgstr "Dìochuimhnich an t-òstair do-ruigsinn seo"
+
+#: src/features/user/replication.tsx:154
+msgid "Forget this unreachable host?"
+msgstr "A bheil thu airson an t-òstair do-ruigsinn seo a dhìochuimhneachadh?"
+
 #: ../../../lib/web/src/lib/preference-utils.ts:60
 msgid "Friday"
 msgstr "DihAoine"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
 #: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:219
+#: src/features/user/replication.tsx:296
 msgid "From"
 msgstr "O"
 
@@ -1358,9 +1358,9 @@ msgstr "Bidh slighean le prìomhachas nas àirde air am maids' an toiseach"
 msgid "Home"
 msgstr "Dachaigh"
 
-#: src/features/user/replication.tsx:146
-#~ msgid "Host removed"
-#~ msgstr "Òstair air a thoirt air falbh"
+#: src/features/user/replication.tsx:161
+msgid "Host forgotten"
+msgstr "Chaidh an t-òstair a dhìochuimhneachadh"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1418,9 +1418,13 @@ msgid "IP Address"
 msgstr "Seòladh IP"
 
 #: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:113
+#: src/features/user/replication.tsx:129
 msgid "Irreparable"
 msgstr "Do-chàraidh"
+
+#: src/features/user/replication.tsx:155
+msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
+msgstr "Thèid a thoirt air falbh on t-seata mac-samhail agad agus thèid iarraidh air an lethbhreac aige a sguabadh às nuair a cheanglas e a-rithist. Gus frithealaiche ruigsinneach a thoirt air falbh, clàraich a-steach an sin agus cleachd \"Thoir an cunntas agam air falbh on fhrithealaiche seo\". Dearbh gur tusa a th' ann gus leantainn air adhart."
 
 #: src/features/system/replication.tsx:75
 msgid "Join request approved"
@@ -1633,7 +1637,7 @@ msgstr "DiLuain"
 msgid "My application"
 msgstr "M' Aplacaid"
 
-#: src/features/user/replication.tsx:231
+#: src/features/user/replication.tsx:308
 msgid "My hosts"
 msgstr "Mo òstairean"
 
@@ -1824,7 +1828,7 @@ msgstr "Cruth àireamh"
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
 #: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:116
+#: src/features/user/replication.tsx:132
 msgid "Offline {0}"
 msgstr "Far loidhne {0}"
 
@@ -1873,6 +1877,10 @@ msgstr "Ainm an obraiche"
 #: ../../../lib/web/src/features/access/access-dialog.tsx:163
 msgid "Other"
 msgstr "Eile"
+
+#: src/features/user/replication.tsx:311
+msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
+msgstr "Frithealaichean eile aig a bheil lethbhreac den chunntas agad cuideachd. Gus fear a thoirt air falbh, clàraich a-steach air an fhrithealaiche sin agus cleachd \"Thoir an cunntas agam air falbh on fhrithealaiche seo\"."
 
 #: src/features/system/settings.tsx:575
 msgid "Other settings"
@@ -1942,7 +1950,7 @@ msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Slighe nach eil ceadaichte. Chan urrainn dhut ach slighean a chur ris fo: {0}"
 
 #: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:243
+#: src/features/user/replication.tsx:325
 msgid "Peer"
 msgstr "Co-aoise"
 
@@ -1962,7 +1970,7 @@ msgstr "Ri làimhseachadh"
 msgid "Pending join requests"
 msgstr "Iarrtasan ballrachd ri thighinn"
 
-#: src/features/user/replication.tsx:212
+#: src/features/user/replication.tsx:289
 msgid "Pending requests"
 msgstr "Iarrtasan ri làimh"
 
@@ -2035,7 +2043,7 @@ msgstr "URL phoblach airson ath-stiùireadh OAuth"
 msgid "Push notifications"
 msgstr "Brathan putaidh"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:259
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "Cuir a-steach an dà luach ann am foirm clàraidh an fhrithealaiche cinn-uidhe gus an cunntas seo a mhac-shamhlachadh an sin."
 
@@ -2108,6 +2116,7 @@ msgstr "Coimeasach taobh a-staigh 24 uair, no fuirich absoluteach"
 #: src/features/system/replication.tsx:184
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
+#: src/features/user/replication.tsx:206
 msgid "Remove"
 msgstr "Thoir air falbh"
 
@@ -2129,17 +2138,13 @@ msgstr "Thoir an cothrom air falbh?"
 msgid "Remove account?"
 msgstr "Thoir an cunntas air falbh?"
 
-#: src/features/user/replication.tsx:128
-#~ msgid "Remove host"
-#~ msgstr "Thoir an t-òstair air falbh"
-
-#: src/features/user/replication.tsx:133
-#~ msgid "Remove host?"
-#~ msgstr "An toir thu an t-òstair air falbh?"
-
 #: ../../../lib/web/src/components/post-tags.tsx:190
 msgid "Remove interest"
 msgstr "Thoir an ùidh air falbh"
+
+#: src/features/user/replication.tsx:187
+msgid "Remove my account from this server"
+msgstr "Thoir an cunntas agam air falbh on fhrithealaiche seo"
 
 #: src/features/system/replication.tsx:161
 msgid "Remove pair member"
@@ -2153,6 +2158,10 @@ msgstr "An tèid ball a' phaidhre a thoirt air falbh?"
 msgid "Remove suspension"
 msgstr "Thoir am bacadh air falbh"
 
+#: src/features/user/replication.tsx:192
+msgid "Remove your account from this server?"
+msgstr "A bheil thu airson an cunntas agad a thoirt air falbh on fhrithealaiche seo?"
+
 #: src/features/user/login.tsx:265
 msgid "Rename passkey"
 msgstr "Ath-ainmich an iuchair-pasaidh"
@@ -2161,25 +2170,21 @@ msgstr "Ath-ainmich an iuchair-pasaidh"
 msgid "Replace"
 msgstr "Cuir 'na àite"
 
-#: src/features/user/replication.tsx:147
-msgid "Replica deleted"
-msgstr "Chaidh am mac-samhail a sguabadh às"
-
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/replication.tsx:196
 #: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:164
-#: src/features/user/replication.tsx:174
+#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:246
 msgid "Replication"
 msgstr "Mac-shamhlachadh"
 
-#: src/features/user/replication.tsx:58
+#: src/features/user/replication.tsx:68
 msgid "Request approved"
 msgstr "Iarrtas air aontachadh"
 
-#: src/features/user/replication.tsx:66
+#: src/features/user/replication.tsx:76
 msgid "Request denied"
 msgstr "Iarrtas air a dhiùltadh"
 
@@ -2447,7 +2452,7 @@ msgstr "Serif"
 msgid "Server error"
 msgstr "Mearachd frithealaiche"
 
-#: src/features/user/replication.tsx:200
+#: src/features/user/replication.tsx:272
 msgid "Server peer ID"
 msgstr "ID seise an fhrithealaiche"
 
@@ -2688,11 +2693,11 @@ msgstr "Ùrlar air ùrachadh"
 msgid "Third-party login"
 msgstr "Soidhnigeadh a-steach treas-phàrtaidh"
 
-#: src/features/user/replication.tsx:185
+#: src/features/user/replication.tsx:257
 msgid "This account"
 msgstr "An cunntas seo"
 
-#: src/features/user/replication.tsx:235
+#: src/features/user/replication.tsx:317
 msgid "This account is on this server only"
 msgstr "Tha an cunntas seo air an fhrithealaiche seo a-mhàin"
 
@@ -2703,6 +2708,10 @@ msgstr "Seo lethbhreac-glèidhidh iomlan as urrainn dhut aiseag air an fhritheal
 #: src/lib/use-step-up.tsx:29
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Seo atharrachadh tèarainteachd air a' chunntas agad. Dearbhaich gur tusa a th' ann gus leantainn air adhart."
+
+#: src/features/user/replication.tsx:215
+msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
+msgstr "Sguabaidh seo às dàta a' chunntais agad air an fhrithealaiche seo gu buan. Dearbh gur tusa a th' ann gus leantainn air adhart."
 
 #: src/features/system/replication.tsx:219
 msgid "This server"
@@ -2715,10 +2724,6 @@ msgstr "Chan eil an frithealaiche seo paidhrichte."
 #: src/features/system/replication.tsx:168
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "Sguiridh am frithealaiche seo de phaidhreachadh ris an t-seise sin. Cumaidh am frithealaiche a chaidh a thoirt air falbh lethbhreac ionadail de gach cleachdaiche; feumaidh an gnìomhaiche ann a dhubhadh às le làimh."
-
-#: src/features/user/replication.tsx:135
-#~ msgid "This server will stop replicating your account to that host. The host's local copy stays in place until that operator removes it."
-#~ msgstr "Sguiridh am frithealaiche seo de mhac-shamhlachadh do chunntais chun an òstair sin. Bidh lethbhreac ionadail an òstair fhathast ann gus an toir an gnìomhaiche sin air falbh e."
 
 #: src/features/system/users.tsx:344
 msgid "This user has no active sessions."
@@ -2806,7 +2811,7 @@ msgstr "Stampaichean-ama"
 msgid "TLS Enabled"
 msgstr "TLS an comas"
 
-#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:318
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "Gus a mhac-shamhlachadh gu frithealaiche eile, clàraich airson cunntas an sin agus cleachd an roghainn \"Mac-shamhlaich cunntas a tha ann\"."
 
@@ -2930,7 +2935,7 @@ msgid "Units"
 msgstr "Aonadan"
 
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:121
+#: src/features/user/replication.tsx:137
 msgid "Unknown"
 msgstr "Neo-aithnichte"
 
@@ -3020,7 +3025,7 @@ msgid "User updated"
 msgstr "Cleachdaiche ùraichte"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:264
 msgid "Username"
 msgstr "Ainm-cleachdaiche"
 
@@ -3143,9 +3148,9 @@ msgstr "Thèid an cunntas agad a sguabadh às gu buan air {purgeDate}. Chaidh do
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "Thèid do chunntas a chlàradh airson a sguabadh às agus thèid do chlàradh a-mach. 'S urrainn dhut a chur dheth uair sam bith ron cheann-latha sguabaidh às le bhith a' clàradh a-steach a-rithist. Luchdaich a-nuas do dhàta an toiseach ma tha thu airson lethbhreac a chumail."
 
-#: src/features/user/replication.tsx:135
-msgid "Your account's data on this host will be permanently deleted. Your account stays on your other hosts."
-msgstr "Thèid dàta a' chunntais agad air an òstair seo a sguabadh às gu buan. Fanaidh an cunntas agad air na h-òstairean eile agad."
+#: src/features/user/replication.tsx:194
+msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
+msgstr "Thèid dàta a' chunntais agad air an fhrithealaiche seo a sguabadh às gu buan agus thèid do chlàradh a-mach an seo. Fanaidh an cunntas agad air na frithealaichean eile agad, agus 's urrainn dhut am fear seo a chur ris a-rithist nas fhaide air adhart."
 
 #: src/features/user/data.tsx:166
 msgid "Your data"

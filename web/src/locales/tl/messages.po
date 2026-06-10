@@ -198,7 +198,7 @@ msgid "Add view"
 msgstr "Magdagdag ng view"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:244
+#: src/features/user/replication.tsx:326
 msgid "Added"
 msgstr "Naidagdag"
 
@@ -250,7 +250,7 @@ msgstr "May naganap na error"
 msgid "An unexpected error occurred"
 msgstr "May naganap na hindi inaasahang error"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:291
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "May ibang server na humihiling na mag-host ng kopya ng iyong account. Aprubahan upang magpadala ng kopya."
 
@@ -268,22 +268,22 @@ msgid "Appearance"
 msgstr "Hitsura"
 
 #: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:60
+#: src/features/user/replication.tsx:70
 msgid "Approval failed"
 msgstr "Nabigo ang pag-apruba"
 
 #: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:83
+#: src/features/user/replication.tsx:93
 msgid "Approve"
 msgstr "Aprubahan"
 
 #: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:93
+#: src/features/user/replication.tsx:103
 msgid "Approve request"
 msgstr "Aprubahan ang kahilingan"
 
 #: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:94
+#: src/features/user/replication.tsx:104
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "Ang pag-apruba ay kinokopya ang mga pribadong key sa server na iyon. Patunayan na ikaw ito para magpatuloy."
 
@@ -369,7 +369,7 @@ msgstr "Mga notification ng browser"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:142
+#: src/features/user/replication.tsx:201
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Kanselahin"
@@ -496,6 +496,7 @@ msgstr "Naka-configure"
 msgid "Confirm"
 msgstr "Kumpirmahin"
 
+#: src/features/user/replication.tsx:214
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "Kumpirmahin na ikaw ito"
@@ -551,14 +552,14 @@ msgstr "Kopyahin ang iyong token ngayon. Hindi mo na ito makikita muli."
 msgid "Could not close your account"
 msgstr "Hindi maisara ang iyong account"
 
-#: src/features/user/replication.tsx:148
-msgid "Could not delete replica"
-msgstr "Hindi mabura ang replica"
-
 #: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:67
+#: src/features/user/replication.tsx:77
 msgid "Could not deny request"
 msgstr "Hindi maaaring tanggihan ang kahilingan"
+
+#: src/features/user/replication.tsx:162
+msgid "Could not forget host"
+msgstr "Hindi makalimutan ang host"
 
 #: src/features/user/login.tsx:920
 msgid "Could not link account"
@@ -568,13 +569,13 @@ msgstr "Hindi na-link ang account"
 msgid "Could not load this document. Please try again later."
 msgstr "Hindi ma-load ang dokumentong ito. Pakisubukang muli mamaya."
 
-#: src/features/user/replication.tsx:147
-#~ msgid "Could not remove host"
-#~ msgstr "Hindi maaaring alisin ang host"
-
 #: src/features/system/replication.tsx:180
 msgid "Could not remove pair member"
 msgstr "Hindi maalis ang pair member"
+
+#: src/features/user/replication.tsx:224
+msgid "Could not remove your account from this server"
+msgstr "Hindi maalis ang iyong account mula sa server na ito"
 
 #: src/features/user/login.tsx:794
 msgid "Could not start linking"
@@ -692,7 +693,6 @@ msgstr "Mga delegation"
 #: src/features/user/login.tsx:276
 #: src/features/user/notifications.tsx:392
 #: src/features/user/notifications.tsx:624
-#: src/features/user/replication.tsx:152
 #: src/features/user/tokens.tsx:96
 msgid "Delete"
 msgstr "I-delete"
@@ -735,14 +735,6 @@ msgstr "I-delete ang route"
 msgid "Delete route?"
 msgstr "I-delete ang route?"
 
-#: src/features/user/replication.tsx:128
-msgid "Delete this replica"
-msgstr "Burahin ang replica na ito"
-
-#: src/features/user/replication.tsx:133
-msgid "Delete this replica?"
-msgstr "Burahin ang replica na ito?"
-
 #: src/features/user/tokens.tsx:89
 msgid "Delete token"
 msgstr "I-delete ang token"
@@ -772,7 +764,7 @@ msgid "Density"
 msgstr "Densidad"
 
 #: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:87
+#: src/features/user/replication.tsx:97
 msgid "Deny"
 msgstr "Tanggihan"
 
@@ -1254,13 +1246,21 @@ msgstr "Font"
 msgid "Font size"
 msgstr "Laki ng titik"
 
+#: src/features/user/replication.tsx:149
+msgid "Forget this unreachable host"
+msgstr "Kalimutan ang hindi naa-access na host na ito"
+
+#: src/features/user/replication.tsx:154
+msgid "Forget this unreachable host?"
+msgstr "Kalimutan ang hindi naa-access na host na ito?"
+
 #: ../../../lib/web/src/lib/preference-utils.ts:60
 msgid "Friday"
 msgstr "Biyernes"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
 #: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:219
+#: src/features/user/replication.tsx:296
 msgid "From"
 msgstr "Mula sa"
 
@@ -1358,9 +1358,9 @@ msgstr "Una namematch ang mga route na may mas mataas na priority"
 msgid "Home"
 msgstr "Home"
 
-#: src/features/user/replication.tsx:146
-#~ msgid "Host removed"
-#~ msgstr "Inalis ang host"
+#: src/features/user/replication.tsx:161
+msgid "Host forgotten"
+msgstr "Nakalimutan na ang host"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1418,9 +1418,13 @@ msgid "IP Address"
 msgstr "IP Address"
 
 #: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:113
+#: src/features/user/replication.tsx:129
 msgid "Irreparable"
 msgstr "Hindi na maaayos"
+
+#: src/features/user/replication.tsx:155
+msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
+msgstr "Aalisin ito sa iyong replica set at sasabihang tanggalin ang kopya nito kapag muling kumonekta. Para mag-alis ng naa-access na server, mag-sign in doon at gamitin ang \"Alisin ang aking account mula sa server na ito\". Patunayan na ikaw ito para magpatuloy."
 
 #: src/features/system/replication.tsx:75
 msgid "Join request approved"
@@ -1633,7 +1637,7 @@ msgstr "Lunes"
 msgid "My application"
 msgstr "Aking aplikasyon"
 
-#: src/features/user/replication.tsx:231
+#: src/features/user/replication.tsx:308
 msgid "My hosts"
 msgstr "Mga host ko"
 
@@ -1824,7 +1828,7 @@ msgstr "Format ng numero"
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
 #: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:116
+#: src/features/user/replication.tsx:132
 msgid "Offline {0}"
 msgstr "Offline {0}"
 
@@ -1873,6 +1877,10 @@ msgstr "Pangalan ng operator"
 #: ../../../lib/web/src/features/access/access-dialog.tsx:163
 msgid "Other"
 msgstr "Iba pa"
+
+#: src/features/user/replication.tsx:311
+msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
+msgstr "Iba pang mga server na may hawak ding kopya ng iyong account. Para mag-alis ng isa, mag-sign in sa server na iyon at gamitin ang \"Alisin ang aking account mula sa server na ito\"."
 
 #: src/features/system/settings.tsx:575
 msgid "Other settings"
@@ -1942,7 +1950,7 @@ msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Hindi pinapayagan ang path. Maaari ka lamang magdagdag ng mga ruta sa ilalim ng: {0}"
 
 #: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:243
+#: src/features/user/replication.tsx:325
 msgid "Peer"
 msgstr "Peer"
 
@@ -1962,7 +1970,7 @@ msgstr "Nakabinbin"
 msgid "Pending join requests"
 msgstr "Mga nakabinbing kahilingan sa pagsali"
 
-#: src/features/user/replication.tsx:212
+#: src/features/user/replication.tsx:289
 msgid "Pending requests"
 msgstr "Mga nakabinbing kahilingan"
 
@@ -2035,7 +2043,7 @@ msgstr "Pampublikong URL para sa mga OAuth redirect"
 msgid "Push notifications"
 msgstr "Mga push notification"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:259
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "Ilagay ang parehong halaga sa form ng pag-sign up ng patutunguhang server upang kopyahin ang account na ito doon."
 
@@ -2108,6 +2116,7 @@ msgstr "Relatibo sa loob ng 24 na oras, kung hindi ay absolute"
 #: src/features/system/replication.tsx:184
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
+#: src/features/user/replication.tsx:206
 msgid "Remove"
 msgstr "Alisin"
 
@@ -2129,17 +2138,13 @@ msgstr "Alisin ang access?"
 msgid "Remove account?"
 msgstr "Alisin ang account?"
 
-#: src/features/user/replication.tsx:128
-#~ msgid "Remove host"
-#~ msgstr "Alisin ang host"
-
-#: src/features/user/replication.tsx:133
-#~ msgid "Remove host?"
-#~ msgstr "Alisin ang host?"
-
 #: ../../../lib/web/src/components/post-tags.tsx:190
 msgid "Remove interest"
 msgstr "Alisin ang interes"
+
+#: src/features/user/replication.tsx:187
+msgid "Remove my account from this server"
+msgstr "Alisin ang aking account mula sa server na ito"
 
 #: src/features/system/replication.tsx:161
 msgid "Remove pair member"
@@ -2153,6 +2158,10 @@ msgstr "Alisin ang pair member?"
 msgid "Remove suspension"
 msgstr "Alisin ang suspension"
 
+#: src/features/user/replication.tsx:192
+msgid "Remove your account from this server?"
+msgstr "Alisin ang iyong account mula sa server na ito?"
+
 #: src/features/user/login.tsx:265
 msgid "Rename passkey"
 msgstr "Palitan ang pangalan ng passkey"
@@ -2161,25 +2170,21 @@ msgstr "Palitan ang pangalan ng passkey"
 msgid "Replace"
 msgstr "Palitan"
 
-#: src/features/user/replication.tsx:147
-msgid "Replica deleted"
-msgstr "Nabura ang replica"
-
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/replication.tsx:196
 #: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:164
-#: src/features/user/replication.tsx:174
+#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:246
 msgid "Replication"
 msgstr "Pagpaparami"
 
-#: src/features/user/replication.tsx:58
+#: src/features/user/replication.tsx:68
 msgid "Request approved"
 msgstr "Inaprubahan ang kahilingan"
 
-#: src/features/user/replication.tsx:66
+#: src/features/user/replication.tsx:76
 msgid "Request denied"
 msgstr "Tinanggihan ang kahilingan"
 
@@ -2447,7 +2452,7 @@ msgstr "Serif"
 msgid "Server error"
 msgstr "Error sa server"
 
-#: src/features/user/replication.tsx:200
+#: src/features/user/replication.tsx:272
 msgid "Server peer ID"
 msgstr "Server peer ID"
 
@@ -2688,11 +2693,11 @@ msgstr "Na-update ang theme"
 msgid "Third-party login"
 msgstr "Third-party login"
 
-#: src/features/user/replication.tsx:185
+#: src/features/user/replication.tsx:257
 msgid "This account"
 msgstr "Ang account na ito"
 
-#: src/features/user/replication.tsx:235
+#: src/features/user/replication.tsx:317
 msgid "This account is on this server only"
 msgstr "Ang account na ito ay nasa server na ito lamang"
 
@@ -2703,6 +2708,10 @@ msgstr "Isa itong kumpletong backup na maaari mong i-restore sa server na ito o 
 #: src/lib/use-step-up.tsx:29
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Isa itong pagbabago sa seguridad ng iyong account. Patunayan na ikaw ito para magpatuloy."
+
+#: src/features/user/replication.tsx:215
+msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
+msgstr "Permanenteng tatanggalin nito ang data ng iyong account sa server na ito. Patunayan na ikaw ito para magpatuloy."
 
 #: src/features/system/replication.tsx:219
 msgid "This server"
@@ -2715,10 +2724,6 @@ msgstr "Hindi pinares ang server na ito."
 #: src/features/system/replication.tsx:168
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "Hindi na ipapares ang server na ito sa peer na iyon. Pinapanatili ng inalis na server ang lokal nitong kopya ng bawat user; kailangang manu-manong burahin ito ng operator doon."
-
-#: src/features/user/replication.tsx:135
-#~ msgid "This server will stop replicating your account to that host. The host's local copy stays in place until that operator removes it."
-#~ msgstr "Hihinto ang server na ito sa pag-replicate ng iyong account sa host na iyon. Mananatili ang lokal na kopya ng host hanggang sa alisin ito ng operator na iyon."
 
 #: src/features/system/users.tsx:344
 msgid "This user has no active sessions."
@@ -2806,7 +2811,7 @@ msgstr "Mga timestamp"
 msgid "TLS Enabled"
 msgstr "Pinagana ang TLS"
 
-#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:318
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "Upang i-replicate ito sa ibang server, mag-sign up para sa account doon at gamitin ang opsyon na \"I-replicate ang isang umiiral nang account\"."
 
@@ -2930,7 +2935,7 @@ msgid "Units"
 msgstr "Mga yunit"
 
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:121
+#: src/features/user/replication.tsx:137
 msgid "Unknown"
 msgstr "Hindi alam"
 
@@ -3020,7 +3025,7 @@ msgid "User updated"
 msgstr "Na-update ang user"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:264
 msgid "Username"
 msgstr "Username"
 
@@ -3143,9 +3148,9 @@ msgstr "Permanenteng buburahin ang iyong account sa {purgeDate}. Naka-sign out k
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "Itatakda nang burahin ang iyong account at masa-sign out ka. Maaari mong kanselahin anumang oras bago ang petsa ng pagbura sa pamamagitan ng muling pag-log in. I-download muna ang iyong data kung nais mong magtago ng kopya."
 
-#: src/features/user/replication.tsx:135
-msgid "Your account's data on this host will be permanently deleted. Your account stays on your other hosts."
-msgstr "Permanenteng buburahin ang data ng iyong account sa host na ito. Mananatili ang iyong account sa iyong iba pang mga host."
+#: src/features/user/replication.tsx:194
+msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
+msgstr "Permanenteng tatanggalin ang data ng iyong account sa server na ito at masa-sign out ka rito. Mananatili ang iyong account sa iba mong mga server, at maaari mong idagdag muli ito sa ibang pagkakataon."
 
 #: src/features/user/data.tsx:166
 msgid "Your data"

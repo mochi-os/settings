@@ -31,9 +31,11 @@ import {
   useFormat,
   usePageTitle,
 } from '@mochi/web'
+import { isInShell } from '@mochi/web'
 import {
   useApproveLink,
   useDenyLink,
+  useLeaveServer,
   useRemoveHost,
   useReplication,
   type ReplicationHost,
@@ -41,6 +43,14 @@ import {
 } from '@/hooks/use-replication'
 import { offlineActive, offlineDuration } from '@/lib/offline'
 import { stepUpClient } from '@/lib/step-up-client'
+
+// Leaving deletes this server's copy and its sessions, so the shell loses auth.
+// Bounce to login (the account is still on the user's other servers).
+function goToLogin() {
+  const url = '/'
+  if (isInShell()) window.parent.postMessage({ type: 'navigate-top', url }, '*')
+  else window.location.href = url
+}
 
 function PendingRow({ link }: { link: ReplicationLink }) {
   const { t } = useLingui()
@@ -100,10 +110,16 @@ function PendingRow({ link }: { link: ReplicationLink }) {
   )
 }
 
+// A host in the set is informational. To remove a *reachable* replica, the
+// user signs in on that server and uses "Remove my account from this server".
+// Only an *unreachable* host gets an advanced "forget" here (you can't sign in
+// to a down server), which removes it and tells it to purge when it reconnects.
 function HostRow({ host }: { host: ReplicationHost }) {
   const { t } = useLingui()
   const { formatTimestamp } = useFormat()
   const remove = useRemoveHost()
+  const [stepOpen, setStepOpen] = useState(false)
+  const unreachable = host.irreparable || offlineActive(host.offline)
 
   return (
     <TableRow>
@@ -121,41 +137,97 @@ function HostRow({ host }: { host: ReplicationHost }) {
         {formatTimestamp(host.added, t`Unknown`)}
       </TableCell>
       <TableCell className='text-end'>
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button variant='ghost' size='sm' disabled={remove.isPending}>
+        {unreachable && (
+          <>
+            <Button
+              variant='ghost'
+              size='sm'
+              disabled={remove.isPending}
+              onClick={() => setStepOpen(true)}
+            >
               {remove.isPending ? <Loader2 className='h-4 w-4 animate-spin' /> : <ServerOff className='h-4 w-4' />}
-              <span className='sr-only'><Trans>Delete this replica</Trans></span>
+              <span className='sr-only'><Trans>Forget this unreachable host</Trans></span>
             </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle><Trans>Delete this replica?</Trans></AlertDialogTitle>
-              <AlertDialogDescription>
-                <Trans>
-                  Your account's data on this host will be permanently deleted. Your account stays
-                  on your other hosts.
-                </Trans>
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel><Trans>Cancel</Trans></AlertDialogCancel>
-              <AlertDialogAction
-                variant='destructive'
-                onClick={() =>
-                  remove.mutate(host.peer, {
-                    onSuccess: () => toast.success(t`Replica deleted`),
-                    onError: (e) => toast.error(getErrorMessage(e, t`Could not delete replica`)),
-                  })
-                }
-              >
-                <Trans>Delete</Trans>
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+            <StepUpDialog
+              open={stepOpen}
+              onOpenChange={setStepOpen}
+              title={t`Forget this unreachable host?`}
+              description={t`It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use "Remove my account from this server". Verify it's you to continue.`}
+              client={stepUpClient}
+              onVerified={(token) =>
+                remove.mutate(
+                  { peer: host.peer, token },
+                  {
+                    onSuccess: () => { setStepOpen(false); toast.success(t`Host forgotten`) },
+                    onError: (e) => toast.error(getErrorMessage(e, t`Could not forget host`)),
+                  },
+                )
+              }
+            />
+          </>
+        )}
       </TableCell>
     </TableRow>
+  )
+}
+
+// The primary "remove a replica" action, local to this server.
+function LeaveThisServer() {
+  const { t } = useLingui()
+  const leave = useLeaveServer()
+  const [confirmOpen, setConfirmOpen] = useState(false)
+  const [stepOpen, setStepOpen] = useState(false)
+
+  return (
+    <>
+      <AlertDialog open={confirmOpen} onOpenChange={setConfirmOpen}>
+        <AlertDialogTrigger asChild>
+          <Button variant='outline' size='sm'>
+            <ServerOff className='me-2 h-4 w-4' />
+            <Trans>Remove my account from this server</Trans>
+          </Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle><Trans>Remove your account from this server?</Trans></AlertDialogTitle>
+            <AlertDialogDescription>
+              <Trans>
+                Your account's data on this server will be permanently deleted and you'll be signed
+                out here. Your account stays on your other servers, and you can re-add this one later.
+              </Trans>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel><Trans>Cancel</Trans></AlertDialogCancel>
+            <AlertDialogAction
+              variant='destructive'
+              onClick={() => { setConfirmOpen(false); setStepOpen(true) }}
+            >
+              <Trans>Remove</Trans>
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+      <StepUpDialog
+        open={stepOpen}
+        onOpenChange={setStepOpen}
+        title={t`Confirm it's you`}
+        description={t`This permanently deletes your account's data on this server. Verify it's you to continue.`}
+        client={stepUpClient}
+        onVerified={(token) =>
+          leave.mutate(
+            { token },
+            {
+              onSuccess: () => goToLogin(),
+              onError: (e) => {
+                setStepOpen(false)
+                toast.error(getErrorMessage(e, t`Could not remove your account from this server`))
+              },
+            },
+          )
+        }
+      />
+    </>
   )
 }
 
@@ -204,6 +276,11 @@ export function UserReplication() {
                     </div>
                   )}
                 </dl>
+                {hosts.length > 0 && (
+                  <div className='pt-2'>
+                    <LeaveThisServer />
+                  </div>
+                )}
               </section>
             )}
 
@@ -229,6 +306,11 @@ export function UserReplication() {
 
             <section className='space-y-2'>
               <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'><Trans>My hosts</Trans></h2>
+              {hosts.length > 0 && (
+                <p className='text-muted-foreground text-sm'>
+                  <Trans>Other servers that also hold a copy of your account. To remove one, sign in on that server and use "Remove my account from this server".</Trans>
+                </p>
+              )}
               {hosts.length === 0 ? (
                 <EmptyState
                   icon={Copy}

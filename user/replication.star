@@ -49,11 +49,32 @@ def action_user_replication_deny(a):
     result = mochi.replication.link.deny(peer)
     a.json({"result": result})
 
+def action_user_replication_leave(a):
+    """Remove the user's account from THIS server (leave the replica set).
+
+    The primary "remove a replica" path: purges this server's local copy
+    (the account survives on the user's other servers) and announces the
+    departure to them. Destructive, so step-up gated like close. The UI hides
+    this when there is no other copy; mochi.replication.leave() also refuses
+    that case as a backstop.
+    """
+    if not mochi.user.session.reauthenticate(a.input("token", "")):
+        a.error.label(400, "errors.reauthentication_required")
+        return
+    mochi.replication.leave()
+    a.json({"ok": True})
+
 def action_user_replication_remove(a):
-    """Remove `peer` from the active per-user host set."""
+    """Advanced: forget an unreachable host — remove `peer` from the host set
+    and tell it to purge its copy. The local 'remove from this server' path
+    (leave) is preferred; this exists for hosts you can't sign in to. Step-up
+    gated, as it deletes another host's copy."""
     peer = a.input("peer", "")
     if peer == "":
         a.error.label(400, "errors.missing_peer")
+        return
+    if not mochi.user.session.reauthenticate(a.input("token", "")):
+        a.error.label(400, "errors.reauthentication_required")
         return
     result = mochi.replication.host.remove(peer)
     a.json({"result": result})

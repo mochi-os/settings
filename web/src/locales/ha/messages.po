@@ -198,7 +198,7 @@ msgid "Add view"
 msgstr "Ƙara view"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:244
+#: src/features/user/replication.tsx:326
 msgid "Added"
 msgstr "An ƙara"
 
@@ -250,7 +250,7 @@ msgstr "An samu kuskure"
 msgid "An unexpected error occurred"
 msgstr "An samu kuskuren da ba a zata ba"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:291
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Wani sabar yana neman ya karbi bakuncin kwafin asusunka. Amince don aika kwafi."
 
@@ -268,22 +268,22 @@ msgid "Appearance"
 msgstr "Kamanni"
 
 #: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:60
+#: src/features/user/replication.tsx:70
 msgid "Approval failed"
 msgstr "Amincewa ta gaza"
 
 #: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:83
+#: src/features/user/replication.tsx:93
 msgid "Approve"
 msgstr "Amince"
 
 #: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:93
+#: src/features/user/replication.tsx:103
 msgid "Approve request"
 msgstr "Amince da buƙatar"
 
 #: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:94
+#: src/features/user/replication.tsx:104
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "Amincewa yana kwafa makullai masu zaman kansu zuwa wannan sabar. Tabbatar da cewa kai ne don ci gaba."
 
@@ -369,7 +369,7 @@ msgstr "Sanarwar browser"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:142
+#: src/features/user/replication.tsx:201
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Soke"
@@ -496,6 +496,7 @@ msgstr "An saita"
 msgid "Confirm"
 msgstr "Tabbatar"
 
+#: src/features/user/replication.tsx:214
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "Tabbatar da cewa kai ne"
@@ -551,14 +552,14 @@ msgstr "Kwafa alamarka yanzu. Ba za ka iya ganinta ba kuma."
 msgid "Could not close your account"
 msgstr "An kasa rufe asusunka"
 
-#: src/features/user/replication.tsx:148
-msgid "Could not delete replica"
-msgstr "An kasa goge kwafin"
-
 #: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:67
+#: src/features/user/replication.tsx:77
 msgid "Could not deny request"
 msgstr "An gaza ƙin buƙatar"
+
+#: src/features/user/replication.tsx:162
+msgid "Could not forget host"
+msgstr "An kasa mantawa da uwar garke"
 
 #: src/features/user/login.tsx:920
 msgid "Could not link account"
@@ -568,13 +569,13 @@ msgstr "Ba a iya haɗa asusu ba"
 msgid "Could not load this document. Please try again later."
 msgstr "Ba a iya ɗora wannan takarda ba. Da fatan a sake gwadawa daga baya."
 
-#: src/features/user/replication.tsx:147
-#~ msgid "Could not remove host"
-#~ msgstr "An gaza cire mai masaukin"
-
 #: src/features/system/replication.tsx:180
 msgid "Could not remove pair member"
 msgstr "Ba a iya cire memba na ma'aurata ba"
+
+#: src/features/user/replication.tsx:224
+msgid "Could not remove your account from this server"
+msgstr "An kasa cire asusunka daga wannan uwar garke"
 
 #: src/features/user/login.tsx:794
 msgid "Could not start linking"
@@ -692,7 +693,6 @@ msgstr "Wakilci"
 #: src/features/user/login.tsx:276
 #: src/features/user/notifications.tsx:392
 #: src/features/user/notifications.tsx:624
-#: src/features/user/replication.tsx:152
 #: src/features/user/tokens.tsx:96
 msgid "Delete"
 msgstr "Goge"
@@ -735,14 +735,6 @@ msgstr "Goge hanya"
 msgid "Delete route?"
 msgstr "Goge hanya?"
 
-#: src/features/user/replication.tsx:128
-msgid "Delete this replica"
-msgstr "Goge wannan kwafin"
-
-#: src/features/user/replication.tsx:133
-msgid "Delete this replica?"
-msgstr "Goge wannan kwafin?"
-
 #: src/features/user/tokens.tsx:89
 msgid "Delete token"
 msgstr "Goge token"
@@ -772,7 +764,7 @@ msgid "Density"
 msgstr "Yawa"
 
 #: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:87
+#: src/features/user/replication.tsx:97
 msgid "Deny"
 msgstr "Ƙi"
 
@@ -1254,13 +1246,21 @@ msgstr "Font"
 msgid "Font size"
 msgstr "Girman font"
 
+#: src/features/user/replication.tsx:149
+msgid "Forget this unreachable host"
+msgstr "Manta da wannan uwar garke da ba a iya isa gare ta"
+
+#: src/features/user/replication.tsx:154
+msgid "Forget this unreachable host?"
+msgstr "A manta da wannan uwar garke da ba a iya isa gare ta?"
+
 #: ../../../lib/web/src/lib/preference-utils.ts:60
 msgid "Friday"
 msgstr "Jumma'a"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
 #: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:219
+#: src/features/user/replication.tsx:296
 msgid "From"
 msgstr "Daga"
 
@@ -1358,9 +1358,9 @@ msgstr "Routes masu fifiko ana daidaita su tukuna"
 msgid "Home"
 msgstr "Gida"
 
-#: src/features/user/replication.tsx:146
-#~ msgid "Host removed"
-#~ msgstr "An cire mai masaukin"
+#: src/features/user/replication.tsx:161
+msgid "Host forgotten"
+msgstr "An manta da uwar garke"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1418,9 +1418,13 @@ msgid "IP Address"
 msgstr "IP Address"
 
 #: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:113
+#: src/features/user/replication.tsx:129
 msgid "Irreparable"
 msgstr "Ba a iya gyara"
+
+#: src/features/user/replication.tsx:155
+msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
+msgstr "Za a cire ta daga tarin kwafinka kuma a gaya mata ta share kwafinta lokacin da ta sake haɗawa. Don cire uwar garke da za a iya isa gare ta, ka shiga can sannan ka yi amfani da \"Cire asusuna daga wannan uwar garke\". Tabbatar da kai ne don ci gaba."
 
 #: src/features/system/replication.tsx:75
 msgid "Join request approved"
@@ -1633,7 +1637,7 @@ msgstr "Litinin"
 msgid "My application"
 msgstr "Aikace-aikacena"
 
-#: src/features/user/replication.tsx:231
+#: src/features/user/replication.tsx:308
 msgid "My hosts"
 msgstr "Masaukina"
 
@@ -1824,7 +1828,7 @@ msgstr "Tsarin lamba"
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
 #: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:116
+#: src/features/user/replication.tsx:132
 msgid "Offline {0}"
 msgstr "Ba a kan layi {0}"
 
@@ -1873,6 +1877,10 @@ msgstr "Sunan mai gudanarwa"
 #: ../../../lib/web/src/features/access/access-dialog.tsx:163
 msgid "Other"
 msgstr "Sauran"
+
+#: src/features/user/replication.tsx:311
+msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
+msgstr "Sauran uwayen garke da su ma suke riƙe da kwafin asusunka. Don cire ɗaya, ka shiga wannan uwar garke sannan ka yi amfani da \"Cire asusuna daga wannan uwar garke\"."
 
 #: src/features/system/settings.tsx:575
 msgid "Other settings"
@@ -1942,7 +1950,7 @@ msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Ba a yarda da hanyar ba. Kuna iya ƙara hanyoyi kawai a ƙarƙashin: {0}"
 
 #: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:243
+#: src/features/user/replication.tsx:325
 msgid "Peer"
 msgstr "Takwara"
 
@@ -1962,7 +1970,7 @@ msgstr "Jiran"
 msgid "Pending join requests"
 msgstr "Buƙatun shiga da ke jiran"
 
-#: src/features/user/replication.tsx:212
+#: src/features/user/replication.tsx:289
 msgid "Pending requests"
 msgstr "Buƙatun da ke jiran amincewa"
 
@@ -2035,7 +2043,7 @@ msgstr "URL na jama'a don OAuth redirects"
 msgid "Push notifications"
 msgstr "Sanarwar tura"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:259
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "Shigar da dukkan ƙimomin biyu a cikin tsarin yin rajista na sabar makomar don kwafi wannan asusun a wurin."
 
@@ -2108,6 +2116,7 @@ msgstr "Relative cikin sa'o'i 24, in ba haka ba absolute"
 #: src/features/system/replication.tsx:184
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
+#: src/features/user/replication.tsx:206
 msgid "Remove"
 msgstr "Cire"
 
@@ -2129,17 +2138,13 @@ msgstr "A cire damar shiga?"
 msgid "Remove account?"
 msgstr "A cire account?"
 
-#: src/features/user/replication.tsx:128
-#~ msgid "Remove host"
-#~ msgstr "Cire mai masaukin"
-
-#: src/features/user/replication.tsx:133
-#~ msgid "Remove host?"
-#~ msgstr "Cire mai masaukin?"
-
 #: ../../../lib/web/src/components/post-tags.tsx:190
 msgid "Remove interest"
 msgstr "Cire sha'awa"
+
+#: src/features/user/replication.tsx:187
+msgid "Remove my account from this server"
+msgstr "Cire asusuna daga wannan uwar garke"
 
 #: src/features/system/replication.tsx:161
 msgid "Remove pair member"
@@ -2153,6 +2158,10 @@ msgstr "A cire memba na ma'aurata?"
 msgid "Remove suspension"
 msgstr "Cire suspension"
 
+#: src/features/user/replication.tsx:192
+msgid "Remove your account from this server?"
+msgstr "A cire asusunka daga wannan uwar garke?"
+
 #: src/features/user/login.tsx:265
 msgid "Rename passkey"
 msgstr "Sake sunan passkey"
@@ -2161,25 +2170,21 @@ msgstr "Sake sunan passkey"
 msgid "Replace"
 msgstr "Maye gurbi"
 
-#: src/features/user/replication.tsx:147
-msgid "Replica deleted"
-msgstr "An goge kwafin"
-
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/replication.tsx:196
 #: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:164
-#: src/features/user/replication.tsx:174
+#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:246
 msgid "Replication"
 msgstr "Kwafi"
 
-#: src/features/user/replication.tsx:58
+#: src/features/user/replication.tsx:68
 msgid "Request approved"
 msgstr "An amince da buƙatar"
 
-#: src/features/user/replication.tsx:66
+#: src/features/user/replication.tsx:76
 msgid "Request denied"
 msgstr "An ƙi buƙatar"
 
@@ -2447,7 +2452,7 @@ msgstr "Serif"
 msgid "Server error"
 msgstr "Kuskuren saba"
 
-#: src/features/user/replication.tsx:200
+#: src/features/user/replication.tsx:272
 msgid "Server peer ID"
 msgstr "ID na takwara sabar"
 
@@ -2688,11 +2693,11 @@ msgstr "An sabunta theme"
 msgid "Third-party login"
 msgstr "Shigar wani ɓangare na uku"
 
-#: src/features/user/replication.tsx:185
+#: src/features/user/replication.tsx:257
 msgid "This account"
 msgstr "Wannan asusu"
 
-#: src/features/user/replication.tsx:235
+#: src/features/user/replication.tsx:317
 msgid "This account is on this server only"
 msgstr "Wannan asusun yana wannan sabar ne kawai"
 
@@ -2703,6 +2708,10 @@ msgstr "Wannan cikakken ajiya ne wanda za ka iya maido da shi a wannan ko wani s
 #: src/lib/use-step-up.tsx:29
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Wannan canji ne na tsaro ga asusunka. Tabbatar da cewa kai ne don ci gaba."
+
+#: src/features/user/replication.tsx:215
+msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
+msgstr "Wannan zai share bayanan asusunka a wannan uwar garke har abada. Tabbatar da kai ne don ci gaba."
 
 #: src/features/system/replication.tsx:219
 msgid "This server"
@@ -2715,10 +2724,6 @@ msgstr "Wannan uwar garken ba a haɗa ta ba."
 #: src/features/system/replication.tsx:168
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "Wannan sabar zai daina haɗawa da wannan abokin tarayya. Sabar da aka cire yana riƙe da kwafin gida na kowane mai amfani; mai aiki a can dole ne ya share shi da hannu."
-
-#: src/features/user/replication.tsx:135
-#~ msgid "This server will stop replicating your account to that host. The host's local copy stays in place until that operator removes it."
-#~ msgstr "Wannan sabar zai daina kwafin asusunka zuwa wannan mai masaukin. Kwafin gida na mai masaukin yana nan har sai mai amfani da shi ya cire shi."
 
 #: src/features/system/users.tsx:344
 msgid "This user has no active sessions."
@@ -2806,7 +2811,7 @@ msgstr "Timestamps"
 msgid "TLS Enabled"
 msgstr "An kunna TLS"
 
-#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:318
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "Don kwafa zuwa wani sabar, yi rajistar asusu a wurin kuma yi amfani da zaɓi na \"Kwafa asusu da yake akwai\"."
 
@@ -2930,7 +2935,7 @@ msgid "Units"
 msgstr "Units"
 
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:121
+#: src/features/user/replication.tsx:137
 msgid "Unknown"
 msgstr "Ba a sani ba"
 
@@ -3020,7 +3025,7 @@ msgid "User updated"
 msgstr "An sabunta mai amfani"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:264
 msgid "Username"
 msgstr "Sunan mai amfani"
 
@@ -3143,9 +3148,9 @@ msgstr "Za a goge asusunka na dindindin a {purgeDate}. An fitar da kai. Don soke
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "Za a tsara goge asusunka kuma za a fitar da kai. Kana iya soke shi a kowane lokaci kafin ranar gogewa ta hanyar sake shiga. Ka fara saukar da bayananka idan kana son ajiye kwafi."
 
-#: src/features/user/replication.tsx:135
-msgid "Your account's data on this host will be permanently deleted. Your account stays on your other hosts."
-msgstr "Za a goge bayanan asusunka a kan wannan mai masaukin na dindindin. Asusunka yana nan a kan sauran masu masaukinka."
+#: src/features/user/replication.tsx:194
+msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
+msgstr "Za a share bayanan asusunka a wannan uwar garke har abada kuma za a fitar da kai daga nan. Asusunka zai ci gaba da kasancewa a sauran uwayen garken ka, kuma za ka iya sake ƙara wannan daga baya."
 
 #: src/features/user/data.tsx:166
 msgid "Your data"

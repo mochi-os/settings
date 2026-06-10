@@ -198,7 +198,7 @@ msgid "Add view"
 msgstr "Dodaj prikaz"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:244
+#: src/features/user/replication.tsx:326
 msgid "Added"
 msgstr "Dodano"
 
@@ -250,7 +250,7 @@ msgstr "Došlo je do pogreške"
 msgid "An unexpected error occurred"
 msgstr "Došlo je do neočekivane pogreške"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:291
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Drugi poslužitelj traži ugošćivanje kopije vašeg računa. Odobrite za slanje kopije."
 
@@ -268,22 +268,22 @@ msgid "Appearance"
 msgstr "Izgled"
 
 #: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:60
+#: src/features/user/replication.tsx:70
 msgid "Approval failed"
 msgstr "Odobravanje nije uspjelo"
 
 #: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:83
+#: src/features/user/replication.tsx:93
 msgid "Approve"
 msgstr "Odobri"
 
 #: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:93
+#: src/features/user/replication.tsx:103
 msgid "Approve request"
 msgstr "Odobri zahtjev"
 
 #: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:94
+#: src/features/user/replication.tsx:104
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "Odobravanje kopira privatne ključeve na taj poslužitelj. Potvrdite svoj identitet za nastavak."
 
@@ -369,7 +369,7 @@ msgstr "Obavijesti preglednika"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:142
+#: src/features/user/replication.tsx:201
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Odustani"
@@ -496,6 +496,7 @@ msgstr "Konfigurirano"
 msgid "Confirm"
 msgstr "Potvrdi"
 
+#: src/features/user/replication.tsx:214
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "Potvrdite da ste to vi"
@@ -551,14 +552,14 @@ msgstr "Kopirajte vaš token sada. Nećete ga moći ponovno vidjeti."
 msgid "Could not close your account"
 msgstr "Nije moguće zatvoriti vaš račun"
 
-#: src/features/user/replication.tsx:148
-msgid "Could not delete replica"
-msgstr "Nije moguće izbrisati repliku"
-
 #: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:67
+#: src/features/user/replication.tsx:77
 msgid "Could not deny request"
 msgstr "Zahtjev se ne može odbiti"
+
+#: src/features/user/replication.tsx:162
+msgid "Could not forget host"
+msgstr "Nije moguće zaboraviti poslužitelj"
 
 #: src/features/user/login.tsx:920
 msgid "Could not link account"
@@ -568,13 +569,13 @@ msgstr "Nije moguće povezati račun"
 msgid "Could not load this document. Please try again later."
 msgstr "Nije moguće učitati ovaj dokument. Pokušajte ponovno kasnije."
 
-#: src/features/user/replication.tsx:147
-#~ msgid "Could not remove host"
-#~ msgstr "Domaćina nije moguće ukloniti"
-
 #: src/features/system/replication.tsx:180
 msgid "Could not remove pair member"
 msgstr "Nije moguće ukloniti člana uparivanja"
+
+#: src/features/user/replication.tsx:224
+msgid "Could not remove your account from this server"
+msgstr "Nije moguće ukloniti vaš račun s ovog poslužitelja"
 
 #: src/features/user/login.tsx:794
 msgid "Could not start linking"
@@ -692,7 +693,6 @@ msgstr "Delegacije"
 #: src/features/user/login.tsx:276
 #: src/features/user/notifications.tsx:392
 #: src/features/user/notifications.tsx:624
-#: src/features/user/replication.tsx:152
 #: src/features/user/tokens.tsx:96
 msgid "Delete"
 msgstr "Obriši"
@@ -735,14 +735,6 @@ msgstr "Obriši rutu"
 msgid "Delete route?"
 msgstr "Obrisati rutu?"
 
-#: src/features/user/replication.tsx:128
-msgid "Delete this replica"
-msgstr "Izbriši ovu repliku"
-
-#: src/features/user/replication.tsx:133
-msgid "Delete this replica?"
-msgstr "Izbrisati ovu repliku?"
-
 #: src/features/user/tokens.tsx:89
 msgid "Delete token"
 msgstr "Obriši token"
@@ -772,7 +764,7 @@ msgid "Density"
 msgstr "Gustoća"
 
 #: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:87
+#: src/features/user/replication.tsx:97
 msgid "Deny"
 msgstr "Odbij"
 
@@ -1254,13 +1246,21 @@ msgstr "Font"
 msgid "Font size"
 msgstr "Veličina fonta"
 
+#: src/features/user/replication.tsx:149
+msgid "Forget this unreachable host"
+msgstr "Zaboravi ovaj nedostupni poslužitelj"
+
+#: src/features/user/replication.tsx:154
+msgid "Forget this unreachable host?"
+msgstr "Zaboraviti ovaj nedostupni poslužitelj?"
+
 #: ../../../lib/web/src/lib/preference-utils.ts:60
 msgid "Friday"
 msgstr "Petak"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
 #: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:219
+#: src/features/user/replication.tsx:296
 msgid "From"
 msgstr "Od"
 
@@ -1358,9 +1358,9 @@ msgstr "Rute s višim prioritetom prve se podudaraju"
 msgid "Home"
 msgstr "Početna"
 
-#: src/features/user/replication.tsx:146
-#~ msgid "Host removed"
-#~ msgstr "Domaćin uklonjen"
+#: src/features/user/replication.tsx:161
+msgid "Host forgotten"
+msgstr "Poslužitelj zaboravljen"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1418,9 +1418,13 @@ msgid "IP Address"
 msgstr "IP adresa"
 
 #: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:113
+#: src/features/user/replication.tsx:129
 msgid "Irreparable"
 msgstr "Nepopravljivo"
+
+#: src/features/user/replication.tsx:155
+msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
+msgstr "Bit će uklonjen iz vašeg skupa replika i zatražit će se da izbriše svoju kopiju kada se ponovno poveže. Da biste uklonili dostupan poslužitelj, prijavite se na njega i upotrijebite „Ukloni moj račun s ovog poslužitelja”. Potvrdite da ste to vi za nastavak."
 
 #: src/features/system/replication.tsx:75
 msgid "Join request approved"
@@ -1633,7 +1637,7 @@ msgstr "Ponedjeljak"
 msgid "My application"
 msgstr "Moja prijava"
 
-#: src/features/user/replication.tsx:231
+#: src/features/user/replication.tsx:308
 msgid "My hosts"
 msgstr "Moji domaćini"
 
@@ -1824,7 +1828,7 @@ msgstr "Format brojeva"
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
 #: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:116
+#: src/features/user/replication.tsx:132
 msgid "Offline {0}"
 msgstr "Izvan mreže {0}"
 
@@ -1873,6 +1877,10 @@ msgstr "Naziv operatera"
 #: ../../../lib/web/src/features/access/access-dialog.tsx:163
 msgid "Other"
 msgstr "Ostalo"
+
+#: src/features/user/replication.tsx:311
+msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
+msgstr "Drugi poslužitelji koji također drže kopiju vašeg računa. Da biste uklonili jedan, prijavite se na taj poslužitelj i upotrijebite „Ukloni moj račun s ovog poslužitelja”."
 
 #: src/features/system/settings.tsx:575
 msgid "Other settings"
@@ -1942,7 +1950,7 @@ msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Putanja nije dopuštena. Možete dodavati rute samo pod: {0}"
 
 #: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:243
+#: src/features/user/replication.tsx:325
 msgid "Peer"
 msgstr "Ravnopravan"
 
@@ -1962,7 +1970,7 @@ msgstr "Na čekanju"
 msgid "Pending join requests"
 msgstr "Zahtjevi za pridruživanje na čekanju"
 
-#: src/features/user/replication.tsx:212
+#: src/features/user/replication.tsx:289
 msgid "Pending requests"
 msgstr "Zahtjevi na čekanju"
 
@@ -2035,7 +2043,7 @@ msgstr "Javni URL za OAuth preusmjeravanja"
 msgid "Push notifications"
 msgstr "Push obavijesti"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:259
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "Unesite obje vrijednosti u obrazac za registraciju na odredišnom poslužitelju kako biste tamo replicirali ovaj račun."
 
@@ -2108,6 +2116,7 @@ msgstr "Relativno unutar 24 sata, inače apsolutno"
 #: src/features/system/replication.tsx:184
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
+#: src/features/user/replication.tsx:206
 msgid "Remove"
 msgstr "Ukloni"
 
@@ -2129,17 +2138,13 @@ msgstr "Ukloniti pristup?"
 msgid "Remove account?"
 msgstr "Ukloniti račun?"
 
-#: src/features/user/replication.tsx:128
-#~ msgid "Remove host"
-#~ msgstr "Ukloni domaćina"
-
-#: src/features/user/replication.tsx:133
-#~ msgid "Remove host?"
-#~ msgstr "Ukloniti domaćina?"
-
 #: ../../../lib/web/src/components/post-tags.tsx:190
 msgid "Remove interest"
 msgstr "Ukloni interes"
+
+#: src/features/user/replication.tsx:187
+msgid "Remove my account from this server"
+msgstr "Ukloni moj račun s ovog poslužitelja"
 
 #: src/features/system/replication.tsx:161
 msgid "Remove pair member"
@@ -2153,6 +2158,10 @@ msgstr "Ukloniti člana uparivanja?"
 msgid "Remove suspension"
 msgstr "Ukloni suspenziju"
 
+#: src/features/user/replication.tsx:192
+msgid "Remove your account from this server?"
+msgstr "Ukloniti vaš račun s ovog poslužitelja?"
+
 #: src/features/user/login.tsx:265
 msgid "Rename passkey"
 msgstr "Preimenuj pristupni ključ"
@@ -2161,25 +2170,21 @@ msgstr "Preimenuj pristupni ključ"
 msgid "Replace"
 msgstr "Zamijeni"
 
-#: src/features/user/replication.tsx:147
-msgid "Replica deleted"
-msgstr "Replika izbrisana"
-
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/replication.tsx:196
 #: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:164
-#: src/features/user/replication.tsx:174
+#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:246
 msgid "Replication"
 msgstr "Replikacija"
 
-#: src/features/user/replication.tsx:58
+#: src/features/user/replication.tsx:68
 msgid "Request approved"
 msgstr "Zahtjev odobren"
 
-#: src/features/user/replication.tsx:66
+#: src/features/user/replication.tsx:76
 msgid "Request denied"
 msgstr "Zahtjev odbijen"
 
@@ -2447,7 +2452,7 @@ msgstr "Serif"
 msgid "Server error"
 msgstr "Pogreška poslužitelja"
 
-#: src/features/user/replication.tsx:200
+#: src/features/user/replication.tsx:272
 msgid "Server peer ID"
 msgstr "ID parnjaka poslužitelja"
 
@@ -2688,11 +2693,11 @@ msgstr "Tema ažurirana"
 msgid "Third-party login"
 msgstr "Prijava treće strane"
 
-#: src/features/user/replication.tsx:185
+#: src/features/user/replication.tsx:257
 msgid "This account"
 msgstr "Ovaj račun"
 
-#: src/features/user/replication.tsx:235
+#: src/features/user/replication.tsx:317
 msgid "This account is on this server only"
 msgstr "Ovaj račun je samo na ovom poslužitelju"
 
@@ -2703,6 +2708,10 @@ msgstr "Ovo je potpuna sigurnosna kopija koju možete vratiti na ovaj ili drugi 
 #: src/lib/use-step-up.tsx:29
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Ovo je sigurnosna promjena na vašem računu. Potvrdite svoj identitet za nastavak."
+
+#: src/features/user/replication.tsx:215
+msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
+msgstr "Ovo trajno briše podatke vašeg računa na ovom poslužitelju. Potvrdite da ste to vi za nastavak."
 
 #: src/features/system/replication.tsx:219
 msgid "This server"
@@ -2715,10 +2724,6 @@ msgstr "Ovaj poslužitelj nije uparen."
 #: src/features/system/replication.tsx:168
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "Ovaj će poslužitelj prestati biti uparen s tim partnerom. Uklonjeni poslužitelj zadržava lokalnu kopiju svakog korisnika; tamošnji operater mora je ručno obrisati."
-
-#: src/features/user/replication.tsx:135
-#~ msgid "This server will stop replicating your account to that host. The host's local copy stays in place until that operator removes it."
-#~ msgstr "Ovaj poslužitelj će prestati replicirati vaš račun na tog domaćina. Lokalna kopija domaćina ostaje na mjestu dok je taj operater ne ukloni."
 
 #: src/features/system/users.tsx:344
 msgid "This user has no active sessions."
@@ -2806,7 +2811,7 @@ msgstr "Vremenske oznake"
 msgid "TLS Enabled"
 msgstr "TLS omogućen"
 
-#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:318
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "Da biste ga replicirali na drugi poslužitelj, registrirajte se za račun tamo i upotrijebite opciju \"Repliciraj postojeći račun\"."
 
@@ -2930,7 +2935,7 @@ msgid "Units"
 msgstr "Jedinice"
 
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:121
+#: src/features/user/replication.tsx:137
 msgid "Unknown"
 msgstr "Nepoznato"
 
@@ -3020,7 +3025,7 @@ msgid "User updated"
 msgstr "Korisnik ažuriran"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:264
 msgid "Username"
 msgstr "Korisničko ime"
 
@@ -3143,9 +3148,9 @@ msgstr "Vaš će račun biti trajno izbrisan {purgeDate}. Odjavljeni ste. Za otk
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "Vaš će račun biti zakazan za brisanje i bit ćete odjavljeni. Možete ga otkazati u bilo kojem trenutku prije datuma brisanja ponovnom prijavom. Najprije preuzmite svoje podatke ako želite zadržati kopiju."
 
-#: src/features/user/replication.tsx:135
-msgid "Your account's data on this host will be permanently deleted. Your account stays on your other hosts."
-msgstr "Podaci vašeg računa na ovom poslužitelju bit će trajno izbrisani. Vaš račun ostaje na vašim ostalim poslužiteljima."
+#: src/features/user/replication.tsx:194
+msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
+msgstr "Podaci vašeg računa na ovom poslužitelju bit će trajno izbrisani i bit ćete odjavljeni ovdje. Vaš račun ostaje na vašim drugim poslužiteljima i ovaj možete ponovno dodati kasnije."
 
 #: src/features/user/data.tsx:166
 msgid "Your data"

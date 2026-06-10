@@ -198,7 +198,7 @@ msgid "Add view"
 msgstr "Görünüş əlavə et"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:244
+#: src/features/user/replication.tsx:326
 msgid "Added"
 msgstr "Əlavə edildi"
 
@@ -250,7 +250,7 @@ msgstr "Xəta baş verdi"
 msgid "An unexpected error occurred"
 msgstr "Gözlənilməz xəta baş verdi"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:291
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Başqa server hesabınızın bir nüsxəsini saxlamağı xahiş edir. Nüsxə göndərmək üçün təsdiq edin."
 
@@ -268,22 +268,22 @@ msgid "Appearance"
 msgstr "Görünüş"
 
 #: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:60
+#: src/features/user/replication.tsx:70
 msgid "Approval failed"
 msgstr "Təsdiq alınmadı"
 
 #: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:83
+#: src/features/user/replication.tsx:93
 msgid "Approve"
 msgstr "Təsdiqlə"
 
 #: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:93
+#: src/features/user/replication.tsx:103
 msgid "Approve request"
 msgstr "Sorğunu təsdiqlə"
 
 #: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:94
+#: src/features/user/replication.tsx:104
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "Təsdiqləmə şəxsi açarları həmin serverə kopyalayır. Davam etmək üçün bunun siz olduğunuzu doğrulayın."
 
@@ -369,7 +369,7 @@ msgstr "Brauzer bildirişləri"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:142
+#: src/features/user/replication.tsx:201
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Ləğv et"
@@ -496,6 +496,7 @@ msgstr "Konfiqurasiya edilmiş"
 msgid "Confirm"
 msgstr "Təsdiqlə"
 
+#: src/features/user/replication.tsx:214
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "Bunun siz olduğunuzu təsdiqləyin"
@@ -551,14 +552,14 @@ msgstr "Tokeninizi indi kopyalayın. Onu bir daha görə bilməyəcəksiniz."
 msgid "Could not close your account"
 msgstr "Hesabınız bağlanmadı"
 
-#: src/features/user/replication.tsx:148
-msgid "Could not delete replica"
-msgstr "Replika silinə bilmədi"
-
 #: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:67
+#: src/features/user/replication.tsx:77
 msgid "Could not deny request"
 msgstr "Sorğu rədd edilə bilmədi"
+
+#: src/features/user/replication.tsx:162
+msgid "Could not forget host"
+msgstr "Host unudula bilmədi"
 
 #: src/features/user/login.tsx:920
 msgid "Could not link account"
@@ -568,13 +569,13 @@ msgstr "Hesab əlaqələndirilə bilmədi"
 msgid "Could not load this document. Please try again later."
 msgstr "Bu sənəd yüklənə bilmədi. Daha sonra yenidən cəhd edin."
 
-#: src/features/user/replication.tsx:147
-#~ msgid "Could not remove host"
-#~ msgstr "Host silinə bilmədi"
-
 #: src/features/system/replication.tsx:180
 msgid "Could not remove pair member"
 msgstr "Cütlük üzvü silinə bilmədi"
+
+#: src/features/user/replication.tsx:224
+msgid "Could not remove your account from this server"
+msgstr "Hesabınız bu serverdən silinə bilmədi"
 
 #: src/features/user/login.tsx:794
 msgid "Could not start linking"
@@ -692,7 +693,6 @@ msgstr "Səlahiyyətlər"
 #: src/features/user/login.tsx:276
 #: src/features/user/notifications.tsx:392
 #: src/features/user/notifications.tsx:624
-#: src/features/user/replication.tsx:152
 #: src/features/user/tokens.tsx:96
 msgid "Delete"
 msgstr "Sil"
@@ -735,14 +735,6 @@ msgstr "Marşrutu sil"
 msgid "Delete route?"
 msgstr "Marşrut silinsin?"
 
-#: src/features/user/replication.tsx:128
-msgid "Delete this replica"
-msgstr "Bu replikanı sil"
-
-#: src/features/user/replication.tsx:133
-msgid "Delete this replica?"
-msgstr "Bu replika silinsin?"
-
 #: src/features/user/tokens.tsx:89
 msgid "Delete token"
 msgstr "Tokeni sil"
@@ -772,7 +764,7 @@ msgid "Density"
 msgstr "Sıxlıq"
 
 #: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:87
+#: src/features/user/replication.tsx:97
 msgid "Deny"
 msgstr "Rədd et"
 
@@ -1254,13 +1246,21 @@ msgstr "Şrift"
 msgid "Font size"
 msgstr "Şrift ölçüsü"
 
+#: src/features/user/replication.tsx:149
+msgid "Forget this unreachable host"
+msgstr "Bu əlçatmaz hostu unut"
+
+#: src/features/user/replication.tsx:154
+msgid "Forget this unreachable host?"
+msgstr "Bu əlçatmaz host unudulsun?"
+
 #: ../../../lib/web/src/lib/preference-utils.ts:60
 msgid "Friday"
 msgstr "Cümə"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
 #: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:219
+#: src/features/user/replication.tsx:296
 msgid "From"
 msgstr "Kimdən"
 
@@ -1358,9 +1358,9 @@ msgstr "Daha yüksək prioritetli marşrutlar əvvəl uyğunlaşdırılır"
 msgid "Home"
 msgstr "Ev"
 
-#: src/features/user/replication.tsx:146
-#~ msgid "Host removed"
-#~ msgstr "Host silindi"
+#: src/features/user/replication.tsx:161
+msgid "Host forgotten"
+msgstr "Host unuduldu"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1418,9 +1418,13 @@ msgid "IP Address"
 msgstr "IP ünvanı"
 
 #: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:113
+#: src/features/user/replication.tsx:129
 msgid "Irreparable"
 msgstr "Bərpaolunmaz"
+
+#: src/features/user/replication.tsx:155
+msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
+msgstr "O, replika dəstinizdən silinəcək və yenidən qoşulduqda öz nüsxəsini silməsi tapşırılacaq. Əlçatan bir serveri silmək üçün orada daxil olun və \"Hesabımı bu serverdən sil\" seçimindən istifadə edin. Davam etmək üçün özünüz olduğunuzu təsdiqləyin."
 
 #: src/features/system/replication.tsx:75
 msgid "Join request approved"
@@ -1633,7 +1637,7 @@ msgstr "Bazar ertəsi"
 msgid "My application"
 msgstr "Mənim ərizəm"
 
-#: src/features/user/replication.tsx:231
+#: src/features/user/replication.tsx:308
 msgid "My hosts"
 msgstr "Hostlarım"
 
@@ -1824,7 +1828,7 @@ msgstr "Nömrə formatı"
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
 #: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:116
+#: src/features/user/replication.tsx:132
 msgid "Offline {0}"
 msgstr "Oflayn {0}"
 
@@ -1873,6 +1877,10 @@ msgstr "Operator adı"
 #: ../../../lib/web/src/features/access/access-dialog.tsx:163
 msgid "Other"
 msgstr "Digər"
+
+#: src/features/user/replication.tsx:311
+msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
+msgstr "Hesabınızın bir nüsxəsini saxlayan digər serverlər. Birini silmək üçün həmin serverdə daxil olun və \"Hesabımı bu serverdən sil\" seçimindən istifadə edin."
 
 #: src/features/system/settings.tsx:575
 msgid "Other settings"
@@ -1942,7 +1950,7 @@ msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Yol icazə verilmir. Yalnız bu altında yollar əlavə edə bilərsiniz: {0}"
 
 #: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:243
+#: src/features/user/replication.tsx:325
 msgid "Peer"
 msgstr "Tay"
 
@@ -1962,7 +1970,7 @@ msgstr "Gözləmədə"
 msgid "Pending join requests"
 msgstr "Gözləyən qoşulma sorğuları"
 
-#: src/features/user/replication.tsx:212
+#: src/features/user/replication.tsx:289
 msgid "Pending requests"
 msgstr "Gözləyən sorğular"
 
@@ -2035,7 +2043,7 @@ msgstr "OAuth yönləndirmələri üçün açıq URL"
 msgid "Push notifications"
 msgstr "Push bildirişlər"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:259
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "Bu hesabı təyinat serverdə təkrarlamaq üçün hər iki dəyəri həmin serverin qeydiyyat formasına daxil edin."
 
@@ -2108,6 +2116,7 @@ msgstr "24 saat içində nisbi, əks halda mütləq"
 #: src/features/system/replication.tsx:184
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
+#: src/features/user/replication.tsx:206
 msgid "Remove"
 msgstr "Sil"
 
@@ -2129,17 +2138,13 @@ msgstr "Girişi silək?"
 msgid "Remove account?"
 msgstr "Hesabı silək?"
 
-#: src/features/user/replication.tsx:128
-#~ msgid "Remove host"
-#~ msgstr "Hostu sil"
-
-#: src/features/user/replication.tsx:133
-#~ msgid "Remove host?"
-#~ msgstr "Host silinsin?"
-
 #: ../../../lib/web/src/components/post-tags.tsx:190
 msgid "Remove interest"
 msgstr "Marağı sil"
+
+#: src/features/user/replication.tsx:187
+msgid "Remove my account from this server"
+msgstr "Hesabımı bu serverdən sil"
 
 #: src/features/system/replication.tsx:161
 msgid "Remove pair member"
@@ -2153,6 +2158,10 @@ msgstr "Cütlük üzvü silinsin?"
 msgid "Remove suspension"
 msgstr "Dayandırılmanı götür"
 
+#: src/features/user/replication.tsx:192
+msgid "Remove your account from this server?"
+msgstr "Hesabınız bu serverdən silinsin?"
+
 #: src/features/user/login.tsx:265
 msgid "Rename passkey"
 msgstr "passkey-in adını dəyiş"
@@ -2161,25 +2170,21 @@ msgstr "passkey-in adını dəyiş"
 msgid "Replace"
 msgstr "Əvəz et"
 
-#: src/features/user/replication.tsx:147
-msgid "Replica deleted"
-msgstr "Replika silindi"
-
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/replication.tsx:196
 #: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:164
-#: src/features/user/replication.tsx:174
+#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:246
 msgid "Replication"
 msgstr "Replikasiya"
 
-#: src/features/user/replication.tsx:58
+#: src/features/user/replication.tsx:68
 msgid "Request approved"
 msgstr "Sorğu təsdiqləndi"
 
-#: src/features/user/replication.tsx:66
+#: src/features/user/replication.tsx:76
 msgid "Request denied"
 msgstr "Sorğu rədd edildi"
 
@@ -2447,7 +2452,7 @@ msgstr "Serif"
 msgid "Server error"
 msgstr "Server xətası"
 
-#: src/features/user/replication.tsx:200
+#: src/features/user/replication.tsx:272
 msgid "Server peer ID"
 msgstr "Server tay ID-si"
 
@@ -2688,11 +2693,11 @@ msgstr "Üçüncü tərəf daxilolması"
 msgid "Third-party login"
 msgstr "Bu CRM silinmiş ola bilər və ya sizin ona girişiniz yoxdur."
 
-#: src/features/user/replication.tsx:185
+#: src/features/user/replication.tsx:257
 msgid "This account"
 msgstr "Bu hesab"
 
-#: src/features/user/replication.tsx:235
+#: src/features/user/replication.tsx:317
 msgid "This account is on this server only"
 msgstr "Bu hesab yalnız bu serverdədir"
 
@@ -2703,6 +2708,10 @@ msgstr "Bu, bu və ya başqa bir Mochi serverində bərpa edə biləcəyiniz tam
 #: src/lib/use-step-up.tsx:29
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Bu, hesabınızdakı təhlükəsizlik dəyişikliyidir. Davam etmək üçün bunun siz olduğunuzu doğrulayın."
+
+#: src/features/user/replication.tsx:215
+msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
+msgstr "Bu, hesabınızın bu serverdəki məlumatlarını həmişəlik silir. Davam etmək üçün özünüz olduğunuzu təsdiqləyin."
 
 #: src/features/system/replication.tsx:219
 msgid "This server"
@@ -2715,10 +2724,6 @@ msgstr "Bu server cütləşməyib."
 #: src/features/system/replication.tsx:168
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "Bu server həmin eşlə cütləşməni dayandıracaq. Silinmiş server hər istifadəçinin yerli surətini saxlayır; oradakı operator onu əllə silməlidir."
-
-#: src/features/user/replication.tsx:135
-#~ msgid "This server will stop replicating your account to that host. The host's local copy stays in place until that operator removes it."
-#~ msgstr "Bu server hesabınızı həmin hosta replikasiya etməyi dayandıracaq. Hostun yerli surəti operator onu silənə qədər yerində qalır."
 
 #: src/features/system/users.tsx:344
 msgid "This user has no active sessions."
@@ -2806,7 +2811,7 @@ msgstr "Başlıq sahəsi"
 msgid "TLS Enabled"
 msgstr "TLS aktivdir"
 
-#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:318
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "Onu başqa servera replikasiya etmək üçün, orada hesab açın və \"Mövcud hesabı replikasiya et\" seçimindən istifadə edin."
 
@@ -2930,7 +2935,7 @@ msgid "Units"
 msgstr "Naməlum brauzer"
 
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:121
+#: src/features/user/replication.tsx:137
 msgid "Unknown"
 msgstr "Naməlum cihaz"
 
@@ -3020,7 +3025,7 @@ msgid "User updated"
 msgstr "İstifadəçilər"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:264
 msgid "Username"
 msgstr "Bu qrupa aid olan istifadəçilər və qruplar"
 
@@ -3143,9 +3148,9 @@ msgstr "Hesabınız {purgeDate} tarixində birdəfəlik silinəcək. Çıxış e
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "Hesabınız silinmək üçün planlaşdırılacaq və hesabdan çıxarılacaqsınız. Silinmə tarixindən əvvəl istənilən vaxt yenidən daxil olaraq ləğv edə bilərsiniz. Nüsxə saxlamaq istəyirsinizsə, əvvəlcə məlumatlarınızı yükləyin."
 
-#: src/features/user/replication.tsx:135
-msgid "Your account's data on this host will be permanently deleted. Your account stays on your other hosts."
-msgstr "Hesabınızın bu hostdakı verilənləri birdəfəlik silinəcək. Hesabınız digər hostlarınızda qalır."
+#: src/features/user/replication.tsx:194
+msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
+msgstr "Hesabınızın bu serverdəki məlumatları həmişəlik silinəcək və burada hesabdan çıxarılacaqsınız. Hesabınız digər serverlərinizdə qalır və bu serveri sonradan yenidən əlavə edə bilərsiniz."
 
 #: src/features/user/data.tsx:166
 msgid "Your data"

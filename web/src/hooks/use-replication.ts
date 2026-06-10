@@ -69,15 +69,31 @@ export function useDenyLink() {
   })
 }
 
+// Forget an unreachable host (advanced). Removes a named remote host from the
+// set and tells it to purge. Step-up gated.
 export function useRemoveHost() {
   const qc = useQueryClient()
   return useMutation({
-    mutationFn: (peer: string) =>
+    mutationFn: ({ peer, token }: { peer: string; token: string }) =>
       requestHelpers.post<{ result: string }>(
         endpoints.user.replicationRemove,
-        { peer },
+        { peer, token },
         NO_TOAST,
       ),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['replication'] }),
+  })
+}
+
+// Remove the account from THIS server (leave the replica set). Purges the
+// local copy; the account survives on the user's other servers. Step-up gated;
+// the user is signed out afterwards (this server's copy is gone).
+export function useLeaveServer() {
+  return useMutation({
+    mutationFn: ({ token }: { token: string }) =>
+      requestHelpers.post<{ ok: boolean }>(
+        endpoints.user.replicationLeave,
+        { token },
+        NO_TOAST,
+      ),
   })
 }

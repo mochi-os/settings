@@ -198,7 +198,7 @@ msgid "Add view"
 msgstr "Engeza umbukiso"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:244
+#: src/features/user/replication.tsx:326
 msgid "Added"
 msgstr "Kwengeziwe"
 
@@ -250,7 +250,7 @@ msgstr "Kwenzeke iphutha"
 msgid "An unexpected error occurred"
 msgstr "Kwenzeke iphutha elingalindelekile"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:291
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Enye iseva icela ukubamba ikhophi ye-akhawunti yakho. Vuma ukuthumela ikhophi."
 
@@ -268,22 +268,22 @@ msgid "Appearance"
 msgstr "Ukubukeka"
 
 #: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:60
+#: src/features/user/replication.tsx:70
 msgid "Approval failed"
 msgstr "Imvumo ayiphumelelanga"
 
 #: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:83
+#: src/features/user/replication.tsx:93
 msgid "Approve"
 msgstr "Phasisa"
 
 #: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:93
+#: src/features/user/replication.tsx:103
 msgid "Approve request"
 msgstr "Vuma isicelo"
 
 #: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:94
+#: src/features/user/replication.tsx:104
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "Ukuvuma kukopela okhiye abayimfihlo kuleyo seva. Qinisekisa ukuthi nguwe ukuze uqhubeke."
 
@@ -369,7 +369,7 @@ msgstr "Izaziso zebhrawuza"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:142
+#: src/features/user/replication.tsx:201
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Khansela"
@@ -496,6 +496,7 @@ msgstr "Kulungisiwe"
 msgid "Confirm"
 msgstr "Qinisekisa"
 
+#: src/features/user/replication.tsx:214
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "Qinisekisa ukuthi nguwe"
@@ -551,14 +552,14 @@ msgstr "Kopisha ithokheni yakho manje. Ngeke uphinde uyibone."
 msgid "Could not close your account"
 msgstr "Ayikwazanga ukuvalwa i-akhawunti yakho"
 
-#: src/features/user/replication.tsx:148
-msgid "Could not delete replica"
-msgstr "Ayikwazanga ukususa ikhophi"
-
 #: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:67
+#: src/features/user/replication.tsx:77
 msgid "Could not deny request"
 msgstr "Ayikwazi ukunqaba isicelo"
+
+#: src/features/user/replication.tsx:162
+msgid "Could not forget host"
+msgstr "Ayikwazanga ukukhohlwa umsingathi"
 
 #: src/features/user/login.tsx:920
 msgid "Could not link account"
@@ -568,13 +569,13 @@ msgstr "Akukwazanga ukuxhuma i-akhawunti"
 msgid "Could not load this document. Please try again later."
 msgstr "Asikwazanga ukulayisha le dokhumenti. Sicela uzame futhi ngokuhamba kwesikhathi."
 
-#: src/features/user/replication.tsx:147
-#~ msgid "Could not remove host"
-#~ msgstr "Ayikwazi ukususa umsingathi"
-
 #: src/features/system/replication.tsx:180
 msgid "Could not remove pair member"
 msgstr "Ayikwazanga ukususa ilungu lebhange"
+
+#: src/features/user/replication.tsx:224
+msgid "Could not remove your account from this server"
+msgstr "Ayikwazanga ukususa i-akhawunti yakho kule seva"
 
 #: src/features/user/login.tsx:794
 msgid "Could not start linking"
@@ -692,7 +693,6 @@ msgstr "Ukuthunywa"
 #: src/features/user/login.tsx:276
 #: src/features/user/notifications.tsx:392
 #: src/features/user/notifications.tsx:624
-#: src/features/user/replication.tsx:152
 #: src/features/user/tokens.tsx:96
 msgid "Delete"
 msgstr "Susa"
@@ -735,14 +735,6 @@ msgstr "Susa umzila"
 msgid "Delete route?"
 msgstr "Susa umzila?"
 
-#: src/features/user/replication.tsx:128
-msgid "Delete this replica"
-msgstr "Susa le khophi"
-
-#: src/features/user/replication.tsx:133
-msgid "Delete this replica?"
-msgstr "Susa le khophi?"
-
 #: src/features/user/tokens.tsx:89
 msgid "Delete token"
 msgstr "Susa ithokheni"
@@ -772,7 +764,7 @@ msgid "Density"
 msgstr "Ukuminyana"
 
 #: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:87
+#: src/features/user/replication.tsx:97
 msgid "Deny"
 msgstr "Yenqaba"
 
@@ -1254,13 +1246,21 @@ msgstr "Ifonti"
 msgid "Font size"
 msgstr "Usayizi wefonti"
 
+#: src/features/user/replication.tsx:149
+msgid "Forget this unreachable host"
+msgstr "Khohlwa lo msingathi ongafinyeleleki"
+
+#: src/features/user/replication.tsx:154
+msgid "Forget this unreachable host?"
+msgstr "Khohlwa lo msingathi ongafinyeleleki?"
+
 #: ../../../lib/web/src/lib/preference-utils.ts:60
 msgid "Friday"
 msgstr "ULwesihlanu"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
 #: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:219
+#: src/features/user/replication.tsx:296
 msgid "From"
 msgstr "Kusukela"
 
@@ -1358,9 +1358,9 @@ msgstr "Izindlela eziphezulu ngokubaluleka zifaniswa kuqala"
 msgid "Home"
 msgstr "Ikhaya"
 
-#: src/features/user/replication.tsx:146
-#~ msgid "Host removed"
-#~ msgstr "Umsingathi ususiwe"
+#: src/features/user/replication.tsx:161
+msgid "Host forgotten"
+msgstr "Umsingathi ukhohliwe"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1418,9 +1418,13 @@ msgid "IP Address"
 msgstr "Ikheli le-IP"
 
 #: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:113
+#: src/features/user/replication.tsx:129
 msgid "Irreparable"
 msgstr "Akulungiseki"
+
+#: src/features/user/replication.tsx:155
+msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
+msgstr "Izosuswa kusethi yakho yekhophi futhi itshelwe ukuthi isule ikhophi yayo lapho iphinda ixhumana. Ukususa iseva efinyelelekayo, ngena kuyo bese usebenzisa \"Susa i-akhawunti yami kule seva\". Qinisekisa ukuthi nguwe ukuze uqhubeke."
 
 #: src/features/system/replication.tsx:75
 msgid "Join request approved"
@@ -1633,7 +1637,7 @@ msgstr "UMsombuluko"
 msgid "My application"
 msgstr "Isicelo sami"
 
-#: src/features/user/replication.tsx:231
+#: src/features/user/replication.tsx:308
 msgid "My hosts"
 msgstr "Abasingathi bami"
 
@@ -1824,7 +1828,7 @@ msgstr "Ifomethi yenombolo"
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
 #: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:116
+#: src/features/user/replication.tsx:132
 msgid "Offline {0}"
 msgstr "Ayikho ku-inthanethi {0}"
 
@@ -1873,6 +1877,10 @@ msgstr "Igama lomsebenzisi"
 #: ../../../lib/web/src/features/access/access-dialog.tsx:163
 msgid "Other"
 msgstr "Okunye"
+
+#: src/features/user/replication.tsx:311
+msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
+msgstr "Ezinye iziseva nazo eziphethe ikhophi ye-akhawunti yakho. Ukususa enye, ngena kuleyo seva bese usebenzisa \"Susa i-akhawunti yami kule seva\"."
 
 #: src/features/system/settings.tsx:575
 msgid "Other settings"
@@ -1942,7 +1950,7 @@ msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Indlela ayivumelekanga. Ungangeza kuphela imizila ngaphansi kwe: {0}"
 
 #: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:243
+#: src/features/user/replication.tsx:325
 msgid "Peer"
 msgstr "Olingana"
 
@@ -1962,7 +1970,7 @@ msgstr "Kulindile"
 msgid "Pending join requests"
 msgstr "Izicelo zokujoyina ezisalindele"
 
-#: src/features/user/replication.tsx:212
+#: src/features/user/replication.tsx:289
 msgid "Pending requests"
 msgstr "Izicelo ezisalindile"
 
@@ -2035,7 +2043,7 @@ msgstr "I-URL yomphakathi yokuqondisa kabusha kwe-OAuth"
 msgid "Push notifications"
 msgstr "Izaziso zokuphusha"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:259
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "Faka womabili amanani efomini lokubhalisa leseva eyisiphetho ukuze ukopishe le akhawunti lapho."
 
@@ -2108,6 +2116,7 @@ msgstr "Okuhlobene phakathi kwamahora angu-24, ngale kwalokho okuphelele"
 #: src/features/system/replication.tsx:184
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
+#: src/features/user/replication.tsx:206
 msgid "Remove"
 msgstr "Khipha"
 
@@ -2129,17 +2138,13 @@ msgstr "Khipha ukufinyelela?"
 msgid "Remove account?"
 msgstr "Khipha i-akhawunti?"
 
-#: src/features/user/replication.tsx:128
-#~ msgid "Remove host"
-#~ msgstr "Susa umsingathi"
-
-#: src/features/user/replication.tsx:133
-#~ msgid "Remove host?"
-#~ msgstr "Susa umsingathi?"
-
 #: ../../../lib/web/src/components/post-tags.tsx:190
 msgid "Remove interest"
 msgstr "Khipha intshisekelo"
+
+#: src/features/user/replication.tsx:187
+msgid "Remove my account from this server"
+msgstr "Susa i-akhawunti yami kule seva"
 
 #: src/features/system/replication.tsx:161
 msgid "Remove pair member"
@@ -2153,6 +2158,10 @@ msgstr "Susa ilungu lebhange?"
 msgid "Remove suspension"
 msgstr "Khipha ukumiswa"
 
+#: src/features/user/replication.tsx:192
+msgid "Remove your account from this server?"
+msgstr "Susa i-akhawunti yakho kule seva?"
+
 #: src/features/user/login.tsx:265
 msgid "Rename passkey"
 msgstr "Niqamba kabusha i-passkey"
@@ -2161,25 +2170,21 @@ msgstr "Niqamba kabusha i-passkey"
 msgid "Replace"
 msgstr "Buyisela"
 
-#: src/features/user/replication.tsx:147
-msgid "Replica deleted"
-msgstr "Ikhophi isusiwe"
-
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/replication.tsx:196
 #: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:164
-#: src/features/user/replication.tsx:174
+#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:246
 msgid "Replication"
 msgstr "Ukuphindaphinda"
 
-#: src/features/user/replication.tsx:58
+#: src/features/user/replication.tsx:68
 msgid "Request approved"
 msgstr "Isicelo savunyelwa"
 
-#: src/features/user/replication.tsx:66
+#: src/features/user/replication.tsx:76
 msgid "Request denied"
 msgstr "Isicelo sanqatshelwe"
 
@@ -2447,7 +2452,7 @@ msgstr "I-Serif"
 msgid "Server error"
 msgstr "Iphutha leseva"
 
-#: src/features/user/replication.tsx:200
+#: src/features/user/replication.tsx:272
 msgid "Server peer ID"
 msgstr "I-ID yontanga yeseva"
 
@@ -2688,11 +2693,11 @@ msgstr "Indikimba ibuyekeziwe"
 msgid "Third-party login"
 msgstr "Ukungena kwenkampani yangaphandle"
 
-#: src/features/user/replication.tsx:185
+#: src/features/user/replication.tsx:257
 msgid "This account"
 msgstr "Le akhawunti"
 
-#: src/features/user/replication.tsx:235
+#: src/features/user/replication.tsx:317
 msgid "This account is on this server only"
 msgstr "Le akhawunti ikule seva kuphela"
 
@@ -2703,6 +2708,10 @@ msgstr "Lokhu yikopi yokugcina epheleleyo ongayibuyisela kule noma kwenye iseva 
 #: src/lib/use-step-up.tsx:29
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Lolu wushintsho lokuphepha ku-akhawunti yakho. Qinisekisa ukuthi nguwe ukuze uqhubeke."
+
+#: src/features/user/replication.tsx:215
+msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
+msgstr "Lokhu kususa unomphela idatha ye-akhawunti yakho kule seva. Qinisekisa ukuthi nguwe ukuze uqhubeke."
 
 #: src/features/system/replication.tsx:219
 msgid "This server"
@@ -2715,10 +2724,6 @@ msgstr "Le seva ayihlanganiswanga."
 #: src/features/system/replication.tsx:168
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "Le seva izoyeka ukubhanqana nalowo mngane. Iseva esusiwe igcina ikhophi yasendaweni yomsebenzisi ngamunye; umlawuli walapho kufanele ayisule ngezandla."
-
-#: src/features/user/replication.tsx:135
-#~ msgid "This server will stop replicating your account to that host. The host's local copy stays in place until that operator removes it."
-#~ msgstr "Le seva izoyeka ukuphindaphinda i-akhawunti yakho kuleyo msingathi. Ikhophi yangaphakathi yomsingathi izohlala kuze kube yilapho lowo msebenzisi eyisusa."
 
 #: src/features/system/users.tsx:344
 msgid "This user has no active sessions."
@@ -2806,7 +2811,7 @@ msgstr "Izitembu zesikhathi"
 msgid "TLS Enabled"
 msgstr "I-TLS Inikwe Amandla"
 
-#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:318
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "Ukuze uyiphindaphinde kwenye iseva, bhalisela i-akhawunti lapho bese usebenzisa inketho yokuthi \"Phindaphinda i-akhawunti ekhona\"."
 
@@ -2930,7 +2935,7 @@ msgid "Units"
 msgstr "Amayunithi"
 
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:121
+#: src/features/user/replication.tsx:137
 msgid "Unknown"
 msgstr "Akwaziwa"
 
@@ -3020,7 +3025,7 @@ msgid "User updated"
 msgstr "Umsebenzisi ubuyekeziwe"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:264
 msgid "Username"
 msgstr "Igama lomsebenzisi"
 
@@ -3143,9 +3148,9 @@ msgstr "I-akhawunti yakho izosuswa unomphela ngo-{purgeDate}. Uphumile. Ukuze uk
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "I-akhawunti yakho izohlelelwa ukususwa futhi uzophuma. Ungakhansela noma nini ngaphambi kosuku lokususwa ngokungena kabusha. Landa idatha yakho kuqala uma ufuna ukugcina ikhophi."
 
-#: src/features/user/replication.tsx:135
-msgid "Your account's data on this host will be permanently deleted. Your account stays on your other hosts."
-msgstr "Idatha ye-akhawunti yakho kule host izosuswa unomphela. I-akhawunti yakho ihlala kwamanye ama-host akho."
+#: src/features/user/replication.tsx:194
+msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
+msgstr "Idatha ye-akhawunti yakho kule seva izosuswa unomphela futhi uzophuma lapha. I-akhawunti yakho ihlala kwezinye iziseva zakho, futhi ungayingeza futhi le seva ngokuhamba kwesikhathi."
 
 #: src/features/user/data.tsx:166
 msgid "Your data"

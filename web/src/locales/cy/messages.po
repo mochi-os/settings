@@ -198,7 +198,7 @@ msgid "Add view"
 msgstr "Ychwanegu golwg"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:244
+#: src/features/user/replication.tsx:326
 msgid "Added"
 msgstr "Wedi'i ychwanegu"
 
@@ -250,7 +250,7 @@ msgstr "Digwyddodd gwall"
 msgid "An unexpected error occurred"
 msgstr "Digwyddodd gwall annisgwyl"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:291
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Mae gweinydd arall yn gofyn am letya copi o'ch cyfrif. Cymeradwywch i anfon copi."
 
@@ -268,22 +268,22 @@ msgid "Appearance"
 msgstr "Ymddangosiad"
 
 #: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:60
+#: src/features/user/replication.tsx:70
 msgid "Approval failed"
 msgstr "Methodd y cymeradwyo"
 
 #: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:83
+#: src/features/user/replication.tsx:93
 msgid "Approve"
 msgstr "Cymeradwyo"
 
 #: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:93
+#: src/features/user/replication.tsx:103
 msgid "Approve request"
 msgstr "Cymeradwyo'r cais"
 
 #: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:94
+#: src/features/user/replication.tsx:104
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "Mae cymeradwyo'n copïo allweddi preifat i'r gweinydd hwnnw. Gwiriwch mai chi sydd yna i barhau."
 
@@ -369,7 +369,7 @@ msgstr "Hysbysiadau porwr"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:142
+#: src/features/user/replication.tsx:201
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Canslo"
@@ -496,6 +496,7 @@ msgstr "Wedi'i ffurfweddu"
 msgid "Confirm"
 msgstr "Cadarnhau"
 
+#: src/features/user/replication.tsx:214
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "Cadarnhau mai chi sydd yna"
@@ -551,14 +552,14 @@ msgstr "Copïwch eich tocyn nawr. Ni fyddwch yn gallu ei weld eto."
 msgid "Could not close your account"
 msgstr "Methwyd â chau eich cyfrif"
 
-#: src/features/user/replication.tsx:148
-msgid "Could not delete replica"
-msgstr "Methwyd dileu'r replica"
-
 #: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:67
+#: src/features/user/replication.tsx:77
 msgid "Could not deny request"
 msgstr "Methu gwrthod y cais"
+
+#: src/features/user/replication.tsx:162
+msgid "Could not forget host"
+msgstr "Methwyd anghofio'r gwesteiwr"
 
 #: src/features/user/login.tsx:920
 msgid "Could not link account"
@@ -568,13 +569,13 @@ msgstr "Methwyd cysylltu cyfrif"
 msgid "Could not load this document. Please try again later."
 msgstr "Methwyd llwytho'r ddogfen hon. Rhowch gynnig arni eto yn nes ymlaen."
 
-#: src/features/user/replication.tsx:147
-#~ msgid "Could not remove host"
-#~ msgstr "Methu tynnu'r gwesteiwr"
-
 #: src/features/system/replication.tsx:180
 msgid "Could not remove pair member"
 msgstr "Methu tynnu aelod y pâr"
+
+#: src/features/user/replication.tsx:224
+msgid "Could not remove your account from this server"
+msgstr "Methwyd tynnu eich cyfrif oddi ar y gweinydd hwn"
 
 #: src/features/user/login.tsx:794
 msgid "Could not start linking"
@@ -692,7 +693,6 @@ msgstr "Dirprwyaethau"
 #: src/features/user/login.tsx:276
 #: src/features/user/notifications.tsx:392
 #: src/features/user/notifications.tsx:624
-#: src/features/user/replication.tsx:152
 #: src/features/user/tokens.tsx:96
 msgid "Delete"
 msgstr "Dileu"
@@ -735,14 +735,6 @@ msgstr "Dileu llwybr"
 msgid "Delete route?"
 msgstr "Dileu llwybr?"
 
-#: src/features/user/replication.tsx:128
-msgid "Delete this replica"
-msgstr "Dileu'r replica hwn"
-
-#: src/features/user/replication.tsx:133
-msgid "Delete this replica?"
-msgstr "Dileu'r replica hwn?"
-
 #: src/features/user/tokens.tsx:89
 msgid "Delete token"
 msgstr "Dileu tocyn"
@@ -772,7 +764,7 @@ msgid "Density"
 msgstr "Dwysedd"
 
 #: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:87
+#: src/features/user/replication.tsx:97
 msgid "Deny"
 msgstr "Gwrthod"
 
@@ -1254,13 +1246,21 @@ msgstr "Ffont"
 msgid "Font size"
 msgstr "Maint y ffont"
 
+#: src/features/user/replication.tsx:149
+msgid "Forget this unreachable host"
+msgstr "Anghofio'r gwesteiwr anghyraeddadwy hwn"
+
+#: src/features/user/replication.tsx:154
+msgid "Forget this unreachable host?"
+msgstr "Anghofio'r gwesteiwr anghyraeddadwy hwn?"
+
 #: ../../../lib/web/src/lib/preference-utils.ts:60
 msgid "Friday"
 msgstr "Dydd Gwener"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
 #: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:219
+#: src/features/user/replication.tsx:296
 msgid "From"
 msgstr "O"
 
@@ -1358,9 +1358,9 @@ msgstr "Cyfatebir llwybrau blaenoriaeth uwch yn gyntaf"
 msgid "Home"
 msgstr "Cartref"
 
-#: src/features/user/replication.tsx:146
-#~ msgid "Host removed"
-#~ msgstr "Tynnwyd y gwesteiwr"
+#: src/features/user/replication.tsx:161
+msgid "Host forgotten"
+msgstr "Gwesteiwr wedi'i anghofio"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1418,9 +1418,13 @@ msgid "IP Address"
 msgstr "Cyfeiriad IP"
 
 #: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:113
+#: src/features/user/replication.tsx:129
 msgid "Irreparable"
 msgstr "Anadferadwy"
+
+#: src/features/user/replication.tsx:155
+msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
+msgstr "Caiff ei dynnu o'ch set o atgynyrchiadau a dywedir wrtho i ddileu ei gopi pan fydd yn ailgysylltu. I dynnu gweinydd cyraeddadwy, mewngofnodwch yno a defnyddiwch \"Tynnu fy nghyfrif oddi ar y gweinydd hwn\". Cadarnhewch mai chi sydd yno i barhau."
 
 #: src/features/system/replication.tsx:75
 msgid "Join request approved"
@@ -1633,7 +1637,7 @@ msgstr "Dydd Llun"
 msgid "My application"
 msgstr "Fy nghymhwysiad"
 
-#: src/features/user/replication.tsx:231
+#: src/features/user/replication.tsx:308
 msgid "My hosts"
 msgstr "Fy ngwesteion"
 
@@ -1824,7 +1828,7 @@ msgstr "Fformat rhifau"
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
 #: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:116
+#: src/features/user/replication.tsx:132
 msgid "Offline {0}"
 msgstr "All-lein {0}"
 
@@ -1873,6 +1877,10 @@ msgstr "Enw gweithredwr"
 #: ../../../lib/web/src/features/access/access-dialog.tsx:163
 msgid "Other"
 msgstr "Arall"
+
+#: src/features/user/replication.tsx:311
+msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
+msgstr "Gweinyddion eraill sydd hefyd yn dal copi o'ch cyfrif. I dynnu un, mewngofnodwch ar y gweinydd hwnnw a defnyddiwch \"Tynnu fy nghyfrif oddi ar y gweinydd hwn\"."
 
 #: src/features/system/settings.tsx:575
 msgid "Other settings"
@@ -1942,7 +1950,7 @@ msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Llwybr heb ei ganiatáu. Gallwch ond ychwanegu llwybrau o dan: {0}"
 
 #: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:243
+#: src/features/user/replication.tsx:325
 msgid "Peer"
 msgstr "Cymheiriad"
 
@@ -1962,7 +1970,7 @@ msgstr "Ar y gweill"
 msgid "Pending join requests"
 msgstr "Ceisiadau ymuno sy'n disgwyl"
 
-#: src/features/user/replication.tsx:212
+#: src/features/user/replication.tsx:289
 msgid "Pending requests"
 msgstr "Ceisiadau ar y gweill"
 
@@ -2035,7 +2043,7 @@ msgstr "URL cyhoeddus ar gyfer ailgyfeiriadau OAuth"
 msgid "Push notifications"
 msgstr "Hysbysiadau gwthio"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:259
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "Rhowch y ddau werth ar ffurflen gofrestru'r gweinydd targed i ailadrodd y cyfrif hwn yno."
 
@@ -2108,6 +2116,7 @@ msgstr "Cymharol o fewn 24 awr, fel arall yn absoliwt"
 #: src/features/system/replication.tsx:184
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
+#: src/features/user/replication.tsx:206
 msgid "Remove"
 msgstr "Tynnu"
 
@@ -2129,17 +2138,13 @@ msgstr "Tynnu mynediad?"
 msgid "Remove account?"
 msgstr "Tynnu cyfrif?"
 
-#: src/features/user/replication.tsx:128
-#~ msgid "Remove host"
-#~ msgstr "Tynnu'r gwesteiwr"
-
-#: src/features/user/replication.tsx:133
-#~ msgid "Remove host?"
-#~ msgstr "Tynnu'r gwesteiwr?"
-
 #: ../../../lib/web/src/components/post-tags.tsx:190
 msgid "Remove interest"
 msgstr "Tynnu diddordeb"
+
+#: src/features/user/replication.tsx:187
+msgid "Remove my account from this server"
+msgstr "Tynnu fy nghyfrif oddi ar y gweinydd hwn"
 
 #: src/features/system/replication.tsx:161
 msgid "Remove pair member"
@@ -2153,6 +2158,10 @@ msgstr "Tynnu aelod y pâr?"
 msgid "Remove suspension"
 msgstr "Tynnu ataliad"
 
+#: src/features/user/replication.tsx:192
+msgid "Remove your account from this server?"
+msgstr "Tynnu eich cyfrif oddi ar y gweinydd hwn?"
+
 #: src/features/user/login.tsx:265
 msgid "Rename passkey"
 msgstr "Ailenwi’r passkey"
@@ -2161,25 +2170,21 @@ msgstr "Ailenwi’r passkey"
 msgid "Replace"
 msgstr "Newid"
 
-#: src/features/user/replication.tsx:147
-msgid "Replica deleted"
-msgstr "Replica wedi'i ddileu"
-
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/replication.tsx:196
 #: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:164
-#: src/features/user/replication.tsx:174
+#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:246
 msgid "Replication"
 msgstr "Atgynhyrchu"
 
-#: src/features/user/replication.tsx:58
+#: src/features/user/replication.tsx:68
 msgid "Request approved"
 msgstr "Cymeradwywyd y cais"
 
-#: src/features/user/replication.tsx:66
+#: src/features/user/replication.tsx:76
 msgid "Request denied"
 msgstr "Gwrthodwyd y cais"
 
@@ -2447,7 +2452,7 @@ msgstr "Serif"
 msgid "Server error"
 msgstr "Gwall gweinydd"
 
-#: src/features/user/replication.tsx:200
+#: src/features/user/replication.tsx:272
 msgid "Server peer ID"
 msgstr "ID cymar y gweinydd"
 
@@ -2688,11 +2693,11 @@ msgstr "Thema wedi'i diweddaru"
 msgid "Third-party login"
 msgstr "Mewngofnodi trydydd parti"
 
-#: src/features/user/replication.tsx:185
+#: src/features/user/replication.tsx:257
 msgid "This account"
 msgstr "Y cyfrif hwn"
 
-#: src/features/user/replication.tsx:235
+#: src/features/user/replication.tsx:317
 msgid "This account is on this server only"
 msgstr "Mae'r cyfrif hwn ar y gweinydd hwn yn unig"
 
@@ -2703,6 +2708,10 @@ msgstr "Mae hwn yn gopi wrth gefn cyflawn y gallwch ei adfer ar y gweinydd Mochi
 #: src/lib/use-step-up.tsx:29
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Mae hwn yn newid diogelwch i'ch cyfrif. Gwiriwch mai chi sydd yna i barhau."
+
+#: src/features/user/replication.tsx:215
+msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
+msgstr "Mae hyn yn dileu data eich cyfrif ar y gweinydd hwn yn barhaol. Cadarnhewch mai chi sydd yno i barhau."
 
 #: src/features/system/replication.tsx:219
 msgid "This server"
@@ -2715,10 +2724,6 @@ msgstr "Nid yw'r gweinydd hwn wedi'i baru."
 #: src/features/system/replication.tsx:168
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "Bydd y gweinydd hwn yn rhoi'r gorau i bario â'r cymar hwnnw. Mae'r gweinydd a dynnwyd yn cadw ei gopi lleol o bob defnyddiwr; rhaid i'r gweithredwr yno ei ddileu â llaw."
-
-#: src/features/user/replication.tsx:135
-#~ msgid "This server will stop replicating your account to that host. The host's local copy stays in place until that operator removes it."
-#~ msgstr "Bydd y gweinydd hwn yn rhoi'r gorau i atgynhyrchu eich cyfrif i'r gwesteiwr hwnnw. Mae copi lleol y gwesteiwr yn aros yn ei le nes bod y gweithredwr hwnnw'n ei dynnu."
 
 #: src/features/system/users.tsx:344
 msgid "This user has no active sessions."
@@ -2806,7 +2811,7 @@ msgstr "Stampiau amser"
 msgid "TLS Enabled"
 msgstr "TLS Wedi'i alluogi"
 
-#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:318
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "I'w atgynhyrchu i weinydd arall, cofrestrwch ar gyfer cyfrif yno a defnyddiwch yr opsiwn \"Atgynhyrchu cyfrif sy'n bodoli\"."
 
@@ -2930,7 +2935,7 @@ msgid "Units"
 msgstr "Unedau"
 
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:121
+#: src/features/user/replication.tsx:137
 msgid "Unknown"
 msgstr "Anhysbys"
 
@@ -3020,7 +3025,7 @@ msgid "User updated"
 msgstr "Defnyddiwr wedi'i ddiweddaru"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:264
 msgid "Username"
 msgstr "Enw defnyddiwr"
 
@@ -3143,9 +3148,9 @@ msgstr "Bydd eich cyfrif yn cael ei ddileu'n barhaol ar {purgeDate}. Rydych wedi
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "Bydd eich cyfrif yn cael ei drefnu i'w ddileu a byddwch yn cael eich allgofnodi. Gallwch ganslo unrhyw bryd cyn y dyddiad dileu drwy fewngofnodi'n ôl. Lawrlwythwch eich data yn gyntaf os ydych am gadw copi."
 
-#: src/features/user/replication.tsx:135
-msgid "Your account's data on this host will be permanently deleted. Your account stays on your other hosts."
-msgstr "Bydd data eich cyfrif ar y gwesteiwr hwn yn cael ei ddileu'n barhaol. Mae eich cyfrif yn aros ar eich gwesteiwyr eraill."
+#: src/features/user/replication.tsx:194
+msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
+msgstr "Caiff data eich cyfrif ar y gweinydd hwn ei ddileu'n barhaol a chewch eich allgofnodi yma. Mae eich cyfrif yn aros ar eich gweinyddion eraill, a gallwch ailychwanegu hwn yn nes ymlaen."
 
 #: src/features/user/data.tsx:166
 msgid "Your data"

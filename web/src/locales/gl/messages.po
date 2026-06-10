@@ -198,7 +198,7 @@ msgid "Add view"
 msgstr "Engadir vista"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:244
+#: src/features/user/replication.tsx:326
 msgid "Added"
 msgstr "Engadido"
 
@@ -250,7 +250,7 @@ msgstr "Produciuse un erro"
 msgid "An unexpected error occurred"
 msgstr "Produciuse un erro inesperado"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:291
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Outro servidor pide aloxar unha copia da túa conta. Aproba para enviar unha copia."
 
@@ -268,22 +268,22 @@ msgid "Appearance"
 msgstr "Aparencia"
 
 #: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:60
+#: src/features/user/replication.tsx:70
 msgid "Approval failed"
 msgstr "Erro ao aprobar"
 
 #: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:83
+#: src/features/user/replication.tsx:93
 msgid "Approve"
 msgstr "Aprobar"
 
 #: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:93
+#: src/features/user/replication.tsx:103
 msgid "Approve request"
 msgstr "Aprobar a solicitude"
 
 #: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:94
+#: src/features/user/replication.tsx:104
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "Ao aprobar, copíanse as claves privadas a ese servidor. Verifica a túa identidade para continuar."
 
@@ -369,7 +369,7 @@ msgstr "Notificacións do navegador"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:142
+#: src/features/user/replication.tsx:201
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Cancelar"
@@ -496,6 +496,7 @@ msgstr "Configurado"
 msgid "Confirm"
 msgstr "Confirmar"
 
+#: src/features/user/replication.tsx:214
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "Confirma que es ti"
@@ -551,14 +552,14 @@ msgstr "Copia o teu token agora. Non poderás velo de novo."
 msgid "Could not close your account"
 msgstr "Non foi posíbel pechar a túa conta"
 
-#: src/features/user/replication.tsx:148
-msgid "Could not delete replica"
-msgstr "Non foi posible eliminar a réplica"
-
 #: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:67
+#: src/features/user/replication.tsx:77
 msgid "Could not deny request"
 msgstr "Non se puido denegar a solicitude"
+
+#: src/features/user/replication.tsx:162
+msgid "Could not forget host"
+msgstr "Non se puido esquecer o servidor"
 
 #: src/features/user/login.tsx:920
 msgid "Could not link account"
@@ -568,13 +569,13 @@ msgstr "Non se puido vincular a conta"
 msgid "Could not load this document. Please try again later."
 msgstr "Non se puido cargar este documento. Téntao máis tarde."
 
-#: src/features/user/replication.tsx:147
-#~ msgid "Could not remove host"
-#~ msgstr "Non se puido eliminar o anfitrión"
-
 #: src/features/system/replication.tsx:180
 msgid "Could not remove pair member"
 msgstr "Non se puido eliminar o membro do emparellamento"
+
+#: src/features/user/replication.tsx:224
+msgid "Could not remove your account from this server"
+msgstr "Non se puido eliminar a túa conta deste servidor"
 
 #: src/features/user/login.tsx:794
 msgid "Could not start linking"
@@ -692,7 +693,6 @@ msgstr "Delegacións"
 #: src/features/user/login.tsx:276
 #: src/features/user/notifications.tsx:392
 #: src/features/user/notifications.tsx:624
-#: src/features/user/replication.tsx:152
 #: src/features/user/tokens.tsx:96
 msgid "Delete"
 msgstr "Eliminar"
@@ -735,14 +735,6 @@ msgstr "Eliminar ruta"
 msgid "Delete route?"
 msgstr "Eliminar ruta?"
 
-#: src/features/user/replication.tsx:128
-msgid "Delete this replica"
-msgstr "Eliminar esta réplica"
-
-#: src/features/user/replication.tsx:133
-msgid "Delete this replica?"
-msgstr "Eliminar esta réplica?"
-
 #: src/features/user/tokens.tsx:89
 msgid "Delete token"
 msgstr "Eliminar token"
@@ -772,7 +764,7 @@ msgid "Density"
 msgstr "Densidade"
 
 #: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:87
+#: src/features/user/replication.tsx:97
 msgid "Deny"
 msgstr "Denegar"
 
@@ -1254,13 +1246,21 @@ msgstr "Tipo de letra"
 msgid "Font size"
 msgstr "Tamaño da letra"
 
+#: src/features/user/replication.tsx:149
+msgid "Forget this unreachable host"
+msgstr "Esquecer este servidor inalcanzable"
+
+#: src/features/user/replication.tsx:154
+msgid "Forget this unreachable host?"
+msgstr "Esquecer este servidor inalcanzable?"
+
 #: ../../../lib/web/src/lib/preference-utils.ts:60
 msgid "Friday"
 msgstr "Venres"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
 #: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:219
+#: src/features/user/replication.tsx:296
 msgid "From"
 msgstr "De"
 
@@ -1358,9 +1358,9 @@ msgstr "As rutas de maior prioridade emparéllanse primeiro"
 msgid "Home"
 msgstr "Inicio"
 
-#: src/features/user/replication.tsx:146
-#~ msgid "Host removed"
-#~ msgstr "Anfitrión eliminado"
+#: src/features/user/replication.tsx:161
+msgid "Host forgotten"
+msgstr "Servidor esquecido"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1418,9 +1418,13 @@ msgid "IP Address"
 msgstr "Enderezo IP"
 
 #: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:113
+#: src/features/user/replication.tsx:129
 msgid "Irreparable"
 msgstr "Irrecuperable"
+
+#: src/features/user/replication.tsx:155
+msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
+msgstr "Eliminarase do teu conxunto de réplicas e pediráselle que elimine a súa copia cando se reconecte. Para eliminar un servidor alcanzable, inicia sesión nel e usa «Eliminar a miña conta deste servidor». Verifica que es ti para continuar."
 
 #: src/features/system/replication.tsx:75
 msgid "Join request approved"
@@ -1633,7 +1637,7 @@ msgstr "Luns"
 msgid "My application"
 msgstr "A miña aplicación"
 
-#: src/features/user/replication.tsx:231
+#: src/features/user/replication.tsx:308
 msgid "My hosts"
 msgstr "Os meus anfitrións"
 
@@ -1824,7 +1828,7 @@ msgstr "Formato numérico"
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
 #: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:116
+#: src/features/user/replication.tsx:132
 msgid "Offline {0}"
 msgstr "Sen conexión {0}"
 
@@ -1873,6 +1877,10 @@ msgstr "Nome do operador"
 #: ../../../lib/web/src/features/access/access-dialog.tsx:163
 msgid "Other"
 msgstr "Outro"
+
+#: src/features/user/replication.tsx:311
+msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
+msgstr "Outros servidores que tamén gardan unha copia da túa conta. Para eliminar un, inicia sesión nese servidor e usa «Eliminar a miña conta deste servidor»."
 
 #: src/features/system/settings.tsx:575
 msgid "Other settings"
@@ -1942,7 +1950,7 @@ msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Ruta non permitida. Só podes engadir rutas baixo: {0}"
 
 #: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:243
+#: src/features/user/replication.tsx:325
 msgid "Peer"
 msgstr "Par"
 
@@ -1962,7 +1970,7 @@ msgstr "Pendente"
 msgid "Pending join requests"
 msgstr "Solicitudes de adhesión pendentes"
 
-#: src/features/user/replication.tsx:212
+#: src/features/user/replication.tsx:289
 msgid "Pending requests"
 msgstr "Solicitudes pendentes"
 
@@ -2035,7 +2043,7 @@ msgstr "URL pública para redireccións OAuth"
 msgid "Push notifications"
 msgstr "Notificacións push"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:259
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "Introduce ambos valores no formulario de rexistro do servidor de destino para replicar alí esta conta."
 
@@ -2108,6 +2116,7 @@ msgstr "Relativo nas últimas 24 horas, se non absoluto"
 #: src/features/system/replication.tsx:184
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
+#: src/features/user/replication.tsx:206
 msgid "Remove"
 msgstr "Eliminar"
 
@@ -2129,17 +2138,13 @@ msgstr "Eliminar acceso?"
 msgid "Remove account?"
 msgstr "Eliminar conta?"
 
-#: src/features/user/replication.tsx:128
-#~ msgid "Remove host"
-#~ msgstr "Eliminar anfitrión"
-
-#: src/features/user/replication.tsx:133
-#~ msgid "Remove host?"
-#~ msgstr "Eliminar anfitrión?"
-
 #: ../../../lib/web/src/components/post-tags.tsx:190
 msgid "Remove interest"
 msgstr "Eliminar interese"
+
+#: src/features/user/replication.tsx:187
+msgid "Remove my account from this server"
+msgstr "Eliminar a miña conta deste servidor"
 
 #: src/features/system/replication.tsx:161
 msgid "Remove pair member"
@@ -2153,6 +2158,10 @@ msgstr "Eliminar membro do emparellamento?"
 msgid "Remove suspension"
 msgstr "Eliminar suspensión"
 
+#: src/features/user/replication.tsx:192
+msgid "Remove your account from this server?"
+msgstr "Eliminar a túa conta deste servidor?"
+
 #: src/features/user/login.tsx:265
 msgid "Rename passkey"
 msgstr "Renomear a chave de acceso"
@@ -2161,25 +2170,21 @@ msgstr "Renomear a chave de acceso"
 msgid "Replace"
 msgstr "Substituír"
 
-#: src/features/user/replication.tsx:147
-msgid "Replica deleted"
-msgstr "Réplica eliminada"
-
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/replication.tsx:196
 #: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:164
-#: src/features/user/replication.tsx:174
+#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:246
 msgid "Replication"
 msgstr "Replicación"
 
-#: src/features/user/replication.tsx:58
+#: src/features/user/replication.tsx:68
 msgid "Request approved"
 msgstr "Solicitude aprobada"
 
-#: src/features/user/replication.tsx:66
+#: src/features/user/replication.tsx:76
 msgid "Request denied"
 msgstr "Solicitude denegada"
 
@@ -2447,7 +2452,7 @@ msgstr "Serif"
 msgid "Server error"
 msgstr "Erro do servidor"
 
-#: src/features/user/replication.tsx:200
+#: src/features/user/replication.tsx:272
 msgid "Server peer ID"
 msgstr "ID de par do servidor"
 
@@ -2688,11 +2693,11 @@ msgstr "Tema actualizado"
 msgid "Third-party login"
 msgstr "Inicio de sesión de terceiros"
 
-#: src/features/user/replication.tsx:185
+#: src/features/user/replication.tsx:257
 msgid "This account"
 msgstr "Esta conta"
 
-#: src/features/user/replication.tsx:235
+#: src/features/user/replication.tsx:317
 msgid "This account is on this server only"
 msgstr "Esta conta está só neste servidor"
 
@@ -2703,6 +2708,10 @@ msgstr "Esta é unha copia de seguranza completa que podes restaurar neste ou no
 #: src/lib/use-step-up.tsx:29
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Este é un cambio de seguranza na túa conta. Verifica a túa identidade para continuar."
+
+#: src/features/user/replication.tsx:215
+msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
+msgstr "Isto elimina permanentemente os datos da túa conta neste servidor. Verifica que es ti para continuar."
 
 #: src/features/system/replication.tsx:219
 msgid "This server"
@@ -2715,10 +2724,6 @@ msgstr "Este servidor non está emparellado."
 #: src/features/system/replication.tsx:168
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "Este servidor deixará de emparellarse con ese par. O servidor eliminado conserva a súa copia local de cada usuario; o operador alí debe borrala manualmente."
-
-#: src/features/user/replication.tsx:135
-#~ msgid "This server will stop replicating your account to that host. The host's local copy stays in place until that operator removes it."
-#~ msgstr "Este servidor deixará de replicar a túa conta a ese anfitrión. A copia local do anfitrión permanece no seu lugar ata que ese operador a elimine."
 
 #: src/features/system/users.tsx:344
 msgid "This user has no active sessions."
@@ -2806,7 +2811,7 @@ msgstr "Marcas de tempo"
 msgid "TLS Enabled"
 msgstr "TLS Activado"
 
-#: src/features/user/replication.tsx:236
+#: src/features/user/replication.tsx:318
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "Para replicala a outro servidor, rexístrate para crear unha conta alí e usa a opción \"Replicar unha conta existente\"."
 
@@ -2930,7 +2935,7 @@ msgid "Units"
 msgstr "Unidades"
 
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:121
+#: src/features/user/replication.tsx:137
 msgid "Unknown"
 msgstr "Descoñecido"
 
@@ -3020,7 +3025,7 @@ msgid "User updated"
 msgstr "Usuario actualizado"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:264
 msgid "Username"
 msgstr "Nome de usuario"
 
@@ -3143,9 +3148,9 @@ msgstr "A túa conta eliminarase permanentemente o {purgeDate}. Pecháchaste a s
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "A túa conta programarase para a súa eliminación e pecharase a túa sesión. Podes cancelala en calquera momento antes da data de eliminación volvendo iniciar sesión. Descarga primeiro os teus datos se queres conservar unha copia."
 
-#: src/features/user/replication.tsx:135
-msgid "Your account's data on this host will be permanently deleted. Your account stays on your other hosts."
-msgstr "Os datos da túa conta neste servidor eliminaranse permanentemente. A túa conta permanece nos teus outros servidores."
+#: src/features/user/replication.tsx:194
+msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
+msgstr "Os datos da túa conta neste servidor eliminaranse permanentemente e pecharase a túa sesión aquí. A túa conta permanece nos teus outros servidores, e podes engadir este de novo máis tarde."
 
 #: src/features/user/data.tsx:166
 msgid "Your data"
