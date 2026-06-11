@@ -30,6 +30,7 @@ export interface OfflineMember {
 
 export interface SystemReplicationData {
   peer: string
+  addresses: string[]
   pair: string[]
   irreparable: string[]
   offline: OfflineMember[]

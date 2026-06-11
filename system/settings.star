@@ -9,6 +9,17 @@ def action_system_settings_list(a):
     settings = mochi.setting.list()
     a.json({"settings": settings, "server": {"id": mochi.server.id()}})
 
+def action_system_peers(a):
+    """Known peers with connection and outbound-queue state, plus
+    network health and account totals, for the System Status page."""
+    if not require_admin(a):
+        return
+    a.json({
+        "peers": mochi.server.peers(),
+        "network": mochi.server.network(),
+        "counts": mochi.server.counts(),
+    })
+
 def action_system_settings_get(a):
     """Get a single setting"""
     if not require_admin(a):

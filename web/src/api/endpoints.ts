@@ -68,6 +68,7 @@ const endpoints = {
     replicationRemove: '-/user/replication/remove',
   },
   system: {
+    peers: '-/system/peers',
     settings: '-/system/settings/list',
     settingsGet: '-/system/settings/get',
     settingsSet: '-/system/settings/set',

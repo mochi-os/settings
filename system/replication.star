@@ -24,6 +24,7 @@ def action_system_replication(a):
     status = mochi.replication.status()
     a.json({
         "peer": status.get("peer", ""),
+        "addresses": status.get("addresses", []),
         "pair": status.get("pair", []),
         "irreparable": status.get("irreparable", []),
         "offline": status.get("offline", []),
