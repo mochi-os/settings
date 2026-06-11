@@ -18,6 +18,7 @@ export interface NetworkInfo {
   relay: boolean
   mesh: number
   last: number
+  queued: number
 }
 
 export interface ServerCounts {

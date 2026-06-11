@@ -128,7 +128,6 @@ function NetworkStatus() {
           {reachability}
           {network.relay ? ` · ${t`Via relay`}` : ''}
         </StatusRow>
-        <StatusRow label={<Trans>Mesh peers</Trans>}>{formatNumber(network.mesh)}</StatusRow>
         {network.last > 0 && (
           <StatusRow label={<Trans>Last broadcast</Trans>}>
             <span className='font-mono text-xs font-normal'>
@@ -141,8 +140,10 @@ function NetworkStatus() {
         <section className='mt-8 space-y-2'>
           <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'><Trans>Peers</Trans></h2>
           <p className='text-muted-foreground text-sm'>
-            <Trans>Peers</Trans> {formatNumber(peers.length)} · <Trans>Connected</Trans>{' '}
-            {formatNumber(connected)} · <Trans>Queued messages</Trans> {formatNumber(queued)}
+            <Trans>Known</Trans> {formatNumber(peers.length)} · <Trans>Connected</Trans>{' '}
+            {formatNumber(connected)} · <Trans>Broadcast mesh</Trans> {formatNumber(network.mesh)} ·{' '}
+            <Trans>Queued messages</Trans> {formatNumber(queued)} ·{' '}
+            <Trans>Queued broadcasts</Trans> {formatNumber(network.queued)}
           </p>
           <Table>
             <TableHeader>
