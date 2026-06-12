@@ -24,6 +24,7 @@ import {
 } from '@mochi/web'
 import { useSystemSettingsData } from '@/hooks/use-system-settings'
 import { useSystemPeers, type PeerEntry } from '@/hooks/use-system-peers'
+import { PeerIdentity, peerDisplayName, hyphenateFingerprint } from '@/components/peer-identity'
 import {
   useInstallSystemUpdate,
   useSystemUpdate,
@@ -42,6 +43,7 @@ export function SystemStatus() {
   const serverStarted =
     settings.find((s) => s.name === 'server_started')?.value ?? ''
   const peerId = data?.server?.id ?? ''
+  const serverFingerprint = data?.server?.fingerprint ?? ''
 
   const showUpdate = update && (update.available || update.pending)
 
@@ -66,6 +68,14 @@ export function SystemStatus() {
                 {formatSystemTimestamp(parseInt(serverStarted, 10), serverStarted)}
               </dd>
             </div>
+            {serverFingerprint && (
+              <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
+                <dt className='text-muted-foreground w-32 shrink-0'><Trans>Fingerprint</Trans></dt>
+                <dd className='min-w-0 flex-1'>
+                  <DataChip value={hyphenateFingerprint(serverFingerprint)} truncate='middle' />
+                </dd>
+              </div>
+            )}
             {peerId && (
               <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
                 <dt className='text-muted-foreground w-32 shrink-0'><Trans>Peer ID</Trans></dt>
@@ -109,7 +119,7 @@ function NetworkStatus() {
   const network = data.network
   const counts = data.counts
   const peers = [...data.peers].sort((a: PeerEntry, b: PeerEntry) =>
-    naturalCompare(a.peer, b.peer),
+    naturalCompare(peerDisplayName(a), peerDisplayName(b)),
   )
   const connected = peers.filter((p) => p.connected).length
   const queued = peers.reduce((sum, p) => sum + p.queued, 0)
@@ -159,8 +169,10 @@ function NetworkStatus() {
             <TableBody>
               {peers.map((p) => (
                 <TableRow key={p.peer}>
-                  <TableCell className='font-mono text-xs break-all whitespace-normal'>{p.peer}</TableCell>
-                  <TableCell className='text-muted-foreground text-sm'>
+                  <TableCell className='align-top whitespace-normal'>
+                    <PeerIdentity peer={p.peer} name={p.name} verified={p.verified} fingerprint={p.fingerprint} />
+                  </TableCell>
+                  <TableCell className='text-muted-foreground align-top text-sm'>
                     {p.connected ? (
                       <Trans>Connected</Trans>
                     ) : p.unreachable ? (
@@ -169,14 +181,14 @@ function NetworkStatus() {
                       <Trans>Disconnected</Trans>
                     )}
                   </TableCell>
-                  <TableCell className='font-mono text-xs break-all whitespace-normal'>{p.address}</TableCell>
-                  <TableCell className='font-mono text-xs'>
+                  <TableCell className='align-top font-mono text-xs break-all whitespace-normal'>{p.address}</TableCell>
+                  <TableCell className='align-top font-mono text-xs'>
                     {p.seen > 0 ? formatSystemTimestamp(p.seen, String(p.seen)) : ''}
                   </TableCell>
-                  <TableCell className='text-end text-sm'>
+                  <TableCell className='align-top text-end text-sm'>
                     {formatNumber(p.queued)}
                   </TableCell>
-                  <TableCell className='ps-8 font-mono text-xs'>
+                  <TableCell className='ps-8 align-top font-mono text-xs'>
                     {p.queued > 0 ? formatSystemTimestamp(p.oldest, String(p.oldest)) : '-'}
                   </TableCell>
                 </TableRow>

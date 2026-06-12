@@ -43,6 +43,7 @@ import {
 } from '@/hooks/use-replication'
 import { offlineActive, offlineDuration } from '@/lib/offline'
 import { stepUpClient } from '@/lib/step-up-client'
+import { PeerIdentity, hyphenateFingerprint } from '@/components/peer-identity'
 
 // Leaving deletes this server's copy and its sessions, so the shell loses auth.
 // Bounce to login (the account is still on the user's other servers).
@@ -79,12 +80,17 @@ function PendingRow({ link }: { link: ReplicationLink }) {
 
   return (
     <TableRow>
-      <TableCell>
-        {link.label ? (
-          <span className='font-medium'>{link.label}</span>
-        ) : (
-          <span className='font-mono text-xs break-all'>{link.peer}</span>
-        )}
+      <TableCell className='align-top'>
+        <div className='min-w-0 space-y-0.5'>
+          {link.label && <div className='font-medium'>{link.label}</div>}
+          {/* Approval context: the server sets name only when verified —
+              an unverified claim must not influence this decision. */}
+          {link.name && <div className='text-sm font-medium'>{link.name}</div>}
+          {link.fingerprint && (
+            <div className='text-muted-foreground font-mono text-xs'>{hyphenateFingerprint(link.fingerprint)}</div>
+          )}
+          <div className='font-mono text-xs break-all'>{link.peer}</div>
+        </div>
       </TableCell>
       <TableCell className='text-end'>
         <div className='inline-flex gap-2'>
@@ -123,17 +129,19 @@ function HostRow({ host }: { host: ReplicationHost }) {
 
   return (
     <TableRow>
-      <TableCell>
-        <span className='font-mono text-xs break-all'>{host.peer}</span>
-        {host.irreparable ? (
-          <Badge variant='destructive' className='ml-2 align-middle'><Trans>Irreparable</Trans></Badge>
-        ) : offlineActive(host.offline) ? (
-          <Badge variant='outline' className='ml-2 align-middle border-amber-500 text-amber-600 dark:text-amber-500'>
-            {t`Offline ${offlineDuration(host.offline)}`}
-          </Badge>
-        ) : null}
+      <TableCell className='align-top'>
+        <div className='flex items-start gap-2'>
+          <PeerIdentity peer={host.peer} name={host.name} verified={host.verified} fingerprint={host.fingerprint} />
+          {host.irreparable ? (
+            <Badge variant='destructive'><Trans>Irreparable</Trans></Badge>
+          ) : offlineActive(host.offline) ? (
+            <Badge variant='outline' className='border-amber-500 text-amber-600 dark:text-amber-500'>
+              {t`Offline ${offlineDuration(host.offline)}`}
+            </Badge>
+          ) : null}
+        </div>
       </TableCell>
-      <TableCell className='text-muted-foreground text-sm'>
+      <TableCell className='text-muted-foreground align-top text-sm'>
         {formatTimestamp(host.added, t`Unknown`)}
       </TableCell>
       <TableCell className='text-end'>
@@ -240,6 +248,7 @@ export function UserReplication() {
   const hosts = data?.hosts ?? []
   const username = data?.user?.username ?? ''
   const peerId = data?.server?.id ?? ''
+  const serverFingerprint = data?.server?.fingerprint ?? ''
 
   return (
     <>
@@ -270,8 +279,11 @@ export function UserReplication() {
                   {peerId && (
                     <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
                       <dt className='text-muted-foreground w-40 shrink-0'><Trans>Server peer ID</Trans></dt>
-                      <dd className='min-w-0 flex-1'>
+                      <dd className='min-w-0 flex-1 space-y-1'>
                         <DataChip value={peerId} truncate='none' />
+                        {serverFingerprint && (
+                          <div className='text-muted-foreground font-mono text-xs'>{hyphenateFingerprint(serverFingerprint)}</div>
+                        )}
                       </dd>
                     </div>
                   )}

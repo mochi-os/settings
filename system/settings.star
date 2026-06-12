@@ -3,11 +3,12 @@
 
 def action_system_settings_list(a):
     """List all system settings with metadata, plus the server's
-    libp2p peer ID so the System Status page can surface it."""
+    libp2p peer ID and fingerprint so the System Status page can
+    surface them."""
     if not require_admin(a):
         return
     settings = mochi.setting.list()
-    a.json({"settings": settings, "server": {"id": mochi.server.id()}})
+    a.json({"settings": settings, "server": {"id": mochi.server.id(), "fingerprint": mochi.server.fingerprint()}})
 
 def action_system_peers(a):
     """Known peers with connection and outbound-queue state, plus

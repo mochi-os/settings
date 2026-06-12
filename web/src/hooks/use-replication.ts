@@ -8,6 +8,10 @@ export interface ReplicationLink {
   peer: string
   label: string
   expires: number
+  // Approval context: name is set only when DNS-verified.
+  name: string
+  verified: boolean
+  fingerprint: string
 }
 
 export interface ReplicationHost {
@@ -16,11 +20,14 @@ export interface ReplicationHost {
   ack: number
   irreparable: boolean
   offline: number
+  name: string
+  verified: boolean
+  fingerprint: string
 }
 
 export interface ReplicationData {
   user?: { username: string }
-  server?: { id: string }
+  server?: { id: string; fingerprint?: string }
   links: ReplicationLink[]
   hosts: ReplicationHost[]
 }
