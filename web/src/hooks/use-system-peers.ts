@@ -22,6 +22,7 @@ export interface NetworkInfo {
   mesh: number
   last: number
   queued: number
+  holepunch: { success: number; failure: number }
 }
 
 export interface ServerCounts {

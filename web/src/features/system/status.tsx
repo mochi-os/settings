@@ -145,6 +145,13 @@ function NetworkStatus() {
             </span>
           </StatusRow>
         )}
+        {network.holepunch && network.holepunch.success + network.holepunch.failure > 0 && (
+          <StatusRow label={<Trans>Hole punch</Trans>}>
+            <Trans>
+              {formatNumber(network.holepunch.success)} succeeded · {formatNumber(network.holepunch.failure)} failed
+            </Trans>
+          </StatusRow>
+        )}
       </dl>
       {peers.length > 0 && (
         <section className='mt-8 space-y-2'>
