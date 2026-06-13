@@ -5,7 +5,6 @@ import endpoints from '@/api/endpoints'
 export interface PeerEntry {
   peer: string
   name: string
-  verified: boolean
   fingerprint: string
   connected: boolean
   unreachable: boolean

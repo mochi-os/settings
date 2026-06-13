@@ -1,4 +1,4 @@
-import { Trans, useLingui } from '@lingui/react/macro'
+import { useLingui } from '@lingui/react/macro'
 import { shellClipboardWrite, toast } from '@mochi/web'
 
 // Fingerprints travel unhyphenated (9 chars) and display hyphenated,
@@ -8,41 +8,29 @@ export function hyphenateFingerprint(fingerprint: string) {
   return `${fingerprint.slice(0, 3)}-${fingerprint.slice(3, 6)}-${fingerprint.slice(6)}`
 }
 
-// Display name for sorting peers: the claimed name when present, else
+// Display name for sorting peers: the announced name when present, else
 // the hyphenated fingerprint.
 export function peerDisplayName(p: { name?: string; fingerprint?: string; peer: string }) {
   return p.name || hyphenateFingerprint(p.fingerprint ?? '') || p.peer
 }
 
-// A peer's identity block: claimed name (plain when verified, muted +
-// marker when not) above the hyphenated fingerprint, with the full peer
-// ID via tooltip and click-to-copy. Names are display-only — nothing
-// may key logic off them.
+// A peer's identity block: the announced name (a self-asserted label)
+// above the hyphenated fingerprint, with the full peer ID via tooltip and
+// click-to-copy. The fingerprint is the authoritative identifier; the name
+// is display-only and nothing keys logic off it.
 export function PeerIdentity({
   peer,
   name,
-  verified,
   fingerprint,
 }: {
   peer: string
   name?: string
-  verified?: boolean
   fingerprint?: string
 }) {
   const { t } = useLingui()
   return (
     <div className='min-w-0'>
-      {name &&
-        (verified ? (
-          <div className='text-sm font-medium break-all'>{name}</div>
-        ) : (
-          <div className='text-muted-foreground text-sm break-all'>
-            {name}{' '}
-            <span className='text-xs'>
-              (<Trans>unverified</Trans>)
-            </span>
-          </div>
-        ))}
+      {name && <div className='text-sm font-medium break-all'>{name}</div>}
       <button
         type='button'
         className='text-muted-foreground hover:text-foreground cursor-pointer font-mono text-xs'

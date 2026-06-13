@@ -85,8 +85,6 @@ function PendingJoinRow({ join }: { join: PendingJoin }) {
       <TableCell className='align-top'>
         <div className='min-w-0 space-y-0.5'>
           {join.label && <div className='font-medium'>{join.label}</div>}
-          {/* Approval context: the server sets name only when verified —
-              an unverified claim must not influence this decision. */}
           {join.name && <div className='text-sm font-medium'>{join.name}</div>}
           {join.fingerprint && (
             <div className='text-muted-foreground font-mono text-xs'>{hyphenateFingerprint(join.fingerprint)}</div>
@@ -146,7 +144,7 @@ function PairMemberRow({
   return (
     <TableRow>
       <TableCell className='align-top'>
-        <PeerIdentity peer={peer} name={member.name} verified={member.verified} fingerprint={member.fingerprint} />
+        <PeerIdentity peer={peer} name={member.name} fingerprint={member.fingerprint} />
       </TableCell>
       <TableCell className='text-muted-foreground align-top text-sm'>
         {irreparable ? (

@@ -178,7 +178,7 @@ function NetworkStatus() {
               {peers.map((p) => (
                 <TableRow key={p.peer}>
                   <TableCell className='align-top whitespace-normal'>
-                    <PeerIdentity peer={p.peer} name={p.name} verified={p.verified} fingerprint={p.fingerprint} />
+                    <PeerIdentity peer={p.peer} name={p.name} fingerprint={p.fingerprint} />
                   </TableCell>
                   <TableCell className='text-muted-foreground align-top text-sm'>
                     {p.connected ? (

@@ -8,16 +8,13 @@ export interface PendingJoin {
   peer: string
   label: string
   expires: number
-  // Approval context: name is set only when DNS-verified.
   name: string
-  verified: boolean
   fingerprint: string
 }
 
 export interface PairMember {
   peer: string
   name: string
-  verified: boolean
   fingerprint: string
 }
 

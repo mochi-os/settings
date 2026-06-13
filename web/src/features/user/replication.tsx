@@ -83,8 +83,6 @@ function PendingRow({ link }: { link: ReplicationLink }) {
       <TableCell className='align-top'>
         <div className='min-w-0 space-y-0.5'>
           {link.label && <div className='font-medium'>{link.label}</div>}
-          {/* Approval context: the server sets name only when verified —
-              an unverified claim must not influence this decision. */}
           {link.name && <div className='text-sm font-medium'>{link.name}</div>}
           {link.fingerprint && (
             <div className='text-muted-foreground font-mono text-xs'>{hyphenateFingerprint(link.fingerprint)}</div>
@@ -131,7 +129,7 @@ function HostRow({ host }: { host: ReplicationHost }) {
     <TableRow>
       <TableCell className='align-top'>
         <div className='flex items-start gap-2'>
-          <PeerIdentity peer={host.peer} name={host.name} verified={host.verified} fingerprint={host.fingerprint} />
+          <PeerIdentity peer={host.peer} name={host.name} fingerprint={host.fingerprint} />
           {host.irreparable ? (
             <Badge variant='destructive'><Trans>Irreparable</Trans></Badge>
           ) : offlineActive(host.offline) ? (
