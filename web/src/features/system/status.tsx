@@ -59,18 +59,18 @@ export function SystemStatus() {
         ) : (
           <dl className='grid gap-3 text-sm'>
             <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-              <dt className='text-muted-foreground w-32 shrink-0'><Trans>Version</Trans></dt>
+              <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'><Trans>Version</Trans></dt>
               <dd className='font-medium'>{serverVersion}</dd>
             </div>
             <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-              <dt className='text-muted-foreground w-32 shrink-0'><Trans>Started</Trans></dt>
+              <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'><Trans>Started</Trans></dt>
               <dd className='font-mono text-xs'>
                 {formatSystemTimestamp(parseInt(serverStarted, 10), serverStarted)}
               </dd>
             </div>
             {serverFingerprint && (
               <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-                <dt className='text-muted-foreground w-32 shrink-0'><Trans>Fingerprint</Trans></dt>
+                <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'><Trans>Fingerprint</Trans></dt>
                 <dd className='min-w-0 flex-1'>
                   <DataChip value={hyphenateFingerprint(serverFingerprint)} truncate='middle' />
                 </dd>
@@ -78,7 +78,7 @@ export function SystemStatus() {
             )}
             {peerId && (
               <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-                <dt className='text-muted-foreground w-32 shrink-0'><Trans>Peer ID</Trans></dt>
+                <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'><Trans>Peer ID</Trans></dt>
                 <dd className='min-w-0 flex-1'>
                   <DataChip value={peerId} truncate='none' />
                 </dd>
@@ -86,7 +86,7 @@ export function SystemStatus() {
             )}
             {showUpdate && (
               <div className='flex flex-col gap-2 sm:flex-row sm:gap-4'>
-                <dt className='text-muted-foreground w-32 shrink-0'><Trans>Update</Trans></dt>
+                <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'><Trans>Update</Trans></dt>
                 <dd className='flex flex-col gap-2'>
                   <UpdateAction info={update} />
                 </dd>
@@ -103,7 +103,7 @@ export function SystemStatus() {
 function StatusRow({ label, children }: { label: ReactNode; children: ReactNode }) {
   return (
     <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-      <dt className='text-muted-foreground w-32 shrink-0'>{label}</dt>
+      <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'>{label}</dt>
       <dd className='font-medium'>{children}</dd>
     </div>
   )
@@ -152,15 +152,16 @@ function NetworkStatus() {
             </Trans>
           </StatusRow>
         )}
+        <StatusRow label={<Trans>Messages awaiting routing</Trans>}>{formatNumber(network.unresolved)}</StatusRow>
+        <StatusRow label={<Trans>Queued messages</Trans>}>{formatNumber(queued)}</StatusRow>
+        <StatusRow label={<Trans>Queued broadcast messages</Trans>}>{formatNumber(network.queued)}</StatusRow>
       </dl>
       {peers.length > 0 && (
         <section className='mt-8 space-y-2'>
           <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'><Trans>Peers</Trans></h2>
           <p className='text-muted-foreground text-sm'>
             <Trans>Known</Trans> {formatNumber(peers.length)} · <Trans>Connected</Trans>{' '}
-            {formatNumber(connected)} · <Trans>Broadcast mesh</Trans> {formatNumber(network.mesh)} ·{' '}
-            <Trans>Queued messages</Trans> {formatNumber(queued)} ·{' '}
-            <Trans>Queued broadcasts</Trans> {formatNumber(network.queued)}
+            {formatNumber(connected)} · <Trans>Broadcast mesh</Trans> {formatNumber(network.mesh)}
           </p>
           <Table>
             <TableHeader>
