@@ -23,6 +23,12 @@ export interface NetworkInfo {
   queued: number
   unresolved: number
   holepunch: { success: number; failure: number }
+  relaying: {
+    active: boolean
+    reservations: { held: number; maximum: number }
+    circuits: number
+    rejected: number
+  }
 }
 
 export interface ServerCounts {

@@ -152,6 +152,13 @@ function NetworkStatus() {
             </Trans>
           </StatusRow>
         )}
+        {network.relaying?.active && (
+          <StatusRow label={<Trans>Relay service</Trans>}>
+            <Trans>
+              {formatNumber(network.relaying.reservations.held)} / {formatNumber(network.relaying.reservations.maximum)} reservations · {formatNumber(network.relaying.circuits)} circuits · {formatNumber(network.relaying.rejected)} refused
+            </Trans>
+          </StatusRow>
+        )}
         <StatusRow label={<Trans>Messages awaiting routing</Trans>}>{formatNumber(network.unresolved)}</StatusRow>
         <StatusRow label={<Trans>Queued messages</Trans>}>{formatNumber(queued)}</StatusRow>
         <StatusRow label={<Trans>Queued broadcast messages</Trans>}>{formatNumber(network.queued)}</StatusRow>
