@@ -8,6 +8,14 @@ export interface PendingJoin {
   peer: string
   label: string
   expires: number
+  name: string
+  fingerprint: string
+}
+
+export interface PairMember {
+  peer: string
+  name: string
+  fingerprint: string
 }
 
 export interface BootstrapEntry {
@@ -30,7 +38,9 @@ export interface OfflineMember {
 
 export interface SystemReplicationData {
   peer: string
-  pair: string[]
+  fingerprint: string
+  addresses: string[]
+  pair: PairMember[]
   irreparable: string[]
   offline: OfflineMember[]
   joins: PendingJoin[]

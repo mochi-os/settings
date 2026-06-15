@@ -21,7 +21,7 @@ msgstr ". Ungaphatha izindlela:"
 msgid "(current)"
 msgstr "(kwamanje)"
 
-#: src/features/system/settings.tsx:93
+#: src/features/system/settings.tsx:95
 msgid "(empty)"
 msgstr "(akukho)"
 
@@ -36,6 +36,20 @@ msgstr "{0, plural, one {Kuhoxiswe iseshini eyi-1} other {Kuhoxiswe iziseshini e
 #: src/features/user/display.tsx:239
 msgid "{0} (development)"
 msgstr "{0} (intuthuko)"
+
+#. placeholder {0}: formatNumber(network.relaying.reservations.held)
+#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
+#. placeholder {2}: formatNumber(network.relaying.circuits)
+#. placeholder {3}: formatNumber(network.relaying.rejected)
+#: src/features/system/status.tsx:157
+msgid "{0} / {1} reservations · {2} circuits · {3} refused"
+msgstr "{0} / {1} ukubhukha · {2} izifunda · {3} kwenqatshiwe"
+
+#. placeholder {0}: formatNumber(network.holepunch.success)
+#. placeholder {1}: formatNumber(network.holepunch.failure)
+#: src/features/system/status.tsx:150
+msgid "{0} succeeded · {1} failed"
+msgstr "{0} kuphumelele · {1} kuhlulekile"
 
 #: src/features/user/login.tsx:674
 msgid "{count} remaining"
@@ -198,7 +212,7 @@ msgid "Add view"
 msgstr "Engeza umbukiso"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:326
+#: src/features/user/replication.tsx:336
 msgid "Added"
 msgstr "Kwengeziwe"
 
@@ -206,6 +220,18 @@ msgstr "Kwengeziwe"
 #: src/features/user/interests.tsx:192
 msgid "Added \"{0}\""
 msgstr "Kwengezwe okuthi \"{0}\""
+
+#: src/features/system/status.tsx:178
+msgid "Address"
+msgstr "Ikheli"
+
+#: src/features/system/replication.tsx:257
+msgid "Address copied"
+msgstr "Ikheli likopishiwe"
+
+#: src/features/system/replication.tsx:248
+msgid "Addresses"
+msgstr "Amakheli"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:62
 msgid "Adjust the appearance and layout to suit your preferences."
@@ -225,7 +251,7 @@ msgstr "I-AI"
 msgid "All"
 msgstr "Konke"
 
-#: src/features/system/settings.tsx:66
+#: src/features/system/settings.tsx:68
 msgid "Allow new signups"
 msgstr "Vumela ukubhalisa okusha"
 
@@ -238,7 +264,7 @@ msgid "Allow users to install apps"
 msgstr "Vumela abasebenzisi ukuthi bafake ama-app"
 
 #: src/components/method-state-control.tsx:28
-#: src/features/system/settings.tsx:104
+#: src/features/system/settings.tsx:106
 msgid "Allowed"
 msgstr "Kuvunyelwe"
 
@@ -250,11 +276,15 @@ msgstr "Kwenzeke iphutha"
 msgid "An unexpected error occurred"
 msgstr "Kwenzeke iphutha elingalindelekile"
 
-#: src/features/user/replication.tsx:291
+#: src/features/system/settings.tsx:48
+msgid "Announce hostname and domains to other servers"
+msgstr "Memezela igama lomsingathi namadomeni kwamanye amaseva"
+
+#: src/features/user/replication.tsx:301
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Enye iseva icela ukubamba ikhophi ye-akhawunti yakho. Vuma ukuthumela ikhophi."
 
-#: src/features/system/replication.tsx:241
+#: src/features/system/replication.tsx:274
 msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
 msgstr "Eyinye iseva icela ukubhanqana naleli. Vumela ukulibhalisa njengomngane wokuphindaphinda ophelele."
 
@@ -267,23 +297,23 @@ msgstr "I-app"
 msgid "Appearance"
 msgstr "Ukubukeka"
 
-#: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:70
+#: src/features/system/replication.tsx:79
+#: src/features/user/replication.tsx:71
 msgid "Approval failed"
 msgstr "Imvumo ayiphumelelanga"
 
-#: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:93
+#: src/features/system/replication.tsx:99
+#: src/features/user/replication.tsx:97
 msgid "Approve"
 msgstr "Phasisa"
 
-#: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:103
+#: src/features/system/replication.tsx:119
+#: src/features/user/replication.tsx:107
 msgid "Approve request"
 msgstr "Vuma isicelo"
 
-#: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:104
+#: src/features/system/replication.tsx:120
+#: src/features/user/replication.tsx:108
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "Ukuvuma kukopela okhiye abayimfihlo kuleyo seva. Qinisekisa ukuthi nguwe ukuze uqhubeke."
 
@@ -339,6 +369,10 @@ msgstr "Buyela ekhaya"
 msgid "Boost interest"
 msgstr "Khulisa intshisekelo"
 
+#: src/features/system/status.tsx:171
+msgid "Broadcast mesh"
+msgstr "I-mesh yokusakaza"
+
 #: src/features/user/notifications.tsx:216
 msgid "Browser notifications"
 msgstr "Izaziso zebhrawuza"
@@ -355,10 +389,10 @@ msgstr "Izaziso zebhrawuza"
 #: src/features/domains/index.tsx:330
 #: src/features/domains/index.tsx:509
 #: src/features/domains/index.tsx:655
-#: src/features/system/replication.tsx:175
-#: src/features/system/settings.tsx:275
-#: src/features/system/settings.tsx:313
-#: src/features/system/settings.tsx:428
+#: src/features/system/replication.tsx:181
+#: src/features/system/settings.tsx:277
+#: src/features/system/settings.tsx:315
+#: src/features/system/settings.tsx:430
 #: src/features/system/users.tsx:150
 #: src/features/system/users.tsx:235
 #: src/features/user/account.tsx:118
@@ -369,7 +403,7 @@ msgstr "Izaziso zebhrawuza"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:201
+#: src/features/user/replication.tsx:207
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Khansela"
@@ -406,7 +440,7 @@ msgstr "Khetha phakathi kokuhamba kwesayithi kusuka kwesokunxele kuya kwesokudla
 msgid "Choose between system preference, light mode, or dark mode"
 msgstr "Khetha phakathi kwentando yesistimu, imodi ekhanyayo, noma imodi emnyama"
 
-#: src/features/system/settings.tsx:376
+#: src/features/system/settings.tsx:378
 msgid "Choose file"
 msgstr "Khetha ifayela"
 
@@ -414,9 +448,10 @@ msgstr "Khetha ifayela"
 msgid "Choose language"
 msgstr "Khetha ulimi"
 
-#: ../../../lib/web/src/components/colour-picker.tsx:304
-#: src/features/system/settings.tsx:358
-#: src/features/system/settings.tsx:359
+#: ../../../lib/web/src/components/colour-picker.tsx:268
+#: ../../../lib/web/src/components/colour-picker.tsx:349
+#: src/features/system/settings.tsx:360
+#: src/features/system/settings.tsx:361
 msgid "Clear"
 msgstr "Sula"
 
@@ -487,7 +522,7 @@ msgstr "Kuyeza Maduze!"
 msgid "Compact"
 msgstr "Okufishane"
 
-#: src/features/system/settings.tsx:335
+#: src/features/system/settings.tsx:337
 msgid "Configured"
 msgstr "Kulungisiwe"
 
@@ -496,11 +531,13 @@ msgstr "Kulungisiwe"
 msgid "Confirm"
 msgstr "Qinisekisa"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:220
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "Qinisekisa ukuthi nguwe"
 
+#: src/features/system/status.tsx:170
+#: src/features/system/status.tsx:192
 #: src/features/user/connected-accounts.tsx:219
 msgid "Connected"
 msgstr "Kuxhunyiwe"
@@ -536,11 +573,15 @@ msgstr "Qhubeka nge-{label}"
 msgid "Copy"
 msgstr "Kopisha"
 
+#: src/features/system/replication.tsx:262
+msgid "Copy address"
+msgstr "Kopisha ikheli"
+
 #: src/features/user/login.tsx:664
 msgid "Copy all"
 msgstr "Kopisha konke"
 
-#: src/features/system/replication.tsx:232
+#: src/features/system/replication.tsx:243
 msgid "Copy peer id"
 msgstr "Kopisha i-ID yomngane"
 
@@ -552,12 +593,12 @@ msgstr "Kopisha ithokheni yakho manje. Ngeke uphinde uyibone."
 msgid "Could not close your account"
 msgstr "Ayikwazanga ukuvalwa i-akhawunti yakho"
 
-#: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:77
+#: src/features/system/replication.tsx:108
+#: src/features/user/replication.tsx:78
 msgid "Could not deny request"
 msgstr "Ayikwazi ukunqaba isicelo"
 
-#: src/features/user/replication.tsx:162
+#: src/features/user/replication.tsx:168
 msgid "Could not forget host"
 msgstr "Ayikwazanga ukukhohlwa umsingathi"
 
@@ -569,11 +610,11 @@ msgstr "Akukwazanga ukuxhuma i-akhawunti"
 msgid "Could not load this document. Please try again later."
 msgstr "Asikwazanga ukulayisha le dokhumenti. Sicela uzame futhi ngokuhamba kwesikhathi."
 
-#: src/features/system/replication.tsx:180
+#: src/features/system/replication.tsx:186
 msgid "Could not remove pair member"
 msgstr "Ayikwazanga ukususa ilungu lebhange"
 
-#: src/features/user/replication.tsx:224
+#: src/features/user/replication.tsx:230
 msgid "Could not remove your account from this server"
 msgstr "Ayikwazanga ukususa i-akhawunti yakho kule seva"
 
@@ -621,6 +662,10 @@ msgstr "Dala umsebenzisi"
 #: src/features/user/tokens.tsx:269
 msgid "Created"
 msgstr "Kudaliwe"
+
+#: ../../../lib/web/src/components/colour-picker.tsx:259
+msgid "Custom"
+msgstr "Okuzenzelwe"
 
 #: src/features/system/documents.tsx:123
 msgid "Customised"
@@ -763,8 +808,8 @@ msgstr "Kususwa..."
 msgid "Density"
 msgstr "Ukuminyana"
 
-#: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:97
+#: src/features/system/replication.tsx:113
+#: src/features/user/replication.tsx:101
 msgid "Deny"
 msgstr "Yenqaba"
 
@@ -811,9 +856,13 @@ msgstr "Vimbela isiqinisekisi?"
 
 #: src/components/method-state-control.tsx:28
 #: src/features/domains/index.tsx:696
-#: src/features/system/settings.tsx:102
+#: src/features/system/settings.tsx:104
 msgid "Disabled"
 msgstr "Kuvinjelwe"
+
+#: src/features/system/status.tsx:196
+msgid "Disconnected"
+msgstr "Kunqanyuliwe"
 
 #: ../../../lib/web/src/components/restore-banner.tsx:73
 msgid "Dismiss"
@@ -891,16 +940,16 @@ msgstr "Kwenziwe"
 msgid "Download"
 msgstr "Landa"
 
-#: src/features/system/status.tsx:127
+#: src/features/system/status.tsx:264
 msgid "Download from packages.mochi-os.org"
 msgstr "Landa kusuka ku-packages.mochi-os.org"
 
-#: src/features/system/status.tsx:115
-#: src/features/system/status.tsx:121
+#: src/features/system/status.tsx:252
+#: src/features/system/status.tsx:258
 msgid "Download installer"
 msgstr "Landa isifaki"
 
-#: src/features/system/status.tsx:149
+#: src/features/system/status.tsx:286
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Landa i-Mochi {latest} bese uqalisa kabusha iseva"
 
@@ -977,6 +1026,10 @@ msgstr "Faka ikhodi evela ku-imeyili yakho"
 msgid "Enter your authenticator code"
 msgstr "Faka ikhodi yakho yesiqinisekisi"
 
+#: src/features/system/status.tsx:136
+msgid "Entities"
+msgstr "Izinto"
+
 #: src/features/domains/index.tsx:255
 #: src/features/domains/index.tsx:424
 msgid "Entity"
@@ -1002,11 +1055,11 @@ msgstr "Ukukhiphela kwehlulekile"
 msgid "Extra large"
 msgstr "Okukhulu kakhulu"
 
-#: src/features/system/settings.tsx:55
+#: src/features/system/settings.tsx:57
 msgid "Facebook App ID"
 msgstr "I-ID yohlelo lwe-Facebook"
 
-#: src/features/system/settings.tsx:56
+#: src/features/system/settings.tsx:58
 msgid "Facebook App secret"
 msgstr "Imfihlo yohlelo lwe-Facebook"
 
@@ -1019,7 +1072,8 @@ msgstr "Kuhlulekile ukungeza i-akhawunti"
 msgid "Failed to add interest"
 msgstr "Kuhlulekile ukungeza intshisekelo"
 
-#: src/features/system/replication.tsx:228
+#: src/features/system/replication.tsx:239
+#: src/features/system/replication.tsx:258
 msgid "Failed to copy"
 msgstr "Kuhlulekile ukukopisha"
 
@@ -1079,7 +1133,7 @@ msgstr "Kuhlulekile ukuvimbela isiqinisekisi"
 msgid "Failed to generate codes"
 msgstr "Kuhlulekile ukukhiqiza amakhodi"
 
-#: src/features/system/status.tsx:140
+#: src/features/system/status.tsx:277
 msgid "Failed to install update"
 msgstr "Ihlulekile ukufaka isibuyekezo"
 
@@ -1189,8 +1243,8 @@ msgstr "Kuhlulekile ukubuyekeza ubumfihlo"
 msgid "Failed to update route"
 msgstr "Kuhlulekile ukubuyekeza indlela"
 
-#: src/features/system/settings.tsx:461
-#: src/features/system/settings.tsx:476
+#: src/features/system/settings.tsx:463
+#: src/features/system/settings.tsx:478
 msgid "Failed to update setting"
 msgstr "Kuhlulekile ukubuyekeza isilungiselelo"
 
@@ -1218,6 +1272,7 @@ msgstr "Kuhlulekile ukuqinisekisa ikhodi"
 msgid "Failed to verify domain"
 msgstr "Kuhlulekile ukuqinisekisa idomeyini"
 
+#: src/features/system/status.tsx:73
 #: src/features/user/account.tsx:137
 msgid "Fingerprint"
 msgstr "Isigxivizo somunwe"
@@ -1226,11 +1281,11 @@ msgstr "Isigxivizo somunwe"
 msgid "Finish moving your account"
 msgstr "Qeda ukudlulisa i-akhawunti yakho"
 
-#: src/features/system/settings.tsx:59
+#: src/features/system/settings.tsx:61
 msgid "Firebase google-services.json file"
 msgstr "Ifayela ye-Firebase google-services.json"
 
-#: src/features/system/settings.tsx:60
+#: src/features/system/settings.tsx:62
 msgid "Firebase private key file"
 msgstr "Ifayela yesikhiya esiyimfihlo se-Firebase"
 
@@ -1246,11 +1301,11 @@ msgstr "Ifonti"
 msgid "Font size"
 msgstr "Usayizi wefonti"
 
-#: src/features/user/replication.tsx:149
+#: src/features/user/replication.tsx:155
 msgid "Forget this unreachable host"
 msgstr "Khohlwa lo msingathi ongafinyeleleki"
 
-#: src/features/user/replication.tsx:154
+#: src/features/user/replication.tsx:160
 msgid "Forget this unreachable host?"
 msgstr "Khohlwa lo msingathi ongafinyeleleki?"
 
@@ -1259,8 +1314,8 @@ msgid "Friday"
 msgstr "ULwesihlanu"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
-#: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:296
+#: src/features/system/replication.tsx:281
+#: src/features/user/replication.tsx:306
 msgid "From"
 msgstr "Kusukela"
 
@@ -1288,11 +1343,11 @@ msgstr "Dala umusho wephasiwedi"
 msgid "Generate?"
 msgstr "Khiqiza?"
 
-#: src/features/system/settings.tsx:50
+#: src/features/system/settings.tsx:52
 msgid "GitHub client ID"
 msgstr "I-ID yeklayenti ye-GitHub"
 
-#: src/features/system/settings.tsx:51
+#: src/features/system/settings.tsx:53
 msgid "GitHub client secret"
 msgstr "Imfihlo yeklayenti ye-GitHub"
 
@@ -1326,11 +1381,11 @@ msgstr "Yiya ekhasini {pageNumber}"
 msgid "Go to previous page"
 msgstr "Yiya ekhasini elingaphambilini"
 
-#: src/features/system/settings.tsx:48
+#: src/features/system/settings.tsx:50
 msgid "Google client ID"
 msgstr "I-ID yeklayenti ye-Google"
 
-#: src/features/system/settings.tsx:49
+#: src/features/system/settings.tsx:51
 msgid "Google client secret"
 msgstr "Imfihlo yeklayenti ye-Google"
 
@@ -1351,6 +1406,10 @@ msgstr "Fihla"
 msgid "Higher priority routes are matched first"
 msgstr "Izindlela eziphezulu ngokubaluleka zifaniswa kuqala"
 
+#: src/features/system/status.tsx:149
+msgid "Hole punch"
+msgstr "Ukubhoboza"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx:82
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:142
 #: ../../../lib/web/src/components/layout/top-bar.tsx:62
@@ -1358,9 +1417,13 @@ msgstr "Izindlela eziphezulu ngokubaluleka zifaniswa kuqala"
 msgid "Home"
 msgstr "Ikhaya"
 
-#: src/features/user/replication.tsx:161
+#: src/features/user/replication.tsx:167
 msgid "Host forgotten"
 msgstr "Umsingathi ukhohliwe"
+
+#: src/features/system/settings.tsx:47
+msgid "Hostname announced to other servers"
+msgstr "Igama lomsingathi elimenyezelwe kwamanye amaseva"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1387,12 +1450,12 @@ msgstr "Yobukhosi"
 msgid "Inset"
 msgstr "Okufakwe ngaphakathi"
 
-#: src/features/system/status.tsx:152
+#: src/features/system/status.tsx:289
 msgid "Install update"
 msgstr "Faka isibuyekezo"
 
 #. placeholder {0}: info.pending
-#: src/features/system/status.tsx:87
+#: src/features/system/status.tsx:224
 msgid "Installing {0}…"
 msgstr "Ifaka {0}…"
 
@@ -1417,22 +1480,26 @@ msgstr "Ikhodi yokuqinisekisa engalungile"
 msgid "IP Address"
 msgstr "Ikheli le-IP"
 
-#: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:129
+#: src/features/system/replication.tsx:151
+#: src/features/user/replication.tsx:134
 msgid "Irreparable"
 msgstr "Akulungiseki"
 
-#: src/features/user/replication.tsx:155
+#: src/features/user/replication.tsx:161
 msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
 msgstr "Izosuswa kusethi yakho yekhophi futhi itshelwe ukuthi isule ikhophi yayo lapho iphinda ixhumana. Ukususa iseva efinyelelekayo, ngena kuyo bese usebenzisa \"Susa i-akhawunti yami kule seva\". Qinisekisa ukuthi nguwe ukuze uqhubeke."
 
-#: src/features/system/replication.tsx:75
+#: src/features/system/replication.tsx:77
 msgid "Join request approved"
 msgstr "Isicelo sokujoyina samukelwe"
 
-#: src/features/system/replication.tsx:102
+#: src/features/system/replication.tsx:107
 msgid "Join request denied"
 msgstr "Isicelo sokujoyina sinqatshelwe"
+
+#: src/features/system/status.tsx:170
+msgid "Known"
+msgstr "Eyaziwayo"
 
 #: src/features/user/notifications.tsx:441
 msgid "Label is required"
@@ -1456,6 +1523,10 @@ msgstr "Kufinyelelwe okokugcina"
 msgid "Last active"
 msgstr "Kuphile okokugcina"
 
+#: src/features/system/status.tsx:142
+msgid "Last broadcast"
+msgstr "Ukusakaza kokugcina"
+
 #. placeholder {0}: formatSystemTimestamp(document.updated)
 #: src/features/system/documents.tsx:129
 msgid "Last edited {0}"
@@ -1464,6 +1535,10 @@ msgstr "Kuhlelwe okokugcina {0}"
 #: src/features/system/users.tsx:643
 msgid "Last login"
 msgstr "Ukungena kokugcina"
+
+#: src/features/system/status.tsx:179
+msgid "Last seen"
+msgstr "Igcine ukubonwa"
 
 #: src/features/user/login.tsx:417
 #: src/features/user/login.tsx:867
@@ -1534,7 +1609,7 @@ msgstr "Iyaphuma…"
 
 #: src/components/layout/data/sidebar-data.ts:30
 #: src/components/layout/data/sidebar-data.ts:51
-#: src/features/system/settings.tsx:539
+#: src/features/system/settings.tsx:541
 #: src/features/user/login.tsx:892
 #: src/features/user/login.tsx:939
 msgid "Login"
@@ -1593,6 +1668,10 @@ msgstr "Maphakathi"
 msgid "Menu"
 msgstr "Imenyu"
 
+#: src/features/system/status.tsx:162
+msgid "Messages awaiting routing"
+msgstr "Imilayezo elindele ukuhanjiswa kwendlela"
+
 #: src/features/domains/index.tsx:244
 #: src/features/domains/index.tsx:413
 #: src/features/domains/index.tsx:1000
@@ -1603,20 +1682,20 @@ msgstr "Indlela"
 msgid "Metric"
 msgstr "Imethrikhi"
 
-#: src/features/system/settings.tsx:52
+#: src/features/system/settings.tsx:54
 msgid "Microsoft client ID"
 msgstr "I-ID yeklayenti le-Microsoft"
 
-#: src/features/system/settings.tsx:53
+#: src/features/system/settings.tsx:55
 msgid "Microsoft client secret"
 msgstr "Imfihlo yeklayenti le-Microsoft"
 
-#: src/features/system/settings.tsx:54
+#: src/features/system/settings.tsx:56
 msgid "Microsoft tenant"
 msgstr "Umqashi we-Microsoft"
 
 #. placeholder {0}: info.latest
-#: src/features/system/status.tsx:95
+#: src/features/system/status.tsx:232
 msgid "Mochi {0} is available"
 msgstr "I-Mochi {0} iyatholakala"
 
@@ -1637,7 +1716,7 @@ msgstr "UMsombuluko"
 msgid "My application"
 msgstr "Isicelo sami"
 
-#: src/features/user/replication.tsx:308
+#: src/features/user/replication.tsx:318
 msgid "My hosts"
 msgstr "Abasingathi bami"
 
@@ -1827,10 +1906,14 @@ msgstr "Ifomethi yenombolo"
 
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
-#: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:132
+#: src/features/system/replication.tsx:154
+#: src/features/user/replication.tsx:137
 msgid "Offline {0}"
 msgstr "Ayikho ku-inthanethi {0}"
+
+#: src/features/system/status.tsx:181
+msgid "Oldest queued message"
+msgstr "Umlayezo omdala kakhulu kulayini"
 
 #: ../../../lib/web/src/features/errors/not-found-error.tsx:13
 msgid "Oops! Page Not Found!"
@@ -1840,6 +1923,10 @@ msgstr "Yini! Ikhasi Alitholakali!"
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:151
 msgid "Open account actions"
 msgstr "Vula izenzo ze-akhawunti"
+
+#: ../../../lib/web/src/components/layout/nav-group.tsx:134
+msgid "Open actions"
+msgstr "Vula izenzo"
 
 #: ../../../lib/web/src/components/layout/top-bar.tsx:57
 msgid "Open navigation"
@@ -1858,19 +1945,19 @@ msgstr "Vula izilungiselelo zetimu"
 msgid "Open user actions"
 msgstr "Vula izenzo zomsebenzisi"
 
-#: src/features/system/settings.tsx:560
+#: src/features/system/settings.tsx:562
 msgid "Operator"
 msgstr "Umsebenzisi"
 
-#: src/features/system/settings.tsx:62
+#: src/features/system/settings.tsx:64
 msgid "Operator email"
 msgstr "I-imeyili yomsebenzisi"
 
-#: src/features/system/settings.tsx:63
+#: src/features/system/settings.tsx:65
 msgid "Operator jurisdiction"
 msgstr "Indawo yomthetho yomsebenzisi"
 
-#: src/features/system/settings.tsx:61
+#: src/features/system/settings.tsx:63
 msgid "Operator name"
 msgstr "Igama lomsebenzisi"
 
@@ -1878,11 +1965,11 @@ msgstr "Igama lomsebenzisi"
 msgid "Other"
 msgstr "Okunye"
 
-#: src/features/user/replication.tsx:311
+#: src/features/user/replication.tsx:321
 msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
 msgstr "Ezinye iziseva nazo eziphethe ikhophi ye-akhawunti yakho. Ukususa enye, ngena kuleyo seva bese usebenzisa \"Susa i-akhawunti yami kule seva\"."
 
-#: src/features/system/settings.tsx:575
+#: src/features/system/settings.tsx:577
 msgid "Other settings"
 msgstr "Ezinye izilungiselelo"
 
@@ -1890,11 +1977,11 @@ msgstr "Ezinye izilungiselelo"
 msgid "Owner"
 msgstr "Umnikazi"
 
-#: src/features/system/replication.tsx:179
+#: src/features/system/replication.tsx:185
 msgid "Pair member removed"
 msgstr "Ilungu lebhange lisusiwe"
 
-#: src/features/system/replication.tsx:260
+#: src/features/system/replication.tsx:293
 msgid "Pair members"
 msgstr "Amalungu ebhange"
 
@@ -1949,28 +2036,34 @@ msgstr "Indlela"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Indlela ayivumelekanga. Ungangeza kuphela imizila ngaphansi kwe: {0}"
 
-#: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:325
+#: src/features/system/replication.tsx:305
+#: src/features/system/status.tsx:176
+#: src/features/user/replication.tsx:335
 msgid "Peer"
 msgstr "Olingana"
 
-#: src/features/system/status.tsx:61
+#: src/features/system/status.tsx:81
 msgid "Peer ID"
 msgstr "I-ID yontanga"
 
-#: src/features/system/replication.tsx:227
+#: src/components/peer-identity.tsx:40
+#: src/features/system/replication.tsx:238
 msgid "Peer id copied"
 msgstr "I-ID yomngane ikopishelwe"
+
+#: src/features/system/status.tsx:168
+msgid "Peers"
+msgstr "Abalinganayo"
 
 #: src/features/user/connected-accounts.tsx:209
 msgid "Pending"
 msgstr "Kulindile"
 
-#: src/features/system/replication.tsx:239
+#: src/features/system/replication.tsx:272
 msgid "Pending join requests"
 msgstr "Izicelo zokujoyina ezisalindele"
 
-#: src/features/user/replication.tsx:289
+#: src/features/user/replication.tsx:299
 msgid "Pending requests"
 msgstr "Izicelo ezisalindile"
 
@@ -2022,6 +2115,10 @@ msgstr "Ukubaluleka"
 msgid "Privacy"
 msgstr "Ubumfihlo"
 
+#: src/features/system/status.tsx:128
+msgid "Private"
+msgstr "Okuyimfihlo"
+
 #: src/features/user/login.tsx:686
 msgid "Proceed"
 msgstr "Qhubeka"
@@ -2035,15 +2132,28 @@ msgstr "Umbiko womsebenzisi"
 msgid "Provider"
 msgstr "Umhlinzeki"
 
-#: src/features/system/settings.tsx:47
+#: src/features/system/status.tsx:127
+msgid "Public"
+msgstr "Emphakathini"
+
+#: src/features/system/settings.tsx:49
 msgid "Public URL for OAuth redirects"
 msgstr "I-URL yomphakathi yokuqondisa kabusha kwe-OAuth"
 
-#: src/features/system/settings.tsx:568
+#: src/features/system/settings.tsx:570
 msgid "Push notifications"
 msgstr "Izaziso zokuphusha"
 
-#: src/features/user/replication.tsx:259
+#: src/features/system/status.tsx:164
+msgid "Queued broadcast messages"
+msgstr "Imilayezo yokusakaza eselayinini"
+
+#: src/features/system/status.tsx:163
+#: src/features/system/status.tsx:180
+msgid "Queued messages"
+msgstr "Imilayezo kulayini"
+
+#: src/features/user/replication.tsx:266
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "Faka womabili amanani efomini lokubhalisa leseva eyisiphetho ukuze ukopishe le akhawunti lapho."
 
@@ -2058,6 +2168,10 @@ msgstr "Xhuma kabusha ama-akhawunti akho kule server"
 #: ../../../lib/web/src/components/restore-banner.tsx:120
 msgid "Re-register your passkeys on this server"
 msgstr "Phinda ubhalise okhiye bakho bokungena kule seva"
+
+#: src/features/system/status.tsx:137
+msgid "Reachability"
+msgstr "Ukufinyeleleka"
 
 #: ../../../lib/web/src/components/search-entity-dialog.tsx:216
 #: ../../../lib/web/src/components/search-entity-page.tsx:191
@@ -2111,12 +2225,16 @@ msgstr "Okuhlobene (5m, 3h, 2d)"
 msgid "Relative within 24 hours, else absolute"
 msgstr "Okuhlobene phakathi kwamahora angu-24, ngale kwalokho okuphelele"
 
+#: src/features/system/status.tsx:156
+msgid "Relay service"
+msgstr "Isevisi yokudlulisa"
+
 #: ../../../lib/web/src/features/access/access-list.tsx:257
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:172
-#: src/features/system/replication.tsx:184
+#: src/features/system/replication.tsx:190
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
-#: src/features/user/replication.tsx:206
+#: src/features/user/replication.tsx:212
 msgid "Remove"
 msgstr "Khipha"
 
@@ -2142,15 +2260,15 @@ msgstr "Khipha i-akhawunti?"
 msgid "Remove interest"
 msgstr "Khipha intshisekelo"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:193
 msgid "Remove my account from this server"
 msgstr "Susa i-akhawunti yami kule seva"
 
-#: src/features/system/replication.tsx:161
+#: src/features/system/replication.tsx:167
 msgid "Remove pair member"
 msgstr "Susa ilungu lebhange"
 
-#: src/features/system/replication.tsx:166
+#: src/features/system/replication.tsx:172
 msgid "Remove pair member?"
 msgstr "Susa ilungu lebhange?"
 
@@ -2158,7 +2276,7 @@ msgstr "Susa ilungu lebhange?"
 msgid "Remove suspension"
 msgstr "Khipha ukumiswa"
 
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:198
 msgid "Remove your account from this server?"
 msgstr "Susa i-akhawunti yakho kule seva?"
 
@@ -2166,25 +2284,25 @@ msgstr "Susa i-akhawunti yakho kule seva?"
 msgid "Rename passkey"
 msgstr "Niqamba kabusha i-passkey"
 
-#: src/features/system/settings.tsx:349
+#: src/features/system/settings.tsx:351
 msgid "Replace"
 msgstr "Buyisela"
 
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
-#: src/features/system/replication.tsx:196
-#: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:236
-#: src/features/user/replication.tsx:246
+#: src/features/system/replication.tsx:202
+#: src/features/system/replication.tsx:217
+#: src/features/user/replication.tsx:242
+#: src/features/user/replication.tsx:253
 msgid "Replication"
 msgstr "Ukuphindaphinda"
 
-#: src/features/user/replication.tsx:68
+#: src/features/user/replication.tsx:69
 msgid "Request approved"
 msgstr "Isicelo savunyelwa"
 
-#: src/features/user/replication.tsx:76
+#: src/features/user/replication.tsx:77
 msgid "Request denied"
 msgstr "Isicelo sanqatshelwe"
 
@@ -2193,7 +2311,7 @@ msgid "Require domain verification"
 msgstr "Funa ukuqinisekiswa kwe-domain"
 
 #: src/components/method-state-control.tsx:28
-#: src/features/system/settings.tsx:106
+#: src/features/system/settings.tsx:108
 msgid "Required"
 msgstr "Kuyadingeka"
 
@@ -2203,9 +2321,9 @@ msgstr "Thumela i-imeyili futhi"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:77
 #: ../../../lib/web/src/components/data-table/toolbar.tsx:78
-#: src/features/system/settings.tsx:277
-#: src/features/system/settings.tsx:315
-#: src/features/system/settings.tsx:430
+#: src/features/system/settings.tsx:279
+#: src/features/system/settings.tsx:317
+#: src/features/system/settings.tsx:432
 #: src/features/user/display.tsx:193
 #: src/features/user/preferences.tsx:228
 msgid "Reset"
@@ -2223,18 +2341,18 @@ msgstr "Buyisela isibonisi?"
 msgid "Reset preferences?"
 msgstr "Setha kabusha okuthandayo?"
 
-#: src/features/system/settings.tsx:261
-#: src/features/system/settings.tsx:262
-#: src/features/system/settings.tsx:299
-#: src/features/system/settings.tsx:300
-#: src/features/system/settings.tsx:412
-#: src/features/system/settings.tsx:413
+#: src/features/system/settings.tsx:263
+#: src/features/system/settings.tsx:264
+#: src/features/system/settings.tsx:301
+#: src/features/system/settings.tsx:302
+#: src/features/system/settings.tsx:414
+#: src/features/system/settings.tsx:415
 msgid "Reset to default"
 msgstr "Setha kabusha kokuzenzakalelayo"
 
-#: src/features/system/settings.tsx:269
-#: src/features/system/settings.tsx:307
-#: src/features/system/settings.tsx:420
+#: src/features/system/settings.tsx:271
+#: src/features/system/settings.tsx:309
+#: src/features/system/settings.tsx:422
 msgid "Reset to default?"
 msgstr "Setha kabusha kokuzenzakalelayo?"
 
@@ -2304,7 +2422,7 @@ msgstr "UMgqibelo"
 
 #: ../../../lib/web/src/components/ui/secret-field.tsx:74
 #: src/features/system/documents.tsx:151
-#: src/features/system/settings.tsx:401
+#: src/features/system/settings.tsx:403
 #: src/features/user/connected-accounts.tsx:603
 #: src/features/user/notifications.tsx:521
 msgid "Save"
@@ -2452,7 +2570,7 @@ msgstr "I-Serif"
 msgid "Server error"
 msgstr "Iphutha leseva"
 
-#: src/features/user/replication.tsx:272
+#: src/features/user/replication.tsx:279
 msgid "Server peer ID"
 msgstr "I-ID yontanga yeseva"
 
@@ -2466,11 +2584,11 @@ msgstr "Imithetho yeseva"
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "Imithetho yeseva, imibandela nemigomo, nesaziso sobumfihlo okuboniswa kubasebenzisi bakho"
 
-#: src/features/system/settings.tsx:64
+#: src/features/system/settings.tsx:66
 msgid "Server started"
 msgstr "Iseva iqalile"
 
-#: src/features/system/settings.tsx:65
+#: src/features/system/settings.tsx:67
 msgid "Server version"
 msgstr "Inguqulo yeseva"
 
@@ -2507,8 +2625,8 @@ msgstr "Misa indawo yokuqala neyokuya"
 msgid "Set up"
 msgstr "Setha"
 
-#: src/features/system/settings.tsx:457
-#: src/features/system/settings.tsx:474
+#: src/features/system/settings.tsx:459
+#: src/features/system/settings.tsx:476
 msgid "Setting updated"
 msgstr "Isilungiselelo sibuyekeziwe"
 
@@ -2556,15 +2674,16 @@ msgstr "Okuncane"
 msgid "Spacious"
 msgstr "Ukukhula"
 
-#: src/features/system/status.tsx:54
+#: src/features/system/status.tsx:66
 msgid "Started"
 msgstr "Kuqalile"
 
 #: src/components/layout/data/sidebar-data.ts:69
 #: src/features/domains/index.tsx:1003
-#: src/features/system/replication.tsx:273
-#: src/features/system/status.tsx:25
-#: src/features/system/status.tsx:40
+#: src/features/system/replication.tsx:306
+#: src/features/system/status.tsx:36
+#: src/features/system/status.tsx:52
+#: src/features/system/status.tsx:177
 #: src/features/system/users.tsx:636
 #: src/features/user/connected-accounts.tsx:465
 msgid "Status"
@@ -2602,11 +2721,11 @@ msgstr "Kumisiwe"
 msgid "Suspension removed"
 msgstr "Ukumiswa kususiwe"
 
-#: src/features/system/replication.tsx:151
+#: src/features/system/replication.tsx:157
 msgid "Synced"
 msgstr "Kuvuselelwe"
 
-#: src/features/system/replication.tsx:153
+#: src/features/system/replication.tsx:159
 msgid "Syncing"
 msgstr "Kuyavuselelwa"
 
@@ -2618,8 +2737,8 @@ msgid "System"
 msgstr "Isistimu"
 
 #: src/components/layout/data/sidebar-data.ts:65
-#: src/features/system/settings.tsx:446
-#: src/features/system/settings.tsx:530
+#: src/features/system/settings.tsx:448
+#: src/features/system/settings.tsx:532
 msgid "System settings"
 msgstr "Izilungiselelo zesistimu"
 
@@ -2687,17 +2806,17 @@ msgstr "Izilungiselelo Zendikimba"
 msgid "Theme updated"
 msgstr "Indikimba ibuyekeziwe"
 
-#: src/features/system/settings.tsx:546
+#: src/features/system/settings.tsx:548
 #: src/features/user/login.tsx:125
 #: src/features/user/login.tsx:847
 msgid "Third-party login"
 msgstr "Ukungena kwenkampani yangaphandle"
 
-#: src/features/user/replication.tsx:257
+#: src/features/user/replication.tsx:264
 msgid "This account"
 msgstr "Le akhawunti"
 
-#: src/features/user/replication.tsx:317
+#: src/features/user/replication.tsx:327
 msgid "This account is on this server only"
 msgstr "Le akhawunti ikule seva kuphela"
 
@@ -2709,19 +2828,19 @@ msgstr "Lokhu yikopi yokugcina epheleleyo ongayibuyisela kule noma kwenye iseva 
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Lolu wushintsho lokuphepha ku-akhawunti yakho. Qinisekisa ukuthi nguwe ukuze uqhubeke."
 
-#: src/features/user/replication.tsx:215
+#: src/features/user/replication.tsx:221
 msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
 msgstr "Lokhu kususa unomphela idatha ye-akhawunti yakho kule seva. Qinisekisa ukuthi nguwe ukuze uqhubeke."
 
-#: src/features/system/replication.tsx:219
+#: src/features/system/replication.tsx:227
 msgid "This server"
 msgstr "Le seva"
 
-#: src/features/system/replication.tsx:264
+#: src/features/system/replication.tsx:297
 msgid "This server is not paired."
 msgstr "Le seva ayihlanganiswanga."
 
-#: src/features/system/replication.tsx:168
+#: src/features/system/replication.tsx:174
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "Le seva izoyeka ukubhanqana nalowo mngane. Iseva esusiwe igcina ikhophi yasendaweni yomsebenzisi ngamunye; umlawuli walapho kufanele ayisule ngezandla."
 
@@ -2768,14 +2887,14 @@ msgstr "Lokhu kuzosusa ukucelelwa kwe-{0} endleleni \"{1}\"."
 msgid "This will remove the route for path \"{0}\"."
 msgstr "Lokhu kuzosusa umzila wendlela \"{0}\"."
 
-#: src/features/system/settings.tsx:424
+#: src/features/system/settings.tsx:426
 msgid "This will reset \"{settingNameLabel}\" to its default (empty)."
 msgstr "Lokhu kuzosetha kabusha \"{settingNameLabel}\" kube okuzenzakalelayo (kungenalutho)."
 
 #. placeholder {0}: setting.default
-#: src/features/system/settings.tsx:271
-#: src/features/system/settings.tsx:309
-#: src/features/system/settings.tsx:423
+#: src/features/system/settings.tsx:273
+#: src/features/system/settings.tsx:311
+#: src/features/system/settings.tsx:425
 msgid "This will reset \"{settingNameLabel}\" to its default value ({0})."
 msgstr "Lokhu kuzosetha kabusha \"{settingNameLabel}\" kube inani lakho elizenzakalelayo ({0})."
 
@@ -2811,7 +2930,7 @@ msgstr "Izitembu zesikhathi"
 msgid "TLS Enabled"
 msgstr "I-TLS Inikwe Amandla"
 
-#: src/features/user/replication.tsx:318
+#: src/features/user/replication.tsx:328
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "Ukuze uyiphindaphinde kwenye iseva, bhalisela i-akhawunti lapho bese usebenzisa inketho yokuthi \"Phindaphinda i-akhawunti ekhona\"."
 
@@ -2934,8 +3053,10 @@ msgstr "I-United States"
 msgid "Units"
 msgstr "Amayunithi"
 
+#: src/features/system/status.tsx:129
+#: src/features/system/status.tsx:130
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:137
+#: src/features/user/replication.tsx:143
 msgid "Unknown"
 msgstr "Akwaziwa"
 
@@ -2964,12 +3085,16 @@ msgstr "Susa ukuxhuma kumhlinzeki?"
 msgid "Unlinked {0}"
 msgstr "Kususiwe ukuxhuma kwe-{0}"
 
+#: src/features/system/status.tsx:194
+msgid "Unreachable"
+msgstr "Ayifinyeleleki"
+
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:131
 #: src/features/domains/index.tsx:885
 msgid "Unverified"
 msgstr "Akuqinisekisiwe"
 
-#: src/features/system/status.tsx:69
+#: src/features/system/status.tsx:89
 msgid "Update"
 msgstr "Isibuyekezo"
 
@@ -2978,7 +3103,7 @@ msgstr "Isibuyekezo"
 msgid "URL to redirect to"
 msgstr "I-URL yokuqondisa kuyo"
 
-#: src/features/system/replication.tsx:265
+#: src/features/system/replication.tsx:298
 msgid "Use \"mochictl replica join {peer}\" on a newly installed server to pair with this server."
 msgstr "Sebenzisa \"mochictl replica join {peer}\" kwiseva entsha efakelweyo ukuze uhlanganiswe nale seva."
 
@@ -3008,7 +3133,7 @@ msgstr "Umsebenzisi"
 msgid "User created"
 msgstr "Umsebenzisi udaliwe"
 
-#: src/features/system/settings.tsx:553
+#: src/features/system/settings.tsx:555
 msgid "User defaults"
 msgstr "Okuzenzakalelayo komsebenzisi"
 
@@ -3025,11 +3150,12 @@ msgid "User updated"
 msgstr "Umsebenzisi ubuyekeziwe"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:264
+#: src/features/user/replication.tsx:271
 msgid "Username"
 msgstr "Igama lomsebenzisi"
 
 #: src/components/layout/data/sidebar-data.ts:67
+#: src/features/system/status.tsx:135
 #: src/features/system/users.tsx:544
 #: src/features/system/users.tsx:582
 #: src/features/system/users.tsx:595
@@ -3079,9 +3205,13 @@ msgstr "Qinisekisa i-DNS"
 msgid "Verify email address"
 msgstr "Qinisekisa ikheli le-imeyili"
 
-#: src/features/system/status.tsx:50
+#: src/features/system/status.tsx:62
 msgid "Version"
 msgstr "Inguqulo"
+
+#: src/features/system/status.tsx:139
+msgid "Via relay"
+msgstr "Nge-relay"
 
 #: ../../../lib/web/src/components/attachment-gallery.tsx:63
 msgid "Video thumbnail"
@@ -3119,11 +3249,11 @@ msgstr "ULwesithathu"
 msgid "Week starts on"
 msgstr "Iviki liqala ngo"
 
-#: src/features/system/settings.tsx:57
+#: src/features/system/settings.tsx:59
 msgid "X client ID"
 msgstr "I-ID yeklayenti le-X"
 
-#: src/features/system/settings.tsx:58
+#: src/features/system/settings.tsx:60
 msgid "X client secret"
 msgstr "Imfihlo yeklayenti le-X"
 
@@ -3148,7 +3278,7 @@ msgstr "I-akhawunti yakho izosuswa unomphela ngo-{purgeDate}. Uphumile. Ukuze uk
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "I-akhawunti yakho izohlelelwa ukususwa futhi uzophuma. Ungakhansela noma nini ngaphambi kosuku lokususwa ngokungena kabusha. Landa idatha yakho kuqala uma ufuna ukugcina ikhophi."
 
-#: src/features/user/replication.tsx:194
+#: src/features/user/replication.tsx:200
 msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
 msgstr "Idatha ye-akhawunti yakho kule seva izosuswa unomphela futhi uzophuma lapha. I-akhawunti yakho ihlala kwezinye iziseva zakho, futhi ungayingeza futhi le seva ngokuhamba kwesikhathi."
 

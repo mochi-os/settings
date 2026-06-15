@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { Activity, Download, Loader2 } from 'lucide-react'
 import { Trans, useLingui } from '@lingui/react/macro'
 import {
@@ -8,12 +9,22 @@ import {
   ListSkeleton,
   PageHeader,
   Main,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
   toast,
   getErrorMessage,
+  naturalCompare,
+  useFormat,
   usePageTitle,
   formatSystemTimestamp,
 } from '@mochi/web'
 import { useSystemSettingsData } from '@/hooks/use-system-settings'
+import { useSystemPeers, type PeerEntry } from '@/hooks/use-system-peers'
+import { PeerIdentity, peerDisplayName, hyphenateFingerprint } from '@/components/peer-identity'
 import {
   useInstallSystemUpdate,
   useSystemUpdate,
@@ -32,6 +43,7 @@ export function SystemStatus() {
   const serverStarted =
     settings.find((s) => s.name === 'server_started')?.value ?? ''
   const peerId = data?.server?.id ?? ''
+  const serverFingerprint = data?.server?.fingerprint ?? ''
 
   const showUpdate = update && (update.available || update.pending)
 
@@ -47,18 +59,26 @@ export function SystemStatus() {
         ) : (
           <dl className='grid gap-3 text-sm'>
             <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-              <dt className='text-muted-foreground w-28 shrink-0'><Trans>Version</Trans></dt>
+              <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'><Trans>Version</Trans></dt>
               <dd className='font-medium'>{serverVersion}</dd>
             </div>
             <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-              <dt className='text-muted-foreground w-28 shrink-0'><Trans>Started</Trans></dt>
+              <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'><Trans>Started</Trans></dt>
               <dd className='font-mono text-xs'>
                 {formatSystemTimestamp(parseInt(serverStarted, 10), serverStarted)}
               </dd>
             </div>
+            {serverFingerprint && (
+              <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
+                <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'><Trans>Fingerprint</Trans></dt>
+                <dd className='min-w-0 flex-1'>
+                  <DataChip value={hyphenateFingerprint(serverFingerprint)} truncate='middle' />
+                </dd>
+              </div>
+            )}
             {peerId && (
               <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-                <dt className='text-muted-foreground w-28 shrink-0'><Trans>Peer ID</Trans></dt>
+                <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'><Trans>Peer ID</Trans></dt>
                 <dd className='min-w-0 flex-1'>
                   <DataChip value={peerId} truncate='none' />
                 </dd>
@@ -66,7 +86,7 @@ export function SystemStatus() {
             )}
             {showUpdate && (
               <div className='flex flex-col gap-2 sm:flex-row sm:gap-4'>
-                <dt className='text-muted-foreground w-28 shrink-0'><Trans>Update</Trans></dt>
+                <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'><Trans>Update</Trans></dt>
                 <dd className='flex flex-col gap-2'>
                   <UpdateAction info={update} />
                 </dd>
@@ -74,7 +94,124 @@ export function SystemStatus() {
             )}
           </dl>
         )}
+        <NetworkStatus />
       </Main>
+    </>
+  )
+}
+
+function StatusRow({ label, children }: { label: ReactNode; children: ReactNode }) {
+  return (
+    <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
+      <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'>{label}</dt>
+      <dd className='font-medium'>{children}</dd>
+    </div>
+  )
+}
+
+function NetworkStatus() {
+  const { t } = useLingui()
+  const { formatNumber } = useFormat()
+  const { data } = useSystemPeers()
+
+  if (!data) return null
+
+  const network = data.network
+  const counts = data.counts
+  const peers = [...data.peers].sort((a: PeerEntry, b: PeerEntry) =>
+    naturalCompare(peerDisplayName(a), peerDisplayName(b)),
+  )
+  const connected = peers.filter((p) => p.connected).length
+  const queued = peers.reduce((sum, p) => sum + p.queued, 0)
+  const reachability = {
+    public: t`Public`,
+    private: t`Private`,
+    unknown: t`Unknown`,
+  }[network.reachability] ?? t`Unknown`
+
+  return (
+    <>
+      <dl className='mt-3 grid gap-3 text-sm'>
+        <StatusRow label={<Trans>Users</Trans>}>{formatNumber(counts.users)}</StatusRow>
+        <StatusRow label={<Trans>Entities</Trans>}>{formatNumber(counts.entities)}</StatusRow>
+        <StatusRow label={<Trans>Reachability</Trans>}>
+          {reachability}
+          {network.relay ? ` · ${t`Via relay`}` : ''}
+        </StatusRow>
+        {network.last > 0 && (
+          <StatusRow label={<Trans>Last broadcast</Trans>}>
+            <span className='font-mono text-xs font-normal'>
+              {formatSystemTimestamp(network.last, String(network.last))}
+            </span>
+          </StatusRow>
+        )}
+        {network.holepunch && network.holepunch.success + network.holepunch.failure > 0 && (
+          <StatusRow label={<Trans>Hole punch</Trans>}>
+            <Trans>
+              {formatNumber(network.holepunch.success)} succeeded · {formatNumber(network.holepunch.failure)} failed
+            </Trans>
+          </StatusRow>
+        )}
+        {network.relaying?.active && (
+          <StatusRow label={<Trans>Relay service</Trans>}>
+            <Trans>
+              {formatNumber(network.relaying.reservations.held)} / {formatNumber(network.relaying.reservations.maximum)} reservations · {formatNumber(network.relaying.circuits)} circuits · {formatNumber(network.relaying.rejected)} refused
+            </Trans>
+          </StatusRow>
+        )}
+        <StatusRow label={<Trans>Messages awaiting routing</Trans>}>{formatNumber(network.unresolved)}</StatusRow>
+        <StatusRow label={<Trans>Queued messages</Trans>}>{formatNumber(queued)}</StatusRow>
+        <StatusRow label={<Trans>Queued broadcast messages</Trans>}>{formatNumber(network.queued)}</StatusRow>
+      </dl>
+      {peers.length > 0 && (
+        <section className='mt-8 space-y-2'>
+          <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'><Trans>Peers</Trans></h2>
+          <p className='text-muted-foreground text-sm'>
+            <Trans>Known</Trans> {formatNumber(peers.length)} · <Trans>Connected</Trans>{' '}
+            {formatNumber(connected)} · <Trans>Broadcast mesh</Trans> {formatNumber(network.mesh)}
+          </p>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className='h-auto w-[26%] py-2 align-top whitespace-normal'><Trans>Peer</Trans></TableHead>
+                <TableHead className='h-auto w-[10%] py-2 align-top whitespace-normal'><Trans>Status</Trans></TableHead>
+                <TableHead className='h-auto w-[26%] py-2 align-top whitespace-normal'><Trans>Address</Trans></TableHead>
+                <TableHead className='h-auto w-[14%] py-2 align-top whitespace-normal'><Trans>Last seen</Trans></TableHead>
+                <TableHead className='h-auto w-[10%] py-2 text-end align-top whitespace-normal'><Trans>Queued messages</Trans></TableHead>
+                <TableHead className='h-auto w-[14%] ps-8 py-2 align-top whitespace-normal'><Trans>Oldest queued message</Trans></TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {peers.map((p) => (
+                <TableRow key={p.peer}>
+                  <TableCell className='align-top whitespace-normal'>
+                    <PeerIdentity peer={p.peer} name={p.name} fingerprint={p.fingerprint} />
+                  </TableCell>
+                  <TableCell className='text-muted-foreground align-top text-sm'>
+                    {p.connected ? (
+                      <Trans>Connected</Trans>
+                    ) : p.unreachable ? (
+                      <Trans>Unreachable</Trans>
+                    ) : (
+                      <Trans>Disconnected</Trans>
+                    )}
+                  </TableCell>
+                  <TableCell className='align-top font-mono text-xs break-all whitespace-normal'>{p.address}</TableCell>
+                  <TableCell className='align-top font-mono text-xs'>
+                    {p.seen > 0 ? formatSystemTimestamp(p.seen, String(p.seen)) : ''}
+                  </TableCell>
+                  <TableCell className='align-top text-end text-sm'>
+                    {formatNumber(p.queued)}
+                  </TableCell>
+                  <TableCell className='ps-8 align-top font-mono text-xs'>
+                    {p.queued > 0 ? formatSystemTimestamp(p.oldest, String(p.oldest)) : '-'}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </section>
+      )}
     </>
   )
 }

@@ -5,6 +5,7 @@ import { i18n } from '@lingui/core'
 import {
   Bell,
   Brain,
+  Check,
   CheckCircle2,
   Clock,
   Link,
@@ -600,7 +601,7 @@ function AccountSettingsDialog({
           <Button variant='outline' onClick={() => onOpenChange(false)}>
             <Trans>Cancel</Trans>
           </Button>
-          <Button onClick={() => void handleSave()}><Trans>Save</Trans></Button>
+          <Button onClick={() => void handleSave()}><Check className='size-4' /><Trans>Save</Trans></Button>
         </ResponsiveDialogFooter>
       </ResponsiveDialogContent>
     </ResponsiveDialog>

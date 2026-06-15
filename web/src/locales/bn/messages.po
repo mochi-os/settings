@@ -21,7 +21,7 @@ msgstr ". আপনি পাথগুলি পরিচালনা করত�
 msgid "(current)"
 msgstr "(বর্তমান)"
 
-#: src/features/system/settings.tsx:93
+#: src/features/system/settings.tsx:95
 msgid "(empty)"
 msgstr "(খালি)"
 
@@ -36,6 +36,20 @@ msgstr "{0, plural, one {1টি সেশন প্রত্যাহার ক
 #: src/features/user/display.tsx:239
 msgid "{0} (development)"
 msgstr "{0} (ডেভেলপমেন্ট)"
+
+#. placeholder {0}: formatNumber(network.relaying.reservations.held)
+#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
+#. placeholder {2}: formatNumber(network.relaying.circuits)
+#. placeholder {3}: formatNumber(network.relaying.rejected)
+#: src/features/system/status.tsx:157
+msgid "{0} / {1} reservations · {2} circuits · {3} refused"
+msgstr "{0} / {1} সংরক্ষণ · {2} সার্কিট · {3} প্রত্যাখ্যাত"
+
+#. placeholder {0}: formatNumber(network.holepunch.success)
+#. placeholder {1}: formatNumber(network.holepunch.failure)
+#: src/features/system/status.tsx:150
+msgid "{0} succeeded · {1} failed"
+msgstr "{0} সফল · {1} ব্যর্থ"
 
 #: src/features/user/login.tsx:674
 msgid "{count} remaining"
@@ -198,7 +212,7 @@ msgid "Add view"
 msgstr "ভিউ যোগ করুন"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:326
+#: src/features/user/replication.tsx:336
 msgid "Added"
 msgstr "যোগ করা হয়েছে"
 
@@ -206,6 +220,18 @@ msgstr "যোগ করা হয়েছে"
 #: src/features/user/interests.tsx:192
 msgid "Added \"{0}\""
 msgstr "\"{0}\" যোগ করা হয়েছে"
+
+#: src/features/system/status.tsx:178
+msgid "Address"
+msgstr "ঠিকানা"
+
+#: src/features/system/replication.tsx:257
+msgid "Address copied"
+msgstr "ঠিকানা কপি করা হয়েছে"
+
+#: src/features/system/replication.tsx:248
+msgid "Addresses"
+msgstr "ঠিকানাসমূহ"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:62
 msgid "Adjust the appearance and layout to suit your preferences."
@@ -225,7 +251,7 @@ msgstr "AI"
 msgid "All"
 msgstr "সব"
 
-#: src/features/system/settings.tsx:66
+#: src/features/system/settings.tsx:68
 msgid "Allow new signups"
 msgstr "নতুন সাইনআপ অনুমতি দিন"
 
@@ -238,7 +264,7 @@ msgid "Allow users to install apps"
 msgstr "ব্যবহারকারীদের অ্যাপ ইনস্টল করতে অনুমতি দিন"
 
 #: src/components/method-state-control.tsx:28
-#: src/features/system/settings.tsx:104
+#: src/features/system/settings.tsx:106
 msgid "Allowed"
 msgstr "অনুমোদিত"
 
@@ -250,11 +276,15 @@ msgstr "একটি ত্রুটি ঘটেছে"
 msgid "An unexpected error occurred"
 msgstr "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে"
 
-#: src/features/user/replication.tsx:291
+#: src/features/system/settings.tsx:48
+msgid "Announce hostname and domains to other servers"
+msgstr "অন্যান্য সার্ভারে হোস্টনেম ও ডোমেইন ঘোষণা করুন"
+
+#: src/features/user/replication.tsx:301
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "অন্য একটি সার্ভার আপনার অ্যাকাউন্টের একটি অনুলিপি হোস্ট করতে চাইছে। অনুলিপি পাঠাতে অনুমোদন দিন।"
 
-#: src/features/system/replication.tsx:241
+#: src/features/system/replication.tsx:274
 msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
 msgstr "অন্য একটি সার্ভার এই সার্ভারের সঙ্গে জোড়ার অনুরোধ করছে। সম্পূর্ণ প্রতিরূপ পিয়ার হিসেবে নথিভুক্ত করতে অনুমোদন করুন।"
 
@@ -267,23 +297,23 @@ msgstr "অ্যাপ"
 msgid "Appearance"
 msgstr "চেহারা"
 
-#: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:70
+#: src/features/system/replication.tsx:79
+#: src/features/user/replication.tsx:71
 msgid "Approval failed"
 msgstr "অনুমোদন ব্যর্থ হয়েছে"
 
-#: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:93
+#: src/features/system/replication.tsx:99
+#: src/features/user/replication.tsx:97
 msgid "Approve"
 msgstr "অনুমোদন করুন"
 
-#: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:103
+#: src/features/system/replication.tsx:119
+#: src/features/user/replication.tsx:107
 msgid "Approve request"
 msgstr "অনুরোধ অনুমোদন করুন"
 
-#: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:104
+#: src/features/system/replication.tsx:120
+#: src/features/user/replication.tsx:108
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "অনুমোদন করলে ব্যক্তিগত কী সেই সার্ভারে কপি হয়ে যায়। চালিয়ে যেতে এটি যে আপনি তা যাচাই করুন।"
 
@@ -339,6 +369,10 @@ msgstr "হোমে ফিরে যান"
 msgid "Boost interest"
 msgstr "আগ্রহ বৃদ্ধি করুন"
 
+#: src/features/system/status.tsx:171
+msgid "Broadcast mesh"
+msgstr "সম্প্রচার মেশ"
+
 #: src/features/user/notifications.tsx:216
 msgid "Browser notifications"
 msgstr "ব্রাউজার নোটিফিকেশন"
@@ -355,10 +389,10 @@ msgstr "ব্রাউজার নোটিফিকেশন"
 #: src/features/domains/index.tsx:330
 #: src/features/domains/index.tsx:509
 #: src/features/domains/index.tsx:655
-#: src/features/system/replication.tsx:175
-#: src/features/system/settings.tsx:275
-#: src/features/system/settings.tsx:313
-#: src/features/system/settings.tsx:428
+#: src/features/system/replication.tsx:181
+#: src/features/system/settings.tsx:277
+#: src/features/system/settings.tsx:315
+#: src/features/system/settings.tsx:430
 #: src/features/system/users.tsx:150
 #: src/features/system/users.tsx:235
 #: src/features/user/account.tsx:118
@@ -369,7 +403,7 @@ msgstr "ব্রাউজার নোটিফিকেশন"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:201
+#: src/features/user/replication.tsx:207
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "বাতিল করুন"
@@ -406,7 +440,7 @@ msgstr "বাম-থেকে-ডান বা ডান-থেকে-বাম
 msgid "Choose between system preference, light mode, or dark mode"
 msgstr "সিস্টেম পছন্দ, লাইট মোড, বা ডার্ক মোডের মধ্যে বেছে নিন"
 
-#: src/features/system/settings.tsx:376
+#: src/features/system/settings.tsx:378
 msgid "Choose file"
 msgstr "ফাইল চয়ন করুন"
 
@@ -414,9 +448,10 @@ msgstr "ফাইল চয়ন করুন"
 msgid "Choose language"
 msgstr "ভাষা বেছে নিন"
 
-#: ../../../lib/web/src/components/colour-picker.tsx:304
-#: src/features/system/settings.tsx:358
-#: src/features/system/settings.tsx:359
+#: ../../../lib/web/src/components/colour-picker.tsx:268
+#: ../../../lib/web/src/components/colour-picker.tsx:349
+#: src/features/system/settings.tsx:360
+#: src/features/system/settings.tsx:361
 msgid "Clear"
 msgstr "পরিষ্কার করুন"
 
@@ -487,7 +522,7 @@ msgstr "শীঘ্রই আসছে!"
 msgid "Compact"
 msgstr "কম্প্যাক্ট"
 
-#: src/features/system/settings.tsx:335
+#: src/features/system/settings.tsx:337
 msgid "Configured"
 msgstr "কনফিগার করা হয়েছে"
 
@@ -496,11 +531,13 @@ msgstr "কনফিগার করা হয়েছে"
 msgid "Confirm"
 msgstr "নিশ্চিত করুন"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:220
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "এটি যে আপনি তা নিশ্চিত করুন"
 
+#: src/features/system/status.tsx:170
+#: src/features/system/status.tsx:192
 #: src/features/user/connected-accounts.tsx:219
 msgid "Connected"
 msgstr "সংযুক্ত"
@@ -536,11 +573,15 @@ msgstr "{label} দিয়ে চালিয়ে যান"
 msgid "Copy"
 msgstr "কপি করুন"
 
+#: src/features/system/replication.tsx:262
+msgid "Copy address"
+msgstr "ঠিকানা কপি করুন"
+
 #: src/features/user/login.tsx:664
 msgid "Copy all"
 msgstr "সব কপি করুন"
 
-#: src/features/system/replication.tsx:232
+#: src/features/system/replication.tsx:243
 msgid "Copy peer id"
 msgstr "পিয়ার ID কপি করুন"
 
@@ -552,12 +593,12 @@ msgstr "এখনই আপনার টোকেন কপি করুন। �
 msgid "Could not close your account"
 msgstr "আপনার অ্যাকাউন্ট বন্ধ করা যায়নি"
 
-#: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:77
+#: src/features/system/replication.tsx:108
+#: src/features/user/replication.tsx:78
 msgid "Could not deny request"
 msgstr "অনুরোধ অস্বীকার করা যায়নি"
 
-#: src/features/user/replication.tsx:162
+#: src/features/user/replication.tsx:168
 msgid "Could not forget host"
 msgstr "হোস্ট ভুলে যাওয়া যায়নি"
 
@@ -569,11 +610,11 @@ msgstr "অ্যাকাউন্ট লিঙ্ক করা যায়ন
 msgid "Could not load this document. Please try again later."
 msgstr "এই নথিটি লোড করা যায়নি। দয়া করে পরে আবার চেষ্টা করুন।"
 
-#: src/features/system/replication.tsx:180
+#: src/features/system/replication.tsx:186
 msgid "Could not remove pair member"
 msgstr "জোড়া সদস্যকে অপসারণ করা যায়নি"
 
-#: src/features/user/replication.tsx:224
+#: src/features/user/replication.tsx:230
 msgid "Could not remove your account from this server"
 msgstr "এই সার্ভার থেকে আপনার অ্যাকাউন্ট সরানো যায়নি"
 
@@ -621,6 +662,10 @@ msgstr "ব্যবহারকারী তৈরি করুন"
 #: src/features/user/tokens.tsx:269
 msgid "Created"
 msgstr "তৈরি হয়েছে"
+
+#: ../../../lib/web/src/components/colour-picker.tsx:259
+msgid "Custom"
+msgstr "কাস্টম"
 
 #: src/features/system/documents.tsx:123
 msgid "Customised"
@@ -763,8 +808,8 @@ msgstr "মুছে ফেলা হচ্ছে..."
 msgid "Density"
 msgstr "ঘনত্ব"
 
-#: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:97
+#: src/features/system/replication.tsx:113
+#: src/features/user/replication.tsx:101
 msgid "Deny"
 msgstr "অস্বীকার করুন"
 
@@ -811,9 +856,13 @@ msgstr "অথেনটিকেটর নিষ্ক্রিয় করব�
 
 #: src/components/method-state-control.tsx:28
 #: src/features/domains/index.tsx:696
-#: src/features/system/settings.tsx:102
+#: src/features/system/settings.tsx:104
 msgid "Disabled"
 msgstr "নিষ্ক্রিয়"
+
+#: src/features/system/status.tsx:196
+msgid "Disconnected"
+msgstr "সংযোগ বিচ্ছিন্ন"
 
 #: ../../../lib/web/src/components/restore-banner.tsx:73
 msgid "Dismiss"
@@ -891,16 +940,16 @@ msgstr "সম্পন্ন"
 msgid "Download"
 msgstr "ডাউনলোড"
 
-#: src/features/system/status.tsx:127
+#: src/features/system/status.tsx:264
 msgid "Download from packages.mochi-os.org"
 msgstr "packages.mochi-os.org থেকে ডাউনলোড করুন"
 
-#: src/features/system/status.tsx:115
-#: src/features/system/status.tsx:121
+#: src/features/system/status.tsx:252
+#: src/features/system/status.tsx:258
 msgid "Download installer"
 msgstr "ইনস্টলার ডাউনলোড করুন"
 
-#: src/features/system/status.tsx:149
+#: src/features/system/status.tsx:286
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Mochi {latest} ডাউনলোড করুন এবং সার্ভার পুনরায় চালু করুন"
 
@@ -977,6 +1026,10 @@ msgstr "আপনার ইমেল থেকে পাওয়া কোড�
 msgid "Enter your authenticator code"
 msgstr "আপনার প্রমাণীকরণকারী কোড লিখুন"
 
+#: src/features/system/status.tsx:136
+msgid "Entities"
+msgstr "সত্তাসমূহ"
+
 #: src/features/domains/index.tsx:255
 #: src/features/domains/index.tsx:424
 msgid "Entity"
@@ -1002,11 +1055,11 @@ msgstr "রপ্তানি ব্যর্থ হয়েছে"
 msgid "Extra large"
 msgstr "অতিরিক্ত বড়"
 
-#: src/features/system/settings.tsx:55
+#: src/features/system/settings.tsx:57
 msgid "Facebook App ID"
 msgstr "Facebook অ্যাপ আইডি"
 
-#: src/features/system/settings.tsx:56
+#: src/features/system/settings.tsx:58
 msgid "Facebook App secret"
 msgstr "Facebook অ্যাপ সিক্রেট"
 
@@ -1019,7 +1072,8 @@ msgstr "অ্যাকাউন্ট যোগ করতে ব্যর্থ
 msgid "Failed to add interest"
 msgstr "আগ্রহ যোগ করতে ব্যর্থ"
 
-#: src/features/system/replication.tsx:228
+#: src/features/system/replication.tsx:239
+#: src/features/system/replication.tsx:258
 msgid "Failed to copy"
 msgstr "কপি করতে ব্যর্থ"
 
@@ -1079,7 +1133,7 @@ msgstr "অথেনটিকেটর নিষ্ক্রিয় করত�
 msgid "Failed to generate codes"
 msgstr "কোড জেনারেট করতে ব্যর্থ"
 
-#: src/features/system/status.tsx:140
+#: src/features/system/status.tsx:277
 msgid "Failed to install update"
 msgstr "আপডেট ইনস্টল করতে ব্যর্থ"
 
@@ -1189,8 +1243,8 @@ msgstr "গোপনীয়তা আপডেট করতে ব্যর্
 msgid "Failed to update route"
 msgstr "রুট আপডেট করতে ব্যর্থ"
 
-#: src/features/system/settings.tsx:461
-#: src/features/system/settings.tsx:476
+#: src/features/system/settings.tsx:463
+#: src/features/system/settings.tsx:478
 msgid "Failed to update setting"
 msgstr "সেটিং আপডেট করতে ব্যর্থ"
 
@@ -1218,6 +1272,7 @@ msgstr "কোড যাচাই করতে ব্যর্থ"
 msgid "Failed to verify domain"
 msgstr "ডোমেইন যাচাই করতে ব্যর্থ"
 
+#: src/features/system/status.tsx:73
 #: src/features/user/account.tsx:137
 msgid "Fingerprint"
 msgstr "ফিঙ্গারপ্রিন্ট"
@@ -1226,11 +1281,11 @@ msgstr "ফিঙ্গারপ্রিন্ট"
 msgid "Finish moving your account"
 msgstr "আপনার অ্যাকাউন্ট স্থানান্তর সম্পন্ন করুন"
 
-#: src/features/system/settings.tsx:59
+#: src/features/system/settings.tsx:61
 msgid "Firebase google-services.json file"
 msgstr "Firebase google-services.json ফাইল"
 
-#: src/features/system/settings.tsx:60
+#: src/features/system/settings.tsx:62
 msgid "Firebase private key file"
 msgstr "Firebase ব্যক্তিগত কী ফাইল"
 
@@ -1246,11 +1301,11 @@ msgstr "ফন্ট"
 msgid "Font size"
 msgstr "ফন্টের আকার"
 
-#: src/features/user/replication.tsx:149
+#: src/features/user/replication.tsx:155
 msgid "Forget this unreachable host"
 msgstr "এই অগম্য হোস্টটি ভুলে যান"
 
-#: src/features/user/replication.tsx:154
+#: src/features/user/replication.tsx:160
 msgid "Forget this unreachable host?"
 msgstr "এই অগম্য হোস্টটি ভুলে যাবেন?"
 
@@ -1259,8 +1314,8 @@ msgid "Friday"
 msgstr "শুক্রবার"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
-#: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:296
+#: src/features/system/replication.tsx:281
+#: src/features/user/replication.tsx:306
 msgid "From"
 msgstr "থেকে"
 
@@ -1288,11 +1343,11 @@ msgstr "পাসফ্রেজ তৈরি করুন"
 msgid "Generate?"
 msgstr "জেনারেট করবেন?"
 
-#: src/features/system/settings.tsx:50
+#: src/features/system/settings.tsx:52
 msgid "GitHub client ID"
 msgstr "GitHub ক্লায়েন্ট আইডি"
 
-#: src/features/system/settings.tsx:51
+#: src/features/system/settings.tsx:53
 msgid "GitHub client secret"
 msgstr "GitHub ক্লায়েন্ট সিক্রেট"
 
@@ -1326,11 +1381,11 @@ msgstr "{pageNumber} নম্বর পৃষ্ঠায় যান"
 msgid "Go to previous page"
 msgstr "পূর্ববর্তী পেজে যান"
 
-#: src/features/system/settings.tsx:48
+#: src/features/system/settings.tsx:50
 msgid "Google client ID"
 msgstr "Google ক্লায়েন্ট আইডি"
 
-#: src/features/system/settings.tsx:49
+#: src/features/system/settings.tsx:51
 msgid "Google client secret"
 msgstr "Google ক্লায়েন্ট সিক্রেট"
 
@@ -1351,6 +1406,10 @@ msgstr "লুকান"
 msgid "Higher priority routes are matched first"
 msgstr "উচ্চ অগ্রাধিকার রুটগুলো প্রথমে মিলানো হয়"
 
+#: src/features/system/status.tsx:149
+msgid "Hole punch"
+msgstr "হোল পাঞ্চ"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx:82
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:142
 #: ../../../lib/web/src/components/layout/top-bar.tsx:62
@@ -1358,9 +1417,13 @@ msgstr "উচ্চ অগ্রাধিকার রুটগুলো প্
 msgid "Home"
 msgstr "হোম"
 
-#: src/features/user/replication.tsx:161
+#: src/features/user/replication.tsx:167
 msgid "Host forgotten"
 msgstr "হোস্ট ভুলে যাওয়া হয়েছে"
+
+#: src/features/system/settings.tsx:47
+msgid "Hostname announced to other servers"
+msgstr "অন্যান্য সার্ভারে ঘোষিত হোস্টনেম"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1387,12 +1450,12 @@ msgstr "ইম্পেরিয়াল"
 msgid "Inset"
 msgstr "ইনসেট"
 
-#: src/features/system/status.tsx:152
+#: src/features/system/status.tsx:289
 msgid "Install update"
 msgstr "আপডেট ইনস্টল করুন"
 
 #. placeholder {0}: info.pending
-#: src/features/system/status.tsx:87
+#: src/features/system/status.tsx:224
 msgid "Installing {0}…"
 msgstr "{0} ইনস্টল করা হচ্ছে…"
 
@@ -1417,22 +1480,26 @@ msgstr "অবৈধ যাচাইকরণ কোড"
 msgid "IP Address"
 msgstr "IP ঠিকানা"
 
-#: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:129
+#: src/features/system/replication.tsx:151
+#: src/features/user/replication.tsx:134
 msgid "Irreparable"
 msgstr "মেরামত অযোগ্য"
 
-#: src/features/user/replication.tsx:155
+#: src/features/user/replication.tsx:161
 msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
 msgstr "এটি আপনার রেপ্লিকা সেট থেকে সরিয়ে দেওয়া হবে এবং পুনরায় সংযুক্ত হলে এর কপি মুছে ফেলতে বলা হবে। একটি অ্যাক্সেসযোগ্য সার্ভার সরাতে, সেখানে সাইন ইন করুন এবং \"এই সার্ভার থেকে আমার অ্যাকাউন্ট সরান\" ব্যবহার করুন। চালিয়ে যেতে আপনি যে আপনিই তা যাচাই করুন।"
 
-#: src/features/system/replication.tsx:75
+#: src/features/system/replication.tsx:77
 msgid "Join request approved"
 msgstr "যোগদানের অনুরোধ অনুমোদিত"
 
-#: src/features/system/replication.tsx:102
+#: src/features/system/replication.tsx:107
 msgid "Join request denied"
 msgstr "যোগদানের অনুরোধ প্রত্যাখ্যাত"
+
+#: src/features/system/status.tsx:170
+msgid "Known"
+msgstr "পরিচিত"
 
 #: src/features/user/notifications.tsx:441
 msgid "Label is required"
@@ -1456,6 +1523,10 @@ msgstr "সর্বশেষ অ্যাক্সেস"
 msgid "Last active"
 msgstr "সর্বশেষ সক্রিয়"
 
+#: src/features/system/status.tsx:142
+msgid "Last broadcast"
+msgstr "সর্বশেষ সম্প্রচার"
+
 #. placeholder {0}: formatSystemTimestamp(document.updated)
 #: src/features/system/documents.tsx:129
 msgid "Last edited {0}"
@@ -1464,6 +1535,10 @@ msgstr "সর্বশেষ সম্পাদিত {0}"
 #: src/features/system/users.tsx:643
 msgid "Last login"
 msgstr "সর্বশেষ লগইন"
+
+#: src/features/system/status.tsx:179
+msgid "Last seen"
+msgstr "সর্বশেষ দেখা"
 
 #: src/features/user/login.tsx:417
 #: src/features/user/login.tsx:867
@@ -1534,7 +1609,7 @@ msgstr "লগ আউট হচ্ছে…"
 
 #: src/components/layout/data/sidebar-data.ts:30
 #: src/components/layout/data/sidebar-data.ts:51
-#: src/features/system/settings.tsx:539
+#: src/features/system/settings.tsx:541
 #: src/features/user/login.tsx:892
 #: src/features/user/login.tsx:939
 msgid "Login"
@@ -1593,6 +1668,10 @@ msgstr "মাঝারি"
 msgid "Menu"
 msgstr "মেনু"
 
+#: src/features/system/status.tsx:162
+msgid "Messages awaiting routing"
+msgstr "রাউটিংয়ের অপেক্ষায় বার্তা"
+
 #: src/features/domains/index.tsx:244
 #: src/features/domains/index.tsx:413
 #: src/features/domains/index.tsx:1000
@@ -1603,20 +1682,20 @@ msgstr "পদ্ধতি"
 msgid "Metric"
 msgstr "মেট্রিক"
 
-#: src/features/system/settings.tsx:52
+#: src/features/system/settings.tsx:54
 msgid "Microsoft client ID"
 msgstr "Microsoft ক্লায়েন্ট আইডি"
 
-#: src/features/system/settings.tsx:53
+#: src/features/system/settings.tsx:55
 msgid "Microsoft client secret"
 msgstr "Microsoft ক্লায়েন্ট সিক্রেট"
 
-#: src/features/system/settings.tsx:54
+#: src/features/system/settings.tsx:56
 msgid "Microsoft tenant"
 msgstr "Microsoft টেন্যান্ট"
 
 #. placeholder {0}: info.latest
-#: src/features/system/status.tsx:95
+#: src/features/system/status.tsx:232
 msgid "Mochi {0} is available"
 msgstr "Mochi {0} উপলব্ধ"
 
@@ -1637,7 +1716,7 @@ msgstr "সোমবার"
 msgid "My application"
 msgstr "আমার অ্যাপ্লিকেশন"
 
-#: src/features/user/replication.tsx:308
+#: src/features/user/replication.tsx:318
 msgid "My hosts"
 msgstr "আমার হোস্ট"
 
@@ -1827,10 +1906,14 @@ msgstr "সংখ্যার ফরম্যাট"
 
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
-#: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:132
+#: src/features/system/replication.tsx:154
+#: src/features/user/replication.tsx:137
 msgid "Offline {0}"
 msgstr "অফলাইন {0}"
+
+#: src/features/system/status.tsx:181
+msgid "Oldest queued message"
+msgstr "সারিতে থাকা সবচেয়ে পুরনো বার্তা"
 
 #: ../../../lib/web/src/features/errors/not-found-error.tsx:13
 msgid "Oops! Page Not Found!"
@@ -1840,6 +1923,10 @@ msgstr "ওহ! পৃষ্ঠাটি পাওয়া যায়নি!"
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:151
 msgid "Open account actions"
 msgstr "অ্যাকাউন্ট অ্যাকশন খুলুন"
+
+#: ../../../lib/web/src/components/layout/nav-group.tsx:134
+msgid "Open actions"
+msgstr "অ্যাকশন খুলুন"
 
 #: ../../../lib/web/src/components/layout/top-bar.tsx:57
 msgid "Open navigation"
@@ -1858,19 +1945,19 @@ msgstr "থিম সেটিংস খুলুন"
 msgid "Open user actions"
 msgstr "ব্যবহারকারী অ্যাকশন খুলুন"
 
-#: src/features/system/settings.tsx:560
+#: src/features/system/settings.tsx:562
 msgid "Operator"
 msgstr "অপারেটর"
 
-#: src/features/system/settings.tsx:62
+#: src/features/system/settings.tsx:64
 msgid "Operator email"
 msgstr "অপারেটরের ইমেল"
 
-#: src/features/system/settings.tsx:63
+#: src/features/system/settings.tsx:65
 msgid "Operator jurisdiction"
 msgstr "অপারেটরের এখতিয়ার"
 
-#: src/features/system/settings.tsx:61
+#: src/features/system/settings.tsx:63
 msgid "Operator name"
 msgstr "অপারেটরের নাম"
 
@@ -1878,11 +1965,11 @@ msgstr "অপারেটরের নাম"
 msgid "Other"
 msgstr "অন্যান্য"
 
-#: src/features/user/replication.tsx:311
+#: src/features/user/replication.tsx:321
 msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
 msgstr "অন্যান্য সার্ভার যেগুলিতেও আপনার অ্যাকাউন্টের একটি কপি রয়েছে। একটি সরাতে, সেই সার্ভারে সাইন ইন করুন এবং \"এই সার্ভার থেকে আমার অ্যাকাউন্ট সরান\" ব্যবহার করুন।"
 
-#: src/features/system/settings.tsx:575
+#: src/features/system/settings.tsx:577
 msgid "Other settings"
 msgstr "অন্যান্য সেটিংস"
 
@@ -1890,11 +1977,11 @@ msgstr "অন্যান্য সেটিংস"
 msgid "Owner"
 msgstr "মালিক"
 
-#: src/features/system/replication.tsx:179
+#: src/features/system/replication.tsx:185
 msgid "Pair member removed"
 msgstr "জোড়া সদস্য অপসারণ করা হয়েছে"
 
-#: src/features/system/replication.tsx:260
+#: src/features/system/replication.tsx:293
 msgid "Pair members"
 msgstr "জোড়া সদস্য"
 
@@ -1949,28 +2036,34 @@ msgstr "পাথ"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "পাথ অনুমোদিত নয়। আপনি শুধুমাত্র {0}-এর অধীনে রুট যোগ করতে পারেন"
 
-#: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:325
+#: src/features/system/replication.tsx:305
+#: src/features/system/status.tsx:176
+#: src/features/user/replication.tsx:335
 msgid "Peer"
 msgstr "পিয়ার"
 
-#: src/features/system/status.tsx:61
+#: src/features/system/status.tsx:81
 msgid "Peer ID"
 msgstr "পিয়ার আইডি"
 
-#: src/features/system/replication.tsx:227
+#: src/components/peer-identity.tsx:40
+#: src/features/system/replication.tsx:238
 msgid "Peer id copied"
 msgstr "পিয়ার ID কপি করা হয়েছে"
+
+#: src/features/system/status.tsx:168
+msgid "Peers"
+msgstr "পিয়ারসমূহ"
 
 #: src/features/user/connected-accounts.tsx:209
 msgid "Pending"
 msgstr "মুলতুবি"
 
-#: src/features/system/replication.tsx:239
+#: src/features/system/replication.tsx:272
 msgid "Pending join requests"
 msgstr "অপেক্ষমাণ যোগদানের অনুরোধ"
 
-#: src/features/user/replication.tsx:289
+#: src/features/user/replication.tsx:299
 msgid "Pending requests"
 msgstr "মুলতুবি অনুরোধ"
 
@@ -2022,6 +2115,10 @@ msgstr "অগ্রাধিকার"
 msgid "Privacy"
 msgstr "গোপনীয়তা"
 
+#: src/features/system/status.tsx:128
+msgid "Private"
+msgstr "প্রাইভেট"
+
 #: src/features/user/login.tsx:686
 msgid "Proceed"
 msgstr "এগিয়ে যান"
@@ -2035,15 +2132,28 @@ msgstr "প্রোফাইল"
 msgid "Provider"
 msgstr "প্রদানকারী"
 
-#: src/features/system/settings.tsx:47
+#: src/features/system/status.tsx:127
+msgid "Public"
+msgstr "সর্বজনীন"
+
+#: src/features/system/settings.tsx:49
 msgid "Public URL for OAuth redirects"
 msgstr "OAuth রিডাইরেক্টের জন্য সর্বজনীন URL"
 
-#: src/features/system/settings.tsx:568
+#: src/features/system/settings.tsx:570
 msgid "Push notifications"
 msgstr "পুশ নোটিফিকেশন"
 
-#: src/features/user/replication.tsx:259
+#: src/features/system/status.tsx:164
+msgid "Queued broadcast messages"
+msgstr "সারিবদ্ধ ব্রডকাস্ট বার্তা"
+
+#: src/features/system/status.tsx:163
+#: src/features/system/status.tsx:180
+msgid "Queued messages"
+msgstr "সারিতে থাকা বার্তা"
+
+#: src/features/user/replication.tsx:266
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "এই অ্যাকাউন্টটি অন্য সার্ভারে অনুলিপি করতে গন্তব্য সার্ভারের সাইন-আপ ফর্মে উভয় মান লিখুন।"
 
@@ -2058,6 +2168,10 @@ msgstr "এই সার্ভারে আপনার অ্যাকাউন
 #: ../../../lib/web/src/components/restore-banner.tsx:120
 msgid "Re-register your passkeys on this server"
 msgstr "এই সার্ভারে আপনার পাসকি পুনরায় নিবন্ধন করুন"
+
+#: src/features/system/status.tsx:137
+msgid "Reachability"
+msgstr "পৌঁছানোর যোগ্যতা"
 
 #: ../../../lib/web/src/components/search-entity-dialog.tsx:216
 #: ../../../lib/web/src/components/search-entity-page.tsx:191
@@ -2111,12 +2225,16 @@ msgstr "আপেক্ষিক (5m, 3h, 2d)"
 msgid "Relative within 24 hours, else absolute"
 msgstr "২৪ ঘণ্টার মধ্যে আপেক্ষিক, অন্যথায় পরম"
 
+#: src/features/system/status.tsx:156
+msgid "Relay service"
+msgstr "রিলে সার্ভিস"
+
 #: ../../../lib/web/src/features/access/access-list.tsx:257
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:172
-#: src/features/system/replication.tsx:184
+#: src/features/system/replication.tsx:190
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
-#: src/features/user/replication.tsx:206
+#: src/features/user/replication.tsx:212
 msgid "Remove"
 msgstr "সরান"
 
@@ -2142,15 +2260,15 @@ msgstr "অ্যাকাউন্ট সরাবেন?"
 msgid "Remove interest"
 msgstr "আগ্রহ সরান"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:193
 msgid "Remove my account from this server"
 msgstr "এই সার্ভার থেকে আমার অ্যাকাউন্ট সরান"
 
-#: src/features/system/replication.tsx:161
+#: src/features/system/replication.tsx:167
 msgid "Remove pair member"
 msgstr "জোড়া সদস্যকে অপসারণ করুন"
 
-#: src/features/system/replication.tsx:166
+#: src/features/system/replication.tsx:172
 msgid "Remove pair member?"
 msgstr "জোড়া সদস্যকে অপসারণ করবেন?"
 
@@ -2158,7 +2276,7 @@ msgstr "জোড়া সদস্যকে অপসারণ করবেন
 msgid "Remove suspension"
 msgstr "স্থগিতাদেশ সরান"
 
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:198
 msgid "Remove your account from this server?"
 msgstr "এই সার্ভার থেকে আপনার অ্যাকাউন্ট সরাবেন?"
 
@@ -2166,25 +2284,25 @@ msgstr "এই সার্ভার থেকে আপনার অ্যা�
 msgid "Rename passkey"
 msgstr "passkey-এর নাম পরিবর্তন করুন"
 
-#: src/features/system/settings.tsx:349
+#: src/features/system/settings.tsx:351
 msgid "Replace"
 msgstr "প্রতিস্থাপন করুন"
 
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
-#: src/features/system/replication.tsx:196
-#: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:236
-#: src/features/user/replication.tsx:246
+#: src/features/system/replication.tsx:202
+#: src/features/system/replication.tsx:217
+#: src/features/user/replication.tsx:242
+#: src/features/user/replication.tsx:253
 msgid "Replication"
 msgstr "প্রতিলিপি"
 
-#: src/features/user/replication.tsx:68
+#: src/features/user/replication.tsx:69
 msgid "Request approved"
 msgstr "অনুরোধ অনুমোদিত"
 
-#: src/features/user/replication.tsx:76
+#: src/features/user/replication.tsx:77
 msgid "Request denied"
 msgstr "অনুরোধ অস্বীকৃত"
 
@@ -2193,7 +2311,7 @@ msgid "Require domain verification"
 msgstr "ডোমেইন যাচাইকরণ প্রয়োজন"
 
 #: src/components/method-state-control.tsx:28
-#: src/features/system/settings.tsx:106
+#: src/features/system/settings.tsx:108
 msgid "Required"
 msgstr "প্রয়োজনীয়"
 
@@ -2203,9 +2321,9 @@ msgstr "ইমেল আবার পাঠান"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:77
 #: ../../../lib/web/src/components/data-table/toolbar.tsx:78
-#: src/features/system/settings.tsx:277
-#: src/features/system/settings.tsx:315
-#: src/features/system/settings.tsx:430
+#: src/features/system/settings.tsx:279
+#: src/features/system/settings.tsx:317
+#: src/features/system/settings.tsx:432
 #: src/features/user/display.tsx:193
 #: src/features/user/preferences.tsx:228
 msgid "Reset"
@@ -2223,18 +2341,18 @@ msgstr "প্রদর্শন রিসেট করবেন?"
 msgid "Reset preferences?"
 msgstr "পছন্দগুলি রিসেট করবেন?"
 
-#: src/features/system/settings.tsx:261
-#: src/features/system/settings.tsx:262
-#: src/features/system/settings.tsx:299
-#: src/features/system/settings.tsx:300
-#: src/features/system/settings.tsx:412
-#: src/features/system/settings.tsx:413
+#: src/features/system/settings.tsx:263
+#: src/features/system/settings.tsx:264
+#: src/features/system/settings.tsx:301
+#: src/features/system/settings.tsx:302
+#: src/features/system/settings.tsx:414
+#: src/features/system/settings.tsx:415
 msgid "Reset to default"
 msgstr "ডিফল্টে রিসেট করুন"
 
-#: src/features/system/settings.tsx:269
-#: src/features/system/settings.tsx:307
-#: src/features/system/settings.tsx:420
+#: src/features/system/settings.tsx:271
+#: src/features/system/settings.tsx:309
+#: src/features/system/settings.tsx:422
 msgid "Reset to default?"
 msgstr "ডিফল্টে রিসেট করবেন?"
 
@@ -2304,7 +2422,7 @@ msgstr "শনিবার"
 
 #: ../../../lib/web/src/components/ui/secret-field.tsx:74
 #: src/features/system/documents.tsx:151
-#: src/features/system/settings.tsx:401
+#: src/features/system/settings.tsx:403
 #: src/features/user/connected-accounts.tsx:603
 #: src/features/user/notifications.tsx:521
 msgid "Save"
@@ -2452,7 +2570,7 @@ msgstr "সেরিফ"
 msgid "Server error"
 msgstr "সার্ভার ত্রুটি"
 
-#: src/features/user/replication.tsx:272
+#: src/features/user/replication.tsx:279
 msgid "Server peer ID"
 msgstr "সার্ভার পিয়ার আইডি"
 
@@ -2466,11 +2584,11 @@ msgstr "সার্ভারের নিয়মাবলী"
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "আপনার ব্যবহারকারীদের দেখানো সার্ভারের নিয়মাবলী, শর্তাবলী, এবং গোপনীয়তা নোটিশ"
 
-#: src/features/system/settings.tsx:64
+#: src/features/system/settings.tsx:66
 msgid "Server started"
 msgstr "সার্ভার শুরু হয়েছে"
 
-#: src/features/system/settings.tsx:65
+#: src/features/system/settings.tsx:67
 msgid "Server version"
 msgstr "সার্ভার সংস্করণ"
 
@@ -2507,8 +2625,8 @@ msgstr "উৎস ও গন্তব্য সেট করুন"
 msgid "Set up"
 msgstr "সেট আপ করুন"
 
-#: src/features/system/settings.tsx:457
-#: src/features/system/settings.tsx:474
+#: src/features/system/settings.tsx:459
+#: src/features/system/settings.tsx:476
 msgid "Setting updated"
 msgstr "সেটিং আপডেট হয়েছে"
 
@@ -2556,15 +2674,16 @@ msgstr "ছোট"
 msgid "Spacious"
 msgstr "প্রশস্ত"
 
-#: src/features/system/status.tsx:54
+#: src/features/system/status.tsx:66
 msgid "Started"
 msgstr "শুরু হয়েছে"
 
 #: src/components/layout/data/sidebar-data.ts:69
 #: src/features/domains/index.tsx:1003
-#: src/features/system/replication.tsx:273
-#: src/features/system/status.tsx:25
-#: src/features/system/status.tsx:40
+#: src/features/system/replication.tsx:306
+#: src/features/system/status.tsx:36
+#: src/features/system/status.tsx:52
+#: src/features/system/status.tsx:177
 #: src/features/system/users.tsx:636
 #: src/features/user/connected-accounts.tsx:465
 msgid "Status"
@@ -2602,11 +2721,11 @@ msgstr "স্থগিত"
 msgid "Suspension removed"
 msgstr "স্থগিতাদেশ অপসারণ করা হয়েছে"
 
-#: src/features/system/replication.tsx:151
+#: src/features/system/replication.tsx:157
 msgid "Synced"
 msgstr "সিঙ্ক করা"
 
-#: src/features/system/replication.tsx:153
+#: src/features/system/replication.tsx:159
 msgid "Syncing"
 msgstr "সিঙ্ক হচ্ছে"
 
@@ -2618,8 +2737,8 @@ msgid "System"
 msgstr "সিস্টেম"
 
 #: src/components/layout/data/sidebar-data.ts:65
-#: src/features/system/settings.tsx:446
-#: src/features/system/settings.tsx:530
+#: src/features/system/settings.tsx:448
+#: src/features/system/settings.tsx:532
 msgid "System settings"
 msgstr "সিস্টেম সেটিংস"
 
@@ -2687,17 +2806,17 @@ msgstr "থিম সেটিংস"
 msgid "Theme updated"
 msgstr "থিম আপডেট হয়েছে"
 
-#: src/features/system/settings.tsx:546
+#: src/features/system/settings.tsx:548
 #: src/features/user/login.tsx:125
 #: src/features/user/login.tsx:847
 msgid "Third-party login"
 msgstr "থার্ড-পার্টি লগইন"
 
-#: src/features/user/replication.tsx:257
+#: src/features/user/replication.tsx:264
 msgid "This account"
 msgstr "এই অ্যাকাউন্ট"
 
-#: src/features/user/replication.tsx:317
+#: src/features/user/replication.tsx:327
 msgid "This account is on this server only"
 msgstr "এই অ্যাকাউন্টটি কেবল এই সার্ভারে আছে"
 
@@ -2709,19 +2828,19 @@ msgstr "এটি একটি সম্পূর্ণ ব্যাকআপ �
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "এটি আপনার অ্যাকাউন্টের একটি নিরাপত্তা পরিবর্তন। চালিয়ে যেতে এটি যে আপনি তা যাচাই করুন।"
 
-#: src/features/user/replication.tsx:215
+#: src/features/user/replication.tsx:221
 msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
 msgstr "এটি এই সার্ভারে আপনার অ্যাকাউন্টের ডেটা স্থায়ীভাবে মুছে ফেলে। চালিয়ে যেতে আপনি যে আপনিই তা যাচাই করুন।"
 
-#: src/features/system/replication.tsx:219
+#: src/features/system/replication.tsx:227
 msgid "This server"
 msgstr "এই সার্ভার"
 
-#: src/features/system/replication.tsx:264
+#: src/features/system/replication.tsx:297
 msgid "This server is not paired."
 msgstr "এই সার্ভারটি জোড়া নেই।"
 
-#: src/features/system/replication.tsx:168
+#: src/features/system/replication.tsx:174
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "এই সার্ভারটি সেই পিয়ারের সঙ্গে জোড়া তৈরি বন্ধ করবে। অপসারিত সার্ভার প্রত্যেক ব্যবহারকারীর স্থানীয় কপি রেখে দেয়; সেখানকার পরিচালককে এটি ম্যানুয়ালি মুছতে হবে।"
 
@@ -2768,14 +2887,14 @@ msgstr "এটি পাথ \"{1}\"-এ {0}-এর জন্য অর্পণ 
 msgid "This will remove the route for path \"{0}\"."
 msgstr "এটি পাথ \"{0}\"-এর জন্য রুট সরিয়ে দেবে।"
 
-#: src/features/system/settings.tsx:424
+#: src/features/system/settings.tsx:426
 msgid "This will reset \"{settingNameLabel}\" to its default (empty)."
 msgstr "এটি \"{settingNameLabel}\"-কে এর ডিফল্ট (খালি) এ রিসেট করবে।"
 
 #. placeholder {0}: setting.default
-#: src/features/system/settings.tsx:271
-#: src/features/system/settings.tsx:309
-#: src/features/system/settings.tsx:423
+#: src/features/system/settings.tsx:273
+#: src/features/system/settings.tsx:311
+#: src/features/system/settings.tsx:425
 msgid "This will reset \"{settingNameLabel}\" to its default value ({0})."
 msgstr "এটি \"{settingNameLabel}\"-কে এর ডিফল্ট মান ({0}) এ রিসেট করবে।"
 
@@ -2811,7 +2930,7 @@ msgstr "টাইমস্ট্যাম্প"
 msgid "TLS Enabled"
 msgstr "TLS সক্ষম"
 
-#: src/features/user/replication.tsx:318
+#: src/features/user/replication.tsx:328
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "এটিকে অন্য সার্ভারে প্রতিলিপি করতে, সেখানে একটি অ্যাকাউন্টের জন্য সাইন আপ করুন এবং \"একটি বিদ্যমান অ্যাকাউন্ট প্রতিলিপি করুন\" বিকল্পটি ব্যবহার করুন।"
 
@@ -2934,8 +3053,10 @@ msgstr "যুক্তরাষ্ট্র"
 msgid "Units"
 msgstr "একক"
 
+#: src/features/system/status.tsx:129
+#: src/features/system/status.tsx:130
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:137
+#: src/features/user/replication.tsx:143
 msgid "Unknown"
 msgstr "অজানা"
 
@@ -2964,12 +3085,16 @@ msgstr "প্রোভাইডার আনলিঙ্ক করবেন?"
 msgid "Unlinked {0}"
 msgstr "{0} আনলিঙ্ক করা হয়েছে"
 
+#: src/features/system/status.tsx:194
+msgid "Unreachable"
+msgstr "অগম্য"
+
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:131
 #: src/features/domains/index.tsx:885
 msgid "Unverified"
 msgstr "যাচাই করা হয়নি"
 
-#: src/features/system/status.tsx:69
+#: src/features/system/status.tsx:89
 msgid "Update"
 msgstr "আপডেট"
 
@@ -2978,7 +3103,7 @@ msgstr "আপডেট"
 msgid "URL to redirect to"
 msgstr "পুনঃনির্দেশের জন্য URL"
 
-#: src/features/system/replication.tsx:265
+#: src/features/system/replication.tsx:298
 msgid "Use \"mochictl replica join {peer}\" on a newly installed server to pair with this server."
 msgstr "এই সার্ভারের সাথে জোড়া করার জন্য একটি নতুন ইনস্টল করা সার্ভারে \"mochictl replica join {peer}\" ব্যবহার করুন।"
 
@@ -3008,7 +3133,7 @@ msgstr "ব্যবহারকারী"
 msgid "User created"
 msgstr "ব্যবহারকারী তৈরি হয়েছে"
 
-#: src/features/system/settings.tsx:553
+#: src/features/system/settings.tsx:555
 msgid "User defaults"
 msgstr "ব্যবহারকারী ডিফল্ট"
 
@@ -3025,11 +3150,12 @@ msgid "User updated"
 msgstr "ব্যবহারকারী আপডেট হয়েছে"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:264
+#: src/features/user/replication.tsx:271
 msgid "Username"
 msgstr "ব্যবহারকারীর নাম"
 
 #: src/components/layout/data/sidebar-data.ts:67
+#: src/features/system/status.tsx:135
 #: src/features/system/users.tsx:544
 #: src/features/system/users.tsx:582
 #: src/features/system/users.tsx:595
@@ -3079,9 +3205,13 @@ msgstr "DNS যাচাই করুন"
 msgid "Verify email address"
 msgstr "ইমেল ঠিকানা যাচাই করুন"
 
-#: src/features/system/status.tsx:50
+#: src/features/system/status.tsx:62
 msgid "Version"
 msgstr "সংস্করণ"
+
+#: src/features/system/status.tsx:139
+msgid "Via relay"
+msgstr "রিলের মাধ্যমে"
 
 #: ../../../lib/web/src/components/attachment-gallery.tsx:63
 msgid "Video thumbnail"
@@ -3119,11 +3249,11 @@ msgstr "বুধবার"
 msgid "Week starts on"
 msgstr "সপ্তাহ শুরু হয়"
 
-#: src/features/system/settings.tsx:57
+#: src/features/system/settings.tsx:59
 msgid "X client ID"
 msgstr "X client ID"
 
-#: src/features/system/settings.tsx:58
+#: src/features/system/settings.tsx:60
 msgid "X client secret"
 msgstr "X client secret"
 
@@ -3148,7 +3278,7 @@ msgstr "আপনার অ্যাকাউন্ট {purgeDate} তারি�
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "আপনার অ্যাকাউন্ট মুছে ফেলার জন্য নির্ধারিত হবে এবং আপনাকে সাইন আউট করা হবে। মুছে ফেলার তারিখের আগে যেকোনো সময় আবার লগ ইন করে আপনি বাতিল করতে পারেন। একটি অনুলিপি রাখতে চাইলে প্রথমে আপনার ডেটা ডাউনলোড করুন।"
 
-#: src/features/user/replication.tsx:194
+#: src/features/user/replication.tsx:200
 msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
 msgstr "এই সার্ভারে আপনার অ্যাকাউন্টের ডেটা স্থায়ীভাবে মুছে ফেলা হবে এবং আপনাকে এখানে সাইন আউট করা হবে। আপনার অ্যাকাউন্ট আপনার অন্যান্য সার্ভারে থাকবে এবং আপনি পরে এটি আবার যোগ করতে পারবেন।"
 

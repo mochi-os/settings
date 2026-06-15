@@ -21,7 +21,7 @@ msgstr ". Saad teid hallata:"
 msgid "(current)"
 msgstr "(praegune)"
 
-#: src/features/system/settings.tsx:93
+#: src/features/system/settings.tsx:95
 msgid "(empty)"
 msgstr "(tühi)"
 
@@ -36,6 +36,20 @@ msgstr "{0, plural, one {Tühistatud 1 sessioon} other {Tühistatud # sessiooni}
 #: src/features/user/display.tsx:239
 msgid "{0} (development)"
 msgstr "{0} (arendus)"
+
+#. placeholder {0}: formatNumber(network.relaying.reservations.held)
+#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
+#. placeholder {2}: formatNumber(network.relaying.circuits)
+#. placeholder {3}: formatNumber(network.relaying.rejected)
+#: src/features/system/status.tsx:157
+msgid "{0} / {1} reservations · {2} circuits · {3} refused"
+msgstr "{0} / {1} broneeringud · {2} ahelad · {3} tagasi lükatud"
+
+#. placeholder {0}: formatNumber(network.holepunch.success)
+#. placeholder {1}: formatNumber(network.holepunch.failure)
+#: src/features/system/status.tsx:150
+msgid "{0} succeeded · {1} failed"
+msgstr "{0} õnnestus · {1} ebaõnnestus"
 
 #: src/features/user/login.tsx:674
 msgid "{count} remaining"
@@ -198,7 +212,7 @@ msgid "Add view"
 msgstr "Lisa vaade"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:326
+#: src/features/user/replication.tsx:336
 msgid "Added"
 msgstr "Lisatud"
 
@@ -206,6 +220,18 @@ msgstr "Lisatud"
 #: src/features/user/interests.tsx:192
 msgid "Added \"{0}\""
 msgstr "Lisatud \"{0}\""
+
+#: src/features/system/status.tsx:178
+msgid "Address"
+msgstr "Aadress"
+
+#: src/features/system/replication.tsx:257
+msgid "Address copied"
+msgstr "Aadress kopeeritud"
+
+#: src/features/system/replication.tsx:248
+msgid "Addresses"
+msgstr "Aadressid"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:62
 msgid "Adjust the appearance and layout to suit your preferences."
@@ -225,7 +251,7 @@ msgstr "AI"
 msgid "All"
 msgstr "Kõik"
 
-#: src/features/system/settings.tsx:66
+#: src/features/system/settings.tsx:68
 msgid "Allow new signups"
 msgstr "Luba uued registreerumised"
 
@@ -238,7 +264,7 @@ msgid "Allow users to install apps"
 msgstr "Luba kasutajatel rakendusi paigaldada"
 
 #: src/components/method-state-control.tsx:28
-#: src/features/system/settings.tsx:104
+#: src/features/system/settings.tsx:106
 msgid "Allowed"
 msgstr "Lubatud"
 
@@ -250,11 +276,15 @@ msgstr "Tekkis viga"
 msgid "An unexpected error occurred"
 msgstr "Tekkis ootamatu viga"
 
-#: src/features/user/replication.tsx:291
+#: src/features/system/settings.tsx:48
+msgid "Announce hostname and domains to other servers"
+msgstr "Teata hostinimi ja domeenid teistele serveritele"
+
+#: src/features/user/replication.tsx:301
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Teine server palub majutada teie konto koopiat. Kinnitage koopia saatmiseks."
 
-#: src/features/system/replication.tsx:241
+#: src/features/system/replication.tsx:274
 msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
 msgstr "Teine server soovib selle serveriga paaristuda. Heakskiitmisel registreeritakse see täieõigusliku replitseerimispartnerina."
 
@@ -267,23 +297,23 @@ msgstr "Rakendus"
 msgid "Appearance"
 msgstr "Välimus"
 
-#: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:70
+#: src/features/system/replication.tsx:79
+#: src/features/user/replication.tsx:71
 msgid "Approval failed"
 msgstr "Kinnitamine ebaõnnestus"
 
-#: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:93
+#: src/features/system/replication.tsx:99
+#: src/features/user/replication.tsx:97
 msgid "Approve"
 msgstr "Kinnita"
 
-#: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:103
+#: src/features/system/replication.tsx:119
+#: src/features/user/replication.tsx:107
 msgid "Approve request"
 msgstr "Kinnita taotlus"
 
-#: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:104
+#: src/features/system/replication.tsx:120
+#: src/features/user/replication.tsx:108
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "Heakskiitmine kopeerib privaatvõtmed sellesse serverisse. Jätkamiseks kinnitage oma isik."
 
@@ -339,6 +369,10 @@ msgstr "Tagasi avalehele"
 msgid "Boost interest"
 msgstr "Tõsta huvi"
 
+#: src/features/system/status.tsx:171
+msgid "Broadcast mesh"
+msgstr "Edastus-mesh"
+
 #: src/features/user/notifications.tsx:216
 msgid "Browser notifications"
 msgstr "Brauseri teavitused"
@@ -355,10 +389,10 @@ msgstr "Brauseri teavitused"
 #: src/features/domains/index.tsx:330
 #: src/features/domains/index.tsx:509
 #: src/features/domains/index.tsx:655
-#: src/features/system/replication.tsx:175
-#: src/features/system/settings.tsx:275
-#: src/features/system/settings.tsx:313
-#: src/features/system/settings.tsx:428
+#: src/features/system/replication.tsx:181
+#: src/features/system/settings.tsx:277
+#: src/features/system/settings.tsx:315
+#: src/features/system/settings.tsx:430
 #: src/features/system/users.tsx:150
 #: src/features/system/users.tsx:235
 #: src/features/user/account.tsx:118
@@ -369,7 +403,7 @@ msgstr "Brauseri teavitused"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:201
+#: src/features/user/replication.tsx:207
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Tühista"
@@ -406,7 +440,7 @@ msgstr "Vali vasakult-paremale või paremalt-vasakule lehe suund"
 msgid "Choose between system preference, light mode, or dark mode"
 msgstr "Vali süsteemi eelistus, hele või tume režiim"
 
-#: src/features/system/settings.tsx:376
+#: src/features/system/settings.tsx:378
 msgid "Choose file"
 msgstr "Valige fail"
 
@@ -414,9 +448,10 @@ msgstr "Valige fail"
 msgid "Choose language"
 msgstr "Vali keel"
 
-#: ../../../lib/web/src/components/colour-picker.tsx:304
-#: src/features/system/settings.tsx:358
-#: src/features/system/settings.tsx:359
+#: ../../../lib/web/src/components/colour-picker.tsx:268
+#: ../../../lib/web/src/components/colour-picker.tsx:349
+#: src/features/system/settings.tsx:360
+#: src/features/system/settings.tsx:361
 msgid "Clear"
 msgstr "Tühjenda"
 
@@ -487,7 +522,7 @@ msgstr "Tulekul!"
 msgid "Compact"
 msgstr "Kompaktne"
 
-#: src/features/system/settings.tsx:335
+#: src/features/system/settings.tsx:337
 msgid "Configured"
 msgstr "Seadistatud"
 
@@ -496,11 +531,13 @@ msgstr "Seadistatud"
 msgid "Confirm"
 msgstr "Kinnita"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:220
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "Kinnitage, et see olete teie"
 
+#: src/features/system/status.tsx:170
+#: src/features/system/status.tsx:192
 #: src/features/user/connected-accounts.tsx:219
 msgid "Connected"
 msgstr "Ühendatud"
@@ -536,11 +573,15 @@ msgstr "Jätka teenusega {label}"
 msgid "Copy"
 msgstr "Kopeeri"
 
+#: src/features/system/replication.tsx:262
+msgid "Copy address"
+msgstr "Kopeeri aadress"
+
 #: src/features/user/login.tsx:664
 msgid "Copy all"
 msgstr "Kopeeri kõik"
 
-#: src/features/system/replication.tsx:232
+#: src/features/system/replication.tsx:243
 msgid "Copy peer id"
 msgstr "Kopeeri partneri ID"
 
@@ -552,12 +593,12 @@ msgstr "Kopeeri oma luba kohe. Sa ei näe seda enam."
 msgid "Could not close your account"
 msgstr "Teie kontot ei õnnestunud sulgeda"
 
-#: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:77
+#: src/features/system/replication.tsx:108
+#: src/features/user/replication.tsx:78
 msgid "Could not deny request"
 msgstr "Päringut ei saanud tagasi lükata"
 
-#: src/features/user/replication.tsx:162
+#: src/features/user/replication.tsx:168
 msgid "Could not forget host"
 msgstr "Hosti ei õnnestunud unustada"
 
@@ -569,11 +610,11 @@ msgstr "Konto sidumine ebaõnnestus"
 msgid "Could not load this document. Please try again later."
 msgstr "Selle dokumendi laadimine ebaõnnestus. Palun proovi hiljem uuesti."
 
-#: src/features/system/replication.tsx:180
+#: src/features/system/replication.tsx:186
 msgid "Could not remove pair member"
 msgstr "Paari liiget ei õnnestunud eemaldada"
 
-#: src/features/user/replication.tsx:224
+#: src/features/user/replication.tsx:230
 msgid "Could not remove your account from this server"
 msgstr "Teie kontot ei õnnestunud sellest serverist eemaldada"
 
@@ -621,6 +662,10 @@ msgstr "Loo kasutaja"
 #: src/features/user/tokens.tsx:269
 msgid "Created"
 msgstr "Loodud"
+
+#: ../../../lib/web/src/components/colour-picker.tsx:259
+msgid "Custom"
+msgstr "Kohandatud"
 
 #: src/features/system/documents.tsx:123
 msgid "Customised"
@@ -763,8 +808,8 @@ msgstr "Kustutamine..."
 msgid "Density"
 msgstr "Tihedus"
 
-#: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:97
+#: src/features/system/replication.tsx:113
+#: src/features/user/replication.tsx:101
 msgid "Deny"
 msgstr "Keeldu"
 
@@ -811,9 +856,13 @@ msgstr "Keelata autentija?"
 
 #: src/components/method-state-control.tsx:28
 #: src/features/domains/index.tsx:696
-#: src/features/system/settings.tsx:102
+#: src/features/system/settings.tsx:104
 msgid "Disabled"
 msgstr "Keelatud"
+
+#: src/features/system/status.tsx:196
+msgid "Disconnected"
+msgstr "Ühendus puudub"
 
 #: ../../../lib/web/src/components/restore-banner.tsx:73
 msgid "Dismiss"
@@ -891,16 +940,16 @@ msgstr "Tehtud"
 msgid "Download"
 msgstr "Laadi alla"
 
-#: src/features/system/status.tsx:127
+#: src/features/system/status.tsx:264
 msgid "Download from packages.mochi-os.org"
 msgstr "Laadi alla aadressilt packages.mochi-os.org"
 
-#: src/features/system/status.tsx:115
-#: src/features/system/status.tsx:121
+#: src/features/system/status.tsx:252
+#: src/features/system/status.tsx:258
 msgid "Download installer"
 msgstr "Laadi installer alla"
 
-#: src/features/system/status.tsx:149
+#: src/features/system/status.tsx:286
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Laadi alla Mochi {latest} ja taaskäivita server"
 
@@ -977,6 +1026,10 @@ msgstr "Sisesta e-kirjas saadud kood"
 msgid "Enter your authenticator code"
 msgstr "Sisestage oma autentimisrakenduse kood"
 
+#: src/features/system/status.tsx:136
+msgid "Entities"
+msgstr "Olemid"
+
 #: src/features/domains/index.tsx:255
 #: src/features/domains/index.tsx:424
 msgid "Entity"
@@ -1002,11 +1055,11 @@ msgstr "Eksportimine ebaõnnestus"
 msgid "Extra large"
 msgstr "Eriti suur"
 
-#: src/features/system/settings.tsx:55
+#: src/features/system/settings.tsx:57
 msgid "Facebook App ID"
 msgstr "Facebooki rakenduse ID"
 
-#: src/features/system/settings.tsx:56
+#: src/features/system/settings.tsx:58
 msgid "Facebook App secret"
 msgstr "Facebooki rakenduse saladus"
 
@@ -1019,7 +1072,8 @@ msgstr "Konto lisamine ebaõnnestus"
 msgid "Failed to add interest"
 msgstr "Huvi lisamine ebaõnnestus"
 
-#: src/features/system/replication.tsx:228
+#: src/features/system/replication.tsx:239
+#: src/features/system/replication.tsx:258
 msgid "Failed to copy"
 msgstr "Kopeerimine ebaõnnestus"
 
@@ -1079,7 +1133,7 @@ msgstr "Autentija keelamine ebaõnnestus"
 msgid "Failed to generate codes"
 msgstr "Koodide genereerimine ebaõnnestus"
 
-#: src/features/system/status.tsx:140
+#: src/features/system/status.tsx:277
 msgid "Failed to install update"
 msgstr "Värskenduse paigaldamine ebaõnnestus"
 
@@ -1189,8 +1243,8 @@ msgstr "Privaatsuse värskendamine ebaõnnestus"
 msgid "Failed to update route"
 msgstr "Marsruudi värskendamine ebaõnnestus"
 
-#: src/features/system/settings.tsx:461
-#: src/features/system/settings.tsx:476
+#: src/features/system/settings.tsx:463
+#: src/features/system/settings.tsx:478
 msgid "Failed to update setting"
 msgstr "Seade värskendamine ebaõnnestus"
 
@@ -1218,6 +1272,7 @@ msgstr "Koodi kontrollimine ebaõnnestus"
 msgid "Failed to verify domain"
 msgstr "Domeeni kontrollimine ebaõnnestus"
 
+#: src/features/system/status.tsx:73
 #: src/features/user/account.tsx:137
 msgid "Fingerprint"
 msgstr "Sõrmejälg"
@@ -1226,11 +1281,11 @@ msgstr "Sõrmejälg"
 msgid "Finish moving your account"
 msgstr "Lõpeta konto koliminen"
 
-#: src/features/system/settings.tsx:59
+#: src/features/system/settings.tsx:61
 msgid "Firebase google-services.json file"
 msgstr "Firebase google-services.json fail"
 
-#: src/features/system/settings.tsx:60
+#: src/features/system/settings.tsx:62
 msgid "Firebase private key file"
 msgstr "Firebase privaatvõtme fail"
 
@@ -1246,11 +1301,11 @@ msgstr "Font"
 msgid "Font size"
 msgstr "Fondi suurus"
 
-#: src/features/user/replication.tsx:149
+#: src/features/user/replication.tsx:155
 msgid "Forget this unreachable host"
 msgstr "Unusta see kättesaamatu host"
 
-#: src/features/user/replication.tsx:154
+#: src/features/user/replication.tsx:160
 msgid "Forget this unreachable host?"
 msgstr "Kas unustada see kättesaamatu host?"
 
@@ -1259,8 +1314,8 @@ msgid "Friday"
 msgstr "Reede"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
-#: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:296
+#: src/features/system/replication.tsx:281
+#: src/features/user/replication.tsx:306
 msgid "From"
 msgstr "Saatja"
 
@@ -1288,11 +1343,11 @@ msgstr "Loo paroolifraas"
 msgid "Generate?"
 msgstr "Kas genereerida?"
 
-#: src/features/system/settings.tsx:50
+#: src/features/system/settings.tsx:52
 msgid "GitHub client ID"
 msgstr "GitHubi kliendi ID"
 
-#: src/features/system/settings.tsx:51
+#: src/features/system/settings.tsx:53
 msgid "GitHub client secret"
 msgstr "GitHubi kliendi saladus"
 
@@ -1326,11 +1381,11 @@ msgstr "Mine lehele {pageNumber}"
 msgid "Go to previous page"
 msgstr "Mine eelmisele lehele"
 
-#: src/features/system/settings.tsx:48
+#: src/features/system/settings.tsx:50
 msgid "Google client ID"
 msgstr "Google'i kliendi ID"
 
-#: src/features/system/settings.tsx:49
+#: src/features/system/settings.tsx:51
 msgid "Google client secret"
 msgstr "Google'i kliendi saladus"
 
@@ -1351,6 +1406,10 @@ msgstr "Peida"
 msgid "Higher priority routes are matched first"
 msgstr "Kõrgema prioriteediga marsruudid sobitatakse esimesena"
 
+#: src/features/system/status.tsx:149
+msgid "Hole punch"
+msgstr "Augustamine"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx:82
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:142
 #: ../../../lib/web/src/components/layout/top-bar.tsx:62
@@ -1358,9 +1417,13 @@ msgstr "Kõrgema prioriteediga marsruudid sobitatakse esimesena"
 msgid "Home"
 msgstr "Avaleht"
 
-#: src/features/user/replication.tsx:161
+#: src/features/user/replication.tsx:167
 msgid "Host forgotten"
 msgstr "Host unustatud"
+
+#: src/features/system/settings.tsx:47
+msgid "Hostname announced to other servers"
+msgstr "Teistele serveritele teatatud hostinimi"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1387,12 +1450,12 @@ msgstr "Imperiaal"
 msgid "Inset"
 msgstr "Sissevajutatud"
 
-#: src/features/system/status.tsx:152
+#: src/features/system/status.tsx:289
 msgid "Install update"
 msgstr "Paigalda värskendus"
 
 #. placeholder {0}: info.pending
-#: src/features/system/status.tsx:87
+#: src/features/system/status.tsx:224
 msgid "Installing {0}…"
 msgstr "Paigaldatakse {0}…"
 
@@ -1417,22 +1480,26 @@ msgstr "Vigane kinnituskood"
 msgid "IP Address"
 msgstr "IP-aadress"
 
-#: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:129
+#: src/features/system/replication.tsx:151
+#: src/features/user/replication.tsx:134
 msgid "Irreparable"
 msgstr "Parandamatu"
 
-#: src/features/user/replication.tsx:155
+#: src/features/user/replication.tsx:161
 msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
 msgstr "See eemaldatakse teie koopiakogumist ja sellel kästakse uuesti ühenduse loomisel oma koopia kustutada. Kättesaadava serveri eemaldamiseks logige seal sisse ja kasutage valikut „Eemalda minu konto sellest serverist“. Jätkamiseks kinnitage, et see olete teie."
 
-#: src/features/system/replication.tsx:75
+#: src/features/system/replication.tsx:77
 msgid "Join request approved"
 msgstr "Liitumistaotlus heaks kiidetud"
 
-#: src/features/system/replication.tsx:102
+#: src/features/system/replication.tsx:107
 msgid "Join request denied"
 msgstr "Liitumistaotlus tagasi lükatud"
+
+#: src/features/system/status.tsx:170
+msgid "Known"
+msgstr "Teada"
 
 #: src/features/user/notifications.tsx:441
 msgid "Label is required"
@@ -1456,6 +1523,10 @@ msgstr "Viimati kasutatud"
 msgid "Last active"
 msgstr "Viimati aktiivne"
 
+#: src/features/system/status.tsx:142
+msgid "Last broadcast"
+msgstr "Viimane edastus"
+
 #. placeholder {0}: formatSystemTimestamp(document.updated)
 #: src/features/system/documents.tsx:129
 msgid "Last edited {0}"
@@ -1464,6 +1535,10 @@ msgstr "Viimati muudetud {0}"
 #: src/features/system/users.tsx:643
 msgid "Last login"
 msgstr "Viimane sisselogimine"
+
+#: src/features/system/status.tsx:179
+msgid "Last seen"
+msgstr "Viimati nähtud"
 
 #: src/features/user/login.tsx:417
 #: src/features/user/login.tsx:867
@@ -1534,7 +1609,7 @@ msgstr "Välja logimine…"
 
 #: src/components/layout/data/sidebar-data.ts:30
 #: src/components/layout/data/sidebar-data.ts:51
-#: src/features/system/settings.tsx:539
+#: src/features/system/settings.tsx:541
 #: src/features/user/login.tsx:892
 #: src/features/user/login.tsx:939
 msgid "Login"
@@ -1593,6 +1668,10 @@ msgstr "Keskmine"
 msgid "Menu"
 msgstr "Menüü"
 
+#: src/features/system/status.tsx:162
+msgid "Messages awaiting routing"
+msgstr "Marsruutimist ootavad sõnumid"
+
 #: src/features/domains/index.tsx:244
 #: src/features/domains/index.tsx:413
 #: src/features/domains/index.tsx:1000
@@ -1603,20 +1682,20 @@ msgstr "Meetod"
 msgid "Metric"
 msgstr "Meetermõõdustik"
 
-#: src/features/system/settings.tsx:52
+#: src/features/system/settings.tsx:54
 msgid "Microsoft client ID"
 msgstr "Microsofti kliendi ID"
 
-#: src/features/system/settings.tsx:53
+#: src/features/system/settings.tsx:55
 msgid "Microsoft client secret"
 msgstr "Microsofti kliendi saladus"
 
-#: src/features/system/settings.tsx:54
+#: src/features/system/settings.tsx:56
 msgid "Microsoft tenant"
 msgstr "Microsofti rentnik"
 
 #. placeholder {0}: info.latest
-#: src/features/system/status.tsx:95
+#: src/features/system/status.tsx:232
 msgid "Mochi {0} is available"
 msgstr "Mochi {0} on saadaval"
 
@@ -1637,7 +1716,7 @@ msgstr "Esmaspäev"
 msgid "My application"
 msgstr "Minu rakendus"
 
-#: src/features/user/replication.tsx:308
+#: src/features/user/replication.tsx:318
 msgid "My hosts"
 msgstr "Minu hostid"
 
@@ -1827,10 +1906,14 @@ msgstr "Numbri vorming"
 
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
-#: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:132
+#: src/features/system/replication.tsx:154
+#: src/features/user/replication.tsx:137
 msgid "Offline {0}"
 msgstr "Võrguühenduseta {0}"
+
+#: src/features/system/status.tsx:181
+msgid "Oldest queued message"
+msgstr "Vanim järjekorras sõnum"
 
 #: ../../../lib/web/src/features/errors/not-found-error.tsx:13
 msgid "Oops! Page Not Found!"
@@ -1840,6 +1923,10 @@ msgstr "Oih! Lehte ei leitud!"
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:151
 msgid "Open account actions"
 msgstr "Ava konto tegevused"
+
+#: ../../../lib/web/src/components/layout/nav-group.tsx:134
+msgid "Open actions"
+msgstr "Ava toimingud"
 
 #: ../../../lib/web/src/components/layout/top-bar.tsx:57
 msgid "Open navigation"
@@ -1858,19 +1945,19 @@ msgstr "Ava teema seaded"
 msgid "Open user actions"
 msgstr "Ava kasutaja tegevused"
 
-#: src/features/system/settings.tsx:560
+#: src/features/system/settings.tsx:562
 msgid "Operator"
 msgstr "Operaator"
 
-#: src/features/system/settings.tsx:62
+#: src/features/system/settings.tsx:64
 msgid "Operator email"
 msgstr "Operaatori e-post"
 
-#: src/features/system/settings.tsx:63
+#: src/features/system/settings.tsx:65
 msgid "Operator jurisdiction"
 msgstr "Operaatori jurisdiktsioon"
 
-#: src/features/system/settings.tsx:61
+#: src/features/system/settings.tsx:63
 msgid "Operator name"
 msgstr "Operaatori nimi"
 
@@ -1878,11 +1965,11 @@ msgstr "Operaatori nimi"
 msgid "Other"
 msgstr "Muu"
 
-#: src/features/user/replication.tsx:311
+#: src/features/user/replication.tsx:321
 msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
 msgstr "Muud serverid, mis samuti hoiavad teie konto koopiat. Ühe eemaldamiseks logige sellesse serverisse sisse ja kasutage valikut „Eemalda minu konto sellest serverist“."
 
-#: src/features/system/settings.tsx:575
+#: src/features/system/settings.tsx:577
 msgid "Other settings"
 msgstr "Muud seaded"
 
@@ -1890,11 +1977,11 @@ msgstr "Muud seaded"
 msgid "Owner"
 msgstr "Omanik"
 
-#: src/features/system/replication.tsx:179
+#: src/features/system/replication.tsx:185
 msgid "Pair member removed"
 msgstr "Paari liige eemaldatud"
 
-#: src/features/system/replication.tsx:260
+#: src/features/system/replication.tsx:293
 msgid "Pair members"
 msgstr "Paari liikmed"
 
@@ -1949,28 +2036,34 @@ msgstr "Tee"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Tee pole lubatud. Marsruute saab lisada ainult järgmiste alla: {0}"
 
-#: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:325
+#: src/features/system/replication.tsx:305
+#: src/features/system/status.tsx:176
+#: src/features/user/replication.tsx:335
 msgid "Peer"
 msgstr "Eakaaslane"
 
-#: src/features/system/status.tsx:61
+#: src/features/system/status.tsx:81
 msgid "Peer ID"
 msgstr "Partneri ID"
 
-#: src/features/system/replication.tsx:227
+#: src/components/peer-identity.tsx:40
+#: src/features/system/replication.tsx:238
 msgid "Peer id copied"
 msgstr "Partneri ID kopeeritud"
+
+#: src/features/system/status.tsx:168
+msgid "Peers"
+msgstr "Eakaaslased"
 
 #: src/features/user/connected-accounts.tsx:209
 msgid "Pending"
 msgstr "Ootel"
 
-#: src/features/system/replication.tsx:239
+#: src/features/system/replication.tsx:272
 msgid "Pending join requests"
 msgstr "Ootel liitumistaotlused"
 
-#: src/features/user/replication.tsx:289
+#: src/features/user/replication.tsx:299
 msgid "Pending requests"
 msgstr "Ootel päringud"
 
@@ -2022,6 +2115,10 @@ msgstr "Prioriteet"
 msgid "Privacy"
 msgstr "Privaatsus"
 
+#: src/features/system/status.tsx:128
+msgid "Private"
+msgstr "Privaatne"
+
 #: src/features/user/login.tsx:686
 msgid "Proceed"
 msgstr "Jätka"
@@ -2035,15 +2132,28 @@ msgstr "Profiil"
 msgid "Provider"
 msgstr "Pakkuja"
 
-#: src/features/system/settings.tsx:47
+#: src/features/system/status.tsx:127
+msgid "Public"
+msgstr "Avalik"
+
+#: src/features/system/settings.tsx:49
 msgid "Public URL for OAuth redirects"
 msgstr "Avalik URL OAuthi ümbersuunamiste jaoks"
 
-#: src/features/system/settings.tsx:568
+#: src/features/system/settings.tsx:570
 msgid "Push notifications"
 msgstr "Tõuketeated"
 
-#: src/features/user/replication.tsx:259
+#: src/features/system/status.tsx:164
+msgid "Queued broadcast messages"
+msgstr "Järjekorras olevad eetrisõnumid"
+
+#: src/features/system/status.tsx:163
+#: src/features/system/status.tsx:180
+msgid "Queued messages"
+msgstr "Järjekorras sõnumid"
+
+#: src/features/user/replication.tsx:266
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "Selle konto kopeerimiseks teise serverisse sisestage mõlemad väärtused sihtserveri registreerumisvormi."
 
@@ -2058,6 +2168,10 @@ msgstr "Ühenda kontod uuesti selle serveriga"
 #: ../../../lib/web/src/components/restore-banner.tsx:120
 msgid "Re-register your passkeys on this server"
 msgstr "Registreerige oma pääsuvõtmed selles serveris uuesti"
+
+#: src/features/system/status.tsx:137
+msgid "Reachability"
+msgstr "Kättesaadavus"
 
 #: ../../../lib/web/src/components/search-entity-dialog.tsx:216
 #: ../../../lib/web/src/components/search-entity-page.tsx:191
@@ -2111,12 +2225,16 @@ msgstr "Suhteline (5m, 3h, 2d)"
 msgid "Relative within 24 hours, else absolute"
 msgstr "Suhteline 24 tunni jooksul, muidu absoluutne"
 
+#: src/features/system/status.tsx:156
+msgid "Relay service"
+msgstr "Releeteenus"
+
 #: ../../../lib/web/src/features/access/access-list.tsx:257
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:172
-#: src/features/system/replication.tsx:184
+#: src/features/system/replication.tsx:190
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
-#: src/features/user/replication.tsx:206
+#: src/features/user/replication.tsx:212
 msgid "Remove"
 msgstr "Eemalda"
 
@@ -2142,15 +2260,15 @@ msgstr "Kas eemaldada konto?"
 msgid "Remove interest"
 msgstr "Eemalda huvi"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:193
 msgid "Remove my account from this server"
 msgstr "Eemalda minu konto sellest serverist"
 
-#: src/features/system/replication.tsx:161
+#: src/features/system/replication.tsx:167
 msgid "Remove pair member"
 msgstr "Eemalda paari liige"
 
-#: src/features/system/replication.tsx:166
+#: src/features/system/replication.tsx:172
 msgid "Remove pair member?"
 msgstr "Kas eemaldada paari liige?"
 
@@ -2158,7 +2276,7 @@ msgstr "Kas eemaldada paari liige?"
 msgid "Remove suspension"
 msgstr "Eemalda peatamine"
 
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:198
 msgid "Remove your account from this server?"
 msgstr "Kas eemaldada teie konto sellest serverist?"
 
@@ -2166,25 +2284,25 @@ msgstr "Kas eemaldada teie konto sellest serverist?"
 msgid "Rename passkey"
 msgstr "Nimeta pääsuvõti ümber"
 
-#: src/features/system/settings.tsx:349
+#: src/features/system/settings.tsx:351
 msgid "Replace"
 msgstr "Asenda"
 
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
-#: src/features/system/replication.tsx:196
-#: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:236
-#: src/features/user/replication.tsx:246
+#: src/features/system/replication.tsx:202
+#: src/features/system/replication.tsx:217
+#: src/features/user/replication.tsx:242
+#: src/features/user/replication.tsx:253
 msgid "Replication"
 msgstr "Replikatsioon"
 
-#: src/features/user/replication.tsx:68
+#: src/features/user/replication.tsx:69
 msgid "Request approved"
 msgstr "Päring kinnitatud"
 
-#: src/features/user/replication.tsx:76
+#: src/features/user/replication.tsx:77
 msgid "Request denied"
 msgstr "Päring tagasi lükatud"
 
@@ -2193,7 +2311,7 @@ msgid "Require domain verification"
 msgstr "Nõua domeeni kinnitamist"
 
 #: src/components/method-state-control.tsx:28
-#: src/features/system/settings.tsx:106
+#: src/features/system/settings.tsx:108
 msgid "Required"
 msgstr "Kohustuslik"
 
@@ -2203,9 +2321,9 @@ msgstr "Saada e-kiri uuesti"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:77
 #: ../../../lib/web/src/components/data-table/toolbar.tsx:78
-#: src/features/system/settings.tsx:277
-#: src/features/system/settings.tsx:315
-#: src/features/system/settings.tsx:430
+#: src/features/system/settings.tsx:279
+#: src/features/system/settings.tsx:317
+#: src/features/system/settings.tsx:432
 #: src/features/user/display.tsx:193
 #: src/features/user/preferences.tsx:228
 msgid "Reset"
@@ -2223,18 +2341,18 @@ msgstr "Kuva lähtestada?"
 msgid "Reset preferences?"
 msgstr "Kas lähtestada eelistused?"
 
-#: src/features/system/settings.tsx:261
-#: src/features/system/settings.tsx:262
-#: src/features/system/settings.tsx:299
-#: src/features/system/settings.tsx:300
-#: src/features/system/settings.tsx:412
-#: src/features/system/settings.tsx:413
+#: src/features/system/settings.tsx:263
+#: src/features/system/settings.tsx:264
+#: src/features/system/settings.tsx:301
+#: src/features/system/settings.tsx:302
+#: src/features/system/settings.tsx:414
+#: src/features/system/settings.tsx:415
 msgid "Reset to default"
 msgstr "Lähtesta vaikeväärtusele"
 
-#: src/features/system/settings.tsx:269
-#: src/features/system/settings.tsx:307
-#: src/features/system/settings.tsx:420
+#: src/features/system/settings.tsx:271
+#: src/features/system/settings.tsx:309
+#: src/features/system/settings.tsx:422
 msgid "Reset to default?"
 msgstr "Kas lähtestada vaikeväärtusele?"
 
@@ -2304,7 +2422,7 @@ msgstr "Laupäev"
 
 #: ../../../lib/web/src/components/ui/secret-field.tsx:74
 #: src/features/system/documents.tsx:151
-#: src/features/system/settings.tsx:401
+#: src/features/system/settings.tsx:403
 #: src/features/user/connected-accounts.tsx:603
 #: src/features/user/notifications.tsx:521
 msgid "Save"
@@ -2452,7 +2570,7 @@ msgstr "Seriif"
 msgid "Server error"
 msgstr "Serveri viga"
 
-#: src/features/user/replication.tsx:272
+#: src/features/user/replication.tsx:279
 msgid "Server peer ID"
 msgstr "Serveri partneri ID"
 
@@ -2466,11 +2584,11 @@ msgstr "Serveri reeglid"
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "Serveri reeglid, tingimused ja privaatsusteade, mida kasutajatele näidatakse"
 
-#: src/features/system/settings.tsx:64
+#: src/features/system/settings.tsx:66
 msgid "Server started"
 msgstr "Server käivitati"
 
-#: src/features/system/settings.tsx:65
+#: src/features/system/settings.tsx:67
 msgid "Server version"
 msgstr "Serveri versioon"
 
@@ -2507,8 +2625,8 @@ msgstr "Määra lähtekoht ja sihtkoht"
 msgid "Set up"
 msgstr "Seadista"
 
-#: src/features/system/settings.tsx:457
-#: src/features/system/settings.tsx:474
+#: src/features/system/settings.tsx:459
+#: src/features/system/settings.tsx:476
 msgid "Setting updated"
 msgstr "Säte uuendatud"
 
@@ -2556,15 +2674,16 @@ msgstr "Väike"
 msgid "Spacious"
 msgstr "Avar"
 
-#: src/features/system/status.tsx:54
+#: src/features/system/status.tsx:66
 msgid "Started"
 msgstr "Alustatud"
 
 #: src/components/layout/data/sidebar-data.ts:69
 #: src/features/domains/index.tsx:1003
-#: src/features/system/replication.tsx:273
-#: src/features/system/status.tsx:25
-#: src/features/system/status.tsx:40
+#: src/features/system/replication.tsx:306
+#: src/features/system/status.tsx:36
+#: src/features/system/status.tsx:52
+#: src/features/system/status.tsx:177
 #: src/features/system/users.tsx:636
 #: src/features/user/connected-accounts.tsx:465
 msgid "Status"
@@ -2602,11 +2721,11 @@ msgstr "Peatatud"
 msgid "Suspension removed"
 msgstr "Peatamine eemaldatud"
 
-#: src/features/system/replication.tsx:151
+#: src/features/system/replication.tsx:157
 msgid "Synced"
 msgstr "Sünkroonitud"
 
-#: src/features/system/replication.tsx:153
+#: src/features/system/replication.tsx:159
 msgid "Syncing"
 msgstr "Sünkroonimine"
 
@@ -2618,8 +2737,8 @@ msgid "System"
 msgstr "Süsteem"
 
 #: src/components/layout/data/sidebar-data.ts:65
-#: src/features/system/settings.tsx:446
-#: src/features/system/settings.tsx:530
+#: src/features/system/settings.tsx:448
+#: src/features/system/settings.tsx:532
 msgid "System settings"
 msgstr "Süsteemi seaded"
 
@@ -2687,17 +2806,17 @@ msgstr "Teema seaded"
 msgid "Theme updated"
 msgstr "Teema uuendatud"
 
-#: src/features/system/settings.tsx:546
+#: src/features/system/settings.tsx:548
 #: src/features/user/login.tsx:125
 #: src/features/user/login.tsx:847
 msgid "Third-party login"
 msgstr "Kolmanda osapoole sisselogimine"
 
-#: src/features/user/replication.tsx:257
+#: src/features/user/replication.tsx:264
 msgid "This account"
 msgstr "See konto"
 
-#: src/features/user/replication.tsx:317
+#: src/features/user/replication.tsx:327
 msgid "This account is on this server only"
 msgstr "See konto on ainult sellel serveril"
 
@@ -2709,19 +2828,19 @@ msgstr "See on täielik varukoopia, mille saate taastada sellesse või mõnda te
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "See on teie konto turvamuudatus. Jätkamiseks kinnitage oma isik."
 
-#: src/features/user/replication.tsx:215
+#: src/features/user/replication.tsx:221
 msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
 msgstr "See kustutab teie konto andmed sellel serveril jäädavalt. Jätkamiseks kinnitage, et see olete teie."
 
-#: src/features/system/replication.tsx:219
+#: src/features/system/replication.tsx:227
 msgid "This server"
 msgstr "See server"
 
-#: src/features/system/replication.tsx:264
+#: src/features/system/replication.tsx:297
 msgid "This server is not paired."
 msgstr "See server pole paaritud."
 
-#: src/features/system/replication.tsx:168
+#: src/features/system/replication.tsx:174
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "See server lõpetab paaristuse selle partneriga. Eemaldatud server säilitab iga kasutaja kohaliku koopia; sealne haldaja peab selle käsitsi kustutama."
 
@@ -2768,14 +2887,14 @@ msgstr "See eemaldab delegeerimise {0} jaoks teel \"{1}\"."
 msgid "This will remove the route for path \"{0}\"."
 msgstr "See eemaldab tee \"{0}\" marsruudi."
 
-#: src/features/system/settings.tsx:424
+#: src/features/system/settings.tsx:426
 msgid "This will reset \"{settingNameLabel}\" to its default (empty)."
 msgstr "See lähtestab \"{settingNameLabel}\" vaikeväärtusele (tühi)."
 
 #. placeholder {0}: setting.default
-#: src/features/system/settings.tsx:271
-#: src/features/system/settings.tsx:309
-#: src/features/system/settings.tsx:423
+#: src/features/system/settings.tsx:273
+#: src/features/system/settings.tsx:311
+#: src/features/system/settings.tsx:425
 msgid "This will reset \"{settingNameLabel}\" to its default value ({0})."
 msgstr "See lähtestab \"{settingNameLabel}\" vaikeväärtusele ({0})."
 
@@ -2811,7 +2930,7 @@ msgstr "Ajatemplid"
 msgid "TLS Enabled"
 msgstr "TLS lubatud"
 
-#: src/features/user/replication.tsx:318
+#: src/features/user/replication.tsx:328
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "Selle replikatsiooniks teisele serverile registreerige seal konto ja kasutage valikut \"Replikatsioon olemasolevast kontost\"."
 
@@ -2934,8 +3053,10 @@ msgstr "Ameerika Ühendriigid"
 msgid "Units"
 msgstr "Ühikut"
 
+#: src/features/system/status.tsx:129
+#: src/features/system/status.tsx:130
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:137
+#: src/features/user/replication.tsx:143
 msgid "Unknown"
 msgstr "Tundmatu"
 
@@ -2964,12 +3085,16 @@ msgstr "Eemaldada lingitud teenusepakkuja?"
 msgid "Unlinked {0}"
 msgstr "{0} link eemaldatud"
 
+#: src/features/system/status.tsx:194
+msgid "Unreachable"
+msgstr "Kättesaamatu"
+
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:131
 #: src/features/domains/index.tsx:885
 msgid "Unverified"
 msgstr "Kontrollimata"
 
-#: src/features/system/status.tsx:69
+#: src/features/system/status.tsx:89
 msgid "Update"
 msgstr "Uuenda"
 
@@ -2978,7 +3103,7 @@ msgstr "Uuenda"
 msgid "URL to redirect to"
 msgstr "URL, kuhu ümber suunata"
 
-#: src/features/system/replication.tsx:265
+#: src/features/system/replication.tsx:298
 msgid "Use \"mochictl replica join {peer}\" on a newly installed server to pair with this server."
 msgstr "Selle serveriga paaritamiseks kasutage uues paigaldatud serveris käsku \"mochictl replica join {peer}\"."
 
@@ -3008,7 +3133,7 @@ msgstr "Kasutaja"
 msgid "User created"
 msgstr "Kasutaja loodud"
 
-#: src/features/system/settings.tsx:553
+#: src/features/system/settings.tsx:555
 msgid "User defaults"
 msgstr "Kasutaja vaikeväärtused"
 
@@ -3025,11 +3150,12 @@ msgid "User updated"
 msgstr "Kasutaja uuendatud"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:264
+#: src/features/user/replication.tsx:271
 msgid "Username"
 msgstr "Kasutajanimi"
 
 #: src/components/layout/data/sidebar-data.ts:67
+#: src/features/system/status.tsx:135
 #: src/features/system/users.tsx:544
 #: src/features/system/users.tsx:582
 #: src/features/system/users.tsx:595
@@ -3079,9 +3205,13 @@ msgstr "Kontrolli DNS-i"
 msgid "Verify email address"
 msgstr "Kontrolli e-posti aadressi"
 
-#: src/features/system/status.tsx:50
+#: src/features/system/status.tsx:62
 msgid "Version"
 msgstr "Versioon"
+
+#: src/features/system/status.tsx:139
+msgid "Via relay"
+msgstr "Relee kaudu"
 
 #: ../../../lib/web/src/components/attachment-gallery.tsx:63
 msgid "Video thumbnail"
@@ -3119,11 +3249,11 @@ msgstr "Kolmapäev"
 msgid "Week starts on"
 msgstr "Nädal algab"
 
-#: src/features/system/settings.tsx:57
+#: src/features/system/settings.tsx:59
 msgid "X client ID"
 msgstr "X kliendi ID"
 
-#: src/features/system/settings.tsx:58
+#: src/features/system/settings.tsx:60
 msgid "X client secret"
 msgstr "X kliendi saladus"
 
@@ -3148,7 +3278,7 @@ msgstr "Teie konto kustutatakse jäädavalt {purgeDate}. Teid on välja logitud.
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "Teie konto kavandatakse kustutamiseks ja teid logitakse välja. Saate kustutamise igal ajal enne kustutamiskuupäeva tühistada, logides uuesti sisse. Laadige kõigepealt oma andmed alla, kui soovite koopia alles hoida."
 
-#: src/features/user/replication.tsx:194
+#: src/features/user/replication.tsx:200
 msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
 msgstr "Teie konto andmed sellel serveril kustutatakse jäädavalt ja teid logitakse siin välja. Teie konto jääb teie teistesse serveritesse alles ja saate selle hiljem uuesti lisada."
 

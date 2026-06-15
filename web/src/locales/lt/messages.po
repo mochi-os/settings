@@ -21,7 +21,7 @@ msgstr ". Galite tvarkyti kelius:"
 msgid "(current)"
 msgstr "(dabartinis)"
 
-#: src/features/system/settings.tsx:93
+#: src/features/system/settings.tsx:95
 msgid "(empty)"
 msgstr "(tuščia)"
 
@@ -36,6 +36,20 @@ msgstr "{0, plural, one {Atšaukta 1 sesija} few {Atšauktos # sesijos} many {At
 #: src/features/user/display.tsx:239
 msgid "{0} (development)"
 msgstr "{0} (kuriama)"
+
+#. placeholder {0}: formatNumber(network.relaying.reservations.held)
+#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
+#. placeholder {2}: formatNumber(network.relaying.circuits)
+#. placeholder {3}: formatNumber(network.relaying.rejected)
+#: src/features/system/status.tsx:157
+msgid "{0} / {1} reservations · {2} circuits · {3} refused"
+msgstr "{0} / {1} rezervacijos · {2} grandinės · {3} atmesta"
+
+#. placeholder {0}: formatNumber(network.holepunch.success)
+#. placeholder {1}: formatNumber(network.holepunch.failure)
+#: src/features/system/status.tsx:150
+msgid "{0} succeeded · {1} failed"
+msgstr "{0} sėkmingų · {1} nesėkmingų"
 
 #: src/features/user/login.tsx:674
 msgid "{count} remaining"
@@ -198,7 +212,7 @@ msgid "Add view"
 msgstr "Pridėti rodinį"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:326
+#: src/features/user/replication.tsx:336
 msgid "Added"
 msgstr "Pridėta"
 
@@ -206,6 +220,18 @@ msgstr "Pridėta"
 #: src/features/user/interests.tsx:192
 msgid "Added \"{0}\""
 msgstr "Pridėta „{0}“"
+
+#: src/features/system/status.tsx:178
+msgid "Address"
+msgstr "Adresas"
+
+#: src/features/system/replication.tsx:257
+msgid "Address copied"
+msgstr "Adresas nukopijuotas"
+
+#: src/features/system/replication.tsx:248
+msgid "Addresses"
+msgstr "Adresai"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:62
 msgid "Adjust the appearance and layout to suit your preferences."
@@ -225,7 +251,7 @@ msgstr "DI"
 msgid "All"
 msgstr "Visi"
 
-#: src/features/system/settings.tsx:66
+#: src/features/system/settings.tsx:68
 msgid "Allow new signups"
 msgstr "Leisti naujas registracijas"
 
@@ -238,7 +264,7 @@ msgid "Allow users to install apps"
 msgstr "Leisti vartotojams diegti programėles"
 
 #: src/components/method-state-control.tsx:28
-#: src/features/system/settings.tsx:104
+#: src/features/system/settings.tsx:106
 msgid "Allowed"
 msgstr "Leidžiama"
 
@@ -250,11 +276,15 @@ msgstr "Įvyko klaida"
 msgid "An unexpected error occurred"
 msgstr "Įvyko netikėta klaida"
 
-#: src/features/user/replication.tsx:291
+#: src/features/system/settings.tsx:48
+msgid "Announce hostname and domains to other servers"
+msgstr "Skelbti pagrindinio kompiuterio vardą ir domenus kitiems serveriams"
+
+#: src/features/user/replication.tsx:301
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Kitas serveris prašo priglobti jūsų paskyros kopiją. Patvirtinkite, kad išsiųstumėte kopiją."
 
-#: src/features/system/replication.tsx:241
+#: src/features/system/replication.tsx:274
 msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
 msgstr "Kitas serveris prašo susieti su šiuo. Patvirtinkite, kad užregistruotumėte jį kaip visateisį replikacijos porininką."
 
@@ -267,23 +297,23 @@ msgstr "Programėlė"
 msgid "Appearance"
 msgstr "Išvaizda"
 
-#: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:70
+#: src/features/system/replication.tsx:79
+#: src/features/user/replication.tsx:71
 msgid "Approval failed"
 msgstr "Patvirtinimas nepavyko"
 
-#: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:93
+#: src/features/system/replication.tsx:99
+#: src/features/user/replication.tsx:97
 msgid "Approve"
 msgstr "Patvirtinti"
 
-#: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:103
+#: src/features/system/replication.tsx:119
+#: src/features/user/replication.tsx:107
 msgid "Approve request"
 msgstr "Patvirtinti užklausą"
 
-#: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:104
+#: src/features/system/replication.tsx:120
+#: src/features/user/replication.tsx:108
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "Patvirtinus privatieji raktai bus nukopijuoti į tą serverį. Norėdami tęsti, patvirtinkite, kad tai jūs."
 
@@ -339,6 +369,10 @@ msgstr "Atgal į pradžią"
 msgid "Boost interest"
 msgstr "Padidinti susidomėjimą"
 
+#: src/features/system/status.tsx:171
+msgid "Broadcast mesh"
+msgstr "Transliacijos mesh"
+
 #: src/features/user/notifications.tsx:216
 msgid "Browser notifications"
 msgstr "Naršyklės pranešimai"
@@ -355,10 +389,10 @@ msgstr "Naršyklės pranešimai"
 #: src/features/domains/index.tsx:330
 #: src/features/domains/index.tsx:509
 #: src/features/domains/index.tsx:655
-#: src/features/system/replication.tsx:175
-#: src/features/system/settings.tsx:275
-#: src/features/system/settings.tsx:313
-#: src/features/system/settings.tsx:428
+#: src/features/system/replication.tsx:181
+#: src/features/system/settings.tsx:277
+#: src/features/system/settings.tsx:315
+#: src/features/system/settings.tsx:430
 #: src/features/system/users.tsx:150
 #: src/features/system/users.tsx:235
 #: src/features/user/account.tsx:118
@@ -369,7 +403,7 @@ msgstr "Naršyklės pranešimai"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:201
+#: src/features/user/replication.tsx:207
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Atšaukti"
@@ -406,7 +440,7 @@ msgstr "Pasirinkite tarp svetainės krypties iš kairės į dešinę arba iš de
 msgid "Choose between system preference, light mode, or dark mode"
 msgstr "Pasirinkite tarp sistemos nustatymo, šviesaus arba tamsaus režimo"
 
-#: src/features/system/settings.tsx:376
+#: src/features/system/settings.tsx:378
 msgid "Choose file"
 msgstr "Pasirinkite failą"
 
@@ -414,9 +448,10 @@ msgstr "Pasirinkite failą"
 msgid "Choose language"
 msgstr "Pasirinkite kalbą"
 
-#: ../../../lib/web/src/components/colour-picker.tsx:304
-#: src/features/system/settings.tsx:358
-#: src/features/system/settings.tsx:359
+#: ../../../lib/web/src/components/colour-picker.tsx:268
+#: ../../../lib/web/src/components/colour-picker.tsx:349
+#: src/features/system/settings.tsx:360
+#: src/features/system/settings.tsx:361
 msgid "Clear"
 msgstr "Išvalyti"
 
@@ -487,7 +522,7 @@ msgstr "Netrukus!"
 msgid "Compact"
 msgstr "Kompaktiškas"
 
-#: src/features/system/settings.tsx:335
+#: src/features/system/settings.tsx:337
 msgid "Configured"
 msgstr "Sukonfigūruota"
 
@@ -496,11 +531,13 @@ msgstr "Sukonfigūruota"
 msgid "Confirm"
 msgstr "Patvirtinti"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:220
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "Patvirtinkite, kad tai jūs"
 
+#: src/features/system/status.tsx:170
+#: src/features/system/status.tsx:192
 #: src/features/user/connected-accounts.tsx:219
 msgid "Connected"
 msgstr "Prijungta"
@@ -536,11 +573,15 @@ msgstr "Tęsti su {label}"
 msgid "Copy"
 msgstr "Kopijuoti"
 
+#: src/features/system/replication.tsx:262
+msgid "Copy address"
+msgstr "Kopijuoti adresą"
+
 #: src/features/user/login.tsx:664
 msgid "Copy all"
 msgstr "Kopijuoti viską"
 
-#: src/features/system/replication.tsx:232
+#: src/features/system/replication.tsx:243
 msgid "Copy peer id"
 msgstr "Kopijuoti porininko ID"
 
@@ -552,12 +593,12 @@ msgstr "Dabar nukopijuokite žetoną. Jo daugiau nematysite."
 msgid "Could not close your account"
 msgstr "Nepavyko uždaryti jūsų paskyros"
 
-#: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:77
+#: src/features/system/replication.tsx:108
+#: src/features/user/replication.tsx:78
 msgid "Could not deny request"
 msgstr "Nepavyko atmesti užklausos"
 
-#: src/features/user/replication.tsx:162
+#: src/features/user/replication.tsx:168
 msgid "Could not forget host"
 msgstr "Nepavyko pamiršti pagrindinio kompiuterio"
 
@@ -569,11 +610,11 @@ msgstr "Nepavyko susieti paskyros"
 msgid "Could not load this document. Please try again later."
 msgstr "Nepavyko įkelti šio dokumento. Pabandykite dar kartą vėliau."
 
-#: src/features/system/replication.tsx:180
+#: src/features/system/replication.tsx:186
 msgid "Could not remove pair member"
 msgstr "Nepavyko pašalinti poros nario"
 
-#: src/features/user/replication.tsx:224
+#: src/features/user/replication.tsx:230
 msgid "Could not remove your account from this server"
 msgstr "Nepavyko pašalinti jūsų paskyros iš šio serverio"
 
@@ -621,6 +662,10 @@ msgstr "Sukurti vartotoją"
 #: src/features/user/tokens.tsx:269
 msgid "Created"
 msgstr "Sukurta"
+
+#: ../../../lib/web/src/components/colour-picker.tsx:259
+msgid "Custom"
+msgstr "Pasirinktinis"
 
 #: src/features/system/documents.tsx:123
 msgid "Customised"
@@ -763,8 +808,8 @@ msgstr "Ištrinama..."
 msgid "Density"
 msgstr "Tankis"
 
-#: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:97
+#: src/features/system/replication.tsx:113
+#: src/features/user/replication.tsx:101
 msgid "Deny"
 msgstr "Atmesti"
 
@@ -811,9 +856,13 @@ msgstr "Išjungti autentifikatorių?"
 
 #: src/components/method-state-control.tsx:28
 #: src/features/domains/index.tsx:696
-#: src/features/system/settings.tsx:102
+#: src/features/system/settings.tsx:104
 msgid "Disabled"
 msgstr "Išjungta"
+
+#: src/features/system/status.tsx:196
+msgid "Disconnected"
+msgstr "Atjungta"
 
 #: ../../../lib/web/src/components/restore-banner.tsx:73
 msgid "Dismiss"
@@ -891,16 +940,16 @@ msgstr "Atlikta"
 msgid "Download"
 msgstr "Atsisiųsti"
 
-#: src/features/system/status.tsx:127
+#: src/features/system/status.tsx:264
 msgid "Download from packages.mochi-os.org"
 msgstr "Atsisiųsti iš packages.mochi-os.org"
 
-#: src/features/system/status.tsx:115
-#: src/features/system/status.tsx:121
+#: src/features/system/status.tsx:252
+#: src/features/system/status.tsx:258
 msgid "Download installer"
 msgstr "Atsisiųsti diegimo programą"
 
-#: src/features/system/status.tsx:149
+#: src/features/system/status.tsx:286
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Atsisiųskite Mochi {latest} ir paleiskite serverį iš naujo"
 
@@ -977,6 +1026,10 @@ msgstr "Įveskite kodą iš savo el. laiško"
 msgid "Enter your authenticator code"
 msgstr "Įveskite autentifikatoriaus kodą"
 
+#: src/features/system/status.tsx:136
+msgid "Entities"
+msgstr "Esybės"
+
 #: src/features/domains/index.tsx:255
 #: src/features/domains/index.tsx:424
 msgid "Entity"
@@ -1002,11 +1055,11 @@ msgstr "Eksportavimas nepavyko"
 msgid "Extra large"
 msgstr "Labai didelis"
 
-#: src/features/system/settings.tsx:55
+#: src/features/system/settings.tsx:57
 msgid "Facebook App ID"
 msgstr "Facebook programėlės ID"
 
-#: src/features/system/settings.tsx:56
+#: src/features/system/settings.tsx:58
 msgid "Facebook App secret"
 msgstr "Facebook programėlės paslaptis"
 
@@ -1019,7 +1072,8 @@ msgstr "Nepavyko pridėti paskyros"
 msgid "Failed to add interest"
 msgstr "Nepavyko pridėti pomėgio"
 
-#: src/features/system/replication.tsx:228
+#: src/features/system/replication.tsx:239
+#: src/features/system/replication.tsx:258
 msgid "Failed to copy"
 msgstr "Nepavyko nukopijuoti"
 
@@ -1079,7 +1133,7 @@ msgstr "Nepavyko išjungti autentifikatoriaus"
 msgid "Failed to generate codes"
 msgstr "Nepavyko sugeneruoti kodų"
 
-#: src/features/system/status.tsx:140
+#: src/features/system/status.tsx:277
 msgid "Failed to install update"
 msgstr "Nepavyko įdiegti naujinimo"
 
@@ -1189,8 +1243,8 @@ msgstr "Nepavyko atnaujinti privatumo"
 msgid "Failed to update route"
 msgstr "Nepavyko atnaujinti maršruto"
 
-#: src/features/system/settings.tsx:461
-#: src/features/system/settings.tsx:476
+#: src/features/system/settings.tsx:463
+#: src/features/system/settings.tsx:478
 msgid "Failed to update setting"
 msgstr "Nepavyko atnaujinti nustatymo"
 
@@ -1218,6 +1272,7 @@ msgstr "Nepavyko patvirtinti kodo"
 msgid "Failed to verify domain"
 msgstr "Nepavyko patvirtinti domeno"
 
+#: src/features/system/status.tsx:73
 #: src/features/user/account.tsx:137
 msgid "Fingerprint"
 msgstr "Pirštų atspaudas"
@@ -1226,11 +1281,11 @@ msgstr "Pirštų atspaudas"
 msgid "Finish moving your account"
 msgstr "Užbaikite paskyros perkėlimą"
 
-#: src/features/system/settings.tsx:59
+#: src/features/system/settings.tsx:61
 msgid "Firebase google-services.json file"
 msgstr "Firebase google-services.json failas"
 
-#: src/features/system/settings.tsx:60
+#: src/features/system/settings.tsx:62
 msgid "Firebase private key file"
 msgstr "Firebase privačiojo rakto failas"
 
@@ -1246,11 +1301,11 @@ msgstr "Šriftas"
 msgid "Font size"
 msgstr "Šrifto dydis"
 
-#: src/features/user/replication.tsx:149
+#: src/features/user/replication.tsx:155
 msgid "Forget this unreachable host"
 msgstr "Pamiršti šį nepasiekiamą pagrindinį kompiuterį"
 
-#: src/features/user/replication.tsx:154
+#: src/features/user/replication.tsx:160
 msgid "Forget this unreachable host?"
 msgstr "Pamiršti šį nepasiekiamą pagrindinį kompiuterį?"
 
@@ -1259,8 +1314,8 @@ msgid "Friday"
 msgstr "Penktadienis"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
-#: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:296
+#: src/features/system/replication.tsx:281
+#: src/features/user/replication.tsx:306
 msgid "From"
 msgstr "Nuo"
 
@@ -1288,11 +1343,11 @@ msgstr "Sugeneruoti slaptafrazę"
 msgid "Generate?"
 msgstr "Generuoti?"
 
-#: src/features/system/settings.tsx:50
+#: src/features/system/settings.tsx:52
 msgid "GitHub client ID"
 msgstr "GitHub kliento ID"
 
-#: src/features/system/settings.tsx:51
+#: src/features/system/settings.tsx:53
 msgid "GitHub client secret"
 msgstr "GitHub kliento paslaptis"
 
@@ -1326,11 +1381,11 @@ msgstr "Eiti į puslapį {pageNumber}"
 msgid "Go to previous page"
 msgstr "Eiti į ankstesnį puslapį"
 
-#: src/features/system/settings.tsx:48
+#: src/features/system/settings.tsx:50
 msgid "Google client ID"
 msgstr "Google kliento ID"
 
-#: src/features/system/settings.tsx:49
+#: src/features/system/settings.tsx:51
 msgid "Google client secret"
 msgstr "Google kliento paslaptis"
 
@@ -1351,6 +1406,10 @@ msgstr "Slėpti"
 msgid "Higher priority routes are matched first"
 msgstr "Aukštesnio prioriteto maršrutai derinami pirmiausia"
 
+#: src/features/system/status.tsx:149
+msgid "Hole punch"
+msgstr "Pragręžimas"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx:82
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:142
 #: ../../../lib/web/src/components/layout/top-bar.tsx:62
@@ -1358,9 +1417,13 @@ msgstr "Aukštesnio prioriteto maršrutai derinami pirmiausia"
 msgid "Home"
 msgstr "Pradžia"
 
-#: src/features/user/replication.tsx:161
+#: src/features/user/replication.tsx:167
 msgid "Host forgotten"
 msgstr "Pagrindinis kompiuteris pamirštas"
+
+#: src/features/system/settings.tsx:47
+msgid "Hostname announced to other servers"
+msgstr "Kitiems serveriams skelbiamas pagrindinio kompiuterio vardas"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1387,12 +1450,12 @@ msgstr "Imperinė"
 msgid "Inset"
 msgstr "Įterptas"
 
-#: src/features/system/status.tsx:152
+#: src/features/system/status.tsx:289
 msgid "Install update"
 msgstr "Įdiegti naujinimą"
 
 #. placeholder {0}: info.pending
-#: src/features/system/status.tsx:87
+#: src/features/system/status.tsx:224
 msgid "Installing {0}…"
 msgstr "Diegiama {0}…"
 
@@ -1417,22 +1480,26 @@ msgstr "Netinkamas patvirtinimo kodas"
 msgid "IP Address"
 msgstr "IP adresas"
 
-#: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:129
+#: src/features/system/replication.tsx:151
+#: src/features/user/replication.tsx:134
 msgid "Irreparable"
 msgstr "Nepataisoma"
 
-#: src/features/user/replication.tsx:155
+#: src/features/user/replication.tsx:161
 msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
 msgstr "Jis bus pašalintas iš jūsų kopijų rinkinio ir, vėl prisijungęs, gaus nurodymą ištrinti savo kopiją. Norėdami pašalinti pasiekiamą serverį, prisijunkite prie jo ir naudokite „Pašalinti mano paskyrą iš šio serverio“. Norėdami tęsti, patvirtinkite, kad tai jūs."
 
-#: src/features/system/replication.tsx:75
+#: src/features/system/replication.tsx:77
 msgid "Join request approved"
 msgstr "Prisijungimo užklausa patvirtinta"
 
-#: src/features/system/replication.tsx:102
+#: src/features/system/replication.tsx:107
 msgid "Join request denied"
 msgstr "Prisijungimo užklausa atmesta"
+
+#: src/features/system/status.tsx:170
+msgid "Known"
+msgstr "Žinomi"
 
 #: src/features/user/notifications.tsx:441
 msgid "Label is required"
@@ -1456,6 +1523,10 @@ msgstr "Paskutinį kartą pasiektas"
 msgid "Last active"
 msgstr "Paskutinį kartą aktyvus"
 
+#: src/features/system/status.tsx:142
+msgid "Last broadcast"
+msgstr "Paskutinė transliacija"
+
 #. placeholder {0}: formatSystemTimestamp(document.updated)
 #: src/features/system/documents.tsx:129
 msgid "Last edited {0}"
@@ -1464,6 +1535,10 @@ msgstr "Paskutinį kartą redaguota {0}"
 #: src/features/system/users.tsx:643
 msgid "Last login"
 msgstr "Paskutinis prisijungimas"
+
+#: src/features/system/status.tsx:179
+msgid "Last seen"
+msgstr "Paskutinį kartą matytas"
 
 #: src/features/user/login.tsx:417
 #: src/features/user/login.tsx:867
@@ -1534,7 +1609,7 @@ msgstr "Atsijungiama…"
 
 #: src/components/layout/data/sidebar-data.ts:30
 #: src/components/layout/data/sidebar-data.ts:51
-#: src/features/system/settings.tsx:539
+#: src/features/system/settings.tsx:541
 #: src/features/user/login.tsx:892
 #: src/features/user/login.tsx:939
 msgid "Login"
@@ -1593,6 +1668,10 @@ msgstr "Vidutinis"
 msgid "Menu"
 msgstr "Meniu"
 
+#: src/features/system/status.tsx:162
+msgid "Messages awaiting routing"
+msgstr "Žinutės, laukiančios maršruto"
+
 #: src/features/domains/index.tsx:244
 #: src/features/domains/index.tsx:413
 #: src/features/domains/index.tsx:1000
@@ -1603,20 +1682,20 @@ msgstr "Metodas"
 msgid "Metric"
 msgstr "Metrinė"
 
-#: src/features/system/settings.tsx:52
+#: src/features/system/settings.tsx:54
 msgid "Microsoft client ID"
 msgstr "Microsoft kliento ID"
 
-#: src/features/system/settings.tsx:53
+#: src/features/system/settings.tsx:55
 msgid "Microsoft client secret"
 msgstr "Microsoft kliento paslaptis"
 
-#: src/features/system/settings.tsx:54
+#: src/features/system/settings.tsx:56
 msgid "Microsoft tenant"
 msgstr "Microsoft tenant"
 
 #. placeholder {0}: info.latest
-#: src/features/system/status.tsx:95
+#: src/features/system/status.tsx:232
 msgid "Mochi {0} is available"
 msgstr "Mochi {0} prieinama"
 
@@ -1637,7 +1716,7 @@ msgstr "Pirmadienis"
 msgid "My application"
 msgstr "Mano programa"
 
-#: src/features/user/replication.tsx:308
+#: src/features/user/replication.tsx:318
 msgid "My hosts"
 msgstr "Mano kompiuteriai"
 
@@ -1827,10 +1906,14 @@ msgstr "Skaičių formatas"
 
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
-#: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:132
+#: src/features/system/replication.tsx:154
+#: src/features/user/replication.tsx:137
 msgid "Offline {0}"
 msgstr "Neprisijungęs {0}"
+
+#: src/features/system/status.tsx:181
+msgid "Oldest queued message"
+msgstr "Seniausia žinutė eilėje"
 
 #: ../../../lib/web/src/features/errors/not-found-error.tsx:13
 msgid "Oops! Page Not Found!"
@@ -1840,6 +1923,10 @@ msgstr "Oi! Puslapis nerastas!"
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:151
 msgid "Open account actions"
 msgstr "Atidaryti paskyros veiksmus"
+
+#: ../../../lib/web/src/components/layout/nav-group.tsx:134
+msgid "Open actions"
+msgstr "Atidaryti veiksmus"
 
 #: ../../../lib/web/src/components/layout/top-bar.tsx:57
 msgid "Open navigation"
@@ -1858,19 +1945,19 @@ msgstr "Atidaryti temos nustatymus"
 msgid "Open user actions"
 msgstr "Atidaryti vartotojo veiksmus"
 
-#: src/features/system/settings.tsx:560
+#: src/features/system/settings.tsx:562
 msgid "Operator"
 msgstr "Operatorius"
 
-#: src/features/system/settings.tsx:62
+#: src/features/system/settings.tsx:64
 msgid "Operator email"
 msgstr "Operatoriaus el. paštas"
 
-#: src/features/system/settings.tsx:63
+#: src/features/system/settings.tsx:65
 msgid "Operator jurisdiction"
 msgstr "Operatoriaus jurisdikcija"
 
-#: src/features/system/settings.tsx:61
+#: src/features/system/settings.tsx:63
 msgid "Operator name"
 msgstr "Operatoriaus pavadinimas"
 
@@ -1878,11 +1965,11 @@ msgstr "Operatoriaus pavadinimas"
 msgid "Other"
 msgstr "Kita"
 
-#: src/features/user/replication.tsx:311
+#: src/features/user/replication.tsx:321
 msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
 msgstr "Kiti serveriai, kuriuose taip pat saugoma jūsų paskyros kopija. Norėdami pašalinti vieną, prisijunkite prie to serverio ir naudokite „Pašalinti mano paskyrą iš šio serverio“."
 
-#: src/features/system/settings.tsx:575
+#: src/features/system/settings.tsx:577
 msgid "Other settings"
 msgstr "Kiti nustatymai"
 
@@ -1890,11 +1977,11 @@ msgstr "Kiti nustatymai"
 msgid "Owner"
 msgstr "Savininkas"
 
-#: src/features/system/replication.tsx:179
+#: src/features/system/replication.tsx:185
 msgid "Pair member removed"
 msgstr "Poros narys pašalintas"
 
-#: src/features/system/replication.tsx:260
+#: src/features/system/replication.tsx:293
 msgid "Pair members"
 msgstr "Poros nariai"
 
@@ -1949,28 +2036,34 @@ msgstr "Kelias"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Kelias neleidžiamas. Galite pridėti maršrutus tik po: {0}"
 
-#: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:325
+#: src/features/system/replication.tsx:305
+#: src/features/system/status.tsx:176
+#: src/features/user/replication.tsx:335
 msgid "Peer"
 msgstr "Lygiavertis"
 
-#: src/features/system/status.tsx:61
+#: src/features/system/status.tsx:81
 msgid "Peer ID"
 msgstr "Lygiarangio ID"
 
-#: src/features/system/replication.tsx:227
+#: src/components/peer-identity.tsx:40
+#: src/features/system/replication.tsx:238
 msgid "Peer id copied"
 msgstr "Porininko ID nukopijuotas"
+
+#: src/features/system/status.tsx:168
+msgid "Peers"
+msgstr "Lygiaverčiai"
 
 #: src/features/user/connected-accounts.tsx:209
 msgid "Pending"
 msgstr "Laukiama"
 
-#: src/features/system/replication.tsx:239
+#: src/features/system/replication.tsx:272
 msgid "Pending join requests"
 msgstr "Laukiančios prisijungimo užklausos"
 
-#: src/features/user/replication.tsx:289
+#: src/features/user/replication.tsx:299
 msgid "Pending requests"
 msgstr "Laukiančios užklausos"
 
@@ -2022,6 +2115,10 @@ msgstr "Prioritetas"
 msgid "Privacy"
 msgstr "Privatumas"
 
+#: src/features/system/status.tsx:128
+msgid "Private"
+msgstr "Privatus"
+
 #: src/features/user/login.tsx:686
 msgid "Proceed"
 msgstr "Tęsti"
@@ -2035,15 +2132,28 @@ msgstr "Profilis"
 msgid "Provider"
 msgstr "Tiekėjas"
 
-#: src/features/system/settings.tsx:47
+#: src/features/system/status.tsx:127
+msgid "Public"
+msgstr "Viešas"
+
+#: src/features/system/settings.tsx:49
 msgid "Public URL for OAuth redirects"
 msgstr "Viešas URL OAuth peradresavimams"
 
-#: src/features/system/settings.tsx:568
+#: src/features/system/settings.tsx:570
 msgid "Push notifications"
 msgstr "Push pranešimai"
 
-#: src/features/user/replication.tsx:259
+#: src/features/system/status.tsx:164
+msgid "Queued broadcast messages"
+msgstr "Transliacijos žinutės eilėje"
+
+#: src/features/system/status.tsx:163
+#: src/features/system/status.tsx:180
+msgid "Queued messages"
+msgstr "Žinutės eilėje"
+
+#: src/features/user/replication.tsx:266
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "Įveskite abi reikšmes paskirties serverio registracijos formoje, kad galėtumėte ten kopijuoti šią paskyrą."
 
@@ -2058,6 +2168,10 @@ msgstr "Iš naujo susiekite paskyras šiame serveryje"
 #: ../../../lib/web/src/components/restore-banner.tsx:120
 msgid "Re-register your passkeys on this server"
 msgstr "Iš naujo užregistruokite prieigos raktus šiame serveryje"
+
+#: src/features/system/status.tsx:137
+msgid "Reachability"
+msgstr "Pasiekiamumas"
 
 #: ../../../lib/web/src/components/search-entity-dialog.tsx:216
 #: ../../../lib/web/src/components/search-entity-page.tsx:191
@@ -2111,12 +2225,16 @@ msgstr "Santykinis (5m, 3h, 2d)"
 msgid "Relative within 24 hours, else absolute"
 msgstr "Santykinis per 24 val., kitaip absoliutus"
 
+#: src/features/system/status.tsx:156
+msgid "Relay service"
+msgstr "Perdavimo paslauga"
+
 #: ../../../lib/web/src/features/access/access-list.tsx:257
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:172
-#: src/features/system/replication.tsx:184
+#: src/features/system/replication.tsx:190
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
-#: src/features/user/replication.tsx:206
+#: src/features/user/replication.tsx:212
 msgid "Remove"
 msgstr "Šalinti"
 
@@ -2142,15 +2260,15 @@ msgstr "Šalinti paskyrą?"
 msgid "Remove interest"
 msgstr "Šalinti susidomėjimą"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:193
 msgid "Remove my account from this server"
 msgstr "Pašalinti mano paskyrą iš šio serverio"
 
-#: src/features/system/replication.tsx:161
+#: src/features/system/replication.tsx:167
 msgid "Remove pair member"
 msgstr "Pašalinti poros narį"
 
-#: src/features/system/replication.tsx:166
+#: src/features/system/replication.tsx:172
 msgid "Remove pair member?"
 msgstr "Pašalinti poros narį?"
 
@@ -2158,7 +2276,7 @@ msgstr "Pašalinti poros narį?"
 msgid "Remove suspension"
 msgstr "Šalinti suspendavimą"
 
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:198
 msgid "Remove your account from this server?"
 msgstr "Pašalinti jūsų paskyrą iš šio serverio?"
 
@@ -2166,25 +2284,25 @@ msgstr "Pašalinti jūsų paskyrą iš šio serverio?"
 msgid "Rename passkey"
 msgstr "Pervadinti prieigos raktą"
 
-#: src/features/system/settings.tsx:349
+#: src/features/system/settings.tsx:351
 msgid "Replace"
 msgstr "Pakeisti"
 
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
-#: src/features/system/replication.tsx:196
-#: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:236
-#: src/features/user/replication.tsx:246
+#: src/features/system/replication.tsx:202
+#: src/features/system/replication.tsx:217
+#: src/features/user/replication.tsx:242
+#: src/features/user/replication.tsx:253
 msgid "Replication"
 msgstr "Replikacija"
 
-#: src/features/user/replication.tsx:68
+#: src/features/user/replication.tsx:69
 msgid "Request approved"
 msgstr "Užklausa patvirtinta"
 
-#: src/features/user/replication.tsx:76
+#: src/features/user/replication.tsx:77
 msgid "Request denied"
 msgstr "Užklausa atmesta"
 
@@ -2193,7 +2311,7 @@ msgid "Require domain verification"
 msgstr "Reikalauti domeno patvirtinimo"
 
 #: src/components/method-state-control.tsx:28
-#: src/features/system/settings.tsx:106
+#: src/features/system/settings.tsx:108
 msgid "Required"
 msgstr "Privaloma"
 
@@ -2203,9 +2321,9 @@ msgstr "Siųsti el. laišką dar kartą"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:77
 #: ../../../lib/web/src/components/data-table/toolbar.tsx:78
-#: src/features/system/settings.tsx:277
-#: src/features/system/settings.tsx:315
-#: src/features/system/settings.tsx:430
+#: src/features/system/settings.tsx:279
+#: src/features/system/settings.tsx:317
+#: src/features/system/settings.tsx:432
 #: src/features/user/display.tsx:193
 #: src/features/user/preferences.tsx:228
 msgid "Reset"
@@ -2223,18 +2341,18 @@ msgstr "Atstatyti rodinį?"
 msgid "Reset preferences?"
 msgstr "Atstatyti nuostatas?"
 
-#: src/features/system/settings.tsx:261
-#: src/features/system/settings.tsx:262
-#: src/features/system/settings.tsx:299
-#: src/features/system/settings.tsx:300
-#: src/features/system/settings.tsx:412
-#: src/features/system/settings.tsx:413
+#: src/features/system/settings.tsx:263
+#: src/features/system/settings.tsx:264
+#: src/features/system/settings.tsx:301
+#: src/features/system/settings.tsx:302
+#: src/features/system/settings.tsx:414
+#: src/features/system/settings.tsx:415
 msgid "Reset to default"
 msgstr "Atstatyti į numatytąjį"
 
-#: src/features/system/settings.tsx:269
-#: src/features/system/settings.tsx:307
-#: src/features/system/settings.tsx:420
+#: src/features/system/settings.tsx:271
+#: src/features/system/settings.tsx:309
+#: src/features/system/settings.tsx:422
 msgid "Reset to default?"
 msgstr "Atstatyti į numatytąjį?"
 
@@ -2304,7 +2422,7 @@ msgstr "Šeštadienis"
 
 #: ../../../lib/web/src/components/ui/secret-field.tsx:74
 #: src/features/system/documents.tsx:151
-#: src/features/system/settings.tsx:401
+#: src/features/system/settings.tsx:403
 #: src/features/user/connected-accounts.tsx:603
 #: src/features/user/notifications.tsx:521
 msgid "Save"
@@ -2452,7 +2570,7 @@ msgstr "Serifinis"
 msgid "Server error"
 msgstr "Serverio klaida"
 
-#: src/features/user/replication.tsx:272
+#: src/features/user/replication.tsx:279
 msgid "Server peer ID"
 msgstr "Serverio lygiarangio ID"
 
@@ -2466,11 +2584,11 @@ msgstr "Serverio taisyklės"
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "Serverio taisyklės, sąlygos ir privatumo pranešimas, rodomi jūsų vartotojams"
 
-#: src/features/system/settings.tsx:64
+#: src/features/system/settings.tsx:66
 msgid "Server started"
 msgstr "Serveris paleistas"
 
-#: src/features/system/settings.tsx:65
+#: src/features/system/settings.tsx:67
 msgid "Server version"
 msgstr "Serverio versija"
 
@@ -2507,8 +2625,8 @@ msgstr "Nustatyti pradžią ir paskirties vietą"
 msgid "Set up"
 msgstr "Nustatyti"
 
-#: src/features/system/settings.tsx:457
-#: src/features/system/settings.tsx:474
+#: src/features/system/settings.tsx:459
+#: src/features/system/settings.tsx:476
 msgid "Setting updated"
 msgstr "Nustatymas atnaujintas"
 
@@ -2556,15 +2674,16 @@ msgstr "Mažas"
 msgid "Spacious"
 msgstr "Erdvus"
 
-#: src/features/system/status.tsx:54
+#: src/features/system/status.tsx:66
 msgid "Started"
 msgstr "Pradėta"
 
 #: src/components/layout/data/sidebar-data.ts:69
 #: src/features/domains/index.tsx:1003
-#: src/features/system/replication.tsx:273
-#: src/features/system/status.tsx:25
-#: src/features/system/status.tsx:40
+#: src/features/system/replication.tsx:306
+#: src/features/system/status.tsx:36
+#: src/features/system/status.tsx:52
+#: src/features/system/status.tsx:177
 #: src/features/system/users.tsx:636
 #: src/features/user/connected-accounts.tsx:465
 msgid "Status"
@@ -2602,11 +2721,11 @@ msgstr "Sustabdyta"
 msgid "Suspension removed"
 msgstr "Sustabdymas pašalintas"
 
-#: src/features/system/replication.tsx:151
+#: src/features/system/replication.tsx:157
 msgid "Synced"
 msgstr "Sinchronizuota"
 
-#: src/features/system/replication.tsx:153
+#: src/features/system/replication.tsx:159
 msgid "Syncing"
 msgstr "Sinchronizuojama"
 
@@ -2618,8 +2737,8 @@ msgid "System"
 msgstr "Sistema"
 
 #: src/components/layout/data/sidebar-data.ts:65
-#: src/features/system/settings.tsx:446
-#: src/features/system/settings.tsx:530
+#: src/features/system/settings.tsx:448
+#: src/features/system/settings.tsx:532
 msgid "System settings"
 msgstr "Sistemos nustatymai"
 
@@ -2687,17 +2806,17 @@ msgstr "Temos nustatymai"
 msgid "Theme updated"
 msgstr "Tema atnaujinta"
 
-#: src/features/system/settings.tsx:546
+#: src/features/system/settings.tsx:548
 #: src/features/user/login.tsx:125
 #: src/features/user/login.tsx:847
 msgid "Third-party login"
 msgstr "Trečiosios šalies prisijungimas"
 
-#: src/features/user/replication.tsx:257
+#: src/features/user/replication.tsx:264
 msgid "This account"
 msgstr "Ši paskyra"
 
-#: src/features/user/replication.tsx:317
+#: src/features/user/replication.tsx:327
 msgid "This account is on this server only"
 msgstr "Ši paskyra yra tik šiame serveryje"
 
@@ -2709,19 +2828,19 @@ msgstr "Tai visa atsarginė kopija, kurią galite atkurti šiame arba kitame Moc
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Tai jūsų paskyros saugumo pakeitimas. Norėdami tęsti, patvirtinkite, kad tai jūs."
 
-#: src/features/user/replication.tsx:215
+#: src/features/user/replication.tsx:221
 msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
 msgstr "Tai visam laikui ištrina jūsų paskyros duomenis šiame serveryje. Norėdami tęsti, patvirtinkite, kad tai jūs."
 
-#: src/features/system/replication.tsx:219
+#: src/features/system/replication.tsx:227
 msgid "This server"
 msgstr "Šis serveris"
 
-#: src/features/system/replication.tsx:264
+#: src/features/system/replication.tsx:297
 msgid "This server is not paired."
 msgstr "Šis serveris nesuporuotas."
 
-#: src/features/system/replication.tsx:168
+#: src/features/system/replication.tsx:174
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "Šis serveris nutrauks susiejimą su tuo porininku. Pašalintas serveris išlaiko vietines kiekvieno naudotojo kopijas; tos pusės operatorius turi ištrinti jas rankiniu būdu."
 
@@ -2768,14 +2887,14 @@ msgstr "Tai pašalins {0} delegavimą kelyje „{1}“."
 msgid "This will remove the route for path \"{0}\"."
 msgstr "Tai pašalins kelio „{0}“ maršrutą."
 
-#: src/features/system/settings.tsx:424
+#: src/features/system/settings.tsx:426
 msgid "This will reset \"{settingNameLabel}\" to its default (empty)."
 msgstr "Tai iš naujo nustatys „{settingNameLabel}“ į numatytąją reikšmę (tuščia)."
 
 #. placeholder {0}: setting.default
-#: src/features/system/settings.tsx:271
-#: src/features/system/settings.tsx:309
-#: src/features/system/settings.tsx:423
+#: src/features/system/settings.tsx:273
+#: src/features/system/settings.tsx:311
+#: src/features/system/settings.tsx:425
 msgid "This will reset \"{settingNameLabel}\" to its default value ({0})."
 msgstr "Tai iš naujo nustatys „{settingNameLabel}“ į numatytąją reikšmę ({0})."
 
@@ -2811,7 +2930,7 @@ msgstr "Laiko žymos"
 msgid "TLS Enabled"
 msgstr "TLS įjungta"
 
-#: src/features/user/replication.tsx:318
+#: src/features/user/replication.tsx:328
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "Norėdami jį replikuoti į kitą serverį, užregistruokite ten paskyrą ir naudokite parinktį \"Replikuoti esamą paskyrą\"."
 
@@ -2934,8 +3053,10 @@ msgstr "Jungtinės Valstijos"
 msgid "Units"
 msgstr "Vienetai"
 
+#: src/features/system/status.tsx:129
+#: src/features/system/status.tsx:130
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:137
+#: src/features/user/replication.tsx:143
 msgid "Unknown"
 msgstr "Nežinoma"
 
@@ -2964,12 +3085,16 @@ msgstr "Atsieti teikėją?"
 msgid "Unlinked {0}"
 msgstr "Atsieta {0}"
 
+#: src/features/system/status.tsx:194
+msgid "Unreachable"
+msgstr "Nepasiekiamas"
+
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:131
 #: src/features/domains/index.tsx:885
 msgid "Unverified"
 msgstr "Nepatvirtinta"
 
-#: src/features/system/status.tsx:69
+#: src/features/system/status.tsx:89
 msgid "Update"
 msgstr "Atnaujinti"
 
@@ -2978,7 +3103,7 @@ msgstr "Atnaujinti"
 msgid "URL to redirect to"
 msgstr "URL, į kurį peradresuoti"
 
-#: src/features/system/replication.tsx:265
+#: src/features/system/replication.tsx:298
 msgid "Use \"mochictl replica join {peer}\" on a newly installed server to pair with this server."
 msgstr "Norėdami suporuoti su šiuo serveriu, naujai įdiegtame serveryje naudokite \"mochictl replica join {peer}\"."
 
@@ -3008,7 +3133,7 @@ msgstr "Vartotojas"
 msgid "User created"
 msgstr "Vartotojas sukurtas"
 
-#: src/features/system/settings.tsx:553
+#: src/features/system/settings.tsx:555
 msgid "User defaults"
 msgstr "Vartotojo numatytieji"
 
@@ -3025,11 +3150,12 @@ msgid "User updated"
 msgstr "Vartotojas atnaujintas"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:264
+#: src/features/user/replication.tsx:271
 msgid "Username"
 msgstr "Vartotojo vardas"
 
 #: src/components/layout/data/sidebar-data.ts:67
+#: src/features/system/status.tsx:135
 #: src/features/system/users.tsx:544
 #: src/features/system/users.tsx:582
 #: src/features/system/users.tsx:595
@@ -3079,9 +3205,13 @@ msgstr "Patvirtinti DNS"
 msgid "Verify email address"
 msgstr "Patvirtinti el. pašto adresą"
 
-#: src/features/system/status.tsx:50
+#: src/features/system/status.tsx:62
 msgid "Version"
 msgstr "Versija"
+
+#: src/features/system/status.tsx:139
+msgid "Via relay"
+msgstr "Per retransliatorių"
 
 #: ../../../lib/web/src/components/attachment-gallery.tsx:63
 msgid "Video thumbnail"
@@ -3119,11 +3249,11 @@ msgstr "Trečiadienis"
 msgid "Week starts on"
 msgstr "Savaitė prasideda"
 
-#: src/features/system/settings.tsx:57
+#: src/features/system/settings.tsx:59
 msgid "X client ID"
 msgstr "X kliento ID"
 
-#: src/features/system/settings.tsx:58
+#: src/features/system/settings.tsx:60
 msgid "X client secret"
 msgstr "X kliento paslaptis"
 
@@ -3148,7 +3278,7 @@ msgstr "Jūsų paskyra bus visam laikui ištrinta {purgeDate}. Buvote atjungti. 
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "Jūsų paskyra bus numatyta ištrinti ir būsite atjungti. Galite atšaukti bet kada iki ištrynimo datos vėl prisijungę. Jei norite išsaugoti kopiją, pirma atsisiųskite savo duomenis."
 
-#: src/features/user/replication.tsx:194
+#: src/features/user/replication.tsx:200
 msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
 msgstr "Jūsų paskyros duomenys šiame serveryje bus visam laikui ištrinti, o jūs būsite čia atjungti. Jūsų paskyra lieka kituose jūsų serveriuose, o šį serverį galėsite pridėti iš naujo vėliau."
 

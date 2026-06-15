@@ -21,7 +21,7 @@ msgstr ". Bideak kudeatu ditzakezu:"
 msgid "(current)"
 msgstr "(unekoa)"
 
-#: src/features/system/settings.tsx:93
+#: src/features/system/settings.tsx:95
 msgid "(empty)"
 msgstr "(hutsa)"
 
@@ -36,6 +36,20 @@ msgstr "{0, plural, one {1 saio baliogabetuta} other {# saio baliogabetuta}}"
 #: src/features/user/display.tsx:239
 msgid "{0} (development)"
 msgstr "{0} (garapena)"
+
+#. placeholder {0}: formatNumber(network.relaying.reservations.held)
+#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
+#. placeholder {2}: formatNumber(network.relaying.circuits)
+#. placeholder {3}: formatNumber(network.relaying.rejected)
+#: src/features/system/status.tsx:157
+msgid "{0} / {1} reservations · {2} circuits · {3} refused"
+msgstr "{0} / {1} erreserbak · {2} zirkuituak · {3} ukatuak"
+
+#. placeholder {0}: formatNumber(network.holepunch.success)
+#. placeholder {1}: formatNumber(network.holepunch.failure)
+#: src/features/system/status.tsx:150
+msgid "{0} succeeded · {1} failed"
+msgstr "{0} ondo · {1} huts"
 
 #: src/features/user/login.tsx:674
 msgid "{count} remaining"
@@ -198,7 +212,7 @@ msgid "Add view"
 msgstr "Gehitu ikuspegia"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:326
+#: src/features/user/replication.tsx:336
 msgid "Added"
 msgstr "Gehituta"
 
@@ -206,6 +220,18 @@ msgstr "Gehituta"
 #: src/features/user/interests.tsx:192
 msgid "Added \"{0}\""
 msgstr "\"{0}\" gehitu da"
+
+#: src/features/system/status.tsx:178
+msgid "Address"
+msgstr "Helbidea"
+
+#: src/features/system/replication.tsx:257
+msgid "Address copied"
+msgstr "Helbidea kopiatu da"
+
+#: src/features/system/replication.tsx:248
+msgid "Addresses"
+msgstr "Helbideak"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:62
 msgid "Adjust the appearance and layout to suit your preferences."
@@ -225,7 +251,7 @@ msgstr "AA"
 msgid "All"
 msgstr "Guztiak"
 
-#: src/features/system/settings.tsx:66
+#: src/features/system/settings.tsx:68
 msgid "Allow new signups"
 msgstr "Baimendu erregistro berriak"
 
@@ -238,7 +264,7 @@ msgid "Allow users to install apps"
 msgstr "Baimendu erabiltzaileei aplikazioak instalatzea"
 
 #: src/components/method-state-control.tsx:28
-#: src/features/system/settings.tsx:104
+#: src/features/system/settings.tsx:106
 msgid "Allowed"
 msgstr "Baimendua"
 
@@ -250,11 +276,15 @@ msgstr "Errore bat gertatu da"
 msgid "An unexpected error occurred"
 msgstr "Ustekabeko errore bat gertatu da"
 
-#: src/features/user/replication.tsx:291
+#: src/features/system/settings.tsx:48
+msgid "Announce hostname and domains to other servers"
+msgstr "Iragarri ostalari-izena eta domeinuak beste zerbitzariei"
+
+#: src/features/user/replication.tsx:301
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Beste zerbitzari batek zure kontuaren kopia bat ostatatzeko eskatzen du. Onartu kopia bidaltzeko."
 
-#: src/features/system/replication.tsx:241
+#: src/features/system/replication.tsx:274
 msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
 msgstr "Beste zerbitzari batek hau berarekin parekatzeko eskaera egiten du. Onartu erreplikazio-kide oso gisa erregistratzeko."
 
@@ -267,23 +297,23 @@ msgstr "Aplikazioa"
 msgid "Appearance"
 msgstr "Itxura"
 
-#: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:70
+#: src/features/system/replication.tsx:79
+#: src/features/user/replication.tsx:71
 msgid "Approval failed"
 msgstr "Onarpenak huts egin du"
 
-#: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:93
+#: src/features/system/replication.tsx:99
+#: src/features/user/replication.tsx:97
 msgid "Approve"
 msgstr "Onartu"
 
-#: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:103
+#: src/features/system/replication.tsx:119
+#: src/features/user/replication.tsx:107
 msgid "Approve request"
 msgstr "Onartu eskaera"
 
-#: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:104
+#: src/features/system/replication.tsx:120
+#: src/features/user/replication.tsx:108
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "Onartzean, gako pribatuak zerbitzari horretara kopiatzen dira. Egiaztatu zure nortasuna jarraitzeko."
 
@@ -339,6 +369,10 @@ msgstr "Itzuli hasierara"
 msgid "Boost interest"
 msgstr "Bultzatu interesa"
 
+#: src/features/system/status.tsx:171
+msgid "Broadcast mesh"
+msgstr "Igorpen mesh"
+
 #: src/features/user/notifications.tsx:216
 msgid "Browser notifications"
 msgstr "Nabigatzaile jakinarazpenak"
@@ -355,10 +389,10 @@ msgstr "Nabigatzaile jakinarazpenak"
 #: src/features/domains/index.tsx:330
 #: src/features/domains/index.tsx:509
 #: src/features/domains/index.tsx:655
-#: src/features/system/replication.tsx:175
-#: src/features/system/settings.tsx:275
-#: src/features/system/settings.tsx:313
-#: src/features/system/settings.tsx:428
+#: src/features/system/replication.tsx:181
+#: src/features/system/settings.tsx:277
+#: src/features/system/settings.tsx:315
+#: src/features/system/settings.tsx:430
 #: src/features/system/users.tsx:150
 #: src/features/system/users.tsx:235
 #: src/features/user/account.tsx:118
@@ -369,7 +403,7 @@ msgstr "Nabigatzaile jakinarazpenak"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:201
+#: src/features/user/replication.tsx:207
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Utzi"
@@ -406,7 +440,7 @@ msgstr "Aukeratu ezkerretik eskuinerako edo eskuinetik ezkerrerako gunearen nora
 msgid "Choose between system preference, light mode, or dark mode"
 msgstr "Aukeratu sistemaren lehentasunaren, modu argiaren edo modu ilunaren artean"
 
-#: src/features/system/settings.tsx:376
+#: src/features/system/settings.tsx:378
 msgid "Choose file"
 msgstr "Aukeratu fitxategia"
 
@@ -414,9 +448,10 @@ msgstr "Aukeratu fitxategia"
 msgid "Choose language"
 msgstr "Aukeratu hizkuntza"
 
-#: ../../../lib/web/src/components/colour-picker.tsx:304
-#: src/features/system/settings.tsx:358
-#: src/features/system/settings.tsx:359
+#: ../../../lib/web/src/components/colour-picker.tsx:268
+#: ../../../lib/web/src/components/colour-picker.tsx:349
+#: src/features/system/settings.tsx:360
+#: src/features/system/settings.tsx:361
 msgid "Clear"
 msgstr "Garbitu"
 
@@ -487,7 +522,7 @@ msgstr "Laster dator!"
 msgid "Compact"
 msgstr "Trinkoa"
 
-#: src/features/system/settings.tsx:335
+#: src/features/system/settings.tsx:337
 msgid "Configured"
 msgstr "Konfiguratuta"
 
@@ -496,11 +531,13 @@ msgstr "Konfiguratuta"
 msgid "Confirm"
 msgstr "Berretsi"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:220
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "Berretsi zu zarela"
 
+#: src/features/system/status.tsx:170
+#: src/features/system/status.tsx:192
 #: src/features/user/connected-accounts.tsx:219
 msgid "Connected"
 msgstr "Konektatua"
@@ -536,11 +573,15 @@ msgstr "Jarraitu {label} erabiliz"
 msgid "Copy"
 msgstr "Kopiatu"
 
+#: src/features/system/replication.tsx:262
+msgid "Copy address"
+msgstr "Kopiatu helbidea"
+
 #: src/features/user/login.tsx:664
 msgid "Copy all"
 msgstr "Kopiatu dena"
 
-#: src/features/system/replication.tsx:232
+#: src/features/system/replication.tsx:243
 msgid "Copy peer id"
 msgstr "Kopiatu kidearen IDa"
 
@@ -552,12 +593,12 @@ msgstr "Kopiatu zure tokena orain. Ez duzu berriro ikusterik izango."
 msgid "Could not close your account"
 msgstr "Ezin izan da zure kontua itxi"
 
-#: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:77
+#: src/features/system/replication.tsx:108
+#: src/features/user/replication.tsx:78
 msgid "Could not deny request"
 msgstr "Ezin izan da eskaera ukatu"
 
-#: src/features/user/replication.tsx:162
+#: src/features/user/replication.tsx:168
 msgid "Could not forget host"
 msgstr "Ezin izan da ostalaria ahaztu"
 
@@ -569,11 +610,11 @@ msgstr "Ezin izan da kontua estekatu"
 msgid "Could not load this document. Please try again later."
 msgstr "Ezin izan da dokumentu hau kargatu. Saiatu berriro geroago."
 
-#: src/features/system/replication.tsx:180
+#: src/features/system/replication.tsx:186
 msgid "Could not remove pair member"
 msgstr "Ezin izan da pareko kidea kendu"
 
-#: src/features/user/replication.tsx:224
+#: src/features/user/replication.tsx:230
 msgid "Could not remove your account from this server"
 msgstr "Ezin izan da zure kontua zerbitzari honetatik kendu"
 
@@ -621,6 +662,10 @@ msgstr "Sortu erabiltzailea"
 #: src/features/user/tokens.tsx:269
 msgid "Created"
 msgstr "Sortua"
+
+#: ../../../lib/web/src/components/colour-picker.tsx:259
+msgid "Custom"
+msgstr "Pertsonalizatua"
 
 #: src/features/system/documents.tsx:123
 msgid "Customised"
@@ -763,8 +808,8 @@ msgstr "Ezabatzen..."
 msgid "Density"
 msgstr "Dentsitatea"
 
-#: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:97
+#: src/features/system/replication.tsx:113
+#: src/features/user/replication.tsx:101
 msgid "Deny"
 msgstr "Ukatu"
 
@@ -811,9 +856,13 @@ msgstr "Desgaitu autentifikatzailea?"
 
 #: src/components/method-state-control.tsx:28
 #: src/features/domains/index.tsx:696
-#: src/features/system/settings.tsx:102
+#: src/features/system/settings.tsx:104
 msgid "Disabled"
 msgstr "Desgaituta"
+
+#: src/features/system/status.tsx:196
+msgid "Disconnected"
+msgstr "Deskonektatuta"
 
 #: ../../../lib/web/src/components/restore-banner.tsx:73
 msgid "Dismiss"
@@ -891,16 +940,16 @@ msgstr "Eginda"
 msgid "Download"
 msgstr "Deskargatu"
 
-#: src/features/system/status.tsx:127
+#: src/features/system/status.tsx:264
 msgid "Download from packages.mochi-os.org"
 msgstr "Deskargatu packages.mochi-os.org-etik"
 
-#: src/features/system/status.tsx:115
-#: src/features/system/status.tsx:121
+#: src/features/system/status.tsx:252
+#: src/features/system/status.tsx:258
 msgid "Download installer"
 msgstr "Deskargatu instalatzailea"
 
-#: src/features/system/status.tsx:149
+#: src/features/system/status.tsx:286
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Deskargatu Mochi {latest} eta berrabiarazi zerbitzaria"
 
@@ -977,6 +1026,10 @@ msgstr "Sartu zure mezu elektronikoko kodea"
 msgid "Enter your authenticator code"
 msgstr "Sartu zure autentifikazio-aplikazioaren kodea"
 
+#: src/features/system/status.tsx:136
+msgid "Entities"
+msgstr "Entitateak"
+
 #: src/features/domains/index.tsx:255
 #: src/features/domains/index.tsx:424
 msgid "Entity"
@@ -1002,11 +1055,11 @@ msgstr "Esportazioa huts egin du"
 msgid "Extra large"
 msgstr "Oso handia"
 
-#: src/features/system/settings.tsx:55
+#: src/features/system/settings.tsx:57
 msgid "Facebook App ID"
 msgstr "Facebook aplikazioaren IDa"
 
-#: src/features/system/settings.tsx:56
+#: src/features/system/settings.tsx:58
 msgid "Facebook App secret"
 msgstr "Facebook aplikazioaren sekretua"
 
@@ -1019,7 +1072,8 @@ msgstr "Ezin izan da kontua gehitu"
 msgid "Failed to add interest"
 msgstr "Ezin izan da interesa gehitu"
 
-#: src/features/system/replication.tsx:228
+#: src/features/system/replication.tsx:239
+#: src/features/system/replication.tsx:258
 msgid "Failed to copy"
 msgstr "Ezin izan da kopiatu"
 
@@ -1079,7 +1133,7 @@ msgstr "Ezin izan da autentifikatzailea desgaitu"
 msgid "Failed to generate codes"
 msgstr "Ezin izan dira kodeak sortu"
 
-#: src/features/system/status.tsx:140
+#: src/features/system/status.tsx:277
 msgid "Failed to install update"
 msgstr "Ezin izan da eguneraketa instalatu"
 
@@ -1189,8 +1243,8 @@ msgstr "Ezin izan da pribatutasuna eguneratu"
 msgid "Failed to update route"
 msgstr "Ezin izan da bidea eguneratu"
 
-#: src/features/system/settings.tsx:461
-#: src/features/system/settings.tsx:476
+#: src/features/system/settings.tsx:463
+#: src/features/system/settings.tsx:478
 msgid "Failed to update setting"
 msgstr "Ezin izan da ezarpena eguneratu"
 
@@ -1218,6 +1272,7 @@ msgstr "Ezin izan da kodea egiaztatu"
 msgid "Failed to verify domain"
 msgstr "Ezin izan da domeinua egiaztatu"
 
+#: src/features/system/status.tsx:73
 #: src/features/user/account.tsx:137
 msgid "Fingerprint"
 msgstr "Hatz-marka"
@@ -1226,11 +1281,11 @@ msgstr "Hatz-marka"
 msgid "Finish moving your account"
 msgstr "Amaitu kontuaren mugiketa"
 
-#: src/features/system/settings.tsx:59
+#: src/features/system/settings.tsx:61
 msgid "Firebase google-services.json file"
 msgstr "Firebase google-services.json fitxategia"
 
-#: src/features/system/settings.tsx:60
+#: src/features/system/settings.tsx:62
 msgid "Firebase private key file"
 msgstr "Firebase gako pribatu fitxategia"
 
@@ -1246,11 +1301,11 @@ msgstr "Letra-tipoa"
 msgid "Font size"
 msgstr "Letra-tamaina"
 
-#: src/features/user/replication.tsx:149
+#: src/features/user/replication.tsx:155
 msgid "Forget this unreachable host"
 msgstr "Ahaztu eskuraezin den ostalari hau"
 
-#: src/features/user/replication.tsx:154
+#: src/features/user/replication.tsx:160
 msgid "Forget this unreachable host?"
 msgstr "Ahaztu eskuraezin den ostalari hau?"
 
@@ -1259,8 +1314,8 @@ msgid "Friday"
 msgstr "Ostirala"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
-#: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:296
+#: src/features/system/replication.tsx:281
+#: src/features/user/replication.tsx:306
 msgid "From"
 msgstr "Nondik"
 
@@ -1288,11 +1343,11 @@ msgstr "Sortu pasahitz-esaldia"
 msgid "Generate?"
 msgstr "Sortu?"
 
-#: src/features/system/settings.tsx:50
+#: src/features/system/settings.tsx:52
 msgid "GitHub client ID"
 msgstr "GitHub bezeroaren IDa"
 
-#: src/features/system/settings.tsx:51
+#: src/features/system/settings.tsx:53
 msgid "GitHub client secret"
 msgstr "GitHub bezeroaren sekretua"
 
@@ -1326,11 +1381,11 @@ msgstr "Joan {pageNumber} orrira"
 msgid "Go to previous page"
 msgstr "Joan aurreko orrira"
 
-#: src/features/system/settings.tsx:48
+#: src/features/system/settings.tsx:50
 msgid "Google client ID"
 msgstr "Google bezeroaren IDa"
 
-#: src/features/system/settings.tsx:49
+#: src/features/system/settings.tsx:51
 msgid "Google client secret"
 msgstr "Google bezeroaren sekretua"
 
@@ -1351,6 +1406,10 @@ msgstr "Ezkutatu"
 msgid "Higher priority routes are matched first"
 msgstr "Lehentasun handiagoko bideak lehenik parekatzen dira"
 
+#: src/features/system/status.tsx:149
+msgid "Hole punch"
+msgstr "Zulaketa"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx:82
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:142
 #: ../../../lib/web/src/components/layout/top-bar.tsx:62
@@ -1358,9 +1417,13 @@ msgstr "Lehentasun handiagoko bideak lehenik parekatzen dira"
 msgid "Home"
 msgstr "Hasiera"
 
-#: src/features/user/replication.tsx:161
+#: src/features/user/replication.tsx:167
 msgid "Host forgotten"
 msgstr "Ostalaria ahaztuta"
+
+#: src/features/system/settings.tsx:47
+msgid "Hostname announced to other servers"
+msgstr "Beste zerbitzariei iragarritako ostalari-izena"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1387,12 +1450,12 @@ msgstr "Inperiala"
 msgid "Inset"
 msgstr "Sartzea"
 
-#: src/features/system/status.tsx:152
+#: src/features/system/status.tsx:289
 msgid "Install update"
 msgstr "Instalatu eguneraketa"
 
 #. placeholder {0}: info.pending
-#: src/features/system/status.tsx:87
+#: src/features/system/status.tsx:224
 msgid "Installing {0}…"
 msgstr "{0} instalatzen…"
 
@@ -1417,22 +1480,26 @@ msgstr "Egiaztapen-kode baliogabea"
 msgid "IP Address"
 msgstr "IP helbidea"
 
-#: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:129
+#: src/features/system/replication.tsx:151
+#: src/features/user/replication.tsx:134
 msgid "Irreparable"
 msgstr "Konponezina"
 
-#: src/features/user/replication.tsx:155
+#: src/features/user/replication.tsx:161
 msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
 msgstr "Zure erreplika-multzotik kenduko da eta bere kopia ezabatzeko esango zaio berriz konektatzean. Eskuragarri dagoen zerbitzari bat kentzeko, hasi saioa bertan eta erabili \"Kendu nire kontua zerbitzari honetatik\". Egiaztatu zu zarela jarraitzeko."
 
-#: src/features/system/replication.tsx:75
+#: src/features/system/replication.tsx:77
 msgid "Join request approved"
 msgstr "Elkartzeko eskaera onartu da"
 
-#: src/features/system/replication.tsx:102
+#: src/features/system/replication.tsx:107
 msgid "Join request denied"
 msgstr "Elkartzeko eskaera ukatu da"
+
+#: src/features/system/status.tsx:170
+msgid "Known"
+msgstr "Ezagunak"
 
 #: src/features/user/notifications.tsx:441
 msgid "Label is required"
@@ -1456,6 +1523,10 @@ msgstr "Azken sarbidea"
 msgid "Last active"
 msgstr "Azken aldiz aktibo"
 
+#: src/features/system/status.tsx:142
+msgid "Last broadcast"
+msgstr "Azken igorpena"
+
 #. placeholder {0}: formatSystemTimestamp(document.updated)
 #: src/features/system/documents.tsx:129
 msgid "Last edited {0}"
@@ -1464,6 +1535,10 @@ msgstr "Azken aldiz editatua: {0}"
 #: src/features/system/users.tsx:643
 msgid "Last login"
 msgstr "Azken saio-hasiera"
+
+#: src/features/system/status.tsx:179
+msgid "Last seen"
+msgstr "Azkenekoz ikusia"
 
 #: src/features/user/login.tsx:417
 #: src/features/user/login.tsx:867
@@ -1534,7 +1609,7 @@ msgstr "Saioa amaitzen…"
 
 #: src/components/layout/data/sidebar-data.ts:30
 #: src/components/layout/data/sidebar-data.ts:51
-#: src/features/system/settings.tsx:539
+#: src/features/system/settings.tsx:541
 #: src/features/user/login.tsx:892
 #: src/features/user/login.tsx:939
 msgid "Login"
@@ -1593,6 +1668,10 @@ msgstr "Ertaina"
 msgid "Menu"
 msgstr "Menua"
 
+#: src/features/system/status.tsx:162
+msgid "Messages awaiting routing"
+msgstr "Bideratzearen zain dauden mezuak"
+
 #: src/features/domains/index.tsx:244
 #: src/features/domains/index.tsx:413
 #: src/features/domains/index.tsx:1000
@@ -1603,20 +1682,20 @@ msgstr "Metodoa"
 msgid "Metric"
 msgstr "Metrikoa"
 
-#: src/features/system/settings.tsx:52
+#: src/features/system/settings.tsx:54
 msgid "Microsoft client ID"
 msgstr "Microsoft bezeroaren IDa"
 
-#: src/features/system/settings.tsx:53
+#: src/features/system/settings.tsx:55
 msgid "Microsoft client secret"
 msgstr "Microsoft bezeroaren sekretua"
 
-#: src/features/system/settings.tsx:54
+#: src/features/system/settings.tsx:56
 msgid "Microsoft tenant"
 msgstr "Microsoft maizterra"
 
 #. placeholder {0}: info.latest
-#: src/features/system/status.tsx:95
+#: src/features/system/status.tsx:232
 msgid "Mochi {0} is available"
 msgstr "Mochi {0} eskuragarri dago"
 
@@ -1637,7 +1716,7 @@ msgstr "Astelehena"
 msgid "My application"
 msgstr "Nire aplikazioa"
 
-#: src/features/user/replication.tsx:308
+#: src/features/user/replication.tsx:318
 msgid "My hosts"
 msgstr "Nire ostalariak"
 
@@ -1827,10 +1906,14 @@ msgstr "Zenbaki-formatua"
 
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
-#: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:132
+#: src/features/system/replication.tsx:154
+#: src/features/user/replication.tsx:137
 msgid "Offline {0}"
 msgstr "Lineaz kanpo {0}"
+
+#: src/features/system/status.tsx:181
+msgid "Oldest queued message"
+msgstr "Ilarako mezurik zaharrena"
 
 #: ../../../lib/web/src/features/errors/not-found-error.tsx:13
 msgid "Oops! Page Not Found!"
@@ -1840,6 +1923,10 @@ msgstr "Hutsegitea! Ez da orria aurkitu!"
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:151
 msgid "Open account actions"
 msgstr "Ireki kontuaren ekintzak"
+
+#: ../../../lib/web/src/components/layout/nav-group.tsx:134
+msgid "Open actions"
+msgstr "Ireki ekintzak"
 
 #: ../../../lib/web/src/components/layout/top-bar.tsx:57
 msgid "Open navigation"
@@ -1858,19 +1945,19 @@ msgstr "Ireki gaiaren ezarpenak"
 msgid "Open user actions"
 msgstr "Ireki erabiltzaile-ekintzak"
 
-#: src/features/system/settings.tsx:560
+#: src/features/system/settings.tsx:562
 msgid "Operator"
 msgstr "Operadorea"
 
-#: src/features/system/settings.tsx:62
+#: src/features/system/settings.tsx:64
 msgid "Operator email"
 msgstr "Operadorearen helbide elektronikoa"
 
-#: src/features/system/settings.tsx:63
+#: src/features/system/settings.tsx:65
 msgid "Operator jurisdiction"
 msgstr "Operadorearen jurisdikzioa"
 
-#: src/features/system/settings.tsx:61
+#: src/features/system/settings.tsx:63
 msgid "Operator name"
 msgstr "Operadorearen izena"
 
@@ -1878,11 +1965,11 @@ msgstr "Operadorearen izena"
 msgid "Other"
 msgstr "Bestelakoa"
 
-#: src/features/user/replication.tsx:311
+#: src/features/user/replication.tsx:321
 msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
 msgstr "Zure kontuaren kopia bat ere gordetzen duten beste zerbitzari batzuk. Bat kentzeko, hasi saioa zerbitzari horretan eta erabili \"Kendu nire kontua zerbitzari honetatik\"."
 
-#: src/features/system/settings.tsx:575
+#: src/features/system/settings.tsx:577
 msgid "Other settings"
 msgstr "Bestelako ezarpenak"
 
@@ -1890,11 +1977,11 @@ msgstr "Bestelako ezarpenak"
 msgid "Owner"
 msgstr "Jabea"
 
-#: src/features/system/replication.tsx:179
+#: src/features/system/replication.tsx:185
 msgid "Pair member removed"
 msgstr "Pareko kidea kendu da"
 
-#: src/features/system/replication.tsx:260
+#: src/features/system/replication.tsx:293
 msgid "Pair members"
 msgstr "Pareko kideak"
 
@@ -1949,28 +2036,34 @@ msgstr "Bidea"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Bidea ez da onartzen. Ibilbideak hemen bakarrik gehi ditzakezu: {0}"
 
-#: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:325
+#: src/features/system/replication.tsx:305
+#: src/features/system/status.tsx:176
+#: src/features/user/replication.tsx:335
 msgid "Peer"
 msgstr "Parekoa"
 
-#: src/features/system/status.tsx:61
+#: src/features/system/status.tsx:81
 msgid "Peer ID"
 msgstr "Pareko IDa"
 
-#: src/features/system/replication.tsx:227
+#: src/components/peer-identity.tsx:40
+#: src/features/system/replication.tsx:238
 msgid "Peer id copied"
 msgstr "Kidearen IDa kopiatu da"
+
+#: src/features/system/status.tsx:168
+msgid "Peers"
+msgstr "Parekoak"
 
 #: src/features/user/connected-accounts.tsx:209
 msgid "Pending"
 msgstr "Zain"
 
-#: src/features/system/replication.tsx:239
+#: src/features/system/replication.tsx:272
 msgid "Pending join requests"
 msgstr "Elkartzeko eskaera zain"
 
-#: src/features/user/replication.tsx:289
+#: src/features/user/replication.tsx:299
 msgid "Pending requests"
 msgstr "Egiteke dauden eskaerak"
 
@@ -2022,6 +2115,10 @@ msgstr "Lehentasuna"
 msgid "Privacy"
 msgstr "Pribatutasuna"
 
+#: src/features/system/status.tsx:128
+msgid "Private"
+msgstr "Pribatua"
+
 #: src/features/user/login.tsx:686
 msgid "Proceed"
 msgstr "Jarraitu"
@@ -2035,15 +2132,28 @@ msgstr "Profila"
 msgid "Provider"
 msgstr "Hornitzailea"
 
-#: src/features/system/settings.tsx:47
+#: src/features/system/status.tsx:127
+msgid "Public"
+msgstr "Publikoa"
+
+#: src/features/system/settings.tsx:49
 msgid "Public URL for OAuth redirects"
 msgstr "OAuth birbideratzeen URL publikoa"
 
-#: src/features/system/settings.tsx:568
+#: src/features/system/settings.tsx:570
 msgid "Push notifications"
 msgstr "Push jakinarazpenak"
 
-#: src/features/user/replication.tsx:259
+#: src/features/system/status.tsx:164
+msgid "Queued broadcast messages"
+msgstr "Difusio-mezuak ilaran"
+
+#: src/features/system/status.tsx:163
+#: src/features/system/status.tsx:180
+msgid "Queued messages"
+msgstr "Ilarako mezuak"
+
+#: src/features/user/replication.tsx:266
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "Sartu bi balioak helburuko zerbitzariaren erregistro-formularioan kontu hau bertan errepikatzeko."
 
@@ -2058,6 +2168,10 @@ msgstr "Berriro lotu zure kontuak zerbitzari honetan"
 #: ../../../lib/web/src/components/restore-banner.tsx:120
 msgid "Re-register your passkeys on this server"
 msgstr "Erregistratu berriro zure sarbide-gakoak zerbitzari honetan"
+
+#: src/features/system/status.tsx:137
+msgid "Reachability"
+msgstr "Irisgarritasuna"
 
 #: ../../../lib/web/src/components/search-entity-dialog.tsx:216
 #: ../../../lib/web/src/components/search-entity-page.tsx:191
@@ -2111,12 +2225,16 @@ msgstr "Erlatiboa (5m, 3o, 2e)"
 msgid "Relative within 24 hours, else absolute"
 msgstr "Erlatiboa 24 ordu barruan, bestela absolutua"
 
+#: src/features/system/status.tsx:156
+msgid "Relay service"
+msgstr "Errele-zerbitzua"
+
 #: ../../../lib/web/src/features/access/access-list.tsx:257
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:172
-#: src/features/system/replication.tsx:184
+#: src/features/system/replication.tsx:190
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
-#: src/features/user/replication.tsx:206
+#: src/features/user/replication.tsx:212
 msgid "Remove"
 msgstr "Kendu"
 
@@ -2142,15 +2260,15 @@ msgstr "Kontua kendu?"
 msgid "Remove interest"
 msgstr "Kendu interesa"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:193
 msgid "Remove my account from this server"
 msgstr "Kendu nire kontua zerbitzari honetatik"
 
-#: src/features/system/replication.tsx:161
+#: src/features/system/replication.tsx:167
 msgid "Remove pair member"
 msgstr "Kendu pareko kidea"
 
-#: src/features/system/replication.tsx:166
+#: src/features/system/replication.tsx:172
 msgid "Remove pair member?"
 msgstr "Kendu pareko kidea?"
 
@@ -2158,7 +2276,7 @@ msgstr "Kendu pareko kidea?"
 msgid "Remove suspension"
 msgstr "Kendu eteneta"
 
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:198
 msgid "Remove your account from this server?"
 msgstr "Kendu zure kontua zerbitzari honetatik?"
 
@@ -2166,25 +2284,25 @@ msgstr "Kendu zure kontua zerbitzari honetatik?"
 msgid "Rename passkey"
 msgstr "Aldatu sarbide-gakoaren izena"
 
-#: src/features/system/settings.tsx:349
+#: src/features/system/settings.tsx:351
 msgid "Replace"
 msgstr "Ordeztu"
 
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
-#: src/features/system/replication.tsx:196
-#: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:236
-#: src/features/user/replication.tsx:246
+#: src/features/system/replication.tsx:202
+#: src/features/system/replication.tsx:217
+#: src/features/user/replication.tsx:242
+#: src/features/user/replication.tsx:253
 msgid "Replication"
 msgstr "Errepikapena"
 
-#: src/features/user/replication.tsx:68
+#: src/features/user/replication.tsx:69
 msgid "Request approved"
 msgstr "Eskaera onartuta"
 
-#: src/features/user/replication.tsx:76
+#: src/features/user/replication.tsx:77
 msgid "Request denied"
 msgstr "Eskaera ukatuta"
 
@@ -2193,7 +2311,7 @@ msgid "Require domain verification"
 msgstr "Eskatu domeinu-egiaztapena"
 
 #: src/components/method-state-control.tsx:28
-#: src/features/system/settings.tsx:106
+#: src/features/system/settings.tsx:108
 msgid "Required"
 msgstr "Beharrezkoa"
 
@@ -2203,9 +2321,9 @@ msgstr "Bidali mezua berriro"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:77
 #: ../../../lib/web/src/components/data-table/toolbar.tsx:78
-#: src/features/system/settings.tsx:277
-#: src/features/system/settings.tsx:315
-#: src/features/system/settings.tsx:430
+#: src/features/system/settings.tsx:279
+#: src/features/system/settings.tsx:317
+#: src/features/system/settings.tsx:432
 #: src/features/user/display.tsx:193
 #: src/features/user/preferences.tsx:228
 msgid "Reset"
@@ -2223,18 +2341,18 @@ msgstr "Bistaratzea berrezarri?"
 msgid "Reset preferences?"
 msgstr "Hobespenak berrezarri?"
 
-#: src/features/system/settings.tsx:261
-#: src/features/system/settings.tsx:262
-#: src/features/system/settings.tsx:299
-#: src/features/system/settings.tsx:300
-#: src/features/system/settings.tsx:412
-#: src/features/system/settings.tsx:413
+#: src/features/system/settings.tsx:263
+#: src/features/system/settings.tsx:264
+#: src/features/system/settings.tsx:301
+#: src/features/system/settings.tsx:302
+#: src/features/system/settings.tsx:414
+#: src/features/system/settings.tsx:415
 msgid "Reset to default"
 msgstr "Berrezarri lehenetsira"
 
-#: src/features/system/settings.tsx:269
-#: src/features/system/settings.tsx:307
-#: src/features/system/settings.tsx:420
+#: src/features/system/settings.tsx:271
+#: src/features/system/settings.tsx:309
+#: src/features/system/settings.tsx:422
 msgid "Reset to default?"
 msgstr "Lehenetsira berrezarri?"
 
@@ -2304,7 +2422,7 @@ msgstr "Larunbata"
 
 #: ../../../lib/web/src/components/ui/secret-field.tsx:74
 #: src/features/system/documents.tsx:151
-#: src/features/system/settings.tsx:401
+#: src/features/system/settings.tsx:403
 #: src/features/user/connected-accounts.tsx:603
 #: src/features/user/notifications.tsx:521
 msgid "Save"
@@ -2452,7 +2570,7 @@ msgstr "Serif"
 msgid "Server error"
 msgstr "Zerbitzariaren errorea"
 
-#: src/features/user/replication.tsx:272
+#: src/features/user/replication.tsx:279
 msgid "Server peer ID"
 msgstr "Zerbitzariaren pareko IDa"
 
@@ -2466,11 +2584,11 @@ msgstr "Zerbitzariaren arauak"
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "Zure erabiltzaileei erakusten zaizkien zerbitzariaren arauak, baldintzak eta pribatutasun-oharra"
 
-#: src/features/system/settings.tsx:64
+#: src/features/system/settings.tsx:66
 msgid "Server started"
 msgstr "Zerbitzaria abiarazita"
 
-#: src/features/system/settings.tsx:65
+#: src/features/system/settings.tsx:67
 msgid "Server version"
 msgstr "Zerbitzariaren bertsioa"
 
@@ -2507,8 +2625,8 @@ msgstr "Ezarri jatorria eta helmuga"
 msgid "Set up"
 msgstr "Konfiguratu"
 
-#: src/features/system/settings.tsx:457
-#: src/features/system/settings.tsx:474
+#: src/features/system/settings.tsx:459
+#: src/features/system/settings.tsx:476
 msgid "Setting updated"
 msgstr "Ezarpena eguneratu da"
 
@@ -2556,15 +2674,16 @@ msgstr "Txikia"
 msgid "Spacious"
 msgstr "Lasaia"
 
-#: src/features/system/status.tsx:54
+#: src/features/system/status.tsx:66
 msgid "Started"
 msgstr "Hasita"
 
 #: src/components/layout/data/sidebar-data.ts:69
 #: src/features/domains/index.tsx:1003
-#: src/features/system/replication.tsx:273
-#: src/features/system/status.tsx:25
-#: src/features/system/status.tsx:40
+#: src/features/system/replication.tsx:306
+#: src/features/system/status.tsx:36
+#: src/features/system/status.tsx:52
+#: src/features/system/status.tsx:177
 #: src/features/system/users.tsx:636
 #: src/features/user/connected-accounts.tsx:465
 msgid "Status"
@@ -2602,11 +2721,11 @@ msgstr "Etenda"
 msgid "Suspension removed"
 msgstr "Etena kendu da"
 
-#: src/features/system/replication.tsx:151
+#: src/features/system/replication.tsx:157
 msgid "Synced"
 msgstr "Sinkronizatuta"
 
-#: src/features/system/replication.tsx:153
+#: src/features/system/replication.tsx:159
 msgid "Syncing"
 msgstr "Sinkronizatzen"
 
@@ -2618,8 +2737,8 @@ msgid "System"
 msgstr "Sistema"
 
 #: src/components/layout/data/sidebar-data.ts:65
-#: src/features/system/settings.tsx:446
-#: src/features/system/settings.tsx:530
+#: src/features/system/settings.tsx:448
+#: src/features/system/settings.tsx:532
 msgid "System settings"
 msgstr "Sistemako ezarpenak"
 
@@ -2687,17 +2806,17 @@ msgstr "Gaiaren ezarpenak"
 msgid "Theme updated"
 msgstr "Gaia eguneratu da"
 
-#: src/features/system/settings.tsx:546
+#: src/features/system/settings.tsx:548
 #: src/features/user/login.tsx:125
 #: src/features/user/login.tsx:847
 msgid "Third-party login"
 msgstr "Hirugarrenen saio-hasiera"
 
-#: src/features/user/replication.tsx:257
+#: src/features/user/replication.tsx:264
 msgid "This account"
 msgstr "Kontu hau"
 
-#: src/features/user/replication.tsx:317
+#: src/features/user/replication.tsx:327
 msgid "This account is on this server only"
 msgstr "Kontu hau zerbitzari honetan bakarrik dago"
 
@@ -2709,19 +2828,19 @@ msgstr "Hau babeskopia oso bat da, Mochi zerbitzari honetan edo beste batean leh
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Hau zure kontuaren segurtasun-aldaketa bat da. Egiaztatu zure nortasuna jarraitzeko."
 
-#: src/features/user/replication.tsx:215
+#: src/features/user/replication.tsx:221
 msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
 msgstr "Honek zure kontuaren datuak betiko ezabatzen ditu zerbitzari honetan. Egiaztatu zu zarela jarraitzeko."
 
-#: src/features/system/replication.tsx:219
+#: src/features/system/replication.tsx:227
 msgid "This server"
 msgstr "Zerbitzari hau"
 
-#: src/features/system/replication.tsx:264
+#: src/features/system/replication.tsx:297
 msgid "This server is not paired."
 msgstr "Zerbitzari hau ez dago parekatuta."
 
-#: src/features/system/replication.tsx:168
+#: src/features/system/replication.tsx:174
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "Zerbitzari honek kide horrekiko parekatzea eteten du. Kendutako zerbitzariak erabiltzaile bakoitzaren kopia lokala mantentzen du; hango operadoreak eskuz ezabatu behar du."
 
@@ -2768,14 +2887,14 @@ msgstr "Honek {0}-rentzako delegazioa kenduko du \"{1}\" bidean."
 msgid "This will remove the route for path \"{0}\"."
 msgstr "Honek \"{0}\" bidearentzako bidea kenduko du."
 
-#: src/features/system/settings.tsx:424
+#: src/features/system/settings.tsx:426
 msgid "This will reset \"{settingNameLabel}\" to its default (empty)."
 msgstr "Honek \"{settingNameLabel}\" bere lehenetsira (hutsa) berrezarriko du."
 
 #. placeholder {0}: setting.default
-#: src/features/system/settings.tsx:271
-#: src/features/system/settings.tsx:309
-#: src/features/system/settings.tsx:423
+#: src/features/system/settings.tsx:273
+#: src/features/system/settings.tsx:311
+#: src/features/system/settings.tsx:425
 msgid "This will reset \"{settingNameLabel}\" to its default value ({0})."
 msgstr "Honek \"{settingNameLabel}\" bere balio lehenetsira ({0}) berrezarriko du."
 
@@ -2811,7 +2930,7 @@ msgstr "Denbora-zigiluak"
 msgid "TLS Enabled"
 msgstr "TLS gaituta"
 
-#: src/features/user/replication.tsx:318
+#: src/features/user/replication.tsx:328
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "Beste zerbitzari batera errepikatzeko, izena eman bertan kontu bat sortzeko eta erabili \"Lehendik dagoen kontu bat errepikatu\" aukera."
 
@@ -2934,8 +3053,10 @@ msgstr "Estatu Batuak"
 msgid "Units"
 msgstr "Unitateak"
 
+#: src/features/system/status.tsx:129
+#: src/features/system/status.tsx:130
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:137
+#: src/features/user/replication.tsx:143
 msgid "Unknown"
 msgstr "Ezezaguna"
 
@@ -2964,12 +3085,16 @@ msgstr "Hornitzailea desestekatu?"
 msgid "Unlinked {0}"
 msgstr "{0} desestekatuta"
 
+#: src/features/system/status.tsx:194
+msgid "Unreachable"
+msgstr "Ezin da iritsi"
+
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:131
 #: src/features/domains/index.tsx:885
 msgid "Unverified"
 msgstr "Egiaztatu gabe"
 
-#: src/features/system/status.tsx:69
+#: src/features/system/status.tsx:89
 msgid "Update"
 msgstr "Eguneratu"
 
@@ -2978,7 +3103,7 @@ msgstr "Eguneratu"
 msgid "URL to redirect to"
 msgstr "Birbideratzeko URLa"
 
-#: src/features/system/replication.tsx:265
+#: src/features/system/replication.tsx:298
 msgid "Use \"mochictl replica join {peer}\" on a newly installed server to pair with this server."
 msgstr "Erabili \"mochictl replica join {peer}\" berriki instalatutako zerbitzari batean zerbitzari honekin parekatzeko."
 
@@ -3008,7 +3133,7 @@ msgstr "Erabiltzailea"
 msgid "User created"
 msgstr "Erabiltzailea sortu da"
 
-#: src/features/system/settings.tsx:553
+#: src/features/system/settings.tsx:555
 msgid "User defaults"
 msgstr "Erabiltzaile-lehenetsiak"
 
@@ -3025,11 +3150,12 @@ msgid "User updated"
 msgstr "Erabiltzailea eguneratu da"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:264
+#: src/features/user/replication.tsx:271
 msgid "Username"
 msgstr "Erabiltzaile-izena"
 
 #: src/components/layout/data/sidebar-data.ts:67
+#: src/features/system/status.tsx:135
 #: src/features/system/users.tsx:544
 #: src/features/system/users.tsx:582
 #: src/features/system/users.tsx:595
@@ -3079,9 +3205,13 @@ msgstr "Egiaztatu DNSa"
 msgid "Verify email address"
 msgstr "Egiaztatu helbide elektronikoa"
 
-#: src/features/system/status.tsx:50
+#: src/features/system/status.tsx:62
 msgid "Version"
 msgstr "Bertsioa"
+
+#: src/features/system/status.tsx:139
+msgid "Via relay"
+msgstr "Relay bidez"
 
 #: ../../../lib/web/src/components/attachment-gallery.tsx:63
 msgid "Video thumbnail"
@@ -3119,11 +3249,11 @@ msgstr "Asteazkena"
 msgid "Week starts on"
 msgstr "Astea hasten da:"
 
-#: src/features/system/settings.tsx:57
+#: src/features/system/settings.tsx:59
 msgid "X client ID"
 msgstr "X bezero IDa"
 
-#: src/features/system/settings.tsx:58
+#: src/features/system/settings.tsx:60
 msgid "X client secret"
 msgstr "X bezero-sekretua"
 
@@ -3148,7 +3278,7 @@ msgstr "Zure kontua behin betiko ezabatuko da {purgeDate} egunean. Saioa itxi za
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "Zure kontua ezabatzeko programatuko da eta saioa itxiko zaizu. Ezabaketa-data baino lehen edozein unetan utz dezakezu bertan behera, berriro saioa hasita. Deskargatu zure datuak lehenik kopia bat gorde nahi baduzu."
 
-#: src/features/user/replication.tsx:194
+#: src/features/user/replication.tsx:200
 msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
 msgstr "Zerbitzari honetako zure kontuaren datuak betiko ezabatuko dira eta hemen saioa itxiko zaizu. Zure kontuak zure beste zerbitzarietan jarraituko du, eta hau geroago berriz gehitu dezakezu."
 

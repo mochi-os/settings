@@ -18,7 +18,7 @@ def action_user_replication(a):
     "replicate an existing account" form on the destination server."""
     a.json({
         "user": {"username": a.user.username},
-        "server": {"id": mochi.server.id()},
+        "server": {"id": mochi.server.id(), "fingerprint": mochi.server.fingerprint()},
         "links": mochi.replication.links(),
         "hosts": mochi.replication.hosts(),
     })

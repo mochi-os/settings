@@ -44,6 +44,8 @@ function useSettingLabels(): Record<string, string> {
     default_theme: t`Default theme`,
     domains_verification: t`Require domain verification`,
     email_from: t`Default from address for system emails`,
+    hostname: t`Hostname announced to other servers`,
+    hostname_publish: t`Announce hostname and domains to other servers`,
     oauth_public_url: t`Public URL for OAuth redirects`,
     oauth_google_client_id: t`Google client ID`,
     oauth_google_client_secret: t`Google client secret`,

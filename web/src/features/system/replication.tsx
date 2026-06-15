@@ -36,9 +36,11 @@ import {
   useRemovePair,
   useSystemReplication,
   type BootstrapEntry,
+  type PairMember,
   type PendingJoin,
   type ServingEntry,
 } from '@/hooks/use-system-replication'
+import { PeerIdentity, hyphenateFingerprint } from '@/components/peer-identity'
 import { stepUpClient } from '@/lib/step-up-client'
 import { offlineActive, offlineDuration } from '@/lib/offline'
 
@@ -80,12 +82,15 @@ function PendingJoinRow({ join }: { join: PendingJoin }) {
 
   return (
     <TableRow>
-      <TableCell>
-        {join.label ? (
-          <span className='font-medium'>{join.label}</span>
-        ) : (
-          <span className='font-mono text-xs break-all'>{join.peer}</span>
-        )}
+      <TableCell className='align-top'>
+        <div className='min-w-0 space-y-0.5'>
+          {join.label && <div className='font-medium'>{join.label}</div>}
+          {join.name && <div className='text-sm font-medium'>{join.name}</div>}
+          {join.fingerprint && (
+            <div className='text-muted-foreground font-mono text-xs'>{hyphenateFingerprint(join.fingerprint)}</div>
+          )}
+          <div className='font-mono text-xs break-all'>{join.peer}</div>
+        </div>
       </TableCell>
       <TableCell className='text-end'>
         <div className='inline-flex gap-2'>
@@ -122,25 +127,26 @@ function PendingJoinRow({ join }: { join: PendingJoin }) {
 }
 
 function PairMemberRow({
-  peer,
+  member,
   status,
   irreparable,
   offline,
 }: {
-  peer: string
+  member: PairMember
   status: 'synced' | 'syncing'
   irreparable: boolean
   offline: number
 }) {
   const { t } = useLingui()
   const remove = useRemovePair()
+  const peer = member.peer
 
   return (
     <TableRow>
-      <TableCell>
-        <span className='font-mono text-xs break-all'>{peer}</span>
+      <TableCell className='align-top'>
+        <PeerIdentity peer={peer} name={member.name} fingerprint={member.fingerprint} />
       </TableCell>
-      <TableCell className='text-muted-foreground text-sm'>
+      <TableCell className='text-muted-foreground align-top text-sm'>
         {irreparable ? (
           <Badge variant='destructive'><Trans>Irreparable</Trans></Badge>
         ) : offlineActive(offline) ? (
@@ -197,6 +203,8 @@ export function SystemReplication() {
   const { data, isLoading, error, refetch } = useSystemReplication()
 
   const peer = data?.peer ?? ''
+  const serverFingerprint = data?.fingerprint ?? ''
+  const addresses = data?.addresses ?? []
   const pair = data?.pair ?? []
   const irreparable = data?.irreparable ?? []
   const offline = new Map((data?.offline ?? []).map((o) => [o.peer, o.since]))
@@ -218,6 +226,9 @@ export function SystemReplication() {
             <section className='space-y-2'>
               <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'><Trans>This server</Trans></h2>
               <div className='flex items-center gap-2'>
+                {serverFingerprint && (
+                  <code className='text-muted-foreground font-mono text-xs'>{hyphenateFingerprint(serverFingerprint)}</code>
+                )}
                 <code className='bg-muted rounded px-2 py-1 font-mono text-xs break-all'>{peer}</code>
                 <Button
                   variant='ghost'
@@ -232,6 +243,28 @@ export function SystemReplication() {
                   <span className='sr-only'><Trans>Copy peer id</Trans></span>
                 </Button>
               </div>
+              {addresses.length > 0 && (
+                <div className='space-y-1'>
+                  <h3 className='text-muted-foreground text-sm font-medium'><Trans>Addresses</Trans></h3>
+                  {addresses.map((address) => (
+                    <div key={address} className='flex items-center gap-2'>
+                      <code className='bg-muted rounded px-2 py-1 font-mono text-xs break-all'>{address}</code>
+                      <Button
+                        variant='ghost'
+                        size='sm'
+                        onClick={async () => {
+                          const ok = await shellClipboardWrite(address)
+                          if (ok) toast.success(t`Address copied`)
+                          else toast.error(t`Failed to copy`)
+                        }}
+                      >
+                        <Copy className='h-3 w-3' />
+                        <span className='sr-only'><Trans>Copy address</Trans></span>
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </section>
 
             {joins.length > 0 && (
@@ -277,11 +310,11 @@ export function SystemReplication() {
                   <TableBody>
                     {pair.map((p) => (
                       <PairMemberRow
-                        key={p}
-                        peer={p}
-                        status={pairMemberSyncStatus(p, bootstrap, serving)}
-                        irreparable={irreparable.includes(p)}
-                        offline={offline.get(p) ?? 0}
+                        key={p.peer}
+                        member={p}
+                        status={pairMemberSyncStatus(p.peer, bootstrap, serving)}
+                        irreparable={irreparable.includes(p.peer)}
+                        offline={offline.get(p.peer) ?? 0}
                       />
                     ))}
                   </TableBody>

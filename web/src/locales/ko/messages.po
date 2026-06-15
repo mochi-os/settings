@@ -21,7 +21,7 @@ msgstr ". 경로를 관리할 수 있습니다:"
 msgid "(current)"
 msgstr "(현재)"
 
-#: src/features/system/settings.tsx:93
+#: src/features/system/settings.tsx:95
 msgid "(empty)"
 msgstr "(비어 있음)"
 
@@ -36,6 +36,20 @@ msgstr "{0, plural, other {#개의 세션이 취소되었습니다}}"
 #: src/features/user/display.tsx:239
 msgid "{0} (development)"
 msgstr "{0} (개발)"
+
+#. placeholder {0}: formatNumber(network.relaying.reservations.held)
+#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
+#. placeholder {2}: formatNumber(network.relaying.circuits)
+#. placeholder {3}: formatNumber(network.relaying.rejected)
+#: src/features/system/status.tsx:157
+msgid "{0} / {1} reservations · {2} circuits · {3} refused"
+msgstr "{0} / {1} 예약 · {2} 회선 · {3} 거부됨"
+
+#. placeholder {0}: formatNumber(network.holepunch.success)
+#. placeholder {1}: formatNumber(network.holepunch.failure)
+#: src/features/system/status.tsx:150
+msgid "{0} succeeded · {1} failed"
+msgstr "{0} 성공 · {1} 실패"
 
 #: src/features/user/login.tsx:674
 msgid "{count} remaining"
@@ -198,7 +212,7 @@ msgid "Add view"
 msgstr "뷰 추가"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:326
+#: src/features/user/replication.tsx:336
 msgid "Added"
 msgstr "추가됨"
 
@@ -206,6 +220,18 @@ msgstr "추가됨"
 #: src/features/user/interests.tsx:192
 msgid "Added \"{0}\""
 msgstr "\"{0}\"이(가) 추가되었어요"
+
+#: src/features/system/status.tsx:178
+msgid "Address"
+msgstr "주소"
+
+#: src/features/system/replication.tsx:257
+msgid "Address copied"
+msgstr "주소가 복사되었습니다"
+
+#: src/features/system/replication.tsx:248
+msgid "Addresses"
+msgstr "주소"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:62
 msgid "Adjust the appearance and layout to suit your preferences."
@@ -225,7 +251,7 @@ msgstr "AI"
 msgid "All"
 msgstr "전체"
 
-#: src/features/system/settings.tsx:66
+#: src/features/system/settings.tsx:68
 msgid "Allow new signups"
 msgstr "신규 가입 허용"
 
@@ -238,7 +264,7 @@ msgid "Allow users to install apps"
 msgstr "사용자가 앱을 설치할 수 있도록 허용"
 
 #: src/components/method-state-control.tsx:28
-#: src/features/system/settings.tsx:104
+#: src/features/system/settings.tsx:106
 msgid "Allowed"
 msgstr "허용됨"
 
@@ -250,11 +276,15 @@ msgstr "오류가 발생했습니다"
 msgid "An unexpected error occurred"
 msgstr "예기치 않은 오류가 발생했습니다"
 
-#: src/features/user/replication.tsx:291
+#: src/features/system/settings.tsx:48
+msgid "Announce hostname and domains to other servers"
+msgstr "호스트 이름과 도메인을 다른 서버에 알리기"
+
+#: src/features/user/replication.tsx:301
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "다른 서버에서 계정의 사본을 호스팅하기를 요청하고 있습니다. 사본을 보내려면 승인하세요."
 
-#: src/features/system/replication.tsx:241
+#: src/features/system/replication.tsx:274
 msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
 msgstr "다른 서버가 이 서버와의 페어링을 요청하고 있습니다. 승인하면 전체 복제 피어로 등록됩니다."
 
@@ -267,23 +297,23 @@ msgstr "앱"
 msgid "Appearance"
 msgstr "외관"
 
-#: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:70
+#: src/features/system/replication.tsx:79
+#: src/features/user/replication.tsx:71
 msgid "Approval failed"
 msgstr "승인 실패"
 
-#: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:93
+#: src/features/system/replication.tsx:99
+#: src/features/user/replication.tsx:97
 msgid "Approve"
 msgstr "승인"
 
-#: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:103
+#: src/features/system/replication.tsx:119
+#: src/features/user/replication.tsx:107
 msgid "Approve request"
 msgstr "요청 승인"
 
-#: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:104
+#: src/features/system/replication.tsx:120
+#: src/features/user/replication.tsx:108
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "승인하면 개인 키가 해당 서버로 복제됩니다. 계속하려면 본인임을 확인하세요."
 
@@ -339,6 +369,10 @@ msgstr "홈으로 돌아가기"
 msgid "Boost interest"
 msgstr "관심도 부스트"
 
+#: src/features/system/status.tsx:171
+msgid "Broadcast mesh"
+msgstr "브로드캐스트 메시"
+
 #: src/features/user/notifications.tsx:216
 msgid "Browser notifications"
 msgstr "브라우저 알림"
@@ -355,10 +389,10 @@ msgstr "브라우저 알림"
 #: src/features/domains/index.tsx:330
 #: src/features/domains/index.tsx:509
 #: src/features/domains/index.tsx:655
-#: src/features/system/replication.tsx:175
-#: src/features/system/settings.tsx:275
-#: src/features/system/settings.tsx:313
-#: src/features/system/settings.tsx:428
+#: src/features/system/replication.tsx:181
+#: src/features/system/settings.tsx:277
+#: src/features/system/settings.tsx:315
+#: src/features/system/settings.tsx:430
 #: src/features/system/users.tsx:150
 #: src/features/system/users.tsx:235
 #: src/features/user/account.tsx:118
@@ -369,7 +403,7 @@ msgstr "브라우저 알림"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:201
+#: src/features/user/replication.tsx:207
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "취소"
@@ -406,7 +440,7 @@ msgstr "왼쪽에서 오른쪽 또는 오른쪽에서 왼쪽 사이트 방향 �
 msgid "Choose between system preference, light mode, or dark mode"
 msgstr "시스템 설정, 라이트 모드, 다크 모드 중에서 선택하세요"
 
-#: src/features/system/settings.tsx:376
+#: src/features/system/settings.tsx:378
 msgid "Choose file"
 msgstr "파일 선택"
 
@@ -414,9 +448,10 @@ msgstr "파일 선택"
 msgid "Choose language"
 msgstr "언어 선택"
 
-#: ../../../lib/web/src/components/colour-picker.tsx:304
-#: src/features/system/settings.tsx:358
-#: src/features/system/settings.tsx:359
+#: ../../../lib/web/src/components/colour-picker.tsx:268
+#: ../../../lib/web/src/components/colour-picker.tsx:349
+#: src/features/system/settings.tsx:360
+#: src/features/system/settings.tsx:361
 msgid "Clear"
 msgstr "지우기"
 
@@ -487,7 +522,7 @@ msgstr "곧 출시!"
 msgid "Compact"
 msgstr "컴팩트"
 
-#: src/features/system/settings.tsx:335
+#: src/features/system/settings.tsx:337
 msgid "Configured"
 msgstr "구성됨"
 
@@ -496,11 +531,13 @@ msgstr "구성됨"
 msgid "Confirm"
 msgstr "확인"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:220
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "본인 확인"
 
+#: src/features/system/status.tsx:170
+#: src/features/system/status.tsx:192
 #: src/features/user/connected-accounts.tsx:219
 msgid "Connected"
 msgstr "연결됨"
@@ -536,11 +573,15 @@ msgstr "{label}(으)로 계속하기"
 msgid "Copy"
 msgstr "복사"
 
+#: src/features/system/replication.tsx:262
+msgid "Copy address"
+msgstr "주소 복사"
+
 #: src/features/user/login.tsx:664
 msgid "Copy all"
 msgstr "모두 복사"
 
-#: src/features/system/replication.tsx:232
+#: src/features/system/replication.tsx:243
 msgid "Copy peer id"
 msgstr "피어 ID 복사"
 
@@ -552,12 +593,12 @@ msgstr "지금 토큰을 복사하세요. 다시 볼 수 없습니다."
 msgid "Could not close your account"
 msgstr "계정을 닫을 수 없습니다"
 
-#: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:77
+#: src/features/system/replication.tsx:108
+#: src/features/user/replication.tsx:78
 msgid "Could not deny request"
 msgstr "요청을 거부할 수 없습니다"
 
-#: src/features/user/replication.tsx:162
+#: src/features/user/replication.tsx:168
 msgid "Could not forget host"
 msgstr "호스트를 삭제할 수 없습니다"
 
@@ -569,11 +610,11 @@ msgstr "계정을 연결할 수 없었어요"
 msgid "Could not load this document. Please try again later."
 msgstr "이 문서를 불러올 수 없습니다. 잠시 후 다시 시도해 주세요."
 
-#: src/features/system/replication.tsx:180
+#: src/features/system/replication.tsx:186
 msgid "Could not remove pair member"
 msgstr "페어 멤버를 제거할 수 없습니다"
 
-#: src/features/user/replication.tsx:224
+#: src/features/user/replication.tsx:230
 msgid "Could not remove your account from this server"
 msgstr "이 서버에서 계정을 제거할 수 없습니다"
 
@@ -621,6 +662,10 @@ msgstr "사용자 생성"
 #: src/features/user/tokens.tsx:269
 msgid "Created"
 msgstr "생성됨"
+
+#: ../../../lib/web/src/components/colour-picker.tsx:259
+msgid "Custom"
+msgstr "사용자 지정"
 
 #: src/features/system/documents.tsx:123
 msgid "Customised"
@@ -763,8 +808,8 @@ msgstr "삭제 중..."
 msgid "Density"
 msgstr "밀도"
 
-#: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:97
+#: src/features/system/replication.tsx:113
+#: src/features/user/replication.tsx:101
 msgid "Deny"
 msgstr "거부"
 
@@ -811,9 +856,13 @@ msgstr "인증 앱을 비활성화할까요?"
 
 #: src/components/method-state-control.tsx:28
 #: src/features/domains/index.tsx:696
-#: src/features/system/settings.tsx:102
+#: src/features/system/settings.tsx:104
 msgid "Disabled"
 msgstr "비활성화됨"
+
+#: src/features/system/status.tsx:196
+msgid "Disconnected"
+msgstr "연결 끊김"
 
 #: ../../../lib/web/src/components/restore-banner.tsx:73
 msgid "Dismiss"
@@ -891,16 +940,16 @@ msgstr "완료"
 msgid "Download"
 msgstr "다운로드"
 
-#: src/features/system/status.tsx:127
+#: src/features/system/status.tsx:264
 msgid "Download from packages.mochi-os.org"
 msgstr "packages.mochi-os.org에서 다운로드"
 
-#: src/features/system/status.tsx:115
-#: src/features/system/status.tsx:121
+#: src/features/system/status.tsx:252
+#: src/features/system/status.tsx:258
 msgid "Download installer"
 msgstr "설치 프로그램 다운로드"
 
-#: src/features/system/status.tsx:149
+#: src/features/system/status.tsx:286
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Mochi {latest}을(를) 다운로드하고 서버를 다시 시작하세요"
 
@@ -977,6 +1026,10 @@ msgstr "이메일로 받은 코드를 입력하세요"
 msgid "Enter your authenticator code"
 msgstr "인증 앱 코드를 입력하세요"
 
+#: src/features/system/status.tsx:136
+msgid "Entities"
+msgstr "엔터티"
+
 #: src/features/domains/index.tsx:255
 #: src/features/domains/index.tsx:424
 msgid "Entity"
@@ -1002,11 +1055,11 @@ msgstr "내보내기 실패"
 msgid "Extra large"
 msgstr "아주 크게"
 
-#: src/features/system/settings.tsx:55
+#: src/features/system/settings.tsx:57
 msgid "Facebook App ID"
 msgstr "Facebook 앱 ID"
 
-#: src/features/system/settings.tsx:56
+#: src/features/system/settings.tsx:58
 msgid "Facebook App secret"
 msgstr "Facebook 앱 시크릿"
 
@@ -1019,7 +1072,8 @@ msgstr "계정 추가에 실패했어요"
 msgid "Failed to add interest"
 msgstr "관심사 추가에 실패했어요"
 
-#: src/features/system/replication.tsx:228
+#: src/features/system/replication.tsx:239
+#: src/features/system/replication.tsx:258
 msgid "Failed to copy"
 msgstr "복사에 실패했어요"
 
@@ -1079,7 +1133,7 @@ msgstr "인증 앱 비활성화에 실패했어요"
 msgid "Failed to generate codes"
 msgstr "코드 생성에 실패했어요"
 
-#: src/features/system/status.tsx:140
+#: src/features/system/status.tsx:277
 msgid "Failed to install update"
 msgstr "업데이트 설치 실패"
 
@@ -1189,8 +1243,8 @@ msgstr "개인정보 보호 설정 업데이트에 실패했어요"
 msgid "Failed to update route"
 msgstr "경로 업데이트에 실패했어요"
 
-#: src/features/system/settings.tsx:461
-#: src/features/system/settings.tsx:476
+#: src/features/system/settings.tsx:463
+#: src/features/system/settings.tsx:478
 msgid "Failed to update setting"
 msgstr "설정 업데이트에 실패했어요"
 
@@ -1218,6 +1272,7 @@ msgstr "코드 확인에 실패했어요"
 msgid "Failed to verify domain"
 msgstr "도메인 확인에 실패했어요"
 
+#: src/features/system/status.tsx:73
 #: src/features/user/account.tsx:137
 msgid "Fingerprint"
 msgstr "지문"
@@ -1226,11 +1281,11 @@ msgstr "지문"
 msgid "Finish moving your account"
 msgstr "계정 이전 완료"
 
-#: src/features/system/settings.tsx:59
+#: src/features/system/settings.tsx:61
 msgid "Firebase google-services.json file"
 msgstr "Firebase google-services.json 파일"
 
-#: src/features/system/settings.tsx:60
+#: src/features/system/settings.tsx:62
 msgid "Firebase private key file"
 msgstr "Firebase 비공개 키 파일"
 
@@ -1246,11 +1301,11 @@ msgstr "글꼴"
 msgid "Font size"
 msgstr "글꼴 크기"
 
-#: src/features/user/replication.tsx:149
+#: src/features/user/replication.tsx:155
 msgid "Forget this unreachable host"
 msgstr "연결할 수 없는 이 호스트 삭제"
 
-#: src/features/user/replication.tsx:154
+#: src/features/user/replication.tsx:160
 msgid "Forget this unreachable host?"
 msgstr "연결할 수 없는 이 호스트를 삭제하시겠습니까?"
 
@@ -1259,8 +1314,8 @@ msgid "Friday"
 msgstr "금요일"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
-#: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:296
+#: src/features/system/replication.tsx:281
+#: src/features/user/replication.tsx:306
 msgid "From"
 msgstr "보낸이"
 
@@ -1288,11 +1343,11 @@ msgstr "암호 문구 생성"
 msgid "Generate?"
 msgstr "생성할까요?"
 
-#: src/features/system/settings.tsx:50
+#: src/features/system/settings.tsx:52
 msgid "GitHub client ID"
 msgstr "GitHub 클라이언트 ID"
 
-#: src/features/system/settings.tsx:51
+#: src/features/system/settings.tsx:53
 msgid "GitHub client secret"
 msgstr "GitHub 클라이언트 시크릿"
 
@@ -1326,11 +1381,11 @@ msgstr "{pageNumber}페이지로 이동"
 msgid "Go to previous page"
 msgstr "이전 페이지로 이동"
 
-#: src/features/system/settings.tsx:48
+#: src/features/system/settings.tsx:50
 msgid "Google client ID"
 msgstr "Google 클라이언트 ID"
 
-#: src/features/system/settings.tsx:49
+#: src/features/system/settings.tsx:51
 msgid "Google client secret"
 msgstr "Google 클라이언트 시크릿"
 
@@ -1351,6 +1406,10 @@ msgstr "숨기기"
 msgid "Higher priority routes are matched first"
 msgstr "우선순위가 높은 경로가 먼저 매칭돼요"
 
+#: src/features/system/status.tsx:149
+msgid "Hole punch"
+msgstr "홀 펀치"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx:82
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:142
 #: ../../../lib/web/src/components/layout/top-bar.tsx:62
@@ -1358,9 +1417,13 @@ msgstr "우선순위가 높은 경로가 먼저 매칭돼요"
 msgid "Home"
 msgstr "홈"
 
-#: src/features/user/replication.tsx:161
+#: src/features/user/replication.tsx:167
 msgid "Host forgotten"
 msgstr "호스트가 삭제되었습니다"
+
+#: src/features/system/settings.tsx:47
+msgid "Hostname announced to other servers"
+msgstr "다른 서버에 알리는 호스트 이름"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1387,12 +1450,12 @@ msgstr "야드파운드법"
 msgid "Inset"
 msgstr "인셋"
 
-#: src/features/system/status.tsx:152
+#: src/features/system/status.tsx:289
 msgid "Install update"
 msgstr "업데이트 설치"
 
 #. placeholder {0}: info.pending
-#: src/features/system/status.tsx:87
+#: src/features/system/status.tsx:224
 msgid "Installing {0}…"
 msgstr "{0} 설치 중…"
 
@@ -1417,22 +1480,26 @@ msgstr "잘못된 인증 코드"
 msgid "IP Address"
 msgstr "IP 주소"
 
-#: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:129
+#: src/features/system/replication.tsx:151
+#: src/features/user/replication.tsx:134
 msgid "Irreparable"
 msgstr "복구 불가"
 
-#: src/features/user/replication.tsx:155
+#: src/features/user/replication.tsx:161
 msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
 msgstr "이 호스트는 복제본 집합에서 제거되며, 다시 연결될 때 자체 복사본을 삭제하도록 지시됩니다. 연결 가능한 서버를 제거하려면 해당 서버에 로그인하여 \"이 서버에서 내 계정 제거\"를 사용하세요. 계속하려면 본인 확인을 해주세요."
 
-#: src/features/system/replication.tsx:75
+#: src/features/system/replication.tsx:77
 msgid "Join request approved"
 msgstr "참여 요청이 승인되었습니다"
 
-#: src/features/system/replication.tsx:102
+#: src/features/system/replication.tsx:107
 msgid "Join request denied"
 msgstr "참여 요청이 거부되었습니다"
+
+#: src/features/system/status.tsx:170
+msgid "Known"
+msgstr "알려짐"
 
 #: src/features/user/notifications.tsx:441
 msgid "Label is required"
@@ -1456,6 +1523,10 @@ msgstr "마지막 접근"
 msgid "Last active"
 msgstr "마지막 활동"
 
+#: src/features/system/status.tsx:142
+msgid "Last broadcast"
+msgstr "마지막 브로드캐스트"
+
 #. placeholder {0}: formatSystemTimestamp(document.updated)
 #: src/features/system/documents.tsx:129
 msgid "Last edited {0}"
@@ -1464,6 +1535,10 @@ msgstr "마지막 편집: {0}"
 #: src/features/system/users.tsx:643
 msgid "Last login"
 msgstr "마지막 로그인"
+
+#: src/features/system/status.tsx:179
+msgid "Last seen"
+msgstr "마지막 확인"
 
 #: src/features/user/login.tsx:417
 #: src/features/user/login.tsx:867
@@ -1534,7 +1609,7 @@ msgstr "로그아웃 중…"
 
 #: src/components/layout/data/sidebar-data.ts:30
 #: src/components/layout/data/sidebar-data.ts:51
-#: src/features/system/settings.tsx:539
+#: src/features/system/settings.tsx:541
 #: src/features/user/login.tsx:892
 #: src/features/user/login.tsx:939
 msgid "Login"
@@ -1593,6 +1668,10 @@ msgstr "보통"
 msgid "Menu"
 msgstr "메뉴"
 
+#: src/features/system/status.tsx:162
+msgid "Messages awaiting routing"
+msgstr "라우팅 대기 중인 메시지"
+
 #: src/features/domains/index.tsx:244
 #: src/features/domains/index.tsx:413
 #: src/features/domains/index.tsx:1000
@@ -1603,20 +1682,20 @@ msgstr "방법"
 msgid "Metric"
 msgstr "측정 항목"
 
-#: src/features/system/settings.tsx:52
+#: src/features/system/settings.tsx:54
 msgid "Microsoft client ID"
 msgstr "Microsoft 클라이언트 ID"
 
-#: src/features/system/settings.tsx:53
+#: src/features/system/settings.tsx:55
 msgid "Microsoft client secret"
 msgstr "Microsoft 클라이언트 시크릿"
 
-#: src/features/system/settings.tsx:54
+#: src/features/system/settings.tsx:56
 msgid "Microsoft tenant"
 msgstr "Microsoft 테넌트"
 
 #. placeholder {0}: info.latest
-#: src/features/system/status.tsx:95
+#: src/features/system/status.tsx:232
 msgid "Mochi {0} is available"
 msgstr "Mochi {0}을(를) 사용할 수 있습니다"
 
@@ -1637,7 +1716,7 @@ msgstr "월요일"
 msgid "My application"
 msgstr "내 신청서"
 
-#: src/features/user/replication.tsx:308
+#: src/features/user/replication.tsx:318
 msgid "My hosts"
 msgstr "내 호스트"
 
@@ -1827,10 +1906,14 @@ msgstr "숫자 형식"
 
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
-#: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:132
+#: src/features/system/replication.tsx:154
+#: src/features/user/replication.tsx:137
 msgid "Offline {0}"
 msgstr "오프라인 {0}"
+
+#: src/features/system/status.tsx:181
+msgid "Oldest queued message"
+msgstr "가장 오래된 대기 메시지"
 
 #: ../../../lib/web/src/features/errors/not-found-error.tsx:13
 msgid "Oops! Page Not Found!"
@@ -1840,6 +1923,10 @@ msgstr "이런! 페이지를 찾을 수 없어요!"
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:151
 msgid "Open account actions"
 msgstr "계정 작업 열기"
+
+#: ../../../lib/web/src/components/layout/nav-group.tsx:134
+msgid "Open actions"
+msgstr "작업 열기"
 
 #: ../../../lib/web/src/components/layout/top-bar.tsx:57
 msgid "Open navigation"
@@ -1858,19 +1945,19 @@ msgstr "테마 설정 열기"
 msgid "Open user actions"
 msgstr "사용자 작업 열기"
 
-#: src/features/system/settings.tsx:560
+#: src/features/system/settings.tsx:562
 msgid "Operator"
 msgstr "운영자"
 
-#: src/features/system/settings.tsx:62
+#: src/features/system/settings.tsx:64
 msgid "Operator email"
 msgstr "운영자 이메일"
 
-#: src/features/system/settings.tsx:63
+#: src/features/system/settings.tsx:65
 msgid "Operator jurisdiction"
 msgstr "운영자 관할 지역"
 
-#: src/features/system/settings.tsx:61
+#: src/features/system/settings.tsx:63
 msgid "Operator name"
 msgstr "운영자 이름"
 
@@ -1878,11 +1965,11 @@ msgstr "운영자 이름"
 msgid "Other"
 msgstr "기타"
 
-#: src/features/user/replication.tsx:311
+#: src/features/user/replication.tsx:321
 msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
 msgstr "계정의 복사본을 함께 보유하고 있는 다른 서버입니다. 하나를 제거하려면 해당 서버에 로그인하여 \"이 서버에서 내 계정 제거\"를 사용하세요."
 
-#: src/features/system/settings.tsx:575
+#: src/features/system/settings.tsx:577
 msgid "Other settings"
 msgstr "기타 설정"
 
@@ -1890,11 +1977,11 @@ msgstr "기타 설정"
 msgid "Owner"
 msgstr "소유자"
 
-#: src/features/system/replication.tsx:179
+#: src/features/system/replication.tsx:185
 msgid "Pair member removed"
 msgstr "페어 멤버가 제거되었습니다"
 
-#: src/features/system/replication.tsx:260
+#: src/features/system/replication.tsx:293
 msgid "Pair members"
 msgstr "페어 멤버"
 
@@ -1949,28 +2036,34 @@ msgstr "경로"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "경로가 허용되지 않습니다. {0} 아래에만 경로를 추가할 수 있습니다"
 
-#: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:325
+#: src/features/system/replication.tsx:305
+#: src/features/system/status.tsx:176
+#: src/features/user/replication.tsx:335
 msgid "Peer"
 msgstr "피어"
 
-#: src/features/system/status.tsx:61
+#: src/features/system/status.tsx:81
 msgid "Peer ID"
 msgstr "피어 ID"
 
-#: src/features/system/replication.tsx:227
+#: src/components/peer-identity.tsx:40
+#: src/features/system/replication.tsx:238
 msgid "Peer id copied"
 msgstr "피어 ID가 복사되었습니다"
+
+#: src/features/system/status.tsx:168
+msgid "Peers"
+msgstr "피어"
 
 #: src/features/user/connected-accounts.tsx:209
 msgid "Pending"
 msgstr "대기 중"
 
-#: src/features/system/replication.tsx:239
+#: src/features/system/replication.tsx:272
 msgid "Pending join requests"
 msgstr "대기 중인 참여 요청"
 
-#: src/features/user/replication.tsx:289
+#: src/features/user/replication.tsx:299
 msgid "Pending requests"
 msgstr "대기 중인 요청"
 
@@ -2022,6 +2115,10 @@ msgstr "우선순위"
 msgid "Privacy"
 msgstr "개인정보"
 
+#: src/features/system/status.tsx:128
+msgid "Private"
+msgstr "비공개"
+
 #: src/features/user/login.tsx:686
 msgid "Proceed"
 msgstr "진행"
@@ -2035,15 +2132,28 @@ msgstr "프로필"
 msgid "Provider"
 msgstr "제공자"
 
-#: src/features/system/settings.tsx:47
+#: src/features/system/status.tsx:127
+msgid "Public"
+msgstr "공개"
+
+#: src/features/system/settings.tsx:49
 msgid "Public URL for OAuth redirects"
 msgstr "OAuth 리디렉션을 위한 공개 URL"
 
-#: src/features/system/settings.tsx:568
+#: src/features/system/settings.tsx:570
 msgid "Push notifications"
 msgstr "푸시 알림"
 
-#: src/features/user/replication.tsx:259
+#: src/features/system/status.tsx:164
+msgid "Queued broadcast messages"
+msgstr "대기 중인 브로드캐스트 메시지"
+
+#: src/features/system/status.tsx:163
+#: src/features/system/status.tsx:180
+msgid "Queued messages"
+msgstr "대기 중인 메시지"
+
+#: src/features/user/replication.tsx:266
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "이 계정을 다른 서버에 복제하려면 대상 서버의 가입 양식에 두 값을 모두 입력하세요."
 
@@ -2058,6 +2168,10 @@ msgstr "이 서버에서 계정 다시 연결"
 #: ../../../lib/web/src/components/restore-banner.tsx:120
 msgid "Re-register your passkeys on this server"
 msgstr "이 서버에서 패스키를 다시 등록하세요"
+
+#: src/features/system/status.tsx:137
+msgid "Reachability"
+msgstr "도달성"
 
 #: ../../../lib/web/src/components/search-entity-dialog.tsx:216
 #: ../../../lib/web/src/components/search-entity-page.tsx:191
@@ -2111,12 +2225,16 @@ msgstr "상대적 (5분, 3시간, 2일)"
 msgid "Relative within 24 hours, else absolute"
 msgstr "24시간 이내는 상대적, 그 외는 절대적"
 
+#: src/features/system/status.tsx:156
+msgid "Relay service"
+msgstr "릴레이 서비스"
+
 #: ../../../lib/web/src/features/access/access-list.tsx:257
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:172
-#: src/features/system/replication.tsx:184
+#: src/features/system/replication.tsx:190
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
-#: src/features/user/replication.tsx:206
+#: src/features/user/replication.tsx:212
 msgid "Remove"
 msgstr "제거"
 
@@ -2142,15 +2260,15 @@ msgstr "계정을 제거할까요?"
 msgid "Remove interest"
 msgstr "관심사 제거"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:193
 msgid "Remove my account from this server"
 msgstr "이 서버에서 내 계정 제거"
 
-#: src/features/system/replication.tsx:161
+#: src/features/system/replication.tsx:167
 msgid "Remove pair member"
 msgstr "페어 멤버 제거"
 
-#: src/features/system/replication.tsx:166
+#: src/features/system/replication.tsx:172
 msgid "Remove pair member?"
 msgstr "페어 멤버를 제거하시겠습니까?"
 
@@ -2158,7 +2276,7 @@ msgstr "페어 멤버를 제거하시겠습니까?"
 msgid "Remove suspension"
 msgstr "정지 해제"
 
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:198
 msgid "Remove your account from this server?"
 msgstr "이 서버에서 계정을 제거하시겠습니까?"
 
@@ -2166,25 +2284,25 @@ msgstr "이 서버에서 계정을 제거하시겠습니까?"
 msgid "Rename passkey"
 msgstr "패스키 이름 변경"
 
-#: src/features/system/settings.tsx:349
+#: src/features/system/settings.tsx:351
 msgid "Replace"
 msgstr "교체"
 
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
-#: src/features/system/replication.tsx:196
-#: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:236
-#: src/features/user/replication.tsx:246
+#: src/features/system/replication.tsx:202
+#: src/features/system/replication.tsx:217
+#: src/features/user/replication.tsx:242
+#: src/features/user/replication.tsx:253
 msgid "Replication"
 msgstr "복제"
 
-#: src/features/user/replication.tsx:68
+#: src/features/user/replication.tsx:69
 msgid "Request approved"
 msgstr "요청이 승인됨"
 
-#: src/features/user/replication.tsx:76
+#: src/features/user/replication.tsx:77
 msgid "Request denied"
 msgstr "요청이 거부됨"
 
@@ -2193,7 +2311,7 @@ msgid "Require domain verification"
 msgstr "도메인 확인이 필요해요"
 
 #: src/components/method-state-control.tsx:28
-#: src/features/system/settings.tsx:106
+#: src/features/system/settings.tsx:108
 msgid "Required"
 msgstr "필수"
 
@@ -2203,9 +2321,9 @@ msgstr "이메일 다시 보내기"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:77
 #: ../../../lib/web/src/components/data-table/toolbar.tsx:78
-#: src/features/system/settings.tsx:277
-#: src/features/system/settings.tsx:315
-#: src/features/system/settings.tsx:430
+#: src/features/system/settings.tsx:279
+#: src/features/system/settings.tsx:317
+#: src/features/system/settings.tsx:432
 #: src/features/user/display.tsx:193
 #: src/features/user/preferences.tsx:228
 msgid "Reset"
@@ -2223,18 +2341,18 @@ msgstr "화면을 재설정할까요?"
 msgid "Reset preferences?"
 msgstr "환경설정을 재설정할까요?"
 
-#: src/features/system/settings.tsx:261
-#: src/features/system/settings.tsx:262
-#: src/features/system/settings.tsx:299
-#: src/features/system/settings.tsx:300
-#: src/features/system/settings.tsx:412
-#: src/features/system/settings.tsx:413
+#: src/features/system/settings.tsx:263
+#: src/features/system/settings.tsx:264
+#: src/features/system/settings.tsx:301
+#: src/features/system/settings.tsx:302
+#: src/features/system/settings.tsx:414
+#: src/features/system/settings.tsx:415
 msgid "Reset to default"
 msgstr "기본값으로 재설정"
 
-#: src/features/system/settings.tsx:269
-#: src/features/system/settings.tsx:307
-#: src/features/system/settings.tsx:420
+#: src/features/system/settings.tsx:271
+#: src/features/system/settings.tsx:309
+#: src/features/system/settings.tsx:422
 msgid "Reset to default?"
 msgstr "기본값으로 재설정할까요?"
 
@@ -2304,7 +2422,7 @@ msgstr "토요일"
 
 #: ../../../lib/web/src/components/ui/secret-field.tsx:74
 #: src/features/system/documents.tsx:151
-#: src/features/system/settings.tsx:401
+#: src/features/system/settings.tsx:403
 #: src/features/user/connected-accounts.tsx:603
 #: src/features/user/notifications.tsx:521
 msgid "Save"
@@ -2452,7 +2570,7 @@ msgstr "세리프"
 msgid "Server error"
 msgstr "서버 오류"
 
-#: src/features/user/replication.tsx:272
+#: src/features/user/replication.tsx:279
 msgid "Server peer ID"
 msgstr "서버 피어 ID"
 
@@ -2466,11 +2584,11 @@ msgstr "서버 규칙"
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "사용자에게 표시되는 서버 규칙, 이용 약관, 그리고 프라이버시 통지"
 
-#: src/features/system/settings.tsx:64
+#: src/features/system/settings.tsx:66
 msgid "Server started"
 msgstr "서버가 시작되었어요"
 
-#: src/features/system/settings.tsx:65
+#: src/features/system/settings.tsx:67
 msgid "Server version"
 msgstr "서버 버전"
 
@@ -2507,8 +2625,8 @@ msgstr "출발지와 도착지 설정"
 msgid "Set up"
 msgstr "설정"
 
-#: src/features/system/settings.tsx:457
-#: src/features/system/settings.tsx:474
+#: src/features/system/settings.tsx:459
+#: src/features/system/settings.tsx:476
 msgid "Setting updated"
 msgstr "설정이 수정되었어요"
 
@@ -2556,15 +2674,16 @@ msgstr "작게"
 msgid "Spacious"
 msgstr "여유로운"
 
-#: src/features/system/status.tsx:54
+#: src/features/system/status.tsx:66
 msgid "Started"
 msgstr "시작됨"
 
 #: src/components/layout/data/sidebar-data.ts:69
 #: src/features/domains/index.tsx:1003
-#: src/features/system/replication.tsx:273
-#: src/features/system/status.tsx:25
-#: src/features/system/status.tsx:40
+#: src/features/system/replication.tsx:306
+#: src/features/system/status.tsx:36
+#: src/features/system/status.tsx:52
+#: src/features/system/status.tsx:177
 #: src/features/system/users.tsx:636
 #: src/features/user/connected-accounts.tsx:465
 msgid "Status"
@@ -2602,11 +2721,11 @@ msgstr "정지됨"
 msgid "Suspension removed"
 msgstr "정지 해제됨"
 
-#: src/features/system/replication.tsx:151
+#: src/features/system/replication.tsx:157
 msgid "Synced"
 msgstr "동기화됨"
 
-#: src/features/system/replication.tsx:153
+#: src/features/system/replication.tsx:159
 msgid "Syncing"
 msgstr "동기화 중"
 
@@ -2618,8 +2737,8 @@ msgid "System"
 msgstr "시스템"
 
 #: src/components/layout/data/sidebar-data.ts:65
-#: src/features/system/settings.tsx:446
-#: src/features/system/settings.tsx:530
+#: src/features/system/settings.tsx:448
+#: src/features/system/settings.tsx:532
 msgid "System settings"
 msgstr "시스템 설정"
 
@@ -2687,17 +2806,17 @@ msgstr "테마 설정"
 msgid "Theme updated"
 msgstr "테마가 수정되었어요"
 
-#: src/features/system/settings.tsx:546
+#: src/features/system/settings.tsx:548
 #: src/features/user/login.tsx:125
 #: src/features/user/login.tsx:847
 msgid "Third-party login"
 msgstr "타사 로그인"
 
-#: src/features/user/replication.tsx:257
+#: src/features/user/replication.tsx:264
 msgid "This account"
 msgstr "이 계정"
 
-#: src/features/user/replication.tsx:317
+#: src/features/user/replication.tsx:327
 msgid "This account is on this server only"
 msgstr "이 계정은 이 서버에만 있습니다"
 
@@ -2709,19 +2828,19 @@ msgstr "이 백업은 이 서버 또는 다른 Mochi 서버에서 복원할 수 
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "계정의 보안 변경 사항입니다. 계속하려면 본인임을 확인하세요."
 
-#: src/features/user/replication.tsx:215
+#: src/features/user/replication.tsx:221
 msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
 msgstr "이 서버에 있는 계정 데이터가 영구적으로 삭제됩니다. 계속하려면 본인 확인을 해주세요."
 
-#: src/features/system/replication.tsx:219
+#: src/features/system/replication.tsx:227
 msgid "This server"
 msgstr "이 서버"
 
-#: src/features/system/replication.tsx:264
+#: src/features/system/replication.tsx:297
 msgid "This server is not paired."
 msgstr "이 서버는 페어링되어 있지 않습니다."
 
-#: src/features/system/replication.tsx:168
+#: src/features/system/replication.tsx:174
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "이 서버는 해당 피어와의 페어링을 중단합니다. 제거된 서버는 각 사용자의 로컬 사본을 유지하므로 그쪽 운영자가 수동으로 삭제해야 합니다."
 
@@ -2768,14 +2887,14 @@ msgstr "경로 \"{1}\"의 {0}에 대한 위임이 제거됩니다."
 msgid "This will remove the route for path \"{0}\"."
 msgstr "경로 \"{0}\"의 라우트가 제거됩니다."
 
-#: src/features/system/settings.tsx:424
+#: src/features/system/settings.tsx:426
 msgid "This will reset \"{settingNameLabel}\" to its default (empty)."
 msgstr "\"{settingNameLabel}\"이(가) 기본값(비어 있음)으로 재설정돼요."
 
 #. placeholder {0}: setting.default
-#: src/features/system/settings.tsx:271
-#: src/features/system/settings.tsx:309
-#: src/features/system/settings.tsx:423
+#: src/features/system/settings.tsx:273
+#: src/features/system/settings.tsx:311
+#: src/features/system/settings.tsx:425
 msgid "This will reset \"{settingNameLabel}\" to its default value ({0})."
 msgstr "\"{settingNameLabel}\"이(가) 기본값({0})으로 재설정돼요."
 
@@ -2811,7 +2930,7 @@ msgstr "타임스탬프"
 msgid "TLS Enabled"
 msgstr "TLS 활성화됨"
 
-#: src/features/user/replication.tsx:318
+#: src/features/user/replication.tsx:328
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "다른 서버에 복제하려면 그곳에서 계정을 만들고 \"기존 계정 복제\" 옵션을 사용하세요."
 
@@ -2934,8 +3053,10 @@ msgstr "미국"
 msgid "Units"
 msgstr "단위"
 
+#: src/features/system/status.tsx:129
+#: src/features/system/status.tsx:130
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:137
+#: src/features/user/replication.tsx:143
 msgid "Unknown"
 msgstr "알 수 없음"
 
@@ -2964,12 +3085,16 @@ msgstr "공급자 연결을 해제할까요?"
 msgid "Unlinked {0}"
 msgstr "{0} 연결을 해제했어요"
 
+#: src/features/system/status.tsx:194
+msgid "Unreachable"
+msgstr "도달 불가"
+
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:131
 #: src/features/domains/index.tsx:885
 msgid "Unverified"
 msgstr "확인되지 않음"
 
-#: src/features/system/status.tsx:69
+#: src/features/system/status.tsx:89
 msgid "Update"
 msgstr "업데이트"
 
@@ -2978,7 +3103,7 @@ msgstr "업데이트"
 msgid "URL to redirect to"
 msgstr "리디렉션할 URL"
 
-#: src/features/system/replication.tsx:265
+#: src/features/system/replication.tsx:298
 msgid "Use \"mochictl replica join {peer}\" on a newly installed server to pair with this server."
 msgstr "이 서버와 페어링하려면 새로 설치된 서버에서 \"mochictl replica join {peer}\"를 사용하세요."
 
@@ -3008,7 +3133,7 @@ msgstr "사용자"
 msgid "User created"
 msgstr "사용자가 생성되었어요"
 
-#: src/features/system/settings.tsx:553
+#: src/features/system/settings.tsx:555
 msgid "User defaults"
 msgstr "사용자 기본값"
 
@@ -3025,11 +3150,12 @@ msgid "User updated"
 msgstr "사용자가 수정되었어요"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:264
+#: src/features/user/replication.tsx:271
 msgid "Username"
 msgstr "사용자 이름"
 
 #: src/components/layout/data/sidebar-data.ts:67
+#: src/features/system/status.tsx:135
 #: src/features/system/users.tsx:544
 #: src/features/system/users.tsx:582
 #: src/features/system/users.tsx:595
@@ -3079,9 +3205,13 @@ msgstr "DNS 확인"
 msgid "Verify email address"
 msgstr "이메일 주소 확인"
 
-#: src/features/system/status.tsx:50
+#: src/features/system/status.tsx:62
 msgid "Version"
 msgstr "버전"
+
+#: src/features/system/status.tsx:139
+msgid "Via relay"
+msgstr "릴레이 경유"
 
 #: ../../../lib/web/src/components/attachment-gallery.tsx:63
 msgid "Video thumbnail"
@@ -3119,11 +3249,11 @@ msgstr "수요일"
 msgid "Week starts on"
 msgstr "주 시작일"
 
-#: src/features/system/settings.tsx:57
+#: src/features/system/settings.tsx:59
 msgid "X client ID"
 msgstr "X 클라이언트 ID"
 
-#: src/features/system/settings.tsx:58
+#: src/features/system/settings.tsx:60
 msgid "X client secret"
 msgstr "X 클라이언트 비밀"
 
@@ -3148,7 +3278,7 @@ msgstr "회원님의 계정은 {purgeDate}에 영구적으로 삭제됩니다. �
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "회원님의 계정이 삭제 예정으로 지정되고 로그아웃됩니다. 삭제일 전에는 언제든지 다시 로그인하여 취소할 수 있습니다. 사본을 보관하려면 먼저 데이터를 다운로드하세요."
 
-#: src/features/user/replication.tsx:194
+#: src/features/user/replication.tsx:200
 msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
 msgstr "이 서버에 있는 계정 데이터가 영구적으로 삭제되며 여기에서 로그아웃됩니다. 계정은 다른 서버에 그대로 유지되며, 이 서버는 나중에 다시 추가할 수 있습니다."
 

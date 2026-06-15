@@ -21,7 +21,7 @@ msgstr ". Жолдарды басқара аласыз:"
 msgid "(current)"
 msgstr "(ағымдағы)"
 
-#: src/features/system/settings.tsx:93
+#: src/features/system/settings.tsx:95
 msgid "(empty)"
 msgstr "(бос)"
 
@@ -36,6 +36,20 @@ msgstr "{0, plural, one {1 сеанс қайтарып алынды} other {# с
 #: src/features/user/display.tsx:239
 msgid "{0} (development)"
 msgstr "{0} (әзірлеу)"
+
+#. placeholder {0}: formatNumber(network.relaying.reservations.held)
+#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
+#. placeholder {2}: formatNumber(network.relaying.circuits)
+#. placeholder {3}: formatNumber(network.relaying.rejected)
+#: src/features/system/status.tsx:157
+msgid "{0} / {1} reservations · {2} circuits · {3} refused"
+msgstr "{0} / {1} брондаулар · {2} тізбектер · {3} қабылданбады"
+
+#. placeholder {0}: formatNumber(network.holepunch.success)
+#. placeholder {1}: formatNumber(network.holepunch.failure)
+#: src/features/system/status.tsx:150
+msgid "{0} succeeded · {1} failed"
+msgstr "{0} сәтті · {1} сәтсіз"
 
 #: src/features/user/login.tsx:674
 msgid "{count} remaining"
@@ -198,7 +212,7 @@ msgid "Add view"
 msgstr "Көрініс қосу"
 
 #: src/features/user/connected-accounts.tsx:469
-#: src/features/user/replication.tsx:326
+#: src/features/user/replication.tsx:336
 msgid "Added"
 msgstr "Қосылды"
 
@@ -206,6 +220,18 @@ msgstr "Қосылды"
 #: src/features/user/interests.tsx:192
 msgid "Added \"{0}\""
 msgstr "\"{0}\" қосылды"
+
+#: src/features/system/status.tsx:178
+msgid "Address"
+msgstr "Мекенжай"
+
+#: src/features/system/replication.tsx:257
+msgid "Address copied"
+msgstr "Мекенжай көшірілді"
+
+#: src/features/system/replication.tsx:248
+msgid "Addresses"
+msgstr "Мекенжайлар"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:62
 msgid "Adjust the appearance and layout to suit your preferences."
@@ -225,7 +251,7 @@ msgstr "AI"
 msgid "All"
 msgstr "Барлығы"
 
-#: src/features/system/settings.tsx:66
+#: src/features/system/settings.tsx:68
 msgid "Allow new signups"
 msgstr "Жаңа тіркеулерге рұқсат ету"
 
@@ -238,7 +264,7 @@ msgid "Allow users to install apps"
 msgstr "Пайдаланушыларға қолданбаларды орнатуға рұқсат ету"
 
 #: src/components/method-state-control.tsx:28
-#: src/features/system/settings.tsx:104
+#: src/features/system/settings.tsx:106
 msgid "Allowed"
 msgstr "Рұқсат етілген"
 
@@ -250,11 +276,15 @@ msgstr "Қате орын алды"
 msgid "An unexpected error occurred"
 msgstr "Күтпеген қате орын алды"
 
-#: src/features/user/replication.tsx:291
+#: src/features/system/settings.tsx:48
+msgid "Announce hostname and domains to other servers"
+msgstr "Хост атауы мен домендерді басқа серверлерге хабарлау"
+
+#: src/features/user/replication.tsx:301
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Басқа сервер сіздің тіркелгіңіздің көшірмесін орналастыруды сұрайды. Көшірме жіберу үшін бекітіңіз."
 
-#: src/features/system/replication.tsx:241
+#: src/features/system/replication.tsx:274
 msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
 msgstr "Басқа сервер осы сервермен жұптасуды сұрап жатыр. Толыққанды репликация серіктесі ретінде тіркеу үшін мақұлдаңыз."
 
@@ -267,23 +297,23 @@ msgstr "Қолданба"
 msgid "Appearance"
 msgstr "Көрініс"
 
-#: src/features/system/replication.tsx:77
-#: src/features/user/replication.tsx:70
+#: src/features/system/replication.tsx:79
+#: src/features/user/replication.tsx:71
 msgid "Approval failed"
 msgstr "Бекіту сәтсіз аяқталды"
 
-#: src/features/system/replication.tsx:94
-#: src/features/user/replication.tsx:93
+#: src/features/system/replication.tsx:99
+#: src/features/user/replication.tsx:97
 msgid "Approve"
 msgstr "Мақұлдау"
 
-#: src/features/system/replication.tsx:114
-#: src/features/user/replication.tsx:103
+#: src/features/system/replication.tsx:119
+#: src/features/user/replication.tsx:107
 msgid "Approve request"
 msgstr "Сұрауды мақұлдау"
 
-#: src/features/system/replication.tsx:115
-#: src/features/user/replication.tsx:104
+#: src/features/system/replication.tsx:120
+#: src/features/user/replication.tsx:108
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "Мақұлдау жеке кілттерді сол серверге көшіреді. Жалғастыру үшін бұл сіз екеніңізді растаңыз."
 
@@ -339,6 +369,10 @@ msgstr "Басты бетке оралу"
 msgid "Boost interest"
 msgstr "Қызығушылықты арттыру"
 
+#: src/features/system/status.tsx:171
+msgid "Broadcast mesh"
+msgstr "Тарату mesh"
+
 #: src/features/user/notifications.tsx:216
 msgid "Browser notifications"
 msgstr "Браузер хабарландырулары"
@@ -355,10 +389,10 @@ msgstr "Браузер хабарландырулары"
 #: src/features/domains/index.tsx:330
 #: src/features/domains/index.tsx:509
 #: src/features/domains/index.tsx:655
-#: src/features/system/replication.tsx:175
-#: src/features/system/settings.tsx:275
-#: src/features/system/settings.tsx:313
-#: src/features/system/settings.tsx:428
+#: src/features/system/replication.tsx:181
+#: src/features/system/settings.tsx:277
+#: src/features/system/settings.tsx:315
+#: src/features/system/settings.tsx:430
 #: src/features/system/users.tsx:150
 #: src/features/system/users.tsx:235
 #: src/features/user/account.tsx:118
@@ -369,7 +403,7 @@ msgstr "Браузер хабарландырулары"
 #: src/features/user/notifications.tsx:518
 #: src/features/user/notifications.tsx:621
 #: src/features/user/preferences.tsx:226
-#: src/features/user/replication.tsx:201
+#: src/features/user/replication.tsx:207
 #: src/features/user/sessions.tsx:102
 msgid "Cancel"
 msgstr "Болдырмау"
@@ -406,7 +440,7 @@ msgstr "Солдан-оңға немесе оңнан-солға сайт бағ
 msgid "Choose between system preference, light mode, or dark mode"
 msgstr "Жүйе қалауы, жарық режим немесе қараңғы режимді таңдаңыз"
 
-#: src/features/system/settings.tsx:376
+#: src/features/system/settings.tsx:378
 msgid "Choose file"
 msgstr "Файлды таңдау"
 
@@ -414,9 +448,10 @@ msgstr "Файлды таңдау"
 msgid "Choose language"
 msgstr "Тілді таңдау"
 
-#: ../../../lib/web/src/components/colour-picker.tsx:304
-#: src/features/system/settings.tsx:358
-#: src/features/system/settings.tsx:359
+#: ../../../lib/web/src/components/colour-picker.tsx:268
+#: ../../../lib/web/src/components/colour-picker.tsx:349
+#: src/features/system/settings.tsx:360
+#: src/features/system/settings.tsx:361
 msgid "Clear"
 msgstr "Тазалау"
 
@@ -487,7 +522,7 @@ msgstr "Жақын арада!"
 msgid "Compact"
 msgstr "Ықшам"
 
-#: src/features/system/settings.tsx:335
+#: src/features/system/settings.tsx:337
 msgid "Configured"
 msgstr "Конфигурацияланған"
 
@@ -496,11 +531,13 @@ msgstr "Конфигурацияланған"
 msgid "Confirm"
 msgstr "Растау"
 
-#: src/features/user/replication.tsx:214
+#: src/features/user/replication.tsx:220
 #: src/lib/use-step-up.tsx:28
 msgid "Confirm it's you"
 msgstr "Бұл сіз екеніңізді растаңыз"
 
+#: src/features/system/status.tsx:170
+#: src/features/system/status.tsx:192
 #: src/features/user/connected-accounts.tsx:219
 msgid "Connected"
 msgstr "Қосылды"
@@ -536,11 +573,15 @@ msgstr "{label} арқылы жалғастыру"
 msgid "Copy"
 msgstr "Көшіру"
 
+#: src/features/system/replication.tsx:262
+msgid "Copy address"
+msgstr "Мекенжайды көшіру"
+
 #: src/features/user/login.tsx:664
 msgid "Copy all"
 msgstr "Барлығын көшіру"
 
-#: src/features/system/replication.tsx:232
+#: src/features/system/replication.tsx:243
 msgid "Copy peer id"
 msgstr "Серіктес ID-ін көшіру"
 
@@ -552,12 +593,12 @@ msgstr "Токенді қазір көшіріңіз. Оны қайта көре
 msgid "Could not close your account"
 msgstr "Тіркелгіңізді жабу мүмкін болмады"
 
-#: src/features/system/replication.tsx:103
-#: src/features/user/replication.tsx:77
+#: src/features/system/replication.tsx:108
+#: src/features/user/replication.tsx:78
 msgid "Could not deny request"
 msgstr "Сұранысты қабылдамау мүмкін болмады"
 
-#: src/features/user/replication.tsx:162
+#: src/features/user/replication.tsx:168
 msgid "Could not forget host"
 msgstr "Хостты ұмыту мүмкін болмады"
 
@@ -569,11 +610,11 @@ msgstr "Тіркелгіні байланыстыру мүмкін болмад�
 msgid "Could not load this document. Please try again later."
 msgstr "Бұл құжатты жүктеу мүмкін болмады. Кейінірек қайталап көріңіз."
 
-#: src/features/system/replication.tsx:180
+#: src/features/system/replication.tsx:186
 msgid "Could not remove pair member"
 msgstr "Жұп мүшесін жою сәтсіз болды"
 
-#: src/features/user/replication.tsx:224
+#: src/features/user/replication.tsx:230
 msgid "Could not remove your account from this server"
 msgstr "Тіркелгіңізді осы серверден жою мүмкін болмады"
 
@@ -621,6 +662,10 @@ msgstr "Пайдаланушы құру"
 #: src/features/user/tokens.tsx:269
 msgid "Created"
 msgstr "Құрылды"
+
+#: ../../../lib/web/src/components/colour-picker.tsx:259
+msgid "Custom"
+msgstr "Реттелетін"
 
 #: src/features/system/documents.tsx:123
 msgid "Customised"
@@ -763,8 +808,8 @@ msgstr "Жойылуда..."
 msgid "Density"
 msgstr "Тығыздық"
 
-#: src/features/system/replication.tsx:108
-#: src/features/user/replication.tsx:97
+#: src/features/system/replication.tsx:113
+#: src/features/user/replication.tsx:101
 msgid "Deny"
 msgstr "Бас тарту"
 
@@ -811,9 +856,13 @@ msgstr "Authenticator өшіру керек пе?"
 
 #: src/components/method-state-control.tsx:28
 #: src/features/domains/index.tsx:696
-#: src/features/system/settings.tsx:102
+#: src/features/system/settings.tsx:104
 msgid "Disabled"
 msgstr "Өшірілген"
+
+#: src/features/system/status.tsx:196
+msgid "Disconnected"
+msgstr "Ажыратылды"
 
 #: ../../../lib/web/src/components/restore-banner.tsx:73
 msgid "Dismiss"
@@ -891,16 +940,16 @@ msgstr "Дайын"
 msgid "Download"
 msgstr "Жүктеп алу"
 
-#: src/features/system/status.tsx:127
+#: src/features/system/status.tsx:264
 msgid "Download from packages.mochi-os.org"
 msgstr "packages.mochi-os.org сайтынан жүктеп алу"
 
-#: src/features/system/status.tsx:115
-#: src/features/system/status.tsx:121
+#: src/features/system/status.tsx:252
+#: src/features/system/status.tsx:258
 msgid "Download installer"
 msgstr "Орнатушыны жүктеп алу"
 
-#: src/features/system/status.tsx:149
+#: src/features/system/status.tsx:286
 msgid "Download Mochi {latest} and restart the server"
 msgstr "Mochi {latest} жүктеп алып, серверді қайта іске қосыңыз"
 
@@ -977,6 +1026,10 @@ msgstr "Электрондық поштаңыздағы кодты енгізі�
 msgid "Enter your authenticator code"
 msgstr "Authenticator кодын енгізіңіз"
 
+#: src/features/system/status.tsx:136
+msgid "Entities"
+msgstr "Нысандар"
+
 #: src/features/domains/index.tsx:255
 #: src/features/domains/index.tsx:424
 msgid "Entity"
@@ -1002,11 +1055,11 @@ msgstr "Экспорт сәтсіз аяқталды"
 msgid "Extra large"
 msgstr "Өте үлкен"
 
-#: src/features/system/settings.tsx:55
+#: src/features/system/settings.tsx:57
 msgid "Facebook App ID"
 msgstr "Facebook қолданба идентификаторы"
 
-#: src/features/system/settings.tsx:56
+#: src/features/system/settings.tsx:58
 msgid "Facebook App secret"
 msgstr "Facebook қолданба құпия сөзі"
 
@@ -1019,7 +1072,8 @@ msgstr "Тіркелгіні қосу сәтсіз аяқталды"
 msgid "Failed to add interest"
 msgstr "Қызығушылықты қосу сәтсіз аяқталды"
 
-#: src/features/system/replication.tsx:228
+#: src/features/system/replication.tsx:239
+#: src/features/system/replication.tsx:258
 msgid "Failed to copy"
 msgstr "Көшіру сәтсіз аяқталды"
 
@@ -1079,7 +1133,7 @@ msgstr "Аутентификаторды өшіру сәтсіз аяқталд�
 msgid "Failed to generate codes"
 msgstr "Кодтарды генерациялау сәтсіз аяқталды"
 
-#: src/features/system/status.tsx:140
+#: src/features/system/status.tsx:277
 msgid "Failed to install update"
 msgstr "Жаңартуды орнату сәтсіз аяқталды"
 
@@ -1189,8 +1243,8 @@ msgstr "Құпиялықты жаңарту сәтсіз аяқталды"
 msgid "Failed to update route"
 msgstr "Бағытты жаңарту сәтсіз аяқталды"
 
-#: src/features/system/settings.tsx:461
-#: src/features/system/settings.tsx:476
+#: src/features/system/settings.tsx:463
+#: src/features/system/settings.tsx:478
 msgid "Failed to update setting"
 msgstr "Параметрді жаңарту сәтсіз аяқталды"
 
@@ -1218,6 +1272,7 @@ msgstr "Кодты растау сәтсіз аяқталды"
 msgid "Failed to verify domain"
 msgstr "Доменді растау сәтсіз аяқталды"
 
+#: src/features/system/status.tsx:73
 #: src/features/user/account.tsx:137
 msgid "Fingerprint"
 msgstr "Саусақ ізі"
@@ -1226,11 +1281,11 @@ msgstr "Саусақ ізі"
 msgid "Finish moving your account"
 msgstr "Тіркелгіні ауыстыруды аяқтаңыз"
 
-#: src/features/system/settings.tsx:59
+#: src/features/system/settings.tsx:61
 msgid "Firebase google-services.json file"
 msgstr "Firebase google-services.json файлы"
 
-#: src/features/system/settings.tsx:60
+#: src/features/system/settings.tsx:62
 msgid "Firebase private key file"
 msgstr "Firebase жеке кілт файлы"
 
@@ -1246,11 +1301,11 @@ msgstr "Қаріп"
 msgid "Font size"
 msgstr "Қаріп өлшемі"
 
-#: src/features/user/replication.tsx:149
+#: src/features/user/replication.tsx:155
 msgid "Forget this unreachable host"
 msgstr "Бұл қолжетімсіз хостты ұмыту"
 
-#: src/features/user/replication.tsx:154
+#: src/features/user/replication.tsx:160
 msgid "Forget this unreachable host?"
 msgstr "Бұл қолжетімсіз хостты ұмыту керек пе?"
 
@@ -1259,8 +1314,8 @@ msgid "Friday"
 msgstr "Жұма"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:149
-#: src/features/system/replication.tsx:248
-#: src/features/user/replication.tsx:296
+#: src/features/system/replication.tsx:281
+#: src/features/user/replication.tsx:306
 msgid "From"
 msgstr "Кімнен"
 
@@ -1288,11 +1343,11 @@ msgstr "Кілт сөз тіркесін жасау"
 msgid "Generate?"
 msgstr "Генерациялайсыз ба?"
 
-#: src/features/system/settings.tsx:50
+#: src/features/system/settings.tsx:52
 msgid "GitHub client ID"
 msgstr "GitHub клиент идентификаторы"
 
-#: src/features/system/settings.tsx:51
+#: src/features/system/settings.tsx:53
 msgid "GitHub client secret"
 msgstr "GitHub клиент құпия сөзі"
 
@@ -1326,11 +1381,11 @@ msgstr "{pageNumber} бетіне өту"
 msgid "Go to previous page"
 msgstr "Алдыңғы бетке өту"
 
-#: src/features/system/settings.tsx:48
+#: src/features/system/settings.tsx:50
 msgid "Google client ID"
 msgstr "Google клиент идентификаторы"
 
-#: src/features/system/settings.tsx:49
+#: src/features/system/settings.tsx:51
 msgid "Google client secret"
 msgstr "Google клиент құпия сөзі"
 
@@ -1351,6 +1406,10 @@ msgstr "Жасыру"
 msgid "Higher priority routes are matched first"
 msgstr "Жоғары басымдықты бағыттар бірінші сәйкес келеді"
 
+#: src/features/system/status.tsx:149
+msgid "Hole punch"
+msgstr "Тесу"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx:82
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:142
 #: ../../../lib/web/src/components/layout/top-bar.tsx:62
@@ -1358,9 +1417,13 @@ msgstr "Жоғары басымдықты бағыттар бірінші сәй
 msgid "Home"
 msgstr "Басты бет"
 
-#: src/features/user/replication.tsx:161
+#: src/features/user/replication.tsx:167
 msgid "Host forgotten"
 msgstr "Хост ұмытылды"
+
+#: src/features/system/settings.tsx:47
+msgid "Hostname announced to other servers"
+msgstr "Басқа серверлерге хабарланған хост атауы"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:41
 msgid "Hot"
@@ -1387,12 +1450,12 @@ msgstr "Империялық"
 msgid "Inset"
 msgstr "Ішкі"
 
-#: src/features/system/status.tsx:152
+#: src/features/system/status.tsx:289
 msgid "Install update"
 msgstr "Жаңартуды орнату"
 
 #. placeholder {0}: info.pending
-#: src/features/system/status.tsx:87
+#: src/features/system/status.tsx:224
 msgid "Installing {0}…"
 msgstr "{0} орнатылуда…"
 
@@ -1417,22 +1480,26 @@ msgstr "Жарамсыз растау коды"
 msgid "IP Address"
 msgstr "IP мекенжайы"
 
-#: src/features/system/replication.tsx:145
-#: src/features/user/replication.tsx:129
+#: src/features/system/replication.tsx:151
+#: src/features/user/replication.tsx:134
 msgid "Irreparable"
 msgstr "Қалпына келтірілмейді"
 
-#: src/features/user/replication.tsx:155
+#: src/features/user/replication.tsx:161
 msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
 msgstr "Ол сіздің репликалар жиынынан жойылады және қайта қосылғанда көшірмесін жою тапсырылады. Қолжетімді серверді жою үшін сол жерде кіріңіз де, «Тіркелгімді осы серверден жою» пәрменін пайдаланыңыз. Жалғастыру үшін бұл сіз екеніңізді растаңыз."
 
-#: src/features/system/replication.tsx:75
+#: src/features/system/replication.tsx:77
 msgid "Join request approved"
 msgstr "Қосылу сұранысы мақұлданды"
 
-#: src/features/system/replication.tsx:102
+#: src/features/system/replication.tsx:107
 msgid "Join request denied"
 msgstr "Қосылу сұранысы қабылданбады"
+
+#: src/features/system/status.tsx:170
+msgid "Known"
+msgstr "Белгілі"
 
 #: src/features/user/notifications.tsx:441
 msgid "Label is required"
@@ -1456,6 +1523,10 @@ msgstr "Соңғы рет кіру"
 msgid "Last active"
 msgstr "Соңғы белсенді"
 
+#: src/features/system/status.tsx:142
+msgid "Last broadcast"
+msgstr "Соңғы тарату"
+
 #. placeholder {0}: formatSystemTimestamp(document.updated)
 #: src/features/system/documents.tsx:129
 msgid "Last edited {0}"
@@ -1464,6 +1535,10 @@ msgstr "Соңғы өңделді {0}"
 #: src/features/system/users.tsx:643
 msgid "Last login"
 msgstr "Соңғы рет кіру"
+
+#: src/features/system/status.tsx:179
+msgid "Last seen"
+msgstr "Соңғы рет көрінді"
 
 #: src/features/user/login.tsx:417
 #: src/features/user/login.tsx:867
@@ -1534,7 +1609,7 @@ msgstr "Шығу…"
 
 #: src/components/layout/data/sidebar-data.ts:30
 #: src/components/layout/data/sidebar-data.ts:51
-#: src/features/system/settings.tsx:539
+#: src/features/system/settings.tsx:541
 #: src/features/user/login.tsx:892
 #: src/features/user/login.tsx:939
 msgid "Login"
@@ -1593,6 +1668,10 @@ msgstr "Орташа"
 msgid "Menu"
 msgstr "Мәзір"
 
+#: src/features/system/status.tsx:162
+msgid "Messages awaiting routing"
+msgstr "Бағдарлауды күтудегі хабарлар"
+
 #: src/features/domains/index.tsx:244
 #: src/features/domains/index.tsx:413
 #: src/features/domains/index.tsx:1000
@@ -1603,20 +1682,20 @@ msgstr "Әдіс"
 msgid "Metric"
 msgstr "Метрикалық"
 
-#: src/features/system/settings.tsx:52
+#: src/features/system/settings.tsx:54
 msgid "Microsoft client ID"
 msgstr "Microsoft клиент идентификаторы"
 
-#: src/features/system/settings.tsx:53
+#: src/features/system/settings.tsx:55
 msgid "Microsoft client secret"
 msgstr "Microsoft клиент құпия сөзі"
 
-#: src/features/system/settings.tsx:54
+#: src/features/system/settings.tsx:56
 msgid "Microsoft tenant"
 msgstr "Microsoft жалдаушысы"
 
 #. placeholder {0}: info.latest
-#: src/features/system/status.tsx:95
+#: src/features/system/status.tsx:232
 msgid "Mochi {0} is available"
 msgstr "Mochi {0} қол жетімді"
 
@@ -1637,7 +1716,7 @@ msgstr "Дүйсенбі"
 msgid "My application"
 msgstr "Менің қолданбам"
 
-#: src/features/user/replication.tsx:308
+#: src/features/user/replication.tsx:318
 msgid "My hosts"
 msgstr "Менің хосттарым"
 
@@ -1827,10 +1906,14 @@ msgstr "Сан пішімі"
 
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
-#: src/features/system/replication.tsx:148
-#: src/features/user/replication.tsx:132
+#: src/features/system/replication.tsx:154
+#: src/features/user/replication.tsx:137
 msgid "Offline {0}"
 msgstr "Желіден тыс {0}"
+
+#: src/features/system/status.tsx:181
+msgid "Oldest queued message"
+msgstr "Кезектегі ең ескі хабарлама"
 
 #: ../../../lib/web/src/features/errors/not-found-error.tsx:13
 msgid "Oops! Page Not Found!"
@@ -1840,6 +1923,10 @@ msgstr "Ой! Бет табылмады!"
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:151
 msgid "Open account actions"
 msgstr "Тіркелгі әрекеттерін ашу"
+
+#: ../../../lib/web/src/components/layout/nav-group.tsx:134
+msgid "Open actions"
+msgstr "Әрекеттерді ашу"
 
 #: ../../../lib/web/src/components/layout/top-bar.tsx:57
 msgid "Open navigation"
@@ -1858,19 +1945,19 @@ msgstr "Тақырып параметрлерін ашу"
 msgid "Open user actions"
 msgstr "Қолданушы әрекеттерін ашу"
 
-#: src/features/system/settings.tsx:560
+#: src/features/system/settings.tsx:562
 msgid "Operator"
 msgstr "Оператор"
 
-#: src/features/system/settings.tsx:62
+#: src/features/system/settings.tsx:64
 msgid "Operator email"
 msgstr "Оператор email"
 
-#: src/features/system/settings.tsx:63
+#: src/features/system/settings.tsx:65
 msgid "Operator jurisdiction"
 msgstr "Оператор юрисдикциясы"
 
-#: src/features/system/settings.tsx:61
+#: src/features/system/settings.tsx:63
 msgid "Operator name"
 msgstr "Оператор аты"
 
@@ -1878,11 +1965,11 @@ msgstr "Оператор аты"
 msgid "Other"
 msgstr "Басқа"
 
-#: src/features/user/replication.tsx:311
+#: src/features/user/replication.tsx:321
 msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
 msgstr "Тіркелгіңіздің көшірмесін де сақтайтын басқа серверлер. Біреуін жою үшін сол серверге кіріңіз де, «Тіркелгімді осы серверден жою» пәрменін пайдаланыңыз."
 
-#: src/features/system/settings.tsx:575
+#: src/features/system/settings.tsx:577
 msgid "Other settings"
 msgstr "Басқа параметрлер"
 
@@ -1890,11 +1977,11 @@ msgstr "Басқа параметрлер"
 msgid "Owner"
 msgstr "Иесі"
 
-#: src/features/system/replication.tsx:179
+#: src/features/system/replication.tsx:185
 msgid "Pair member removed"
 msgstr "Жұп мүшесі жойылды"
 
-#: src/features/system/replication.tsx:260
+#: src/features/system/replication.tsx:293
 msgid "Pair members"
 msgstr "Жұп мүшелері"
 
@@ -1949,28 +2036,34 @@ msgstr "Жол"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Жолға рұқсат берілмейді. Сіз тек келесі бойынша маршруттарды қоса аласыз: {0}"
 
-#: src/features/system/replication.tsx:272
-#: src/features/user/replication.tsx:325
+#: src/features/system/replication.tsx:305
+#: src/features/system/status.tsx:176
+#: src/features/user/replication.tsx:335
 msgid "Peer"
 msgstr "Тең деңгейлі"
 
-#: src/features/system/status.tsx:61
+#: src/features/system/status.tsx:81
 msgid "Peer ID"
 msgstr "Тең дәрежелі ID"
 
-#: src/features/system/replication.tsx:227
+#: src/components/peer-identity.tsx:40
+#: src/features/system/replication.tsx:238
 msgid "Peer id copied"
 msgstr "Серіктес ID-і көшірілді"
+
+#: src/features/system/status.tsx:168
+msgid "Peers"
+msgstr "Тең деңгейлілер"
 
 #: src/features/user/connected-accounts.tsx:209
 msgid "Pending"
 msgstr "Күтуде"
 
-#: src/features/system/replication.tsx:239
+#: src/features/system/replication.tsx:272
 msgid "Pending join requests"
 msgstr "Күтудегі қосылу сұраныстары"
 
-#: src/features/user/replication.tsx:289
+#: src/features/user/replication.tsx:299
 msgid "Pending requests"
 msgstr "Күтудегі сұраулар"
 
@@ -2022,6 +2115,10 @@ msgstr "Басымдық"
 msgid "Privacy"
 msgstr "Құпиялылық"
 
+#: src/features/system/status.tsx:128
+msgid "Private"
+msgstr "Жеке"
+
 #: src/features/user/login.tsx:686
 msgid "Proceed"
 msgstr "Жалғастыру"
@@ -2035,15 +2132,28 @@ msgstr "Профиль"
 msgid "Provider"
 msgstr "Провайдер"
 
-#: src/features/system/settings.tsx:47
+#: src/features/system/status.tsx:127
+msgid "Public"
+msgstr "Қоғамдық"
+
+#: src/features/system/settings.tsx:49
 msgid "Public URL for OAuth redirects"
 msgstr "OAuth қайта бағыттаулары үшін қоғамдық URL"
 
-#: src/features/system/settings.tsx:568
+#: src/features/system/settings.tsx:570
 msgid "Push notifications"
 msgstr "Push хабарландырулары"
 
-#: src/features/user/replication.tsx:259
+#: src/features/system/status.tsx:164
+msgid "Queued broadcast messages"
+msgstr "Кезектегі тарату хабарлары"
+
+#: src/features/system/status.tsx:163
+#: src/features/system/status.tsx:180
+msgid "Queued messages"
+msgstr "Кезектегі хабарламалар"
+
+#: src/features/user/replication.tsx:266
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "Осы тіркелгіні басқа серверге көшіру үшін мақсатты сервердің тіркелу пішініне екі мәнді де енгізіңіз."
 
@@ -2058,6 +2168,10 @@ msgstr "Осы серверде тіркелгілеріңізді қайта б
 #: ../../../lib/web/src/components/restore-banner.tsx:120
 msgid "Re-register your passkeys on this server"
 msgstr "Бұл серверде кіру кілттерін қайта тіркеңіз"
+
+#: src/features/system/status.tsx:137
+msgid "Reachability"
+msgstr "Қолжетімділік"
 
 #: ../../../lib/web/src/components/search-entity-dialog.tsx:216
 #: ../../../lib/web/src/components/search-entity-page.tsx:191
@@ -2111,12 +2225,16 @@ msgstr "Қатысты (5м, 3с, 2к)"
 msgid "Relative within 24 hours, else absolute"
 msgstr "24 сағат ішінде салыстырмалы, әйтпесе абсолютті"
 
+#: src/features/system/status.tsx:156
+msgid "Relay service"
+msgstr "Реле қызметі"
+
 #: ../../../lib/web/src/features/access/access-list.tsx:257
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:172
-#: src/features/system/replication.tsx:184
+#: src/features/system/replication.tsx:190
 #: src/features/user/connected-accounts.tsx:272
 #: src/features/user/connected-accounts.tsx:282
-#: src/features/user/replication.tsx:206
+#: src/features/user/replication.tsx:212
 msgid "Remove"
 msgstr "Жою"
 
@@ -2142,15 +2260,15 @@ msgstr "Тіркелгіні жою керек пе?"
 msgid "Remove interest"
 msgstr "Қызығушылықты жою"
 
-#: src/features/user/replication.tsx:187
+#: src/features/user/replication.tsx:193
 msgid "Remove my account from this server"
 msgstr "Тіркелгімді осы серверден жою"
 
-#: src/features/system/replication.tsx:161
+#: src/features/system/replication.tsx:167
 msgid "Remove pair member"
 msgstr "Жұп мүшесін жою"
 
-#: src/features/system/replication.tsx:166
+#: src/features/system/replication.tsx:172
 msgid "Remove pair member?"
 msgstr "Жұп мүшесі жойылсын ба?"
 
@@ -2158,7 +2276,7 @@ msgstr "Жұп мүшесі жойылсын ба?"
 msgid "Remove suspension"
 msgstr "Тоқтатуды жою"
 
-#: src/features/user/replication.tsx:192
+#: src/features/user/replication.tsx:198
 msgid "Remove your account from this server?"
 msgstr "Тіркелгіңізді осы серверден жою керек пе?"
 
@@ -2166,25 +2284,25 @@ msgstr "Тіркелгіңізді осы серверден жою керек �
 msgid "Rename passkey"
 msgstr "passkey атын өзгерту"
 
-#: src/features/system/settings.tsx:349
+#: src/features/system/settings.tsx:351
 msgid "Replace"
 msgstr "Алмастыру"
 
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/components/layout/data/sidebar-data.ts:68
-#: src/features/system/replication.tsx:196
-#: src/features/system/replication.tsx:209
-#: src/features/user/replication.tsx:236
-#: src/features/user/replication.tsx:246
+#: src/features/system/replication.tsx:202
+#: src/features/system/replication.tsx:217
+#: src/features/user/replication.tsx:242
+#: src/features/user/replication.tsx:253
 msgid "Replication"
 msgstr "Репликация"
 
-#: src/features/user/replication.tsx:68
+#: src/features/user/replication.tsx:69
 msgid "Request approved"
 msgstr "Сұраныс бекітілді"
 
-#: src/features/user/replication.tsx:76
+#: src/features/user/replication.tsx:77
 msgid "Request denied"
 msgstr "Сұраныс қабылданбады"
 
@@ -2193,7 +2311,7 @@ msgid "Require domain verification"
 msgstr "Доменді растау керек"
 
 #: src/components/method-state-control.tsx:28
-#: src/features/system/settings.tsx:106
+#: src/features/system/settings.tsx:108
 msgid "Required"
 msgstr "Міндетті"
 
@@ -2203,9 +2321,9 @@ msgstr "Хатты қайта жіберу"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:77
 #: ../../../lib/web/src/components/data-table/toolbar.tsx:78
-#: src/features/system/settings.tsx:277
-#: src/features/system/settings.tsx:315
-#: src/features/system/settings.tsx:430
+#: src/features/system/settings.tsx:279
+#: src/features/system/settings.tsx:317
+#: src/features/system/settings.tsx:432
 #: src/features/user/display.tsx:193
 #: src/features/user/preferences.tsx:228
 msgid "Reset"
@@ -2223,18 +2341,18 @@ msgstr "Көрсетуді қайтару?"
 msgid "Reset preferences?"
 msgstr "Параметрлерді қайтару керек пе?"
 
-#: src/features/system/settings.tsx:261
-#: src/features/system/settings.tsx:262
-#: src/features/system/settings.tsx:299
-#: src/features/system/settings.tsx:300
-#: src/features/system/settings.tsx:412
-#: src/features/system/settings.tsx:413
+#: src/features/system/settings.tsx:263
+#: src/features/system/settings.tsx:264
+#: src/features/system/settings.tsx:301
+#: src/features/system/settings.tsx:302
+#: src/features/system/settings.tsx:414
+#: src/features/system/settings.tsx:415
 msgid "Reset to default"
 msgstr "Әдепкіге қайтару"
 
-#: src/features/system/settings.tsx:269
-#: src/features/system/settings.tsx:307
-#: src/features/system/settings.tsx:420
+#: src/features/system/settings.tsx:271
+#: src/features/system/settings.tsx:309
+#: src/features/system/settings.tsx:422
 msgid "Reset to default?"
 msgstr "Әдепкіге қайтару керек пе?"
 
@@ -2304,7 +2422,7 @@ msgstr "Сенбі"
 
 #: ../../../lib/web/src/components/ui/secret-field.tsx:74
 #: src/features/system/documents.tsx:151
-#: src/features/system/settings.tsx:401
+#: src/features/system/settings.tsx:403
 #: src/features/user/connected-accounts.tsx:603
 #: src/features/user/notifications.tsx:521
 msgid "Save"
@@ -2452,7 +2570,7 @@ msgstr "Серифті"
 msgid "Server error"
 msgstr "Сервер қатесі"
 
-#: src/features/user/replication.tsx:272
+#: src/features/user/replication.tsx:279
 msgid "Server peer ID"
 msgstr "Сервердің тең дәрежелі ID-сі"
 
@@ -2466,11 +2584,11 @@ msgstr "Сервер ережелері"
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "Пайдаланушыларыңызға көрсетілетін сервер ережелері, шарттары және құпиялылық хабарламасы"
 
-#: src/features/system/settings.tsx:64
+#: src/features/system/settings.tsx:66
 msgid "Server started"
 msgstr "Сервер іске қосылды"
 
-#: src/features/system/settings.tsx:65
+#: src/features/system/settings.tsx:67
 msgid "Server version"
 msgstr "Сервер нұсқасы"
 
@@ -2507,8 +2625,8 @@ msgstr "Шығу және бару нүктесін орнату"
 msgid "Set up"
 msgstr "Орнату"
 
-#: src/features/system/settings.tsx:457
-#: src/features/system/settings.tsx:474
+#: src/features/system/settings.tsx:459
+#: src/features/system/settings.tsx:476
 msgid "Setting updated"
 msgstr "Параметр жаңартылды"
 
@@ -2556,15 +2674,16 @@ msgstr "Кіші"
 msgid "Spacious"
 msgstr "Кең"
 
-#: src/features/system/status.tsx:54
+#: src/features/system/status.tsx:66
 msgid "Started"
 msgstr "Басталды"
 
 #: src/components/layout/data/sidebar-data.ts:69
 #: src/features/domains/index.tsx:1003
-#: src/features/system/replication.tsx:273
-#: src/features/system/status.tsx:25
-#: src/features/system/status.tsx:40
+#: src/features/system/replication.tsx:306
+#: src/features/system/status.tsx:36
+#: src/features/system/status.tsx:52
+#: src/features/system/status.tsx:177
 #: src/features/system/users.tsx:636
 #: src/features/user/connected-accounts.tsx:465
 msgid "Status"
@@ -2602,11 +2721,11 @@ msgstr "Тоқтатылды"
 msgid "Suspension removed"
 msgstr "Тоқтату жойылды"
 
-#: src/features/system/replication.tsx:151
+#: src/features/system/replication.tsx:157
 msgid "Synced"
 msgstr "Синхрондалды"
 
-#: src/features/system/replication.tsx:153
+#: src/features/system/replication.tsx:159
 msgid "Syncing"
 msgstr "Синхрондалуда"
 
@@ -2618,8 +2737,8 @@ msgid "System"
 msgstr "Жүйе"
 
 #: src/components/layout/data/sidebar-data.ts:65
-#: src/features/system/settings.tsx:446
-#: src/features/system/settings.tsx:530
+#: src/features/system/settings.tsx:448
+#: src/features/system/settings.tsx:532
 msgid "System settings"
 msgstr "Жүйе параметрлері"
 
@@ -2687,17 +2806,17 @@ msgstr "Тақырып параметрлері"
 msgid "Theme updated"
 msgstr "Тақырып жаңартылды"
 
-#: src/features/system/settings.tsx:546
+#: src/features/system/settings.tsx:548
 #: src/features/user/login.tsx:125
 #: src/features/user/login.tsx:847
 msgid "Third-party login"
 msgstr "Үшінші тарап арқылы кіру"
 
-#: src/features/user/replication.tsx:257
+#: src/features/user/replication.tsx:264
 msgid "This account"
 msgstr "Осы тіркелгі"
 
-#: src/features/user/replication.tsx:317
+#: src/features/user/replication.tsx:327
 msgid "This account is on this server only"
 msgstr "Бұл тіркелгі тек осы серверде"
 
@@ -2709,19 +2828,19 @@ msgstr "Бұл — осы немесе басқа Mochi серверінде қ�
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Бұл — тіркелгіңіздің қауіпсіздік өзгерісі. Жалғастыру үшін бұл сіз екеніңізді растаңыз."
 
-#: src/features/user/replication.tsx:215
+#: src/features/user/replication.tsx:221
 msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
 msgstr "Бұл осы сервердегі тіркелгіңіздің деректерін біржола жояды. Жалғастыру үшін бұл сіз екеніңізді растаңыз."
 
-#: src/features/system/replication.tsx:219
+#: src/features/system/replication.tsx:227
 msgid "This server"
 msgstr "Бұл сервер"
 
-#: src/features/system/replication.tsx:264
+#: src/features/system/replication.tsx:297
 msgid "This server is not paired."
 msgstr "Бұл сервер жұптастырылмаған."
 
-#: src/features/system/replication.tsx:168
+#: src/features/system/replication.tsx:174
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "Бұл сервер сол серіктеспен жұптасуды тоқтатады. Жойылған сервер әр пайдаланушының жергілікті көшірмесін сақтайды; ондағы оператор оны қолмен өшіруі тиіс."
 
@@ -2768,14 +2887,14 @@ msgstr "Бұл \"{1}\" жолындағы {0} үшін делегацияны ж
 msgid "This will remove the route for path \"{0}\"."
 msgstr "Бұл \"{0}\" жолы үшін бағдарды жояды."
 
-#: src/features/system/settings.tsx:424
+#: src/features/system/settings.tsx:426
 msgid "This will reset \"{settingNameLabel}\" to its default (empty)."
 msgstr "Бұл \"{settingNameLabel}\"-ды әдепкі мәніне (бос) қалпына келтіреді."
 
 #. placeholder {0}: setting.default
-#: src/features/system/settings.tsx:271
-#: src/features/system/settings.tsx:309
-#: src/features/system/settings.tsx:423
+#: src/features/system/settings.tsx:273
+#: src/features/system/settings.tsx:311
+#: src/features/system/settings.tsx:425
 msgid "This will reset \"{settingNameLabel}\" to its default value ({0})."
 msgstr "Бұл \"{settingNameLabel}\"-ды әдепкі мәніне ({0}) қалпына келтіреді."
 
@@ -2811,7 +2930,7 @@ msgstr "Уақыт белгілері"
 msgid "TLS Enabled"
 msgstr "TLS қосылған"
 
-#: src/features/user/replication.tsx:318
+#: src/features/user/replication.tsx:328
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "Оны басқа серверге репликациялау үшін, сонда тіркелгі ашыңыз және \"Бар тіркелгіні репликациялау\" опциясын пайдаланыңыз."
 
@@ -2934,8 +3053,10 @@ msgstr "Америка Құрама Штаттары"
 msgid "Units"
 msgstr "Бірліктер"
 
+#: src/features/system/status.tsx:129
+#: src/features/system/status.tsx:130
 #: src/features/system/users.tsx:321
-#: src/features/user/replication.tsx:137
+#: src/features/user/replication.tsx:143
 msgid "Unknown"
 msgstr "Белгісіз"
 
@@ -2964,12 +3085,16 @@ msgstr "Провайдердің байланысын үзу керек пе?"
 msgid "Unlinked {0}"
 msgstr "{0} байланысы үзілді"
 
+#: src/features/system/status.tsx:194
+msgid "Unreachable"
+msgstr "Қолжетімсіз"
+
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:131
 #: src/features/domains/index.tsx:885
 msgid "Unverified"
 msgstr "Тексерілмеген"
 
-#: src/features/system/status.tsx:69
+#: src/features/system/status.tsx:89
 msgid "Update"
 msgstr "Жаңарту"
 
@@ -2978,7 +3103,7 @@ msgstr "Жаңарту"
 msgid "URL to redirect to"
 msgstr "Қайта бағытталатын URL"
 
-#: src/features/system/replication.tsx:265
+#: src/features/system/replication.tsx:298
 msgid "Use \"mochictl replica join {peer}\" on a newly installed server to pair with this server."
 msgstr "Бұл серверге жұптастыру үшін жаңа орнатылған серверде \"mochictl replica join {peer}\" пайдаланыңыз."
 
@@ -3008,7 +3133,7 @@ msgstr "Пайдаланушы"
 msgid "User created"
 msgstr "Пайдаланушы жасалды"
 
-#: src/features/system/settings.tsx:553
+#: src/features/system/settings.tsx:555
 msgid "User defaults"
 msgstr "Пайдаланушы әдепкілері"
 
@@ -3025,11 +3150,12 @@ msgid "User updated"
 msgstr "Пайдаланушы жаңартылды"
 
 #: src/features/user/account.tsx:132
-#: src/features/user/replication.tsx:264
+#: src/features/user/replication.tsx:271
 msgid "Username"
 msgstr "Пайдаланушы аты"
 
 #: src/components/layout/data/sidebar-data.ts:67
+#: src/features/system/status.tsx:135
 #: src/features/system/users.tsx:544
 #: src/features/system/users.tsx:582
 #: src/features/system/users.tsx:595
@@ -3079,9 +3205,13 @@ msgstr "DNS тексеру"
 msgid "Verify email address"
 msgstr "Электрондық пошта мекенжайын тексеру"
 
-#: src/features/system/status.tsx:50
+#: src/features/system/status.tsx:62
 msgid "Version"
 msgstr "Нұсқа"
+
+#: src/features/system/status.tsx:139
+msgid "Via relay"
+msgstr "Реле арқылы"
 
 #: ../../../lib/web/src/components/attachment-gallery.tsx:63
 msgid "Video thumbnail"
@@ -3119,11 +3249,11 @@ msgstr "Сәрсенбі"
 msgid "Week starts on"
 msgstr "Аптаны бастайтын күн"
 
-#: src/features/system/settings.tsx:57
+#: src/features/system/settings.tsx:59
 msgid "X client ID"
 msgstr "X клиент ID"
 
-#: src/features/system/settings.tsx:58
+#: src/features/system/settings.tsx:60
 msgid "X client secret"
 msgstr "X клиент құпиясы"
 
@@ -3148,7 +3278,7 @@ msgstr "Сіздің тіркелгіңіз {purgeDate} күні біржола 
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "Тіркелгіңіз жойылуға жоспарланады және жүйеден шығасыз. Жою күніне дейін кез келген уақытта қайта кіру арқылы бас тарта аласыз. Көшірмесін сақтағыңыз келсе, алдымен деректеріңізді жүктеп алыңыз."
 
-#: src/features/user/replication.tsx:194
+#: src/features/user/replication.tsx:200
 msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
 msgstr "Осы сервердегі тіркелгіңіздің деректері біржола жойылады және сіз осы жерден шығасыз. Тіркелгіңіз басқа серверлеріңізде қалады, ал бұл серверді кейінірек қайта қоса аласыз."
 
