@@ -20,7 +20,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   Button,
-  cn,
+  Tabs,
+  TabsList,
+  TabsTrigger,
   EmptyState,
   Dialog,
   DialogContent,
@@ -159,29 +161,27 @@ export function UserNotifications() {
     <>
       <PageHeader title={t`Notifications`} primaryAction={<BrowserPushButton onChanged={bumpReload} />} />
       <Main>
-        <div className="mb-4 flex items-center justify-between border-b">
-          <div className="flex gap-1">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={cn(
-                  'flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px',
-                  activeTab === tab.id
-                    ? 'border-primary text-foreground'
-                    : 'border-transparent text-muted-foreground hover:text-foreground'
-                )}
-              >
-                {tab.label}
-              </button>
-            ))}
+        <Tabs
+          variant="underline"
+          value={activeTab}
+          onValueChange={(value) => setActiveTab(value as TabId)}
+          className="mb-4"
+        >
+          <div className="flex items-center justify-between border-b">
+            <TabsList className="w-auto border-b-0">
+              {tabs.map((tab) => (
+                <TabsTrigger key={tab.id} value={tab.id}>
+                  {tab.label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            {activeTab === 'categories' && (
+              <Button variant="outline" size="sm" onClick={() => setCreating(true)} className="mb-1">
+                <Plus className="me-2 h-4 w-4" /> <Trans>Add category</Trans>
+              </Button>
+            )}
           </div>
-          {activeTab === 'categories' && (
-            <Button variant="outline" size="sm" onClick={() => setCreating(true)} className="mb-1">
-              <Plus className="me-2 h-4 w-4" /> <Trans>Add category</Trans>
-            </Button>
-          )}
-        </div>
+        </Tabs>
         {activeTab === 'categories'
           ? <CategoriesTab creating={creating} setCreating={setCreating} reloadKey={reloadKey} />
           : <TopicsTab />}

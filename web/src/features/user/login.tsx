@@ -563,8 +563,8 @@ function AuthenticatorSection() {
         </div>
       ) : isEnabled ? (
         <div className='flex items-center gap-3 py-4'>
-          <div className='flex h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30'>
-            <Check className='h-5 w-5 text-green-600 dark:text-green-500' />
+          <div className='flex h-10 w-10 items-center justify-center rounded-full bg-success/15 dark:bg-success/25'>
+            <Check className='h-5 w-5 text-success' />
           </div>
           <div>
             <p className='text-sm font-medium'><Trans>Enabled</Trans></p>

@@ -209,12 +209,12 @@ function AccountRow({
             <Trans>Pending</Trans>
           </span>
         ) : provider?.verify && isVerified ? (
-          <span className='inline-flex items-center gap-1 text-xs text-green-600 dark:text-green-400'>
+          <span className='inline-flex items-center gap-1 text-xs text-success'>
             <CheckCircle2 className='h-3 w-3' />
             <Trans>Verified</Trans>
           </span>
         ) : (
-          <span className='inline-flex items-center gap-1 text-xs text-green-600 dark:text-green-400'>
+          <span className='inline-flex items-center gap-1 text-xs text-success'>
             <CheckCircle2 className='h-3 w-3' />
             <Trans>Connected</Trans>
           </span>
