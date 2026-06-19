@@ -1,12 +1,9 @@
-import { useState } from 'react'
 import { useLingui, Trans } from '@lingui/react/macro'
-import { Check, Pencil, User } from 'lucide-react'
+import { User } from 'lucide-react'
 import { useAccountData, useUpdateIdentity } from '@/hooks/use-account'
 import { DataSection } from './data'
 import { CloseAccountSection } from './close-account'
 import {
-  Button,
-  Input,
   Label,
   Switch,
   ListSkeleton,
@@ -15,6 +12,7 @@ import {
   usePageTitle,
   Section,
   FieldRow,
+  EditableFieldRow,
   DataChip,
   GeneralError,
   toast,
@@ -30,32 +28,15 @@ function IdentitySection() {
   const { t } = useLingui()
   const { data, isLoading, error, refetch } = useAccountData()
   const updateIdentity = useUpdateIdentity()
-  const [isRenaming, setIsRenaming] = useState(false)
-  const [draftName, setDraftName] = useState('')
 
-  const startRename = () => {
-    setDraftName(data?.identity?.name ?? '')
-    setIsRenaming(true)
-  }
-
-  const handleRename = () => {
-    const name = draftName.trim()
-    if (!name || name === data?.identity?.name) {
-      setIsRenaming(false)
-      return
+  const handleRename = async (name: string) => {
+    try {
+      await updateIdentity.mutateAsync({ name })
+      toast.success(t`Name updated`)
+    } catch (err) {
+      toast.error(getErrorMessage(err, t`Failed to update name`))
+      throw err
     }
-    updateIdentity.mutate(
-      { name },
-      {
-        onSuccess: () => {
-          toast.success(t`Name updated`)
-          setIsRenaming(false)
-        },
-        onError: (err) => {
-          toast.error(getErrorMessage(err, t`Failed to update name`))
-        },
-      }
-    )
   }
 
   const handleTogglePublic = (checked: boolean) => {
@@ -86,49 +67,13 @@ function IdentitySection() {
         <ListSkeleton variant='simple' height='h-12' count={4} />
       ) : data?.identity ? (
         <div className='divide-y-0'>
-          <FieldRow label={t`Name`}>
-            {isRenaming ? (
-              <div className='flex items-center gap-2'>
-                <Input
-                  value={draftName}
-                  onChange={(e) => setDraftName(e.target.value)}
-                  className='h-8 w-64'
-                  autoFocus
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') handleRename()
-                    if (e.key === 'Escape') setIsRenaming(false)
-                  }}
-                  disabled={updateIdentity.isPending}
-                />
-                <Button
-                  size='sm'
-                  variant='ghost'
-                  onClick={handleRename}
-                  disabled={updateIdentity.isPending}
-                  aria-label={t`Save name`}
-                >
-                  <Check className='h-4 w-4' />
-                </Button>
-                <Button
-                  size='sm'
-                  variant='ghost'
-                  onClick={() => setIsRenaming(false)}
-                  disabled={updateIdentity.isPending}
-                >
-                  <Trans>Cancel</Trans>
-                </Button>
-              </div>
-            ) : (
-              <div className='flex items-center gap-2'>
-                <span className='text-foreground text-base font-semibold'>
-                  {data.identity.name}
-                </span>
-                <Button variant='ghost' size='sm' onClick={startRename} aria-label={t`Edit name`}>
-                  <Pencil className='h-4 w-4' />
-                </Button>
-              </div>
-            )}
-          </FieldRow>
+          <EditableFieldRow
+            label={t`Name`}
+            value={data.identity.name}
+            onSave={handleRename}
+            validate={(value) => (value.trim() ? null : t`Name is required`)}
+            emphasize
+          />
           <FieldRow label={t`Username`}>
             <span className='text-foreground text-base'>
               {data.identity.username}
