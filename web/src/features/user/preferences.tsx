@@ -34,6 +34,7 @@ import {
   usePageTitle,
   shellSetLocale,
   shellSetLanguage,
+  setStoredLanguage,
   useLocale,
   detectDateFormat,
   detectTimeFormat,
@@ -162,6 +163,7 @@ export function UserPreferences() {
             shellSetLocale(updated)
           }
           if (key === 'language') {
+            setStoredLanguage(value)
             // Broadcast to the shell so every open iframe re-activates its
             // Lingui catalog without a page reload. "auto" is stored as the
             // server-side preference but iframes need a concrete tag, so
