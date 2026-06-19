@@ -627,7 +627,7 @@ function AddDelegationDialog({
                         <button
                           key={user.id}
                           type='button'
-                          className='hover:bg-accent hover:text-accent-foreground flex w-full items-center justify-between px-3 py-2 text-start text-sm'
+                          className='hover:bg-hover hover:text-hover-foreground flex w-full items-center justify-between px-3 py-2 text-start text-sm'
                           onClick={() => handleSelectUser(user)}
                         >
                           <span>{user.username}</span>

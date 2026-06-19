@@ -523,7 +523,7 @@ function SortableHeader({
   const isActive = currentSort === column
   return (
     <TableHead
-      className='hover:bg-muted/50 cursor-pointer select-none'
+      className='hover:bg-hover cursor-pointer select-none'
       onClick={() => onSort(column)}
     >
       <div className='flex items-center gap-1'>

@@ -130,7 +130,7 @@ function SearchResults({
         <button
           key={result.qid}
           type='button'
-          className='hover:bg-accent w-full px-3 py-2 text-start'
+          className='hover:bg-hover w-full px-3 py-2 text-start'
           onClick={() => onSelect(result)}
         >
           <div className='text-sm font-medium'>{result.label}</div>
