@@ -25,6 +25,12 @@ preferences_schema = [
         "default": "theme",
     },
     {
+        "key": "card",
+        "type": "select",
+        "options": ["theme", "flat", "raised"],
+        "default": "theme",
+    },
+    {
         "key": "background",
         "type": "select",
         "options": ["theme", "off"],

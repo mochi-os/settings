@@ -33,6 +33,7 @@ import {
   useAppearanceLabels,
   useDensityLabels,
   useRadiusLabels,
+  useCardLabels,
   useFontLabels,
   useFontSizeLabels,
   toast,
@@ -76,13 +77,14 @@ import {
   useResetPreferences,
 } from '@/hooks/use-preferences'
 
-const DISPLAY_PREF_KEYS = ['appearance', 'theme', 'density', 'radius', 'background', 'font', 'font_size'] as const
+const DISPLAY_PREF_KEYS = ['appearance', 'theme', 'density', 'radius', 'card', 'background', 'font', 'font_size'] as const
 
 export function UserDisplay() {
   const { t } = useLingui()
   const appearanceLabels = useAppearanceLabels()
   const densityLabels = useDensityLabels()
   const radiusLabels = useRadiusLabels()
+  const cardLabels = useCardLabels()
   const fontLabels = useFontLabels()
   const fontSizeLabels = useFontSizeLabels()
   usePageTitle(t`Display`)
@@ -92,7 +94,7 @@ export function UserDisplay() {
   const { setTheme, setColorTheme } = useTheme()
   const [themeSheetOpen, setThemeSheetOpen] = useState(false)
 
-  const themeOverrideKeys = ['density', 'radius', 'background', 'font', 'font_size'] as const
+  const themeOverrideKeys = ['density', 'radius', 'card', 'background', 'font', 'font_size'] as const
 
   const handleChange = (key: string, value: string) => {
     setPreference.mutate(
@@ -127,7 +129,7 @@ export function UserDisplay() {
             colorThemeFromSelections(
               data?.themes,
               themeId,
-              data ? prefsFromData(data.preferences) : { density: 'theme', radius: 'theme', background: 'theme', font: 'theme', font_size: 'theme' },
+              data ? prefsFromData(data.preferences) : { density: 'theme', radius: 'theme', card: 'theme', background: 'theme', font: 'theme', font_size: 'theme' },
               data?.presets,
             )
           )
@@ -289,6 +291,17 @@ export function UserDisplay() {
                   value={data.preferences.radius || 'theme'}
                   options={radiusLabels}
                   onChange={(value) => handleChange('radius', value)}
+                  disabled={setPreference.isPending}
+                />
+              </div>
+            </FieldRow>
+
+            <FieldRow label={t`Card style`}>
+              <div className="w-full">
+                <ComboSelect
+                  value={data.preferences.card || 'theme'}
+                  options={cardLabels}
+                  onChange={(value) => handleChange('card', value)}
                   disabled={setPreference.isPending}
                 />
               </div>

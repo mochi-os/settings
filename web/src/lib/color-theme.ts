@@ -3,6 +3,7 @@ import type { ColorTheme, ThemeInfo } from '@mochi/web'
 export type ThemeOverridePrefs = {
   density: string
   radius: string
+  card: string
   background: string
   font: string
   font_size: string
@@ -35,6 +36,7 @@ export function prefsFromData(prefs: Record<string, string>): ThemeOverridePrefs
   return {
     density: prefs.density || 'theme',
     radius: prefs.radius || 'theme',
+    card: prefs.card || 'theme',
     background: prefs.background || 'theme',
     font: prefs.font || 'theme',
     font_size: prefs.font_size || 'theme',
@@ -63,6 +65,18 @@ export function colorThemeFromSelections(
   }
   if (effectiveRadius) {
     overrides['--radius'] = effectiveRadius
+  }
+  // Card surface treatment: user override wins over the theme's value. Each
+  // non-theme option sets both axes (border + shadow) explicitly so it fully
+  // overrides whatever the theme specifies.
+  const CARD_STYLES: Record<string, { border: string; shadow: string }> = {
+    flat: { border: 'var(--border-width)', shadow: 'none' },
+    raised: { border: 'var(--border-width)', shadow: 'var(--shadow-sm)' },
+  }
+  const cardStyle = CARD_STYLES[prefs.card]
+  if (cardStyle) {
+    overrides['--card-border-width'] = cardStyle.border
+    overrides['--card-shadow'] = cardStyle.shadow
   }
   if (styleOverrides) Object.assign(overrides, styleOverrides)
   if (theme?.font_sans) overrides['--font-sans'] = theme.font_sans
