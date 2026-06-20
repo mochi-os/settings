@@ -235,7 +235,7 @@ export function UserDisplay() {
                       if (current) {
                         return (
                           <>
-                            <span className="size-3.5 rounded-full shrink-0" style={{ backgroundColor: current.preview }} />
+                            <span className="size-3.5 rounded-full shrink-0" style={{ backgroundColor: `oklch(${current.overrides?.['--primary-l'] ?? '0.488'} ${current.chroma} ${current.hue})` }} />
                             {current.development ? t`${current.label} (development)` : current.label}
                           </>
                         )

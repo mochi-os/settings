@@ -8,6 +8,9 @@ type Presets = Record<string, Record<string, string>>
 function buildPreviewVars(theme: ThemeInfo, presets: Presets | undefined): CSSProperties {
   const h     = theme.hue
   const c     = theme.chroma
+  // Per-theme primary lightness (theme.css --primary-l, default 0.488). Honour
+  // it here so the swatch matches the real rendered accent instead of drifting.
+  const pl    = theme.overrides?.['--primary-l'] ?? '0.488'
   const bundle = presets?.[theme.spacing ?? 'comfortable'] ?? presets?.comfortable ?? {}
 
   // Mirror theme.css: only --primary (and friends) carry the hue. Surfaces,
@@ -16,7 +19,7 @@ function buildPreviewVars(theme: ThemeInfo, presets: Presets | undefined): CSSPr
   // Density-driven dimensions (--card-py, --control-height-md) come straight
   // from the server's mochi.app.presets() so the table doesn't drift.
   return {
-    '--preview-primary': `oklch(0.488 ${c} ${h})`,
+    '--preview-primary': `oklch(${pl} ${c} ${h})`,
     '--preview-bg':      'oklch(1 0 0)',
     '--preview-sidebar': 'oklch(0.985 0 0)',
     '--preview-border':  'oklch(0.922 0 0)',
