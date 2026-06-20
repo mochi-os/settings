@@ -1,3 +1,8 @@
+// Copyright © 2026 Mochi OÜ
+// SPDX-License-Identifier: AGPL-3.0-only
+// This file is part of Mochi, licensed under the GNU AGPL v3 with the
+// Mochi Application Interface Exception - see license.txt and license-exception.md.
+
 // Shared helpers for the replication pages' amber "Offline" badge, fed by the
 // server's per-member offline-since timestamp (0 when reachable).
 import { i18n } from '@lingui/core'
