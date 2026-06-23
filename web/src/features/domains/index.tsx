@@ -65,6 +65,9 @@ import {
   PageHeader,
   Main,
   Section,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
   usePageTitle,
   toast,
   getErrorMessage,
@@ -400,11 +403,16 @@ function EditRouteDialog({
 
   return (
     <ResponsiveDialog open={open} onOpenChange={handleOpenChange}>
-      <ResponsiveDialogTrigger asChild>
-        <Button variant='ghost' size='icon' className='h-8 w-8' aria-label={t`Edit route`}>
-          <Pencil className='h-4 w-4' />
-        </Button>
-      </ResponsiveDialogTrigger>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <ResponsiveDialogTrigger asChild>
+            <Button variant='ghost' size='icon' className='h-8 w-8' aria-label={t`Edit route`}>
+              <Pencil className='h-4 w-4' />
+            </Button>
+          </ResponsiveDialogTrigger>
+        </TooltipTrigger>
+        <TooltipContent>{t`Edit route`}</TooltipContent>
+      </Tooltip>
       <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
           <ResponsiveDialogHeader>
@@ -703,20 +711,25 @@ function RouteRow({
       <TableCell className='text-end'>
         <div className='flex justify-end gap-1'>
           <EditRouteDialog route={route} onSuccess={onUpdate} />
-          <Button
-            variant='ghost'
-            size='icon'
-            className='h-8 w-8'
-            disabled={isDeleting}
-            aria-label={t`Delete route`}
-            onClick={() => setShowDeleteDialog(true)}
-          >
-            {isDeleting ? (
-              <Loader2 className='h-4 w-4 animate-spin' />
-            ) : (
-              <Trash2 className='h-4 w-4' />
-            )}
-          </Button>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant='ghost'
+                size='icon'
+                className='h-8 w-8'
+                disabled={isDeleting}
+                aria-label={t`Delete route`}
+                onClick={() => setShowDeleteDialog(true)}
+              >
+                {isDeleting ? (
+                  <Loader2 className='h-4 w-4 animate-spin' />
+                ) : (
+                  <Trash2 className='h-4 w-4' />
+                )}
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>{t`Delete route`}</TooltipContent>
+          </Tooltip>
           <ConfirmDialog
             open={showDeleteDialog}
             onOpenChange={setShowDeleteDialog}
@@ -755,19 +768,24 @@ function DelegationRow({
       </TableCell>
       <TableCell>{delegation.username}</TableCell>
       <TableCell className='text-end'>
-        <Button
-          variant='ghost'
-          size='icon'
-          disabled={isDeleting}
-          aria-label={t`Delete delegation`}
-          onClick={() => setShowDeleteDialog(true)}
-        >
-          {isDeleting ? (
-            <Loader2 className='h-4 w-4 animate-spin' />
-          ) : (
-            <Trash2 className='h-4 w-4' />
-          )}
-        </Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant='ghost'
+              size='icon'
+              disabled={isDeleting}
+              aria-label={t`Delete delegation`}
+              onClick={() => setShowDeleteDialog(true)}
+            >
+              {isDeleting ? (
+                <Loader2 className='h-4 w-4 animate-spin' />
+              ) : (
+                <Trash2 className='h-4 w-4' />
+              )}
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>{t`Delete delegation`}</TooltipContent>
+        </Tooltip>
         <ConfirmDialog
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}

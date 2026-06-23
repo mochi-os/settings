@@ -31,6 +31,9 @@ import {
   SecretField,
   FieldRow,
   DataChip,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
   formatSystemTimestamp, naturalCompare,} from '@mochi/web'
 import {
   useSystemSettingsData,
@@ -259,18 +262,22 @@ function SettingField({
             </div>
             {!isDefault && (
               <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button
-                    variant='ghost'
-                    size='icon'
-                    className='h-8 w-8 text-muted-foreground'
-                    disabled={isSaving}
-                    aria-label={t`Reset to default`}
-                    title={t`Reset to default`}
-                  >
-                    <RotateCcw className='h-4 w-4' />
-                  </Button>
-                </AlertDialogTrigger>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <AlertDialogTrigger asChild>
+                      <Button
+                        variant='ghost'
+                        size='icon'
+                        className='h-8 w-8 text-muted-foreground'
+                        disabled={isSaving}
+                        aria-label={t`Reset to default`}
+                      >
+                        <RotateCcw className='h-4 w-4' />
+                      </Button>
+                    </AlertDialogTrigger>
+                  </TooltipTrigger>
+                  <TooltipContent>{t`Reset to default`}</TooltipContent>
+                </Tooltip>
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle><Trans>Reset to default?</Trans></AlertDialogTitle>
@@ -297,18 +304,22 @@ function SettingField({
             />
             {!isDefault && (
               <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button
-                    variant='ghost'
-                    size='icon'
-                    className='h-8 w-8 text-muted-foreground'
-                    disabled={isSaving}
-                    aria-label={t`Reset to default`}
-                    title={t`Reset to default`}
-                  >
-                    <RotateCcw className='h-4 w-4' />
-                  </Button>
-                </AlertDialogTrigger>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <AlertDialogTrigger asChild>
+                      <Button
+                        variant='ghost'
+                        size='icon'
+                        className='h-8 w-8 text-muted-foreground'
+                        disabled={isSaving}
+                        aria-label={t`Reset to default`}
+                      >
+                        <RotateCcw className='h-4 w-4' />
+                      </Button>
+                    </AlertDialogTrigger>
+                  </TooltipTrigger>
+                  <TooltipContent>{t`Reset to default`}</TooltipContent>
+                </Tooltip>
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle><Trans>Reset to default?</Trans></AlertDialogTitle>
@@ -357,16 +368,20 @@ function SettingField({
                     </>
                   )}
                 </Button>
-                <Button
-                  variant='ghost'
-                  size='icon'
-                  onClick={handleClearFile}
-                  disabled={isSaving}
-                  aria-label={t`Clear`}
-                  title={t`Clear`}
-                >
-                  <X className='h-4 w-4' />
-                </Button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant='ghost'
+                      size='icon'
+                      onClick={handleClearFile}
+                      disabled={isSaving}
+                      aria-label={t`Clear`}
+                    >
+                      <X className='h-4 w-4' />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>{t`Clear`}</TooltipContent>
+                </Tooltip>
               </>
             ) : (
               <Button
@@ -410,18 +425,22 @@ function SettingField({
               </Button>
             ) : !isDefault && (
               <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button
-                    variant='ghost'
-                    size='icon'
-                    className='h-9 w-9 text-muted-foreground'
-                    disabled={isSaving}
-                    aria-label={t`Reset to default`}
-                    title={t`Reset to default`}
-                  >
-                    <RotateCcw className='h-4 w-4' />
-                  </Button>
-                </AlertDialogTrigger>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <AlertDialogTrigger asChild>
+                      <Button
+                        variant='ghost'
+                        size='icon'
+                        className='h-9 w-9 text-muted-foreground'
+                        disabled={isSaving}
+                        aria-label={t`Reset to default`}
+                      >
+                        <RotateCcw className='h-4 w-4' />
+                      </Button>
+                    </AlertDialogTrigger>
+                  </TooltipTrigger>
+                  <TooltipContent>{t`Reset to default`}</TooltipContent>
+                </Tooltip>
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle><Trans>Reset to default?</Trans></AlertDialogTitle>
