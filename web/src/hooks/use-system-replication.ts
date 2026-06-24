@@ -44,7 +44,6 @@ export interface OfflineMember {
 export interface SystemReplicationData {
   peer: string
   fingerprint: string
-  addresses: string[]
   pair: PairMember[]
   irreparable: string[]
   offline: OfflineMember[]

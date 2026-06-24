@@ -209,7 +209,6 @@ export function SystemReplication() {
 
   const peer = data?.peer ?? ''
   const serverFingerprint = data?.fingerprint ?? ''
-  const addresses = data?.addresses ?? []
   const pair = data?.pair ?? []
   const irreparable = data?.irreparable ?? []
   const offline = new Map((data?.offline ?? []).map((o) => [o.peer, o.since]))
@@ -248,28 +247,6 @@ export function SystemReplication() {
                   <span className='sr-only'><Trans>Copy peer id</Trans></span>
                 </Button>
               </div>
-              {addresses.length > 0 && (
-                <div className='space-y-1'>
-                  <h3 className='text-muted-foreground text-sm font-medium'><Trans>Addresses</Trans></h3>
-                  {addresses.map((address) => (
-                    <div key={address} className='flex items-center gap-2'>
-                      <code className='bg-muted rounded px-2 py-1 font-mono text-xs break-all'>{address}</code>
-                      <Button
-                        variant='ghost'
-                        size='sm'
-                        onClick={async () => {
-                          const ok = await shellClipboardWrite(address)
-                          if (ok) toast.success(t`Address copied`)
-                          else toast.error(t`Failed to copy`)
-                        }}
-                      >
-                        <Copy className='h-3 w-3' />
-                        <span className='sr-only'><Trans>Copy address</Trans></span>
-                      </Button>
-                    </div>
-                  ))}
-                </div>
-              )}
             </section>
 
             {joins.length > 0 && (
