@@ -7,6 +7,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { apiClient } from '@mochi/web'
 import endpoints from '@/api/endpoints'
 
+const NO_TOAST = { mochi: { showGlobalErrorToast: false } } as const
+
 export type SystemUpdateInfo = {
   available: boolean
   current: string
@@ -34,6 +36,7 @@ export function useInstallSystemUpdate() {
       const params = new URLSearchParams({ install: 'true' })
       const response = await apiClient.post(endpoints.system.update, params.toString(), {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        ...NO_TOAST,
       })
       return response.data
     },

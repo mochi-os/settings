@@ -26,7 +26,7 @@ import {
   Main,
   usePageTitle,
   getErrorMessage,
-  toast,
+  toastAction,
   Section,
   SecretField,
   FieldRow,
@@ -476,19 +476,20 @@ export function SystemSettings() {
 
   const handleSave = (name: string, value: string) => {
     setSavingName(name)
-    setSetting.mutate(
-      { name, value },
-      {
-        onSuccess: () => {
-          toast.success(t`Setting updated`)
-          setSavingName(null)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to update setting`))
-          setSavingName(null)
-        },
+    void (async () => {
+      try {
+        await toastAction(setSetting.mutateAsync({ name, value }), {
+          loading: t`Saving...`,
+          success: t`Setting updated`,
+          error: (error) =>
+            getErrorMessage(error, t`Failed to update setting`),
+        })
+      } catch {
+        // toastAction already showed error
+      } finally {
+        setSavingName(null)
       }
-    )
+    })()
   }
 
   // SecretField needs a promise so it can clear and mark itself set only on a
@@ -496,10 +497,13 @@ export function SystemSettings() {
   const saveSecret = async (name: string, value: string): Promise<void> => {
     setSavingName(name)
     try {
-      await setSetting.mutateAsync({ name, value })
-      toast.success(t`Setting updated`)
+      await toastAction(setSetting.mutateAsync({ name, value }), {
+        loading: t`Saving...`,
+        success: t`Setting updated`,
+        error: (error) =>
+          getErrorMessage(error, t`Failed to update setting`),
+      })
     } catch (error) {
-      toast.error(getErrorMessage(error, t`Failed to update setting`))
       throw error
     } finally {
       setSavingName(null)

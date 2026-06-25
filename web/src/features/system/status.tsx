@@ -20,7 +20,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-  toast,
+  toastAction,
   getErrorMessage,
   naturalCompare,
   useFormat,
@@ -277,9 +277,13 @@ function InstallButton({ latest }: { latest: string }) {
   const install = useInstallSystemUpdate()
   const onClick = async () => {
     try {
-      await install.mutateAsync()
-    } catch (e) {
-      toast.error(getErrorMessage(e, t`Failed to install update`))
+      await toastAction(install.mutateAsync(), {
+        loading: t`Installing update...`,
+        success: t`Update installed`,
+        error: (e) => getErrorMessage(e, t`Failed to install update`),
+      })
+    } catch {
+      // toastAction already showed error
     }
   }
   return (

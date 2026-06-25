@@ -28,7 +28,7 @@ import {
   Textarea,
   formatSystemTimestamp,
   getErrorMessage,
-  toast,
+  toastAction,
   usePageTitle,
 } from '@mochi/web'
 import {
@@ -211,23 +211,28 @@ export function SystemDocuments() {
     })
   }
 
-  const handleSave = (body: string) => {
+  const handleSave = async (body: string) => {
     if (!current) return
     const key = `${current.name}/${current.language}`
     setSavingKey(key)
-    setDocument.mutate(
-      { name: current.name, language: current.language, body },
-      {
-        onSuccess: () => {
-          toast.success(t`Document saved`)
-          setSavingKey(null)
-        },
-        onError: (err) => {
-          toast.error(getErrorMessage(err, t`Failed to save document`))
-          setSavingKey(null)
-        },
-      }
-    )
+    try {
+      await toastAction(
+        setDocument.mutateAsync({
+          name: current.name,
+          language: current.language,
+          body,
+        }),
+        {
+          loading: t`Saving...`,
+          success: t`Document saved`,
+          error: (err) => getErrorMessage(err, t`Failed to save document`),
+        }
+      )
+    } catch {
+      // toastAction already showed error
+    } finally {
+      setSavingKey(null)
+    }
   }
 
   return (

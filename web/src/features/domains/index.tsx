@@ -70,6 +70,7 @@ import {
   TooltipContent,
   usePageTitle,
   toast,
+  toastAction,
   getErrorMessage,
 } from '@mochi/web'
 
@@ -79,19 +80,20 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
   const [domain, setDomain] = useState('')
   const createDomain = useCreateDomain()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    createDomain.mutate(domain, {
-      onSuccess: () => {
-        toast.success(t`Domain created`)
-        setOpen(false)
-        setDomain('')
-        onSuccess()
-      },
-      onError: (error: unknown) => {
-        toast.error(getErrorMessage(error, t`Failed to create domain`))
-      },
-    })
+    try {
+      await toastAction(createDomain.mutateAsync(domain), {
+        loading: t`Creating domain...`,
+        success: t`Domain created`,
+        error: (error) => getErrorMessage(error, t`Failed to create domain`),
+      })
+      setOpen(false)
+      setDomain('')
+      onSuccess()
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   return (
@@ -180,25 +182,32 @@ function AddRouteDialog({
   const pathAllowed = isPathAllowed(path)
   const allowedPaths = delegations?.map((d) => d.path || '/') || []
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    createRoute.mutate(
-      { domain, path, method, target, priority: parseInt(priority, 10) },
-      {
-        onSuccess: () => {
-          toast.success(t`Route created`)
-          setOpen(false)
-          setPath('')
-          setMethod('app')
-          setTarget('')
-          setPriority('0')
-          onSuccess()
-        },
-        onError: (error: unknown) => {
-          toast.error(getErrorMessage(error, t`Failed to create route`))
-        },
-      }
-    )
+    try {
+      await toastAction(
+        createRoute.mutateAsync({
+          domain,
+          path,
+          method,
+          target,
+          priority: parseInt(priority, 10),
+        }),
+        {
+          loading: t`Creating route...`,
+          success: t`Route created`,
+          error: (error) => getErrorMessage(error, t`Failed to create route`),
+        }
+      )
+      setOpen(false)
+      setPath('')
+      setMethod('app')
+      setTarget('')
+      setPriority('0')
+      onSuccess()
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   return (
@@ -367,28 +376,29 @@ function EditRouteDialog({
   const { data: apps } = useApps()
   const { data: entities } = useEntities()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    updateRoute.mutate(
-      {
-        domain: route.domain,
-        path: route.path,
-        method,
-        target,
-        priority: parseInt(priority, 10),
-        enabled,
-      },
-      {
-        onSuccess: () => {
-          toast.success(t`Route updated`)
-          setOpen(false)
-          onSuccess()
-        },
-        onError: (error: unknown) => {
-          toast.error(getErrorMessage(error, t`Failed to update route`))
-        },
-      }
-    )
+    try {
+      await toastAction(
+        updateRoute.mutateAsync({
+          domain: route.domain,
+          path: route.path,
+          method,
+          target,
+          priority: parseInt(priority, 10),
+          enabled,
+        }),
+        {
+          loading: t`Updating route...`,
+          success: t`Route updated`,
+          error: (error) => getErrorMessage(error, t`Failed to update route`),
+        }
+      )
+      setOpen(false)
+      onSuccess()
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   const handleOpenChange = (isOpen: boolean) => {
@@ -554,25 +564,31 @@ function AddDelegationDialog({
   const { data: searchResults, isLoading: isSearching } =
     useUserSearch(searchQuery)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!selectedUser) return
-    createDelegation.mutate(
-      { domain, path, owner: selectedUser.id },
-      {
-        onSuccess: () => {
-          toast.success(t`Delegation created`)
-          setOpen(false)
-          setPath('')
-          setSearchQuery('')
-          setSelectedUser(null)
-          onSuccess()
-        },
-        onError: (error: unknown) => {
-          toast.error(getErrorMessage(error, t`Failed to create delegation`))
-        },
-      }
-    )
+    try {
+      await toastAction(
+        createDelegation.mutateAsync({
+          domain,
+          path,
+          owner: selectedUser.id,
+        }),
+        {
+          loading: t`Creating delegation...`,
+          success: t`Delegation created`,
+          error: (error) =>
+            getErrorMessage(error, t`Failed to create delegation`),
+        }
+      )
+      setOpen(false)
+      setPath('')
+      setSearchQuery('')
+      setSelectedUser(null)
+      onSuccess()
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   const handleSelectUser = (user: { id: number; username: string }) => {
@@ -830,59 +846,79 @@ function DomainDetails({
   )
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 
-  const handleToggleVerified = (checked: boolean) => {
-    updateDomain.mutate(
-      { domain: domain.domain, verified: checked },
-      {
-        onSuccess: () => toast.success(t`Domain updated`),
-        onError: (error) => toast.error(getErrorMessage(error, t`Failed to update domain`)),
-      }
-    )
+  const handleToggleVerified = async (checked: boolean) => {
+    try {
+      await toastAction(
+        updateDomain.mutateAsync({ domain: domain.domain, verified: checked }),
+        {
+          loading: t`Saving...`,
+          success: t`Domain updated`,
+          error: (error) =>
+            getErrorMessage(error, t`Failed to update domain`),
+        }
+      )
+    } catch {
+      // toastAction already showed error
+    }
   }
 
-  const handleToggleTls = (checked: boolean) => {
-    updateDomain.mutate(
-      { domain: domain.domain, tls: checked },
-      {
-        onSuccess: () => toast.success(t`Domain updated`),
-        onError: (error) => toast.error(getErrorMessage(error, t`Failed to update domain`)),
-      }
-    )
+  const handleToggleTls = async (checked: boolean) => {
+    try {
+      await toastAction(
+        updateDomain.mutateAsync({ domain: domain.domain, tls: checked }),
+        {
+          loading: t`Saving...`,
+          success: t`Domain updated`,
+          error: (error) =>
+            getErrorMessage(error, t`Failed to update domain`),
+        }
+      )
+    } catch {
+      // toastAction already showed error
+    }
   }
 
-  const handleDeleteRoute = (path: string) => {
+  const handleDeleteRoute = async (path: string) => {
     setDeletingRoute(path)
-    deleteRoute.mutate(
-      { domain: domain.domain, path },
-      {
-        onSuccess: () => {
-          toast.success(t`Route deleted`)
-          setDeletingRoute(null)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to delete route`))
-          setDeletingRoute(null)
-        },
-      }
-    )
+    try {
+      await toastAction(
+        deleteRoute.mutateAsync({ domain: domain.domain, path }),
+        {
+          loading: t`Deleting route...`,
+          success: t`Route deleted`,
+          error: (error) =>
+            getErrorMessage(error, t`Failed to delete route`),
+        }
+      )
+    } catch {
+      // toastAction already showed error
+    } finally {
+      setDeletingRoute(null)
+    }
   }
 
-  const handleDeleteDelegation = (d: Delegation) => {
+  const handleDeleteDelegation = async (d: Delegation) => {
     const key = `${d.domain}:${d.path}:${d.owner}`
     setDeletingDelegation(key)
-    deleteDelegation.mutate(
-      { domain: d.domain, path: d.path, owner: d.owner },
-      {
-        onSuccess: () => {
-          toast.success(t`Delegation deleted`)
-          setDeletingDelegation(null)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to delete delegation`))
-          setDeletingDelegation(null)
-        },
-      }
-    )
+    try {
+      await toastAction(
+        deleteDelegation.mutateAsync({
+          domain: d.domain,
+          path: d.path,
+          owner: d.owner,
+        }),
+        {
+          loading: t`Deleting delegation...`,
+          success: t`Delegation deleted`,
+          error: (error) =>
+            getErrorMessage(error, t`Failed to delete delegation`),
+        }
+      )
+    } catch {
+      // toastAction already showed error
+    } finally {
+      setDeletingDelegation(null)
+    }
   }
 
   return (
@@ -958,19 +994,28 @@ function DomainDetails({
                       size='sm'
                       variant='outline'
                       disabled={verifyDomain.isPending}
-                      onClick={() => {
-                        verifyDomain.mutate(domain.domain, {
-                          onSuccess: (data) => {
-                            if (data.verified) {
-                              toast.success(t`Domain verified`)
-                            } else {
-                              toast.error(t`TXT record not found`)
+                      onClick={async () => {
+                        try {
+                          const data = await toastAction(
+                            verifyDomain.mutateAsync(domain.domain),
+                            {
+                              loading: t`Verifying...`,
+                              success: false,
+                              error: (error) =>
+                                getErrorMessage(
+                                  error,
+                                  t`Failed to verify domain`
+                                ),
                             }
-                          },
-                          onError: (error) => {
-                            toast.error(getErrorMessage(error, t`Failed to verify domain`))
-                          },
-                        })
+                          )
+                          if (data.verified) {
+                            toast.success(t`Domain verified`)
+                          } else {
+                            toast.error(t`TXT record not found`)
+                          }
+                        } catch {
+                          // toastAction already showed error
+                        }
                       }}
                     >
                       {verifyDomain.isPending ? (
@@ -1141,19 +1186,20 @@ export function Domains() {
   const deleteDomain = useDeleteDomain()
   const [deletingDomain, setDeletingDomain] = useState<string | null>(null)
 
-  const handleDelete = (domain: string) => {
+  const handleDelete = async (domain: string) => {
     setDeletingDomain(domain)
-    deleteDomain.mutate(domain, {
-      onSuccess: () => {
-        toast.success(t`Domain deleted`)
-        setDeletingDomain(null)
-        refetch()
-      },
-      onError: (error: unknown) => {
-        toast.error(getErrorMessage(error, t`Failed to delete domain`))
-        setDeletingDomain(null)
-      },
-    })
+    try {
+      await toastAction(deleteDomain.mutateAsync(domain), {
+        loading: t`Deleting domain...`,
+        success: t`Domain deleted`,
+        error: (error) => getErrorMessage(error, t`Failed to delete domain`),
+      })
+      refetch()
+    } catch {
+      // toastAction already showed error
+    } finally {
+      setDeletingDomain(null)
+    }
   }
 
   const isAdmin = data?.admin ?? false

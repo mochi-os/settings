@@ -7,6 +7,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { apiClient } from '@mochi/web'
 import endpoints from '@/api/endpoints'
 
+const NO_TOAST = { mochi: { showGlobalErrorToast: false } } as const
+
 export interface SystemDocument {
   name: string
   language: string
@@ -33,7 +35,7 @@ export function useSetSystemDocument() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (data: { name: string; language: string; body: string }) => {
-      const response = await apiClient.post(endpoints.system.documentSet, data)
+      const response = await apiClient.post(endpoints.system.documentSet, data, NO_TOAST)
       return response.data
     },
     onSuccess: () => {

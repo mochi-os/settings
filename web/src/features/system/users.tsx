@@ -67,7 +67,7 @@ import {
   Main,
   usePageTitle,
   getErrorMessage,
-  toast,
+  toastAction,
   ListSkeleton,
   EmptyState,
   useFormat,
@@ -89,23 +89,21 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
   const [role, setRole] = useState('user')
   const createUser = useCreateUser()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    createUser.mutate(
-      { username, role },
-      {
-        onSuccess: () => {
-          toast.success(t`User created`)
-          setOpen(false)
-          setUsername('')
-          setRole('user')
-          onSuccess()
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to create user`))
-        },
-      }
-    )
+    try {
+      await toastAction(createUser.mutateAsync({ username, role }), {
+        loading: t`Creating user...`,
+        success: t`User created`,
+        error: (error) => getErrorMessage(error, t`Failed to create user`),
+      })
+      setOpen(false)
+      setUsername('')
+      setRole('user')
+      onSuccess()
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   return (
@@ -183,21 +181,22 @@ function EditUserDialog({
   const [role, setRole] = useState(user.role)
   const updateUser = useUpdateUser()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    updateUser.mutate(
-      { uid: user.uid, username, role },
-      {
-        onSuccess: () => {
-          toast.success(t`User updated`)
-          onOpenChange(false)
-          onSuccess()
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to update user`))
-        },
-      }
-    )
+    try {
+      await toastAction(
+        updateUser.mutateAsync({ uid: user.uid, username, role }),
+        {
+          loading: t`Saving...`,
+          success: t`User updated`,
+          error: (error) => getErrorMessage(error, t`Failed to update user`),
+        }
+      )
+      onOpenChange(false)
+      onSuccess()
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   return (
@@ -266,23 +265,27 @@ function SessionsDialog({
   const { data, isLoading, refetch } = useUserSessions(user.uid, open)
   const revokeSession = useRevokeUserSessions()
 
-  const handleRevoke = (session_id?: string) => {
-    revokeSession.mutate(
-      { uid: user.uid, session_id },
-      {
-        onSuccess: (result) => {
-          toast.success(
+  const handleRevoke = async (session_id?: string) => {
+    try {
+      await toastAction(
+        revokeSession.mutateAsync({ uid: user.uid, session_id }),
+        {
+          loading: t`Revoking session...`,
+          success: (result) =>
             session_id
               ? t`Session revoked`
-              : plural(result.revoked, { one: 'Revoked 1 session', other: 'Revoked # sessions' })
-          )
-          refetch()
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to revoke session`))
-        },
-      }
-    )
+              : plural(result.revoked, {
+                  one: 'Revoked 1 session',
+                  other: 'Revoked # sessions',
+                }),
+          error: (error) =>
+            getErrorMessage(error, t`Failed to revoke session`),
+        }
+      )
+      refetch()
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   const formatSession = (session: Session) => {
@@ -385,30 +388,33 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
   const isAdmin = user.role === 'administrator'
   const isSuspended = user.status === 'suspended'
 
-  const handleDelete = () => {
-    deleteUser.mutate(user.uid, {
-      onSuccess: () => {
-        toast.success(t`User deleted`)
-        setDeleteOpen(false)
-        onUpdate()
-      },
-      onError: (error) => {
-        toast.error(getErrorMessage(error, t`Failed to delete user`))
-      },
-    })
+  const handleDelete = async () => {
+    try {
+      await toastAction(deleteUser.mutateAsync(user.uid), {
+        loading: t`Deleting user...`,
+        success: t`User deleted`,
+        error: (error) => getErrorMessage(error, t`Failed to delete user`),
+      })
+      setDeleteOpen(false)
+      onUpdate()
+    } catch {
+      // toastAction already showed error
+    }
   }
 
-  const handleToggleStatus = () => {
+  const handleToggleStatus = async () => {
     const action = isSuspended ? activateUser : suspendUser
-    action.mutate(user.uid, {
-      onSuccess: () => {
-        toast.success(isSuspended ? t`Suspension removed` : t`User suspended`)
-        onUpdate()
-      },
-      onError: (error) => {
-        toast.error(getErrorMessage(error, t`Failed to update user status`))
-      },
-    })
+    try {
+      await toastAction(action.mutateAsync(user.uid), {
+        loading: t`Saving...`,
+        success: isSuspended ? t`Suspension removed` : t`User suspended`,
+        error: (error) =>
+          getErrorMessage(error, t`Failed to update user status`),
+      })
+      onUpdate()
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   return (

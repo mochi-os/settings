@@ -50,9 +50,21 @@ import {
   getErrorMessage,
   requestHelpers,
   toast,
+  toastAction,
   usePageTitle,
-  usePush, naturalCompare, getProviderLabel,} from '@mochi/web'
+  usePush,
+  naturalCompare,
+  getProviderLabel,
+} from '@mochi/web'
 import endpoints from '@/api/endpoints'
+
+const NO_TOAST = { mochi: { showGlobalErrorToast: false } } as const
+
+const formPost = () =>
+  ({
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    ...NO_TOAST,
+  }) as const
 
 type TabId = 'categories' | 'topics'
 
@@ -208,11 +220,21 @@ function BrowserPushButton({ onChanged }: { onChanged: () => void }) {
 
   const onCheckedChange = async (next: boolean) => {
     try {
-      if (next) await subscribe()
-      else await unsubscribe()
+      await toastAction(
+        (async () => {
+          if (next) await subscribe()
+          else await unsubscribe()
+        })(),
+        {
+          loading: t`Saving...`,
+          success: false,
+          error: (e) =>
+            getErrorMessage(e, t`Failed to update browser notifications`),
+        }
+      )
       onChanged()
-    } catch (e) {
-      toast.error(getErrorMessage(e, t`Failed to update browser notifications`))
+    } catch {
+      // toastAction already showed error
     }
   }
 
@@ -289,19 +311,29 @@ function CategoriesTab({
               onTest={async () => {
                 try {
                   const params = new URLSearchParams({ id: String(cat.id) })
-                  const res = await requestHelpers.post<{ sent: number; web: boolean }>(
-                    endpoints.notifications.categoriesTest,
-                    params.toString(),
-                    { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+                  const res = await toastAction(
+                    requestHelpers.post<{ sent: number; web: boolean }>(
+                      endpoints.notifications.categoriesTest,
+                      params.toString(),
+                      formPost()
+                    ),
+                    {
+                      loading: t`Sending test...`,
+                      success: false,
+                      error: (e) =>
+                        getErrorMessage(e, t`Failed to send test`),
+                    }
                   )
                   const sent = res?.sent ?? 0
                   if (sent === 0) {
                     toast.error(t`No destinations configured`)
                   } else {
-                    toast.success(t`Test sent to ${sent} destination${sent === 1 ? '' : 's'}`)
+                    toast.success(
+                      t`Test sent to ${sent} destination${sent === 1 ? '' : 's'}`
+                    )
                   }
-                } catch (e) {
-                  toast.error(getErrorMessage(e, t`Failed to send test`))
+                } catch {
+                  // toastAction already showed error
                 }
               }}
             />
@@ -461,19 +493,32 @@ function CategoryDialog({
         params.append('destinations', JSON.stringify(destinations))
         if (isDefault) params.append('default', '1')
       }
-      if (category) {
-        params.append('id', String(category.id))
-        await requestHelpers.post(endpoints.notifications.categoriesUpdate, params.toString(), {
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        })
-      } else {
-        await requestHelpers.post(endpoints.notifications.categoriesCreate, params.toString(), {
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        })
-      }
+      await toastAction(
+        (async () => {
+          if (category) {
+            params.append('id', String(category.id))
+            await requestHelpers.post(
+              endpoints.notifications.categoriesUpdate,
+              params.toString(),
+              formPost()
+            )
+          } else {
+            await requestHelpers.post(
+              endpoints.notifications.categoriesCreate,
+              params.toString(),
+              formPost()
+            )
+          }
+        })(),
+        {
+          loading: t`Saving...`,
+          success: category ? t`Category updated` : t`Category created`,
+          error: (e) => getErrorMessage(e, t`Failed to save category`),
+        }
+      )
       await onSaved()
-    } catch (e) {
-      toast.error(getErrorMessage(e, t`Failed to save category`))
+    } catch {
+      // toastAction already showed error
     } finally {
       setSaving(false)
     }
@@ -590,13 +635,25 @@ function CategoryDeleteDialog({
   const run = async () => {
     setDeleting(true)
     try {
-      const params = new URLSearchParams({ id: String(category.id), reassign_to: target })
-      await requestHelpers.post(endpoints.notifications.categoriesDelete, params.toString(), {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      const params = new URLSearchParams({
+        id: String(category.id),
+        reassign_to: target,
       })
+      await toastAction(
+        requestHelpers.post(
+          endpoints.notifications.categoriesDelete,
+          params.toString(),
+          formPost()
+        ),
+        {
+          loading: t`Deleting...`,
+          success: t`Category deleted`,
+          error: (e) => getErrorMessage(e, t`Failed to delete category`),
+        }
+      )
       await onDeleted()
-    } catch (e) {
-      toast.error(getErrorMessage(e, t`Failed to delete category`))
+    } catch {
+      // toastAction already showed error
     } finally {
       setDeleting(false)
     }
@@ -667,12 +724,21 @@ function TopicsTab() {
         object: topic.object,
         category: value,
       })
-      await requestHelpers.post(endpoints.notifications.topicsSetCategory, params.toString(), {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      })
+      await toastAction(
+        requestHelpers.post(
+          endpoints.notifications.topicsSetCategory,
+          params.toString(),
+          formPost()
+        ),
+        {
+          loading: t`Saving...`,
+          success: false,
+          error: (e) => getErrorMessage(e, t`Failed to update topic`),
+        }
+      )
       await load()
-    } catch (e) {
-      toast.error(getErrorMessage(e, t`Failed to update topic`))
+    } catch {
+      // toastAction already showed error
     }
   }
 
@@ -683,12 +749,21 @@ function TopicsTab() {
         topic: topic.topic,
         object: topic.object,
       })
-      await requestHelpers.post(endpoints.notifications.topicsDelete, params.toString(), {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      })
+      await toastAction(
+        requestHelpers.post(
+          endpoints.notifications.topicsDelete,
+          params.toString(),
+          formPost()
+        ),
+        {
+          loading: t`Removing...`,
+          success: t`Topic removed`,
+          error: (e) => getErrorMessage(e, t`Failed to remove topic`),
+        }
+      )
       await load()
-    } catch (e) {
-      toast.error(getErrorMessage(e, t`Failed to remove topic`))
+    } catch {
+      // toastAction already showed error
     }
   }
 
