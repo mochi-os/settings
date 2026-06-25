@@ -33,6 +33,7 @@ import {
   getErrorMessage,
   shellClipboardWrite,
   toast,
+  toastAction,
   usePageTitle,
 } from '@mochi/web'
 import {
@@ -73,17 +74,18 @@ function PendingJoinRow({ join }: { join: PendingJoin }) {
   const [confirmOpen, setConfirmOpen] = useState(false)
   const busy = approve.isPending || deny.isPending
 
-  const onVerified = (token: string) =>
-    approve.mutate(
-      { peer: join.peer, token },
-      {
-        onSuccess: () => {
-          setConfirmOpen(false)
-          toast.success(t`Join request approved`)
-        },
-        onError: (e) => toast.error(getErrorMessage(e, t`Approval failed`)),
-      },
-    )
+  const onVerified = async (token: string) => {
+    try {
+      await toastAction(approve.mutateAsync({ peer: join.peer, token }), {
+        loading: t`Approving...`,
+        success: t`Join request approved`,
+        error: (e) => getErrorMessage(e, t`Approval failed`),
+      })
+      setConfirmOpen(false)
+    } catch {
+      // toastAction already showed error
+    }
+  }
 
   return (
     <TableRow>
@@ -107,12 +109,18 @@ function PendingJoinRow({ join }: { join: PendingJoin }) {
             variant='outline'
             size='sm'
             disabled={busy}
-            onClick={() =>
-              deny.mutate(join.peer, {
-                onSuccess: () => toast.success(t`Join request denied`),
-                onError: (e) => toast.error(getErrorMessage(e, t`Could not deny request`)),
-              })
-            }
+            onClick={async () => {
+              try {
+                await toastAction(deny.mutateAsync(join.peer), {
+                  loading: t`Denying...`,
+                  success: t`Join request denied`,
+                  error: (e) =>
+                    getErrorMessage(e, t`Could not deny request`),
+                })
+              } catch {
+                // toastAction already showed error
+              }
+            }}
           >
             {deny.isPending ? <Loader2 className='h-4 w-4 animate-spin' /> : <X className='h-4 w-4' />}
             <Trans>Deny</Trans>
@@ -185,12 +193,18 @@ function PairMemberRow({
             <AlertDialogFooter>
               <AlertDialogCancel><Trans>Cancel</Trans></AlertDialogCancel>
               <AlertDialogAction
-                onClick={() =>
-                  remove.mutate(peer, {
-                    onSuccess: () => toast.success(t`Pair member removed`),
-                    onError: (e) => toast.error(getErrorMessage(e, t`Could not remove pair member`)),
-                  })
-                }
+                onClick={async () => {
+                  try {
+                    await toastAction(remove.mutateAsync(peer), {
+                      loading: t`Removing...`,
+                      success: t`Pair member removed`,
+                      error: (e) =>
+                        getErrorMessage(e, t`Could not remove pair member`),
+                    })
+                  } catch {
+                    // toastAction already showed error
+                  }
+                }}
               >
                 <Trans>Remove</Trans>
               </AlertDialogAction>

@@ -41,7 +41,7 @@ import {
   useCardLabels,
   useFontLabels,
   useFontSizeLabels,
-  toast,
+  toastAction,
   type ThemeInfo,
   usePageTitle,
   useTheme,
@@ -101,69 +101,67 @@ export function UserDisplay() {
 
   const themeOverrideKeys = ['density', 'radius', 'card', 'background', 'font', 'font_size'] as const
 
-  const handleChange = (key: string, value: string) => {
-    setPreference.mutate(
-      { [key]: value },
-      {
-        onSuccess: () => {
-          if (key === 'appearance') {
-            setTheme(value === 'auto' ? 'system' : (value as 'light' | 'dark'))
-          }
-          if ((themeOverrideKeys as readonly string[]).includes(key) && data) {
-            const updated = { ...prefsFromData(data.preferences), [key]: value }
-            setColorTheme(
-              colorThemeFromSelections(data.themes, data.preferences.theme, updated, data.presets)
-            )
-          }
-          toast.success(t`Preference updated`)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to update preference`))
-        },
+  const handleChange = async (key: string, value: string) => {
+    try {
+      await toastAction(setPreference.mutateAsync({ [key]: value }), {
+        loading: t`Saving...`,
+        success: false,
+        error: (error) =>
+          getErrorMessage(error, t`Failed to update preference`),
+      })
+      if (key === 'appearance') {
+        setTheme(value === 'auto' ? 'system' : (value as 'light' | 'dark'))
       }
-    )
+      if ((themeOverrideKeys as readonly string[]).includes(key) && data) {
+        const updated = { ...prefsFromData(data.preferences), [key]: value }
+        setColorTheme(
+          colorThemeFromSelections(data.themes, data.preferences.theme, updated, data.presets)
+        )
+      }
+    } catch {
+      // toastAction already showed error
+    }
   }
 
-  const handleThemeChange = (theme: ThemeInfo | null) => {
+  const handleThemeChange = async (theme: ThemeInfo | null) => {
     const themeId = theme ? theme.id : ''
-    setPreference.mutate(
-      { theme: themeId },
-      {
-        onSuccess: () => {
-          setColorTheme(
-            colorThemeFromSelections(
-              data?.themes,
-              themeId,
-              data ? prefsFromData(data.preferences) : { density: 'theme', radius: 'theme', card: 'theme', background: 'theme', font: 'theme', font_size: 'theme' },
-              data?.presets,
-            )
-          )
-          toast.success(t`Theme updated`)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to update theme`))
-        },
-      }
-    )
+    try {
+      await toastAction(setPreference.mutateAsync({ theme: themeId }), {
+        loading: t`Saving...`,
+        success: false,
+        error: (error) => getErrorMessage(error, t`Failed to update theme`),
+      })
+      setColorTheme(
+        colorThemeFromSelections(
+          data?.themes,
+          themeId,
+          data ? prefsFromData(data.preferences) : { density: 'theme', radius: 'theme', card: 'theme', background: 'theme', font: 'theme', font_size: 'theme' },
+          data?.presets,
+        )
+      )
+    } catch {
+      // toastAction already showed error
+    }
   }
 
-  const handleReset = () => {
+  const handleReset = async () => {
     if (!data) return
     // Reset only the display-related keys, leaving regional prefs alone.
     const resetPayload: Record<string, string> = {}
     for (const key of DISPLAY_PREF_KEYS) {
       resetPayload[key] = ''
     }
-    setPreference.mutate(resetPayload, {
-      onSuccess: () => {
-        setColorTheme(null)
-        setTheme('system')
-        toast.success(t`Display reset to defaults`)
-      },
-      onError: (error) => {
-        toast.error(getErrorMessage(error, t`Failed to reset display`))
-      },
-    })
+    try {
+      await toastAction(setPreference.mutateAsync(resetPayload), {
+        loading: t`Resetting...`,
+        success: t`Display reset to defaults`,
+        error: (error) => getErrorMessage(error, t`Failed to reset display`),
+      })
+      setColorTheme(null)
+      setTheme('system')
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   return (

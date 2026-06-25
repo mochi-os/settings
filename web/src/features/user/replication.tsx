@@ -32,7 +32,7 @@ import {
   TableHeader,
   TableRow,
   getErrorMessage,
-  toast,
+  toastAction,
   useFormat,
   usePageTitle,
 } from '@mochi/web'
@@ -65,23 +65,30 @@ function PendingRow({ link }: { link: ReplicationLink }) {
   const [confirmOpen, setConfirmOpen] = useState(false)
   const busy = approve.isPending || deny.isPending
 
-  const onVerified = (token: string) =>
-    approve.mutate(
-      { peer: link.peer, token },
-      {
-        onSuccess: () => {
-          setConfirmOpen(false)
-          toast.success(t`Request approved`)
-        },
-        onError: (e) => toast.error(getErrorMessage(e, t`Approval failed`)),
-      },
-    )
+  const onVerified = async (token: string) => {
+    try {
+      await toastAction(approve.mutateAsync({ peer: link.peer, token }), {
+        loading: t`Approving...`,
+        success: t`Request approved`,
+        error: (e) => getErrorMessage(e, t`Approval failed`),
+      })
+      setConfirmOpen(false)
+    } catch {
+      // toastAction already showed error
+    }
+  }
 
-  const onDeny = () =>
-    deny.mutate(link.peer, {
-      onSuccess: () => toast.success(t`Request denied`),
-      onError: (e) => toast.error(getErrorMessage(e, t`Could not deny request`)),
-    })
+  const onDeny = async () => {
+    try {
+      await toastAction(deny.mutateAsync(link.peer), {
+        loading: t`Denying...`,
+        success: t`Request denied`,
+        error: (e) => getErrorMessage(e, t`Could not deny request`),
+      })
+    } catch {
+      // toastAction already showed error
+    }
+  }
 
   return (
     <TableRow>
@@ -165,15 +172,22 @@ function HostRow({ host }: { host: ReplicationHost }) {
               title={t`Forget this unreachable host?`}
               description={t`It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use "Remove my account from this server". Verify it's you to continue.`}
               client={stepUpClient}
-              onVerified={(token) =>
-                remove.mutate(
-                  { peer: host.peer, token },
-                  {
-                    onSuccess: () => { setStepOpen(false); toast.success(t`Host forgotten`) },
-                    onError: (e) => toast.error(getErrorMessage(e, t`Could not forget host`)),
-                  },
-                )
-              }
+              onVerified={async (token) => {
+                try {
+                  await toastAction(
+                    remove.mutateAsync({ peer: host.peer, token }),
+                    {
+                      loading: t`Removing host...`,
+                      success: t`Host forgotten`,
+                      error: (e) =>
+                        getErrorMessage(e, t`Could not forget host`),
+                    }
+                  )
+                  setStepOpen(false)
+                } catch {
+                  // toastAction already showed error
+                }
+              }}
             />
           </>
         )}
@@ -225,18 +239,22 @@ function LeaveThisServer() {
         title={t`Confirm it's you`}
         description={t`This permanently deletes your account's data on this server. Verify it's you to continue.`}
         client={stepUpClient}
-        onVerified={(token) =>
-          leave.mutate(
-            { token },
-            {
-              onSuccess: () => goToLogin(),
-              onError: (e) => {
-                setStepOpen(false)
-                toast.error(getErrorMessage(e, t`Could not remove your account from this server`))
-              },
-            },
-          )
-        }
+        onVerified={async (token) => {
+          try {
+            await toastAction(leave.mutateAsync({ token }), {
+              loading: t`Removing account...`,
+              success: false,
+              error: (e) =>
+                getErrorMessage(
+                  e,
+                  t`Could not remove your account from this server`
+                ),
+            })
+            goToLogin()
+          } catch {
+            setStepOpen(false)
+          }
+        }}
       />
     </>
   )

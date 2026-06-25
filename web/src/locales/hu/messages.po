@@ -33,7 +33,7 @@ msgstr "{0, plural, one {1 munkamenet visszavonva} other {# munkamenet visszavon
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
 #: src/components/theme-preview-card.tsx:118
-#: src/features/user/display.tsx:246
+#: src/features/user/display.tsx:244
 msgid "{0} (development)"
 msgstr "{0} (fejlesztés)"
 
@@ -213,14 +213,18 @@ msgid "Add view"
 msgstr "Nézet hozzáadása"
 
 #: src/features/user/connected-accounts.tsx:475
-#: src/features/user/replication.tsx:341
+#: src/features/user/replication.tsx:359
 msgid "Added"
 msgstr "Hozzáadva"
 
 #. placeholder {0}: result.label
-#: src/features/user/interests.tsx:197
+#: src/features/user/interests.tsx:210
 msgid "Added \"{0}\""
 msgstr "Hozzáadva: „{0}”"
+
+#: src/features/user/interests.tsx:209
+msgid "Adding..."
+msgstr ""
 
 #: src/features/system/status.tsx:183
 msgid "Address"
@@ -273,11 +277,11 @@ msgstr "Váratlan hiba történt"
 msgid "Announce hostname and domains to other servers"
 msgstr "Gazdagépnév és tartományok bejelentése más kiszolgálóknak"
 
-#: src/features/user/replication.tsx:306
+#: src/features/user/replication.tsx:324
 msgid "Another server is asking to host a copy of your account. Approve to send a copy."
 msgstr "Egy másik szerver szeretne egy másolatot tárolni a fiókodról. Hagyd jóvá másolat küldéséhez."
 
-#: src/features/system/replication.tsx:256
+#: src/features/system/replication.tsx:270
 msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
 msgstr "Egy másik kiszolgáló párosítást kér ezzel a kiszolgálóval. Hagyja jóvá, hogy teljes körű replikációs partnerként rögzítse."
 
@@ -286,29 +290,34 @@ msgstr "Egy másik kiszolgáló párosítást kér ezzel a kiszolgálóval. Hagy
 msgid "App"
 msgstr "Alkalmazás"
 
-#: src/features/user/display.tsx:215
+#: src/features/user/display.tsx:213
 msgid "Appearance"
 msgstr "Megjelenés"
 
-#: src/features/system/replication.tsx:84
-#: src/features/user/replication.tsx:76
+#: src/features/system/replication.tsx:82
+#: src/features/user/replication.tsx:73
 msgid "Approval failed"
 msgstr "Jóváhagyás sikertelen"
 
-#: src/features/system/replication.tsx:104
-#: src/features/user/replication.tsx:102
+#: src/features/system/replication.tsx:106
+#: src/features/user/replication.tsx:109
 msgid "Approve"
 msgstr "Jóváhagyás"
 
-#: src/features/system/replication.tsx:124
-#: src/features/user/replication.tsx:112
+#: src/features/system/replication.tsx:132
+#: src/features/user/replication.tsx:119
 msgid "Approve request"
 msgstr "Kérés jóváhagyása"
 
-#: src/features/system/replication.tsx:125
-#: src/features/user/replication.tsx:113
+#: src/features/system/replication.tsx:133
+#: src/features/user/replication.tsx:120
 msgid "Approving replicates private keys to that server. Verify it's you to continue."
 msgstr "A jóváhagyás átmásolja a titkos kulcsokat arra a kiszolgálóra. A folytatáshoz igazolja, hogy ön az."
+
+#: src/features/system/replication.tsx:80
+#: src/features/user/replication.tsx:71
+msgid "Approving..."
+msgstr ""
 
 #: ../../../lib/web/src/components/sign-out-dialog.tsx:27
 msgid "Are you sure you want to log out? You will need to log in again to access your account."
@@ -388,7 +397,7 @@ msgstr "Böngészőértesítések"
 #: src/features/domains/index.tsx:338
 #: src/features/domains/index.tsx:522
 #: src/features/domains/index.tsx:668
-#: src/features/system/replication.tsx:186
+#: src/features/system/replication.tsx:194
 #: src/features/system/settings.tsx:289
 #: src/features/system/settings.tsx:331
 #: src/features/system/settings.tsx:454
@@ -396,17 +405,17 @@ msgstr "Böngészőértesítések"
 #: src/features/system/users.tsx:240
 #: src/features/user/close-account.tsx:101
 #: src/features/user/connected-accounts.tsx:607
-#: src/features/user/display.tsx:198
+#: src/features/user/display.tsx:196
 #: src/features/user/login.tsx:565
 #: src/features/user/notifications.tsx:523
 #: src/features/user/notifications.tsx:626
-#: src/features/user/preferences.tsx:233
-#: src/features/user/replication.tsx:212
+#: src/features/user/preferences.tsx:234
+#: src/features/user/replication.tsx:226
 #: src/features/user/sessions.tsx:109
 msgid "Cancel"
 msgstr "Mégse"
 
-#: src/features/user/display.tsx:304
+#: src/features/user/display.tsx:302
 msgid "Card style"
 msgstr "Kártya stílusa"
 
@@ -553,7 +562,7 @@ msgstr "Beállítva"
 msgid "Confirm"
 msgstr "Megerősítés"
 
-#: src/features/user/replication.tsx:225
+#: src/features/user/replication.tsx:239
 #: src/lib/use-step-up.tsx:33
 msgid "Confirm it's you"
 msgstr "Igazolja, hogy ön az"
@@ -599,7 +608,7 @@ msgstr "Másolás"
 msgid "Copy all"
 msgstr "Összes másolása"
 
-#: src/features/system/replication.tsx:247
+#: src/features/system/replication.tsx:261
 msgid "Copy peer id"
 msgstr "Társazonosító másolása"
 
@@ -611,12 +620,12 @@ msgstr "Másold most a tokent. Később nem fogod látni."
 msgid "Could not close your account"
 msgstr "Nem sikerült bezárni a fiókját"
 
-#: src/features/system/replication.tsx:113
-#: src/features/user/replication.tsx:83
+#: src/features/system/replication.tsx:118
+#: src/features/user/replication.tsx:86
 msgid "Could not deny request"
 msgstr "Nem sikerült elutasítani a kérelmet"
 
-#: src/features/user/replication.tsx:173
+#: src/features/user/replication.tsx:183
 msgid "Could not forget host"
 msgstr "A kiszolgáló elfelejtése nem sikerült"
 
@@ -628,11 +637,11 @@ msgstr "A fiók összekapcsolása sikertelen"
 msgid "Could not load this document. Please try again later."
 msgstr "Nem sikerült betölteni ezt a dokumentumot. Próbálja újra később."
 
-#: src/features/system/replication.tsx:191
+#: src/features/system/replication.tsx:202
 msgid "Could not remove pair member"
 msgstr "Nem sikerült eltávolítani a páros tagját"
 
-#: src/features/user/replication.tsx:235
+#: src/features/user/replication.tsx:250
 msgid "Could not remove your account from this server"
 msgstr "A fiókod eltávolítása erről a kiszolgálóról nem sikerült"
 
@@ -706,7 +715,7 @@ msgstr "Sötét"
 msgid "Dark mode"
 msgstr "Sötét mód"
 
-#: src/features/user/preferences.tsx:295
+#: src/features/user/preferences.tsx:296
 msgid "Date format"
 msgstr "Dátumformátum"
 
@@ -715,7 +724,7 @@ msgid "default"
 msgstr "alapértelmezett"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:310
-#: src/features/user/display.tsx:250
+#: src/features/user/display.tsx:248
 #: src/features/user/notifications.tsx:384
 msgid "Default"
 msgstr "Alapértelmezett"
@@ -832,14 +841,19 @@ msgstr ""
 msgid "Deleting..."
 msgstr "Törlés..."
 
-#: src/features/user/display.tsx:282
+#: src/features/user/display.tsx:280
 msgid "Density"
 msgstr "Sűrűség"
 
-#: src/features/system/replication.tsx:118
-#: src/features/user/replication.tsx:106
+#: src/features/system/replication.tsx:126
+#: src/features/user/replication.tsx:113
 msgid "Deny"
 msgstr "Megtagadás"
+
+#: src/features/system/replication.tsx:115
+#: src/features/user/replication.tsx:84
+msgid "Denying..."
+msgstr ""
 
 #: ../../../lib/web/src/components/data-table/column-header.tsx:63
 msgid "Desc"
@@ -904,11 +918,11 @@ msgstr "Elvetés"
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/components/layout/data/sidebar-data.ts:58
 #: src/features/user/display.tsx:95
-#: src/features/user/display.tsx:172
+#: src/features/user/display.tsx:170
 msgid "Display"
 msgstr "Megjelenítés"
 
-#: src/features/user/display.tsx:161
+#: src/features/user/display.tsx:157
 msgid "Display reset to defaults"
 msgstr "A kijelző alaphelyzetbe állítva"
 
@@ -1114,11 +1128,11 @@ msgstr "Facebook alkalmazás titkos kulcs"
 msgid "Failed to add account"
 msgstr "Nem sikerült hozzáadni a fiókot"
 
-#: src/features/user/interests.tsx:200
+#: src/features/user/interests.tsx:212
 msgid "Failed to add interest"
 msgstr "Nem sikerült hozzáadni az érdeklődést"
 
-#: src/features/system/replication.tsx:243
+#: src/features/system/replication.tsx:257
 msgid "Failed to copy"
 msgstr "Nem sikerült másolni"
 
@@ -1186,7 +1200,7 @@ msgstr "Nem sikerült kódokat generálni"
 msgid "Failed to install update"
 msgstr "A frissítés telepítése sikertelen"
 
-#: src/features/user/interests.tsx:249
+#: src/features/user/interests.tsx:263
 msgid "Failed to regenerate summary"
 msgstr "Nem sikerült újragenerálni az összefoglalót"
 
@@ -1199,7 +1213,7 @@ msgstr "Nem sikerült regisztrálni a hozzáférési kulcsot"
 msgid "Failed to remove account"
 msgstr "Nem sikerült eltávolítani a fiókot"
 
-#: src/features/user/interests.tsx:64
+#: src/features/user/interests.tsx:74
 msgid "Failed to remove interest"
 msgstr "Nem sikerült eltávolítani az érdeklődést"
 
@@ -1211,11 +1225,11 @@ msgstr "Nem sikerült eltávolítani a témát"
 msgid "Failed to rename passkey"
 msgstr "Nem sikerült átnevezni a hozzáférési kulcsot"
 
-#: src/features/user/display.tsx:164
+#: src/features/user/display.tsx:158
 msgid "Failed to reset display"
 msgstr "Nem sikerült visszaállítani a kijelzőt"
 
-#: src/features/user/preferences.tsx:199
+#: src/features/user/preferences.tsx:198
 msgid "Failed to reset preferences"
 msgstr "Nem sikerült visszaállítani a beállításokat"
 
@@ -1267,7 +1281,7 @@ msgstr "Nem sikerült frissíteni az alapértelmezettet"
 msgid "Failed to update domain"
 msgstr "Nem sikerült frissíteni a tartományt"
 
-#: src/features/user/interests.tsx:55
+#: src/features/user/interests.tsx:60
 msgid "Failed to update interest"
 msgstr "Nem sikerült frissíteni az érdeklődést"
 
@@ -1279,8 +1293,8 @@ msgstr "A bejelentkezési módok frissítése sikertelen"
 msgid "Failed to update name"
 msgstr "Nem sikerült frissíteni a nevet"
 
-#: src/features/user/display.tsx:121
-#: src/features/user/preferences.tsx:181
+#: src/features/user/display.tsx:110
+#: src/features/user/preferences.tsx:167
 msgid "Failed to update preference"
 msgstr "Nem sikerült frissíteni a beállítást"
 
@@ -1297,7 +1311,7 @@ msgstr "Nem sikerült frissíteni az útvonalat"
 msgid "Failed to update setting"
 msgstr "Nem sikerült frissíteni a beállítást"
 
-#: src/features/user/display.tsx:144
+#: src/features/user/display.tsx:132
 msgid "Failed to update theme"
 msgstr "Nem sikerült frissíteni a témát"
 
@@ -1346,19 +1360,19 @@ msgstr "Lapos"
 msgid "Floating"
 msgstr "Lebegő"
 
-#: src/features/user/display.tsx:315
+#: src/features/user/display.tsx:313
 msgid "Font"
 msgstr "Betűtípus"
 
-#: src/features/user/display.tsx:326
+#: src/features/user/display.tsx:324
 msgid "Font size"
 msgstr "Betűméret"
 
-#: src/features/user/replication.tsx:160
+#: src/features/user/replication.tsx:167
 msgid "Forget this unreachable host"
 msgstr "Az elérhetetlen kiszolgáló elfelejtése"
 
-#: src/features/user/replication.tsx:165
+#: src/features/user/replication.tsx:172
 msgid "Forget this unreachable host?"
 msgstr "Elfelejted ezt az elérhetetlen kiszolgálót?"
 
@@ -1367,8 +1381,8 @@ msgid "Friday"
 msgstr "Péntek"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:153
-#: src/features/system/replication.tsx:263
-#: src/features/user/replication.tsx:311
+#: src/features/system/replication.tsx:277
+#: src/features/user/replication.tsx:329
 msgid "From"
 msgstr "Kezdete"
 
@@ -1475,7 +1489,7 @@ msgstr "Lyukasztás"
 msgid "Home"
 msgstr "Kezdőlap"
 
-#: src/features/user/replication.tsx:172
+#: src/features/user/replication.tsx:181
 msgid "Host forgotten"
 msgstr "Kiszolgáló elfelejtve"
 
@@ -1517,11 +1531,15 @@ msgstr "Frissítés telepítése"
 msgid "Installing {0}…"
 msgstr "A(z) {0} telepítése folyamatban…"
 
+#: src/features/user/interests.tsx:72
+msgid "Interest removed"
+msgstr ""
+
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:42
 #: src/components/layout/data/sidebar-data.ts:43
 #: src/components/layout/data/sidebar-data.ts:64
-#: src/features/user/interests.tsx:236
-#: src/features/user/interests.tsx:257
+#: src/features/user/interests.tsx:250
+#: src/features/user/interests.tsx:273
 msgid "Interests"
 msgstr "Érdeklődések"
 
@@ -1538,20 +1556,20 @@ msgstr "Érvénytelen ellenőrző kód"
 msgid "IP Address"
 msgstr "IP-cím"
 
-#: src/features/system/replication.tsx:156
-#: src/features/user/replication.tsx:139
+#: src/features/system/replication.tsx:164
+#: src/features/user/replication.tsx:146
 msgid "Irreparable"
 msgstr "Helyrehozhatatlan"
 
-#: src/features/user/replication.tsx:166
+#: src/features/user/replication.tsx:173
 msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
 msgstr "Eltávolítjuk a replikakészletedből, és újracsatlakozáskor felkérjük a másolata törlésére. Elérhető kiszolgáló eltávolításához jelentkezz be oda, és használd a „Fiókom eltávolítása erről a kiszolgálóról” lehetőséget. A folytatáshoz igazold, hogy te vagy az."
 
-#: src/features/system/replication.tsx:82
+#: src/features/system/replication.tsx:81
 msgid "Join request approved"
 msgstr "Csatlakozási kérelem jóváhagyva"
 
-#: src/features/system/replication.tsx:112
+#: src/features/system/replication.tsx:116
 msgid "Join request denied"
 msgstr "Csatlakozási kérelem elutasítva"
 
@@ -1564,7 +1582,7 @@ msgid "Label is required"
 msgstr "A címke kötelező"
 
 #: src/features/system/documents.tsx:257
-#: src/features/user/preferences.tsx:251
+#: src/features/user/preferences.tsx:252
 msgid "Language"
 msgstr "Nyelv"
 
@@ -1776,7 +1794,7 @@ msgstr "Hétfő"
 msgid "My application"
 msgstr "Saját alkalmazásom"
 
-#: src/features/user/replication.tsx:323
+#: src/features/user/replication.tsx:341
 msgid "My hosts"
 msgstr "Saját gazdagépeim"
 
@@ -1885,7 +1903,7 @@ msgstr "Nincsenek beállított tartományok"
 msgid "No groups available"
 msgstr "Nincsenek elérhető csoportok"
 
-#: src/features/user/interests.tsx:298
+#: src/features/user/interests.tsx:314
 msgid "No interests yet"
 msgstr "Még nincsenek érdeklődési körök"
 
@@ -1971,14 +1989,14 @@ msgstr "Értesítések"
 msgid "Notify by default"
 msgstr "Értesítés alapértelmezés szerint"
 
-#: src/features/user/preferences.tsx:284
+#: src/features/user/preferences.tsx:285
 msgid "Number format"
 msgstr "Számformátum"
 
 #. placeholder {0}: offlineDuration(host.offline)
 #. placeholder {0}: offlineDuration(offline)
-#: src/features/system/replication.tsx:159
-#: src/features/user/replication.tsx:142
+#: src/features/system/replication.tsx:167
+#: src/features/user/replication.tsx:149
 msgid "Offline {0}"
 msgstr "Offline {0}"
 
@@ -2039,7 +2057,7 @@ msgstr "Üzemeltető neve"
 msgid "Other"
 msgstr "Egyéb"
 
-#: src/features/user/replication.tsx:326
+#: src/features/user/replication.tsx:344
 msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
 msgstr "Más kiszolgálók, amelyek szintén tárolnak egy másolatot a fiókodról. Egy eltávolításához jelentkezz be az adott kiszolgálóra, és használd a „Fiókom eltávolítása erről a kiszolgálóról” lehetőséget."
 
@@ -2051,11 +2069,11 @@ msgstr "Egyéb beállítások"
 msgid "Owner"
 msgstr "Tulajdonos"
 
-#: src/features/system/replication.tsx:190
+#: src/features/system/replication.tsx:200
 msgid "Pair member removed"
 msgstr "Páros tagja eltávolítva"
 
-#: src/features/system/replication.tsx:275
+#: src/features/system/replication.tsx:289
 msgid "Pair members"
 msgstr "Páros tagjai"
 
@@ -2110,9 +2128,9 @@ msgstr "Útvonal"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Az útvonal nem engedélyezett. Csak a következő alatt adhatsz hozzá útvonalakat: {0}"
 
-#: src/features/system/replication.tsx:287
+#: src/features/system/replication.tsx:301
 #: src/features/system/status.tsx:181
-#: src/features/user/replication.tsx:340
+#: src/features/user/replication.tsx:358
 msgid "Peer"
 msgstr "Társ"
 
@@ -2121,7 +2139,7 @@ msgid "Peer ID"
 msgstr "Társ azonosító"
 
 #: src/components/peer-identity.tsx:45
-#: src/features/system/replication.tsx:242
+#: src/features/system/replication.tsx:256
 msgid "Peer id copied"
 msgstr "Társazonosító másolva"
 
@@ -2133,11 +2151,11 @@ msgstr "Társak"
 msgid "Pending"
 msgstr "Függőben"
 
-#: src/features/system/replication.tsx:254
+#: src/features/system/replication.tsx:268
 msgid "Pending join requests"
 msgstr "Függőben lévő csatlakozási kérelmek"
 
-#: src/features/user/replication.tsx:304
+#: src/features/user/replication.tsx:322
 msgid "Pending requests"
 msgstr "Függő kérelmek"
 
@@ -2155,13 +2173,13 @@ msgstr "Adjon meg egy token nevet"
 
 #: src/features/user/display.tsx:118
 #: src/features/user/preferences.tsx:178
-msgid "Preference updated"
-msgstr "Preferencia frissítve"
+#~ msgid "Preference updated"
+#~ msgstr "Preferencia frissítve"
 
 #: src/components/layout/data/sidebar-data.ts:36
 #: src/components/layout/data/sidebar-data.ts:57
 #: src/features/user/preferences.tsx:70
-#: src/features/user/preferences.tsx:207
+#: src/features/user/preferences.tsx:208
 msgid "Preferences"
 msgstr "Preferenciák"
 
@@ -2232,11 +2250,11 @@ msgstr "Sorban álló szórási üzenetek"
 msgid "Queued messages"
 msgstr "Sorban álló üzenetek"
 
-#: src/features/user/replication.tsx:271
+#: src/features/user/replication.tsx:289
 msgid "Quote both values on the destination server's sign-up form to replicate this account there."
 msgstr "Adja meg mindkét értéket a célszerver regisztrációs űrlapján, hogy ott replikálja ezt a fiókot."
 
-#: src/features/user/display.tsx:293
+#: src/features/user/display.tsx:291
 msgid "Radius"
 msgstr "Sugár"
 
@@ -2289,6 +2307,10 @@ msgstr "Újragenerálás"
 msgid "Regenerate?"
 msgstr "Újragenerálja?"
 
+#: src/features/user/interests.tsx:260
+msgid "Regenerating..."
+msgstr ""
+
 #: src/features/user/login.tsx:389
 msgid "Register"
 msgstr "Regisztráció"
@@ -2315,10 +2337,10 @@ msgstr "Továbbító szolgáltatás"
 
 #: ../../../lib/web/src/features/access/access-list.tsx:265
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:180
-#: src/features/system/replication.tsx:195
+#: src/features/system/replication.tsx:209
 #: src/features/user/connected-accounts.tsx:278
 #: src/features/user/connected-accounts.tsx:288
-#: src/features/user/replication.tsx:217
+#: src/features/user/replication.tsx:231
 msgid "Remove"
 msgstr "Eltávolítás"
 
@@ -2345,15 +2367,15 @@ msgstr "Eltávolítja a fiókot?"
 msgid "Remove interest"
 msgstr "Érdeklődés eltávolítása"
 
-#: src/features/user/replication.tsx:198
+#: src/features/user/replication.tsx:212
 msgid "Remove my account from this server"
 msgstr "Fiókom eltávolítása erről a kiszolgálóról"
 
-#: src/features/system/replication.tsx:172
+#: src/features/system/replication.tsx:180
 msgid "Remove pair member"
 msgstr "Páros tagjának eltávolítása"
 
-#: src/features/system/replication.tsx:177
+#: src/features/system/replication.tsx:185
 msgid "Remove pair member?"
 msgstr "Eltávolítja a páros tagját?"
 
@@ -2361,9 +2383,22 @@ msgstr "Eltávolítja a páros tagját?"
 msgid "Remove suspension"
 msgstr "Felfüggesztés feloldása"
 
-#: src/features/user/replication.tsx:203
+#: src/features/user/replication.tsx:217
 msgid "Remove your account from this server?"
 msgstr "Eltávolítod a fiókodat erről a kiszolgálóról?"
+
+#: src/features/user/replication.tsx:245
+msgid "Removing account..."
+msgstr ""
+
+#: src/features/user/replication.tsx:180
+msgid "Removing host..."
+msgstr ""
+
+#: src/features/system/replication.tsx:199
+#: src/features/user/interests.tsx:71
+msgid "Removing..."
+msgstr ""
 
 #: src/features/user/login.tsx:270
 msgid "Rename passkey"
@@ -2376,18 +2411,18 @@ msgstr "Csere"
 #: src/components/layout/data/sidebar-data.ts:42
 #: src/components/layout/data/sidebar-data.ts:63
 #: src/components/layout/data/sidebar-data.ts:73
-#: src/features/system/replication.tsx:207
 #: src/features/system/replication.tsx:221
-#: src/features/user/replication.tsx:247
-#: src/features/user/replication.tsx:258
+#: src/features/system/replication.tsx:235
+#: src/features/user/replication.tsx:265
+#: src/features/user/replication.tsx:276
 msgid "Replication"
 msgstr "Replikáció"
 
-#: src/features/user/replication.tsx:74
+#: src/features/user/replication.tsx:72
 msgid "Request approved"
 msgstr "Kérelem jóváhagyva"
 
-#: src/features/user/replication.tsx:82
+#: src/features/user/replication.tsx:85
 msgid "Request denied"
 msgstr "Kérelem elutasítva"
 
@@ -2409,8 +2444,8 @@ msgstr "E-mail újraküldése"
 #: src/features/system/settings.tsx:291
 #: src/features/system/settings.tsx:333
 #: src/features/system/settings.tsx:456
-#: src/features/user/display.tsx:200
-#: src/features/user/preferences.tsx:235
+#: src/features/user/display.tsx:198
+#: src/features/user/preferences.tsx:236
 msgid "Reset"
 msgstr "Visszaállítás"
 
@@ -2418,11 +2453,11 @@ msgstr "Visszaállítás"
 msgid "Reset all settings to default values"
 msgstr "Minden beállítás visszaállítása alapértelmezett értékekre"
 
-#: src/features/user/display.tsx:192
+#: src/features/user/display.tsx:190
 msgid "Reset display?"
 msgstr "Kijelző visszaállítása?"
 
-#: src/features/user/preferences.tsx:227
+#: src/features/user/preferences.tsx:228
 msgid "Reset preferences?"
 msgstr "Visszaállítja a preferenciákat?"
 
@@ -2441,10 +2476,15 @@ msgstr "Visszaállítás alapértelmezettre"
 msgid "Reset to default?"
 msgstr "Visszaállítja alapértelmezettre?"
 
-#: src/features/user/display.tsx:187
-#: src/features/user/preferences.tsx:222
+#: src/features/user/display.tsx:185
+#: src/features/user/preferences.tsx:223
 msgid "Reset to defaults"
 msgstr "Visszaállítás alapértelmezettre"
+
+#: src/features/user/display.tsx:156
+#: src/features/user/preferences.tsx:195
+msgid "Resetting..."
+msgstr ""
 
 #: src/features/system/documents.tsx:149
 msgid "Revert to default"
@@ -2533,6 +2573,10 @@ msgstr "Mentse el ezeket a kódokat"
 
 #: src/features/user/account.tsx:39
 #: src/features/user/account.tsx:49
+#: src/features/user/display.tsx:107
+#: src/features/user/display.tsx:130
+#: src/features/user/interests.tsx:57
+#: src/features/user/preferences.tsx:164
 msgid "Saving..."
 msgstr ""
 
@@ -2541,7 +2585,7 @@ msgstr ""
 msgid "Scopes: {0}"
 msgstr "Hatókörök: {0}"
 
-#: src/features/user/interests.tsx:186
+#: src/features/user/interests.tsx:198
 msgid "Search failed"
 msgstr "A keresés sikertelen"
 
@@ -2565,7 +2609,7 @@ msgstr "Kiindulási pont keresése..."
 msgid "Search time zone..."
 msgstr "Időzóna keresése..."
 
-#: src/features/user/interests.tsx:223
+#: src/features/user/interests.tsx:237
 msgid "Search topics to add..."
 msgstr "Hozzáadandó témák keresése..."
 
@@ -2661,7 +2705,7 @@ msgstr "Talpas"
 msgid "Server error"
 msgstr "Kiszolgálóhiba"
 
-#: src/features/user/replication.tsx:284
+#: src/features/user/replication.tsx:302
 msgid "Server peer ID"
 msgstr "Kiszolgáló társ azonosító"
 
@@ -2782,7 +2826,7 @@ msgstr "Elindítva"
 
 #: src/components/layout/data/sidebar-data.ts:74
 #: src/features/domains/index.tsx:1026
-#: src/features/system/replication.tsx:288
+#: src/features/system/replication.tsx:302
 #: src/features/system/status.tsx:41
 #: src/features/system/status.tsx:57
 #: src/features/system/status.tsx:182
@@ -2799,11 +2843,11 @@ msgstr "De maradjon velünk!"
 msgid "Subject"
 msgstr "Tárgy"
 
-#: src/features/user/interests.tsx:265
+#: src/features/user/interests.tsx:281
 msgid "Summary"
 msgstr "Összegzés"
 
-#: src/features/user/interests.tsx:246
+#: src/features/user/interests.tsx:261
 msgid "Summary regenerated"
 msgstr "Összegzés újragenerálva"
 
@@ -2823,11 +2867,11 @@ msgstr "Felfüggesztve"
 msgid "Suspension removed"
 msgstr "Felfüggesztés eltávolítva"
 
-#: src/features/system/replication.tsx:162
+#: src/features/system/replication.tsx:170
 msgid "Synced"
 msgstr "Szinkronizálva"
 
-#: src/features/system/replication.tsx:164
+#: src/features/system/replication.tsx:172
 msgid "Syncing"
 msgstr "Szinkronizálás"
 
@@ -2900,8 +2944,8 @@ msgid "The \"No notifications\" category silences any topic assigned to it."
 msgstr "A „Nincs értesítés” kategória elnémít minden hozzárendelt témát."
 
 #: ../../../lib/web/src/components/config-drawer.tsx:194
-#: src/features/user/display.tsx:233
-#: src/features/user/display.tsx:260
+#: src/features/user/display.tsx:231
+#: src/features/user/display.tsx:258
 msgid "Theme"
 msgstr "Téma"
 
@@ -2910,8 +2954,8 @@ msgid "Theme Settings"
 msgstr "Témabeállítások"
 
 #: src/features/user/display.tsx:141
-msgid "Theme updated"
-msgstr "Téma frissítve"
+#~ msgid "Theme updated"
+#~ msgstr "Téma frissítve"
 
 #: src/features/system/settings.tsx:572
 #: src/features/user/login.tsx:130
@@ -2919,11 +2963,11 @@ msgstr "Téma frissítve"
 msgid "Third-party login"
 msgstr "Harmadik fél általi bejelentkezés"
 
-#: src/features/user/replication.tsx:269
+#: src/features/user/replication.tsx:287
 msgid "This account"
 msgstr "Ez a fiók"
 
-#: src/features/user/replication.tsx:332
+#: src/features/user/replication.tsx:350
 msgid "This account is on this server only"
 msgstr "Ez a fiók csak ezen a szerveren található"
 
@@ -2935,19 +2979,19 @@ msgstr "Ez egy teljes biztonsági mentés, amelyet visszaállíthat ezen vagy eg
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Ez egy biztonsági módosítás a fiókján. A folytatáshoz igazolja, hogy ön az."
 
-#: src/features/user/replication.tsx:226
+#: src/features/user/replication.tsx:240
 msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
 msgstr "Ez véglegesen törli a fiókod adatait ezen a kiszolgálón. A folytatáshoz igazold, hogy te vagy az."
 
-#: src/features/system/replication.tsx:231
+#: src/features/system/replication.tsx:245
 msgid "This server"
 msgstr "Ez a kiszolgáló"
 
-#: src/features/system/replication.tsx:279
+#: src/features/system/replication.tsx:293
 msgid "This server is not paired."
 msgstr "Ez a kiszolgáló nincs párosítva."
 
-#: src/features/system/replication.tsx:179
+#: src/features/system/replication.tsx:187
 msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
 msgstr "Ez a kiszolgáló leállítja a párosítást azzal a társsal. Az eltávolított kiszolgáló megőrzi az összes felhasználó helyi másolatát; az ottani üzemeltetőnek kézzel kell törölnie."
 
@@ -3005,11 +3049,11 @@ msgstr "Ez visszaállítja a következőt: „{settingNameLabel}” az alapérte
 msgid "This will reset \"{settingNameLabel}\" to its default value ({0})."
 msgstr "Ez visszaállítja a következőt: „{settingNameLabel}” az alapértelmezett értékére ({0})."
 
-#: src/features/user/preferences.tsx:229
+#: src/features/user/preferences.tsx:230
 msgid "This will reset all preferences to their default values."
 msgstr "Ez visszaállítja az összes beállítást az alapértelmezett értékére."
 
-#: src/features/user/display.tsx:194
+#: src/features/user/display.tsx:192
 msgid "This will reset display settings to their default values."
 msgstr "Ez visszaállítja a kijelző beállításait az alapértelmezett értékekre."
 
@@ -3021,15 +3065,15 @@ msgstr "Ez kijelentkezteti ezt a munkamenetet. Ha ez a jelenlegi munkameneted, �
 msgid "Thursday"
 msgstr "Csütörtök"
 
-#: src/features/user/preferences.tsx:306
+#: src/features/user/preferences.tsx:307
 msgid "Time format"
 msgstr "Időformátum"
 
-#: src/features/user/preferences.tsx:263
+#: src/features/user/preferences.tsx:264
 msgid "Time zone"
 msgstr "Időzóna"
 
-#: src/features/user/preferences.tsx:331
+#: src/features/user/preferences.tsx:332
 msgid "Timestamps"
 msgstr "Időbélyegek"
 
@@ -3037,7 +3081,7 @@ msgstr "Időbélyegek"
 msgid "TLS Enabled"
 msgstr "TLS engedélyezve"
 
-#: src/features/user/replication.tsx:333
+#: src/features/user/replication.tsx:351
 msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
 msgstr "Egy másik szerverre való replikációhoz regisztrálj egy fiókot ott, és használd a \"Meglévő fiók replikációja\" opciót."
 
@@ -3167,14 +3211,14 @@ msgstr "Engedély nélküli hozzáférés"
 msgid "United States"
 msgstr "Egyesült Államok"
 
-#: src/features/user/preferences.tsx:273
+#: src/features/user/preferences.tsx:274
 msgid "Units"
 msgstr "Egységek"
 
 #: src/features/system/status.tsx:134
 #: src/features/system/status.tsx:135
 #: src/features/system/users.tsx:326
-#: src/features/user/replication.tsx:148
+#: src/features/user/replication.tsx:155
 msgid "Unknown"
 msgstr "Ismeretlen"
 
@@ -3221,7 +3265,7 @@ msgstr "Frissítés"
 msgid "URL to redirect to"
 msgstr "URL az átirányításhoz"
 
-#: src/features/system/replication.tsx:280
+#: src/features/system/replication.tsx:294
 msgid "Use \"mochictl replica join {peer}\" on a newly installed server to pair with this server."
 msgstr "Az ezzel a kiszolgálóval való párosításhoz használja a \"mochictl replica join {peer}\" parancsot egy frissen telepített kiszolgálón."
 
@@ -3268,7 +3312,7 @@ msgid "User updated"
 msgstr "Felhasználó frissítve"
 
 #: src/features/user/account.tsx:75
-#: src/features/user/replication.tsx:276
+#: src/features/user/replication.tsx:294
 msgid "Username"
 msgstr "Felhasználónév"
 
@@ -3364,7 +3408,7 @@ msgstr "A webhely karbantartás alatt áll!"
 msgid "Wednesday"
 msgstr "Szerda"
 
-#: src/features/user/preferences.tsx:317
+#: src/features/user/preferences.tsx:318
 msgid "Week starts on"
 msgstr "A hét kezdőnapja"
 
@@ -3397,7 +3441,7 @@ msgstr "Fiókját véglegesen töröljük ekkor: {purgeDate}. Kijelentkeztettük
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "Fiókja törlésre lesz ütemezve, és kijelentkeztetjük. A törlés időpontja előtt bármikor megszakíthatja, ha újra bejelentkezik. Először töltse le az adatait, ha meg szeretne tartani egy másolatot."
 
-#: src/features/user/replication.tsx:205
+#: src/features/user/replication.tsx:219
 msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
 msgstr "A fiókod adatai ezen a kiszolgálón véglegesen törlődnek, és itt kijelentkeztetünk. A fiókod megmarad a többi kiszolgálódon, és ezt később újra hozzáadhatod."
 

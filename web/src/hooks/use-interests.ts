@@ -7,6 +7,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { requestHelpers } from '@mochi/web'
 import endpoints from '@/api/endpoints'
 
+const NO_TOAST = { mochi: { showGlobalErrorToast: false } } as const
+
 interface Interest {
   qid: string
   label: string
@@ -43,7 +45,7 @@ export function useInterestSet() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: (data: { qid: string; weight: number }) =>
-      requestHelpers.post<{ ok: boolean }>(endpoints.user.interestsSet, data),
+      requestHelpers.post<{ ok: boolean }>(endpoints.user.interestsSet, data, NO_TOAST),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['interests'] })
     },
@@ -54,9 +56,11 @@ export function useInterestRemove() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: (qid: string) =>
-      requestHelpers.post<{ ok: boolean }>(endpoints.user.interestsRemove, {
-        qid,
-      }),
+      requestHelpers.post<{ ok: boolean }>(
+        endpoints.user.interestsRemove,
+        { qid },
+        NO_TOAST
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['interests'] })
     },
@@ -66,9 +70,11 @@ export function useInterestRemove() {
 export function useInterestSearch() {
   return useMutation({
     mutationFn: (query: string) =>
-      requestHelpers.post<SearchResponse>(endpoints.user.interestsSearch, {
-        query,
-      }),
+      requestHelpers.post<SearchResponse>(
+        endpoints.user.interestsSearch,
+        { query },
+        NO_TOAST
+      ),
   })
 }
 
@@ -78,7 +84,8 @@ export function useInterestSummary() {
     mutationFn: () =>
       requestHelpers.post<{ summary: string }>(
         endpoints.user.interestsSummary,
-        {}
+        {},
+        NO_TOAST
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['interests'] })

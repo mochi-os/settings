@@ -18,7 +18,10 @@ import {
   Slider,
   usePageTitle,
   getErrorMessage,
-  toast, naturalCompare,} from '@mochi/web'
+  toast,
+  toastAction,
+  naturalCompare,
+} from '@mochi/web'
 
 function interestHue(weight: number): number {
   // Continuous: red(-100) → blue(0) → green(+100)
@@ -45,25 +48,34 @@ function InterestRow({ interest }: { interest: Interest }) {
     }
   }, [])
 
-  const handleWeightCommit = (w: number) => {
+  const handleWeightCommit = async (w: number) => {
     setWeight(w)
-    setInterest.mutate(
-      { qid: interest.qid, weight: w },
-      {
-        onError: (error) => {
-          setWeight(interest.weight)
-          toast.error(getErrorMessage(error, t`Failed to update interest`))
-        },
-      }
-    )
+    try {
+      await toastAction(
+        setInterest.mutateAsync({ qid: interest.qid, weight: w }),
+        {
+          loading: t`Saving...`,
+          success: false,
+          error: (error) =>
+            getErrorMessage(error, t`Failed to update interest`),
+        }
+      )
+    } catch {
+      setWeight(interest.weight)
+    }
   }
 
-  const handleRemove = () => {
-    removeInterest.mutate(interest.qid, {
-      onError: (error) => {
-        toast.error(getErrorMessage(error, t`Failed to remove interest`))
-      },
-    })
+  const handleRemove = async () => {
+    try {
+      await toastAction(removeInterest.mutateAsync(interest.qid), {
+        loading: t`Removing...`,
+        success: t`Interest removed`,
+        error: (error) =>
+          getErrorMessage(error, t`Failed to remove interest`),
+      })
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   return (
@@ -189,22 +201,24 @@ function InterestSearch() {
     }, 300)
   }
 
-  const handleSelect = (result: SearchResult) => {
-    setInterest.mutate(
-      { qid: result.qid, weight: 50 },
-      {
-        onSuccess: () => {
-          toast.success(t`Added "${result.label}"`)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to add interest`))
-        },
-      }
-    )
-    setQuery('')
-    setResults([])
-    setShowResults(false)
-    inputRef.current?.focus()
+  const handleSelect = async (result: SearchResult) => {
+    try {
+      await toastAction(
+        setInterest.mutateAsync({ qid: result.qid, weight: 50 }),
+        {
+          loading: t`Adding...`,
+          success: t`Added "${result.label}"`,
+          error: (error) =>
+            getErrorMessage(error, t`Failed to add interest`),
+        }
+      )
+      setQuery('')
+      setResults([])
+      setShowResults(false)
+      inputRef.current?.focus()
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   return (
@@ -240,15 +254,17 @@ export function UserInterests() {
   const interests = [...(data?.interests ?? [])].sort((a, b) => naturalCompare(a.label, b.label))
   const summary = data?.summary ?? ''
 
-  const handleRegenerate = () => {
-    regenerateSummary.mutate(undefined, {
-      onSuccess: () => {
-        toast.success(t`Summary regenerated`)
-      },
-      onError: (error) => {
-        toast.error(getErrorMessage(error, t`Failed to regenerate summary`))
-      },
-    })
+  const handleRegenerate = async () => {
+    try {
+      await toastAction(regenerateSummary.mutateAsync(), {
+        loading: t`Regenerating...`,
+        success: t`Summary regenerated`,
+        error: (error) =>
+          getErrorMessage(error, t`Failed to regenerate summary`),
+      })
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   return (

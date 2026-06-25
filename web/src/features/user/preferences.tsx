@@ -35,7 +35,7 @@ import {
   useWeekStartLabels,
   useNumberFormatLabels,
   useUnitLabels,
-  toast,
+  toastAction,
   usePageTitle,
   shellSetLocale,
   shellSetLanguage,
@@ -158,47 +158,48 @@ export function UserPreferences() {
   }, [languagesData, t, i18n.locale])
   const showLanguagePicker = (languagesData?.languages?.length ?? 1) > 1
 
-  const handleChange = (key: string, value: string) => {
-    setPreference.mutate(
-      { [key]: value },
-      {
-        onSuccess: () => {
-          if ((localeKeys as readonly string[]).includes(key) || key === 'timezone') {
-            const updated = { ...currentLocale, [key]: value } as LocalePreferences
-            shellSetLocale(updated)
-          }
-          if (key === 'language') {
-            setStoredLanguage(value)
-            // Broadcast to the shell so every open iframe re-activates its
-            // Lingui catalog without a page reload. "auto" is stored as the
-            // server-side preference but iframes need a concrete tag, so
-            // resolve it locally before broadcasting.
-            shellSetLanguage(value === 'auto' ? detectLanguage() : value)
-          }
-          toast.success(t`Preference updated`)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to update preference`))
-        },
+  const handleChange = async (key: string, value: string) => {
+    try {
+      await toastAction(setPreference.mutateAsync({ [key]: value }), {
+        loading: t`Saving...`,
+        success: false,
+        error: (error) =>
+          getErrorMessage(error, t`Failed to update preference`),
+      })
+      if ((localeKeys as readonly string[]).includes(key) || key === 'timezone') {
+        const updated = { ...currentLocale, [key]: value } as LocalePreferences
+        shellSetLocale(updated)
       }
-    )
+      if (key === 'language') {
+        setStoredLanguage(value)
+        // Broadcast to the shell so every open iframe re-activates its
+        // Lingui catalog without a page reload. "auto" is stored as the
+        // server-side preference but iframes need a concrete tag, so
+        // resolve it locally before broadcasting.
+        shellSetLanguage(value === 'auto' ? detectLanguage() : value)
+      }
+    } catch {
+      // toastAction already showed error
+    }
   }
 
-  const handleReset = () => {
+  const handleReset = async () => {
     if (!data) return
     // Reset only the regional keys, leaving display prefs alone.
     const resetPayload: Record<string, string> = {}
     for (const key of REGIONAL_PREF_KEYS) {
       resetPayload[key] = ''
     }
-    setPreference.mutate(resetPayload, {
-      onSuccess: () => {
-        toast.success(t`Preferences reset to defaults`)
-      },
-      onError: (error) => {
-        toast.error(getErrorMessage(error, t`Failed to reset preferences`))
-      },
-    })
+    try {
+      await toastAction(setPreference.mutateAsync(resetPayload), {
+        loading: t`Resetting...`,
+        success: t`Preferences reset to defaults`,
+        error: (error) =>
+          getErrorMessage(error, t`Failed to reset preferences`),
+      })
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   return (
