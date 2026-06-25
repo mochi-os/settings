@@ -20,7 +20,7 @@ import {
   EditableFieldRow,
   DataChip,
   GeneralError,
-  toast,
+  toastAction,
   getErrorMessage,
   ServerDocumentsFooter,
 } from '@mochi/web'
@@ -35,31 +35,24 @@ function IdentitySection() {
   const updateIdentity = useUpdateIdentity()
 
   const handleRename = async (name: string) => {
-    try {
-      await updateIdentity.mutateAsync({ name })
-      toast.success(t`Name updated`)
-    } catch (err) {
-      toast.error(getErrorMessage(err, t`Failed to update name`))
-      throw err
-    }
+    await toastAction(updateIdentity.mutateAsync({ name }), {
+      loading: t`Saving...`,
+      success: t`Name updated`,
+      error: (err) => getErrorMessage(err, t`Failed to update name`),
+    })
   }
 
-  const handleTogglePublic = (checked: boolean) => {
+  const handleTogglePublic = async (checked: boolean) => {
     const privacy = checked ? 'public' : 'private'
-    updateIdentity.mutate(
-      { privacy },
-      {
-        onSuccess: () => {
-          toast.success(
-            privacy === 'public'
-              ? t`Identity is now listed in the directory` : t`Identity is no longer listed in the directory`
-          )
-        },
-        onError: (err) => {
-          toast.error(getErrorMessage(err, t`Failed to update privacy`))
-        },
-      }
-    )
+    try {
+      await toastAction(updateIdentity.mutateAsync({ privacy }), {
+        loading: t`Saving...`,
+        success: false,
+        error: (err) => getErrorMessage(err, t`Failed to update privacy`),
+      })
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   return (

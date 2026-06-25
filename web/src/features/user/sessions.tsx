@@ -31,7 +31,7 @@ import {
   Main,
   usePageTitle,
   getErrorMessage,
-  toast,
+  toastAction,
   useFormat,
 } from '@mochi/web'
 
@@ -46,15 +46,17 @@ function SessionRow({
   const { formatTimestamp } = useFormat()
   const revokeSession = useRevokeSession()
 
-  const handleRevoke = () => {
-    revokeSession.mutate(session.id, {
-      onSuccess: () => {
-        toast.success(t`Session revoked`)
-      },
-      onError: (error) => {
-        toast.error(getErrorMessage(error, t`Failed to revoke session`))
-      },
-    })
+  const handleRevoke = async () => {
+    try {
+      await toastAction(revokeSession.mutateAsync(session.id), {
+        loading: t`Revoking session...`,
+        success: t`Session revoked`,
+        error: (error) =>
+          getErrorMessage(error, t`Failed to revoke session`),
+      })
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   return (

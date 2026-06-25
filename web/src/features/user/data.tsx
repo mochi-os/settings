@@ -15,7 +15,7 @@ import {
   getApiBasepath,
   getErrorMessage,
   isInShell,
-  toast,
+  toastAction,
 } from '@mochi/web'
 import { useExportData } from '@/hooks/use-account'
 import { stepUpClient } from '@/lib/step-up-client'
@@ -104,15 +104,24 @@ function DownloadDialog({
   // bundle and stream it down.
   const onVerified = async (token: string) => {
     try {
-      const { filename } = await exportData.mutateAsync({
-        passphrase: passphrase.trim(),
-        token,
-      })
-      startDownload(filename)
+      await toastAction(
+        (async () => {
+          const { filename } = await exportData.mutateAsync({
+            passphrase: passphrase.trim(),
+            token,
+          })
+          startDownload(filename)
+          return { filename }
+        })(),
+        {
+          loading: t`Preparing export...`,
+          success: t`Export started`,
+          error: (err) => getErrorMessage(err, t`Failed to export data`),
+        }
+      )
       handleOpenChange(false)
-      toast.success(t`Your data is downloading`)
-    } catch (err) {
-      toast.error(getErrorMessage(err, t`Export failed`))
+    } catch {
+      // toastAction already showed error
     }
   }
 

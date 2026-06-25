@@ -36,6 +36,7 @@ import {
   useFormat,
   getErrorMessage,
   toast,
+  toastAction,
   shellClipboardWrite,
 } from '@mochi/web'
 
@@ -46,16 +47,17 @@ function TokenRow({ token }: { token: Token }) {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const deleteToken = useTokenDelete()
 
-  const handleDelete = () => {
-    deleteToken.mutate(token.hash, {
-      onSuccess: () => {
-        setShowDeleteDialog(false)
-        toast.success(t`Token deleted`)
-      },
-      onError: (error) => {
-        toast.error(getErrorMessage(error, t`Failed to delete token`))
-      },
-    })
+  const handleDelete = async () => {
+    try {
+      await toastAction(deleteToken.mutateAsync(token.hash), {
+        loading: t`Deleting token...`,
+        success: t`Token deleted`,
+        error: (error) => getErrorMessage(error, t`Failed to delete token`),
+      })
+      setShowDeleteDialog(false)
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   return (
@@ -125,20 +127,25 @@ function CreateTokenDialog({ triggerClassName }: { triggerClassName?: string }) 
 
     // An API token is a long-lived bearer credential, so re-authenticate
     // before minting one.
-    stepUp.request((token) =>
-      createToken.mutate(
-        { name: name.trim(), token },
-        {
-          onSuccess: (data) => {
-            setNewToken(data.token)
-            setName('')
-          },
-          onError: (error) => {
-            toast.error(getErrorMessage(error, t`Failed to create token`))
-          },
+    stepUp.request((token) => {
+      void (async () => {
+        try {
+          const data = await toastAction(
+            createToken.mutateAsync({ name: name.trim(), token }),
+            {
+              loading: t`Creating token...`,
+              success: t`Token created`,
+              error: (error) =>
+                getErrorMessage(error, t`Failed to create token`),
+            }
+          )
+          setNewToken(data.token)
+          setName('')
+        } catch {
+          // toastAction already showed error
         }
-      )
-    )
+      })()
+    })
   }
 
   const handleCopy = async () => {

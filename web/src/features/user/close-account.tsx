@@ -20,7 +20,7 @@ import {
   Section,
   getErrorMessage,
   isInShell,
-  toast,
+  toastAction,
   useFormat,
 } from '@mochi/web'
 import { useCloseAccount } from '@/hooks/use-account'
@@ -55,17 +55,22 @@ export function CloseAccountSection() {
   // deletion. Show the result dialog rather than a toast, because the
   // immediate sign-out would destroy a toast before it could be read.
   const runClose = (token: string) => {
-    closeAccount.mutate(
-      { token },
-      {
-        onSuccess: ({ purge }) => {
-          setPurgeAt(purge)
-        },
-        onError: (err) => {
-          toast.error(getErrorMessage(err, t`Could not close your account`))
-        },
+    void (async () => {
+      try {
+        const { purge } = await toastAction(
+          closeAccount.mutateAsync({ token }),
+          {
+            loading: t`Closing account...`,
+            success: false,
+            error: (err) =>
+              getErrorMessage(err, t`Could not close your account`),
+          }
+        )
+        setPurgeAt(purge)
+      } catch {
+        // toastAction already showed error
       }
-    )
+    })()
   }
 
   return (
