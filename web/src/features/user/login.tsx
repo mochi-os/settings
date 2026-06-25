@@ -88,6 +88,7 @@ import {
   shellNavigateTop,
   shellWebauthnCreate,
   toast,
+  toastAction,
   useFormat,
   shellClipboardWrite,
   ServerDocumentsFooter,
@@ -145,15 +146,23 @@ function LoginRequirementsSection() {
   }
 
   const handleChange = (method: string, state: MethodState) => {
-    stepUp.request((token) =>
-      setMethod.mutate(
-        { method, state, token },
-        {
-          onSuccess: () => toast.success(t`Login methods updated`),
-          onError: (e) => toast.error(getErrorMessage(e, t`Failed to update login methods`)),
-        },
-      ),
-    )
+    stepUp.request((token) => {
+      void (async () => {
+        try {
+          await toastAction(
+            setMethod.mutateAsync({ method, state, token }),
+            {
+              loading: t`Saving...`,
+              success: t`Login methods updated`,
+              error: (e) =>
+                getErrorMessage(e, t`Failed to update login methods`),
+            }
+          )
+        } catch {
+          // toastAction already showed error
+        }
+      })()
+    })
   }
 
   return (
@@ -313,45 +322,78 @@ function PasskeysSection() {
     stepUp.request(async (token) => {
       setIsRegistering(true)
       try {
-        const beginResult = await registerBegin.mutateAsync()
-        const credential = await shellWebauthnCreate(
-          beginResult.options as RegistrationOptionsJSON
+        await toastAction(
+          (async () => {
+            const beginResult = await registerBegin.mutateAsync()
+            let credential
+            try {
+              credential = await shellWebauthnCreate(
+                beginResult.options as RegistrationOptionsJSON
+              )
+            } catch (error) {
+              if ((error as { name?: string })?.name === 'NotAllowedError') {
+                throw Object.assign(new Error('REGISTRATION_CANCELLED'), {
+                  cancelled: true,
+                })
+              }
+              throw error
+            }
+            return registerFinish.mutateAsync({
+              ceremony: beginResult.ceremony,
+              credential,
+              name: passkeyName || t`Passkey`,
+              token,
+            })
+          })(),
+          {
+            loading: t`Registering passkey...`,
+            success: t`Passkey registered`,
+            error: (error) => {
+              if (
+                error &&
+                typeof error === 'object' &&
+                'cancelled' in error &&
+                (error as { cancelled?: boolean }).cancelled
+              ) {
+                return t`Registration cancelled`
+              }
+              return getErrorMessage(error, t`Failed to register passkey`)
+            },
+          }
         )
-        await registerFinish.mutateAsync({
-          ceremony: beginResult.ceremony,
-          credential,
-          name: passkeyName || t`Passkey`,
-          token,
-        })
-        toast.success(t`Passkey registered`)
         setPasskeyName('')
-      } catch (error) {
-        if ((error as { name?: string })?.name === 'NotAllowedError') {
-          toast.error(t`Registration cancelled`)
-        } else {
-          toast.error(getErrorMessage(error, t`Failed to register passkey`))
-        }
+      } catch {
+        // toastAction already showed error
       } finally {
         setIsRegistering(false)
       }
     })
   }
 
-  const handleRename = (id: string, name: string) => {
-    renamePasskey.mutate(
-      { id, name },
-      {
-        onSuccess: () => toast.success(t`Passkey renamed`),
-        onError: (error) => toast.error(getErrorMessage(error, t`Failed to rename passkey`)),
-      }
-    )
+  const handleRename = async (id: string, name: string) => {
+    try {
+      await toastAction(renamePasskey.mutateAsync({ id, name }), {
+        loading: t`Renaming passkey...`,
+        success: t`Passkey renamed`,
+        error: (error) =>
+          getErrorMessage(error, t`Failed to rename passkey`),
+      })
+    } catch {
+      // toastAction already showed error
+    }
   }
 
-  const handleDelete = (id: string) => {
-    deletePasskey.mutate(id, {
-      onSuccess: () => toast.success(t`Passkey deleted`),
-      onError: (error) => toast.error(getErrorMessage(error, t`Failed to delete passkey`)),
-    })
+  const handleDelete = async (id: string) => {
+    try {
+      await toastAction(deletePasskey.mutateAsync(id), {
+        loading: t`Deleting passkey...`,
+        success: t`Passkey deleted`,
+        error: (error) =>
+          getErrorMessage(error, t`Failed to delete passkey`),
+      })
+    } catch {
+      // toastAction already showed error
+    }
   }
 
   const passkeys = data?.passkeys ?? []
@@ -461,10 +503,15 @@ function AuthenticatorSection() {
     // Re-authenticate before enabling a new factor.
     stepUp.request(async (token) => {
       try {
-        const result = await setupTotp.mutateAsync(token)
+        const result = await toastAction(setupTotp.mutateAsync(token), {
+          loading: t`Setting up authenticator...`,
+          success: false,
+          error: (error) =>
+            getErrorMessage(error, t`Failed to set up authenticator`),
+        })
         setSetupData(result)
-      } catch (error) {
-        toast.error(getErrorMessage(error, t`Failed to set up authenticator`))
+      } catch {
+        // toastAction already showed error
       }
     })
   }
@@ -489,11 +536,20 @@ function AuthenticatorSection() {
   }
 
   const handleDisable = () => {
-    stepUp.request((token) =>
-      disableTotp.mutate(token, {
-        onSuccess: () => toast.success(t`Authenticator app disabled`),
-        onError: (error) => toast.error(getErrorMessage(error, t`Failed to disable authenticator`)),
-      }))
+    stepUp.request((token) => {
+      void (async () => {
+        try {
+          await toastAction(disableTotp.mutateAsync(token), {
+            loading: t`Disabling authenticator...`,
+            success: t`Authenticator app disabled`,
+            error: (error) =>
+              getErrorMessage(error, t`Failed to disable authenticator`),
+          })
+        } catch {
+          // toastAction already showed error
+        }
+      })()
+    })
   }
 
   const isEnabled = data?.enabled ?? false
@@ -612,10 +668,15 @@ function RecoveryCodesSection() {
   const handleGenerate = () => {
     stepUp.request(async (token) => {
       try {
-        const result = await generateCodes.mutateAsync(token)
+        const result = await toastAction(generateCodes.mutateAsync(token), {
+          loading: t`Generating codes...`,
+          success: false,
+          error: (error) =>
+            getErrorMessage(error, t`Failed to generate codes`),
+        })
         setShowCodes(result.codes)
-      } catch (error) {
-        toast.error(getErrorMessage(error, t`Failed to generate codes`))
+      } catch {
+        // toastAction already showed error
       }
     })
   }
@@ -793,19 +854,31 @@ function OauthSection() {
 
   const handleLink = async (provider: OAuthProvider) => {
     try {
-      const { url } = await oauthBegin.mutateAsync({ provider, link: true })
+      const { url } = await toastAction(
+        oauthBegin.mutateAsync({ provider, link: true }),
+        {
+          loading: t`Starting link...`,
+          success: false,
+          error: (error) =>
+            getErrorMessage(error, t`Could not start linking`),
+        }
+      )
       shellNavigateTop(url)
-    } catch (error) {
-      toast.error(getErrorMessage(error, t`Could not start linking`))
+    } catch {
+      // toastAction already showed error
     }
   }
 
   const handleUnlink = async (provider: OAuthProvider) => {
     try {
-      await oauthUnlink.mutateAsync(provider)
-      toast.success(t`Unlinked ${oauthProviderLabel[provider] ?? provider}`)
-    } catch (error) {
-      toast.error(getErrorMessage(error, t`Could not unlink provider`))
+      await toastAction(oauthUnlink.mutateAsync(provider), {
+        loading: t`Unlinking...`,
+        success: t`Unlinked ${oauthProviderLabel[provider] ?? provider}`,
+        error: (error) =>
+          getErrorMessage(error, t`Could not unlink provider`),
+      })
+    } catch {
+      // toastAction already showed error
     }
   }
 

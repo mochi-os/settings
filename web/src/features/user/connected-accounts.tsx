@@ -60,11 +60,14 @@ import {
   getProviderLabel,
   requestHelpers,
   toast,
+  toastAction,
   useFormat,
   type Account,
   type Provider, naturalCompare,} from '@mochi/web'
 
 const APP_BASE = getAppPath()
+
+const NO_TOAST = { mochi: { showGlobalErrorToast: false } } as const
 
 function getProviderIcon(type: string) {
   switch (type) {
@@ -324,68 +327,75 @@ export function ConnectedAccounts() {
   const accounts = Array.isArray(accountsData) ? accountsData : []
 
   const handleAdd = async (type: string, fields: Record<string, string>, addToExisting: boolean, setAsDefault?: boolean) => {
-    try {
-      const account = await add(type, fields, addToExisting)
-      if (setAsDefault) {
-        await handleSetDefault(account.id, true)
-      }
-      toast.success(t`Account added`)
-      setIsAddOpen(false)
+    const account = await toastAction(add(type, fields, addToExisting), {
+      loading: t`Adding account...`,
+      success: t`Account added`,
+      error: (error) => getErrorMessage(error, t`Failed to add account`),
+    })
+    if (setAsDefault) {
+      await handleSetDefault(account.id, true)
+    }
+    setIsAddOpen(false)
 
-      // If verification is required, show verify dialog
-      const provider = providers.find((p) => p.type === type)
-      if (provider?.verify && account.verified === 0) {
-        setVerifyAccount(account)
-      }
-    } catch (error) {
-      const message = getErrorMessage(error, t`Failed to add account`)
-      toast.error(message)
-      throw error
+    // If verification is required, show verify dialog
+    const provider = providers.find((p) => p.type === type)
+    if (provider?.verify && account.verified === 0) {
+      setVerifyAccount(account)
     }
   }
 
   const handleRemove = async (id: number) => {
     try {
-      await remove(id)
-      toast.success(t`Account removed`)
-    } catch (error) {
-      const message = getErrorMessage(error, t`Failed to remove account`)
-      toast.error(message)
+      await toastAction(remove(id), {
+        loading: t`Removing account...`,
+        success: t`Account removed`,
+        error: (error) => getErrorMessage(error, t`Failed to remove account`),
+      })
+    } catch {
+      // toastAction already showed error
     }
   }
 
   const handleVerify = async (id: number, code: string) => {
     try {
-      const result = await verify(id, code)
+      const result = await toastAction(verify(id, code), {
+        loading: t`Verifying...`,
+        success: false,
+        error: (error) => getErrorMessage(error, t`Verification failed`),
+      })
       if (result) {
         toast.success(t`Account verified`)
         setVerifyAccount(null)
       } else {
         toast.error(t`Invalid verification code`)
       }
-    } catch (error) {
-      const message = getErrorMessage(error, t`Verification failed`)
-      toast.error(message)
+    } catch {
+      // toastAction already showed error
     }
   }
 
   const handleResend = async (id: number) => {
     try {
-      await verify(id)
-      toast.success(t`Verification code sent`)
-    } catch (error) {
-      const message = getErrorMessage(error, t`Failed to send verification code`)
-      toast.error(message)
+      await toastAction(verify(id), {
+        loading: t`Sending code...`,
+        success: t`Verification code sent`,
+        error: (error) =>
+          getErrorMessage(error, t`Failed to send verification code`),
+      })
+    } catch {
+      // toastAction already showed error
     }
   }
 
   const handleSaveSettings = async (id: number, fields: Record<string, string>) => {
     try {
-      await update(id, fields)
-      toast.success(t`Account updated`)
-    } catch (error) {
-      const message = getErrorMessage(error, t`Failed to update account`)
-      toast.error(message)
+      await toastAction(update(id, fields), {
+        loading: t`Saving...`,
+        success: t`Account updated`,
+        error: (error) => getErrorMessage(error, t`Failed to update account`),
+      })
+    } catch {
+      // toastAction already showed error
     }
   }
 
@@ -394,12 +404,25 @@ export function ConnectedAccounts() {
       const formData = new URLSearchParams()
       formData.append('account', String(accountId))
       formData.append('type', isDefault ? 'ai' : '')
-      await requestHelpers.post(`${APP_BASE}/-/accounts/default`, formData.toString(), {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      })
+      await toastAction(
+        requestHelpers.post(
+          `${APP_BASE}/-/accounts/default`,
+          formData.toString(),
+          {
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            ...NO_TOAST,
+          }
+        ),
+        {
+          loading: t`Saving...`,
+          success: false,
+          error: (error) =>
+            getErrorMessage(error, t`Failed to update default`),
+        }
+      )
       refetch()
-    } catch (error) {
-      toast.error(getErrorMessage(error, t`Failed to update default`))
+    } catch {
+      // toastAction already showed error
     }
   }
 
@@ -422,10 +445,13 @@ export function ConnectedAccounts() {
 
   const handleToggleEnabled = async (id: number, enabled: boolean) => {
     try {
-      await update(id, { enabled: enabled ? '1' : '0' })
-    } catch (error) {
-      const message = getErrorMessage(error, t`Failed to update account`)
-      toast.error(message)
+      await toastAction(update(id, { enabled: enabled ? '1' : '0' }), {
+        loading: t`Saving...`,
+        success: false,
+        error: (error) => getErrorMessage(error, t`Failed to update account`),
+      })
+    } catch {
+      // toastAction already showed error
     }
   }
 
