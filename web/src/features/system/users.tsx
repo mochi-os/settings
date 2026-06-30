@@ -183,8 +183,14 @@ function EditUserDialog({
   const [role, setRole] = useState(user.role)
   const updateUser = useUpdateUser()
 
+  const hasChanges = username !== user.username || role !== user.role
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (!hasChanges) {
+      onOpenChange(false)
+      return
+    }
     updateUser.mutate(
       { uid: user.uid, username, role },
       {
@@ -239,7 +245,7 @@ function EditUserDialog({
             >
               <Trans>Cancel</Trans>
             </Button>
-            <Button type='submit' disabled={updateUser.isPending}>
+            <Button type='submit' disabled={updateUser.isPending || !hasChanges}>
               {updateUser.isPending && (
                 <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}

@@ -3,7 +3,7 @@
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useLingui, Trans } from '@lingui/react/macro'
 import type { Domain, Route as RouteType, Delegation } from '@/types/domains'
 import {
@@ -367,8 +367,22 @@ function EditRouteDialog({
   const { data: apps } = useApps()
   const { data: entities } = useEntities()
 
+  const routeDirty = useMemo(() => {
+    const priorityNum = parseInt(priority, 10)
+    return (
+      method !== route.method ||
+      target !== route.target ||
+      priorityNum !== route.priority ||
+      enabled !== (route.enabled === 1)
+    )
+  }, [method, target, priority, enabled, route])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (!routeDirty) {
+      setOpen(false)
+      return
+    }
     updateRoute.mutate(
       {
         domain: route.domain,
@@ -521,7 +535,7 @@ function EditRouteDialog({
             >
               <Trans>Cancel</Trans>
             </Button>
-            <Button type='submit' disabled={updateRoute.isPending}>
+            <Button type='submit' disabled={updateRoute.isPending || !routeDirty}>
               {updateRoute.isPending && (
                 <Loader2 className='me-2 h-4 w-4 animate-spin' />
               )}
