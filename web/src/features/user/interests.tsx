@@ -18,12 +18,7 @@ import {
   Slider,
   usePageTitle,
   getErrorMessage,
-  toast, naturalCompare,} from '@mochi/web'
-
-function interestHue(weight: number): number {
-  // Continuous: red(-100) → blue(0) → green(+100)
-  return 240 - (weight / 100) * 120
-}
+  toast, naturalCompare, interestColor,} from '@mochi/web'
 
 function InterestRow({ interest }: { interest: Interest }) {
   const { t } = useLingui()
@@ -92,14 +87,13 @@ function InterestRow({ interest }: { interest: Interest }) {
             handleWeightCommit(Number((e.target as HTMLInputElement).value))
           }
           className='w-full'
-          // eslint-disable-next-line lingui/no-unlocalized-strings -- CSS color value
-          style={{ accentColor: weight === 0 ? undefined : `hsl(${interestHue(weight)}, 80%, 45%)` }}
+          style={{ accentColor: interestColor(weight) }}
         />
         <div className='bg-muted-foreground/50 pointer-events-none absolute top-full left-1/2 h-2 w-px -translate-x-1/2' />
       </div>
       <span
         className='w-8 shrink-0 text-end text-xs tabular-nums'
-        style={{ color: weight === 0 ? undefined : `hsl(${interestHue(weight)}, 80%, 45%)` }}
+        style={{ color: interestColor(weight) }}
       >
         {weight > 0 ? '+' : ''}{weight}
       </span>
