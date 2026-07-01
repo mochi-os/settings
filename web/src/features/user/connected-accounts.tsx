@@ -149,13 +149,13 @@ function AccountRow({
 }: {
   account: Account
   providers: Provider[]
-  onRemove: (id: number) => void
+  onRemove: (id: string) => void
   onVerify: (account: Account) => void
   onSettings: (account: Account) => void
-  onTest: (id: number) => void
-  onToggleEnabled: (id: number, enabled: boolean) => void
+  onTest: (id: string) => void
+  onToggleEnabled: (id: string, enabled: boolean) => void
   isRemoving: boolean
-  testingId: number | null
+  testingId: string | null
 }) {
   const { t } = useLingui()
   const { formatTimestamp } = useFormat()
@@ -300,7 +300,7 @@ export function ConnectedAccounts() {
   const [isAddOpen, setIsAddOpen] = useState(false)
   const [verifyAccount, setVerifyAccount] = useState<Account | null>(null)
   const [settingsAccount, setSettingsAccount] = useState<Account | null>(null)
-  const [testingId, setTestingId] = useState<number | null>(null)
+  const [testingId, setTestingId] = useState<string | null>(null)
 
   const {
     providers: providersData,
@@ -344,7 +344,7 @@ export function ConnectedAccounts() {
     }
   }
 
-  const handleRemove = async (id: number) => {
+  const handleRemove = async (id: string) => {
     try {
       await remove(id)
       toast.success(t`Account removed`)
@@ -354,7 +354,7 @@ export function ConnectedAccounts() {
     }
   }
 
-  const handleVerify = async (id: number, code: string) => {
+  const handleVerify = async (id: string, code: string) => {
     try {
       const result = await verify(id, code)
       if (result) {
@@ -369,7 +369,7 @@ export function ConnectedAccounts() {
     }
   }
 
-  const handleResend = async (id: number) => {
+  const handleResend = async (id: string) => {
     try {
       await verify(id)
       toast.success(t`Verification code sent`)
@@ -379,7 +379,7 @@ export function ConnectedAccounts() {
     }
   }
 
-  const handleSaveSettings = async (id: number, fields: Record<string, string>) => {
+  const handleSaveSettings = async (id: string, fields: Record<string, string>) => {
     try {
       await update(id, fields)
       toast.success(t`Account updated`)
@@ -389,10 +389,10 @@ export function ConnectedAccounts() {
     }
   }
 
-  const handleSetDefault = async (accountId: number, isDefault: boolean) => {
+  const handleSetDefault = async (accountId: string, isDefault: boolean) => {
     try {
       const formData = new URLSearchParams()
-      formData.append('account', String(accountId))
+      formData.append('account', accountId)
       formData.append('type', isDefault ? 'ai' : '')
       await requestHelpers.post(`${APP_BASE}/-/accounts/default`, formData.toString(), {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -404,7 +404,7 @@ export function ConnectedAccounts() {
     }
   }
 
-  const handleTest = async (id: number) => {
+  const handleTest = async (id: string) => {
     setTestingId(id)
     try {
       const result = await test(id)
@@ -421,7 +421,7 @@ export function ConnectedAccounts() {
     }
   }
 
-  const handleToggleEnabled = async (id: number, enabled: boolean) => {
+  const handleToggleEnabled = async (id: string, enabled: boolean) => {
     try {
       await update(id, { enabled: enabled ? '1' : '0' })
     } catch (error) {
@@ -544,8 +544,8 @@ function AccountSettingsDialog({
 }: {
   account: Account
   onOpenChange: (open: boolean) => void
-  onSave: (id: number, fields: Record<string, string>) => Promise<void>
-  onSetDefault: (id: number, isDefault: boolean) => Promise<void>
+  onSave: (id: string, fields: Record<string, string>) => Promise<void>
+  onSetDefault: (id: string, isDefault: boolean) => Promise<void>
 }) {
   const { t } = useLingui()
   const [nameValue, setNameValue] = useState(account.label || getAccountDisplayName(account))

@@ -22,7 +22,7 @@ def action_accounts_get(a):
     if not id:
         a.error.label(400, "errors.id_is_required")
         return
-    result = mochi.account.get(int(id))
+    result = mochi.account.get(id)
     a.json(result)
 
 def action_accounts_add(a):
@@ -82,7 +82,7 @@ def action_accounts_update(a):
     if model != None:
         fields["model"] = model
 
-    result = mochi.account.update(int(id), **fields)
+    result = mochi.account.update(id, **fields)
     a.json(result)
 
 def action_accounts_default(a):
@@ -92,7 +92,7 @@ def action_accounts_default(a):
         a.error.label(400, "errors.account_is_required")
         return
     type = a.input("type", "")
-    mochi.account.update(int(id), default=type)
+    mochi.account.update(id, default=type)
     a.json({"ok": True})
 
 def action_accounts_remove(a):
@@ -102,7 +102,7 @@ def action_accounts_remove(a):
         a.error.label(400, "errors.id_is_required")
         return
 
-    result = mochi.account.remove(int(id))
+    result = mochi.account.remove(id)
     a.json(result)
 
 def action_accounts_verify(a):
@@ -113,7 +113,7 @@ def action_accounts_verify(a):
         return
 
     code = a.input("code")
-    result = mochi.account.verify(int(id), code)
+    result = mochi.account.verify(id, code)
     a.json(result)
 
 def action_accounts_vapid(a):
@@ -130,5 +130,5 @@ def action_accounts_test(a):
         a.error.label(400, "errors.id_is_required")
         return
 
-    result = mochi.account.test(int(id))
+    result = mochi.account.test(id)
     a.json(result)
