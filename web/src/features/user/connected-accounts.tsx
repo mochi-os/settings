@@ -62,7 +62,7 @@ import {
   toast,
   useFormat,
   type Account,
-  type Provider, naturalCompare,} from '@mochi/web'
+  type Provider, naturalCompare, textUnchanged,} from '@mochi/web'
 
 const APP_BASE = getAppPath()
 
@@ -397,6 +397,7 @@ export function ConnectedAccounts() {
       await requestHelpers.post(`${APP_BASE}/-/accounts/default`, formData.toString(), {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       })
+      toast.success(t`Default AI account updated`)
       refetch()
     } catch (error) {
       toast.error(getErrorMessage(error, t`Failed to update default`))
@@ -553,15 +554,31 @@ function AccountSettingsDialog({
   const isAi = account.type === 'claude' || account.type === 'openai'
   const modelPlaceholder = t`default`
 
+  const origLabel = account.label || getAccountDisplayName(account)
+  const origModel = account.identifier === 'default' ? '' : account.identifier || ''
+  const origDefault = account.default === 'ai'
+
+  const labelDirty = !textUnchanged(nameValue, origLabel)
+  const modelDirty = isAi && !textUnchanged(modelValue, origModel)
+  const defaultDirty = isAi && isDefault !== origDefault
+  const settingsDirty = labelDirty || modelDirty
+  const dialogDirty = settingsDirty || defaultDirty
+
   const handleSave = async () => {
-    const fields: Record<string, string> = { label: nameValue }
-    if (isAi) {
-      fields.model = modelValue
-      if (isDefault !== (account.default === 'ai')) {
-        await onSetDefault(account.id, isDefault)
-      }
+    if (!dialogDirty) {
+      onOpenChange(false)
+      return
     }
-    await onSave(account.id, fields)
+    if (isAi && defaultDirty) {
+      await onSetDefault(account.id, isDefault)
+    }
+    if (settingsDirty) {
+      const fields: Record<string, string> = { label: nameValue }
+      if (isAi) {
+        fields.model = modelValue
+      }
+      await onSave(account.id, fields)
+    }
     onOpenChange(false)
   }
 
@@ -606,7 +623,10 @@ function AccountSettingsDialog({
           <Button variant='outline' onClick={() => onOpenChange(false)}>
             <Trans>Cancel</Trans>
           </Button>
-          <Button onClick={() => void handleSave()}><Check className='size-4' /><Trans>Save</Trans></Button>
+          <Button onClick={() => void handleSave()} disabled={!dialogDirty}>
+            <Check className='size-4' />
+            <Trans>Save</Trans>
+          </Button>
         </ResponsiveDialogFooter>
       </ResponsiveDialogContent>
     </ResponsiveDialog>

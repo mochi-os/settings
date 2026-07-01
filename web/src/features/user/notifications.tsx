@@ -51,7 +51,7 @@ import {
   requestHelpers,
   toast,
   usePageTitle,
-  usePush, naturalCompare, getProviderLabel,} from '@mochi/web'
+  usePush, naturalCompare, getProviderLabel, textUnchanged, setsEqual,} from '@mochi/web'
 import endpoints from '@/api/endpoints'
 
 type TabId = 'categories' | 'topics'
@@ -441,9 +441,22 @@ function CategoryDialog({
     })
   }
 
+  const categoryDirty = useMemo(() => {
+    if (!category) return true
+    if (!textUnchanged(label.trim(), category.label)) return true
+    if (isDefault !== (category.default === 1)) return true
+    if (isSuppress) return false
+    const originalKeys = new Set(category.destinations.map((d) => destKey(d.type, d.target)))
+    return !setsEqual(checked, originalKeys)
+  }, [category, label, isDefault, isSuppress, checked])
+
   const handleSave = async () => {
     if (!label.trim()) {
       toast.error(t`Label is required`)
+      return
+    }
+    if (category && !categoryDirty) {
+      onClose()
       return
     }
     setSaving(true)
@@ -521,7 +534,7 @@ function CategoryDialog({
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={onClose} disabled={saving}><Trans>Cancel</Trans></Button>
-          <Button onClick={handleSave} disabled={saving}>
+          <Button onClick={handleSave} disabled={saving || (category !== undefined && !categoryDirty)}>
             {saving && <Loader2 className="me-2 h-4 w-4 animate-spin" />}
             <Trans>Save</Trans>
           </Button>
