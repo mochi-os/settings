@@ -65,12 +65,6 @@ const endpoints = {
     accountCodeVerify: '-/user/account/code/verify',
     accountPasskeyVerifyBegin: '-/user/account/passkey/verify/begin',
     accountPasskeyVerifyFinish: '-/user/account/passkey/verify/finish',
-    // Replication
-    replication: '-/user/replication/data',
-    replicationApprove: '-/user/replication/approve',
-    replicationDeny: '-/user/replication/deny',
-    replicationLeave: '-/user/replication/leave',
-    replicationRemove: '-/user/replication/remove',
   },
   system: {
     peers: '-/system/peers',
@@ -91,11 +85,6 @@ const endpoints = {
     usersSessions: '-/system/users/sessions',
     usersSessionsRevoke: '-/system/users/sessions/revoke',
     update: '-/system/update',
-    // System replication (Pair page)
-    replication: '-/system/replication/data',
-    replicationJoinApprove: '-/system/replication/join/approve',
-    replicationJoinDeny: '-/system/replication/join/deny',
-    replicationPairRemove: '-/system/replication/pair/remove',
   },
   notifications: {
     categories: '-/notifications/categories',

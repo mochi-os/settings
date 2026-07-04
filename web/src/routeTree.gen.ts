@@ -19,7 +19,6 @@ import { Route as errors403RouteImport } from './routes/(errors)/403'
 import { Route as errors401RouteImport } from './routes/(errors)/401'
 import { Route as AuthenticatedUserTokensRouteImport } from './routes/_authenticated/user/tokens'
 import { Route as AuthenticatedUserSessionsRouteImport } from './routes/_authenticated/user/sessions'
-import { Route as AuthenticatedUserReplicationRouteImport } from './routes/_authenticated/user/replication'
 import { Route as AuthenticatedUserPreferencesRouteImport } from './routes/_authenticated/user/preferences'
 import { Route as AuthenticatedUserNotificationsRouteImport } from './routes/_authenticated/user/notifications'
 import { Route as AuthenticatedUserLoginRouteImport } from './routes/_authenticated/user/login'
@@ -30,7 +29,6 @@ import { Route as AuthenticatedUserAccountRouteImport } from './routes/_authenti
 import { Route as AuthenticatedSystemUsersRouteImport } from './routes/_authenticated/system/users'
 import { Route as AuthenticatedSystemStatusRouteImport } from './routes/_authenticated/system/status'
 import { Route as AuthenticatedSystemSettingsRouteImport } from './routes/_authenticated/system/settings'
-import { Route as AuthenticatedSystemReplicationRouteImport } from './routes/_authenticated/system/replication'
 import { Route as AuthenticatedSystemDocumentsRouteImport } from './routes/_authenticated/system/documents'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 import { Route as AuthenticatedDocumentTermsRouteImport } from './routes/_authenticated/document/terms'
@@ -85,12 +83,6 @@ const AuthenticatedUserSessionsRoute =
   AuthenticatedUserSessionsRouteImport.update({
     id: '/user/sessions',
     path: '/user/sessions',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedUserReplicationRoute =
-  AuthenticatedUserReplicationRouteImport.update({
-    id: '/user/replication',
-    path: '/user/replication',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedUserPreferencesRoute =
@@ -152,12 +144,6 @@ const AuthenticatedSystemSettingsRoute =
     path: '/system/settings',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedSystemReplicationRoute =
-  AuthenticatedSystemReplicationRouteImport.update({
-    id: '/system/replication',
-    path: '/system/replication',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
 const AuthenticatedSystemDocumentsRoute =
   AuthenticatedSystemDocumentsRouteImport.update({
     id: '/system/documents',
@@ -202,7 +188,6 @@ export interface FileRoutesByFullPath {
   '/document/terms': typeof AuthenticatedDocumentTermsRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/system/documents': typeof AuthenticatedSystemDocumentsRoute
-  '/system/replication': typeof AuthenticatedSystemReplicationRoute
   '/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/system/status': typeof AuthenticatedSystemStatusRoute
   '/system/users': typeof AuthenticatedSystemUsersRoute
@@ -213,7 +198,6 @@ export interface FileRoutesByFullPath {
   '/user/login': typeof AuthenticatedUserLoginRoute
   '/user/notifications': typeof AuthenticatedUserNotificationsRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
-  '/user/replication': typeof AuthenticatedUserReplicationRoute
   '/user/sessions': typeof AuthenticatedUserSessionsRoute
   '/user/tokens': typeof AuthenticatedUserTokensRoute
 }
@@ -230,7 +214,6 @@ export interface FileRoutesByTo {
   '/document/terms': typeof AuthenticatedDocumentTermsRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/system/documents': typeof AuthenticatedSystemDocumentsRoute
-  '/system/replication': typeof AuthenticatedSystemReplicationRoute
   '/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/system/status': typeof AuthenticatedSystemStatusRoute
   '/system/users': typeof AuthenticatedSystemUsersRoute
@@ -241,7 +224,6 @@ export interface FileRoutesByTo {
   '/user/login': typeof AuthenticatedUserLoginRoute
   '/user/notifications': typeof AuthenticatedUserNotificationsRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
-  '/user/replication': typeof AuthenticatedUserReplicationRoute
   '/user/sessions': typeof AuthenticatedUserSessionsRoute
   '/user/tokens': typeof AuthenticatedUserTokensRoute
 }
@@ -260,7 +242,6 @@ export interface FileRoutesById {
   '/_authenticated/document/terms': typeof AuthenticatedDocumentTermsRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/_authenticated/system/documents': typeof AuthenticatedSystemDocumentsRoute
-  '/_authenticated/system/replication': typeof AuthenticatedSystemReplicationRoute
   '/_authenticated/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/_authenticated/system/status': typeof AuthenticatedSystemStatusRoute
   '/_authenticated/system/users': typeof AuthenticatedSystemUsersRoute
@@ -271,7 +252,6 @@ export interface FileRoutesById {
   '/_authenticated/user/login': typeof AuthenticatedUserLoginRoute
   '/_authenticated/user/notifications': typeof AuthenticatedUserNotificationsRoute
   '/_authenticated/user/preferences': typeof AuthenticatedUserPreferencesRoute
-  '/_authenticated/user/replication': typeof AuthenticatedUserReplicationRoute
   '/_authenticated/user/sessions': typeof AuthenticatedUserSessionsRoute
   '/_authenticated/user/tokens': typeof AuthenticatedUserTokensRoute
 }
@@ -290,7 +270,6 @@ export interface FileRouteTypes {
     | '/document/terms'
     | '/errors/$error'
     | '/system/documents'
-    | '/system/replication'
     | '/system/settings'
     | '/system/status'
     | '/system/users'
@@ -301,7 +280,6 @@ export interface FileRouteTypes {
     | '/user/login'
     | '/user/notifications'
     | '/user/preferences'
-    | '/user/replication'
     | '/user/sessions'
     | '/user/tokens'
   fileRoutesByTo: FileRoutesByTo
@@ -318,7 +296,6 @@ export interface FileRouteTypes {
     | '/document/terms'
     | '/errors/$error'
     | '/system/documents'
-    | '/system/replication'
     | '/system/settings'
     | '/system/status'
     | '/system/users'
@@ -329,7 +306,6 @@ export interface FileRouteTypes {
     | '/user/login'
     | '/user/notifications'
     | '/user/preferences'
-    | '/user/replication'
     | '/user/sessions'
     | '/user/tokens'
   id:
@@ -347,7 +323,6 @@ export interface FileRouteTypes {
     | '/_authenticated/document/terms'
     | '/_authenticated/errors/$error'
     | '/_authenticated/system/documents'
-    | '/_authenticated/system/replication'
     | '/_authenticated/system/settings'
     | '/_authenticated/system/status'
     | '/_authenticated/system/users'
@@ -358,7 +333,6 @@ export interface FileRouteTypes {
     | '/_authenticated/user/login'
     | '/_authenticated/user/notifications'
     | '/_authenticated/user/preferences'
-    | '/_authenticated/user/replication'
     | '/_authenticated/user/sessions'
     | '/_authenticated/user/tokens'
   fileRoutesById: FileRoutesById
@@ -444,13 +418,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedUserSessionsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/user/replication': {
-      id: '/_authenticated/user/replication'
-      path: '/user/replication'
-      fullPath: '/user/replication'
-      preLoaderRoute: typeof AuthenticatedUserReplicationRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/user/preferences': {
       id: '/_authenticated/user/preferences'
       path: '/user/preferences'
@@ -521,13 +488,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSystemSettingsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/system/replication': {
-      id: '/_authenticated/system/replication'
-      path: '/system/replication'
-      fullPath: '/system/replication'
-      preLoaderRoute: typeof AuthenticatedSystemReplicationRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/system/documents': {
       id: '/_authenticated/system/documents'
       path: '/system/documents'
@@ -574,7 +534,6 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDocumentTermsRoute: typeof AuthenticatedDocumentTermsRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
   AuthenticatedSystemDocumentsRoute: typeof AuthenticatedSystemDocumentsRoute
-  AuthenticatedSystemReplicationRoute: typeof AuthenticatedSystemReplicationRoute
   AuthenticatedSystemSettingsRoute: typeof AuthenticatedSystemSettingsRoute
   AuthenticatedSystemStatusRoute: typeof AuthenticatedSystemStatusRoute
   AuthenticatedSystemUsersRoute: typeof AuthenticatedSystemUsersRoute
@@ -585,7 +544,6 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedUserLoginRoute: typeof AuthenticatedUserLoginRoute
   AuthenticatedUserNotificationsRoute: typeof AuthenticatedUserNotificationsRoute
   AuthenticatedUserPreferencesRoute: typeof AuthenticatedUserPreferencesRoute
-  AuthenticatedUserReplicationRoute: typeof AuthenticatedUserReplicationRoute
   AuthenticatedUserSessionsRoute: typeof AuthenticatedUserSessionsRoute
   AuthenticatedUserTokensRoute: typeof AuthenticatedUserTokensRoute
 }
@@ -598,7 +556,6 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDocumentTermsRoute: AuthenticatedDocumentTermsRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
   AuthenticatedSystemDocumentsRoute: AuthenticatedSystemDocumentsRoute,
-  AuthenticatedSystemReplicationRoute: AuthenticatedSystemReplicationRoute,
   AuthenticatedSystemSettingsRoute: AuthenticatedSystemSettingsRoute,
   AuthenticatedSystemStatusRoute: AuthenticatedSystemStatusRoute,
   AuthenticatedSystemUsersRoute: AuthenticatedSystemUsersRoute,
@@ -609,7 +566,6 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedUserLoginRoute: AuthenticatedUserLoginRoute,
   AuthenticatedUserNotificationsRoute: AuthenticatedUserNotificationsRoute,
   AuthenticatedUserPreferencesRoute: AuthenticatedUserPreferencesRoute,
-  AuthenticatedUserReplicationRoute: AuthenticatedUserReplicationRoute,
   AuthenticatedUserSessionsRoute: AuthenticatedUserSessionsRoute,
   AuthenticatedUserTokensRoute: AuthenticatedUserTokensRoute,
 }
