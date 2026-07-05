@@ -65,8 +65,16 @@ export function colorThemeFromSelections(
   const styleOverrides = effectiveDensity ? presets?.[effectiveDensity] : null
 
   const overrides: Record<string, string> = { ...(theme?.overrides ?? {}) }
-  if (theme?.background_url && showBackground) {
-    overrides['--background-image'] = `url(${theme.background_url})`
+  // Mirror the server's theme style: the standard gentle gradient, tinted by
+  // the theme through var(--primary), suppressed when background is off.
+  if (showBackground) {
+    overrides['--background-image'] =
+      'radial-gradient(ellipse at top, color-mix(in oklch, var(--primary) 12%, transparent), transparent 70%)'
+    overrides['--background-size'] = '100% 420px'
+    overrides['--background-position'] = 'top center'
+    overrides['--background-repeat'] = 'no-repeat'
+  } else {
+    overrides['--background-image'] = 'none'
   }
   if (effectiveRadius) {
     overrides['--radius'] = effectiveRadius
