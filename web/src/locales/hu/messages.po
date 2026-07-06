@@ -84,6 +84,10 @@ msgstr "3. Kód ellenőrzése"
 msgid "Absolute (date and time)"
 msgstr "Abszolút (dátum és idő)"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:60
+msgid "Access denied"
+msgstr "Hozzáférés megtagadva"
+
 #: ../../../lib/web/src/features/errors/forbidden.tsx:16
 msgid "Access Forbidden"
 msgstr "Hozzáférés tiltva"
@@ -92,8 +96,8 @@ msgstr "Hozzáférés tiltva"
 msgid "Access level"
 msgstr "Hozzáférési szint"
 
-#: src/components/layout/data/sidebar-data.ts:34
-#: src/components/layout/data/sidebar-data.ts:55
+#: src/components/layout/data/sidebar-data.ts:33
+#: src/components/layout/data/sidebar-data.ts:53
 #: src/features/user/account.tsx:120
 #: src/features/user/account.tsx:128
 msgid "Account"
@@ -213,7 +217,6 @@ msgid "Add view"
 msgstr "Nézet hozzáadása"
 
 #: src/features/user/connected-accounts.tsx:476
-#: src/features/user/replication.tsx:341
 msgid "Added"
 msgstr "Hozzáadva"
 
@@ -265,21 +268,13 @@ msgstr "Engedélyezett"
 msgid "An error occurred"
 msgstr "Hiba történt"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:241
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:256
 msgid "An unexpected error occurred"
 msgstr "Váratlan hiba történt"
 
 #: src/features/system/settings.tsx:56
 msgid "Announce hostname and domains to other servers"
 msgstr "Gazdagépnév és tartományok bejelentése más kiszolgálóknak"
-
-#: src/features/user/replication.tsx:306
-msgid "Another server is asking to host a copy of your account. Approve to send a copy."
-msgstr "Egy másik szerver szeretne egy másolatot tárolni a fiókodról. Hagyd jóvá másolat küldéséhez."
-
-#: src/features/system/replication.tsx:256
-msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
-msgstr "Egy másik kiszolgáló párosítást kér ezzel a kiszolgálóval. Hagyja jóvá, hogy teljes körű replikációs partnerként rögzítse."
 
 #: src/features/domains/index.tsx:262
 #: src/features/domains/index.tsx:450
@@ -289,26 +284,6 @@ msgstr "Alkalmazás"
 #: src/features/user/display.tsx:215
 msgid "Appearance"
 msgstr "Megjelenés"
-
-#: src/features/system/replication.tsx:84
-#: src/features/user/replication.tsx:76
-msgid "Approval failed"
-msgstr "Jóváhagyás sikertelen"
-
-#: src/features/system/replication.tsx:104
-#: src/features/user/replication.tsx:102
-msgid "Approve"
-msgstr "Jóváhagyás"
-
-#: src/features/system/replication.tsx:124
-#: src/features/user/replication.tsx:112
-msgid "Approve request"
-msgstr "Kérés jóváhagyása"
-
-#: src/features/system/replication.tsx:125
-#: src/features/user/replication.tsx:113
-msgid "Approving replicates private keys to that server. Verify it's you to continue."
-msgstr "A jóváhagyás átmásolja a titkos kulcsokat arra a kiszolgálóra. A folytatáshoz igazolja, hogy ön az."
 
 #: ../../../lib/web/src/components/sign-out-dialog.tsx:27
 msgid "Are you sure you want to log out? You will need to log in again to access your account."
@@ -388,7 +363,6 @@ msgstr "Böngészőértesítések"
 #: src/features/domains/index.tsx:338
 #: src/features/domains/index.tsx:536
 #: src/features/domains/index.tsx:682
-#: src/features/system/replication.tsx:186
 #: src/features/system/settings.tsx:289
 #: src/features/system/settings.tsx:331
 #: src/features/system/settings.tsx:454
@@ -401,7 +375,6 @@ msgstr "Böngészőértesítések"
 #: src/features/user/notifications.tsx:536
 #: src/features/user/notifications.tsx:639
 #: src/features/user/preferences.tsx:233
-#: src/features/user/replication.tsx:212
 #: src/features/user/sessions.tsx:107
 msgid "Cancel"
 msgstr "Mégse"
@@ -414,7 +387,7 @@ msgstr "Kártya stílusa"
 msgid "Categories"
 msgstr "Kategóriák"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:144
+#: ../../../lib/web/src/components/notification-category-button.tsx:143
 msgid "Category for this notification"
 msgstr "Az értesítés kategóriája"
 
@@ -422,8 +395,8 @@ msgstr "Az értesítés kategóriája"
 msgid "Change current notifications to"
 msgstr "Jelenlegi értesítések módosítása erre"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:125
-#: ../../../lib/web/src/components/notification-category-button.tsx:136
+#: ../../../lib/web/src/components/notification-category-button.tsx:124
+#: ../../../lib/web/src/components/notification-category-button.tsx:135
 msgid "Change notification category"
 msgstr "Értesítési kategória módosítása"
 
@@ -549,7 +522,6 @@ msgstr "Beállítva"
 msgid "Confirm"
 msgstr "Megerősítés"
 
-#: src/features/user/replication.tsx:225
 #: src/lib/use-step-up.tsx:33
 msgid "Confirm it's you"
 msgstr "Igazolja, hogy ön az"
@@ -560,8 +532,8 @@ msgstr "Igazolja, hogy ön az"
 msgid "Connected"
 msgstr "Csatlakoztatva"
 
-#: src/components/layout/data/sidebar-data.ts:38
-#: src/components/layout/data/sidebar-data.ts:59
+#: src/components/layout/data/sidebar-data.ts:37
+#: src/components/layout/data/sidebar-data.ts:57
 #: src/features/user/connected-accounts.tsx:299
 #: src/features/user/connected-accounts.tsx:436
 msgid "Connected accounts"
@@ -595,10 +567,6 @@ msgstr "Másolás"
 msgid "Copy all"
 msgstr "Összes másolása"
 
-#: src/features/system/replication.tsx:247
-msgid "Copy peer id"
-msgstr "Társazonosító másolása"
-
 #: src/features/user/tokens.tsx:178
 msgid "Copy your token now. You will not be able to see it again."
 msgstr "Másold most a tokent. Később nem fogod látni."
@@ -607,15 +575,6 @@ msgstr "Másold most a tokent. Később nem fogod látni."
 msgid "Could not close your account"
 msgstr "Nem sikerült bezárni a fiókját"
 
-#: src/features/system/replication.tsx:113
-#: src/features/user/replication.tsx:83
-msgid "Could not deny request"
-msgstr "Nem sikerült elutasítani a kérelmet"
-
-#: src/features/user/replication.tsx:173
-msgid "Could not forget host"
-msgstr "A kiszolgáló elfelejtése nem sikerült"
-
 #: src/features/user/login.tsx:925
 msgid "Could not link account"
 msgstr "A fiók összekapcsolása sikertelen"
@@ -623,14 +582,6 @@ msgstr "A fiók összekapcsolása sikertelen"
 #: ../../../lib/web/src/features/document/document-page.tsx:84
 msgid "Could not load this document. Please try again later."
 msgstr "Nem sikerült betölteni ezt a dokumentumot. Próbálja újra később."
-
-#: src/features/system/replication.tsx:191
-msgid "Could not remove pair member"
-msgstr "Nem sikerült eltávolítani a páros tagját"
-
-#: src/features/user/replication.tsx:235
-msgid "Could not remove your account from this server"
-msgstr "A fiókod eltávolítása erről a kiszolgálóról nem sikerült"
 
 #: src/features/user/login.tsx:799
 msgid "Could not start linking"
@@ -697,6 +648,10 @@ msgstr "Sötét"
 #: ../../../lib/web/src/components/profile-dropdown.tsx:123
 msgid "Dark mode"
 msgstr "Sötét mód"
+
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:240
+msgid "Data conflict"
+msgstr "Adatütközés"
 
 #: src/features/user/preferences.tsx:295
 msgid "Date format"
@@ -828,11 +783,6 @@ msgstr "Törlés..."
 msgid "Density"
 msgstr "Sűrűség"
 
-#: src/features/system/replication.tsx:118
-#: src/features/user/replication.tsx:106
-msgid "Deny"
-msgstr "Megtagadás"
-
 #: ../../../lib/web/src/components/data-table/column-header.tsx:63
 msgid "Desc"
 msgstr "Csökkenő"
@@ -893,8 +843,8 @@ msgstr "Leválasztva"
 msgid "Dismiss"
 msgstr "Elvetés"
 
-#: src/components/layout/data/sidebar-data.ts:37
-#: src/components/layout/data/sidebar-data.ts:58
+#: src/components/layout/data/sidebar-data.ts:36
+#: src/components/layout/data/sidebar-data.ts:56
 #: src/features/user/display.tsx:95
 #: src/features/user/display.tsx:172
 msgid "Display"
@@ -916,7 +866,7 @@ msgstr "DNS-ellenőrzés"
 msgid "Document saved"
 msgstr "Dokumentum mentve"
 
-#: src/components/layout/data/sidebar-data.ts:71
+#: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/documents.tsx:166
 #: src/features/system/documents.tsx:235
 msgid "Documents"
@@ -947,7 +897,7 @@ msgstr "Tartomány frissítve"
 msgid "Domain verified"
 msgstr "Tartomány ellenőrizve"
 
-#: src/components/layout/data/sidebar-data.ts:78
+#: src/components/layout/data/sidebar-data.ts:74
 #: src/features/domains/index.tsx:1153
 #: src/features/domains/index.tsx:1181
 #: src/features/domains/index.tsx:1193
@@ -1110,10 +1060,6 @@ msgstr "Nem sikerült hozzáadni a fiókot"
 msgid "Failed to add interest"
 msgstr "Nem sikerült hozzáadni az érdeklődést"
 
-#: src/features/system/replication.tsx:243
-msgid "Failed to copy"
-msgstr "Nem sikerült másolni"
-
 #: src/features/domains/index.tsx:586
 msgid "Failed to create delegation"
 msgstr "Nem sikerült létrehozni a delegálást"
@@ -1242,7 +1188,7 @@ msgstr "Nem sikerült frissíteni a fiókot"
 msgid "Failed to update browser notifications"
 msgstr "Nem sikerült frissíteni a böngésző értesítéseit"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:112
+#: ../../../lib/web/src/components/notification-category-button.tsx:111
 msgid "Failed to update category"
 msgstr "Nem sikerült frissíteni a kategóriát"
 
@@ -1342,21 +1288,11 @@ msgstr "Betűtípus"
 msgid "Font size"
 msgstr "Betűméret"
 
-#: src/features/user/replication.tsx:160
-msgid "Forget this unreachable host"
-msgstr "Az elérhetetlen kiszolgáló elfelejtése"
-
-#: src/features/user/replication.tsx:165
-msgid "Forget this unreachable host?"
-msgstr "Elfelejted ezt az elérhetetlen kiszolgálót?"
-
 #: ../../../lib/web/src/lib/preference-utils.ts:63
 msgid "Friday"
 msgstr "Péntek"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:153
-#: src/features/system/replication.tsx:263
-#: src/features/user/replication.tsx:311
 msgid "From"
 msgstr "Kezdete"
 
@@ -1463,10 +1399,6 @@ msgstr "Lyukasztás"
 msgid "Home"
 msgstr "Kezdőlap"
 
-#: src/features/user/replication.tsx:172
-msgid "Host forgotten"
-msgstr "Kiszolgáló elfelejtve"
-
 #: src/features/system/settings.tsx:55
 msgid "Hostname announced to other servers"
 msgstr "Más kiszolgálóknak bejelentett gazdagépnév"
@@ -1506,8 +1438,8 @@ msgid "Installing {0}…"
 msgstr "A(z) {0} telepítése folyamatban…"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:42
-#: src/components/layout/data/sidebar-data.ts:43
-#: src/components/layout/data/sidebar-data.ts:64
+#: src/components/layout/data/sidebar-data.ts:41
+#: src/components/layout/data/sidebar-data.ts:61
 #: src/features/user/interests.tsx:230
 #: src/features/user/interests.tsx:251
 msgid "Interests"
@@ -1525,23 +1457,6 @@ msgstr "Érvénytelen ellenőrző kód"
 #: src/features/system/users.tsx:322
 msgid "IP Address"
 msgstr "IP-cím"
-
-#: src/features/system/replication.tsx:156
-#: src/features/user/replication.tsx:139
-msgid "Irreparable"
-msgstr "Helyrehozhatatlan"
-
-#: src/features/user/replication.tsx:166
-msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
-msgstr "Eltávolítjuk a replikakészletedből, és újracsatlakozáskor felkérjük a másolata törlésére. Elérhető kiszolgáló eltávolításához jelentkezz be oda, és használd a „Fiókom eltávolítása erről a kiszolgálóról” lehetőséget. A folytatáshoz igazold, hogy te vagy az."
-
-#: src/features/system/replication.tsx:82
-msgid "Join request approved"
-msgstr "Csatlakozási kérelem jóváhagyva"
-
-#: src/features/system/replication.tsx:112
-msgid "Join request denied"
-msgstr "Csatlakozási kérelem elutasítva"
 
 #: src/features/system/status.tsx:175
 msgid "Known"
@@ -1658,8 +1573,8 @@ msgstr "Sikeres kijelentkezés"
 msgid "Logging out…"
 msgstr "Kijelentkezés…"
 
-#: src/components/layout/data/sidebar-data.ts:35
-#: src/components/layout/data/sidebar-data.ts:56
+#: src/components/layout/data/sidebar-data.ts:34
+#: src/components/layout/data/sidebar-data.ts:54
 #: src/features/system/settings.tsx:565
 #: src/features/user/login.tsx:897
 #: src/features/user/login.tsx:944
@@ -1702,7 +1617,7 @@ msgstr "Mindenképp mentse el az új kódokat."
 msgid "Manage sessions"
 msgstr "Munkamenetek kezelése"
 
-#: src/components/layout/data/sidebar-data.ts:86
+#: src/components/layout/data/sidebar-data.ts:82
 msgid "Management"
 msgstr "Kezelés"
 
@@ -1768,10 +1683,6 @@ msgstr "Hétfő"
 msgid "My application"
 msgstr "Saját alkalmazásom"
 
-#: src/features/user/replication.tsx:323
-msgid "My hosts"
-msgstr "Saját gazdagépeim"
-
 #: src/features/user/login.tsx:381
 msgid "My passkey"
 msgstr "Saját passkey-em"
@@ -1793,7 +1704,8 @@ msgstr "A név kötelező"
 msgid "Name updated"
 msgstr "Név frissítve"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:288
+#: ../../../lib/web/src/features/errors/general-error.tsx:53
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:303
 msgid "Network error"
 msgstr "Hálózati hiba"
 
@@ -1914,7 +1826,7 @@ msgstr "Nincsenek beállított útvonalak"
 msgid "No time zone found."
 msgstr "Nem található időzóna."
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:148
+#: ../../../lib/web/src/components/notification-category-button.tsx:147
 msgid "No topic record yet — try again after the next notification."
 msgstr "Még nincs téma rekord — próbálja újra a következő értesítés után."
 
@@ -1942,6 +1854,10 @@ msgstr "Nincs"
 msgid "Normal"
 msgstr "Normál"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:67
+msgid "Not found"
+msgstr "Nem található"
+
 #: ../../../lib/web/src/components/ui/editable-field-row.tsx:146
 msgid "Not set"
 msgstr "Nincs beállítva"
@@ -1951,8 +1867,8 @@ msgstr "Nincs beállítva"
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:236
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:257
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:261
-#: src/components/layout/data/sidebar-data.ts:39
-#: src/components/layout/data/sidebar-data.ts:60
+#: src/components/layout/data/sidebar-data.ts:38
+#: src/components/layout/data/sidebar-data.ts:58
 #: src/features/user/notifications.tsx:149
 #: src/features/user/notifications.tsx:167
 msgid "Notifications"
@@ -1966,13 +1882,6 @@ msgstr "Értesítés alapértelmezés szerint"
 #: src/features/user/preferences.tsx:284
 msgid "Number format"
 msgstr "Számformátum"
-
-#. placeholder {0}: offlineDuration(host.offline)
-#. placeholder {0}: offlineDuration(offline)
-#: src/features/system/replication.tsx:159
-#: src/features/user/replication.tsx:142
-msgid "Offline {0}"
-msgstr "Offline {0}"
 
 #: src/features/system/status.tsx:186
 msgid "Oldest queued message"
@@ -2031,10 +1940,6 @@ msgstr "Üzemeltető neve"
 msgid "Other"
 msgstr "Egyéb"
 
-#: src/features/user/replication.tsx:326
-msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
-msgstr "Más kiszolgálók, amelyek szintén tárolnak egy másolatot a fiókodról. Egy eltávolításához jelentkezz be az adott kiszolgálóra, és használd a „Fiókom eltávolítása erről a kiszolgálóról” lehetőséget."
-
 #: src/features/system/settings.tsx:601
 msgid "Other settings"
 msgstr "Egyéb beállítások"
@@ -2042,14 +1947,6 @@ msgstr "Egyéb beállítások"
 #: ../../../lib/web/src/features/access/access-list.tsx:217
 msgid "Owner"
 msgstr "Tulajdonos"
-
-#: src/features/system/replication.tsx:190
-msgid "Pair member removed"
-msgstr "Páros tagja eltávolítva"
-
-#: src/features/system/replication.tsx:275
-msgid "Pair members"
-msgstr "Páros tagjai"
 
 #: ../../../lib/web/src/components/step-up-dialog.tsx:334
 #: src/features/user/login.tsx:126
@@ -2102,9 +1999,7 @@ msgstr "Útvonal"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Az útvonal nem engedélyezett. Csak a következő alatt adhatsz hozzá útvonalakat: {0}"
 
-#: src/features/system/replication.tsx:287
 #: src/features/system/status.tsx:181
-#: src/features/user/replication.tsx:340
 msgid "Peer"
 msgstr "Társ"
 
@@ -2113,7 +2008,6 @@ msgid "Peer ID"
 msgstr "Társ azonosító"
 
 #: src/components/peer-identity.tsx:45
-#: src/features/system/replication.tsx:242
 msgid "Peer id copied"
 msgstr "Társazonosító másolva"
 
@@ -2125,19 +2019,13 @@ msgstr "Társak"
 msgid "Pending"
 msgstr "Függőben"
 
-#: src/features/system/replication.tsx:254
-msgid "Pending join requests"
-msgstr "Függőben lévő csatlakozási kérelmek"
-
-#: src/features/user/replication.tsx:304
-msgid "Pending requests"
-msgstr "Függő kérelmek"
-
 #: src/features/domains/index.tsx:1117
 msgid "Permanently delete this domain and all its routes."
 msgstr "Véglegesen törli ezt a tartományt és minden útvonalát."
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:289
+#: ../../../lib/web/src/features/errors/general-error.tsx:54
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:304
+#: ../../../lib/web/src/lib/error-normalizer.ts:201
 msgid "Please check your internet connection and try again."
 msgstr "Ellenőrizze az internetkapcsolatát, és próbálja újra."
 
@@ -2145,13 +2033,21 @@ msgstr "Ellenőrizze az internetkapcsolatát, és próbálja újra."
 msgid "Please enter a token name"
 msgstr "Adjon meg egy token nevet"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:83
+msgid "Please try again."
+msgstr "Próbálja újra."
+
+#: ../../../lib/web/src/features/errors/general-error.tsx:75
+msgid "Please wait a moment and try again."
+msgstr "Kérjük, várjon egy kicsit, majd próbálja újra."
+
 #: src/features/user/display.tsx:118
 #: src/features/user/preferences.tsx:178
 msgid "Preference updated"
 msgstr "Preferencia frissítve"
 
-#: src/components/layout/data/sidebar-data.ts:36
-#: src/components/layout/data/sidebar-data.ts:57
+#: src/components/layout/data/sidebar-data.ts:35
+#: src/components/layout/data/sidebar-data.ts:55
 #: src/features/user/preferences.tsx:70
 #: src/features/user/preferences.tsx:207
 msgid "Preferences"
@@ -2220,10 +2116,6 @@ msgstr "Sorban álló szórási üzenetek"
 msgid "Queued messages"
 msgstr "Sorban álló üzenetek"
 
-#: src/features/user/replication.tsx:271
-msgid "Quote both values on the destination server's sign-up form to replicate this account there."
-msgstr "Adja meg mindkét értéket a célszerver regisztrációs űrlapján, hogy ott replikálja ezt a fiókot."
-
 #: src/features/user/display.tsx:293
 msgid "Radius"
 msgstr "Sugár"
@@ -2244,8 +2136,8 @@ msgstr "Regisztrálja újra a hozzáférési kulcsait ezen a kiszolgálón"
 msgid "Reachability"
 msgstr "Elérhetőség"
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:219
-#: ../../../lib/web/src/components/search-entity-page.tsx:194
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:216
+#: ../../../lib/web/src/components/search-entity-page.tsx:240
 msgid "Recommended"
 msgstr "Ajánlott"
 
@@ -2303,10 +2195,8 @@ msgstr "Továbbító szolgáltatás"
 
 #: ../../../lib/web/src/features/access/access-list.tsx:265
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:180
-#: src/features/system/replication.tsx:195
 #: src/features/user/connected-accounts.tsx:278
 #: src/features/user/connected-accounts.tsx:288
-#: src/features/user/replication.tsx:217
 msgid "Remove"
 msgstr "Eltávolítás"
 
@@ -2333,25 +2223,9 @@ msgstr "Eltávolítja a fiókot?"
 msgid "Remove interest"
 msgstr "Érdeklődés eltávolítása"
 
-#: src/features/user/replication.tsx:198
-msgid "Remove my account from this server"
-msgstr "Fiókom eltávolítása erről a kiszolgálóról"
-
-#: src/features/system/replication.tsx:172
-msgid "Remove pair member"
-msgstr "Páros tagjának eltávolítása"
-
-#: src/features/system/replication.tsx:177
-msgid "Remove pair member?"
-msgstr "Eltávolítja a páros tagját?"
-
 #: src/features/system/users.tsx:463
 msgid "Remove suspension"
 msgstr "Felfüggesztés feloldása"
-
-#: src/features/user/replication.tsx:203
-msgid "Remove your account from this server?"
-msgstr "Eltávolítod a fiókodat erről a kiszolgálóról?"
 
 #: src/features/user/login.tsx:270
 msgid "Rename passkey"
@@ -2360,24 +2234,6 @@ msgstr "Hozzáférési kulcs átnevezése"
 #: src/features/system/settings.tsx:367
 msgid "Replace"
 msgstr "Csere"
-
-#: src/components/layout/data/sidebar-data.ts:42
-#: src/components/layout/data/sidebar-data.ts:63
-#: src/components/layout/data/sidebar-data.ts:73
-#: src/features/system/replication.tsx:207
-#: src/features/system/replication.tsx:221
-#: src/features/user/replication.tsx:247
-#: src/features/user/replication.tsx:258
-msgid "Replication"
-msgstr "Replikáció"
-
-#: src/features/user/replication.tsx:74
-msgid "Request approved"
-msgstr "Kérelem jóváhagyva"
-
-#: src/features/user/replication.tsx:82
-msgid "Request denied"
-msgstr "Kérelem elutasítva"
 
 #: src/features/system/settings.tsx:53
 msgid "Require domain verification"
@@ -2560,8 +2416,8 @@ msgstr "Felhasználók keresése..."
 msgid "Search..."
 msgstr "Keresés..."
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:177
-#: ../../../lib/web/src/components/search-entity-page.tsx:152
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:174
+#: ../../../lib/web/src/components/search-entity-page.tsx:198
 #: ../../../lib/web/src/features/access/access-dialog.tsx:202
 #: src/features/domains/index.tsx:650
 msgid "Searching..."
@@ -2635,14 +2491,10 @@ msgstr "E-mail küldése"
 msgid "Serif"
 msgstr "Talpas"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:245
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:271
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:260
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:286
 msgid "Server error"
 msgstr "Kiszolgálóhiba"
-
-#: src/features/user/replication.tsx:284
-msgid "Server peer ID"
-msgstr "Kiszolgáló társ azonosító"
 
 #: ../../../lib/web/src/components/server-documents-footer.tsx:19
 #: ../../../lib/web/src/features/document/document-page.tsx:40
@@ -2666,17 +2518,17 @@ msgstr "Kiszolgáló verziója"
 msgid "Session"
 msgstr "Munkamenet"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:209
-msgid "Session expired"
-msgstr "A munkamenet lejárt"
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:210
+msgid "Session expired. Please log in again."
+msgstr "A munkamenet lejárt. Kérjük, jelentkezzen be újra."
 
 #: src/features/system/users.tsx:282
 #: src/features/user/sessions.tsx:52
 msgid "Session revoked"
 msgstr "Munkamenet visszavonva"
 
-#: src/components/layout/data/sidebar-data.ts:41
-#: src/components/layout/data/sidebar-data.ts:62
+#: src/components/layout/data/sidebar-data.ts:40
+#: src/components/layout/data/sidebar-data.ts:60
 #: src/features/user/sessions.tsx:121
 #: src/features/user/sessions.tsx:129
 msgid "Sessions"
@@ -2705,9 +2557,9 @@ msgstr "Beállítás frissítve"
 #: ../../../lib/web/src/components/layout/nav-user.tsx:84
 #: ../../../lib/web/src/components/layout/nav-user.tsx:148
 #: ../../../lib/web/src/components/layout/nav-user.tsx:198
-#: src/components/layout/data/sidebar-data.ts:32
-#: src/components/layout/data/sidebar-data.ts:53
-#: src/components/layout/data/sidebar-data.ts:95
+#: src/components/layout/data/sidebar-data.ts:31
+#: src/components/layout/data/sidebar-data.ts:51
+#: src/components/layout/data/sidebar-data.ts:91
 #: src/features/user/connected-accounts.tsx:272
 msgid "Settings"
 msgstr "Beállítások"
@@ -2759,9 +2611,8 @@ msgstr "Tágas"
 msgid "Started"
 msgstr "Elindítva"
 
-#: src/components/layout/data/sidebar-data.ts:74
+#: src/components/layout/data/sidebar-data.ts:70
 #: src/features/domains/index.tsx:1040
-#: src/features/system/replication.tsx:288
 #: src/features/system/status.tsx:41
 #: src/features/system/status.tsx:57
 #: src/features/system/status.tsx:182
@@ -2802,22 +2653,14 @@ msgstr "Felfüggesztve"
 msgid "Suspension removed"
 msgstr "Felfüggesztés eltávolítva"
 
-#: src/features/system/replication.tsx:162
-msgid "Synced"
-msgstr "Szinkronizálva"
-
-#: src/features/system/replication.tsx:164
-msgid "Syncing"
-msgstr "Szinkronizálás"
-
 #: ../../../lib/web/src/components/config-drawer.tsx:208
 #: ../../../lib/web/src/lib/preference-utils.ts:21
 #: ../../../lib/web/src/lib/preference-utils.ts:144
-#: src/components/layout/data/sidebar-data.ts:68
+#: src/components/layout/data/sidebar-data.ts:65
 msgid "System"
 msgstr "Rendszer"
 
-#: src/components/layout/data/sidebar-data.ts:70
+#: src/components/layout/data/sidebar-data.ts:67
 #: src/features/system/settings.tsx:472
 #: src/features/system/settings.tsx:556
 msgid "System settings"
@@ -2878,6 +2721,10 @@ msgstr "Ez az e-mail már egy másik fiókhoz van regisztrálva"
 msgid "The \"No notifications\" category silences any topic assigned to it."
 msgstr "A „Nincs értesítés” kategória elnémít minden hozzárendelt témát."
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:68
+msgid "The requested content could not be found."
+msgstr "A kért tartalom nem található."
+
 #: ../../../lib/web/src/components/config-drawer.tsx:194
 #: src/features/user/display.tsx:233
 #: src/features/user/display.tsx:260
@@ -2898,14 +2745,6 @@ msgstr "Téma frissítve"
 msgid "Third-party login"
 msgstr "Harmadik fél általi bejelentkezés"
 
-#: src/features/user/replication.tsx:269
-msgid "This account"
-msgstr "Ez a fiók"
-
-#: src/features/user/replication.tsx:332
-msgid "This account is on this server only"
-msgstr "Ez a fiók csak ezen a szerveren található"
-
 #: src/features/user/data.tsx:124
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Ez egy teljes biztonsági mentés, amelyet visszaállíthat ezen vagy egy másik Mochi-kiszolgálón. A folytatáshoz igazolja, hogy ön az."
@@ -2913,22 +2752,6 @@ msgstr "Ez egy teljes biztonsági mentés, amelyet visszaállíthat ezen vagy eg
 #: src/lib/use-step-up.tsx:34
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Ez egy biztonsági módosítás a fiókján. A folytatáshoz igazolja, hogy ön az."
-
-#: src/features/user/replication.tsx:226
-msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
-msgstr "Ez véglegesen törli a fiókod adatait ezen a kiszolgálón. A folytatáshoz igazold, hogy te vagy az."
-
-#: src/features/system/replication.tsx:231
-msgid "This server"
-msgstr "Ez a kiszolgáló"
-
-#: src/features/system/replication.tsx:279
-msgid "This server is not paired."
-msgstr "Ez a kiszolgáló nincs párosítva."
-
-#: src/features/system/replication.tsx:179
-msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
-msgstr "Ez a kiszolgáló leállítja a párosítást azzal a társsal. Az eltávolított kiszolgáló megőrzi az összes felhasználó helyi másolatát; az ottani üzemeltetőnek kézzel kell törölnie."
 
 #: src/features/system/users.tsx:355
 msgid "This user has no active sessions."
@@ -3016,10 +2839,6 @@ msgstr "Időbélyegek"
 msgid "TLS Enabled"
 msgstr "TLS engedélyezve"
 
-#: src/features/user/replication.tsx:333
-msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
-msgstr "Egy másik szerverre való replikációhoz regisztrálj egy fiókot ott, és használd a \"Meglévő fiók replikációja\" opciót."
-
 #: ../../../lib/web/src/components/data-table/view-options.tsx:37
 msgid "Toggle columns"
 msgstr "Oszlopok váltása"
@@ -3067,10 +2886,14 @@ msgstr "Token törölve"
 msgid "Token name"
 msgstr "Token neve"
 
-#: src/components/layout/data/sidebar-data.ts:40
-#: src/components/layout/data/sidebar-data.ts:61
+#: src/components/layout/data/sidebar-data.ts:39
+#: src/components/layout/data/sidebar-data.ts:59
 msgid "Tokens"
 msgstr "Tokenek"
+
+#: ../../../lib/web/src/features/errors/general-error.tsx:74
+msgid "Too many requests"
+msgstr "Túl sok kérés"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:45
 msgid "Top"
@@ -3088,13 +2911,13 @@ msgstr "Utazás"
 msgid "Try adjusting your search criteria"
 msgstr "Próbáld meg módosítani a keresési feltételeket"
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:193
-#: ../../../lib/web/src/components/search-entity-page.tsx:168
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:190
+#: ../../../lib/web/src/components/search-entity-page.tsx:214
 msgid "Try adjusting your search terms"
 msgstr "Próbálja módosítani a keresési kifejezéseket"
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:128
-#: ../../../lib/web/src/features/errors/general-error.tsx:168
+#: ../../../lib/web/src/features/errors/general-error.tsx:140
+#: ../../../lib/web/src/features/errors/general-error.tsx:180
 #: ../../../lib/web/src/features/errors/maintenance-error.tsx:19
 msgid "Try again"
 msgstr "Próbálja újra"
@@ -3123,7 +2946,7 @@ msgstr "Gépeljen a felhasználók kereséséhez"
 msgid "Type to search..."
 msgstr "Gépeljen a kereséshez..."
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:267
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:282
 msgid "Unable to connect to remote server"
 msgstr "Nem sikerült csatlakozni a távoli kiszolgálóhoz"
 
@@ -3132,7 +2955,7 @@ msgstr "Nem sikerült csatlakozni a távoli kiszolgálóhoz"
 msgid "Unable to redirect to login. Please try again."
 msgstr "Nem sikerült átirányítani a bejelentkezésre. Próbálja újra."
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:156
+#: ../../../lib/web/src/components/notification-category-button.tsx:155
 #: src/features/user/notifications.tsx:763
 msgid "Unassigned"
 msgstr "Hozzárendelés nélküli"
@@ -3152,7 +2975,6 @@ msgstr "Egységek"
 #: src/features/system/status.tsx:134
 #: src/features/system/status.tsx:135
 #: src/features/system/users.tsx:332
-#: src/features/user/replication.tsx:148
 msgid "Unknown"
 msgstr "Ismeretlen"
 
@@ -3199,10 +3021,6 @@ msgstr "Frissítés"
 msgid "URL to redirect to"
 msgstr "URL az átirányításhoz"
 
-#: src/features/system/replication.tsx:280
-msgid "Use \"mochictl replica join {peer}\" on a newly installed server to pair with this server."
-msgstr "Az ezzel a kiszolgálóval való párosításhoz használja a \"mochictl replica join {peer}\" parancsot egy frissen telepített kiszolgálón."
-
 #: src/features/domains/index.tsx:124
 msgid "Use *.domain.com for wildcard domains"
 msgstr "Használd a *.domain.com-ot helyettesítő karakteres domainekhez"
@@ -3246,11 +3064,10 @@ msgid "User updated"
 msgstr "Felhasználó frissítve"
 
 #: src/features/user/account.tsx:82
-#: src/features/user/replication.tsx:276
 msgid "Username"
 msgstr "Felhasználónév"
 
-#: src/components/layout/data/sidebar-data.ts:72
+#: src/components/layout/data/sidebar-data.ts:69
 #: src/features/system/status.tsx:140
 #: src/features/system/users.tsx:555
 #: src/features/system/users.tsx:593
@@ -3354,6 +3171,10 @@ msgstr "X kliensazonosító"
 msgid "X client secret"
 msgstr "X klienstitok"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:61
+msgid "You do not have access to this section."
+msgstr "Nincs hozzáférése ehhez a részhez."
+
 #: src/features/domains/index.tsx:1212
 msgid "You don't have access to any domains."
 msgstr "Nincs hozzáférése egyetlen tartományhoz sem."
@@ -3374,10 +3195,6 @@ msgstr "Fiókját véglegesen töröljük ekkor: {purgeDate}. Kijelentkeztettük
 #: src/features/user/close-account.tsx:89
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "Fiókja törlésre lesz ütemezve, és kijelentkeztetjük. A törlés időpontja előtt bármikor megszakíthatja, ha újra bejelentkezik. Először töltse le az adatait, ha meg szeretne tartani egy másolatot."
-
-#: src/features/user/replication.tsx:205
-msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
-msgstr "A fiókod adatai ezen a kiszolgálón véglegesen törlődnek, és itt kijelentkeztetünk. A fiókod megmarad a többi kiszolgálódon, és ezt később újra hozzáadhatod."
 
 #: src/features/user/data.tsx:171
 msgid "Your data"

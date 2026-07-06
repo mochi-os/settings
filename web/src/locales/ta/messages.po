@@ -84,6 +84,10 @@ msgstr "3. குறியீட்டை சரிபார்க்கவு�
 msgid "Absolute (date and time)"
 msgstr "முழுமையானது (தேதி மற்றும் நேரம்)"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:60
+msgid "Access denied"
+msgstr "அணுகல் மறுக்கப்பட்டது"
+
 #: ../../../lib/web/src/features/errors/forbidden.tsx:16
 msgid "Access Forbidden"
 msgstr "அணுகல் தடைசெய்யப்பட்டது"
@@ -92,8 +96,8 @@ msgstr "அணுகல் தடைசெய்யப்பட்டது"
 msgid "Access level"
 msgstr "அணுகல் நிலை"
 
-#: src/components/layout/data/sidebar-data.ts:34
-#: src/components/layout/data/sidebar-data.ts:55
+#: src/components/layout/data/sidebar-data.ts:33
+#: src/components/layout/data/sidebar-data.ts:53
 #: src/features/user/account.tsx:120
 #: src/features/user/account.tsx:128
 msgid "Account"
@@ -213,7 +217,6 @@ msgid "Add view"
 msgstr "காட்சி சேர்"
 
 #: src/features/user/connected-accounts.tsx:476
-#: src/features/user/replication.tsx:341
 msgid "Added"
 msgstr "சேர்க்கப்பட்டது"
 
@@ -265,21 +268,13 @@ msgstr "அனுமதிக்கப்பட்டது"
 msgid "An error occurred"
 msgstr "பிழை ஏற்பட்டது"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:241
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:256
 msgid "An unexpected error occurred"
 msgstr "எதிர்பாராத பிழை ஏற்பட்டது"
 
 #: src/features/system/settings.tsx:56
 msgid "Announce hostname and domains to other servers"
 msgstr "ஹோஸ்ட் பெயரையும் டொமைன்களையும் பிற சேவையகங்களுக்கு அறிவிக்கவும்"
-
-#: src/features/user/replication.tsx:306
-msgid "Another server is asking to host a copy of your account. Approve to send a copy."
-msgstr "மற்றொரு சேவையகம் உங்கள் கணக்கின் நகலை ஹோஸ்ட் செய்ய கேட்கிறது. நகலை அனுப்ப அனுமதி அளிக்கவும்."
-
-#: src/features/system/replication.tsx:256
-msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
-msgstr "மற்றொரு சேவையகம் இதனுடன் இணைய கோருகிறது. முழுமையான பிரதியெடுப்பு இணையாக பதிவு செய்ய அங்கீகரிக்கவும்."
 
 #: src/features/domains/index.tsx:262
 #: src/features/domains/index.tsx:450
@@ -289,26 +284,6 @@ msgstr "பயன்பாடு"
 #: src/features/user/display.tsx:215
 msgid "Appearance"
 msgstr "தோற்றம்"
-
-#: src/features/system/replication.tsx:84
-#: src/features/user/replication.tsx:76
-msgid "Approval failed"
-msgstr "ஒப்புதல் தோல்வியடைந்தது"
-
-#: src/features/system/replication.tsx:104
-#: src/features/user/replication.tsx:102
-msgid "Approve"
-msgstr "அங்கீகரி"
-
-#: src/features/system/replication.tsx:124
-#: src/features/user/replication.tsx:112
-msgid "Approve request"
-msgstr "கோரிக்கையை அனுமதி"
-
-#: src/features/system/replication.tsx:125
-#: src/features/user/replication.tsx:113
-msgid "Approving replicates private keys to that server. Verify it's you to continue."
-msgstr "அனுமதிப்பது தனிப்பட்ட விசைகளை அந்தச் சேவையகத்திற்கு நகலெடுக்கிறது. தொடர இது நீங்கள்தான் என சரிபார்க்கவும்."
 
 #: ../../../lib/web/src/components/sign-out-dialog.tsx:27
 msgid "Are you sure you want to log out? You will need to log in again to access your account."
@@ -388,7 +363,6 @@ msgstr "உலாவி அறிவிப்புகள்"
 #: src/features/domains/index.tsx:338
 #: src/features/domains/index.tsx:536
 #: src/features/domains/index.tsx:682
-#: src/features/system/replication.tsx:186
 #: src/features/system/settings.tsx:289
 #: src/features/system/settings.tsx:331
 #: src/features/system/settings.tsx:454
@@ -401,7 +375,6 @@ msgstr "உலாவி அறிவிப்புகள்"
 #: src/features/user/notifications.tsx:536
 #: src/features/user/notifications.tsx:639
 #: src/features/user/preferences.tsx:233
-#: src/features/user/replication.tsx:212
 #: src/features/user/sessions.tsx:107
 msgid "Cancel"
 msgstr "ரத்துசெய்"
@@ -414,7 +387,7 @@ msgstr "அட்டை பாணி"
 msgid "Categories"
 msgstr "வகைகள்"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:144
+#: ../../../lib/web/src/components/notification-category-button.tsx:143
 msgid "Category for this notification"
 msgstr "இந்த அறிவிப்புக்கான வகை"
 
@@ -422,8 +395,8 @@ msgstr "இந்த அறிவிப்புக்கான வகை"
 msgid "Change current notifications to"
 msgstr "தற்போதைய அறிவிப்புகளை மாற்று"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:125
-#: ../../../lib/web/src/components/notification-category-button.tsx:136
+#: ../../../lib/web/src/components/notification-category-button.tsx:124
+#: ../../../lib/web/src/components/notification-category-button.tsx:135
 msgid "Change notification category"
 msgstr "அறிவிப்பு வகையை மாற்று"
 
@@ -549,7 +522,6 @@ msgstr "உள்ளமைக்கப்பட்டது"
 msgid "Confirm"
 msgstr "உறுதிசெய்"
 
-#: src/features/user/replication.tsx:225
 #: src/lib/use-step-up.tsx:33
 msgid "Confirm it's you"
 msgstr "இது நீங்கள்தான் என உறுதிப்படுத்தவும்"
@@ -560,8 +532,8 @@ msgstr "இது நீங்கள்தான் என உறுதிப்
 msgid "Connected"
 msgstr "இணைக்கப்பட்டது"
 
-#: src/components/layout/data/sidebar-data.ts:38
-#: src/components/layout/data/sidebar-data.ts:59
+#: src/components/layout/data/sidebar-data.ts:37
+#: src/components/layout/data/sidebar-data.ts:57
 #: src/features/user/connected-accounts.tsx:299
 #: src/features/user/connected-accounts.tsx:436
 msgid "Connected accounts"
@@ -595,10 +567,6 @@ msgstr "நகலெடு"
 msgid "Copy all"
 msgstr "அனைத்தையும் நகலெடு"
 
-#: src/features/system/replication.tsx:247
-msgid "Copy peer id"
-msgstr "சகா ID-ஐ நகலெடு"
-
 #: src/features/user/tokens.tsx:178
 msgid "Copy your token now. You will not be able to see it again."
 msgstr "இப்போதே உங்கள் டோக்கனை நகலெடுக்கவும். மீண்டும் பார்க்க முடியாது."
@@ -607,15 +575,6 @@ msgstr "இப்போதே உங்கள் டோக்கனை நகல
 msgid "Could not close your account"
 msgstr "உங்கள் கணக்கை மூட முடியவில்லை"
 
-#: src/features/system/replication.tsx:113
-#: src/features/user/replication.tsx:83
-msgid "Could not deny request"
-msgstr "கோரிக்கையை மறுக்க முடியவில்லை"
-
-#: src/features/user/replication.tsx:173
-msgid "Could not forget host"
-msgstr "ஓம்புநரை மறக்க முடியவில்லை"
-
 #: src/features/user/login.tsx:925
 msgid "Could not link account"
 msgstr "கணக்கை இணைக்க முடியவில்லை"
@@ -623,14 +582,6 @@ msgstr "கணக்கை இணைக்க முடியவில்லை"
 #: ../../../lib/web/src/features/document/document-page.tsx:84
 msgid "Could not load this document. Please try again later."
 msgstr "இந்த ஆவணத்தை ஏற்ற முடியவில்லை. பின்னர் மீண்டும் முயற்சிக்கவும்."
-
-#: src/features/system/replication.tsx:191
-msgid "Could not remove pair member"
-msgstr "இணை உறுப்பினரை அகற்ற முடியவில்லை"
-
-#: src/features/user/replication.tsx:235
-msgid "Could not remove your account from this server"
-msgstr "இந்தச் சேவையகத்திலிருந்து உங்கள் கணக்கை அகற்ற முடியவில்லை"
 
 #: src/features/user/login.tsx:799
 msgid "Could not start linking"
@@ -697,6 +648,10 @@ msgstr "இருள்"
 #: ../../../lib/web/src/components/profile-dropdown.tsx:123
 msgid "Dark mode"
 msgstr "இருள் முறை"
+
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:240
+msgid "Data conflict"
+msgstr "தரவு முரண்பாடு"
 
 #: src/features/user/preferences.tsx:295
 msgid "Date format"
@@ -828,11 +783,6 @@ msgstr "நீக்குகிறது..."
 msgid "Density"
 msgstr "அடர்த்தி"
 
-#: src/features/system/replication.tsx:118
-#: src/features/user/replication.tsx:106
-msgid "Deny"
-msgstr "மறு"
-
 #: ../../../lib/web/src/components/data-table/column-header.tsx:63
 msgid "Desc"
 msgstr "இறங்கு"
@@ -893,8 +843,8 @@ msgstr "துண்டிக்கப்பட்டது"
 msgid "Dismiss"
 msgstr "நிராகரி"
 
-#: src/components/layout/data/sidebar-data.ts:37
-#: src/components/layout/data/sidebar-data.ts:58
+#: src/components/layout/data/sidebar-data.ts:36
+#: src/components/layout/data/sidebar-data.ts:56
 #: src/features/user/display.tsx:95
 #: src/features/user/display.tsx:172
 msgid "Display"
@@ -916,7 +866,7 @@ msgstr "DNS சரிபார்ப்பு"
 msgid "Document saved"
 msgstr "ஆவணம் சேமிக்கப்பட்டது"
 
-#: src/components/layout/data/sidebar-data.ts:71
+#: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/documents.tsx:166
 #: src/features/system/documents.tsx:235
 msgid "Documents"
@@ -947,7 +897,7 @@ msgstr "டொமைன் புதுப்பிக்கப்பட்ட�
 msgid "Domain verified"
 msgstr "டொமைன் சரிபார்க்கப்பட்டது"
 
-#: src/components/layout/data/sidebar-data.ts:78
+#: src/components/layout/data/sidebar-data.ts:74
 #: src/features/domains/index.tsx:1153
 #: src/features/domains/index.tsx:1181
 #: src/features/domains/index.tsx:1193
@@ -1110,10 +1060,6 @@ msgstr "கணக்கைச் சேர்க்க முடியவில�
 msgid "Failed to add interest"
 msgstr "ஆர்வத்தைச் சேர்க்க முடியவில்லை"
 
-#: src/features/system/replication.tsx:243
-msgid "Failed to copy"
-msgstr "நகலெடுக்க முடியவில்லை"
-
 #: src/features/domains/index.tsx:586
 msgid "Failed to create delegation"
 msgstr "பிரதிநிதித்துவத்தை உருவாக்க முடியவில்லை"
@@ -1242,7 +1188,7 @@ msgstr "கணக்கைப் புதுப்பிக்க முடி�
 msgid "Failed to update browser notifications"
 msgstr "உலாவி அறிவிப்புகளைப் புதுப்பிக்க முடியவில்லை"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:112
+#: ../../../lib/web/src/components/notification-category-button.tsx:111
 msgid "Failed to update category"
 msgstr "வகையைப் புதுப்பிக்க முடியவில்லை"
 
@@ -1342,21 +1288,11 @@ msgstr "எழுத்துரு"
 msgid "Font size"
 msgstr "எழுத்து அளவு"
 
-#: src/features/user/replication.tsx:160
-msgid "Forget this unreachable host"
-msgstr "அணுக முடியாத இந்த ஓம்புநரை மறக்கவும்"
-
-#: src/features/user/replication.tsx:165
-msgid "Forget this unreachable host?"
-msgstr "அணுக முடியாத இந்த ஓம்புநரை மறக்கவா?"
-
 #: ../../../lib/web/src/lib/preference-utils.ts:63
 msgid "Friday"
 msgstr "வெள்ளிக்கிழமை"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:153
-#: src/features/system/replication.tsx:263
-#: src/features/user/replication.tsx:311
 msgid "From"
 msgstr "இருந்து"
 
@@ -1463,10 +1399,6 @@ msgstr "துளையிடல்"
 msgid "Home"
 msgstr "முகப்பு"
 
-#: src/features/user/replication.tsx:172
-msgid "Host forgotten"
-msgstr "ஓம்புநர் மறக்கப்பட்டது"
-
 #: src/features/system/settings.tsx:55
 msgid "Hostname announced to other servers"
 msgstr "பிற சேவையகங்களுக்கு அறிவிக்கப்பட்ட ஹோஸ்ட் பெயர்"
@@ -1506,8 +1438,8 @@ msgid "Installing {0}…"
 msgstr "{0} நிறுவப்படுகிறது…"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:42
-#: src/components/layout/data/sidebar-data.ts:43
-#: src/components/layout/data/sidebar-data.ts:64
+#: src/components/layout/data/sidebar-data.ts:41
+#: src/components/layout/data/sidebar-data.ts:61
 #: src/features/user/interests.tsx:230
 #: src/features/user/interests.tsx:251
 msgid "Interests"
@@ -1525,23 +1457,6 @@ msgstr "தவறான சரிபார்ப்பு குறியீட�
 #: src/features/system/users.tsx:322
 msgid "IP Address"
 msgstr "IP முகவரி"
-
-#: src/features/system/replication.tsx:156
-#: src/features/user/replication.tsx:139
-msgid "Irreparable"
-msgstr "சரிசெய்ய முடியாது"
-
-#: src/features/user/replication.tsx:166
-msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
-msgstr "இது உங்கள் நகல் தொகுப்பிலிருந்து அகற்றப்படும், மீண்டும் இணையும்போது அதன் நகலை அழிக்கச் சொல்லப்படும். அணுகக்கூடிய சேவையகத்தை அகற்ற, அங்கு உள்நுழைந்து \"இந்தச் சேவையகத்திலிருந்து என் கணக்கை அகற்று\" என்பதைப் பயன்படுத்தவும். தொடர உங்களை உறுதிப்படுத்தவும்."
-
-#: src/features/system/replication.tsx:82
-msgid "Join request approved"
-msgstr "சேர்தல் கோரிக்கை அங்கீகரிக்கப்பட்டது"
-
-#: src/features/system/replication.tsx:112
-msgid "Join request denied"
-msgstr "சேர்தல் கோரிக்கை மறுக்கப்பட்டது"
 
 #: src/features/system/status.tsx:175
 msgid "Known"
@@ -1658,8 +1573,8 @@ msgstr "வெற்றிகரமாக வெளியேறியது"
 msgid "Logging out…"
 msgstr "வெளியேறுகிறது…"
 
-#: src/components/layout/data/sidebar-data.ts:35
-#: src/components/layout/data/sidebar-data.ts:56
+#: src/components/layout/data/sidebar-data.ts:34
+#: src/components/layout/data/sidebar-data.ts:54
 #: src/features/system/settings.tsx:565
 #: src/features/user/login.tsx:897
 #: src/features/user/login.tsx:944
@@ -1702,7 +1617,7 @@ msgstr "புதிய குறியீடுகளைச் சேமிக�
 msgid "Manage sessions"
 msgstr "அமர்வுகளை நிர்வகிக்கவும்"
 
-#: src/components/layout/data/sidebar-data.ts:86
+#: src/components/layout/data/sidebar-data.ts:82
 msgid "Management"
 msgstr "நிர்வாகம்"
 
@@ -1768,10 +1683,6 @@ msgstr "திங்கட்கிழமை"
 msgid "My application"
 msgstr "எனது ஆப்"
 
-#: src/features/user/replication.tsx:323
-msgid "My hosts"
-msgstr "என் ஹோஸ்ட்கள்"
-
 #: src/features/user/login.tsx:381
 msgid "My passkey"
 msgstr "எனது passkey"
@@ -1793,7 +1704,8 @@ msgstr "பெயர் தேவை"
 msgid "Name updated"
 msgstr "பெயர் புதுப்பிக்கப்பட்டது"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:288
+#: ../../../lib/web/src/features/errors/general-error.tsx:53
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:303
 msgid "Network error"
 msgstr "பிணையப் பிழை"
 
@@ -1914,7 +1826,7 @@ msgstr "Routeகள் எதுவும் கட்டமைக்கப்�
 msgid "No time zone found."
 msgstr "நேர மண்டலம் எதுவும் கிடைக்கவில்லை."
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:148
+#: ../../../lib/web/src/components/notification-category-button.tsx:147
 msgid "No topic record yet — try again after the next notification."
 msgstr "தலைப்புப் பதிவு இன்னும் இல்லை — அடுத்த அறிவிப்புக்குப் பிறகு மீண்டும் முயற்சிக்கவும்."
 
@@ -1942,6 +1854,10 @@ msgstr "ஒன்றுமில்லை"
 msgid "Normal"
 msgstr "சாதாரணம்"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:67
+msgid "Not found"
+msgstr "கிடைக்கவில்லை"
+
 #: ../../../lib/web/src/components/ui/editable-field-row.tsx:146
 msgid "Not set"
 msgstr "அமைக்கப்படவில்லை"
@@ -1951,8 +1867,8 @@ msgstr "அமைக்கப்படவில்லை"
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:236
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:257
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:261
-#: src/components/layout/data/sidebar-data.ts:39
-#: src/components/layout/data/sidebar-data.ts:60
+#: src/components/layout/data/sidebar-data.ts:38
+#: src/components/layout/data/sidebar-data.ts:58
 #: src/features/user/notifications.tsx:149
 #: src/features/user/notifications.tsx:167
 msgid "Notifications"
@@ -1966,13 +1882,6 @@ msgstr "இயல்பாக அறிவிக்கவும்"
 #: src/features/user/preferences.tsx:284
 msgid "Number format"
 msgstr "எண் வடிவம்"
-
-#. placeholder {0}: offlineDuration(host.offline)
-#. placeholder {0}: offlineDuration(offline)
-#: src/features/system/replication.tsx:159
-#: src/features/user/replication.tsx:142
-msgid "Offline {0}"
-msgstr "ஆஃப்லைன் {0}"
 
 #: src/features/system/status.tsx:186
 msgid "Oldest queued message"
@@ -2031,10 +1940,6 @@ msgstr "ஆபரேட்டர் பெயர்"
 msgid "Other"
 msgstr "மற்றவை"
 
-#: src/features/user/replication.tsx:326
-msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
-msgstr "உங்கள் கணக்கின் நகலை வைத்திருக்கும் பிற சேவையகங்கள். ஒன்றை அகற்ற, அந்தச் சேவையகத்தில் உள்நுழைந்து \"இந்தச் சேவையகத்திலிருந்து என் கணக்கை அகற்று\" என்பதைப் பயன்படுத்தவும்."
-
 #: src/features/system/settings.tsx:601
 msgid "Other settings"
 msgstr "மற்ற அமைப்புகள்"
@@ -2042,14 +1947,6 @@ msgstr "மற்ற அமைப்புகள்"
 #: ../../../lib/web/src/features/access/access-list.tsx:217
 msgid "Owner"
 msgstr "உரிமையாளர்"
-
-#: src/features/system/replication.tsx:190
-msgid "Pair member removed"
-msgstr "இணை உறுப்பினர் அகற்றப்பட்டார்"
-
-#: src/features/system/replication.tsx:275
-msgid "Pair members"
-msgstr "இணை உறுப்பினர்கள்"
 
 #: ../../../lib/web/src/components/step-up-dialog.tsx:334
 #: src/features/user/login.tsx:126
@@ -2102,9 +1999,7 @@ msgstr "Path"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "பாதை அனுமதிக்கப்படவில்லை. நீங்கள் {0} கீழ் மட்டுமே பாதைகளை சேர்க்க முடியும்"
 
-#: src/features/system/replication.tsx:287
 #: src/features/system/status.tsx:181
-#: src/features/user/replication.tsx:340
 msgid "Peer"
 msgstr "பீர்"
 
@@ -2113,7 +2008,6 @@ msgid "Peer ID"
 msgstr "சக ID"
 
 #: src/components/peer-identity.tsx:45
-#: src/features/system/replication.tsx:242
 msgid "Peer id copied"
 msgstr "சகா ID நகலெடுக்கப்பட்டது"
 
@@ -2125,19 +2019,13 @@ msgstr "பீர்கள்"
 msgid "Pending"
 msgstr "நிலுவையில்"
 
-#: src/features/system/replication.tsx:254
-msgid "Pending join requests"
-msgstr "நிலுவையில் உள்ள சேர்தல் கோரிக்கைகள்"
-
-#: src/features/user/replication.tsx:304
-msgid "Pending requests"
-msgstr "நிலுவையில் உள்ள கோரிக்கைகள்"
-
 #: src/features/domains/index.tsx:1117
 msgid "Permanently delete this domain and all its routes."
 msgstr "இந்த டொமைன் மற்றும் அதன் அனைத்து routeகளையும் நிரந்தரமாக நீக்கவும்."
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:289
+#: ../../../lib/web/src/features/errors/general-error.tsx:54
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:304
+#: ../../../lib/web/src/lib/error-normalizer.ts:201
 msgid "Please check your internet connection and try again."
 msgstr "உங்கள் இணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்."
 
@@ -2145,13 +2033,21 @@ msgstr "உங்கள் இணைய இணைப்பைச் சரிப
 msgid "Please enter a token name"
 msgstr "டோக்கன் பெயரை உள்ளிடவும்"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:83
+msgid "Please try again."
+msgstr "தயவுசெய்து மீண்டும் முயற்சிக்கவும்."
+
+#: ../../../lib/web/src/features/errors/general-error.tsx:75
+msgid "Please wait a moment and try again."
+msgstr "சிறிது நேரம் காத்திருந்து மீண்டும் முயற்சிக்கவும்."
+
 #: src/features/user/display.tsx:118
 #: src/features/user/preferences.tsx:178
 msgid "Preference updated"
 msgstr "விருப்பத்தேர்வு புதுப்பிக்கப்பட்டது"
 
-#: src/components/layout/data/sidebar-data.ts:36
-#: src/components/layout/data/sidebar-data.ts:57
+#: src/components/layout/data/sidebar-data.ts:35
+#: src/components/layout/data/sidebar-data.ts:55
 #: src/features/user/preferences.tsx:70
 #: src/features/user/preferences.tsx:207
 msgid "Preferences"
@@ -2220,10 +2116,6 @@ msgstr "வரிசையில் உள்ள ஒளிபரப்பு ச
 msgid "Queued messages"
 msgstr "வரிசையில் உள்ள செய்திகள்"
 
-#: src/features/user/replication.tsx:271
-msgid "Quote both values on the destination server's sign-up form to replicate this account there."
-msgstr "இந்தக் கணக்கை மற்றொரு சேவையகத்திற்கு நகலெடுக்க, இலக்கு சேவையகத்தின் பதிவு படிவத்தில் இரு மதிப்புகளையும் உள்ளிடவும்."
-
 #: src/features/user/display.tsx:293
 msgid "Radius"
 msgstr "ஆரம்"
@@ -2244,8 +2136,8 @@ msgstr "இந்த சேவையகத்தில் உங்கள் க
 msgid "Reachability"
 msgstr "சென்றடையும் தன்மை"
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:219
-#: ../../../lib/web/src/components/search-entity-page.tsx:194
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:216
+#: ../../../lib/web/src/components/search-entity-page.tsx:240
 msgid "Recommended"
 msgstr "பரிந்துரைக்கப்பட்டது"
 
@@ -2303,10 +2195,8 @@ msgstr "ரிலே சேவை"
 
 #: ../../../lib/web/src/features/access/access-list.tsx:265
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:180
-#: src/features/system/replication.tsx:195
 #: src/features/user/connected-accounts.tsx:278
 #: src/features/user/connected-accounts.tsx:288
-#: src/features/user/replication.tsx:217
 msgid "Remove"
 msgstr "அகற்று"
 
@@ -2333,25 +2223,9 @@ msgstr "கணக்கை அகற்றவா?"
 msgid "Remove interest"
 msgstr "ஆர்வத்தை அகற்று"
 
-#: src/features/user/replication.tsx:198
-msgid "Remove my account from this server"
-msgstr "இந்தச் சேவையகத்திலிருந்து என் கணக்கை அகற்று"
-
-#: src/features/system/replication.tsx:172
-msgid "Remove pair member"
-msgstr "இணை உறுப்பினரை அகற்று"
-
-#: src/features/system/replication.tsx:177
-msgid "Remove pair member?"
-msgstr "இணை உறுப்பினரை அகற்றவா?"
-
 #: src/features/system/users.tsx:463
 msgid "Remove suspension"
 msgstr "இடைநீக்கத்தை அகற்று"
-
-#: src/features/user/replication.tsx:203
-msgid "Remove your account from this server?"
-msgstr "இந்தச் சேவையகத்திலிருந்து உங்கள் கணக்கை அகற்றவா?"
 
 #: src/features/user/login.tsx:270
 msgid "Rename passkey"
@@ -2360,24 +2234,6 @@ msgstr "passkey-ஐ மறுபெயரிடு"
 #: src/features/system/settings.tsx:367
 msgid "Replace"
 msgstr "மாற்று"
-
-#: src/components/layout/data/sidebar-data.ts:42
-#: src/components/layout/data/sidebar-data.ts:63
-#: src/components/layout/data/sidebar-data.ts:73
-#: src/features/system/replication.tsx:207
-#: src/features/system/replication.tsx:221
-#: src/features/user/replication.tsx:247
-#: src/features/user/replication.tsx:258
-msgid "Replication"
-msgstr "நகலெடுப்பு"
-
-#: src/features/user/replication.tsx:74
-msgid "Request approved"
-msgstr "கோரிக்கை அங்கீகரிக்கப்பட்டது"
-
-#: src/features/user/replication.tsx:82
-msgid "Request denied"
-msgstr "கோரிக்கை மறுக்கப்பட்டது"
 
 #: src/features/system/settings.tsx:53
 msgid "Require domain verification"
@@ -2560,8 +2416,8 @@ msgstr "பயனர்களைத் தேடு..."
 msgid "Search..."
 msgstr "தேடு..."
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:177
-#: ../../../lib/web/src/components/search-entity-page.tsx:152
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:174
+#: ../../../lib/web/src/components/search-entity-page.tsx:198
 #: ../../../lib/web/src/features/access/access-dialog.tsx:202
 #: src/features/domains/index.tsx:650
 msgid "Searching..."
@@ -2635,14 +2491,10 @@ msgstr "மின்னஞ்சல் அனுப்பு"
 msgid "Serif"
 msgstr "செரிஃப்"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:245
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:271
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:260
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:286
 msgid "Server error"
 msgstr "சேவையகப் பிழை"
-
-#: src/features/user/replication.tsx:284
-msgid "Server peer ID"
-msgstr "சேவையக சக ID"
 
 #: ../../../lib/web/src/components/server-documents-footer.tsx:19
 #: ../../../lib/web/src/features/document/document-page.tsx:40
@@ -2666,17 +2518,17 @@ msgstr "சர்வர் பதிப்பு"
 msgid "Session"
 msgstr "அமர்வு"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:209
-msgid "Session expired"
-msgstr "அமர்வு காலாவதியானது"
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:210
+msgid "Session expired. Please log in again."
+msgstr "அமர்வு காலாவதியானது. மீண்டும் உள்நுழையவும்."
 
 #: src/features/system/users.tsx:282
 #: src/features/user/sessions.tsx:52
 msgid "Session revoked"
 msgstr "அமர்வு திரும்பப் பெறப்பட்டது"
 
-#: src/components/layout/data/sidebar-data.ts:41
-#: src/components/layout/data/sidebar-data.ts:62
+#: src/components/layout/data/sidebar-data.ts:40
+#: src/components/layout/data/sidebar-data.ts:60
 #: src/features/user/sessions.tsx:121
 #: src/features/user/sessions.tsx:129
 msgid "Sessions"
@@ -2705,9 +2557,9 @@ msgstr "அமைப்பு புதுப்பிக்கப்பட்�
 #: ../../../lib/web/src/components/layout/nav-user.tsx:84
 #: ../../../lib/web/src/components/layout/nav-user.tsx:148
 #: ../../../lib/web/src/components/layout/nav-user.tsx:198
-#: src/components/layout/data/sidebar-data.ts:32
-#: src/components/layout/data/sidebar-data.ts:53
-#: src/components/layout/data/sidebar-data.ts:95
+#: src/components/layout/data/sidebar-data.ts:31
+#: src/components/layout/data/sidebar-data.ts:51
+#: src/components/layout/data/sidebar-data.ts:91
 #: src/features/user/connected-accounts.tsx:272
 msgid "Settings"
 msgstr "அமைப்புகள்"
@@ -2759,9 +2611,8 @@ msgstr "விரிவான"
 msgid "Started"
 msgstr "தொடங்கப்பட்டது"
 
-#: src/components/layout/data/sidebar-data.ts:74
+#: src/components/layout/data/sidebar-data.ts:70
 #: src/features/domains/index.tsx:1040
-#: src/features/system/replication.tsx:288
 #: src/features/system/status.tsx:41
 #: src/features/system/status.tsx:57
 #: src/features/system/status.tsx:182
@@ -2802,22 +2653,14 @@ msgstr "இடைநிறுத்தப்பட்டது"
 msgid "Suspension removed"
 msgstr "இடைநிறுத்தம் அகற்றப்பட்டது"
 
-#: src/features/system/replication.tsx:162
-msgid "Synced"
-msgstr "ஒத்திசைக்கப்பட்டது"
-
-#: src/features/system/replication.tsx:164
-msgid "Syncing"
-msgstr "ஒத்திசைக்கிறது"
-
 #: ../../../lib/web/src/components/config-drawer.tsx:208
 #: ../../../lib/web/src/lib/preference-utils.ts:21
 #: ../../../lib/web/src/lib/preference-utils.ts:144
-#: src/components/layout/data/sidebar-data.ts:68
+#: src/components/layout/data/sidebar-data.ts:65
 msgid "System"
 msgstr "சிஸ்டம்"
 
-#: src/components/layout/data/sidebar-data.ts:70
+#: src/components/layout/data/sidebar-data.ts:67
 #: src/features/system/settings.tsx:472
 #: src/features/system/settings.tsx:556
 msgid "System settings"
@@ -2878,6 +2721,10 @@ msgstr "அந்த மின்னஞ்சல் ஏற்கனவே மற
 msgid "The \"No notifications\" category silences any topic assigned to it."
 msgstr "\"அறிவிப்புகள் இல்லை\" வகை அதற்கு ஒதுக்கப்பட்ட எந்த தலைப்பையும் அமைதிப்படுத்துகிறது."
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:68
+msgid "The requested content could not be found."
+msgstr "கோரப்பட்ட உள்ளடக்கத்தைக் கண்டறிய முடியவில்லை."
+
 #: ../../../lib/web/src/components/config-drawer.tsx:194
 #: src/features/user/display.tsx:233
 #: src/features/user/display.tsx:260
@@ -2898,14 +2745,6 @@ msgstr "தீம் புதுப்பிக்கப்பட்டது"
 msgid "Third-party login"
 msgstr "மூன்றாம் தரப்பு உள்நுழைவு"
 
-#: src/features/user/replication.tsx:269
-msgid "This account"
-msgstr "இந்தக் கணக்கு"
-
-#: src/features/user/replication.tsx:332
-msgid "This account is on this server only"
-msgstr "இந்த கணக்கு இந்த சேவையகத்தில் மட்டுமே உள்ளது"
-
 #: src/features/user/data.tsx:124
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "இது நீங்கள் இந்த அல்லது மற்றொரு Mochi சேவையகத்தில் மீட்டெடுக்கக்கூடிய முழுமையான காப்புப்பிரதி. தொடர இது நீங்கள்தான் என சரிபார்க்கவும்."
@@ -2913,22 +2752,6 @@ msgstr "இது நீங்கள் இந்த அல்லது மற�
 #: src/lib/use-step-up.tsx:34
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "இது உங்கள் கணக்கின் பாதுகாப்பு மாற்றம். தொடர இது நீங்கள்தான் என சரிபார்க்கவும்."
-
-#: src/features/user/replication.tsx:226
-msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
-msgstr "இது இந்தச் சேவையகத்தில் உங்கள் கணக்கின் தரவை நிரந்தரமாக அழிக்கும். தொடர உங்களை உறுதிப்படுத்தவும்."
-
-#: src/features/system/replication.tsx:231
-msgid "This server"
-msgstr "இந்த சேவையகம்"
-
-#: src/features/system/replication.tsx:279
-msgid "This server is not paired."
-msgstr "இந்த சேவையகம் இணைக்கப்படவில்லை."
-
-#: src/features/system/replication.tsx:179
-msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
-msgstr "இந்த சேவையகம் அந்த சகாவுடன் இணைதலை நிறுத்தும். அகற்றப்பட்ட சேவையகம் ஒவ்வொரு பயனரின் உள்ளூர் நகலையும் வைத்திருக்கும்; அங்குள்ள செயல்பாட்டாளர் கைமுறையாக துடைக்க வேண்டும்."
 
 #: src/features/system/users.tsx:355
 msgid "This user has no active sessions."
@@ -3016,10 +2839,6 @@ msgstr "டைம்ஸ்டாம்ப்கள்"
 msgid "TLS Enabled"
 msgstr "TLS இயக்கப்பட்டது"
 
-#: src/features/user/replication.tsx:333
-msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
-msgstr "அதை மற்றொரு சேவையகத்திற்கு நகலெடுக்க, அங்கே ஒரு கணக்கிற்கு பதிவுசெய்து, \"ஏற்கனவே உள்ள கணக்கை நகலெடு\" விருப்பத்தைப் பயன்படுத்தவும்."
-
 #: ../../../lib/web/src/components/data-table/view-options.tsx:37
 msgid "Toggle columns"
 msgstr "நிரல்களை மாற்று"
@@ -3067,10 +2886,14 @@ msgstr "டோக்கன் நீக்கப்பட்டது"
 msgid "Token name"
 msgstr "டோக்கன் பெயர்"
 
-#: src/components/layout/data/sidebar-data.ts:40
-#: src/components/layout/data/sidebar-data.ts:61
+#: src/components/layout/data/sidebar-data.ts:39
+#: src/components/layout/data/sidebar-data.ts:59
 msgid "Tokens"
 msgstr "டோக்கன்கள்"
+
+#: ../../../lib/web/src/features/errors/general-error.tsx:74
+msgid "Too many requests"
+msgstr "மிக அதிகமான கோரிக்கைகள்"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:45
 msgid "Top"
@@ -3088,13 +2911,13 @@ msgstr "பயணிக்கிறது"
 msgid "Try adjusting your search criteria"
 msgstr "உங்கள் தேடல் அளவுகோல்களை சரிசெய்ய முயற்சிக்கவும்"
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:193
-#: ../../../lib/web/src/components/search-entity-page.tsx:168
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:190
+#: ../../../lib/web/src/components/search-entity-page.tsx:214
 msgid "Try adjusting your search terms"
 msgstr "உங்கள் தேடல் சொற்களை சரிசெய்ய முயற்சி செய்யுங்கள்"
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:128
-#: ../../../lib/web/src/features/errors/general-error.tsx:168
+#: ../../../lib/web/src/features/errors/general-error.tsx:140
+#: ../../../lib/web/src/features/errors/general-error.tsx:180
 #: ../../../lib/web/src/features/errors/maintenance-error.tsx:19
 msgid "Try again"
 msgstr "மீண்டும் முயற்சி செய்"
@@ -3123,7 +2946,7 @@ msgstr "பயனர்களை தேட தட்டச்சு செய்
 msgid "Type to search..."
 msgstr "தேட தட்டச்சு செய்..."
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:267
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:282
 msgid "Unable to connect to remote server"
 msgstr "தொலை சேவையகத்துடன் இணைக்க முடியவில்லை"
 
@@ -3132,7 +2955,7 @@ msgstr "தொலை சேவையகத்துடன் இணைக்க 
 msgid "Unable to redirect to login. Please try again."
 msgstr "உள்நுழைவுக்கு திருப்பி விட முடியவில்லை. தயவுசெய்து மீண்டும் முயற்சி செய்யுங்கள்."
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:156
+#: ../../../lib/web/src/components/notification-category-button.tsx:155
 #: src/features/user/notifications.tsx:763
 msgid "Unassigned"
 msgstr "ஒதுக்கப்படாதது"
@@ -3152,7 +2975,6 @@ msgstr "அலகுகள்"
 #: src/features/system/status.tsx:134
 #: src/features/system/status.tsx:135
 #: src/features/system/users.tsx:332
-#: src/features/user/replication.tsx:148
 msgid "Unknown"
 msgstr "தெரியாதது"
 
@@ -3199,10 +3021,6 @@ msgstr "புதுப்பிப்பு"
 msgid "URL to redirect to"
 msgstr "திருப்பிவிட URL"
 
-#: src/features/system/replication.tsx:280
-msgid "Use \"mochictl replica join {peer}\" on a newly installed server to pair with this server."
-msgstr "இந்த சேவையகத்துடன் இணைக்க புதிதாக நிறுவப்பட்ட சேவையகத்தில் \"mochictl replica join {peer}\" ஐப் பயன்படுத்தவும்."
-
 #: src/features/domains/index.tsx:124
 msgid "Use *.domain.com for wildcard domains"
 msgstr "வைல்டுகார்டு டொமைன்களுக்கு *.domain.com ஐ பயன்படுத்தவும்"
@@ -3246,11 +3064,10 @@ msgid "User updated"
 msgstr "பயனர் புதுப்பிக்கப்பட்டார்"
 
 #: src/features/user/account.tsx:82
-#: src/features/user/replication.tsx:276
 msgid "Username"
 msgstr "பயனர்பெயர்"
 
-#: src/components/layout/data/sidebar-data.ts:72
+#: src/components/layout/data/sidebar-data.ts:69
 #: src/features/system/status.tsx:140
 #: src/features/system/users.tsx:555
 #: src/features/system/users.tsx:593
@@ -3354,6 +3171,10 @@ msgstr "X client ID"
 msgid "X client secret"
 msgstr "X client secret"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:61
+msgid "You do not have access to this section."
+msgstr "இந்தப் பிரிவுக்கான அணுகல் உங்களுக்கு இல்லை."
+
 #: src/features/domains/index.tsx:1212
 msgid "You don't have access to any domains."
 msgstr "உங்களுக்கு எந்த டொமைனுக்கும் அணுகல் இல்லை."
@@ -3374,10 +3195,6 @@ msgstr "உங்கள் கணக்கு {purgeDate} அன்று நி
 #: src/features/user/close-account.tsx:89
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "உங்கள் கணக்கு நீக்குவதற்குத் திட்டமிடப்படும், மேலும் நீங்கள் வெளியேற்றப்படுவீர்கள். நீக்கும் தேதிக்கு முன் எந்த நேரத்திலும் மீண்டும் உள்நுழைவதன் மூலம் ரத்து செய்யலாம். ஒரு நகலை வைத்திருக்க விரும்பினால், முதலில் உங்கள் தரவைப் பதிவிறக்கவும்."
-
-#: src/features/user/replication.tsx:205
-msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
-msgstr "இந்தச் சேவையகத்தில் உள்ள உங்கள் கணக்கின் தரவு நிரந்தரமாக அழிக்கப்படும், இங்கு நீங்கள் வெளியேற்றப்படுவீர்கள். உங்கள் கணக்கு உங்கள் பிற சேவையகங்களில் இருக்கும், இதை பின்னர் மீண்டும் சேர்க்கலாம்."
 
 #: src/features/user/data.tsx:171
 msgid "Your data"

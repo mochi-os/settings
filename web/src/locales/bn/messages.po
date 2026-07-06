@@ -84,6 +84,10 @@ msgstr "3. কোড যাচাই করুন"
 msgid "Absolute (date and time)"
 msgstr "নিরঙ্কুশ (তারিখ এবং সময়)"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:60
+msgid "Access denied"
+msgstr "অ্যাক্সেস অস্বীকৃত"
+
 #: ../../../lib/web/src/features/errors/forbidden.tsx:16
 msgid "Access Forbidden"
 msgstr "অ্যাক্সেস নিষিদ্ধ"
@@ -92,8 +96,8 @@ msgstr "অ্যাক্সেস নিষিদ্ধ"
 msgid "Access level"
 msgstr "অ্যাক্সেস লেভেল"
 
-#: src/components/layout/data/sidebar-data.ts:34
-#: src/components/layout/data/sidebar-data.ts:55
+#: src/components/layout/data/sidebar-data.ts:33
+#: src/components/layout/data/sidebar-data.ts:53
 #: src/features/user/account.tsx:120
 #: src/features/user/account.tsx:128
 msgid "Account"
@@ -213,7 +217,6 @@ msgid "Add view"
 msgstr "ভিউ যোগ করুন"
 
 #: src/features/user/connected-accounts.tsx:476
-#: src/features/user/replication.tsx:341
 msgid "Added"
 msgstr "যোগ করা হয়েছে"
 
@@ -265,21 +268,13 @@ msgstr "অনুমোদিত"
 msgid "An error occurred"
 msgstr "একটি ত্রুটি ঘটেছে"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:241
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:256
 msgid "An unexpected error occurred"
 msgstr "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে"
 
 #: src/features/system/settings.tsx:56
 msgid "Announce hostname and domains to other servers"
 msgstr "অন্যান্য সার্ভারে হোস্টনেম ও ডোমেইন ঘোষণা করুন"
-
-#: src/features/user/replication.tsx:306
-msgid "Another server is asking to host a copy of your account. Approve to send a copy."
-msgstr "অন্য একটি সার্ভার আপনার অ্যাকাউন্টের একটি অনুলিপি হোস্ট করতে চাইছে। অনুলিপি পাঠাতে অনুমোদন দিন।"
-
-#: src/features/system/replication.tsx:256
-msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
-msgstr "অন্য একটি সার্ভার এই সার্ভারের সঙ্গে জোড়ার অনুরোধ করছে। সম্পূর্ণ প্রতিরূপ পিয়ার হিসেবে নথিভুক্ত করতে অনুমোদন করুন।"
 
 #: src/features/domains/index.tsx:262
 #: src/features/domains/index.tsx:450
@@ -289,26 +284,6 @@ msgstr "অ্যাপ"
 #: src/features/user/display.tsx:215
 msgid "Appearance"
 msgstr "চেহারা"
-
-#: src/features/system/replication.tsx:84
-#: src/features/user/replication.tsx:76
-msgid "Approval failed"
-msgstr "অনুমোদন ব্যর্থ হয়েছে"
-
-#: src/features/system/replication.tsx:104
-#: src/features/user/replication.tsx:102
-msgid "Approve"
-msgstr "অনুমোদন করুন"
-
-#: src/features/system/replication.tsx:124
-#: src/features/user/replication.tsx:112
-msgid "Approve request"
-msgstr "অনুরোধ অনুমোদন করুন"
-
-#: src/features/system/replication.tsx:125
-#: src/features/user/replication.tsx:113
-msgid "Approving replicates private keys to that server. Verify it's you to continue."
-msgstr "অনুমোদন করলে ব্যক্তিগত কী সেই সার্ভারে কপি হয়ে যায়। চালিয়ে যেতে এটি যে আপনি তা যাচাই করুন।"
 
 #: ../../../lib/web/src/components/sign-out-dialog.tsx:27
 msgid "Are you sure you want to log out? You will need to log in again to access your account."
@@ -388,7 +363,6 @@ msgstr "ব্রাউজার নোটিফিকেশন"
 #: src/features/domains/index.tsx:338
 #: src/features/domains/index.tsx:536
 #: src/features/domains/index.tsx:682
-#: src/features/system/replication.tsx:186
 #: src/features/system/settings.tsx:289
 #: src/features/system/settings.tsx:331
 #: src/features/system/settings.tsx:454
@@ -401,7 +375,6 @@ msgstr "ব্রাউজার নোটিফিকেশন"
 #: src/features/user/notifications.tsx:536
 #: src/features/user/notifications.tsx:639
 #: src/features/user/preferences.tsx:233
-#: src/features/user/replication.tsx:212
 #: src/features/user/sessions.tsx:107
 msgid "Cancel"
 msgstr "বাতিল করুন"
@@ -414,7 +387,7 @@ msgstr "কার্ডের শৈলী"
 msgid "Categories"
 msgstr "ক্যাটেগরি"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:144
+#: ../../../lib/web/src/components/notification-category-button.tsx:143
 msgid "Category for this notification"
 msgstr "এই নোটিফিকেশনের ক্যাটেগরি"
 
@@ -422,8 +395,8 @@ msgstr "এই নোটিফিকেশনের ক্যাটেগরি"
 msgid "Change current notifications to"
 msgstr "বর্তমান নোটিফিকেশন পরিবর্তন করুন"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:125
-#: ../../../lib/web/src/components/notification-category-button.tsx:136
+#: ../../../lib/web/src/components/notification-category-button.tsx:124
+#: ../../../lib/web/src/components/notification-category-button.tsx:135
 msgid "Change notification category"
 msgstr "নোটিফিকেশন ক্যাটেগরি পরিবর্তন করুন"
 
@@ -549,7 +522,6 @@ msgstr "কনফিগার করা হয়েছে"
 msgid "Confirm"
 msgstr "নিশ্চিত করুন"
 
-#: src/features/user/replication.tsx:225
 #: src/lib/use-step-up.tsx:33
 msgid "Confirm it's you"
 msgstr "এটি যে আপনি তা নিশ্চিত করুন"
@@ -560,8 +532,8 @@ msgstr "এটি যে আপনি তা নিশ্চিত করুন"
 msgid "Connected"
 msgstr "সংযুক্ত"
 
-#: src/components/layout/data/sidebar-data.ts:38
-#: src/components/layout/data/sidebar-data.ts:59
+#: src/components/layout/data/sidebar-data.ts:37
+#: src/components/layout/data/sidebar-data.ts:57
 #: src/features/user/connected-accounts.tsx:299
 #: src/features/user/connected-accounts.tsx:436
 msgid "Connected accounts"
@@ -595,10 +567,6 @@ msgstr "কপি করুন"
 msgid "Copy all"
 msgstr "সব কপি করুন"
 
-#: src/features/system/replication.tsx:247
-msgid "Copy peer id"
-msgstr "পিয়ার ID কপি করুন"
-
 #: src/features/user/tokens.tsx:178
 msgid "Copy your token now. You will not be able to see it again."
 msgstr "এখনই আপনার টোকেন কপি করুন। আপনি এটি আবার দেখতে পাবেন না।"
@@ -607,15 +575,6 @@ msgstr "এখনই আপনার টোকেন কপি করুন। �
 msgid "Could not close your account"
 msgstr "আপনার অ্যাকাউন্ট বন্ধ করা যায়নি"
 
-#: src/features/system/replication.tsx:113
-#: src/features/user/replication.tsx:83
-msgid "Could not deny request"
-msgstr "অনুরোধ অস্বীকার করা যায়নি"
-
-#: src/features/user/replication.tsx:173
-msgid "Could not forget host"
-msgstr "হোস্ট ভুলে যাওয়া যায়নি"
-
 #: src/features/user/login.tsx:925
 msgid "Could not link account"
 msgstr "অ্যাকাউন্ট লিঙ্ক করা যায়নি"
@@ -623,14 +582,6 @@ msgstr "অ্যাকাউন্ট লিঙ্ক করা যায়ন
 #: ../../../lib/web/src/features/document/document-page.tsx:84
 msgid "Could not load this document. Please try again later."
 msgstr "এই নথিটি লোড করা যায়নি। দয়া করে পরে আবার চেষ্টা করুন।"
-
-#: src/features/system/replication.tsx:191
-msgid "Could not remove pair member"
-msgstr "জোড়া সদস্যকে অপসারণ করা যায়নি"
-
-#: src/features/user/replication.tsx:235
-msgid "Could not remove your account from this server"
-msgstr "এই সার্ভার থেকে আপনার অ্যাকাউন্ট সরানো যায়নি"
 
 #: src/features/user/login.tsx:799
 msgid "Could not start linking"
@@ -697,6 +648,10 @@ msgstr "ডার্ক"
 #: ../../../lib/web/src/components/profile-dropdown.tsx:123
 msgid "Dark mode"
 msgstr "ডার্ক মোড"
+
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:240
+msgid "Data conflict"
+msgstr "ডেটা দ্বন্দ্ব"
 
 #: src/features/user/preferences.tsx:295
 msgid "Date format"
@@ -828,11 +783,6 @@ msgstr "মুছে ফেলা হচ্ছে..."
 msgid "Density"
 msgstr "ঘনত্ব"
 
-#: src/features/system/replication.tsx:118
-#: src/features/user/replication.tsx:106
-msgid "Deny"
-msgstr "অস্বীকার করুন"
-
 #: ../../../lib/web/src/components/data-table/column-header.tsx:63
 msgid "Desc"
 msgstr "অধঃক্রম"
@@ -893,8 +843,8 @@ msgstr "সংযোগ বিচ্ছিন্ন"
 msgid "Dismiss"
 msgstr "বাতিল করুন"
 
-#: src/components/layout/data/sidebar-data.ts:37
-#: src/components/layout/data/sidebar-data.ts:58
+#: src/components/layout/data/sidebar-data.ts:36
+#: src/components/layout/data/sidebar-data.ts:56
 #: src/features/user/display.tsx:95
 #: src/features/user/display.tsx:172
 msgid "Display"
@@ -916,7 +866,7 @@ msgstr "DNS যাচাইকরণ"
 msgid "Document saved"
 msgstr "ডকুমেন্ট সংরক্ষিত হয়েছে"
 
-#: src/components/layout/data/sidebar-data.ts:71
+#: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/documents.tsx:166
 #: src/features/system/documents.tsx:235
 msgid "Documents"
@@ -947,7 +897,7 @@ msgstr "ডোমেইন আপডেট করা হয়েছে"
 msgid "Domain verified"
 msgstr "ডোমেইন যাচাই করা হয়েছে"
 
-#: src/components/layout/data/sidebar-data.ts:78
+#: src/components/layout/data/sidebar-data.ts:74
 #: src/features/domains/index.tsx:1153
 #: src/features/domains/index.tsx:1181
 #: src/features/domains/index.tsx:1193
@@ -1110,10 +1060,6 @@ msgstr "অ্যাকাউন্ট যোগ করতে ব্যর্থ
 msgid "Failed to add interest"
 msgstr "আগ্রহ যোগ করতে ব্যর্থ"
 
-#: src/features/system/replication.tsx:243
-msgid "Failed to copy"
-msgstr "কপি করতে ব্যর্থ"
-
 #: src/features/domains/index.tsx:586
 msgid "Failed to create delegation"
 msgstr "ডেলিগেশন তৈরি করতে ব্যর্থ"
@@ -1242,7 +1188,7 @@ msgstr "অ্যাকাউন্ট আপডেট করতে ব্যর
 msgid "Failed to update browser notifications"
 msgstr "ব্রাউজার নোটিফিকেশন আপডেট করতে ব্যর্থ"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:112
+#: ../../../lib/web/src/components/notification-category-button.tsx:111
 msgid "Failed to update category"
 msgstr "ক্যাটাগরি আপডেট করতে ব্যর্থ"
 
@@ -1342,21 +1288,11 @@ msgstr "ফন্ট"
 msgid "Font size"
 msgstr "ফন্টের আকার"
 
-#: src/features/user/replication.tsx:160
-msgid "Forget this unreachable host"
-msgstr "এই অগম্য হোস্টটি ভুলে যান"
-
-#: src/features/user/replication.tsx:165
-msgid "Forget this unreachable host?"
-msgstr "এই অগম্য হোস্টটি ভুলে যাবেন?"
-
 #: ../../../lib/web/src/lib/preference-utils.ts:63
 msgid "Friday"
 msgstr "শুক্রবার"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:153
-#: src/features/system/replication.tsx:263
-#: src/features/user/replication.tsx:311
 msgid "From"
 msgstr "থেকে"
 
@@ -1463,10 +1399,6 @@ msgstr "হোল পাঞ্চ"
 msgid "Home"
 msgstr "হোম"
 
-#: src/features/user/replication.tsx:172
-msgid "Host forgotten"
-msgstr "হোস্ট ভুলে যাওয়া হয়েছে"
-
 #: src/features/system/settings.tsx:55
 msgid "Hostname announced to other servers"
 msgstr "অন্যান্য সার্ভারে ঘোষিত হোস্টনেম"
@@ -1506,8 +1438,8 @@ msgid "Installing {0}…"
 msgstr "{0} ইনস্টল করা হচ্ছে…"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:42
-#: src/components/layout/data/sidebar-data.ts:43
-#: src/components/layout/data/sidebar-data.ts:64
+#: src/components/layout/data/sidebar-data.ts:41
+#: src/components/layout/data/sidebar-data.ts:61
 #: src/features/user/interests.tsx:230
 #: src/features/user/interests.tsx:251
 msgid "Interests"
@@ -1525,23 +1457,6 @@ msgstr "অবৈধ যাচাইকরণ কোড"
 #: src/features/system/users.tsx:322
 msgid "IP Address"
 msgstr "IP ঠিকানা"
-
-#: src/features/system/replication.tsx:156
-#: src/features/user/replication.tsx:139
-msgid "Irreparable"
-msgstr "মেরামত অযোগ্য"
-
-#: src/features/user/replication.tsx:166
-msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
-msgstr "এটি আপনার রেপ্লিকা সেট থেকে সরিয়ে দেওয়া হবে এবং পুনরায় সংযুক্ত হলে এর কপি মুছে ফেলতে বলা হবে। একটি অ্যাক্সেসযোগ্য সার্ভার সরাতে, সেখানে সাইন ইন করুন এবং \"এই সার্ভার থেকে আমার অ্যাকাউন্ট সরান\" ব্যবহার করুন। চালিয়ে যেতে আপনি যে আপনিই তা যাচাই করুন।"
-
-#: src/features/system/replication.tsx:82
-msgid "Join request approved"
-msgstr "যোগদানের অনুরোধ অনুমোদিত"
-
-#: src/features/system/replication.tsx:112
-msgid "Join request denied"
-msgstr "যোগদানের অনুরোধ প্রত্যাখ্যাত"
 
 #: src/features/system/status.tsx:175
 msgid "Known"
@@ -1658,8 +1573,8 @@ msgstr "সফলভাবে লগ আউট"
 msgid "Logging out…"
 msgstr "লগ আউট হচ্ছে…"
 
-#: src/components/layout/data/sidebar-data.ts:35
-#: src/components/layout/data/sidebar-data.ts:56
+#: src/components/layout/data/sidebar-data.ts:34
+#: src/components/layout/data/sidebar-data.ts:54
 #: src/features/system/settings.tsx:565
 #: src/features/user/login.tsx:897
 #: src/features/user/login.tsx:944
@@ -1702,7 +1617,7 @@ msgstr "নতুন কোডগুলি অবশ্যই সংরক্ষ
 msgid "Manage sessions"
 msgstr "সেশন পরিচালনা করুন"
 
-#: src/components/layout/data/sidebar-data.ts:86
+#: src/components/layout/data/sidebar-data.ts:82
 msgid "Management"
 msgstr "ব্যবস্থাপনা"
 
@@ -1768,10 +1683,6 @@ msgstr "সোমবার"
 msgid "My application"
 msgstr "আমার অ্যাপ্লিকেশন"
 
-#: src/features/user/replication.tsx:323
-msgid "My hosts"
-msgstr "আমার হোস্ট"
-
 #: src/features/user/login.tsx:381
 msgid "My passkey"
 msgstr "আমার পাসকি"
@@ -1793,7 +1704,8 @@ msgstr "নাম প্রয়োজন"
 msgid "Name updated"
 msgstr "নাম আপডেট করা হয়েছে"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:288
+#: ../../../lib/web/src/features/errors/general-error.tsx:53
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:303
 msgid "Network error"
 msgstr "নেটওয়ার্ক ত্রুটি"
 
@@ -1914,7 +1826,7 @@ msgstr "কোনো রুট কনফিগার করা নেই"
 msgid "No time zone found."
 msgstr "কোনো টাইম জোন পাওয়া যায়নি।"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:148
+#: ../../../lib/web/src/components/notification-category-button.tsx:147
 msgid "No topic record yet — try again after the next notification."
 msgstr "এখনও কোনো বিষয়ের রেকর্ড নেই — পরবর্তী বিজ্ঞপ্তির পরে আবার চেষ্টা করুন।"
 
@@ -1942,6 +1854,10 @@ msgstr "কোনোটি নয়"
 msgid "Normal"
 msgstr "সাধারণ"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:67
+msgid "Not found"
+msgstr "খুঁজে পাওয়া যায়নি"
+
 #: ../../../lib/web/src/components/ui/editable-field-row.tsx:146
 msgid "Not set"
 msgstr "সেট করা নেই"
@@ -1951,8 +1867,8 @@ msgstr "সেট করা নেই"
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:236
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:257
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:261
-#: src/components/layout/data/sidebar-data.ts:39
-#: src/components/layout/data/sidebar-data.ts:60
+#: src/components/layout/data/sidebar-data.ts:38
+#: src/components/layout/data/sidebar-data.ts:58
 #: src/features/user/notifications.tsx:149
 #: src/features/user/notifications.tsx:167
 msgid "Notifications"
@@ -1966,13 +1882,6 @@ msgstr "ডিফল্টভাবে অবহিত করুন"
 #: src/features/user/preferences.tsx:284
 msgid "Number format"
 msgstr "সংখ্যার ফরম্যাট"
-
-#. placeholder {0}: offlineDuration(host.offline)
-#. placeholder {0}: offlineDuration(offline)
-#: src/features/system/replication.tsx:159
-#: src/features/user/replication.tsx:142
-msgid "Offline {0}"
-msgstr "অফলাইন {0}"
 
 #: src/features/system/status.tsx:186
 msgid "Oldest queued message"
@@ -2031,10 +1940,6 @@ msgstr "অপারেটরের নাম"
 msgid "Other"
 msgstr "অন্যান্য"
 
-#: src/features/user/replication.tsx:326
-msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
-msgstr "অন্যান্য সার্ভার যেগুলিতেও আপনার অ্যাকাউন্টের একটি কপি রয়েছে। একটি সরাতে, সেই সার্ভারে সাইন ইন করুন এবং \"এই সার্ভার থেকে আমার অ্যাকাউন্ট সরান\" ব্যবহার করুন।"
-
 #: src/features/system/settings.tsx:601
 msgid "Other settings"
 msgstr "অন্যান্য সেটিংস"
@@ -2042,14 +1947,6 @@ msgstr "অন্যান্য সেটিংস"
 #: ../../../lib/web/src/features/access/access-list.tsx:217
 msgid "Owner"
 msgstr "মালিক"
-
-#: src/features/system/replication.tsx:190
-msgid "Pair member removed"
-msgstr "জোড়া সদস্য অপসারণ করা হয়েছে"
-
-#: src/features/system/replication.tsx:275
-msgid "Pair members"
-msgstr "জোড়া সদস্য"
 
 #: ../../../lib/web/src/components/step-up-dialog.tsx:334
 #: src/features/user/login.tsx:126
@@ -2102,9 +1999,7 @@ msgstr "পাথ"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "পাথ অনুমোদিত নয়। আপনি শুধুমাত্র {0}-এর অধীনে রুট যোগ করতে পারেন"
 
-#: src/features/system/replication.tsx:287
 #: src/features/system/status.tsx:181
-#: src/features/user/replication.tsx:340
 msgid "Peer"
 msgstr "পিয়ার"
 
@@ -2113,7 +2008,6 @@ msgid "Peer ID"
 msgstr "পিয়ার আইডি"
 
 #: src/components/peer-identity.tsx:45
-#: src/features/system/replication.tsx:242
 msgid "Peer id copied"
 msgstr "পিয়ার ID কপি করা হয়েছে"
 
@@ -2125,19 +2019,13 @@ msgstr "পিয়ারসমূহ"
 msgid "Pending"
 msgstr "মুলতুবি"
 
-#: src/features/system/replication.tsx:254
-msgid "Pending join requests"
-msgstr "অপেক্ষমাণ যোগদানের অনুরোধ"
-
-#: src/features/user/replication.tsx:304
-msgid "Pending requests"
-msgstr "মুলতুবি অনুরোধ"
-
 #: src/features/domains/index.tsx:1117
 msgid "Permanently delete this domain and all its routes."
 msgstr "এই ডোমেইন ও এর সমস্ত রুট স্থায়ীভাবে মুছে ফেলুন।"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:289
+#: ../../../lib/web/src/features/errors/general-error.tsx:54
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:304
+#: ../../../lib/web/src/lib/error-normalizer.ts:201
 msgid "Please check your internet connection and try again."
 msgstr "অনুগ্রহ করে আপনার ইন্টারনেট সংযোগ পরীক্ষা করে আবার চেষ্টা করুন।"
 
@@ -2145,13 +2033,21 @@ msgstr "অনুগ্রহ করে আপনার ইন্টারনে
 msgid "Please enter a token name"
 msgstr "অনুগ্রহ করে একটি টোকেনের নাম লিখুন"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:83
+msgid "Please try again."
+msgstr "অনুগ্রহ করে আবার চেষ্টা করুন।"
+
+#: ../../../lib/web/src/features/errors/general-error.tsx:75
+msgid "Please wait a moment and try again."
+msgstr "অনুগ্রহ করে কিছুক্ষণ অপেক্ষা করে আবার চেষ্টা করুন।"
+
 #: src/features/user/display.tsx:118
 #: src/features/user/preferences.tsx:178
 msgid "Preference updated"
 msgstr "পছন্দ আপডেট করা হয়েছে"
 
-#: src/components/layout/data/sidebar-data.ts:36
-#: src/components/layout/data/sidebar-data.ts:57
+#: src/components/layout/data/sidebar-data.ts:35
+#: src/components/layout/data/sidebar-data.ts:55
 #: src/features/user/preferences.tsx:70
 #: src/features/user/preferences.tsx:207
 msgid "Preferences"
@@ -2220,10 +2116,6 @@ msgstr "সারিবদ্ধ ব্রডকাস্ট বার্তা"
 msgid "Queued messages"
 msgstr "সারিতে থাকা বার্তা"
 
-#: src/features/user/replication.tsx:271
-msgid "Quote both values on the destination server's sign-up form to replicate this account there."
-msgstr "এই অ্যাকাউন্টটি অন্য সার্ভারে অনুলিপি করতে গন্তব্য সার্ভারের সাইন-আপ ফর্মে উভয় মান লিখুন।"
-
 #: src/features/user/display.tsx:293
 msgid "Radius"
 msgstr "ব্যাসার্ধ"
@@ -2244,8 +2136,8 @@ msgstr "এই সার্ভারে আপনার পাসকি পু�
 msgid "Reachability"
 msgstr "পৌঁছানোর যোগ্যতা"
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:219
-#: ../../../lib/web/src/components/search-entity-page.tsx:194
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:216
+#: ../../../lib/web/src/components/search-entity-page.tsx:240
 msgid "Recommended"
 msgstr "সুপারিশকৃত"
 
@@ -2303,10 +2195,8 @@ msgstr "রিলে সার্ভিস"
 
 #: ../../../lib/web/src/features/access/access-list.tsx:265
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:180
-#: src/features/system/replication.tsx:195
 #: src/features/user/connected-accounts.tsx:278
 #: src/features/user/connected-accounts.tsx:288
-#: src/features/user/replication.tsx:217
 msgid "Remove"
 msgstr "সরান"
 
@@ -2333,25 +2223,9 @@ msgstr "অ্যাকাউন্ট সরাবেন?"
 msgid "Remove interest"
 msgstr "আগ্রহ সরান"
 
-#: src/features/user/replication.tsx:198
-msgid "Remove my account from this server"
-msgstr "এই সার্ভার থেকে আমার অ্যাকাউন্ট সরান"
-
-#: src/features/system/replication.tsx:172
-msgid "Remove pair member"
-msgstr "জোড়া সদস্যকে অপসারণ করুন"
-
-#: src/features/system/replication.tsx:177
-msgid "Remove pair member?"
-msgstr "জোড়া সদস্যকে অপসারণ করবেন?"
-
 #: src/features/system/users.tsx:463
 msgid "Remove suspension"
 msgstr "স্থগিতাদেশ সরান"
-
-#: src/features/user/replication.tsx:203
-msgid "Remove your account from this server?"
-msgstr "এই সার্ভার থেকে আপনার অ্যাকাউন্ট সরাবেন?"
 
 #: src/features/user/login.tsx:270
 msgid "Rename passkey"
@@ -2360,24 +2234,6 @@ msgstr "passkey-এর নাম পরিবর্তন করুন"
 #: src/features/system/settings.tsx:367
 msgid "Replace"
 msgstr "প্রতিস্থাপন করুন"
-
-#: src/components/layout/data/sidebar-data.ts:42
-#: src/components/layout/data/sidebar-data.ts:63
-#: src/components/layout/data/sidebar-data.ts:73
-#: src/features/system/replication.tsx:207
-#: src/features/system/replication.tsx:221
-#: src/features/user/replication.tsx:247
-#: src/features/user/replication.tsx:258
-msgid "Replication"
-msgstr "প্রতিলিপি"
-
-#: src/features/user/replication.tsx:74
-msgid "Request approved"
-msgstr "অনুরোধ অনুমোদিত"
-
-#: src/features/user/replication.tsx:82
-msgid "Request denied"
-msgstr "অনুরোধ অস্বীকৃত"
 
 #: src/features/system/settings.tsx:53
 msgid "Require domain verification"
@@ -2560,8 +2416,8 @@ msgstr "ব্যবহারকারী অনুসন্ধান করু�
 msgid "Search..."
 msgstr "অনুসন্ধান করুন..."
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:177
-#: ../../../lib/web/src/components/search-entity-page.tsx:152
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:174
+#: ../../../lib/web/src/components/search-entity-page.tsx:198
 #: ../../../lib/web/src/features/access/access-dialog.tsx:202
 #: src/features/domains/index.tsx:650
 msgid "Searching..."
@@ -2635,14 +2491,10 @@ msgstr "ইমেইল পাঠান"
 msgid "Serif"
 msgstr "সেরিফ"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:245
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:271
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:260
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:286
 msgid "Server error"
 msgstr "সার্ভার ত্রুটি"
-
-#: src/features/user/replication.tsx:284
-msgid "Server peer ID"
-msgstr "সার্ভার পিয়ার আইডি"
 
 #: ../../../lib/web/src/components/server-documents-footer.tsx:19
 #: ../../../lib/web/src/features/document/document-page.tsx:40
@@ -2666,17 +2518,17 @@ msgstr "সার্ভার সংস্করণ"
 msgid "Session"
 msgstr "সেশন"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:209
-msgid "Session expired"
-msgstr "সেশনের মেয়াদ শেষ হয়েছে"
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:210
+msgid "Session expired. Please log in again."
+msgstr "সেশনের মেয়াদ শেষ হয়ে গেছে। অনুগ্রহ করে আবার লগ ইন করুন।"
 
 #: src/features/system/users.tsx:282
 #: src/features/user/sessions.tsx:52
 msgid "Session revoked"
 msgstr "সেশন প্রত্যাহার করা হয়েছে"
 
-#: src/components/layout/data/sidebar-data.ts:41
-#: src/components/layout/data/sidebar-data.ts:62
+#: src/components/layout/data/sidebar-data.ts:40
+#: src/components/layout/data/sidebar-data.ts:60
 #: src/features/user/sessions.tsx:121
 #: src/features/user/sessions.tsx:129
 msgid "Sessions"
@@ -2705,9 +2557,9 @@ msgstr "সেটিং আপডেট হয়েছে"
 #: ../../../lib/web/src/components/layout/nav-user.tsx:84
 #: ../../../lib/web/src/components/layout/nav-user.tsx:148
 #: ../../../lib/web/src/components/layout/nav-user.tsx:198
-#: src/components/layout/data/sidebar-data.ts:32
-#: src/components/layout/data/sidebar-data.ts:53
-#: src/components/layout/data/sidebar-data.ts:95
+#: src/components/layout/data/sidebar-data.ts:31
+#: src/components/layout/data/sidebar-data.ts:51
+#: src/components/layout/data/sidebar-data.ts:91
 #: src/features/user/connected-accounts.tsx:272
 msgid "Settings"
 msgstr "সেটিংস"
@@ -2759,9 +2611,8 @@ msgstr "প্রশস্ত"
 msgid "Started"
 msgstr "শুরু হয়েছে"
 
-#: src/components/layout/data/sidebar-data.ts:74
+#: src/components/layout/data/sidebar-data.ts:70
 #: src/features/domains/index.tsx:1040
-#: src/features/system/replication.tsx:288
 #: src/features/system/status.tsx:41
 #: src/features/system/status.tsx:57
 #: src/features/system/status.tsx:182
@@ -2802,22 +2653,14 @@ msgstr "স্থগিত"
 msgid "Suspension removed"
 msgstr "স্থগিতাদেশ অপসারণ করা হয়েছে"
 
-#: src/features/system/replication.tsx:162
-msgid "Synced"
-msgstr "সিঙ্ক করা"
-
-#: src/features/system/replication.tsx:164
-msgid "Syncing"
-msgstr "সিঙ্ক হচ্ছে"
-
 #: ../../../lib/web/src/components/config-drawer.tsx:208
 #: ../../../lib/web/src/lib/preference-utils.ts:21
 #: ../../../lib/web/src/lib/preference-utils.ts:144
-#: src/components/layout/data/sidebar-data.ts:68
+#: src/components/layout/data/sidebar-data.ts:65
 msgid "System"
 msgstr "সিস্টেম"
 
-#: src/components/layout/data/sidebar-data.ts:70
+#: src/components/layout/data/sidebar-data.ts:67
 #: src/features/system/settings.tsx:472
 #: src/features/system/settings.tsx:556
 msgid "System settings"
@@ -2878,6 +2721,10 @@ msgstr "সেই ইমেল ইতিমধ্যে অন্য অ্য�
 msgid "The \"No notifications\" category silences any topic assigned to it."
 msgstr "\"কোন নোটিফিকেশন নেই\" ক্যাটাগরি এতে অ্যাসাইন করা যেকোনো বিষয়কে নীরব করে।"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:68
+msgid "The requested content could not be found."
+msgstr "অনুরোধ করা কনটেন্ট খুঁজে পাওয়া যায়নি।"
+
 #: ../../../lib/web/src/components/config-drawer.tsx:194
 #: src/features/user/display.tsx:233
 #: src/features/user/display.tsx:260
@@ -2898,14 +2745,6 @@ msgstr "থিম আপডেট হয়েছে"
 msgid "Third-party login"
 msgstr "থার্ড-পার্টি লগইন"
 
-#: src/features/user/replication.tsx:269
-msgid "This account"
-msgstr "এই অ্যাকাউন্ট"
-
-#: src/features/user/replication.tsx:332
-msgid "This account is on this server only"
-msgstr "এই অ্যাকাউন্টটি কেবল এই সার্ভারে আছে"
-
 #: src/features/user/data.tsx:124
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "এটি একটি সম্পূর্ণ ব্যাকআপ যা আপনি এই বা অন্য কোনো Mochi সার্ভারে পুনরুদ্ধার করতে পারেন। চালিয়ে যেতে এটি যে আপনি তা যাচাই করুন।"
@@ -2913,22 +2752,6 @@ msgstr "এটি একটি সম্পূর্ণ ব্যাকআপ �
 #: src/lib/use-step-up.tsx:34
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "এটি আপনার অ্যাকাউন্টের একটি নিরাপত্তা পরিবর্তন। চালিয়ে যেতে এটি যে আপনি তা যাচাই করুন।"
-
-#: src/features/user/replication.tsx:226
-msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
-msgstr "এটি এই সার্ভারে আপনার অ্যাকাউন্টের ডেটা স্থায়ীভাবে মুছে ফেলে। চালিয়ে যেতে আপনি যে আপনিই তা যাচাই করুন।"
-
-#: src/features/system/replication.tsx:231
-msgid "This server"
-msgstr "এই সার্ভার"
-
-#: src/features/system/replication.tsx:279
-msgid "This server is not paired."
-msgstr "এই সার্ভারটি জোড়া নেই।"
-
-#: src/features/system/replication.tsx:179
-msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
-msgstr "এই সার্ভারটি সেই পিয়ারের সঙ্গে জোড়া তৈরি বন্ধ করবে। অপসারিত সার্ভার প্রত্যেক ব্যবহারকারীর স্থানীয় কপি রেখে দেয়; সেখানকার পরিচালককে এটি ম্যানুয়ালি মুছতে হবে।"
 
 #: src/features/system/users.tsx:355
 msgid "This user has no active sessions."
@@ -3016,10 +2839,6 @@ msgstr "টাইমস্ট্যাম্প"
 msgid "TLS Enabled"
 msgstr "TLS সক্ষম"
 
-#: src/features/user/replication.tsx:333
-msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
-msgstr "এটিকে অন্য সার্ভারে প্রতিলিপি করতে, সেখানে একটি অ্যাকাউন্টের জন্য সাইন আপ করুন এবং \"একটি বিদ্যমান অ্যাকাউন্ট প্রতিলিপি করুন\" বিকল্পটি ব্যবহার করুন।"
-
 #: ../../../lib/web/src/components/data-table/view-options.tsx:37
 msgid "Toggle columns"
 msgstr "কলাম টগল করুন"
@@ -3067,10 +2886,14 @@ msgstr "টোকেন মুছে ফেলা হয়েছে"
 msgid "Token name"
 msgstr "টোকেন নাম"
 
-#: src/components/layout/data/sidebar-data.ts:40
-#: src/components/layout/data/sidebar-data.ts:61
+#: src/components/layout/data/sidebar-data.ts:39
+#: src/components/layout/data/sidebar-data.ts:59
 msgid "Tokens"
 msgstr "টোকেন"
+
+#: ../../../lib/web/src/features/errors/general-error.tsx:74
+msgid "Too many requests"
+msgstr "অনেক বেশি অনুরোধ"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:45
 msgid "Top"
@@ -3088,13 +2911,13 @@ msgstr "ভ্রমণরত"
 msgid "Try adjusting your search criteria"
 msgstr "আপনার অনুসন্ধানের মানদণ্ড সামঞ্জস্য করার চেষ্টা করুন"
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:193
-#: ../../../lib/web/src/components/search-entity-page.tsx:168
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:190
+#: ../../../lib/web/src/components/search-entity-page.tsx:214
 msgid "Try adjusting your search terms"
 msgstr "আপনার অনুসন্ধান শর্তাবলী সমন্বয় করার চেষ্টা করুন"
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:128
-#: ../../../lib/web/src/features/errors/general-error.tsx:168
+#: ../../../lib/web/src/features/errors/general-error.tsx:140
+#: ../../../lib/web/src/features/errors/general-error.tsx:180
 #: ../../../lib/web/src/features/errors/maintenance-error.tsx:19
 msgid "Try again"
 msgstr "আবার চেষ্টা করুন"
@@ -3123,7 +2946,7 @@ msgstr "ব্যবহারকারী অনুসন্ধান করত�
 msgid "Type to search..."
 msgstr "অনুসন্ধান করতে টাইপ করুন..."
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:267
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:282
 msgid "Unable to connect to remote server"
 msgstr "দূরবর্তী সার্ভারে সংযোগ করা যায়নি"
 
@@ -3132,7 +2955,7 @@ msgstr "দূরবর্তী সার্ভারে সংযোগ কর
 msgid "Unable to redirect to login. Please try again."
 msgstr "লগইনে রিডাইরেক্ট করা যাচ্ছে না। অনুগ্রহ করে আবার চেষ্টা করুন।"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:156
+#: ../../../lib/web/src/components/notification-category-button.tsx:155
 #: src/features/user/notifications.tsx:763
 msgid "Unassigned"
 msgstr "অ্যাসাইন করা হয়নি"
@@ -3152,7 +2975,6 @@ msgstr "একক"
 #: src/features/system/status.tsx:134
 #: src/features/system/status.tsx:135
 #: src/features/system/users.tsx:332
-#: src/features/user/replication.tsx:148
 msgid "Unknown"
 msgstr "অজানা"
 
@@ -3199,10 +3021,6 @@ msgstr "আপডেট"
 msgid "URL to redirect to"
 msgstr "পুনঃনির্দেশের জন্য URL"
 
-#: src/features/system/replication.tsx:280
-msgid "Use \"mochictl replica join {peer}\" on a newly installed server to pair with this server."
-msgstr "এই সার্ভারের সাথে জোড়া করার জন্য একটি নতুন ইনস্টল করা সার্ভারে \"mochictl replica join {peer}\" ব্যবহার করুন।"
-
 #: src/features/domains/index.tsx:124
 msgid "Use *.domain.com for wildcard domains"
 msgstr "ওয়াইল্ডকার্ড ডোমেইনের জন্য *.domain.com ব্যবহার করুন"
@@ -3246,11 +3064,10 @@ msgid "User updated"
 msgstr "ব্যবহারকারী আপডেট হয়েছে"
 
 #: src/features/user/account.tsx:82
-#: src/features/user/replication.tsx:276
 msgid "Username"
 msgstr "ব্যবহারকারীর নাম"
 
-#: src/components/layout/data/sidebar-data.ts:72
+#: src/components/layout/data/sidebar-data.ts:69
 #: src/features/system/status.tsx:140
 #: src/features/system/users.tsx:555
 #: src/features/system/users.tsx:593
@@ -3354,6 +3171,10 @@ msgstr "X client ID"
 msgid "X client secret"
 msgstr "X client secret"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:61
+msgid "You do not have access to this section."
+msgstr "এই বিভাগে আপনার অ্যাক্সেস নেই।"
+
 #: src/features/domains/index.tsx:1212
 msgid "You don't have access to any domains."
 msgstr "আপনার কোন ডোমেনে অ্যাক্সেস নেই।"
@@ -3374,10 +3195,6 @@ msgstr "আপনার অ্যাকাউন্ট {purgeDate} তারি�
 #: src/features/user/close-account.tsx:89
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "আপনার অ্যাকাউন্ট মুছে ফেলার জন্য নির্ধারিত হবে এবং আপনাকে সাইন আউট করা হবে। মুছে ফেলার তারিখের আগে যেকোনো সময় আবার লগ ইন করে আপনি বাতিল করতে পারেন। একটি অনুলিপি রাখতে চাইলে প্রথমে আপনার ডেটা ডাউনলোড করুন।"
-
-#: src/features/user/replication.tsx:205
-msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
-msgstr "এই সার্ভারে আপনার অ্যাকাউন্টের ডেটা স্থায়ীভাবে মুছে ফেলা হবে এবং আপনাকে এখানে সাইন আউট করা হবে। আপনার অ্যাকাউন্ট আপনার অন্যান্য সার্ভারে থাকবে এবং আপনি পরে এটি আবার যোগ করতে পারবেন।"
 
 #: src/features/user/data.tsx:171
 msgid "Your data"

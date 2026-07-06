@@ -84,6 +84,10 @@ msgstr "3. Verifica el código"
 msgid "Absolute (date and time)"
 msgstr "Absoluto (fecha y hora)"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:60
+msgid "Access denied"
+msgstr "Acceso denegado"
+
 #: ../../../lib/web/src/features/errors/forbidden.tsx:16
 msgid "Access Forbidden"
 msgstr "Acceso prohibido"
@@ -92,8 +96,8 @@ msgstr "Acceso prohibido"
 msgid "Access level"
 msgstr "Nivel de acceso"
 
-#: src/components/layout/data/sidebar-data.ts:34
-#: src/components/layout/data/sidebar-data.ts:55
+#: src/components/layout/data/sidebar-data.ts:33
+#: src/components/layout/data/sidebar-data.ts:53
 #: src/features/user/account.tsx:120
 #: src/features/user/account.tsx:128
 msgid "Account"
@@ -213,7 +217,6 @@ msgid "Add view"
 msgstr "Añadir vista"
 
 #: src/features/user/connected-accounts.tsx:476
-#: src/features/user/replication.tsx:341
 msgid "Added"
 msgstr "Añadido"
 
@@ -265,21 +268,13 @@ msgstr "Permitido"
 msgid "An error occurred"
 msgstr "Ocurrió un error"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:241
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:256
 msgid "An unexpected error occurred"
 msgstr "Ocurrió un error inesperado"
 
 #: src/features/system/settings.tsx:56
 msgid "Announce hostname and domains to other servers"
 msgstr "Anunciar el nombre de host y los dominios a otros servidores"
-
-#: src/features/user/replication.tsx:306
-msgid "Another server is asking to host a copy of your account. Approve to send a copy."
-msgstr "Otro servidor pide alojar una copia de tu cuenta. Aprueba para enviar una copia."
-
-#: src/features/system/replication.tsx:256
-msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
-msgstr "Otro servidor solicita emparejarse con este. Apruébalo para inscribirlo como par de replicación completo."
 
 #: src/features/domains/index.tsx:262
 #: src/features/domains/index.tsx:450
@@ -289,26 +284,6 @@ msgstr "App"
 #: src/features/user/display.tsx:215
 msgid "Appearance"
 msgstr "Apariencia"
-
-#: src/features/system/replication.tsx:84
-#: src/features/user/replication.tsx:76
-msgid "Approval failed"
-msgstr "Error al aprobar"
-
-#: src/features/system/replication.tsx:104
-#: src/features/user/replication.tsx:102
-msgid "Approve"
-msgstr "Aprobar"
-
-#: src/features/system/replication.tsx:124
-#: src/features/user/replication.tsx:112
-msgid "Approve request"
-msgstr "Aprobar solicitud"
-
-#: src/features/system/replication.tsx:125
-#: src/features/user/replication.tsx:113
-msgid "Approving replicates private keys to that server. Verify it's you to continue."
-msgstr "Al aprobar se copian las claves privadas a ese servidor. Verifica tu identidad para continuar."
 
 #: ../../../lib/web/src/components/sign-out-dialog.tsx:27
 msgid "Are you sure you want to log out? You will need to log in again to access your account."
@@ -388,7 +363,6 @@ msgstr "Notificaciones del navegador"
 #: src/features/domains/index.tsx:338
 #: src/features/domains/index.tsx:536
 #: src/features/domains/index.tsx:682
-#: src/features/system/replication.tsx:186
 #: src/features/system/settings.tsx:289
 #: src/features/system/settings.tsx:331
 #: src/features/system/settings.tsx:454
@@ -401,7 +375,6 @@ msgstr "Notificaciones del navegador"
 #: src/features/user/notifications.tsx:536
 #: src/features/user/notifications.tsx:639
 #: src/features/user/preferences.tsx:233
-#: src/features/user/replication.tsx:212
 #: src/features/user/sessions.tsx:107
 msgid "Cancel"
 msgstr "Cancelar"
@@ -414,7 +387,7 @@ msgstr "Estilo de tarjeta"
 msgid "Categories"
 msgstr "Categorías"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:144
+#: ../../../lib/web/src/components/notification-category-button.tsx:143
 msgid "Category for this notification"
 msgstr "Categoría para esta notificación"
 
@@ -422,8 +395,8 @@ msgstr "Categoría para esta notificación"
 msgid "Change current notifications to"
 msgstr "Cambiar las notificaciones actuales a"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:125
-#: ../../../lib/web/src/components/notification-category-button.tsx:136
+#: ../../../lib/web/src/components/notification-category-button.tsx:124
+#: ../../../lib/web/src/components/notification-category-button.tsx:135
 msgid "Change notification category"
 msgstr "Cambiar categoría de notificación"
 
@@ -549,7 +522,6 @@ msgstr "Configurado"
 msgid "Confirm"
 msgstr "Confirmar"
 
-#: src/features/user/replication.tsx:225
 #: src/lib/use-step-up.tsx:33
 msgid "Confirm it's you"
 msgstr "Confirma que eres tú"
@@ -560,8 +532,8 @@ msgstr "Confirma que eres tú"
 msgid "Connected"
 msgstr "Conectado"
 
-#: src/components/layout/data/sidebar-data.ts:38
-#: src/components/layout/data/sidebar-data.ts:59
+#: src/components/layout/data/sidebar-data.ts:37
+#: src/components/layout/data/sidebar-data.ts:57
 #: src/features/user/connected-accounts.tsx:299
 #: src/features/user/connected-accounts.tsx:436
 msgid "Connected accounts"
@@ -595,10 +567,6 @@ msgstr "Copiar"
 msgid "Copy all"
 msgstr "Copiar todo"
 
-#: src/features/system/replication.tsx:247
-msgid "Copy peer id"
-msgstr "Copiar identificador del par"
-
 #: src/features/user/tokens.tsx:178
 msgid "Copy your token now. You will not be able to see it again."
 msgstr "Copia tu token ahora. No podrás verlo de nuevo."
@@ -607,15 +575,6 @@ msgstr "Copia tu token ahora. No podrás verlo de nuevo."
 msgid "Could not close your account"
 msgstr "No se pudo cerrar tu cuenta"
 
-#: src/features/system/replication.tsx:113
-#: src/features/user/replication.tsx:83
-msgid "Could not deny request"
-msgstr "No se pudo denegar la solicitud"
-
-#: src/features/user/replication.tsx:173
-msgid "Could not forget host"
-msgstr "No se pudo olvidar el host"
-
 #: src/features/user/login.tsx:925
 msgid "Could not link account"
 msgstr "No se pudo vincular la cuenta"
@@ -623,14 +582,6 @@ msgstr "No se pudo vincular la cuenta"
 #: ../../../lib/web/src/features/document/document-page.tsx:84
 msgid "Could not load this document. Please try again later."
 msgstr "No se pudo cargar este documento. Inténtalo de nuevo más tarde."
-
-#: src/features/system/replication.tsx:191
-msgid "Could not remove pair member"
-msgstr "No se pudo eliminar el miembro del par"
-
-#: src/features/user/replication.tsx:235
-msgid "Could not remove your account from this server"
-msgstr "No se pudo quitar tu cuenta de este servidor"
 
 #: src/features/user/login.tsx:799
 msgid "Could not start linking"
@@ -697,6 +648,10 @@ msgstr "Oscuro"
 #: ../../../lib/web/src/components/profile-dropdown.tsx:123
 msgid "Dark mode"
 msgstr "Modo oscuro"
+
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:240
+msgid "Data conflict"
+msgstr "Conflicto de datos"
 
 #: src/features/user/preferences.tsx:295
 msgid "Date format"
@@ -828,11 +783,6 @@ msgstr "Eliminando..."
 msgid "Density"
 msgstr "Densidad"
 
-#: src/features/system/replication.tsx:118
-#: src/features/user/replication.tsx:106
-msgid "Deny"
-msgstr "Denegar"
-
 #: ../../../lib/web/src/components/data-table/column-header.tsx:63
 msgid "Desc"
 msgstr "Desc"
@@ -893,8 +843,8 @@ msgstr "Desconectado"
 msgid "Dismiss"
 msgstr "Descartar"
 
-#: src/components/layout/data/sidebar-data.ts:37
-#: src/components/layout/data/sidebar-data.ts:58
+#: src/components/layout/data/sidebar-data.ts:36
+#: src/components/layout/data/sidebar-data.ts:56
 #: src/features/user/display.tsx:95
 #: src/features/user/display.tsx:172
 msgid "Display"
@@ -916,7 +866,7 @@ msgstr "Verificación DNS"
 msgid "Document saved"
 msgstr "Documento guardado"
 
-#: src/components/layout/data/sidebar-data.ts:71
+#: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/documents.tsx:166
 #: src/features/system/documents.tsx:235
 msgid "Documents"
@@ -947,7 +897,7 @@ msgstr "Dominio actualizado"
 msgid "Domain verified"
 msgstr "Dominio verificado"
 
-#: src/components/layout/data/sidebar-data.ts:78
+#: src/components/layout/data/sidebar-data.ts:74
 #: src/features/domains/index.tsx:1153
 #: src/features/domains/index.tsx:1181
 #: src/features/domains/index.tsx:1193
@@ -1110,10 +1060,6 @@ msgstr "Error al agregar la cuenta"
 msgid "Failed to add interest"
 msgstr "Error al agregar el interés"
 
-#: src/features/system/replication.tsx:243
-msgid "Failed to copy"
-msgstr "Error al copiar"
-
 #: src/features/domains/index.tsx:586
 msgid "Failed to create delegation"
 msgstr "Error al crear la delegación"
@@ -1242,7 +1188,7 @@ msgstr "Error al actualizar la cuenta"
 msgid "Failed to update browser notifications"
 msgstr "Error al actualizar las notificaciones del navegador"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:112
+#: ../../../lib/web/src/components/notification-category-button.tsx:111
 msgid "Failed to update category"
 msgstr "Error al actualizar la categoría"
 
@@ -1342,21 +1288,11 @@ msgstr "Tipo de letra"
 msgid "Font size"
 msgstr "Tamaño de fuente"
 
-#: src/features/user/replication.tsx:160
-msgid "Forget this unreachable host"
-msgstr "Olvidar este host inaccesible"
-
-#: src/features/user/replication.tsx:165
-msgid "Forget this unreachable host?"
-msgstr "¿Olvidar este host inaccesible?"
-
 #: ../../../lib/web/src/lib/preference-utils.ts:63
 msgid "Friday"
 msgstr "Viernes"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:153
-#: src/features/system/replication.tsx:263
-#: src/features/user/replication.tsx:311
 msgid "From"
 msgstr "De"
 
@@ -1463,10 +1399,6 @@ msgstr "Perforación"
 msgid "Home"
 msgstr "Inicio"
 
-#: src/features/user/replication.tsx:172
-msgid "Host forgotten"
-msgstr "Host olvidado"
-
 #: src/features/system/settings.tsx:55
 msgid "Hostname announced to other servers"
 msgstr "Nombre de host anunciado a otros servidores"
@@ -1506,8 +1438,8 @@ msgid "Installing {0}…"
 msgstr "Instalando {0}…"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:42
-#: src/components/layout/data/sidebar-data.ts:43
-#: src/components/layout/data/sidebar-data.ts:64
+#: src/components/layout/data/sidebar-data.ts:41
+#: src/components/layout/data/sidebar-data.ts:61
 #: src/features/user/interests.tsx:230
 #: src/features/user/interests.tsx:251
 msgid "Interests"
@@ -1525,23 +1457,6 @@ msgstr "Código de verificación no válido"
 #: src/features/system/users.tsx:322
 msgid "IP Address"
 msgstr "Dirección IP"
-
-#: src/features/system/replication.tsx:156
-#: src/features/user/replication.tsx:139
-msgid "Irreparable"
-msgstr "Irrecuperable"
-
-#: src/features/user/replication.tsx:166
-msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
-msgstr "Se quitará de tu conjunto de réplicas y se le indicará que borre su copia cuando vuelva a conectarse. Para quitar un servidor accesible, inicia sesión allí y usa «Quitar mi cuenta de este servidor». Verifica que eres tú para continuar."
-
-#: src/features/system/replication.tsx:82
-msgid "Join request approved"
-msgstr "Solicitud de adhesión aprobada"
-
-#: src/features/system/replication.tsx:112
-msgid "Join request denied"
-msgstr "Solicitud de adhesión denegada"
 
 #: src/features/system/status.tsx:175
 msgid "Known"
@@ -1658,8 +1573,8 @@ msgstr "Sesión cerrada correctamente"
 msgid "Logging out…"
 msgstr "Cerrando sesión…"
 
-#: src/components/layout/data/sidebar-data.ts:35
-#: src/components/layout/data/sidebar-data.ts:56
+#: src/components/layout/data/sidebar-data.ts:34
+#: src/components/layout/data/sidebar-data.ts:54
 #: src/features/system/settings.tsx:565
 #: src/features/user/login.tsx:897
 #: src/features/user/login.tsx:944
@@ -1702,7 +1617,7 @@ msgstr "Asegúrate de guardar los nuevos códigos."
 msgid "Manage sessions"
 msgstr "Gestionar sesiones"
 
-#: src/components/layout/data/sidebar-data.ts:86
+#: src/components/layout/data/sidebar-data.ts:82
 msgid "Management"
 msgstr "Gestión"
 
@@ -1768,10 +1683,6 @@ msgstr "Lunes"
 msgid "My application"
 msgstr "Mi aplicación"
 
-#: src/features/user/replication.tsx:323
-msgid "My hosts"
-msgstr "Mis anfitriones"
-
 #: src/features/user/login.tsx:381
 msgid "My passkey"
 msgstr "Mi clave de acceso"
@@ -1793,7 +1704,8 @@ msgstr "El nombre es obligatorio"
 msgid "Name updated"
 msgstr "Nombre actualizado"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:288
+#: ../../../lib/web/src/features/errors/general-error.tsx:53
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:303
 msgid "Network error"
 msgstr "Error de red"
 
@@ -1914,7 +1826,7 @@ msgstr "No hay rutas configuradas"
 msgid "No time zone found."
 msgstr "No se encontró zona horaria."
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:148
+#: ../../../lib/web/src/components/notification-category-button.tsx:147
 msgid "No topic record yet — try again after the next notification."
 msgstr "Aún no hay registro de tema — intenta de nuevo después de la próxima notificación."
 
@@ -1942,6 +1854,10 @@ msgstr "Ninguno"
 msgid "Normal"
 msgstr "Normal"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:67
+msgid "Not found"
+msgstr "No encontrado"
+
 #: ../../../lib/web/src/components/ui/editable-field-row.tsx:146
 msgid "Not set"
 msgstr "Sin establecer"
@@ -1951,8 +1867,8 @@ msgstr "Sin establecer"
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:236
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:257
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:261
-#: src/components/layout/data/sidebar-data.ts:39
-#: src/components/layout/data/sidebar-data.ts:60
+#: src/components/layout/data/sidebar-data.ts:38
+#: src/components/layout/data/sidebar-data.ts:58
 #: src/features/user/notifications.tsx:149
 #: src/features/user/notifications.tsx:167
 msgid "Notifications"
@@ -1966,13 +1882,6 @@ msgstr "Notificar por defecto"
 #: src/features/user/preferences.tsx:284
 msgid "Number format"
 msgstr "Formato de número"
-
-#. placeholder {0}: offlineDuration(host.offline)
-#. placeholder {0}: offlineDuration(offline)
-#: src/features/system/replication.tsx:159
-#: src/features/user/replication.tsx:142
-msgid "Offline {0}"
-msgstr "Sin conexión {0}"
 
 #: src/features/system/status.tsx:186
 msgid "Oldest queued message"
@@ -2031,10 +1940,6 @@ msgstr "Nombre del operador"
 msgid "Other"
 msgstr "Otro"
 
-#: src/features/user/replication.tsx:326
-msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
-msgstr "Otros servidores que también guardan una copia de tu cuenta. Para quitar uno, inicia sesión en ese servidor y usa «Quitar mi cuenta de este servidor»."
-
 #: src/features/system/settings.tsx:601
 msgid "Other settings"
 msgstr "Otros ajustes"
@@ -2042,14 +1947,6 @@ msgstr "Otros ajustes"
 #: ../../../lib/web/src/features/access/access-list.tsx:217
 msgid "Owner"
 msgstr "Propietario"
-
-#: src/features/system/replication.tsx:190
-msgid "Pair member removed"
-msgstr "Miembro del par eliminado"
-
-#: src/features/system/replication.tsx:275
-msgid "Pair members"
-msgstr "Miembros del par"
 
 #: ../../../lib/web/src/components/step-up-dialog.tsx:334
 #: src/features/user/login.tsx:126
@@ -2102,9 +1999,7 @@ msgstr "Ruta"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Ruta no permitida. Solo puedes añadir rutas bajo: {0}"
 
-#: src/features/system/replication.tsx:287
 #: src/features/system/status.tsx:181
-#: src/features/user/replication.tsx:340
 msgid "Peer"
 msgstr "Par"
 
@@ -2113,7 +2008,6 @@ msgid "Peer ID"
 msgstr "ID de par"
 
 #: src/components/peer-identity.tsx:45
-#: src/features/system/replication.tsx:242
 msgid "Peer id copied"
 msgstr "Identificador del par copiado"
 
@@ -2125,19 +2019,13 @@ msgstr "Pares"
 msgid "Pending"
 msgstr "Pendiente"
 
-#: src/features/system/replication.tsx:254
-msgid "Pending join requests"
-msgstr "Solicitudes de adhesión pendientes"
-
-#: src/features/user/replication.tsx:304
-msgid "Pending requests"
-msgstr "Solicitudes pendientes"
-
 #: src/features/domains/index.tsx:1117
 msgid "Permanently delete this domain and all its routes."
 msgstr "Eliminar permanentemente este dominio y todas sus rutas."
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:289
+#: ../../../lib/web/src/features/errors/general-error.tsx:54
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:304
+#: ../../../lib/web/src/lib/error-normalizer.ts:201
 msgid "Please check your internet connection and try again."
 msgstr "Verifica tu conexión a internet e inténtalo de nuevo."
 
@@ -2145,13 +2033,21 @@ msgstr "Verifica tu conexión a internet e inténtalo de nuevo."
 msgid "Please enter a token name"
 msgstr "Por favor, ingresa un nombre de token"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:83
+msgid "Please try again."
+msgstr "Inténtalo de nuevo."
+
+#: ../../../lib/web/src/features/errors/general-error.tsx:75
+msgid "Please wait a moment and try again."
+msgstr "Espera un momento y vuelve a intentarlo."
+
 #: src/features/user/display.tsx:118
 #: src/features/user/preferences.tsx:178
 msgid "Preference updated"
 msgstr "Preferencia actualizada"
 
-#: src/components/layout/data/sidebar-data.ts:36
-#: src/components/layout/data/sidebar-data.ts:57
+#: src/components/layout/data/sidebar-data.ts:35
+#: src/components/layout/data/sidebar-data.ts:55
 #: src/features/user/preferences.tsx:70
 #: src/features/user/preferences.tsx:207
 msgid "Preferences"
@@ -2220,10 +2116,6 @@ msgstr "Mensajes de difusión en cola"
 msgid "Queued messages"
 msgstr "Mensajes en cola"
 
-#: src/features/user/replication.tsx:271
-msgid "Quote both values on the destination server's sign-up form to replicate this account there."
-msgstr "Ingresa ambos valores en el formulario de registro del servidor de destino para replicar esta cuenta allí."
-
 #: src/features/user/display.tsx:293
 msgid "Radius"
 msgstr "Radio"
@@ -2244,8 +2136,8 @@ msgstr "Vuelve a registrar tus llaves de acceso en este servidor"
 msgid "Reachability"
 msgstr "Accesibilidad"
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:219
-#: ../../../lib/web/src/components/search-entity-page.tsx:194
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:216
+#: ../../../lib/web/src/components/search-entity-page.tsx:240
 msgid "Recommended"
 msgstr "Recomendado"
 
@@ -2303,10 +2195,8 @@ msgstr "Servicio de retransmisión"
 
 #: ../../../lib/web/src/features/access/access-list.tsx:265
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:180
-#: src/features/system/replication.tsx:195
 #: src/features/user/connected-accounts.tsx:278
 #: src/features/user/connected-accounts.tsx:288
-#: src/features/user/replication.tsx:217
 msgid "Remove"
 msgstr "Eliminar"
 
@@ -2333,25 +2223,9 @@ msgstr "¿Eliminar cuenta?"
 msgid "Remove interest"
 msgstr "Eliminar interés"
 
-#: src/features/user/replication.tsx:198
-msgid "Remove my account from this server"
-msgstr "Quitar mi cuenta de este servidor"
-
-#: src/features/system/replication.tsx:172
-msgid "Remove pair member"
-msgstr "Eliminar miembro del par"
-
-#: src/features/system/replication.tsx:177
-msgid "Remove pair member?"
-msgstr "¿Eliminar miembro del par?"
-
 #: src/features/system/users.tsx:463
 msgid "Remove suspension"
 msgstr "Eliminar suspensión"
-
-#: src/features/user/replication.tsx:203
-msgid "Remove your account from this server?"
-msgstr "¿Quitar tu cuenta de este servidor?"
 
 #: src/features/user/login.tsx:270
 msgid "Rename passkey"
@@ -2360,24 +2234,6 @@ msgstr "Renombrar llave de acceso"
 #: src/features/system/settings.tsx:367
 msgid "Replace"
 msgstr "Reemplazar"
-
-#: src/components/layout/data/sidebar-data.ts:42
-#: src/components/layout/data/sidebar-data.ts:63
-#: src/components/layout/data/sidebar-data.ts:73
-#: src/features/system/replication.tsx:207
-#: src/features/system/replication.tsx:221
-#: src/features/user/replication.tsx:247
-#: src/features/user/replication.tsx:258
-msgid "Replication"
-msgstr "Replicación"
-
-#: src/features/user/replication.tsx:74
-msgid "Request approved"
-msgstr "Solicitud aprobada"
-
-#: src/features/user/replication.tsx:82
-msgid "Request denied"
-msgstr "Solicitud denegada"
 
 #: src/features/system/settings.tsx:53
 msgid "Require domain verification"
@@ -2560,8 +2416,8 @@ msgstr "Buscar usuarios..."
 msgid "Search..."
 msgstr "Buscar..."
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:177
-#: ../../../lib/web/src/components/search-entity-page.tsx:152
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:174
+#: ../../../lib/web/src/components/search-entity-page.tsx:198
 #: ../../../lib/web/src/features/access/access-dialog.tsx:202
 #: src/features/domains/index.tsx:650
 msgid "Searching..."
@@ -2635,14 +2491,10 @@ msgstr "Enviar correo"
 msgid "Serif"
 msgstr "Con serifa"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:245
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:271
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:260
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:286
 msgid "Server error"
 msgstr "Error del servidor"
-
-#: src/features/user/replication.tsx:284
-msgid "Server peer ID"
-msgstr "ID de par del servidor"
 
 #: ../../../lib/web/src/components/server-documents-footer.tsx:19
 #: ../../../lib/web/src/features/document/document-page.tsx:40
@@ -2666,17 +2518,17 @@ msgstr "Versión del servidor"
 msgid "Session"
 msgstr "Sesión"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:209
-msgid "Session expired"
-msgstr "Sesión expirada"
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:210
+msgid "Session expired. Please log in again."
+msgstr "La sesión expiró. Vuelve a iniciar sesión."
 
 #: src/features/system/users.tsx:282
 #: src/features/user/sessions.tsx:52
 msgid "Session revoked"
 msgstr "Sesión revocada"
 
-#: src/components/layout/data/sidebar-data.ts:41
-#: src/components/layout/data/sidebar-data.ts:62
+#: src/components/layout/data/sidebar-data.ts:40
+#: src/components/layout/data/sidebar-data.ts:60
 #: src/features/user/sessions.tsx:121
 #: src/features/user/sessions.tsx:129
 msgid "Sessions"
@@ -2705,9 +2557,9 @@ msgstr "Configuración actualizada"
 #: ../../../lib/web/src/components/layout/nav-user.tsx:84
 #: ../../../lib/web/src/components/layout/nav-user.tsx:148
 #: ../../../lib/web/src/components/layout/nav-user.tsx:198
-#: src/components/layout/data/sidebar-data.ts:32
-#: src/components/layout/data/sidebar-data.ts:53
-#: src/components/layout/data/sidebar-data.ts:95
+#: src/components/layout/data/sidebar-data.ts:31
+#: src/components/layout/data/sidebar-data.ts:51
+#: src/components/layout/data/sidebar-data.ts:91
 #: src/features/user/connected-accounts.tsx:272
 msgid "Settings"
 msgstr "Configuración"
@@ -2759,9 +2611,8 @@ msgstr "Espacioso"
 msgid "Started"
 msgstr "Iniciado"
 
-#: src/components/layout/data/sidebar-data.ts:74
+#: src/components/layout/data/sidebar-data.ts:70
 #: src/features/domains/index.tsx:1040
-#: src/features/system/replication.tsx:288
 #: src/features/system/status.tsx:41
 #: src/features/system/status.tsx:57
 #: src/features/system/status.tsx:182
@@ -2802,22 +2653,14 @@ msgstr "Suspendido"
 msgid "Suspension removed"
 msgstr "Suspensión eliminada"
 
-#: src/features/system/replication.tsx:162
-msgid "Synced"
-msgstr "Sincronizado"
-
-#: src/features/system/replication.tsx:164
-msgid "Syncing"
-msgstr "Sincronizando"
-
 #: ../../../lib/web/src/components/config-drawer.tsx:208
 #: ../../../lib/web/src/lib/preference-utils.ts:21
 #: ../../../lib/web/src/lib/preference-utils.ts:144
-#: src/components/layout/data/sidebar-data.ts:68
+#: src/components/layout/data/sidebar-data.ts:65
 msgid "System"
 msgstr "Sistema"
 
-#: src/components/layout/data/sidebar-data.ts:70
+#: src/components/layout/data/sidebar-data.ts:67
 #: src/features/system/settings.tsx:472
 #: src/features/system/settings.tsx:556
 msgid "System settings"
@@ -2878,6 +2721,10 @@ msgstr "Ese correo electrónico ya está registrado en otra cuenta"
 msgid "The \"No notifications\" category silences any topic assigned to it."
 msgstr "La categoría \"Sin notificaciones\" silencia cualquier tema asignado a ella."
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:68
+msgid "The requested content could not be found."
+msgstr "No se pudo encontrar el contenido solicitado."
+
 #: ../../../lib/web/src/components/config-drawer.tsx:194
 #: src/features/user/display.tsx:233
 #: src/features/user/display.tsx:260
@@ -2898,14 +2745,6 @@ msgstr "Tema actualizado"
 msgid "Third-party login"
 msgstr "Inicio de sesión de terceros"
 
-#: src/features/user/replication.tsx:269
-msgid "This account"
-msgstr "Esta cuenta"
-
-#: src/features/user/replication.tsx:332
-msgid "This account is on this server only"
-msgstr "Esta cuenta está solo en este servidor"
-
 #: src/features/user/data.tsx:124
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Es un respaldo completo que puedes restaurar en este u otro servidor Mochi. Verifica tu identidad para continuar."
@@ -2913,22 +2752,6 @@ msgstr "Es un respaldo completo que puedes restaurar en este u otro servidor Moc
 #: src/lib/use-step-up.tsx:34
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Es un cambio de seguridad en tu cuenta. Verifica tu identidad para continuar."
-
-#: src/features/user/replication.tsx:226
-msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
-msgstr "Esto elimina permanentemente los datos de tu cuenta en este servidor. Verifica que eres tú para continuar."
-
-#: src/features/system/replication.tsx:231
-msgid "This server"
-msgstr "Este servidor"
-
-#: src/features/system/replication.tsx:279
-msgid "This server is not paired."
-msgstr "Este servidor no está emparejado."
-
-#: src/features/system/replication.tsx:179
-msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
-msgstr "Este servidor dejará de emparejarse con ese par. El servidor eliminado conserva su copia local de cada usuario; el operador allá debe borrarla manualmente."
 
 #: src/features/system/users.tsx:355
 msgid "This user has no active sessions."
@@ -3016,10 +2839,6 @@ msgstr "Marcas de tiempo"
 msgid "TLS Enabled"
 msgstr "TLS habilitado"
 
-#: src/features/user/replication.tsx:333
-msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
-msgstr "Para replicarla a otro servidor, regístrate para crear una cuenta allí y usa la opción \"Replicar una cuenta existente\"."
-
 #: ../../../lib/web/src/components/data-table/view-options.tsx:37
 msgid "Toggle columns"
 msgstr "Alternar columnas"
@@ -3067,10 +2886,14 @@ msgstr "Token eliminado"
 msgid "Token name"
 msgstr "Nombre del token"
 
-#: src/components/layout/data/sidebar-data.ts:40
-#: src/components/layout/data/sidebar-data.ts:61
+#: src/components/layout/data/sidebar-data.ts:39
+#: src/components/layout/data/sidebar-data.ts:59
 msgid "Tokens"
 msgstr "Tokens"
+
+#: ../../../lib/web/src/features/errors/general-error.tsx:74
+msgid "Too many requests"
+msgstr "Demasiadas solicitudes"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:45
 msgid "Top"
@@ -3088,13 +2911,13 @@ msgstr "Viajando"
 msgid "Try adjusting your search criteria"
 msgstr "Intenta ajustar tus criterios de búsqueda"
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:193
-#: ../../../lib/web/src/components/search-entity-page.tsx:168
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:190
+#: ../../../lib/web/src/components/search-entity-page.tsx:214
 msgid "Try adjusting your search terms"
 msgstr "Intenta ajustar tus términos de búsqueda"
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:128
-#: ../../../lib/web/src/features/errors/general-error.tsx:168
+#: ../../../lib/web/src/features/errors/general-error.tsx:140
+#: ../../../lib/web/src/features/errors/general-error.tsx:180
 #: ../../../lib/web/src/features/errors/maintenance-error.tsx:19
 msgid "Try again"
 msgstr "Intentar de nuevo"
@@ -3123,7 +2946,7 @@ msgstr "Escribe para buscar usuarios"
 msgid "Type to search..."
 msgstr "Escribe para buscar..."
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:267
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:282
 msgid "Unable to connect to remote server"
 msgstr "No se pudo conectar al servidor remoto"
 
@@ -3132,7 +2955,7 @@ msgstr "No se pudo conectar al servidor remoto"
 msgid "Unable to redirect to login. Please try again."
 msgstr "No se pudo redirigir al inicio de sesión. Inténtalo de nuevo."
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:156
+#: ../../../lib/web/src/components/notification-category-button.tsx:155
 #: src/features/user/notifications.tsx:763
 msgid "Unassigned"
 msgstr "Sin asignar"
@@ -3152,7 +2975,6 @@ msgstr "Unidades"
 #: src/features/system/status.tsx:134
 #: src/features/system/status.tsx:135
 #: src/features/system/users.tsx:332
-#: src/features/user/replication.tsx:148
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -3199,10 +3021,6 @@ msgstr "Actualización"
 msgid "URL to redirect to"
 msgstr "URL a la que redirigir"
 
-#: src/features/system/replication.tsx:280
-msgid "Use \"mochictl replica join {peer}\" on a newly installed server to pair with this server."
-msgstr "Usa \"mochictl replica join {peer}\" en un servidor recién instalado para emparejarlo con este servidor."
-
 #: src/features/domains/index.tsx:124
 msgid "Use *.domain.com for wildcard domains"
 msgstr "Usa *.domain.com para dominios comodín"
@@ -3246,11 +3064,10 @@ msgid "User updated"
 msgstr "Usuario actualizado"
 
 #: src/features/user/account.tsx:82
-#: src/features/user/replication.tsx:276
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: src/components/layout/data/sidebar-data.ts:72
+#: src/components/layout/data/sidebar-data.ts:69
 #: src/features/system/status.tsx:140
 #: src/features/system/users.tsx:555
 #: src/features/system/users.tsx:593
@@ -3354,6 +3171,10 @@ msgstr "ID de cliente de X"
 msgid "X client secret"
 msgstr "Secreto de cliente de X"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:61
+msgid "You do not have access to this section."
+msgstr "No tienes acceso a esta sección."
+
 #: src/features/domains/index.tsx:1212
 msgid "You don't have access to any domains."
 msgstr "No tienes acceso a ningún dominio."
@@ -3374,10 +3195,6 @@ msgstr "Tu cuenta se eliminará de forma permanente el {purgeDate}. Se cerró tu
 #: src/features/user/close-account.tsx:89
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "Tu cuenta se programará para eliminarse y se cerrará tu sesión. Puedes cancelar en cualquier momento antes de la fecha de eliminación volviendo a iniciar sesión. Descarga tus datos primero si quieres conservar una copia."
-
-#: src/features/user/replication.tsx:205
-msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
-msgstr "Los datos de tu cuenta en este servidor se eliminarán permanentemente y se cerrará tu sesión aquí. Tu cuenta permanece en tus otros servidores y puedes volver a agregar este más adelante."
 
 #: src/features/user/data.tsx:171
 msgid "Your data"

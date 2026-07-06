@@ -84,6 +84,10 @@ msgstr "3. ตรวจสอบรหัส"
 msgid "Absolute (date and time)"
 msgstr "สัมบูรณ์ (วันที่และเวลา)"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:60
+msgid "Access denied"
+msgstr "ปฏิเสธการเข้าถึง"
+
 #: ../../../lib/web/src/features/errors/forbidden.tsx:16
 msgid "Access Forbidden"
 msgstr "ห้ามเข้าถึง"
@@ -92,8 +96,8 @@ msgstr "ห้ามเข้าถึง"
 msgid "Access level"
 msgstr "ระดับการเข้าถึง"
 
-#: src/components/layout/data/sidebar-data.ts:34
-#: src/components/layout/data/sidebar-data.ts:55
+#: src/components/layout/data/sidebar-data.ts:33
+#: src/components/layout/data/sidebar-data.ts:53
 #: src/features/user/account.tsx:120
 #: src/features/user/account.tsx:128
 msgid "Account"
@@ -213,7 +217,6 @@ msgid "Add view"
 msgstr "เพิ่มมุมมอง"
 
 #: src/features/user/connected-accounts.tsx:476
-#: src/features/user/replication.tsx:341
 msgid "Added"
 msgstr "เพิ่มแล้ว"
 
@@ -265,21 +268,13 @@ msgstr "อนุญาต"
 msgid "An error occurred"
 msgstr "เกิดข้อผิดพลาด"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:241
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:256
 msgid "An unexpected error occurred"
 msgstr "เกิดข้อผิดพลาดที่ไม่คาดคิด"
 
 #: src/features/system/settings.tsx:56
 msgid "Announce hostname and domains to other servers"
 msgstr "ประกาศชื่อโฮสต์และโดเมนไปยังเซิร์ฟเวอร์อื่น"
-
-#: src/features/user/replication.tsx:306
-msgid "Another server is asking to host a copy of your account. Approve to send a copy."
-msgstr "เซิร์ฟเวอร์อื่นกำลังขอโฮสต์สำเนาบัญชีของคุณ อนุมัติเพื่อส่งสำเนา"
-
-#: src/features/system/replication.tsx:256
-msgid "Another server is asking to pair with this one. Approve to enrol it as a full replication peer."
-msgstr "เซิร์ฟเวอร์อื่นกำลังขอจับคู่กับเซิร์ฟเวอร์นี้ อนุมัติเพื่อลงทะเบียนเป็นเพียร์การจำลองแบบเต็มรูปแบบ"
 
 #: src/features/domains/index.tsx:262
 #: src/features/domains/index.tsx:450
@@ -289,26 +284,6 @@ msgstr "แอป"
 #: src/features/user/display.tsx:215
 msgid "Appearance"
 msgstr "ลักษณะ"
-
-#: src/features/system/replication.tsx:84
-#: src/features/user/replication.tsx:76
-msgid "Approval failed"
-msgstr "การอนุมัติล้มเหลว"
-
-#: src/features/system/replication.tsx:104
-#: src/features/user/replication.tsx:102
-msgid "Approve"
-msgstr "อนุมัติ"
-
-#: src/features/system/replication.tsx:124
-#: src/features/user/replication.tsx:112
-msgid "Approve request"
-msgstr "อนุมัติคำขอ"
-
-#: src/features/system/replication.tsx:125
-#: src/features/user/replication.tsx:113
-msgid "Approving replicates private keys to that server. Verify it's you to continue."
-msgstr "การอนุมัติจะคัดลอกคีย์ส่วนตัวไปยังเซิร์ฟเวอร์นั้น ยืนยันว่าเป็นคุณเพื่อดำเนินการต่อ"
 
 #: ../../../lib/web/src/components/sign-out-dialog.tsx:27
 msgid "Are you sure you want to log out? You will need to log in again to access your account."
@@ -388,7 +363,6 @@ msgstr "การแจ้งเตือนของเบราว์เซอ
 #: src/features/domains/index.tsx:338
 #: src/features/domains/index.tsx:536
 #: src/features/domains/index.tsx:682
-#: src/features/system/replication.tsx:186
 #: src/features/system/settings.tsx:289
 #: src/features/system/settings.tsx:331
 #: src/features/system/settings.tsx:454
@@ -401,7 +375,6 @@ msgstr "การแจ้งเตือนของเบราว์เซอ
 #: src/features/user/notifications.tsx:536
 #: src/features/user/notifications.tsx:639
 #: src/features/user/preferences.tsx:233
-#: src/features/user/replication.tsx:212
 #: src/features/user/sessions.tsx:107
 msgid "Cancel"
 msgstr "ยกเลิก"
@@ -414,7 +387,7 @@ msgstr "สไตล์การ์ด"
 msgid "Categories"
 msgstr "หมวดหมู่"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:144
+#: ../../../lib/web/src/components/notification-category-button.tsx:143
 msgid "Category for this notification"
 msgstr "หมวดหมู่สำหรับการแจ้งเตือนนี้"
 
@@ -422,8 +395,8 @@ msgstr "หมวดหมู่สำหรับการแจ้งเตื
 msgid "Change current notifications to"
 msgstr "เปลี่ยนการแจ้งเตือนปัจจุบันเป็น"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:125
-#: ../../../lib/web/src/components/notification-category-button.tsx:136
+#: ../../../lib/web/src/components/notification-category-button.tsx:124
+#: ../../../lib/web/src/components/notification-category-button.tsx:135
 msgid "Change notification category"
 msgstr "เปลี่ยนหมวดหมู่การแจ้งเตือน"
 
@@ -549,7 +522,6 @@ msgstr "กำหนดค่าแล้ว"
 msgid "Confirm"
 msgstr "ยืนยัน"
 
-#: src/features/user/replication.tsx:225
 #: src/lib/use-step-up.tsx:33
 msgid "Confirm it's you"
 msgstr "ยืนยันว่าเป็นคุณ"
@@ -560,8 +532,8 @@ msgstr "ยืนยันว่าเป็นคุณ"
 msgid "Connected"
 msgstr "เชื่อมต่อแล้ว"
 
-#: src/components/layout/data/sidebar-data.ts:38
-#: src/components/layout/data/sidebar-data.ts:59
+#: src/components/layout/data/sidebar-data.ts:37
+#: src/components/layout/data/sidebar-data.ts:57
 #: src/features/user/connected-accounts.tsx:299
 #: src/features/user/connected-accounts.tsx:436
 msgid "Connected accounts"
@@ -595,10 +567,6 @@ msgstr "คัดลอก"
 msgid "Copy all"
 msgstr "คัดลอกทั้งหมด"
 
-#: src/features/system/replication.tsx:247
-msgid "Copy peer id"
-msgstr "คัดลอกรหัสเพียร์"
-
 #: src/features/user/tokens.tsx:178
 msgid "Copy your token now. You will not be able to see it again."
 msgstr "คัดลอกโทเค็นของคุณตอนนี้ คุณจะไม่สามารถดูได้อีก"
@@ -607,15 +575,6 @@ msgstr "คัดลอกโทเค็นของคุณตอนนี้
 msgid "Could not close your account"
 msgstr "ไม่สามารถปิดบัญชีของคุณได้"
 
-#: src/features/system/replication.tsx:113
-#: src/features/user/replication.tsx:83
-msgid "Could not deny request"
-msgstr "ไม่สามารถปฏิเสธคำขอได้"
-
-#: src/features/user/replication.tsx:173
-msgid "Could not forget host"
-msgstr "ไม่สามารถลืมโฮสต์ได้"
-
 #: src/features/user/login.tsx:925
 msgid "Could not link account"
 msgstr "ไม่สามารถเชื่อมโยงบัญชีได้"
@@ -623,14 +582,6 @@ msgstr "ไม่สามารถเชื่อมโยงบัญชีไ
 #: ../../../lib/web/src/features/document/document-page.tsx:84
 msgid "Could not load this document. Please try again later."
 msgstr "ไม่สามารถโหลดเอกสารนี้ได้ โปรดลองอีกครั้งในภายหลัง"
-
-#: src/features/system/replication.tsx:191
-msgid "Could not remove pair member"
-msgstr "ไม่สามารถนำสมาชิกคู่ออกได้"
-
-#: src/features/user/replication.tsx:235
-msgid "Could not remove your account from this server"
-msgstr "ไม่สามารถนำบัญชีของคุณออกจากเซิร์ฟเวอร์นี้ได้"
 
 #: src/features/user/login.tsx:799
 msgid "Could not start linking"
@@ -697,6 +648,10 @@ msgstr "มืด"
 #: ../../../lib/web/src/components/profile-dropdown.tsx:123
 msgid "Dark mode"
 msgstr "โหมดมืด"
+
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:240
+msgid "Data conflict"
+msgstr "ข้อมูลขัดแย้งกัน"
 
 #: src/features/user/preferences.tsx:295
 msgid "Date format"
@@ -828,11 +783,6 @@ msgstr "กำลังลบ..."
 msgid "Density"
 msgstr "ความหนาแน่น"
 
-#: src/features/system/replication.tsx:118
-#: src/features/user/replication.tsx:106
-msgid "Deny"
-msgstr "ปฏิเสธ"
-
 #: ../../../lib/web/src/components/data-table/column-header.tsx:63
 msgid "Desc"
 msgstr "มากไปน้อย"
@@ -893,8 +843,8 @@ msgstr "ตัดการเชื่อมต่อแล้ว"
 msgid "Dismiss"
 msgstr "ปิด"
 
-#: src/components/layout/data/sidebar-data.ts:37
-#: src/components/layout/data/sidebar-data.ts:58
+#: src/components/layout/data/sidebar-data.ts:36
+#: src/components/layout/data/sidebar-data.ts:56
 #: src/features/user/display.tsx:95
 #: src/features/user/display.tsx:172
 msgid "Display"
@@ -916,7 +866,7 @@ msgstr "การยืนยัน DNS"
 msgid "Document saved"
 msgstr "บันทึกเอกสารแล้ว"
 
-#: src/components/layout/data/sidebar-data.ts:71
+#: src/components/layout/data/sidebar-data.ts:68
 #: src/features/system/documents.tsx:166
 #: src/features/system/documents.tsx:235
 msgid "Documents"
@@ -947,7 +897,7 @@ msgstr "อัปเดตโดเมนแล้ว"
 msgid "Domain verified"
 msgstr "ยืนยันโดเมนแล้ว"
 
-#: src/components/layout/data/sidebar-data.ts:78
+#: src/components/layout/data/sidebar-data.ts:74
 #: src/features/domains/index.tsx:1153
 #: src/features/domains/index.tsx:1181
 #: src/features/domains/index.tsx:1193
@@ -1110,10 +1060,6 @@ msgstr "ไม่สามารถเพิ่มบัญชีได้"
 msgid "Failed to add interest"
 msgstr "ไม่สามารถเพิ่มความสนใจได้"
 
-#: src/features/system/replication.tsx:243
-msgid "Failed to copy"
-msgstr "ไม่สามารถคัดลอกได้"
-
 #: src/features/domains/index.tsx:586
 msgid "Failed to create delegation"
 msgstr "ไม่สามารถสร้างการมอบหมายได้"
@@ -1242,7 +1188,7 @@ msgstr "ไม่สามารถอัปเดตบัญชีได้"
 msgid "Failed to update browser notifications"
 msgstr "ไม่สามารถอัปเดตการแจ้งเตือนเบราว์เซอร์ได้"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:112
+#: ../../../lib/web/src/components/notification-category-button.tsx:111
 msgid "Failed to update category"
 msgstr "ไม่สามารถอัปเดตหมวดหมู่ได้"
 
@@ -1342,21 +1288,11 @@ msgstr "ฟอนต์"
 msgid "Font size"
 msgstr "ขนาดตัวอักษร"
 
-#: src/features/user/replication.tsx:160
-msgid "Forget this unreachable host"
-msgstr "ลืมโฮสต์ที่ติดต่อไม่ได้นี้"
-
-#: src/features/user/replication.tsx:165
-msgid "Forget this unreachable host?"
-msgstr "ลืมโฮสต์ที่ติดต่อไม่ได้นี้หรือไม่?"
-
 #: ../../../lib/web/src/lib/preference-utils.ts:63
 msgid "Friday"
 msgstr "วันศุกร์"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx:153
-#: src/features/system/replication.tsx:263
-#: src/features/user/replication.tsx:311
 msgid "From"
 msgstr "จาก"
 
@@ -1463,10 +1399,6 @@ msgstr "การเจาะรู"
 msgid "Home"
 msgstr "หน้าหลัก"
 
-#: src/features/user/replication.tsx:172
-msgid "Host forgotten"
-msgstr "ลืมโฮสต์แล้ว"
-
 #: src/features/system/settings.tsx:55
 msgid "Hostname announced to other servers"
 msgstr "ชื่อโฮสต์ที่ประกาศไปยังเซิร์ฟเวอร์อื่น"
@@ -1506,8 +1438,8 @@ msgid "Installing {0}…"
 msgstr "กำลังติดตั้ง {0}…"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:42
-#: src/components/layout/data/sidebar-data.ts:43
-#: src/components/layout/data/sidebar-data.ts:64
+#: src/components/layout/data/sidebar-data.ts:41
+#: src/components/layout/data/sidebar-data.ts:61
 #: src/features/user/interests.tsx:230
 #: src/features/user/interests.tsx:251
 msgid "Interests"
@@ -1525,23 +1457,6 @@ msgstr "รหัสยืนยันไม่ถูกต้อง"
 #: src/features/system/users.tsx:322
 msgid "IP Address"
 msgstr "IP Address"
-
-#: src/features/system/replication.tsx:156
-#: src/features/user/replication.tsx:139
-msgid "Irreparable"
-msgstr "ไม่สามารถกู้คืนได้"
-
-#: src/features/user/replication.tsx:166
-msgid "It will be removed from your replica set and told to delete its copy when it reconnects. To remove a reachable server, sign in there and use \"Remove my account from this server\". Verify it's you to continue."
-msgstr "โฮสต์จะถูกนำออกจากชุดเรพลิกาของคุณ และจะถูกสั่งให้ลบสำเนาเมื่อเชื่อมต่อใหม่ หากต้องการนำเซิร์ฟเวอร์ที่ติดต่อได้ออก ให้ลงชื่อเข้าใช้ที่นั่นแล้วใช้ \"นำบัญชีของฉันออกจากเซิร์ฟเวอร์นี้\" ยืนยันว่าเป็นคุณเพื่อดำเนินการต่อ"
-
-#: src/features/system/replication.tsx:82
-msgid "Join request approved"
-msgstr "อนุมัติคำขอเข้าร่วมแล้ว"
-
-#: src/features/system/replication.tsx:112
-msgid "Join request denied"
-msgstr "ปฏิเสธคำขอเข้าร่วมแล้ว"
 
 #: src/features/system/status.tsx:175
 msgid "Known"
@@ -1658,8 +1573,8 @@ msgstr "ออกจากระบบเรียบร้อยแล้ว"
 msgid "Logging out…"
 msgstr "กำลังออกจากระบบ…"
 
-#: src/components/layout/data/sidebar-data.ts:35
-#: src/components/layout/data/sidebar-data.ts:56
+#: src/components/layout/data/sidebar-data.ts:34
+#: src/components/layout/data/sidebar-data.ts:54
 #: src/features/system/settings.tsx:565
 #: src/features/user/login.tsx:897
 #: src/features/user/login.tsx:944
@@ -1702,7 +1617,7 @@ msgstr "อย่าลืมบันทึกรหัสใหม่"
 msgid "Manage sessions"
 msgstr "จัดการเซสชัน"
 
-#: src/components/layout/data/sidebar-data.ts:86
+#: src/components/layout/data/sidebar-data.ts:82
 msgid "Management"
 msgstr "การจัดการ"
 
@@ -1768,10 +1683,6 @@ msgstr "วันจันทร์"
 msgid "My application"
 msgstr "แอปพลิเคชันของฉัน"
 
-#: src/features/user/replication.tsx:323
-msgid "My hosts"
-msgstr "โฮสต์ของฉัน"
-
 #: src/features/user/login.tsx:381
 msgid "My passkey"
 msgstr "passkey ของฉัน"
@@ -1793,7 +1704,8 @@ msgstr "ต้องระบุชื่อ"
 msgid "Name updated"
 msgstr "อัปเดตชื่อแล้ว"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:288
+#: ../../../lib/web/src/features/errors/general-error.tsx:53
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:303
 msgid "Network error"
 msgstr "ข้อผิดพลาดของเครือข่าย"
 
@@ -1914,7 +1826,7 @@ msgstr "ยังไม่ได้ตั้งค่าเส้นทาง"
 msgid "No time zone found."
 msgstr "ไม่พบเขตเวลา"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:148
+#: ../../../lib/web/src/components/notification-category-button.tsx:147
 msgid "No topic record yet — try again after the next notification."
 msgstr "ยังไม่มีบันทึกหัวข้อ — ลองอีกครั้งหลังการแจ้งเตือนครั้งถัดไป"
 
@@ -1942,6 +1854,10 @@ msgstr "ไม่มี"
 msgid "Normal"
 msgstr "ปกติ"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:67
+msgid "Not found"
+msgstr "ไม่พบ"
+
 #: ../../../lib/web/src/components/ui/editable-field-row.tsx:146
 msgid "Not set"
 msgstr "ยังไม่ได้ตั้งค่า"
@@ -1951,8 +1867,8 @@ msgstr "ยังไม่ได้ตั้งค่า"
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:236
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:257
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:261
-#: src/components/layout/data/sidebar-data.ts:39
-#: src/components/layout/data/sidebar-data.ts:60
+#: src/components/layout/data/sidebar-data.ts:38
+#: src/components/layout/data/sidebar-data.ts:58
 #: src/features/user/notifications.tsx:149
 #: src/features/user/notifications.tsx:167
 msgid "Notifications"
@@ -1966,13 +1882,6 @@ msgstr "แจ้งเตือนเป็นค่าเริ่มต้น
 #: src/features/user/preferences.tsx:284
 msgid "Number format"
 msgstr "รูปแบบตัวเลข"
-
-#. placeholder {0}: offlineDuration(host.offline)
-#. placeholder {0}: offlineDuration(offline)
-#: src/features/system/replication.tsx:159
-#: src/features/user/replication.tsx:142
-msgid "Offline {0}"
-msgstr "ออฟไลน์ {0}"
 
 #: src/features/system/status.tsx:186
 msgid "Oldest queued message"
@@ -2031,10 +1940,6 @@ msgstr "ชื่อผู้ดำเนินการ"
 msgid "Other"
 msgstr "อื่น ๆ"
 
-#: src/features/user/replication.tsx:326
-msgid "Other servers that also hold a copy of your account. To remove one, sign in on that server and use \"Remove my account from this server\"."
-msgstr "เซิร์ฟเวอร์อื่นที่เก็บสำเนาบัญชีของคุณไว้ด้วย หากต้องการนำออกหนึ่งรายการ ให้ลงชื่อเข้าใช้บนเซิร์ฟเวอร์นั้นแล้วใช้ \"นำบัญชีของฉันออกจากเซิร์ฟเวอร์นี้\""
-
 #: src/features/system/settings.tsx:601
 msgid "Other settings"
 msgstr "การตั้งค่าอื่น ๆ"
@@ -2042,14 +1947,6 @@ msgstr "การตั้งค่าอื่น ๆ"
 #: ../../../lib/web/src/features/access/access-list.tsx:217
 msgid "Owner"
 msgstr "เจ้าของ"
-
-#: src/features/system/replication.tsx:190
-msgid "Pair member removed"
-msgstr "นำสมาชิกคู่ออกแล้ว"
-
-#: src/features/system/replication.tsx:275
-msgid "Pair members"
-msgstr "สมาชิกคู่"
 
 #: ../../../lib/web/src/components/step-up-dialog.tsx:334
 #: src/features/user/login.tsx:126
@@ -2102,9 +1999,7 @@ msgstr "Path"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "ไม่อนุญาตให้ใช้พาธ คุณสามารถเพิ่มเส้นทางได้เฉพาะภายใต้: {0}"
 
-#: src/features/system/replication.tsx:287
 #: src/features/system/status.tsx:181
-#: src/features/user/replication.tsx:340
 msgid "Peer"
 msgstr "พีร์"
 
@@ -2113,7 +2008,6 @@ msgid "Peer ID"
 msgstr "ID เพียร์"
 
 #: src/components/peer-identity.tsx:45
-#: src/features/system/replication.tsx:242
 msgid "Peer id copied"
 msgstr "คัดลอกรหัสเพียร์แล้ว"
 
@@ -2125,19 +2019,13 @@ msgstr "พีร์"
 msgid "Pending"
 msgstr "รอดำเนินการ"
 
-#: src/features/system/replication.tsx:254
-msgid "Pending join requests"
-msgstr "คำขอเข้าร่วมที่รอดำเนินการ"
-
-#: src/features/user/replication.tsx:304
-msgid "Pending requests"
-msgstr "คำขอที่รอดำเนินการ"
-
 #: src/features/domains/index.tsx:1117
 msgid "Permanently delete this domain and all its routes."
 msgstr "ลบโดเมนนี้และเส้นทางทั้งหมดอย่างถาวร"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:289
+#: ../../../lib/web/src/features/errors/general-error.tsx:54
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:304
+#: ../../../lib/web/src/lib/error-normalizer.ts:201
 msgid "Please check your internet connection and try again."
 msgstr "โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณแล้วลองอีกครั้ง"
 
@@ -2145,13 +2033,21 @@ msgstr "โปรดตรวจสอบการเชื่อมต่ออ
 msgid "Please enter a token name"
 msgstr "กรุณาป้อนชื่อโทเคน"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:83
+msgid "Please try again."
+msgstr "โปรดลองอีกครั้ง"
+
+#: ../../../lib/web/src/features/errors/general-error.tsx:75
+msgid "Please wait a moment and try again."
+msgstr "โปรดรอสักครู่แล้วลองอีกครั้ง"
+
 #: src/features/user/display.tsx:118
 #: src/features/user/preferences.tsx:178
 msgid "Preference updated"
 msgstr "อัปเดตการตั้งค่าแล้ว"
 
-#: src/components/layout/data/sidebar-data.ts:36
-#: src/components/layout/data/sidebar-data.ts:57
+#: src/components/layout/data/sidebar-data.ts:35
+#: src/components/layout/data/sidebar-data.ts:55
 #: src/features/user/preferences.tsx:70
 #: src/features/user/preferences.tsx:207
 msgid "Preferences"
@@ -2220,10 +2116,6 @@ msgstr "ข้อความบรอดแคสต์ในคิว"
 msgid "Queued messages"
 msgstr "ข้อความในคิว"
 
-#: src/features/user/replication.tsx:271
-msgid "Quote both values on the destination server's sign-up form to replicate this account there."
-msgstr "ป้อนทั้งสองค่าในแบบฟอร์มลงทะเบียนของเซิร์ฟเวอร์ปลายทางเพื่อทำซ้ำบัญชีนี้ที่นั่น"
-
 #: src/features/user/display.tsx:293
 msgid "Radius"
 msgstr "รัศมี"
@@ -2244,8 +2136,8 @@ msgstr "ลงทะเบียนพาสคีย์ของคุณให
 msgid "Reachability"
 msgstr "ความสามารถในการเข้าถึง"
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:219
-#: ../../../lib/web/src/components/search-entity-page.tsx:194
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:216
+#: ../../../lib/web/src/components/search-entity-page.tsx:240
 msgid "Recommended"
 msgstr "แนะนำ"
 
@@ -2303,10 +2195,8 @@ msgstr "บริการรีเลย์"
 
 #: ../../../lib/web/src/features/access/access-list.tsx:265
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:180
-#: src/features/system/replication.tsx:195
 #: src/features/user/connected-accounts.tsx:278
 #: src/features/user/connected-accounts.tsx:288
-#: src/features/user/replication.tsx:217
 msgid "Remove"
 msgstr "ลบ"
 
@@ -2333,25 +2223,9 @@ msgstr "ลบบัญชี?"
 msgid "Remove interest"
 msgstr "ลบความสนใจ"
 
-#: src/features/user/replication.tsx:198
-msgid "Remove my account from this server"
-msgstr "นำบัญชีของฉันออกจากเซิร์ฟเวอร์นี้"
-
-#: src/features/system/replication.tsx:172
-msgid "Remove pair member"
-msgstr "นำสมาชิกคู่ออก"
-
-#: src/features/system/replication.tsx:177
-msgid "Remove pair member?"
-msgstr "นำสมาชิกคู่ออกหรือไม่?"
-
 #: src/features/system/users.tsx:463
 msgid "Remove suspension"
 msgstr "ยกเลิกการระงับ"
-
-#: src/features/user/replication.tsx:203
-msgid "Remove your account from this server?"
-msgstr "นำบัญชีของคุณออกจากเซิร์ฟเวอร์นี้หรือไม่?"
 
 #: src/features/user/login.tsx:270
 msgid "Rename passkey"
@@ -2360,24 +2234,6 @@ msgstr "เปลี่ยนชื่อ passkey"
 #: src/features/system/settings.tsx:367
 msgid "Replace"
 msgstr "แทนที่"
-
-#: src/components/layout/data/sidebar-data.ts:42
-#: src/components/layout/data/sidebar-data.ts:63
-#: src/components/layout/data/sidebar-data.ts:73
-#: src/features/system/replication.tsx:207
-#: src/features/system/replication.tsx:221
-#: src/features/user/replication.tsx:247
-#: src/features/user/replication.tsx:258
-msgid "Replication"
-msgstr "การจำลอง"
-
-#: src/features/user/replication.tsx:74
-msgid "Request approved"
-msgstr "อนุมัติคำขอแล้ว"
-
-#: src/features/user/replication.tsx:82
-msgid "Request denied"
-msgstr "ปฏิเสธคำขอแล้ว"
 
 #: src/features/system/settings.tsx:53
 msgid "Require domain verification"
@@ -2560,8 +2416,8 @@ msgstr "ค้นหาผู้ใช้..."
 msgid "Search..."
 msgstr "ค้นหา..."
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:177
-#: ../../../lib/web/src/components/search-entity-page.tsx:152
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:174
+#: ../../../lib/web/src/components/search-entity-page.tsx:198
 #: ../../../lib/web/src/features/access/access-dialog.tsx:202
 #: src/features/domains/index.tsx:650
 msgid "Searching..."
@@ -2635,14 +2491,10 @@ msgstr "ส่งอีเมล"
 msgid "Serif"
 msgstr "เซริฟ"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:245
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:271
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:260
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:286
 msgid "Server error"
 msgstr "ข้อผิดพลาดของเซิร์ฟเวอร์"
-
-#: src/features/user/replication.tsx:284
-msgid "Server peer ID"
-msgstr "ID เพียร์ของเซิร์ฟเวอร์"
 
 #: ../../../lib/web/src/components/server-documents-footer.tsx:19
 #: ../../../lib/web/src/features/document/document-page.tsx:40
@@ -2666,17 +2518,17 @@ msgstr "เวอร์ชันเซิร์ฟเวอร์"
 msgid "Session"
 msgstr "เซสชัน"
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:209
-msgid "Session expired"
-msgstr "เซสชันหมดอายุ"
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:210
+msgid "Session expired. Please log in again."
+msgstr "เซสชันหมดอายุ โปรดเข้าสู่ระบบอีกครั้ง"
 
 #: src/features/system/users.tsx:282
 #: src/features/user/sessions.tsx:52
 msgid "Session revoked"
 msgstr "เพิกถอนเซสชันแล้ว"
 
-#: src/components/layout/data/sidebar-data.ts:41
-#: src/components/layout/data/sidebar-data.ts:62
+#: src/components/layout/data/sidebar-data.ts:40
+#: src/components/layout/data/sidebar-data.ts:60
 #: src/features/user/sessions.tsx:121
 #: src/features/user/sessions.tsx:129
 msgid "Sessions"
@@ -2705,9 +2557,9 @@ msgstr "อัปเดตการตั้งค่าแล้ว"
 #: ../../../lib/web/src/components/layout/nav-user.tsx:84
 #: ../../../lib/web/src/components/layout/nav-user.tsx:148
 #: ../../../lib/web/src/components/layout/nav-user.tsx:198
-#: src/components/layout/data/sidebar-data.ts:32
-#: src/components/layout/data/sidebar-data.ts:53
-#: src/components/layout/data/sidebar-data.ts:95
+#: src/components/layout/data/sidebar-data.ts:31
+#: src/components/layout/data/sidebar-data.ts:51
+#: src/components/layout/data/sidebar-data.ts:91
 #: src/features/user/connected-accounts.tsx:272
 msgid "Settings"
 msgstr "การตั้งค่า"
@@ -2759,9 +2611,8 @@ msgstr "กว้างขวาง"
 msgid "Started"
 msgstr "เริ่มแล้ว"
 
-#: src/components/layout/data/sidebar-data.ts:74
+#: src/components/layout/data/sidebar-data.ts:70
 #: src/features/domains/index.tsx:1040
-#: src/features/system/replication.tsx:288
 #: src/features/system/status.tsx:41
 #: src/features/system/status.tsx:57
 #: src/features/system/status.tsx:182
@@ -2802,22 +2653,14 @@ msgstr "ถูกระงับ"
 msgid "Suspension removed"
 msgstr "ลบการระงับแล้ว"
 
-#: src/features/system/replication.tsx:162
-msgid "Synced"
-msgstr "ซิงค์แล้ว"
-
-#: src/features/system/replication.tsx:164
-msgid "Syncing"
-msgstr "กำลังซิงค์"
-
 #: ../../../lib/web/src/components/config-drawer.tsx:208
 #: ../../../lib/web/src/lib/preference-utils.ts:21
 #: ../../../lib/web/src/lib/preference-utils.ts:144
-#: src/components/layout/data/sidebar-data.ts:68
+#: src/components/layout/data/sidebar-data.ts:65
 msgid "System"
 msgstr "ระบบ"
 
-#: src/components/layout/data/sidebar-data.ts:70
+#: src/components/layout/data/sidebar-data.ts:67
 #: src/features/system/settings.tsx:472
 #: src/features/system/settings.tsx:556
 msgid "System settings"
@@ -2878,6 +2721,10 @@ msgstr "อีเมลนั้นได้ลงทะเบียนกับ
 msgid "The \"No notifications\" category silences any topic assigned to it."
 msgstr "หมวด \"ไม่มีการแจ้งเตือน\" จะปิดเสียงทุกหัวข้อที่กำหนดให้กับหมวดนี้"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:68
+msgid "The requested content could not be found."
+msgstr "ไม่พบเนื้อหาที่ร้องขอ"
+
 #: ../../../lib/web/src/components/config-drawer.tsx:194
 #: src/features/user/display.tsx:233
 #: src/features/user/display.tsx:260
@@ -2898,14 +2745,6 @@ msgstr "อัปเดตธีมแล้ว"
 msgid "Third-party login"
 msgstr "เข้าสู่ระบบด้วยบุคคลที่สาม"
 
-#: src/features/user/replication.tsx:269
-msgid "This account"
-msgstr "บัญชีนี้"
-
-#: src/features/user/replication.tsx:332
-msgid "This account is on this server only"
-msgstr "บัญชีนี้อยู่บนเซิร์ฟเวอร์นี้เท่านั้น"
-
 #: src/features/user/data.tsx:124
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "นี่คือข้อมูลสำรองฉบับสมบูรณ์ที่คุณสามารถกู้คืนบนเซิร์ฟเวอร์ Mochi นี้หรือเครื่องอื่นได้ ยืนยันว่าเป็นคุณเพื่อดำเนินการต่อ"
@@ -2913,22 +2752,6 @@ msgstr "นี่คือข้อมูลสำรองฉบับสมบ
 #: src/lib/use-step-up.tsx:34
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "นี่คือการเปลี่ยนแปลงด้านความปลอดภัยของบัญชีคุณ ยืนยันว่าเป็นคุณเพื่อดำเนินการต่อ"
-
-#: src/features/user/replication.tsx:226
-msgid "This permanently deletes your account's data on this server. Verify it's you to continue."
-msgstr "การดำเนินการนี้จะลบข้อมูลบัญชีของคุณบนเซิร์ฟเวอร์นี้อย่างถาวร ยืนยันว่าเป็นคุณเพื่อดำเนินการต่อ"
-
-#: src/features/system/replication.tsx:231
-msgid "This server"
-msgstr "เซิร์ฟเวอร์นี้"
-
-#: src/features/system/replication.tsx:279
-msgid "This server is not paired."
-msgstr "เซิร์ฟเวอร์นี้ยังไม่ได้จับคู่"
-
-#: src/features/system/replication.tsx:179
-msgid "This server will stop pairing with that peer. The removed server keeps its local copy of every user; the operator there must wipe it manually."
-msgstr "เซิร์ฟเวอร์นี้จะหยุดจับคู่กับเพียร์นั้น เซิร์ฟเวอร์ที่ถูกนำออกยังคงเก็บสำเนาในเครื่องของผู้ใช้ทุกคนไว้ ผู้ดำเนินการฝั่งนั้นต้องลบด้วยตนเอง"
 
 #: src/features/system/users.tsx:355
 msgid "This user has no active sessions."
@@ -3016,10 +2839,6 @@ msgstr "เวลาประทับ"
 msgid "TLS Enabled"
 msgstr "เปิดใช้งาน TLS"
 
-#: src/features/user/replication.tsx:333
-msgid "To replicate it to another server, sign up for an account there and use the \"Replicate an existing account\" option."
-msgstr "เพื่อทำซ้ำไปยังเซิร์ฟเวอร์อื่น ลงทะเบียนบัญชีที่นั่นและใช้ตัวเลือก \"ทำซ้ำบัญชีที่มีอยู่\""
-
 #: ../../../lib/web/src/components/data-table/view-options.tsx:37
 msgid "Toggle columns"
 msgstr "สลับคอลัมน์"
@@ -3067,10 +2886,14 @@ msgstr "ลบโทเคนแล้ว"
 msgid "Token name"
 msgstr "ชื่อโทเคน"
 
-#: src/components/layout/data/sidebar-data.ts:40
-#: src/components/layout/data/sidebar-data.ts:61
+#: src/components/layout/data/sidebar-data.ts:39
+#: src/components/layout/data/sidebar-data.ts:59
 msgid "Tokens"
 msgstr "โทเคน"
+
+#: ../../../lib/web/src/features/errors/general-error.tsx:74
+msgid "Too many requests"
+msgstr "คำขอมากเกินไป"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:45
 msgid "Top"
@@ -3088,13 +2911,13 @@ msgstr "กำลังเดินทาง"
 msgid "Try adjusting your search criteria"
 msgstr "ลองปรับเกณฑ์การค้นหาของคุณ"
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:193
-#: ../../../lib/web/src/components/search-entity-page.tsx:168
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:190
+#: ../../../lib/web/src/components/search-entity-page.tsx:214
 msgid "Try adjusting your search terms"
 msgstr "ลองปรับคำค้นหาของคุณ"
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:128
-#: ../../../lib/web/src/features/errors/general-error.tsx:168
+#: ../../../lib/web/src/features/errors/general-error.tsx:140
+#: ../../../lib/web/src/features/errors/general-error.tsx:180
 #: ../../../lib/web/src/features/errors/maintenance-error.tsx:19
 msgid "Try again"
 msgstr "ลองอีกครั้ง"
@@ -3123,7 +2946,7 @@ msgstr "พิมพ์เพื่อค้นหาผู้ใช้"
 msgid "Type to search..."
 msgstr "พิมพ์เพื่อค้นหา..."
 
-#: ../../../lib/web/src/lib/api-response-interceptors.ts:267
+#: ../../../lib/web/src/lib/api-response-interceptors.ts:282
 msgid "Unable to connect to remote server"
 msgstr "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ระยะไกลได้"
 
@@ -3132,7 +2955,7 @@ msgstr "ไม่สามารถเชื่อมต่อกับเซิ
 msgid "Unable to redirect to login. Please try again."
 msgstr "ไม่สามารถเปลี่ยนเส้นทางไปยังการเข้าสู่ระบบได้ โปรดลองอีกครั้ง"
 
-#: ../../../lib/web/src/components/notification-category-button.tsx:156
+#: ../../../lib/web/src/components/notification-category-button.tsx:155
 #: src/features/user/notifications.tsx:763
 msgid "Unassigned"
 msgstr "ยังไม่กำหนด"
@@ -3152,7 +2975,6 @@ msgstr "หน่วย"
 #: src/features/system/status.tsx:134
 #: src/features/system/status.tsx:135
 #: src/features/system/users.tsx:332
-#: src/features/user/replication.tsx:148
 msgid "Unknown"
 msgstr "ไม่ทราบ"
 
@@ -3199,10 +3021,6 @@ msgstr "อัปเดต"
 msgid "URL to redirect to"
 msgstr "URL ที่จะเปลี่ยนเส้นทางไป"
 
-#: src/features/system/replication.tsx:280
-msgid "Use \"mochictl replica join {peer}\" on a newly installed server to pair with this server."
-msgstr "ใช้ \"mochictl replica join {peer}\" บนเซิร์ฟเวอร์ที่ติดตั้งใหม่เพื่อจับคู่กับเซิร์ฟเวอร์นี้"
-
 #: src/features/domains/index.tsx:124
 msgid "Use *.domain.com for wildcard domains"
 msgstr "ใช้ *.domain.com สำหรับโดเมนไวด์การ์ด"
@@ -3246,11 +3064,10 @@ msgid "User updated"
 msgstr "อัปเดตผู้ใช้แล้ว"
 
 #: src/features/user/account.tsx:82
-#: src/features/user/replication.tsx:276
 msgid "Username"
 msgstr "ชื่อผู้ใช้"
 
-#: src/components/layout/data/sidebar-data.ts:72
+#: src/components/layout/data/sidebar-data.ts:69
 #: src/features/system/status.tsx:140
 #: src/features/system/users.tsx:555
 #: src/features/system/users.tsx:593
@@ -3354,6 +3171,10 @@ msgstr "X client ID"
 msgid "X client secret"
 msgstr "X client secret"
 
+#: ../../../lib/web/src/features/errors/general-error.tsx:61
+msgid "You do not have access to this section."
+msgstr "คุณไม่มีสิทธิ์เข้าถึงส่วนนี้"
+
 #: src/features/domains/index.tsx:1212
 msgid "You don't have access to any domains."
 msgstr "คุณไม่มีสิทธิ์เข้าถึงโดเมนใดๆ"
@@ -3374,10 +3195,6 @@ msgstr "บัญชีของคุณจะถูกลบอย่างถ
 #: src/features/user/close-account.tsx:89
 msgid "Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy."
 msgstr "บัญชีของคุณจะถูกกำหนดให้ลบและคุณจะถูกออกจากระบบ คุณสามารถยกเลิกได้ทุกเมื่อก่อนถึงวันที่ลบโดยการเข้าสู่ระบบอีกครั้ง ดาวน์โหลดข้อมูลของคุณก่อนหากต้องการเก็บสำเนาไว้"
-
-#: src/features/user/replication.tsx:205
-msgid "Your account's data on this server will be permanently deleted and you'll be signed out here. Your account stays on your other servers, and you can re-add this one later."
-msgstr "ข้อมูลบัญชีของคุณบนเซิร์ฟเวอร์นี้จะถูกลบอย่างถาวร และคุณจะถูกออกจากระบบที่นี่ บัญชีของคุณยังคงอยู่บนเซิร์ฟเวอร์อื่นของคุณ และคุณสามารถเพิ่มเซิร์ฟเวอร์นี้กลับได้ในภายหลัง"
 
 #: src/features/user/data.tsx:171
 msgid "Your data"
