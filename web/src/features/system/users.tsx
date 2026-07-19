@@ -319,7 +319,7 @@ function SessionsDialog({
               <TableHeader>
                 <TableRow>
                   <TableHead><Trans>Device</Trans></TableHead>
-                  <TableHead><Trans>IP Address</Trans></TableHead>
+                  <TableHead><Trans>IP address</Trans></TableHead>
                   <TableHead><Trans>Last accessed</Trans></TableHead>
                   <TableHead className='w-[80px]' />
                 </TableRow>

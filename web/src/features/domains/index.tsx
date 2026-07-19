@@ -999,7 +999,7 @@ function DomainDetails({
               )}
               <div className='flex items-center justify-between'>
                 <div className='space-y-0.5'>
-                  <Label><Trans>TLS Enabled</Trans></Label>
+                  <Label><Trans>TLS enabled</Trans></Label>
                   <p className='text-muted-foreground text-xs'>
                     <Trans>Automatic HTTPS certificates</Trans>
                   </p>
