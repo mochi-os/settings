@@ -20,8 +20,6 @@ import type {
   TotpVerifyResponse,
   RecoveryStatusResponse,
   RecoveryGenerateResponse,
-  TokensResponse,
-  TokenCreateResponse,
 } from '@/types/account'
 import endpoints from '@/api/endpoints'
 import { requestHelpers } from '@mochi/web'
@@ -307,46 +305,6 @@ export function useOauthUnlink() {
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'oauth'] })
-    },
-  })
-}
-
-// ============================================================================
-// API Tokens
-// ============================================================================
-
-export function useTokens() {
-  return useQuery({
-    queryKey: ['account', 'tokens'],
-    queryFn: () =>
-      requestHelpers.get<TokensResponse>(endpoints.user.accountTokens),
-  })
-}
-
-export function useTokenCreate() {
-  const queryClient = useQueryClient()
-  return useMutation({
-    mutationFn: (data: { name: string; scopes?: string[]; expires?: string; token: string }) =>
-      requestHelpers.post<TokenCreateResponse>(
-        endpoints.user.accountTokenCreate,
-        data,
-        NO_GLOBAL_ERROR_TOAST_CONFIG
-      ),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['account', 'tokens'] })
-    },
-  })
-}
-
-export function useTokenDelete() {
-  const queryClient = useQueryClient()
-  return useMutation({
-    mutationFn: (hash: string) =>
-      requestHelpers.post<{ ok: boolean }>(endpoints.user.accountTokenDelete, {
-        hash,
-      }, NO_GLOBAL_ERROR_TOAST_CONFIG),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['account', 'tokens'] })
     },
   })
 }

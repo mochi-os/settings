@@ -16,7 +16,6 @@ export const APP_ROUTES = {
       ACCOUNTS: '/user/accounts',
       INTERESTS: '/user/interests',
       NOTIFICATIONS: '/user/notifications',
-      TOKENS: '/user/tokens',
       SESSIONS: '/user/sessions',
     },
     SYSTEM: {

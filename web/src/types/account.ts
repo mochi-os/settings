@@ -131,21 +131,3 @@ export interface AuthMethodsResponse {
 export interface OAuthBeginResponse {
   url: string
 }
-
-// API Tokens
-export interface Token {
-  hash: string
-  name: string
-  scopes: string[]
-  expires: number
-  created: number
-  last_used: number
-}
-
-export interface TokensResponse {
-  tokens: Token[]
-}
-
-export interface TokenCreateResponse {
-  token: string
-}

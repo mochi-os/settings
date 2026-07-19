@@ -41,10 +41,6 @@ const endpoints = {
     // Auth methods available on the server (public) - for OAuth begin flow
     authMethods: '/_/auth/methods',
     authOauthBegin: (provider: string) => `/_/auth/oauth/${provider}/begin`,
-    // API Tokens
-    accountTokens: '-/user/account/tokens',
-    accountTokenCreate: '-/user/account/token/create',
-    accountTokenDelete: '-/user/account/token/delete',
     // Preferences
     preferences: '-/user/preferences/data',
     preferencesSet: '-/user/preferences/set',

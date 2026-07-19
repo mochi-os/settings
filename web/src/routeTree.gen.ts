@@ -17,7 +17,6 @@ import { Route as errors500RouteImport } from './routes/(errors)/500'
 import { Route as errors404RouteImport } from './routes/(errors)/404'
 import { Route as errors403RouteImport } from './routes/(errors)/403'
 import { Route as errors401RouteImport } from './routes/(errors)/401'
-import { Route as AuthenticatedUserTokensRouteImport } from './routes/_authenticated/user/tokens'
 import { Route as AuthenticatedUserSessionsRouteImport } from './routes/_authenticated/user/sessions'
 import { Route as AuthenticatedUserPreferencesRouteImport } from './routes/_authenticated/user/preferences'
 import { Route as AuthenticatedUserNotificationsRouteImport } from './routes/_authenticated/user/notifications'
@@ -73,11 +72,6 @@ const errors401Route = errors401RouteImport.update({
   id: '/(errors)/401',
   path: '/401',
   getParentRoute: () => rootRouteImport,
-} as any)
-const AuthenticatedUserTokensRoute = AuthenticatedUserTokensRouteImport.update({
-  id: '/user/tokens',
-  path: '/user/tokens',
-  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedUserSessionsRoute =
   AuthenticatedUserSessionsRouteImport.update({
@@ -199,7 +193,6 @@ export interface FileRoutesByFullPath {
   '/user/notifications': typeof AuthenticatedUserNotificationsRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
   '/user/sessions': typeof AuthenticatedUserSessionsRoute
-  '/user/tokens': typeof AuthenticatedUserTokensRoute
 }
 export interface FileRoutesByTo {
   '/401': typeof errors401Route
@@ -225,7 +218,6 @@ export interface FileRoutesByTo {
   '/user/notifications': typeof AuthenticatedUserNotificationsRoute
   '/user/preferences': typeof AuthenticatedUserPreferencesRoute
   '/user/sessions': typeof AuthenticatedUserSessionsRoute
-  '/user/tokens': typeof AuthenticatedUserTokensRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -253,7 +245,6 @@ export interface FileRoutesById {
   '/_authenticated/user/notifications': typeof AuthenticatedUserNotificationsRoute
   '/_authenticated/user/preferences': typeof AuthenticatedUserPreferencesRoute
   '/_authenticated/user/sessions': typeof AuthenticatedUserSessionsRoute
-  '/_authenticated/user/tokens': typeof AuthenticatedUserTokensRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -281,7 +272,6 @@ export interface FileRouteTypes {
     | '/user/notifications'
     | '/user/preferences'
     | '/user/sessions'
-    | '/user/tokens'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/401'
@@ -307,7 +297,6 @@ export interface FileRouteTypes {
     | '/user/notifications'
     | '/user/preferences'
     | '/user/sessions'
-    | '/user/tokens'
   id:
     | '__root__'
     | '/_authenticated'
@@ -334,7 +323,6 @@ export interface FileRouteTypes {
     | '/_authenticated/user/notifications'
     | '/_authenticated/user/preferences'
     | '/_authenticated/user/sessions'
-    | '/_authenticated/user/tokens'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -403,13 +391,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/401'
       preLoaderRoute: typeof errors401RouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/user/tokens': {
-      id: '/_authenticated/user/tokens'
-      path: '/user/tokens'
-      fullPath: '/user/tokens'
-      preLoaderRoute: typeof AuthenticatedUserTokensRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/user/sessions': {
       id: '/_authenticated/user/sessions'
@@ -545,7 +526,6 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedUserNotificationsRoute: typeof AuthenticatedUserNotificationsRoute
   AuthenticatedUserPreferencesRoute: typeof AuthenticatedUserPreferencesRoute
   AuthenticatedUserSessionsRoute: typeof AuthenticatedUserSessionsRoute
-  AuthenticatedUserTokensRoute: typeof AuthenticatedUserTokensRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -567,7 +547,6 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedUserNotificationsRoute: AuthenticatedUserNotificationsRoute,
   AuthenticatedUserPreferencesRoute: AuthenticatedUserPreferencesRoute,
   AuthenticatedUserSessionsRoute: AuthenticatedUserSessionsRoute,
-  AuthenticatedUserTokensRoute: AuthenticatedUserTokensRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
