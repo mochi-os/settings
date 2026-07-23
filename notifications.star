@@ -65,14 +65,17 @@ def action_notifications_topics(a):
 
 def action_notifications_topics_set_category(a):
 	# app="" identifies server-originated topics (upgrade alerts etc.).
+	# An empty category clears the topic's category; anything over-long cannot
+	# name a real category and is rejected rather than treated as a clear.
 	app = a.input("app", "").strip()
 	topic = a.input("topic", "").strip()
-	object = a.input("object", "")
-	cat_raw = a.input("category", "").strip()
-	category = None
-	if cat_raw != "" and len(cat_raw) <= 64:
-		category = cat_raw
-	ok = mochi.service.call("notifications", "topic/set_category", app, topic, object, category)
+	object = a.input("object", "").strip()
+	category = a.input("category", "").strip()
+	if category == "":
+		category = None
+	elif len(category) > 64:
+		return a.error.label(404, "errors.not_found")
+	ok = mochi.service.call("notifications", "topic/category/set", app, topic, object, category)
 	if not ok:
 		return a.error.label(404, "errors.not_found")
 	return {"data": {}}
