@@ -3,6 +3,7 @@
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 
+import { plural } from '@lingui/core/macro'
 import { useState, useMemo, useEffect } from 'react'
 import { Trans, useLingui } from '@lingui/react/macro'
 import { useNavigate, useSearch } from '@tanstack/react-router'
@@ -298,7 +299,7 @@ function CategoriesTab({
                   if (sent === 0) {
                     toast.error(t`No destinations configured`)
                   } else {
-                    toast.success(t`Test sent to ${sent} destination${sent === 1 ? '' : 's'}`)
+                    toast.success(plural(sent, { one: 'Test sent to # destination', other: 'Test sent to # destinations' }))
                   }
                 } catch (e) {
                   toast.error(getErrorMessage(e, t`Failed to send test`))
