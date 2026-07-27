@@ -925,6 +925,7 @@ function DomainDetails({
                 {domain.tls ? (
                   <Badge variant='outline' className='text-xs'>
                     <Lock className='me-1 h-3 w-3' />
+                    {/* jsx-text-ok: protocol acronym, verbatim in every locale */}
                     TLS
                   </Badge>
                 ) : null}
@@ -964,6 +965,7 @@ function DomainDetails({
                       <Trans>Create a TXT record for</Trans> <code className='bg-muted rounded px-1'>_mochi-verify.{domain.domain}</code>
                     </p>
                     <p className='text-muted-foreground font-mono text-xs break-all'>
+                      {/* jsx-text-ok: verbatim DNS TXT record value the user copies */}
                       mochi-verify={domain.token}
                     </p>
                   </div>

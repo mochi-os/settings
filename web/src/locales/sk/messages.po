@@ -30,6 +30,11 @@ msgstr "(aktuálne)"
 msgid "(empty)"
 msgstr "(prázdne)"
 
+#. placeholder {0}: selectedValues.size
+#: ../../../lib/web/src/components/data-table/faceted-filter.tsx:66
+msgid "{0, plural, one {# selected} other {# selected}}"
+msgstr "{0, plural, one {# vybraté} few {# vybraté} many {# vybratých} other {# vybratých}}"
+
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx:283
 msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
@@ -60,9 +65,29 @@ msgstr "{0} úspešných · {1} neúspešných"
 msgid "{count} remaining"
 msgstr "{count} zostávajúcich"
 
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:173
+msgid "{entityLabel} name"
+msgstr "Názov {entityLabel}"
+
+#: ../../../lib/web/src/components/data-table/bulk-actions.tsx:210
+msgid "{selectedCount, plural, one {{entityName} selected} other {{manyName} selected}}"
+msgstr "{selectedCount, plural, one {Vybraté {entityName}} few {Vybraté {manyName}} many {Vybraných {manyName}} other {Vybraných {manyName}}}"
+
+#: ../../../lib/web/src/components/data-table/bulk-actions.tsx:52
+msgid "{selectedCount, plural, one {# {entityName} selected. Bulk actions toolbar is available.} other {# {manyName} selected. Bulk actions toolbar is available.}}"
+msgstr "{selectedCount, plural, one {Vybraté # {entityName}. Panel hromadných akcií je dostupný.} few {Vybraté # {manyName}. Panel hromadných akcií je dostupný.} many {Vybraných # {manyName}. Panel hromadných akcií je dostupný.} other {Vybraných # {manyName}. Panel hromadných akcií je dostupný.}}"
+
+#: ../../../lib/web/src/components/data-table/bulk-actions.tsx:202
+msgid "{selectedCount, plural, one {# selected} other {# selected}}"
+msgstr "{selectedCount, plural, one {# vybraté} few {# vybraté} many {# vybraté} other {# vybraté}}"
+
+#: ../../../lib/web/src/components/data-table/bulk-actions.tsx:149
+msgid "{selectedCount, plural, one {Bulk actions for # selected {entityName}} other {Bulk actions for # selected {manyName}}}"
+msgstr "{selectedCount, plural, one {Hromadné akcie pre # vybraté {entityName}} few {Hromadné akcie pre # vybraté {manyName}} many {Hromadné akcie pre # vybratých {manyName}} other {Hromadné akcie pre # vybratého {manyName}}}"
+
 #: src/features/user/notifications.tsx:302
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
-msgstr ""
+msgstr "{sent, plural, one {Test odoslaný na # cieľ} few {Test odoslaný na # ciele} many {Test odoslaný na # cieľov} other {Test odoslaný na # cieľa}}"
 
 #: src/features/domains/index.tsx:238
 #: src/features/domains/index.tsx:627
@@ -327,7 +352,7 @@ msgstr "Autentifikačná aplikácia je aktívna"
 msgid "Authenticator code"
 msgstr "Autentifikačný kód"
 
-#: src/features/domains/index.tsx:1004
+#: src/features/domains/index.tsx:1006
 msgid "Automatic HTTPS certificates"
 msgstr "Automatické HTTPS certifikáty"
 
@@ -335,9 +360,9 @@ msgstr "Automatické HTTPS certifikáty"
 msgid "Back"
 msgstr "Späť"
 
-#: ../../../lib/web/src/features/errors/forbidden.tsx:26
-#: ../../../lib/web/src/features/errors/not-found-error.tsx:26
-#: ../../../lib/web/src/features/errors/unauthorized-error.tsx:26
+#: ../../../lib/web/src/features/errors/forbidden.tsx:28
+#: ../../../lib/web/src/features/errors/not-found-error.tsx:28
+#: ../../../lib/web/src/features/errors/unauthorized-error.tsx:28
 msgid "Back to home"
 msgstr "Späť na úvod"
 
@@ -362,7 +387,7 @@ msgstr "Notifikácie prehliadača"
 #: ../../../lib/web/src/features/access/access-dialog.tsx:328
 #: ../../../lib/web/src/features/access/access-list.tsx:263
 #: ../../../lib/web/src/features/accounts/account-add.tsx:188
-#: ../../../lib/web/src/features/accounts/account-verify.tsx:89
+#: ../../../lib/web/src/features/accounts/account-verify.tsx:91
 #: src/features/domains/index.tsx:134
 #: src/features/domains/index.tsx:338
 #: src/features/domains/index.tsx:536
@@ -444,22 +469,23 @@ msgstr "Vymazať"
 msgid "Clear all"
 msgstr "Vymazať všetko"
 
-#: ../../../lib/web/src/components/data-table/faceted-filter.tsx:140
+#: ../../../lib/web/src/components/data-table/faceted-filter.tsx:144
 msgid "Clear filters"
 msgstr "Vymazať filtre"
 
-#: ../../../lib/web/src/components/data-table/bulk-actions.tsx:167
-#: ../../../lib/web/src/components/data-table/bulk-actions.tsx:171
+#: ../../../lib/web/src/components/data-table/bulk-actions.tsx:177
+#: ../../../lib/web/src/components/data-table/bulk-actions.tsx:181
 msgid "Clear selection"
 msgstr "Zrušiť výber"
 
-#: ../../../lib/web/src/components/data-table/bulk-actions.tsx:168
+#: ../../../lib/web/src/components/data-table/bulk-actions.tsx:178
+#: ../../../lib/web/src/components/data-table/bulk-actions.tsx:185
 msgid "Clear selection (Escape)"
 msgstr "Zrušiť výber (Escape)"
 
 #: ../../../lib/web/src/components/ui/dialog.tsx:78
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:354
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:357
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:358
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:361
 #: ../../../lib/web/src/components/ui/sheet.tsx:79
 #: src/features/system/users.tsx:361
 msgid "Close"
@@ -471,8 +497,8 @@ msgstr "Zavrieť"
 msgid "Close account"
 msgstr "Zatvoriť účet"
 
-#: ../../../lib/web/src/components/layout/app-sidebar.tsx:107
-#: ../../../lib/web/src/components/layout/app-sidebar.tsx:112
+#: ../../../lib/web/src/components/layout/app-sidebar.tsx:108
+#: ../../../lib/web/src/components/layout/app-sidebar.tsx:113
 msgid "Close navigation"
 msgstr "Zavrieť navigáciu"
 
@@ -543,7 +569,7 @@ msgstr "Pripojené"
 msgid "Connected accounts"
 msgstr "Pripojené účty"
 
-#: src/features/domains/index.tsx:1214
+#: src/features/domains/index.tsx:1216
 msgid "Contact an administrator to get a delegation."
 msgstr "Kontaktujte administrátora pre získanie delegácie."
 
@@ -603,7 +629,7 @@ msgstr "Opätovné overenie sa nepodarilo spustiť. Skúste to znova."
 msgid "Couldn't verify with that account. Please try again."
 msgstr "S týmto účtom sa nepodarilo overiť. Skúste to znova."
 
-#: src/features/domains/index.tsx:964
+#: src/features/domains/index.tsx:965
 msgid "Create a TXT record for"
 msgstr "Vytvorte TXT záznam pre"
 
@@ -626,6 +652,7 @@ msgid "Customised"
 msgstr "Prispôsobené"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:218
+#: ../../../lib/web/src/components/theme-switch.tsx:52
 #: ../../../lib/web/src/lib/preference-utils.ts:20
 msgid "Dark"
 msgstr "Tmavé"
@@ -689,13 +716,13 @@ msgstr "Delegácia vytvorená"
 msgid "Delegation deleted"
 msgstr "Delegácia odstránená"
 
-#: src/features/domains/index.tsx:1069
+#: src/features/domains/index.tsx:1071
 msgid "Delegations"
 msgstr "Delegácie"
 
 #: src/features/domains/index.tsx:752
 #: src/features/domains/index.tsx:808
-#: src/features/domains/index.tsx:1127
+#: src/features/domains/index.tsx:1129
 #: src/features/system/users.tsx:506
 #: src/features/user/login.tsx:281
 #: src/features/user/notifications.tsx:398
@@ -717,12 +744,12 @@ msgstr "Odstrániť delegáciu"
 msgid "Delete delegation?"
 msgstr "Odstrániť delegáciu?"
 
-#: src/features/domains/index.tsx:1115
-#: src/features/domains/index.tsx:1135
+#: src/features/domains/index.tsx:1117
+#: src/features/domains/index.tsx:1137
 msgid "Delete domain"
 msgstr "Odstrániť doménu"
 
-#: src/features/domains/index.tsx:1133
+#: src/features/domains/index.tsx:1135
 msgid "Delete domain?"
 msgstr "Odstrániť doménu?"
 
@@ -838,7 +865,7 @@ msgstr "Zobrazenie resetované na predvolené"
 msgid "Displays the mobile sidebar."
 msgstr "Zobrazí mobilný bočný panel."
 
-#: src/features/domains/index.tsx:962
+#: src/features/domains/index.tsx:963
 msgid "DNS verification"
 msgstr "Overenie DNS"
 
@@ -860,11 +887,11 @@ msgstr "Doména"
 msgid "Domain created"
 msgstr "Doména vytvorená"
 
-#: src/features/domains/index.tsx:1162
+#: src/features/domains/index.tsx:1164
 msgid "Domain deleted"
 msgstr "Doména odstránená"
 
-#: src/features/domains/index.tsx:950
+#: src/features/domains/index.tsx:951
 msgid "Domain ownership has been verified"
 msgstr "Vlastníctvo domény bolo overené"
 
@@ -873,14 +900,14 @@ msgstr "Vlastníctvo domény bolo overené"
 msgid "Domain updated"
 msgstr "Doména aktualizovaná"
 
-#: src/features/domains/index.tsx:979
+#: src/features/domains/index.tsx:981
 msgid "Domain verified"
 msgstr "Doména overená"
 
 #: src/components/layout/data/sidebar-data.ts:71
-#: src/features/domains/index.tsx:1153
-#: src/features/domains/index.tsx:1181
-#: src/features/domains/index.tsx:1193
+#: src/features/domains/index.tsx:1155
+#: src/features/domains/index.tsx:1183
+#: src/features/domains/index.tsx:1195
 msgid "Domains"
 msgstr "Domény"
 
@@ -888,8 +915,8 @@ msgstr "Domény"
 msgid "Done"
 msgstr "Hotovo"
 
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:338
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:348
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:342
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:352
 #: src/features/user/data.tsx:127
 #: src/features/user/data.tsx:175
 msgid "Download"
@@ -1059,7 +1086,7 @@ msgstr "Nepodarilo sa zmazať kategóriu"
 msgid "Failed to delete delegation"
 msgstr "Nepodarilo sa zmazať delegovanie"
 
-#: src/features/domains/index.tsx:1167
+#: src/features/domains/index.tsx:1169
 msgid "Failed to delete domain"
 msgstr "Nepodarilo sa zmazať doménu"
 
@@ -1086,6 +1113,14 @@ msgstr "Nepodarilo sa vygenerovať kódy"
 #: src/features/system/status.tsx:282
 msgid "Failed to install update"
 msgstr "Nepodarilo sa nainštalovať aktualizáciu"
+
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:263
+msgid "Failed to load image"
+msgstr "Obrázok sa nepodarilo načítať"
+
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:263
+msgid "Failed to load video"
+msgstr "Video sa nepodarilo načítať"
 
 #: src/features/user/interests.tsx:243
 msgid "Failed to regenerate summary"
@@ -1218,7 +1253,7 @@ msgstr "Nepodarilo sa aktualizovať stav používateľa"
 msgid "Failed to verify code"
 msgstr "Nepodarilo sa overiť kód"
 
-#: src/features/domains/index.tsx:985
+#: src/features/domains/index.tsx:987
 msgid "Failed to verify domain"
 msgstr "Nepodarilo sa overiť doménu"
 
@@ -1296,17 +1331,17 @@ msgstr "GitHub client ID"
 msgid "GitHub client secret"
 msgstr "GitHub client secret"
 
-#: ../../../lib/web/src/features/errors/forbidden.tsx:24
-#: ../../../lib/web/src/features/errors/not-found-error.tsx:24
-#: ../../../lib/web/src/features/errors/unauthorized-error.tsx:24
+#: ../../../lib/web/src/features/errors/forbidden.tsx:26
+#: ../../../lib/web/src/features/errors/not-found-error.tsx:26
+#: ../../../lib/web/src/features/errors/unauthorized-error.tsx:26
 msgid "Go back"
 msgstr "Späť"
 
-#: ../../../lib/web/src/components/data-table/pagination.tsx:78
+#: ../../../lib/web/src/components/data-table/pagination.tsx:82
 msgid "Go to first page"
 msgstr "Prejsť na prvú stranu"
 
-#: ../../../lib/web/src/components/data-table/pagination.tsx:124
+#: ../../../lib/web/src/components/data-table/pagination.tsx:128
 msgid "Go to last page"
 msgstr "Prejsť na poslednú stranu"
 
@@ -1314,15 +1349,15 @@ msgstr "Prejsť na poslednú stranu"
 msgid "Go to login"
 msgstr "Prejsť na prihlásenie"
 
-#: ../../../lib/web/src/components/data-table/pagination.tsx:115
+#: ../../../lib/web/src/components/data-table/pagination.tsx:119
 msgid "Go to next page"
 msgstr "Prejsť na ďalšiu stranu"
 
-#: ../../../lib/web/src/components/data-table/pagination.tsx:102
+#: ../../../lib/web/src/components/data-table/pagination.tsx:106
 msgid "Go to page {pageNumber}"
 msgstr "Prejsť na stránku {pageNumber}"
 
-#: ../../../lib/web/src/components/data-table/pagination.tsx:87
+#: ../../../lib/web/src/components/data-table/pagination.tsx:91
 msgid "Go to previous page"
 msgstr "Prejsť na predchádzajúcu stranu"
 
@@ -1387,6 +1422,11 @@ msgstr "Identita už nie je uvedená v adresári"
 msgid "Identity is now listed in the directory"
 msgstr "Identita je teraz uvedená v adresári"
 
+#. placeholder {0}: currentMedia.name
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:247
+msgid "Image viewer: {0}"
+msgstr "Prehliadač obrázkov: {0}"
+
 #: ../../../lib/web/src/lib/preference-utils.ts:86
 msgid "Imperial"
 msgstr "Imperiálne"
@@ -1424,6 +1464,10 @@ msgstr "Neplatný overovací kód"
 #: src/features/system/users.tsx:322
 msgid "IP address"
 msgstr "IP adresa"
+
+#: ../../../lib/web/src/features/errors/not-found-error.tsx:18
+msgid "It seems like the page you're looking for <0/>does not exist or might have been removed."
+msgstr "Zdá sa, že stránka, ktorú hľadáte, <0/>neexistuje alebo bola odstránená."
 
 #: src/features/system/status.tsx:175
 msgid "Known"
@@ -1491,6 +1535,7 @@ msgid "Left to Right"
 msgstr "Zľava doprava"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:213
+#: ../../../lib/web/src/components/theme-switch.tsx:45
 #: ../../../lib/web/src/lib/preference-utils.ts:19
 msgid "Light"
 msgstr "Svetlý"
@@ -1587,8 +1632,8 @@ msgstr "Spravovať relácie"
 msgid "Management"
 msgstr "Správa"
 
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:92
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:99
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:93
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:100
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:224
 msgid "Mark all as read"
 msgstr "Označiť všetko ako prečítané"
@@ -1607,7 +1652,7 @@ msgstr "Správy čakajúce na smerovanie"
 
 #: src/features/domains/index.tsx:252
 #: src/features/domains/index.tsx:440
-#: src/features/domains/index.tsx:1037
+#: src/features/domains/index.tsx:1039
 msgid "Method"
 msgstr "Metóda"
 
@@ -1691,8 +1736,8 @@ msgstr "Nová kategória"
 msgid "Next"
 msgstr "Ďalej"
 
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:388
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:393
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:392
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:397
 msgid "Next image"
 msgstr "Ďalší obrázok"
 
@@ -1718,7 +1763,7 @@ msgstr "Nie je nastavený žiadny autentifikátor"
 msgid "No connected accounts"
 msgstr "Žiadne prepojené účty"
 
-#: src/features/domains/index.tsx:1103
+#: src/features/domains/index.tsx:1105
 msgid "No delegations configured"
 msgstr "Nie sú nakonfigurované žiadne delegácie"
 
@@ -1735,7 +1780,7 @@ msgstr "Nie sú nakonfigurované žiadne cieľové miesta"
 msgid "No document available for this language."
 msgstr "Pre tento jazyk nie je k dispozícii žiadny dokument."
 
-#: src/features/domains/index.tsx:1212
+#: src/features/domains/index.tsx:1214
 msgid "No domains configured"
 msgstr "Nie sú nakonfigurované žiadne domény"
 
@@ -1768,11 +1813,11 @@ msgid "No recovery codes"
 msgstr "Žiadne kódy na obnovenie"
 
 #: ../../../lib/web/src/components/command-menu.tsx:55
-#: ../../../lib/web/src/components/data-table/faceted-filter.tsx:90
+#: ../../../lib/web/src/components/data-table/faceted-filter.tsx:94
 msgid "No results found."
 msgstr "Nenašli sa žiadne výsledky."
 
-#: src/features/domains/index.tsx:1058
+#: src/features/domains/index.tsx:1060
 msgid "No routes configured"
 msgstr "Nie sú nakonfigurované žiadne trasy"
 
@@ -1827,6 +1872,11 @@ msgstr "Nenastavené"
 #: src/features/user/notifications.tsx:168
 msgid "Notifications"
 msgstr "Notifikácie"
+
+#. placeholder {0}: unread.length
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:86
+msgid "Notifications: {0}"
+msgstr "Oznámenia: {0}"
 
 #: src/features/user/connected-accounts.tsx:236
 #: src/features/user/connected-accounts.tsx:474
@@ -1902,6 +1952,11 @@ msgstr "Ďalšie nastavenia"
 msgid "Owner"
 msgstr "Vlastník"
 
+#: ../../../lib/web/src/components/data-table/pagination.tsx:43
+#: ../../../lib/web/src/components/data-table/pagination.tsx:71
+msgid "Page {currentPage} of {totalPages}"
+msgstr "Stránka {currentPage} z {totalPages}"
+
 #: ../../../lib/web/src/components/step-up-dialog.tsx:334
 #: src/features/user/login.tsx:126
 #: src/features/user/login.tsx:323
@@ -1943,8 +1998,8 @@ msgstr "Heslová fráza"
 
 #: src/features/domains/index.tsx:233
 #: src/features/domains/index.tsx:622
-#: src/features/domains/index.tsx:1036
-#: src/features/domains/index.tsx:1082
+#: src/features/domains/index.tsx:1038
+#: src/features/domains/index.tsx:1084
 msgid "Path"
 msgstr "Cesta"
 
@@ -1973,7 +2028,7 @@ msgstr "Vrstevníci"
 msgid "Pending"
 msgstr "Čaká sa"
 
-#: src/features/domains/index.tsx:1117
+#: src/features/domains/index.tsx:1119
 msgid "Permanently delete this domain and all its routes."
 msgstr "Natrvalo odstrániť túto doménu a všetky jej trasy."
 
@@ -1981,6 +2036,10 @@ msgstr "Natrvalo odstrániť túto doménu a všetky jej trasy."
 #: ../../../lib/web/src/lib/api-response-interceptors.ts:304
 msgid "Please check your internet connection and try again."
 msgstr "Skontrolujte pripojenie na internet a skúste to znova."
+
+#: ../../../lib/web/src/features/errors/unauthorized-error.tsx:18
+msgid "Please log in with the appropriate credentials <0/> to access this resource."
+msgstr "Prihláste sa s príslušnými prihlasovacími údajmi, <0/> aby ste získali prístup k tomuto zdroju."
 
 #: ../../../lib/web/src/features/errors/general-error.tsx:83
 msgid "Please try again."
@@ -2010,14 +2069,14 @@ msgstr "Predvoľby obnovené na predvolené"
 msgid "Previous"
 msgstr "Predchádzajúci"
 
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:373
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:378
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:377
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:382
 msgid "Previous image"
 msgstr "Predchádzajúci obrázok"
 
 #: src/features/domains/index.tsx:319
 #: src/features/domains/index.tsx:507
-#: src/features/domains/index.tsx:1039
+#: src/features/domains/index.tsx:1041
 msgid "Priority"
 msgstr "Priorita"
 
@@ -2159,6 +2218,11 @@ msgstr "Odstrániť (znova vytvoriť pri ďalšej notifikácii)"
 msgid "Remove access rule"
 msgstr "Odstrániť pravidlo prístupu"
 
+#. placeholder {0}: formatSubject(subject, data.name)
+#: ../../../lib/web/src/features/access/access-list.tsx:259
+msgid "Remove access rule for \"{0}\"?"
+msgstr "Odstrániť pravidlo prístupu pre „{0}“?"
+
 #: ../../../lib/web/src/features/access/access-list.tsx:257
 msgid "Remove access?"
 msgstr "Odstrániť prístup?"
@@ -2281,11 +2345,11 @@ msgstr "Trasa odstránená"
 msgid "Route updated"
 msgstr "Trasa aktualizovaná"
 
-#: src/features/domains/index.tsx:1021
+#: src/features/domains/index.tsx:1023
 msgid "Routes"
 msgstr "Trasy"
 
-#: ../../../lib/web/src/components/data-table/pagination.tsx:63
+#: ../../../lib/web/src/components/data-table/pagination.tsx:65
 msgid "Rows per page"
 msgstr "Riadkov na stránku"
 
@@ -2423,7 +2487,16 @@ msgstr "Vybrať predvoľbu motívu"
 msgid "Select..."
 msgstr "Vybrať..."
 
-#: ../../../lib/web/src/features/accounts/account-verify.tsx:98
+#: ../../../lib/web/src/components/data-table/bulk-actions.tsx:216
+msgid "selected"
+msgstr "vybraté"
+
+#. placeholder {0}: getSelectedName()
+#: ../../../lib/web/src/features/access/access-dialog.tsx:309
+msgid "Selected: <0>{0}</0>"
+msgstr "Vybraté: <0>{0}</0>"
+
+#: ../../../lib/web/src/features/accounts/account-verify.tsx:100
 msgid "Send again"
 msgstr "Odoslať znova"
 
@@ -2556,7 +2629,7 @@ msgid "Started"
 msgstr "Začalo sa"
 
 #: src/components/layout/data/sidebar-data.ts:67
-#: src/features/domains/index.tsx:1040
+#: src/features/domains/index.tsx:1042
 #: src/features/system/status.tsx:41
 #: src/features/system/status.tsx:57
 #: src/features/system/status.tsx:182
@@ -2598,6 +2671,7 @@ msgid "Suspension removed"
 msgstr "Pozastavenie zrušené"
 
 #: ../../../lib/web/src/components/config-drawer.tsx:208
+#: ../../../lib/web/src/components/theme-switch.tsx:59
 #: ../../../lib/web/src/lib/preference-utils.ts:21
 #: ../../../lib/web/src/lib/preference-utils.ts:144
 #: src/components/layout/data/sidebar-data.ts:62
@@ -2621,7 +2695,7 @@ msgstr "Tagy"
 
 #: src/features/domains/index.tsx:268
 #: src/features/domains/index.tsx:456
-#: src/features/domains/index.tsx:1038
+#: src/features/domains/index.tsx:1040
 msgid "Target"
 msgstr "Cieľ"
 
@@ -2664,6 +2738,10 @@ msgstr "Kategória „Žiadne oznámenia“ stíchne všetky témy, ktoré sú d
 msgid "The requested content could not be found."
 msgstr "Požadovaný obsah sa nepodarilo nájsť."
 
+#: ../../../lib/web/src/features/errors/maintenance-error.tsx:15
+msgid "The site is not available at the moment."
+msgstr "Stránka momentálne nie je dostupná."
+
 #: ../../../lib/web/src/components/config-drawer.tsx:194
 #: src/features/user/display.tsx:233
 #: src/features/user/display.tsx:260
@@ -2692,12 +2770,16 @@ msgstr "Toto je úplná záloha, ktorú môžete obnoviť na tomto alebo inom se
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Toto je bezpečnostná zmena vášho účtu. Pokračujte overením, že ste to vy."
 
+#: ../../../lib/web/src/components/coming-soon.tsx:14
+msgid "This page has not been created yet."
+msgstr "Táto stránka zatiaľ nebola vytvorená."
+
 #: src/features/system/users.tsx:355
 msgid "This user has no active sessions."
 msgstr "Tento používateľ nemá žiadne aktívne relácie."
 
 #. placeholder {0}: domain.domain
-#: src/features/domains/index.tsx:1134
+#: src/features/domains/index.tsx:1136
 msgid "This will permanently delete \"{0}\" and all its routes. This action cannot be undone."
 msgstr "Týmto sa natrvalo odstráni „{0}“ a všetky jeho trasy. Túto akciu nemožno vrátiť."
 
@@ -2769,9 +2851,13 @@ msgstr "Časové pásmo"
 msgid "Timestamps"
 msgstr "Časové údaje"
 
-#: src/features/domains/index.tsx:1002
+#: src/features/domains/index.tsx:1004
 msgid "TLS enabled"
 msgstr "TLS povolené"
+
+#: ../../../lib/web/src/components/travelling-picker.tsx:220
+msgid "To"
+msgstr "Kam"
 
 #: ../../../lib/web/src/components/data-table/view-options.tsx:37
 msgid "Toggle columns"
@@ -2839,7 +2925,7 @@ msgstr "Skúsiť znova"
 msgid "Tuesday"
 msgstr "Utorok"
 
-#: src/features/domains/index.tsx:981
+#: src/features/domains/index.tsx:983
 msgid "TXT record not found"
 msgstr "Záznam TXT sa nenašiel"
 
@@ -2948,7 +3034,7 @@ msgstr "Použite svoj prístupový kľúč"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx:158
 #: src/features/domains/index.tsx:634
-#: src/features/domains/index.tsx:1083
+#: src/features/domains/index.tsx:1085
 #: src/features/system/users.tsx:144
 #: src/features/system/users.tsx:235
 #: src/features/system/users.tsx:428
@@ -2992,7 +3078,7 @@ msgstr "Používatelia"
 msgid "Using bundled default"
 msgstr "Používa sa zabudovaná predvolená"
 
-#: ../../../lib/web/src/features/accounts/account-verify.tsx:71
+#: ../../../lib/web/src/features/accounts/account-verify.tsx:73
 msgid "Verification code"
 msgstr "Overovací kód"
 
@@ -3007,14 +3093,14 @@ msgid "Verification failed"
 msgstr "Overenie zlyhalo"
 
 #: src/features/domains/index.tsx:917
-#: src/features/domains/index.tsx:948
+#: src/features/domains/index.tsx:949
 #: src/features/user/connected-accounts.tsx:220
 msgid "Verified"
 msgstr "Overené"
 
 #: ../../../lib/web/src/components/step-up-dialog.tsx:388
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:172
-#: ../../../lib/web/src/features/accounts/account-verify.tsx:109
+#: ../../../lib/web/src/features/accounts/account-verify.tsx:111
 #: src/features/user/connected-accounts.tsx:263
 msgid "Verify"
 msgstr "Overiť"
@@ -3023,7 +3109,7 @@ msgstr "Overiť"
 msgid "Verify and enable"
 msgstr "Overiť a povoliť"
 
-#: src/features/domains/index.tsx:995
+#: src/features/domains/index.tsx:997
 msgid "Verify DNS"
 msgstr "Overiť DNS"
 
@@ -3043,6 +3129,11 @@ msgstr "Cez relay"
 msgid "Video thumbnail"
 msgstr "Miniatúra videa"
 
+#. placeholder {0}: currentMedia.name
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:246
+msgid "Video viewer: {0}"
+msgstr "Prehliadač videí: {0}"
+
 #: ../../../lib/web/src/components/data-table/view-options.tsx:33
 msgid "View"
 msgstr "Zobraziť"
@@ -3051,14 +3142,19 @@ msgstr "Zobraziť"
 msgid "View all"
 msgstr "Zobraziť všetko"
 
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:105
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:113
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:106
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:114
 msgid "View all notifications"
 msgstr "Zobraziť všetky oznámenia"
 
 #: src/features/system/users.tsx:311
 msgid "View and revoke active sessions for this user."
 msgstr "Zobraziť a zrušiť aktívne relácie pre tohto používateľa."
+
+#. placeholder {0}: account.identifier
+#: ../../../lib/web/src/features/accounts/account-verify.tsx:63
+msgid "We sent a verification code to <0>{0}</0>. Enter the code below to verify your email address."
+msgstr "Overovací kód sme odoslali na <0>{0}</0>. Zadajte kód nižšie na overenie vašej e-mailovej adresy."
 
 #: ../../../lib/web/src/features/errors/maintenance-error.tsx:16
 msgid "We'll be back online shortly."
@@ -3088,9 +3184,13 @@ msgstr "X klient secret"
 msgid "You do not have access to this section."
 msgstr "Nemáte prístup k tejto sekcii."
 
-#: src/features/domains/index.tsx:1212
+#: src/features/domains/index.tsx:1214
 msgid "You don't have access to any domains."
 msgstr "Nemáte prístup k žiadnym doménam."
+
+#: ../../../lib/web/src/features/errors/forbidden.tsx:18
+msgid "You don't have necessary permission <0/>to view this resource."
+msgstr "Nemáte potrebné oprávnenie <0/>na zobrazenie tohto zdroja."
 
 #. placeholder {0}: oauthProviderLabel[identity.provider] ?? identity.provider
 #: src/features/user/login.tsx:767
