@@ -112,17 +112,20 @@ def action_user_preferences(a):
     a.json({"preferences": prefs, "themes": mochi.app.themes(), "presets": mochi.app.presets(), "default_theme": default_theme})
 
 def action_user_preferences_set(a):
-    """Set user preferences"""
-    # Three input states:
-    #   None — key not provided in request, leave the preference alone
-    #   ""   — explicit reset, delete the preference (falls back to default)
-    #   any  — validate and set
+    """Set user preferences.
+
+    A key absent from the request is left alone; every key present is
+    validated before anything is written, so a payload carrying one good
+    and one bad value stores neither. Clearing a preference is a separate
+    action - see action_user_preferences_unset - so there is no value
+    here that means "delete".
+    """
+    # Validate the whole payload first, collecting what to write. Nothing
+    # in the apply loop below can then fail a check partway through.
+    writes = []
     for p in preferences_schema:
         value = a.input(p["key"])
         if value == None:
-            continue
-        if value == "":
-            a.user.preference.delete(p["key"])
             continue
         if p["type"] == "select" and value not in p["options"]:
             a.error.label(400, "errors.invalid_value_for_key", key=p["key"])
@@ -138,14 +141,38 @@ def action_user_preferences_set(a):
                 if not (ch.isalnum() or ch == "-"):
                     a.error.label(400, "errors.invalid_value_for_key", key=p["key"])
                     return
-        a.user.preference.set(p["key"], value)
-    # Handle theme preference (dynamic options, validated separately)
+        writes.append((p["key"], value))
+
+    # Theme options are dynamic (every installed app contributes some), so
+    # validate against the ids this user can actually see.
     theme = a.input("theme")
     if theme != None:
-        if theme == "":
-            a.user.preference.delete("theme")
-        else:
-            a.user.preference.set("theme", theme)
+        if theme not in [t["id"] for t in mochi.app.themes()]:
+            a.error.label(400, "errors.invalid_value_for_key", key="theme")
+            return
+        writes.append(("theme", theme))
+
+    for key, value in writes:
+        a.user.preference.set(key, value)
+    a.json({"ok": True})
+
+def action_user_preferences_unset(a):
+    """Clear the named preferences, so each falls back to its default.
+
+    Keys are repeated `key` fields. Unknown keys are rejected rather than
+    ignored, so a client typo surfaces instead of silently doing nothing.
+    """
+    keys = a.inputs("key")
+    if not keys:
+        a.error.label(400, "errors.missing_key")
+        return
+    known = [p["key"] for p in preferences_schema] + ["theme"]
+    for key in keys:
+        if key not in known:
+            a.error.label(400, "errors.invalid_value_for_key", key=key)
+            return
+    for key in keys:
+        a.user.preference.delete(key)
     a.json({"ok": True})
 
 def action_user_preferences_reset(a):

@@ -79,6 +79,7 @@ import { ThemePreviewCard } from '@/components/theme-preview-card'
 import {
   usePreferencesData,
   useSetPreference,
+  useUnsetPreferences,
   useResetPreferences,
 } from '@/hooks/use-preferences'
 
@@ -95,6 +96,7 @@ export function UserDisplay() {
   usePageTitle(t`Display`)
   const { data, isLoading, error, refetch } = usePreferencesData()
   const setPreference = useSetPreference()
+  const unsetPreferences = useUnsetPreferences()
   const resetPreferences = useResetPreferences()
   const { setTheme, setColorTheme } = useTheme()
   const [themeSheetOpen, setThemeSheetOpen] = useState(false)
@@ -150,11 +152,7 @@ export function UserDisplay() {
   const handleReset = () => {
     if (!data) return
     // Reset only the display-related keys, leaving regional prefs alone.
-    const resetPayload: Record<string, string> = {}
-    for (const key of DISPLAY_PREF_KEYS) {
-      resetPayload[key] = ''
-    }
-    setPreference.mutate(resetPayload, {
+    unsetPreferences.mutate([...DISPLAY_PREF_KEYS], {
       onSuccess: () => {
         setColorTheme(null)
         setTheme('system')

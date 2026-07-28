@@ -54,6 +54,7 @@ import { ComboSelect } from '@/components/combo-select'
 import {
   usePreferencesData,
   useSetPreference,
+  useUnsetPreferences,
   useResetPreferences,
 } from '@/hooks/use-preferences'
 
@@ -70,6 +71,7 @@ export function UserPreferences() {
   usePageTitle(t`Preferences`)
   const { data, isLoading, error, refetch } = usePreferencesData()
   const setPreference = useSetPreference()
+  const unsetPreferences = useUnsetPreferences()
   const resetPreferences = useResetPreferences()
   const { raw: currentLocale } = useLocale()
 
@@ -187,11 +189,7 @@ export function UserPreferences() {
   const handleReset = () => {
     if (!data) return
     // Reset only the regional keys, leaving display prefs alone.
-    const resetPayload: Record<string, string> = {}
-    for (const key of REGIONAL_PREF_KEYS) {
-      resetPayload[key] = ''
-    }
-    setPreference.mutate(resetPayload, {
+    unsetPreferences.mutate([...REGIONAL_PREF_KEYS], {
       onSuccess: () => {
         toast.success(t`Preferences reset to defaults`)
       },

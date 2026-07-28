@@ -8,6 +8,7 @@ import {
   useTheme,
   usePreferencesData as usePreferencesDataCommon,
   useSetPreference as useSetPreferenceCommon,
+  useUnsetPreferences as useUnsetPreferencesCommon,
   useResetPreferences as useResetPreferencesCommon,
 } from '@mochi/web'
 import endpoints from '@/api/endpoints'
@@ -19,6 +20,10 @@ export function usePreferencesData() {
 
 export function useSetPreference() {
   return useSetPreferenceCommon(endpoints.user.preferencesSet)
+}
+
+export function useUnsetPreferences() {
+  return useUnsetPreferencesCommon(endpoints.user.preferencesUnset)
 }
 
 export function useResetPreferences() {

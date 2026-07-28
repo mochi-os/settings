@@ -44,6 +44,7 @@ const endpoints = {
     // Preferences
     preferences: '-/user/preferences/data',
     preferencesSet: '-/user/preferences/set',
+    preferencesUnset: '-/user/preferences/unset',
     preferencesReset: '-/user/preferences/reset',
     // Interests
     interests: '-/user/interests',
