@@ -34,7 +34,13 @@ def action_user_account_code(a):
     login code; the email also alerts the user that such an action was
     attempted.
     """
-    mochi.user.code.send()
+    reason = mochi.user.code.send()
+    if reason == "too_many_codes":
+        a.error.label(429, "errors.too_many_codes")
+        return
+    if reason:
+        a.error.label(400, "errors.unable_to_send_code")
+        return
     a.json({"ok": True})
 
 def action_user_account_code_verify(a):

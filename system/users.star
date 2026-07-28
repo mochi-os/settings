@@ -30,8 +30,10 @@ def action_system_users_list(a):
 
     if search:
         # count is the number of matches, not the size of this page, so the
-        # client can page through them and show an honest total.
-        users = mochi.user.search(search, limit, offset)
+        # client can page through them and show an honest total. Search takes
+        # the same sort and order as list, so the column headers keep working
+        # while a search is active.
+        users = mochi.user.search(search, limit, offset, sort, order)
         count = mochi.user.count(search)
     else:
         users = mochi.user.list(limit, offset, sort, order)
