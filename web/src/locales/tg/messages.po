@@ -55,6 +55,11 @@ msgstr "{0} (тавсеа)"
 msgid "{0} / {1} reservations · {2} circuits · {3} refused"
 msgstr "{0} / {1} захираҳо · {2} занҷирҳо · {3} рад шуд"
 
+#. placeholder {0}: item.label
+#: ../../../lib/web/src/components/config-drawer.tsx:160
+msgid "{0} option preview"
+msgstr ""
+
 #. placeholder {0}: formatNumber(network.holepunch.success)
 #. placeholder {1}: formatNumber(network.holepunch.failure)
 #: src/features/system/status.tsx:155
@@ -65,9 +70,13 @@ msgstr "{0} муваффақ · {1} ноком"
 msgid "{count} remaining"
 msgstr "{count} боқимонда"
 
-#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:173
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:174
 msgid "{entityLabel} name"
 msgstr "Номи {entityLabel}"
+
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:99
+msgid "{entityLabel} name is required"
+msgstr ""
 
 #: ../../../lib/web/src/components/data-table/bulk-actions.tsx:210
 msgid "{selectedCount, plural, one {{entityName} selected} other {{manyName} selected}}"
@@ -88,6 +97,10 @@ msgstr "{selectedCount, plural, one {Амалҳои оммавӣ барои # {e
 #: src/features/user/notifications.tsx:302
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Санҷиш ба # мақсад фиристода шуд} other {Санҷиш ба # мақсад фиристода шуд}}"
+
+#: ../../../lib/web/src/components/layout/mochi-menu.tsx:132
+msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
+msgstr ""
 
 #: src/features/domains/index.tsx:238
 #: src/features/domains/index.tsx:627
@@ -126,7 +139,7 @@ msgstr "Дастрасӣ рад карда шуд"
 msgid "Access Forbidden"
 msgstr "Дастрасӣ манъ аст"
 
-#: ../../../lib/web/src/features/access/access-list.tsx:192
+#: ../../../lib/web/src/features/access/access-list.tsx:197
 msgid "Access level"
 msgstr "Сатҳи дастрасӣ"
 
@@ -172,6 +185,7 @@ msgstr "Ҳисоб тасдиқ карда шуд"
 msgid "Actions"
 msgstr "Амалҳо"
 
+#: ../../../lib/web/src/features/access/access-dialog.tsx:332
 #: ../../../lib/web/src/features/accounts/account-add.tsx:196
 msgid "Add"
 msgstr "Илова кардан"
@@ -215,7 +229,7 @@ msgstr "Иловаи делегатсия"
 msgid "Add domain"
 msgstr "Иловаи домен"
 
-#: ../../../lib/web/src/features/accounts/account-picker.tsx:101
+#: ../../../lib/web/src/features/accounts/account-picker.tsx:102
 msgid "Add new account"
 msgstr "Иловаи ҳисоби нав"
 
@@ -230,6 +244,7 @@ msgid "Add route"
 msgstr "Иловаи роҳ"
 
 #: ../../../lib/web/src/components/post-tags.tsx:137
+#: ../../../lib/web/src/components/tag-input.tsx:40
 msgid "Add tag..."
 msgstr "Иловаи барчасп..."
 
@@ -259,11 +274,15 @@ msgstr "Илова шуд"
 msgid "Added \"{0}\""
 msgstr "\"{0}\" илова шуд"
 
+#: ../../../lib/web/src/features/access/access-dialog.tsx:332
+msgid "Adding..."
+msgstr "Илова шуда истодааст..."
+
 #: src/features/system/status.tsx:183
 msgid "Address"
 msgstr "Суроға"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:71
+#: ../../../lib/web/src/components/config-drawer.tsx:72
 msgid "Adjust the appearance and layout to suit your preferences."
 msgstr "Намуд ва тарҳбандиро мувофиқи хости худ танзим кунед."
 
@@ -280,6 +299,11 @@ msgstr "AI"
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:163
 msgid "All"
 msgstr "Ҳама"
+
+#. placeholder {0}: entityLabel.toLowerCase()
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:85
+msgid "Allow anyone to search for {0}"
+msgstr ""
 
 #: src/features/system/settings.tsx:76
 msgid "Allow new signups"
@@ -306,9 +330,22 @@ msgstr "Хатогӣ рух дод"
 msgid "An unexpected error occurred"
 msgstr "Хатогии ғайричашмдошт рух дод"
 
+#: ../../../lib/web/src/features/accounts/types.ts:16
+msgid "Android push"
+msgstr ""
+
 #: src/features/system/settings.tsx:56
 msgid "Announce hostname and domains to other servers"
 msgstr "Эълони номи ҳост ва доменҳо ба серверҳои дигар"
+
+#: ../../../lib/web/src/features/access/access-list.tsx:45
+#: ../../../lib/web/src/features/access/types.ts:42
+msgid "Anyone"
+msgstr "Ҳар кас"
+
+#: ../../../lib/web/src/features/access/types.ts:41
+msgid "Anyone who is logged in"
+msgstr ""
 
 #: src/features/domains/index.tsx:262
 #: src/features/domains/index.tsx:450
@@ -330,6 +367,11 @@ msgstr "Афзоянда"
 #: ../../../lib/web/src/components/ui/sort-direction-button.tsx:27
 msgid "Ascending"
 msgstr "Афзоишёбанда"
+
+#: ../../../lib/web/src/features/access/access-list.tsx:46
+#: ../../../lib/web/src/features/access/types.ts:41
+msgid "Authenticated users"
+msgstr "Корбарони тасдиқшуда"
 
 #: src/features/user/login.tsx:128
 #: src/features/user/login.tsx:527
@@ -356,7 +398,15 @@ msgstr "Коди Authenticator"
 msgid "Automatic HTTPS certificates"
 msgstr "Сертификатҳои HTTPS-и худкор"
 
-#: ../../../lib/web/src/components/place-picker.tsx:155
+#: ../../../lib/web/src/components/entity-avatar.tsx:99
+msgid "Avatar"
+msgstr "Аватар"
+
+#: ../../../lib/web/src/components/entity-avatar.tsx:99
+msgid "Avatar for {name}"
+msgstr ""
+
+#: ../../../lib/web/src/components/place-picker.tsx:156
 msgid "Back"
 msgstr "Бозгашт"
 
@@ -365,6 +415,10 @@ msgstr "Бозгашт"
 #: ../../../lib/web/src/features/errors/unauthorized-error.tsx:28
 msgid "Back to home"
 msgstr "Бозгашт ба саҳифаи асосӣ"
+
+#: ../../../lib/web/src/components/entity-banner.tsx:17
+msgid "Banner"
+msgstr "Баннер"
 
 #: ../../../lib/web/src/components/post-tags.tsx:180
 #: ../../../lib/web/src/components/post-tags.tsx:192
@@ -375,6 +429,7 @@ msgstr "Афзоиши таваҷҷуҳ"
 msgid "Broadcast mesh"
 msgstr "Mesh-и пахш"
 
+#: ../../../lib/web/src/features/accounts/types.ts:13
 #: src/features/user/notifications.tsx:222
 msgid "Browser notifications"
 msgstr "Огоҳиномаҳои браузер"
@@ -382,10 +437,10 @@ msgstr "Огоҳиномаҳои браузер"
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx:67
 #: ../../../lib/web/src/components/step-up-dialog.tsx:363
 #: ../../../lib/web/src/components/travelling-picker.tsx:308
-#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:248
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:249
 #: ../../../lib/web/src/components/ui/editable-field-row.tsx:132
 #: ../../../lib/web/src/features/access/access-dialog.tsx:328
-#: ../../../lib/web/src/features/access/access-list.tsx:263
+#: ../../../lib/web/src/features/access/access-list.tsx:268
 #: ../../../lib/web/src/features/accounts/account-add.tsx:188
 #: ../../../lib/web/src/features/accounts/account-verify.tsx:91
 #: src/features/domains/index.tsx:134
@@ -429,19 +484,23 @@ msgstr "Тағйири огоҳиномаҳои ҷорӣ ба"
 msgid "Change notification category"
 msgstr "Тағйири категорияи огоҳинома"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:328
+#: ../../../lib/web/src/components/notifications-dropdown.tsx:198
+msgid "Check \"All\" to see your past notifications."
+msgstr "Барои дидани огоҳиномаҳои гузашта «Ҳама»-ро интихоб кунед."
+
+#: ../../../lib/web/src/components/config-drawer.tsx:329
 msgid "Choose between default expanded, compact icon-only, or full layout mode"
 msgstr "Байни ҳолати васеи пешфарз, иконкавии паймон ё намуди пурра интихоб кунед"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:270
+#: ../../../lib/web/src/components/config-drawer.tsx:271
 msgid "Choose between inset, floating, or standard sidebar layout"
 msgstr "Байни тарҳбандии inset, шиновар ё стандартии панели канорӣ интихоб кунед"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:371
+#: ../../../lib/web/src/components/config-drawer.tsx:372
 msgid "Choose between left-to-right or right-to-left site direction"
 msgstr "Байни самти аз чап ба рост ё аз рост ба чап интихоб кунед"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:226
+#: ../../../lib/web/src/components/config-drawer.tsx:227
 msgid "Choose between system preference, light mode, or dark mode"
 msgstr "Байни танзимоти система, ҳолати равшан ё ҳолати торик интихоб кунед"
 
@@ -454,8 +513,8 @@ msgstr "Файлро интихоб кунед"
 msgid "Choose language"
 msgstr "Забон интихоб кунед"
 
-#: ../../../lib/web/src/components/colour-picker.tsx:269
-#: ../../../lib/web/src/components/colour-picker.tsx:350
+#: ../../../lib/web/src/components/colour-picker.tsx:270
+#: ../../../lib/web/src/components/colour-picker.tsx:351
 #: ../../../lib/web/src/components/travelling-picker.tsx:164
 #: ../../../lib/web/src/components/travelling-picker.tsx:170
 #: ../../../lib/web/src/components/travelling-picker.tsx:231
@@ -465,13 +524,17 @@ msgstr "Забон интихоб кунед"
 msgid "Clear"
 msgstr "Тоза кардан"
 
-#: ../../../lib/web/src/components/filter-bar.tsx:73
+#: ../../../lib/web/src/components/filter-bar.tsx:74
 msgid "Clear all"
 msgstr "Ҳамаро тоза кардан"
 
 #: ../../../lib/web/src/components/data-table/faceted-filter.tsx:144
 msgid "Clear filters"
 msgstr "Тоза кардани филтрҳо"
+
+#: ../../../lib/web/src/components/search-input.tsx:26
+msgid "Clear search"
+msgstr "Тоза кардани ҷустуҷӯ"
 
 #: ../../../lib/web/src/components/data-table/bulk-actions.tsx:177
 #: ../../../lib/web/src/components/data-table/bulk-actions.tsx:181
@@ -538,7 +601,11 @@ msgstr "Бароҳат"
 msgid "Coming Soon!"
 msgstr "Ба наздикӣ!"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:315
+#: ../../../lib/web/src/components/ui/command.tsx:34
+msgid "Command Palette"
+msgstr ""
+
+#: ../../../lib/web/src/components/config-drawer.tsx:316
 #: ../../../lib/web/src/lib/preference-utils.ts:95
 msgid "Compact"
 msgstr "Паймон"
@@ -547,7 +614,7 @@ msgstr "Паймон"
 msgid "Configured"
 msgstr "Танзим шудааст"
 
-#: ../../../lib/web/src/components/place-picker.tsx:159
+#: ../../../lib/web/src/components/place-picker.tsx:160
 #: ../../../lib/web/src/components/travelling-picker.tsx:316
 msgid "Confirm"
 msgstr "Тасдиқ"
@@ -556,12 +623,14 @@ msgstr "Тасдиқ"
 msgid "Confirm it's you"
 msgstr "Тасдиқ кунед, ки ин шумо ҳастед"
 
+#: ../../../lib/web/src/lib/chat-ui.ts:18
 #: src/features/system/status.tsx:175
 #: src/features/system/status.tsx:197
 #: src/features/user/connected-accounts.tsx:225
 msgid "Connected"
 msgstr "Пайваст шуда"
 
+#: ../../../lib/web/src/features/accounts/account-manager.tsx:191
 #: src/components/layout/data/sidebar-data.ts:36
 #: src/components/layout/data/sidebar-data.ts:55
 #: src/features/user/connected-accounts.tsx:299
@@ -569,9 +638,17 @@ msgstr "Пайваст шуда"
 msgid "Connected accounts"
 msgstr "Ҳисобҳои пайвастшуда"
 
+#: ../../../lib/web/src/lib/chat-ui.ts:21
+msgid "Connecting..."
+msgstr "Пайваст шуда истодааст..."
+
 #: src/features/domains/index.tsx:1216
 msgid "Contact an administrator to get a delegation."
 msgstr "Барои гирифтани делегатсия бо маъмур тамос гиред."
+
+#: ../../../lib/web/src/lib/handle-server-error.ts:18
+msgid "Content not found."
+msgstr "Мундариҷа ёфт нашуд."
 
 #: ../../../lib/web/src/lib/query-client.ts:81
 msgid "Content not modified"
@@ -589,7 +666,15 @@ msgstr "Идома"
 msgid "Continue with {label}"
 msgstr "Бо {label} идома диҳед"
 
-#: ../../../lib/web/src/components/ui/copy-button.tsx:63
+#: ../../../lib/web/src/lib/toast-utils.ts:42
+msgid "Copied"
+msgstr "Нусхабардорӣ шуд"
+
+#: ../../../lib/web/src/components/ui/copy-button.tsx:25
+msgid "Copied to clipboard"
+msgstr "Ба буфер нусхабардорӣ шуд"
+
+#: ../../../lib/web/src/components/ui/copy-button.tsx:64
 msgid "Copy"
 msgstr "Нусхабардорӣ"
 
@@ -629,6 +714,11 @@ msgstr "Аз нав аутентификатсияро оғоз кардан и�
 msgid "Couldn't verify with that account. Please try again."
 msgstr "Бо он ҳисоб тасдиқ кардан имконнопазир буд. Лутфан, бори дигар кӯшиш кунед."
 
+#. placeholder {0}: entityLabel.toLowerCase()
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:144
+msgid "Create {0}"
+msgstr ""
+
 #: src/features/domains/index.tsx:965
 msgid "Create a TXT record for"
 msgstr "Барои сабти TXT эҷод кунед"
@@ -643,7 +733,15 @@ msgstr "Эҷоди корбар"
 msgid "Created"
 msgstr "Эҷодшуда"
 
-#: ../../../lib/web/src/components/colour-picker.tsx:260
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:258
+msgid "Creating..."
+msgstr "Эҷод карда истодааст..."
+
+#: ../../../lib/web/src/components/map-view.tsx:208
+msgid "Current location"
+msgstr "Ҷойгиршавии ҷорӣ"
+
+#: ../../../lib/web/src/components/colour-picker.tsx:261
 msgid "Custom"
 msgstr "Танзимшаванда"
 
@@ -651,7 +749,7 @@ msgstr "Танзимшаванда"
 msgid "Customised"
 msgstr "Танзимшуда"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:218
+#: ../../../lib/web/src/components/config-drawer.tsx:219
 #: ../../../lib/web/src/components/theme-switch.tsx:52
 #: ../../../lib/web/src/lib/preference-utils.ts:20
 msgid "Dark"
@@ -677,7 +775,7 @@ msgstr "Формати сана"
 msgid "default"
 msgstr "пешфарз"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:310
+#: ../../../lib/web/src/components/config-drawer.tsx:311
 #: src/features/user/display.tsx:250
 #: src/features/user/notifications.tsx:385
 msgid "Default"
@@ -798,6 +896,10 @@ msgstr "Камшаванда"
 msgid "Descending"
 msgstr "Камшаванда"
 
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:83
+msgid "Description"
+msgstr "Тавсиф"
+
 #: src/features/user/notifications.tsx:526
 msgid "Destinations"
 msgstr "Ҳадафҳо"
@@ -822,9 +924,13 @@ msgstr "Аз браузери веб муайян кардан"
 msgid "Device"
 msgstr "Дастгоҳ"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:340
+#: ../../../lib/web/src/components/config-drawer.tsx:341
 msgid "Direction"
 msgstr "Самт"
+
+#: ../../../lib/web/src/components/person-picker.tsx:214
+msgid "Directory"
+msgstr "Феҳрист"
 
 #: src/features/user/login.tsx:510
 #: src/features/user/login.tsx:587
@@ -841,6 +947,8 @@ msgstr "Authenticator-ро ғайрифаъол кунем?"
 msgid "Disabled"
 msgstr "Ғайрифаъолшуда"
 
+#: ../../../lib/web/src/lib/chat-ui.ts:25
+#: ../../../lib/web/src/lib/chat-ui.ts:29
 #: src/features/system/status.tsx:201
 msgid "Disconnected"
 msgstr "Ҷудо шуда"
@@ -979,6 +1087,7 @@ msgstr "Таҳрири масир барои роҳ: {0}"
 msgid "Edit user"
 msgstr "Таҳрири корбар"
 
+#: ../../../lib/web/src/features/accounts/types.ts:15
 #: src/features/system/users.tsx:126
 #: src/features/system/users.tsx:218
 #: src/features/user/connected-accounts.tsx:113
@@ -1041,6 +1150,10 @@ msgstr "Васеъ кардани панели канорӣ"
 msgid "Export failed"
 msgstr "Содирот нокомёб шуд"
 
+#: ../../../lib/web/src/features/accounts/types.ts:22
+msgid "External URL"
+msgstr "URL-и берунӣ"
+
 #: ../../../lib/web/src/lib/preference-utils.ts:136
 msgid "Extra large"
 msgstr "Хеле калон"
@@ -1061,6 +1174,15 @@ msgstr "Илова кардани ҳисоб ба анҷом нарасид"
 #: src/features/user/interests.tsx:194
 msgid "Failed to add interest"
 msgstr "Илова кардани шавқ ба анҷом нарасид"
+
+#: ../../../lib/web/src/components/tag-input.tsx:39
+msgid "Failed to add tag"
+msgstr "Илова кардани нишона ба анҷом нарасид"
+
+#: ../../../lib/web/src/components/ui/copy-button.tsx:26
+#: ../../../lib/web/src/lib/toast-utils.ts:44
+msgid "Failed to copy"
+msgstr "Нусхабардорӣ ба анҷом нарасид"
 
 #: src/features/domains/index.tsx:586
 msgid "Failed to create delegation"
@@ -1113,6 +1235,10 @@ msgstr "Тавлиди рамзҳо ба анҷом нарасид"
 #: src/features/system/status.tsx:282
 msgid "Failed to install update"
 msgstr "Насби навсозӣ ба анҷом нарасид"
+
+#: ../../../lib/web/src/hooks/use-load-more.ts:74
+msgid "Failed to load"
+msgstr "Боркунӣ ба анҷом нарасид"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:263
 msgid "Failed to load image"
@@ -1257,6 +1383,10 @@ msgstr "Тасдиқи рамз ба анҷом нарасид"
 msgid "Failed to verify domain"
 msgstr "Тасдиқи домен ба анҷом нарасид"
 
+#: ../../../lib/web/src/components/data-table/toolbar.tsx:30
+msgid "Filter..."
+msgstr "Филтр..."
+
 #: src/features/system/status.tsx:78
 #: src/features/user/account.tsx:87
 msgid "Fingerprint"
@@ -1278,7 +1408,7 @@ msgstr "Файли калиди шахсии Firebase"
 msgid "Flat"
 msgstr "Ҳамвор"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:257
+#: ../../../lib/web/src/components/config-drawer.tsx:258
 msgid "Floating"
 msgstr "Шинокунанда"
 
@@ -1294,6 +1424,10 @@ msgstr "Андозаи шрифт"
 msgid "Friday"
 msgstr "Ҷумъа"
 
+#: ../../../lib/web/src/components/person-picker.tsx:207
+msgid "Friends"
+msgstr "Дӯстон"
+
 #: ../../../lib/web/src/components/travelling-picker.tsx:153
 msgid "From"
 msgstr "Аз"
@@ -1307,7 +1441,7 @@ msgstr "Аз"
 msgid "From theme"
 msgstr "Аз мавзӯъ"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:320
+#: ../../../lib/web/src/components/config-drawer.tsx:321
 msgid "Full layout"
 msgstr "Тарҳбандии пурра"
 
@@ -1377,6 +1511,11 @@ msgstr "Ба корбар иҷозаи идоракунии масирҳо да�
 msgid "Group"
 msgstr "Гурӯҳ"
 
+#. placeholder {0}: name || subject.slice(1)
+#: ../../../lib/web/src/features/access/access-list.tsx:68
+msgid "Group: {0}"
+msgstr "Гурӯҳ: {0}"
+
 #: ../../../lib/web/src/components/data-table/column-header.tsx:70
 msgid "Hide"
 msgstr "Пинҳон кардан"
@@ -1431,7 +1570,19 @@ msgstr "Тамошои тасвир: {0}"
 msgid "Imperial"
 msgstr "Империалӣ"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:252
+#: ../../../lib/web/src/features/access/types.ts:42
+msgid "Including anonymous users"
+msgstr ""
+
+#: ../../../lib/web/src/components/faceless-avatar.tsx:69
+msgid "Initials avatar"
+msgstr ""
+
+#: ../../../lib/web/src/components/faceless-avatar.tsx:69
+msgid "Initials avatar for {name}"
+msgstr ""
+
+#: ../../../lib/web/src/components/config-drawer.tsx:253
 msgid "Inset"
 msgstr "Дохилӣ"
 
@@ -1456,6 +1607,10 @@ msgstr "Шавқҳо"
 msgid "Invalid code"
 msgstr "Рамзи нодуруст"
 
+#: ../../../lib/web/src/components/tag-input.tsx:38
+msgid "Invalid tag: letters, numbers, spaces, hyphens, and slashes only (max 50 chars)"
+msgstr ""
+
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:245
 #: src/features/user/connected-accounts.tsx:364
 msgid "Invalid verification code"
@@ -1468,6 +1623,10 @@ msgstr "Суроғаи IP"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx:18
 msgid "It seems like the page you're looking for <0/>does not exist or might have been removed."
 msgstr "Чунин ба назар мерасад, ки саҳифае, ки шумо ҷустуҷӯ мекунед, <0/>вуҷуд надорад ё нест карда шудааст."
+
+#: ../../../lib/web/src/lib/locale-format.ts:62
+msgid "Just now"
+msgstr "Ҳозир"
 
 #: src/features/system/status.tsx:175
 msgid "Known"
@@ -1517,7 +1676,7 @@ msgstr "Бори охир дида шуд"
 msgid "Last used"
 msgstr "Бори охирин истифода шуд"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:286
+#: ../../../lib/web/src/components/config-drawer.tsx:287
 msgid "Layout"
 msgstr "Тарҳбандӣ"
 
@@ -1530,11 +1689,15 @@ msgstr "Маълумоти бештар"
 msgid "Leave empty for root path"
 msgstr "Барои роҳи решагӣ холӣ гузоред"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:354
+#: ../../../lib/web/src/components/config-drawer.tsx:355
 msgid "Left to Right"
 msgstr "Аз чап ба рост"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:213
+#: ../../../lib/web/src/components/post-tags.tsx:72
+msgid "Letters, numbers, spaces, and hyphens only"
+msgstr "Танҳо ҳарфҳо, рақамҳо, фосилаҳо ва дефисҳо"
+
+#: ../../../lib/web/src/components/config-drawer.tsx:214
 #: ../../../lib/web/src/components/theme-switch.tsx:45
 #: ../../../lib/web/src/lib/preference-utils.ts:19
 msgid "Light"
@@ -1628,6 +1791,10 @@ msgstr "Боварӣ ҳосил кунед, ки рамзҳои навро за�
 msgid "Manage sessions"
 msgstr "Идоракунии ҷаласаҳо"
 
+#: ../../../lib/web/src/features/accounts/account-manager.tsx:192
+msgid "Manage your connected accounts for notifications and services."
+msgstr ""
+
 #: src/components/layout/data/sidebar-data.ts:79
 msgid "Management"
 msgstr "Идоракунӣ"
@@ -1637,6 +1804,10 @@ msgstr "Идоракунӣ"
 #: ../../../lib/web/src/components/notifications-dropdown.tsx:224
 msgid "Mark all as read"
 msgstr "Аломатгузорӣ ҳамчун хондашуда"
+
+#: ../../../lib/web/src/features/accounts/types.ts:17
+msgid "MCP server"
+msgstr ""
 
 #: ../../../lib/web/src/lib/preference-utils.ts:107
 msgid "Medium"
@@ -1677,6 +1848,7 @@ msgstr "Tenant-и Microsoft"
 msgid "Mochi {0} is available"
 msgstr "Mochi {0} дастрас аст"
 
+#: ../../../lib/web/src/features/accounts/types.ts:23
 #: src/features/user/notifications.tsx:367
 #: src/features/user/notifications.tsx:563
 msgid "Mochi web"
@@ -1702,9 +1874,17 @@ msgstr "Калиди дастрасии ман"
 msgid "Name"
 msgstr "Ном"
 
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:102
+msgid "Name cannot contain angle brackets, backslash, semicolon, quotes or backticks"
+msgstr ""
+
 #: src/features/user/account.tsx:79
 msgid "Name is required"
 msgstr "Ном талаб карда мешавад"
+
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:100
+msgid "Name must be 1000 characters or less"
+msgstr "Ном бояд 1000 аломат ё камтар бошад"
 
 #: src/features/user/account.tsx:40
 msgid "Name updated"
@@ -1741,7 +1921,7 @@ msgstr "Минбаъд"
 msgid "Next image"
 msgstr "Тасвири навбатӣ"
 
-#: ../../../lib/web/src/features/access/access-list.tsx:160
+#: ../../../lib/web/src/features/access/access-list.tsx:165
 msgid "No access rules configured. Add rules to control who can access this resource."
 msgstr "Ягон қоидаи дастрасӣ танзим нашудааст. Барои назорати касе ки ба ин манбаъ дастрасӣ дорад қоидаҳо илова кунед."
 
@@ -1792,6 +1972,10 @@ msgstr "Ягон гурӯҳ дастрас нест"
 msgid "No interests yet"
 msgstr "То ҳол ягон шавқу ҳавас нест"
 
+#: ../../../lib/web/src/components/notifications-dropdown.tsx:193
+msgid "No notifications yet"
+msgstr "Ҳанӯз огоҳинома нест"
+
 #: src/components/combo-select.tsx:66
 msgid "No options found."
 msgstr "Ягон вариант ёфт нашуд."
@@ -1800,7 +1984,11 @@ msgstr "Ягон вариант ёфт нашуд."
 msgid "No passkeys registered"
 msgstr "Ягон калиди дастрасӣ ба қайд гирифта нашудааст"
 
-#: ../../../lib/web/src/components/place-picker.tsx:132
+#: ../../../lib/web/src/components/person-picker.tsx:84
+msgid "No people found"
+msgstr "Ягон шахс ёфт нашуд"
+
+#: ../../../lib/web/src/components/place-picker.tsx:133
 msgid "No places found"
 msgstr "Ягон ҷой ёфт нашуд"
 
@@ -1811,6 +1999,11 @@ msgstr "Профил нест"
 #: src/features/user/login.tsx:684
 msgid "No recovery codes"
 msgstr "Ягон рамзи барқарорсозӣ нест"
+
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:82
+#: ../../../lib/web/src/components/search-entity-page.tsx:73
+msgid "No results found"
+msgstr "Натиҷае ёфт нашуд"
 
 #: ../../../lib/web/src/components/command-menu.tsx:55
 #: ../../../lib/web/src/components/data-table/faceted-filter.tsx:94
@@ -1843,6 +2036,7 @@ msgstr "Ягон корбар ёфт нашуд"
 msgid "No users match your search"
 msgstr "Ягон корбар ба ҷустуҷӯи шумо мувофиқ нест"
 
+#: ../../../lib/web/src/components/colour-picker.tsx:345
 #: ../../../lib/web/src/components/person-picker.tsx:350
 #: ../../../lib/web/src/lib/preference-utils.ts:105
 #: ../../../lib/web/src/lib/preference-utils.ts:125
@@ -1891,6 +2085,10 @@ msgstr "Формати рақам"
 msgid "Oldest queued message"
 msgstr "Кӯҳнатарин паёми дар навбат"
 
+#: ../../../lib/web/src/components/filter-bar.tsx:35
+msgid "On"
+msgstr "Фаъол"
+
 #: ../../../lib/web/src/features/errors/not-found-error.tsx:16
 msgid "Oops! Page Not Found!"
 msgstr "Эҳ! Саҳифа ёфт нашуд!"
@@ -1905,6 +2103,10 @@ msgstr "Кушодани амалҳои ҳисоб"
 msgid "Open actions"
 msgstr "Кушодани амалҳо"
 
+#: ../../../lib/web/src/components/layout/mochi-menu.tsx:133
+msgid "Open menu"
+msgstr "Кушодани меню"
+
 #: ../../../lib/web/src/components/layout/top-bar.tsx:63
 #: ../../../lib/web/src/components/layout/top-bar.tsx:68
 msgid "Open navigation"
@@ -1915,8 +2117,8 @@ msgstr "Кушодани навигатсия"
 msgid "Open navigation menu"
 msgstr "Кушодани менюи навигатсия"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:57
-#: ../../../lib/web/src/components/config-drawer.tsx:65
+#: ../../../lib/web/src/components/config-drawer.tsx:58
+#: ../../../lib/web/src/components/config-drawer.tsx:66
 msgid "Open theme settings"
 msgstr "Кушодани танзимоти мавзӯъ"
 
@@ -1948,7 +2150,7 @@ msgstr "Дигар"
 msgid "Other settings"
 msgstr "Танзимоти дигар"
 
-#: ../../../lib/web/src/features/access/access-list.tsx:217
+#: ../../../lib/web/src/features/access/access-list.tsx:222
 msgid "Owner"
 msgstr "Соҳиб"
 
@@ -2032,6 +2234,10 @@ msgstr "Дар интизор"
 msgid "Permanently delete this domain and all its routes."
 msgstr "Ин домен ва тамоми масирҳояшро доимӣ нест кунед."
 
+#: ../../../lib/web/src/components/date-picker.tsx:20
+msgid "Pick a date"
+msgstr "Санаро интихоб кунед"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx:54
 #: ../../../lib/web/src/lib/api-response-interceptors.ts:304
 msgid "Please check your internet connection and try again."
@@ -2099,6 +2305,10 @@ msgstr "Идома додан"
 msgid "Profile"
 msgstr "Профил"
 
+#: ../../../lib/web/src/components/person-picker.tsx:200
+msgid "Project members"
+msgstr "Аъзои лоиҳа"
+
 #: src/features/user/login.tsx:870
 msgid "Provider"
 msgstr "Таъминкунанда"
@@ -2110,6 +2320,10 @@ msgstr "Ҷамъиятӣ"
 #: src/features/system/settings.tsx:57
 msgid "Public URL for OAuth redirects"
 msgstr "URL-и ҷамъиятӣ барои тағйири масирҳои OAuth"
+
+#: ../../../lib/web/src/features/accounts/types.ts:21
+msgid "Push notification"
+msgstr ""
 
 #: src/features/system/settings.tsx:594
 msgid "Push notifications"
@@ -2144,10 +2358,14 @@ msgstr "Калидҳои дастрасии худро дар ин сервер 
 msgid "Reachability"
 msgstr "Дастрасӣ"
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:216
-#: ../../../lib/web/src/components/search-entity-page.tsx:242
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:217
+#: ../../../lib/web/src/components/search-entity-page.tsx:243
 msgid "Recommended"
 msgstr "Тавсияшуда"
+
+#: ../../../lib/web/src/lib/chat-ui.ts:21
+msgid "Reconnecting ({retries})..."
+msgstr ""
 
 #: src/features/user/login.tsx:132
 #: src/features/user/login.tsx:643
@@ -2201,7 +2419,7 @@ msgstr "Нисбӣ дар 24 соат, дар акси ҳол мутлақ"
 msgid "Relay service"
 msgstr "Хидмати реле"
 
-#: ../../../lib/web/src/features/access/access-list.tsx:265
+#: ../../../lib/web/src/features/access/access-list.tsx:270
 #: ../../../lib/web/src/features/accounts/account-manager.tsx:180
 #: src/features/user/connected-accounts.tsx:278
 #: src/features/user/connected-accounts.tsx:288
@@ -2213,17 +2431,23 @@ msgstr "Хориҷ кардан"
 msgid "Remove (re-create on next notification)"
 msgstr "Хориҷ кардан (дар огоҳиномаи навбатӣ аз нав эҷод кардан)"
 
-#: ../../../lib/web/src/features/access/access-list.tsx:247
-#: ../../../lib/web/src/features/access/access-list.tsx:253
+#. placeholder {0}: filter.label
+#: ../../../lib/web/src/components/filter-bar.tsx:56
+#: ../../../lib/web/src/components/filter-bar.tsx:62
+msgid "Remove {0} filter"
+msgstr "Хориҷ кардани филтри {0}"
+
+#: ../../../lib/web/src/features/access/access-list.tsx:252
+#: ../../../lib/web/src/features/access/access-list.tsx:258
 msgid "Remove access rule"
 msgstr "Хориҷ кардани қоидаи дастрасӣ"
 
 #. placeholder {0}: formatSubject(subject, data.name)
-#: ../../../lib/web/src/features/access/access-list.tsx:259
+#: ../../../lib/web/src/features/access/access-list.tsx:264
 msgid "Remove access rule for \"{0}\"?"
 msgstr "Қоидаи дастрасӣ барои «{0}» нест карда шавад?"
 
-#: ../../../lib/web/src/features/access/access-list.tsx:257
+#: ../../../lib/web/src/features/access/access-list.tsx:262
 msgid "Remove access?"
 msgstr "Дастрасиро хориҷ кардан?"
 
@@ -2261,8 +2485,8 @@ msgstr "Талаб карда мешавад"
 msgid "Resend email"
 msgstr "Мактубро дубора фиристед"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:86
-#: ../../../lib/web/src/components/data-table/toolbar.tsx:81
+#: ../../../lib/web/src/components/config-drawer.tsx:87
+#: ../../../lib/web/src/components/data-table/toolbar.tsx:82
 #: src/features/system/settings.tsx:291
 #: src/features/system/settings.tsx:333
 #: src/features/system/settings.tsx:456
@@ -2271,7 +2495,12 @@ msgstr "Мактубро дубора фиристед"
 msgid "Reset"
 msgstr "Барқарорсозӣ"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:84
+#: ../../../lib/web/src/components/config-drawer.tsx:122
+#: ../../../lib/web/src/components/config-drawer.tsx:127
+msgid "Reset {title}"
+msgstr ""
+
+#: ../../../lib/web/src/components/config-drawer.tsx:85
 msgid "Reset all settings to default values"
 msgstr "Барқарорсозии ҳамаи танзимот ба қиматҳои нобаёнӣ"
 
@@ -2324,7 +2553,7 @@ msgstr "Бекор кардани сессия"
 msgid "Revoke session?"
 msgstr "Сессияро бекор кардан?"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:361
+#: ../../../lib/web/src/components/config-drawer.tsx:362
 msgid "Right to Left"
 msgstr "Аз рост ба чап"
 
@@ -2384,13 +2613,27 @@ msgstr "Номи passkey-ро нигоҳ доштан"
 msgid "Save these codes"
 msgstr "Захираи ин рамзҳо"
 
+#: ../../../lib/web/src/components/filter-bar.tsx:32
+#: ../../../lib/web/src/components/header-search.tsx:22
+#: ../../../lib/web/src/components/search.tsx:18
+msgid "Search"
+msgstr "Ҷустуҷӯ"
+
 #: src/features/user/interests.tsx:180
 msgid "Search failed"
 msgstr "Ҷустуҷӯ ноком шуд"
 
-#: ../../../lib/web/src/components/place-picker.tsx:85
+#: ../../../lib/web/src/components/ui/command.tsx:35
+msgid "Search for a command to run..."
+msgstr ""
+
+#: ../../../lib/web/src/components/place-picker.tsx:86
 msgid "Search for a place"
 msgstr "Ҷустуҷӯи ҷой"
+
+#: ../../../lib/web/src/components/place-picker.tsx:50
+msgid "Search for a place..."
+msgstr ""
 
 #: src/features/domains/index.tsx:642
 msgid "Search for a user..."
@@ -2421,15 +2664,22 @@ msgid "Search users..."
 msgstr "Ҷустуҷӯи корбарон..."
 
 #: ../../../lib/web/src/components/person-picker.tsx:324
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:81
+#: ../../../lib/web/src/components/search-entity-page.tsx:72
 msgid "Search..."
 msgstr "Ҷустуҷӯ..."
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:174
-#: ../../../lib/web/src/components/search-entity-page.tsx:200
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:175
+#: ../../../lib/web/src/components/search-entity-page.tsx:201
 #: ../../../lib/web/src/features/access/access-dialog.tsx:202
 #: src/features/domains/index.tsx:650
 msgid "Searching..."
 msgstr "Ҷустуҷӯ карда мешавад..."
+
+#. placeholder {0}: item.label.toLowerCase()
+#: ../../../lib/web/src/components/config-drawer.tsx:149
+msgid "Select {0}"
+msgstr ""
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx:150
 msgid "Select a user, group, or other rule to grant access."
@@ -2438,6 +2688,10 @@ msgstr "Як корбар, гурӯҳ, ё қоидаи дигарро барои
 #: ../../../lib/web/src/features/access/access-dialog.tsx:273
 msgid "Select access rule"
 msgstr "Интихоби қоидаи дастрасӣ"
+
+#: ../../../lib/web/src/features/accounts/account-picker.tsx:34
+msgid "Select account"
+msgstr ""
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx:129
 msgid "Select account type"
@@ -2457,15 +2711,23 @@ msgstr "Як муассисаро интихоб кунед..."
 msgid "Select group"
 msgstr "Гурӯҳро интихоб кунед"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:304
+#: ../../../lib/web/src/components/config-drawer.tsx:305
 msgid "Select layout style"
 msgstr "Сабки тарҳбандиро интихоб кунед"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:246
+#: ../../../lib/web/src/components/place-picker.tsx:49
+msgid "Select location"
+msgstr "Ҷойгиршавиро интихоб кунед"
+
+#: ../../../lib/web/src/components/person-picker.tsx:83
+msgid "Select person..."
+msgstr ""
+
+#: ../../../lib/web/src/components/config-drawer.tsx:247
 msgid "Select sidebar style"
 msgstr "Сабки панели паҳлӯро интихоб кунед"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:348
+#: ../../../lib/web/src/components/config-drawer.tsx:349
 msgid "Select site direction"
 msgstr "Самти сайтро интихоб кунед"
 
@@ -2479,7 +2741,7 @@ msgstr "Барномаеро, ки ба он гузаронидан мехоҳе
 msgid "Select the entity to route to"
 msgstr "Объектеро, ки ба он гузаронидан мехоҳед, интихоб кунед"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:202
+#: ../../../lib/web/src/components/config-drawer.tsx:203
 msgid "Select theme preference"
 msgstr "Афзалияти мавзӯъро интихоб кунед"
 
@@ -2596,8 +2858,8 @@ msgstr "{0}-{1} аз {2} корбарон нишон дода мешавад"
 msgid "Showing {totalShown} of {total}"
 msgstr "{totalShown} аз {total} нишон дода мешавад"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:238
-#: ../../../lib/web/src/components/config-drawer.tsx:262
+#: ../../../lib/web/src/components/config-drawer.tsx:239
+#: ../../../lib/web/src/components/config-drawer.tsx:263
 #: ../../../lib/web/src/components/ui/sidebar.tsx:237
 msgid "Sidebar"
 msgstr "Панели паҳлӯ"
@@ -2642,9 +2904,14 @@ msgstr "Ҳолат"
 msgid "Stay tuned though!"
 msgstr "Аммо мунтазир бошед!"
 
-#: ../../../lib/web/src/features/access/access-list.tsx:191
+#: ../../../lib/web/src/features/access/access-list.tsx:196
 msgid "Subject"
 msgstr "Мавзӯъ"
+
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:83
+#: ../../../lib/web/src/components/search-entity-page.tsx:74
+msgid "Subscribe"
+msgstr "Обуна шудан"
 
 #: src/features/user/interests.tsx:259
 msgid "Summary"
@@ -2670,7 +2937,7 @@ msgstr "Боздошта шуд"
 msgid "Suspension removed"
 msgstr "Боздорӣ хориҷ карда шуд"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:208
+#: ../../../lib/web/src/components/config-drawer.tsx:209
 #: ../../../lib/web/src/components/theme-switch.tsx:59
 #: ../../../lib/web/src/lib/preference-utils.ts:21
 #: ../../../lib/web/src/lib/preference-utils.ts:144
@@ -2684,9 +2951,17 @@ msgstr "Система"
 msgid "System settings"
 msgstr "Танзимоти система"
 
-#: ../../../lib/web/src/components/tag-input.tsx:94
+#: ../../../lib/web/src/components/tag-input.tsx:95
 msgid "Tag"
 msgstr "Барчасп"
+
+#: ../../../lib/web/src/components/post-tags.tsx:76
+msgid "Tag already exists"
+msgstr "Барчасп аллакай вуҷуд дорад"
+
+#: ../../../lib/web/src/components/post-tags.tsx:68
+msgid "Tag must be 50 characters or less"
+msgstr "Барчасп бояд то 50 аломат бошад"
 
 #: ../../../lib/web/src/components/post-tags.tsx:101
 #: ../../../lib/web/src/components/post-tags.tsx:115
@@ -2742,13 +3017,13 @@ msgstr "Муҳтавои дархостшуда ёфт нашуд."
 msgid "The site is not available at the moment."
 msgstr "Сомона ҳоло дастрас нест."
 
-#: ../../../lib/web/src/components/config-drawer.tsx:194
+#: ../../../lib/web/src/components/config-drawer.tsx:195
 #: src/features/user/display.tsx:233
 #: src/features/user/display.tsx:260
 msgid "Theme"
 msgstr "Мавзӯъ"
 
-#: ../../../lib/web/src/components/config-drawer.tsx:69
+#: ../../../lib/web/src/components/config-drawer.tsx:70
 msgid "Theme Settings"
 msgstr "Танзимоти мавзӯъ"
 
@@ -2910,8 +3185,8 @@ msgstr "Сафар"
 msgid "Try adjusting your search criteria"
 msgstr "Меъёрҳои ҷустуҷӯи худро танзим кунед"
 
-#: ../../../lib/web/src/components/search-entity-dialog.tsx:190
-#: ../../../lib/web/src/components/search-entity-page.tsx:216
+#: ../../../lib/web/src/components/search-entity-dialog.tsx:191
+#: ../../../lib/web/src/components/search-entity-page.tsx:217
 msgid "Try adjusting your search terms"
 msgstr "Истилоҳҳои ҷустуҷӯи худро танзим кунед"
 
@@ -2963,6 +3238,11 @@ msgstr "Таъин нашудааст"
 msgid "Unauthorized Access"
 msgstr "Дастрасии иҷозат додашуда не"
 
+#: ../../../lib/web/src/lib/request.ts:133
+#: ../../../lib/web/src/lib/request.ts:206
+msgid "Unexpected API error"
+msgstr "Хатои ғайричашмдошти API"
+
 #: ../../../lib/web/src/lib/preference-utils.ts:87
 msgid "United States"
 msgstr "Иёлоти Муттаҳида"
@@ -2971,6 +3251,7 @@ msgstr "Иёлоти Муттаҳида"
 msgid "Units"
 msgstr "Воҳидҳо"
 
+#: ../../../lib/web/src/features/accounts/types.ts:29
 #: src/features/system/status.tsx:134
 #: src/features/system/status.tsx:135
 #: src/features/system/users.tsx:332
@@ -3032,6 +3313,7 @@ msgstr "Калиди амниятӣ, изи ангушт ё шинохти че�
 msgid "Use your passkey"
 msgstr "Калиди дастрасии худро истифода баред"
 
+#: ../../../lib/web/src/components/layout/mochi-menu.tsx:86
 #: ../../../lib/web/src/features/access/access-dialog.tsx:158
 #: src/features/domains/index.tsx:634
 #: src/features/domains/index.tsx:1085
@@ -3151,6 +3433,10 @@ msgstr "Ҳама огоҳиҳоро дидан"
 msgid "View and revoke active sessions for this user."
 msgstr "Сессияҳои фаъоли ин корбарро бубинед ва бекор кунед."
 
+#: ../../../lib/web/src/components/filter-bar.tsx:35
+msgid "Watched"
+msgstr "Назорат шуда"
+
 #. placeholder {0}: account.identifier
 #: ../../../lib/web/src/features/accounts/account-verify.tsx:63
 msgid "We sent a verification code to <0>{0}</0>. Enter the code below to verify your email address."
@@ -3159,6 +3445,10 @@ msgstr "Мо рамзи тасдиқро ба <0>{0}</0> фиристодем. �
 #: ../../../lib/web/src/features/errors/maintenance-error.tsx:16
 msgid "We'll be back online shortly."
 msgstr "Мо ба зудӣ дубора онлайн хоҳем буд."
+
+#: ../../../lib/web/src/components/notifications-dropdown.tsx:197
+msgid "We'll notify you when something important happens."
+msgstr "Вақте ки чизи муҳиме рӯй диҳад, ба шумо хабар медиҳем."
 
 #: ../../../lib/web/src/features/errors/maintenance-error.tsx:13
 msgid "Website is under maintenance!"
@@ -3192,10 +3482,18 @@ msgstr "Шумо ба ягон домен дастрасӣ надоред."
 msgid "You don't have necessary permission <0/>to view this resource."
 msgstr "Шумо иҷозати зарурӣ надоред <0/>барои дидани ин манбаъ."
 
+#: ../../../lib/web/src/lib/show-submitted-data.tsx:9
+msgid "You submitted the following values:"
+msgstr ""
+
 #. placeholder {0}: oauthProviderLabel[identity.provider] ?? identity.provider
 #: src/features/user/login.tsx:767
 msgid "You won't be able to sign in with {0} anymore. Make sure you still have another way to log in."
 msgstr "Шумо дигар наметавонед бо {0} ворид шавед. Боварӣ ҳосил кунед, ки шумо ҳанӯз ягон роҳи дигари вуруд доред."
+
+#: ../../../lib/web/src/components/notifications-dropdown.tsx:193
+msgid "You're all caught up!"
+msgstr "Шумо ҳамаро дидед!"
 
 #: ../../../lib/web/src/components/restore-banner.tsx:91
 msgid "Your account was moved here from {source}. Until you delete it there, messages and notifications may reach both servers, some of your content keeps being served from the old server, and followers may take a few minutes to find you here."
