@@ -36,14 +36,16 @@ export interface Delegation {
   id: number
   domain: string
   path: string
-  owner: number
+  // Text uid. Core replaced the integer users.id with a uid, so there is no
+  // numeric owner and mochi.user.search returns no `id` field at all.
+  owner: string
   username: string
   created: number
   updated: number
 }
 
 export interface UserSearchResult {
-  id: number
+  uid: string
   username: string
   role: string
 }

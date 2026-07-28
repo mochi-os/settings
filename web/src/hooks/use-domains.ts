@@ -167,7 +167,7 @@ export function useCreateDelegation() {
     mutationFn: (data: {
       domain: string
       path: string
-      owner: number
+      owner: string
     }) =>
       requestHelpers.post(
         endpoints.domains.delegationCreate,
@@ -186,7 +186,7 @@ export function useDeleteDelegation() {
     mutationFn: (data: {
       domain: string
       path: string
-      owner: number
+      owner: string
     }) =>
       requestHelpers.post(
         endpoints.domains.delegationDelete,

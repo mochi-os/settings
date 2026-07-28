@@ -560,7 +560,7 @@ function AddDelegationDialog({
   const [path, setPath] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedUser, setSelectedUser] = useState<{
-    id: number
+    uid: string
     username: string
   } | null>(null)
   const [showResults, setShowResults] = useState(false)
@@ -572,7 +572,7 @@ function AddDelegationDialog({
     e.preventDefault()
     if (!selectedUser) return
     createDelegation.mutate(
-      { domain, path, owner: selectedUser.id },
+      { domain, path, owner: selectedUser.uid },
       {
         onSuccess: () => {
           toast.success(t`Delegation created`)
@@ -589,7 +589,7 @@ function AddDelegationDialog({
     )
   }
 
-  const handleSelectUser = (user: { id: number; username: string }) => {
+  const handleSelectUser = (user: { uid: string; username: string }) => {
     setSelectedUser(user)
     setSearchQuery(user.username)
     setShowResults(false)
@@ -652,7 +652,7 @@ function AddDelegationDialog({
                     ) : searchResults && searchResults.length > 0 ? (
                       searchResults.map((user) => (
                         <button
-                          key={user.id}
+                          key={user.uid}
                           type='button'
                           className='hover:bg-hover hover:text-hover-foreground flex w-full items-center justify-between px-3 py-2 text-start text-sm'
                           onClick={() => handleSelectUser(user)}
