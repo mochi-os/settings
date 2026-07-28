@@ -6,6 +6,22 @@
 # This file is part of Mochi, licensed under the GNU AGPL v3 with the
 # Mochi Application Interface Exception - see license.txt and license-exception.md.
 
+# destinations_input decodes and shape-checks the client's destinations JSON
+# parameter: a bounded list of dicts, or absent. Returns (valid, destinations);
+# on invalid input the caller answers 400. Mirrors the notifications app's own
+# actions - a decode abort here surfaced as an internal error, not a 400.
+def destinations_input(a):
+	raw = a.input("destinations", "").strip()
+	if not raw:
+		return True, None
+	destinations = json.decode(raw, None)
+	if type(destinations) != "list" or len(destinations) > 100:
+		return False, None
+	for dest in destinations:
+		if type(dest) != "dict":
+			return False, None
+	return True, destinations
+
 def action_notifications_categories(a):
 	result = mochi.service.call("notifications", "category/list")
 	return {"data": result or []}
@@ -16,8 +32,9 @@ def action_notifications_categories_create(a):
 		return a.error.label(400, "errors.label_is_required")
 	default_raw = a.input("default", "")
 	default = 1 if default_raw == "1" or default_raw == "true" else None
-	destinations_raw = a.input("destinations", "").strip()
-	destinations = json.decode(destinations_raw) if destinations_raw else None
+	valid, destinations = destinations_input(a)
+	if not valid:
+		return a.error.label(400, "errors.invalid_destinations")
 	result = mochi.service.call("notifications", "category/create", label, destinations, default)
 	if not result:
 		return a.error.label(400, "errors.invalid_category")
@@ -29,12 +46,13 @@ def action_notifications_categories_update(a):
 		return a.error.label(400, "errors.invalid_id")
 	label_raw = a.input("label")
 	default_raw = a.input("default")
-	destinations_raw = a.input("destinations", "").strip()
 	label = label_raw if label_raw != None and label_raw != "" else None
 	default = None
 	if default_raw != None and default_raw != "":
 		default = 1 if default_raw == "1" or default_raw == "true" else 0
-	destinations = json.decode(destinations_raw) if destinations_raw else None
+	valid, destinations = destinations_input(a)
+	if not valid:
+		return a.error.label(400, "errors.invalid_destinations")
 	ok = mochi.service.call("notifications", "category/update", id, label, destinations, default)
 	if not ok:
 		return a.error.label(404, "errors.not_found")
