@@ -80,7 +80,6 @@ import {
   usePreferencesData,
   useSetPreference,
   useUnsetPreferences,
-  useResetPreferences,
 } from '@/hooks/use-preferences'
 
 const DISPLAY_PREF_KEYS = ['appearance', 'theme', 'density', 'radius', 'card', 'background', 'font', 'font_size'] as const
@@ -97,7 +96,6 @@ export function UserDisplay() {
   const { data, isLoading, error, refetch } = usePreferencesData()
   const setPreference = useSetPreference()
   const unsetPreferences = useUnsetPreferences()
-  const resetPreferences = useResetPreferences()
   const { setTheme, setColorTheme } = useTheme()
   const [themeSheetOpen, setThemeSheetOpen] = useState(false)
 
@@ -127,15 +125,27 @@ export function UserDisplay() {
   }
 
   const handleThemeChange = (theme: ThemeInfo | null) => {
-    const themeId = theme ? theme.id : ''
+    // Deselecting is a clear, not a set: the server validates theme against
+    // the ids it offers, and "" is not one of them.
+    if (!theme) {
+      unsetPreferences.mutate(['theme'], {
+        onSuccess: () => {
+          setColorTheme(null)
+          toast.success(t`Theme updated`)
+        },
+        onError: (error) =>
+          toast.error(getErrorMessage(error, t`Failed to update theme`)),
+      })
+      return
+    }
     setPreference.mutate(
-      { theme: themeId },
+      { theme: theme.id },
       {
         onSuccess: () => {
           setColorTheme(
             colorThemeFromSelections(
               data?.themes,
-              themeId,
+              theme.id,
               data ? prefsFromData(data.preferences) : { density: 'theme', radius: 'theme', card: 'theme', background: 'theme', font: 'theme', font_size: 'theme' },
               data?.presets,
             )
@@ -175,9 +185,9 @@ export function UserDisplay() {
               <Button
                 variant='outline'
                 size='sm'
-                disabled={isLoading || setPreference.isPending || resetPreferences.isPending}
+                disabled={isLoading || setPreference.isPending || unsetPreferences.isPending}
               >
-                {setPreference.isPending ? (
+                {unsetPreferences.isPending ? (
                   <Loader2 className='me-2 h-3.5 w-3.5 animate-spin' />
                 ) : (
                   <RotateCcw className='me-2 h-3.5 w-3.5' />

@@ -55,7 +55,6 @@ import {
   usePreferencesData,
   useSetPreference,
   useUnsetPreferences,
-  useResetPreferences,
 } from '@/hooks/use-preferences'
 
 const REGIONAL_PREF_KEYS = ['language', 'timezone', 'date_format', 'time_format', 'timestamp_display', 'week_start', 'number_format', 'units'] as const
@@ -72,7 +71,6 @@ export function UserPreferences() {
   const { data, isLoading, error, refetch } = usePreferencesData()
   const setPreference = useSetPreference()
   const unsetPreferences = useUnsetPreferences()
-  const resetPreferences = useResetPreferences()
   const { raw: currentLocale } = useLocale()
 
   const localeKeys = ['date_format', 'time_format', 'timestamp_display', 'week_start', 'number_format', 'units'] as const
@@ -210,9 +208,9 @@ export function UserPreferences() {
               <Button
                 variant='outline'
                 size='sm'
-                disabled={isLoading || resetPreferences.isPending || setPreference.isPending}
+                disabled={isLoading || unsetPreferences.isPending || setPreference.isPending}
               >
-                {setPreference.isPending ? (
+                {unsetPreferences.isPending ? (
                   <Loader2 className='me-2 h-3.5 w-3.5 animate-spin' />
                 ) : (
                   <RotateCcw className='me-2 h-3.5 w-3.5' />
