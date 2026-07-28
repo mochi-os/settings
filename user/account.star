@@ -279,7 +279,15 @@ def action_user_account_passkey_rename(a):
     a.json({"ok": True})
 
 def action_user_account_passkey_delete(a):
-    """Delete a passkey"""
+    """Delete a passkey.
+
+    Gated on step-up re-authentication: removing a login credential must
+    re-verify the current factors first, so a stolen session can't strip
+    the account back to a weaker one.
+    """
+    if not mochi.user.session.reauthenticate(a.input("token", "")):
+        a.error.label(400, "errors.reauthentication_required")
+        return
     id = a.input("id")
     if not id:
         a.error.label(400, "errors.missing_passkey_id")
@@ -370,7 +378,14 @@ def action_user_account_oauth(a):
     a.json({"identities": mochi.user.oauth.list()})
 
 def action_user_account_oauth_unlink(a):
-    """Unlink an OAuth provider from the current user"""
+    """Unlink an OAuth provider from the current user.
+
+    Gated on step-up re-authentication: unlinking removes a way to sign
+    in, so it must re-verify the current factors first.
+    """
+    if not mochi.user.session.reauthenticate(a.input("token", "")):
+        a.error.label(400, "errors.reauthentication_required")
+        return
     provider = a.input("provider")
     if not provider:
         a.error.label(400, "errors.missing_provider")

@@ -348,10 +348,17 @@ function PasskeysSection() {
   }
 
   const handleDelete = (id: string) => {
-    deletePasskey.mutate(id, {
-      onSuccess: () => toast.success(t`Passkey deleted`),
-      onError: (error) => toast.error(getErrorMessage(error, t`Failed to delete passkey`)),
-    })
+    // Re-authenticate first: removing a login credential is a security
+    // change, so it needs the same proof token as adding one.
+    stepUp.request((token) =>
+      deletePasskey.mutate(
+        { id, token },
+        {
+          onSuccess: () => toast.success(t`Passkey deleted`),
+          onError: (error) => toast.error(getErrorMessage(error, t`Failed to delete passkey`)),
+        }
+      )
+    )
   }
 
   const passkeys = data?.passkeys ?? []
@@ -783,6 +790,7 @@ function OauthSection() {
   const authMethods = useAuthMethods()
   const oauthBegin = useOauthBegin()
   const oauthUnlink = useOauthUnlink()
+  const stepUp = useStepUp()
 
   const enabled = (authMethods.data as AuthMethodsResponse | undefined)?.oauth
   const linked = identities.data?.identities ?? []
@@ -800,13 +808,16 @@ function OauthSection() {
     }
   }
 
-  const handleUnlink = async (provider: OAuthProvider) => {
-    try {
-      await oauthUnlink.mutateAsync(provider)
-      toast.success(t`Unlinked ${oauthProviderLabel[provider] ?? provider}`)
-    } catch (error) {
-      toast.error(getErrorMessage(error, t`Could not unlink provider`))
-    }
+  const handleUnlink = (provider: OAuthProvider) => {
+    // Re-authenticate first: unlinking removes a way to sign in.
+    stepUp.request(async (token) => {
+      try {
+        await oauthUnlink.mutateAsync({ provider, token })
+        toast.success(t`Unlinked ${oauthProviderLabel[provider] ?? provider}`)
+      } catch (error) {
+        toast.error(getErrorMessage(error, t`Could not unlink provider`))
+      }
+    })
   }
 
   // If no providers are enabled server-side AND none are linked, omit the
@@ -848,6 +859,7 @@ function OauthSection() {
   ) : null
 
   return (
+    <>
     <Section
       title={t`Third-party login`}
       action={linkButton}
@@ -885,6 +897,8 @@ function OauthSection() {
         </Table>
       )}
     </Section>
+    {stepUp.dialog}
+    </>
   )
 }
 

@@ -163,10 +163,10 @@ export function usePasskeyRename() {
 export function usePasskeyDelete() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (id: string) =>
+    mutationFn: (data: { id: string; token: string }) =>
       requestHelpers.post<{ ok: boolean }>(
         endpoints.user.accountPasskeyDelete,
-        { id },
+        data,
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
@@ -297,10 +297,10 @@ export function useOauthBegin() {
 export function useOauthUnlink() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (provider: OAuthProvider) =>
+    mutationFn: (data: { provider: OAuthProvider; token: string }) =>
       requestHelpers.post<{ ok: boolean }>(
         endpoints.user.accountOauthUnlink,
-        { provider },
+        data,
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
