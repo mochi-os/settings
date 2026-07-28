@@ -65,6 +65,9 @@ interface DestinationRow {
 interface Category {
   id: string
   label: string
+  // Read-time translated label for the seeded categories; label is the
+  // stored value. Render display, edit label.
+  display?: string
   default: number
   created: number
   destinations: DestinationRow[]
@@ -121,7 +124,7 @@ function sortCategories(cats: Category[]): Category[] {
   return [...cats].sort((a, b) => {
     if (a.id === '0') return 1
     if (b.id === '0') return -1
-    return naturalCompare(a.label, b.label)
+    return naturalCompare(a.display ?? a.label, b.display ?? b.label)
   })
 }
 
@@ -380,7 +383,7 @@ function CategoryRow({
     <div className="flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:justify-between">
       <div>
         <div className="flex items-center gap-2">
-          <span className="font-medium">{category.label}</span>
+          <span className="font-medium">{category.display ?? category.label}</span>
           {category.default === 1 && (
             <span className="rounded bg-muted px-2 py-0.5 text-xs text-muted-foreground"><Trans>Default</Trans></span>
           )}
@@ -620,7 +623,7 @@ function CategoryDeleteDialog({
     <AlertDialog open onOpenChange={(v) => { if (!v) onClose() }}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle><Trans>Delete "{category.label}"?</Trans></AlertDialogTitle>
+          <AlertDialogTitle><Trans>Delete "{category.display ?? category.label}"?</Trans></AlertDialogTitle>
           <AlertDialogDescription />
         </AlertDialogHeader>
         <div className="flex items-center justify-between gap-3 py-2">
@@ -631,7 +634,7 @@ function CategoryDeleteDialog({
             </SelectTrigger>
             <SelectContent>
               {others.map((c) => (
-                <SelectItem key={c.id} value={String(c.id)}>{c.label}</SelectItem>
+                <SelectItem key={c.id} value={String(c.id)}>{c.display ?? c.label}</SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -765,7 +768,7 @@ function TopicsTab() {
                     </SelectTrigger>
                     <SelectContent>
                       {sortCategories(categories).map((c) => (
-                        <SelectItem key={c.id} value={String(c.id)}>{c.label}</SelectItem>
+                        <SelectItem key={c.id} value={String(c.id)}>{c.display ?? c.label}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
