@@ -31,6 +31,16 @@ def action_accounts_add(a):
     if not type:
         a.error.label(400, "errors.type_is_required")
         return
+    # Core rejects unknown provider types with a Starlark abort (internal
+    # error); validate first and answer a clean 400.
+    valid = False
+    if len(type) <= 64:
+        for p in mochi.account.providers() or []:
+            if p.get("type") == type:
+                valid = True
+                break
+    if not valid:
+        return a.error.label(400, "errors.invalid_type")
 
     # Build fields dict from form inputs. Bound each field like the
     # notifications app's add path - core's own validation accepts up to 1MB.
