@@ -20,6 +20,10 @@ def destinations_input(a):
 	for dest in destinations:
 		if type(dest) != "dict":
 			return False, None
+		if dest.get("type", "") not in ("web", "account", "rss"):
+			return False, None
+		if len(str(dest.get("target", ""))) > 64:
+			return False, None
 	return True, destinations
 
 def action_notifications_categories(a):
