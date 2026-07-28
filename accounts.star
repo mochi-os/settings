@@ -32,11 +32,14 @@ def action_accounts_add(a):
         a.error.label(400, "errors.type_is_required")
         return
 
-    # Build fields dict from form inputs
+    # Build fields dict from form inputs. Bound each field like the
+    # notifications app's add path - core's own validation accepts up to 1MB.
     fields = {}
     for key in ["label", "address", "token", "api_key", "url", "endpoint", "auth", "p256dh", "secret", "topic", "server"]:
         val = a.input(key)
         if val:
+            if len(val) > 4096:
+                return a.error.label(400, "errors.value_too_long", maximum=4096)
             fields[key] = val
 
     add_to_existing = a.input("add_to_existing", "1")
@@ -72,6 +75,9 @@ def action_accounts_update(a):
     fields = {}
     label = a.input("label")
     if label != None:
+        if len(label) > 4096:
+            a.error.label(400, "errors.value_too_long", maximum=4096)
+            return
         fields["label"] = label
 
     enabled = a.input("enabled")

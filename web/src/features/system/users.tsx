@@ -672,7 +672,7 @@ export function SystemUsers() {
             </Table>
 
             {/* Pagination */}
-            {!debouncedSearch && data && data.count > limit && (
+            {data && data.count > limit && (
               <div className='flex items-center justify-between py-4 mt-4'>
                 <div className='text-muted-foreground flex items-center gap-2 text-sm'>
                   <span>

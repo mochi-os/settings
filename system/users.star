@@ -29,8 +29,10 @@ def action_system_users_list(a):
     order = a.input("order") or "asc"
 
     if search:
-        users = mochi.user.search(search, limit)
-        count = len(users)
+        # count is the number of matches, not the size of this page, so the
+        # client can page through them and show an honest total.
+        users = mochi.user.search(search, limit, offset)
+        count = mochi.user.count(search)
     else:
         users = mochi.user.list(limit, offset, sort, order)
         count = mochi.user.count()
