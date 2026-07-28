@@ -8,11 +8,20 @@ def is_admin(a):
     """Check if user is admin"""
     return a.user.role == "administrator"
 
+def delegation_covers(delegated, path):
+    """Whether a delegated path prefix covers a path. Matching is on whole
+    path segments, mirroring core's delegation_covers: /blog covers /blog and
+    /blog/post but not /blogger; "" or "/" covers the whole domain."""
+    delegated = delegated.rstrip("/")
+    if delegated == "":
+        return True
+    return path == delegated or path.startswith(delegated + "/")
+
 def can_manage_path(a, domain, path):
     """Check if user can manage a path on a domain"""
     delegations = mochi.domain.delegation.list(domain, a.user.id)
     for d in delegations:
-        if d["path"] == "" or path.startswith(d["path"]):
+        if delegation_covers(d["path"], path):
             return True
     return False
 
@@ -81,7 +90,7 @@ def action_domains_get(a):
         accessible_routes = []
         for route in routes:
             for d in delegations:
-                if d["path"] == "" or route["path"].startswith(d["path"]):
+                if delegation_covers(d["path"], route["path"]):
                     accessible_routes.append(route)
                     break
         a.json({"domain": info, "routes": enrich_routes_with_names(accessible_routes), "delegations": delegations, "admin": False})
