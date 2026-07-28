@@ -34,6 +34,15 @@ def action_interests_set(a):
         a.error.label(400, "errors.weight_required")
         return
 
+    # int() aborts the whole action on anything it can't parse, which the
+    # server reports as a 500 rather than the 400 the range check below
+    # gives. Starlark has no try/except, so check the shape first. Note
+    # isdigit() would not do: it accepts Unicode digit forms that int()
+    # then rejects.
+    if not mochi.text.valid(weight, "integer"):
+        a.error.label(400, "errors.weight_must_be_100_to_100")
+        return
+
     w = int(weight)
     if w < -100 or w > 100:
         a.error.label(400, "errors.weight_must_be_100_to_100")
