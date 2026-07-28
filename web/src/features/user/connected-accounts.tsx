@@ -93,7 +93,6 @@ function getProviderIcon(type: string) {
 
 
 function getBrowserFromEndpoint(endpoint: string): string {
-  /* eslint-disable lingui/no-unlocalized-strings -- browser names are proper nouns */
   if (!endpoint) return 'Browser'
   if (endpoint.includes('push.services.mozilla.com')) return 'Firefox'
   if (endpoint.includes('fcm.googleapis.com')) return 'Chrome'
@@ -101,7 +100,6 @@ function getBrowserFromEndpoint(endpoint: string): string {
   if (endpoint.includes('wns.windows.com')) return 'Edge'
   if (endpoint.includes('push.api.opera.com')) return 'Opera'
   return 'Browser'
-  /* eslint-enable lingui/no-unlocalized-strings */
 }
 
 function getAccountDisplayName(account: Account): string {

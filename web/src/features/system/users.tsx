@@ -293,11 +293,8 @@ function SessionsDialog({
 
   const formatSession = (session: Session) => {
     const agent = session.agent || ''
-    // eslint-disable-next-line lingui/no-unlocalized-strings -- browser names are proper nouns
     if (agent.includes('Chrome')) return 'Chrome'
-    // eslint-disable-next-line lingui/no-unlocalized-strings -- browser names are proper nouns
     if (agent.includes('Firefox')) return 'Firefox'
-    // eslint-disable-next-line lingui/no-unlocalized-strings -- browser names are proper nouns
     if (agent.includes('Safari')) return 'Safari'
     return t`Unknown browser`
   }

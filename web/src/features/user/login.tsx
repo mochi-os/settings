@@ -719,7 +719,6 @@ const oauthProviderOrder: OAuthProvider[] = [
   'x',
 ]
 
-/* eslint-disable lingui/no-unlocalized-strings -- OAuth provider names are proper nouns */
 const oauthProviderLabel: Record<OAuthProvider, string> = {
   facebook: 'Facebook',
   github: 'GitHub',
@@ -727,7 +726,6 @@ const oauthProviderLabel: Record<OAuthProvider, string> = {
   microsoft: 'Microsoft',
   x: 'X',
 }
-/* eslint-enable lingui/no-unlocalized-strings */
 
 // Guard against the one-shot toast firing more than once per OAuth callback.
 function oauthResultKey(): string {

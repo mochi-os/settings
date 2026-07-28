@@ -102,13 +102,16 @@ def action_accounts_default(a):
     a.json({"ok": True})
 
 def action_accounts_remove(a):
-    """Remove a connected account"""
+    """Remove a connected account. Routed through the notifications service
+    so the account's destination rows and queued push payloads are cleaned
+    with it - a bare mochi.account.remove left ghost destinations in every
+    category list and stale rows in the push queue."""
     id = a.input("id")
     if not id:
         a.error.label(400, "errors.id_is_required")
         return
 
-    result = mochi.account.remove(id)
+    result = mochi.service.call("notifications", "accounts/remove", id=id)
     a.json(result)
 
 def action_accounts_verify(a):
