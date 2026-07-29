@@ -106,6 +106,15 @@ def action_user_account_export_download(a):
     if a.user == None:
         a.error.label(401, "errors.authentication_required")
         return
+    # Serving consumes the bundle, and the session cookie is SameSite=Lax, so a
+    # cross-site top-level navigation would carry it: a page the user merely
+    # visits could destroy their export. Legitimate downloads are same-origin
+    # navigations from this app. A browser too old to send the header is
+    # allowed through rather than broken, since the residual risk is the loss
+    # of a bundle the user can rebuild, not disclosure.
+    if a.header("Sec-Fetch-Site") == "cross-site":
+        a.error.label(404, "errors.not_found")
+        return
     name = a.input("file", "")
     # Allowlist: export bundles are named mochi-export-<stamp>-<fingerprint>-<suffix>.zip,
     # so only letters, digits, dot, hyphen and underscore are ever valid. Validate
@@ -174,6 +183,17 @@ def action_user_account_session_revoke(a):
     id = a.input("id")
     if not id:
         a.error.label(400, "errors.missing_session_id")
+        return
+
+    # Core aborts on a session id that matches nothing, which the server
+    # reports as a 500. The ids it accepts are exactly the ones it lists.
+    found = False
+    for s in mochi.user.session.list() or []:
+        if s.get("id") == id:
+            found = True
+            break
+    if not found:
+        a.error.label(404, "errors.not_found")
         return
 
     mochi.user.session.revoke(a.user.id, id)

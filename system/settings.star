@@ -47,5 +47,16 @@ def action_system_settings_set(a):
     if value == None:
         a.error.label(400, "errors.missing_setting_value")
         return
+    # Core rejects an unknown name by aborting the action, which the server
+    # reports as a 500 carrying the raw Go text. The catalogue is readable, so
+    # check against it and answer a clean 400.
+    known = False
+    for s in mochi.setting.list() or []:
+        if s.get("name") == name:
+            known = True
+            break
+    if not known:
+        a.error.label(400, "errors.invalid_value_for_key", key="name")
+        return
     mochi.setting.set(name, value)
     a.json({"ok": True})

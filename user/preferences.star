@@ -161,17 +161,23 @@ def action_user_preferences_unset(a):
 
     Keys are repeated `key` fields. Unknown keys are rejected rather than
     ignored, so a client typo surfaces instead of silently doing nothing.
+    Repeats collapse: clearing a key twice is the same as clearing it once,
+    and without that a body full of one repeated key would turn into that
+    many deletes.
     """
     keys = a.inputs("key")
     if not keys:
         a.error.label(400, "errors.missing_key")
         return
     known = [p["key"] for p in preferences_schema] + ["theme"]
+    wanted = []
     for key in keys:
         if key not in known:
             a.error.label(400, "errors.invalid_value_for_key", key=key)
             return
-    for key in keys:
+        if key not in wanted:
+            wanted.append(key)
+    for key in wanted:
         a.user.preference.delete(key)
     a.json({"ok": True})
 

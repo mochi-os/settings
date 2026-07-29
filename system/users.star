@@ -12,6 +12,24 @@ def action_system_users(a):
     count = mochi.user.count()
     a.json({"users": users, "count": count})
 
+# Core validates these too, but a builtin that rejects its argument aborts the
+# action, and the server reports that as a 500 carrying the raw Go text - an
+# internal API name in an untranslated string. Checking here answers a clean,
+# translated 400 instead.
+user_sorts = ["id", "username", "status", "last"]
+user_orders = ["asc", "desc"]
+user_roles = ["user", "administrator"]
+
+def user_identifier(a, uid):
+    """Whether uid is shaped like a user id, answering 400 if not."""
+    if not uid:
+        a.error.label(400, "errors.missing_user_id")
+        return False
+    if not mochi.text.valid(uid, "id"):
+        a.error.label(400, "errors.invalid_value_for_key", key="uid")
+        return False
+    return True
+
 def action_system_users_list(a):
     """List all users with pagination, search, and sort"""
     if not require_admin(a):
@@ -27,6 +45,12 @@ def action_system_users_list(a):
     search = a.input("search") or ""
     sort = a.input("sort") or "username"
     order = a.input("order") or "asc"
+    if sort not in user_sorts:
+        a.error.label(400, "errors.invalid_value_for_key", key="sort")
+        return
+    if order not in user_orders:
+        a.error.label(400, "errors.invalid_value_for_key", key="order")
+        return
 
     if search:
         # count is the number of matches, not the size of this page, so the
@@ -46,8 +70,7 @@ def action_system_users_get(a):
     if not require_admin(a):
         return
     uid = a.input("uid")
-    if not uid:
-        a.error.label(400, "errors.missing_user_id")
+    if not user_identifier(a, uid):
         return
     user = mochi.user.get(uid)
     if not user:
@@ -64,6 +87,12 @@ def action_system_users_create(a):
     if not username:
         a.error.label(400, "errors.missing_username")
         return
+    if not mochi.text.valid(username, "email"):
+        a.error.label(400, "errors.invalid_value_for_key", key="username")
+        return
+    if role not in user_roles:
+        a.error.label(400, "errors.invalid_value_for_key", key="role")
+        return
     user = mochi.user.create(username, role)
     a.json(user)
 
@@ -72,11 +101,16 @@ def action_system_users_update(a):
     if not require_admin(a):
         return
     uid = a.input("uid")
-    if not uid:
-        a.error.label(400, "errors.missing_user_id")
+    if not user_identifier(a, uid):
         return
     username = a.input("username")
     role = a.input("role")
+    if username != None and not mochi.text.valid(username, "email"):
+        a.error.label(400, "errors.invalid_value_for_key", key="username")
+        return
+    if role != None and role not in user_roles:
+        a.error.label(400, "errors.invalid_value_for_key", key="role")
+        return
     mochi.user.update(uid, username, role)
     a.json({"ok": True})
 
@@ -85,8 +119,7 @@ def action_system_users_delete(a):
     if not require_admin(a):
         return
     uid = a.input("uid")
-    if not uid:
-        a.error.label(400, "errors.missing_user_id")
+    if not user_identifier(a, uid):
         return
     mochi.user.delete(uid)
     a.json({"ok": True})
@@ -96,8 +129,7 @@ def action_system_users_suspend(a):
     if not require_admin(a):
         return
     uid = a.input("uid")
-    if not uid:
-        a.error.label(400, "errors.missing_user_id")
+    if not user_identifier(a, uid):
         return
     mochi.user.suspend(uid)
     a.json({"ok": True})
@@ -107,8 +139,7 @@ def action_system_users_activate(a):
     if not require_admin(a):
         return
     uid = a.input("uid")
-    if not uid:
-        a.error.label(400, "errors.missing_user_id")
+    if not user_identifier(a, uid):
         return
     mochi.user.activate(uid)
     a.json({"ok": True})
@@ -118,8 +149,7 @@ def action_system_users_sessions(a):
     if not require_admin(a):
         return
     uid = a.input("uid")
-    if not uid:
-        a.error.label(400, "errors.missing_user_id")
+    if not user_identifier(a, uid):
         return
     sessions = mochi.user.session.list(uid)
     a.json({"sessions": sessions})
@@ -129,11 +159,21 @@ def action_system_users_sessions_revoke(a):
     if not require_admin(a):
         return
     uid = a.input("uid")
-    if not uid:
-        a.error.label(400, "errors.missing_user_id")
+    if not user_identifier(a, uid):
         return
     session_id = a.input("session_id")
     if session_id:
+        # Core aborts on a session id that matches nothing, which the server
+        # reports as a 500. The ids it accepts are exactly the ones it lists,
+        # so an unknown one is a 404 rather than an internal error.
+        found = False
+        for s in mochi.user.session.list(uid) or []:
+            if s.get("id") == session_id:
+                found = True
+                break
+        if not found:
+            a.error.label(404, "errors.not_found")
+            return
         count = mochi.user.session.revoke(uid, session_id)
     else:
         count = mochi.user.session.revoke(uid)
