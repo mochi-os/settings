@@ -30,7 +30,7 @@ def enrich_delegations(delegations):
     result = []
     for d in delegations:
         user = mochi.user.get(d["owner"])
-        username = user["username"] if user else "Unknown"
+        username = user["username"] if user else mochi.app.label("delegations.user_unknown")
         result.append({"domain": d["domain"], "path": d["path"], "owner": d["owner"], "username": username})
     return result
 
@@ -103,13 +103,22 @@ def action_domains_update(a):
     if not domain:
         a.error.label(400, "errors.missing_domain")
         return
+    # An absent field is left alone, but a present one must say exactly what it
+    # means: treating every unrecognised value as false silently un-verifies the
+    # domain, and with domains_verification on that stops it routing at all.
     verified = a.input("verified")
     tls = a.input("tls")
     verified_bool = None
     tls_bool = None
-    if verified:
+    if verified != None:
+        if verified != "true" and verified != "false":
+            a.error.label(400, "errors.invalid_value_for_key", key="verified")
+            return
         verified_bool = verified == "true"
-    if tls:
+    if tls != None:
+        if tls != "true" and tls != "false":
+            a.error.label(400, "errors.invalid_value_for_key", key="tls")
+            return
         tls_bool = tls == "true"
     mochi.domain.update(domain, verified=verified_bool, tls=tls_bool)
     a.json({"ok": True})
@@ -250,7 +259,6 @@ def action_domains_entities(a):
 
 def enrich_routes_with_names(routes):
     """Add app_name or entity_name to routes based on method"""
-    entities = None
     result = []
     for route in routes:
         if route["method"] == "app":
@@ -259,12 +267,15 @@ def enrich_routes_with_names(routes):
                 route = dict(route)
                 route["target_name"] = app["name"]
         elif route["method"] == "entity":
-            if entities == None:
-                entities = mochi.entity.owned()
-            for e in entities:
-                if e["id"] == route["target"]:
+            # Resolved by id rather than against the viewing admin's own
+            # entities: a delegate's route points at an entity the admin does
+            # not own, which otherwise left the raw id on screen. entity.name
+            # aborts the action on a malformed id, so check the shape first.
+            target = route["target"]
+            if mochi.text.valid(target, "entity") or mochi.text.valid(target, "fingerprint"):
+                name = mochi.entity.name(target)
+                if name:
                     route = dict(route)
-                    route["target_name"] = e["name"]
-                    break
+                    route["target_name"] = name
         result.append(route)
     return result
