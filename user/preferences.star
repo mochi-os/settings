@@ -54,7 +54,10 @@ preferences_schema = [
     {
         "key": "language",
         "type": "locale-language",
-        "default": "en",
+        # "auto" like every other regional key: core reads ""/"auto" as
+        # detect-from-browser, so defaulting to "en" showed a user who had
+        # never chosen one "English" and pinned them to it when they saved.
+        "default": "auto",
     },
     {
         "key": "timezone",

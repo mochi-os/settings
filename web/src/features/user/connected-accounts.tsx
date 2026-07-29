@@ -93,13 +93,17 @@ function getProviderIcon(type: string) {
 
 
 function getBrowserFromEndpoint(endpoint: string): string {
-  if (!endpoint) return 'Browser'
+  // The named browsers are brands and stay verbatim; the fallback is ordinary
+  // prose meaning "some browser we could not identify", so it is translated.
+  // i18n._(msg`...`) rather than t`...` because this is not a component - the
+  // same pattern the Email fallback below already uses.
+  if (!endpoint) return i18n._(msg`Browser`)
   if (endpoint.includes('push.services.mozilla.com')) return 'Firefox'
   if (endpoint.includes('fcm.googleapis.com')) return 'Chrome'
   if (endpoint.includes('web.push.apple.com')) return 'Safari'
   if (endpoint.includes('wns.windows.com')) return 'Edge'
   if (endpoint.includes('push.api.opera.com')) return 'Opera'
-  return 'Browser'
+  return i18n._(msg`Browser`)
 }
 
 function getAccountDisplayName(account: Account): string {

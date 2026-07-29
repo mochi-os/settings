@@ -29,6 +29,7 @@ import {
   formatSystemTimestamp,
   getErrorMessage,
   toast,
+  naturalCompare,
   usePageTitle,
 } from '@mochi/web'
 import {
@@ -93,7 +94,7 @@ function sortedLanguages(tags: string[]): string[] {
       const ba = languageBucket(a.name)
       const bb = languageBucket(b.name)
       if (ba !== bb) return ba - bb
-      return a.name.localeCompare(b.name)
+      return naturalCompare(a.name, b.name)
     })
     .map(({ tag }) => tag)
 }

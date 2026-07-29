@@ -4,6 +4,17 @@
 # This file is part of Mochi, licensed under the GNU AGPL v3 with the
 # Mochi Application Interface Exception - see license.txt and license-exception.md.
 
+# The language to resolve QID labels in. Core generates the summary beside
+# them in the user's own language, so pinning the labels to English left the
+# two halves of the same panel in different languages. "auto" and an unset
+# preference mean detect-from-browser, which this API cannot do, so they fall
+# back to English the way the resolver does.
+def interests_language(a):
+    pref = a.user.preference.get("language") if a.user else None
+    if not pref or pref == "auto":
+        return "en"
+    return str(pref).strip().lower()
+
 # List user interests with resolved labels
 def action_interests_list(a):
     interests = mochi.interests.list()
@@ -13,7 +24,7 @@ def action_interests_list(a):
 
     # Resolve QID labels
     qids = [i["qid"] for i in interests]
-    labels = mochi.qid.lookup(qids, "en")
+    labels = mochi.qid.lookup(qids, interests_language(a))
 
     for i in interests:
         i["label"] = labels.get(i["qid"], i["qid"]) if type(labels) == type({}) else labels
@@ -68,7 +79,7 @@ def action_interests_search(a):
         a.error.label(400, "errors.query_too_short")
         return
 
-    results = mochi.qid.search(query, "en")
+    results = mochi.qid.search(query, interests_language(a))
     a.json({"results": results})
 
 # Force regenerate interest summary

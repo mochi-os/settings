@@ -36,6 +36,7 @@ import {
   useNumberFormatLabels,
   useUnitLabels,
   toast,
+  naturalCompare,
   usePageTitle,
   shellSetLocale,
   shellSetLanguage,
@@ -135,7 +136,7 @@ export function UserPreferences() {
         const ba = scriptBucket(a.name)
         const bb = scriptBucket(b.name)
         if (ba !== bb) return ba - bb
-        return a.name.localeCompare(b.name)
+        return naturalCompare(a.name, b.name)
       })
       .map(({ tag }) => tag)
     const out: Record<string, string> = {}
