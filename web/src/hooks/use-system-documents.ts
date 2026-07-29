@@ -4,7 +4,7 @@
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { apiClient } from '@mochi/web'
+import { requestHelpers } from '@mochi/web'
 import endpoints from '@/api/endpoints'
 
 export interface SystemDocument {
@@ -22,20 +22,16 @@ interface SystemDocumentsData {
 export function useSystemDocumentsData() {
   return useQuery({
     queryKey: ['system', 'documents'],
-    queryFn: async () => {
-      const response = await apiClient.get<SystemDocumentsData>(endpoints.system.documents)
-      return response.data
-    },
+    queryFn: () =>
+      requestHelpers.get<SystemDocumentsData>(endpoints.system.documents),
   })
 }
 
 export function useSetSystemDocument() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async (data: { name: string; language: string; body: string }) => {
-      const response = await apiClient.post(endpoints.system.documentSet, data)
-      return response.data
-    },
+    mutationFn: (data: { name: string; language: string; body: string }) =>
+      requestHelpers.post(endpoints.system.documentSet, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['system', 'documents'] })
     },

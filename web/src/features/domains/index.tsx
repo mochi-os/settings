@@ -134,9 +134,7 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
               <Trans>Cancel</Trans>
             </Button>
             <Button type='submit' disabled={createDomain.isPending}>
-              {createDomain.isPending && (
-                <Loader2 className='me-2 h-4 w-4 animate-spin' />
-              )}
+              {createDomain.isPending ? <Loader2 className='size-4 animate-spin' /> : <Plus className='size-4' />}
               <Trans>Add domain</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -214,15 +212,20 @@ function AddRouteDialog({
           <ResponsiveDialogHeader>
             <ResponsiveDialogTitle><Trans>Add route</Trans></ResponsiveDialogTitle>
             <ResponsiveDialogDescription>
-              <Trans>Add a new route to {domain}</Trans>
-              {!admin && allowedPaths.length > 0 && (
+              {/* One complete sentence per translation unit. The delegate
+                  variant used to be the fragment ". You can manage paths:",
+                  which gave the translator a clause with no subject and the
+                  previous sentence's full stop welded to its front. */}
+              {admin || allowedPaths.length === 0 ? (
+                <Trans>Add a new route to {domain}</Trans>
+              ) : (
                 <>
-                  <Trans>. You can manage paths:</Trans>{' '}
+                  <Trans>Add a new route to {domain}. You can manage these paths:</Trans>{' '}
                   {allowedPaths.map((p, i) => (
-                    <code key={p} className='bg-muted rounded px-1'>
-                      {p}
+                    <span key={p}>
+                      <code className='bg-muted rounded px-1'>{p}</code>
                       {i < allowedPaths.length - 1 ? ', ' : ''}
-                    </code>
+                    </span>
                   ))}
                 </>
               )}
@@ -338,9 +341,7 @@ function AddRouteDialog({
               <Trans>Cancel</Trans>
             </Button>
             <Button type='submit' disabled={createRoute.isPending || (!admin && !pathAllowed)}>
-              {createRoute.isPending && (
-                <Loader2 className='me-2 h-4 w-4 animate-spin' />
-              )}
+              {createRoute.isPending ? <Loader2 className='size-4 animate-spin' /> : <Plus className='size-4' />}
               <Trans>Add route</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -536,9 +537,7 @@ function EditRouteDialog({
               <Trans>Cancel</Trans>
             </Button>
             <Button type='submit' disabled={updateRoute.isPending || !routeDirty}>
-              {updateRoute.isPending && (
-                <Loader2 className='me-2 h-4 w-4 animate-spin' />
-              )}
+              {updateRoute.isPending ? <Loader2 className='size-4 animate-spin' /> : <Check className='size-4' />}
               <Trans>Save changes</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -685,9 +684,7 @@ function AddDelegationDialog({
               type='submit'
               disabled={createDelegation.isPending || !selectedUser}
             >
-              {createDelegation.isPending && (
-                <Loader2 className='me-2 h-4 w-4 animate-spin' />
-              )}
+              {createDelegation.isPending ? <Loader2 className='size-4 animate-spin' /> : <Plus className='size-4' />}
               <Trans>Add delegation</Trans>
             </Button>
           </ResponsiveDialogFooter>

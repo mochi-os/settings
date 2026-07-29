@@ -12,7 +12,7 @@ import type {
   Entity,
 } from '@/types/domains'
 import endpoints from '@/api/endpoints'
-import { naturalCompare, requestHelpers } from '@mochi/web'
+import { naturalCompare, requestHelpers, useDebounce } from '@mochi/web'
 
 const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
@@ -199,17 +199,21 @@ export function useDeleteDelegation() {
   })
 }
 
+// Debounced inside the hook rather than at the call site: this drives an
+// autocomplete, so an undebounced query searches the whole user table on every
+// keystroke, and a caller that forgot would reintroduce that silently.
 export function useUserSearch(query: string) {
+  const debounced = useDebounce(query, 300)
   return useQuery({
-    queryKey: ['users', 'search', query],
+    queryKey: ['users', 'search', debounced],
     queryFn: async () => {
       const result = await requestHelpers.get<{ users: UserSearchResult[] }>(
         endpoints.domains.userSearch,
-        { params: { query } }
+        { params: { query: debounced } }
       )
       return result.users
     },
-    enabled: query.length >= 2,
+    enabled: debounced.length >= 2,
   })
 }
 

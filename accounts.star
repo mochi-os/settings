@@ -32,14 +32,16 @@ def action_accounts_add(a):
         a.error.label(400, "errors.type_is_required")
         return
     # Core rejects unknown provider types with a Starlark abort (internal
-    # error); validate first and answer a clean 400.
-    valid = False
+    # error); validate first and answer a clean 400. Keep the matched row: the
+    # capability check below needs it too, and fetching the whole provider
+    # table a second time was the only reason this ran two lookups per add.
+    provider = None
     if len(type) <= 64:
         for p in mochi.account.providers() or []:
             if p.get("type") == type:
-                valid = True
+                provider = p
                 break
-    if not valid:
+    if not provider:
         return a.error.label(400, "errors.invalid_type")
 
     # Build fields dict from form inputs. Bound each field like the
@@ -56,21 +58,38 @@ def action_accounts_add(a):
     add_to_existing = add_to_existing == "1" or add_to_existing == "true"
 
     result = mochi.account.add(type, **fields)
+    if not result or not result.get("id"):
+        a.json(result)
+        return
 
-    # For notify accounts, set enabled based on add_to_existing toggle
-    # and optionally add to all existing notification subscriptions.
-    # Non-notify accounts (AI, MCP) are always enabled.
-    if result and result.get("id"):
-        account_id = result["id"]
-        providers = mochi.account.providers()
-        provider = [p for p in providers if p["type"] == type]
-        is_notify = provider and "notify" in provider[0].get("capabilities", [])
-        if is_notify:
-            mochi.account.update(account_id, enabled=add_to_existing)
-            if add_to_existing:
-                mochi.service.call("notifications", "destinations/add", "account", account_id)
-        else:
-            mochi.account.update(account_id, enabled=True)
+    account_id = result["id"]
+
+    # Non-notify accounts (AI, MCP) have no destination to wire.
+    if "notify" not in provider.get("capabilities", []):
+        mochi.account.update(account_id, enabled=True)
+        a.json(result)
+        return
+
+    # Core creates the row already enabled, and wiring its destination is a
+    # separate call that can fail - or find no notifications service at all.
+    # Disable first so that whatever happens next, the account is never left
+    # switched on with nothing subscribed to it: the user would see a
+    # connected, enabled account that silently delivers nothing. Only the
+    # last step, after the wiring is known to have worked, turns it on.
+    mochi.account.update(account_id, enabled=False)
+    if not add_to_existing:
+        a.json(result)
+        return
+
+    if not mochi.service.call("notifications", "destinations/add", "account", account_id):
+        # Take the row back out rather than leave a dead one behind. Removed
+        # through core rather than the notifications service, unlike
+        # action_accounts_remove: the wiring is what just failed, so there are
+        # no destination rows to clean, and the service may be the thing that
+        # is unavailable.
+        mochi.account.remove(account_id)
+        return a.error.label(502, "errors.destination_not_wired")
+    mochi.account.update(account_id, enabled=True)
 
     a.json(result)
 
@@ -96,6 +115,9 @@ def action_accounts_update(a):
 
     model = a.input("model")
     if model != None:
+        if len(model) > 4096:
+            a.error.label(400, "errors.value_too_long", maximum=4096)
+            return
         fields["model"] = model
 
     result = mochi.account.update(id, **fields)
@@ -107,7 +129,20 @@ def action_accounts_default(a):
     if not id:
         a.error.label(400, "errors.account_is_required")
         return
+    # An empty string clears the default; anything else has to name a
+    # capability some provider actually declares. This column is read back to
+    # pick the account for a capability, so an unrecognised value stores a
+    # default that nothing will ever match and quietly loses the setting.
     type = a.input("type", "")
+    if type:
+        capabilities = []
+        for p in mochi.account.providers() or []:
+            for c in p.get("capabilities", []):
+                if c not in capabilities:
+                    capabilities.append(c)
+        if type not in capabilities:
+            a.error.label(400, "errors.invalid_value_for_key", key="type")
+            return
     mochi.account.update(id, default=type)
     a.json({"ok": True})
 

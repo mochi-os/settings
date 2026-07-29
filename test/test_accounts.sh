@@ -383,6 +383,129 @@ fi
 # CLEANUP
 # ============================================================================
 
+# ============================================================================
+# INPUT BOUND TESTS
+# ============================================================================
+
+echo ""
+echo "--- Input Bound Tests ---"
+
+# Test: model is bounded like its sibling label. It reached mochi.account.update
+# unchecked while label was capped at 4096, so one field of the same row had a
+# limit and the other did not.
+LONG=$(python3 -c "print('m' * 5000)")
+RESULT=$(settings_curl POST "/-/accounts/add" -d "type=claude&api_key=sk-test-bounds")
+BOUND_ID=$(echo "$RESULT" | python3 -c "import sys, json; print(json.load(sys.stdin).get('id',''))" 2>/dev/null || true)
+if [ -n "$BOUND_ID" ]; then
+    pass "Add account for bound tests (ID: $BOUND_ID)"
+
+    RESULT=$(settings_curl POST "/-/accounts/update" -d "id=$BOUND_ID&model=$LONG")
+    if echo "$RESULT" | grep -qE '"error"|<h1>Error 4[0-9][0-9]</h1>'; then
+        pass "Reject an over-long model"
+    else
+        fail "Reject an over-long model" "$(echo "$RESULT" | head -c 100)"
+    fi
+
+    RESULT=$(settings_curl POST "/-/accounts/update" -d "id=$BOUND_ID&model=claude-sonnet-5")
+    if ! echo "$RESULT" | grep -qE '"error"|<h1>Error 4[0-9][0-9]</h1>'; then
+        pass "Accept a normal model"
+    else
+        fail "Accept a normal model" "$(echo "$RESULT" | head -c 100)"
+    fi
+
+    # The default column is read back to choose the account for a capability,
+    # so a value no provider declares stores a default nothing can match.
+    RESULT=$(settings_curl POST "/-/accounts/default" -d "account=$BOUND_ID&type=not-a-capability")
+    if echo "$RESULT" | grep -qE '"error"|<h1>Error 4[0-9][0-9]</h1>'; then
+        pass "Reject an unknown default capability"
+    else
+        fail "Reject an unknown default capability" "$(echo "$RESULT" | head -c 100)"
+    fi
+
+    RESULT=$(settings_curl POST "/-/accounts/default" -d "account=$BOUND_ID&type=ai")
+    if echo "$RESULT" | grep -q '"ok"'; then
+        pass "Accept a declared default capability"
+    else
+        fail "Accept a declared default capability" "$(echo "$RESULT" | head -c 100)"
+    fi
+
+    RESULT=$(settings_curl POST "/-/accounts/default" -d "account=$BOUND_ID&type=")
+    if echo "$RESULT" | grep -q '"ok"'; then
+        pass "Accept an empty default, which clears it"
+    else
+        fail "Accept an empty default, which clears it" "$(echo "$RESULT" | head -c 100)"
+    fi
+
+    settings_curl POST "/-/accounts/remove" -d "id=$BOUND_ID" > /dev/null 2>&1
+else
+    fail "Add account for bound tests" "$(echo "$RESULT" | head -c 100)"
+fi
+
+# ============================================================================
+# NOTIFY WIRING TESTS
+# ============================================================================
+
+echo ""
+echo "--- Notify Wiring Tests ---"
+
+# A notify account is only switched on once its destination is wired, so the
+# two can never disagree: an enabled account the notifications service has
+# never heard of looks connected and delivers nothing.
+enabled_of() {
+    settings_curl GET "/-/accounts/get?id=$1" | python3 -c "
+import sys, json
+try:
+    print(json.load(sys.stdin).get('enabled', 'missing'))
+except Exception:
+    print('missing')
+" 2>/dev/null
+}
+
+# Wired means the notifications service actually holds the account as a
+# destination on a category. Not the "available destinations" list, which is
+# only the account list under another name and so says yes for an account the
+# service has never been told about.
+wired() {
+    settings_curl GET "/-/notifications/categories" | python3 -c "
+import sys, json
+categories = json.load(sys.stdin)
+hit = any(d.get('type') == 'account' and str(d.get('target')) == '$1'
+          for c in categories for d in c.get('destinations', []))
+print('yes' if hit else 'no')
+" 2>/dev/null
+}
+
+RESULT=$(settings_curl POST "/-/accounts/add" -d "type=pushbullet&token=o.testwiring&add_to_existing=1")
+WIRED_ID=$(echo "$RESULT" | python3 -c "import sys, json; print(json.load(sys.stdin).get('id',''))" 2>/dev/null || true)
+if [ -n "$WIRED_ID" ]; then
+    if [ "$(enabled_of "$WIRED_ID")" = "1" ]; then
+        pass "Account added with add_to_existing is enabled"
+    else
+        fail "Account added with add_to_existing is enabled" "enabled=$(enabled_of "$WIRED_ID")"
+    fi
+    if [ "$(wired "$WIRED_ID")" = "yes" ]; then
+        pass "Account added with add_to_existing is wired as a destination"
+    else
+        fail "Account added with add_to_existing is wired as a destination" "no category holds it"
+    fi
+    settings_curl POST "/-/accounts/remove" -d "id=$WIRED_ID" > /dev/null 2>&1
+else
+    fail "Add notify account with add_to_existing" "$(echo "$RESULT" | head -c 100)"
+fi
+
+RESULT=$(settings_curl POST "/-/accounts/add" -d "type=pushbullet&token=o.testunwired&add_to_existing=0")
+UNWIRED_ID=$(echo "$RESULT" | python3 -c "import sys, json; print(json.load(sys.stdin).get('id',''))" 2>/dev/null || true)
+if [ -n "$UNWIRED_ID" ]; then
+    if [ "$(enabled_of "$UNWIRED_ID")" = "0" ]; then
+        pass "Account added without add_to_existing stays disabled"
+    else
+        fail "Account added without add_to_existing stays disabled" "enabled=$(enabled_of "$UNWIRED_ID")"
+    fi
+    settings_curl POST "/-/accounts/remove" -d "id=$UNWIRED_ID" > /dev/null 2>&1
+else
+    fail "Add notify account without add_to_existing" "$(echo "$RESULT" | head -c 100)"
+fi
+
 echo ""
 echo "--- Cleanup ---"
 
@@ -391,9 +514,11 @@ if [ -n "$EMAIL_ACCOUNT_ID" ]; then
     settings_curl POST "/-/accounts/remove" -d "id=$EMAIL_ACCOUNT_ID" > /dev/null 2>&1
 fi
 
-# Remove all test accounts by listing and removing
+# Remove all test accounts by listing and removing. The list action answers a
+# bare array; reading a "data" envelope here threw and was swallowed, so this
+# cleanup silently removed nothing while still reporting success.
 RESULT=$(settings_curl GET "/-/accounts/list")
-ACCOUNT_IDS=$(echo "$RESULT" | python3 -c "import sys, json; [print(a['id']) for a in json.load(sys.stdin).get('data', [])]" 2>/dev/null || true)
+ACCOUNT_IDS=$(echo "$RESULT" | python3 -c "import sys, json; [print(a['id']) for a in json.load(sys.stdin)]" 2>/dev/null || true)
 for id in $ACCOUNT_IDS; do
     settings_curl POST "/-/accounts/remove" -d "id=$id" > /dev/null 2>&1
 done

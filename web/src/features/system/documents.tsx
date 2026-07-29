@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Trans, useLingui } from '@lingui/react/macro'
 import { i18n } from '@lingui/core'
 import { useNavigate } from '@tanstack/react-router'
-import { FileText, Loader2, RotateCcw } from 'lucide-react'
+import { Check, FileText, Loader2, RotateCcw } from 'lucide-react'
 import {
   Badge,
   Button,
@@ -26,10 +26,11 @@ import {
   TabsList,
   TabsTrigger,
   Textarea,
+  describeLanguages,
   formatSystemTimestamp,
   getErrorMessage,
+  nativeName,
   toast,
-  naturalCompare,
   usePageTitle,
 } from '@mochi/web'
 import {
@@ -52,51 +53,19 @@ function useDocumentLabels(): Record<DocumentName, string> {
   }
 }
 
-// Render a BCP 47 tag as its native display name (Français, 日本語, …) using
-// Intl.DisplayNames in the tag's own locale, with a few explicit overrides
-// to disambiguate where the OS-supplied name is unhelpful. Mirrors the
-// language-preference picker for consistency.
-/* eslint-disable lingui/no-unlocalized-strings -- language names display in their native form */
-const LANGUAGE_OVERRIDES: Record<string, string> = {
-  en: 'English (international)',
-  'en-us': 'English (USA)',
-  es: 'Español (España)',
-  'es-419': 'Español (latinoamericano)',
-}
-/* eslint-enable lingui/no-unlocalized-strings */
-
+// Native display names and the Latin-first ordering come from lib/web's
+// language picker, which is the same list rendered the same way. The local
+// copy this replaces called Intl.DisplayNames directly with four overrides,
+// and browsers ship display-name data for only some locales: for 40 of the
+// 106 installed here Intl silently answered with the English exonym, so the
+// picker offered "Armenian", "Yoruba" and "Burmese" rather than Հայերեն,
+// Èdè Yorùbá and မြန်မာ. lib/web carries the full autonym table.
 function languageName(tag: string): string {
-  const override = LANGUAGE_OVERRIDES[tag.toLowerCase()]
-  if (override) return override
-  try {
-    const name = new Intl.DisplayNames([tag], { type: 'language' }).of(tag)
-    if (name) return name.charAt(0).toLocaleUpperCase() + name.slice(1)
-  } catch {
-    /* fall through to raw tag */
-  }
-  return tag
-}
-
-// Latin-script first, non-Latin second; within each bucket sort by display name.
-function languageBucket(name: string): number {
-  for (const ch of name) {
-    if (/\p{L}/u.test(ch)) {
-      return /[A-Za-zÀ-ÿĀ-ſƀ-ɏ]/.test(ch) ? 0 : 1
-    }
-  }
-  return 0
+  return nativeName(tag)
 }
 
 function sortedLanguages(tags: string[]): string[] {
-  return [...tags]
-    .map((tag) => ({ tag, name: languageName(tag) }))
-    .sort((a, b) => {
-      const ba = languageBucket(a.name)
-      const bb = languageBucket(b.name)
-      if (ba !== bb) return ba - bb
-      return naturalCompare(a.name, b.name)
-    })
-    .map(({ tag }) => tag)
+  return describeLanguages(tags).map(({ tag }) => tag)
 }
 
 function DocumentEditor({
@@ -151,11 +120,8 @@ function DocumentEditor({
           </Button>
         )}
         <Button size='sm' onClick={handleSave} disabled={isSaving || !dirty}>
-          {isSaving ? (
-            <Loader2 className='h-4 w-4 animate-spin' />
-          ) : (
-            <Trans>Save</Trans>
-          )}
+          {isSaving ? <Loader2 className='size-4 animate-spin' /> : <Check className='size-4' />}
+          <Trans>Save</Trans>
         </Button>
       </div>
     </div>

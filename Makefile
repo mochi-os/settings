@@ -46,6 +46,7 @@ dev:
 test:
 	bash test/test_accounts.sh
 	bash test/test_interests.sh
+	bash test/test_notifications.sh
 
 i18n-extract:
 	bash -c 'cd web && $(SAFE_PNPM) i18n:extract --clean'

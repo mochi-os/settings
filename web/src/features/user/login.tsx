@@ -393,10 +393,8 @@ function PasskeysSection() {
         </div>
         <ResponsiveDialogFooter>
           <Button onClick={handleRegister} disabled={isRegistering}>
+            {isRegistering ? <Loader2 className='size-4 animate-spin' /> : <Plus className='size-4' />}
             <Trans>Register</Trans>
-            {isRegistering && (
-              <Loader2 className='ms-2 h-4 w-4 animate-spin' />
-            )}
           </Button>
         </ResponsiveDialogFooter>
       </ResponsiveDialogContent>
@@ -566,8 +564,8 @@ function AuthenticatorSection() {
                 onClick={handleVerify}
                 disabled={isVerifying || !verifyCode}
               >
+                {isVerifying ? <Loader2 className='size-4 animate-spin' /> : <Check className='size-4' />}
                 <Trans>Verify and enable</Trans>
-                {isVerifying && <Loader2 className='ms-2 h-4 w-4 animate-spin' />}
               </Button>
               <Button variant='ghost' onClick={() => setSetupData(null)}><Trans>Cancel</Trans></Button>
             </div>

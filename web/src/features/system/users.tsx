@@ -9,6 +9,7 @@ import { plural } from '@lingui/core/macro'
 import type { User, Session } from '@/types/users'
 import {
   Ban,
+  Check,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -21,6 +22,7 @@ import {
   Search,
   Trash2,
   UserCheck,
+  UserPlus,
   Users,
 } from 'lucide-react'
 import {
@@ -155,9 +157,7 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
               <Trans>Cancel</Trans>
             </Button>
             <Button type='submit' disabled={createUser.isPending}>
-              {createUser.isPending && (
-                <Loader2 className='me-2 h-4 w-4 animate-spin' />
-              )}
+              {createUser.isPending ? <Loader2 className='size-4 animate-spin' /> : <UserPlus className='size-4' />}
               <Trans>Create user</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -259,9 +259,7 @@ function EditUserDialog({
               <Trans>Cancel</Trans>
             </Button>
             <Button type='submit' disabled={updateUser.isPending || !hasChanges}>
-              {updateUser.isPending && (
-                <Loader2 className='me-2 h-4 w-4 animate-spin' />
-              )}
+              {updateUser.isPending ? <Loader2 className='size-4 animate-spin' /> : <Check className='size-4' />}
               <Trans>Save changes</Trans>
             </Button>
           </ResponsiveDialogFooter>

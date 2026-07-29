@@ -27,11 +27,17 @@ def can_manage_path(a, domain, path):
 
 def enrich_delegations(delegations):
     """Add username to delegation records"""
+    # One delegate usually holds several paths on a domain, so the same owner
+    # repeats down the list. Resolve each owner once per request rather than
+    # once per row; there is no bulk lookup to ask instead.
+    usernames = {}
     result = []
     for d in delegations:
-        user = mochi.user.get(d["owner"])
-        username = user["username"] if user else mochi.app.label("delegations.user_unknown")
-        result.append({"domain": d["domain"], "path": d["path"], "owner": d["owner"], "username": username})
+        owner = d["owner"]
+        if owner not in usernames:
+            user = mochi.user.get(owner)
+            usernames[owner] = user["username"] if user else mochi.app.label("delegations.user_unknown")
+        result.append({"domain": d["domain"], "path": d["path"], "owner": owner, "username": usernames[owner]})
     return result
 
 def action_domains_create(a):
@@ -53,13 +59,15 @@ def action_domains(a):
         a.json({"domains": domains, "count": len(domains), "admin": True})
     else:
         delegations = mochi.domain.delegation.list("", a.user.id)
+        # A delegate normally holds several paths on the same domain, so look
+        # each domain up once. The misses are remembered too: keying only on
+        # the hits meant a domain that no longer resolves was asked for again
+        # on every one of its delegations.
         domain_map = {}
         for d in delegations:
             if d["domain"] not in domain_map:
-                domain_info = mochi.domain.get(d["domain"])
-                if domain_info:
-                    domain_map[d["domain"]] = domain_info
-        domains = list(domain_map.values())
+                domain_map[d["domain"]] = mochi.domain.get(d["domain"])
+        domains = [info for info in domain_map.values() if info]
         a.json({"domains": domains, "delegations": delegations, "count": len(domains), "admin": False})
 
 def action_domains_get(a):
@@ -259,23 +267,29 @@ def action_domains_entities(a):
 
 def enrich_routes_with_names(routes):
     """Add app_name or entity_name to routes based on method"""
+    # A domain routes many paths at the same handful of apps and entities, so
+    # resolve each distinct target once per request. The cache holds the misses
+    # too - an app that no longer exists is worth not asking about repeatedly.
+    names = {}
     result = []
     for route in routes:
+        key = route["method"] + ":" + route["target"]
         if route["method"] == "app":
-            app = mochi.app.get(route["target"])
-            if app:
-                route = dict(route)
-                route["target_name"] = app["name"]
+            if key not in names:
+                app = mochi.app.get(route["target"])
+                names[key] = app["name"] if app else None
         elif route["method"] == "entity":
             # Resolved by id rather than against the viewing admin's own
             # entities: a delegate's route points at an entity the admin does
             # not own, which otherwise left the raw id on screen. entity.name
             # aborts the action on a malformed id, so check the shape first.
-            target = route["target"]
-            if mochi.text.valid(target, "entity") or mochi.text.valid(target, "fingerprint"):
-                name = mochi.entity.name(target)
-                if name:
-                    route = dict(route)
-                    route["target_name"] = name
+            if key not in names:
+                target = route["target"]
+                names[key] = None
+                if mochi.text.valid(target, "entity") or mochi.text.valid(target, "fingerprint"):
+                    names[key] = mochi.entity.name(target)
+        if names.get(key):
+            route = dict(route)
+            route["target_name"] = names[key]
         result.append(route)
     return result

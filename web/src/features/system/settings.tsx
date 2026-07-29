@@ -444,11 +444,8 @@ function SettingField({
             />
             {hasChanged ? (
               <Button size='sm' onClick={handleSave} disabled={isSaving}>
-                {isSaving ? (
-                  <Loader2 className='h-4 w-4 animate-spin' />
-                ) : (
-                  <Trans>Save</Trans>
-                )}
+                {isSaving ? <Loader2 className='size-4 animate-spin' /> : <Check className='size-4' />}
+                <Trans>Save</Trans>
               </Button>
             ) : !isDefault && (
               <AlertDialog>

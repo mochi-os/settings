@@ -9,6 +9,7 @@ import { Trans, useLingui } from '@lingui/react/macro'
 import { useNavigate, useSearch } from '@tanstack/react-router'
 import {
   Bell,
+  Check,
   Loader2,
   Pencil,
   Plus,
@@ -252,12 +253,12 @@ function CategoriesTab({
 
   const load = async () => {
     try {
-      const [catsRes, destsRes] = await Promise.all([
-        requestHelpers.getRaw<{ data: Category[] }>(endpoints.notifications.categories),
-        requestHelpers.getRaw<{ data: DestinationsAvailable }>(endpoints.notifications.destinations),
+      const [cats, dests] = await Promise.all([
+        requestHelpers.get<Category[]>(endpoints.notifications.categories),
+        requestHelpers.get<DestinationsAvailable>(endpoints.notifications.destinations),
       ])
-      setCategories(catsRes?.data ?? [])
-      setAvailable(destsRes?.data ?? { accounts: [], feeds: [] })
+      setCategories(cats ?? [])
+      setAvailable(dests ?? { accounts: [], feeds: [] })
     } catch (e) {
       setError(e)
     }
@@ -539,7 +540,7 @@ function CategoryDialog({
         <DialogFooter>
           <Button variant="outline" onClick={onClose} disabled={saving}><Trans>Cancel</Trans></Button>
           <Button onClick={handleSave} disabled={saving || (category !== undefined && !categoryDirty)}>
-            {saving && <Loader2 className="me-2 h-4 w-4 animate-spin" />}
+            {saving ? <Loader2 className="size-4 animate-spin" /> : <Check className="size-4" />}
             <Trans>Save</Trans>
           </Button>
         </DialogFooter>
@@ -661,12 +662,12 @@ function TopicsTab() {
 
   const load = async () => {
     try {
-      const [topicsRes, catsRes] = await Promise.all([
-        requestHelpers.getRaw<{ data: Topic[] }>(endpoints.notifications.topics),
-        requestHelpers.getRaw<{ data: Category[] }>(endpoints.notifications.categories),
+      const [loadedTopics, loadedCategories] = await Promise.all([
+        requestHelpers.get<Topic[]>(endpoints.notifications.topics),
+        requestHelpers.get<Category[]>(endpoints.notifications.categories),
       ])
-      setTopics(topicsRes?.data ?? [])
-      setCategories(catsRes?.data ?? [])
+      setTopics(loadedTopics ?? [])
+      setCategories(loadedCategories ?? [])
     } catch (e) {
       setError(e)
     }

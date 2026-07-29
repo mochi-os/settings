@@ -117,9 +117,17 @@ function StatusRow({ label, children }: { label: ReactNode; children: ReactNode 
 function NetworkStatus() {
   const { t } = useLingui()
   const { formatNumber } = useFormat()
-  const { data } = useSystemPeers()
+  const { data, isLoading, error, refetch } = useSystemPeers()
 
-  if (!data) return null
+  // Returning null here made a failure indistinguishable from a server with
+  // nothing to report: the whole network section, peer table included, simply
+  // was not on the page, with no message and nothing to retry.
+  if (error) {
+    return <GeneralError error={error} minimal mode='inline' reset={refetch} />
+  }
+  if (isLoading || !data) {
+    return <ListSkeleton variant='simple' height='h-4' count={3} />
+  }
 
   const network = data.network
   const counts = data.counts

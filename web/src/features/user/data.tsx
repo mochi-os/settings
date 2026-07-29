@@ -8,10 +8,11 @@ import { useLingui, Trans } from '@lingui/react/macro'
 import { Download, RefreshCw } from 'lucide-react'
 import {
   Button,
-  Input,
+  CopyButton,
   Label,
   Section,
   StepUpDialog,
+  Textarea,
   getApiBasepath,
   getErrorMessage,
   shellNavigateTop,
@@ -25,12 +26,33 @@ import WORDS from './data-words'
 // Passphrase generation
 // ============================================================================
 
+// The bundle carries the account's passphrase-encrypted private keys and is a
+// complete, restorable account, so whoever holds the file can attack the
+// passphrase offline at whatever rate they can afford. age's scrypt costs an
+// attacker about a second and 256 MiB a guess, which buys time but is not the
+// thing that has to make the search hopeless — the entropy is. Ten words from
+// this 248-word list is 79.5 bits; the six it used to draw was 47.7, which a
+// well-funded offline attack can cover.
+const PASSPHRASE_WORDS = 10
+
+// Uniform index into WORDS. Rejection sampling, not a modulo: 2^32 is not a
+// multiple of 248, so `random % 248` favours the first 128 words. The bias is
+// tiny and it is still free to not have it in key-bearing material.
+function pickWord(): string {
+  const limit = Math.floor(0x100000000 / WORDS.length) * WORDS.length
+  const draw = new Uint32Array(1)
+  for (;;) {
+    crypto.getRandomValues(draw)
+    if (draw[0] < limit) {
+      return WORDS[draw[0] % WORDS.length]
+    }
+  }
+}
+
 function generatePassphrase(): string {
   const words: string[] = []
-  const array = new Uint32Array(6)
-  crypto.getRandomValues(array)
-  for (let i = 0; i < 6; i++) {
-    words.push(WORDS[array[i] % WORDS.length])
+  for (let i = 0; i < PASSPHRASE_WORDS; i++) {
+    words.push(pickWord())
   }
   return words.join('-')
 }
@@ -127,23 +149,31 @@ function DownloadDialog({
         <Label htmlFor='export-passphrase' className='text-base font-semibold'>
           <Trans>Passphrase</Trans>
         </Label>
-        <div className='flex items-center gap-2'>
-          <Input
+        {/* A ten-word phrase does not fit one line, and this is the one string
+            the user has to copy down before the bundle becomes unrecoverable,
+            so it wraps rather than scrolling its tail out of view. */}
+        <div className='flex items-start gap-2'>
+          <Textarea
             id='export-passphrase'
+            rows={2}
             value={passphrase}
             onChange={(e) => setPassphrase(e.target.value)}
             placeholder={t`Enter or generate a passphrase`}
-            className='font-mono'
+            className='resize-none font-mono'
             autoComplete='off'
           />
-          <Button
-            variant='outline'
-            size='sm'
-            onClick={() => setPassphrase(generatePassphrase())}
-            aria-label={t`Generate passphrase`}
-          >
-            <RefreshCw className='h-4 w-4' />
-          </Button>
+          <div className='flex flex-col gap-1'>
+            <Button
+              variant='outline'
+              size='icon'
+              className='size-8'
+              onClick={() => setPassphrase(generatePassphrase())}
+              aria-label={t`Generate passphrase`}
+            >
+              <RefreshCw className='h-4 w-4' />
+            </Button>
+            <CopyButton value={passphrase} disabled={!passphrase} variant='outline' />
+          </div>
         </div>
         <p className='text-muted-foreground text-xs leading-relaxed'>
           <Trans>Your private keys are included, encrypted with this passphrase. Store it safely. You'll need it to restore.</Trans>
