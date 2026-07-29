@@ -141,6 +141,9 @@ export function usePasskeyRegisterFinish() {
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'passkeys'] })
+      // Adding or removing a credential changes which factors are available,
+      // which is what the login-methods grid renders.
+      queryClient.invalidateQueries({ queryKey: ['account', 'methods'] })
     },
   })
 }
@@ -171,6 +174,9 @@ export function usePasskeyDelete() {
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'passkeys'] })
+      // Adding or removing a credential changes which factors are available,
+      // which is what the login-methods grid renders.
+      queryClient.invalidateQueries({ queryKey: ['account', 'methods'] })
     },
   })
 }
@@ -209,6 +215,9 @@ export function useTotpVerify() {
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'totp'] })
+      // Adding or removing a credential changes which factors are available,
+      // which is what the login-methods grid renders.
+      queryClient.invalidateQueries({ queryKey: ['account', 'methods'] })
     },
   })
 }
@@ -224,6 +233,9 @@ export function useTotpDisable() {
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'totp'] })
+      // Adding or removing a credential changes which factors are available,
+      // which is what the login-methods grid renders.
+      queryClient.invalidateQueries({ queryKey: ['account', 'methods'] })
     },
   })
 }
@@ -253,6 +265,9 @@ export function useRecoveryGenerate() {
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'recovery'] })
+      // Adding or removing a credential changes which factors are available,
+      // which is what the login-methods grid renders.
+      queryClient.invalidateQueries({ queryKey: ['account', 'methods'] })
     },
   })
 }
@@ -305,6 +320,9 @@ export function useOauthUnlink() {
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'oauth'] })
+      // Adding or removing a credential changes which factors are available,
+      // which is what the login-methods grid renders.
+      queryClient.invalidateQueries({ queryKey: ['account', 'methods'] })
     },
   })
 }

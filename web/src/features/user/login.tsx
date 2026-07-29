@@ -728,6 +728,13 @@ const oauthProviderLabel: Record<OAuthProvider, string> = {
 }
 
 // Guard against the one-shot toast firing more than once per OAuth callback.
+// Module scope rather than storage: the only duplicate to suppress is React's
+// StrictMode double-mount within a single page load, which this covers exactly
+// and synchronously. sessionStorage did the job before, but the menu shell's
+// sandboxed iframe partitions it per load - so it was a banned API that also
+// happened to behave here exactly like a module variable already.
+const oauthResultShown = new Set<string>()
+
 function oauthResultKey(): string {
   return 'oauth_result_shown:' + window.location.search
 }
@@ -913,12 +920,12 @@ export function UserLogin() {
   // StrictMode double-mount so the toast fires exactly once per visit.
   useEffect(() => {
     const key = oauthResultKey()
-    try { if (sessionStorage.getItem(key)) return } catch { /* ignore */ }
+    if (oauthResultShown.has(key)) return
     const params = new URLSearchParams(window.location.search)
     const linked = params.get('oauth_linked')
     const errored = params.get('oauth_error')
     if (!linked && !errored) return
-    try { sessionStorage.setItem(key, '1') } catch { /* ignore */ }
+    oauthResultShown.add(key)
 
     // Defer by a tick so Sonner's Toaster has mounted and subscribed to the
     // toast store before we publish. Without this delay the toast is published

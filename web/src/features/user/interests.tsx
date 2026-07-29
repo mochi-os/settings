@@ -40,12 +40,20 @@ function InterestRow({ interest }: { interest: Interest }) {
     }
   }, [])
 
+  // The last weight sent, so the keyboard and blur paths below cannot send the
+  // same value twice.
+  const committed = useRef(interest.weight)
+
   const handleWeightCommit = (w: number) => {
     setWeight(w)
+    if (w === committed.current) return
+    const previous = committed.current
+    committed.current = w
     setInterest.mutate(
       { qid: interest.qid, weight: w },
       {
         onError: (error) => {
+          committed.current = previous
           setWeight(interest.weight)
           toast.error(getErrorMessage(error, t`Failed to update interest`))
         },
@@ -84,6 +92,16 @@ function InterestRow({ interest }: { interest: Interest }) {
             handleWeightCommit(Number((e.target as HTMLInputElement).value))
           }
           onTouchEnd={(e) =>
+            handleWeightCommit(Number((e.target as HTMLInputElement).value))
+          }
+          // Arrow keys move the slider through onChange but never reach a
+          // pointer release, so without these a keyboard user's change was
+          // shown and then silently dropped. Blur covers a focus change that
+          // skips the key release.
+          onKeyUp={(e) =>
+            handleWeightCommit(Number((e.target as HTMLInputElement).value))
+          }
+          onBlur={(e) =>
             handleWeightCommit(Number((e.target as HTMLInputElement).value))
           }
           className='w-full'

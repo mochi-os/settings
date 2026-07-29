@@ -165,7 +165,7 @@ function SettingField({
   isSaving,
 }: {
   setting: SystemSetting
-  onSave: (name: string, value: string) => void
+  onSave: (name: string, value: string) => Promise<void>
   onSaveAsync: (name: string, value: string) => Promise<void>
   isSaving: boolean
 }) {
@@ -189,24 +189,37 @@ function SettingField({
   const isDefault = setting.value === setting.default
   const settingNameLabel = formatSettingName(setting.name, labels)
 
+  // Show the new value straight away, but put the old one back if the save is
+  // refused: these controls save on the same gesture that changes them, so a
+  // failure would otherwise leave the screen showing a value the server never
+  // accepted, with no Save button to retry from.
+  const optimistic = (value: string, revert: () => void) => {
+    onSave(setting.name, value).catch(revert)
+  }
+
   const handleSave = () => {
-    onSave(setting.name, localValue)
+    // The text field keeps what was typed on failure - there is a Save button
+    // to try again with, and discarding the entry would lose the work.
+    onSave(setting.name, localValue).catch(() => {})
   }
 
   const handleReset = () => {
-    onSave(setting.name, setting.default)
+    const previous = localValue
     setLocalValue(setting.default)
+    optimistic(setting.default, () => setLocalValue(previous))
   }
 
   const handleToggle = (checked: boolean) => {
+    const previous = localValue
     const newValue = checked ? 'true' : 'false'
     setLocalValue(newValue)
-    onSave(setting.name, newValue)
+    optimistic(newValue, () => setLocalValue(previous))
   }
 
   const handlePick = (value: string) => {
+    const previous = localValue
     setLocalValue(value)
-    onSave(setting.name, value)
+    optimistic(value, () => setLocalValue(previous))
   }
 
   const handleFileChosen = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -215,16 +228,26 @@ function SettingField({
     event.target.value = ''
     if (!file) return
     file.text().then((text) => {
+      const previous = localValue
+      const wasSet = storedSet
       setLocalValue(text)
       setStoredSet(true)
-      onSave(setting.name, text)
+      optimistic(text, () => {
+        setLocalValue(previous)
+        setStoredSet(wasSet)
+      })
     })
   }
 
   const handleClearFile = () => {
+    const previous = localValue
+    const wasSet = storedSet
     setLocalValue('')
     setStoredSet(false)
-    onSave(setting.name, '')
+    optimistic('', () => {
+      setLocalValue(previous)
+      setStoredSet(wasSet)
+    })
   }
 
   return (
@@ -474,21 +497,21 @@ export function SystemSettings() {
   const setSetting = useSetSystemSetting()
   const [savingName, setSavingName] = useState<string | null>(null)
 
-  const handleSave = (name: string, value: string) => {
+  // Rejects on failure so a row that changed its own value optimistically -
+  // a toggle or a picker, which save on the same gesture and have no Save
+  // button to retry with - can put the stored value back rather than leaving
+  // the screen disagreeing with the server.
+  const handleSave = async (name: string, value: string): Promise<void> => {
     setSavingName(name)
-    setSetting.mutate(
-      { name, value },
-      {
-        onSuccess: () => {
-          toast.success(t`Setting updated`)
-          setSavingName(null)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to update setting`))
-          setSavingName(null)
-        },
-      }
-    )
+    try {
+      await setSetting.mutateAsync({ name, value })
+      toast.success(t`Setting updated`)
+    } catch (error) {
+      toast.error(getErrorMessage(error, t`Failed to update setting`))
+      throw error
+    } finally {
+      setSavingName(null)
+    }
   }
 
   // SecretField needs a promise so it can clear and mark itself set only on a
