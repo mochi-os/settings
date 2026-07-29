@@ -12,7 +12,7 @@
 
 set -e
 
-CURL_HELPER="/home/alistair/mochi/claude/scripts/curl.sh"
+CURL_HELPER="$(cd "$(dirname "$0")/../../../claude/scripts" && pwd)/curl.sh"
 
 PASSED=0
 FAILED=0

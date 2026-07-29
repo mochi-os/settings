@@ -38,5 +38,14 @@ install:
 dev:
 	bash -c 'cd web && $(SAFE_PNPM) run dev'
 
+# The app has no P2P event handlers, so unlike the apps whose test target
+# drives p2p-test.py, these are its own HTTP flows against a dev instance.
+# .PHONY because test/ is a real directory - without it make considers the
+# target already built and runs nothing, silently.
+.PHONY: test
+test:
+	bash test/test_accounts.sh
+	bash test/test_interests.sh
+
 i18n-extract:
 	bash -c 'cd web && $(SAFE_PNPM) i18n:extract --clean'

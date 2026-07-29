@@ -10,8 +10,7 @@
 
 set -e
 
-SCRIPT_DIR="$(dirname "$0")"
-CURL_HELPER="/home/alistair/mochi/test/claude/curl.sh"
+CURL_HELPER="$(cd "$(dirname "$0")/../../../claude/scripts" && pwd)/curl.sh"
 
 PASSED=0
 FAILED=0
@@ -105,7 +104,7 @@ fi
 
 # Test: Verify email provider requires verification
 RESULT=$(settings_curl GET "/-/accounts/providers")
-if echo "$RESULT" | python3 -c "import sys, json; providers = json.load(sys.stdin)['data']; email = next(p for p in providers if p['type'] == 'email'); sys.exit(0 if email['verify'] else 1)" 2>/dev/null; then
+if echo "$RESULT" | python3 -c "import sys, json; providers = json.load(sys.stdin); email = next(p for p in providers if p['type'] == 'email'); sys.exit(0 if email['verify'] else 1)" 2>/dev/null; then
     pass "Email provider requires verification"
 else
     fail "Email provider requires verification" "$RESULT"
@@ -121,7 +120,7 @@ echo "--- Add Account Tests ---"
 # Test: Add pushbullet account (no verification required)
 RESULT=$(settings_curl POST "/-/accounts/add" -d "type=pushbullet&token=test_token_123&label=Test Pushbullet")
 if echo "$RESULT" | grep -q '"type":"pushbullet"' && echo "$RESULT" | grep -q '"label":"Test Pushbullet"'; then
-    ACCOUNT_ID=$(echo "$RESULT" | python3 -c "import sys, json; print(json.load(sys.stdin)['data']['id'])" 2>/dev/null)
+    ACCOUNT_ID=$(echo "$RESULT" | python3 -c "import sys, json; print(json.load(sys.stdin)['id'])" 2>/dev/null)
     if [ -n "$ACCOUNT_ID" ]; then
         pass "Add pushbullet account (ID: $ACCOUNT_ID)"
     else
@@ -133,7 +132,7 @@ fi
 
 # Test: Verify pushbullet account is immediately verified (no email verification)
 RESULT=$(settings_curl GET "/-/accounts/list")
-if echo "$RESULT" | python3 -c "import sys, json; accounts = json.load(sys.stdin)['data']; pb = next(a for a in accounts if a['type'] == 'pushbullet'); sys.exit(0 if pb['verified'] > 0 else 1)" 2>/dev/null; then
+if echo "$RESULT" | python3 -c "import sys, json; accounts = json.load(sys.stdin); pb = next(a for a in accounts if a['type'] == 'pushbullet'); sys.exit(0 if pb['verified'] > 0 else 1)" 2>/dev/null; then
     pass "Pushbullet account immediately verified"
 else
     fail "Pushbullet account immediately verified" "$RESULT"
@@ -142,7 +141,7 @@ fi
 # Test: Add email account (requires verification)
 RESULT=$(settings_curl POST "/-/accounts/add" -d "type=email&address=test@example.com&label=Test Email")
 if echo "$RESULT" | grep -q '"type":"email"' && echo "$RESULT" | grep -q '"identifier":"test@example.com"'; then
-    EMAIL_ACCOUNT_ID=$(echo "$RESULT" | python3 -c "import sys, json; print(json.load(sys.stdin)['data']['id'])" 2>/dev/null)
+    EMAIL_ACCOUNT_ID=$(echo "$RESULT" | python3 -c "import sys, json; print(json.load(sys.stdin)['id'])" 2>/dev/null)
     if [ -n "$EMAIL_ACCOUNT_ID" ]; then
         pass "Add email account (ID: $EMAIL_ACCOUNT_ID)"
     else
@@ -154,7 +153,7 @@ fi
 
 # Test: Verify email account is NOT verified (pending verification)
 RESULT=$(settings_curl GET "/-/accounts/list")
-if echo "$RESULT" | python3 -c "import sys, json; accounts = json.load(sys.stdin)['data']; email = next(a for a in accounts if a['type'] == 'email'); sys.exit(0 if email['verified'] == 0 else 1)" 2>/dev/null; then
+if echo "$RESULT" | python3 -c "import sys, json; accounts = json.load(sys.stdin); email = next(a for a in accounts if a['type'] == 'email'); sys.exit(0 if email['verified'] == 0 else 1)" 2>/dev/null; then
     pass "Email account pending verification"
 else
     fail "Email account pending verification" "$RESULT"
@@ -186,7 +185,10 @@ fi
 
 # Test: Add account with invalid provider type
 RESULT=$(settings_curl POST "/-/accounts/add" -d "type=invalid_provider&token=test")
-if echo "$RESULT" | grep -q '"error"' || echo "$RESULT" | grep -q 'unknown'; then
+# Matches both shapes an error can take: a JSON body, or the HTML page the
+# server renders for a non-JSON request. Not the message text, which is
+# translated and would break the test in any non-English locale.
+if echo "$RESULT" | grep -qE '"error"|Error 4[0-9][0-9]'; then
     pass "Reject invalid provider type"
 else
     fail "Reject invalid provider type" "$RESULT"
