@@ -51,6 +51,11 @@ def action_notifications_categories_update(a):
 	label_raw = a.input("label")
 	default_raw = a.input("default")
 	label = label_raw if label_raw != None and label_raw != "" else None
+	# The service answers with a bare False for several different reasons, so
+	# a rejected label would otherwise be reported as "not found". Check the
+	# bound it applies here, leaving False to mean what the 404 claims.
+	if label != None and len(label) > 100:
+		return a.error.label(400, "errors.invalid_value_for_key", key="label")
 	default = None
 	if default_raw != None and default_raw != "":
 		default = 1 if default_raw == "1" or default_raw == "true" else 0

@@ -14,7 +14,7 @@ import {
   StepUpDialog,
   getApiBasepath,
   getErrorMessage,
-  isInShell,
+  shellNavigateTop,
   toast,
 } from '@mochi/web'
 import { useExportData } from '@/hooks/use-account'
@@ -70,11 +70,7 @@ function startDownload(filename: string): void {
     '&name=' +
     encodeURIComponent(localExportName()) +
     '&_shell=1'
-  if (isInShell()) {
-    window.parent.postMessage({ type: 'navigate-top', url }, '*')
-  } else {
-    window.location.href = url
-  }
+  shellNavigateTop(url)
 }
 
 // ============================================================================

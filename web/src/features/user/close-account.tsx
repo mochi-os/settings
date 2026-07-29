@@ -19,7 +19,7 @@ import {
   Button,
   Section,
   getErrorMessage,
-  isInShell,
+  shellNavigateTop,
   toast,
   useFormat,
 } from '@mochi/web'
@@ -31,12 +31,7 @@ import { useStepUp } from '@/lib/use-step-up'
 // Bounce to the top-level URL; the user lands on login and, on
 // re-authenticating, reaches the reactivation interstitial.
 function goToLogin() {
-  const url = '/'
-  if (isInShell()) {
-    window.parent.postMessage({ type: 'navigate-top', url }, '*')
-  } else {
-    window.location.href = url
-  }
+  shellNavigateTop('/')
 }
 
 export function CloseAccountSection() {
