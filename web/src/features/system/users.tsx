@@ -183,6 +183,19 @@ function EditUserDialog({
   const [role, setRole] = useState(user.role)
   const updateUser = useUpdateUser()
 
+  // The dialog stays mounted with its row, so useState only seeds once: an
+  // edit abandoned with Cancel came back on the next open, with Save enabled
+  // because hasChanges still compared it against the stored value. Reseeding
+  // on open rather than in onOpenChange, as EditRouteDialog does, because
+  // opening is driven from the row's menu and never reaches the dialog's own
+  // handler.
+  useEffect(() => {
+    if (open) {
+      setUsername(user.username)
+      setRole(user.role)
+    }
+  }, [open, user.username, user.role])
+
   const hasChanges = username !== user.username || role !== user.role
 
   const handleSubmit = (e: React.FormEvent) => {
