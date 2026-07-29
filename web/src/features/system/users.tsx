@@ -560,10 +560,16 @@ export function SystemUsers() {
   const { data: accountData } = useAccountData()
   const currentUsername = accountData?.identity?.username
 
-  // Reset offset when search or sort changes
-  useEffect(() => {
+  // Return to the first page when the query changes. Adjusted during render
+  // rather than in an effect: an effect runs after the render that already
+  // read the old offset, so changing the search while on a later page fired a
+  // request for that page of the new query before correcting to the first.
+  const query = `${debouncedSearch} ${sort} ${order}`
+  const [previous, setPrevious] = useState(query)
+  if (query !== previous) {
+    setPrevious(query)
     setOffset(0)
-  }, [debouncedSearch, sort, order])
+  }
 
   const { data, isLoading, ErrorComponent, refetch } = useSystemUsersData(
     limit,
