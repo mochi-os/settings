@@ -10,32 +10,57 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as errors401RouteImport } from './routes/(errors)/401'
+import { Route as errors403RouteImport } from './routes/(errors)/403'
+import { Route as errors404RouteImport } from './routes/(errors)/404'
+import { Route as errors500RouteImport } from './routes/(errors)/500'
+import { Route as errors503RouteImport } from './routes/(errors)/503'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as AuthenticatedDomainsRouteImport } from './routes/_authenticated/domains'
-import { Route as errors503RouteImport } from './routes/(errors)/503'
-import { Route as errors500RouteImport } from './routes/(errors)/500'
-import { Route as errors404RouteImport } from './routes/(errors)/404'
-import { Route as errors403RouteImport } from './routes/(errors)/403'
-import { Route as errors401RouteImport } from './routes/(errors)/401'
-import { Route as AuthenticatedUserSessionsRouteImport } from './routes/_authenticated/user/sessions'
-import { Route as AuthenticatedUserPreferencesRouteImport } from './routes/_authenticated/user/preferences'
-import { Route as AuthenticatedUserNotificationsRouteImport } from './routes/_authenticated/user/notifications'
-import { Route as AuthenticatedUserLoginRouteImport } from './routes/_authenticated/user/login'
-import { Route as AuthenticatedUserInterestsRouteImport } from './routes/_authenticated/user/interests'
-import { Route as AuthenticatedUserDisplayRouteImport } from './routes/_authenticated/user/display'
-import { Route as AuthenticatedUserAccountsRouteImport } from './routes/_authenticated/user/accounts'
-import { Route as AuthenticatedUserAccountRouteImport } from './routes/_authenticated/user/account'
-import { Route as AuthenticatedSystemUsersRouteImport } from './routes/_authenticated/system/users'
-import { Route as AuthenticatedSystemStatusRouteImport } from './routes/_authenticated/system/status'
-import { Route as AuthenticatedSystemSettingsRouteImport } from './routes/_authenticated/system/settings'
-import { Route as AuthenticatedSystemDocumentsRouteImport } from './routes/_authenticated/system/documents'
-import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
-import { Route as AuthenticatedDocumentTermsRouteImport } from './routes/_authenticated/document/terms'
-import { Route as AuthenticatedDocumentRulesRouteImport } from './routes/_authenticated/document/rules'
 import { Route as AuthenticatedDocumentPrivacyRouteImport } from './routes/_authenticated/document/privacy'
+import { Route as AuthenticatedDocumentRulesRouteImport } from './routes/_authenticated/document/rules'
+import { Route as AuthenticatedDocumentTermsRouteImport } from './routes/_authenticated/document/terms'
+import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
+import { Route as AuthenticatedSystemDocumentsRouteImport } from './routes/_authenticated/system/documents'
+import { Route as AuthenticatedSystemSettingsRouteImport } from './routes/_authenticated/system/settings'
+import { Route as AuthenticatedSystemStatusRouteImport } from './routes/_authenticated/system/status'
+import { Route as AuthenticatedSystemUsersRouteImport } from './routes/_authenticated/system/users'
+import { Route as AuthenticatedUserAccountRouteImport } from './routes/_authenticated/user/account'
+import { Route as AuthenticatedUserAccountsRouteImport } from './routes/_authenticated/user/accounts'
+import { Route as AuthenticatedUserDisplayRouteImport } from './routes/_authenticated/user/display'
+import { Route as AuthenticatedUserInterestsRouteImport } from './routes/_authenticated/user/interests'
+import { Route as AuthenticatedUserLoginRouteImport } from './routes/_authenticated/user/login'
+import { Route as AuthenticatedUserNotificationsRouteImport } from './routes/_authenticated/user/notifications'
+import { Route as AuthenticatedUserPreferencesRouteImport } from './routes/_authenticated/user/preferences'
+import { Route as AuthenticatedUserSessionsRouteImport } from './routes/_authenticated/user/sessions'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const errors401Route = errors401RouteImport.update({
+  id: '/(errors)/401',
+  path: '/401',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const errors403Route = errors403RouteImport.update({
+  id: '/(errors)/403',
+  path: '/403',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const errors404Route = errors404RouteImport.update({
+  id: '/(errors)/404',
+  path: '/404',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const errors500Route = errors500RouteImport.update({
+  id: '/(errors)/500',
+  path: '/500',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const errors503Route = errors503RouteImport.update({
+  id: '/(errors)/503',
+  path: '/503',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
@@ -48,112 +73,10 @@ const AuthenticatedDomainsRoute = AuthenticatedDomainsRouteImport.update({
   path: '/domains',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const errors503Route = errors503RouteImport.update({
-  id: '/(errors)/503',
-  path: '/503',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const errors500Route = errors500RouteImport.update({
-  id: '/(errors)/500',
-  path: '/500',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const errors404Route = errors404RouteImport.update({
-  id: '/(errors)/404',
-  path: '/404',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const errors403Route = errors403RouteImport.update({
-  id: '/(errors)/403',
-  path: '/403',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const errors401Route = errors401RouteImport.update({
-  id: '/(errors)/401',
-  path: '/401',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthenticatedUserSessionsRoute =
-  AuthenticatedUserSessionsRouteImport.update({
-    id: '/user/sessions',
-    path: '/user/sessions',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedUserPreferencesRoute =
-  AuthenticatedUserPreferencesRouteImport.update({
-    id: '/user/preferences',
-    path: '/user/preferences',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedUserNotificationsRoute =
-  AuthenticatedUserNotificationsRouteImport.update({
-    id: '/user/notifications',
-    path: '/user/notifications',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedUserLoginRoute = AuthenticatedUserLoginRouteImport.update({
-  id: '/user/login',
-  path: '/user/login',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const AuthenticatedUserInterestsRoute =
-  AuthenticatedUserInterestsRouteImport.update({
-    id: '/user/interests',
-    path: '/user/interests',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedUserDisplayRoute =
-  AuthenticatedUserDisplayRouteImport.update({
-    id: '/user/display',
-    path: '/user/display',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedUserAccountsRoute =
-  AuthenticatedUserAccountsRouteImport.update({
-    id: '/user/accounts',
-    path: '/user/accounts',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedUserAccountRoute =
-  AuthenticatedUserAccountRouteImport.update({
-    id: '/user/account',
-    path: '/user/account',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedSystemUsersRoute =
-  AuthenticatedSystemUsersRouteImport.update({
-    id: '/system/users',
-    path: '/system/users',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedSystemStatusRoute =
-  AuthenticatedSystemStatusRouteImport.update({
-    id: '/system/status',
-    path: '/system/status',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedSystemSettingsRoute =
-  AuthenticatedSystemSettingsRouteImport.update({
-    id: '/system/settings',
-    path: '/system/settings',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedSystemDocumentsRoute =
-  AuthenticatedSystemDocumentsRouteImport.update({
-    id: '/system/documents',
-    path: '/system/documents',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedErrorsErrorRoute =
-  AuthenticatedErrorsErrorRouteImport.update({
-    id: '/errors/$error',
-    path: '/errors/$error',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedDocumentTermsRoute =
-  AuthenticatedDocumentTermsRouteImport.update({
-    id: '/document/terms',
-    path: '/document/terms',
+const AuthenticatedDocumentPrivacyRoute =
+  AuthenticatedDocumentPrivacyRouteImport.update({
+    id: '/document/privacy',
+    path: '/document/privacy',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedDocumentRulesRoute =
@@ -162,21 +85,98 @@ const AuthenticatedDocumentRulesRoute =
     path: '/document/rules',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedDocumentPrivacyRoute =
-  AuthenticatedDocumentPrivacyRouteImport.update({
-    id: '/document/privacy',
-    path: '/document/privacy',
+const AuthenticatedDocumentTermsRoute =
+  AuthenticatedDocumentTermsRouteImport.update({
+    id: '/document/terms',
+    path: '/document/terms',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedErrorsErrorRoute =
+  AuthenticatedErrorsErrorRouteImport.update({
+    id: '/errors/$error',
+    path: '/errors/$error',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSystemDocumentsRoute =
+  AuthenticatedSystemDocumentsRouteImport.update({
+    id: '/system/documents',
+    path: '/system/documents',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSystemSettingsRoute =
+  AuthenticatedSystemSettingsRouteImport.update({
+    id: '/system/settings',
+    path: '/system/settings',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSystemStatusRoute =
+  AuthenticatedSystemStatusRouteImport.update({
+    id: '/system/status',
+    path: '/system/status',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSystemUsersRoute =
+  AuthenticatedSystemUsersRouteImport.update({
+    id: '/system/users',
+    path: '/system/users',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedUserAccountRoute =
+  AuthenticatedUserAccountRouteImport.update({
+    id: '/user/account',
+    path: '/user/account',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedUserAccountsRoute =
+  AuthenticatedUserAccountsRouteImport.update({
+    id: '/user/accounts',
+    path: '/user/accounts',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedUserDisplayRoute =
+  AuthenticatedUserDisplayRouteImport.update({
+    id: '/user/display',
+    path: '/user/display',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedUserInterestsRoute =
+  AuthenticatedUserInterestsRouteImport.update({
+    id: '/user/interests',
+    path: '/user/interests',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedUserLoginRoute = AuthenticatedUserLoginRouteImport.update({
+  id: '/user/login',
+  path: '/user/login',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedUserNotificationsRoute =
+  AuthenticatedUserNotificationsRouteImport.update({
+    id: '/user/notifications',
+    path: '/user/notifications',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedUserPreferencesRoute =
+  AuthenticatedUserPreferencesRouteImport.update({
+    id: '/user/preferences',
+    path: '/user/preferences',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedUserSessionsRoute =
+  AuthenticatedUserSessionsRouteImport.update({
+    id: '/user/sessions',
+    path: '/user/sessions',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof AuthenticatedIndexRoute
   '/401': typeof errors401Route
   '/403': typeof errors403Route
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
   '/domains': typeof AuthenticatedDomainsRoute
-  '/': typeof AuthenticatedIndexRoute
   '/document/privacy': typeof AuthenticatedDocumentPrivacyRoute
   '/document/rules': typeof AuthenticatedDocumentRulesRoute
   '/document/terms': typeof AuthenticatedDocumentTermsRoute
@@ -249,13 +249,13 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/401'
     | '/403'
     | '/404'
     | '/500'
     | '/503'
     | '/domains'
-    | '/'
     | '/document/privacy'
     | '/document/rules'
     | '/document/terms'
@@ -339,8 +339,43 @@ declare module '@tanstack/react-router' {
     '/_authenticated': {
       id: '/_authenticated'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(errors)/401': {
+      id: '/(errors)/401'
+      path: '/401'
+      fullPath: '/401'
+      preLoaderRoute: typeof errors401RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(errors)/403': {
+      id: '/(errors)/403'
+      path: '/403'
+      fullPath: '/403'
+      preLoaderRoute: typeof errors403RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(errors)/404': {
+      id: '/(errors)/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof errors404RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(errors)/500': {
+      id: '/(errors)/500'
+      path: '/500'
+      fullPath: '/500'
+      preLoaderRoute: typeof errors500RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(errors)/503': {
+      id: '/(errors)/503'
+      path: '/503'
+      fullPath: '/503'
+      preLoaderRoute: typeof errors503RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/': {
@@ -357,137 +392,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDomainsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/(errors)/503': {
-      id: '/(errors)/503'
-      path: '/503'
-      fullPath: '/503'
-      preLoaderRoute: typeof errors503RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(errors)/500': {
-      id: '/(errors)/500'
-      path: '/500'
-      fullPath: '/500'
-      preLoaderRoute: typeof errors500RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(errors)/404': {
-      id: '/(errors)/404'
-      path: '/404'
-      fullPath: '/404'
-      preLoaderRoute: typeof errors404RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(errors)/403': {
-      id: '/(errors)/403'
-      path: '/403'
-      fullPath: '/403'
-      preLoaderRoute: typeof errors403RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(errors)/401': {
-      id: '/(errors)/401'
-      path: '/401'
-      fullPath: '/401'
-      preLoaderRoute: typeof errors401RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/user/sessions': {
-      id: '/_authenticated/user/sessions'
-      path: '/user/sessions'
-      fullPath: '/user/sessions'
-      preLoaderRoute: typeof AuthenticatedUserSessionsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/user/preferences': {
-      id: '/_authenticated/user/preferences'
-      path: '/user/preferences'
-      fullPath: '/user/preferences'
-      preLoaderRoute: typeof AuthenticatedUserPreferencesRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/user/notifications': {
-      id: '/_authenticated/user/notifications'
-      path: '/user/notifications'
-      fullPath: '/user/notifications'
-      preLoaderRoute: typeof AuthenticatedUserNotificationsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/user/login': {
-      id: '/_authenticated/user/login'
-      path: '/user/login'
-      fullPath: '/user/login'
-      preLoaderRoute: typeof AuthenticatedUserLoginRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/user/interests': {
-      id: '/_authenticated/user/interests'
-      path: '/user/interests'
-      fullPath: '/user/interests'
-      preLoaderRoute: typeof AuthenticatedUserInterestsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/user/display': {
-      id: '/_authenticated/user/display'
-      path: '/user/display'
-      fullPath: '/user/display'
-      preLoaderRoute: typeof AuthenticatedUserDisplayRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/user/accounts': {
-      id: '/_authenticated/user/accounts'
-      path: '/user/accounts'
-      fullPath: '/user/accounts'
-      preLoaderRoute: typeof AuthenticatedUserAccountsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/user/account': {
-      id: '/_authenticated/user/account'
-      path: '/user/account'
-      fullPath: '/user/account'
-      preLoaderRoute: typeof AuthenticatedUserAccountRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/system/users': {
-      id: '/_authenticated/system/users'
-      path: '/system/users'
-      fullPath: '/system/users'
-      preLoaderRoute: typeof AuthenticatedSystemUsersRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/system/status': {
-      id: '/_authenticated/system/status'
-      path: '/system/status'
-      fullPath: '/system/status'
-      preLoaderRoute: typeof AuthenticatedSystemStatusRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/system/settings': {
-      id: '/_authenticated/system/settings'
-      path: '/system/settings'
-      fullPath: '/system/settings'
-      preLoaderRoute: typeof AuthenticatedSystemSettingsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/system/documents': {
-      id: '/_authenticated/system/documents'
-      path: '/system/documents'
-      fullPath: '/system/documents'
-      preLoaderRoute: typeof AuthenticatedSystemDocumentsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/errors/$error': {
-      id: '/_authenticated/errors/$error'
-      path: '/errors/$error'
-      fullPath: '/errors/$error'
-      preLoaderRoute: typeof AuthenticatedErrorsErrorRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/document/terms': {
-      id: '/_authenticated/document/terms'
-      path: '/document/terms'
-      fullPath: '/document/terms'
-      preLoaderRoute: typeof AuthenticatedDocumentTermsRouteImport
+    '/_authenticated/document/privacy': {
+      id: '/_authenticated/document/privacy'
+      path: '/document/privacy'
+      fullPath: '/document/privacy'
+      preLoaderRoute: typeof AuthenticatedDocumentPrivacyRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/document/rules': {
@@ -497,11 +406,102 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDocumentRulesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/document/privacy': {
-      id: '/_authenticated/document/privacy'
-      path: '/document/privacy'
-      fullPath: '/document/privacy'
-      preLoaderRoute: typeof AuthenticatedDocumentPrivacyRouteImport
+    '/_authenticated/document/terms': {
+      id: '/_authenticated/document/terms'
+      path: '/document/terms'
+      fullPath: '/document/terms'
+      preLoaderRoute: typeof AuthenticatedDocumentTermsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/errors/$error': {
+      id: '/_authenticated/errors/$error'
+      path: '/errors/$error'
+      fullPath: '/errors/$error'
+      preLoaderRoute: typeof AuthenticatedErrorsErrorRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/system/documents': {
+      id: '/_authenticated/system/documents'
+      path: '/system/documents'
+      fullPath: '/system/documents'
+      preLoaderRoute: typeof AuthenticatedSystemDocumentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/system/settings': {
+      id: '/_authenticated/system/settings'
+      path: '/system/settings'
+      fullPath: '/system/settings'
+      preLoaderRoute: typeof AuthenticatedSystemSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/system/status': {
+      id: '/_authenticated/system/status'
+      path: '/system/status'
+      fullPath: '/system/status'
+      preLoaderRoute: typeof AuthenticatedSystemStatusRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/system/users': {
+      id: '/_authenticated/system/users'
+      path: '/system/users'
+      fullPath: '/system/users'
+      preLoaderRoute: typeof AuthenticatedSystemUsersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/user/account': {
+      id: '/_authenticated/user/account'
+      path: '/user/account'
+      fullPath: '/user/account'
+      preLoaderRoute: typeof AuthenticatedUserAccountRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/user/accounts': {
+      id: '/_authenticated/user/accounts'
+      path: '/user/accounts'
+      fullPath: '/user/accounts'
+      preLoaderRoute: typeof AuthenticatedUserAccountsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/user/display': {
+      id: '/_authenticated/user/display'
+      path: '/user/display'
+      fullPath: '/user/display'
+      preLoaderRoute: typeof AuthenticatedUserDisplayRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/user/interests': {
+      id: '/_authenticated/user/interests'
+      path: '/user/interests'
+      fullPath: '/user/interests'
+      preLoaderRoute: typeof AuthenticatedUserInterestsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/user/login': {
+      id: '/_authenticated/user/login'
+      path: '/user/login'
+      fullPath: '/user/login'
+      preLoaderRoute: typeof AuthenticatedUserLoginRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/user/notifications': {
+      id: '/_authenticated/user/notifications'
+      path: '/user/notifications'
+      fullPath: '/user/notifications'
+      preLoaderRoute: typeof AuthenticatedUserNotificationsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/user/preferences': {
+      id: '/_authenticated/user/preferences'
+      path: '/user/preferences'
+      fullPath: '/user/preferences'
+      preLoaderRoute: typeof AuthenticatedUserPreferencesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/user/sessions': {
+      id: '/_authenticated/user/sessions'
+      path: '/user/sessions'
+      fullPath: '/user/sessions'
+      preLoaderRoute: typeof AuthenticatedUserSessionsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
   }
