@@ -840,6 +840,7 @@ function DomainDetails({
     null
   )
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+  const [showTlsDialog, setShowTlsDialog] = useState(false)
 
   const handleToggleVerified = (checked: boolean) => {
     updateDomain.mutate(
@@ -851,7 +852,7 @@ function DomainDetails({
     )
   }
 
-  const handleToggleTls = (checked: boolean) => {
+  const setTls = (checked: boolean) => {
     updateDomain.mutate(
       { domain: domain.domain, tls: checked },
       {
@@ -859,6 +860,19 @@ function DomainDetails({
         onError: (error) => toast.error(getErrorMessage(error, t`Failed to update domain`)),
       }
     )
+  }
+
+  // Switching automatic certificates off is routine when a certificate was
+  // installed by hand — that is the reason to do it — and destructive when one
+  // was not, because nothing is then left to present and the domain stops
+  // answering on both ports. The server reports which case this is, so ask
+  // only in the second.
+  const handleToggleTls = (checked: boolean) => {
+    if (!checked && !domain.certificate) {
+      setShowTlsDialog(true)
+      return
+    }
+    setTls(checked)
   }
 
   const handleDeleteRoute = (path: string) => {
@@ -919,7 +933,11 @@ function DomainDetails({
                     <Trans>Unverified</Trans>
                   </Badge>
                 )}
-                {domain.tls ? (
+                {/* Reported by the server, which is the only side that can
+                    answer it: besides the automatic setting and any manual
+                    certificate, it turns on the verification policy and
+                    whether ACME is configured at all. */}
+                {domain.https ? (
                   <Badge variant='outline' className='text-xs'>
                     <Lock className='me-1 h-3 w-3' />
                     {/* jsx-text-ok: protocol acronym, verbatim in every locale */}
@@ -997,12 +1015,7 @@ function DomainDetails({
                 </div>
               )}
               <div className='flex items-center justify-between'>
-                <div className='space-y-0.5'>
-                  <Label><Trans>TLS enabled</Trans></Label>
-                  <p className='text-muted-foreground text-xs'>
-                    <Trans>Automatic HTTPS certificates</Trans>
-                  </p>
-                </div>
+                <Label><Trans>Automatic certificates</Trans></Label>
                 <Switch
                   checked={domain.tls === 1}
                   onCheckedChange={handleToggleTls}
@@ -1143,6 +1156,19 @@ function DomainDetails({
           )}
         </div>
       )}
+      <ConfirmDialog
+        open={showTlsDialog}
+        onOpenChange={setShowTlsDialog}
+        title={t`Turn off automatic certificates?`}
+        desc={t`No certificate has been installed for "${domain.domain}", so it will stop serving over HTTPS until you install one.`}
+        confirmText={t`Turn off`}
+        destructive
+        handleConfirm={() => {
+          setTls(false)
+          setShowTlsDialog(false)
+        }}
+        isLoading={updateDomain.isPending}
+      />
     </div>
   )
 }

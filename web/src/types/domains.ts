@@ -8,6 +8,14 @@ export interface Domain {
   verified: number
   token: string
   tls: number
+  // Whether a certificate was installed by hand for this domain. It overrides
+  // tls entirely, so this is what decides whether switching automatic
+  // certificates off costs anything.
+  certificate: boolean
+  // Whether the server could actually present a certificate for this domain
+  // today. Not derivable here: it also depends on the verification policy and
+  // on ACME being configured, neither of which the client sees.
+  https: boolean
   created: number
   updated: number
 }
