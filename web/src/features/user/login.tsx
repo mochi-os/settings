@@ -802,13 +802,21 @@ function OauthSection() {
     (p) => enabled?.[p] && !linkedSet.has(p)
   )
 
-  const handleLink = async (provider: OAuthProvider) => {
-    try {
-      const { url } = await oauthBegin.mutateAsync({ provider, link: true })
-      shellNavigateTop(url)
-    } catch (error) {
-      toast.error(getErrorMessage(error, t`Could not start linking`))
-    }
+  const handleLink = (provider: OAuthProvider) => {
+    // Re-authenticate first: linking adds a way to sign in, and it outlives
+    // every later passphrase, passkey and TOTP change.
+    stepUp.request(async (token) => {
+      try {
+        const { url } = await oauthBegin.mutateAsync({
+          provider,
+          link: true,
+          token,
+        })
+        shellNavigateTop(url)
+      } catch (error) {
+        toast.error(getErrorMessage(error, t`Could not start linking`))
+      }
+    })
   }
 
   const handleUnlink = (provider: OAuthProvider) => {

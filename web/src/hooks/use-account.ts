@@ -297,13 +297,20 @@ export function useOauthBegin() {
     mutationFn: ({
       provider,
       link,
+      token,
     }: {
       provider: OAuthProvider
       link?: boolean
+      // Step-up proof, required by the server when link is true.
+      token?: string
     }) =>
       requestHelpers.post<OAuthBeginResponse>(
         endpoints.user.authOauthBegin(provider),
-        { link: link ?? false, target: window.location.pathname },
+        {
+          link: link ?? false,
+          target: window.location.pathname,
+          token: token ?? '',
+        },
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
   })
