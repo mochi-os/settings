@@ -111,6 +111,19 @@ def action_system_users_update(a):
     if role != None and role not in user_roles:
         a.error.label(400, "errors.invalid_value_for_key", key="role")
         return
+    # Core refuses this too, but a Starlark API refusal aborts the handler and
+    # reaches the administrator as a bare 500. Answer it here so they are told
+    # what happened; core stays the invariant for every other caller.
+    if role != None and role != "administrator":
+        target = mochi.user.get(uid)
+        if target and target["role"] == "administrator":
+            administrators = 0
+            for other in mochi.user.list():
+                if other["role"] == "administrator" and other["status"] == "active":
+                    administrators += 1
+            if administrators <= 1:
+                a.error.label(400, "errors.cannot_demote_last_administrator")
+                return
     mochi.user.update(uid, username, role)
     a.json({"ok": True})
 

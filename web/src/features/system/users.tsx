@@ -282,6 +282,7 @@ function SessionsDialog({
   const { formatTimestamp } = useFormat()
   const { data, isLoading, refetch } = useUserSessions(user.uid, open)
   const revokeSession = useRevokeUserSessions()
+  const [revokeAllOpen, setRevokeAllOpen] = useState(false)
 
   const handleRevoke = (session_id?: string) => {
     revokeSession.mutate(
@@ -293,6 +294,7 @@ function SessionsDialog({
               ? t`Session revoked`
               : plural(result.revoked, { one: 'Revoked 1 session', other: 'Revoked # sessions' })
           )
+          setRevokeAllOpen(false)
           refetch()
         },
         onError: (error) => {
@@ -371,7 +373,7 @@ function SessionsDialog({
           {data?.sessions && data.sessions.length > 0 && (
             <Button
               variant='outline'
-              onClick={() => handleRevoke()}
+              onClick={() => setRevokeAllOpen(true)}
               disabled={revokeSession.isPending}
             >
               {revokeSession.isPending && (
@@ -382,6 +384,26 @@ function SessionsDialog({
           )}
         </ResponsiveDialogFooter>
       </ResponsiveDialogContent>
+
+      <ConfirmDialog
+        open={revokeAllOpen}
+        onOpenChange={setRevokeAllOpen}
+        title={t`Revoke all sessions?`}
+        desc={t`"${user.username}" will be signed out on every device and will have to sign in again.`}
+        confirmText={
+          revokeSession.isPending ? (
+            <>
+              <Loader2 className='me-2 h-4 w-4 animate-spin' />
+              <Trans>Revoking...</Trans>
+            </>
+          ) : (
+            t`Revoke all`
+          )
+        }
+        destructive
+        handleConfirm={() => handleRevoke()}
+        isLoading={revokeSession.isPending}
+      />
     </ResponsiveDialog>
   )
 }
@@ -392,6 +414,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
   const [editOpen, setEditOpen] = useState(false)
   const [sessionsOpen, setSessionsOpen] = useState(false)
   const [deleteOpen, setDeleteOpen] = useState(false)
+  const [suspendOpen, setSuspendOpen] = useState(false)
   const deleteUser = useDeleteUser()
   const suspendUser = useSuspendUser()
   const activateUser = useActivateUser()
@@ -417,6 +440,7 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
     action.mutate(user.uid, {
       onSuccess: () => {
         toast.success(isSuspended ? t`Suspension removed` : t`User suspended`)
+        setSuspendOpen(false)
         onUpdate()
       },
       onError: (error) => {
@@ -464,7 +488,9 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
               <Trans>Manage sessions</Trans>
             </DropdownMenuItem>
             {!isSelf && (
-              <DropdownMenuItem onClick={handleToggleStatus}>
+              <DropdownMenuItem
+                onClick={isSuspended ? handleToggleStatus : () => setSuspendOpen(true)}
+              >
                 {isSuspended ? (
                   <>
                     <UserCheck className='me-2 h-4 w-4' />
@@ -497,6 +523,26 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
           user={user}
           open={sessionsOpen}
           onOpenChange={setSessionsOpen}
+        />
+
+        <ConfirmDialog
+          open={suspendOpen}
+          onOpenChange={setSuspendOpen}
+          title={t`Suspend user?`}
+          desc={t`"${user.username}" will be signed out and unable to sign in again until the suspension is removed.`}
+          confirmText={
+            suspendUser.isPending ? (
+              <>
+                <Loader2 className='me-2 h-4 w-4 animate-spin' />
+                <Trans>Suspending...</Trans>
+              </>
+            ) : (
+              t`Suspend`
+            )
+          }
+          destructive
+          handleConfirm={handleToggleStatus}
+          isLoading={suspendUser.isPending}
         />
 
         <ConfirmDialog
