@@ -29,7 +29,15 @@ export function useStepUp(): {
   const dialog = (
     <StepUpDialog
       open={open}
-      onOpenChange={setOpen}
+      onOpenChange={(next) => {
+        // Drop the pending action when the dialog is dismissed. The OAuth
+        // factor polls for up to two minutes after the popup opens, so a
+        // ceremony finished after the user gave up would otherwise still fire
+        // whatever run.current held - by then possibly a different action they
+        // requested in the meantime.
+        if (!next) run.current = null
+        setOpen(next)
+      }}
       title={t`Confirm it's you`}
       description={t`This is a security change to your account. Verify it's you to continue.`}
       client={stepUpClient}

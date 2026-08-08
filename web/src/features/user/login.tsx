@@ -669,7 +669,10 @@ function RecoveryCodesSection() {
           <div className='flex gap-2'>
             <Button variant='outline' size='sm' onClick={() => {
               void shellClipboardWrite(showCodes.join('\n')).then((ok) => {
+                // Say so on failure too. Recovery codes are shown once, and a
+                // silent no-op left the user believing they had them saved.
                 if (ok) toast.success(t`Codes copied`)
+                else toast.error(t`Could not copy the codes. Select and copy them manually.`)
               })
             }}><Copy className='size-3.5' /><Trans>Copy all</Trans></Button>
             <Button variant='ghost' size='sm' onClick={() => setShowCodes(null)}><Trans>Done</Trans></Button>
@@ -939,9 +942,12 @@ export function UserLogin() {
     // and is silently dropped.
     setTimeout(() => {
       if (linked) {
-        toast.success(
-          t`Linked ${oauthProviderLabel[linked as OAuthProvider] ?? linked}`
-        )
+        // Only a known provider is named. `linked` is a query parameter, so
+        // falling back to it put attacker-chosen text inside a toast the page
+        // presents as its own result - React escapes it, so a sentence they
+        // get to write rather than script they get to run.
+        const label = oauthProviderLabel[linked as OAuthProvider]
+        toast.success(label ? t`Linked ${label}` : t`Account linked`)
       } else if (errored === 'already_linked') {
         toast.error(t`That account is already linked to another user`)
       } else if (errored === 'email_exists') {

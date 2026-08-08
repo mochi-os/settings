@@ -150,11 +150,11 @@ export function UserSessions() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {sortedSessions.map((session, index) => (
+              {sortedSessions.map((session) => (
                 <SessionRow
                   key={session.id}
                   session={session}
-                  isCurrent={index === 0 && session.accessed > 0}
+                  isCurrent={session.current === true}
                 />
               ))}
             </TableBody>

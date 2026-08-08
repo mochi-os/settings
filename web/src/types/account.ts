@@ -18,6 +18,9 @@ export interface Session {
   created: number
   accessed: number
   expires: number
+  // Set by the server, which is the only side that can tell: the session
+  // cookie is HttpOnly, so the browser cannot hash its own code to compare.
+  current?: boolean
 }
 
 export interface AccountData {
