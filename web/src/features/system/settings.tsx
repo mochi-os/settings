@@ -50,8 +50,6 @@ function useSettingLabels(): Record<string, string> {
     auth_recovery: t`Login using recovery code`,
     auth_oauth: t`Login using OAuth 2.0`,
     default_theme: t`Default theme`,
-    help_dev_project: t`Project for developer help requests`,
-    help_users_forum: t`Forum for user help requests`,
     login_app: t`App that handles signing in`,
     domains_verification: t`Require domain verification`,
     email_from: t`Default from address for system emails`,
