@@ -54,6 +54,15 @@ def action_accounts_add(a):
                 return a.error.label(400, "errors.value_too_long", maximum=4096)
             fields[key] = val
 
+    # Same reason as the type check above: core refuses a missing required
+    # field with an error, Starlark has no way to catch it, and the action dies
+    # as a 500 that also mails the operator - for a user who left a box empty.
+    # providers() already reports which fields are required, so answer a 400
+    # naming the field instead.
+    for field in provider.get("fields") or []:
+        if field.get("required") and not fields.get(field.get("name")):
+            return a.error.label(400, "errors.field_required", field=field.get("label") or field.get("name"))
+
     add_to_existing = a.input("add_to_existing", "1")
     add_to_existing = add_to_existing == "1" or add_to_existing == "true"
 

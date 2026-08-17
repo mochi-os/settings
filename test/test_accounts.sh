@@ -475,6 +475,38 @@ print('yes' if hit else 'no')
 " 2>/dev/null
 }
 
+# A required field left empty must come back as a 400 naming the field, not as
+# a 500. mochi.account.add refuses a missing required field with an error,
+# Starlark cannot catch it, so the action died and mailed the operator - for a
+# user who left a box blank. The email provider requires "address".
+RESULT=$(settings_curl POST "/-/accounts/add" -d "type=email&label=No%20address")
+CODE=$(echo "$RESULT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('code') or d.get('error') or '')" 2>/dev/null || true)
+if echo "$RESULT" | grep -qi "required"; then
+    pass "Adding an account with a required field empty is refused, not a server error"
+else
+    fail "Adding an account with a required field empty is refused, not a server error" "$(echo "$RESULT" | head -c 120)"
+fi
+if echo "$RESULT" | grep -qi "server error\|500"; then
+    fail "The empty required field does not reach core as a 500" "$(echo "$RESULT" | head -c 120)"
+else
+    pass "The empty required field does not reach core as a 500"
+fi
+
+# Control: an add whose required field IS present still succeeds, so the two
+# assertions above are not passing merely because every add is refused.
+# Deliberately pushbullet (required: token) rather than email: adding an email
+# account sends a verification message and spends the per-user verification
+# rate limit, which on a repeated run fails the suite's own "Add email account"
+# test and everything downstream of it.
+RESULT=$(settings_curl POST "/-/accounts/add" -d "type=pushbullet&token=o.requiredfieldcontrol")
+FILLED_ID=$(echo "$RESULT" | python3 -c "import sys, json; print(json.load(sys.stdin).get('id',''))" 2>/dev/null || true)
+if [ -n "$FILLED_ID" ]; then
+    pass "control: an add with the required field present still succeeds"
+    settings_curl POST "/-/accounts/remove" -d "id=$FILLED_ID" > /dev/null 2>&1
+else
+    fail "control: an add with the required field present still succeeds" "$(echo "$RESULT" | head -c 120)"
+fi
+
 RESULT=$(settings_curl POST "/-/accounts/add" -d "type=pushbullet&token=o.testwiring&add_to_existing=1")
 WIRED_ID=$(echo "$RESULT" | python3 -c "import sys, json; print(json.load(sys.stdin).get('id',''))" 2>/dev/null || true)
 if [ -n "$WIRED_ID" ]; then
