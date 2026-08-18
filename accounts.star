@@ -54,14 +54,27 @@ def action_accounts_add(a):
                 return a.error.label(400, "errors.value_too_long", maximum=4096)
             fields[key] = val
 
-    # Same reason as the type check above: core refuses a missing required
-    # field with an error, Starlark has no way to catch it, and the action dies
-    # as a 500 that also mails the operator - for a user who left a box empty.
-    # providers() already reports which fields are required, so answer a 400
-    # naming the field instead.
+    # Same reason as the type check above: core refuses a bad field with an
+    # error, Starlark has no way to catch it, and the action dies as a 500 that
+    # also mails the operator - for a user who left a box empty or mistyped an
+    # address. providers() reports which fields are required and what each one
+    # holds, so answer a 400 naming the field instead.
     for field in provider.get("fields") or []:
-        if field.get("required") and not fields.get(field.get("name")):
-            return a.error.label(400, "errors.field_required", field=field.get("label") or field.get("name"))
+        name = field.get("name")
+        shown = field.get("label") or name
+        value = fields.get(name)
+        if field.get("required") and not value:
+            return a.error.label(400, "errors.field_required", field=shown)
+        # "email" is core's own email_valid behind mochi.text.valid, so this
+        # cannot accept an address the add would then reject, or the reverse.
+        if value and field.get("type") == "email" and not mochi.text.valid(value, "email"):
+            return a.error.label(400, "errors.field_invalid", field=shown)
+
+    # The browser provider declares no fields at all - its endpoint comes from
+    # the JavaScript push subscription rather than a form - so the loop above
+    # cannot see it, and core has its own refusal for a missing one.
+    if type == "browser" and not fields.get("endpoint"):
+        return a.error.label(400, "errors.push_subscription_missing")
 
     add_to_existing = a.input("add_to_existing", "1")
     add_to_existing = add_to_existing == "1" or add_to_existing == "true"

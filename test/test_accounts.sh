@@ -194,12 +194,40 @@ else
     fail "Reject invalid provider type" "$RESULT"
 fi
 
-# Test: Add account with invalid email address
+# Test: Add account with invalid email address. A required field that is
+# PRESENT but malformed is refused by core, which Starlark cannot catch, so the
+# action died as a 500 and mailed the operator for a user who mistyped their
+# address; the app now validates the format of any field the provider declares
+# as an email, using core's own validator. Matched on the status rather than the
+# message, which is translated - the old assertion looked for the word "invalid"
+# and broke the moment the refusal became a clean 400 saying "is not valid".
 RESULT=$(settings_curl POST "/-/accounts/add" -d "type=email&address=not-an-email&label=Bad Email")
-if echo "$RESULT" | grep -q '"error"' || echo "$RESULT" | grep -q 'invalid'; then
+if echo "$RESULT" | grep -qE '"error"|Error 4[0-9][0-9]'; then
     pass "Reject invalid email address"
 else
     fail "Reject invalid email address" "$RESULT"
+fi
+if echo "$RESULT" | grep -qE 'Error 5[0-9][0-9]|server_error'; then
+    fail "The malformed address does not reach core as a 500" "$(echo "$RESULT" | head -c 120)"
+else
+    pass "The malformed address does not reach core as a 500"
+fi
+
+# Test: Add a browser account with no push subscription. The browser provider
+# declares no fields, so the required-field loop cannot see its endpoint, and
+# core has a separate refusal for a missing one - another 500 and another email.
+# Any client that posts type=browser without the JavaScript push subscription
+# reaches it.
+RESULT=$(settings_curl POST "/-/accounts/add" -d "type=browser&label=No endpoint")
+if echo "$RESULT" | grep -qE '"error"|Error 4[0-9][0-9]'; then
+    pass "Reject a browser account with no push subscription"
+else
+    fail "Reject a browser account with no push subscription" "$RESULT"
+fi
+if echo "$RESULT" | grep -qE 'Error 5[0-9][0-9]|server_error'; then
+    fail "The missing push subscription does not reach core as a 500" "$(echo "$RESULT" | head -c 120)"
+else
+    pass "The missing push subscription does not reach core as a 500"
 fi
 
 # ============================================================================
@@ -480,7 +508,6 @@ print('yes' if hit else 'no')
 # Starlark cannot catch it, so the action died and mailed the operator - for a
 # user who left a box blank. The email provider requires "address".
 RESULT=$(settings_curl POST "/-/accounts/add" -d "type=email&label=No%20address")
-CODE=$(echo "$RESULT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('code') or d.get('error') or '')" 2>/dev/null || true)
 if echo "$RESULT" | grep -qi "required"; then
     pass "Adding an account with a required field empty is refused, not a server error"
 else
@@ -493,7 +520,11 @@ else
 fi
 
 # Control: an add whose required field IS present still succeeds, so the two
-# assertions above are not passing merely because every add is refused.
+# assertions above are not passing merely because every add is refused. It also
+# controls the two format checks above: pushbullet's token is not an email
+# address and pushbullet sends no endpoint, so an add that still succeeds shows
+# both new checks are scoped to the field type and the provider they name,
+# rather than refusing every account.
 # Deliberately pushbullet (required: token) rather than email: adding an email
 # account sends a verification message and spends the per-user verification
 # rate limit, which on a repeated run fails the suite's own "Add email account"
