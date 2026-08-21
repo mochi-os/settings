@@ -4,13 +4,9 @@
 # This file is part of Mochi, licensed under the GNU AGPL v3 with the
 # Mochi Application Interface Exception - see license.txt and license-exception.md.
 
-# Notifications API Test Suite
-# Exercises the settings app's -/notifications/* proxy actions and asserts the
-# response shape as well as the behaviour. The shape matters on its own: these
-# nine actions answered {"data": ...} while the app's other ~88 answered the
-# payload directly, and nothing noticed until assertions written against the
-# envelope were finally re-run. A payload here must never be wrapped again.
-# Usage: ./test_notifications.sh
+# Notifications API Test Suite: the settings app's -/notifications/* proxy
+# actions. Asserts shape too: payloads are returned directly, never wrapped in
+# {"data"}. Usage: ./test_notifications.sh
 
 set -e
 

@@ -59,10 +59,8 @@ def action_domains(a):
         a.json({"domains": domains, "count": len(domains), "admin": True})
     else:
         delegations = mochi.domain.delegation.list("", a.user.id)
-        # A delegate normally holds several paths on the same domain, so look
-        # each domain up once. The misses are remembered too: keying only on
-        # the hits meant a domain that no longer resolves was asked for again
-        # on every one of its delegations.
+        # Look each domain up once, remembering misses too, since a delegate
+        # usually holds several paths on the same domain.
         domain_map = {}
         for d in delegations:
             if d["domain"] not in domain_map:
@@ -267,9 +265,7 @@ def action_domains_entities(a):
 
 def enrich_routes_with_names(routes):
     """Add app_name or entity_name to routes based on method"""
-    # A domain routes many paths at the same handful of apps and entities, so
-    # resolve each distinct target once per request. The cache holds the misses
-    # too - an app that no longer exists is worth not asking about repeatedly.
+    # Resolve each distinct target once per request, caching misses too.
     names = {}
     result = []
     for route in routes:

@@ -5,11 +5,9 @@
 # Mochi Application Interface Exception - see license.txt and license-exception.md.
 
 def action_document_get(a):
-    """Return one of the server documents (rules / terms / privacy) rendered
-    to sanitised HTML, with placeholders interpolated. Settings runs inside
-    the Mochi shell sandboxed iframe — apps must call their own actions
-    rather than fetching cross-app, otherwise the iframe's null origin
-    strips cookies and the server can't resolve the user's language."""
+    """Return a server document (rules / terms / privacy) rendered to HTML.
+    Settings' own action: a cross-app fetch from the shell iframe loses the
+    session and the user's language."""
     name = a.input("name", "")
     if name not in ("rules", "terms", "privacy"):
         a.error.label(404, "errors.unknown_document")

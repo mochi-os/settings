@@ -212,10 +212,8 @@ function AddRouteDialog({
           <ResponsiveDialogHeader>
             <ResponsiveDialogTitle><Trans>Add route</Trans></ResponsiveDialogTitle>
             <ResponsiveDialogDescription>
-              {/* One complete sentence per translation unit. The delegate
-                  variant used to be the fragment ". You can manage paths:",
-                  which gave the translator a clause with no subject and the
-                  previous sentence's full stop welded to its front. */}
+              {/* One complete sentence per translation unit - never a fragment
+                  spliced onto the previous sentence. */}
               {admin || allowedPaths.length === 0 ? (
                 <Trans>Add a new route to {domain}</Trans>
               ) : (
@@ -862,11 +860,9 @@ function DomainDetails({
     )
   }
 
-  // Switching automatic certificates off is routine when a certificate was
-  // installed by hand — that is the reason to do it — and destructive when one
-  // was not, because nothing is then left to present and the domain stops
-  // answering on both ports. The server reports which case this is, so ask
-  // only in the second.
+  // Turning automatic certificates off is destructive only when no certificate
+  // was installed by hand (the domain then stops answering), so confirm only
+  // then.
   const handleToggleTls = (checked: boolean) => {
     if (!checked && !domain.certificate) {
       setShowTlsDialog(true)

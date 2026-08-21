@@ -176,9 +176,7 @@ def action_system_users_sessions_revoke(a):
         return
     session_id = a.input("session_id")
     if session_id:
-        # Core aborts on a session id that matches nothing, which the server
-        # reports as a 500. The ids it accepts are exactly the ones it lists,
-        # so an unknown one is a 404 rather than an internal error.
+        # Core aborts (a 500) on an unknown session id, so check the list first.
         found = False
         for s in mochi.user.session.list(uid) or []:
             if s.get("id") == session_id:

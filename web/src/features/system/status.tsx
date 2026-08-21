@@ -131,16 +131,9 @@ function NetworkStatus() {
 
   const network = data.network
   const counts = data.counts
-  // Name, then fingerprint, then peer id. Sorting on the display name alone
-  // left ties in whatever order the server happened to return, and the list
-  // refetches every 5s, so two peers sharing a name (two albatross entries)
-  // visibly swapped places on each poll. Array.sort is stable, which preserves
-  // an unstable input rather than fixing it - the comparator has to be total.
-  //
-  // The peer id ends the chain because it is the only field guaranteed unique,
-  // and it is compared byte-exactly rather than with naturalCompare: that
-  // collator is sensitivity:'base', so it reports two base58 ids differing only
-  // in case as equal, which would leave the tie it is here to break.
+  // Total order: name, fingerprint, then peer id compared byte-exactly. The
+  // list refetches every 5s, so a partial comparator makes same-name peers swap
+  // places; naturalCompare is case-insensitive and would leave base58 ids tied.
   const peers = [...data.peers].sort(
     (a: PeerEntry, b: PeerEntry) =>
       naturalCompare(peerDisplayName(a), peerDisplayName(b)) ||

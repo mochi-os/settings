@@ -126,11 +126,9 @@ function isBooleanSetting(setting: SystemSetting): boolean {
   return setting.pattern === '^(true|false)$'
 }
 
-// File-upload settings (FCM credentials JSON, future TLS certs etc.)
-// declare pattern "text". The value is the full file contents and is too
-// large / multi-line to edit in place, so the UI is a file picker rather
-// than a text input: choose file → browser reads it → POSTs the contents
-// via the same setting-set endpoint.
+// Pattern "text" marks a file-upload setting (e.g. FCM credentials JSON): the
+// value is whole file contents, so the UI is a file picker posting to
+// setting-set.
 function isFileUploadSetting(setting: SystemSetting): boolean {
   return setting.pattern === 'text'
 }
@@ -191,10 +189,8 @@ function SettingField({
   const isDefault = setting.value === setting.default
   const settingNameLabel = formatSettingName(setting.name, labels)
 
-  // Show the new value straight away, but put the old one back if the save is
-  // refused: these controls save on the same gesture that changes them, so a
-  // failure would otherwise leave the screen showing a value the server never
-  // accepted, with no Save button to retry from.
+  // These controls save on the gesture that changes them, so show the new value
+  // at once and revert if the save is refused - there is no Save to retry.
   const optimistic = (value: string, revert: () => void) => {
     onSave(setting.name, value).catch(revert)
   }

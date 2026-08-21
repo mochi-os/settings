@@ -85,11 +85,8 @@ export function UserPreferences() {
     staleTime: 5 * 60 * 1000,
   })
   const languageOptions = useMemo(() => {
-    // Explicit display-name overrides keyed by lower-cased BCP 47 tag. Used
-    // where Intl.DisplayNames would return wording that doesn't match
-    // Mochi's choice (e.g. en-us → "American English") or that wouldn't
-    // sort alongside its parent language in the picker. `en` is overridden
-    // because Mochi's source catalog uses neutral English, not UK or US.
+    // Display-name overrides by lower-cased BCP 47 tag, where Intl.DisplayNames
+    // wording differs from Mochi's (`en` is neutral English, not UK or US).
     /* eslint-disable lingui/no-unlocalized-strings -- language names display in their native form for self-identification */
     const overrides: Record<string, string> = {
       'en': 'English (international)',
@@ -117,11 +114,8 @@ export function UserPreferences() {
       return name
     }
     const tags = languagesData?.languages ?? ['en']
-    // Sort: Latin-script natives first (English, Français, Deutsch, …), then
-    // non-Latin (العربية, 日本語, 한국어, עברית, …). Within each bucket sort by
-    // displayed native name. Backend returns tags alphabetically, which puts
-    // 'ar' at the top — visually wrong for English-speaking users who expect
-    // their language near the top.
+    // Latin-script native names first, then non-Latin, each bucket sorted by
+    // displayed name; alphabetical tags would put 'ar' at the top.
     const scriptBucket = (native: string): number => {
       for (const ch of native) {
         if (/\p{L}/u.test(ch)) {

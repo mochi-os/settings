@@ -26,13 +26,9 @@ import WORDS from './data-words'
 // Passphrase generation
 // ============================================================================
 
-// The bundle carries the account's passphrase-encrypted private keys and is a
-// complete, restorable account, so whoever holds the file can attack the
-// passphrase offline at whatever rate they can afford. age's scrypt costs an
-// attacker about a second and 256 MiB a guess, which buys time but is not the
-// thing that has to make the search hopeless — the entropy is. Ten words from
-// this 248-word list is 79.5 bits; the six it used to draw was 47.7, which a
-// well-funded offline attack can cover.
+// The bundle holds the passphrase-encrypted private keys and can be attacked
+// offline, so entropy is what matters: ten words from this 248-word list is
+// 79.5 bits (six was 47.7, within reach of a well-funded attack).
 const PASSPHRASE_WORDS = 10
 
 // Uniform index into WORDS. Rejection sampling, not a modulo: 2^32 is not a
@@ -72,14 +68,10 @@ function localExportName(): string {
   return `mochi-export-${stamp}.zip`
 }
 
-// The bundle can be many gigabytes, so we never buffer it in the iframe.
-// The build action returns a filename; the browser then streams the file
-// straight to disk via a top-window navigation to the public download
-// action (which serves it with Content-Disposition: attachment, so the
-// shell page stays put). The navigation must run in the top window
-// because only it carries the session cookie. `_shell=1` tells the server
-// to serve the raw app response rather than wrap it in the menu shell —
-// the same signal the shell's own iframe uses for app content.
+// The bundle can be many gigabytes, so it is never buffered in the iframe: a
+// top-window navigation (the only one carrying the session cookie) streams the
+// public download action to disk. _shell=1 serves the raw response, not the
+// shell.
 function startDownload(filename: string): void {
   let base = getApiBasepath()
   if (!base.endsWith('-/')) {

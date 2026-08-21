@@ -18,11 +18,8 @@ function buildPreviewVars(theme: ThemeInfo, presets: Presets | undefined): CSSPr
   const pl    = theme.overrides?.['--primary-l'] ?? '0.488'
   const bundle = presets?.[theme.spacing ?? 'comfortable'] ?? presets?.comfortable ?? {}
 
-  // Mirror theme.css: only --primary (and friends) carry the hue. Surfaces,
-  // borders, and muted text are pure neutrals — adding tint here makes the
-  // preview look like a different theme than the one the user actually gets.
-  // Density-driven dimensions (--card-py, --control-height-md) come straight
-  // from the server's mochi.app.presets() so the table doesn't drift.
+  // Mirror theme.css: only --primary carries the hue; surfaces, borders and
+  // muted text are pure neutrals. Density dimensions come from mochi.app.presets().
   return {
     '--preview-primary': `oklch(${pl} ${c} ${h})`,
     '--preview-bg':      'oklch(1 0 0)',

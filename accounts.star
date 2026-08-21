@@ -54,11 +54,8 @@ def action_accounts_add(a):
                 return a.error.label(400, "errors.value_too_long", maximum=4096)
             fields[key] = val
 
-    # Same reason as the type check above: core refuses a bad field with an
-    # error, Starlark has no way to catch it, and the action dies as a 500 that
-    # also mails the operator - for a user who left a box empty or mistyped an
-    # address. providers() reports which fields are required and what each one
-    # holds, so answer a 400 naming the field instead.
+    # Core refuses a missing required field with an abort (a 500 that mails the
+    # operator); providers() declares which fields are required, so answer 400.
     for field in provider.get("fields") or []:
         name = field.get("name")
         shown = field.get("label") or name
@@ -92,23 +89,17 @@ def action_accounts_add(a):
         a.json(result)
         return
 
-    # Core creates the row already enabled, and wiring its destination is a
-    # separate call that can fail - or find no notifications service at all.
-    # Disable first so that whatever happens next, the account is never left
-    # switched on with nothing subscribed to it: the user would see a
-    # connected, enabled account that silently delivers nothing. Only the
-    # last step, after the wiring is known to have worked, turns it on.
+    # Core creates the row enabled and wiring the destination can fail, so
+    # disable first and enable only after the wiring succeeded - never leave an
+    # enabled account that delivers nothing.
     mochi.account.update(account_id, enabled=False)
     if not add_to_existing:
         a.json(result)
         return
 
     if not mochi.service.call("notifications", "destinations/add", "account", account_id):
-        # Take the row back out rather than leave a dead one behind. Removed
-        # through core rather than the notifications service, unlike
-        # action_accounts_remove: the wiring is what just failed, so there are
-        # no destination rows to clean, and the service may be the thing that
-        # is unavailable.
+        # Remove through core, not the notifications service: the wiring just
+        # failed, so there are no destination rows and the service may be down.
         mochi.account.remove(account_id)
         return a.error.label(502, "errors.destination_not_wired")
     mochi.account.update(account_id, enabled=True)

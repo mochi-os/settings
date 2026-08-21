@@ -728,12 +728,8 @@ const oauthProviderLabel: Record<OAuthProvider, string> = {
   x: 'X',
 }
 
-// Guard against the one-shot toast firing more than once per OAuth callback.
-// Module scope rather than storage: the only duplicate to suppress is React's
-// StrictMode double-mount within a single page load, which this covers exactly
-// and synchronously. sessionStorage did the job before, but the menu shell's
-// sandboxed iframe partitions it per load - so it was a banned API that also
-// happened to behave here exactly like a module variable already.
+// Suppress the one-shot OAuth toast on React StrictMode's double mount. Module
+// scope, not sessionStorage: the shell iframe partitions storage per load.
 const oauthResultShown = new Set<string>()
 
 function oauthResultKey(): string {

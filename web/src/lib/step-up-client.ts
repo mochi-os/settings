@@ -49,11 +49,8 @@ async function challengeFor(verifier: string): Promise<string> {
   return base64url(new Uint8Array(digest))
 }
 
-// StepUpClient implementation for the settings app: wires the shared lib/web
-// StepUpDialog to settings' own re-authentication actions (each backed by
-// mochi.user.code.verify / totp.verify / passkey.verify / oauth.verify and
-// mochi.user.methods.get / oauth.list). A lib/web component can't reference
-// these paths itself, so the app injects this.
+// StepUpClient for the settings app: wires lib/web's StepUpDialog to settings'
+// own re-authentication actions, which a lib/web component cannot name itself.
 export const stepUpClient: StepUpClient = {
   methods: async () => {
     const map = await fetchMethodStates()
@@ -90,11 +87,9 @@ export const stepUpClient: StepUpClient = {
       NO_TOAST,
     ),
   oauthProviders: async () => {
-    // OAuth re-verifies the oauth factor (a linked provider proves the provider
-    // account, not the email inbox). It satisfies a step-up only when oauth is
-    // required, or nothing is required (any one factor) and the user hasn't
-    // disabled OAuth. A required email factor therefore needs a real email
-    // code, not a provider sign-in - so hide the buttons in that case.
+    // OAuth satisfies a step-up only when oauth is required, or nothing is
+    // required and the user has not disabled it; a required email factor needs
+    // a real code, so hide the provider buttons then.
     const map = await fetchMethodStates()
     const required = requiredFactors(map)
     const acceptable =
@@ -114,12 +109,9 @@ export const stepUpClient: StepUpClient = {
       { provider, challenge },
       NO_TOAST,
     )
-    // In the sandboxed shell iframe, window.open opens the popup but returns
-    // null (the escaped popup has no opener handle), so DON'T treat null as
-    // failure - poll for the proof the popup's callback stores either way. The
-    // proof is keyed by the verifier the dialog alone holds. When we do get a
-    // handle (top-window), popup.closed gives fast cancellation; otherwise we
-    // fall back to the timeout.
+    // In the sandboxed shell iframe window.open returns null even though the
+    // popup opens, so null is not failure: poll for the proof either way, and
+    // use popup.closed for fast cancellation only when a handle exists.
     const popup = window.open(url, 'mochi-oauth-stepup', 'width=520,height=680')
     const deadline = Date.now() + 120_000
     let closedAt = 0

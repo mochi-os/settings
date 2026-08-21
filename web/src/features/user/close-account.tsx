@@ -26,10 +26,9 @@ import {
 import { useCloseAccount } from '@/hooks/use-account'
 import { useStepUp } from '@/lib/use-step-up'
 
-// Soft-delete: closing the account marks it for deletion after a grace
-// period and revokes every session, so the shell loses auth immediately.
-// Bounce to the top-level URL; the user lands on login and, on
-// re-authenticating, reaches the reactivation interstitial.
+// Closing revokes every session, so the shell loses auth: bounce to the
+// top-level URL, where the user lands on login and the reactivation
+// interstitial.
 function goToLogin() {
   shellNavigateTop('/')
 }
@@ -39,10 +38,6 @@ export function CloseAccountSection() {
   const { formatDate } = useFormat()
   const closeAccount = useCloseAccount()
   const stepUp = useStepUp()
-  // Set once the account is closed; drives the explanatory result dialog.
-  // Closing revokes every session, so the redirect to login is a sign-out —
-  // the dialog tells the user that (and how to cancel) before it happens,
-  // rather than bouncing them out with no explanation.
   const [purgeAt, setPurgeAt] = useState<number | null>(null)
   const purgeDate = purgeAt !== null ? formatDate(new Date(purgeAt * 1000)) : ''
 

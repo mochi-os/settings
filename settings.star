@@ -25,11 +25,7 @@ def require_admin(a):
     return True
 
 def parse_int(value, default):
-    """Parse a (possibly None/empty/non-numeric) input into an int.
-
-    Returns `default` when the value is missing or not a valid integer, so
-    callers don't crash on non-numeric input. Accepts an optional leading '-'.
-    """
+    """Parse an input into an int; default when missing or not an integer."""
     s = value or ""
     digits = s[1:] if s.startswith("-") else s
     if digits and decimal(digits):

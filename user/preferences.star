@@ -115,14 +115,8 @@ def action_user_preferences(a):
     a.json({"preferences": prefs, "themes": mochi.app.themes(), "presets": mochi.app.presets(), "default_theme": default_theme})
 
 def action_user_preferences_set(a):
-    """Set user preferences.
-
-    A key absent from the request is left alone; every key present is
-    validated before anything is written, so a payload carrying one good
-    and one bad value stores neither. Clearing a preference is a separate
-    action - see action_user_preferences_unset - so there is no value
-    here that means "delete".
-    """
+    """Set user preferences. Absent keys are left alone; every present key is
+    validated before anything is written. Clearing is action_user_preferences_unset."""
     # Validate the whole payload first, collecting what to write. Nothing
     # in the apply loop below can then fail a check partway through.
     writes = []
@@ -160,14 +154,8 @@ def action_user_preferences_set(a):
     a.json({"ok": True})
 
 def action_user_preferences_unset(a):
-    """Clear the named preferences, so each falls back to its default.
-
-    Keys are repeated `key` fields. Unknown keys are rejected rather than
-    ignored, so a client typo surfaces instead of silently doing nothing.
-    Repeats collapse: clearing a key twice is the same as clearing it once,
-    and without that a body full of one repeated key would turn into that
-    many deletes.
-    """
+    """Clear the named preferences (repeated `key` fields) back to their
+    defaults. Unknown keys are rejected; repeats collapse to one delete."""
     keys = a.inputs("key")
     if not keys:
         a.error.label(400, "errors.missing_key")

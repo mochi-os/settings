@@ -30,11 +30,9 @@ export function useResetPreferences() {
   return useResetPreferencesCommon(endpoints.user.preferencesReset)
 }
 
-// useApplyDisplayPreferences resolves the user's preferences into a full
-// ColorTheme and pushes it through ThemeProvider on mount. Called once from
-// the authenticated layout so every settings page renders with the correct
-// density / radius / font / font-size / background, not only the Display
-// page where the user happens to view their selections.
+// Resolve the user's preferences into a ColorTheme and push it through
+// ThemeProvider on mount; called once from the authenticated layout so every
+// settings page renders with the user's density, radius, font and background.
 export function useApplyDisplayPreferences() {
   const { data } = usePreferencesData()
   const { setTheme, setColorTheme } = useTheme()

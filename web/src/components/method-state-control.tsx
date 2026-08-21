@@ -10,11 +10,9 @@ import type { MethodState } from '@/types/account'
 // the per-user login-methods grid lines up with the operator one.
 const SLOT_ORDER: MethodState[] = ['disabled', 'allowed', 'required']
 
-// MethodStateControl is the segmented disabled/allowed/required control used
-// by the per-user login-methods grid. `slots` chooses which states this row
-// offers (recovery and third-party login omit "required"); `unavailable`
-// greys the slots the operator policy or a missing credential forbid, while
-// still showing them so the user understands why they can't pick them.
+// Segmented disabled/allowed/required control for the login-methods grid.
+// `slots` picks which states the row offers; `unavailable` greys (but still
+// shows) the ones operator policy or a missing credential forbids.
 export function MethodStateControl({
   value,
   slots,

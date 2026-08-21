@@ -129,11 +129,9 @@ function sortCategories(cats: Category[]): Category[] {
   })
 }
 
-// A "raw label key" (dotted, lowercase, no spaces) leaks into the topics table
-// when an app calls mochi.app.label() before adding the matching key to its
-// labels/<lang>.conf — the label resolver returns the literal key. We can't
-// retroactively re-resolve old rows (the calling app's labels aren't reachable
-// from here), so fall back to a humanized topic name for display.
+// A raw label key (dotted, lowercase) reaches the topics table when an app
+// labels a topic before adding the key; the calling app's labels are not
+// reachable here, so fall back to a humanised topic name.
 function isRawLabelKey(s: string): boolean {
   return /^[a-z0-9_]+(\.[a-z0-9_]+)+$/i.test(s)
 }

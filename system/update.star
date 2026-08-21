@@ -5,12 +5,8 @@
 # Mochi Application Interface Exception - see license.txt and license-exception.md.
 
 def action_system_update(a):
-    """Server upgrade information for the system status page.
-
-    POST with input `install=true`: trigger an unattended self-install of
-    the latest known version (Windows only) and return the post-call info.
-    Otherwise: just return the current update info dict.
-    """
+    """Server upgrade information; install=true triggers an unattended
+    self-install of the latest version (Windows only)."""
     if not require_admin(a):
         return
     if a.input("install") == "true":

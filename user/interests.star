@@ -4,11 +4,9 @@
 # This file is part of Mochi, licensed under the GNU AGPL v3 with the
 # Mochi Application Interface Exception - see license.txt and license-exception.md.
 
-# The language to resolve QID labels in. Core generates the summary beside
-# them in the user's own language, so pinning the labels to English left the
-# two halves of the same panel in different languages. "auto" and an unset
-# preference mean detect-from-browser, which this API cannot do, so they fall
-# back to English the way the resolver does.
+# Language for QID labels, matching the language core writes the summary in.
+# "auto" and unset mean detect-from-browser, which this API cannot do, so
+# English.
 def interests_language(a):
     pref = a.user.preference.get("language") if a.user else None
     if not pref or pref == "auto":
@@ -45,11 +43,8 @@ def action_interests_set(a):
         a.error.label(400, "errors.weight_required")
         return
 
-    # int() aborts the whole action on anything it can't parse, which the
-    # server reports as a 500 rather than the 400 the range check below
-    # gives. Starlark has no try/except, so check the shape first. Note
-    # isdigit() would not do: it accepts Unicode digit forms that int()
-    # then rejects.
+    # int() aborts the action (a 500) on unparseable input, so check the shape
+    # first. isdigit() accepts Unicode digit forms that int() rejects.
     if not mochi.text.valid(weight, "integer"):
         a.error.label(400, "errors.weight_must_be_100_to_100")
         return

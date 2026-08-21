@@ -26,14 +26,8 @@ def action_user_account(a):
     })
 
 def action_user_account_code(a):
-    """Email the user a one-time step-up code.
-
-    A second factor before key-bearing actions - data export and
-    approving replication - any of which would otherwise let a valid
-    session alone move the user's private keys off the server. Reuses the
-    login code; the email also alerts the user that such an action was
-    attempted.
-    """
+    """Email the user a one-time step-up code (reuses the login code); the
+    email also alerts the user that a key-bearing action was attempted."""
     reason = mochi.user.code.send()
     if reason == "too_many_codes":
         a.error.label(429, "errors.too_many_codes")
@@ -44,11 +38,8 @@ def action_user_account_code(a):
     a.json({"ok": True})
 
 def action_user_account_code_verify(a):
-    """Verify an emailed code as the email factor of a step-up re-auth.
-
-    Returns {token} once every required factor is satisfied, {remaining}
-    if more are still needed, or a code error if it is wrong/expired.
-    """
+    """Verify an emailed step-up code. Returns {token} when every required
+    factor is satisfied, {remaining} when more are needed."""
     result = mochi.user.code.verify(a.input("code", ""))
     if result == None:
         a.error.label(400, "errors.code_invalid")
@@ -56,16 +47,9 @@ def action_user_account_code_verify(a):
     a.json(result)
 
 def action_user_account_export(a):
-    """Build a backup bundle and return its filename.
-
-    Every export is a complete, restorable backup: the user's data plus
-    their passphrase-encrypted private keys. Because the bundle can
-    extract the account's identity keys, it requires step-up
-    re-authentication: the user re-verifies their login factor(s) to earn
-    a proof token, supplied here alongside the passphrase. The bundle is
-    streamed separately by export/download so the browser can save
-    multi-GB files straight to disk rather than buffering them.
-    """
+    """Build a backup bundle (data plus passphrase-encrypted private keys) and
+    return its filename. Step-up gated because it can extract identity keys;
+    export/download streams it so multi-GB files go straight to disk."""
     if not mochi.user.session.reauthenticate(a.input("token", "")):
         a.error.label(400, "errors.reauthentication_required")
         return
@@ -78,16 +62,9 @@ def action_user_account_export(a):
     a.json({"filename": path.split("/")[-1]})
 
 def action_user_account_close(a):
-    """Close the current user's own account (self-service soft delete).
-
-    Gated by step-up re-authentication, mirroring export: the user
-    re-verifies their login factor(s) to earn a proof token, supplied
-    here. The account is marked for deletion after a grace period, every
-    session is revoked, and a cancellation email is sent. Returns the
-    purge timestamp (unix seconds) so the UI can show the deletion date.
-    Administrators are refused server-side (a self-closed sole admin would
-    strand the server).
-    """
+    """Close the current user's account: step-up gated soft delete after a grace
+    period, every session revoked. Returns the purge timestamp (unix seconds).
+    Administrators are refused server-side."""
     if not mochi.user.session.reauthenticate(a.input("token", "")):
         a.error.label(400, "errors.reauthentication_required")
         return
@@ -96,22 +73,15 @@ def action_user_account_close(a):
     a.json({"purge": purge})
 
 def action_user_account_export_download(a):
-    """Stream a previously built export bundle to the browser.
-
-    Public so a top-window navigation can reach it: that navigation
-    carries the session cookie but no app token. The bundle is served
-    only from the requesting user's own files (owner follows the
-    session), so a logged-in session is still required.
-    """
+    """Stream a built export bundle. Public so a top-window navigation (session
+    cookie, no app token) can reach it; served only from the session user's
+    own files."""
     if a.user == None:
         a.error.label(401, "errors.authentication_required")
         return
-    # Serving consumes the bundle, and the session cookie is SameSite=Lax, so a
-    # cross-site top-level navigation would carry it: a page the user merely
-    # visits could destroy their export. Legitimate downloads are same-origin
-    # navigations from this app. A browser too old to send the header is
-    # allowed through rather than broken, since the residual risk is the loss
-    # of a bundle the user can rebuild, not disclosure.
+    # Serving consumes the bundle and the session cookie is SameSite=Lax, so a
+    # cross-site navigation could destroy a user's export. Browsers without the
+    # header are allowed through: the risk is loss of a rebuildable bundle.
     if a.header("Sec-Fetch-Site") == "cross-site":
         a.error.label(404, "errors.not_found")
         return
@@ -208,11 +178,7 @@ def action_user_account_methods(a):
     a.json({"methods": mochi.user.methods.states()})
 
 def action_user_account_methods_set(a):
-    """Set one login method's state (disabled/allowed/required).
-
-    Changing how you log in is gated on step-up re-authentication so a
-    stolen session can't weaken the account's factors.
-    """
+    """Set one login method's state (disabled/allowed/required). Step-up gated."""
     if not mochi.user.session.reauthenticate(a.input("token", "")):
         a.error.label(400, "errors.reauthentication_required")
         return
@@ -252,11 +218,7 @@ def action_user_account_passkey_register_begin(a):
     a.json(result)
 
 def action_user_account_passkey_register_finish(a):
-    """Complete passkey registration.
-
-    Adding a login credential is gated on step-up re-authentication so a
-    stolen session can't plant a backdoor passkey.
-    """
+    """Complete passkey registration. Step-up gated."""
     if not mochi.user.session.reauthenticate(a.input("token", "")):
         a.error.label(400, "errors.reauthentication_required")
         return
@@ -276,11 +238,7 @@ def action_user_account_passkey_verify_begin(a):
     a.json(mochi.user.passkey.verify.begin())
 
 def action_user_account_passkey_verify_finish(a):
-    """Complete a step-up passkey assertion.
-
-    Returns the re-authentication result ({token} or {remaining}) on
-    success, or a re-authentication error if the assertion fails.
-    """
+    """Complete a step-up passkey assertion; returns {token} or {remaining}."""
     ceremony = a.input("ceremony")
     assertion = a.input("assertion")
     if not ceremony or not assertion:
@@ -305,12 +263,7 @@ def action_user_account_passkey_rename(a):
     a.json({"ok": True})
 
 def action_user_account_passkey_delete(a):
-    """Delete a passkey.
-
-    Gated on step-up re-authentication: removing a login credential must
-    re-verify the current factors first, so a stolen session can't strip
-    the account back to a weaker one.
-    """
+    """Delete a passkey. Step-up gated."""
     if not mochi.user.session.reauthenticate(a.input("token", "")):
         a.error.label(400, "errors.reauthentication_required")
         return
@@ -331,11 +284,7 @@ def action_user_account_totp(a):
     a.json({"enabled": mochi.user.totp.enabled()})
 
 def action_user_account_totp_setup(a):
-    """Setup TOTP - returns secret and QR URL.
-
-    Gated on step-up re-authentication: adding a factor is a security
-    change a stolen session must not be able to make.
-    """
+    """Setup TOTP - returns secret and QR URL. Step-up gated."""
     if not mochi.user.session.reauthenticate(a.input("token", "")):
         a.error.label(400, "errors.reauthentication_required")
         return
@@ -343,13 +292,8 @@ def action_user_account_totp_setup(a):
     a.json(result)
 
 def action_user_account_totp_verify(a):
-    """Verify a TOTP code.
-
-    During setup (TOTP not yet enabled) this confirms enrolment and
-    returns {ok}. When TOTP is already enabled it is a step-up re-verify,
-    returning the re-authentication result ({token} or {remaining}); a bad
-    code there yields a re-authentication error.
-    """
+    """Verify a TOTP code. During setup this confirms enrolment and returns
+    {ok}; once enabled it is a step-up re-verify returning {token} or {remaining}."""
     code = a.input("code")
     if not code:
         a.error.label(400, "errors.missing_code")
@@ -364,11 +308,7 @@ def action_user_account_totp_verify(a):
         a.json({"ok": result})
 
 def action_user_account_totp_disable(a):
-    """Disable TOTP.
-
-    Gated on step-up re-authentication: removing a factor must re-verify
-    the current ones first.
-    """
+    """Disable TOTP. Step-up gated."""
     if not mochi.user.session.reauthenticate(a.input("token", "")):
         a.error.label(400, "errors.reauthentication_required")
         return
@@ -384,11 +324,7 @@ def action_user_account_recovery(a):
     a.json({"count": mochi.user.recovery.count()})
 
 def action_user_account_recovery_generate(a):
-    """Generate new recovery codes.
-
-    Gated on step-up re-authentication: recovery codes are a persistent
-    re-entry path a stolen session must not be able to mint.
-    """
+    """Generate new recovery codes. Step-up gated."""
     if not mochi.user.session.reauthenticate(a.input("token", "")):
         a.error.label(400, "errors.reauthentication_required")
         return
@@ -404,11 +340,7 @@ def action_user_account_oauth(a):
     a.json({"identities": mochi.user.oauth.list()})
 
 def action_user_account_oauth_unlink(a):
-    """Unlink an OAuth provider from the current user.
-
-    Gated on step-up re-authentication: unlinking removes a way to sign
-    in, so it must re-verify the current factors first.
-    """
+    """Unlink an OAuth provider from the current user. Step-up gated."""
     if not mochi.user.session.reauthenticate(a.input("token", "")):
         a.error.label(400, "errors.reauthentication_required")
         return
@@ -420,11 +352,8 @@ def action_user_account_oauth_unlink(a):
     a.json({"ok": True})
 
 def action_user_account_oauth_verify_begin(a):
-    """Begin a popup OAuth step-up re-authentication.
-
-    challenge is base64url(sha256(verifier)) the client holds; the proof is
-    retrieved afterwards with the finish action using the verifier.
-    """
+    """Begin a popup OAuth step-up. challenge = base64url(sha256(verifier));
+    the client keeps the verifier and presents it to the finish action."""
     provider = a.input("provider")
     challenge = a.input("challenge")
     if not provider or not challenge:
@@ -433,12 +362,8 @@ def action_user_account_oauth_verify_begin(a):
     a.json(mochi.user.oauth.verify.begin(provider, challenge))
 
 def action_user_account_oauth_verify_finish(a):
-    """Retrieve the proof the OAuth popup produced, for polling.
-
-    Returns the re-authentication result ({token} or {remaining}) once the
-    popup callback has stored it, or {} while it is not yet available - the
-    client polls until the popup completes or is cancelled.
-    """
+    """Poll for the proof the OAuth popup produced: {token} or {remaining}
+    once the callback has stored it, {} while not yet available."""
     verifier = a.input("verifier")
     if not verifier:
         a.json({})

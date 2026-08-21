@@ -53,13 +53,9 @@ function useDocumentLabels(): Record<DocumentName, string> {
   }
 }
 
-// Native display names and the Latin-first ordering come from lib/web's
-// language picker, which is the same list rendered the same way. The local
-// copy this replaces called Intl.DisplayNames directly with four overrides,
-// and browsers ship display-name data for only some locales: for 40 of the
-// 106 installed here Intl silently answered with the English exonym, so the
-// picker offered "Armenian", "Yoruba" and "Burmese" rather than Հայերեն,
-// Èdè Yorùbá and မြန်မာ. lib/web carries the full autonym table.
+// Native names and Latin-first ordering come from lib/web's language picker:
+// Intl.DisplayNames lacks data for many installed locales and silently answers
+// with the English exonym.
 function languageName(tag: string): string {
   return nativeName(tag)
 }

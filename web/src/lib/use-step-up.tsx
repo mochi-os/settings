@@ -8,11 +8,8 @@ import { useLingui } from '@lingui/react/macro'
 import { StepUpDialog } from '@mochi/web'
 import { stepUpClient } from './step-up-client'
 
-// useStepUp wraps a sensitive account-security mutation in step-up
-// re-authentication. Call `request(run)` from a trigger (button onClick,
-// switch onCheckedChange, ...) to open the dialog; `run(token)` fires once
-// the user re-verifies their login factor(s). Render `dialog` once in the
-// component.
+// Wrap a sensitive mutation in step-up re-authentication: `request(run)` opens
+// the dialog and `run(token)` fires once verified. Render `dialog` once.
 export function useStepUp(): {
   request: (run: (token: string) => void) => void
   dialog: ReactNode
@@ -30,11 +27,9 @@ export function useStepUp(): {
     <StepUpDialog
       open={open}
       onOpenChange={(next) => {
-        // Drop the pending action when the dialog is dismissed. The OAuth
-        // factor polls for up to two minutes after the popup opens, so a
-        // ceremony finished after the user gave up would otherwise still fire
-        // whatever run.current held - by then possibly a different action they
-        // requested in the meantime.
+        // Drop the pending action on dismiss: the OAuth factor polls for up to
+        // two minutes, and a late ceremony would otherwise fire whatever
+        // run.current holds by then.
         if (!next) run.current = null
         setOpen(next)
       }}

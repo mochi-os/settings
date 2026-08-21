@@ -183,12 +183,9 @@ function EditUserDialog({
   const [role, setRole] = useState(user.role)
   const updateUser = useUpdateUser()
 
-  // The dialog stays mounted with its row, so useState only seeds once: an
-  // edit abandoned with Cancel came back on the next open, with Save enabled
-  // because hasChanges still compared it against the stored value. Reseeding
-  // on open rather than in onOpenChange, as EditRouteDialog does, because
-  // opening is driven from the row's menu and never reaches the dialog's own
-  // handler.
+  // The dialog stays mounted with its row, so reseed on open or an abandoned
+  // edit comes back next time. Opening is driven from the row's menu, so
+  // onOpenChange never sees it.
   useEffect(() => {
     if (open) {
       setUsername(user.username)
@@ -617,10 +614,8 @@ export function SystemUsers() {
   const { data: accountData } = useAccountData()
   const currentUsername = accountData?.identity?.username
 
-  // Return to the first page when the query changes. Adjusted during render
-  // rather than in an effect: an effect runs after the render that already
-  // read the old offset, so changing the search while on a later page fired a
-  // request for that page of the new query before correcting to the first.
+  // Reset to the first page during render, not in an effect: an effect runs
+  // after the render that already requested the old page of the new query.
   const query = `${debouncedSearch} ${sort} ${order}`
   const [previous, setPrevious] = useState(query)
   if (query !== previous) {
