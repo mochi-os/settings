@@ -36,7 +36,6 @@ import {
   useNumberFormatLabels,
   useUnitLabels,
   toast,
-  naturalCompare,
   usePageTitle,
   shellSetLocale,
   shellSetLanguage,
@@ -47,7 +46,9 @@ import {
   detectWeekStart,
   detectNumberFormat,
   detectUnits,
+  describeLanguages,
   detectLanguage,
+  nativeName,
   type LocalePreferences,
 } from '@mochi/web'
 
@@ -85,54 +86,12 @@ export function UserPreferences() {
     staleTime: 5 * 60 * 1000,
   })
   const languageOptions = useMemo(() => {
-    // Display-name overrides by lower-cased BCP 47 tag, where Intl.DisplayNames
-    // wording differs from Mochi's (`en` is neutral English, not UK or US).
-    /* eslint-disable lingui/no-unlocalized-strings -- language names display in their native form for self-identification */
-    const overrides: Record<string, string> = {
-      'en': 'English (international)',
-      'en-us': 'English (USA)',
-      'es': 'Español (España)',
-      'es-419': 'Español (latinoamericano)',
-    }
-    /* eslint-enable lingui/no-unlocalized-strings */
-    // Each installed language renders as its native exonym so users recognise
-    // their own language by sight (Français, 日本語). The Auto row's
-    // parenthetical is descriptive metadata about what Auto would pick, so it
-    // renders in the active UI language instead.
-    const describe = (tag: string, displayLocale?: string): string => {
-      const override = overrides[tag.toLowerCase()]
-      if (override) return override
-      let name = tag
-      try {
-        name = new Intl.DisplayNames([displayLocale ?? tag], { type: 'language' }).of(tag) ?? tag
-      } catch {
-        /* fall back to raw tag */
-      }
-      if (name.length > 0) {
-        name = name.charAt(0).toLocaleUpperCase() + name.slice(1)
-      }
-      return name
-    }
+    // Native names and Latin-first ordering come from lib/web's language
+    // picker: Intl.DisplayNames lacks data for several installed locales and
+    // silently answers with the English exonym. The Auto row's parenthetical
+    // is descriptive metadata about what Auto would pick, so it passes the
+    // active UI locale and renders in that language instead.
     const tags = languagesData?.languages ?? ['en']
-    // Latin-script native names first, then non-Latin, each bucket sorted by
-    // displayed name; alphabetical tags would put 'ar' at the top.
-    const scriptBucket = (native: string): number => {
-      for (const ch of native) {
-        if (/\p{L}/u.test(ch)) {
-          return /[A-Za-zÀ-ÿĀ-ſƀ-ɏ]/.test(ch) ? 0 : 1
-        }
-      }
-      return 0
-    }
-    const sortedTags = [...tags]
-      .map((tag) => ({ tag, name: describe(tag) }))
-      .sort((a, b) => {
-        const ba = scriptBucket(a.name)
-        const bb = scriptBucket(b.name)
-        if (ba !== bb) return ba - bb
-        return naturalCompare(a.name, b.name)
-      })
-      .map(({ tag }) => tag)
     const out: Record<string, string> = {}
     // The Auto suffix should reflect the catalog the resolver will actually
     // load, not the literal browser tag — walk parent chain to closest
@@ -145,9 +104,9 @@ export function UserPreferences() {
       if (i < 0) { resolved = 'en'; break }
       resolved = resolved.slice(0, i)
     }
-    out['auto'] = `${t`Detect from web browser`}: ${describe(resolved, i18n.locale)}`
-    for (const tag of sortedTags) {
-      out[tag] = describe(tag)
+    out['auto'] = `${t`Detect from web browser`}: ${nativeName(resolved, i18n.locale)}`
+    for (const { tag, native } of describeLanguages(tags)) {
+      out[tag] = native
     }
     return out
   }, [languagesData, t, i18n.locale])
