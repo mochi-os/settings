@@ -35,6 +35,7 @@ import {
 } from '@mochi/web'
 import {
   useSystemDocumentsData,
+  useSystemDocument,
   useSetSystemDocument,
   type SystemDocument,
 } from '@/hooks/use-system-documents'
@@ -156,7 +157,10 @@ export function SystemDocuments() {
     search.language ??
     (languagesByName[tab].includes(fallbackLanguage) ? fallbackLanguage : 'en')
 
-  const current = documents.find((d) => d.name === tab && d.language === language)
+  // The index says which pairs exist; the body of the one on screen is its own
+  // query, so switching tab or language fetches ~7 KB rather than re-reading
+  // every document in every language.
+  const { data: current, isLoading: currentLoading } = useSystemDocument(tab, language)
 
   const setTab = (next: DocumentName) => {
     void navigate({
@@ -232,7 +236,9 @@ export function SystemDocuments() {
                       </SelectContent>
                     </Select>
                   </div>
-                  {current && current.name === name ? (
+                  {currentLoading ? (
+                    <ListSkeleton variant='simple' height='h-12' count={3} />
+                  ) : current && current.name === name ? (
                     <DocumentEditor
                       document={current}
                       onSave={handleSave}

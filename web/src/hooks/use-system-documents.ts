@@ -15,8 +15,16 @@ export interface SystemDocument {
   updated: number
 }
 
+// The index carries no bodies. Every (name x language) pair the server ships
+// is listed so the language picker can be built, but the page only ever
+// displays one of them, and the full set is ~4 MB of Markdown.
+export interface SystemDocumentEntry {
+  name: string
+  language: string
+}
+
 interface SystemDocumentsData {
-  documents: SystemDocument[]
+  documents: SystemDocumentEntry[]
 }
 
 export function useSystemDocumentsData() {
@@ -27,13 +35,29 @@ export function useSystemDocumentsData() {
   })
 }
 
+// Fetches the one document being edited. Keyed on the pair so switching
+// language or tab fetches that document rather than re-reading the whole set.
+export function useSystemDocument(name: string, language: string) {
+  return useQuery({
+    queryKey: ['system', 'document', name, language],
+    queryFn: () =>
+      requestHelpers.get<SystemDocument>(
+        `${endpoints.system.documentGet}?name=${encodeURIComponent(name)}&language=${encodeURIComponent(language)}`
+      ),
+    enabled: Boolean(name && language),
+  })
+}
+
 export function useSetSystemDocument() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: (data: { name: string; language: string; body: string }) =>
       requestHelpers.post(endpoints.system.documentSet, data),
-    onSuccess: () => {
+    onSuccess: (_result, variables) => {
       queryClient.invalidateQueries({ queryKey: ['system', 'documents'] })
+      queryClient.invalidateQueries({
+        queryKey: ['system', 'document', variables.name, variables.language],
+      })
     },
   })
 }

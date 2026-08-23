@@ -17,7 +17,7 @@ def action_document_get(a):
     a.json({"name": name, "body": body, "html": html})
 
 def action_system_documents_list(a):
-    """List all (name x language) documents with body and bundled default"""
+    """List the (name x language) pairs that exist, without their bodies"""
     if not require_admin(a):
         return
     documents = mochi.document.list()
@@ -35,12 +35,11 @@ def action_system_document_get(a):
     if not language:
         a.error.label(400, "errors.missing_document_language")
         return
-    documents = mochi.document.list()
-    for d in documents:
-        if d["name"] == name and d["language"] == language:
-            a.json(d)
-            return
-    a.error.label(404, "errors.unknown_document")
+    document = mochi.document.source(name, language)
+    if not document:
+        a.error.label(404, "errors.unknown_document")
+        return
+    a.json(document)
 
 def action_system_document_set(a):
     """Write an operator override for one document"""
