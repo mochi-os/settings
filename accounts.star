@@ -23,6 +23,9 @@ def action_accounts_get(a):
         a.error.label(400, "errors.id_is_required")
         return
     result = mochi.account.get(id)
+    if not result:
+        a.error.label(404, "errors.account_not_found")
+        return
     a.json(result)
 
 def action_accounts_add(a):
@@ -73,8 +76,8 @@ def action_accounts_add(a):
     if type == "browser" and not fields.get("endpoint"):
         return a.error.label(400, "errors.push_subscription_missing")
 
-    add_to_existing = a.input("add_to_existing", "1")
-    add_to_existing = add_to_existing == "1" or add_to_existing == "true"
+    existing = a.input("existing", "1")
+    existing = existing == "1" or existing == "true"
 
     result = mochi.account.add(type, **fields)
     if not result or not result.get("id"):
@@ -93,7 +96,7 @@ def action_accounts_add(a):
     # disable first and enable only after the wiring succeeded - never leave an
     # enabled account that delivers nothing.
     mochi.account.update(account_id, enabled=False)
-    if not add_to_existing:
+    if not existing:
         a.json(result)
         return
 
@@ -156,6 +159,9 @@ def action_accounts_default(a):
         if type not in capabilities:
             a.error.label(400, "errors.invalid_value_for_key", key="type")
             return
+    if not mochi.account.get(id):
+        a.error.label(404, "errors.account_not_found")
+        return
     mochi.account.update(id, default=type)
     a.json({"ok": True})
 

@@ -126,7 +126,7 @@ export function useUserSessions(uid: string, enabled: boolean) {
 export function useRevokeUserSessions() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (data: { uid: string; session_id?: string }) =>
+    mutationFn: (data: { uid: string; session?: string }) =>
       requestHelpers.post<{ ok: boolean; revoked: number }>(
         endpoints.system.usersSessionsRevoke,
         data,

@@ -6,7 +6,7 @@
 import type { Session } from '@/types/account'
 import { Trans, useLingui } from '@lingui/react/macro'
 import { Loader2, LogOut, Monitor } from 'lucide-react'
-import { useSessions, useRevokeSession } from '@/hooks/use-account'
+import { useAgentName, useSessions, useRevokeSession } from '@/hooks/use-account'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -44,6 +44,7 @@ function SessionRow({
 }) {
   const { t } = useLingui()
   const { formatTimestamp } = useFormat()
+  const agentName = useAgentName()
   const revokeSession = useRevokeSession()
 
   const handleRevoke = () => {
@@ -62,7 +63,7 @@ function SessionRow({
       <TableCell>
         <div className='flex flex-col'>
           <span className='font-medium'>
-            {session.agent || t`Unknown device`}
+            {agentName(session.agent)}
             {isCurrent && (
               <span className='text-muted-foreground ms-2 text-xs'>
                 <Trans>(current)</Trans>

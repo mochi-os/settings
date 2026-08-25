@@ -80,9 +80,19 @@ export function UserPreferences() {
   // Languages installed across all apps' labels/<lang>.conf files. The picker
   // hides the field when only English is present (no real choice yet) — once
   // Phase 2 ships fr/ja/en-us catalogs the picker reveals itself.
-  const { data: languagesData } = useQuery<{ languages: string[] }>({
+  const {
+    data: languagesData,
+    error: languagesError,
+    refetch: refetchLanguages,
+  } = useQuery<{ languages: string[] }>({
     queryKey: ['_', 'languages'],
-    queryFn: () => fetch('/_/languages').then((r) => r.json()),
+    queryFn: async () => {
+      const response = await fetch('/_/languages')
+      if (!response.ok) {
+        throw new Error(`/_/languages: ${response.status}`)
+      }
+      return (await response.json()) as { languages: string[] }
+    },
     staleTime: 5 * 60 * 1000,
   })
   const languageOptions = useMemo(() => {
@@ -143,6 +153,20 @@ export function UserPreferences() {
     // Reset only the regional keys, leaving display prefs alone.
     unsetPreferences.mutate([...REGIONAL_PREF_KEYS], {
       onSuccess: () => {
+        // Same broadcast handleChange makes per key: unset means "auto" for
+        // every regional key, and the language falls back to the browser's.
+        const reset: LocalePreferences = {
+          date_format: 'auto',
+          time_format: 'auto',
+          timestamp_display: 'auto',
+          week_start: 'auto',
+          number_format: 'auto',
+          units: 'auto',
+          timezone: 'auto',
+        }
+        shellSetLocale(reset)
+        setStoredLanguage('auto')
+        shellSetLanguage(detectLanguage())
         toast.success(t`Preferences reset to defaults`)
       },
       onError: (error) => {
@@ -197,7 +221,18 @@ export function UserPreferences() {
           <ListSkeleton variant='simple' height='h-12' count={6} />
         ) : data ? (
           <div className='divide-y-0'>
-            {showLanguagePicker && (
+            {languagesError ? (
+              <FieldRow label={t`Language`}>
+                <div className="w-full">
+                  <GeneralError
+                    error={languagesError}
+                    minimal
+                    mode='inline'
+                    reset={() => void refetchLanguages()}
+                  />
+                </div>
+              </FieldRow>
+            ) : showLanguagePicker ? (
               <FieldRow label={t`Language`}>
                 <div className="w-full">
                   <ComboSelect
@@ -208,7 +243,7 @@ export function UserPreferences() {
                   />
                 </div>
               </FieldRow>
-            )}
+            ) : null}
 
             <FieldRow label={t`Time zone`}>
               <div className="w-full">

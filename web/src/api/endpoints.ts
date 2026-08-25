@@ -4,12 +4,6 @@
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 
 const endpoints = {
-  auth: {
-    code: '/_/code',
-    verify: '/_/verify',
-    identity: '/_/identity',
-    logout: '/_/logout',
-  },
   user: {
     account: '-/user/account/data',
     accountIdentity: '-/user/account/identity',
@@ -45,7 +39,6 @@ const endpoints = {
     preferences: '-/user/preferences/data',
     preferencesSet: '-/user/preferences/set',
     preferencesUnset: '-/user/preferences/unset',
-    preferencesReset: '-/user/preferences/reset',
     // Interests
     interests: '-/user/interests',
     interestsSet: '-/user/interests/set',
@@ -66,14 +59,11 @@ const endpoints = {
   system: {
     peers: '-/system/peers',
     settings: '-/system/settings/list',
-    settingsGet: '-/system/settings/get',
     settingsSet: '-/system/settings/set',
     documents: '-/system/documents/list',
     documentGet: '-/system/document/get',
     documentSet: '-/system/document/set',
-    users: '-/system/users/data',
     usersList: '-/system/users/list',
-    usersGet: '-/system/users/get',
     usersCreate: '-/system/users/create',
     usersUpdate: '-/system/users/update',
     usersDelete: '-/system/users/delete',

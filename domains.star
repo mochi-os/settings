@@ -51,6 +51,23 @@ def action_domains_create(a):
     result = mochi.domain.register(domain)
     a.json(result)
 
+# The domain row a non-admin may see. mochi.domain.get returns select *, which
+# includes the DNS verification token; only the admin-only mochi.domain.verify
+# consumes it, so a delegate has no use for it.
+def domain_public(info):
+    if not info:
+        return None
+    return {
+        "domain": info["domain"],
+        "verified": info["verified"],
+        "tls": info["tls"],
+        "certificate": info.get("certificate", False),
+        "https": info.get("https", False),
+        "created": info["created"],
+        "updated": info["updated"],
+    }
+
+
 def action_domains(a):
     """Domains overview - returns domains based on role"""
     admin = is_admin(a)
@@ -65,7 +82,7 @@ def action_domains(a):
         for d in delegations:
             if d["domain"] not in domain_map:
                 domain_map[d["domain"]] = mochi.domain.get(d["domain"])
-        domains = [info for info in domain_map.values() if info]
+        domains = [domain_public(info) for info in domain_map.values() if info]
         a.json({"domains": domains, "delegations": delegations, "count": len(domains), "admin": False})
 
 def action_domains_get(a):
@@ -92,6 +109,7 @@ def action_domains_get(a):
         if not info:
             a.error.label(404, "errors.domain_not_found")
             return
+        info = domain_public(info)
         routes = mochi.domain.route.list(domain)
         accessible_routes = []
         for route in routes:

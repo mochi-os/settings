@@ -303,6 +303,7 @@ export function ConnectedAccounts() {
   const [verifyAccount, setVerifyAccount] = useState<Account | null>(null)
   const [settingsAccount, setSettingsAccount] = useState<Account | null>(null)
   const [testingId, setTestingId] = useState<string | null>(null)
+  const [removingId, setRemovingId] = useState<string | null>(null)
 
   const {
     providers: providersData,
@@ -316,7 +317,6 @@ export function ConnectedAccounts() {
     verify,
     test,
     isAdding,
-    isRemoving,
     isVerifying,
     refetch,
   } = useAccounts(APP_BASE)
@@ -347,12 +347,17 @@ export function ConnectedAccounts() {
   }
 
   const handleRemove = async (id: string) => {
+    // Per row, not the mutation's own isPending: that is shared, so removing
+    // one account disabled and spun the menu on every other row too.
+    setRemovingId(id)
     try {
       await remove(id)
       toast.success(t`Account removed`)
     } catch (error) {
       const message = getErrorMessage(error, t`Failed to remove account`)
       toast.error(message)
+    } finally {
+      setRemovingId(null)
     }
   }
 
@@ -388,21 +393,23 @@ export function ConnectedAccounts() {
     } catch (error) {
       const message = getErrorMessage(error, t`Failed to update account`)
       toast.error(message)
+      throw error
     }
   }
 
+  // No toast of its own: both callers (add, and the settings dialog's Save)
+  // report the whole gesture themselves, so one here made two for one click.
+  // Rethrows so the caller can stop rather than report success afterwards.
   const handleSetDefault = async (accountId: string, isDefault: boolean) => {
     try {
-      const formData = new URLSearchParams()
-      formData.append('account', accountId)
-      formData.append('type', isDefault ? 'ai' : '')
-      await requestHelpers.post(`${APP_BASE}/-/accounts/default`, formData.toString(), {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      await requestHelpers.post('-/accounts/default', {
+        account: accountId,
+        type: isDefault ? 'ai' : '',
       })
-      toast.success(t`Default AI account updated`)
       refetch()
     } catch (error) {
       toast.error(getErrorMessage(error, t`Failed to update default`))
+      throw error
     }
   }
 
@@ -496,7 +503,7 @@ export function ConnectedAccounts() {
                     onSettings={setSettingsAccount}
                     onTest={handleTest}
                     onToggleEnabled={handleToggleEnabled}
-                    isRemoving={isRemoving}
+                    isRemoving={removingId === account.id}
                     testingId={testingId}
                   />
                 ))}
@@ -571,15 +578,20 @@ function AccountSettingsDialog({
       onOpenChange(false)
       return
     }
-    if (isAi && defaultDirty) {
-      await onSetDefault(account.id, isDefault)
-    }
-    if (settingsDirty) {
-      const fields: Record<string, string> = { label: nameValue }
-      if (isAi) {
-        fields.model = modelValue
+    try {
+      if (isAi && defaultDirty) {
+        await onSetDefault(account.id, isDefault)
       }
-      await onSave(account.id, fields)
+      if (settingsDirty) {
+        const fields: Record<string, string> = { label: nameValue }
+        if (isAi) {
+          fields.model = modelValue
+        }
+        await onSave(account.id, fields)
+      }
+    } catch {
+      // Both handlers have already reported it; stay open so the entry survives.
+      return
     }
     onOpenChange(false)
   }

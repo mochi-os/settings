@@ -35,7 +35,7 @@ import {
   useUserSessions,
   useRevokeUserSessions,
 } from '@/hooks/use-system-users'
-import { useAccountData } from '@/hooks/use-account'
+import { useAccountData, useAgentName } from '@/hooks/use-account'
 import {
   Badge,
   Button,
@@ -72,17 +72,9 @@ import {
   toast,
   ListSkeleton,
   EmptyState,
+  useDebounce,
   useFormat,
 } from '@mochi/web'
-
-function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value)
-  useEffect(() => {
-    const timer = setTimeout(() => setDebouncedValue(value), delay)
-    return () => clearTimeout(timer)
-  }, [value, delay])
-  return debouncedValue
-}
 
 function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
   const { t } = useLingui()
@@ -277,17 +269,18 @@ function SessionsDialog({
 }) {
   const { t } = useLingui()
   const { formatTimestamp } = useFormat()
+  const agentName = useAgentName()
   const { data, isLoading, refetch } = useUserSessions(user.uid, open)
   const revokeSession = useRevokeUserSessions()
   const [revokeAllOpen, setRevokeAllOpen] = useState(false)
 
-  const handleRevoke = (session_id?: string) => {
+  const handleRevoke = (session?: string) => {
     revokeSession.mutate(
-      { uid: user.uid, session_id },
+      { uid: user.uid, session },
       {
         onSuccess: (result) => {
           toast.success(
-            session_id
+            session
               ? t`Session revoked`
               : plural(result.revoked, { one: 'Revoked 1 session', other: 'Revoked # sessions' })
           )
@@ -301,13 +294,7 @@ function SessionsDialog({
     )
   }
 
-  const formatSession = (session: Session) => {
-    const agent = session.agent || ''
-    if (agent.includes('Chrome')) return 'Chrome'
-    if (agent.includes('Firefox')) return 'Firefox'
-    if (agent.includes('Safari')) return 'Safari'
-    return t`Unknown browser`
-  }
+  const formatSession = (session: Session) => agentName(session.agent)
 
   return (
     <ResponsiveDialog open={open} onOpenChange={onOpenChange}>
@@ -616,7 +603,7 @@ export function SystemUsers() {
 
   // Reset to the first page during render, not in an effect: an effect runs
   // after the render that already requested the old page of the new query.
-  const query = `${debouncedSearch} ${sort} ${order}`
+  const query = JSON.stringify([debouncedSearch, sort, order])
   const [previous, setPrevious] = useState(query)
   if (query !== previous) {
     setPrevious(query)
@@ -630,6 +617,14 @@ export function SystemUsers() {
     sort,
     order
   )
+
+  // Deleting the last row of a page leaves offset past the end, and the empty
+  // state replaces the pagination controls - so there would be no Previous to
+  // click. Step back to the last page that still has rows, during render for
+  // the same reason the query reset above is.
+  if (data && offset > 0 && offset >= data.count) {
+    setOffset(Math.max(0, Math.floor(Math.max(0, data.count - 1) / limit) * limit))
+  }
 
   const handleSort = (column: SortColumn) => {
     if (sort === column) {

@@ -34,7 +34,7 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-  formatSystemTimestamp, naturalCompare,} from '@mochi/web'
+  naturalCompare,} from '@mochi/web'
 import {
   useSystemSettingsData,
   useSetSystemSetting,
@@ -93,15 +93,9 @@ function formatSettingName(name: string, labels: Record<string, string>): string
     .join(' ')
 }
 
-function useFormatSettingValue() {
+function useEmptyValueLabel() {
   const { t } = useLingui()
-  return function formatSettingValue(name: string, value: string): string {
-    if (name === 'server_started' && value) {
-      const timestamp = parseInt(value, 10)
-      if (!isNaN(timestamp)) {
-        return formatSystemTimestamp(timestamp)
-      }
-    }
+  return function emptyValueLabel(value: string): string {
     return value || t`(empty)`
   }
 }
@@ -161,19 +155,25 @@ function methodStateOptions(opts: string[] | null): Set<string> | null {
 function SettingField({
   setting,
   onSave,
-  onSaveAsync,
   isSaving,
 }: {
   setting: SystemSetting
   onSave: (name: string, value: string) => Promise<void>
-  onSaveAsync: (name: string, value: string) => Promise<void>
   isSaving: boolean
 }) {
   const { t } = useLingui()
   const labels = useSettingLabels()
-  const formatSettingValue = useFormatSettingValue()
+  const emptyValueLabel = useEmptyValueLabel()
   const methodStateLabel = useMethodStateLabel()
   const [localValue, setLocalValue] = useState(setting.value)
+  // Re-seed when the server's value actually changes: useState keeps its first
+  // argument forever, so a refetch (another admin, another tab, a failed save
+  // rolled back) left the field showing a value the server no longer holds.
+  const [seeded, setSeeded] = useState(setting.value)
+  if (seeded !== setting.value) {
+    setSeeded(setting.value)
+    setLocalValue(setting.value)
+  }
   // Whether a value is stored. For secret settings the server redacts the value
   // to "" and reports it via `set`, so this is the source of truth for the
   // "Configured" / bullet-placeholder state rather than the (empty) value.
@@ -185,6 +185,16 @@ function SettingField({
   const enumOpts = enumOptions(setting)
   const methodStates = methodStateOptions(enumOpts)
   const fileInputRef = useRef<HTMLInputElement | null>(null)
+  // What the reset dialogs name as the default. The stored form is a raw enum
+  // or "true"/"false"; the same labels the controls use belong here too.
+  const defaultLabel = methodStates
+    ? methodStateLabel(setting.default)
+    : isBoolean
+      ? setting.default === 'true'
+        ? t`Enabled`
+        : t`Disabled`
+      : setting.default
+
   const hasChanged = localValue !== setting.value
   const isDefault = setting.value === setting.default
   const settingNameLabel = formatSettingName(setting.name, labels)
@@ -256,7 +266,7 @@ function SettingField({
       <div className='flex items-center gap-2 w-full'>
         {setting.read_only ? (
           <DataChip 
-            value={formatSettingValue(setting.name, setting.value)} 
+            value={emptyValueLabel(setting.value)} 
             icon={setting.read_only ? <Lock className="size-3" /> : undefined}
           />
         ) : methodStates ? (
@@ -303,7 +313,7 @@ function SettingField({
                   <AlertDialogHeader>
                     <AlertDialogTitle><Trans>Reset to default?</Trans></AlertDialogTitle>
                     <AlertDialogDescription>
-                      <Trans>This will reset "{settingNameLabel}" to its default value ({setting.default}).</Trans>
+                      <Trans>This will reset "{settingNameLabel}" to its default value ({defaultLabel}).</Trans>
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
@@ -345,7 +355,7 @@ function SettingField({
                   <AlertDialogHeader>
                     <AlertDialogTitle><Trans>Reset to default?</Trans></AlertDialogTitle>
                     <AlertDialogDescription>
-                      <Trans>This will reset "{settingNameLabel}" to its default value ({setting.default}).</Trans>
+                      <Trans>This will reset "{settingNameLabel}" to its default value ({defaultLabel}).</Trans>
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
@@ -425,7 +435,7 @@ function SettingField({
         ) : setting.secret ? (
           <SecretField
             configured={storedSet}
-            onSave={(v) => onSaveAsync(setting.name, v)}
+            onSave={(v) => onSave(setting.name, v)}
             inputClassName='h-9 font-mono text-sm'
           />
         ) : (
@@ -464,7 +474,7 @@ function SettingField({
                     <AlertDialogTitle><Trans>Reset to default?</Trans></AlertDialogTitle>
                     <AlertDialogDescription>
                       {setting.default
-                        ? <Trans>This will reset "{settingNameLabel}" to its default value ({setting.default}).</Trans>
+                        ? <Trans>This will reset "{settingNameLabel}" to its default value ({defaultLabel}).</Trans>
                         : <Trans>This will reset "{settingNameLabel}" to its default (empty).</Trans>}
                     </AlertDialogDescription>
                   </AlertDialogHeader>
@@ -495,23 +505,9 @@ export function SystemSettings() {
   // Rejects on failure so a row that changed its own value optimistically -
   // a toggle or a picker, which save on the same gesture and have no Save
   // button to retry with - can put the stored value back rather than leaving
-  // the screen disagreeing with the server.
+  // the screen disagreeing with the server. SecretField needs the same
+  // rejection to keep the typed value, so it takes this too.
   const handleSave = async (name: string, value: string): Promise<void> => {
-    setSavingName(name)
-    try {
-      await setSetting.mutateAsync({ name, value })
-      toast.success(t`Setting updated`)
-    } catch (error) {
-      toast.error(getErrorMessage(error, t`Failed to update setting`))
-      throw error
-    } finally {
-      setSavingName(null)
-    }
-  }
-
-  // SecretField needs a promise so it can clear and mark itself set only on a
-  // successful save; rethrow so it keeps the typed value on failure.
-  const saveSecret = async (name: string, value: string): Promise<void> => {
     setSavingName(name)
     try {
       await setSetting.mutateAsync({ name, value })
@@ -564,7 +560,6 @@ export function SystemSettings() {
         key={setting.name}
         setting={setting}
         onSave={handleSave}
-        onSaveAsync={saveSecret}
         isSaving={savingName === setting.name}
       />
     ))

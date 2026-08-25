@@ -23,10 +23,25 @@ import type {
 } from '@/types/account'
 import endpoints from '@/api/endpoints'
 import { requestHelpers } from '@mochi/web'
+import { useLingui } from '@lingui/react/macro'
 
 const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
 } as const
+
+// Name the browser a session's user-agent belongs to. The raw string is a
+// hundred characters of version soup, so both session views show the family
+// instead; keeping it here stops the two of them drifting apart.
+export function useAgentName(): (agent: string | undefined) => string {
+  const { t } = useLingui()
+  return (agent) => {
+    const value = agent || ''
+    if (value.includes('Chrome')) return 'Chrome'
+    if (value.includes('Firefox')) return 'Firefox'
+    if (value.includes('Safari')) return 'Safari'
+    return t`Unknown browser`
+  }
+}
 
 export function useAccountData() {
   return useQuery({

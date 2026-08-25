@@ -69,11 +69,11 @@ def action_notifications_categories_update(a):
 
 def action_notifications_categories_delete(a):
     id = a.input("id", "").strip()
-    reassign = a.input("reassign_to", "").strip()
+    reassign = a.input("reassign", "").strip()
     if not id or len(id) > 64:
         return a.error.label(400, "errors.invalid_id")
     if reassign == "" or len(reassign) > 64:
-        return a.error.label(400, "errors.reassign_to_is_required")
+        return a.error.label(400, "errors.reassign_is_required")
     ok = mochi.service.call("notifications", "category/delete", id, reassign)
     if not ok:
         return a.error.label(400, "errors.could_not_delete")
@@ -111,7 +111,7 @@ def action_notifications_topics_delete(a):
     # app="" identifies server-originated topics.
     app = a.input("app", "").strip()
     topic = a.input("topic", "").strip()
-    object = a.input("object", "")
+    object = a.input("object", "").strip()
     mochi.service.call("notifications", "topic/delete", app, topic, object)
     a.json({"ok": True})
 

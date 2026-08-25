@@ -54,6 +54,7 @@ import {
   Input,
   Label,
   ListSkeleton,
+  naturalCompare,
   Skeleton,
   Switch,
   Table,
@@ -162,16 +163,20 @@ function AddRouteDialog({
   const [target, setTarget] = useState('')
   const [priority, setPriority] = useState('0')
   const createRoute = useCreateRoute()
-  const { data: apps } = useApps()
-  const { data: entities } = useEntities()
+  const { data: apps, error: appsError } = useApps()
+  const { data: entities, error: entitiesError } = useEntities()
 
   // Check if path is allowed for non-admin users
   const isPathAllowed = (testPath: string): boolean => {
     if (admin) return true
     if (!delegations || delegations.length === 0) return false
     return delegations.some((d) => {
-      if (d.path === '') return true // Root delegation allows all paths
-      return testPath === d.path || testPath.startsWith(d.path + '/')
+      // Mirrors the server's delegation_covers: trailing slashes are stripped
+      // first, so "" and "/" both cover the whole domain, and matching is on
+      // whole path segments (/blog covers /blog/post, not /blogger).
+      const delegated = d.path.replace(/\/+$/, '')
+      if (delegated === '') return true
+      return testPath === delegated || testPath.startsWith(delegated + '/')
     })
   }
 
@@ -310,11 +315,15 @@ function AddRouteDialog({
                   required
                 />
               )}
-              <p className='text-muted-foreground text-xs'>
-                {method === 'app' && <Trans>Select the app to route to</Trans>}
-                {method === 'redirect' && <Trans>URL to redirect to</Trans>}
-                {method === 'entity' && <Trans>Select the entity to route to</Trans>}
-              </p>
+              {(method === 'app' && appsError) || (method === 'entity' && entitiesError) ? (
+                <p className='text-destructive text-xs'>{t`Failed to load`}</p>
+              ) : (
+                <p className='text-muted-foreground text-xs'>
+                  {method === 'app' && <Trans>Select the app to route to</Trans>}
+                  {method === 'redirect' && <Trans>URL to redirect to</Trans>}
+                  {method === 'entity' && <Trans>Select the entity to route to</Trans>}
+                </p>
+              )}
             </div>
             <div className='grid gap-2'>
               <Label htmlFor='priority'><Trans>Priority</Trans></Label>
@@ -363,8 +372,8 @@ function EditRouteDialog({
   const [priority, setPriority] = useState(String(route.priority))
   const [enabled, setEnabled] = useState(route.enabled === 1)
   const updateRoute = useUpdateRoute()
-  const { data: apps } = useApps()
-  const { data: entities } = useEntities()
+  const { data: apps, error: appsError } = useApps()
+  const { data: entities, error: entitiesError } = useEntities()
 
   const routeDirty = useMemo(() => {
     const priorityNum = parseInt(priority, 10)
@@ -496,11 +505,15 @@ function EditRouteDialog({
                   required
                 />
               )}
-              <p className='text-muted-foreground text-xs'>
-                {method === 'app' && <Trans>Select the app to route to</Trans>}
-                {method === 'redirect' && <Trans>URL to redirect to</Trans>}
-                {method === 'entity' && <Trans>Select the entity to route to</Trans>}
-              </p>
+              {(method === 'app' && appsError) || (method === 'entity' && entitiesError) ? (
+                <p className='text-destructive text-xs'>{t`Failed to load`}</p>
+              ) : (
+                <p className='text-muted-foreground text-xs'>
+                  {method === 'app' && <Trans>Select the app to route to</Trans>}
+                  {method === 'redirect' && <Trans>URL to redirect to</Trans>}
+                  {method === 'entity' && <Trans>Select the entity to route to</Trans>}
+                </p>
+              )}
             </div>
             <div className='grid gap-2'>
               <Label htmlFor='edit-priority'><Trans>Priority</Trans></Label>
@@ -826,7 +839,7 @@ function DomainDetails({
 }) {
   const { t } = useLingui()
   const [expanded, setExpanded] = useState(false)
-  const { data, isLoading, refetch } = useDomainDetails(
+  const { data, isLoading, error, refetch } = useDomainDetails(
     expanded ? domain.domain : ''
   )
   const updateDomain = useUpdateDomain()
@@ -1035,7 +1048,9 @@ function DomainDetails({
                 admin={data?.admin ?? false}
               />
             </div>
-            {isLoading ? (
+            {error ? (
+              <GeneralError error={error} minimal mode='inline' reset={refetch} />
+            ) : isLoading ? (
               <Skeleton className='h-20 w-full' />
             ) : data?.routes && data.routes.length > 0 ? (
               <Table>
@@ -1081,7 +1096,9 @@ function DomainDetails({
                   onSuccess={() => refetch()}
                 />
               </div>
-              {isLoading ? (
+              {error ? (
+                <GeneralError error={error} minimal mode='inline' reset={refetch} />
+              ) : isLoading ? (
                 <Skeleton className='h-20 w-full' />
               ) : data?.delegations && data.delegations.length > 0 ? (
                 <Table>
@@ -1218,15 +1235,17 @@ export function Domains() {
             ) : isLoading ? (
               <ListSkeleton variant='simple' height='h-20' count={2} />
             ) : data?.domains && data.domains.length > 0 ? (
-              data.domains.map((domain) => (
-                <DomainDetails
-                  key={domain.domain}
-                  domain={domain}
-                  isAdmin={isAdmin}
-                  onDelete={() => handleDelete(domain.domain)}
-                  isDeleting={deletingDomain === domain.domain}
-                />
-              ))
+              [...data.domains]
+                .sort((a, b) => naturalCompare(a.domain, b.domain))
+                .map((domain) => (
+                  <DomainDetails
+                    key={domain.domain}
+                    domain={domain}
+                    isAdmin={isAdmin}
+                    onDelete={() => handleDelete(domain.domain)}
+                    isDeleting={deletingDomain === domain.domain}
+                  />
+                ))
             ) : (
               <EmptyState
                 icon={Shield}

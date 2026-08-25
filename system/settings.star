@@ -24,17 +24,6 @@ def action_system_peers(a):
         "counts": mochi.server.counts(),
     })
 
-def action_system_settings_get(a):
-    """Get a single setting"""
-    if not require_admin(a):
-        return
-    name = a.input("name")
-    if not name:
-        a.error.label(400, "errors.missing_setting_name")
-        return
-    value = mochi.setting.get(name)
-    a.json({"name": name, "value": value})
-
 def action_system_settings_set(a):
     """Set a system setting"""
     if not require_admin(a):

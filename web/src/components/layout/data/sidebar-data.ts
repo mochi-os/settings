@@ -22,27 +22,6 @@ import {
 import { type SidebarData } from '@mochi/web'
 import { useLingui } from '@lingui/react/macro'
 
-export function useSidebarData(): SidebarData {
-  const { t } = useLingui()
-  return {
-    navGroups: [
-      {
-        title: t`Settings`,
-        items: [
-          { title: t`Account`, url: APP_ROUTES.SETTINGS.USER.ACCOUNT, icon: User },
-          { title: t`Login`, url: APP_ROUTES.SETTINGS.USER.LOGIN, icon: Lock },
-          { title: t`Preferences`, url: APP_ROUTES.SETTINGS.USER.PREFERENCES, icon: Sliders },
-          { title: t`Display`, url: APP_ROUTES.SETTINGS.USER.DISPLAY, icon: Palette },
-          { title: t`Connected accounts`, url: APP_ROUTES.SETTINGS.USER.ACCOUNTS, icon: Link2 },
-          { title: t`Notifications`, url: APP_ROUTES.SETTINGS.USER.NOTIFICATIONS, icon: Bell },
-          { title: t`Sessions`, url: APP_ROUTES.SETTINGS.USER.SESSIONS, icon: Monitor },
-          { title: t`Interests`, url: APP_ROUTES.SETTINGS.USER.INTERESTS, icon: Star },
-        ],
-      },
-    ],
-  }
-}
-
 export function useFilteredSidebarData(isAdmin: boolean, hasDomainAccess: boolean): SidebarData {
   const { t } = useLingui()
   const userNavGroup = {

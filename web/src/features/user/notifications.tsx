@@ -4,7 +4,8 @@
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 
 import { plural } from '@lingui/core/macro'
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo } from 'react'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { Trans, useLingui } from '@lingui/react/macro'
 import { useNavigate, useSearch } from '@tanstack/react-router'
 import {
@@ -57,6 +58,10 @@ import {
 import endpoints from '@/api/endpoints'
 
 type TabId = 'categories' | 'topics'
+
+// Radix Select refuses "" as an item value, and "" is what the server reads as
+// "clear this topic's category". The sentinel exists only between the two.
+const UNASSIGNED = 'unassigned'
 
 interface DestinationRow {
   type: string
@@ -162,8 +167,10 @@ export function UserNotifications() {
     void navigate({ search: (prev: Record<string, unknown>) => ({ ...prev, tab: next }), replace: true } as never)
   }
   const [creating, setCreating] = useState(false)
-  const [reloadKey, setReloadKey] = useState(0)
-  const bumpReload = () => setReloadKey((k) => k + 1)
+  const queryClient = useQueryClient()
+  const bumpReload = () => {
+    void queryClient.invalidateQueries({ queryKey: ['notifications'] })
+  }
 
   return (
     <>
@@ -191,7 +198,7 @@ export function UserNotifications() {
           </div>
         </Tabs>
         {activeTab === 'categories'
-          ? <CategoriesTab creating={creating} setCreating={setCreating} reloadKey={reloadKey} />
+          ? <CategoriesTab creating={creating} setCreating={setCreating} />
           : <TopicsTab />}
       </Main>
     </>
@@ -236,38 +243,34 @@ function BrowserPushButton({ onChanged }: { onChanged: () => void }) {
 function CategoriesTab({
   creating,
   setCreating,
-  reloadKey,
 }: {
   creating: boolean
   setCreating: (v: boolean) => void
-  reloadKey: number
 }) {
   const { t } = useLingui()
-  const [categories, setCategories] = useState<Category[] | null>(null)
-  const [available, setAvailable] = useState<DestinationsAvailable | null>(null)
-  const [error, setError] = useState<unknown>(null)
+  const queryClient = useQueryClient()
   const [editing, setEditing] = useState<Category | null>(null)
   const [deleting, setDeleting] = useState<Category | null>(null)
 
-  const load = async () => {
-    try {
+  const { data, error, refetch } = useQuery({
+    queryKey: ['notifications', 'categories'],
+    queryFn: async () => {
       const [cats, dests] = await Promise.all([
         requestHelpers.get<Category[]>(endpoints.notifications.categories),
         requestHelpers.get<DestinationsAvailable>(endpoints.notifications.destinations),
       ])
-      setCategories(cats ?? [])
-      setAvailable(dests ?? { accounts: [], feeds: [] })
-    } catch (e) {
-      setError(e)
-    }
+      return {
+        categories: cats ?? [],
+        available: dests ?? ({ accounts: [], feeds: [] } as DestinationsAvailable),
+      }
+    },
+  })
+  const load = async () => {
+    await queryClient.invalidateQueries({ queryKey: ['notifications'] })
   }
 
-  useEffect(() => {
-    void load()
-  }, [reloadKey])
-
-  if (error) return <GeneralError error={error} />
-  if (!categories || !available) {
+  if (error) return <GeneralError error={error} reset={refetch} />
+  if (!data) {
     return (
       <div className="space-y-2">
         <Skeleton className="h-12 w-full" />
@@ -276,6 +279,7 @@ function CategoriesTab({
     )
   }
 
+  const { categories, available } = data
   const visibleCategories = sortCategories(categories.filter((c) => c.id !== '0'))
 
   return (
@@ -654,26 +658,23 @@ function CategoryDeleteDialog({
 
 function TopicsTab() {
   const { t } = useLingui()
-  const [topics, setTopics] = useState<Topic[] | null>(null)
-  const [categories, setCategories] = useState<Category[] | null>(null)
-  const [error, setError] = useState<unknown>(null)
+  const queryClient = useQueryClient()
 
-  const load = async () => {
-    try {
+  const { data, error, refetch } = useQuery({
+    queryKey: ['notifications', 'topics'],
+    queryFn: async () => {
       const [loadedTopics, loadedCategories] = await Promise.all([
         requestHelpers.get<Topic[]>(endpoints.notifications.topics),
         requestHelpers.get<Category[]>(endpoints.notifications.categories),
       ])
-      setTopics(loadedTopics ?? [])
-      setCategories(loadedCategories ?? [])
-    } catch (e) {
-      setError(e)
-    }
+      return { topics: loadedTopics ?? [], categories: loadedCategories ?? [] }
+    },
+  })
+  const topics = data?.topics
+  const categories = data?.categories
+  const load = async () => {
+    await queryClient.invalidateQueries({ queryKey: ['notifications'] })
   }
-
-  useEffect(() => {
-    void load()
-  }, [])
 
   const setCategory = async (topic: Topic, value: string) => {
     try {
@@ -726,7 +727,7 @@ function TopicsTab() {
     return Array.from(map.values()).sort((a, b) => naturalCompare(a.app_name, b.app_name))
   }, [topics])
 
-  if (error) return <GeneralError error={error} />
+  if (error) return <GeneralError error={error} reset={refetch} />
   if (!topics || !categories) {
     return (
       <div className="space-y-2">
@@ -759,13 +760,14 @@ function TopicsTab() {
                 </p>
                 <div className="flex items-center gap-2">
                   <Select
-                    value={topic.category != null ? String(topic.category) : ''}
-                    onValueChange={(v) => setCategory(topic, v)}
+                    value={topic.category != null ? String(topic.category) : UNASSIGNED}
+                    onValueChange={(v) => setCategory(topic, v === UNASSIGNED ? '' : v)}
                   >
                     <SelectTrigger className="w-48">
-                      <SelectValue placeholder={t`Unassigned`} />
+                      <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value={UNASSIGNED}>{t`Unassigned`}</SelectItem>
                       {sortCategories(categories).map((c) => (
                         <SelectItem key={c.id} value={String(c.id)}>{c.display ?? c.label}</SelectItem>
                       ))}

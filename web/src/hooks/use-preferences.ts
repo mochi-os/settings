@@ -9,7 +9,6 @@ import {
   usePreferencesData as usePreferencesDataCommon,
   useSetPreference as useSetPreferenceCommon,
   useUnsetPreferences as useUnsetPreferencesCommon,
-  useResetPreferences as useResetPreferencesCommon,
 } from '@mochi/web'
 import endpoints from '@/api/endpoints'
 import { colorThemeFromSelections, prefsFromData } from '@/lib/color-theme'
@@ -24,10 +23,6 @@ export function useSetPreference() {
 
 export function useUnsetPreferences() {
   return useUnsetPreferencesCommon(endpoints.user.preferencesUnset)
-}
-
-export function useResetPreferences() {
-  return useResetPreferencesCommon(endpoints.user.preferencesReset)
 }
 
 // Resolve the user's preferences into a ColorTheme and push it through

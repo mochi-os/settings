@@ -152,7 +152,7 @@ def action_user_account_session_revoke(a):
     """Revoke a session"""
     id = a.input("id")
     if not id:
-        a.error.label(400, "errors.missing_session_id")
+        a.error.label(400, "errors.missing_session")
         return
 
     # Core aborts on a session id that matches nothing, which the server
@@ -250,6 +250,15 @@ def action_user_account_passkey_verify_finish(a):
         return
     a.json(result)
 
+# Whether the caller holds a passkey with this id. mochi.user.passkey.list is
+# already scoped to the caller, so a hit is both existence and ownership.
+def passkey_owned(id):
+    for key in mochi.user.passkey.list() or []:
+        if key["id"] == id:
+            return True
+    return False
+
+
 def action_user_account_passkey_rename(a):
     """Rename a passkey"""
     id = a.input("id")
@@ -257,6 +266,14 @@ def action_user_account_passkey_rename(a):
 
     if not id or not name:
         a.error.label(400, "errors.missing_id_or_name")
+        return
+    if len(name) > 255:
+        a.error.label(400, "errors.value_too_long", maximum=255)
+        return
+    # Core aborts on an unknown or malformed id, which reaches the user as a
+    # bare 500.
+    if not passkey_owned(id):
+        a.error.label(404, "errors.not_found")
         return
 
     mochi.user.passkey.rename(id, name)
@@ -270,6 +287,9 @@ def action_user_account_passkey_delete(a):
     id = a.input("id")
     if not id:
         a.error.label(400, "errors.missing_passkey_id")
+        return
+    if not passkey_owned(id):
+        a.error.label(404, "errors.not_found")
         return
 
     mochi.user.passkey.delete(id)

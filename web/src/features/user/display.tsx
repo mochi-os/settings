@@ -320,6 +320,17 @@ export function UserDisplay() {
               </div>
             </FieldRow>
 
+            <FieldRow label={t`Background`}>
+              <div className="w-full">
+                <ComboSelect
+                  value={data.preferences.background || 'theme'}
+                  options={{ theme: t`From theme`, off: t`None` }}
+                  onChange={(value) => handleChange('background', value)}
+                  disabled={setPreference.isPending}
+                />
+              </div>
+            </FieldRow>
+
             <FieldRow label={t`Font`}>
               <div className="w-full">
                 <ComboSelect

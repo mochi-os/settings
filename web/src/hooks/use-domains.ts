@@ -111,7 +111,6 @@ export function useCreateRoute() {
       method: string
       target: string
       priority?: number
-      context?: string
     }) =>
       requestHelpers.post(
         endpoints.domains.routeCreate,
