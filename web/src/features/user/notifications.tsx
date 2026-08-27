@@ -85,6 +85,8 @@ interface Account {
   label: string
   identifier?: string
   enabled: number
+  // The device a push account was registered from, or "" for none.
+  device?: string
 }
 
 interface Feed {
@@ -93,9 +95,23 @@ interface Feed {
   enabled: number
 }
 
+interface Device {
+  id: string
+  label: string
+  created: number
+  seen: number
+}
+
 interface DestinationsAvailable {
   accounts: Account[]
   feeds: Feed[]
+  devices: Device[]
+}
+
+// Push accounts are per-device: a browser's Web Push subscription, a phone's
+// FCM or UnifiedPush registration.
+function isPushAccount(acc: Account): boolean {
+  return acc.type === 'browser' || acc.type === 'unifiedpush' || acc.type === 'fcm'
 }
 
 interface Topic {
@@ -261,7 +277,7 @@ function CategoriesTab({
       ])
       return {
         categories: cats ?? [],
-        available: dests ?? ({ accounts: [], feeds: [] } as DestinationsAvailable),
+        available: dests ?? ({ accounts: [], feeds: [], devices: [] } as DestinationsAvailable),
       }
     },
   })
@@ -369,11 +385,17 @@ function CategoryRow({
     const dests = category.destinations
     if (dests.length === 0) return t`No destinations`
     const labels: string[] = []
+    const deviceLabel = (id: string) => available.devices.find((x) => x.id === id)?.label
     for (const d of dests) {
       if (d.type === 'web') labels.push(t`Web browser`)
-      else if (d.type === 'account') {
+      else if (d.type === 'device') {
+        const name = deviceLabel(d.target)
+        if (name !== undefined) labels.push(t`${name || t`Device`} (in app)`)
+      } else if (d.type === 'account') {
         const acc = available.accounts.find((a) => String(a.id) === d.target)
-        if (acc) labels.push(accountDisplayName(acc))
+        if (!acc) continue
+        const name = acc.device ? deviceLabel(acc.device) : undefined
+        labels.push(name !== undefined ? t`${name || t`Device`} (push)` : accountDisplayName(acc))
       } else if (d.type === 'rss') {
         const feed = available.feeds.find((x) => x.id === d.target)
         if (feed && feed.name) labels.push(feed.name)
@@ -431,6 +453,7 @@ function CategoryDialog({
       for (const d of category.destinations) set.add(destKey(d.type, d.target))
     } else {
       set.add(destKey('web', ''))
+      for (const dev of available.devices) set.add(destKey('device', dev.id))
       for (const acc of available.accounts) {
         if (acc.enabled) set.add(destKey('account', String(acc.id)))
       }
@@ -565,27 +588,54 @@ function DestinationsGrid({
   onToggle: (key: string) => void
 }) {
   const { t } = useLingui()
-  const rows: { key: string; label: string }[] = [
-    { key: destKey('web', ''), label: t`Web browser` },
+  type Row = { key: string; label: string }
+  // A destination is either a surface - where the notification is shown - or
+  // a push target. The browser and each device group their own: the browser
+  // has its bell, a phone has its list and the push account registered from
+  // it. Accounts bound to no device, and feeds, are listed on their own.
+  const groups: { key: string; label: string; rows: Row[] }[] = [
+    { key: 'web', label: t`Web browser`, rows: [{ key: destKey('web', ''), label: t`In app` }] },
   ]
+  const devices = [...available.devices].sort((a, b) => naturalCompare(a.label, b.label))
+  const bound = new Set(devices.map((d) => d.id))
+  for (const dev of devices) {
+    const rows: Row[] = [{ key: destKey('device', dev.id), label: t`In app` }]
+    for (const acc of available.accounts) {
+      if (acc.device === dev.id) rows.push({ key: destKey('account', String(acc.id)), label: t`Push` })
+    }
+    groups.push({ key: `device:${dev.id}`, label: dev.label || t`Device`, rows })
+  }
+  const others: Row[] = []
   for (const acc of available.accounts) {
-    rows.push({
+    if (acc.device && bound.has(acc.device)) continue
+    // A push account bound to no device names its transport, so two that
+    // share a phone's name can still be told apart.
+    const name = accountDisplayName(acc)
+    const kind = getProviderLabel(acc.type)
+    others.push({
       key: destKey('account', String(acc.id)),
-      label: accountDisplayName(acc),
+      label: isPushAccount(acc) && name !== kind ? `${name} · ${kind}` : name,
     })
   }
   for (const feed of available.feeds) {
-    rows.push({ key: destKey('rss', feed.id), label: t`RSS: ${feed.name}` })
+    others.push({ key: destKey('rss', feed.id), label: t`RSS: ${feed.name}` })
   }
-  rows.sort((a, b) => naturalCompare(a.label, b.label))
+  others.sort((a, b) => naturalCompare(a.label, b.label))
+  const row = (r: Row) => (
+    <label key={r.key} className="flex items-center gap-3 py-2 cursor-pointer">
+      <Switch checked={checked.has(r.key)} onCheckedChange={() => onToggle(r.key)} />
+      <span className="text-sm">{r.label}</span>
+    </label>
+  )
   return (
     <div className="flex flex-col">
-      {rows.map((r) => (
-        <label key={r.key} className="flex items-center gap-3 py-2 cursor-pointer">
-          <Switch checked={checked.has(r.key)} onCheckedChange={() => onToggle(r.key)} />
-          <span className="text-sm">{r.label}</span>
-        </label>
+      {groups.map((g) => (
+        <div key={g.key} className="flex flex-col">
+          <div className="pt-2 text-sm font-medium">{g.label}</div>
+          <div className="flex flex-col pl-4">{g.rows.map(row)}</div>
+        </div>
       ))}
+      {others.length > 0 && <div className="flex flex-col pt-2">{others.map(row)}</div>}
     </div>
   )
 }
