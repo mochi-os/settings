@@ -4,6 +4,7 @@
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 
 import { useState } from 'react'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { Trans, useLingui } from '@lingui/react/macro'
 import { msg } from '@lingui/core/macro'
 import { i18n } from '@lingui/core'
@@ -63,8 +64,85 @@ import {
   useFormat,
   type Account,
   type Provider, naturalCompare, textUnchanged,} from '@mochi/web'
+import endpoints from '@/api/endpoints'
 
 const APP_BASE = getAppPath()
+
+// A phone or tablet the user runs Mochi on. Its push account hangs off it, so
+// the account is shown here as the device's transport rather than as a row of
+// its own, and forgetting the device takes the account with it.
+interface Device {
+  id: string
+  label: string
+  created: number
+  seen: number
+}
+
+function DevicesTable({
+  devices,
+  accounts,
+  onForget,
+  forgettingId,
+}: {
+  devices: Device[]
+  accounts: Account[]
+  onForget: (device: Device) => Promise<void>
+  forgettingId: string | null
+}) {
+  const { t } = useLingui()
+  const { formatTimestamp } = useFormat()
+  const [forgetting, setForgetting] = useState<Device | null>(null)
+  const rows = [...devices].sort((a, b) => naturalCompare(a.label, b.label))
+  return (
+    <>
+      <h2 className='mb-2 text-base font-medium'><Trans>Devices</Trans></h2>
+      <Table className='mb-6'>
+        <TableHeader>
+          <TableRow>
+            <TableHead><Trans>Name</Trans></TableHead>
+            <TableHead className='hidden sm:table-cell'><Trans>Push</Trans></TableHead>
+            <TableHead className='hidden sm:table-cell'><Trans>Last seen</Trans></TableHead>
+            <TableHead className='w-24'></TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {rows.map((device) => {
+            const push = accounts.filter((a) => a.device === device.id)
+            return (
+              <TableRow key={device.id}>
+                <TableCell className='font-medium'>{device.label || t`Device`}</TableCell>
+                <TableCell className='hidden sm:table-cell text-muted-foreground'>
+                  {push.map((a) => getProviderLabel(a.type)).join(', ')}
+                </TableCell>
+                <TableCell className='hidden sm:table-cell text-muted-foreground'>{formatTimestamp(device.seen)}</TableCell>
+                <TableCell className='text-end'>
+                  <Button variant='outline' size='sm' disabled={forgettingId === device.id} onClick={() => setForgetting(device)}>
+                    <Trans>Forget</Trans>
+                  </Button>
+                </TableCell>
+              </TableRow>
+            )
+          })}
+        </TableBody>
+      </Table>
+      {forgetting && (
+        <ConfirmDialog
+          open={!!forgetting}
+          onOpenChange={(open) => { if (!open) setForgetting(null) }}
+          title={t`Forget device?`}
+          desc={t`This will forget the device "${forgetting.label || t`Device`}" and stop notifications to it.`}
+          confirmText={t`Forget`}
+          destructive
+          handleConfirm={async () => {
+            const device = forgetting
+            setForgetting(null)
+            await onForget(device)
+          }}
+        />
+      )}
+    </>
+  )
+}
 
 function getProviderIcon(type: string) {
   switch (type) {
@@ -325,6 +403,35 @@ export function ConnectedAccounts() {
   const providers = Array.isArray(providersData) ? providersData : []
   const accounts = Array.isArray(accountsData) ? accountsData : []
 
+  const queryClient = useQueryClient()
+  const devicesQuery = useQuery({
+    queryKey: ['notifications', 'devices'],
+    queryFn: () => requestHelpers.get<Device[]>(endpoints.notifications.devices),
+  })
+  const devices = Array.isArray(devicesQuery.data) ? devicesQuery.data : []
+  const deviceIds = new Set(devices.map((d) => d.id))
+  // An account bound to a listed device is that device's, shown in its row.
+  const visibleAccounts = accounts.filter((a) => !a.device || !deviceIds.has(a.device))
+  const [forgettingDeviceId, setForgettingDeviceId] = useState<string | null>(null)
+
+  const handleForgetDevice = async (device: Device) => {
+    setForgettingDeviceId(device.id)
+    try {
+      const params = new URLSearchParams()
+      params.append('id', device.id)
+      await requestHelpers.post(endpoints.notifications.devicesRemove, params.toString(), {
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      })
+      toast.success(t`Device forgotten`)
+      void queryClient.invalidateQueries({ queryKey: ['notifications', 'devices'] })
+      await refetch()
+    } catch (error) {
+      toast.error(getErrorMessage(error, t`Failed to forget device`))
+    } finally {
+      setForgettingDeviceId(null)
+    }
+  }
+
   const handleAdd = async (type: string, fields: Record<string, string>, addToExisting: boolean, setAsDefault?: boolean) => {
     try {
       const account = await add(type, fields, addToExisting)
@@ -466,13 +573,23 @@ export function ConnectedAccounts() {
           <GeneralError error={accountsError} minimal mode='inline' reset={refetch} />
         ) : isLoading ? (
           <ListSkeleton variant='simple' height='h-12' count={3} />
-        ) : accounts.length === 0 ? (
+        ) : (
+          <>
+          {devices.length > 0 && (
+            <DevicesTable
+              devices={devices}
+              accounts={accounts}
+              onForget={handleForgetDevice}
+              forgettingId={forgettingDeviceId}
+            />
+          )}
+          {visibleAccounts.length === 0 ? (
           <EmptyState
             icon={Link}
             title={t`No connected accounts`}
             className='p-4'
           />
-        ) : (
+          ) : (
           <Table>
             <TableHeader>
               <TableRow>
@@ -487,7 +604,7 @@ export function ConnectedAccounts() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {[...accounts]
+              {[...visibleAccounts]
                 .sort((a, b) => {
                   const nameCompare = naturalCompare(getAccountDisplayName(a), getAccountDisplayName(b))
                   if (nameCompare !== 0) return nameCompare
@@ -509,6 +626,8 @@ export function ConnectedAccounts() {
                 ))}
             </TableBody>
           </Table>
+          )}
+          </>
         )}
       </Main>
 

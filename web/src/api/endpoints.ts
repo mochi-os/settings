@@ -83,6 +83,8 @@ const endpoints = {
     topicsSetCategory: '-/notifications/topics/set/category',
     topicsDelete: '-/notifications/topics/delete',
     destinations: '-/notifications/destinations',
+    devices: '-/notifications/devices',
+    devicesRemove: '-/notifications/devices/remove',
   },
   domains: {
     data: '-/domains/data',
