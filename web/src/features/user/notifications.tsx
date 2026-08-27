@@ -370,7 +370,7 @@ function CategoryRow({
     if (dests.length === 0) return t`No destinations`
     const labels: string[] = []
     for (const d of dests) {
-      if (d.type === 'web') labels.push(t`Mochi web`)
+      if (d.type === 'web') labels.push(t`Web browser`)
       else if (d.type === 'account') {
         const acc = available.accounts.find((a) => String(a.id) === d.target)
         if (acc) labels.push(accountDisplayName(acc))
@@ -566,7 +566,7 @@ function DestinationsGrid({
 }) {
   const { t } = useLingui()
   const rows: { key: string; label: string }[] = [
-    { key: destKey('web', ''), label: t`Mochi web` },
+    { key: destKey('web', ''), label: t`Web browser` },
   ]
   for (const acc of available.accounts) {
     rows.push({

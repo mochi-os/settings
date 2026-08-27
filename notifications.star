@@ -118,3 +118,16 @@ def action_notifications_topics_delete(a):
 def action_notifications_destinations(a):
     result = mochi.service.call("notifications", "destinations/available")
     a.json(result or {"accounts": [], "feeds": []})
+
+# The user's devices, and forgetting one: its push accounts go with it.
+def action_notifications_devices(a):
+    result = mochi.service.call("notifications", "device/list")
+    a.json(result or [])
+
+def action_notifications_devices_remove(a):
+    id = a.input("id", "").strip()
+    if not id or len(id) > 64:
+        return a.error.label(400, "errors.invalid_id")
+    if not mochi.service.call("notifications", "device/remove", id):
+        return a.error.label(400, "errors.could_not_delete")
+    a.json({"ok": True})
