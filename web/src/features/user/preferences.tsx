@@ -49,6 +49,7 @@ import {
   describeLanguages,
   detectLanguage,
   nativeName,
+  resolveInstalled,
   type LocalePreferences,
 } from '@mochi/web'
 
@@ -105,15 +106,10 @@ export function UserPreferences() {
     const out: Record<string, string> = {}
     // The Auto suffix should reflect the catalog the resolver will actually
     // load, not the literal browser tag — walk parent chain to closest
-    // installed locale (e.g. en-gb → en → "English (international)").
+    // installed locale (e.g. en-gb → en → "English (international)"). 'en' is
+    // the fallback because the server's resolver ends there too.
     const installed = new Set(tags.map((s) => s.toLowerCase()))
-    let resolved = detectLanguage().toLowerCase()
-    while (resolved !== '') {
-      if (installed.has(resolved)) break
-      const i = resolved.lastIndexOf('-')
-      if (i < 0) { resolved = 'en'; break }
-      resolved = resolved.slice(0, i)
-    }
+    const resolved = resolveInstalled(detectLanguage(), installed, 'en')
     out['auto'] = `${t`Detect from web browser`}: ${nativeName(resolved, i18n.locale)}`
     for (const { tag, native } of describeLanguages(tags)) {
       out[tag] = native
