@@ -64,16 +64,6 @@ msgstr "{0, plural, one {Imefuta kipindi 1} other {Imefuta vipindi #}}"
 msgid "{0} (development)"
 msgstr "{0} (maendeleo)"
 
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:393
-msgid "{0} (in app)"
-msgstr "{0} (ndani ya programu)"
-
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:398
-msgid "{0} (push)"
-msgstr "{0} (push)"
-
 #. placeholder {0}: formatNumber(network.relaying.reservations.held)
 #. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
 #. placeholder {2}: formatNumber(network.relaying.circuits)
@@ -81,6 +71,16 @@ msgstr "{0} (push)"
 #: src/features/system/status.tsx:176
 msgid "{0} / {1} reservations · {2} circuits · {3} refused"
 msgstr "{0} / {1} uhifadhi · {2} saketi · {3} zilizokataliwa"
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:393
+msgid "{0} app"
+msgstr ""
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:398
+msgid "{0} push"
+msgstr ""
 
 #. placeholder {0}: formatNumber(network.holepunch.success)
 #. placeholder {1}: formatNumber(network.holepunch.failure)
@@ -115,6 +115,14 @@ msgstr "Jina la {entityLabel}"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:99
 msgid "{entityLabel} name is required"
 msgstr "Jina la {entityLabel} linahitajika"
+
+#: src/features/user/notifications.tsx:600
+msgid "{name} app"
+msgstr "{name} programu"
+
+#: src/features/user/notifications.tsx:602
+msgid "{name} push"
+msgstr "{name} push"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx:29
 msgid "{opponentName} offered a draw"
@@ -599,8 +607,8 @@ msgstr "Arifa za kivinjari"
 #: src/features/user/display.tsx:206
 #: src/features/user/login.tsx:570
 #: src/features/user/notifications.tsx:566
-#: src/features/user/notifications.tsx:696
-#: src/features/user/preferences.tsx:207
+#: src/features/user/notifications.tsx:685
+#: src/features/user/preferences.tsx:203
 #: src/features/user/sessions.tsx:108
 msgid "Cancel"
 msgstr "Ghairi"
@@ -630,7 +638,7 @@ msgstr "Kategoria"
 msgid "Category for these notifications"
 msgstr "Kategoria ya arifa hizi"
 
-#: src/features/user/notifications.tsx:683
+#: src/features/user/notifications.tsx:672
 msgid "Change current notifications to"
 msgstr "Badilisha arifa za sasa kuwa"
 
@@ -655,8 +663,8 @@ msgstr "Chagua mchezo kutoka upau wa pembeni au anzisha mpya."
 msgid "Choose file"
 msgstr "Chagua faili"
 
-#: ../../../lib/web/src/components/language-picker.tsx:264
-#: ../../../lib/web/src/components/language-picker.tsx:271
+#: ../../../lib/web/src/components/language-picker.tsx:267
+#: ../../../lib/web/src/components/language-picker.tsx:274
 msgid "Choose language"
 msgstr "Chagua lugha"
 
@@ -954,7 +962,7 @@ msgstr "Mgongano wa data"
 msgid "Date"
 msgstr "Tarehe"
 
-#: src/features/user/preferences.tsx:280
+#: src/features/user/preferences.tsx:276
 msgid "Date format"
 msgstr "Muundo wa tarehe"
 
@@ -1023,12 +1031,12 @@ msgstr "Ukabidhi"
 #: src/features/system/users.tsx:544
 #: src/features/user/login.tsx:281
 #: src/features/user/notifications.tsx:426
-#: src/features/user/notifications.tsx:699
+#: src/features/user/notifications.tsx:688
 msgid "Delete"
 msgstr "Futa"
 
 #. placeholder {0}: category.display ?? category.label
-#: src/features/user/notifications.tsx:679
+#: src/features/user/notifications.tsx:668
 msgid "Delete \"{0}\"?"
 msgstr "Futa \"{0}\"?"
 
@@ -1133,7 +1141,7 @@ msgstr "Marudio"
 msgid "Details Panel"
 msgstr "Paneli ya Undani"
 
-#: ../../../lib/web/src/components/language-picker.tsx:240
+#: ../../../lib/web/src/components/language-picker.tsx:243
 #: ../../../lib/web/src/components/timezone-select.tsx:46
 #: ../../../lib/web/src/components/timezone-select.tsx:83
 #: ../../../lib/web/src/lib/preference-utils.ts:23
@@ -1141,7 +1149,7 @@ msgstr "Paneli ya Undani"
 #: ../../../lib/web/src/lib/preference-utils.ts:53
 #: ../../../lib/web/src/lib/preference-utils.ts:67
 #: ../../../lib/web/src/lib/preference-utils.ts:79
-#: src/features/user/preferences.tsx:117
+#: src/features/user/preferences.tsx:113
 msgid "Detect from web browser"
 msgstr "Tambua kutoka kwa kivinjari cha wavuti"
 
@@ -1150,7 +1158,7 @@ msgstr "Tambua kutoka kwa kivinjari cha wavuti"
 #: src/features/user/connected-accounts.tsx:133
 #: src/features/user/notifications.tsx:393
 #: src/features/user/notifications.tsx:398
-#: src/features/user/notifications.tsx:606
+#: src/features/user/notifications.tsx:599
 msgid "Device"
 msgstr "Kifaa"
 
@@ -1486,7 +1494,7 @@ msgstr "Imeshindwa kuunda mtumiaji"
 msgid "Failed to delete attachment"
 msgstr "Imeshindwa kufuta kiambatisho"
 
-#: src/features/user/notifications.tsx:669
+#: src/features/user/notifications.tsx:658
 msgid "Failed to delete category"
 msgstr "Imeshindwa kufuta kategoria"
 
@@ -1576,7 +1584,7 @@ msgstr "Imeshindwa kuondoa akaunti"
 msgid "Failed to remove interest"
 msgstr "Imeshindwa kuondoa mvuto"
 
-#: src/features/user/notifications.tsx:758
+#: src/features/user/notifications.tsx:747
 msgid "Failed to remove topic"
 msgstr "Imeshindwa kuondoa mada"
 
@@ -1588,7 +1596,7 @@ msgstr "Imeshindwa kubadilisha jina la passkey"
 msgid "Failed to reset display"
 msgstr "Imeshindwa kuweka upya onyesho"
 
-#: src/features/user/preferences.tsx:173
+#: src/features/user/preferences.tsx:169
 msgid "Failed to reset preferences"
 msgstr "Imeshindwa kuweka upya mapendeleo"
 
@@ -1656,7 +1664,7 @@ msgid "Failed to update name"
 msgstr "Imeshindwa kusasisha jina"
 
 #: src/features/user/display.tsx:121
-#: src/features/user/preferences.tsx:145
+#: src/features/user/preferences.tsx:141
 msgid "Failed to update preference"
 msgstr "Imeshindwa kusasisha pendeleo"
 
@@ -1677,7 +1685,7 @@ msgstr "Imeshindwa kusasisha mpangilio"
 msgid "Failed to update theme"
 msgstr "Imeshindwa kusasisha mandhari"
 
-#: src/features/user/notifications.tsx:742
+#: src/features/user/notifications.tsx:731
 msgid "Failed to update topic"
 msgstr "Imeshindwa kusasisha mada"
 
@@ -1878,11 +1886,6 @@ msgstr "Kitazamaji picha: {0}"
 msgid "Imperial"
 msgstr "Imperial"
 
-#: src/features/user/notifications.tsx:597
-#: src/features/user/notifications.tsx:602
-msgid "In app"
-msgstr "Ndani ya programu"
-
 #: ../../../lib/web/src/features/access/types.ts:36
 msgid "Including anonymous users"
 msgstr "Ikijumuisha watumiaji wasiojulikana"
@@ -1948,8 +1951,8 @@ msgid "Label is required"
 msgstr "Lebo inahitajika"
 
 #: src/features/system/documents.tsx:224
-#: src/features/user/preferences.tsx:225
-#: src/features/user/preferences.tsx:236
+#: src/features/user/preferences.tsx:221
+#: src/features/user/preferences.tsx:232
 msgid "Language"
 msgstr "Lugha"
 
@@ -2389,7 +2392,7 @@ msgstr "Hakuna saa za eneo zilizopatikana."
 msgid "No topic record yet — try again after the next notification."
 msgstr "Hakuna rekodi ya mada bado — jaribu tena baada ya arifa inayofuata."
 
-#: src/features/user/notifications.tsx:791
+#: src/features/user/notifications.tsx:780
 msgid "No topics yet"
 msgstr "Hakuna mada bado"
 
@@ -2467,7 +2470,7 @@ msgstr "Arifu kwa chaguo-msingi"
 msgid "Number"
 msgstr "Nambari"
 
-#: src/features/user/preferences.tsx:269
+#: src/features/user/preferences.tsx:265
 msgid "Number format"
 msgstr "Muundo wa nambari"
 
@@ -2668,17 +2671,17 @@ msgid "Posts and comments"
 msgstr "Machapisho na maoni"
 
 #: src/features/user/display.tsx:118
-#: src/features/user/preferences.tsx:142
+#: src/features/user/preferences.tsx:138
 msgid "Preference updated"
 msgstr "Pendeleo limesasishwa"
 
 #: src/components/layout/data/sidebar-data.ts:32
-#: src/features/user/preferences.tsx:72
-#: src/features/user/preferences.tsx:181
+#: src/features/user/preferences.tsx:73
+#: src/features/user/preferences.tsx:177
 msgid "Preferences"
 msgstr "Mapendeleo"
 
-#: src/features/user/preferences.tsx:170
+#: src/features/user/preferences.tsx:166
 msgid "Preferences reset to defaults"
 msgstr "Mapendeleo yamewekwa upya kwa chaguo-msingi"
 
@@ -2732,7 +2735,6 @@ msgid "Public URL for OAuth redirects"
 msgstr "URL ya umma kwa uelekezaji wa OAuth"
 
 #: src/features/user/connected-accounts.tsx:103
-#: src/features/user/notifications.tsx:604
 msgid "Push"
 msgstr "Push"
 
@@ -2846,8 +2848,8 @@ msgstr "Huduma ya rele"
 msgid "Remove"
 msgstr "Ondoa"
 
-#: src/features/user/notifications.tsx:826
-#: src/features/user/notifications.tsx:826
+#: src/features/user/notifications.tsx:815
+#: src/features/user/notifications.tsx:815
 msgid "Remove (re-create on next notification)"
 msgstr "Ondoa (unda upya kwenye arifa inayofuata)"
 
@@ -2942,7 +2944,7 @@ msgstr "Tuma barua pepe tena"
 #: src/features/system/settings.tsx:364
 #: src/features/system/settings.tsx:484
 #: src/features/user/display.tsx:208
-#: src/features/user/preferences.tsx:209
+#: src/features/user/preferences.tsx:205
 msgid "Reset"
 msgstr "Weka upya"
 
@@ -2950,7 +2952,7 @@ msgstr "Weka upya"
 msgid "Reset display?"
 msgstr "Weka upya onyesho?"
 
-#: src/features/user/preferences.tsx:201
+#: src/features/user/preferences.tsx:197
 msgid "Reset preferences?"
 msgstr "Weka upya mapendeleo?"
 
@@ -2970,7 +2972,7 @@ msgid "Reset to default?"
 msgstr "Weka upya kwa chaguo-msingi?"
 
 #: src/features/user/display.tsx:195
-#: src/features/user/preferences.tsx:196
+#: src/features/user/preferences.tsx:192
 msgid "Reset to defaults"
 msgstr "Weka upya kwa chaguo-msingi"
 
@@ -3063,7 +3065,7 @@ msgid "RSS URL copied to clipboard"
 msgstr "URL ya RSS imenakiliwa kwenye ubao wa kunakili"
 
 #. placeholder {0}: feed.name
-#: src/features/user/notifications.tsx:621
+#: src/features/user/notifications.tsx:617
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
 
@@ -3624,7 +3626,7 @@ msgstr "Hii itaweka upya \"{settingNameLabel}\" kuwa chaguo-msingi (tupu)."
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Hii itaweka upya \"{settingNameLabel}\" kuwa thamani chaguo-msingi ({defaultLabel})."
 
-#: src/features/user/preferences.tsx:203
+#: src/features/user/preferences.tsx:199
 msgid "This will reset all preferences to their default values."
 msgstr "Hii itaweka upya mapendeleo yote kuwa thamani zao chaguo-msingi."
 
@@ -3640,15 +3642,15 @@ msgstr "Hii itatoka kwa kipindi hiki. Ikiwa hiki ni kipindi chako cha sasa, utah
 msgid "Thursday"
 msgstr "Alhamisi"
 
-#: src/features/user/preferences.tsx:291
+#: src/features/user/preferences.tsx:287
 msgid "Time format"
 msgstr "Muundo wa wakati"
 
-#: src/features/user/preferences.tsx:248
+#: src/features/user/preferences.tsx:244
 msgid "Time zone"
 msgstr "Saa za eneo"
 
-#: src/features/user/preferences.tsx:316
+#: src/features/user/preferences.tsx:312
 msgid "Timestamps"
 msgstr "Vipigo vya muda"
 
@@ -3759,7 +3761,7 @@ msgid "Unable to redirect to login. Please try again."
 msgstr "Imeshindwa kuelekeza upya kwenye kuingia. Tafadhali jaribu tena."
 
 #: ../../../lib/web/src/components/notification-category-button.tsx:114
-#: src/features/user/notifications.tsx:820
+#: src/features/user/notifications.tsx:809
 msgid "Unassigned"
 msgstr "Haijapewa"
 
@@ -3780,7 +3782,7 @@ msgstr "Hitilafu ya API isiyotarajiwa"
 msgid "United States"
 msgstr "Marekani"
 
-#: src/features/user/preferences.tsx:258
+#: src/features/user/preferences.tsx:254
 msgid "Units"
 msgstr "Vipimo"
 
@@ -3994,7 +3996,7 @@ msgid "We sent a verification code to <0>{0}</0>. Enter the code below to verify
 msgstr "Tumetuma msimbo wa uthibitishaji kwa <0>{0}</0>. Weka msimbo hapa chini ili kuthibitisha anwani yako ya barua pepe."
 
 #: src/features/user/notifications.tsx:390
-#: src/features/user/notifications.tsx:597
+#: src/features/user/notifications.tsx:596
 msgid "Web browser"
 msgstr "Kivinjari cha wavuti"
 
@@ -4002,7 +4004,7 @@ msgstr "Kivinjari cha wavuti"
 msgid "Wednesday"
 msgstr "Jumatano"
 
-#: src/features/user/preferences.tsx:302
+#: src/features/user/preferences.tsx:298
 msgid "Week starts on"
 msgstr "Wiki inaanza siku ya"
 

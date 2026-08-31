@@ -64,16 +64,6 @@ msgstr "{0, plural, one {Pinawalang-bisa ang 1 session} other {Pinawalang-bisa a
 msgid "{0} (development)"
 msgstr "{0} (pagbuo)"
 
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:393
-msgid "{0} (in app)"
-msgstr "{0} (sa app)"
-
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:398
-msgid "{0} (push)"
-msgstr "{0} (push)"
-
 #. placeholder {0}: formatNumber(network.relaying.reservations.held)
 #. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
 #. placeholder {2}: formatNumber(network.relaying.circuits)
@@ -81,6 +71,16 @@ msgstr "{0} (push)"
 #: src/features/system/status.tsx:176
 msgid "{0} / {1} reservations · {2} circuits · {3} refused"
 msgstr "{0} / {1} mga reserbasyon · {2} mga sirkito · {3} tinanggihan"
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:393
+msgid "{0} app"
+msgstr ""
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:398
+msgid "{0} push"
+msgstr ""
 
 #. placeholder {0}: formatNumber(network.holepunch.success)
 #. placeholder {1}: formatNumber(network.holepunch.failure)
@@ -115,6 +115,14 @@ msgstr "Pangalan ng {entityLabel}"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:99
 msgid "{entityLabel} name is required"
 msgstr "Kailangan ang pangalan ng {entityLabel}"
+
+#: src/features/user/notifications.tsx:600
+msgid "{name} app"
+msgstr "{name} app"
+
+#: src/features/user/notifications.tsx:602
+msgid "{name} push"
+msgstr "{name} push"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx:29
 msgid "{opponentName} offered a draw"
@@ -599,8 +607,8 @@ msgstr "Mga notification ng browser"
 #: src/features/user/display.tsx:206
 #: src/features/user/login.tsx:570
 #: src/features/user/notifications.tsx:566
-#: src/features/user/notifications.tsx:696
-#: src/features/user/preferences.tsx:207
+#: src/features/user/notifications.tsx:685
+#: src/features/user/preferences.tsx:203
 #: src/features/user/sessions.tsx:108
 msgid "Cancel"
 msgstr "Kanselahin"
@@ -630,7 +638,7 @@ msgstr "Mga category"
 msgid "Category for these notifications"
 msgstr "Category para sa mga notification na ito"
 
-#: src/features/user/notifications.tsx:683
+#: src/features/user/notifications.tsx:672
 msgid "Change current notifications to"
 msgstr "Baguhin ang kasalukuyang mga notification sa"
 
@@ -655,8 +663,8 @@ msgstr "Pumili ng laro mula sa sidebar o magsimula ng bago."
 msgid "Choose file"
 msgstr "Pumili ng file"
 
-#: ../../../lib/web/src/components/language-picker.tsx:264
-#: ../../../lib/web/src/components/language-picker.tsx:271
+#: ../../../lib/web/src/components/language-picker.tsx:267
+#: ../../../lib/web/src/components/language-picker.tsx:274
 msgid "Choose language"
 msgstr "Pumili ng wika"
 
@@ -954,7 +962,7 @@ msgstr "Salungatan sa data"
 msgid "Date"
 msgstr "Petsa"
 
-#: src/features/user/preferences.tsx:280
+#: src/features/user/preferences.tsx:276
 msgid "Date format"
 msgstr "Format ng petsa"
 
@@ -1023,12 +1031,12 @@ msgstr "Mga delegation"
 #: src/features/system/users.tsx:544
 #: src/features/user/login.tsx:281
 #: src/features/user/notifications.tsx:426
-#: src/features/user/notifications.tsx:699
+#: src/features/user/notifications.tsx:688
 msgid "Delete"
 msgstr "I-delete"
 
 #. placeholder {0}: category.display ?? category.label
-#: src/features/user/notifications.tsx:679
+#: src/features/user/notifications.tsx:668
 msgid "Delete \"{0}\"?"
 msgstr "I-delete ang \"{0}\"?"
 
@@ -1133,7 +1141,7 @@ msgstr "Mga destinasyon"
 msgid "Details Panel"
 msgstr "Details Panel"
 
-#: ../../../lib/web/src/components/language-picker.tsx:240
+#: ../../../lib/web/src/components/language-picker.tsx:243
 #: ../../../lib/web/src/components/timezone-select.tsx:46
 #: ../../../lib/web/src/components/timezone-select.tsx:83
 #: ../../../lib/web/src/lib/preference-utils.ts:23
@@ -1141,7 +1149,7 @@ msgstr "Details Panel"
 #: ../../../lib/web/src/lib/preference-utils.ts:53
 #: ../../../lib/web/src/lib/preference-utils.ts:67
 #: ../../../lib/web/src/lib/preference-utils.ts:79
-#: src/features/user/preferences.tsx:117
+#: src/features/user/preferences.tsx:113
 msgid "Detect from web browser"
 msgstr "Tukuyin mula sa web browser"
 
@@ -1150,7 +1158,7 @@ msgstr "Tukuyin mula sa web browser"
 #: src/features/user/connected-accounts.tsx:133
 #: src/features/user/notifications.tsx:393
 #: src/features/user/notifications.tsx:398
-#: src/features/user/notifications.tsx:606
+#: src/features/user/notifications.tsx:599
 msgid "Device"
 msgstr "Device"
 
@@ -1486,7 +1494,7 @@ msgstr "Nabigong gumawa ng user"
 msgid "Failed to delete attachment"
 msgstr "Nabigong magdelete ng attachment"
 
-#: src/features/user/notifications.tsx:669
+#: src/features/user/notifications.tsx:658
 msgid "Failed to delete category"
 msgstr "Nabigong magdelete ng category"
 
@@ -1576,7 +1584,7 @@ msgstr "Nabigong tanggalin ang account"
 msgid "Failed to remove interest"
 msgstr "Nabigong tanggalin ang interest"
 
-#: src/features/user/notifications.tsx:758
+#: src/features/user/notifications.tsx:747
 msgid "Failed to remove topic"
 msgstr "Nabigong tanggalin ang topic"
 
@@ -1588,7 +1596,7 @@ msgstr "Nabigong i-rename ang passkey"
 msgid "Failed to reset display"
 msgstr "Hindi na-reset ang display"
 
-#: src/features/user/preferences.tsx:173
+#: src/features/user/preferences.tsx:169
 msgid "Failed to reset preferences"
 msgstr "Nabigong i-reset ang preferences"
 
@@ -1656,7 +1664,7 @@ msgid "Failed to update name"
 msgstr "Nabigong i-update ang pangalan"
 
 #: src/features/user/display.tsx:121
-#: src/features/user/preferences.tsx:145
+#: src/features/user/preferences.tsx:141
 msgid "Failed to update preference"
 msgstr "Nabigong i-update ang preference"
 
@@ -1677,7 +1685,7 @@ msgstr "Nabigong i-update ang setting"
 msgid "Failed to update theme"
 msgstr "Nabigong i-update ang theme"
 
-#: src/features/user/notifications.tsx:742
+#: src/features/user/notifications.tsx:731
 msgid "Failed to update topic"
 msgstr "Nabigong i-update ang topic"
 
@@ -1878,11 +1886,6 @@ msgstr "Image viewer: {0}"
 msgid "Imperial"
 msgstr "Imperial"
 
-#: src/features/user/notifications.tsx:597
-#: src/features/user/notifications.tsx:602
-msgid "In app"
-msgstr "Sa app"
-
 #: ../../../lib/web/src/features/access/types.ts:36
 msgid "Including anonymous users"
 msgstr "Kasama ang mga anonymous na user"
@@ -1948,8 +1951,8 @@ msgid "Label is required"
 msgstr "Kailangan ang label"
 
 #: src/features/system/documents.tsx:224
-#: src/features/user/preferences.tsx:225
-#: src/features/user/preferences.tsx:236
+#: src/features/user/preferences.tsx:221
+#: src/features/user/preferences.tsx:232
 msgid "Language"
 msgstr "Wika"
 
@@ -2389,7 +2392,7 @@ msgstr "Walang nakitang time zone."
 msgid "No topic record yet — try again after the next notification."
 msgstr "Wala pang topic record — subukan muli pagkatapos ng susunod na notification."
 
-#: src/features/user/notifications.tsx:791
+#: src/features/user/notifications.tsx:780
 msgid "No topics yet"
 msgstr "Wala pang paksa"
 
@@ -2467,7 +2470,7 @@ msgstr "Mag-notify bilang default"
 msgid "Number"
 msgstr "Numero"
 
-#: src/features/user/preferences.tsx:269
+#: src/features/user/preferences.tsx:265
 msgid "Number format"
 msgstr "Format ng numero"
 
@@ -2668,17 +2671,17 @@ msgid "Posts and comments"
 msgstr "Mga post at komento"
 
 #: src/features/user/display.tsx:118
-#: src/features/user/preferences.tsx:142
+#: src/features/user/preferences.tsx:138
 msgid "Preference updated"
 msgstr "Na-update ang kagustuhan"
 
 #: src/components/layout/data/sidebar-data.ts:32
-#: src/features/user/preferences.tsx:72
-#: src/features/user/preferences.tsx:181
+#: src/features/user/preferences.tsx:73
+#: src/features/user/preferences.tsx:177
 msgid "Preferences"
 msgstr "Mga Kagustuhan"
 
-#: src/features/user/preferences.tsx:170
+#: src/features/user/preferences.tsx:166
 msgid "Preferences reset to defaults"
 msgstr "Na-reset ang mga kagustuhan sa default"
 
@@ -2732,7 +2735,6 @@ msgid "Public URL for OAuth redirects"
 msgstr "Pampublikong URL para sa mga OAuth redirect"
 
 #: src/features/user/connected-accounts.tsx:103
-#: src/features/user/notifications.tsx:604
 msgid "Push"
 msgstr "Push"
 
@@ -2846,8 +2848,8 @@ msgstr "Serbisyo ng relay"
 msgid "Remove"
 msgstr "Alisin"
 
-#: src/features/user/notifications.tsx:826
-#: src/features/user/notifications.tsx:826
+#: src/features/user/notifications.tsx:815
+#: src/features/user/notifications.tsx:815
 msgid "Remove (re-create on next notification)"
 msgstr "Alisin (muling gagawin sa susunod na notification)"
 
@@ -2942,7 +2944,7 @@ msgstr "Muling ipadala ang email"
 #: src/features/system/settings.tsx:364
 #: src/features/system/settings.tsx:484
 #: src/features/user/display.tsx:208
-#: src/features/user/preferences.tsx:209
+#: src/features/user/preferences.tsx:205
 msgid "Reset"
 msgstr "I-reset"
 
@@ -2950,7 +2952,7 @@ msgstr "I-reset"
 msgid "Reset display?"
 msgstr "I-reset ang display?"
 
-#: src/features/user/preferences.tsx:201
+#: src/features/user/preferences.tsx:197
 msgid "Reset preferences?"
 msgstr "I-reset ang mga kagustuhan?"
 
@@ -2970,7 +2972,7 @@ msgid "Reset to default?"
 msgstr "I-reset sa default?"
 
 #: src/features/user/display.tsx:195
-#: src/features/user/preferences.tsx:196
+#: src/features/user/preferences.tsx:192
 msgid "Reset to defaults"
 msgstr "I-reset sa mga default"
 
@@ -3063,7 +3065,7 @@ msgid "RSS URL copied to clipboard"
 msgstr "Nakopya ang RSS URL sa clipboard"
 
 #. placeholder {0}: feed.name
-#: src/features/user/notifications.tsx:621
+#: src/features/user/notifications.tsx:617
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
 
@@ -3624,7 +3626,7 @@ msgstr "Ire-reset nito ang \"{settingNameLabel}\" sa default nito (walang laman)
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Ire-reset nito ang \"{settingNameLabel}\" sa default value nito ({defaultLabel})."
 
-#: src/features/user/preferences.tsx:203
+#: src/features/user/preferences.tsx:199
 msgid "This will reset all preferences to their default values."
 msgstr "Ire-reset nito ang lahat ng preference sa kanilang mga default value."
 
@@ -3640,15 +3642,15 @@ msgstr "Mag-si-sign out ito sa session na ito. Kung ito ang iyong kasalukuyang s
 msgid "Thursday"
 msgstr "Huwebes"
 
-#: src/features/user/preferences.tsx:291
+#: src/features/user/preferences.tsx:287
 msgid "Time format"
 msgstr "Format ng oras"
 
-#: src/features/user/preferences.tsx:248
+#: src/features/user/preferences.tsx:244
 msgid "Time zone"
 msgstr "Time zone"
 
-#: src/features/user/preferences.tsx:316
+#: src/features/user/preferences.tsx:312
 msgid "Timestamps"
 msgstr "Mga timestamp"
 
@@ -3759,7 +3761,7 @@ msgid "Unable to redirect to login. Please try again."
 msgstr "Hindi maka-redirect sa login. Pakisubukang muli."
 
 #: ../../../lib/web/src/components/notification-category-button.tsx:114
-#: src/features/user/notifications.tsx:820
+#: src/features/user/notifications.tsx:809
 msgid "Unassigned"
 msgstr "Walang nakatalaga"
 
@@ -3780,7 +3782,7 @@ msgstr "Hindi inaasahang API error"
 msgid "United States"
 msgstr "United States"
 
-#: src/features/user/preferences.tsx:258
+#: src/features/user/preferences.tsx:254
 msgid "Units"
 msgstr "Mga yunit"
 
@@ -3994,7 +3996,7 @@ msgid "We sent a verification code to <0>{0}</0>. Enter the code below to verify
 msgstr "Nagpadala kami ng verification code sa <0>{0}</0>. Ilagay ang code sa ibaba upang i-verify ang iyong email address."
 
 #: src/features/user/notifications.tsx:390
-#: src/features/user/notifications.tsx:597
+#: src/features/user/notifications.tsx:596
 msgid "Web browser"
 msgstr "Web browser"
 
@@ -4002,7 +4004,7 @@ msgstr "Web browser"
 msgid "Wednesday"
 msgstr "Miyerkules"
 
-#: src/features/user/preferences.tsx:302
+#: src/features/user/preferences.tsx:298
 msgid "Week starts on"
 msgstr "Nagsisimula ang linggo sa"
 

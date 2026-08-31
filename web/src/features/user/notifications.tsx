@@ -390,12 +390,12 @@ function CategoryRow({
       if (d.type === 'web') labels.push(t`Web browser`)
       else if (d.type === 'device') {
         const name = deviceLabel(d.target)
-        if (name !== undefined) labels.push(t`${name || t`Device`} (in app)`)
+        if (name !== undefined) labels.push(t`${name || t`Device`} app`)
       } else if (d.type === 'account') {
         const acc = available.accounts.find((a) => String(a.id) === d.target)
         if (!acc) continue
         const name = acc.device ? deviceLabel(acc.device) : undefined
-        labels.push(name !== undefined ? t`${name || t`Device`} (push)` : accountDisplayName(acc))
+        labels.push(name !== undefined ? t`${name || t`Device`} push` : accountDisplayName(acc))
       } else if (d.type === 'rss') {
         const feed = available.feeds.find((x) => x.id === d.target)
         if (feed && feed.name) labels.push(feed.name)
@@ -589,53 +589,42 @@ function DestinationsGrid({
 }) {
   const { t } = useLingui()
   type Row = { key: string; label: string }
-  // A destination is either a surface - where the notification is shown - or
-  // a push target. The browser and each device group their own: the browser
-  // has its bell, a phone has its list and the push account registered from
-  // it. Accounts bound to no device, and feeds, are listed on their own.
-  const groups: { key: string; label: string; rows: Row[] }[] = [
-    { key: 'web', label: t`Web browser`, rows: [{ key: destKey('web', ''), label: t`In app` }] },
-  ]
-  const devices = [...available.devices].sort((a, b) => naturalCompare(a.label, b.label))
-  const bound = new Set(devices.map((d) => d.id))
-  for (const dev of devices) {
-    const rows: Row[] = [{ key: destKey('device', dev.id), label: t`In app` }]
+  // Every destination is one row named for what it is: the browser's bell, a
+  // device's in-app list ("S24U app"), the push account registered from a
+  // device ("S24U push"), a push account bound to no device, or a feed. One
+  // flat list sorted by name, which also keeps a device's rows together.
+  const rows: Row[] = [{ key: destKey('web', ''), label: t`Web browser` }]
+  const bound = new Set(available.devices.map((d) => d.id))
+  for (const dev of available.devices) {
+    const name = dev.label || t`Device`
+    rows.push({ key: destKey('device', dev.id), label: t`${name} app` })
     for (const acc of available.accounts) {
-      if (acc.device === dev.id) rows.push({ key: destKey('account', String(acc.id)), label: t`Push` })
+      if (acc.device === dev.id) rows.push({ key: destKey('account', String(acc.id)), label: t`${name} push` })
     }
-    groups.push({ key: `device:${dev.id}`, label: dev.label || t`Device`, rows })
   }
-  const others: Row[] = []
   for (const acc of available.accounts) {
     if (acc.device && bound.has(acc.device)) continue
     // A push account bound to no device names its transport, so two that
     // share a phone's name can still be told apart.
     const name = accountDisplayName(acc)
     const kind = getProviderLabel(acc.type)
-    others.push({
+    rows.push({
       key: destKey('account', String(acc.id)),
       label: isPushAccount(acc) && name !== kind ? `${name} · ${kind}` : name,
     })
   }
   for (const feed of available.feeds) {
-    others.push({ key: destKey('rss', feed.id), label: t`RSS: ${feed.name}` })
+    rows.push({ key: destKey('rss', feed.id), label: t`RSS: ${feed.name}` })
   }
-  others.sort((a, b) => naturalCompare(a.label, b.label))
-  const row = (r: Row) => (
-    <label key={r.key} className="flex items-center gap-3 py-2 cursor-pointer">
-      <Switch checked={checked.has(r.key)} onCheckedChange={() => onToggle(r.key)} />
-      <span className="text-sm">{r.label}</span>
-    </label>
-  )
+  rows.sort((a, b) => naturalCompare(a.label, b.label))
   return (
     <div className="flex flex-col">
-      {groups.map((g) => (
-        <div key={g.key} className="flex flex-col">
-          <div className="pt-2 text-sm font-medium">{g.label}</div>
-          <div className="flex flex-col pl-4">{g.rows.map(row)}</div>
-        </div>
+      {rows.map((r) => (
+        <label key={r.key} className="flex items-center gap-3 py-2 cursor-pointer">
+          <Switch checked={checked.has(r.key)} onCheckedChange={() => onToggle(r.key)} />
+          <span className="text-sm">{r.label}</span>
+        </label>
       ))}
-      {others.length > 0 && <div className="flex flex-col pt-2">{others.map(row)}</div>}
     </div>
   )
 }

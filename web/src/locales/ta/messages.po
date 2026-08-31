@@ -64,16 +64,6 @@ msgstr "{0, plural, one {1 அமர்வு திரும்பப் பெ
 msgid "{0} (development)"
 msgstr "{0} (வளர்ச்சி)"
 
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:393
-msgid "{0} (in app)"
-msgstr "{0} (செயலியில்)"
-
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:398
-msgid "{0} (push)"
-msgstr "{0} (புஷ்)"
-
 #. placeholder {0}: formatNumber(network.relaying.reservations.held)
 #. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
 #. placeholder {2}: formatNumber(network.relaying.circuits)
@@ -81,6 +71,16 @@ msgstr "{0} (புஷ்)"
 #: src/features/system/status.tsx:176
 msgid "{0} / {1} reservations · {2} circuits · {3} refused"
 msgstr "{0} / {1} முன்பதிவுகள் · {2} சுற்றுகள் · {3} மறுக்கப்பட்டது"
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:393
+msgid "{0} app"
+msgstr ""
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:398
+msgid "{0} push"
+msgstr ""
 
 #. placeholder {0}: formatNumber(network.holepunch.success)
 #. placeholder {1}: formatNumber(network.holepunch.failure)
@@ -115,6 +115,14 @@ msgstr "{entityLabel} பெயர்"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:99
 msgid "{entityLabel} name is required"
 msgstr "{entityLabel} பெயர் தேவை"
+
+#: src/features/user/notifications.tsx:600
+msgid "{name} app"
+msgstr "{name} செயலி"
+
+#: src/features/user/notifications.tsx:602
+msgid "{name} push"
+msgstr "{name} புஷ்"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx:29
 msgid "{opponentName} offered a draw"
@@ -599,8 +607,8 @@ msgstr "உலாவி அறிவிப்புகள்"
 #: src/features/user/display.tsx:206
 #: src/features/user/login.tsx:570
 #: src/features/user/notifications.tsx:566
-#: src/features/user/notifications.tsx:696
-#: src/features/user/preferences.tsx:207
+#: src/features/user/notifications.tsx:685
+#: src/features/user/preferences.tsx:203
 #: src/features/user/sessions.tsx:108
 msgid "Cancel"
 msgstr "ரத்துசெய்"
@@ -630,7 +638,7 @@ msgstr "வகைகள்"
 msgid "Category for these notifications"
 msgstr "இந்த அறிவிப்புகளுக்கான வகை"
 
-#: src/features/user/notifications.tsx:683
+#: src/features/user/notifications.tsx:672
 msgid "Change current notifications to"
 msgstr "தற்போதைய அறிவிப்புகளை மாற்று"
 
@@ -655,8 +663,8 @@ msgstr "பக்கப்பட்டியில் இருந்து ஒ�
 msgid "Choose file"
 msgstr "கோப்பைத் தேர்வுசெய்க"
 
-#: ../../../lib/web/src/components/language-picker.tsx:264
-#: ../../../lib/web/src/components/language-picker.tsx:271
+#: ../../../lib/web/src/components/language-picker.tsx:267
+#: ../../../lib/web/src/components/language-picker.tsx:274
 msgid "Choose language"
 msgstr "மொழியைத் தேர்ந்தெடுக்கவும்"
 
@@ -954,7 +962,7 @@ msgstr "தரவு முரண்பாடு"
 msgid "Date"
 msgstr "தேதி"
 
-#: src/features/user/preferences.tsx:280
+#: src/features/user/preferences.tsx:276
 msgid "Date format"
 msgstr "தேதி வடிவம்"
 
@@ -1023,12 +1031,12 @@ msgstr "பிரதிநிதித்துவங்கள்"
 #: src/features/system/users.tsx:544
 #: src/features/user/login.tsx:281
 #: src/features/user/notifications.tsx:426
-#: src/features/user/notifications.tsx:699
+#: src/features/user/notifications.tsx:688
 msgid "Delete"
 msgstr "நீக்கு"
 
 #. placeholder {0}: category.display ?? category.label
-#: src/features/user/notifications.tsx:679
+#: src/features/user/notifications.tsx:668
 msgid "Delete \"{0}\"?"
 msgstr "\"{0}\"-ஐ நீக்கவா?"
 
@@ -1133,7 +1141,7 @@ msgstr "இலக்குகள்"
 msgid "Details Panel"
 msgstr "விவரங்கள் பலகம்"
 
-#: ../../../lib/web/src/components/language-picker.tsx:240
+#: ../../../lib/web/src/components/language-picker.tsx:243
 #: ../../../lib/web/src/components/timezone-select.tsx:46
 #: ../../../lib/web/src/components/timezone-select.tsx:83
 #: ../../../lib/web/src/lib/preference-utils.ts:23
@@ -1141,7 +1149,7 @@ msgstr "விவரங்கள் பலகம்"
 #: ../../../lib/web/src/lib/preference-utils.ts:53
 #: ../../../lib/web/src/lib/preference-utils.ts:67
 #: ../../../lib/web/src/lib/preference-utils.ts:79
-#: src/features/user/preferences.tsx:117
+#: src/features/user/preferences.tsx:113
 msgid "Detect from web browser"
 msgstr "வலை உலாவியிலிருந்து கண்டறி"
 
@@ -1150,7 +1158,7 @@ msgstr "வலை உலாவியிலிருந்து கண்டற�
 #: src/features/user/connected-accounts.tsx:133
 #: src/features/user/notifications.tsx:393
 #: src/features/user/notifications.tsx:398
-#: src/features/user/notifications.tsx:606
+#: src/features/user/notifications.tsx:599
 msgid "Device"
 msgstr "சாதனம்"
 
@@ -1486,7 +1494,7 @@ msgstr "பயனரை உருவாக்க முடியவில்ல�
 msgid "Failed to delete attachment"
 msgstr "இணைப்பை நீக்க முடியவில்லை"
 
-#: src/features/user/notifications.tsx:669
+#: src/features/user/notifications.tsx:658
 msgid "Failed to delete category"
 msgstr "வகையை நீக்க முடியவில்லை"
 
@@ -1576,7 +1584,7 @@ msgstr "கணக்கை நீக்க முடியவில்லை"
 msgid "Failed to remove interest"
 msgstr "ஆர்வத்தை நீக்க முடியவில்லை"
 
-#: src/features/user/notifications.tsx:758
+#: src/features/user/notifications.tsx:747
 msgid "Failed to remove topic"
 msgstr "தலைப்பை நீக்க முடியவில்லை"
 
@@ -1588,7 +1596,7 @@ msgstr "பாஸ்கீயின் பெயரை மாற்ற முட
 msgid "Failed to reset display"
 msgstr "காட்சியை மீட்டமைக்க முடியவில்லை"
 
-#: src/features/user/preferences.tsx:173
+#: src/features/user/preferences.tsx:169
 msgid "Failed to reset preferences"
 msgstr "விருப்பங்களை மீட்டமைக்க முடியவில்லை"
 
@@ -1656,7 +1664,7 @@ msgid "Failed to update name"
 msgstr "பெயரைப் புதுப்பிக்க முடியவில்லை"
 
 #: src/features/user/display.tsx:121
-#: src/features/user/preferences.tsx:145
+#: src/features/user/preferences.tsx:141
 msgid "Failed to update preference"
 msgstr "விருப்பத்தைப் புதுப்பிக்க முடியவில்லை"
 
@@ -1677,7 +1685,7 @@ msgstr "அமைப்பைப் புதுப்பிக்க முட�
 msgid "Failed to update theme"
 msgstr "தீமைப் புதுப்பிக்க முடியவில்லை"
 
-#: src/features/user/notifications.tsx:742
+#: src/features/user/notifications.tsx:731
 msgid "Failed to update topic"
 msgstr "தலைப்பைப் புதுப்பிக்க முடியவில்லை"
 
@@ -1878,11 +1886,6 @@ msgstr "பட காட்சி: {0}"
 msgid "Imperial"
 msgstr "இம்பீரியல்"
 
-#: src/features/user/notifications.tsx:597
-#: src/features/user/notifications.tsx:602
-msgid "In app"
-msgstr "செயலியில்"
-
 #: ../../../lib/web/src/features/access/types.ts:36
 msgid "Including anonymous users"
 msgstr "அநாமதேய பயனர்கள் உட்பட"
@@ -1948,8 +1951,8 @@ msgid "Label is required"
 msgstr "லேபிள் தேவை"
 
 #: src/features/system/documents.tsx:224
-#: src/features/user/preferences.tsx:225
-#: src/features/user/preferences.tsx:236
+#: src/features/user/preferences.tsx:221
+#: src/features/user/preferences.tsx:232
 msgid "Language"
 msgstr "மொழி"
 
@@ -2389,7 +2392,7 @@ msgstr "நேர மண்டலம் எதுவும் கிடைக்
 msgid "No topic record yet — try again after the next notification."
 msgstr "தலைப்புப் பதிவு இன்னும் இல்லை — அடுத்த அறிவிப்புக்குப் பிறகு மீண்டும் முயற்சிக்கவும்."
 
-#: src/features/user/notifications.tsx:791
+#: src/features/user/notifications.tsx:780
 msgid "No topics yet"
 msgstr "தலைப்புகள் இன்னும் இல்லை"
 
@@ -2467,7 +2470,7 @@ msgstr "இயல்பாக அறிவிக்கவும்"
 msgid "Number"
 msgstr "எண்"
 
-#: src/features/user/preferences.tsx:269
+#: src/features/user/preferences.tsx:265
 msgid "Number format"
 msgstr "எண் வடிவம்"
 
@@ -2668,17 +2671,17 @@ msgid "Posts and comments"
 msgstr "பதிவுகள் மற்றும் கருத்துகள்"
 
 #: src/features/user/display.tsx:118
-#: src/features/user/preferences.tsx:142
+#: src/features/user/preferences.tsx:138
 msgid "Preference updated"
 msgstr "விருப்பத்தேர்வு புதுப்பிக்கப்பட்டது"
 
 #: src/components/layout/data/sidebar-data.ts:32
-#: src/features/user/preferences.tsx:72
-#: src/features/user/preferences.tsx:181
+#: src/features/user/preferences.tsx:73
+#: src/features/user/preferences.tsx:177
 msgid "Preferences"
 msgstr "விருப்பத்தேர்வுகள்"
 
-#: src/features/user/preferences.tsx:170
+#: src/features/user/preferences.tsx:166
 msgid "Preferences reset to defaults"
 msgstr "விருப்பத்தேர்வுகள் இயல்புநிலைகளுக்கு மீட்டமைக்கப்பட்டன"
 
@@ -2732,7 +2735,6 @@ msgid "Public URL for OAuth redirects"
 msgstr "OAuth redirectகளுக்கான பொது URL"
 
 #: src/features/user/connected-accounts.tsx:103
-#: src/features/user/notifications.tsx:604
 msgid "Push"
 msgstr "புஷ்"
 
@@ -2846,8 +2848,8 @@ msgstr "ரிலே சேவை"
 msgid "Remove"
 msgstr "அகற்று"
 
-#: src/features/user/notifications.tsx:826
-#: src/features/user/notifications.tsx:826
+#: src/features/user/notifications.tsx:815
+#: src/features/user/notifications.tsx:815
 msgid "Remove (re-create on next notification)"
 msgstr "அகற்று (அடுத்த அறிவிப்பில் மீண்டும் உருவாக்கு)"
 
@@ -2942,7 +2944,7 @@ msgstr "மின்னஞ்சலை மீண்டும் அனுப்�
 #: src/features/system/settings.tsx:364
 #: src/features/system/settings.tsx:484
 #: src/features/user/display.tsx:208
-#: src/features/user/preferences.tsx:209
+#: src/features/user/preferences.tsx:205
 msgid "Reset"
 msgstr "மீட்டமை"
 
@@ -2950,7 +2952,7 @@ msgstr "மீட்டமை"
 msgid "Reset display?"
 msgstr "காட்சியை மீட்டமைக்கவா?"
 
-#: src/features/user/preferences.tsx:201
+#: src/features/user/preferences.tsx:197
 msgid "Reset preferences?"
 msgstr "விருப்பத்தேர்வுகளை மீட்டமைக்கவா?"
 
@@ -2970,7 +2972,7 @@ msgid "Reset to default?"
 msgstr "இயல்புநிலைக்கு மீட்டமைக்கவா?"
 
 #: src/features/user/display.tsx:195
-#: src/features/user/preferences.tsx:196
+#: src/features/user/preferences.tsx:192
 msgid "Reset to defaults"
 msgstr "இயல்புநிலைகளுக்கு மீட்டமை"
 
@@ -3063,7 +3065,7 @@ msgid "RSS URL copied to clipboard"
 msgstr "RSS URL clipboard-க்கு நகலெடுக்கப்பட்டது"
 
 #. placeholder {0}: feed.name
-#: src/features/user/notifications.tsx:621
+#: src/features/user/notifications.tsx:617
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
 
@@ -3624,7 +3626,7 @@ msgstr "இது \"{settingNameLabel}\"-ஐ அதன் இயல்புக�
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "இது \"{settingNameLabel}\"-ஐ அதன் இயல்பு மதிப்பிற்கு ({defaultLabel}) மீட்டமைக்கும்."
 
-#: src/features/user/preferences.tsx:203
+#: src/features/user/preferences.tsx:199
 msgid "This will reset all preferences to their default values."
 msgstr "இது அனைத்து விருப்பத்தேர்வுகளையும் அவற்றின் இயல்பு மதிப்புகளுக்கு மீட்டமைக்கும்."
 
@@ -3640,15 +3642,15 @@ msgstr "இது இந்த அமர்விலிருந்து வெ
 msgid "Thursday"
 msgstr "வியாழக்கிழமை"
 
-#: src/features/user/preferences.tsx:291
+#: src/features/user/preferences.tsx:287
 msgid "Time format"
 msgstr "நேர வடிவம்"
 
-#: src/features/user/preferences.tsx:248
+#: src/features/user/preferences.tsx:244
 msgid "Time zone"
 msgstr "நேர மண்டலம்"
 
-#: src/features/user/preferences.tsx:316
+#: src/features/user/preferences.tsx:312
 msgid "Timestamps"
 msgstr "டைம்ஸ்டாம்ப்கள்"
 
@@ -3759,7 +3761,7 @@ msgid "Unable to redirect to login. Please try again."
 msgstr "உள்நுழைவுக்கு திருப்பி விட முடியவில்லை. தயவுசெய்து மீண்டும் முயற்சி செய்யுங்கள்."
 
 #: ../../../lib/web/src/components/notification-category-button.tsx:114
-#: src/features/user/notifications.tsx:820
+#: src/features/user/notifications.tsx:809
 msgid "Unassigned"
 msgstr "ஒதுக்கப்படாதது"
 
@@ -3780,7 +3782,7 @@ msgstr "எதிர்பாராத API பிழை"
 msgid "United States"
 msgstr "ஐக்கிய அமெரிக்கா"
 
-#: src/features/user/preferences.tsx:258
+#: src/features/user/preferences.tsx:254
 msgid "Units"
 msgstr "அலகுகள்"
 
@@ -3994,7 +3996,7 @@ msgid "We sent a verification code to <0>{0}</0>. Enter the code below to verify
 msgstr "நாங்கள் <0>{0}</0> க்கு சரிபார்ப்புக் குறியீட்டை அனுப்பியுள்ளோம். உங்கள் மின்னஞ்சல் முகவரியைச் சரிபார்க்க கீழே குறியீட்டை உள்ளிடவும்."
 
 #: src/features/user/notifications.tsx:390
-#: src/features/user/notifications.tsx:597
+#: src/features/user/notifications.tsx:596
 msgid "Web browser"
 msgstr "வலை உலாவி"
 
@@ -4002,7 +4004,7 @@ msgstr "வலை உலாவி"
 msgid "Wednesday"
 msgstr "புதன்கிழமை"
 
-#: src/features/user/preferences.tsx:302
+#: src/features/user/preferences.tsx:298
 msgid "Week starts on"
 msgstr "வாரம் தொடங்கும் நாள்"
 

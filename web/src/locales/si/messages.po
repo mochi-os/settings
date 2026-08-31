@@ -64,16 +64,6 @@ msgstr "{0, plural, one {සැසි 1 අවලංගු කළා} other {ස
 msgid "{0} (development)"
 msgstr "{0} (සංවර්ධනය)"
 
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:393
-msgid "{0} (in app)"
-msgstr "{0} (යෙදුම තුළ)"
-
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:398
-msgid "{0} (push)"
-msgstr "{0} (තල්ලු)"
-
 #. placeholder {0}: formatNumber(network.relaying.reservations.held)
 #. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
 #. placeholder {2}: formatNumber(network.relaying.circuits)
@@ -81,6 +71,16 @@ msgstr "{0} (තල්ලු)"
 #: src/features/system/status.tsx:176
 msgid "{0} / {1} reservations · {2} circuits · {3} refused"
 msgstr "{0} / {1} වෙන්කිරීම් · {2} පරිපථ · {3} ප්‍රතික්ෂේපිත"
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:393
+msgid "{0} app"
+msgstr ""
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:398
+msgid "{0} push"
+msgstr ""
 
 #. placeholder {0}: formatNumber(network.holepunch.success)
 #. placeholder {1}: formatNumber(network.holepunch.failure)
@@ -115,6 +115,14 @@ msgstr "{entityLabel} නම"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:99
 msgid "{entityLabel} name is required"
 msgstr "{entityLabel} නම අවශ්‍යයි"
+
+#: src/features/user/notifications.tsx:600
+msgid "{name} app"
+msgstr "{name} යෙදුම"
+
+#: src/features/user/notifications.tsx:602
+msgid "{name} push"
+msgstr "{name} පුෂ්"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx:29
 msgid "{opponentName} offered a draw"
@@ -599,8 +607,8 @@ msgstr "බ්‍රවුසර දැනුම්දීම්"
 #: src/features/user/display.tsx:206
 #: src/features/user/login.tsx:570
 #: src/features/user/notifications.tsx:566
-#: src/features/user/notifications.tsx:696
-#: src/features/user/preferences.tsx:207
+#: src/features/user/notifications.tsx:685
+#: src/features/user/preferences.tsx:203
 #: src/features/user/sessions.tsx:108
 msgid "Cancel"
 msgstr "අවලංගු කරන්න"
@@ -630,7 +638,7 @@ msgstr "ප්‍රවර්ග"
 msgid "Category for these notifications"
 msgstr "මෙම දැනුම්දීම් සඳහා ප්‍රවර්ගය"
 
-#: src/features/user/notifications.tsx:683
+#: src/features/user/notifications.tsx:672
 msgid "Change current notifications to"
 msgstr "වත්මන් දැනුම්දීම් මෙයට වෙනස් කරන්න"
 
@@ -655,8 +663,8 @@ msgstr "පැති තීරුවෙන් ක්‍රීඩාවක් ත
 msgid "Choose file"
 msgstr "ගොනුව තෝරන්න"
 
-#: ../../../lib/web/src/components/language-picker.tsx:264
-#: ../../../lib/web/src/components/language-picker.tsx:271
+#: ../../../lib/web/src/components/language-picker.tsx:267
+#: ../../../lib/web/src/components/language-picker.tsx:274
 msgid "Choose language"
 msgstr "භාෂාව තෝරන්න"
 
@@ -954,7 +962,7 @@ msgstr "දත්ත ගැටුමක්"
 msgid "Date"
 msgstr "දිනය"
 
-#: src/features/user/preferences.tsx:280
+#: src/features/user/preferences.tsx:276
 msgid "Date format"
 msgstr "දින ආකෘතිය"
 
@@ -1023,12 +1031,12 @@ msgstr "පැවරුම්"
 #: src/features/system/users.tsx:544
 #: src/features/user/login.tsx:281
 #: src/features/user/notifications.tsx:426
-#: src/features/user/notifications.tsx:699
+#: src/features/user/notifications.tsx:688
 msgid "Delete"
 msgstr "මකන්න"
 
 #. placeholder {0}: category.display ?? category.label
-#: src/features/user/notifications.tsx:679
+#: src/features/user/notifications.tsx:668
 msgid "Delete \"{0}\"?"
 msgstr "\"{0}\" මකන්නද?"
 
@@ -1133,7 +1141,7 @@ msgstr "ගමනාන්ත"
 msgid "Details Panel"
 msgstr "විස්තර Panel"
 
-#: ../../../lib/web/src/components/language-picker.tsx:240
+#: ../../../lib/web/src/components/language-picker.tsx:243
 #: ../../../lib/web/src/components/timezone-select.tsx:46
 #: ../../../lib/web/src/components/timezone-select.tsx:83
 #: ../../../lib/web/src/lib/preference-utils.ts:23
@@ -1141,7 +1149,7 @@ msgstr "විස්තර Panel"
 #: ../../../lib/web/src/lib/preference-utils.ts:53
 #: ../../../lib/web/src/lib/preference-utils.ts:67
 #: ../../../lib/web/src/lib/preference-utils.ts:79
-#: src/features/user/preferences.tsx:117
+#: src/features/user/preferences.tsx:113
 msgid "Detect from web browser"
 msgstr "වෙබ් බ්‍රවුසරයෙන් හඳුනාගන්න"
 
@@ -1150,7 +1158,7 @@ msgstr "වෙබ් බ්‍රවුසරයෙන් හඳුනාගන�
 #: src/features/user/connected-accounts.tsx:133
 #: src/features/user/notifications.tsx:393
 #: src/features/user/notifications.tsx:398
-#: src/features/user/notifications.tsx:606
+#: src/features/user/notifications.tsx:599
 msgid "Device"
 msgstr "උපාංගය"
 
@@ -1486,7 +1494,7 @@ msgstr "පරිශීලකයෙකු සෑදීමට අසමත් ව
 msgid "Failed to delete attachment"
 msgstr "ඇමුණුම මැකීමට අසමත් විය"
 
-#: src/features/user/notifications.tsx:669
+#: src/features/user/notifications.tsx:658
 msgid "Failed to delete category"
 msgstr "කාණ්ඩය මැකීමට අසමත් විය"
 
@@ -1576,7 +1584,7 @@ msgstr "ගිණුම ඉවත් කිරීමට අසමත් වි�
 msgid "Failed to remove interest"
 msgstr "උනන්දුව ඉවත් කිරීමට අසමත් විය"
 
-#: src/features/user/notifications.tsx:758
+#: src/features/user/notifications.tsx:747
 msgid "Failed to remove topic"
 msgstr "මාතෘකාව ඉවත් කිරීමට අසමත් විය"
 
@@ -1588,7 +1596,7 @@ msgstr "passkey එක නැවත නම් කිරීමට අසමත්
 msgid "Failed to reset display"
 msgstr "සංදර්ශනය යළි සැකසීමට අසමත් විය"
 
-#: src/features/user/preferences.tsx:173
+#: src/features/user/preferences.tsx:169
 msgid "Failed to reset preferences"
 msgstr "මනාප යළි පිහිටුවීමට අසමත් විය"
 
@@ -1656,7 +1664,7 @@ msgid "Failed to update name"
 msgstr "නාමය යාවත්කාලීන කිරීමට අසමත් විය"
 
 #: src/features/user/display.tsx:121
-#: src/features/user/preferences.tsx:145
+#: src/features/user/preferences.tsx:141
 msgid "Failed to update preference"
 msgstr "මනාපය යාවත්කාලීන කිරීමට අසමත් විය"
 
@@ -1677,7 +1685,7 @@ msgstr "සැකසුම යාවත්කාලීන කිරීමට අ
 msgid "Failed to update theme"
 msgstr "තේමාව යාවත්කාලීන කිරීමට අසමත් විය"
 
-#: src/features/user/notifications.tsx:742
+#: src/features/user/notifications.tsx:731
 msgid "Failed to update topic"
 msgstr "මාතෘකාව යාවත්කාලීන කිරීමට අසමත් විය"
 
@@ -1878,11 +1886,6 @@ msgstr "රූප දර්ශකය: {0}"
 msgid "Imperial"
 msgstr "ඉම්පීරියල්"
 
-#: src/features/user/notifications.tsx:597
-#: src/features/user/notifications.tsx:602
-msgid "In app"
-msgstr "යෙදුම තුළ"
-
 #: ../../../lib/web/src/features/access/types.ts:36
 msgid "Including anonymous users"
 msgstr "නිර්නාමික පරිශීලකයන් ඇතුළුව"
@@ -1948,8 +1951,8 @@ msgid "Label is required"
 msgstr "ලේබලය අවශ්‍යයි"
 
 #: src/features/system/documents.tsx:224
-#: src/features/user/preferences.tsx:225
-#: src/features/user/preferences.tsx:236
+#: src/features/user/preferences.tsx:221
+#: src/features/user/preferences.tsx:232
 msgid "Language"
 msgstr "භාෂාව"
 
@@ -2389,7 +2392,7 @@ msgstr "වේලා කලාප හමු නොවීය."
 msgid "No topic record yet — try again after the next notification."
 msgstr "තවම topic වාර්තාවක් නැත — ඊළඟ දැනුම්දීමෙන් පසු නැවත උත්සාහ කරන්න."
 
-#: src/features/user/notifications.tsx:791
+#: src/features/user/notifications.tsx:780
 msgid "No topics yet"
 msgstr "තවම topics නැත"
 
@@ -2467,7 +2470,7 @@ msgstr "පෙරනිමියෙන් දැනුම් දෙන්න"
 msgid "Number"
 msgstr "අංකය"
 
-#: src/features/user/preferences.tsx:269
+#: src/features/user/preferences.tsx:265
 msgid "Number format"
 msgstr "අංක ආකෘතිය"
 
@@ -2668,17 +2671,17 @@ msgid "Posts and comments"
 msgstr "පළ කිරීම් සහ අදහස්"
 
 #: src/features/user/display.tsx:118
-#: src/features/user/preferences.tsx:142
+#: src/features/user/preferences.tsx:138
 msgid "Preference updated"
 msgstr "අභිරුචිය යාවත්කාලීන කරන ලදී"
 
 #: src/components/layout/data/sidebar-data.ts:32
-#: src/features/user/preferences.tsx:72
-#: src/features/user/preferences.tsx:181
+#: src/features/user/preferences.tsx:73
+#: src/features/user/preferences.tsx:177
 msgid "Preferences"
 msgstr "අභිරුචියන්"
 
-#: src/features/user/preferences.tsx:170
+#: src/features/user/preferences.tsx:166
 msgid "Preferences reset to defaults"
 msgstr "අභිරුචියන් පෙරනිමි අගයන් වෙත reset කරන ලදී"
 
@@ -2732,7 +2735,6 @@ msgid "Public URL for OAuth redirects"
 msgstr "OAuth redirects සඳහා ප්‍රසිද්ධ URL"
 
 #: src/features/user/connected-accounts.tsx:103
-#: src/features/user/notifications.tsx:604
 msgid "Push"
 msgstr "තල්ලු"
 
@@ -2846,8 +2848,8 @@ msgstr "රිලේ සේවාව"
 msgid "Remove"
 msgstr "ඉවත් කරන්න"
 
-#: src/features/user/notifications.tsx:826
-#: src/features/user/notifications.tsx:826
+#: src/features/user/notifications.tsx:815
+#: src/features/user/notifications.tsx:815
 msgid "Remove (re-create on next notification)"
 msgstr "ඉවත් කරන්න (ඊළඟ දැනුම්දීම මත නැවත සාදන්න)"
 
@@ -2942,7 +2944,7 @@ msgstr "විද්‍යුත් තැපෑල නැවත එවන්න
 #: src/features/system/settings.tsx:364
 #: src/features/system/settings.tsx:484
 #: src/features/user/display.tsx:208
-#: src/features/user/preferences.tsx:209
+#: src/features/user/preferences.tsx:205
 msgid "Reset"
 msgstr "reset"
 
@@ -2950,7 +2952,7 @@ msgstr "reset"
 msgid "Reset display?"
 msgstr "සංදර්ශනය යළි සකසන්නද?"
 
-#: src/features/user/preferences.tsx:201
+#: src/features/user/preferences.tsx:197
 msgid "Reset preferences?"
 msgstr "අභිරුචියන් reset කරන්නද?"
 
@@ -2970,7 +2972,7 @@ msgid "Reset to default?"
 msgstr "පෙරනිමියට reset කරන්නද?"
 
 #: src/features/user/display.tsx:195
-#: src/features/user/preferences.tsx:196
+#: src/features/user/preferences.tsx:192
 msgid "Reset to defaults"
 msgstr "පෙරනිමිවලට reset කරන්න"
 
@@ -3063,7 +3065,7 @@ msgid "RSS URL copied to clipboard"
 msgstr "RSS URL ක්ලිප්බෝඩ් වෙත පිටපත් කරන ලදී"
 
 #. placeholder {0}: feed.name
-#: src/features/user/notifications.tsx:621
+#: src/features/user/notifications.tsx:617
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
 
@@ -3624,7 +3626,7 @@ msgstr "මෙය \"{settingNameLabel}\" එහි පෙරනිමියට (
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "මෙය \"{settingNameLabel}\" එහි පෙරනිමි අගයට ({defaultLabel}) යළි පිහිටුවනු ඇත."
 
-#: src/features/user/preferences.tsx:203
+#: src/features/user/preferences.tsx:199
 msgid "This will reset all preferences to their default values."
 msgstr "මෙය සියලුම මනාප ඒවායේ පෙරනිමි අගයන්ට යළි පිහිටුවනු ඇත."
 
@@ -3640,15 +3642,15 @@ msgstr "මෙය මෙම සැසියෙන් ඉවත් වනු ඇ�
 msgid "Thursday"
 msgstr "බ්‍රහස්පතින්දා"
 
-#: src/features/user/preferences.tsx:291
+#: src/features/user/preferences.tsx:287
 msgid "Time format"
 msgstr "කාල ආකෘතිය"
 
-#: src/features/user/preferences.tsx:248
+#: src/features/user/preferences.tsx:244
 msgid "Time zone"
 msgstr "කාල කලාපය"
 
-#: src/features/user/preferences.tsx:316
+#: src/features/user/preferences.tsx:312
 msgid "Timestamps"
 msgstr "කාල මුද්‍රා"
 
@@ -3759,7 +3761,7 @@ msgid "Unable to redirect to login. Please try again."
 msgstr "login එකට යළි-යොමු කළ නොහැක. කරුණාකර නැවත උත්සාහ කරන්න."
 
 #: ../../../lib/web/src/components/notification-category-button.tsx:114
-#: src/features/user/notifications.tsx:820
+#: src/features/user/notifications.tsx:809
 msgid "Unassigned"
 msgstr "පවරා නැත"
 
@@ -3780,7 +3782,7 @@ msgstr "අනපේක්ෂිත API දෝෂය"
 msgid "United States"
 msgstr "එක්සත් ජනපදය"
 
-#: src/features/user/preferences.tsx:258
+#: src/features/user/preferences.tsx:254
 msgid "Units"
 msgstr "ඒකක"
 
@@ -3994,7 +3996,7 @@ msgid "We sent a verification code to <0>{0}</0>. Enter the code below to verify
 msgstr "අපි <0>{0}</0> වෙත සත්‍යාපන කේතයක් යැව්වා. ඔබේ ඊමේල් ලිපිනය සත්‍යාපනය කිරීමට පහත කේතය ඇතුළත් කරන්න."
 
 #: src/features/user/notifications.tsx:390
-#: src/features/user/notifications.tsx:597
+#: src/features/user/notifications.tsx:596
 msgid "Web browser"
 msgstr "වෙබ් බ්‍රවුසරය"
 
@@ -4002,7 +4004,7 @@ msgstr "වෙබ් බ්‍රවුසරය"
 msgid "Wednesday"
 msgstr "බදාදා"
 
-#: src/features/user/preferences.tsx:302
+#: src/features/user/preferences.tsx:298
 msgid "Week starts on"
 msgstr "සතිය ආරම්භ වන්නේ"
 

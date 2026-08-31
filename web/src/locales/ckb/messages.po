@@ -64,16 +64,6 @@ msgstr "{0, plural, one {١ دانیشتن هەڵوەشایەوە} other {# دا
 msgid "{0} (development)"
 msgstr "{0} (پەرەپێدان)"
 
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:393
-msgid "{0} (in app)"
-msgstr "{0} (لە ئەپدا)"
-
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:398
-msgid "{0} (push)"
-msgstr "{0} (پاڵ)"
-
 #. placeholder {0}: formatNumber(network.relaying.reservations.held)
 #. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
 #. placeholder {2}: formatNumber(network.relaying.circuits)
@@ -81,6 +71,16 @@ msgstr "{0} (پاڵ)"
 #: src/features/system/status.tsx:176
 msgid "{0} / {1} reservations · {2} circuits · {3} refused"
 msgstr "{0} / {1} حیجزکردن · {2} بازنە · {3} ڕەتکراوە"
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:393
+msgid "{0} app"
+msgstr ""
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:398
+msgid "{0} push"
+msgstr ""
 
 #. placeholder {0}: formatNumber(network.holepunch.success)
 #. placeholder {1}: formatNumber(network.holepunch.failure)
@@ -115,6 +115,14 @@ msgstr "ناوی {entityLabel}"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:99
 msgid "{entityLabel} name is required"
 msgstr "ناوی {entityLabel} پێویستە"
+
+#: src/features/user/notifications.tsx:600
+msgid "{name} app"
+msgstr "{name} ئەپ"
+
+#: src/features/user/notifications.tsx:602
+msgid "{name} push"
+msgstr "{name} پوش"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx:29
 msgid "{opponentName} offered a draw"
@@ -599,8 +607,8 @@ msgstr "ئاگادارکردنەوەی وێبگەڕ"
 #: src/features/user/display.tsx:206
 #: src/features/user/login.tsx:570
 #: src/features/user/notifications.tsx:566
-#: src/features/user/notifications.tsx:696
-#: src/features/user/preferences.tsx:207
+#: src/features/user/notifications.tsx:685
+#: src/features/user/preferences.tsx:203
 #: src/features/user/sessions.tsx:108
 msgid "Cancel"
 msgstr "هەڵوەشاندنەوە"
@@ -630,7 +638,7 @@ msgstr "هاوپۆلەکان"
 msgid "Category for these notifications"
 msgstr "هاوپۆلی ئەم ئاگادارکردنەوانە"
 
-#: src/features/user/notifications.tsx:683
+#: src/features/user/notifications.tsx:672
 msgid "Change current notifications to"
 msgstr "گۆڕینی ئاگادارکردنەوەی ئێستا بۆ"
 
@@ -655,8 +663,8 @@ msgstr "یارییەک هەڵبژێرە لە لاتەنیشت یان نوێیە�
 msgid "Choose file"
 msgstr "فایل هەڵبژێرە"
 
-#: ../../../lib/web/src/components/language-picker.tsx:264
-#: ../../../lib/web/src/components/language-picker.tsx:271
+#: ../../../lib/web/src/components/language-picker.tsx:267
+#: ../../../lib/web/src/components/language-picker.tsx:274
 msgid "Choose language"
 msgstr "زمان هەڵبژێرە"
 
@@ -954,7 +962,7 @@ msgstr "ناکۆکی داتا"
 msgid "Date"
 msgstr "بەروار"
 
-#: src/features/user/preferences.tsx:280
+#: src/features/user/preferences.tsx:276
 msgid "Date format"
 msgstr "فۆرماتی بەروار"
 
@@ -1023,12 +1031,12 @@ msgstr "نوێنەرایەتییەکان"
 #: src/features/system/users.tsx:544
 #: src/features/user/login.tsx:281
 #: src/features/user/notifications.tsx:426
-#: src/features/user/notifications.tsx:699
+#: src/features/user/notifications.tsx:688
 msgid "Delete"
 msgstr "سڕینەوە"
 
 #. placeholder {0}: category.display ?? category.label
-#: src/features/user/notifications.tsx:679
+#: src/features/user/notifications.tsx:668
 msgid "Delete \"{0}\"?"
 msgstr "سڕینەوەی \"{0}\"؟"
 
@@ -1133,7 +1141,7 @@ msgstr "مەبەستەکان"
 msgid "Details Panel"
 msgstr "پانێلی وردەکاری"
 
-#: ../../../lib/web/src/components/language-picker.tsx:240
+#: ../../../lib/web/src/components/language-picker.tsx:243
 #: ../../../lib/web/src/components/timezone-select.tsx:46
 #: ../../../lib/web/src/components/timezone-select.tsx:83
 #: ../../../lib/web/src/lib/preference-utils.ts:23
@@ -1141,7 +1149,7 @@ msgstr "پانێلی وردەکاری"
 #: ../../../lib/web/src/lib/preference-utils.ts:53
 #: ../../../lib/web/src/lib/preference-utils.ts:67
 #: ../../../lib/web/src/lib/preference-utils.ts:79
-#: src/features/user/preferences.tsx:117
+#: src/features/user/preferences.tsx:113
 msgid "Detect from web browser"
 msgstr "دۆزینەوە لە وێبگەڕ"
 
@@ -1150,7 +1158,7 @@ msgstr "دۆزینەوە لە وێبگەڕ"
 #: src/features/user/connected-accounts.tsx:133
 #: src/features/user/notifications.tsx:393
 #: src/features/user/notifications.tsx:398
-#: src/features/user/notifications.tsx:606
+#: src/features/user/notifications.tsx:599
 msgid "Device"
 msgstr "ئامێر"
 
@@ -1486,7 +1494,7 @@ msgstr "دروستکردنی بەکارهێنەر سەرکەوتوو نەبوو"
 msgid "Failed to delete attachment"
 msgstr "سڕینەوەی هاوپێچ سەرکەوتوو نەبوو"
 
-#: src/features/user/notifications.tsx:669
+#: src/features/user/notifications.tsx:658
 msgid "Failed to delete category"
 msgstr "سڕینەوەی بەش سەرکەوتوو نەبوو"
 
@@ -1576,7 +1584,7 @@ msgstr "لابردنی هەژمار سەرکەوتوو نەبوو"
 msgid "Failed to remove interest"
 msgstr "لابردنی ئارەزوو سەرکەوتوو نەبوو"
 
-#: src/features/user/notifications.tsx:758
+#: src/features/user/notifications.tsx:747
 msgid "Failed to remove topic"
 msgstr "لابردنی تۆپیک سەرکەوتوو نەبوو"
 
@@ -1588,7 +1596,7 @@ msgstr "گۆڕینی ناوی Passkey سەرکەوتوو نەبوو"
 msgid "Failed to reset display"
 msgstr "گەڕاندنەوەی پیشاندان شکستی هێنا"
 
-#: src/features/user/preferences.tsx:173
+#: src/features/user/preferences.tsx:169
 msgid "Failed to reset preferences"
 msgstr "ڕێکخستنەوەی هەڵبژاردنەکان سەرکەوتوو نەبوو"
 
@@ -1656,7 +1664,7 @@ msgid "Failed to update name"
 msgstr "نوێکردنەوەی ناو سەرکەوتوو نەبوو"
 
 #: src/features/user/display.tsx:121
-#: src/features/user/preferences.tsx:145
+#: src/features/user/preferences.tsx:141
 msgid "Failed to update preference"
 msgstr "نوێکردنەوەی هەڵبژاردن سەرکەوتوو نەبوو"
 
@@ -1677,7 +1685,7 @@ msgstr "نوێکردنەوەی ڕێکخستن سەرکەوتوو نەبوو"
 msgid "Failed to update theme"
 msgstr "نوێکردنەوەی Theme سەرکەوتوو نەبوو"
 
-#: src/features/user/notifications.tsx:742
+#: src/features/user/notifications.tsx:731
 msgid "Failed to update topic"
 msgstr "نوێکردنەوەی تۆپیک سەرکەوتوو نەبوو"
 
@@ -1878,11 +1886,6 @@ msgstr "بینەری وێنە: {0}"
 msgid "Imperial"
 msgstr "ئیمپێریاڵ"
 
-#: src/features/user/notifications.tsx:597
-#: src/features/user/notifications.tsx:602
-msgid "In app"
-msgstr "لە ئەپدا"
-
 #: ../../../lib/web/src/features/access/types.ts:36
 msgid "Including anonymous users"
 msgstr "لەگەڵ بەکارهێنەرە نەناسراوەکان"
@@ -1948,8 +1951,8 @@ msgid "Label is required"
 msgstr "ناولێنان پێویستە"
 
 #: src/features/system/documents.tsx:224
-#: src/features/user/preferences.tsx:225
-#: src/features/user/preferences.tsx:236
+#: src/features/user/preferences.tsx:221
+#: src/features/user/preferences.tsx:232
 msgid "Language"
 msgstr "زمان"
 
@@ -2389,7 +2392,7 @@ msgstr "هیچ کاتزۆنێک نەدۆزرایەوە."
 msgid "No topic record yet — try again after the next notification."
 msgstr "هێشتا هیچ تۆمارێکی بابەت نییە — دوای ئاگادارکردنەوەی داهاتوو دووبارە هەوڵ بدەرەوە."
 
-#: src/features/user/notifications.tsx:791
+#: src/features/user/notifications.tsx:780
 msgid "No topics yet"
 msgstr "هێشتا هیچ بابەتێک نییە"
 
@@ -2467,7 +2470,7 @@ msgstr "ئاگادارکردنەوە بەشێوەی بنەڕەت"
 msgid "Number"
 msgstr "ژمارە"
 
-#: src/features/user/preferences.tsx:269
+#: src/features/user/preferences.tsx:265
 msgid "Number format"
 msgstr "شێوازی ژمارە"
 
@@ -2668,17 +2671,17 @@ msgid "Posts and comments"
 msgstr "پۆستەکان و بۆچوونەکان"
 
 #: src/features/user/display.tsx:118
-#: src/features/user/preferences.tsx:142
+#: src/features/user/preferences.tsx:138
 msgid "Preference updated"
 msgstr "پەسەندی نوێ کرایەوە"
 
 #: src/components/layout/data/sidebar-data.ts:32
-#: src/features/user/preferences.tsx:72
-#: src/features/user/preferences.tsx:181
+#: src/features/user/preferences.tsx:73
+#: src/features/user/preferences.tsx:177
 msgid "Preferences"
 msgstr "پەسەندییەکان"
 
-#: src/features/user/preferences.tsx:170
+#: src/features/user/preferences.tsx:166
 msgid "Preferences reset to defaults"
 msgstr "پەسەندییەکان بۆ بنەڕەت گەڕێنرانەوە"
 
@@ -2732,7 +2735,6 @@ msgid "Public URL for OAuth redirects"
 msgstr "URLی گشتی بۆ ڕەوانەکردنەوەکانی OAuth"
 
 #: src/features/user/connected-accounts.tsx:103
-#: src/features/user/notifications.tsx:604
 msgid "Push"
 msgstr "پاڵ"
 
@@ -2846,8 +2848,8 @@ msgstr "خزمەتی گواستنەوە"
 msgid "Remove"
 msgstr "لابردن"
 
-#: src/features/user/notifications.tsx:826
-#: src/features/user/notifications.tsx:826
+#: src/features/user/notifications.tsx:815
+#: src/features/user/notifications.tsx:815
 msgid "Remove (re-create on next notification)"
 msgstr "لابردن (دروستکردنەوە لە ئاگادارکردنەوەی داهاتوو)"
 
@@ -2942,7 +2944,7 @@ msgstr "ئیمەیڵ دووبارە بنێرە"
 #: src/features/system/settings.tsx:364
 #: src/features/system/settings.tsx:484
 #: src/features/user/display.tsx:208
-#: src/features/user/preferences.tsx:209
+#: src/features/user/preferences.tsx:205
 msgid "Reset"
 msgstr "ڕێکخستنەوە"
 
@@ -2950,7 +2952,7 @@ msgstr "ڕێکخستنەوە"
 msgid "Reset display?"
 msgstr "گەڕانەوەی پیشاندان؟"
 
-#: src/features/user/preferences.tsx:201
+#: src/features/user/preferences.tsx:197
 msgid "Reset preferences?"
 msgstr "پەسەندییەکان ڕێک بخەرەوە؟"
 
@@ -2970,7 +2972,7 @@ msgid "Reset to default?"
 msgstr "بگەڕێیتەوە بۆ بنەڕەت؟"
 
 #: src/features/user/display.tsx:195
-#: src/features/user/preferences.tsx:196
+#: src/features/user/preferences.tsx:192
 msgid "Reset to defaults"
 msgstr "گەڕاندنەوە بۆ بنەڕەتەکان"
 
@@ -3063,7 +3065,7 @@ msgid "RSS URL copied to clipboard"
 msgstr "URLی RSS لەبەر کرایەوە بۆ کلیپ بۆرد"
 
 #. placeholder {0}: feed.name
-#: src/features/user/notifications.tsx:621
+#: src/features/user/notifications.tsx:617
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
 
@@ -3624,7 +3626,7 @@ msgstr "ئەمە \"{settingNameLabel}\" بۆ بنەڕەتی (بەتاڵ) دەگ�
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "ئەمە \"{settingNameLabel}\" بۆ نرخی بنەڕەتی ({defaultLabel}) دەگەڕێنێتەوە."
 
-#: src/features/user/preferences.tsx:203
+#: src/features/user/preferences.tsx:199
 msgid "This will reset all preferences to their default values."
 msgstr "ئەمە هەموو هەڵبژاردەکان بۆ نرخی بنەڕەتییان دەگەڕێنێتەوە."
 
@@ -3640,15 +3642,15 @@ msgstr "ئەمە ئەم دانیشتنە دەردەکات. ئەگەر ئەمە �
 msgid "Thursday"
 msgstr "پێنجشەممە"
 
-#: src/features/user/preferences.tsx:291
+#: src/features/user/preferences.tsx:287
 msgid "Time format"
 msgstr "شێوەی کات"
 
-#: src/features/user/preferences.tsx:248
+#: src/features/user/preferences.tsx:244
 msgid "Time zone"
 msgstr "هەرێمی کات"
 
-#: src/features/user/preferences.tsx:316
+#: src/features/user/preferences.tsx:312
 msgid "Timestamps"
 msgstr "تەمبڵی کات"
 
@@ -3759,7 +3761,7 @@ msgid "Unable to redirect to login. Please try again."
 msgstr "ناتوانرێت ڕووبکات بۆ چوونەژوورەوە. تکایە دیسان هەوڵبدەرەوە."
 
 #: ../../../lib/web/src/components/notification-category-button.tsx:114
-#: src/features/user/notifications.tsx:820
+#: src/features/user/notifications.tsx:809
 msgid "Unassigned"
 msgstr "دیارینەکراو"
 
@@ -3780,7 +3782,7 @@ msgstr "هەڵەیەکی چاوەڕواننەکراوی API"
 msgid "United States"
 msgstr "ویلایەتە یەکگرتووەکان"
 
-#: src/features/user/preferences.tsx:258
+#: src/features/user/preferences.tsx:254
 msgid "Units"
 msgstr "یەکەکان"
 
@@ -3994,7 +3996,7 @@ msgid "We sent a verification code to <0>{0}</0>. Enter the code below to verify
 msgstr "کۆدی پشتڕاستکردنەوەمان نارد بۆ <0>{0}</0>. بۆ پشتڕاستکردنەوەی ناونیشانی ئیمەیڵەکەت کۆدەکە لە خوارەوە بنووسە."
 
 #: src/features/user/notifications.tsx:390
-#: src/features/user/notifications.tsx:597
+#: src/features/user/notifications.tsx:596
 msgid "Web browser"
 msgstr "وێبگەڕ"
 
@@ -4002,7 +4004,7 @@ msgstr "وێبگەڕ"
 msgid "Wednesday"
 msgstr "چوارشەممە"
 
-#: src/features/user/preferences.tsx:302
+#: src/features/user/preferences.tsx:298
 msgid "Week starts on"
 msgstr "هەفتە دەستپێدەکات لە"
 

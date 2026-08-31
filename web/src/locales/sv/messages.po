@@ -64,16 +64,6 @@ msgstr "{0, plural, one {1 session återkallad} other {# sessioner återkallade}
 msgid "{0} (development)"
 msgstr "{0} (utveckling)"
 
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:393
-msgid "{0} (in app)"
-msgstr "{0} (i appen)"
-
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:398
-msgid "{0} (push)"
-msgstr "{0} (push)"
-
 #. placeholder {0}: formatNumber(network.relaying.reservations.held)
 #. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
 #. placeholder {2}: formatNumber(network.relaying.circuits)
@@ -81,6 +71,16 @@ msgstr "{0} (push)"
 #: src/features/system/status.tsx:176
 msgid "{0} / {1} reservations · {2} circuits · {3} refused"
 msgstr "{0} / {1} reservationer · {2} kretsar · {3} nekade"
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:393
+msgid "{0} app"
+msgstr ""
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:398
+msgid "{0} push"
+msgstr ""
 
 #. placeholder {0}: formatNumber(network.holepunch.success)
 #. placeholder {1}: formatNumber(network.holepunch.failure)
@@ -115,6 +115,14 @@ msgstr "{entityLabel}-namn"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:99
 msgid "{entityLabel} name is required"
 msgstr "{entityLabel}-namn krävs"
+
+#: src/features/user/notifications.tsx:600
+msgid "{name} app"
+msgstr "{name} app"
+
+#: src/features/user/notifications.tsx:602
+msgid "{name} push"
+msgstr "{name} push"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx:29
 msgid "{opponentName} offered a draw"
@@ -599,8 +607,8 @@ msgstr "Webbläsaraviseringar"
 #: src/features/user/display.tsx:206
 #: src/features/user/login.tsx:570
 #: src/features/user/notifications.tsx:566
-#: src/features/user/notifications.tsx:696
-#: src/features/user/preferences.tsx:207
+#: src/features/user/notifications.tsx:685
+#: src/features/user/preferences.tsx:203
 #: src/features/user/sessions.tsx:108
 msgid "Cancel"
 msgstr "Avbryt"
@@ -630,7 +638,7 @@ msgstr "Kategorier"
 msgid "Category for these notifications"
 msgstr "Kategori för dessa aviseringar"
 
-#: src/features/user/notifications.tsx:683
+#: src/features/user/notifications.tsx:672
 msgid "Change current notifications to"
 msgstr "Ändra nuvarande aviseringar till"
 
@@ -655,8 +663,8 @@ msgstr "Välj ett spel från sidofältet eller starta ett nytt."
 msgid "Choose file"
 msgstr "Välj fil"
 
-#: ../../../lib/web/src/components/language-picker.tsx:264
-#: ../../../lib/web/src/components/language-picker.tsx:271
+#: ../../../lib/web/src/components/language-picker.tsx:267
+#: ../../../lib/web/src/components/language-picker.tsx:274
 msgid "Choose language"
 msgstr "Välj språk"
 
@@ -954,7 +962,7 @@ msgstr "Datakonflikt"
 msgid "Date"
 msgstr "Datum"
 
-#: src/features/user/preferences.tsx:280
+#: src/features/user/preferences.tsx:276
 msgid "Date format"
 msgstr "Datumformat"
 
@@ -1023,12 +1031,12 @@ msgstr "Delegeringar"
 #: src/features/system/users.tsx:544
 #: src/features/user/login.tsx:281
 #: src/features/user/notifications.tsx:426
-#: src/features/user/notifications.tsx:699
+#: src/features/user/notifications.tsx:688
 msgid "Delete"
 msgstr "Ta bort"
 
 #. placeholder {0}: category.display ?? category.label
-#: src/features/user/notifications.tsx:679
+#: src/features/user/notifications.tsx:668
 msgid "Delete \"{0}\"?"
 msgstr "Ta bort \"{0}\"?"
 
@@ -1133,7 +1141,7 @@ msgstr "Destinationer"
 msgid "Details Panel"
 msgstr "Detaljpanel"
 
-#: ../../../lib/web/src/components/language-picker.tsx:240
+#: ../../../lib/web/src/components/language-picker.tsx:243
 #: ../../../lib/web/src/components/timezone-select.tsx:46
 #: ../../../lib/web/src/components/timezone-select.tsx:83
 #: ../../../lib/web/src/lib/preference-utils.ts:23
@@ -1141,7 +1149,7 @@ msgstr "Detaljpanel"
 #: ../../../lib/web/src/lib/preference-utils.ts:53
 #: ../../../lib/web/src/lib/preference-utils.ts:67
 #: ../../../lib/web/src/lib/preference-utils.ts:79
-#: src/features/user/preferences.tsx:117
+#: src/features/user/preferences.tsx:113
 msgid "Detect from web browser"
 msgstr "Identifiera från webbläsare"
 
@@ -1150,7 +1158,7 @@ msgstr "Identifiera från webbläsare"
 #: src/features/user/connected-accounts.tsx:133
 #: src/features/user/notifications.tsx:393
 #: src/features/user/notifications.tsx:398
-#: src/features/user/notifications.tsx:606
+#: src/features/user/notifications.tsx:599
 msgid "Device"
 msgstr "Enhet"
 
@@ -1486,7 +1494,7 @@ msgstr "Kunde inte skapa användare"
 msgid "Failed to delete attachment"
 msgstr "Kunde inte radera bilaga"
 
-#: src/features/user/notifications.tsx:669
+#: src/features/user/notifications.tsx:658
 msgid "Failed to delete category"
 msgstr "Kunde inte radera kategori"
 
@@ -1576,7 +1584,7 @@ msgstr "Kunde inte ta bort konto"
 msgid "Failed to remove interest"
 msgstr "Kunde inte ta bort intresse"
 
-#: src/features/user/notifications.tsx:758
+#: src/features/user/notifications.tsx:747
 msgid "Failed to remove topic"
 msgstr "Kunde inte ta bort ämne"
 
@@ -1588,7 +1596,7 @@ msgstr "Kunde inte byta namn på passnyckel"
 msgid "Failed to reset display"
 msgstr "Kunde inte återställa visning"
 
-#: src/features/user/preferences.tsx:173
+#: src/features/user/preferences.tsx:169
 msgid "Failed to reset preferences"
 msgstr "Kunde inte återställa inställningar"
 
@@ -1656,7 +1664,7 @@ msgid "Failed to update name"
 msgstr "Kunde inte uppdatera namn"
 
 #: src/features/user/display.tsx:121
-#: src/features/user/preferences.tsx:145
+#: src/features/user/preferences.tsx:141
 msgid "Failed to update preference"
 msgstr "Kunde inte uppdatera inställning"
 
@@ -1677,7 +1685,7 @@ msgstr "Kunde inte uppdatera inställning"
 msgid "Failed to update theme"
 msgstr "Kunde inte uppdatera tema"
 
-#: src/features/user/notifications.tsx:742
+#: src/features/user/notifications.tsx:731
 msgid "Failed to update topic"
 msgstr "Kunde inte uppdatera ämne"
 
@@ -1878,11 +1886,6 @@ msgstr "Bildvisare: {0}"
 msgid "Imperial"
 msgstr "Imperial"
 
-#: src/features/user/notifications.tsx:597
-#: src/features/user/notifications.tsx:602
-msgid "In app"
-msgstr "I appen"
-
 #: ../../../lib/web/src/features/access/types.ts:36
 msgid "Including anonymous users"
 msgstr "Inklusive anonyma användare"
@@ -1948,8 +1951,8 @@ msgid "Label is required"
 msgstr "Etikett krävs"
 
 #: src/features/system/documents.tsx:224
-#: src/features/user/preferences.tsx:225
-#: src/features/user/preferences.tsx:236
+#: src/features/user/preferences.tsx:221
+#: src/features/user/preferences.tsx:232
 msgid "Language"
 msgstr "Språk"
 
@@ -2389,7 +2392,7 @@ msgstr "Ingen tidszon hittades."
 msgid "No topic record yet — try again after the next notification."
 msgstr "Ingen ämnespost ännu — försök igen efter nästa avisering."
 
-#: src/features/user/notifications.tsx:791
+#: src/features/user/notifications.tsx:780
 msgid "No topics yet"
 msgstr "Inga ämnen ännu"
 
@@ -2467,7 +2470,7 @@ msgstr "Avisera som standard"
 msgid "Number"
 msgstr "Nummer"
 
-#: src/features/user/preferences.tsx:269
+#: src/features/user/preferences.tsx:265
 msgid "Number format"
 msgstr "Talformat"
 
@@ -2668,17 +2671,17 @@ msgid "Posts and comments"
 msgstr "Inlägg och kommentarer"
 
 #: src/features/user/display.tsx:118
-#: src/features/user/preferences.tsx:142
+#: src/features/user/preferences.tsx:138
 msgid "Preference updated"
 msgstr "Inställning uppdaterad"
 
 #: src/components/layout/data/sidebar-data.ts:32
-#: src/features/user/preferences.tsx:72
-#: src/features/user/preferences.tsx:181
+#: src/features/user/preferences.tsx:73
+#: src/features/user/preferences.tsx:177
 msgid "Preferences"
 msgstr "Inställningar"
 
-#: src/features/user/preferences.tsx:170
+#: src/features/user/preferences.tsx:166
 msgid "Preferences reset to defaults"
 msgstr "Inställningar återställda till standardvärden"
 
@@ -2732,7 +2735,6 @@ msgid "Public URL for OAuth redirects"
 msgstr "Offentlig URL för OAuth-omdirigeringar"
 
 #: src/features/user/connected-accounts.tsx:103
-#: src/features/user/notifications.tsx:604
 msgid "Push"
 msgstr "Push"
 
@@ -2846,8 +2848,8 @@ msgstr "Relätjänst"
 msgid "Remove"
 msgstr "Ta bort"
 
-#: src/features/user/notifications.tsx:826
-#: src/features/user/notifications.tsx:826
+#: src/features/user/notifications.tsx:815
+#: src/features/user/notifications.tsx:815
 msgid "Remove (re-create on next notification)"
 msgstr "Ta bort (återskapa vid nästa avisering)"
 
@@ -2942,7 +2944,7 @@ msgstr "Skicka e-post igen"
 #: src/features/system/settings.tsx:364
 #: src/features/system/settings.tsx:484
 #: src/features/user/display.tsx:208
-#: src/features/user/preferences.tsx:209
+#: src/features/user/preferences.tsx:205
 msgid "Reset"
 msgstr "Återställ"
 
@@ -2950,7 +2952,7 @@ msgstr "Återställ"
 msgid "Reset display?"
 msgstr "Återställ visning?"
 
-#: src/features/user/preferences.tsx:201
+#: src/features/user/preferences.tsx:197
 msgid "Reset preferences?"
 msgstr "Återställ inställningar?"
 
@@ -2970,7 +2972,7 @@ msgid "Reset to default?"
 msgstr "Återställ till standard?"
 
 #: src/features/user/display.tsx:195
-#: src/features/user/preferences.tsx:196
+#: src/features/user/preferences.tsx:192
 msgid "Reset to defaults"
 msgstr "Återställ till standardvärden"
 
@@ -3063,7 +3065,7 @@ msgid "RSS URL copied to clipboard"
 msgstr "RSS-URL kopierad till urklipp"
 
 #. placeholder {0}: feed.name
-#: src/features/user/notifications.tsx:621
+#: src/features/user/notifications.tsx:617
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
 
@@ -3624,7 +3626,7 @@ msgstr "Detta återställer \"{settingNameLabel}\" till standardvärdet (tomt)."
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Detta återställer \"{settingNameLabel}\" till standardvärdet ({defaultLabel})."
 
-#: src/features/user/preferences.tsx:203
+#: src/features/user/preferences.tsx:199
 msgid "This will reset all preferences to their default values."
 msgstr "Detta återställer alla inställningar till deras standardvärden."
 
@@ -3640,15 +3642,15 @@ msgstr "Detta kommer att logga ut denna session. Om detta är din nuvarande sess
 msgid "Thursday"
 msgstr "Torsdag"
 
-#: src/features/user/preferences.tsx:291
+#: src/features/user/preferences.tsx:287
 msgid "Time format"
 msgstr "Tidsformat"
 
-#: src/features/user/preferences.tsx:248
+#: src/features/user/preferences.tsx:244
 msgid "Time zone"
 msgstr "Tidszon"
 
-#: src/features/user/preferences.tsx:316
+#: src/features/user/preferences.tsx:312
 msgid "Timestamps"
 msgstr "Tidsstämplar"
 
@@ -3759,7 +3761,7 @@ msgid "Unable to redirect to login. Please try again."
 msgstr "Kunde inte omdirigera till inloggning. Försök igen."
 
 #: ../../../lib/web/src/components/notification-category-button.tsx:114
-#: src/features/user/notifications.tsx:820
+#: src/features/user/notifications.tsx:809
 msgid "Unassigned"
 msgstr "Otilldelad"
 
@@ -3780,7 +3782,7 @@ msgstr "Oväntat API-fel"
 msgid "United States"
 msgstr "USA"
 
-#: src/features/user/preferences.tsx:258
+#: src/features/user/preferences.tsx:254
 msgid "Units"
 msgstr "Enheter"
 
@@ -3994,7 +3996,7 @@ msgid "We sent a verification code to <0>{0}</0>. Enter the code below to verify
 msgstr "Vi skickade en verifieringskod till <0>{0}</0>. Ange koden nedan för att verifiera din e-postadress."
 
 #: src/features/user/notifications.tsx:390
-#: src/features/user/notifications.tsx:597
+#: src/features/user/notifications.tsx:596
 msgid "Web browser"
 msgstr "Webbläsare"
 
@@ -4002,7 +4004,7 @@ msgstr "Webbläsare"
 msgid "Wednesday"
 msgstr "Onsdag"
 
-#: src/features/user/preferences.tsx:302
+#: src/features/user/preferences.tsx:298
 msgid "Week starts on"
 msgstr "Veckan börjar på"
 

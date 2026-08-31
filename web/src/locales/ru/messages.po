@@ -64,16 +64,6 @@ msgstr "{0, plural, one {Отозвана 1 сессия} few {Отозвано 
 msgid "{0} (development)"
 msgstr "{0} (разработка)"
 
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:393
-msgid "{0} (in app)"
-msgstr "{0} (в приложении)"
-
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:398
-msgid "{0} (push)"
-msgstr "{0} (push)"
-
 #. placeholder {0}: formatNumber(network.relaying.reservations.held)
 #. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
 #. placeholder {2}: formatNumber(network.relaying.circuits)
@@ -81,6 +71,16 @@ msgstr "{0} (push)"
 #: src/features/system/status.tsx:176
 msgid "{0} / {1} reservations · {2} circuits · {3} refused"
 msgstr "{0} / {1} резервирования · {2} цепи · {3} отклонено"
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:393
+msgid "{0} app"
+msgstr ""
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:398
+msgid "{0} push"
+msgstr ""
 
 #. placeholder {0}: formatNumber(network.holepunch.success)
 #. placeholder {1}: formatNumber(network.holepunch.failure)
@@ -115,6 +115,14 @@ msgstr "Название {entityLabel}"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:99
 msgid "{entityLabel} name is required"
 msgstr "Требуется название {entityLabel}"
+
+#: src/features/user/notifications.tsx:600
+msgid "{name} app"
+msgstr "{name} приложение"
+
+#: src/features/user/notifications.tsx:602
+msgid "{name} push"
+msgstr "{name} пуш"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx:29
 msgid "{opponentName} offered a draw"
@@ -599,8 +607,8 @@ msgstr "Уведомления браузера"
 #: src/features/user/display.tsx:206
 #: src/features/user/login.tsx:570
 #: src/features/user/notifications.tsx:566
-#: src/features/user/notifications.tsx:696
-#: src/features/user/preferences.tsx:207
+#: src/features/user/notifications.tsx:685
+#: src/features/user/preferences.tsx:203
 #: src/features/user/sessions.tsx:108
 msgid "Cancel"
 msgstr "Отмена"
@@ -630,7 +638,7 @@ msgstr "Категории"
 msgid "Category for these notifications"
 msgstr "Категория этих уведомлений"
 
-#: src/features/user/notifications.tsx:683
+#: src/features/user/notifications.tsx:672
 msgid "Change current notifications to"
 msgstr "Изменить текущие уведомления на"
 
@@ -655,8 +663,8 @@ msgstr "Выберите игру в боковой панели или начн
 msgid "Choose file"
 msgstr "Выбрать файл"
 
-#: ../../../lib/web/src/components/language-picker.tsx:264
-#: ../../../lib/web/src/components/language-picker.tsx:271
+#: ../../../lib/web/src/components/language-picker.tsx:267
+#: ../../../lib/web/src/components/language-picker.tsx:274
 msgid "Choose language"
 msgstr "Выберите язык"
 
@@ -954,7 +962,7 @@ msgstr "Конфликт данных"
 msgid "Date"
 msgstr "Дата"
 
-#: src/features/user/preferences.tsx:280
+#: src/features/user/preferences.tsx:276
 msgid "Date format"
 msgstr "Формат даты"
 
@@ -1023,12 +1031,12 @@ msgstr "Делегирования"
 #: src/features/system/users.tsx:544
 #: src/features/user/login.tsx:281
 #: src/features/user/notifications.tsx:426
-#: src/features/user/notifications.tsx:699
+#: src/features/user/notifications.tsx:688
 msgid "Delete"
 msgstr "Удалить"
 
 #. placeholder {0}: category.display ?? category.label
-#: src/features/user/notifications.tsx:679
+#: src/features/user/notifications.tsx:668
 msgid "Delete \"{0}\"?"
 msgstr "Удалить «{0}»?"
 
@@ -1133,7 +1141,7 @@ msgstr "Назначения"
 msgid "Details Panel"
 msgstr "Панель подробностей"
 
-#: ../../../lib/web/src/components/language-picker.tsx:240
+#: ../../../lib/web/src/components/language-picker.tsx:243
 #: ../../../lib/web/src/components/timezone-select.tsx:46
 #: ../../../lib/web/src/components/timezone-select.tsx:83
 #: ../../../lib/web/src/lib/preference-utils.ts:23
@@ -1141,7 +1149,7 @@ msgstr "Панель подробностей"
 #: ../../../lib/web/src/lib/preference-utils.ts:53
 #: ../../../lib/web/src/lib/preference-utils.ts:67
 #: ../../../lib/web/src/lib/preference-utils.ts:79
-#: src/features/user/preferences.tsx:117
+#: src/features/user/preferences.tsx:113
 msgid "Detect from web browser"
 msgstr "Определить из веб-браузера"
 
@@ -1150,7 +1158,7 @@ msgstr "Определить из веб-браузера"
 #: src/features/user/connected-accounts.tsx:133
 #: src/features/user/notifications.tsx:393
 #: src/features/user/notifications.tsx:398
-#: src/features/user/notifications.tsx:606
+#: src/features/user/notifications.tsx:599
 msgid "Device"
 msgstr "Устройство"
 
@@ -1486,7 +1494,7 @@ msgstr "Не удалось создать пользователя"
 msgid "Failed to delete attachment"
 msgstr "Не удалось удалить вложение"
 
-#: src/features/user/notifications.tsx:669
+#: src/features/user/notifications.tsx:658
 msgid "Failed to delete category"
 msgstr "Не удалось удалить категорию"
 
@@ -1576,7 +1584,7 @@ msgstr "Не удалось удалить аккаунт"
 msgid "Failed to remove interest"
 msgstr "Не удалось удалить интерес"
 
-#: src/features/user/notifications.tsx:758
+#: src/features/user/notifications.tsx:747
 msgid "Failed to remove topic"
 msgstr "Не удалось удалить тему"
 
@@ -1588,7 +1596,7 @@ msgstr "Не удалось переименовать ключ доступа"
 msgid "Failed to reset display"
 msgstr "Не удалось сбросить отображение"
 
-#: src/features/user/preferences.tsx:173
+#: src/features/user/preferences.tsx:169
 msgid "Failed to reset preferences"
 msgstr "Не удалось сбросить настройки"
 
@@ -1656,7 +1664,7 @@ msgid "Failed to update name"
 msgstr "Не удалось обновить имя"
 
 #: src/features/user/display.tsx:121
-#: src/features/user/preferences.tsx:145
+#: src/features/user/preferences.tsx:141
 msgid "Failed to update preference"
 msgstr "Не удалось обновить настройку"
 
@@ -1677,7 +1685,7 @@ msgstr "Не удалось обновить настройку"
 msgid "Failed to update theme"
 msgstr "Не удалось обновить тему"
 
-#: src/features/user/notifications.tsx:742
+#: src/features/user/notifications.tsx:731
 msgid "Failed to update topic"
 msgstr "Не удалось обновить тему"
 
@@ -1878,11 +1886,6 @@ msgstr "Просмотр изображений: {0}"
 msgid "Imperial"
 msgstr "Имперская"
 
-#: src/features/user/notifications.tsx:597
-#: src/features/user/notifications.tsx:602
-msgid "In app"
-msgstr "В приложении"
-
 #: ../../../lib/web/src/features/access/types.ts:36
 msgid "Including anonymous users"
 msgstr "Включая анонимных пользователей"
@@ -1948,8 +1951,8 @@ msgid "Label is required"
 msgstr "Требуется метка"
 
 #: src/features/system/documents.tsx:224
-#: src/features/user/preferences.tsx:225
-#: src/features/user/preferences.tsx:236
+#: src/features/user/preferences.tsx:221
+#: src/features/user/preferences.tsx:232
 msgid "Language"
 msgstr "Язык"
 
@@ -2389,7 +2392,7 @@ msgstr "Часовой пояс не найден."
 msgid "No topic record yet — try again after the next notification."
 msgstr "Записи о теме пока нет — попробуйте ещё раз после следующего уведомления."
 
-#: src/features/user/notifications.tsx:791
+#: src/features/user/notifications.tsx:780
 msgid "No topics yet"
 msgstr "Тем пока нет"
 
@@ -2467,7 +2470,7 @@ msgstr "Уведомлять по умолчанию"
 msgid "Number"
 msgstr "Число"
 
-#: src/features/user/preferences.tsx:269
+#: src/features/user/preferences.tsx:265
 msgid "Number format"
 msgstr "Формат числа"
 
@@ -2668,17 +2671,17 @@ msgid "Posts and comments"
 msgstr "Публикации и комментарии"
 
 #: src/features/user/display.tsx:118
-#: src/features/user/preferences.tsx:142
+#: src/features/user/preferences.tsx:138
 msgid "Preference updated"
 msgstr "Предпочтение обновлено"
 
 #: src/components/layout/data/sidebar-data.ts:32
-#: src/features/user/preferences.tsx:72
-#: src/features/user/preferences.tsx:181
+#: src/features/user/preferences.tsx:73
+#: src/features/user/preferences.tsx:177
 msgid "Preferences"
 msgstr "Предпочтения"
 
-#: src/features/user/preferences.tsx:170
+#: src/features/user/preferences.tsx:166
 msgid "Preferences reset to defaults"
 msgstr "Предпочтения сброшены к значениям по умолчанию"
 
@@ -2732,7 +2735,6 @@ msgid "Public URL for OAuth redirects"
 msgstr "Публичный URL для OAuth-перенаправлений"
 
 #: src/features/user/connected-accounts.tsx:103
-#: src/features/user/notifications.tsx:604
 msgid "Push"
 msgstr "Push"
 
@@ -2846,8 +2848,8 @@ msgstr "Служба ретрансляции"
 msgid "Remove"
 msgstr "Удалить"
 
-#: src/features/user/notifications.tsx:826
-#: src/features/user/notifications.tsx:826
+#: src/features/user/notifications.tsx:815
+#: src/features/user/notifications.tsx:815
 msgid "Remove (re-create on next notification)"
 msgstr "Удалить (пересоздать при следующем уведомлении)"
 
@@ -2942,7 +2944,7 @@ msgstr "Отправить письмо повторно"
 #: src/features/system/settings.tsx:364
 #: src/features/system/settings.tsx:484
 #: src/features/user/display.tsx:208
-#: src/features/user/preferences.tsx:209
+#: src/features/user/preferences.tsx:205
 msgid "Reset"
 msgstr "Сбросить"
 
@@ -2950,7 +2952,7 @@ msgstr "Сбросить"
 msgid "Reset display?"
 msgstr "Сбросить отображение?"
 
-#: src/features/user/preferences.tsx:201
+#: src/features/user/preferences.tsx:197
 msgid "Reset preferences?"
 msgstr "Сбросить предпочтения?"
 
@@ -2970,7 +2972,7 @@ msgid "Reset to default?"
 msgstr "Сбросить к значениям по умолчанию?"
 
 #: src/features/user/display.tsx:195
-#: src/features/user/preferences.tsx:196
+#: src/features/user/preferences.tsx:192
 msgid "Reset to defaults"
 msgstr "Сбросить к значениям по умолчанию"
 
@@ -3063,7 +3065,7 @@ msgid "RSS URL copied to clipboard"
 msgstr "URL RSS скопирован в буфер обмена"
 
 #. placeholder {0}: feed.name
-#: src/features/user/notifications.tsx:621
+#: src/features/user/notifications.tsx:617
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
 
@@ -3624,7 +3626,7 @@ msgstr "Это сбросит «{settingNameLabel}» к значению по у
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Это сбросит «{settingNameLabel}» к значению по умолчанию ({defaultLabel})."
 
-#: src/features/user/preferences.tsx:203
+#: src/features/user/preferences.tsx:199
 msgid "This will reset all preferences to their default values."
 msgstr "Это сбросит все предпочтения к значениям по умолчанию."
 
@@ -3640,15 +3642,15 @@ msgstr "Это завершит эту сессию. Если это ваша т
 msgid "Thursday"
 msgstr "Четверг"
 
-#: src/features/user/preferences.tsx:291
+#: src/features/user/preferences.tsx:287
 msgid "Time format"
 msgstr "Формат времени"
 
-#: src/features/user/preferences.tsx:248
+#: src/features/user/preferences.tsx:244
 msgid "Time zone"
 msgstr "Часовой пояс"
 
-#: src/features/user/preferences.tsx:316
+#: src/features/user/preferences.tsx:312
 msgid "Timestamps"
 msgstr "Метки времени"
 
@@ -3759,7 +3761,7 @@ msgid "Unable to redirect to login. Please try again."
 msgstr "Не удалось перенаправить на страницу входа. Попробуйте снова."
 
 #: ../../../lib/web/src/components/notification-category-button.tsx:114
-#: src/features/user/notifications.tsx:820
+#: src/features/user/notifications.tsx:809
 msgid "Unassigned"
 msgstr "Не назначено"
 
@@ -3780,7 +3782,7 @@ msgstr "Непредвиденная ошибка API"
 msgid "United States"
 msgstr "США"
 
-#: src/features/user/preferences.tsx:258
+#: src/features/user/preferences.tsx:254
 msgid "Units"
 msgstr "Единицы"
 
@@ -3994,7 +3996,7 @@ msgid "We sent a verification code to <0>{0}</0>. Enter the code below to verify
 msgstr "Мы отправили код подтверждения на <0>{0}</0>. Введите код ниже, чтобы подтвердить свой адрес электронной почты."
 
 #: src/features/user/notifications.tsx:390
-#: src/features/user/notifications.tsx:597
+#: src/features/user/notifications.tsx:596
 msgid "Web browser"
 msgstr "Веб-браузер"
 
@@ -4002,7 +4004,7 @@ msgstr "Веб-браузер"
 msgid "Wednesday"
 msgstr "Среда"
 
-#: src/features/user/preferences.tsx:302
+#: src/features/user/preferences.tsx:298
 msgid "Week starts on"
 msgstr "Неделя начинается с"
 

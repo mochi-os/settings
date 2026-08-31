@@ -64,16 +64,6 @@ msgstr "{0, plural, one {1 lota afturkölluð} other {# lotur afturkallaðar}}"
 msgid "{0} (development)"
 msgstr "{0} (þróun)"
 
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:393
-msgid "{0} (in app)"
-msgstr "{0} (í forritinu)"
-
-#. placeholder {0}: name || t`Device`
-#: src/features/user/notifications.tsx:398
-msgid "{0} (push)"
-msgstr "{0} (push)"
-
 #. placeholder {0}: formatNumber(network.relaying.reservations.held)
 #. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
 #. placeholder {2}: formatNumber(network.relaying.circuits)
@@ -81,6 +71,16 @@ msgstr "{0} (push)"
 #: src/features/system/status.tsx:176
 msgid "{0} / {1} reservations · {2} circuits · {3} refused"
 msgstr "{0} / {1} frátektir · {2} rásir · {3} hafnað"
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:393
+msgid "{0} app"
+msgstr ""
+
+#. placeholder {0}: name || t`Device`
+#: src/features/user/notifications.tsx:398
+msgid "{0} push"
+msgstr ""
 
 #. placeholder {0}: formatNumber(network.holepunch.success)
 #. placeholder {1}: formatNumber(network.holepunch.failure)
@@ -115,6 +115,14 @@ msgstr "Nafn {entityLabel}"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:99
 msgid "{entityLabel} name is required"
 msgstr "{entityLabel}-heiti er nauðsynlegt"
+
+#: src/features/user/notifications.tsx:600
+msgid "{name} app"
+msgstr "{name} app"
+
+#: src/features/user/notifications.tsx:602
+msgid "{name} push"
+msgstr "{name} push"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx:29
 msgid "{opponentName} offered a draw"
@@ -599,8 +607,8 @@ msgstr "Tilkynningar vafra"
 #: src/features/user/display.tsx:206
 #: src/features/user/login.tsx:570
 #: src/features/user/notifications.tsx:566
-#: src/features/user/notifications.tsx:696
-#: src/features/user/preferences.tsx:207
+#: src/features/user/notifications.tsx:685
+#: src/features/user/preferences.tsx:203
 #: src/features/user/sessions.tsx:108
 msgid "Cancel"
 msgstr "Hætta við"
@@ -630,7 +638,7 @@ msgstr "Flokkar"
 msgid "Category for these notifications"
 msgstr "Flokkur fyrir þessar tilkynningar"
 
-#: src/features/user/notifications.tsx:683
+#: src/features/user/notifications.tsx:672
 msgid "Change current notifications to"
 msgstr "Breyta núverandi tilkynningum í"
 
@@ -655,8 +663,8 @@ msgstr "Veldu leik úr hliðarstikunni eða byrjaðu nýjan."
 msgid "Choose file"
 msgstr "Veldu skrá"
 
-#: ../../../lib/web/src/components/language-picker.tsx:264
-#: ../../../lib/web/src/components/language-picker.tsx:271
+#: ../../../lib/web/src/components/language-picker.tsx:267
+#: ../../../lib/web/src/components/language-picker.tsx:274
 msgid "Choose language"
 msgstr "Veldu tungumál"
 
@@ -954,7 +962,7 @@ msgstr "Gagnaárekstur"
 msgid "Date"
 msgstr "Dagsetning"
 
-#: src/features/user/preferences.tsx:280
+#: src/features/user/preferences.tsx:276
 msgid "Date format"
 msgstr "Dagsetningasnið"
 
@@ -1023,12 +1031,12 @@ msgstr "Umboð"
 #: src/features/system/users.tsx:544
 #: src/features/user/login.tsx:281
 #: src/features/user/notifications.tsx:426
-#: src/features/user/notifications.tsx:699
+#: src/features/user/notifications.tsx:688
 msgid "Delete"
 msgstr "Eyða"
 
 #. placeholder {0}: category.display ?? category.label
-#: src/features/user/notifications.tsx:679
+#: src/features/user/notifications.tsx:668
 msgid "Delete \"{0}\"?"
 msgstr "Eyða „{0}“?"
 
@@ -1133,7 +1141,7 @@ msgstr "Áfangastaðir"
 msgid "Details Panel"
 msgstr "Smáatriðaspjald"
 
-#: ../../../lib/web/src/components/language-picker.tsx:240
+#: ../../../lib/web/src/components/language-picker.tsx:243
 #: ../../../lib/web/src/components/timezone-select.tsx:46
 #: ../../../lib/web/src/components/timezone-select.tsx:83
 #: ../../../lib/web/src/lib/preference-utils.ts:23
@@ -1141,7 +1149,7 @@ msgstr "Smáatriðaspjald"
 #: ../../../lib/web/src/lib/preference-utils.ts:53
 #: ../../../lib/web/src/lib/preference-utils.ts:67
 #: ../../../lib/web/src/lib/preference-utils.ts:79
-#: src/features/user/preferences.tsx:117
+#: src/features/user/preferences.tsx:113
 msgid "Detect from web browser"
 msgstr "Greina út frá vafra"
 
@@ -1150,7 +1158,7 @@ msgstr "Greina út frá vafra"
 #: src/features/user/connected-accounts.tsx:133
 #: src/features/user/notifications.tsx:393
 #: src/features/user/notifications.tsx:398
-#: src/features/user/notifications.tsx:606
+#: src/features/user/notifications.tsx:599
 msgid "Device"
 msgstr "Tæki"
 
@@ -1486,7 +1494,7 @@ msgstr "Tókst ekki að búa til notanda"
 msgid "Failed to delete attachment"
 msgstr "Tókst ekki að eyða viðhengi"
 
-#: src/features/user/notifications.tsx:669
+#: src/features/user/notifications.tsx:658
 msgid "Failed to delete category"
 msgstr "Tókst ekki að eyða flokki"
 
@@ -1576,7 +1584,7 @@ msgstr "Tókst ekki að fjarlægja reikning"
 msgid "Failed to remove interest"
 msgstr "Tókst ekki að fjarlægja áhugaefni"
 
-#: src/features/user/notifications.tsx:758
+#: src/features/user/notifications.tsx:747
 msgid "Failed to remove topic"
 msgstr "Tókst ekki að fjarlægja efnisflokk"
 
@@ -1588,7 +1596,7 @@ msgstr "Tókst ekki að endurnefna aðgangslykil"
 msgid "Failed to reset display"
 msgstr "Mistókst að endurstilla birtingu"
 
-#: src/features/user/preferences.tsx:173
+#: src/features/user/preferences.tsx:169
 msgid "Failed to reset preferences"
 msgstr "Tókst ekki að endurstilla kjör"
 
@@ -1656,7 +1664,7 @@ msgid "Failed to update name"
 msgstr "Tókst ekki að uppfæra nafn"
 
 #: src/features/user/display.tsx:121
-#: src/features/user/preferences.tsx:145
+#: src/features/user/preferences.tsx:141
 msgid "Failed to update preference"
 msgstr "Tókst ekki að uppfæra kjör"
 
@@ -1677,7 +1685,7 @@ msgstr "Tókst ekki að uppfæra stillingu"
 msgid "Failed to update theme"
 msgstr "Tókst ekki að uppfæra þema"
 
-#: src/features/user/notifications.tsx:742
+#: src/features/user/notifications.tsx:731
 msgid "Failed to update topic"
 msgstr "Tókst ekki að uppfæra efnisflokk"
 
@@ -1878,11 +1886,6 @@ msgstr "Myndaskoðari: {0}"
 msgid "Imperial"
 msgstr "Bresk mælieining"
 
-#: src/features/user/notifications.tsx:597
-#: src/features/user/notifications.tsx:602
-msgid "In app"
-msgstr "Í forritinu"
-
 #: ../../../lib/web/src/features/access/types.ts:36
 msgid "Including anonymous users"
 msgstr "Þar á meðal nafnlausir notendur"
@@ -1948,8 +1951,8 @@ msgid "Label is required"
 msgstr "Merkimiða er skylt"
 
 #: src/features/system/documents.tsx:224
-#: src/features/user/preferences.tsx:225
-#: src/features/user/preferences.tsx:236
+#: src/features/user/preferences.tsx:221
+#: src/features/user/preferences.tsx:232
 msgid "Language"
 msgstr "Tungumál"
 
@@ -2389,7 +2392,7 @@ msgstr "Ekkert tímabelti fannst."
 msgid "No topic record yet — try again after the next notification."
 msgstr "Engin færsla um efni ennþá — reyndu aftur eftir næstu tilkynningu."
 
-#: src/features/user/notifications.tsx:791
+#: src/features/user/notifications.tsx:780
 msgid "No topics yet"
 msgstr "Engin efni ennþá"
 
@@ -2467,7 +2470,7 @@ msgstr "Tilkynna sjálfgefið"
 msgid "Number"
 msgstr "Tala"
 
-#: src/features/user/preferences.tsx:269
+#: src/features/user/preferences.tsx:265
 msgid "Number format"
 msgstr "Talnasnið"
 
@@ -2668,17 +2671,17 @@ msgid "Posts and comments"
 msgstr "Færslur og athugasemdir"
 
 #: src/features/user/display.tsx:118
-#: src/features/user/preferences.tsx:142
+#: src/features/user/preferences.tsx:138
 msgid "Preference updated"
 msgstr "Kjörstilling uppfærð"
 
 #: src/components/layout/data/sidebar-data.ts:32
-#: src/features/user/preferences.tsx:72
-#: src/features/user/preferences.tsx:181
+#: src/features/user/preferences.tsx:73
+#: src/features/user/preferences.tsx:177
 msgid "Preferences"
 msgstr "Kjörstillingar"
 
-#: src/features/user/preferences.tsx:170
+#: src/features/user/preferences.tsx:166
 msgid "Preferences reset to defaults"
 msgstr "Kjörstillingar endurstilltar á sjálfgefin gildi"
 
@@ -2732,7 +2735,6 @@ msgid "Public URL for OAuth redirects"
 msgstr "Opinber vefslóð fyrir OAuth-áframsendingar"
 
 #: src/features/user/connected-accounts.tsx:103
-#: src/features/user/notifications.tsx:604
 msgid "Push"
 msgstr "Push"
 
@@ -2846,8 +2848,8 @@ msgstr "Endurvarpsþjónusta"
 msgid "Remove"
 msgstr "Fjarlægja"
 
-#: src/features/user/notifications.tsx:826
-#: src/features/user/notifications.tsx:826
+#: src/features/user/notifications.tsx:815
+#: src/features/user/notifications.tsx:815
 msgid "Remove (re-create on next notification)"
 msgstr "Fjarlægja (endurgera við næstu tilkynningu)"
 
@@ -2942,7 +2944,7 @@ msgstr "Senda tölvupóst aftur"
 #: src/features/system/settings.tsx:364
 #: src/features/system/settings.tsx:484
 #: src/features/user/display.tsx:208
-#: src/features/user/preferences.tsx:209
+#: src/features/user/preferences.tsx:205
 msgid "Reset"
 msgstr "Endurstilla"
 
@@ -2950,7 +2952,7 @@ msgstr "Endurstilla"
 msgid "Reset display?"
 msgstr "Endurstilla birtingu?"
 
-#: src/features/user/preferences.tsx:201
+#: src/features/user/preferences.tsx:197
 msgid "Reset preferences?"
 msgstr "Endurstilla kjörstillingar?"
 
@@ -2970,7 +2972,7 @@ msgid "Reset to default?"
 msgstr "Endurstilla á sjálfgefið?"
 
 #: src/features/user/display.tsx:195
-#: src/features/user/preferences.tsx:196
+#: src/features/user/preferences.tsx:192
 msgid "Reset to defaults"
 msgstr "Endurstilla á sjálfgefið"
 
@@ -3063,7 +3065,7 @@ msgid "RSS URL copied to clipboard"
 msgstr "RSS-vefslóð afrituð á klippiborð"
 
 #. placeholder {0}: feed.name
-#: src/features/user/notifications.tsx:621
+#: src/features/user/notifications.tsx:617
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
 
@@ -3624,7 +3626,7 @@ msgstr "Þetta mun endurstilla „{settingNameLabel}“ á sjálfgefið gildi (a
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Þetta mun endurstilla „{settingNameLabel}“ á sjálfgefið gildi ({defaultLabel})."
 
-#: src/features/user/preferences.tsx:203
+#: src/features/user/preferences.tsx:199
 msgid "This will reset all preferences to their default values."
 msgstr "Þetta mun endurstilla allar stillingar á sjálfgefin gildi."
 
@@ -3640,15 +3642,15 @@ msgstr "Þetta mun skrá þig út úr þessari lotu. Ef þetta er núverandi lot
 msgid "Thursday"
 msgstr "Fimmtudagur"
 
-#: src/features/user/preferences.tsx:291
+#: src/features/user/preferences.tsx:287
 msgid "Time format"
 msgstr "Tímasnið"
 
-#: src/features/user/preferences.tsx:248
+#: src/features/user/preferences.tsx:244
 msgid "Time zone"
 msgstr "Tímabelti"
 
-#: src/features/user/preferences.tsx:316
+#: src/features/user/preferences.tsx:312
 msgid "Timestamps"
 msgstr "Tímamerki"
 
@@ -3759,7 +3761,7 @@ msgid "Unable to redirect to login. Please try again."
 msgstr "Ekki tókst að endurbeina á innskráningu. Reyndu aftur."
 
 #: ../../../lib/web/src/components/notification-category-button.tsx:114
-#: src/features/user/notifications.tsx:820
+#: src/features/user/notifications.tsx:809
 msgid "Unassigned"
 msgstr "Ekki úthlutað"
 
@@ -3780,7 +3782,7 @@ msgstr "Óvænt API-villa"
 msgid "United States"
 msgstr "Bandaríkin"
 
-#: src/features/user/preferences.tsx:258
+#: src/features/user/preferences.tsx:254
 msgid "Units"
 msgstr "Einingar"
 
@@ -3994,7 +3996,7 @@ msgid "We sent a verification code to <0>{0}</0>. Enter the code below to verify
 msgstr "Við sendum staðfestingarkóða á <0>{0}</0>. Sláðu inn kóðann hér að neðan til að staðfesta netfangið þitt."
 
 #: src/features/user/notifications.tsx:390
-#: src/features/user/notifications.tsx:597
+#: src/features/user/notifications.tsx:596
 msgid "Web browser"
 msgstr "Vefvafri"
 
@@ -4002,7 +4004,7 @@ msgstr "Vefvafri"
 msgid "Wednesday"
 msgstr "Miðvikudagur"
 
-#: src/features/user/preferences.tsx:302
+#: src/features/user/preferences.tsx:298
 msgid "Week starts on"
 msgstr "Vika hefst á"
 
