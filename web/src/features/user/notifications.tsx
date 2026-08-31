@@ -312,14 +312,17 @@ function CategoriesTab({
               onTest={async () => {
                 try {
                   const params = new URLSearchParams({ id: String(cat.id) })
-                  const res = await requestHelpers.post<{ sent: number; web: boolean }>(
+                  const res = await requestHelpers.post<{ sent: number; failed: number; total: number; web: boolean }>(
                     endpoints.notifications.categoriesTest,
                     params.toString(),
                     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
                   )
                   const sent = res?.sent ?? 0
-                  if (sent === 0) {
+                  const total = res?.total ?? sent
+                  if (total === 0) {
                     toast.error(t`No destinations configured`)
+                  } else if (sent < total) {
+                    toast.error(t`Test sent to ${sent} of ${total} destinations`)
                   } else {
                     toast.success(plural(sent, { one: 'Test sent to # destination', other: 'Test sent to # destinations' }))
                   }

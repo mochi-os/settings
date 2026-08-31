@@ -20,7 +20,7 @@ def destinations_input(a):
     for dest in destinations:
         if type(dest) != "dict":
             return False, None
-        if dest.get("type", "") not in ("web", "account", "rss"):
+        if dest.get("type", "") not in ("web", "device", "account", "rss"):
             return False, None
         if len(str(dest.get("target", ""))) > 64:
             return False, None
