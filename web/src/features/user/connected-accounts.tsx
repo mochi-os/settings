@@ -551,7 +551,6 @@ export function ConnectedAccounts() {
       <PageHeader
         title={t`Connected accounts`}
         icon={<Link className='size-4 md:size-5' />}
-        showSidebarTrigger
         actions={
           !providersError && (
             <Button

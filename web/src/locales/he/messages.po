@@ -14,13 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-explicit-id
-#: ../../../lib/web/src/lib/error-normalizer.ts:215
+#: ../../../lib/web/src/lib/error-normalizer.ts:219
 msgid "Please check your internet connection and try again."
 msgstr "בדקו את חיבור האינטרנט ונסו שוב."
 
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:301
-msgid " or "
-msgstr " או "
+#~ msgid " or "
+#~ msgstr " או "
 
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx:516
@@ -36,21 +36,31 @@ msgstr "\"{0}\" ינותק בכל מכשיר ויצטרך להתחבר שוב."
 msgid "(current)"
 msgstr "(נוכחי)"
 
-#: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:190
+#: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:189
 msgid "(edited)"
 msgstr "(נערך)"
 
-#: src/features/system/settings.tsx:99
+#: src/features/system/settings.tsx:101
 msgid "(empty)"
 msgstr "(ריק)"
 
-#: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:174
+#: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:173
 msgid "(expand)"
 msgstr "(הרחב)"
 
 #: ../../../lib/web/src/components/entity/entity-board-container.tsx:753
 msgid "[not set]"
 msgstr "[לא מוגדר]"
+
+#. placeholder {0}: displayInfo.count
+#: ../../../lib/web/src/components/person-picker.tsx:257
+msgid "{0, plural, one {# selected} other {# selected}}"
+msgstr "{0, plural, one {# נבחר} two {# נבחרו} many {# נבחרו} other {# נבחרו}}"
+
+#. placeholder {0}: countDeepChildren(object.id)
+#: ../../../lib/web/src/components/entity/entity-board-card.tsx:421
+msgid "{0, plural, one {+# nested} other {+# nested}}"
+msgstr "{0, plural, one {+# מקונן} two {+# מקוננים} many {+# מקוננים} other {+# מקוננים}}"
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx:285
@@ -75,12 +85,12 @@ msgstr "{0} / {1} הזמנות · {2} מעגלים · {3} נדחו"
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx:396
 msgid "{0} app"
-msgstr ""
+msgstr "אפליקציית {0}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx:401
 msgid "{0} push"
-msgstr ""
+msgstr "פוש {0}"
 
 #. placeholder {0}: formatNumber(network.holepunch.success)
 #. placeholder {1}: formatNumber(network.holepunch.failure)
@@ -108,13 +118,13 @@ msgstr "{count, plural, one {#שב} other {#שב}}"
 msgid "{count} remaining"
 msgstr "נותרו {count}"
 
-#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:174
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:176
 msgid "{entityLabel} name"
 msgstr "שם {entityLabel}"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:99
-msgid "{entityLabel} name is required"
-msgstr "נדרש שם {entityLabel}"
+#~ msgid "{entityLabel} name is required"
+#~ msgstr "נדרש שם {entityLabel}"
 
 #: src/features/user/notifications.tsx:603
 msgid "{name} app"
@@ -137,9 +147,13 @@ msgstr "{sent, plural, one {הבדיקה נשלחה ליעד אחד} two {הבד
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} מתוך {totalLabel}"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:530
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:531
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {פריט אחד} two {שני פריטים} many {# פריטים} other {# פריטים}}"
+
+#: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:170
+msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
+msgstr "{totalDescendants, plural, one {תגובה אחת} two {+# תגובות נוספות} many {+# תגובות נוספות} other {+# תגובות נוספות}}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:158
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -150,18 +164,17 @@ msgstr "{unreadCount, plural, one {פתיחת התפריט (התראה אחת ש
 msgid "/ or /blog"
 msgstr "/ או /blog"
 
-#. placeholder {0}: countDeepChildren(object.id)
 #: ../../../lib/web/src/components/entity/entity-board-card.tsx:418
-msgid "+{0} nested"
-msgstr "+{0} מקוננים"
+#~ msgid "+{0} nested"
+#~ msgstr "+{0} מקוננים"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:171
-msgid "+{totalDescendants} more replies"
-msgstr "+{totalDescendants} תגובות נוספות"
+#~ msgid "+{totalDescendants} more replies"
+#~ msgstr "+{totalDescendants} תגובות נוספות"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:170
-msgid "1 reply"
-msgstr "תגובה אחת"
+#~ msgid "1 reply"
+#~ msgstr "תגובה אחת"
 
 #: src/features/user/login.tsx:544
 msgid "1. Scan QR code"
@@ -191,7 +204,8 @@ msgstr "מוחלט (תאריך ושעה)"
 msgid "Accept"
 msgstr "אישור"
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:60
+#: ../../../lib/web/src/features/errors/access-denied-error.tsx:16
+#: ../../../lib/web/src/features/errors/general-error.tsx:58
 msgid "Access denied"
 msgstr "הגישה נדחתה"
 
@@ -221,7 +235,7 @@ msgstr "החשבון הוסר"
 msgid "Account scheduled for deletion"
 msgstr "החשבון מתוזמן למחיקה"
 
-#: src/features/user/connected-accounts.tsx:722
+#: src/features/user/connected-accounts.tsx:721
 msgid "Account settings"
 msgstr "הגדרות חשבון"
 
@@ -237,7 +251,7 @@ msgstr "החשבון עודכן"
 msgid "Account verified"
 msgstr "החשבון אומת"
 
-#: src/features/system/settings.tsx:58
+#: src/features/system/settings.tsx:60
 msgid "Act as a relay for unreachable servers"
 msgstr "שמש כממסר עבור שרתים שאינם נגישים"
 
@@ -245,13 +259,13 @@ msgstr "שמש כממסר עבור שרתים שאינם נגישים"
 msgid "Actions"
 msgstr "פעולות"
 
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:720
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:758
 #: ../../../lib/web/src/features/access/access-dialog.tsx:332
 #: ../../../lib/web/src/features/accounts/account-add.tsx:209
 msgid "Add"
 msgstr "הוספה"
 
-#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:312
+#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:314
 msgid "Add a comment..."
 msgstr "הוסף תגובה..."
 
@@ -259,7 +273,7 @@ msgstr "הוסף תגובה..."
 msgid "Add a new account"
 msgstr "הוסף חשבון חדש"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:106
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:110
 msgid "Add a new field to this class"
 msgstr "הוסף שדה חדש למחלקה זו"
 
@@ -276,7 +290,7 @@ msgid "Add access"
 msgstr "הוסף גישה"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx:132
-#: src/features/user/connected-accounts.tsx:563
+#: src/features/user/connected-accounts.tsx:562
 msgid "Add account"
 msgstr "הוסף חשבון"
 
@@ -288,7 +302,7 @@ msgstr "הוספת כיתוב"
 msgid "Add category"
 msgstr "הוסף קטגוריה"
 
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:690
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:728
 msgid "Add checklist item"
 msgstr "הוסף פריט לרשימת משימות"
 
@@ -305,12 +319,12 @@ msgstr "הוסף האצלת סמכויות"
 msgid "Add domain"
 msgstr "הוסף דומיין"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:105
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:233
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:109
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:235
 msgid "Add field"
 msgstr "הוסף שדה"
 
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:708
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:746
 msgid "Add item..."
 msgstr "הוסף פריט..."
 
@@ -318,11 +332,11 @@ msgstr "הוסף פריט..."
 msgid "Add link"
 msgstr "הוסף קישור"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:215
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:220
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:291
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:91
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:191
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:217
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:222
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:295
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:92
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:193
 msgid "Add option"
 msgstr "הוסף אפשרות"
 
@@ -336,7 +350,7 @@ msgstr "הוסף Passkey"
 msgid "Add route"
 msgstr "הוסף נתיב"
 
-#: ../../../lib/web/src/components/post-tags.tsx:137
+#: ../../../lib/web/src/components/post-tags.tsx:138
 msgid "Add tag..."
 msgstr "הוסף תגית..."
 
@@ -348,14 +362,14 @@ msgstr "הוסף להתראות קיימות"
 msgid "Add user"
 msgstr "הוסף משתמש"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:258
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:513
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:261
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:518
 #: ../../../lib/web/src/components/view-tabs.tsx:87
 #: ../../../lib/web/src/components/view-tabs.tsx:93
 msgid "Add view"
 msgstr "הוסף תצוגה"
 
-#: src/features/user/connected-accounts.tsx:602
+#: src/features/user/connected-accounts.tsx:601
 msgid "Added"
 msgstr "נוסף"
 
@@ -382,12 +396,15 @@ msgstr "מנהל מערכת"
 msgid "AI"
 msgstr "AI"
 
-#. placeholder {0}: entityLabel.toLowerCase()
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:85
-msgid "Allow anyone to search for {0}"
-msgstr "אפשר לכל אחד לחפש {0}"
+#~ msgid "Allow anyone to search for {0}"
+#~ msgstr "אפשר לכל אחד לחפש {0}"
 
-#: src/features/system/settings.tsx:78
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:87
+msgid "Allow anyone to search for {entityLabel}"
+msgstr "לאפשר לכל אחד לחפש {entityLabel}"
+
+#: src/features/system/settings.tsx:80
 msgid "Allow new signups"
 msgstr "אפשר הרשמות חדשות"
 
@@ -395,7 +412,7 @@ msgstr "אפשר הרשמות חדשות"
 msgid "Allow others to find you in directory"
 msgstr "אפשר לאחרים למצוא אותך בספרייה"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:225
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:229
 msgid "Allow sort by"
 msgstr "אפשר מיון לפי"
 
@@ -404,7 +421,7 @@ msgid "Allow users to install apps"
 msgstr "אפשר למשתמשים להתקין אפליקציות"
 
 #: src/components/method-state-control.tsx:31
-#: src/features/system/settings.tsx:110
+#: src/features/system/settings.tsx:112
 msgid "Allowed"
 msgstr "מאופשר"
 
@@ -413,6 +430,7 @@ msgid "An error occurred"
 msgstr "אירעה שגיאה"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts:266
+#: ../../../lib/web/src/lib/error-normalizer.ts:11
 msgid "An unexpected error occurred"
 msgstr "אירעה שגיאה בלתי צפויה"
 
@@ -420,7 +438,7 @@ msgstr "אירעה שגיאה בלתי צפויה"
 msgid "Android push"
 msgstr "פוש ל-Android"
 
-#: src/features/system/settings.tsx:57
+#: src/features/system/settings.tsx:59
 msgid "Announce hostname and domains to other servers"
 msgstr "הכרזת שם המארח והדומיינים לשרתים אחרים"
 
@@ -451,11 +469,11 @@ msgid "Appearance"
 msgstr "מראה"
 
 #. placeholder {0}: deleteTarget?.name
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:313
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:316
 msgid "Are you sure you want to delete \"{0}\"?"
 msgstr "האם אתה בטוח שברצונך למחוק את \"{0}\"?"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:629
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:631
 msgid "Are you sure you want to delete the \"{name}\" column? This cannot be undone."
 msgstr "האם אתה בטוח שברצונך למחוק את העמודה \"{name}\"? לא ניתן לבטל פעולה זו."
 
@@ -471,11 +489,11 @@ msgstr "האם אתה בטוח שברצונך להתנתק? יהיה עליך ל
 msgid "Ascending"
 msgstr "סדר עולה"
 
-#: ../../../lib/web/src/components/comment-composer.tsx:427
+#: ../../../lib/web/src/components/comment-composer.tsx:430
 msgid "Attach comment files"
 msgstr "צרף קובצי תגובה"
 
-#: ../../../lib/web/src/components/comment-composer.tsx:426
+#: ../../../lib/web/src/components/comment-composer.tsx:429
 msgid "Attach reply files"
 msgstr "צרף קובצי תשובה"
 
@@ -501,7 +519,7 @@ msgstr "אפליקציית האימות הופעלה"
 msgid "Authenticator app is active"
 msgstr "אפליקציית האימות פעילה"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:318
+#: ../../../lib/web/src/components/step-up-dialog.tsx:306
 msgid "Authenticator code"
 msgstr "קוד אימות"
 
@@ -513,20 +531,20 @@ msgstr "אישורים אוטומטיים"
 msgid "Available keyboard shortcuts"
 msgstr "קיצורי מקלדת זמינים"
 
-#: ../../../lib/web/src/components/entity-avatar.tsx:99
+#: ../../../lib/web/src/components/entity-avatar.tsx:98
 msgid "Avatar"
 msgstr "אווטר"
 
-#: ../../../lib/web/src/components/entity-avatar.tsx:99
+#: ../../../lib/web/src/components/entity-avatar.tsx:98
 msgid "Avatar for {name}"
 msgstr "אווטר של {name}"
 
-#: ../../../lib/web/src/components/place-picker.tsx:156
+#: ../../../lib/web/src/components/place-picker.tsx:142
 msgid "Back"
 msgstr "חזור"
 
+#: ../../../lib/web/src/features/errors/access-denied-error.tsx:27
 #: ../../../lib/web/src/features/errors/not-found-error.tsx:28
-#: ../../../lib/web/src/features/errors/unauthorized-error.tsx:28
 msgid "Back to home"
 msgstr "חזרה לבית"
 
@@ -543,8 +561,8 @@ msgstr "באנר"
 msgid "Blocked by"
 msgstr "חסום על ידי"
 
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:242
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:252
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:238
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:248
 msgid "Blocked navigation to untrusted link"
 msgstr "ניווט לקישור לא מהימן נחסם"
 
@@ -552,16 +570,16 @@ msgstr "ניווט לקישור לא מהימן נחסם"
 msgid "Blocks"
 msgstr "חוסם"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:312
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:315
 msgid "Board"
 msgstr "Board"
 
-#: ../../../lib/web/src/components/post-tags.tsx:180
-#: ../../../lib/web/src/components/post-tags.tsx:192
+#: ../../../lib/web/src/components/post-tags.tsx:194
+#: ../../../lib/web/src/components/post-tags.tsx:206
 msgid "Boost interest"
 msgstr "הגבר עניין"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:399
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:402
 msgid "Border colour"
 msgstr "צבע מסגרת"
 
@@ -580,15 +598,15 @@ msgid "Browser notifications"
 msgstr "התראות דפדפן"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx:426
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:614
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:616
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:211
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:166
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:183
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:168
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:185
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx:67
-#: ../../../lib/web/src/components/step-up-dialog.tsx:366
-#: ../../../lib/web/src/components/travelling-picker.tsx:308
-#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:249
-#: ../../../lib/web/src/components/ui/editable-field-row.tsx:132
+#: ../../../lib/web/src/components/step-up-dialog.tsx:354
+#: ../../../lib/web/src/components/travelling-picker.tsx:288
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:251
+#: ../../../lib/web/src/components/ui/editable-field-row.tsx:136
 #: ../../../lib/web/src/features/access/access-dialog.tsx:328
 #: ../../../lib/web/src/features/access/access-list.tsx:268
 #: ../../../lib/web/src/features/accounts/account-add.tsx:201
@@ -597,13 +615,13 @@ msgstr "התראות דפדפן"
 #: src/features/domains/index.tsx:348
 #: src/features/domains/index.tsx:548
 #: src/features/domains/index.tsx:692
-#: src/features/system/settings.tsx:320
-#: src/features/system/settings.tsx:362
-#: src/features/system/settings.tsx:482
+#: src/features/system/settings.tsx:322
+#: src/features/system/settings.tsx:364
+#: src/features/system/settings.tsx:484
 #: src/features/system/users.tsx:149
 #: src/features/system/users.tsx:248
 #: src/features/user/close-account.tsx:86
-#: src/features/user/connected-accounts.tsx:757
+#: src/features/user/connected-accounts.tsx:756
 #: src/features/user/display.tsx:206
 #: src/features/user/login.tsx:570
 #: src/features/user/notifications.tsx:569
@@ -613,11 +631,11 @@ msgstr "התראות דפדפן"
 msgid "Cancel"
 msgstr "ביטול"
 
-#: ../../../lib/web/src/components/comment-composer.tsx:427
+#: ../../../lib/web/src/components/comment-composer.tsx:430
 msgid "Cancel comment"
 msgstr "בטל תגובה"
 
-#: ../../../lib/web/src/components/comment-composer.tsx:426
+#: ../../../lib/web/src/components/comment-composer.tsx:429
 msgid "Cancel reply"
 msgstr "בטל תשובה"
 
@@ -647,11 +665,19 @@ msgstr "שנה התראות נוכחיות ל"
 msgid "Change notification category"
 msgstr "שנה קטגוריית התראה"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:137
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:62
+msgid "Changed"
+msgstr "שונה"
+
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:62
+msgid "Changed {field}"
+msgstr "{field} שונה"
+
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts:12
 msgid "Checkbox"
 msgstr "תיבת סימון"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:138
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts:13
 msgid "Checklist"
 msgstr "רשימת משימות"
 
@@ -659,7 +685,7 @@ msgstr "רשימת משימות"
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "בחר משחק מהסרגל הצדדי או התחל אחד חדש."
 
-#: src/features/system/settings.tsx:429
+#: src/features/system/settings.tsx:431
 msgid "Choose file"
 msgstr "בחר קובץ"
 
@@ -670,12 +696,12 @@ msgstr "בחר שפה"
 
 #: ../../../lib/web/src/components/colour-picker.tsx:274
 #: ../../../lib/web/src/components/colour-picker.tsx:355
-#: ../../../lib/web/src/components/travelling-picker.tsx:164
-#: ../../../lib/web/src/components/travelling-picker.tsx:170
-#: ../../../lib/web/src/components/travelling-picker.tsx:231
-#: ../../../lib/web/src/components/travelling-picker.tsx:237
-#: src/features/system/settings.tsx:409
-#: src/features/system/settings.tsx:414
+#: ../../../lib/web/src/components/travelling-picker.tsx:145
+#: ../../../lib/web/src/components/travelling-picker.tsx:151
+#: ../../../lib/web/src/components/travelling-picker.tsx:212
+#: ../../../lib/web/src/components/travelling-picker.tsx:218
+#: src/features/system/settings.tsx:411
+#: src/features/system/settings.tsx:416
 msgid "Clear"
 msgstr "נקה"
 
@@ -687,11 +713,11 @@ msgstr "נקה הכול"
 msgid "Clear search"
 msgstr "נקה חיפוש"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:501
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:506
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:523
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:528
 #: ../../../lib/web/src/components/ui/dialog.tsx:78
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:468
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:471
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:479
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:482
 #: ../../../lib/web/src/components/ui/sheet.tsx:79
 #: src/features/system/users.tsx:355
 msgid "Close"
@@ -703,10 +729,10 @@ msgstr "סגור"
 msgid "Close account"
 msgstr "סגירת חשבון"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:109
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx:113
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:263
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:267
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:117
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:266
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:270
 msgid "Close dialog"
 msgstr "סגור דיאלוג"
 
@@ -747,16 +773,16 @@ msgstr "כיווץ"
 msgid "Collapse sidebar"
 msgstr "צמצם סרגל צדדי"
 
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:146
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:148
 msgid "Colour"
 msgstr "צבע"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:539
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:544
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:540
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:545
 msgid "Column actions"
 msgstr "פעולות עמודה"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:347
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:350
 msgid "Columns group by"
 msgstr "עמודות מקובצות לפי"
 
@@ -773,8 +799,8 @@ msgstr "לוח פקודות"
 msgid "Comment actions"
 msgstr "פעולות תגובה"
 
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:431
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:443
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:442
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:454
 msgid "Comments"
 msgstr "תגובות"
 
@@ -782,20 +808,20 @@ msgstr "תגובות"
 msgid "Compact"
 msgstr "מצומצם"
 
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:94
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:95
 msgid "Configure option settings"
 msgstr "הגדר את הגדרות האפשרות"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:259
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:262
 msgid "Configure view settings"
 msgstr "הגדר את הגדרות התצוגה"
 
-#: src/features/system/settings.tsx:384
+#: src/features/system/settings.tsx:386
 msgid "Configured"
 msgstr "מוגדר"
 
-#: ../../../lib/web/src/components/place-picker.tsx:160
-#: ../../../lib/web/src/components/travelling-picker.tsx:316
+#: ../../../lib/web/src/components/place-picker.tsx:146
+#: ../../../lib/web/src/components/travelling-picker.tsx:296
 msgid "Confirm"
 msgstr "אישור"
 
@@ -828,7 +854,7 @@ msgstr "צור קשר עם מנהל כדי לקבל האצלה."
 msgid "Content not found."
 msgstr "התוכן לא נמצא."
 
-#: ../../../lib/web/src/lib/query-client.ts:78
+#: ../../../lib/web/src/lib/query-client.ts:73
 msgid "Content not modified"
 msgstr "התוכן לא שונה"
 
@@ -840,7 +866,7 @@ msgstr "מידע קונטקסטואלי ופרטים."
 msgid "Continue"
 msgstr "המשך"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:355
+#: ../../../lib/web/src/components/step-up-dialog.tsx:343
 msgid "Continue with {label}"
 msgstr "המשך עם {label}"
 
@@ -884,34 +910,37 @@ msgstr "לא ניתן היה להתחיל קישור"
 msgid "Could not unlink provider"
 msgstr "לא ניתן היה לבטל קישור ספק"
 
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:128
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:124
 msgid "Couldn't load notifications"
 msgstr "לא ניתן לטעון התראות"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:182
+#: ../../../lib/web/src/components/step-up-dialog.tsx:170
 msgid "Couldn't send the code. Please try again."
 msgstr "לא ניתן היה לשלוח את הקוד. נסה שוב."
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:136
+#: ../../../lib/web/src/components/step-up-dialog.tsx:124
 msgid "Couldn't start re-authentication. Please try again."
 msgstr "לא ניתן היה להתחיל את האימות מחדש. נסה שוב."
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:224
+#: ../../../lib/web/src/components/step-up-dialog.tsx:212
 msgid "Couldn't verify with that account. Please try again."
 msgstr "לא ניתן היה לאמת עם החשבון הזה. נסה שוב."
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:550
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:689
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:491
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:656
-#: ../../../lib/web/src/components/entity/entity-tree-view.tsx:675
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:551
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:691
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:513
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:682
+#: ../../../lib/web/src/components/entity/entity-tree-view.tsx:672
 msgid "Create"
 msgstr "צור"
 
-#. placeholder {0}: entityLabel.toLowerCase()
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:144
-msgid "Create {0}"
-msgstr "צור {0}"
+#~ msgid "Create {0}"
+#~ msgstr "צור {0}"
+
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:146
+msgid "Create {entityLabel}"
+msgstr "יצירת {entityLabel}"
 
 #: src/features/domains/index.tsx:989
 msgid "Create a TXT record for"
@@ -926,22 +955,28 @@ msgstr "צור פריט חדש"
 msgid "Create user"
 msgstr "צור משתמש"
 
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:54
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx:56
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:492
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:495
 #: src/features/user/login.tsx:426
 #: src/features/user/sessions.tsx:148
 msgid "Created"
 msgstr "נוצר"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:656
-#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:258
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:54
+msgid "Created {field}"
+msgstr "{field} נוצר"
+
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:682
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:260
 msgid "Creating..."
 msgstr "יוצר..."
 
-#: ../../../lib/web/src/components/map-view.tsx:217
+#: ../../../lib/web/src/components/map-view.tsx:249
 msgid "Current location"
 msgstr "מיקום נוכחי"
 
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:132
 #: ../../../lib/web/src/components/colour-picker.tsx:265
 msgid "Custom"
 msgstr "מותאם אישית"
@@ -958,7 +993,7 @@ msgstr "כהה"
 msgid "Data conflict"
 msgstr "התנגשות נתונים"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:139
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts:14
 msgid "Date"
 msgstr "תאריך"
 
@@ -970,17 +1005,18 @@ msgstr "תבנית תאריך"
 msgid "Decline"
 msgstr "דחייה"
 
-#: src/features/user/connected-accounts.tsx:683
+#: src/features/user/connected-accounts.tsx:682
 msgid "default"
 msgstr "ברירת מחדל"
 
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:129
 #: src/features/user/display.tsx:258
 #: src/features/user/notifications.tsx:416
 msgid "Default"
 msgstr "ברירת מחדל"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx:185
-#: src/features/user/connected-accounts.tsx:745
+#: src/features/user/connected-accounts.tsx:744
 msgid "Default AI account"
 msgstr "חשבון AI ברירת מחדל"
 
@@ -992,11 +1028,11 @@ msgstr "קטגוריית ברירת מחדל"
 msgid "Default for AI"
 msgstr "ברירת מחדל ל-AI"
 
-#: src/features/system/settings.tsx:55
+#: src/features/system/settings.tsx:57
 msgid "Default from address for system emails"
 msgstr "כתובת שולח ברירת מחדל לדוא\"לים של המערכת"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:479
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:482
 msgid "Default sort"
 msgstr "מיון ברירת מחדל"
 
@@ -1016,15 +1052,15 @@ msgstr "האצלת הסמכויות נמחקה"
 msgid "Delegations"
 msgstr "האצלות סמכויות"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:569
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:630
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:570
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:632
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:280
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:323
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:353
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:198
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:203
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:252
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:314
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:208
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:255
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:317
 #: src/features/domains/index.tsx:760
 #: src/features/domains/index.tsx:816
 #: src/features/domains/index.tsx:1152
@@ -1040,11 +1076,11 @@ msgstr "מחק"
 msgid "Delete \"{0}\"?"
 msgstr "למחוק את \"{0}\"?"
 
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:312
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:315
 msgid "Delete attachment"
 msgstr "מחק קובץ מצורף"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:628
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:630
 msgid "Delete column"
 msgstr "מחק עמודה"
 
@@ -1070,17 +1106,17 @@ msgstr "מחק דומיין"
 msgid "Delete domain?"
 msgstr "למחוק דומיין?"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:300
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:304
 msgid "Delete field"
 msgstr "מחק שדה"
 
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:116
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:117
 msgid "Delete option"
 msgstr "מחק אפשרות"
 
 #. placeholder {0}: opt.name
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:278
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:283
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:282
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:287
 msgid "Delete option {0}"
 msgstr "מחק אפשרות {0}"
 
@@ -1109,13 +1145,21 @@ msgstr "מחק משתמש"
 msgid "Delete user?"
 msgstr "למחוק משתמש?"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:284
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:287
 msgid "Delete view"
 msgstr "מחק תצוגה"
 
-#: ../../../lib/web/src/components/restore-banner.tsx:109
+#: ../../../lib/web/src/components/restore-banner.tsx:95
 msgid "Delete your account on the old server"
 msgstr "מחק את חשבונך בשרת הישן"
+
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:58
+msgid "Deleted"
+msgstr "נמחק"
+
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:58
+msgid "Deleted {field}"
+msgstr "{field} נמחק"
 
 #: src/features/system/users.tsx:541
 msgid "Deleting..."
@@ -1129,7 +1173,7 @@ msgstr "צפיפות"
 msgid "Descending"
 msgstr "סדר יורד"
 
-#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:83
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:85
 msgid "Description"
 msgstr "תיאור"
 
@@ -1170,7 +1214,7 @@ msgstr "המכשיר נשכח"
 msgid "Devices"
 msgstr "מכשירים"
 
-#: ../../../lib/web/src/components/person-picker.tsx:214
+#: ../../../lib/web/src/components/person-picker.tsx:190
 msgid "Directory"
 msgstr "מדריך"
 
@@ -1185,8 +1229,8 @@ msgstr "להשבית את האימות?"
 
 #: src/components/method-state-control.tsx:31
 #: src/features/domains/index.tsx:731
-#: src/features/system/settings.tsx:108
-#: src/features/system/settings.tsx:195
+#: src/features/system/settings.tsx:110
+#: src/features/system/settings.tsx:197
 msgid "Disabled"
 msgstr "מושבת"
 
@@ -1204,8 +1248,8 @@ msgstr "למחוק את הטיוטה?"
 msgid "Disconnected"
 msgstr "מנותק"
 
-#: ../../../lib/web/src/components/restore-banner.tsx:88
-#: ../../../lib/web/src/components/restore-banner.tsx:94
+#: ../../../lib/web/src/components/restore-banner.tsx:74
+#: ../../../lib/web/src/components/restore-banner.tsx:80
 msgid "Dismiss"
 msgstr "סגור"
 
@@ -1236,6 +1280,10 @@ msgstr "המסמך נשמר"
 #: src/features/system/documents.tsx:202
 msgid "Documents"
 msgstr "מסמכים"
+
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:111
+msgid "Does not match the required pattern"
+msgstr "לא תואם לתבנית הנדרשת"
 
 #: src/features/domains/index.tsx:116
 msgid "Domain"
@@ -1269,21 +1317,22 @@ msgstr "הדומיין אומת"
 msgid "Domains"
 msgstr "דומיינים"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:305
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:518
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:309
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:523
 #: src/features/user/login.tsx:678
 msgid "Done"
 msgstr "בוצע"
 
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:239
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:452
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:462
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:243
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:463
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:473
 #: src/features/user/data.tsx:137
 #: src/features/user/data.tsx:193
 msgid "Download"
 msgstr "הורדה"
 
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:98
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:149
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:100
 msgid "Download failed"
 msgstr "ההורדה נכשלה"
 
@@ -1322,7 +1371,7 @@ msgstr "ניתן להשתמש בכל קוד פעם אחת בלבד."
 msgid "Edit"
 msgstr "עריכה"
 
-#: ../../../lib/web/src/components/ui/editable-field-row.tsx:154
+#: ../../../lib/web/src/components/ui/editable-field-row.tsx:158
 msgid "Edit {label}"
 msgstr "עריכת {label}"
 
@@ -1334,21 +1383,21 @@ msgstr "עריכת כיתוב"
 msgid "Edit category"
 msgstr "ערוך קטגוריה"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:137
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:140
 msgid "Edit field"
 msgstr "ערוך שדה"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:138
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:141
 msgid "Edit field settings"
 msgstr "ערוך הגדרות שדה"
 
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:91
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:92
 msgid "Edit option"
 msgstr "ערוך אפשרות"
 
 #. placeholder {0}: opt.name
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:263
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:268
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:267
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:272
 msgid "Edit option {0}"
 msgstr "ערוך אפשרות {0}"
 
@@ -1372,7 +1421,7 @@ msgstr "ערוך כרטיס נבחר"
 msgid "Edit user"
 msgstr "ערוך משתמש"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:258
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:261
 msgid "Edit view"
 msgstr "ערוך תצוגה"
 
@@ -1384,7 +1433,7 @@ msgstr "ערוך תצוגה"
 msgid "Email"
 msgstr "אימייל"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:292
+#: ../../../lib/web/src/components/step-up-dialog.tsx:280
 #: src/features/user/login.tsx:124
 msgid "Email code"
 msgstr "קוד אימייל"
@@ -1395,7 +1444,7 @@ msgstr "נתיב ריק מעניק גישה מלאה לדומיין"
 
 #: src/features/domains/index.tsx:539
 #: src/features/domains/index.tsx:731
-#: src/features/system/settings.tsx:194
+#: src/features/system/settings.tsx:196
 #: src/features/user/login.tsx:580
 msgid "Enabled"
 msgstr "מופעל"
@@ -1404,11 +1453,11 @@ msgstr "מופעל"
 msgid "Enter or generate a passphrase"
 msgstr "הזן או צור ביטוי סיסמה"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:302
+#: ../../../lib/web/src/components/step-up-dialog.tsx:290
 msgid "Enter the code from your email"
 msgstr "הזן את הקוד מהאימייל שלך"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:327
+#: ../../../lib/web/src/components/step-up-dialog.tsx:315
 msgid "Enter your authenticator code"
 msgstr "הזן את הקוד מאפליקציית האימות"
 
@@ -1448,14 +1497,15 @@ msgstr "כתובת URL חיצונית"
 msgid "Extra large"
 msgstr "גדול במיוחד"
 
-#: src/features/system/settings.tsx:67
+#: src/features/system/settings.tsx:69
 msgid "Facebook App ID"
 msgstr "מזהה אפליקציית Facebook"
 
-#: src/features/system/settings.tsx:68
+#: src/features/system/settings.tsx:70
 msgid "Facebook App secret"
 msgstr "סוד אפליקציית Facebook"
 
+#: ../../../lib/web/src/hooks/use-accounts.ts:213
 #: src/features/user/connected-accounts.tsx:450
 msgid "Failed to add account"
 msgstr "הוספת החשבון נכשלה"
@@ -1498,7 +1548,7 @@ msgstr "מחיקת הקובץ המצורף נכשלה"
 msgid "Failed to delete category"
 msgstr "מחיקת הקטגוריה נכשלה"
 
-#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:191
+#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:192
 msgid "Failed to delete comment"
 msgstr "מחיקת התגובה נכשלה"
 
@@ -1556,15 +1606,19 @@ msgstr "הטעינה נכשלה"
 msgid "Failed to load history"
 msgstr "טעינת ההיסטוריה נכשלה"
 
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:338
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:349
 msgid "Failed to load image"
 msgstr "טעינת התמונה נכשלה"
 
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:338
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:213
+msgid "Failed to load prompts"
+msgstr "טעינת ה-prompts נכשלה"
+
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:349
 msgid "Failed to load video"
 msgstr "טעינת הווידאו נכשלה"
 
-#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:154
+#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:155
 msgid "Failed to post comment"
 msgstr "פרסום התגובה נכשל"
 
@@ -1600,6 +1654,10 @@ msgstr "איפוס התצוגה נכשל"
 msgid "Failed to reset preferences"
 msgstr "איפוס ההעדפות נכשל"
 
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:90
+msgid "Failed to reset prompt"
+msgstr "איפוס ה-prompt נכשל"
+
 #: ../../../lib/web/src/components/options-menu.tsx:133
 msgid "Failed to revoke RSS access"
 msgstr "ביטול גישת RSS נכשל"
@@ -1616,6 +1674,10 @@ msgstr "שמירת הקטגוריה נכשלה"
 #: src/features/system/documents.tsx:193
 msgid "Failed to save document"
 msgstr "שמירת המסמך נכשלה"
+
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:111
+msgid "Failed to save prompt"
+msgstr "שמירת ה-prompt נכשלה"
 
 #: src/features/user/notifications.tsx:330
 msgid "Failed to send test"
@@ -1638,7 +1700,7 @@ msgstr "עדכון החשבון נכשל"
 msgid "Failed to update browser notifications"
 msgstr "עדכון התראות הדפדפן נכשל"
 
-#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:174
+#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:175
 msgid "Failed to update comment"
 msgstr "עדכון התגובה נכשל"
 
@@ -1676,7 +1738,7 @@ msgstr "עדכון הפרטיות נכשל"
 msgid "Failed to update route"
 msgstr "עדכון הנתיב נכשל"
 
-#: src/features/system/settings.tsx:516
+#: src/features/system/settings.tsx:518
 msgid "Failed to update setting"
 msgstr "עדכון ההגדרה נכשל"
 
@@ -1709,9 +1771,9 @@ msgstr "אימות הקוד נכשל"
 msgid "Failed to verify domain"
 msgstr "אימות הדומיין נכשל"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:589
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:155
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:175
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:611
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:160
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:180
 msgid "Files"
 msgstr "קבצים"
 
@@ -1720,19 +1782,19 @@ msgstr "קבצים"
 msgid "Fingerprint"
 msgstr "טביעת אצבע"
 
-#: ../../../lib/web/src/components/restore-banner.tsx:97
+#: ../../../lib/web/src/components/restore-banner.tsx:83
 msgid "Finish moving your account"
 msgstr "סיים את העברת החשבון"
 
-#: src/features/system/settings.tsx:71
+#: src/features/system/settings.tsx:73
 msgid "Firebase google-services.json file"
 msgstr "קובץ Firebase google-services.json"
 
-#: src/features/system/settings.tsx:72
+#: src/features/system/settings.tsx:74
 msgid "Firebase private key file"
 msgstr "קובץ מפתח פרטי של Firebase"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:221
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:225
 msgid "Flags"
 msgstr "דגלים"
 
@@ -1761,11 +1823,11 @@ msgstr "לשכוח את המכשיר?"
 msgid "Friday"
 msgstr "שישי"
 
-#: ../../../lib/web/src/components/person-picker.tsx:207
+#: ../../../lib/web/src/components/person-picker.tsx:183
 msgid "Friends"
 msgstr "חברים"
 
-#: ../../../lib/web/src/components/travelling-picker.tsx:153
+#: ../../../lib/web/src/components/travelling-picker.tsx:134
 msgid "From"
 msgstr "מאת"
 
@@ -1790,16 +1852,16 @@ msgstr "צור ביטוי סיסמה"
 msgid "Generate?"
 msgstr "ליצור?"
 
-#: src/features/system/settings.tsx:62
+#: src/features/system/settings.tsx:64
 msgid "GitHub client ID"
 msgstr "מזהה לקוח של GitHub"
 
-#: src/features/system/settings.tsx:63
+#: src/features/system/settings.tsx:65
 msgid "GitHub client secret"
 msgstr "סוד לקוח של GitHub"
 
+#: ../../../lib/web/src/features/errors/access-denied-error.tsx:25
 #: ../../../lib/web/src/features/errors/not-found-error.tsx:26
-#: ../../../lib/web/src/features/errors/unauthorized-error.tsx:26
 msgid "Go back"
 msgstr "חזרה"
 
@@ -1807,11 +1869,11 @@ msgstr "חזרה"
 msgid "Go to login"
 msgstr "עבור להתחברות"
 
-#: src/features/system/settings.tsx:60
+#: src/features/system/settings.tsx:62
 msgid "Google client ID"
 msgstr "מזהה לקוח של Google"
 
-#: src/features/system/settings.tsx:61
+#: src/features/system/settings.tsx:63
 msgid "Google client secret"
 msgstr "סוד לקוח של Google"
 
@@ -1823,7 +1885,7 @@ msgstr "הענק למשתמש הרשאה לנהל נתיבים ב-{domain}"
 msgid "Group"
 msgstr "קבוצה"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:347
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:350
 msgid "Group by"
 msgstr "קבץ לפי"
 
@@ -1847,12 +1909,12 @@ msgstr "ניקוב"
 
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx:90
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:185
-#: ../../../lib/web/src/components/layout/top-bar.tsx:71
-#: ../../../lib/web/src/components/layout/top-bar.tsx:100
+#: ../../../lib/web/src/components/layout/top-bar.tsx:86
+#: ../../../lib/web/src/components/layout/top-bar.tsx:115
 msgid "Home"
 msgstr "בית"
 
-#: src/features/system/settings.tsx:56
+#: src/features/system/settings.tsx:58
 msgid "Hostname announced to other servers"
 msgstr "שם המארח המוכרז לשרתים אחרים"
 
@@ -1860,7 +1922,7 @@ msgstr "שם המארח המוכרז לשרתים אחרים"
 msgid "Hot"
 msgstr "חם"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:152
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:156
 msgid "ID"
 msgstr "מזהה"
 
@@ -1878,7 +1940,7 @@ msgid "Identity is now listed in the directory"
 msgstr "הזהות רשומה כעת בספרייה"
 
 #. placeholder {0}: currentMedia.name
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:316
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:327
 msgid "Image viewer: {0}"
 msgstr "מציג תמונות: {0}"
 
@@ -1907,6 +1969,10 @@ msgstr "התקן עדכון"
 msgid "Installing {0}…"
 msgstr "מתקין {0}…"
 
+#: ../../../lib/web/src/components/post-tags.tsx:168
+msgid "Interest {weight}"
+msgstr "עניין {weight}"
+
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:42
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/features/user/interests.tsx:248
@@ -1918,7 +1984,7 @@ msgstr "תחומי עניין"
 msgid "Invalid code"
 msgstr "קוד לא תקין"
 
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:550
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:591
 msgid "Invalid date"
 msgstr "תאריך לא תקין"
 
@@ -1992,7 +2058,7 @@ msgstr "נראה לאחרונה"
 msgid "Last used"
 msgstr "שימוש אחרון"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:306
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:309
 msgid "Layout"
 msgstr "פריסה"
 
@@ -2001,8 +2067,12 @@ msgid "Leave empty for root path"
 msgstr "השאר ריק לנתיב השורש"
 
 #: ../../../lib/web/src/components/post-tags.tsx:72
-msgid "Letters, numbers, spaces, and hyphens only"
-msgstr "אותיות, ספרות, רווחים ומקפים בלבד"
+#~ msgid "Letters, numbers, spaces, and hyphens only"
+#~ msgstr "אותיות, ספרות, רווחים ומקפים בלבד"
+
+#: ../../../lib/web/src/components/post-tags.tsx:73
+msgid "Letters, numbers, spaces, hyphens, and slashes only"
+msgstr "אותיות, ספרות, רווחים, מקפים ולוכסנים בלבד"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:14
 msgid "Light"
@@ -2024,11 +2094,11 @@ msgstr "{label} מקושר"
 msgid "Links"
 msgstr "קישורים"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:318
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:321
 msgid "List"
 msgstr "רשימה"
 
-#: ../../../lib/web/src/components/ui/load-more.tsx:35
+#: ../../../lib/web/src/components/ui/load-more.tsx:39
 msgid "Load more"
 msgstr "טען עוד"
 
@@ -2036,7 +2106,7 @@ msgstr "טען עוד"
 msgid "Loading content…"
 msgstr "טוען תוכן…"
 
-#: ../../../lib/web/src/components/ui/load-more.tsx:35
+#: ../../../lib/web/src/components/ui/load-more.tsx:39
 #: ../../../lib/web/src/features/document/document-page.tsx:88
 msgid "Loading..."
 msgstr "טוען..."
@@ -2059,7 +2129,7 @@ msgid "Logging out…"
 msgstr "מתנתק…"
 
 #: src/components/layout/data/sidebar-data.ts:31
-#: src/features/system/settings.tsx:578
+#: src/features/system/settings.tsx:580
 #: src/features/user/login.tsx:921
 #: src/features/user/login.tsx:971
 msgid "Login"
@@ -2113,12 +2183,20 @@ msgstr "ניהול"
 msgid "Manual"
 msgstr "ידני"
 
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:207
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:214
+#: src/features/system/settings.tsx:55
+msgid "Map tile attribution"
+msgstr "ייחוס אריחי המפה"
+
+#: src/features/system/settings.tsx:54
+msgid "Map tile URL"
+msgstr "כתובת URL של אריחי המפה"
+
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:203
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:210
 msgid "Mark all as read"
 msgstr "סמן הכול כנקרא"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:198
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:202
 msgid "Maximum length"
 msgstr "אורך מקסימלי"
 
@@ -2129,6 +2207,10 @@ msgstr "שרת MCP"
 #: ../../../lib/web/src/lib/preference-utils.ts:102
 msgid "Medium"
 msgstr "בינוני"
+
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:377
+msgid "Members"
+msgstr "חברים"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:200
 msgid "Menu"
@@ -2152,19 +2234,19 @@ msgstr "שיטה"
 msgid "Metric"
 msgstr "מטרי"
 
-#: src/features/system/settings.tsx:64
+#: src/features/system/settings.tsx:66
 msgid "Microsoft client ID"
 msgstr "מזהה לקוח Microsoft"
 
-#: src/features/system/settings.tsx:65
+#: src/features/system/settings.tsx:67
 msgid "Microsoft client secret"
 msgstr "סוד לקוח Microsoft"
 
-#: src/features/system/settings.tsx:66
+#: src/features/system/settings.tsx:68
 msgid "Microsoft tenant"
 msgstr "Tenant של Microsoft"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:187
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:191
 msgid "Minimum length"
 msgstr "אורך מינימלי"
 
@@ -2177,7 +2259,7 @@ msgstr "Mochi {0} זמין"
 msgid "Mochi web"
 msgstr "Mochi web"
 
-#: src/features/user/connected-accounts.tsx:736
+#: src/features/user/connected-accounts.tsx:735
 msgid "Model"
 msgstr "מודל"
 
@@ -2194,33 +2276,46 @@ msgstr "יום שני"
 msgid "More options"
 msgstr "אפשרויות נוספות"
 
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:60
+msgid "Moved"
+msgstr "הועבר"
+
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:60
+msgid "Moved {field}"
+msgstr "{field} הועבר"
+
 #: src/features/user/login.tsx:388
 msgid "My passkey"
 msgstr "מפתח הגישה שלי"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:118
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:600
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:142
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:125
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:293
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:122
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:601
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:145
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:126
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:296
 #: src/features/user/account.tsx:76
 #: src/features/user/connected-accounts.tsx:102
-#: src/features/user/connected-accounts.tsx:596
-#: src/features/user/connected-accounts.tsx:726
+#: src/features/user/connected-accounts.tsx:595
+#: src/features/user/connected-accounts.tsx:725
 #: src/features/user/login.tsx:425
 #: src/features/user/notifications.tsx:541
 msgid "Name"
 msgstr "שם"
 
-#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:102
-msgid "Name cannot contain angle brackets, backslash, semicolon, quotes or backticks"
-msgstr "השם אינו יכול להכיל סוגריים משולשים, לוכסן הפוך, נקודה-פסיק, מרכאות או גרשיים הפוכים"
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:104
+msgid "Name cannot contain < or > characters"
+msgstr "השם לא יכול להכיל את התווים < או >"
 
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:102
+#~ msgid "Name cannot contain angle brackets, backslash, semicolon, quotes or backticks"
+#~ msgstr "השם אינו יכול להכיל סוגריים משולשים, לוכסן הפוך, נקודה-פסיק, מרכאות או גרשיים הפוכים"
+
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:101
 #: src/features/user/account.tsx:79
 msgid "Name is required"
 msgstr "שם נדרש"
 
-#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:100
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:102
 msgid "Name must be 1000 characters or less"
 msgstr "השם חייב להיות 1000 תווים או פחות"
 
@@ -2228,7 +2323,7 @@ msgstr "השם חייב להיות 1000 תווים או פחות"
 msgid "Name updated"
 msgstr "השם עודכן"
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:53
+#: ../../../lib/web/src/features/errors/general-error.tsx:51
 #: ../../../lib/web/src/lib/api-response-interceptors.ts:313
 msgid "Network error"
 msgstr "שגיאת רשת"
@@ -2242,7 +2337,7 @@ msgstr "שגיאת רשת"
 msgid "Never"
 msgstr "אף פעם"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:476
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:498
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:43
 msgid "New"
 msgstr "חדש"
@@ -2260,12 +2355,12 @@ msgstr "משחק חדש"
 msgid "Next"
 msgstr "הבא"
 
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:525
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:530
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:536
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:541
 msgid "Next image"
 msgstr "התמונה הבאה"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:555
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:577
 msgid "No {parentClassNames} to add to"
 msgstr "אין {parentClassNames} להוסיף אליו"
 
@@ -2282,7 +2377,7 @@ msgstr "אין חשבונות מקושרים"
 msgid "No active sessions"
 msgstr "אין הפעלות פעילות"
 
-#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:65
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:74
 msgid "No activity yet"
 msgstr "עדיין אין פעילות"
 
@@ -2295,11 +2390,11 @@ msgstr "לא הוגדר מאמת"
 msgid "No certificate has been installed for \"{0}\", so it will stop serving over HTTPS until you install one."
 msgstr "לא הותקן אישור עבור \"{0}\", ולכן הוא יפסיק להיות מוגש ב-HTTPS עד שתתקין אחד."
 
-#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:322
+#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:324
 msgid "No comments yet"
 msgstr "עדיין אין תגובות"
 
-#: src/features/user/connected-accounts.tsx:589
+#: src/features/user/connected-accounts.tsx:588
 msgid "No connected accounts"
 msgstr "אין חשבונות מקושרים"
 
@@ -2336,7 +2431,7 @@ msgstr "אין קבוצות זמינות"
 msgid "No interests yet"
 msgstr "עדיין אין תחומי עניין"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:522
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:544
 msgid "No item types can be created yet. Create the required parent items first."
 msgstr "עדיין לא ניתן ליצור סוגי פריטים. צור תחילה את פריטי האב הנדרשים."
 
@@ -2352,12 +2447,12 @@ msgstr "לא נמצאו אפשרויות."
 msgid "No passkeys registered"
 msgstr "לא רשומים מפתחות גישה"
 
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:341
-#: ../../../lib/web/src/components/person-picker.tsx:84
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:382
+#: ../../../lib/web/src/components/person-picker.tsx:71
 msgid "No people found"
 msgstr "לא נמצאו אנשים"
 
-#: ../../../lib/web/src/components/place-picker.tsx:133
+#: ../../../lib/web/src/components/place-picker.tsx:120
 msgid "No places found"
 msgstr "לא נמצאו מקומות"
 
@@ -2365,12 +2460,12 @@ msgstr "לא נמצאו מקומות"
 msgid "No recovery codes"
 msgstr "אין קודי שחזור"
 
-#: ../../../lib/web/src/components/inline-entity-search.tsx:64
+#: ../../../lib/web/src/components/inline-entity-search.tsx:65
 #: ../../../lib/web/src/components/search-entity-page.tsx:73
 msgid "No results found"
 msgstr "לא נמצאו תוצאות"
 
-#: ../../../lib/web/src/components/command-menu.tsx:55
+#: ../../../lib/web/src/components/command-menu.tsx:57
 msgid "No results found."
 msgstr "לא נמצאו תוצאות."
 
@@ -2380,7 +2475,7 @@ msgstr "לא הוגדרו מסלולים"
 
 #: ../../../lib/web/src/components/entity/entity-board-container.tsx:824
 #: ../../../lib/web/src/components/entity/entity-board-container.tsx:869
-#: ../../../lib/web/src/components/entity/entity-tree-view.tsx:339
+#: ../../../lib/web/src/components/entity/entity-tree-view.tsx:336
 msgid "No status"
 msgstr "ללא סטטוס"
 
@@ -2396,7 +2491,7 @@ msgstr "עדיין אין רשומת נושא — נסה שוב לאחר ההת�
 msgid "No topics yet"
 msgstr "עדיין אין נושאים"
 
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:139
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:135
 msgid "No unread notifications"
 msgstr "אין התראות שלא נקראו"
 
@@ -2415,17 +2510,17 @@ msgid "No views"
 msgstr "אין תצוגות"
 
 #: ../../../lib/web/src/components/colour-picker.tsx:349
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:538
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:541
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:545
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:359
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:382
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:560
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:563
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:567
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:362
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:385
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:412
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:388
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:415
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:488
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:418
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:491
-#: ../../../lib/web/src/components/person-picker.tsx:350
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:494
+#: ../../../lib/web/src/components/person-picker.tsx:326
 #: ../../../lib/web/src/lib/preference-utils.ts:100
 #: src/features/user/display.tsx:327
 msgid "None"
@@ -2436,15 +2531,15 @@ msgid "Normal"
 msgstr "רגיל"
 
 #: ../../../lib/web/src/components/attachment-image.tsx:50
-#: ../../../lib/web/src/features/errors/general-error.tsx:67
+#: ../../../lib/web/src/features/errors/general-error.tsx:65
 msgid "Not found"
 msgstr "לא נמצא"
 
-#: ../../../lib/web/src/components/ui/editable-field-row.tsx:146
+#: ../../../lib/web/src/components/ui/editable-field-row.tsx:150
 msgid "Not set"
 msgstr "לא הוגדר"
 
-#: ../../../lib/web/src/components/entity/entity-tree-view.tsx:671
+#: ../../../lib/web/src/components/entity/entity-tree-view.tsx:668
 msgid "Nothing found"
 msgstr "לא נמצא דבר"
 
@@ -2455,18 +2550,18 @@ msgid "Notifications"
 msgstr "התראות"
 
 #. placeholder {0}: unread.length
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:200
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:196
 msgid "Notifications: {0}"
 msgstr "התראות: {0}"
 
 #: src/features/user/connected-accounts.tsx:316
-#: src/features/user/connected-accounts.tsx:600
+#: src/features/user/connected-accounts.tsx:599
 msgid "Notify by default"
 msgstr "התרע כברירת מחדל"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:140
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx:54
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:493
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:497
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts:15
 msgid "Number"
 msgstr "מספר"
 
@@ -2486,8 +2581,8 @@ msgstr "פעיל"
 msgid "Oops! Page Not Found!"
 msgstr "אופס! הדף לא נמצא!"
 
-#: ../../../lib/web/src/components/layout/nav-group.tsx:199
-#: ../../../lib/web/src/components/layout/nav-group.tsx:204
+#: ../../../lib/web/src/components/layout/nav-group.tsx:227
+#: ../../../lib/web/src/components/layout/nav-group.tsx:232
 msgid "Open actions"
 msgstr "פתיחת פעולות"
 
@@ -2495,13 +2590,13 @@ msgstr "פתיחת פעולות"
 msgid "Open menu"
 msgstr "פתח תפריט"
 
-#: ../../../lib/web/src/components/layout/top-bar.tsx:63
-#: ../../../lib/web/src/components/layout/top-bar.tsx:68
+#: ../../../lib/web/src/components/layout/top-bar.tsx:78
+#: ../../../lib/web/src/components/layout/top-bar.tsx:83
 msgid "Open navigation"
 msgstr "פתח ניווט"
 
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:105
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:111
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:106
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:112
 msgid "Open option actions"
 msgstr "פתח פעולות אפשרות"
 
@@ -2513,8 +2608,8 @@ msgstr "פתח כרטיס נבחר"
 msgid "Open user actions"
 msgstr "פתח פעולות משתמש"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:274
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:279
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:277
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:282
 msgid "Open view actions"
 msgstr "פתח פעולות תצוגה"
 
@@ -2523,29 +2618,29 @@ msgstr "פתח פעולות תצוגה"
 msgid "Open view controls"
 msgstr "פתח פקדי תצוגה"
 
-#: src/features/system/settings.tsx:599
+#: src/features/system/settings.tsx:601
 msgid "Operator"
 msgstr "מפעיל"
 
-#: src/features/system/settings.tsx:74
+#: src/features/system/settings.tsx:76
 msgid "Operator email"
 msgstr "דוא\"ל המפעיל"
 
-#: src/features/system/settings.tsx:75
+#: src/features/system/settings.tsx:77
 msgid "Operator jurisdiction"
 msgstr "תחום שיפוט של המפעיל"
 
-#: src/features/system/settings.tsx:73
+#: src/features/system/settings.tsx:75
 msgid "Operator name"
 msgstr "שם המפעיל"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:200
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:155
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:202
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:157
 msgid "Option name"
 msgstr "שם אפשרות"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:168
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:240
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:170
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:244
 msgid "Options"
 msgstr "אפשרויות"
 
@@ -2553,7 +2648,7 @@ msgstr "אפשרויות"
 msgid "Other"
 msgstr "אחר"
 
-#: src/features/system/settings.tsx:614
+#: src/features/system/settings.tsx:616
 msgid "Other settings"
 msgstr "הגדרות אחרות"
 
@@ -2561,11 +2656,11 @@ msgstr "הגדרות אחרות"
 msgid "Owner"
 msgstr "בעלים"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:530
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:552
 msgid "Parent"
 msgstr "אב"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:337
+#: ../../../lib/web/src/components/step-up-dialog.tsx:325
 #: src/features/user/login.tsx:126
 #: src/features/user/login.tsx:323
 msgid "Passkey"
@@ -2587,11 +2682,11 @@ msgstr "מפתח הגישה נרשם"
 msgid "Passkey renamed"
 msgstr "שם מפתח הגישה שונה"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:207
+#: ../../../lib/web/src/components/step-up-dialog.tsx:195
 msgid "Passkey verification failed. Please try again."
 msgstr "אימות מפתח הגישה נכשל. נסה שוב."
 
-#: ../../../lib/web/src/components/restore-banner.tsx:146
+#: ../../../lib/web/src/components/restore-banner.tsx:132
 #: src/features/user/login.tsx:407
 msgid "Passkeys"
 msgstr "מפתחות גישה"
@@ -2616,7 +2711,7 @@ msgstr "נתיב"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "נתיב לא מותר. אתה יכול להוסיף נתיבים רק תחת: {0}"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:209
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:213
 msgid "Pattern (regex)"
 msgstr "תבנית (ביטוי רגולרי)"
 
@@ -2640,25 +2735,29 @@ msgstr "עמיתים"
 msgid "Pending"
 msgstr "ממתין"
 
+#: ../../../lib/web/src/components/person-picker.tsx:176
+msgid "People"
+msgstr "אנשים"
+
 #: src/features/domains/index.tsx:1142
 msgid "Permanently delete this domain and all its routes."
 msgstr "מחק לצמיתות את הדומיין הזה וכל המסלולים שלו."
 
 #: ../../../lib/web/src/components/comment-composer.tsx:89
-#: ../../../lib/web/src/features/errors/general-error.tsx:54
+#: ../../../lib/web/src/features/errors/general-error.tsx:52
 #: ../../../lib/web/src/lib/api-response-interceptors.ts:314
 msgid "Please check your internet connection and try again."
 msgstr "בדקו את חיבור האינטרנט ונסו שוב."
 
 #: ../../../lib/web/src/features/errors/unauthorized-error.tsx:18
-msgid "Please log in with the appropriate credentials <0/> to access this resource."
-msgstr "היכנס עם פרטי הכניסה המתאימים <0/> כדי לגשת למשאב זה."
+#~ msgid "Please log in with the appropriate credentials <0/> to access this resource."
+#~ msgstr "היכנס עם פרטי הכניסה המתאימים <0/> כדי לגשת למשאב זה."
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:83
+#: ../../../lib/web/src/features/errors/general-error.tsx:81
 msgid "Please try again."
 msgstr "אנא נסה שוב."
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:75
+#: ../../../lib/web/src/features/errors/general-error.tsx:73
 msgid "Please wait a moment and try again."
 msgstr "יש להמתין מעט ולנסות שוב."
 
@@ -2689,8 +2788,8 @@ msgstr "ההעדפות אופסו לברירות מחדל"
 msgid "Previous"
 msgstr "הקודם"
 
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:509
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:514
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:520
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:525
 msgid "Previous image"
 msgstr "התמונה הקודמת"
 
@@ -2719,8 +2818,12 @@ msgid "Processing…"
 msgstr "מעבד…"
 
 #: ../../../lib/web/src/components/person-picker.tsx:200
-msgid "Project members"
-msgstr "חברי הפרויקט"
+#~ msgid "Project members"
+#~ msgstr "חברי הפרויקט"
+
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:108
+msgid "Prompt saved"
+msgstr "הפרומפט נשמר"
 
 #: src/features/user/login.tsx:892
 msgid "Provider"
@@ -2730,7 +2833,7 @@ msgstr "ספק"
 msgid "Public"
 msgstr "ציבורי"
 
-#: src/features/system/settings.tsx:59
+#: src/features/system/settings.tsx:61
 msgid "Public URL for OAuth redirects"
 msgstr "כתובת URL ציבורית עבור הפניות OAuth"
 
@@ -2742,7 +2845,7 @@ msgstr "פוש"
 msgid "Push notification"
 msgstr "התראת פוש"
 
-#: src/features/system/settings.tsx:607
+#: src/features/system/settings.tsx:609
 msgid "Push notifications"
 msgstr "התראות פוש"
 
@@ -2763,11 +2866,11 @@ msgstr "רדיוס"
 msgid "Raised"
 msgstr "מורם"
 
-#: ../../../lib/web/src/components/restore-banner.tsx:118
+#: ../../../lib/web/src/components/restore-banner.tsx:104
 msgid "Re-link your accounts on this server"
 msgstr "קשר מחדש את חשבונותיך בשרת זה"
 
-#: ../../../lib/web/src/components/restore-banner.tsx:140
+#: ../../../lib/web/src/components/restore-banner.tsx:126
 msgid "Re-register your passkeys on this server"
 msgstr "רשמו מחדש את מפתחות הגישה שלכם בשרת הזה"
 
@@ -2794,12 +2897,12 @@ msgstr "קודי שחזור"
 msgid "Redirect"
 msgstr "הפניה"
 
-#: ../../../lib/web/src/components/layout/authenticated-layout.tsx:136
+#: ../../../lib/web/src/components/layout/authenticated-layout.tsx:135
 msgid "Redirecting to login."
 msgstr "מפנה לדף ההתחברות."
 
-#: ../../../lib/web/src/components/post-tags.tsx:200
-#: ../../../lib/web/src/components/post-tags.tsx:212
+#: ../../../lib/web/src/components/post-tags.tsx:214
+#: ../../../lib/web/src/components/post-tags.tsx:226
 msgid "Reduce interest"
 msgstr "הפחת עניין"
 
@@ -2839,9 +2942,17 @@ msgstr "יחסי בתוך 24 שעות, אחרת מוחלט"
 msgid "Relay service"
 msgstr "שירות ממסר"
 
+#: ../../../lib/web/src/components/post-tags.tsx:166
+msgid "Relevance {relevance}"
+msgstr "רלוונטיות {relevance}"
+
+#: ../../../lib/web/src/components/post-tags.tsx:164
+msgid "Relevance {relevance}, interest {weight}"
+msgstr "רלוונטיות {relevance}, עניין {weight}"
+
 #: ../../../lib/web/src/components/attachment-composer.tsx:285
 #: ../../../lib/web/src/components/attachment-composer.tsx:330
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:190
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:192
 #: ../../../lib/web/src/features/access/access-list.tsx:270
 #: src/features/user/connected-accounts.tsx:358
 #: src/features/user/connected-accounts.tsx:368
@@ -2877,12 +2988,12 @@ msgstr "להסיר גישה?"
 msgid "Remove account?"
 msgstr "להסיר חשבון?"
 
-#: ../../../lib/web/src/components/post-tags.tsx:220
-#: ../../../lib/web/src/components/post-tags.tsx:232
+#: ../../../lib/web/src/components/post-tags.tsx:234
+#: ../../../lib/web/src/components/post-tags.tsx:246
 msgid "Remove interest"
 msgstr "הסר עניין"
 
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:674
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:712
 msgid "Remove item"
 msgstr "הסר פריט"
 
@@ -2895,12 +3006,12 @@ msgstr "הסרת קישור"
 msgid "Remove suspension"
 msgstr "הסר השעיה"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:561
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:618
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:562
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:620
 msgid "Rename"
 msgstr "שנה שם"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:596
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:597
 msgid "Rename column"
 msgstr "שנה שם עמודה"
 
@@ -2908,11 +3019,11 @@ msgstr "שנה שם עמודה"
 msgid "Rename passkey"
 msgstr "שנה שם מפתח גישה"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:597
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:598
 msgid "Rename this board column"
 msgstr "שנה את שם עמודת הלוח הזו"
 
-#: src/features/system/settings.tsx:398
+#: src/features/system/settings.tsx:400
 msgid "Replace"
 msgstr "החלף"
 
@@ -2926,23 +3037,23 @@ msgstr "השב"
 msgid "Reply to {0}..."
 msgstr "הגב ל-{0}..."
 
-#: src/features/system/settings.tsx:54
+#: src/features/system/settings.tsx:56
 msgid "Require domain verification"
 msgstr "דרוש אימות דומיין"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:224
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:228
 #: src/components/method-state-control.tsx:31
-#: src/features/system/settings.tsx:112
+#: src/features/system/settings.tsx:114
 msgid "Required"
 msgstr "נדרש"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:370
+#: ../../../lib/web/src/components/step-up-dialog.tsx:358
 msgid "Resend email"
 msgstr "שלח את האימייל שוב"
 
-#: src/features/system/settings.tsx:322
-#: src/features/system/settings.tsx:364
-#: src/features/system/settings.tsx:484
+#: src/features/system/settings.tsx:324
+#: src/features/system/settings.tsx:366
+#: src/features/system/settings.tsx:486
 #: src/features/user/display.tsx:208
 #: src/features/user/preferences.tsx:205
 msgid "Reset"
@@ -2956,18 +3067,18 @@ msgstr "לאפס תצוגה?"
 msgid "Reset preferences?"
 msgstr "לאפס העדפות?"
 
-#: src/features/system/settings.tsx:304
-#: src/features/system/settings.tsx:310
-#: src/features/system/settings.tsx:346
-#: src/features/system/settings.tsx:352
-#: src/features/system/settings.tsx:464
-#: src/features/system/settings.tsx:470
+#: src/features/system/settings.tsx:306
+#: src/features/system/settings.tsx:312
+#: src/features/system/settings.tsx:348
+#: src/features/system/settings.tsx:354
+#: src/features/system/settings.tsx:466
+#: src/features/system/settings.tsx:472
 msgid "Reset to default"
 msgstr "אפס לברירת מחדל"
 
-#: src/features/system/settings.tsx:314
-#: src/features/system/settings.tsx:356
-#: src/features/system/settings.tsx:474
+#: src/features/system/settings.tsx:316
+#: src/features/system/settings.tsx:358
+#: src/features/system/settings.tsx:476
 msgid "Reset to default?"
 msgstr "לאפס לברירת מחדל?"
 
@@ -3043,12 +3154,12 @@ msgstr "המסלול עודכן"
 msgid "Routes"
 msgstr "מסלולים"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:150
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:168
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:152
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:172
 msgid "Rows"
 msgstr "שורות"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:373
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:376
 msgid "Rows group by"
 msgstr "קבץ שורות לפי"
 
@@ -3073,14 +3184,15 @@ msgstr "RSS: {0}"
 msgid "Saturday"
 msgstr "שבת"
 
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:156
 #: ../../../lib/web/src/components/attachment-composer.tsx:430
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:231
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:170
-#: ../../../lib/web/src/components/ui/editable-field-row.tsx:122
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:172
+#: ../../../lib/web/src/components/ui/editable-field-row.tsx:126
 #: ../../../lib/web/src/components/ui/secret-field.tsx:79
 #: src/features/system/documents.tsx:121
-#: src/features/system/settings.tsx:452
-#: src/features/user/connected-accounts.tsx:761
+#: src/features/system/settings.tsx:454
+#: src/features/user/connected-accounts.tsx:760
 #: src/features/user/notifications.tsx:572
 msgid "Save"
 msgstr "שמור"
@@ -3098,10 +3210,14 @@ msgstr "שמור שם מפתח גישה"
 msgid "Save these codes"
 msgstr "שמור קודים אלה"
 
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:156
+msgid "Saving..."
+msgstr "שומר..."
+
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx:175
 #: ../../../lib/web/src/components/filter-bar.tsx:32
 #: ../../../lib/web/src/components/header-search.tsx:22
-#: ../../../lib/web/src/components/search.tsx:18
+#: ../../../lib/web/src/components/search.tsx:17
 msgid "Search"
 msgstr "חיפוש"
 
@@ -3113,11 +3229,11 @@ msgstr "החיפוש נכשל"
 msgid "Search for a command to run..."
 msgstr "חפש פקודה להרצה..."
 
-#: ../../../lib/web/src/components/place-picker.tsx:86
+#: ../../../lib/web/src/components/place-picker.tsx:73
 msgid "Search for a place"
 msgstr "חפש מקום"
 
-#: ../../../lib/web/src/components/place-picker.tsx:50
+#: ../../../lib/web/src/components/place-picker.tsx:37
 msgid "Search for a place..."
 msgstr "חפש מקום..."
 
@@ -3125,11 +3241,11 @@ msgstr "חפש מקום..."
 msgid "Search for a user..."
 msgstr "חפש משתמש..."
 
-#: ../../../lib/web/src/components/travelling-picker.tsx:250
+#: ../../../lib/web/src/components/travelling-picker.tsx:231
 msgid "Search for destination..."
 msgstr "חפש יעד..."
 
-#: ../../../lib/web/src/components/travelling-picker.tsx:183
+#: ../../../lib/web/src/components/travelling-picker.tsx:164
 msgid "Search for origin..."
 msgstr "חפש מקור..."
 
@@ -3159,8 +3275,8 @@ msgstr "חפש, עקוב ומיין תצוגה זו."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx:179
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx:255
-#: ../../../lib/web/src/components/inline-entity-search.tsx:63
-#: ../../../lib/web/src/components/person-picker.tsx:324
+#: ../../../lib/web/src/components/inline-entity-search.tsx:64
+#: ../../../lib/web/src/components/person-picker.tsx:300
 #: ../../../lib/web/src/components/search-entity-page.tsx:72
 msgid "Search..."
 msgstr "חיפוש..."
@@ -3171,11 +3287,11 @@ msgstr "חיפוש..."
 msgid "Searching..."
 msgstr "מחפש..."
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:141
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts:16
 msgid "Select"
 msgstr "בחר"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:356
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:359
 msgid "Select a field"
 msgstr "בחר שדה"
 
@@ -3209,7 +3325,7 @@ msgstr "בחר ישות..."
 msgid "Select group"
 msgstr "בחר קבוצה"
 
-#: ../../../lib/web/src/components/place-picker.tsx:49
+#: ../../../lib/web/src/components/place-picker.tsx:36
 msgid "Select location"
 msgstr "בחר מיקום"
 
@@ -3217,7 +3333,7 @@ msgstr "בחר מיקום"
 msgid "Select next card"
 msgstr "בחר את הכרטיס הבא"
 
-#: ../../../lib/web/src/components/person-picker.tsx:83
+#: ../../../lib/web/src/components/person-picker.tsx:70
 msgid "Select person..."
 msgstr "בחר אדם..."
 
@@ -3235,8 +3351,8 @@ msgstr "בחר את האפליקציה לנתב אליה"
 msgid "Select the entity to route to"
 msgstr "בחר את הישות לנתב אליה"
 
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:257
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:340
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:289
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:381
 #: src/components/combo-select.tsx:43
 msgid "Select..."
 msgstr "בחר..."
@@ -3250,7 +3366,7 @@ msgstr "נבחר: <0>{0}</0>"
 msgid "Send again"
 msgstr "שלח שוב"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:310
+#: ../../../lib/web/src/components/step-up-dialog.tsx:298
 msgid "Send email"
 msgstr "שלח אימייל"
 
@@ -3278,11 +3394,11 @@ msgstr "כללי השרת"
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "כללי השרת, תנאים והגבלות, והודעת הפרטיות המוצגים למשתמשים שלך"
 
-#: src/features/system/settings.tsx:76
+#: src/features/system/settings.tsx:78
 msgid "Server started"
 msgstr "השרת הופעל"
 
-#: src/features/system/settings.tsx:77
+#: src/features/system/settings.tsx:79
 msgid "Server version"
 msgstr "גרסת השרת"
 
@@ -3310,7 +3426,7 @@ msgstr "הפעלות"
 msgid "Sessions for {0}"
 msgstr "הפעלות עבור {0}"
 
-#: ../../../lib/web/src/components/travelling-picker.tsx:147
+#: ../../../lib/web/src/components/travelling-picker.tsx:128
 msgid "Set origin and destination"
 msgstr "קבע מקור ויעד"
 
@@ -3318,7 +3434,7 @@ msgstr "קבע מקור ויעד"
 msgid "Set up"
 msgstr "הגדר"
 
-#: src/features/system/settings.tsx:514
+#: src/features/system/settings.tsx:516
 msgid "Setting updated"
 msgstr "ההגדרה עודכנה"
 
@@ -3331,11 +3447,11 @@ msgstr "ההגדרה עודכנה"
 msgid "Settings"
 msgstr "הגדרות"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:327
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:330
 msgid "Show classes"
 msgstr "הצג מחלקות"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:428
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:431
 msgid "Show fields"
 msgstr "הצג שדות"
 
@@ -3350,7 +3466,7 @@ msgstr "הצג עזרה זו"
 msgid "Showing {0}-{1} of {2} users"
 msgstr "מציג {0}-{1} מתוך {2} משתמשים"
 
-#: ../../../lib/web/src/components/ui/load-more.tsx:39
+#: ../../../lib/web/src/components/ui/load-more.tsx:43
 msgid "Showing {totalShown} of {total}"
 msgstr "מציג {totalShown} מתוך {total}"
 
@@ -3358,17 +3474,21 @@ msgstr "מציג {totalShown} מתוך {total}"
 msgid "Sidebar"
 msgstr "סרגל צד"
 
+#: ../../../lib/web/src/features/errors/access-denied-error.tsx:18
+msgid "Sign in with an account that has access <0/> to this resource."
+msgstr "היכנס עם חשבון שיש לו גישה <0/> למשאב הזה."
+
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:131
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:137
 msgid "Sign out"
 msgstr "התנתקות"
 
-#: ../../../lib/web/src/components/layout/authenticated-layout.tsx:134
+#: ../../../lib/web/src/components/layout/authenticated-layout.tsx:133
 msgid "Signing out..."
 msgstr "מתנתק..."
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:161
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:179
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:163
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:183
 msgid "Single line of text only"
 msgstr "שורת טקסט בודדת בלבד"
 
@@ -3389,7 +3509,7 @@ msgstr "מקורות"
 msgid "Spacious"
 msgstr "מרווח"
 
-#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:323
+#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:325
 msgid "Start the discussion by adding the first comment."
 msgstr "התחל את הדיון על ידי הוספת התגובה הראשונה."
 
@@ -3403,7 +3523,7 @@ msgstr "התחיל"
 #: src/features/system/status.tsx:57
 #: src/features/system/status.tsx:196
 #: src/features/system/users.tsx:697
-#: src/features/user/connected-accounts.tsx:598
+#: src/features/user/connected-accounts.tsx:597
 msgid "Status"
 msgstr "סטטוס"
 
@@ -3411,16 +3531,16 @@ msgstr "סטטוס"
 msgid "Subject"
 msgstr "נושא"
 
-#: ../../../lib/web/src/components/comment-composer.tsx:427
+#: ../../../lib/web/src/components/comment-composer.tsx:430
 msgid "Submit comment"
 msgstr "שלח תגובה"
 
-#: ../../../lib/web/src/components/comment-composer.tsx:426
+#: ../../../lib/web/src/components/comment-composer.tsx:429
 msgid "Submit reply"
 msgstr "שלח תשובה"
 
-#: ../../../lib/web/src/components/inline-entity-search.tsx:66
-#: ../../../lib/web/src/components/recommended-entities.tsx:58
+#: ../../../lib/web/src/components/inline-entity-search.tsx:67
+#: ../../../lib/web/src/components/recommended-entities.tsx:59
 #: ../../../lib/web/src/components/search-entity-page.tsx:74
 msgid "Subscribe"
 msgstr "הירשם"
@@ -3473,21 +3593,21 @@ msgid "System"
 msgstr "מערכת"
 
 #: src/components/layout/data/sidebar-data.ts:43
-#: src/features/system/settings.tsx:500
-#: src/features/system/settings.tsx:569
+#: src/features/system/settings.tsx:502
+#: src/features/system/settings.tsx:571
 msgid "System settings"
 msgstr "הגדרות מערכת"
 
-#: ../../../lib/web/src/components/post-tags.tsx:76
+#: ../../../lib/web/src/components/post-tags.tsx:77
 msgid "Tag already exists"
 msgstr "התגית כבר קיימת"
 
-#: ../../../lib/web/src/components/post-tags.tsx:68
+#: ../../../lib/web/src/components/post-tags.tsx:69
 msgid "Tag must be 50 characters or less"
 msgstr "התג חייב להיות עד 50 תווים"
 
-#: ../../../lib/web/src/components/post-tags.tsx:101
-#: ../../../lib/web/src/components/post-tags.tsx:115
+#: ../../../lib/web/src/components/post-tags.tsx:102
+#: ../../../lib/web/src/components/post-tags.tsx:116
 msgid "Tags"
 msgstr "תגיות"
 
@@ -3516,7 +3636,7 @@ msgstr "הבדיקה נכשלה"
 msgid "Test sent to {sent} of {total} destinations"
 msgstr "הבדיקה נשלחה אל {sent} מתוך {total} יעדים"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:142
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts:17
 msgid "Text"
 msgstr "טקסט"
 
@@ -3524,7 +3644,7 @@ msgstr "טקסט"
 msgid "That account is already linked to another user"
 msgstr "החשבון הזה כבר מקושר למשתמש אחר"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:193
+#: ../../../lib/web/src/components/step-up-dialog.tsx:181
 msgid "That code is incorrect or has expired."
 msgstr "הקוד שגוי או שתוקפו פג."
 
@@ -3545,7 +3665,7 @@ msgstr "זה היה גדול מדי להעלאה. הסירו או הקטינו �
 msgid "The \"No notifications\" category silences any topic assigned to it."
 msgstr "הקטגוריה \"ללא התראות\" משתיקה כל נושא המשויך אליה."
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:68
+#: ../../../lib/web/src/features/errors/general-error.tsx:66
 msgid "The requested content could not be found."
 msgstr "לא ניתן למצוא את התוכן המבוקש."
 
@@ -3563,7 +3683,7 @@ msgstr "ערכת נושא"
 msgid "Theme updated"
 msgstr "ערכת הנושא עודכנה"
 
-#: src/features/system/settings.tsx:585
+#: src/features/system/settings.tsx:587
 #: src/features/user/login.tsx:130
 #: src/features/user/login.tsx:874
 msgid "Third-party login"
@@ -3620,13 +3740,13 @@ msgstr "זה יסיר את ההאצלה עבור {0} בנתיב \"{1}\"."
 msgid "This will remove the route for path \"{0}\"."
 msgstr "זה יסיר את הנתיב עבור נתיב \"{0}\"."
 
-#: src/features/system/settings.tsx:478
+#: src/features/system/settings.tsx:480
 msgid "This will reset \"{settingNameLabel}\" to its default (empty)."
 msgstr "פעולה זו תאפס את \"{settingNameLabel}\" לברירת המחדל (ריק)."
 
-#: src/features/system/settings.tsx:316
-#: src/features/system/settings.tsx:358
-#: src/features/system/settings.tsx:477
+#: src/features/system/settings.tsx:318
+#: src/features/system/settings.tsx:360
+#: src/features/system/settings.tsx:479
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "פעולה זו תאפס את \"{settingNameLabel}\" לערך ברירת המחדל ({defaultLabel})."
 
@@ -3658,26 +3778,28 @@ msgstr "אזור זמן"
 msgid "Timestamps"
 msgstr "חותמות זמן"
 
-#: ../../../lib/web/src/components/travelling-picker.tsx:220
+#: ../../../lib/web/src/components/travelling-picker.tsx:201
 msgid "To"
 msgstr "אל"
 
-#: ../../../lib/web/src/components/layout/nav-group.tsx:365
-#: ../../../lib/web/src/components/layout/nav-group.tsx:372
-#: ../../../lib/web/src/components/layout/nav-group.tsx:490
-#: ../../../lib/web/src/components/layout/nav-group.tsx:497
+#: ../../../lib/web/src/components/layout/nav-group.tsx:393
+#: ../../../lib/web/src/components/layout/nav-group.tsx:400
+#: ../../../lib/web/src/components/layout/nav-group.tsx:522
+#: ../../../lib/web/src/components/layout/nav-group.tsx:529
 msgid "Toggle section"
 msgstr "החלפת מצב מקטע"
 
 #: ../../../lib/web/src/components/ui/sidebar.tsx:337
 #: ../../../lib/web/src/components/ui/sidebar.tsx:340
+#: ../../../lib/web/src/components/ui/sidebar.tsx:352
+#: ../../../lib/web/src/components/ui/sidebar.tsx:355
 msgid "Toggle sidebar"
 msgstr "החלף סרגל צד"
 
 #: ../../../lib/web/src/components/ui/sidebar.tsx:352
 #: ../../../lib/web/src/components/ui/sidebar.tsx:355
-msgid "Toggle Sidebar"
-msgstr "החלף סרגל צד"
+#~ msgid "Toggle Sidebar"
+#~ msgstr "החלף סרגל צד"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx:26
 msgid "Toggle view options"
@@ -3688,7 +3810,7 @@ msgstr "החלף אפשרויות תצוגה"
 msgid "Toggle watched filter"
 msgstr "החלף מסנן צפייה"
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:74
+#: ../../../lib/web/src/features/errors/general-error.tsx:72
 msgid "Too many requests"
 msgstr "יותר מדי בקשות"
 
@@ -3700,7 +3822,7 @@ msgstr "ראש"
 msgid "Topics"
 msgstr "נושאים"
 
-#: ../../../lib/web/src/components/travelling-picker.tsx:145
+#: ../../../lib/web/src/components/travelling-picker.tsx:126
 msgid "Travelling"
 msgstr "בנסיעה"
 
@@ -3712,8 +3834,8 @@ msgstr "נסה להתאים את קריטריוני החיפוש שלך"
 msgid "Try adjusting your search terms"
 msgstr "נסה להתאים את מונחי החיפוש שלך"
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:140
-#: ../../../lib/web/src/features/errors/general-error.tsx:180
+#: ../../../lib/web/src/features/errors/general-error.tsx:138
+#: ../../../lib/web/src/features/errors/general-error.tsx:178
 msgid "Try again"
 msgstr "נסה שוב"
 
@@ -3733,13 +3855,13 @@ msgstr "לכבות אישורים אוטומטיים?"
 msgid "TXT record not found"
 msgstr "רשומת TXT לא נמצאה"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:130
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:162
-#: src/features/user/connected-accounts.tsx:597
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:134
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:166
+#: src/features/user/connected-accounts.tsx:596
 msgid "Type"
 msgstr "סוג"
 
-#: ../../../lib/web/src/components/command-menu.tsx:52
+#: ../../../lib/web/src/components/command-menu.tsx:54
 msgid "Type a command or search..."
 msgstr "הקלד פקודה או חיפוש..."
 
@@ -3759,8 +3881,8 @@ msgstr "הקלד לחיפוש..."
 msgid "Unable to connect to remote server"
 msgstr "לא ניתן להתחבר לשרת המרוחק"
 
-#: ../../../lib/web/src/lib/auth-manager.ts:92
-#: ../../../lib/web/src/lib/auth-manager.ts:104
+#: ../../../lib/web/src/lib/auth-manager.ts:89
+#: ../../../lib/web/src/lib/auth-manager.ts:101
 msgid "Unable to redirect to login. Please try again."
 msgstr "לא ניתן להפנות להתחברות. נסה שוב."
 
@@ -3770,15 +3892,15 @@ msgid "Unassigned"
 msgstr "לא משויך"
 
 #: ../../../lib/web/src/features/errors/unauthorized-error.tsx:16
-msgid "Unauthorized Access"
-msgstr "גישה לא מורשית"
+#~ msgid "Unauthorized Access"
+#~ msgstr "גישה לא מורשית"
 
 #: ../../../lib/web/src/components/attachment-image.tsx:50
 msgid "Unavailable"
 msgstr "לא זמין"
 
 #: ../../../lib/web/src/lib/request.ts:133
-#: ../../../lib/web/src/lib/request.ts:206
+#: ../../../lib/web/src/lib/request.ts:209
 msgid "Unexpected API error"
 msgstr "שגיאת API בלתי צפויה"
 
@@ -3790,6 +3912,11 @@ msgstr "ארצות הברית"
 msgid "Units"
 msgstr "יחידות"
 
+#: ../../../lib/web/src/components/audit-timeline.tsx:103
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:167
+#: ../../../lib/web/src/components/tree-row.tsx:219
+#: ../../../lib/web/src/components/tree-row.tsx:373
+#: ../../../lib/web/src/components/tree-table-header.tsx:70
 #: ../../../lib/web/src/features/accounts/types.ts:29
 #: src/features/system/status.tsx:148
 #: src/features/system/status.tsx:149
@@ -3826,7 +3953,7 @@ msgstr "לא ניתן להשגה"
 msgid "Unsubscribe"
 msgstr "בטל הרשמה"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:285
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:299
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx:103
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx:184
 msgid "Untitled"
@@ -3840,13 +3967,18 @@ msgstr "לא מאומת"
 msgid "Update"
 msgstr "עדכון"
 
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:56
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx:57
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:494
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:499
 msgid "Updated"
 msgstr "עודכן"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:639
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:301
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:56
+msgid "Updated {field}"
+msgstr "{field} עודכן"
+
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:661
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:304
 msgid "Upload"
 msgstr "העלה"
 
@@ -3867,13 +3999,13 @@ msgstr "השתמש ב-*.domain.com עבור דומיינים מוטיביים"
 msgid "Use a security key, fingerprint, or face recognition."
 msgstr "השתמש במפתח אבטחה, טביעת אצבע או זיהוי פנים."
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:341
+#: ../../../lib/web/src/components/step-up-dialog.tsx:329
 msgid "Use your passkey"
 msgstr "השתמש במפתח הגישה שלך"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:143
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:112
 #: ../../../lib/web/src/features/access/access-dialog.tsx:158
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts:18
 #: src/features/domains/index.tsx:644
 #: src/features/domains/index.tsx:1108
 #: src/features/system/users.tsx:138
@@ -3887,7 +4019,7 @@ msgstr "משתמש"
 msgid "User created"
 msgstr "המשתמש נוצר"
 
-#: src/features/system/settings.tsx:592
+#: src/features/system/settings.tsx:594
 msgid "User defaults"
 msgstr "ברירות מחדל למשתמש"
 
@@ -3919,6 +4051,10 @@ msgstr "משתמשים"
 msgid "Using bundled default"
 msgstr "משתמש בברירת המחדל המצורפת"
 
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:159
+msgid "Variables: {variables}"
+msgstr "משתנים: {variables}"
+
 #: ../../../lib/web/src/features/accounts/account-verify.tsx:73
 msgid "Verification code"
 msgstr "קוד אימות"
@@ -3937,7 +4073,7 @@ msgstr "האימות נכשל"
 msgid "Verified"
 msgstr "מאומת"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:391
+#: ../../../lib/web/src/components/step-up-dialog.tsx:379
 #: ../../../lib/web/src/features/accounts/account-verify.tsx:111
 #: src/features/user/connected-accounts.tsx:343
 msgid "Verify"
@@ -3963,17 +4099,17 @@ msgstr "גרסה"
 msgid "Via relay"
 msgstr "דרך ממסר"
 
-#: ../../../lib/web/src/components/attachment-gallery.tsx:95
+#: ../../../lib/web/src/components/attachment-gallery.tsx:96
 msgid "Video thumbnail"
 msgstr "תמונה ממוזערת של הסרטון"
 
 #. placeholder {0}: currentMedia.name
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:315
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:326
 msgid "Video viewer: {0}"
 msgstr "מציג וידאו: {0}"
 
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:220
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:228
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:216
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:224
 msgid "View all notifications"
 msgstr "הצג את כל ההתראות"
 
@@ -4012,15 +4148,15 @@ msgstr "יום רביעי"
 msgid "Week starts on"
 msgstr "השבוע מתחיל ב"
 
-#: src/features/system/settings.tsx:69
+#: src/features/system/settings.tsx:71
 msgid "X client ID"
 msgstr "מזהה לקוח X"
 
-#: src/features/system/settings.tsx:70
+#: src/features/system/settings.tsx:72
 msgid "X client secret"
 msgstr "סוד לקוח X"
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:61
+#: ../../../lib/web/src/features/errors/general-error.tsx:59
 msgid "You do not have access to this section."
 msgstr "אין לך גישה לאזור זה."
 
@@ -4033,7 +4169,7 @@ msgstr "אין לך גישה לאף דומיין."
 msgid "You won't be able to sign in with {0} anymore. Make sure you still have another way to log in."
 msgstr "לא תוכל להיכנס עוד עם {0}. ודא שיש לך עדיין דרך אחרת להיכנס."
 
-#: ../../../lib/web/src/components/restore-banner.tsx:100
+#: ../../../lib/web/src/components/restore-banner.tsx:86
 msgid "Your account was moved here from {source}. Until you delete it there, messages and notifications may reach both servers, some of your content keeps being served from the old server, and followers may take a few minutes to find you here."
 msgstr "חשבונך הועבר לכאן מ-{source}. עד שתמחק אותו שם, הודעות והתראות עשויות להגיע לשני השרתים, חלק מהתוכן שלך ממשיך להיות מוגש מהשרת הישן, ועוקבים עשויים לקחת מספר דקות למצוא אותך כאן."
 

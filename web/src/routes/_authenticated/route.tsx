@@ -30,7 +30,6 @@ function SettingsLayout() {
   return (
     <AuthenticatedLayout
       sidebarData={filteredSidebarData}
-      usePageHeaderForMobileNav
     />
   )
 }

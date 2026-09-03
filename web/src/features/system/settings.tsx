@@ -51,6 +51,8 @@ function useSettingLabels(): Record<string, string> {
     auth_oauth: t`Login using OAuth 2.0`,
     default_theme: t`Default theme`,
     login_app: t`App that handles signing in`,
+    map_tile_url: t`Map tile URL`,
+    map_tile_attribution: t`Map tile attribution`,
     domains_verification: t`Require domain verification`,
     email_from: t`Default from address for system emails`,
     hostname: t`Hostname announced to other servers`,

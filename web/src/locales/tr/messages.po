@@ -14,13 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-explicit-id
-#: ../../../lib/web/src/lib/error-normalizer.ts:215
+#: ../../../lib/web/src/lib/error-normalizer.ts:219
 msgid "Please check your internet connection and try again."
 msgstr "Lütfen internet bağlantınızı kontrol edip tekrar deneyin."
 
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:301
-msgid " or "
-msgstr " veya "
+#~ msgid " or "
+#~ msgstr " veya "
 
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx:516
@@ -36,21 +36,31 @@ msgstr "\"{0}\" tüm cihazlarda oturumu kapatılacak ve tekrar oturum açması g
 msgid "(current)"
 msgstr "(mevcut)"
 
-#: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:190
+#: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:189
 msgid "(edited)"
 msgstr "(düzenlendi)"
 
-#: src/features/system/settings.tsx:99
+#: src/features/system/settings.tsx:101
 msgid "(empty)"
 msgstr "(boş)"
 
-#: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:174
+#: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:173
 msgid "(expand)"
 msgstr "(genişlet)"
 
 #: ../../../lib/web/src/components/entity/entity-board-container.tsx:753
 msgid "[not set]"
 msgstr "[ayarlanmamış]"
+
+#. placeholder {0}: displayInfo.count
+#: ../../../lib/web/src/components/person-picker.tsx:257
+msgid "{0, plural, one {# selected} other {# selected}}"
+msgstr "{0, plural, one {# seçili} other {# seçili}}"
+
+#. placeholder {0}: countDeepChildren(object.id)
+#: ../../../lib/web/src/components/entity/entity-board-card.tsx:421
+msgid "{0, plural, one {+# nested} other {+# nested}}"
+msgstr "{0, plural, one {+# iç içe} other {+# iç içe}}"
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx:285
@@ -75,12 +85,12 @@ msgstr "{0} / {1} rezervasyonlar · {2} devreler · {3} reddedildi"
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx:396
 msgid "{0} app"
-msgstr ""
+msgstr "{0} uygulaması"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx:401
 msgid "{0} push"
-msgstr ""
+msgstr "{0} push"
 
 #. placeholder {0}: formatNumber(network.holepunch.success)
 #. placeholder {1}: formatNumber(network.holepunch.failure)
@@ -108,13 +118,13 @@ msgstr "{count, plural, one {#hf} other {#hf}}"
 msgid "{count} remaining"
 msgstr "{count} kaldı"
 
-#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:174
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:176
 msgid "{entityLabel} name"
 msgstr "{entityLabel} adı"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:99
-msgid "{entityLabel} name is required"
-msgstr "{entityLabel} adı gerekli"
+#~ msgid "{entityLabel} name is required"
+#~ msgstr "{entityLabel} adı gerekli"
 
 #: src/features/user/notifications.tsx:603
 msgid "{name} app"
@@ -137,9 +147,13 @@ msgstr "{sent, plural, one {Test # hedefe gönderildi} other {Test # hedefe gön
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} / {totalLabel}"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:530
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:531
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# öğe} other {# öğe}}"
+
+#: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:170
+msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
+msgstr "{totalDescendants, plural, one {# yanıt} other {+# yanıt daha}}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:158
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -150,18 +164,17 @@ msgstr "{unreadCount, plural, one {Menüyü aç (# okunmamış bildirim)} other 
 msgid "/ or /blog"
 msgstr "/ veya /blog"
 
-#. placeholder {0}: countDeepChildren(object.id)
 #: ../../../lib/web/src/components/entity/entity-board-card.tsx:418
-msgid "+{0} nested"
-msgstr "+{0} iç içe"
+#~ msgid "+{0} nested"
+#~ msgstr "+{0} iç içe"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:171
-msgid "+{totalDescendants} more replies"
-msgstr "+{totalDescendants} yanıt daha"
+#~ msgid "+{totalDescendants} more replies"
+#~ msgstr "+{totalDescendants} yanıt daha"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:170
-msgid "1 reply"
-msgstr "1 yanıt"
+#~ msgid "1 reply"
+#~ msgstr "1 yanıt"
 
 #: src/features/user/login.tsx:544
 msgid "1. Scan QR code"
@@ -191,7 +204,8 @@ msgstr "Mutlak (tarih ve saat)"
 msgid "Accept"
 msgstr "Kabul et"
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:60
+#: ../../../lib/web/src/features/errors/access-denied-error.tsx:16
+#: ../../../lib/web/src/features/errors/general-error.tsx:58
 msgid "Access denied"
 msgstr "Erişim reddedildi"
 
@@ -221,7 +235,7 @@ msgstr "Hesap kaldırıldı"
 msgid "Account scheduled for deletion"
 msgstr "Hesap silinmek üzere planlandı"
 
-#: src/features/user/connected-accounts.tsx:722
+#: src/features/user/connected-accounts.tsx:721
 msgid "Account settings"
 msgstr "Hesap ayarları"
 
@@ -237,7 +251,7 @@ msgstr "Hesap güncellendi"
 msgid "Account verified"
 msgstr "Hesap doğrulandı"
 
-#: src/features/system/settings.tsx:58
+#: src/features/system/settings.tsx:60
 msgid "Act as a relay for unreachable servers"
 msgstr "Erişilemeyen sunucular için aktarıcı olarak çalış"
 
@@ -245,13 +259,13 @@ msgstr "Erişilemeyen sunucular için aktarıcı olarak çalış"
 msgid "Actions"
 msgstr "Eylemler"
 
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:720
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:758
 #: ../../../lib/web/src/features/access/access-dialog.tsx:332
 #: ../../../lib/web/src/features/accounts/account-add.tsx:209
 msgid "Add"
 msgstr "Ekle"
 
-#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:312
+#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:314
 msgid "Add a comment..."
 msgstr "Yorum ekle..."
 
@@ -259,7 +273,7 @@ msgstr "Yorum ekle..."
 msgid "Add a new account"
 msgstr "Yeni bir hesap ekle"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:106
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:110
 msgid "Add a new field to this class"
 msgstr "Bu sınıfa yeni bir alan ekle"
 
@@ -276,7 +290,7 @@ msgid "Add access"
 msgstr "Erişim ekle"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx:132
-#: src/features/user/connected-accounts.tsx:563
+#: src/features/user/connected-accounts.tsx:562
 msgid "Add account"
 msgstr "Hesap ekle"
 
@@ -288,7 +302,7 @@ msgstr "Resim yazısı ekle"
 msgid "Add category"
 msgstr "Kategori ekle"
 
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:690
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:728
 msgid "Add checklist item"
 msgstr "Kontrol listesi öğesi ekle"
 
@@ -305,12 +319,12 @@ msgstr "Yetkilendirme ekle"
 msgid "Add domain"
 msgstr "Alan adı ekle"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:105
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:233
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:109
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:235
 msgid "Add field"
 msgstr "Alan ekle"
 
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:708
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:746
 msgid "Add item..."
 msgstr "Öğe ekle..."
 
@@ -318,11 +332,11 @@ msgstr "Öğe ekle..."
 msgid "Add link"
 msgstr "Bağlantı ekle"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:215
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:220
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:291
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:91
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:191
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:217
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:222
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:295
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:92
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:193
 msgid "Add option"
 msgstr "Seçenek ekle"
 
@@ -336,7 +350,7 @@ msgstr "Passkey ekle"
 msgid "Add route"
 msgstr "Rota ekle"
 
-#: ../../../lib/web/src/components/post-tags.tsx:137
+#: ../../../lib/web/src/components/post-tags.tsx:138
 msgid "Add tag..."
 msgstr "Etiket ekle..."
 
@@ -348,14 +362,14 @@ msgstr "Mevcut bildirimlere ekle"
 msgid "Add user"
 msgstr "Kullanıcı ekle"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:258
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:513
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:261
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:518
 #: ../../../lib/web/src/components/view-tabs.tsx:87
 #: ../../../lib/web/src/components/view-tabs.tsx:93
 msgid "Add view"
 msgstr "Görünüm ekle"
 
-#: src/features/user/connected-accounts.tsx:602
+#: src/features/user/connected-accounts.tsx:601
 msgid "Added"
 msgstr "Eklendi"
 
@@ -382,12 +396,15 @@ msgstr "Yönetici"
 msgid "AI"
 msgstr "AI"
 
-#. placeholder {0}: entityLabel.toLowerCase()
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:85
-msgid "Allow anyone to search for {0}"
-msgstr "Herkesin {0} aramasına izin ver"
+#~ msgid "Allow anyone to search for {0}"
+#~ msgstr "Herkesin {0} aramasına izin ver"
 
-#: src/features/system/settings.tsx:78
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:87
+msgid "Allow anyone to search for {entityLabel}"
+msgstr "Herkesin {entityLabel} aramasına izin ver"
+
+#: src/features/system/settings.tsx:80
 msgid "Allow new signups"
 msgstr "Yeni kayıtlara izin ver"
 
@@ -395,7 +412,7 @@ msgstr "Yeni kayıtlara izin ver"
 msgid "Allow others to find you in directory"
 msgstr "Başkalarının sizi dizinde bulmasına izin ver"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:225
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:229
 msgid "Allow sort by"
 msgstr "Şuna göre sıralamaya izin ver"
 
@@ -404,7 +421,7 @@ msgid "Allow users to install apps"
 msgstr "Kullanıcıların uygulama yüklemesine izin ver"
 
 #: src/components/method-state-control.tsx:31
-#: src/features/system/settings.tsx:110
+#: src/features/system/settings.tsx:112
 msgid "Allowed"
 msgstr "İzin verildi"
 
@@ -413,6 +430,7 @@ msgid "An error occurred"
 msgstr "Bir hata oluştu"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts:266
+#: ../../../lib/web/src/lib/error-normalizer.ts:11
 msgid "An unexpected error occurred"
 msgstr "Beklenmeyen bir hata oluştu"
 
@@ -420,7 +438,7 @@ msgstr "Beklenmeyen bir hata oluştu"
 msgid "Android push"
 msgstr "Android anlık bildirim"
 
-#: src/features/system/settings.tsx:57
+#: src/features/system/settings.tsx:59
 msgid "Announce hostname and domains to other servers"
 msgstr "Ana bilgisayar adını ve alan adlarını diğer sunuculara duyur"
 
@@ -451,11 +469,11 @@ msgid "Appearance"
 msgstr "Görünüm"
 
 #. placeholder {0}: deleteTarget?.name
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:313
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:316
 msgid "Are you sure you want to delete \"{0}\"?"
 msgstr "\"{0}\" öğesini silmek istediğinizden emin misiniz?"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:629
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:631
 msgid "Are you sure you want to delete the \"{name}\" column? This cannot be undone."
 msgstr "\"{name}\" sütununu silmek istediğinizden emin misiniz? Bu geri alınamaz."
 
@@ -471,11 +489,11 @@ msgstr "Çıkış yapmak istediğinizden emin misiniz? Hesabınıza erişmek iç
 msgid "Ascending"
 msgstr "Artan"
 
-#: ../../../lib/web/src/components/comment-composer.tsx:427
+#: ../../../lib/web/src/components/comment-composer.tsx:430
 msgid "Attach comment files"
 msgstr "Yorum dosyalarını ekle"
 
-#: ../../../lib/web/src/components/comment-composer.tsx:426
+#: ../../../lib/web/src/components/comment-composer.tsx:429
 msgid "Attach reply files"
 msgstr "Yanıt dosyalarını ekle"
 
@@ -501,7 +519,7 @@ msgstr "Authenticator uygulaması etkinleştirildi"
 msgid "Authenticator app is active"
 msgstr "Authenticator uygulaması aktif"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:318
+#: ../../../lib/web/src/components/step-up-dialog.tsx:306
 msgid "Authenticator code"
 msgstr "Authenticator kodu"
 
@@ -513,20 +531,20 @@ msgstr "Otomatik sertifikalar"
 msgid "Available keyboard shortcuts"
 msgstr "Mevcut klavye kısayolları"
 
-#: ../../../lib/web/src/components/entity-avatar.tsx:99
+#: ../../../lib/web/src/components/entity-avatar.tsx:98
 msgid "Avatar"
 msgstr "Avatar"
 
-#: ../../../lib/web/src/components/entity-avatar.tsx:99
+#: ../../../lib/web/src/components/entity-avatar.tsx:98
 msgid "Avatar for {name}"
 msgstr "{name} için avatar"
 
-#: ../../../lib/web/src/components/place-picker.tsx:156
+#: ../../../lib/web/src/components/place-picker.tsx:142
 msgid "Back"
 msgstr "Geri"
 
+#: ../../../lib/web/src/features/errors/access-denied-error.tsx:27
 #: ../../../lib/web/src/features/errors/not-found-error.tsx:28
-#: ../../../lib/web/src/features/errors/unauthorized-error.tsx:28
 msgid "Back to home"
 msgstr "Ana sayfaya dön"
 
@@ -543,8 +561,8 @@ msgstr "Afiş"
 msgid "Blocked by"
 msgstr "Engelleyen"
 
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:242
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:252
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:238
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:248
 msgid "Blocked navigation to untrusted link"
 msgstr "Güvenilmeyen bağlantıya gezinme engellendi"
 
@@ -552,16 +570,16 @@ msgstr "Güvenilmeyen bağlantıya gezinme engellendi"
 msgid "Blocks"
 msgstr "Bloklar"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:312
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:315
 msgid "Board"
 msgstr "Tahta"
 
-#: ../../../lib/web/src/components/post-tags.tsx:180
-#: ../../../lib/web/src/components/post-tags.tsx:192
+#: ../../../lib/web/src/components/post-tags.tsx:194
+#: ../../../lib/web/src/components/post-tags.tsx:206
 msgid "Boost interest"
 msgstr "İlgiyi artır"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:399
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:402
 msgid "Border colour"
 msgstr "Kenarlık rengi"
 
@@ -580,15 +598,15 @@ msgid "Browser notifications"
 msgstr "Tarayıcı bildirimleri"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx:426
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:614
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:616
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:211
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:166
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:183
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:168
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:185
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx:67
-#: ../../../lib/web/src/components/step-up-dialog.tsx:366
-#: ../../../lib/web/src/components/travelling-picker.tsx:308
-#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:249
-#: ../../../lib/web/src/components/ui/editable-field-row.tsx:132
+#: ../../../lib/web/src/components/step-up-dialog.tsx:354
+#: ../../../lib/web/src/components/travelling-picker.tsx:288
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:251
+#: ../../../lib/web/src/components/ui/editable-field-row.tsx:136
 #: ../../../lib/web/src/features/access/access-dialog.tsx:328
 #: ../../../lib/web/src/features/access/access-list.tsx:268
 #: ../../../lib/web/src/features/accounts/account-add.tsx:201
@@ -597,13 +615,13 @@ msgstr "Tarayıcı bildirimleri"
 #: src/features/domains/index.tsx:348
 #: src/features/domains/index.tsx:548
 #: src/features/domains/index.tsx:692
-#: src/features/system/settings.tsx:320
-#: src/features/system/settings.tsx:362
-#: src/features/system/settings.tsx:482
+#: src/features/system/settings.tsx:322
+#: src/features/system/settings.tsx:364
+#: src/features/system/settings.tsx:484
 #: src/features/system/users.tsx:149
 #: src/features/system/users.tsx:248
 #: src/features/user/close-account.tsx:86
-#: src/features/user/connected-accounts.tsx:757
+#: src/features/user/connected-accounts.tsx:756
 #: src/features/user/display.tsx:206
 #: src/features/user/login.tsx:570
 #: src/features/user/notifications.tsx:569
@@ -613,11 +631,11 @@ msgstr "Tarayıcı bildirimleri"
 msgid "Cancel"
 msgstr "İptal"
 
-#: ../../../lib/web/src/components/comment-composer.tsx:427
+#: ../../../lib/web/src/components/comment-composer.tsx:430
 msgid "Cancel comment"
 msgstr "Yorumu iptal et"
 
-#: ../../../lib/web/src/components/comment-composer.tsx:426
+#: ../../../lib/web/src/components/comment-composer.tsx:429
 msgid "Cancel reply"
 msgstr "Yanıtı iptal et"
 
@@ -647,11 +665,19 @@ msgstr "Mevcut bildirimleri şuna değiştir"
 msgid "Change notification category"
 msgstr "Bildirim kategorisini değiştir"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:137
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:62
+msgid "Changed"
+msgstr "Değiştirildi"
+
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:62
+msgid "Changed {field}"
+msgstr "{field} değiştirildi"
+
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts:12
 msgid "Checkbox"
 msgstr "Onay kutusu"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:138
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts:13
 msgid "Checklist"
 msgstr "Kontrol listesi"
 
@@ -659,7 +685,7 @@ msgstr "Kontrol listesi"
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Kenar çubuğundan bir oyun seçin veya yenisini başlatın."
 
-#: src/features/system/settings.tsx:429
+#: src/features/system/settings.tsx:431
 msgid "Choose file"
 msgstr "Dosya seç"
 
@@ -670,12 +696,12 @@ msgstr "Dil seçin"
 
 #: ../../../lib/web/src/components/colour-picker.tsx:274
 #: ../../../lib/web/src/components/colour-picker.tsx:355
-#: ../../../lib/web/src/components/travelling-picker.tsx:164
-#: ../../../lib/web/src/components/travelling-picker.tsx:170
-#: ../../../lib/web/src/components/travelling-picker.tsx:231
-#: ../../../lib/web/src/components/travelling-picker.tsx:237
-#: src/features/system/settings.tsx:409
-#: src/features/system/settings.tsx:414
+#: ../../../lib/web/src/components/travelling-picker.tsx:145
+#: ../../../lib/web/src/components/travelling-picker.tsx:151
+#: ../../../lib/web/src/components/travelling-picker.tsx:212
+#: ../../../lib/web/src/components/travelling-picker.tsx:218
+#: src/features/system/settings.tsx:411
+#: src/features/system/settings.tsx:416
 msgid "Clear"
 msgstr "Temizle"
 
@@ -687,11 +713,11 @@ msgstr "Tümünü temizle"
 msgid "Clear search"
 msgstr "Aramayı temizle"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:501
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:506
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:523
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:528
 #: ../../../lib/web/src/components/ui/dialog.tsx:78
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:468
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:471
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:479
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:482
 #: ../../../lib/web/src/components/ui/sheet.tsx:79
 #: src/features/system/users.tsx:355
 msgid "Close"
@@ -703,10 +729,10 @@ msgstr "Kapat"
 msgid "Close account"
 msgstr "Hesabı kapat"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:109
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx:113
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:263
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:267
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:117
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:266
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:270
 msgid "Close dialog"
 msgstr "İletişim kutusunu kapat"
 
@@ -747,16 +773,16 @@ msgstr "Daralt"
 msgid "Collapse sidebar"
 msgstr "Kenar çubuğunu daralt"
 
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:146
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:148
 msgid "Colour"
 msgstr "Renk"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:539
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:544
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:540
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:545
 msgid "Column actions"
 msgstr "Sütun işlemleri"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:347
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:350
 msgid "Columns group by"
 msgstr "Sütunlar şuna göre gruplanır"
 
@@ -773,8 +799,8 @@ msgstr "Komut paleti"
 msgid "Comment actions"
 msgstr "Yorum işlemleri"
 
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:431
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:443
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:442
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:454
 msgid "Comments"
 msgstr "Yorumlar"
 
@@ -782,20 +808,20 @@ msgstr "Yorumlar"
 msgid "Compact"
 msgstr "Kompakt"
 
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:94
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:95
 msgid "Configure option settings"
 msgstr "Seçenek ayarlarını yapılandır"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:259
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:262
 msgid "Configure view settings"
 msgstr "Görünüm ayarlarını yapılandır"
 
-#: src/features/system/settings.tsx:384
+#: src/features/system/settings.tsx:386
 msgid "Configured"
 msgstr "Yapılandırılmış"
 
-#: ../../../lib/web/src/components/place-picker.tsx:160
-#: ../../../lib/web/src/components/travelling-picker.tsx:316
+#: ../../../lib/web/src/components/place-picker.tsx:146
+#: ../../../lib/web/src/components/travelling-picker.tsx:296
 msgid "Confirm"
 msgstr "Onayla"
 
@@ -828,7 +854,7 @@ msgstr "Yetkilendirme almak için bir yöneticiyle iletişime geçin."
 msgid "Content not found."
 msgstr "İçerik bulunamadı."
 
-#: ../../../lib/web/src/lib/query-client.ts:78
+#: ../../../lib/web/src/lib/query-client.ts:73
 msgid "Content not modified"
 msgstr "İçerik değiştirilmedi"
 
@@ -840,7 +866,7 @@ msgstr "Bağlamsal bilgi ve ayrıntılar."
 msgid "Continue"
 msgstr "Devam et"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:355
+#: ../../../lib/web/src/components/step-up-dialog.tsx:343
 msgid "Continue with {label}"
 msgstr "{label} ile devam et"
 
@@ -884,34 +910,37 @@ msgstr "Bağlama başlatılamadı"
 msgid "Could not unlink provider"
 msgstr "Sağlayıcı bağlantısı kaldırılamadı"
 
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:128
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:124
 msgid "Couldn't load notifications"
 msgstr "Bildirimler yüklenemedi"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:182
+#: ../../../lib/web/src/components/step-up-dialog.tsx:170
 msgid "Couldn't send the code. Please try again."
 msgstr "Kod gönderilemedi. Lütfen tekrar deneyin."
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:136
+#: ../../../lib/web/src/components/step-up-dialog.tsx:124
 msgid "Couldn't start re-authentication. Please try again."
 msgstr "Yeniden kimlik doğrulama başlatılamadı. Lütfen tekrar deneyin."
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:224
+#: ../../../lib/web/src/components/step-up-dialog.tsx:212
 msgid "Couldn't verify with that account. Please try again."
 msgstr "Bu hesapla doğrulama yapılamadı. Lütfen tekrar deneyin."
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:550
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:689
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:491
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:656
-#: ../../../lib/web/src/components/entity/entity-tree-view.tsx:675
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:551
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:691
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:513
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:682
+#: ../../../lib/web/src/components/entity/entity-tree-view.tsx:672
 msgid "Create"
 msgstr "Oluştur"
 
-#. placeholder {0}: entityLabel.toLowerCase()
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:144
-msgid "Create {0}"
-msgstr "{0} oluştur"
+#~ msgid "Create {0}"
+#~ msgstr "{0} oluştur"
+
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:146
+msgid "Create {entityLabel}"
+msgstr "{entityLabel} oluştur"
 
 #: src/features/domains/index.tsx:989
 msgid "Create a TXT record for"
@@ -926,22 +955,28 @@ msgstr "Yeni öğe oluştur"
 msgid "Create user"
 msgstr "Kullanıcı oluştur"
 
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:54
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx:56
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:492
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:495
 #: src/features/user/login.tsx:426
 #: src/features/user/sessions.tsx:148
 msgid "Created"
 msgstr "Oluşturuldu"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:656
-#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:258
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:54
+msgid "Created {field}"
+msgstr "{field} oluşturuldu"
+
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:682
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:260
 msgid "Creating..."
 msgstr "Oluşturuluyor..."
 
-#: ../../../lib/web/src/components/map-view.tsx:217
+#: ../../../lib/web/src/components/map-view.tsx:249
 msgid "Current location"
 msgstr "Mevcut konum"
 
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:132
 #: ../../../lib/web/src/components/colour-picker.tsx:265
 msgid "Custom"
 msgstr "Özel"
@@ -958,7 +993,7 @@ msgstr "Koyu"
 msgid "Data conflict"
 msgstr "Veri çakışması"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:139
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts:14
 msgid "Date"
 msgstr "Tarih"
 
@@ -970,17 +1005,18 @@ msgstr "Tarih biçimi"
 msgid "Decline"
 msgstr "Reddet"
 
-#: src/features/user/connected-accounts.tsx:683
+#: src/features/user/connected-accounts.tsx:682
 msgid "default"
 msgstr "varsayılan"
 
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:129
 #: src/features/user/display.tsx:258
 #: src/features/user/notifications.tsx:416
 msgid "Default"
 msgstr "Varsayılan"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx:185
-#: src/features/user/connected-accounts.tsx:745
+#: src/features/user/connected-accounts.tsx:744
 msgid "Default AI account"
 msgstr "Varsayılan AI hesabı"
 
@@ -992,11 +1028,11 @@ msgstr "Varsayılan kategori"
 msgid "Default for AI"
 msgstr "Yapay zekâ için varsayılan"
 
-#: src/features/system/settings.tsx:55
+#: src/features/system/settings.tsx:57
 msgid "Default from address for system emails"
 msgstr "Sistem e-postaları için varsayılan gönderici adresi"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:479
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:482
 msgid "Default sort"
 msgstr "Varsayılan sıralama"
 
@@ -1016,15 +1052,15 @@ msgstr "Yetkilendirme silindi"
 msgid "Delegations"
 msgstr "Yetkilendirmeler"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:569
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:630
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:570
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:632
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:280
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:323
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:353
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:198
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:203
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:252
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:314
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:208
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:255
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:317
 #: src/features/domains/index.tsx:760
 #: src/features/domains/index.tsx:816
 #: src/features/domains/index.tsx:1152
@@ -1040,11 +1076,11 @@ msgstr "Sil"
 msgid "Delete \"{0}\"?"
 msgstr "\"{0}\" silinsin mi?"
 
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:312
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:315
 msgid "Delete attachment"
 msgstr "Eki sil"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:628
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:630
 msgid "Delete column"
 msgstr "Sütunu sil"
 
@@ -1070,17 +1106,17 @@ msgstr "Alan adını sil"
 msgid "Delete domain?"
 msgstr "Alan adı silinsin mi?"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:300
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:304
 msgid "Delete field"
 msgstr "Alanı sil"
 
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:116
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:117
 msgid "Delete option"
 msgstr "Seçeneği sil"
 
 #. placeholder {0}: opt.name
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:278
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:283
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:282
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:287
 msgid "Delete option {0}"
 msgstr "{0} seçeneğini sil"
 
@@ -1109,13 +1145,21 @@ msgstr "Kullanıcıyı sil"
 msgid "Delete user?"
 msgstr "Kullanıcı silinsin mi?"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:284
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:287
 msgid "Delete view"
 msgstr "Görünümü sil"
 
-#: ../../../lib/web/src/components/restore-banner.tsx:109
+#: ../../../lib/web/src/components/restore-banner.tsx:95
 msgid "Delete your account on the old server"
 msgstr "Eski sunucudaki hesabınızı silin"
+
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:58
+msgid "Deleted"
+msgstr "Silindi"
+
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:58
+msgid "Deleted {field}"
+msgstr "{field} silindi"
 
 #: src/features/system/users.tsx:541
 msgid "Deleting..."
@@ -1129,7 +1173,7 @@ msgstr "Yoğunluk"
 msgid "Descending"
 msgstr "Azalan"
 
-#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:83
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:85
 msgid "Description"
 msgstr "Açıklama"
 
@@ -1170,7 +1214,7 @@ msgstr "Cihaz unutuldu"
 msgid "Devices"
 msgstr "Cihazlar"
 
-#: ../../../lib/web/src/components/person-picker.tsx:214
+#: ../../../lib/web/src/components/person-picker.tsx:190
 msgid "Directory"
 msgstr "Dizin"
 
@@ -1185,8 +1229,8 @@ msgstr "Authenticator devre dışı bırakılsın mı?"
 
 #: src/components/method-state-control.tsx:31
 #: src/features/domains/index.tsx:731
-#: src/features/system/settings.tsx:108
-#: src/features/system/settings.tsx:195
+#: src/features/system/settings.tsx:110
+#: src/features/system/settings.tsx:197
 msgid "Disabled"
 msgstr "Devre dışı"
 
@@ -1204,8 +1248,8 @@ msgstr "Taslak silinsin mi?"
 msgid "Disconnected"
 msgstr "Bağlantı kesildi"
 
-#: ../../../lib/web/src/components/restore-banner.tsx:88
-#: ../../../lib/web/src/components/restore-banner.tsx:94
+#: ../../../lib/web/src/components/restore-banner.tsx:74
+#: ../../../lib/web/src/components/restore-banner.tsx:80
 msgid "Dismiss"
 msgstr "Kapat"
 
@@ -1236,6 +1280,10 @@ msgstr "Belge kaydedildi"
 #: src/features/system/documents.tsx:202
 msgid "Documents"
 msgstr "Belgeler"
+
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:111
+msgid "Does not match the required pattern"
+msgstr "Gerekli kalıpla eşleşmiyor"
 
 #: src/features/domains/index.tsx:116
 msgid "Domain"
@@ -1269,21 +1317,22 @@ msgstr "Alan adı doğrulandı"
 msgid "Domains"
 msgstr "Alan adları"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:305
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:518
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:309
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:523
 #: src/features/user/login.tsx:678
 msgid "Done"
 msgstr "Tamamlandı"
 
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:239
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:452
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:462
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:243
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:463
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:473
 #: src/features/user/data.tsx:137
 #: src/features/user/data.tsx:193
 msgid "Download"
 msgstr "İndir"
 
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:98
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:149
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:100
 msgid "Download failed"
 msgstr "İndirme başarısız oldu"
 
@@ -1322,7 +1371,7 @@ msgstr "Her kod yalnızca bir kez kullanılabilir."
 msgid "Edit"
 msgstr "Düzenle"
 
-#: ../../../lib/web/src/components/ui/editable-field-row.tsx:154
+#: ../../../lib/web/src/components/ui/editable-field-row.tsx:158
 msgid "Edit {label}"
 msgstr "{label} düzenle"
 
@@ -1334,21 +1383,21 @@ msgstr "Resim yazısını düzenle"
 msgid "Edit category"
 msgstr "Kategoriyi düzenle"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:137
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:140
 msgid "Edit field"
 msgstr "Alanı düzenle"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:138
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:141
 msgid "Edit field settings"
 msgstr "Alan ayarlarını düzenle"
 
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:91
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:92
 msgid "Edit option"
 msgstr "Seçeneği düzenle"
 
 #. placeholder {0}: opt.name
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:263
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:268
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:267
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:272
 msgid "Edit option {0}"
 msgstr "{0} seçeneğini düzenle"
 
@@ -1372,7 +1421,7 @@ msgstr "Seçili kartı düzenle"
 msgid "Edit user"
 msgstr "Kullanıcıyı düzenle"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:258
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:261
 msgid "Edit view"
 msgstr "Görünümü düzenle"
 
@@ -1384,7 +1433,7 @@ msgstr "Görünümü düzenle"
 msgid "Email"
 msgstr "E-posta"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:292
+#: ../../../lib/web/src/components/step-up-dialog.tsx:280
 #: src/features/user/login.tsx:124
 msgid "Email code"
 msgstr "E-posta kodu"
@@ -1395,7 +1444,7 @@ msgstr "Boş yol tüm alan adına erişim verir"
 
 #: src/features/domains/index.tsx:539
 #: src/features/domains/index.tsx:731
-#: src/features/system/settings.tsx:194
+#: src/features/system/settings.tsx:196
 #: src/features/user/login.tsx:580
 msgid "Enabled"
 msgstr "Etkin"
@@ -1404,11 +1453,11 @@ msgstr "Etkin"
 msgid "Enter or generate a passphrase"
 msgstr "Bir parola cümlesi girin veya oluşturun"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:302
+#: ../../../lib/web/src/components/step-up-dialog.tsx:290
 msgid "Enter the code from your email"
 msgstr "E-postanızdaki kodu girin"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:327
+#: ../../../lib/web/src/components/step-up-dialog.tsx:315
 msgid "Enter your authenticator code"
 msgstr "Kimlik doğrulayıcı kodunuzu girin"
 
@@ -1448,14 +1497,15 @@ msgstr "Harici URL"
 msgid "Extra large"
 msgstr "Çok büyük"
 
-#: src/features/system/settings.tsx:67
+#: src/features/system/settings.tsx:69
 msgid "Facebook App ID"
 msgstr "Facebook uygulama kimliği"
 
-#: src/features/system/settings.tsx:68
+#: src/features/system/settings.tsx:70
 msgid "Facebook App secret"
 msgstr "Facebook uygulama gizli anahtarı"
 
+#: ../../../lib/web/src/hooks/use-accounts.ts:213
 #: src/features/user/connected-accounts.tsx:450
 msgid "Failed to add account"
 msgstr "Hesap eklenemedi"
@@ -1498,7 +1548,7 @@ msgstr "Ek silinemedi"
 msgid "Failed to delete category"
 msgstr "Kategori silinemedi"
 
-#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:191
+#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:192
 msgid "Failed to delete comment"
 msgstr "Yorum silinemedi"
 
@@ -1556,15 +1606,19 @@ msgstr "Yüklenemedi"
 msgid "Failed to load history"
 msgstr "Geçmiş yüklenemedi"
 
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:338
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:349
 msgid "Failed to load image"
 msgstr "Görsel yüklenemedi"
 
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:338
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:213
+msgid "Failed to load prompts"
+msgstr "Komutlar yüklenemedi"
+
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:349
 msgid "Failed to load video"
 msgstr "Video yüklenemedi"
 
-#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:154
+#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:155
 msgid "Failed to post comment"
 msgstr "Yorum gönderilemedi"
 
@@ -1600,6 +1654,10 @@ msgstr "Görüntü sıfırlanamadı"
 msgid "Failed to reset preferences"
 msgstr "Tercihler sıfırlanamadı"
 
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:90
+msgid "Failed to reset prompt"
+msgstr "Komut sıfırlanamadı"
+
 #: ../../../lib/web/src/components/options-menu.tsx:133
 msgid "Failed to revoke RSS access"
 msgstr "RSS erişimi iptal edilemedi"
@@ -1616,6 +1674,10 @@ msgstr "Kategori kaydedilemedi"
 #: src/features/system/documents.tsx:193
 msgid "Failed to save document"
 msgstr "Belge kaydedilemedi"
+
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:111
+msgid "Failed to save prompt"
+msgstr "Komut kaydedilemedi"
 
 #: src/features/user/notifications.tsx:330
 msgid "Failed to send test"
@@ -1638,7 +1700,7 @@ msgstr "Hesap güncellenemedi"
 msgid "Failed to update browser notifications"
 msgstr "Tarayıcı bildirimleri güncellenemedi"
 
-#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:174
+#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:175
 msgid "Failed to update comment"
 msgstr "Yorum güncellenemedi"
 
@@ -1676,7 +1738,7 @@ msgstr "Gizlilik güncellenemedi"
 msgid "Failed to update route"
 msgstr "Rota güncellenemedi"
 
-#: src/features/system/settings.tsx:516
+#: src/features/system/settings.tsx:518
 msgid "Failed to update setting"
 msgstr "Ayar güncellenemedi"
 
@@ -1709,9 +1771,9 @@ msgstr "Kod doğrulanamadı"
 msgid "Failed to verify domain"
 msgstr "Alan adı doğrulanamadı"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:589
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:155
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:175
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:611
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:160
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:180
 msgid "Files"
 msgstr "Dosyalar"
 
@@ -1720,19 +1782,19 @@ msgstr "Dosyalar"
 msgid "Fingerprint"
 msgstr "Parmak izi"
 
-#: ../../../lib/web/src/components/restore-banner.tsx:97
+#: ../../../lib/web/src/components/restore-banner.tsx:83
 msgid "Finish moving your account"
 msgstr "Hesap taşımayı tamamlayın"
 
-#: src/features/system/settings.tsx:71
+#: src/features/system/settings.tsx:73
 msgid "Firebase google-services.json file"
 msgstr "Firebase google-services.json dosyası"
 
-#: src/features/system/settings.tsx:72
+#: src/features/system/settings.tsx:74
 msgid "Firebase private key file"
 msgstr "Firebase özel anahtar dosyası"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:221
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:225
 msgid "Flags"
 msgstr "Bayraklar"
 
@@ -1761,11 +1823,11 @@ msgstr "Cihaz unutulsun mu?"
 msgid "Friday"
 msgstr "Cuma"
 
-#: ../../../lib/web/src/components/person-picker.tsx:207
+#: ../../../lib/web/src/components/person-picker.tsx:183
 msgid "Friends"
 msgstr "Arkadaşlar"
 
-#: ../../../lib/web/src/components/travelling-picker.tsx:153
+#: ../../../lib/web/src/components/travelling-picker.tsx:134
 msgid "From"
 msgstr "Kimden"
 
@@ -1790,16 +1852,16 @@ msgstr "Parola cümlesi oluştur"
 msgid "Generate?"
 msgstr "Oluşturulsun mu?"
 
-#: src/features/system/settings.tsx:62
+#: src/features/system/settings.tsx:64
 msgid "GitHub client ID"
 msgstr "GitHub istemci kimliği"
 
-#: src/features/system/settings.tsx:63
+#: src/features/system/settings.tsx:65
 msgid "GitHub client secret"
 msgstr "GitHub istemci gizli anahtarı"
 
+#: ../../../lib/web/src/features/errors/access-denied-error.tsx:25
 #: ../../../lib/web/src/features/errors/not-found-error.tsx:26
-#: ../../../lib/web/src/features/errors/unauthorized-error.tsx:26
 msgid "Go back"
 msgstr "Geri"
 
@@ -1807,11 +1869,11 @@ msgstr "Geri"
 msgid "Go to login"
 msgstr "Girişe git"
 
-#: src/features/system/settings.tsx:60
+#: src/features/system/settings.tsx:62
 msgid "Google client ID"
 msgstr "Google istemci kimliği"
 
-#: src/features/system/settings.tsx:61
+#: src/features/system/settings.tsx:63
 msgid "Google client secret"
 msgstr "Google istemci gizli anahtarı"
 
@@ -1823,7 +1885,7 @@ msgstr "Bir kullanıcıya {domain} üzerinde rota yönetimi izni verin"
 msgid "Group"
 msgstr "Grup"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:347
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:350
 msgid "Group by"
 msgstr "Şuna göre grupla"
 
@@ -1847,12 +1909,12 @@ msgstr "Delik açma"
 
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx:90
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:185
-#: ../../../lib/web/src/components/layout/top-bar.tsx:71
-#: ../../../lib/web/src/components/layout/top-bar.tsx:100
+#: ../../../lib/web/src/components/layout/top-bar.tsx:86
+#: ../../../lib/web/src/components/layout/top-bar.tsx:115
 msgid "Home"
 msgstr "Ana sayfa"
 
-#: src/features/system/settings.tsx:56
+#: src/features/system/settings.tsx:58
 msgid "Hostname announced to other servers"
 msgstr "Diğer sunuculara duyurulan ana bilgisayar adı"
 
@@ -1860,7 +1922,7 @@ msgstr "Diğer sunuculara duyurulan ana bilgisayar adı"
 msgid "Hot"
 msgstr "Popüler"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:152
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:156
 msgid "ID"
 msgstr "Kimlik"
 
@@ -1878,7 +1940,7 @@ msgid "Identity is now listed in the directory"
 msgstr "Kimlik artık dizinde listeleniyor"
 
 #. placeholder {0}: currentMedia.name
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:316
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:327
 msgid "Image viewer: {0}"
 msgstr "Görsel görüntüleyici: {0}"
 
@@ -1907,6 +1969,10 @@ msgstr "Güncellemeyi yükle"
 msgid "Installing {0}…"
 msgstr "{0} yükleniyor…"
 
+#: ../../../lib/web/src/components/post-tags.tsx:168
+msgid "Interest {weight}"
+msgstr "İlgi {weight}"
+
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:42
 #: src/components/layout/data/sidebar-data.ts:37
 #: src/features/user/interests.tsx:248
@@ -1918,7 +1984,7 @@ msgstr "İlgi alanları"
 msgid "Invalid code"
 msgstr "Geçersiz kod"
 
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:550
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:591
 msgid "Invalid date"
 msgstr "Geçersiz tarih"
 
@@ -1992,7 +2058,7 @@ msgstr "Son görülme"
 msgid "Last used"
 msgstr "Son kullanım"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:306
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:309
 msgid "Layout"
 msgstr "Düzen"
 
@@ -2001,8 +2067,12 @@ msgid "Leave empty for root path"
 msgstr "Kök yol için boş bırakın"
 
 #: ../../../lib/web/src/components/post-tags.tsx:72
-msgid "Letters, numbers, spaces, and hyphens only"
-msgstr "Yalnızca harf, rakam, boşluk ve kısa çizgi"
+#~ msgid "Letters, numbers, spaces, and hyphens only"
+#~ msgstr "Yalnızca harf, rakam, boşluk ve kısa çizgi"
+
+#: ../../../lib/web/src/components/post-tags.tsx:73
+msgid "Letters, numbers, spaces, hyphens, and slashes only"
+msgstr "Yalnızca harfler, rakamlar, boşluklar, tireler ve eğik çizgiler"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:14
 msgid "Light"
@@ -2024,11 +2094,11 @@ msgstr "Bağlandı {label}"
 msgid "Links"
 msgstr "Bağlantılar"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:318
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:321
 msgid "List"
 msgstr "Liste"
 
-#: ../../../lib/web/src/components/ui/load-more.tsx:35
+#: ../../../lib/web/src/components/ui/load-more.tsx:39
 msgid "Load more"
 msgstr "Daha fazla yükle"
 
@@ -2036,7 +2106,7 @@ msgstr "Daha fazla yükle"
 msgid "Loading content…"
 msgstr "İçerik yükleniyor…"
 
-#: ../../../lib/web/src/components/ui/load-more.tsx:35
+#: ../../../lib/web/src/components/ui/load-more.tsx:39
 #: ../../../lib/web/src/features/document/document-page.tsx:88
 msgid "Loading..."
 msgstr "Yükleniyor..."
@@ -2059,7 +2129,7 @@ msgid "Logging out…"
 msgstr "Oturum kapatılıyor…"
 
 #: src/components/layout/data/sidebar-data.ts:31
-#: src/features/system/settings.tsx:578
+#: src/features/system/settings.tsx:580
 #: src/features/user/login.tsx:921
 #: src/features/user/login.tsx:971
 msgid "Login"
@@ -2113,12 +2183,20 @@ msgstr "Yönetim"
 msgid "Manual"
 msgstr "Elle"
 
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:207
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:214
+#: src/features/system/settings.tsx:55
+msgid "Map tile attribution"
+msgstr "Harita döşemesi kaynak gösterimi"
+
+#: src/features/system/settings.tsx:54
+msgid "Map tile URL"
+msgstr "Harita döşemesi URL'si"
+
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:203
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:210
 msgid "Mark all as read"
 msgstr "Tümünü okundu olarak işaretle"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:198
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:202
 msgid "Maximum length"
 msgstr "Azami uzunluk"
 
@@ -2129,6 +2207,10 @@ msgstr "MCP sunucusu"
 #: ../../../lib/web/src/lib/preference-utils.ts:102
 msgid "Medium"
 msgstr "Orta"
+
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:377
+msgid "Members"
+msgstr "Üyeler"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:200
 msgid "Menu"
@@ -2152,19 +2234,19 @@ msgstr "Yöntem"
 msgid "Metric"
 msgstr "Metrik"
 
-#: src/features/system/settings.tsx:64
+#: src/features/system/settings.tsx:66
 msgid "Microsoft client ID"
 msgstr "Microsoft istemci kimliği"
 
-#: src/features/system/settings.tsx:65
+#: src/features/system/settings.tsx:67
 msgid "Microsoft client secret"
 msgstr "Microsoft istemci gizli anahtarı"
 
-#: src/features/system/settings.tsx:66
+#: src/features/system/settings.tsx:68
 msgid "Microsoft tenant"
 msgstr "Microsoft tenant"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:187
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:191
 msgid "Minimum length"
 msgstr "Asgari uzunluk"
 
@@ -2177,7 +2259,7 @@ msgstr "Mochi {0} kullanıma hazır"
 msgid "Mochi web"
 msgstr "Mochi web"
 
-#: src/features/user/connected-accounts.tsx:736
+#: src/features/user/connected-accounts.tsx:735
 msgid "Model"
 msgstr "Model"
 
@@ -2194,33 +2276,46 @@ msgstr "Pazartesi"
 msgid "More options"
 msgstr "Diğer seçenekler"
 
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:60
+msgid "Moved"
+msgstr "Taşındı"
+
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:60
+msgid "Moved {field}"
+msgstr "{field} taşındı"
+
 #: src/features/user/login.tsx:388
 msgid "My passkey"
 msgstr "Passkey'im"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:118
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:600
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:142
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:125
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:293
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:122
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:601
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:145
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:126
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:296
 #: src/features/user/account.tsx:76
 #: src/features/user/connected-accounts.tsx:102
-#: src/features/user/connected-accounts.tsx:596
-#: src/features/user/connected-accounts.tsx:726
+#: src/features/user/connected-accounts.tsx:595
+#: src/features/user/connected-accounts.tsx:725
 #: src/features/user/login.tsx:425
 #: src/features/user/notifications.tsx:541
 msgid "Name"
 msgstr "Ad"
 
-#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:102
-msgid "Name cannot contain angle brackets, backslash, semicolon, quotes or backticks"
-msgstr "Ad açılı ayraç, ters eğik çizgi, noktalı virgül, tırnak işareti veya ters tırnak içeremez"
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:104
+msgid "Name cannot contain < or > characters"
+msgstr "Ad < veya > karakterleri içeremez"
 
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:102
+#~ msgid "Name cannot contain angle brackets, backslash, semicolon, quotes or backticks"
+#~ msgstr "Ad açılı ayraç, ters eğik çizgi, noktalı virgül, tırnak işareti veya ters tırnak içeremez"
+
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:101
 #: src/features/user/account.tsx:79
 msgid "Name is required"
 msgstr "Ad gerekli"
 
-#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:100
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:102
 msgid "Name must be 1000 characters or less"
 msgstr "Ad 1000 karakter veya daha az olmalı"
 
@@ -2228,7 +2323,7 @@ msgstr "Ad 1000 karakter veya daha az olmalı"
 msgid "Name updated"
 msgstr "Ad güncellendi"
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:53
+#: ../../../lib/web/src/features/errors/general-error.tsx:51
 #: ../../../lib/web/src/lib/api-response-interceptors.ts:313
 msgid "Network error"
 msgstr "Ağ hatası"
@@ -2242,7 +2337,7 @@ msgstr "Ağ hatası"
 msgid "Never"
 msgstr "Asla"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:476
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:498
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:43
 msgid "New"
 msgstr "Yeni"
@@ -2260,12 +2355,12 @@ msgstr "Yeni oyun"
 msgid "Next"
 msgstr "İleri"
 
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:525
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:530
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:536
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:541
 msgid "Next image"
 msgstr "Sonraki görsel"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:555
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:577
 msgid "No {parentClassNames} to add to"
 msgstr "Eklenecek {parentClassNames} yok"
 
@@ -2282,7 +2377,7 @@ msgstr "Bağlı hesap yok"
 msgid "No active sessions"
 msgstr "Aktif oturum yok"
 
-#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:65
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:74
 msgid "No activity yet"
 msgstr "Henüz aktivite yok"
 
@@ -2295,11 +2390,11 @@ msgstr "Kimlik doğrulayıcı kurulmamış"
 msgid "No certificate has been installed for \"{0}\", so it will stop serving over HTTPS until you install one."
 msgstr "\"{0}\" için sertifika yüklenmedi, bu nedenle siz bir tane yükleyene kadar HTTPS üzerinden hizmet vermeyi durduracak."
 
-#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:322
+#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:324
 msgid "No comments yet"
 msgstr "Henüz yorum yok"
 
-#: src/features/user/connected-accounts.tsx:589
+#: src/features/user/connected-accounts.tsx:588
 msgid "No connected accounts"
 msgstr "Bağlı hesap yok"
 
@@ -2336,7 +2431,7 @@ msgstr "Grup yok"
 msgid "No interests yet"
 msgstr "Henüz ilgi alanı yok"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:522
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:544
 msgid "No item types can be created yet. Create the required parent items first."
 msgstr "Henüz oluşturulabilecek öge türü yok. Önce gerekli üst ögeleri oluşturun."
 
@@ -2352,12 +2447,12 @@ msgstr "Seçenek bulunamadı."
 msgid "No passkeys registered"
 msgstr "Kayıtlı passkey yok"
 
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:341
-#: ../../../lib/web/src/components/person-picker.tsx:84
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:382
+#: ../../../lib/web/src/components/person-picker.tsx:71
 msgid "No people found"
 msgstr "Kişi bulunamadı"
 
-#: ../../../lib/web/src/components/place-picker.tsx:133
+#: ../../../lib/web/src/components/place-picker.tsx:120
 msgid "No places found"
 msgstr "Yer bulunamadı"
 
@@ -2365,12 +2460,12 @@ msgstr "Yer bulunamadı"
 msgid "No recovery codes"
 msgstr "Kurtarma kodu yok"
 
-#: ../../../lib/web/src/components/inline-entity-search.tsx:64
+#: ../../../lib/web/src/components/inline-entity-search.tsx:65
 #: ../../../lib/web/src/components/search-entity-page.tsx:73
 msgid "No results found"
 msgstr "Sonuç bulunamadı"
 
-#: ../../../lib/web/src/components/command-menu.tsx:55
+#: ../../../lib/web/src/components/command-menu.tsx:57
 msgid "No results found."
 msgstr "Sonuç bulunamadı."
 
@@ -2380,7 +2475,7 @@ msgstr "Rota yapılandırılmamış"
 
 #: ../../../lib/web/src/components/entity/entity-board-container.tsx:824
 #: ../../../lib/web/src/components/entity/entity-board-container.tsx:869
-#: ../../../lib/web/src/components/entity/entity-tree-view.tsx:339
+#: ../../../lib/web/src/components/entity/entity-tree-view.tsx:336
 msgid "No status"
 msgstr "Durum yok"
 
@@ -2396,7 +2491,7 @@ msgstr "Henüz konu kaydı yok — bir sonraki bildirimden sonra tekrar deneyin.
 msgid "No topics yet"
 msgstr "Henüz konu yok"
 
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:139
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:135
 msgid "No unread notifications"
 msgstr "Okunmamış bildirim yok"
 
@@ -2415,17 +2510,17 @@ msgid "No views"
 msgstr "Görüntüleme yok"
 
 #: ../../../lib/web/src/components/colour-picker.tsx:349
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:538
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:541
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:545
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:359
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:382
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:560
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:563
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:567
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:362
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:385
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:412
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:388
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:415
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:488
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:418
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:491
-#: ../../../lib/web/src/components/person-picker.tsx:350
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:494
+#: ../../../lib/web/src/components/person-picker.tsx:326
 #: ../../../lib/web/src/lib/preference-utils.ts:100
 #: src/features/user/display.tsx:327
 msgid "None"
@@ -2436,15 +2531,15 @@ msgid "Normal"
 msgstr "Normal"
 
 #: ../../../lib/web/src/components/attachment-image.tsx:50
-#: ../../../lib/web/src/features/errors/general-error.tsx:67
+#: ../../../lib/web/src/features/errors/general-error.tsx:65
 msgid "Not found"
 msgstr "Bulunamadı"
 
-#: ../../../lib/web/src/components/ui/editable-field-row.tsx:146
+#: ../../../lib/web/src/components/ui/editable-field-row.tsx:150
 msgid "Not set"
 msgstr "Ayarlanmamış"
 
-#: ../../../lib/web/src/components/entity/entity-tree-view.tsx:671
+#: ../../../lib/web/src/components/entity/entity-tree-view.tsx:668
 msgid "Nothing found"
 msgstr "Bir şey bulunamadı"
 
@@ -2455,18 +2550,18 @@ msgid "Notifications"
 msgstr "Bildirimler"
 
 #. placeholder {0}: unread.length
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:200
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:196
 msgid "Notifications: {0}"
 msgstr "Bildirimler: {0}"
 
 #: src/features/user/connected-accounts.tsx:316
-#: src/features/user/connected-accounts.tsx:600
+#: src/features/user/connected-accounts.tsx:599
 msgid "Notify by default"
 msgstr "Varsayılan olarak bildir"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:140
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx:54
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:493
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:497
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts:15
 msgid "Number"
 msgstr "Sayı"
 
@@ -2486,8 +2581,8 @@ msgstr "Açık"
 msgid "Oops! Page Not Found!"
 msgstr "Hata! Sayfa bulunamadı!"
 
-#: ../../../lib/web/src/components/layout/nav-group.tsx:199
-#: ../../../lib/web/src/components/layout/nav-group.tsx:204
+#: ../../../lib/web/src/components/layout/nav-group.tsx:227
+#: ../../../lib/web/src/components/layout/nav-group.tsx:232
 msgid "Open actions"
 msgstr "İşlemleri aç"
 
@@ -2495,13 +2590,13 @@ msgstr "İşlemleri aç"
 msgid "Open menu"
 msgstr "Menüyü aç"
 
-#: ../../../lib/web/src/components/layout/top-bar.tsx:63
-#: ../../../lib/web/src/components/layout/top-bar.tsx:68
+#: ../../../lib/web/src/components/layout/top-bar.tsx:78
+#: ../../../lib/web/src/components/layout/top-bar.tsx:83
 msgid "Open navigation"
 msgstr "Gezinmeyi aç"
 
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:105
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:111
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:106
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:112
 msgid "Open option actions"
 msgstr "Seçenek eylemlerini aç"
 
@@ -2513,8 +2608,8 @@ msgstr "Seçili kartı aç"
 msgid "Open user actions"
 msgstr "Kullanıcı eylemlerini aç"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:274
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:279
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:277
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:282
 msgid "Open view actions"
 msgstr "Görünüm eylemlerini aç"
 
@@ -2523,29 +2618,29 @@ msgstr "Görünüm eylemlerini aç"
 msgid "Open view controls"
 msgstr "Görünüm kontrollerini aç"
 
-#: src/features/system/settings.tsx:599
+#: src/features/system/settings.tsx:601
 msgid "Operator"
 msgstr "İşletmeci"
 
-#: src/features/system/settings.tsx:74
+#: src/features/system/settings.tsx:76
 msgid "Operator email"
 msgstr "İşletmeci e-postası"
 
-#: src/features/system/settings.tsx:75
+#: src/features/system/settings.tsx:77
 msgid "Operator jurisdiction"
 msgstr "İşletmeci yargı yetkisi"
 
-#: src/features/system/settings.tsx:73
+#: src/features/system/settings.tsx:75
 msgid "Operator name"
 msgstr "İşletmeci adı"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:200
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:155
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:202
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:157
 msgid "Option name"
 msgstr "Seçenek adı"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:168
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:240
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:170
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:244
 msgid "Options"
 msgstr "Seçenekler"
 
@@ -2553,7 +2648,7 @@ msgstr "Seçenekler"
 msgid "Other"
 msgstr "Diğer"
 
-#: src/features/system/settings.tsx:614
+#: src/features/system/settings.tsx:616
 msgid "Other settings"
 msgstr "Diğer ayarlar"
 
@@ -2561,11 +2656,11 @@ msgstr "Diğer ayarlar"
 msgid "Owner"
 msgstr "Sahip"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:530
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:552
 msgid "Parent"
 msgstr "Üst"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:337
+#: ../../../lib/web/src/components/step-up-dialog.tsx:325
 #: src/features/user/login.tsx:126
 #: src/features/user/login.tsx:323
 msgid "Passkey"
@@ -2587,11 +2682,11 @@ msgstr "Passkey kaydedildi"
 msgid "Passkey renamed"
 msgstr "Passkey yeniden adlandırıldı"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:207
+#: ../../../lib/web/src/components/step-up-dialog.tsx:195
 msgid "Passkey verification failed. Please try again."
 msgstr "Geçiş anahtarı doğrulaması başarısız oldu. Lütfen tekrar deneyin."
 
-#: ../../../lib/web/src/components/restore-banner.tsx:146
+#: ../../../lib/web/src/components/restore-banner.tsx:132
 #: src/features/user/login.tsx:407
 msgid "Passkeys"
 msgstr "Passkey'ler"
@@ -2616,7 +2711,7 @@ msgstr "Yol"
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Yola izin verilmiyor. Yalnızca şunun altında rota ekleyebilirsiniz: {0}"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:209
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:213
 msgid "Pattern (regex)"
 msgstr "Desen (regex)"
 
@@ -2640,25 +2735,29 @@ msgstr "Eşler"
 msgid "Pending"
 msgstr "Beklemede"
 
+#: ../../../lib/web/src/components/person-picker.tsx:176
+msgid "People"
+msgstr "Kişiler"
+
 #: src/features/domains/index.tsx:1142
 msgid "Permanently delete this domain and all its routes."
 msgstr "Bu alan adını ve tüm rotalarını kalıcı olarak silin."
 
 #: ../../../lib/web/src/components/comment-composer.tsx:89
-#: ../../../lib/web/src/features/errors/general-error.tsx:54
+#: ../../../lib/web/src/features/errors/general-error.tsx:52
 #: ../../../lib/web/src/lib/api-response-interceptors.ts:314
 msgid "Please check your internet connection and try again."
 msgstr "Lütfen internet bağlantınızı kontrol edip tekrar deneyin."
 
 #: ../../../lib/web/src/features/errors/unauthorized-error.tsx:18
-msgid "Please log in with the appropriate credentials <0/> to access this resource."
-msgstr "Bu kaynağa erişmek için <0/> lütfen uygun kimlik bilgileriyle giriş yapın."
+#~ msgid "Please log in with the appropriate credentials <0/> to access this resource."
+#~ msgstr "Bu kaynağa erişmek için <0/> lütfen uygun kimlik bilgileriyle giriş yapın."
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:83
+#: ../../../lib/web/src/features/errors/general-error.tsx:81
 msgid "Please try again."
 msgstr "Lütfen tekrar deneyin."
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:75
+#: ../../../lib/web/src/features/errors/general-error.tsx:73
 msgid "Please wait a moment and try again."
 msgstr "Lütfen biraz bekleyip tekrar deneyin."
 
@@ -2689,8 +2788,8 @@ msgstr "Tercihler varsayılana sıfırlandı"
 msgid "Previous"
 msgstr "Önceki"
 
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:509
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:514
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:520
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:525
 msgid "Previous image"
 msgstr "Önceki görsel"
 
@@ -2719,8 +2818,12 @@ msgid "Processing…"
 msgstr "İşleniyor…"
 
 #: ../../../lib/web/src/components/person-picker.tsx:200
-msgid "Project members"
-msgstr "Proje üyeleri"
+#~ msgid "Project members"
+#~ msgstr "Proje üyeleri"
+
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:108
+msgid "Prompt saved"
+msgstr "İstem kaydedildi"
 
 #: src/features/user/login.tsx:892
 msgid "Provider"
@@ -2730,7 +2833,7 @@ msgstr "Sağlayıcı"
 msgid "Public"
 msgstr "Herkese açık"
 
-#: src/features/system/settings.tsx:59
+#: src/features/system/settings.tsx:61
 msgid "Public URL for OAuth redirects"
 msgstr "OAuth yönlendirmeleri için herkese açık URL"
 
@@ -2742,7 +2845,7 @@ msgstr "Anlık bildirim"
 msgid "Push notification"
 msgstr "Anlık bildirim"
 
-#: src/features/system/settings.tsx:607
+#: src/features/system/settings.tsx:609
 msgid "Push notifications"
 msgstr "Anlık bildirimler"
 
@@ -2763,11 +2866,11 @@ msgstr "Yarıçap"
 msgid "Raised"
 msgstr "Yükseltilmiş"
 
-#: ../../../lib/web/src/components/restore-banner.tsx:118
+#: ../../../lib/web/src/components/restore-banner.tsx:104
 msgid "Re-link your accounts on this server"
 msgstr "Hesaplarınızı bu sunucuda yeniden bağlayın"
 
-#: ../../../lib/web/src/components/restore-banner.tsx:140
+#: ../../../lib/web/src/components/restore-banner.tsx:126
 msgid "Re-register your passkeys on this server"
 msgstr "Bu sunucuda parola anahtarlarınızı yeniden kaydedin"
 
@@ -2794,12 +2897,12 @@ msgstr "Kurtarma kodları"
 msgid "Redirect"
 msgstr "Yönlendirme"
 
-#: ../../../lib/web/src/components/layout/authenticated-layout.tsx:136
+#: ../../../lib/web/src/components/layout/authenticated-layout.tsx:135
 msgid "Redirecting to login."
 msgstr "Girişe yönlendiriliyor."
 
-#: ../../../lib/web/src/components/post-tags.tsx:200
-#: ../../../lib/web/src/components/post-tags.tsx:212
+#: ../../../lib/web/src/components/post-tags.tsx:214
+#: ../../../lib/web/src/components/post-tags.tsx:226
 msgid "Reduce interest"
 msgstr "İlgiyi azalt"
 
@@ -2839,9 +2942,17 @@ msgstr "24 saat içinde göreceli, aksi halde mutlak"
 msgid "Relay service"
 msgstr "Aktarma hizmeti"
 
+#: ../../../lib/web/src/components/post-tags.tsx:166
+msgid "Relevance {relevance}"
+msgstr "Alaka {relevance}"
+
+#: ../../../lib/web/src/components/post-tags.tsx:164
+msgid "Relevance {relevance}, interest {weight}"
+msgstr "Alaka {relevance}, ilgi {weight}"
+
 #: ../../../lib/web/src/components/attachment-composer.tsx:285
 #: ../../../lib/web/src/components/attachment-composer.tsx:330
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:190
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:192
 #: ../../../lib/web/src/features/access/access-list.tsx:270
 #: src/features/user/connected-accounts.tsx:358
 #: src/features/user/connected-accounts.tsx:368
@@ -2877,12 +2988,12 @@ msgstr "Erişim kaldırılsın mı?"
 msgid "Remove account?"
 msgstr "Hesap kaldırılsın mı?"
 
-#: ../../../lib/web/src/components/post-tags.tsx:220
-#: ../../../lib/web/src/components/post-tags.tsx:232
+#: ../../../lib/web/src/components/post-tags.tsx:234
+#: ../../../lib/web/src/components/post-tags.tsx:246
 msgid "Remove interest"
 msgstr "İlgiyi kaldır"
 
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:674
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:712
 msgid "Remove item"
 msgstr "Ögeyi kaldır"
 
@@ -2895,12 +3006,12 @@ msgstr "Bağlantıyı kaldır"
 msgid "Remove suspension"
 msgstr "Askıyı kaldır"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:561
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:618
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:562
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:620
 msgid "Rename"
 msgstr "Yeniden adlandır"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:596
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:597
 msgid "Rename column"
 msgstr "Sütunu yeniden adlandır"
 
@@ -2908,11 +3019,11 @@ msgstr "Sütunu yeniden adlandır"
 msgid "Rename passkey"
 msgstr "Passkey’i yeniden adlandır"
 
-#: ../../../lib/web/src/components/entity/entity-board-column.tsx:597
+#: ../../../lib/web/src/components/entity/entity-board-column.tsx:598
 msgid "Rename this board column"
 msgstr "Bu pano sütununu yeniden adlandır"
 
-#: src/features/system/settings.tsx:398
+#: src/features/system/settings.tsx:400
 msgid "Replace"
 msgstr "Değiştir"
 
@@ -2926,23 +3037,23 @@ msgstr "Yanıtla"
 msgid "Reply to {0}..."
 msgstr "{0} kullanıcısına yanıt ver..."
 
-#: src/features/system/settings.tsx:54
+#: src/features/system/settings.tsx:56
 msgid "Require domain verification"
 msgstr "Alan adı doğrulaması zorunlu kıl"
 
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:224
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:228
 #: src/components/method-state-control.tsx:31
-#: src/features/system/settings.tsx:112
+#: src/features/system/settings.tsx:114
 msgid "Required"
 msgstr "Gerekli"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:370
+#: ../../../lib/web/src/components/step-up-dialog.tsx:358
 msgid "Resend email"
 msgstr "E-postayı yeniden gönder"
 
-#: src/features/system/settings.tsx:322
-#: src/features/system/settings.tsx:364
-#: src/features/system/settings.tsx:484
+#: src/features/system/settings.tsx:324
+#: src/features/system/settings.tsx:366
+#: src/features/system/settings.tsx:486
 #: src/features/user/display.tsx:208
 #: src/features/user/preferences.tsx:205
 msgid "Reset"
@@ -2956,18 +3067,18 @@ msgstr "Görüntü sıfırlansın mı?"
 msgid "Reset preferences?"
 msgstr "Tercihler sıfırlansın mı?"
 
-#: src/features/system/settings.tsx:304
-#: src/features/system/settings.tsx:310
-#: src/features/system/settings.tsx:346
-#: src/features/system/settings.tsx:352
-#: src/features/system/settings.tsx:464
-#: src/features/system/settings.tsx:470
+#: src/features/system/settings.tsx:306
+#: src/features/system/settings.tsx:312
+#: src/features/system/settings.tsx:348
+#: src/features/system/settings.tsx:354
+#: src/features/system/settings.tsx:466
+#: src/features/system/settings.tsx:472
 msgid "Reset to default"
 msgstr "Varsayılana sıfırla"
 
-#: src/features/system/settings.tsx:314
-#: src/features/system/settings.tsx:356
-#: src/features/system/settings.tsx:474
+#: src/features/system/settings.tsx:316
+#: src/features/system/settings.tsx:358
+#: src/features/system/settings.tsx:476
 msgid "Reset to default?"
 msgstr "Varsayılana sıfırlansın mı?"
 
@@ -3043,12 +3154,12 @@ msgstr "Rota güncellendi"
 msgid "Routes"
 msgstr "Rotalar"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:150
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:168
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:152
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:172
 msgid "Rows"
 msgstr "Satırlar"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:373
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:376
 msgid "Rows group by"
 msgstr "Satırları gruplama"
 
@@ -3073,14 +3184,15 @@ msgstr "RSS: {0}"
 msgid "Saturday"
 msgstr "Cumartesi"
 
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:156
 #: ../../../lib/web/src/components/attachment-composer.tsx:430
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:231
-#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:170
-#: ../../../lib/web/src/components/ui/editable-field-row.tsx:122
+#: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:172
+#: ../../../lib/web/src/components/ui/editable-field-row.tsx:126
 #: ../../../lib/web/src/components/ui/secret-field.tsx:79
 #: src/features/system/documents.tsx:121
-#: src/features/system/settings.tsx:452
-#: src/features/user/connected-accounts.tsx:761
+#: src/features/system/settings.tsx:454
+#: src/features/user/connected-accounts.tsx:760
 #: src/features/user/notifications.tsx:572
 msgid "Save"
 msgstr "Kaydet"
@@ -3098,10 +3210,14 @@ msgstr "Passkey adını kaydet"
 msgid "Save these codes"
 msgstr "Bu kodları kaydedin"
 
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:156
+msgid "Saving..."
+msgstr "Kaydediliyor..."
+
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx:175
 #: ../../../lib/web/src/components/filter-bar.tsx:32
 #: ../../../lib/web/src/components/header-search.tsx:22
-#: ../../../lib/web/src/components/search.tsx:18
+#: ../../../lib/web/src/components/search.tsx:17
 msgid "Search"
 msgstr "Ara"
 
@@ -3113,11 +3229,11 @@ msgstr "Arama başarısız"
 msgid "Search for a command to run..."
 msgstr "Çalıştırılacak bir komut arayın..."
 
-#: ../../../lib/web/src/components/place-picker.tsx:86
+#: ../../../lib/web/src/components/place-picker.tsx:73
 msgid "Search for a place"
 msgstr "Bir yer ara"
 
-#: ../../../lib/web/src/components/place-picker.tsx:50
+#: ../../../lib/web/src/components/place-picker.tsx:37
 msgid "Search for a place..."
 msgstr "Bir yer arayın..."
 
@@ -3125,11 +3241,11 @@ msgstr "Bir yer arayın..."
 msgid "Search for a user..."
 msgstr "Kullanıcı ara..."
 
-#: ../../../lib/web/src/components/travelling-picker.tsx:250
+#: ../../../lib/web/src/components/travelling-picker.tsx:231
 msgid "Search for destination..."
 msgstr "Hedef ara..."
 
-#: ../../../lib/web/src/components/travelling-picker.tsx:183
+#: ../../../lib/web/src/components/travelling-picker.tsx:164
 msgid "Search for origin..."
 msgstr "Kaynak ara..."
 
@@ -3159,8 +3275,8 @@ msgstr "Bu görünümü arayın, izleyin ve sıralayın."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx:179
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx:255
-#: ../../../lib/web/src/components/inline-entity-search.tsx:63
-#: ../../../lib/web/src/components/person-picker.tsx:324
+#: ../../../lib/web/src/components/inline-entity-search.tsx:64
+#: ../../../lib/web/src/components/person-picker.tsx:300
 #: ../../../lib/web/src/components/search-entity-page.tsx:72
 msgid "Search..."
 msgstr "Ara..."
@@ -3171,11 +3287,11 @@ msgstr "Ara..."
 msgid "Searching..."
 msgstr "Aranıyor..."
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:141
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts:16
 msgid "Select"
 msgstr "Seç"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:356
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:359
 msgid "Select a field"
 msgstr "Bir alan seç"
 
@@ -3209,7 +3325,7 @@ msgstr "Bir varlık seç..."
 msgid "Select group"
 msgstr "Grup seç"
 
-#: ../../../lib/web/src/components/place-picker.tsx:49
+#: ../../../lib/web/src/components/place-picker.tsx:36
 msgid "Select location"
 msgstr "Konum seç"
 
@@ -3217,7 +3333,7 @@ msgstr "Konum seç"
 msgid "Select next card"
 msgstr "Sonraki kartı seç"
 
-#: ../../../lib/web/src/components/person-picker.tsx:83
+#: ../../../lib/web/src/components/person-picker.tsx:70
 msgid "Select person..."
 msgstr "Kişi seçin..."
 
@@ -3235,8 +3351,8 @@ msgstr "Yönlendirilecek uygulamayı seç"
 msgid "Select the entity to route to"
 msgstr "Yönlendirilecek varlığı seç"
 
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:257
-#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:340
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:289
+#: ../../../lib/web/src/components/entity/entity-field-editor.tsx:381
 #: src/components/combo-select.tsx:43
 msgid "Select..."
 msgstr "Seç..."
@@ -3250,7 +3366,7 @@ msgstr "Seçili: <0>{0}</0>"
 msgid "Send again"
 msgstr "Tekrar gönder"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:310
+#: ../../../lib/web/src/components/step-up-dialog.tsx:298
 msgid "Send email"
 msgstr "E-posta gönder"
 
@@ -3278,11 +3394,11 @@ msgstr "Sunucu kuralları"
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "Kullanıcılarınıza gösterilen sunucu kuralları, şartlar ve gizlilik bildirimi"
 
-#: src/features/system/settings.tsx:76
+#: src/features/system/settings.tsx:78
 msgid "Server started"
 msgstr "Sunucu başlatıldı"
 
-#: src/features/system/settings.tsx:77
+#: src/features/system/settings.tsx:79
 msgid "Server version"
 msgstr "Sunucu sürümü"
 
@@ -3310,7 +3426,7 @@ msgstr "Oturumlar"
 msgid "Sessions for {0}"
 msgstr "{0} oturumları"
 
-#: ../../../lib/web/src/components/travelling-picker.tsx:147
+#: ../../../lib/web/src/components/travelling-picker.tsx:128
 msgid "Set origin and destination"
 msgstr "Başlangıç ve hedef belirle"
 
@@ -3318,7 +3434,7 @@ msgstr "Başlangıç ve hedef belirle"
 msgid "Set up"
 msgstr "Kur"
 
-#: src/features/system/settings.tsx:514
+#: src/features/system/settings.tsx:516
 msgid "Setting updated"
 msgstr "Ayar güncellendi"
 
@@ -3331,11 +3447,11 @@ msgstr "Ayar güncellendi"
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:327
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:330
 msgid "Show classes"
 msgstr "Sınıfları göster"
 
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:428
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:431
 msgid "Show fields"
 msgstr "Alanları göster"
 
@@ -3350,7 +3466,7 @@ msgstr "Bu yardımı göster"
 msgid "Showing {0}-{1} of {2} users"
 msgstr "{2} kullanıcının {0}-{1} arası gösteriliyor"
 
-#: ../../../lib/web/src/components/ui/load-more.tsx:39
+#: ../../../lib/web/src/components/ui/load-more.tsx:43
 msgid "Showing {totalShown} of {total}"
 msgstr "{total} öğenin {totalShown} tanesi gösteriliyor"
 
@@ -3358,17 +3474,21 @@ msgstr "{total} öğenin {totalShown} tanesi gösteriliyor"
 msgid "Sidebar"
 msgstr "Kenar çubuğu"
 
+#: ../../../lib/web/src/features/errors/access-denied-error.tsx:18
+msgid "Sign in with an account that has access <0/> to this resource."
+msgstr "Bu kaynağa <0/> erişimi olan bir hesapla oturum açın."
+
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:131
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:137
 msgid "Sign out"
 msgstr "Oturumu kapat"
 
-#: ../../../lib/web/src/components/layout/authenticated-layout.tsx:134
+#: ../../../lib/web/src/components/layout/authenticated-layout.tsx:133
 msgid "Signing out..."
 msgstr "Çıkış yapılıyor..."
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:161
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:179
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:163
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:183
 msgid "Single line of text only"
 msgstr "Yalnızca tek satır metin"
 
@@ -3389,7 +3509,7 @@ msgstr "Kaynaklar"
 msgid "Spacious"
 msgstr "Geniş"
 
-#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:323
+#: ../../../lib/web/src/components/entity/entity-comment-list.tsx:325
 msgid "Start the discussion by adding the first comment."
 msgstr "İlk yorumu ekleyerek tartışmayı başlat."
 
@@ -3403,7 +3523,7 @@ msgstr "Başladı"
 #: src/features/system/status.tsx:57
 #: src/features/system/status.tsx:196
 #: src/features/system/users.tsx:697
-#: src/features/user/connected-accounts.tsx:598
+#: src/features/user/connected-accounts.tsx:597
 msgid "Status"
 msgstr "Durum"
 
@@ -3411,16 +3531,16 @@ msgstr "Durum"
 msgid "Subject"
 msgstr "Konu"
 
-#: ../../../lib/web/src/components/comment-composer.tsx:427
+#: ../../../lib/web/src/components/comment-composer.tsx:430
 msgid "Submit comment"
 msgstr "Yorum gönder"
 
-#: ../../../lib/web/src/components/comment-composer.tsx:426
+#: ../../../lib/web/src/components/comment-composer.tsx:429
 msgid "Submit reply"
 msgstr "Yanıt gönder"
 
-#: ../../../lib/web/src/components/inline-entity-search.tsx:66
-#: ../../../lib/web/src/components/recommended-entities.tsx:58
+#: ../../../lib/web/src/components/inline-entity-search.tsx:67
+#: ../../../lib/web/src/components/recommended-entities.tsx:59
 #: ../../../lib/web/src/components/search-entity-page.tsx:74
 msgid "Subscribe"
 msgstr "Abone ol"
@@ -3473,21 +3593,21 @@ msgid "System"
 msgstr "Sistem"
 
 #: src/components/layout/data/sidebar-data.ts:43
-#: src/features/system/settings.tsx:500
-#: src/features/system/settings.tsx:569
+#: src/features/system/settings.tsx:502
+#: src/features/system/settings.tsx:571
 msgid "System settings"
 msgstr "Sistem ayarları"
 
-#: ../../../lib/web/src/components/post-tags.tsx:76
+#: ../../../lib/web/src/components/post-tags.tsx:77
 msgid "Tag already exists"
 msgstr "Etiket zaten mevcut"
 
-#: ../../../lib/web/src/components/post-tags.tsx:68
+#: ../../../lib/web/src/components/post-tags.tsx:69
 msgid "Tag must be 50 characters or less"
 msgstr "Etiket en fazla 50 karakter olmalıdır"
 
-#: ../../../lib/web/src/components/post-tags.tsx:101
-#: ../../../lib/web/src/components/post-tags.tsx:115
+#: ../../../lib/web/src/components/post-tags.tsx:102
+#: ../../../lib/web/src/components/post-tags.tsx:116
 msgid "Tags"
 msgstr "Etiketler"
 
@@ -3516,7 +3636,7 @@ msgstr "Test başarısız"
 msgid "Test sent to {sent} of {total} destinations"
 msgstr "Test {total} hedeften {sent} tanesine gönderildi"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:142
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts:17
 msgid "Text"
 msgstr "Metin"
 
@@ -3524,7 +3644,7 @@ msgstr "Metin"
 msgid "That account is already linked to another user"
 msgstr "Bu hesap zaten başka bir kullanıcıya bağlı"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:193
+#: ../../../lib/web/src/components/step-up-dialog.tsx:181
 msgid "That code is incorrect or has expired."
 msgstr "Bu kod yanlış veya süresi dolmuş."
 
@@ -3545,7 +3665,7 @@ msgstr "Yüklemek için çok büyüktü. Dosyaları kaldırın veya küçültün
 msgid "The \"No notifications\" category silences any topic assigned to it."
 msgstr "\"Bildirim yok\" kategorisi, kendisine atanan tüm konuları susturur."
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:68
+#: ../../../lib/web/src/features/errors/general-error.tsx:66
 msgid "The requested content could not be found."
 msgstr "İstenen içerik bulunamadı."
 
@@ -3563,7 +3683,7 @@ msgstr "Tema"
 msgid "Theme updated"
 msgstr "Tema güncellendi"
 
-#: src/features/system/settings.tsx:585
+#: src/features/system/settings.tsx:587
 #: src/features/user/login.tsx:130
 #: src/features/user/login.tsx:874
 msgid "Third-party login"
@@ -3620,13 +3740,13 @@ msgstr "Bu işlem \"{1}\" yolundaki {0} delegasyonunu kaldıracak."
 msgid "This will remove the route for path \"{0}\"."
 msgstr "Bu işlem \"{0}\" yolundaki rotayı kaldıracak."
 
-#: src/features/system/settings.tsx:478
+#: src/features/system/settings.tsx:480
 msgid "This will reset \"{settingNameLabel}\" to its default (empty)."
 msgstr "Bu işlem \"{settingNameLabel}\" öğesini varsayılana (boş) sıfırlayacak."
 
-#: src/features/system/settings.tsx:316
-#: src/features/system/settings.tsx:358
-#: src/features/system/settings.tsx:477
+#: src/features/system/settings.tsx:318
+#: src/features/system/settings.tsx:360
+#: src/features/system/settings.tsx:479
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Bu işlem \"{settingNameLabel}\" öğesini varsayılan değere ({defaultLabel}) sıfırlayacak."
 
@@ -3658,26 +3778,28 @@ msgstr "Saat dilimi"
 msgid "Timestamps"
 msgstr "Zaman damgaları"
 
-#: ../../../lib/web/src/components/travelling-picker.tsx:220
+#: ../../../lib/web/src/components/travelling-picker.tsx:201
 msgid "To"
 msgstr "Nereye"
 
-#: ../../../lib/web/src/components/layout/nav-group.tsx:365
-#: ../../../lib/web/src/components/layout/nav-group.tsx:372
-#: ../../../lib/web/src/components/layout/nav-group.tsx:490
-#: ../../../lib/web/src/components/layout/nav-group.tsx:497
+#: ../../../lib/web/src/components/layout/nav-group.tsx:393
+#: ../../../lib/web/src/components/layout/nav-group.tsx:400
+#: ../../../lib/web/src/components/layout/nav-group.tsx:522
+#: ../../../lib/web/src/components/layout/nav-group.tsx:529
 msgid "Toggle section"
 msgstr "Bölümü aç/kapat"
 
 #: ../../../lib/web/src/components/ui/sidebar.tsx:337
 #: ../../../lib/web/src/components/ui/sidebar.tsx:340
+#: ../../../lib/web/src/components/ui/sidebar.tsx:352
+#: ../../../lib/web/src/components/ui/sidebar.tsx:355
 msgid "Toggle sidebar"
 msgstr "Kenar çubuğunu aç/kapat"
 
 #: ../../../lib/web/src/components/ui/sidebar.tsx:352
 #: ../../../lib/web/src/components/ui/sidebar.tsx:355
-msgid "Toggle Sidebar"
-msgstr "Kenar çubuğunu aç/kapat"
+#~ msgid "Toggle Sidebar"
+#~ msgstr "Kenar çubuğunu aç/kapat"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx:26
 msgid "Toggle view options"
@@ -3688,7 +3810,7 @@ msgstr "Görünüm seçeneklerini aç/kapat"
 msgid "Toggle watched filter"
 msgstr "İzlenen filtresini aç/kapat"
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:74
+#: ../../../lib/web/src/features/errors/general-error.tsx:72
 msgid "Too many requests"
 msgstr "Çok fazla istek"
 
@@ -3700,7 +3822,7 @@ msgstr "Üst"
 msgid "Topics"
 msgstr "Konular"
 
-#: ../../../lib/web/src/components/travelling-picker.tsx:145
+#: ../../../lib/web/src/components/travelling-picker.tsx:126
 msgid "Travelling"
 msgstr "Yolda"
 
@@ -3712,8 +3834,8 @@ msgstr "Arama kriterlerini ayarlamayı dene"
 msgid "Try adjusting your search terms"
 msgstr "Arama terimlerini ayarlamayı dene"
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:140
-#: ../../../lib/web/src/features/errors/general-error.tsx:180
+#: ../../../lib/web/src/features/errors/general-error.tsx:138
+#: ../../../lib/web/src/features/errors/general-error.tsx:178
 msgid "Try again"
 msgstr "Tekrar dene"
 
@@ -3733,13 +3855,13 @@ msgstr "Otomatik sertifikalar kapatılsın mı?"
 msgid "TXT record not found"
 msgstr "TXT kaydı bulunamadı"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:130
-#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:162
-#: src/features/user/connected-accounts.tsx:597
+#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:134
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:166
+#: src/features/user/connected-accounts.tsx:596
 msgid "Type"
 msgstr "Tür"
 
-#: ../../../lib/web/src/components/command-menu.tsx:52
+#: ../../../lib/web/src/components/command-menu.tsx:54
 msgid "Type a command or search..."
 msgstr "Bir komut yaz veya ara..."
 
@@ -3759,8 +3881,8 @@ msgstr "Aramak için yaz..."
 msgid "Unable to connect to remote server"
 msgstr "Uzak sunucuya bağlanılamadı"
 
-#: ../../../lib/web/src/lib/auth-manager.ts:92
-#: ../../../lib/web/src/lib/auth-manager.ts:104
+#: ../../../lib/web/src/lib/auth-manager.ts:89
+#: ../../../lib/web/src/lib/auth-manager.ts:101
 msgid "Unable to redirect to login. Please try again."
 msgstr "Giriş sayfasına yönlendirilemedi. Lütfen tekrar dene."
 
@@ -3770,15 +3892,15 @@ msgid "Unassigned"
 msgstr "Atanmamış"
 
 #: ../../../lib/web/src/features/errors/unauthorized-error.tsx:16
-msgid "Unauthorized Access"
-msgstr "Yetkisiz erişim"
+#~ msgid "Unauthorized Access"
+#~ msgstr "Yetkisiz erişim"
 
 #: ../../../lib/web/src/components/attachment-image.tsx:50
 msgid "Unavailable"
 msgstr "Kullanılamıyor"
 
 #: ../../../lib/web/src/lib/request.ts:133
-#: ../../../lib/web/src/lib/request.ts:206
+#: ../../../lib/web/src/lib/request.ts:209
 msgid "Unexpected API error"
 msgstr "Beklenmeyen API hatası"
 
@@ -3790,6 +3912,11 @@ msgstr "Amerika Birleşik Devletleri"
 msgid "Units"
 msgstr "Birimler"
 
+#: ../../../lib/web/src/components/audit-timeline.tsx:103
+#: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:167
+#: ../../../lib/web/src/components/tree-row.tsx:219
+#: ../../../lib/web/src/components/tree-row.tsx:373
+#: ../../../lib/web/src/components/tree-table-header.tsx:70
 #: ../../../lib/web/src/features/accounts/types.ts:29
 #: src/features/system/status.tsx:148
 #: src/features/system/status.tsx:149
@@ -3826,7 +3953,7 @@ msgstr "Erişilemiyor"
 msgid "Unsubscribe"
 msgstr "Aboneliği iptal et"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:285
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:299
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx:103
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx:184
 msgid "Untitled"
@@ -3840,13 +3967,18 @@ msgstr "Doğrulanmamış"
 msgid "Update"
 msgstr "Güncelle"
 
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:56
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx:57
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:494
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:499
 msgid "Updated"
 msgstr "Güncellendi"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:639
-#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:301
+#: ../../../lib/web/src/components/entity/entity-activity-list.tsx:56
+msgid "Updated {field}"
+msgstr "{field} güncellendi"
+
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:661
+#: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:304
 msgid "Upload"
 msgstr "Yükle"
 
@@ -3867,13 +3999,13 @@ msgstr "Joker karakter alan adları için *.domain.com kullan"
 msgid "Use a security key, fingerprint, or face recognition."
 msgstr "Bir güvenlik anahtarı, parmak izi veya yüz tanıma kullan."
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:341
+#: ../../../lib/web/src/components/step-up-dialog.tsx:329
 msgid "Use your passkey"
 msgstr "Geçiş anahtarınızı kullanın"
 
-#: ../../../lib/web/src/components/entity/add-field-dialog.tsx:143
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx:112
 #: ../../../lib/web/src/features/access/access-dialog.tsx:158
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts:18
 #: src/features/domains/index.tsx:644
 #: src/features/domains/index.tsx:1108
 #: src/features/system/users.tsx:138
@@ -3887,7 +4019,7 @@ msgstr "Kullanıcı"
 msgid "User created"
 msgstr "Kullanıcı oluşturuldu"
 
-#: src/features/system/settings.tsx:592
+#: src/features/system/settings.tsx:594
 msgid "User defaults"
 msgstr "Kullanıcı varsayılanları"
 
@@ -3919,6 +4051,10 @@ msgstr "Kullanıcılar"
 msgid "Using bundled default"
 msgstr "Paket varsayılanı kullanılıyor"
 
+#: ../../../lib/web/src/components/ai-prompts-editor.tsx:159
+msgid "Variables: {variables}"
+msgstr "Değişkenler: {variables}"
+
 #: ../../../lib/web/src/features/accounts/account-verify.tsx:73
 msgid "Verification code"
 msgstr "Doğrulama kodu"
@@ -3937,7 +4073,7 @@ msgstr "Doğrulama başarısız"
 msgid "Verified"
 msgstr "Doğrulandı"
 
-#: ../../../lib/web/src/components/step-up-dialog.tsx:391
+#: ../../../lib/web/src/components/step-up-dialog.tsx:379
 #: ../../../lib/web/src/features/accounts/account-verify.tsx:111
 #: src/features/user/connected-accounts.tsx:343
 msgid "Verify"
@@ -3963,17 +4099,17 @@ msgstr "Sürüm"
 msgid "Via relay"
 msgstr "Aktarıcı üzerinden"
 
-#: ../../../lib/web/src/components/attachment-gallery.tsx:95
+#: ../../../lib/web/src/components/attachment-gallery.tsx:96
 msgid "Video thumbnail"
 msgstr "Video küçük resmi"
 
 #. placeholder {0}: currentMedia.name
-#: ../../../lib/web/src/components/ui/image-lightbox.tsx:315
+#: ../../../lib/web/src/components/ui/image-lightbox.tsx:326
 msgid "Video viewer: {0}"
 msgstr "Video görüntüleyici: {0}"
 
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:220
-#: ../../../lib/web/src/components/layout/notification-menu.tsx:228
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:216
+#: ../../../lib/web/src/components/layout/notification-menu.tsx:224
 msgid "View all notifications"
 msgstr "Tüm bildirimleri görüntüle"
 
@@ -4012,15 +4148,15 @@ msgstr "Çarşamba"
 msgid "Week starts on"
 msgstr "Hafta başlangıcı"
 
-#: src/features/system/settings.tsx:69
+#: src/features/system/settings.tsx:71
 msgid "X client ID"
 msgstr "X istemci kimliği"
 
-#: src/features/system/settings.tsx:70
+#: src/features/system/settings.tsx:72
 msgid "X client secret"
 msgstr "X istemci gizli anahtarı"
 
-#: ../../../lib/web/src/features/errors/general-error.tsx:61
+#: ../../../lib/web/src/features/errors/general-error.tsx:59
 msgid "You do not have access to this section."
 msgstr "Bu bölüme erişiminiz yok."
 
@@ -4033,7 +4169,7 @@ msgstr "Hiçbir alan adına erişimin yok."
 msgid "You won't be able to sign in with {0} anymore. Make sure you still have another way to log in."
 msgstr "Artık {0} ile giriş yapamayacaksın. Hâlâ giriş yapmak için başka bir yolun olduğundan emin ol."
 
-#: ../../../lib/web/src/components/restore-banner.tsx:100
+#: ../../../lib/web/src/components/restore-banner.tsx:86
 msgid "Your account was moved here from {source}. Until you delete it there, messages and notifications may reach both servers, some of your content keeps being served from the old server, and followers may take a few minutes to find you here."
 msgstr "Hesabınız {source} adresinden buraya taşındı. Orada silene kadar mesajlar ve bildirimler her iki sunucuya da ulaşabilir, bazı içerikleriniz eski sunucudan sunulmaya devam eder ve takipçileriniz sizi burada bulmak için birkaç dakika bekleyebilir."
 
