@@ -393,12 +393,12 @@ function CategoryRow({
       if (d.type === 'web') labels.push(t`Web browser`)
       else if (d.type === 'device') {
         const name = deviceLabel(d.target)
-        if (name !== undefined) labels.push(t`${name || t`Device`} app`)
+        if (name !== undefined) labels.push(t`${name || t`Device`} · app`)
       } else if (d.type === 'account') {
         const acc = available.accounts.find((a) => String(a.id) === d.target)
         if (!acc) continue
         const name = acc.device ? deviceLabel(acc.device) : undefined
-        labels.push(name !== undefined ? t`${name || t`Device`} push` : accountDisplayName(acc))
+        labels.push(name !== undefined ? t`${name || t`Device`} · push` : accountDisplayName(acc))
       } else if (d.type === 'rss') {
         const feed = available.feeds.find((x) => x.id === d.target)
         if (feed && feed.name) labels.push(feed.name)
@@ -593,16 +593,16 @@ function DestinationsGrid({
   const { t } = useLingui()
   type Row = { key: string; label: string }
   // Every destination is one row named for what it is: the browser's bell, a
-  // device's in-app list ("S24U app"), the push account registered from a
-  // device ("S24U push"), a push account bound to no device, or a feed. One
+  // device's in-app list ("S24U · app"), the push account registered from a
+  // device ("S24U · push"), a push account bound to no device, or a feed. One
   // flat list sorted by name, which also keeps a device's rows together.
   const rows: Row[] = [{ key: destKey('web', ''), label: t`Web browser` }]
   const bound = new Set(available.devices.map((d) => d.id))
   for (const dev of available.devices) {
     const name = dev.label || t`Device`
-    rows.push({ key: destKey('device', dev.id), label: t`${name} app` })
+    rows.push({ key: destKey('device', dev.id), label: t`${name} · app` })
     for (const acc of available.accounts) {
-      if (acc.device === dev.id) rows.push({ key: destKey('account', String(acc.id)), label: t`${name} push` })
+      if (acc.device === dev.id) rows.push({ key: destKey('account', String(acc.id)), label: t`${name} · push` })
     }
   }
   for (const acc of available.accounts) {
