@@ -107,10 +107,10 @@ export function colorThemeFromSelections(
     return {
       hue: String(theme.hue),
       chroma: String(theme.chroma),
-      hueBg: String(theme.hue_bg),
+      background: String(theme.hue_bg),
       overrides,
     }
   }
   if (Object.keys(overrides).length === 0) return null
-  return { hue: '', chroma: '', hueBg: '', overrides }
+  return { hue: '', chroma: '', background: '', overrides }
 }
