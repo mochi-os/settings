@@ -243,6 +243,10 @@ msgstr "Λειτουργία ως αναμεταδότης για μη προσ�
 msgid "Actions"
 msgstr "Ενέργειες"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:415
+msgid "Activity"
+msgstr "Δραστηριότητα"
+
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx:758
 #: ../../../lib/web/src/features/access/access-dialog.tsx:332
 #: ../../../lib/web/src/features/accounts/account-add.tsx:209
@@ -312,7 +316,7 @@ msgstr "Προσθήκη πεδίου"
 msgid "Add item..."
 msgstr "Προσθήκη στοιχείου..."
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:320
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:314
 msgid "Add link"
 msgstr "Προσθήκη συνδέσμου"
 
@@ -453,6 +457,10 @@ msgstr "Εμφάνιση"
 msgid "Are you sure you want to delete \"{0}\"?"
 msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε \"{0}\";"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:671
+msgid "Are you sure you want to delete \"{title}\"? This action cannot be undone."
+msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε \"{title}\"; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί."
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx:631
 msgid "Are you sure you want to delete the \"{name}\" column? This cannot be undone."
 msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε τη στήλη \"{name}\"; Αυτό δεν μπορεί να αναιρεθεί."
@@ -464,6 +472,14 @@ msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε 
 #: ../../../lib/web/src/components/sign-out-dialog.tsx:27
 msgid "Are you sure you want to log out? You will need to log in again to access your account."
 msgstr "Είστε βέβαιοι ότι θέλετε να αποσυνδεθείτε; Θα πρέπει να συνδεθείτε ξανά για να αποκτήσετε πρόσβαση στον λογαριασμό σας."
+
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:39
+msgid "Are you sure you want to resign?"
+msgstr "Είστε σίγουροι ότι θέλετε να εγκαταλείψετε;"
+
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:38
+msgid "Are you sure you want to resign? {opponentName} will win the game."
+msgstr "Είστε σίγουροι ότι θέλετε να παραιτηθείτε; Ο/Η {opponentName} θα κερδίσει την παρτίδα."
 
 #: ../../../lib/web/src/components/ui/sort-direction-button.tsx:27
 msgid "Ascending"
@@ -532,12 +548,21 @@ msgstr "Επιστροφή στην αρχή"
 msgid "Background"
 msgstr "Φόντο"
 
+#: ../../../lib/web/src/components/banner-section.tsx:80
 #: ../../../lib/web/src/components/entity-banner.tsx:17
 msgid "Banner"
 msgstr "Μπάνερ"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:68
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:215
+#: ../../../lib/web/src/components/banner-section.tsx:69
+msgid "Banner removed"
+msgstr "Το banner αφαιρέθηκε"
+
+#: ../../../lib/web/src/components/banner-section.tsx:69
+msgid "Banner updated"
+msgstr "Το banner ενημερώθηκε"
+
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:72
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:209
 msgid "Blocked by"
 msgstr "Αποκλείεται από"
 
@@ -546,7 +571,7 @@ msgstr "Αποκλείεται από"
 msgid "Blocked navigation to untrusted link"
 msgstr "Αποκλείστηκε η πλοήγηση σε μη αξιόπιστο σύνδεσμο"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:66
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:70
 msgid "Blocks"
 msgstr "Αποκλείει"
 
@@ -688,6 +713,7 @@ msgstr "Επιλογή αρχείου"
 msgid "Choose language"
 msgstr "Επιλογή γλώσσας"
 
+#: ../../../lib/web/src/components/banner-section.tsx:111
 #: ../../../lib/web/src/components/colour-picker.tsx:274
 #: ../../../lib/web/src/components/colour-picker.tsx:355
 #: ../../../lib/web/src/components/travelling-picker.tsx:145
@@ -707,8 +733,8 @@ msgstr "Εκκαθάριση όλων"
 msgid "Clear search"
 msgstr "Εκκαθάριση αναζήτησης"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:523
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:528
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:517
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:522
 #: ../../../lib/web/src/components/ui/dialog.tsx:78
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:480
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:483
@@ -797,6 +823,11 @@ msgstr "Ενέργειες σχολίου"
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:455
 msgid "Comments"
 msgstr "Σχόλια"
+
+#. placeholder {0}: data.comment_count || 0
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:411
+msgid "Comments ({0})"
+msgstr "Σχόλια ({0})"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:90
 msgid "Compact"
@@ -922,8 +953,8 @@ msgstr "Δεν ήταν δυνατή η επαλήθευση με αυτόν τ�
 
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx:551
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx:691
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:513
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:682
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:507
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:676
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx:672
 msgid "Create"
 msgstr "Δημιουργία"
@@ -957,7 +988,7 @@ msgstr "Δημιουργήθηκε"
 msgid "Created {field}"
 msgstr "Δημιουργήθηκε {field}"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:682
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:676
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:260
 msgid "Creating..."
 msgstr "Δημιουργία..."
@@ -1051,6 +1082,8 @@ msgstr "Αναθέσεις"
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:208
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:255
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:317
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:672
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:78
 #: src/features/domains/index.tsx:760
 #: src/features/domains/index.tsx:816
 #: src/features/domains/index.tsx:1152
@@ -1099,6 +1132,16 @@ msgstr "Διαγραφή τομέα;"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:304
 msgid "Delete field"
 msgstr "Διαγραφή πεδίου"
+
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:69
+msgid "Delete game?"
+msgstr "Διαγραφή παιχνιδιού;"
+
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:486
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:491
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:670
+msgid "Delete item"
+msgstr "Διαγραφή στοιχείου"
 
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:117
 msgid "Delete option"
@@ -1151,6 +1194,7 @@ msgstr "Διαγράφηκε"
 msgid "Deleted {field}"
 msgstr "Διαγράφηκε {field}"
 
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:75
 #: src/features/system/users.tsx:541
 msgid "Deleting..."
 msgstr "Διαγραφή..."
@@ -1308,6 +1352,7 @@ msgid "Domains"
 msgstr "Τομείς"
 
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:309
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:495
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:523
 #: src/features/user/login.tsx:678
 msgid "Done"
@@ -1343,7 +1388,7 @@ msgstr "Λήψη Mochi {latest} και επανεκκίνηση του διακ�
 msgid "Download your data"
 msgstr "Λήψη των δεδομένων σας"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:67
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:71
 msgid "Duplicates"
 msgstr "Διπλότυπο"
 
@@ -1439,6 +1484,10 @@ msgstr "Η κενή διαδρομή παρέχει πλήρη πρόσβαση 
 msgid "Enabled"
 msgstr "Ενεργοποιημένο"
 
+#: ../../../lib/web/src/components/banner-section.tsx:88
+msgid "Enter banner text (markdown supported)..."
+msgstr "Εισαγάγετε κείμενο μπάνερ (υποστηρίζεται markdown)..."
+
 #: src/features/user/data.tsx:153
 msgid "Enter or generate a passphrase"
 msgstr "Εισάγετε ή δημιουργήστε μια φράση πρόσβασης"
@@ -1459,6 +1508,10 @@ msgstr "Οντότητες"
 #: src/features/domains/index.tsx:459
 msgid "Entity"
 msgstr "Οντότητα"
+
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:381
+msgid "Error"
+msgstr "Σφάλμα"
 
 #: src/features/domains/index.tsx:121
 msgid "example.com or *.example.com"
@@ -1517,7 +1570,7 @@ msgstr "Αποτυχία δημιουργίας ανάθεσης"
 msgid "Failed to create domain"
 msgstr "Αποτυχία δημιουργίας τομέα"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:137
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:131
 #: ../../../lib/web/src/components/options-menu.tsx:98
 msgid "Failed to create link"
 msgstr "Αποτυχία δημιουργίας συνδέσμου"
@@ -1529,6 +1582,10 @@ msgstr "Αποτυχία δημιουργίας διαδρομής"
 #: src/features/system/users.tsx:99
 msgid "Failed to create user"
 msgstr "Αποτυχία δημιουργίας χρήστη"
+
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:303
+msgid "Failed to delete"
+msgstr "Αποτυχία διαγραφής"
 
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:130
 msgid "Failed to delete attachment"
@@ -1550,7 +1607,7 @@ msgstr "Αποτυχία διαγραφής ανάθεσης"
 msgid "Failed to delete domain"
 msgstr "Αποτυχία διαγραφής τομέα"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:159
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:153
 msgid "Failed to delete link"
 msgstr "Αποτυχία διαγραφής συνδέσμου"
 
@@ -1600,6 +1657,11 @@ msgstr "Αποτυχία φόρτωσης ιστορικού"
 msgid "Failed to load image"
 msgstr "Αποτυχία φόρτωσης εικόνας"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:382
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:385
+msgid "Failed to load item"
+msgstr "Αποτυχία φόρτωσης στοιχείου"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx:213
 msgid "Failed to load prompts"
 msgstr "Αποτυχία φόρτωσης προτροπών"
@@ -1607,6 +1669,10 @@ msgstr "Αποτυχία φόρτωσης προτροπών"
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:350
 msgid "Failed to load video"
 msgstr "Αποτυχία φόρτωσης βίντεο"
+
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:317
+msgid "Failed to move"
+msgstr "Αποτυχία μετακίνησης"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx:155
 msgid "Failed to post comment"
@@ -1657,6 +1723,10 @@ msgstr "Αποτυχία ανάκλησης πρόσβασης RSS"
 msgid "Failed to revoke session"
 msgstr "Αποτυχία ανάκλησης συνεδρίας"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:273
+msgid "Failed to save"
+msgstr "Αποτυχία αποθήκευσης"
+
 #: src/features/user/notifications.tsx:522
 msgid "Failed to save category"
 msgstr "Αποτυχία αποθήκευσης κατηγορίας"
@@ -1685,6 +1755,10 @@ msgstr "Αποτυχία ρύθμισης εφαρμογής ταυτοποίη�
 #: src/features/user/connected-accounts.tsx:544
 msgid "Failed to update account"
 msgstr "Αποτυχία ενημέρωσης λογαριασμού"
+
+#: ../../../lib/web/src/components/banner-section.tsx:71
+msgid "Failed to update banner"
+msgstr "Αποτυχία ενημέρωσης μπάνερ"
 
 #: src/features/user/notifications.tsx:241
 msgid "Failed to update browser notifications"
@@ -1749,6 +1823,10 @@ msgstr "Αποτυχία ενημέρωσης χρήστη"
 msgid "Failed to update user status"
 msgstr "Αποτυχία ενημέρωσης κατάστασης χρήστη"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:288
+msgid "Failed to update watching"
+msgstr "Αποτυχία ενημέρωσης παρακολούθησης"
+
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:114
 msgid "Failed to upload attachment"
 msgstr "Αποτυχία μεταφόρτωσης συνημμένου"
@@ -1761,7 +1839,7 @@ msgstr "Αποτυχία επαλήθευσης κωδικού"
 msgid "Failed to verify domain"
 msgstr "Αποτυχία επαλήθευσης τομέα"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:611
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:605
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:160
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:180
 msgid "Files"
@@ -1990,6 +2068,10 @@ msgstr "Διεύθυνση IP"
 msgid "It seems like the page you're looking for <0/>does not exist or might have been removed."
 msgstr "Φαίνεται ότι η σελίδα που αναζητάτε <0/>δεν υπάρχει ή έχει καταργηθεί."
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:441
+msgid "Item details"
+msgstr "Λεπτομέρειες στοιχείου"
+
 #: ../../../lib/web/src/lib/locale-format.ts:180
 msgid "Just now"
 msgstr "Μόλις τώρα"
@@ -2076,7 +2158,7 @@ msgstr "Σύνδεση λογαριασμού"
 msgid "Linked {label}"
 msgstr "Συνδέθηκε {label}"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:279
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:273
 msgid "Links"
 msgstr "Σύνδεσμοι"
 
@@ -2091,6 +2173,14 @@ msgstr "Φόρτωση περισσότερων"
 #: ../../../lib/web/src/components/ui/loading-content.tsx:26
 msgid "Loading content…"
 msgstr "Φόρτωση περιεχομένου…"
+
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:365
+msgid "Loading item"
+msgstr "Φόρτωση στοιχείου"
+
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:366
+msgid "Loading item details"
+msgstr "Φόρτωση λεπτομερειών στοιχείου"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx:39
 #: ../../../lib/web/src/features/document/document-page.tsx:88
@@ -2323,7 +2413,7 @@ msgstr "Σφάλμα δικτύου"
 msgid "Never"
 msgstr "Ποτέ"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:498
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:492
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:43
 msgid "New"
 msgstr "Νέο"
@@ -2346,7 +2436,7 @@ msgstr "Επόμενο"
 msgid "Next image"
 msgstr "Επόμενη εικόνα"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:577
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:571
 msgid "No {parentClassNames} to add to"
 msgstr "Δεν υπάρχουν {parentClassNames} για προσθήκη"
 
@@ -2417,11 +2507,11 @@ msgstr "Δεν υπάρχουν διαθέσιμες ομάδες"
 msgid "No interests yet"
 msgstr "Δεν υπάρχουν ακόμη ενδιαφέροντα"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:544
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:538
 msgid "No item types can be created yet. Create the required parent items first."
 msgstr "Δεν μπορούν να δημιουργηθούν ακόμη τύποι στοιχείων. Δημιουργήστε πρώτα τα απαιτούμενα γονικά στοιχεία."
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:360
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:354
 msgid "No matching objects"
 msgstr "Δεν υπάρχουν αντίστοιχα αντικείμενα"
 
@@ -2496,9 +2586,13 @@ msgid "No views"
 msgstr "Χωρίς προβολές"
 
 #: ../../../lib/web/src/components/colour-picker.tsx:349
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:560
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:563
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:567
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:554
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:557
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:561
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:557
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:570
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:571
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:575
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:362
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:385
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:388
@@ -2642,7 +2736,9 @@ msgstr "Άλλες ρυθμίσεις"
 msgid "Owner"
 msgstr "Ιδιοκτήτης"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:552
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:546
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:553
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:569
 msgid "Parent"
 msgstr "Γονικό"
 
@@ -2808,6 +2904,10 @@ msgstr "Γίνεται επεξεργασία…"
 msgid "Prompt saved"
 msgstr "Το prompt αποθηκεύτηκε"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:408
+msgid "Properties"
+msgstr "Ιδιότητες"
+
 #: src/features/user/login.tsx:892
 msgid "Provider"
 msgstr "Πάροχος"
@@ -2917,7 +3017,7 @@ msgstr "Καταχώρηση passkey"
 msgid "Registration cancelled"
 msgstr "Η εγγραφή ακυρώθηκε"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:65
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:69
 msgid "Relates"
 msgstr "Σχετίζεται"
 
@@ -2988,8 +3088,8 @@ msgstr "Αφαίρεση ενδιαφέροντος"
 msgid "Remove item"
 msgstr "Αφαίρεση στοιχείου"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:304
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:309
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:298
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:303
 msgid "Remove link"
 msgstr "Αφαίρεση συνδέσμου"
 
@@ -3077,6 +3177,18 @@ msgstr "Επαναφορά στις προεπιλογές;"
 #: src/features/user/preferences.tsx:192
 msgid "Reset to defaults"
 msgstr "Επαναφορά στις προεπιλογές"
+
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:48
+msgid "Resign"
+msgstr "Παραίτηση"
+
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:35
+msgid "Resign game?"
+msgstr "Παραίτηση από το παιχνίδι;"
+
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:45
+msgid "Resigning..."
+msgstr "Παραίτηση..."
 
 #: ../../../lib/web/src/components/attachment-composer.tsx:348
 msgid "Retry"
@@ -3177,6 +3289,7 @@ msgstr "Σάββατο"
 
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx:156
 #: ../../../lib/web/src/components/attachment-composer.tsx:430
+#: ../../../lib/web/src/components/banner-section.tsx:99
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:231
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:172
 #: ../../../lib/web/src/components/ui/editable-field-row.tsx:126
@@ -3240,7 +3353,7 @@ msgstr "Αναζήτηση για προορισμό..."
 msgid "Search for origin..."
 msgstr "Αναζήτηση για αφετηρία..."
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:337
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:331
 msgid "Search objects..."
 msgstr "Αναζήτηση αντικειμένων..."
 
@@ -3518,6 +3631,11 @@ msgstr "Ξεκίνησε"
 msgid "Status"
 msgstr "Κατάσταση"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:471
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:476
+msgid "Stop watching"
+msgstr "Διακοπή παρακολούθησης"
+
 #: ../../../lib/web/src/features/access/access-list.tsx:196
 msgid "Subject"
 msgstr "Θέμα"
@@ -3707,6 +3825,10 @@ msgstr "Πρόκειται για ένα πλήρες αντίγραφο ασφ�
 #: src/lib/use-step-up.tsx:37
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "Πρόκειται για αλλαγή ασφαλείας στον λογαριασμό σας. Επαληθεύστε την ταυτότητά σας για να συνεχίσετε."
+
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:70
+msgid "This permanently deletes the game and its chat. This cannot be undone."
+msgstr "Αυτό θα διαγράψει οριστικά το παιχνίδι και τη συνομιλία του. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί."
 
 #: src/features/system/users.tsx:349
 msgid "This user has no active sessions."
@@ -3955,9 +4077,8 @@ msgstr "Μη προσβάσιμο"
 msgid "Unsubscribe"
 msgstr "Διαγραφή εγγραφής"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:299
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:103
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:184
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:178
+#: ../../../lib/web/src/lib/entity-title.ts:40
 msgid "Untitled"
 msgstr "Χωρίς τίτλο"
 
@@ -3979,7 +4100,7 @@ msgstr "Ενημερώθηκε"
 msgid "Updated {field}"
 msgstr "Ενημερώθηκε {field}"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:661
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:655
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:304
 msgid "Upload"
 msgstr "Μεταφόρτωση"
@@ -4115,6 +4236,10 @@ msgstr "Προβολή βίντεο: {0}"
 msgid "View all notifications"
 msgstr "Προβολή όλων των ειδοποιήσεων"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:442
+msgid "View and edit item details"
+msgstr "Προβολή και επεξεργασία λεπτομερειών στοιχείου"
+
 #: src/features/system/users.tsx:305
 msgid "View and revoke active sessions for this user."
 msgstr "Προβολή και ανάκληση ενεργών συνεδριών για αυτόν τον χρήστη."
@@ -4126,6 +4251,11 @@ msgstr "Στοιχεία ελέγχου προβολής"
 #: ../../../lib/web/src/lib/shell-errors.ts:33
 msgid "Voice recording is not supported in this browser"
 msgstr "Η φωνητική εγγραφή δεν υποστηρίζεται σε αυτό το πρόγραμμα περιήγησης"
+
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:471
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:476
+msgid "Watch"
+msgstr "Παρακολούθηση"
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx:269
 #: ../../../lib/web/src/components/filter-bar.tsx:35

@@ -243,6 +243,10 @@ msgstr "அணுக முடியாத சேவையகங்களுக�
 msgid "Actions"
 msgstr "செயல்கள்"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:415
+msgid "Activity"
+msgstr "செயல்பாடு"
+
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx:758
 #: ../../../lib/web/src/features/access/access-dialog.tsx:332
 #: ../../../lib/web/src/features/accounts/account-add.tsx:209
@@ -312,7 +316,7 @@ msgstr "புலம் சேர்"
 msgid "Add item..."
 msgstr "உருப்படி சேர்..."
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:320
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:314
 msgid "Add link"
 msgstr "இணைப்பு சேர்"
 
@@ -453,6 +457,10 @@ msgstr "தோற்றம்"
 msgid "Are you sure you want to delete \"{0}\"?"
 msgstr "\"{0}\"-ஐ நீக்க விரும்புகிறீர்களா?"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:671
+msgid "Are you sure you want to delete \"{title}\"? This action cannot be undone."
+msgstr "\"{title}\"-ஐ நீக்க விரும்புகிறீர்களா? இந்த செயலை மாற்ற முடியாது."
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx:631
 msgid "Are you sure you want to delete the \"{name}\" column? This cannot be undone."
 msgstr "\"{name}\" நெடுவரிசையை நீக்க விரும்புகிறீர்களா? இதை மாற்ற முடியாது."
@@ -464,6 +472,14 @@ msgstr "இந்த கருத்தை நீக்க விரும்ப
 #: ../../../lib/web/src/components/sign-out-dialog.tsx:27
 msgid "Are you sure you want to log out? You will need to log in again to access your account."
 msgstr "வெளியேற விரும்புகிறீர்களா? உங்கள் கணக்கை அணுக மீண்டும் உள்நுழைய வேண்டும்."
+
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:39
+msgid "Are you sure you want to resign?"
+msgstr "நீங்கள் விட்டுக்கொடுக்க விரும்புகிறீர்களா?"
+
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:38
+msgid "Are you sure you want to resign? {opponentName} will win the game."
+msgstr "நீங்கள் சரணடைய விரும்புகிறீர்களா? {opponentName} விளையாட்டை வெல்வார்."
 
 #: ../../../lib/web/src/components/ui/sort-direction-button.tsx:27
 msgid "Ascending"
@@ -532,12 +548,21 @@ msgstr "முகப்புக்குத் திரும்பு"
 msgid "Background"
 msgstr "பின்னணி"
 
+#: ../../../lib/web/src/components/banner-section.tsx:80
 #: ../../../lib/web/src/components/entity-banner.tsx:17
 msgid "Banner"
 msgstr "பேனர்"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:68
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:215
+#: ../../../lib/web/src/components/banner-section.tsx:69
+msgid "Banner removed"
+msgstr "பேனர் அகற்றப்பட்டது"
+
+#: ../../../lib/web/src/components/banner-section.tsx:69
+msgid "Banner updated"
+msgstr "பேனர் புதுப்பிக்கப்பட்டது"
+
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:72
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:209
 msgid "Blocked by"
 msgstr "தடுக்கப்பட்டது"
 
@@ -546,7 +571,7 @@ msgstr "தடுக்கப்பட்டது"
 msgid "Blocked navigation to untrusted link"
 msgstr "நம்பகமற்ற இணைப்புக்கு வழிசெலுத்தல் தடுக்கப்பட்டது"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:66
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:70
 msgid "Blocks"
 msgstr "தடுக்கிறது"
 
@@ -688,6 +713,7 @@ msgstr "கோப்பைத் தேர்வுசெய்க"
 msgid "Choose language"
 msgstr "மொழியைத் தேர்ந்தெடுக்கவும்"
 
+#: ../../../lib/web/src/components/banner-section.tsx:111
 #: ../../../lib/web/src/components/colour-picker.tsx:274
 #: ../../../lib/web/src/components/colour-picker.tsx:355
 #: ../../../lib/web/src/components/travelling-picker.tsx:145
@@ -707,8 +733,8 @@ msgstr "அனைத்தையும் அழி"
 msgid "Clear search"
 msgstr "தேடலை அழி"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:523
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:528
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:517
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:522
 #: ../../../lib/web/src/components/ui/dialog.tsx:78
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:480
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:483
@@ -797,6 +823,11 @@ msgstr "கருத்து செயல்கள்"
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:455
 msgid "Comments"
 msgstr "கருத்துகள்"
+
+#. placeholder {0}: data.comment_count || 0
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:411
+msgid "Comments ({0})"
+msgstr "கருத்துகள் ({0})"
 
 #: ../../../lib/web/src/lib/preference-utils.ts:90
 msgid "Compact"
@@ -922,8 +953,8 @@ msgstr "அந்தக் கணக்கைச் சரிபார்க்�
 
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx:551
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx:691
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:513
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:682
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:507
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:676
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx:672
 msgid "Create"
 msgstr "உருவாக்கு"
@@ -957,7 +988,7 @@ msgstr "உருவாக்கப்பட்டது"
 msgid "Created {field}"
 msgstr "{field} உருவாக்கப்பட்டது"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:682
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:676
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx:260
 msgid "Creating..."
 msgstr "உருவாக்குகிறது..."
@@ -1051,6 +1082,8 @@ msgstr "பிரதிநிதித்துவங்கள்"
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:208
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:255
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:317
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:672
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:78
 #: src/features/domains/index.tsx:760
 #: src/features/domains/index.tsx:816
 #: src/features/domains/index.tsx:1152
@@ -1099,6 +1132,16 @@ msgstr "டொமைனை நீக்கவா?"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:304
 msgid "Delete field"
 msgstr "புலத்தை நீக்கு"
+
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:69
+msgid "Delete game?"
+msgstr "விளையாட்டை நீக்கவா?"
+
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:486
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:491
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:670
+msgid "Delete item"
+msgstr "உருப்படியை நீக்கு"
 
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:117
 msgid "Delete option"
@@ -1151,6 +1194,7 @@ msgstr "நீக்கப்பட்டது"
 msgid "Deleted {field}"
 msgstr "{field} நீக்கப்பட்டது"
 
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:75
 #: src/features/system/users.tsx:541
 msgid "Deleting..."
 msgstr "நீக்குகிறது..."
@@ -1308,6 +1352,7 @@ msgid "Domains"
 msgstr "டொமைன்கள்"
 
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx:309
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:495
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:523
 #: src/features/user/login.tsx:678
 msgid "Done"
@@ -1343,7 +1388,7 @@ msgstr "Mochi {latest} ஐ பதிவிறக்கி சேவையகத�
 msgid "Download your data"
 msgstr "உங்கள் தரவை பதிவிறக்கவும்"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:67
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:71
 msgid "Duplicates"
 msgstr "நகலெடுக்கிறது"
 
@@ -1439,6 +1484,10 @@ msgstr "காலியான பாதை முழு டொமைன் அ�
 msgid "Enabled"
 msgstr "இயக்கப்பட்டது"
 
+#: ../../../lib/web/src/components/banner-section.tsx:88
+msgid "Enter banner text (markdown supported)..."
+msgstr "பேனர் உரையை உள்ளிடவும் (மார்க்டவுன் ஆதரிக்கப்படுகிறது)..."
+
 #: src/features/user/data.tsx:153
 msgid "Enter or generate a passphrase"
 msgstr "கடவுச்சொற்றொடரை உள்ளிடுங்கள் அல்லது உருவாக்குங்கள்"
@@ -1459,6 +1508,10 @@ msgstr "என்டிட்டிகள்"
 #: src/features/domains/index.tsx:459
 msgid "Entity"
 msgstr "அமைப்பு"
+
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:381
+msgid "Error"
+msgstr "பிழை"
 
 #: src/features/domains/index.tsx:121
 msgid "example.com or *.example.com"
@@ -1517,7 +1570,7 @@ msgstr "பிரதிநிதித்துவத்தை உருவா�
 msgid "Failed to create domain"
 msgstr "டொமைனை உருவாக்க முடியவில்லை"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:137
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:131
 #: ../../../lib/web/src/components/options-menu.tsx:98
 msgid "Failed to create link"
 msgstr "இணைப்பை உருவாக்க முடியவில்லை"
@@ -1529,6 +1582,10 @@ msgstr "வழியை உருவாக்க முடியவில்ல�
 #: src/features/system/users.tsx:99
 msgid "Failed to create user"
 msgstr "பயனரை உருவாக்க முடியவில்லை"
+
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:303
+msgid "Failed to delete"
+msgstr "நீக்க முடியவில்லை"
 
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:130
 msgid "Failed to delete attachment"
@@ -1550,7 +1607,7 @@ msgstr "பிரதிநிதித்துவத்தை நீக்க �
 msgid "Failed to delete domain"
 msgstr "டொமைனை நீக்க முடியவில்லை"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:159
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:153
 msgid "Failed to delete link"
 msgstr "இணைப்பை நீக்க முடியவில்லை"
 
@@ -1600,6 +1657,11 @@ msgstr "வரலாற்றை ஏற்ற முடியவில்லை"
 msgid "Failed to load image"
 msgstr "படத்தை ஏற்ற முடியவில்லை"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:382
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:385
+msgid "Failed to load item"
+msgstr "உருப்படியை ஏற்ற முடியவில்லை"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx:213
 msgid "Failed to load prompts"
 msgstr "ப்ராம்ப்ட்களை ஏற்ற முடியவில்லை"
@@ -1607,6 +1669,10 @@ msgstr "ப்ராம்ப்ட்களை ஏற்ற முடியவ�
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx:350
 msgid "Failed to load video"
 msgstr "வீடியோவை ஏற்ற முடியவில்லை"
+
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:317
+msgid "Failed to move"
+msgstr "நகர்த்த முடியவில்லை"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx:155
 msgid "Failed to post comment"
@@ -1657,6 +1723,10 @@ msgstr "RSS அணுகலை நீக்க முடியவில்லை
 msgid "Failed to revoke session"
 msgstr "செஷனை திரும்பப் பெற முடியவில்லை"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:273
+msgid "Failed to save"
+msgstr "சேமிக்க முடியவில்லை"
+
 #: src/features/user/notifications.tsx:522
 msgid "Failed to save category"
 msgstr "வகையை சேமிக்க முடியவில்லை"
@@ -1685,6 +1755,10 @@ msgstr "அங்கீகரிப்பானை அமைக்க முட�
 #: src/features/user/connected-accounts.tsx:544
 msgid "Failed to update account"
 msgstr "கணக்கைப் புதுப்பிக்க முடியவில்லை"
+
+#: ../../../lib/web/src/components/banner-section.tsx:71
+msgid "Failed to update banner"
+msgstr "பேனரைப் புதுப்பிக்க முடியவில்லை"
 
 #: src/features/user/notifications.tsx:241
 msgid "Failed to update browser notifications"
@@ -1749,6 +1823,10 @@ msgstr "பயனரைப் புதுப்பிக்க முடிய�
 msgid "Failed to update user status"
 msgstr "பயனர் நிலையைப் புதுப்பிக்க முடியவில்லை"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:288
+msgid "Failed to update watching"
+msgstr "கண்காணிப்பைப் புதுப்பிக்க முடியவில்லை"
+
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:114
 msgid "Failed to upload attachment"
 msgstr "இணைப்பைப் பதிவேற்ற முடியவில்லை"
@@ -1761,7 +1839,7 @@ msgstr "குறியீட்டைச் சரிபார்க்க ம�
 msgid "Failed to verify domain"
 msgstr "டொமைனைச் சரிபார்க்க முடியவில்லை"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:611
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:605
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:160
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:180
 msgid "Files"
@@ -1990,6 +2068,10 @@ msgstr "IP முகவரி"
 msgid "It seems like the page you're looking for <0/>does not exist or might have been removed."
 msgstr "நீங்கள் தேடும் பக்கம் <0/>இல்லை அல்லது அகற்றப்பட்டிருக்கலாம்."
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:441
+msgid "Item details"
+msgstr "உருப்படி விவரங்கள்"
+
 #: ../../../lib/web/src/lib/locale-format.ts:180
 msgid "Just now"
 msgstr "இப்போதுதான்"
@@ -2076,7 +2158,7 @@ msgstr "கணக்கை இணை"
 msgid "Linked {label}"
 msgstr "{label} இணைக்கப்பட்டது"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:279
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:273
 msgid "Links"
 msgstr "இணைப்புகள்"
 
@@ -2091,6 +2173,14 @@ msgstr "மேலும் ஏற்று"
 #: ../../../lib/web/src/components/ui/loading-content.tsx:26
 msgid "Loading content…"
 msgstr "உள்ளடக்கம் ஏற்றப்படுகிறது…"
+
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:365
+msgid "Loading item"
+msgstr "உருப்படியை ஏற்றுகிறது"
+
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:366
+msgid "Loading item details"
+msgstr "உருப்படி விவரங்களை ஏற்றுகிறது"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx:39
 #: ../../../lib/web/src/features/document/document-page.tsx:88
@@ -2323,7 +2413,7 @@ msgstr "பிணையப் பிழை"
 msgid "Never"
 msgstr "ஒருபோதும் இல்லை"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:498
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:492
 #: ../../../lib/web/src/components/ui/sort-selector.tsx:43
 msgid "New"
 msgstr "புதியது"
@@ -2346,7 +2436,7 @@ msgstr "அடுத்து"
 msgid "Next image"
 msgstr "அடுத்த படம்"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:577
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:571
 msgid "No {parentClassNames} to add to"
 msgstr "சேர்க்க {parentClassNames} இல்லை"
 
@@ -2417,11 +2507,11 @@ msgstr "குழுக்கள் கிடைக்கவில்லை"
 msgid "No interests yet"
 msgstr "ஆர்வங்கள் இன்னும் இல்லை"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:544
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:538
 msgid "No item types can be created yet. Create the required parent items first."
 msgstr "உருப்படி வகைகள் எதையும் இன்னும் உருவாக்க முடியாது. முதலில் தேவையான பெற்றோர் உருப்படிகளை உருவாக்கவும்."
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:360
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:354
 msgid "No matching objects"
 msgstr "பொருந்தும் ஆப்ஜெக்ட்கள் இல்லை"
 
@@ -2496,9 +2586,13 @@ msgid "No views"
 msgstr "காட்சிகள் இல்லை"
 
 #: ../../../lib/web/src/components/colour-picker.tsx:349
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:560
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:563
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:567
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:554
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:557
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:561
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:557
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:570
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:571
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:575
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:362
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:385
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx:388
@@ -2642,7 +2736,9 @@ msgstr "மற்ற அமைப்புகள்"
 msgid "Owner"
 msgstr "உரிமையாளர்"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:552
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:546
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:553
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:569
 msgid "Parent"
 msgstr "பெற்றோர்"
 
@@ -2808,6 +2904,10 @@ msgstr "செயலாக்கப்படுகிறது…"
 msgid "Prompt saved"
 msgstr "Prompt சேமிக்கப்பட்டது"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:408
+msgid "Properties"
+msgstr "பண்புகள்"
+
 #: src/features/user/login.tsx:892
 msgid "Provider"
 msgstr "வழங்குநர்"
@@ -2917,7 +3017,7 @@ msgstr "Passkey-ஐப் பதிவு செய்யவும்"
 msgid "Registration cancelled"
 msgstr "பதிவு ரத்து செய்யப்பட்டது"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:65
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:69
 msgid "Relates"
 msgstr "தொடர்புடையது"
 
@@ -2988,8 +3088,8 @@ msgstr "ஆர்வத்தை அகற்று"
 msgid "Remove item"
 msgstr "உருப்படியை அகற்று"
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:304
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:309
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:298
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:303
 msgid "Remove link"
 msgstr "இணைப்பை அகற்று"
 
@@ -3077,6 +3177,18 @@ msgstr "இயல்புநிலைக்கு மீட்டமைக்�
 #: src/features/user/preferences.tsx:192
 msgid "Reset to defaults"
 msgstr "இயல்புநிலைகளுக்கு மீட்டமை"
+
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:48
+msgid "Resign"
+msgstr "விலகு"
+
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:35
+msgid "Resign game?"
+msgstr "விளையாட்டிலிருந்து விலகவா?"
+
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:45
+msgid "Resigning..."
+msgstr "விலகுகிறது..."
 
 #: ../../../lib/web/src/components/attachment-composer.tsx:348
 msgid "Retry"
@@ -3177,6 +3289,7 @@ msgstr "சனிக்கிழமை"
 
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx:156
 #: ../../../lib/web/src/components/attachment-composer.tsx:430
+#: ../../../lib/web/src/components/banner-section.tsx:99
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx:231
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx:172
 #: ../../../lib/web/src/components/ui/editable-field-row.tsx:126
@@ -3240,7 +3353,7 @@ msgstr "சேருமிடத்தைத் தேடு..."
 msgid "Search for origin..."
 msgstr "துவக்கத்தைத் தேடு..."
 
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:337
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:331
 msgid "Search objects..."
 msgstr "பொருள்களைத் தேடு..."
 
@@ -3518,6 +3631,11 @@ msgstr "தொடங்கப்பட்டது"
 msgid "Status"
 msgstr "நிலை"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:471
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:476
+msgid "Stop watching"
+msgstr "பார்ப்பதை நிறுத்து"
+
 #: ../../../lib/web/src/features/access/access-list.tsx:196
 msgid "Subject"
 msgstr "பொருள்"
@@ -3707,6 +3825,10 @@ msgstr "இது நீங்கள் இந்த அல்லது மற�
 #: src/lib/use-step-up.tsx:37
 msgid "This is a security change to your account. Verify it's you to continue."
 msgstr "இது உங்கள் கணக்கின் பாதுகாப்பு மாற்றம். தொடர இது நீங்கள்தான் என சரிபார்க்கவும்."
+
+#: ../../../lib/web/src/components/game/game-end-dialogs.tsx:70
+msgid "This permanently deletes the game and its chat. This cannot be undone."
+msgstr "இது விளையாட்டையும் அதன் அரட்டையையும் நிரந்தரமாக நீக்கும். இந்தச் செயலை மாற்ற முடியாது."
 
 #: src/features/system/users.tsx:349
 msgid "This user has no active sessions."
@@ -3955,9 +4077,8 @@ msgstr "சென்றடைய முடியவில்லை"
 msgid "Unsubscribe"
 msgstr "சந்தா நீக்கு"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:299
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:103
-#: ../../../lib/web/src/components/entity/entity-object-links.tsx:184
+#: ../../../lib/web/src/components/entity/entity-object-links.tsx:178
+#: ../../../lib/web/src/lib/entity-title.ts:40
 msgid "Untitled"
 msgstr "தலைப்பிடாதது"
 
@@ -3979,7 +4100,7 @@ msgstr "புதுப்பிக்கப்பட்டது"
 msgid "Updated {field}"
 msgstr "{field} புதுப்பிக்கப்பட்டது"
 
-#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:661
+#: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx:655
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx:304
 msgid "Upload"
 msgstr "பதிவேற்று"
@@ -4115,6 +4236,10 @@ msgstr "வீடியோ காட்சி: {0}"
 msgid "View all notifications"
 msgstr "அனைத்து அறிவிப்புகளையும் காட்டு"
 
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:442
+msgid "View and edit item details"
+msgstr "உருப்படி விவரங்களை பார்த்து திருத்து"
+
 #: src/features/system/users.tsx:305
 msgid "View and revoke active sessions for this user."
 msgstr "இந்த பயனருக்கான செயலில் உள்ள அமர்வுகளை பார்த்து திரும்பப் பெறு."
@@ -4126,6 +4251,11 @@ msgstr "காட்சி கட்டுப்பாடுகள்"
 #: ../../../lib/web/src/lib/shell-errors.ts:33
 msgid "Voice recording is not supported in this browser"
 msgstr "இந்த உலாவியில் குரல் பதிவு ஆதரிக்கப்படவில்லை"
+
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:471
+#: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx:476
+msgid "Watch"
+msgstr "பார்"
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx:269
 #: ../../../lib/web/src/components/filter-bar.tsx:35
