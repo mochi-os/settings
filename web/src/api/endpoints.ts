@@ -56,6 +56,9 @@ const endpoints = {
     accountPasskeyVerifyBegin: '-/user/account/passkey/verify/begin',
     accountPasskeyVerifyFinish: '-/user/account/passkey/verify/finish',
   },
+  accounts: {
+    default: '-/accounts/default',
+  },
   system: {
     peers: '-/system/peers',
     settings: '-/system/settings/list',

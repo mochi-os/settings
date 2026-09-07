@@ -18,7 +18,7 @@ export interface SystemDocument {
 // The index carries no bodies. Every (name x language) pair the server ships
 // is listed so the language picker can be built, but the page only ever
 // displays one of them, and the full set is ~4 MB of Markdown.
-export interface SystemDocumentEntry {
+interface SystemDocumentEntry {
   name: string
   language: string
 }
@@ -51,7 +51,7 @@ export function useSystemDocument(name: string, language: string) {
 export function useSetSystemDocument() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (data: { name: string; language: string; body: string }) =>
+    mutationFn: (data: { name: string; language: string; body: string; token: string }) =>
       requestHelpers.post(endpoints.system.documentSet, data),
     onSuccess: (_result, variables) => {
       queryClient.invalidateQueries({ queryKey: ['system', 'documents'] })

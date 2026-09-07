@@ -11,15 +11,19 @@ import { stepUpClient } from './step-up-client'
 // Wrap a sensitive mutation in step-up re-authentication: `request(run)` opens
 // the dialog and `run(token)` fires once verified. Render `dialog` once.
 export function useStepUp(): {
-  request: (run: (token: string) => void) => void
+  request: (run: (token: string) => void, cancel?: () => void) => void
   dialog: ReactNode
 } {
   const { t } = useLingui()
   const [open, setOpen] = useState(false)
   const run = useRef<((token: string) => void) | null>(null)
+  const cancel = useRef<(() => void) | null>(null)
 
-  const request = (fn: (token: string) => void) => {
+  // cancel fires when the dialog is dismissed without a proof, so a caller
+  // holding a promise or an optimistic value can settle it.
+  const request = (fn: (token: string) => void, onCancel?: () => void) => {
     run.current = fn
+    cancel.current = onCancel ?? null
     setOpen(true)
   }
 
@@ -30,7 +34,12 @@ export function useStepUp(): {
         // Drop the pending action on dismiss: the OAuth factor polls for up to
         // two minutes, and a late ceremony would otherwise fire whatever
         // run.current holds by then.
-        if (!next) run.current = null
+        if (!next) {
+          run.current = null
+          const fn = cancel.current
+          cancel.current = null
+          fn?.()
+        }
         setOpen(next)
       }}
       title={t`Confirm it's you`}
@@ -38,6 +47,7 @@ export function useStepUp(): {
       client={stepUpClient}
       onVerified={(token) => {
         setOpen(false)
+        cancel.current = null
         const fn = run.current
         run.current = null
         fn?.(token)

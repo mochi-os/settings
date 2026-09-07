@@ -10,6 +10,9 @@ def action_system_update(a):
     if not require_admin(a):
         return
     if a.input("install") == "true":
+        if not mochi.user.session.reauthenticate(a.input("token", "")):
+            a.error.label(400, "errors.reauthentication_required")
+            return
         result = mochi.server.update.install()
         a.json({"installed": result})
         return

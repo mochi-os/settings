@@ -20,7 +20,7 @@ export interface PeerEntry {
   oldest: number
 }
 
-export interface NetworkInfo {
+interface NetworkInfo {
   reachability: 'public' | 'private' | 'unknown'
   relay: boolean
   mesh: number
@@ -36,12 +36,12 @@ export interface NetworkInfo {
   }
 }
 
-export interface ServerCounts {
+interface ServerCounts {
   users: number
   entities: number
 }
 
-export interface SystemPeersData {
+interface SystemPeersData {
   peers: PeerEntry[]
   network: NetworkInfo
   counts: ServerCounts

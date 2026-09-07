@@ -9,7 +9,7 @@ import type { Session, UsersData } from '@/types/users'
 
 export type SystemUsersResponse = UsersData
 
-export interface SystemUserSessionsResponse {
+interface SystemUserSessionsResponse {
   sessions: Session[]
 }
 

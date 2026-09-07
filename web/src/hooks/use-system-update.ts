@@ -28,8 +28,8 @@ export function useSystemUpdate() {
 export function useInstallSystemUpdate() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async () => {
-      const params = new URLSearchParams({ install: 'true' })
+    mutationFn: async (token: string) => {
+      const params = new URLSearchParams({ install: 'true', token })
       return requestHelpers.post(endpoints.system.update, params.toString(), {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       })

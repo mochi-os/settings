@@ -40,6 +40,7 @@ import {
   type SystemDocument,
 } from '@/hooks/use-system-documents'
 import { Route } from '@/routes/_authenticated/system/documents'
+import { useStepUp } from '@/lib/use-step-up'
 
 type DocumentName = 'rules' | 'terms' | 'privacy'
 
@@ -131,6 +132,7 @@ export function SystemDocuments() {
   const labels = useDocumentLabels()
   const { data, isLoading, error, refetch } = useSystemDocumentsData()
   const setDocument = useSetSystemDocument()
+  const stepUp = useStepUp()
   const navigate = useNavigate()
   const search = Route.useSearch()
   const [savingKey, setSavingKey] = useState<string | null>(null)
@@ -181,10 +183,11 @@ export function SystemDocuments() {
   const handleSave = (body: string) => {
     if (!current) return
     const key = `${current.name}/${current.language}`
-    setSavingKey(key)
-    setDocument.mutate(
-      { name: current.name, language: current.language, body },
-      {
+    stepUp.request((token) => {
+      setSavingKey(key)
+      setDocument.mutate(
+        { name: current.name, language: current.language, body, token },
+        {
         onSuccess: () => {
           toast.success(t`Document saved`)
           setSavingKey(null)
@@ -195,10 +198,12 @@ export function SystemDocuments() {
         },
       }
     )
+    })
   }
 
   return (
     <>
+      {stepUp.dialog}
       <PageHeader title={t`Documents`} icon={<FileText className='size-4 md:size-5' />} />
       <Main className='space-y-6'>
         {error ? (

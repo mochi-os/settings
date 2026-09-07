@@ -6,6 +6,7 @@
 import { useRef, useState } from 'react'
 import { Trans, useLingui } from '@lingui/react/macro'
 import type { SystemSetting } from '@/types/settings'
+import { useStepUp } from '@/lib/use-step-up'
 import { Check, Loader2, Lock, RotateCcw, Settings, Upload, X } from 'lucide-react'
 import {
   AlertDialog,
@@ -502,6 +503,7 @@ export function SystemSettings() {
   usePageTitle(t`System settings`)
   const { data, isLoading, error, refetch } = useSystemSettingsData()
   const setSetting = useSetSystemSetting()
+  const stepUp = useStepUp()
   const [savingName, setSavingName] = useState<string | null>(null)
 
   // Rejects on failure so a row that changed its own value optimistically -
@@ -509,18 +511,28 @@ export function SystemSettings() {
   // button to retry with - can put the stored value back rather than leaving
   // the screen disagreeing with the server. SecretField needs the same
   // rejection to keep the typed value, so it takes this too.
-  const handleSave = async (name: string, value: string): Promise<void> => {
-    setSavingName(name)
-    try {
-      await setSetting.mutateAsync({ name, value })
-      toast.success(t`Setting updated`)
-    } catch (error) {
-      toast.error(getErrorMessage(error, t`Failed to update setting`))
-      throw error
-    } finally {
-      setSavingName(null)
-    }
-  }
+  // Every write re-verifies a login factor first. The promise settles once
+  // the step-up has run the save, and rejects when the dialog is dismissed,
+  // so a row that changed optimistically still gets its revert.
+  const handleSave = (name: string, value: string): Promise<void> =>
+    new Promise((resolve, reject) => {
+      stepUp.request(
+        async (token) => {
+          setSavingName(name)
+          try {
+            await setSetting.mutateAsync({ name, value, token })
+            toast.success(t`Setting updated`)
+            resolve()
+          } catch (error) {
+            toast.error(getErrorMessage(error, t`Failed to update setting`))
+            reject(error)
+          } finally {
+            setSavingName(null)
+          }
+        },
+        () => reject(new Error('cancelled'))
+      )
+    })
 
   const hiddenSettings = ['server_version', 'server_started']
   const userDefaultSettings = ['default_theme']
@@ -568,6 +580,7 @@ export function SystemSettings() {
 
   return (
     <>
+      {stepUp.dialog}
       <PageHeader title={t`System settings`} icon={<Settings className='size-4 md:size-5' />} />
 
       <Main className="space-y-8">

@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { useLingui, Trans } from '@lingui/react/macro'
 import { plural } from '@lingui/core/macro'
 import type { User, Session } from '@/types/users'
+import { useStepUp } from '@/lib/use-step-up'
 import {
   Ban,
   Check,
@@ -174,6 +175,7 @@ function EditUserDialog({
   const [username, setUsername] = useState(user.username)
   const [role, setRole] = useState(user.role)
   const updateUser = useUpdateUser()
+  const stepUp = useStepUp()
 
   // The dialog stays mounted with its row, so reseed on open or an abandoned
   // edit comes back next time. Opening is driven from the row's menu, so
@@ -193,8 +195,8 @@ function EditUserDialog({
       onOpenChange(false)
       return
     }
-    updateUser.mutate(
-      { uid: user.uid, username, role },
+    stepUp.request((token) => updateUser.mutate(
+      { uid: user.uid, username, role, token },
       {
         onSuccess: () => {
           toast.success(t`User updated`)
@@ -205,10 +207,12 @@ function EditUserDialog({
           toast.error(getErrorMessage(error, t`Failed to update user`))
         },
       }
-    )
+    ))
   }
 
   return (
+    <>
+    {stepUp.dialog}
     <ResponsiveDialog open={open} onOpenChange={onOpenChange}>
       <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
@@ -255,6 +259,7 @@ function EditUserDialog({
         </form>
       </ResponsiveDialogContent>
     </ResponsiveDialog>
+    </>
   )
 }
 
@@ -402,12 +407,13 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
   const deleteUser = useDeleteUser()
   const suspendUser = useSuspendUser()
   const activateUser = useActivateUser()
+  const stepUp = useStepUp()
 
   const isAdmin = user.role === 'administrator'
   const isSuspended = user.status === 'suspended'
 
   const handleDelete = () => {
-    deleteUser.mutate(user.uid, {
+    stepUp.request((token) => deleteUser.mutate({ uid: user.uid, token }, {
       onSuccess: () => {
         toast.success(t`User deleted`)
         setDeleteOpen(false)
@@ -416,12 +422,12 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
       onError: (error) => {
         toast.error(getErrorMessage(error, t`Failed to delete user`))
       },
-    })
+    }))
   }
 
   const handleToggleStatus = () => {
     const action = isSuspended ? activateUser : suspendUser
-    action.mutate(user.uid, {
+    stepUp.request((token) => action.mutate({ uid: user.uid, token }, {
       onSuccess: () => {
         toast.success(isSuspended ? t`Suspension removed` : t`User suspended`)
         setSuspendOpen(false)
@@ -430,11 +436,12 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
       onError: (error) => {
         toast.error(getErrorMessage(error, t`Failed to update user status`))
       },
-    })
+    }))
   }
 
   return (
     <TableRow className={isSuspended ? 'opacity-60' : ''}>
+      {stepUp.dialog}
       <TableCell>
         <span className='font-medium'>{user.username}</span>
       </TableCell>

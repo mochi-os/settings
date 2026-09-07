@@ -138,6 +138,11 @@ def action_user_preferences_set(a):
                 if not (ch.isalnum() or ch == "-"):
                     a.error.label(400, "errors.invalid_value_for_key", key=p["key"])
                     return
+        # Core refuses an unloadable zone by aborting the action, which the
+        # server reports as a 500; answer a clean 400 with the same rule.
+        if p["type"] == "timezone" and value not in ("", "auto") and not mochi.text.valid(value, "timezone"):
+            a.error.label(400, "errors.invalid_value_for_key", key=p["key"])
+            return
         writes.append((p["key"], value))
 
     # Theme options are dynamic (every installed app contributes some), so

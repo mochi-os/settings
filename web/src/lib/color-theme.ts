@@ -5,7 +5,7 @@
 
 import type { ColorTheme, ThemeInfo } from '@mochi/web'
 
-export type ThemeOverridePrefs = {
+type ThemeOverridePrefs = {
   density: string
   radius: string
   card: string
@@ -14,7 +14,7 @@ export type ThemeOverridePrefs = {
   font_size: string
 }
 
-export const FONT_SIZE_PCT: Record<string, string> = {
+const FONT_SIZE_PCT: Record<string, string> = {
   small: '87.5%',
   normal: '100%',
   large: '112.5%',
@@ -24,7 +24,7 @@ export const FONT_SIZE_PCT: Record<string, string> = {
 // Mirror of font_stacks() in core/server/themes.go. Empty string means
 // "no override" — the density preset (or theme's font_sans/font_mono)
 // keeps its value.
-export const FONT_STACKS: Record<string, { sans: string; mono?: string }> = {
+const FONT_STACKS: Record<string, { sans: string; mono?: string }> = {
   system: {
     sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
     mono: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',

@@ -28,6 +28,7 @@ import {
   formatSystemTimestamp,
 } from '@mochi/web'
 import { useSystemSettingsData } from '@/hooks/use-system-settings'
+import { useStepUp } from '@/lib/use-step-up'
 import { useSystemPeers, type PeerEntry } from '@/hooks/use-system-peers'
 import { PeerIdentity, peerDisplayName, hyphenateFingerprint } from '@/components/peer-identity'
 import {
@@ -289,14 +290,18 @@ function UpdateButton({ platform, latest }: { platform: string; latest: string }
 function InstallButton({ latest }: { latest: string }) {
   const { t } = useLingui()
   const install = useInstallSystemUpdate()
-  const onClick = async () => {
-    try {
-      await install.mutateAsync()
-    } catch (e) {
-      toast.error(getErrorMessage(e, t`Failed to install update`))
-    }
-  }
+  const stepUp = useStepUp()
+  const onClick = () =>
+    stepUp.request(async (token) => {
+      try {
+        await install.mutateAsync(token)
+      } catch (e) {
+        toast.error(getErrorMessage(e, t`Failed to install update`))
+      }
+    })
   return (
+    <>
+    {stepUp.dialog}
     <Button
       variant='default'
       size='sm'
@@ -307,6 +312,7 @@ function InstallButton({ latest }: { latest: string }) {
       {install.isPending ? <Loader2 className='animate-spin' /> : <Download />}
       <Trans>Install update</Trans>
     </Button>
+    </>
   )
 }
 

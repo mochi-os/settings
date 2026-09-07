@@ -182,7 +182,7 @@ echo
 echo "--- Cleanup ---"
 
 if [ -n "$ID" ]; then
-    DELETED=$(settings_curl POST /-/notifications/categories/delete -d "id=$ID&reassign_to=0")
+    DELETED=$(settings_curl POST /-/notifications/categories/delete -d "id=$ID&reassign=0")
     assert_unwrapped "Delete is unwrapped" "$DELETED" dict
     GONE=$(settings_curl GET /-/notifications/categories)
     if echo "$GONE" | python3 -c "

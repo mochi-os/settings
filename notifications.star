@@ -112,7 +112,8 @@ def action_notifications_topics_delete(a):
     app = a.input("app", "").strip()
     topic = a.input("topic", "").strip()
     object = a.input("object", "").strip()
-    mochi.service.call("notifications", "topic/delete", app, topic, object)
+    if not mochi.service.call("notifications", "topic/delete", app, topic, object):
+        return a.error.label(404, "errors.not_found")
     a.json({"ok": True})
 
 def action_notifications_destinations(a):

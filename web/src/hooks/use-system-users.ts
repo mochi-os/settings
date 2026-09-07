@@ -15,7 +15,7 @@ const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
 } as const
 
-export const systemUserKeys = {
+const systemUserKeys = {
   all: () => ['system-users'] as const,
   list: (limit: number, offset: number, search: string, sort: string, order: string) =>
     [...systemUserKeys.all(), 'list', limit, offset, search, sort, order] as const,
@@ -58,6 +58,7 @@ export function useUpdateUser() {
       uid: string
       username?: string
       role?: string
+      token: string
     }) =>
       requestHelpers.post(
         endpoints.system.usersUpdate,
@@ -73,10 +74,10 @@ export function useUpdateUser() {
 export function useDeleteUser() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (uid: string) =>
+    mutationFn: (data: { uid: string; token: string }) =>
       requestHelpers.post(
         endpoints.system.usersDelete,
-        { uid },
+        data,
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
@@ -88,10 +89,10 @@ export function useDeleteUser() {
 export function useSuspendUser() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (uid: string) =>
+    mutationFn: (data: { uid: string; token: string }) =>
       requestHelpers.post(
         endpoints.system.usersSuspend,
-        { uid },
+        data,
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {
@@ -103,10 +104,10 @@ export function useSuspendUser() {
 export function useActivateUser() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (uid: string) =>
+    mutationFn: (data: { uid: string; token: string }) =>
       requestHelpers.post(
         endpoints.system.usersActivate,
-        { uid },
+        data,
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
     onSuccess: () => {

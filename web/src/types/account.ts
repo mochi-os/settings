@@ -115,7 +115,7 @@ export interface OAuthIdentitiesResponse {
   identities: OAuthIdentity[]
 }
 
-export interface OAuthProvidersEnabled {
+interface OAuthProvidersEnabled {
   facebook: boolean
   github: boolean
   google: boolean

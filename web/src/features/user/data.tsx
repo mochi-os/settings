@@ -30,6 +30,8 @@ import WORDS from './data-words'
 // offline, so entropy is what matters: ten words from this 248-word list is
 // 79.5 bits (six was 47.7, within reach of a well-funded attack).
 const PASSPHRASE_WORDS = 10
+// The server refuses anything shorter, counted in code points (#567).
+const PASSPHRASE_MINIMUM = 12
 
 // Uniform index into WORDS. Rejection sampling, not a modulo: 2^32 is not a
 // multiple of 248, so `random % 248` favours the first 128 words. The bias is
@@ -133,7 +135,7 @@ function DownloadDialog({
       title={t`Download your data`}
       description={t`This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue.`}
       client={stepUpClient}
-      canVerify={!!passphrase.trim()}
+      canVerify={[...passphrase.trim()].length >= PASSPHRASE_MINIMUM}
       submitLabel={t`Download`}
       onVerified={onVerified}
     >

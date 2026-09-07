@@ -652,7 +652,7 @@ function CategoryDeleteDialog({
   const run = async () => {
     setDeleting(true)
     try {
-      const params = new URLSearchParams({ id: String(category.id), reassign_to: target })
+      const params = new URLSearchParams({ id: String(category.id), reassign: target })
       await requestHelpers.post(endpoints.notifications.categoriesDelete, params.toString(), {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       })

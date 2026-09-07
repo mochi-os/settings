@@ -91,6 +91,7 @@ import {
   useFormat,
   shellClipboardWrite,
   ServerDocumentsFooter,
+  providerName,
 } from '@mochi/web'
 
 type RegistrationOptionsJSON = Parameters<typeof startRegistration>[0]['optionsJSON']
@@ -720,14 +721,6 @@ const oauthProviderOrder: OAuthProvider[] = [
   'x',
 ]
 
-const oauthProviderLabel: Record<OAuthProvider, string> = {
-  facebook: 'Facebook',
-  github: 'GitHub',
-  google: 'Google',
-  microsoft: 'Microsoft',
-  x: 'X',
-}
-
 // Suppress the one-shot OAuth toast on React StrictMode's double mount. Module
 // scope, not sessionStorage: the shell iframe partitions storage per load.
 const oauthResultShown = new Set<string>()
@@ -751,7 +744,7 @@ function OauthIdentityRow({
     <TableRow>
       <TableCell>
         <span className='font-medium'>
-          {oauthProviderLabel[identity.provider] ?? identity.provider}
+          {providerName(identity.provider)}
         </span>
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
@@ -773,7 +766,7 @@ function OauthIdentityRow({
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
           title={t`Unlink provider?`}
-          desc={t`You won't be able to sign in with ${oauthProviderLabel[identity.provider] ?? identity.provider} anymore. Make sure you still have another way to log in.`}
+          desc={t`You won't be able to sign in with ${providerName(identity.provider)} anymore. Make sure you still have another way to log in.`}
           confirmText={t`Unlink`}
           destructive
           handleConfirm={() => {
@@ -823,7 +816,7 @@ function OauthSection() {
     stepUp.request(async (token) => {
       try {
         await oauthUnlink.mutateAsync({ provider, token })
-        toast.success(t`Unlinked ${oauthProviderLabel[provider] ?? provider}`)
+        toast.success(t`Unlinked ${providerName(provider)}`)
       } catch (error) {
         toast.error(getErrorMessage(error, t`Could not unlink provider`))
       }
@@ -861,7 +854,7 @@ function OauthSection() {
             key={provider}
             onClick={() => handleLink(provider)}
           >
-            {oauthProviderLabel[provider]}
+            {providerName(provider)}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
@@ -942,7 +935,9 @@ export function UserLogin() {
         // falling back to it put attacker-chosen text inside a toast the page
         // presents as its own result - React escapes it, so a sentence they
         // get to write rather than script they get to run.
-        const label = oauthProviderLabel[linked as OAuthProvider]
+        const label = oauthProviderOrder.includes(linked as OAuthProvider)
+          ? providerName(linked)
+          : undefined
         toast.success(label ? t`Linked ${label}` : t`Account linked`)
       } else if (errored === 'already_linked') {
         toast.error(t`That account is already linked to another user`)

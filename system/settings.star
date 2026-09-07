@@ -28,6 +28,9 @@ def action_system_settings_set(a):
     """Set a system setting"""
     if not require_admin(a):
         return
+    if not mochi.user.session.reauthenticate(a.input("token", "")):
+        a.error.label(400, "errors.reauthentication_required")
+        return
     name = a.input("name")
     value = a.input("value")
     if not name:

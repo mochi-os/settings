@@ -105,6 +105,12 @@ def action_system_users_update(a):
     """Update user"""
     if not require_admin(a):
         return
+    # Role changes, deletion and suspension are privilege changes, so a
+    # stolen administrator session must re-verify a factor first, as the
+    # user's own key-bearing actions do.
+    if not mochi.user.session.reauthenticate(a.input("token", "")):
+        a.error.label(400, "errors.reauthentication_required")
+        return
     uid = a.input("uid")
     if not user_identifier(a, uid):
         return
@@ -124,11 +130,7 @@ def action_system_users_update(a):
         return
     if role != None and role != "administrator":
         if target["role"] == "administrator":
-            administrators = 0
-            for other in mochi.user.list():
-                if other["role"] == "administrator" and other["status"] == "active":
-                    administrators += 1
-            if administrators <= 1:
+            if mochi.user.count(role="administrator", status="active") <= 1:
                 a.error.label(400, "errors.cannot_demote_last_administrator")
                 return
     mochi.user.update(uid, username, role)
@@ -137,6 +139,9 @@ def action_system_users_update(a):
 def action_system_users_delete(a):
     """Delete a user"""
     if not require_admin(a):
+        return
+    if not mochi.user.session.reauthenticate(a.input("token", "")):
+        a.error.label(400, "errors.reauthentication_required")
         return
     uid = a.input("uid")
     if not user_identifier(a, uid):
@@ -150,6 +155,9 @@ def action_system_users_suspend(a):
     """Suspend a user"""
     if not require_admin(a):
         return
+    if not mochi.user.session.reauthenticate(a.input("token", "")):
+        a.error.label(400, "errors.reauthentication_required")
+        return
     uid = a.input("uid")
     if not user_identifier(a, uid):
         return
@@ -161,6 +169,9 @@ def action_system_users_suspend(a):
 def action_system_users_activate(a):
     """Activate a suspended user"""
     if not require_admin(a):
+        return
+    if not mochi.user.session.reauthenticate(a.input("token", "")):
+        a.error.label(400, "errors.reauthentication_required")
         return
     uid = a.input("uid")
     if not user_identifier(a, uid):

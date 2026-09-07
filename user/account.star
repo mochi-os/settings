@@ -4,6 +4,11 @@
 # This file is part of Mochi, licensed under the GNU AGPL v3 with the
 # Mochi Application Interface Exception - see license.txt and license-exception.md.
 
+# The export bundle carries the account's private keys, so the passphrase
+# that encrypts them has a floor. Counted in code points, like the web and
+# Android dialogs count it.
+_PASSPHRASE_MINIMUM = 12
+
 def user_identity(a):
     """Build the current user's identity payload, shared by the account
     overview and the identity endpoint."""
@@ -15,6 +20,7 @@ def user_identity(a):
         "username": a.user.username,
         "name": a.user.identity.name,
         "privacy": a.user.identity.privacy,
+        "role": a.user.role,
     }
 
 def action_user_account(a):
@@ -56,6 +62,9 @@ def action_user_account_export(a):
     passphrase = a.input("passphrase", "")
     if not passphrase:
         a.error.label(400, "errors.passphrase_required")
+        return
+    if len([c for c in passphrase.codepoints()]) < _PASSPHRASE_MINIMUM:
+        a.error.label(400, "errors.passphrase_too_short", minimum=_PASSPHRASE_MINIMUM)
         return
 
     path = mochi.user.export(passphrase)

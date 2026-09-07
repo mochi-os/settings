@@ -509,7 +509,7 @@ export function ConnectedAccounts() {
   // Rethrows so the caller can stop rather than report success afterwards.
   const handleSetDefault = async (accountId: string, isDefault: boolean) => {
     try {
-      await requestHelpers.post('-/accounts/default', {
+      await requestHelpers.post(endpoints.accounts.default, {
         account: accountId,
         type: isDefault ? 'ai' : '',
       })

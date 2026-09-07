@@ -523,35 +523,35 @@ else
     fail "control: an add with the required field present still succeeds" "$(echo "$RESULT" | head -c 120)"
 fi
 
-RESULT=$(settings_curl POST "/-/accounts/add" -d "type=pushbullet&token=o.testwiring&add_to_existing=1")
+RESULT=$(settings_curl POST "/-/accounts/add" -d "type=pushbullet&token=o.testwiring&existing=1")
 WIRED_ID=$(echo "$RESULT" | python3 -c "import sys, json; print(json.load(sys.stdin).get('id',''))" 2>/dev/null || true)
 if [ -n "$WIRED_ID" ]; then
     if [ "$(enabled_of "$WIRED_ID")" = "1" ]; then
-        pass "Account added with add_to_existing is enabled"
+        pass "Account added with existing=1 is enabled"
     else
-        fail "Account added with add_to_existing is enabled" "enabled=$(enabled_of "$WIRED_ID")"
+        fail "Account added with existing=1 is enabled" "enabled=$(enabled_of "$WIRED_ID")"
     fi
     if [ "$(wired "$WIRED_ID")" = "yes" ]; then
-        pass "Account added with add_to_existing is wired as a destination"
+        pass "Account added with existing=1 is wired as a destination"
     else
-        fail "Account added with add_to_existing is wired as a destination" "no category holds it"
+        fail "Account added with existing=1 is wired as a destination" "no category holds it"
     fi
     settings_curl POST "/-/accounts/remove" -d "id=$WIRED_ID" > /dev/null 2>&1
 else
-    fail "Add notify account with add_to_existing" "$(echo "$RESULT" | head -c 100)"
+    fail "Add notify account with existing=1" "$(echo "$RESULT" | head -c 100)"
 fi
 
-RESULT=$(settings_curl POST "/-/accounts/add" -d "type=pushbullet&token=o.testunwired&add_to_existing=0")
+RESULT=$(settings_curl POST "/-/accounts/add" -d "type=pushbullet&token=o.testunwired&existing=0")
 UNWIRED_ID=$(echo "$RESULT" | python3 -c "import sys, json; print(json.load(sys.stdin).get('id',''))" 2>/dev/null || true)
 if [ -n "$UNWIRED_ID" ]; then
     if [ "$(enabled_of "$UNWIRED_ID")" = "0" ]; then
-        pass "Account added without add_to_existing stays disabled"
+        pass "Account added with existing=0 stays disabled"
     else
-        fail "Account added without add_to_existing stays disabled" "enabled=$(enabled_of "$UNWIRED_ID")"
+        fail "Account added with existing=0 stays disabled" "enabled=$(enabled_of "$UNWIRED_ID")"
     fi
     settings_curl POST "/-/accounts/remove" -d "id=$UNWIRED_ID" > /dev/null 2>&1
 else
-    fail "Add notify account without add_to_existing" "$(echo "$RESULT" | head -c 100)"
+    fail "Add notify account with existing=0" "$(echo "$RESULT" | head -c 100)"
 fi
 
 echo ""
