@@ -115,8 +115,7 @@ function isPushAccount(acc: Account): boolean {
 }
 
 interface Topic {
-  app: string
-  app_name: string
+  app: { id: string; name: string }
   topic: string
   object: string
   name: string
@@ -721,7 +720,7 @@ function TopicsTab() {
   const setCategory = async (topic: Topic, value: string) => {
     try {
       const params = new URLSearchParams({
-        app: topic.app,
+        app: topic.app.id,
         topic: topic.topic,
         object: topic.object,
         category: value,
@@ -738,7 +737,7 @@ function TopicsTab() {
   const remove = async (topic: Topic) => {
     try {
       const params = new URLSearchParams({
-        app: topic.app,
+        app: topic.app.id,
         topic: topic.topic,
         object: topic.object,
       })
@@ -753,11 +752,11 @@ function TopicsTab() {
 
   const groups = useMemo(() => {
     if (!topics) return []
-    const map = new Map<string, { app: string; app_name: string; items: Topic[] }>()
+    const map = new Map<string, { app: { id: string; name: string }; items: Topic[] }>()
     for (const t of topics) {
-      const g = map.get(t.app) ?? { app: t.app, app_name: t.app_name, items: [] }
+      const g = map.get(t.app.id) ?? { app: t.app, items: [] }
       g.items.push(t)
-      map.set(t.app, g)
+      map.set(t.app.id, g)
     }
     for (const g of map.values()) {
       g.items.sort((a, b) => {
@@ -766,7 +765,7 @@ function TopicsTab() {
         return naturalCompare(a.name ?? '', b.name ?? '')
       })
     }
-    return Array.from(map.values()).sort((a, b) => naturalCompare(a.app_name, b.app_name))
+    return Array.from(map.values()).sort((a, b) => naturalCompare(a.app.name, b.app.name))
   }, [topics])
 
   if (error) return <GeneralError error={error} reset={refetch} />
@@ -786,14 +785,14 @@ function TopicsTab() {
   return (
     <div className="flex flex-col divide-y divide-border">
       {groups.map((group) => (
-        <div key={group.app} className="py-4 first:pt-0 last:pb-0">
+        <div key={group.app.id} className="py-4 first:pt-0 last:pb-0">
           <h2 className="text-[1.125rem] leading-tight font-semibold md:text-lg">
-            {group.app_name}
+            {group.app.name}
           </h2>
           <div>
             {group.items.map((topic) => (
               <div
-                key={`${topic.app}|${topic.topic}|${topic.object}`}
+                key={`${topic.app.id}|${topic.topic}|${topic.object}`}
                 className="flex flex-col gap-3 py-2 ps-6 sm:flex-row sm:items-center sm:justify-between"
               >
                 <p className="text-sm">
