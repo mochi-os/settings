@@ -186,6 +186,13 @@ def action_accounts_verify(a):
         return
 
     code = a.input("code")
+    # The guessing gate refuses by raising inside mochi.account.verify, and
+    # Starlark has no try/except, so a raised refusal aborts this handler and
+    # core answers 500 plus an operator email. Ask first and refuse properly.
+    # Only a code attempt is gated; the no-code branch resends the email.
+    if code and mochi.account.throttled():
+        a.error.label(429, "errors.too_many_attempts")
+        return
     result = mochi.account.verify(id, code)
     a.json(result)
 
