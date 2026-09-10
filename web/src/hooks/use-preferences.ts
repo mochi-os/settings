@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useEffect } from 'react'
 import {
   useTheme,
@@ -45,7 +44,7 @@ export function useApplyDisplayPreferences() {
         data.themes,
         data.preferences.theme,
         prefsFromData(data.preferences),
-        data.presets,
+        data.presets
       )
     )
   }, [data, setColorTheme, setTheme])

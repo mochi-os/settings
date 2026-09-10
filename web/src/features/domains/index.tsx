@@ -2,42 +2,9 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useState, useMemo } from 'react'
-import { useLingui, Trans } from '@lingui/react/macro'
 import type { Domain, Route as RouteType, Delegation } from '@/types/domains'
-import {
-  Check,
-  ChevronRight,
-  Globe,
-  Loader2,
-  Lock,
-  Pencil,
-  Plus,
-  Route,
-  Search,
-  Shield,
-  Trash2,
-  Users,
-  X,
-} from 'lucide-react'
-
-import {
-  useDomainsData,
-  useCreateDomain,
-  useDomainDetails,
-  useUpdateDomain,
-  useDeleteDomain,
-  useVerifyDomain,
-  useCreateRoute,
-  useUpdateRoute,
-  useDeleteRoute,
-  useCreateDelegation,
-  useDeleteDelegation,
-  useUserSearch,
-  useApps,
-  useEntities,
-} from '@/hooks/use-domains'
+import { useLingui, Trans } from '@lingui/react/macro'
 import {
   Badge,
   Button,
@@ -73,6 +40,37 @@ import {
   toast,
   getErrorMessage,
 } from '@mochi/web'
+import {
+  Check,
+  ChevronRight,
+  Globe,
+  Loader2,
+  Lock,
+  Pencil,
+  Plus,
+  Route,
+  Search,
+  Shield,
+  Trash2,
+  Users,
+  X,
+} from 'lucide-react'
+import {
+  useDomainsData,
+  useCreateDomain,
+  useDomainDetails,
+  useUpdateDomain,
+  useDeleteDomain,
+  useVerifyDomain,
+  useCreateRoute,
+  useUpdateRoute,
+  useDeleteRoute,
+  useCreateDelegation,
+  useDeleteDelegation,
+  useUserSearch,
+  useApps,
+  useEntities,
+} from '@/hooks/use-domains'
 
 function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
   const { t } = useLingui()
@@ -106,14 +104,18 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
       <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
           <ResponsiveDialogHeader>
-            <ResponsiveDialogTitle><Trans>Add domain</Trans></ResponsiveDialogTitle>
-            <ResponsiveDialogDescription className="sr-only">
+            <ResponsiveDialogTitle>
+              <Trans>Add domain</Trans>
+            </ResponsiveDialogTitle>
+            <ResponsiveDialogDescription className='sr-only'>
               <Trans>Add domain</Trans>
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
-              <Label htmlFor='domain'><Trans>Domain</Trans></Label>
+              <Label htmlFor='domain'>
+                <Trans>Domain</Trans>
+              </Label>
               <Input
                 id='domain'
                 value={domain}
@@ -135,7 +137,11 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
               <Trans>Cancel</Trans>
             </Button>
             <Button type='submit' disabled={createDomain.isPending}>
-              {createDomain.isPending ? <Loader2 className='size-4 animate-spin' /> : <Plus className='size-4' />}
+              {createDomain.isPending ? (
+                <Loader2 className='size-4 animate-spin' />
+              ) : (
+                <Plus className='size-4' />
+              )}
               <Trans>Add domain</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -215,7 +221,9 @@ function AddRouteDialog({
       <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
           <ResponsiveDialogHeader>
-            <ResponsiveDialogTitle><Trans>Add route</Trans></ResponsiveDialogTitle>
+            <ResponsiveDialogTitle>
+              <Trans>Add route</Trans>
+            </ResponsiveDialogTitle>
             <ResponsiveDialogDescription>
               {/* One complete sentence per translation unit - never a fragment
                   spliced onto the previous sentence. */}
@@ -223,7 +231,9 @@ function AddRouteDialog({
                 <Trans>Add a new route to {domain}</Trans>
               ) : (
                 <>
-                  <Trans>Add a new route to {domain}. You can manage these paths:</Trans>{' '}
+                  <Trans>
+                    Add a new route to {domain}. You can manage these paths:
+                  </Trans>{' '}
                   {allowedPaths.map((p, i) => (
                     <span key={p}>
                       <code className='bg-muted rounded px-1'>{p}</code>
@@ -236,17 +246,24 @@ function AddRouteDialog({
           </ResponsiveDialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
-              <Label htmlFor='path'><Trans>Path</Trans></Label>
+              <Label htmlFor='path'>
+                <Trans>Path</Trans>
+              </Label>
               <Input
                 id='path'
                 value={path}
                 onChange={(e) => setPath(e.target.value)}
                 placeholder={t`/ or /blog`}
-                className={!admin && !pathAllowed && path ? 'border-destructive' : ''}
+                className={
+                  !admin && !pathAllowed && path ? 'border-destructive' : ''
+                }
               />
               {!admin && !pathAllowed && path ? (
                 <p className='text-destructive text-xs'>
-                  <Trans>Path not allowed. You can only add routes under: {allowedPaths.join(', ')}</Trans>
+                  <Trans>
+                    Path not allowed. You can only add routes under:{' '}
+                    {allowedPaths.join(', ')}
+                  </Trans>
                 </p>
               ) : (
                 <p className='text-muted-foreground text-xs'>
@@ -255,7 +272,9 @@ function AddRouteDialog({
               )}
             </div>
             <div className='grid gap-2'>
-              <Label htmlFor='method'><Trans>Method</Trans></Label>
+              <Label htmlFor='method'>
+                <Trans>Method</Trans>
+              </Label>
               <select
                 id='method'
                 value={method}
@@ -263,22 +282,30 @@ function AddRouteDialog({
                   setMethod(e.target.value)
                   setTarget('')
                 }}
-                className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
+                className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:ring-1 focus-visible:outline-none'
               >
-                <option value='app'><Trans>App</Trans></option>
-                <option value='entity'><Trans>Entity</Trans></option>
-                <option value='redirect'><Trans>Redirect</Trans></option>
+                <option value='app'>
+                  <Trans>App</Trans>
+                </option>
+                <option value='entity'>
+                  <Trans>Entity</Trans>
+                </option>
+                <option value='redirect'>
+                  <Trans>Redirect</Trans>
+                </option>
               </select>
             </div>
             <div className='grid gap-2'>
-              <Label htmlFor='target'><Trans>Target</Trans></Label>
+              <Label htmlFor='target'>
+                <Trans>Target</Trans>
+              </Label>
               {method === 'app' ? (
                 <select
                   id='target'
                   value={target}
                   onChange={(e) => setTarget(e.target.value)}
                   required
-                  className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
+                  className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:ring-1 focus-visible:outline-none'
                 >
                   <option value='' disabled className='text-muted-foreground'>
                     <Trans>Select an app...</Trans>
@@ -295,7 +322,7 @@ function AddRouteDialog({
                   value={target}
                   onChange={(e) => setTarget(e.target.value)}
                   required
-                  className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
+                  className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:ring-1 focus-visible:outline-none'
                 >
                   <option value='' disabled className='text-muted-foreground'>
                     <Trans>Select an entity...</Trans>
@@ -315,18 +342,25 @@ function AddRouteDialog({
                   required
                 />
               )}
-              {(method === 'app' && appsError) || (method === 'entity' && entitiesError) ? (
+              {(method === 'app' && appsError) ||
+              (method === 'entity' && entitiesError) ? (
                 <p className='text-destructive text-xs'>{t`Failed to load`}</p>
               ) : (
                 <p className='text-muted-foreground text-xs'>
-                  {method === 'app' && <Trans>Select the app to route to</Trans>}
+                  {method === 'app' && (
+                    <Trans>Select the app to route to</Trans>
+                  )}
                   {method === 'redirect' && <Trans>URL to redirect to</Trans>}
-                  {method === 'entity' && <Trans>Select the entity to route to</Trans>}
+                  {method === 'entity' && (
+                    <Trans>Select the entity to route to</Trans>
+                  )}
                 </p>
               )}
             </div>
             <div className='grid gap-2'>
-              <Label htmlFor='priority'><Trans>Priority</Trans></Label>
+              <Label htmlFor='priority'>
+                <Trans>Priority</Trans>
+              </Label>
               <Input
                 id='priority'
                 type='number'
@@ -347,8 +381,15 @@ function AddRouteDialog({
             >
               <Trans>Cancel</Trans>
             </Button>
-            <Button type='submit' disabled={createRoute.isPending || (!admin && !pathAllowed)}>
-              {createRoute.isPending ? <Loader2 className='size-4 animate-spin' /> : <Plus className='size-4' />}
+            <Button
+              type='submit'
+              disabled={createRoute.isPending || (!admin && !pathAllowed)}
+            >
+              {createRoute.isPending ? (
+                <Loader2 className='size-4 animate-spin' />
+              ) : (
+                <Plus className='size-4' />
+              )}
               <Trans>Add route</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -428,7 +469,12 @@ function EditRouteDialog({
       <Tooltip>
         <TooltipTrigger asChild>
           <ResponsiveDialogTrigger asChild>
-            <Button variant='ghost' size='icon' className='h-8 w-8' aria-label={t`Edit route`}>
+            <Button
+              variant='ghost'
+              size='icon'
+              className='h-8 w-8'
+              aria-label={t`Edit route`}
+            >
               <Pencil className='h-4 w-4' />
             </Button>
           </ResponsiveDialogTrigger>
@@ -438,14 +484,18 @@ function EditRouteDialog({
       <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
           <ResponsiveDialogHeader>
-            <ResponsiveDialogTitle><Trans>Edit route</Trans></ResponsiveDialogTitle>
+            <ResponsiveDialogTitle>
+              <Trans>Edit route</Trans>
+            </ResponsiveDialogTitle>
             <ResponsiveDialogDescription>
               <Trans>Edit route for path: {route.path || '/'}</Trans>
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
-              <Label htmlFor='edit-method'><Trans>Method</Trans></Label>
+              <Label htmlFor='edit-method'>
+                <Trans>Method</Trans>
+              </Label>
               <select
                 id='edit-method'
                 value={method}
@@ -453,22 +503,30 @@ function EditRouteDialog({
                   setMethod(e.target.value)
                   setTarget('')
                 }}
-                className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
+                className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:ring-1 focus-visible:outline-none'
               >
-                <option value='app'><Trans>App</Trans></option>
-                <option value='entity'><Trans>Entity</Trans></option>
-                <option value='redirect'><Trans>Redirect</Trans></option>
+                <option value='app'>
+                  <Trans>App</Trans>
+                </option>
+                <option value='entity'>
+                  <Trans>Entity</Trans>
+                </option>
+                <option value='redirect'>
+                  <Trans>Redirect</Trans>
+                </option>
               </select>
             </div>
             <div className='grid gap-2'>
-              <Label htmlFor='edit-target'><Trans>Target</Trans></Label>
+              <Label htmlFor='edit-target'>
+                <Trans>Target</Trans>
+              </Label>
               {method === 'app' ? (
                 <select
                   id='edit-target'
                   value={target}
                   onChange={(e) => setTarget(e.target.value)}
                   required
-                  className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
+                  className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:ring-1 focus-visible:outline-none'
                 >
                   <option value='' disabled className='text-muted-foreground'>
                     <Trans>Select an app...</Trans>
@@ -485,7 +543,7 @@ function EditRouteDialog({
                   value={target}
                   onChange={(e) => setTarget(e.target.value)}
                   required
-                  className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1'
+                  className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:ring-1 focus-visible:outline-none'
                 >
                   <option value='' disabled className='text-muted-foreground'>
                     <Trans>Select an entity...</Trans>
@@ -505,18 +563,25 @@ function EditRouteDialog({
                   required
                 />
               )}
-              {(method === 'app' && appsError) || (method === 'entity' && entitiesError) ? (
+              {(method === 'app' && appsError) ||
+              (method === 'entity' && entitiesError) ? (
                 <p className='text-destructive text-xs'>{t`Failed to load`}</p>
               ) : (
                 <p className='text-muted-foreground text-xs'>
-                  {method === 'app' && <Trans>Select the app to route to</Trans>}
+                  {method === 'app' && (
+                    <Trans>Select the app to route to</Trans>
+                  )}
                   {method === 'redirect' && <Trans>URL to redirect to</Trans>}
-                  {method === 'entity' && <Trans>Select the entity to route to</Trans>}
+                  {method === 'entity' && (
+                    <Trans>Select the entity to route to</Trans>
+                  )}
                 </p>
               )}
             </div>
             <div className='grid gap-2'>
-              <Label htmlFor='edit-priority'><Trans>Priority</Trans></Label>
+              <Label htmlFor='edit-priority'>
+                <Trans>Priority</Trans>
+              </Label>
               <Input
                 id='edit-priority'
                 type='number'
@@ -536,7 +601,9 @@ function EditRouteDialog({
                 onChange={(e) => setEnabled(e.target.checked)}
                 className='h-4 w-4'
               />
-              <Label htmlFor='edit-enabled'><Trans>Enabled</Trans></Label>
+              <Label htmlFor='edit-enabled'>
+                <Trans>Enabled</Trans>
+              </Label>
             </div>
           </div>
           <ResponsiveDialogFooter>
@@ -547,8 +614,15 @@ function EditRouteDialog({
             >
               <Trans>Cancel</Trans>
             </Button>
-            <Button type='submit' disabled={updateRoute.isPending || !routeDirty}>
-              {updateRoute.isPending ? <Loader2 className='size-4 animate-spin' /> : <Check className='size-4' />}
+            <Button
+              type='submit'
+              disabled={updateRoute.isPending || !routeDirty}
+            >
+              {updateRoute.isPending ? (
+                <Loader2 className='size-4 animate-spin' />
+              ) : (
+                <Check className='size-4' />
+              )}
               <Trans>Save changes</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -622,14 +696,20 @@ function AddDelegationDialog({
       <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
           <ResponsiveDialogHeader>
-            <ResponsiveDialogTitle><Trans>Add delegation</Trans></ResponsiveDialogTitle>
+            <ResponsiveDialogTitle>
+              <Trans>Add delegation</Trans>
+            </ResponsiveDialogTitle>
             <ResponsiveDialogDescription>
-              <Trans>Grant a user permission to manage routes on {domain}</Trans>
+              <Trans>
+                Grant a user permission to manage routes on {domain}
+              </Trans>
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
-              <Label htmlFor='path'><Trans>Path</Trans></Label>
+              <Label htmlFor='path'>
+                <Trans>Path</Trans>
+              </Label>
               <Input
                 id='path'
                 value={path}
@@ -641,7 +721,9 @@ function AddDelegationDialog({
               </p>
             </div>
             <div className='grid gap-2'>
-              <Label htmlFor='user'><Trans>User</Trans></Label>
+              <Label htmlFor='user'>
+                <Trans>User</Trans>
+              </Label>
               <div className='relative'>
                 <Input
                   id='user'
@@ -695,7 +777,11 @@ function AddDelegationDialog({
               type='submit'
               disabled={createDelegation.isPending || !selectedUser}
             >
-              {createDelegation.isPending ? <Loader2 className='size-4 animate-spin' /> : <Plus className='size-4' />}
+              {createDelegation.isPending ? (
+                <Loader2 className='size-4 animate-spin' />
+              ) : (
+                <Plus className='size-4' />
+              )}
               <Trans>Add delegation</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -858,7 +944,8 @@ function DomainDetails({
       { domain: domain.domain, verified: checked },
       {
         onSuccess: () => toast.success(t`Domain updated`),
-        onError: (error) => toast.error(getErrorMessage(error, t`Failed to update domain`)),
+        onError: (error) =>
+          toast.error(getErrorMessage(error, t`Failed to update domain`)),
       }
     )
   }
@@ -868,7 +955,8 @@ function DomainDetails({
       { domain: domain.domain, tls: checked },
       {
         onSuccess: () => toast.success(t`Domain updated`),
-        onError: (error) => toast.error(getErrorMessage(error, t`Failed to update domain`)),
+        onError: (error) =>
+          toast.error(getErrorMessage(error, t`Failed to update domain`)),
       }
     )
   }
@@ -970,7 +1058,9 @@ function DomainDetails({
             <div className='space-y-4'>
               <div className='flex items-center justify-between'>
                 <div className='space-y-0.5'>
-                  <Label><Trans>Verified</Trans></Label>
+                  <Label>
+                    <Trans>Verified</Trans>
+                  </Label>
                   <p className='text-muted-foreground text-xs'>
                     <Trans>Domain ownership has been verified</Trans>
                   </p>
@@ -984,9 +1074,14 @@ function DomainDetails({
               {domain.token && (
                 <div className='flex items-center justify-between'>
                   <div className='space-y-0.5'>
-                    <Label><Trans>DNS verification</Trans></Label>
+                    <Label>
+                      <Trans>DNS verification</Trans>
+                    </Label>
                     <p className='text-muted-foreground text-xs'>
-                      <Trans>Create a TXT record for</Trans> <code className='bg-muted rounded px-1'>_mochi-verify.{domain.domain}</code>
+                      <Trans>Create a TXT record for</Trans>{' '}
+                      <code className='bg-muted rounded px-1'>
+                        _mochi-verify.{domain.domain}
+                      </code>
                     </p>
                     <p className='text-muted-foreground font-mono text-xs break-all'>
                       {/* jsx-text-ok: verbatim DNS TXT record value the user copies */}
@@ -1008,7 +1103,9 @@ function DomainDetails({
                             }
                           },
                           onError: (error) => {
-                            toast.error(getErrorMessage(error, t`Failed to verify domain`))
+                            toast.error(
+                              getErrorMessage(error, t`Failed to verify domain`)
+                            )
                           },
                         })
                       }}
@@ -1024,7 +1121,9 @@ function DomainDetails({
                 </div>
               )}
               <div className='flex items-center justify-between'>
-                <Label><Trans>Automatic certificates</Trans></Label>
+                <Label>
+                  <Trans>Automatic certificates</Trans>
+                </Label>
                 <Switch
                   checked={domain.tls === 1}
                   onCheckedChange={handleToggleTls}
@@ -1049,18 +1148,33 @@ function DomainDetails({
               />
             </div>
             {error ? (
-              <GeneralError error={error} minimal mode='inline' reset={refetch} />
+              <GeneralError
+                error={error}
+                minimal
+                mode='inline'
+                reset={refetch}
+              />
             ) : isLoading ? (
               <Skeleton className='h-20 w-full' />
             ) : data?.routes && data.routes.length > 0 ? (
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead><Trans>Path</Trans></TableHead>
-                    <TableHead><Trans>Method</Trans></TableHead>
-                    <TableHead><Trans>Target</Trans></TableHead>
-                    <TableHead><Trans>Priority</Trans></TableHead>
-                    <TableHead><Trans>Status</Trans></TableHead>
+                    <TableHead>
+                      <Trans>Path</Trans>
+                    </TableHead>
+                    <TableHead>
+                      <Trans>Method</Trans>
+                    </TableHead>
+                    <TableHead>
+                      <Trans>Target</Trans>
+                    </TableHead>
+                    <TableHead>
+                      <Trans>Priority</Trans>
+                    </TableHead>
+                    <TableHead>
+                      <Trans>Status</Trans>
+                    </TableHead>
                     <TableHead className='w-[50px]' />
                   </TableRow>
                 </TableHeader>
@@ -1097,15 +1211,24 @@ function DomainDetails({
                 />
               </div>
               {error ? (
-                <GeneralError error={error} minimal mode='inline' reset={refetch} />
+                <GeneralError
+                  error={error}
+                  minimal
+                  mode='inline'
+                  reset={refetch}
+                />
               ) : isLoading ? (
                 <Skeleton className='h-20 w-full' />
               ) : data?.delegations && data.delegations.length > 0 ? (
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead><Trans>Path</Trans></TableHead>
-                      <TableHead><Trans>User</Trans></TableHead>
+                      <TableHead>
+                        <Trans>Path</Trans>
+                      </TableHead>
+                      <TableHead>
+                        <Trans>User</Trans>
+                      </TableHead>
                       <TableHead className='w-[50px]' />
                     </TableRow>
                   </TableHeader>
@@ -1137,9 +1260,13 @@ function DomainDetails({
               <hr className='border-border' />
               <div className='flex items-center justify-between'>
                 <div className='space-y-0.5'>
-                  <Label><Trans>Delete domain</Trans></Label>
+                  <Label>
+                    <Trans>Delete domain</Trans>
+                  </Label>
                   <p className='text-muted-foreground text-xs'>
-                    <Trans>Permanently delete this domain and all its routes.</Trans>
+                    <Trans>
+                      Permanently delete this domain and all its routes.
+                    </Trans>
                   </p>
                 </div>
                 <Button
@@ -1231,7 +1358,12 @@ export function Domains() {
         <Section title={t`Domains`}>
           <div className='divide-y'>
             {error ? (
-              <GeneralError error={error} minimal mode='inline' reset={refetch} />
+              <GeneralError
+                error={error}
+                minimal
+                mode='inline'
+                reset={refetch}
+              />
             ) : isLoading ? (
               <ListSkeleton variant='simple' height='h-20' count={2} />
             ) : data?.domains && data.domains.length > 0 ? (
@@ -1249,9 +1381,15 @@ export function Domains() {
             ) : (
               <EmptyState
                 icon={Shield}
-                title={isAdmin ? t`No domains configured` : t`You don't have access to any domains.`}
+                title={
+                  isAdmin
+                    ? t`No domains configured`
+                    : t`You don't have access to any domains.`
+                }
                 description={
-                  isAdmin ? undefined : t`Contact an administrator to get a delegation.`
+                  isAdmin
+                    ? undefined
+                    : t`Contact an administrator to get a delegation.`
                 }
                 className='p-4'
               />

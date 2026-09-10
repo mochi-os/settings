@@ -2,12 +2,9 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useRef, useState } from 'react'
-import { Trans, useLingui } from '@lingui/react/macro'
 import type { SystemSetting } from '@/types/settings'
-import { useStepUp } from '@/lib/use-step-up'
-import { Check, Loader2, Lock, RotateCcw, Settings, Upload, X } from 'lucide-react'
+import { Trans, useLingui } from '@lingui/react/macro'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -35,7 +32,18 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-  naturalCompare,} from '@mochi/web'
+  naturalCompare,
+} from '@mochi/web'
+import {
+  Check,
+  Loader2,
+  Lock,
+  RotateCcw,
+  Settings,
+  Upload,
+  X,
+} from 'lucide-react'
+import { useStepUp } from '@/lib/use-step-up'
 import {
   useSystemSettingsData,
   useSetSystemSetting,
@@ -84,9 +92,16 @@ function useSettingLabels(): Record<string, string> {
 
 // Operator info — displayed in policy documents shown to users; manually
 // ordered (name first) rather than sorted alphabetically.
-const OPERATOR_SETTINGS = ['operator_name', 'operator_email', 'operator_jurisdiction']
+const OPERATOR_SETTINGS = [
+  'operator_name',
+  'operator_email',
+  'operator_jurisdiction',
+]
 
-function formatSettingName(name: string, labels: Record<string, string>): string {
+function formatSettingName(
+  name: string,
+  labels: Record<string, string>
+): string {
   if (labels[name]) {
     return labels[name]
   }
@@ -138,7 +153,8 @@ function enumOptions(setting: SystemSetting): string[] | null {
   // Only treat as enum if we have more than 2 options, or if it's the
   // allowed|disabled shape — i.e. explicitly not the true|false Switch shape.
   if (opts.length < 2) return null
-  if (opts.length === 2 && opts.includes('true') && opts.includes('false')) return null
+  if (opts.length === 2 && opts.includes('true') && opts.includes('false'))
+    return null
   return opts
 }
 
@@ -266,15 +282,15 @@ function SettingField({
       label={settingNameLabel}
       className='sm:grid-cols-[400px_minmax(0,1fr)]'
     >
-      <div className='flex items-center gap-2 w-full'>
+      <div className='flex w-full items-center gap-2'>
         {setting.read_only ? (
-          <DataChip 
-            value={emptyValueLabel(setting.value)} 
-            icon={setting.read_only ? <Lock className="size-3" /> : undefined}
+          <DataChip
+            value={emptyValueLabel(setting.value)}
+            icon={setting.read_only ? <Lock className='size-3' /> : undefined}
           />
         ) : methodStates ? (
           <div className='flex items-center gap-2'>
-            <div className='inline-flex rounded-md border bg-background p-0.5'>
+            <div className='bg-background inline-flex rounded-md border p-0.5'>
               {methodStateSlots
                 .filter((slot) => methodStates.has(slot))
                 .map((slot) => (
@@ -284,7 +300,7 @@ function SettingField({
                     onClick={() => handlePick(slot)}
                     disabled={isSaving || localValue === slot}
                     className={
-                      'w-20 py-1 text-xs font-medium rounded-sm transition-colors ' +
+                      'w-20 rounded-sm py-1 text-xs font-medium transition-colors ' +
                       (localValue === slot
                         ? 'bg-primary text-primary-foreground'
                         : 'text-muted-foreground hover:text-foreground')
@@ -302,7 +318,7 @@ function SettingField({
                       <Button
                         variant='ghost'
                         size='icon'
-                        className='h-8 w-8 text-muted-foreground'
+                        className='text-muted-foreground h-8 w-8'
                         disabled={isSaving}
                         aria-label={t`Reset to default`}
                       >
@@ -314,13 +330,20 @@ function SettingField({
                 </Tooltip>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle><Trans>Reset to default?</Trans></AlertDialogTitle>
+                    <AlertDialogTitle>
+                      <Trans>Reset to default?</Trans>
+                    </AlertDialogTitle>
                     <AlertDialogDescription>
-                      <Trans>This will reset "{settingNameLabel}" to its default value ({defaultLabel}).</Trans>
+                      <Trans>
+                        This will reset "{settingNameLabel}" to its default
+                        value ({defaultLabel}).
+                      </Trans>
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel><Trans>Cancel</Trans></AlertDialogCancel>
+                    <AlertDialogCancel>
+                      <Trans>Cancel</Trans>
+                    </AlertDialogCancel>
                     <AlertDialogAction onClick={handleReset}>
                       <Trans>Reset</Trans>
                     </AlertDialogAction>
@@ -330,7 +353,7 @@ function SettingField({
             )}
           </div>
         ) : isBoolean ? (
-          <div className="flex items-center gap-3">
+          <div className='flex items-center gap-3'>
             <Switch
               checked={localValue === 'true'}
               onCheckedChange={handleToggle}
@@ -344,7 +367,7 @@ function SettingField({
                       <Button
                         variant='ghost'
                         size='icon'
-                        className='h-8 w-8 text-muted-foreground'
+                        className='text-muted-foreground h-8 w-8'
                         disabled={isSaving}
                         aria-label={t`Reset to default`}
                       >
@@ -356,13 +379,20 @@ function SettingField({
                 </Tooltip>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle><Trans>Reset to default?</Trans></AlertDialogTitle>
+                    <AlertDialogTitle>
+                      <Trans>Reset to default?</Trans>
+                    </AlertDialogTitle>
                     <AlertDialogDescription>
-                      <Trans>This will reset "{settingNameLabel}" to its default value ({defaultLabel}).</Trans>
+                      <Trans>
+                        This will reset "{settingNameLabel}" to its default
+                        value ({defaultLabel}).
+                      </Trans>
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel><Trans>Cancel</Trans></AlertDialogCancel>
+                    <AlertDialogCancel>
+                      <Trans>Cancel</Trans>
+                    </AlertDialogCancel>
                     <AlertDialogAction onClick={handleReset}>
                       <Trans>Reset</Trans>
                     </AlertDialogAction>
@@ -372,7 +402,7 @@ function SettingField({
             )}
           </div>
         ) : isFileUpload ? (
-          <div className='flex items-center gap-2 w-full'>
+          <div className='flex w-full items-center gap-2'>
             <input
               ref={fileInputRef}
               type='file'
@@ -442,7 +472,7 @@ function SettingField({
             inputClassName='h-9 font-mono text-sm'
           />
         ) : (
-          <div className='flex items-center gap-2 w-full'>
+          <div className='flex w-full items-center gap-2'>
             <Input
               value={localValue}
               onChange={(e) => setLocalValue(e.target.value)}
@@ -451,44 +481,62 @@ function SettingField({
             />
             {hasChanged ? (
               <Button size='sm' onClick={handleSave} disabled={isSaving}>
-                {isSaving ? <Loader2 className='size-4 animate-spin' /> : <Check className='size-4' />}
+                {isSaving ? (
+                  <Loader2 className='size-4 animate-spin' />
+                ) : (
+                  <Check className='size-4' />
+                )}
                 <Trans>Save</Trans>
               </Button>
-            ) : !isDefault && (
-              <AlertDialog>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <AlertDialogTrigger asChild>
-                      <Button
-                        variant='ghost'
-                        size='icon'
-                        className='h-9 w-9 text-muted-foreground'
-                        disabled={isSaving}
-                        aria-label={t`Reset to default`}
-                      >
-                        <RotateCcw className='h-4 w-4' />
-                      </Button>
-                    </AlertDialogTrigger>
-                  </TooltipTrigger>
-                  <TooltipContent>{t`Reset to default`}</TooltipContent>
-                </Tooltip>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle><Trans>Reset to default?</Trans></AlertDialogTitle>
-                    <AlertDialogDescription>
-                      {setting.default
-                        ? <Trans>This will reset "{settingNameLabel}" to its default value ({defaultLabel}).</Trans>
-                        : <Trans>This will reset "{settingNameLabel}" to its default (empty).</Trans>}
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel><Trans>Cancel</Trans></AlertDialogCancel>
-                    <AlertDialogAction onClick={handleReset}>
-                      <Trans>Reset</Trans>
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
+            ) : (
+              !isDefault && (
+                <AlertDialog>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant='ghost'
+                          size='icon'
+                          className='text-muted-foreground h-9 w-9'
+                          disabled={isSaving}
+                          aria-label={t`Reset to default`}
+                        >
+                          <RotateCcw className='h-4 w-4' />
+                        </Button>
+                      </AlertDialogTrigger>
+                    </TooltipTrigger>
+                    <TooltipContent>{t`Reset to default`}</TooltipContent>
+                  </Tooltip>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>
+                        <Trans>Reset to default?</Trans>
+                      </AlertDialogTitle>
+                      <AlertDialogDescription>
+                        {setting.default ? (
+                          <Trans>
+                            This will reset "{settingNameLabel}" to its default
+                            value ({defaultLabel}).
+                          </Trans>
+                        ) : (
+                          <Trans>
+                            This will reset "{settingNameLabel}" to its default
+                            (empty).
+                          </Trans>
+                        )}
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>
+                        <Trans>Cancel</Trans>
+                      </AlertDialogCancel>
+                      <AlertDialogAction onClick={handleReset}>
+                        <Trans>Reset</Trans>
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              )
             )}
           </div>
         )}
@@ -546,7 +594,10 @@ export function SystemSettings() {
     ? [...data.settings]
         .filter((s) => !hiddenSettings.includes(s.name))
         .sort((a, b) =>
-          naturalCompare(formatSettingName(a.name, labels), formatSettingName(b.name, labels))
+          naturalCompare(
+            formatSettingName(a.name, labels),
+            formatSettingName(b.name, labels)
+          )
         )
     : []
 
@@ -555,9 +606,9 @@ export function SystemSettings() {
   const userDefaults = allSettings.filter((s) =>
     userDefaultSettings.includes(s.name)
   )
-  const operatorSettings = OPERATOR_SETTINGS
-    .map((n) => allSettings.find((s) => s.name === n))
-    .filter((s): s is NonNullable<typeof s> => s !== undefined)
+  const operatorSettings = OPERATOR_SETTINGS.map((n) =>
+    allSettings.find((s) => s.name === n)
+  ).filter((s): s is NonNullable<typeof s> => s !== undefined)
   const pushSettings = allSettings.filter((s) => isPushSetting(s.name))
   const other = allSettings.filter(
     (s) =>
@@ -581,9 +632,12 @@ export function SystemSettings() {
   return (
     <>
       {stepUp.dialog}
-      <PageHeader title={t`System settings`} icon={<Settings className='size-4 md:size-5' />} />
+      <PageHeader
+        title={t`System settings`}
+        icon={<Settings className='size-4 md:size-5' />}
+      />
 
-      <Main className="space-y-8">
+      <Main className='space-y-8'>
         {error ? (
           <GeneralError error={error} minimal mode='inline' reset={refetch} />
         ) : isLoading ? (
@@ -591,9 +645,7 @@ export function SystemSettings() {
         ) : (
           <>
             <Section title={t`Login`}>
-              <div className='divide-y-0'>
-                {renderSettings(loginSettings)}
-              </div>
+              <div className='divide-y-0'>{renderSettings(loginSettings)}</div>
             </Section>
 
             {oauthSettings.length > 0 && (
@@ -605,9 +657,7 @@ export function SystemSettings() {
             )}
 
             <Section title={t`User defaults`}>
-              <div className='divide-y-0'>
-                {renderSettings(userDefaults)}
-              </div>
+              <div className='divide-y-0'>{renderSettings(userDefaults)}</div>
             </Section>
 
             {operatorSettings.length > 0 && (
@@ -620,16 +670,12 @@ export function SystemSettings() {
 
             {pushSettings.length > 0 && (
               <Section title={t`Push notifications`}>
-                <div className='divide-y-0'>
-                  {renderSettings(pushSettings)}
-                </div>
+                <div className='divide-y-0'>{renderSettings(pushSettings)}</div>
               </Section>
             )}
 
             <Section title={t`Other settings`}>
-              <div className='divide-y-0'>
-                {renderSettings(other)}
-              </div>
+              <div className='divide-y-0'>{renderSettings(other)}</div>
             </Section>
           </>
         )}

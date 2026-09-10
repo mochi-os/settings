@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import type { ColorTheme, ThemeInfo } from '@mochi/web'
 
 type ThemeOverridePrefs = {
@@ -37,7 +36,9 @@ const FONT_STACKS: Record<string, { sans: string; mono?: string }> = {
   },
 }
 
-export function prefsFromData(prefs: Record<string, string>): ThemeOverridePrefs {
+export function prefsFromData(
+  prefs: Record<string, string>
+): ThemeOverridePrefs {
   return {
     density: prefs.density || 'theme',
     radius: prefs.radius || 'theme',
@@ -52,7 +53,7 @@ export function colorThemeFromSelections(
   themes: ThemeInfo[] | undefined,
   selectedThemeId: string | undefined,
   prefs: ThemeOverridePrefs,
-  presets: Record<string, Record<string, string>> | undefined,
+  presets: Record<string, Record<string, string>> | undefined
 ): ColorTheme | null {
   const theme = themes?.find((t) => t.id === selectedThemeId)
 

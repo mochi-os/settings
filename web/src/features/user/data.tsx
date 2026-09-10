@@ -2,10 +2,8 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useState } from 'react'
 import { useLingui, Trans } from '@lingui/react/macro'
-import { Download, RefreshCw } from 'lucide-react'
 import {
   Button,
   CopyButton,
@@ -18,8 +16,9 @@ import {
   shellNavigateTop,
   toast,
 } from '@mochi/web'
-import { useExportData } from '@/hooks/use-account'
+import { Download, RefreshCw } from 'lucide-react'
 import { stepUpClient } from '@/lib/step-up-client'
+import { useExportData } from '@/hooks/use-account'
 import WORDS from './data-words'
 
 // ============================================================================
@@ -166,11 +165,18 @@ function DownloadDialog({
             >
               <RefreshCw className='h-4 w-4' />
             </Button>
-            <CopyButton value={passphrase} disabled={!passphrase} variant='outline' />
+            <CopyButton
+              value={passphrase}
+              disabled={!passphrase}
+              variant='outline'
+            />
           </div>
         </div>
         <p className='text-muted-foreground text-xs leading-relaxed'>
-          <Trans>Your private keys are included, encrypted with this passphrase. Store it safely. You'll need it to restore.</Trans>
+          <Trans>
+            Your private keys are included, encrypted with this passphrase.
+            Store it safely. You'll need it to restore.
+          </Trans>
         </p>
       </div>
     </StepUpDialog>
@@ -190,7 +196,11 @@ export function DataSection() {
       <Section
         title={t`Your data`}
         action={
-          <Button variant='outline' size='sm' onClick={() => setDialogOpen(true)}>
+          <Button
+            variant='outline'
+            size='sm'
+            onClick={() => setDialogOpen(true)}
+          >
             <Download className='me-2 h-4 w-4' />
             <Trans>Download</Trans>
           </Button>

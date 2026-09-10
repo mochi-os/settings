@@ -2,11 +2,8 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { Trans, useLingui } from '@lingui/react/macro'
-import { Loader2, Search, Star, Trash2, RefreshCw } from 'lucide-react'
-import { useInterests, useInterestSet, useInterestRemove, useInterestSearch, useInterestSummary, type Interest, type SearchResult } from '@/hooks/use-interests'
 import {
   Button,
   EmptyState,
@@ -18,7 +15,20 @@ import {
   Slider,
   usePageTitle,
   getErrorMessage,
-  toast, naturalCompare, interestColor,} from '@mochi/web'
+  toast,
+  naturalCompare,
+  interestColor,
+} from '@mochi/web'
+import { Loader2, Search, Star, Trash2, RefreshCw } from 'lucide-react'
+import {
+  useInterests,
+  useInterestSet,
+  useInterestRemove,
+  useInterestSearch,
+  useInterestSummary,
+  type Interest,
+  type SearchResult,
+} from '@/hooks/use-interests'
 
 function InterestRow({ interest }: { interest: Interest }) {
   const { t } = useLingui()
@@ -113,7 +123,8 @@ function InterestRow({ interest }: { interest: Interest }) {
         className='w-8 shrink-0 text-end text-xs tabular-nums'
         style={{ color: interestColor(weight) }}
       >
-        {weight > 0 ? '+' : ''}{weight}
+        {weight > 0 ? '+' : ''}
+        {weight}
       </span>
       <Button
         variant='ghost'
@@ -249,7 +260,9 @@ export function UserInterests() {
   const { data, isLoading, error, refetch } = useInterests()
   const regenerateSummary = useInterestSummary()
 
-  const interests = [...(data?.interests ?? [])].sort((a, b) => naturalCompare(a.label, b.label))
+  const interests = [...(data?.interests ?? [])].sort((a, b) =>
+    naturalCompare(a.label, b.label)
+  )
   const summary = data?.summary ?? ''
 
   const handleRegenerate = () => {
@@ -274,7 +287,9 @@ export function UserInterests() {
         {summary && (
           <div className='space-y-1.5'>
             <div className='flex items-center gap-2'>
-              <h4 className='text-sm font-medium'><Trans>Summary</Trans></h4>
+              <h4 className='text-sm font-medium'>
+                <Trans>Summary</Trans>
+              </h4>
               <Button
                 variant='ghost'
                 size='sm'
@@ -296,20 +311,11 @@ export function UserInterests() {
         <InterestSearch />
 
         {error ? (
-          <GeneralError
-            error={error}
-            minimal
-            mode='inline'
-            reset={refetch}
-          />
+          <GeneralError error={error} minimal mode='inline' reset={refetch} />
         ) : isLoading ? (
           <ListSkeleton variant='simple' height='h-10' count={5} />
         ) : interests.length === 0 ? (
-          <EmptyState
-            icon={Star}
-            title={t`No interests yet`}
-            className='p-4'
-          />
+          <EmptyState icon={Star} title={t`No interests yet`} className='p-4' />
         ) : (
           <div className='divide-border divide-y'>
             {interests.map((interest) => (

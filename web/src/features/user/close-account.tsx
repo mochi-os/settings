@@ -2,10 +2,8 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useState } from 'react'
 import { useLingui, Trans } from '@lingui/react/macro'
-import { LogIn, UserX } from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,8 +21,9 @@ import {
   toast,
   useFormat,
 } from '@mochi/web'
-import { useCloseAccount } from '@/hooks/use-account'
+import { LogIn, UserX } from 'lucide-react'
 import { useStepUp } from '@/lib/use-step-up'
+import { useCloseAccount } from '@/hooks/use-account'
 
 // Closing revokes every session, so the shell loses auth: bounce to the
 // top-level URL, where the user lands on login and the reactivation
@@ -77,7 +76,10 @@ export function CloseAccountSection() {
                 </AlertDialogTitle>
                 <AlertDialogDescription>
                   <Trans>
-                    Your account will be scheduled for deletion and you'll be signed out. You can cancel any time before the deletion date by logging back in. Download your data first if you want to keep a copy.
+                    Your account will be scheduled for deletion and you'll be
+                    signed out. You can cancel any time before the deletion date
+                    by logging back in. Download your data first if you want to
+                    keep a copy.
                   </Trans>
                 </AlertDialogDescription>
               </AlertDialogHeader>
@@ -108,7 +110,10 @@ export function CloseAccountSection() {
               <Trans>Account scheduled for deletion</Trans>
             </AlertDialogTitle>
             <AlertDialogDescription>
-              <Trans>Your account will be permanently deleted on {purgeDate}. You've been signed out. To cancel, sign in again before then.</Trans>
+              <Trans>
+                Your account will be permanently deleted on {purgeDate}. You've
+                been signed out. To cancel, sign in again before then.
+              </Trans>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

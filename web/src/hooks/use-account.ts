@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import type {
   AccountData,
@@ -21,9 +20,9 @@ import type {
   RecoveryStatusResponse,
   RecoveryGenerateResponse,
 } from '@/types/account'
-import endpoints from '@/api/endpoints'
-import { requestHelpers } from '@mochi/web'
 import { useLingui } from '@lingui/react/macro'
+import { requestHelpers } from '@mochi/web'
+import endpoints from '@/api/endpoints'
 
 const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
@@ -105,7 +104,15 @@ export function useMethods() {
 export function useSetMethod() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: ({ method, state, token }: { method: string; state: string; token: string }) =>
+    mutationFn: ({
+      method,
+      state,
+      token,
+    }: {
+      method: string
+      state: string
+      token: string
+    }) =>
       requestHelpers.post<{ ok: boolean }>(
         endpoints.user.accountMethodsSet,
         { method, state, token },
@@ -358,7 +365,13 @@ export function useOauthUnlink() {
 // the passphrase that encrypts the keys.
 export function useExportData() {
   return useMutation({
-    mutationFn: ({ passphrase, token }: { passphrase: string; token: string }) =>
+    mutationFn: ({
+      passphrase,
+      token,
+    }: {
+      passphrase: string
+      token: string
+    }) =>
       requestHelpers.post<{ filename: string }>(
         endpoints.user.accountExport,
         { passphrase, token },

@@ -12,6 +12,10 @@ export function hyphenateFingerprint(fingerprint: string) {
 
 // Display name for sorting peers: the announced name when present, else
 // the hyphenated fingerprint.
-export function peerDisplayName(p: { name?: string; fingerprint?: string; peer: string }) {
+export function peerDisplayName(p: {
+  name?: string
+  fingerprint?: string
+  peer: string
+}) {
   return p.name || hyphenateFingerprint(p.fingerprint ?? '') || p.peer
 }

@@ -2,11 +2,8 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import type { Session } from '@/types/account'
 import { Trans, useLingui } from '@lingui/react/macro'
-import { Loader2, LogOut, Monitor } from 'lucide-react'
-import { useAgentName, useSessions, useRevokeSession } from '@/hooks/use-account'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -34,6 +31,12 @@ import {
   toast,
   useFormat,
 } from '@mochi/web'
+import { Loader2, LogOut, Monitor } from 'lucide-react'
+import {
+  useAgentName,
+  useSessions,
+  useRevokeSession,
+} from '@/hooks/use-account'
 
 function SessionRow({
   session,
@@ -91,12 +94,16 @@ function SessionRow({
               ) : (
                 <LogOut className='h-4 w-4' />
               )}
-              <span className='sr-only'><Trans>Revoke session</Trans></span>
+              <span className='sr-only'>
+                <Trans>Revoke session</Trans>
+              </span>
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle><Trans>Revoke session?</Trans></AlertDialogTitle>
+              <AlertDialogTitle>
+                <Trans>Revoke session?</Trans>
+              </AlertDialogTitle>
               <AlertDialogDescription>
                 <Trans>
                   This will sign out this session. If this is your current
@@ -105,7 +112,9 @@ function SessionRow({
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel><Trans>Cancel</Trans></AlertDialogCancel>
+              <AlertDialogCancel>
+                <Trans>Cancel</Trans>
+              </AlertDialogCancel>
               <AlertDialogAction onClick={handleRevoke}>
                 <Trans>Revoke</Trans>
               </AlertDialogAction>
@@ -127,7 +136,10 @@ export function UserSessions() {
 
   return (
     <>
-      <PageHeader title={t`Sessions`} icon={<Monitor className='size-4 md:size-5' />} />
+      <PageHeader
+        title={t`Sessions`}
+        icon={<Monitor className='size-4 md:size-5' />}
+      />
 
       <Main>
         {error ? (
@@ -144,9 +156,15 @@ export function UserSessions() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead><Trans>Session</Trans></TableHead>
-                <TableHead><Trans>Created</Trans></TableHead>
-                <TableHead><Trans>Last active</Trans></TableHead>
+                <TableHead>
+                  <Trans>Session</Trans>
+                </TableHead>
+                <TableHead>
+                  <Trans>Created</Trans>
+                </TableHead>
+                <TableHead>
+                  <Trans>Last active</Trans>
+                </TableHead>
                 <TableHead className='w-12'></TableHead>
               </TableRow>
             </TableHeader>

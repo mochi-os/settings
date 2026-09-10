@@ -2,22 +2,11 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
-import { plural } from '@lingui/core/macro'
 import { useState, useMemo } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { Trans, useLingui } from '@lingui/react/macro'
 import { useNavigate, useSearch } from '@tanstack/react-router'
-import {
-  Bell,
-  Check,
-  Loader2,
-  Pencil,
-  Plus,
-  Send,
-  Trash2,
-  X,
-} from 'lucide-react'
+import { plural } from '@lingui/core/macro'
+import { Trans, useLingui } from '@lingui/react/macro'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -54,7 +43,22 @@ import {
   requestHelpers,
   toast,
   usePageTitle,
-  usePush, naturalCompare, getProviderLabel, textUnchanged, setsEqual,} from '@mochi/web'
+  usePush,
+  naturalCompare,
+  getProviderLabel,
+  textUnchanged,
+  setsEqual,
+} from '@mochi/web'
+import {
+  Bell,
+  Check,
+  Loader2,
+  Pencil,
+  Plus,
+  Send,
+  Trash2,
+  X,
+} from 'lucide-react'
 import endpoints from '@/api/endpoints'
 
 type TabId = 'categories' | 'topics'
@@ -111,7 +115,9 @@ interface DestinationsAvailable {
 // Push accounts are per-device: a browser's Web Push subscription, a phone's
 // FCM or UnifiedPush registration.
 function isPushAccount(acc: Account): boolean {
-  return acc.type === 'browser' || acc.type === 'unifiedpush' || acc.type === 'fcm'
+  return (
+    acc.type === 'browser' || acc.type === 'unifiedpush' || acc.type === 'fcm'
+  )
 }
 
 interface Topic {
@@ -179,7 +185,10 @@ export function UserNotifications() {
   const navigate = useNavigate()
   const activeTab: TabId = search.tab ?? 'categories'
   const setActiveTab = (next: TabId) => {
-    void navigate({ search: (prev: Record<string, unknown>) => ({ ...prev, tab: next }), replace: true } as never)
+    void navigate({
+      search: (prev: Record<string, unknown>) => ({ ...prev, tab: next }),
+      replace: true,
+    } as never)
   }
   const [creating, setCreating] = useState(false)
   const queryClient = useQueryClient()
@@ -189,16 +198,19 @@ export function UserNotifications() {
 
   return (
     <>
-      <PageHeader title={t`Notifications`} primaryAction={<BrowserPushButton onChanged={bumpReload} />} />
+      <PageHeader
+        title={t`Notifications`}
+        primaryAction={<BrowserPushButton onChanged={bumpReload} />}
+      />
       <Main>
         <Tabs
-          variant="underline"
+          variant='underline'
           value={activeTab}
           onValueChange={(value) => setActiveTab(value as TabId)}
-          className="mb-4"
+          className='mb-4'
         >
-          <div className="flex items-center justify-between border-b">
-            <TabsList className="w-auto border-b-0">
+          <div className='flex items-center justify-between border-b'>
+            <TabsList className='w-auto border-b-0'>
               {tabs.map((tab) => (
                 <TabsTrigger key={tab.id} value={tab.id}>
                   {tab.label}
@@ -206,15 +218,22 @@ export function UserNotifications() {
               ))}
             </TabsList>
             {activeTab === 'categories' && (
-              <Button variant="outline" size="sm" onClick={() => setCreating(true)} className="mb-1">
-                <Plus className="me-2 h-4 w-4" /> <Trans>Add category</Trans>
+              <Button
+                variant='outline'
+                size='sm'
+                onClick={() => setCreating(true)}
+                className='mb-1'
+              >
+                <Plus className='me-2 h-4 w-4' /> <Trans>Add category</Trans>
               </Button>
             )}
           </div>
         </Tabs>
-        {activeTab === 'categories'
-          ? <CategoriesTab creating={creating} setCreating={setCreating} />
-          : <TopicsTab />}
+        {activeTab === 'categories' ? (
+          <CategoriesTab creating={creating} setCreating={setCreating} />
+        ) : (
+          <TopicsTab />
+        )}
       </Main>
     </>
   )
@@ -224,7 +243,16 @@ export function UserNotifications() {
 
 function BrowserPushButton({ onChanged }: { onChanged: () => void }) {
   const { t } = useLingui()
-  const { supported, supportChecked, permission, subscribed, isSubscribing, isUnsubscribing, subscribe, unsubscribe } = usePush()
+  const {
+    supported,
+    supportChecked,
+    permission,
+    subscribed,
+    isSubscribing,
+    isUnsubscribing,
+    subscribe,
+    unsubscribe,
+  } = usePush()
 
   if (!supportChecked || !supported) return null
 
@@ -242,7 +270,7 @@ function BrowserPushButton({ onChanged }: { onChanged: () => void }) {
   }
 
   return (
-    <Label className="flex items-center gap-2 text-sm font-normal">
+    <Label className='flex items-center gap-2 text-sm font-normal'>
       <Trans>Browser notifications</Trans>
       <Switch
         checked={subscribed}
@@ -272,11 +300,15 @@ function CategoriesTab({
     queryFn: async () => {
       const [cats, dests] = await Promise.all([
         requestHelpers.get<Category[]>(endpoints.notifications.categories),
-        requestHelpers.get<DestinationsAvailable>(endpoints.notifications.destinations),
+        requestHelpers.get<DestinationsAvailable>(
+          endpoints.notifications.destinations
+        ),
       ])
       return {
         categories: cats ?? [],
-        available: dests ?? ({ accounts: [], feeds: [], devices: [] } as DestinationsAvailable),
+        available:
+          dests ??
+          ({ accounts: [], feeds: [], devices: [] } as DestinationsAvailable),
       }
     },
   })
@@ -287,20 +319,22 @@ function CategoriesTab({
   if (error) return <GeneralError error={error} reset={refetch} />
   if (!data) {
     return (
-      <div className="space-y-2">
-        <Skeleton className="h-12 w-full" />
-        <Skeleton className="h-12 w-full" />
+      <div className='space-y-2'>
+        <Skeleton className='h-12 w-full' />
+        <Skeleton className='h-12 w-full' />
       </div>
     )
   }
 
   const { categories, available } = data
-  const visibleCategories = sortCategories(categories.filter((c) => c.id !== '0'))
+  const visibleCategories = sortCategories(
+    categories.filter((c) => c.id !== '0')
+  )
 
   return (
     <>
-      <div className="flex flex-col gap-4">
-        <div className="divide-border divide-y">
+      <div className='flex flex-col gap-4'>
+        <div className='divide-border divide-y'>
           {visibleCategories.map((cat) => (
             <CategoryRow
               key={cat.id}
@@ -311,19 +345,35 @@ function CategoriesTab({
               onTest={async () => {
                 try {
                   const params = new URLSearchParams({ id: String(cat.id) })
-                  const res = await requestHelpers.post<{ sent: number; failed: number; total: number; web: boolean }>(
+                  const res = await requestHelpers.post<{
+                    sent: number
+                    failed: number
+                    total: number
+                    web: boolean
+                  }>(
                     endpoints.notifications.categoriesTest,
                     params.toString(),
-                    { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+                    {
+                      headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                      },
+                    }
                   )
                   const sent = res?.sent ?? 0
                   const total = res?.total ?? sent
                   if (total === 0) {
                     toast.error(t`No destinations configured`)
                   } else if (sent < total) {
-                    toast.error(t`Test sent to ${sent} of ${total} destinations`)
+                    toast.error(
+                      t`Test sent to ${sent} of ${total} destinations`
+                    )
                   } else {
-                    toast.success(plural(sent, { one: 'Test sent to # destination', other: 'Test sent to # destinations' }))
+                    toast.success(
+                      plural(sent, {
+                        one: 'Test sent to # destination',
+                        other: 'Test sent to # destinations',
+                      })
+                    )
                   }
                 } catch (e) {
                   toast.error(getErrorMessage(e, t`Failed to send test`))
@@ -387,7 +437,8 @@ function CategoryRow({
     const dests = category.destinations
     if (dests.length === 0) return t`No destinations`
     const labels: string[] = []
-    const deviceLabel = (id: string) => available.devices.find((x) => x.id === id)?.label
+    const deviceLabel = (id: string) =>
+      available.devices.find((x) => x.id === id)?.label
     for (const d of dests) {
       if (d.type === 'web') labels.push(t`Web browser`)
       else if (d.type === 'device') {
@@ -397,7 +448,11 @@ function CategoryRow({
         const acc = available.accounts.find((a) => String(a.id) === d.target)
         if (!acc) continue
         const name = acc.device ? deviceLabel(acc.device) : undefined
-        labels.push(name !== undefined ? t`${name || t`Device`} · push` : accountDisplayName(acc))
+        labels.push(
+          name !== undefined
+            ? t`${name || t`Device`} · push`
+            : accountDisplayName(acc)
+        )
       } else if (d.type === 'rss') {
         const feed = available.feeds.find((x) => x.id === d.target)
         if (feed && feed.name) labels.push(feed.name)
@@ -407,25 +462,29 @@ function CategoryRow({
     return labels.length > 0 ? labels.join(', ') : t`No destinations`
   }, [category, available, t])
   return (
-    <div className="flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:justify-between">
+    <div className='flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:justify-between'>
       <div>
-        <div className="flex items-center gap-2">
-          <span className="font-medium">{category.display ?? category.label}</span>
+        <div className='flex items-center gap-2'>
+          <span className='font-medium'>
+            {category.display ?? category.label}
+          </span>
           {category.default === 1 && (
-            <span className="rounded bg-muted px-2 py-0.5 text-xs text-muted-foreground"><Trans>Default</Trans></span>
+            <span className='bg-muted text-muted-foreground rounded px-2 py-0.5 text-xs'>
+              <Trans>Default</Trans>
+            </span>
           )}
         </div>
-        <p className="text-sm text-muted-foreground">{destSummary}</p>
+        <p className='text-muted-foreground text-sm'>{destSummary}</p>
       </div>
-      <div className="flex flex-wrap gap-2">
-        <Button variant="outline" size="sm" onClick={onTest}>
-          <Send className="me-2 h-4 w-4" /> <Trans>Test</Trans>
+      <div className='flex flex-wrap gap-2'>
+        <Button variant='outline' size='sm' onClick={onTest}>
+          <Send className='me-2 h-4 w-4' /> <Trans>Test</Trans>
         </Button>
-        <Button variant="outline" size="sm" onClick={onEdit}>
-          <Pencil className="me-2 h-4 w-4" /> <Trans>Edit</Trans>
+        <Button variant='outline' size='sm' onClick={onEdit}>
+          <Pencil className='me-2 h-4 w-4' /> <Trans>Edit</Trans>
         </Button>
-        <Button variant="outline" size="sm" onClick={onDelete}>
-          <Trash2 className="me-2 h-4 w-4" /> <Trans>Delete</Trans>
+        <Button variant='outline' size='sm' onClick={onDelete}>
+          <Trash2 className='me-2 h-4 w-4' /> <Trans>Delete</Trans>
         </Button>
       </div>
     </div>
@@ -478,7 +537,9 @@ function CategoryDialog({
     if (!textUnchanged(label.trim(), category.label)) return true
     if (isDefault !== (category.default === 1)) return true
     if (isSuppress) return false
-    const originalKeys = new Set(category.destinations.map((d) => destKey(d.type, d.target)))
+    const originalKeys = new Set(
+      category.destinations.map((d) => destKey(d.type, d.target))
+    )
     return !setsEqual(checked, originalKeys)
   }, [category, label, isDefault, isSuppress, checked])
 
@@ -508,13 +569,21 @@ function CategoryDialog({
       }
       if (category) {
         params.append('id', String(category.id))
-        await requestHelpers.post(endpoints.notifications.categoriesUpdate, params.toString(), {
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        })
+        await requestHelpers.post(
+          endpoints.notifications.categoriesUpdate,
+          params.toString(),
+          {
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          }
+        )
       } else {
-        await requestHelpers.post(endpoints.notifications.categoriesCreate, params.toString(), {
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        })
+        await requestHelpers.post(
+          endpoints.notifications.categoriesCreate,
+          params.toString(),
+          {
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          }
+        )
       }
       await onSaved()
     } catch (e) {
@@ -525,36 +594,61 @@ function CategoryDialog({
   }
 
   return (
-    <Dialog open onOpenChange={(v) => { if (!v) onClose() }}>
-      <DialogContent className="max-w-lg" onOpenAutoFocus={(e) => e.preventDefault()}>
+    <Dialog
+      open
+      onOpenChange={(v) => {
+        if (!v) onClose()
+      }}
+    >
+      <DialogContent
+        className='max-w-lg'
+        onOpenAutoFocus={(e) => e.preventDefault()}
+      >
         <DialogHeader>
-          <DialogTitle>{category ? <Trans>Edit category</Trans> : <Trans>New category</Trans>}</DialogTitle>
+          <DialogTitle>
+            {category ? (
+              <Trans>Edit category</Trans>
+            ) : (
+              <Trans>New category</Trans>
+            )}
+          </DialogTitle>
           {isSuppress && (
             <DialogDescription>
-              <Trans>The "No notifications" category silences any topic assigned to it.</Trans>
+              <Trans>
+                The "No notifications" category silences any topic assigned to
+                it.
+              </Trans>
             </DialogDescription>
           )}
         </DialogHeader>
-        <div className="space-y-6 py-2">
-          <div className="space-y-2">
-            <Label htmlFor="cat-label"><Trans>Name</Trans></Label>
-            <Input id="cat-label" value={label} onChange={(e) => setLabel(e.target.value)} />
+        <div className='space-y-6 py-2'>
+          <div className='space-y-2'>
+            <Label htmlFor='cat-label'>
+              <Trans>Name</Trans>
+            </Label>
+            <Input
+              id='cat-label'
+              value={label}
+              onChange={(e) => setLabel(e.target.value)}
+            />
           </div>
           {!isSuppress && (
             <>
-              <div className="flex items-center justify-between">
-                <Label htmlFor="cat-default" className="cursor-pointer">
+              <div className='flex items-center justify-between'>
+                <Label htmlFor='cat-default' className='cursor-pointer'>
                   <Trans>Default category</Trans>
                 </Label>
                 <Switch
-                  id="cat-default"
+                  id='cat-default'
                   checked={isDefault}
                   onCheckedChange={setIsDefault}
                   disabled={category?.default === 1}
                 />
               </div>
-              <div className="space-y-2">
-                <Label><Trans>Destinations</Trans></Label>
+              <div className='space-y-2'>
+                <Label>
+                  <Trans>Destinations</Trans>
+                </Label>
                 <DestinationsGrid
                   available={available}
                   checked={checked}
@@ -565,9 +659,18 @@ function CategoryDialog({
           )}
         </div>
         <DialogFooter>
-          <Button variant="outline" onClick={onClose} disabled={saving}><Trans>Cancel</Trans></Button>
-          <Button onClick={handleSave} disabled={saving || (category !== undefined && !categoryDirty)}>
-            {saving ? <Loader2 className="size-4 animate-spin" /> : <Check className="size-4" />}
+          <Button variant='outline' onClick={onClose} disabled={saving}>
+            <Trans>Cancel</Trans>
+          </Button>
+          <Button
+            onClick={handleSave}
+            disabled={saving || (category !== undefined && !categoryDirty)}
+          >
+            {saving ? (
+              <Loader2 className='size-4 animate-spin' />
+            ) : (
+              <Check className='size-4' />
+            )}
             <Trans>Save</Trans>
           </Button>
         </DialogFooter>
@@ -601,7 +704,11 @@ function DestinationsGrid({
     const name = dev.label || t`Device`
     rows.push({ key: destKey('device', dev.id), label: t`${name} · app` })
     for (const acc of available.accounts) {
-      if (acc.device === dev.id) rows.push({ key: destKey('account', String(acc.id)), label: t`${name} · push` })
+      if (acc.device === dev.id)
+        rows.push({
+          key: destKey('account', String(acc.id)),
+          label: t`${name} · push`,
+        })
     }
   }
   for (const acc of available.accounts) {
@@ -620,11 +727,17 @@ function DestinationsGrid({
   }
   rows.sort((a, b) => naturalCompare(a.label, b.label))
   return (
-    <div className="flex flex-col">
+    <div className='flex flex-col'>
       {rows.map((r) => (
-        <label key={r.key} className="flex items-center gap-3 py-2 cursor-pointer">
-          <Switch checked={checked.has(r.key)} onCheckedChange={() => onToggle(r.key)} />
-          <span className="text-sm">{r.label}</span>
+        <label
+          key={r.key}
+          className='flex cursor-pointer items-center gap-3 py-2'
+        >
+          <Switch
+            checked={checked.has(r.key)}
+            onCheckedChange={() => onToggle(r.key)}
+          />
+          <span className='text-sm'>{r.label}</span>
         </label>
       ))}
     </div>
@@ -644,17 +757,27 @@ function CategoryDeleteDialog({
 }) {
   const { t } = useLingui()
   const others = sortCategories(categories.filter((c) => c.id !== category.id))
-  const preferred = others.find((c) => c.default === 1) ?? others.find((c) => c.id !== '0') ?? others[0]
+  const preferred =
+    others.find((c) => c.default === 1) ??
+    others.find((c) => c.id !== '0') ??
+    others[0]
   const [target, setTarget] = useState<string>(String(preferred?.id ?? '0'))
   const [deleting, setDeleting] = useState(false)
 
   const run = async () => {
     setDeleting(true)
     try {
-      const params = new URLSearchParams({ id: String(category.id), reassign: target })
-      await requestHelpers.post(endpoints.notifications.categoriesDelete, params.toString(), {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      const params = new URLSearchParams({
+        id: String(category.id),
+        reassign: target,
       })
+      await requestHelpers.post(
+        endpoints.notifications.categoriesDelete,
+        params.toString(),
+        {
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        }
+      )
       await onDeleted()
     } catch (e) {
       toast.error(getErrorMessage(e, t`Failed to delete category`))
@@ -664,29 +787,42 @@ function CategoryDeleteDialog({
   }
 
   return (
-    <AlertDialog open onOpenChange={(v) => { if (!v) onClose() }}>
+    <AlertDialog
+      open
+      onOpenChange={(v) => {
+        if (!v) onClose()
+      }}
+    >
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle><Trans>Delete "{category.display ?? category.label}"?</Trans></AlertDialogTitle>
+          <AlertDialogTitle>
+            <Trans>Delete "{category.display ?? category.label}"?</Trans>
+          </AlertDialogTitle>
           <AlertDialogDescription />
         </AlertDialogHeader>
-        <div className="flex items-center justify-between gap-3 py-2">
-          <Label htmlFor="reassign-target"><Trans>Change current notifications to</Trans></Label>
+        <div className='flex items-center justify-between gap-3 py-2'>
+          <Label htmlFor='reassign-target'>
+            <Trans>Change current notifications to</Trans>
+          </Label>
           <Select value={target} onValueChange={setTarget}>
-            <SelectTrigger id="reassign-target" className="w-48">
+            <SelectTrigger id='reassign-target' className='w-48'>
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
               {others.map((c) => (
-                <SelectItem key={c.id} value={String(c.id)}>{c.display ?? c.label}</SelectItem>
+                <SelectItem key={c.id} value={String(c.id)}>
+                  {c.display ?? c.label}
+                </SelectItem>
               ))}
             </SelectContent>
           </Select>
         </div>
         <AlertDialogFooter>
-          <AlertDialogCancel disabled={deleting}><Trans>Cancel</Trans></AlertDialogCancel>
+          <AlertDialogCancel disabled={deleting}>
+            <Trans>Cancel</Trans>
+          </AlertDialogCancel>
           <AlertDialogAction onClick={run} disabled={deleting}>
-            {deleting && <Loader2 className="me-2 h-4 w-4 animate-spin" />}
+            {deleting && <Loader2 className='me-2 h-4 w-4 animate-spin' />}
             <Trans>Delete</Trans>
           </AlertDialogAction>
         </AlertDialogFooter>
@@ -725,9 +861,13 @@ function TopicsTab() {
         object: topic.object,
         category: value,
       })
-      await requestHelpers.post(endpoints.notifications.topicsSetCategory, params.toString(), {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      })
+      await requestHelpers.post(
+        endpoints.notifications.topicsSetCategory,
+        params.toString(),
+        {
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        }
+      )
       await load()
     } catch (e) {
       toast.error(getErrorMessage(e, t`Failed to update topic`))
@@ -741,9 +881,13 @@ function TopicsTab() {
         topic: topic.topic,
         object: topic.object,
       })
-      await requestHelpers.post(endpoints.notifications.topicsDelete, params.toString(), {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      })
+      await requestHelpers.post(
+        endpoints.notifications.topicsDelete,
+        params.toString(),
+        {
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        }
+      )
       await load()
     } catch (e) {
       toast.error(getErrorMessage(e, t`Failed to remove topic`))
@@ -752,7 +896,10 @@ function TopicsTab() {
 
   const groups = useMemo(() => {
     if (!topics) return []
-    const map = new Map<string, { app: { id: string; name: string }; items: Topic[] }>()
+    const map = new Map<
+      string,
+      { app: { id: string; name: string }; items: Topic[] }
+    >()
     for (const t of topics) {
       const g = map.get(t.app.id) ?? { app: t.app, items: [] }
       g.items.push(t)
@@ -765,15 +912,17 @@ function TopicsTab() {
         return naturalCompare(a.name ?? '', b.name ?? '')
       })
     }
-    return Array.from(map.values()).sort((a, b) => naturalCompare(a.app.name, b.app.name))
+    return Array.from(map.values()).sort((a, b) =>
+      naturalCompare(a.app.name, b.app.name)
+    )
   }, [topics])
 
   if (error) return <GeneralError error={error} reset={refetch} />
   if (!topics || !categories) {
     return (
-      <div className="space-y-2">
-        <Skeleton className="h-12 w-full" />
-        <Skeleton className="h-12 w-full" />
+      <div className='space-y-2'>
+        <Skeleton className='h-12 w-full' />
+        <Skeleton className='h-12 w-full' />
       </div>
     )
   }
@@ -783,39 +932,55 @@ function TopicsTab() {
   }
 
   return (
-    <div className="flex flex-col divide-y divide-border">
+    <div className='divide-border flex flex-col divide-y'>
       {groups.map((group) => (
-        <div key={group.app.id} className="py-4 first:pt-0 last:pb-0">
-          <h2 className="text-[1.125rem] leading-tight font-semibold md:text-lg">
+        <div key={group.app.id} className='py-4 first:pt-0 last:pb-0'>
+          <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'>
             {group.app.name}
           </h2>
           <div>
             {group.items.map((topic) => (
               <div
                 key={`${topic.app.id}|${topic.topic}|${topic.object}`}
-                className="flex flex-col gap-3 py-2 ps-6 sm:flex-row sm:items-center sm:justify-between"
+                className='flex flex-col gap-3 py-2 ps-6 sm:flex-row sm:items-center sm:justify-between'
               >
-                <p className="text-sm">
+                <p className='text-sm'>
                   {topicDisplayName(topic)}
                   {topic.name ? `: ${topic.name}` : ''}
                 </p>
-                <div className="flex items-center gap-2">
+                <div className='flex items-center gap-2'>
                   <Select
-                    value={topic.category != null ? String(topic.category) : UNASSIGNED}
-                    onValueChange={(v) => setCategory(topic, v === UNASSIGNED ? '' : v)}
+                    value={
+                      topic.category != null
+                        ? String(topic.category)
+                        : UNASSIGNED
+                    }
+                    onValueChange={(v) =>
+                      setCategory(topic, v === UNASSIGNED ? '' : v)
+                    }
                   >
-                    <SelectTrigger className="w-48">
+                    <SelectTrigger className='w-48'>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value={UNASSIGNED}>{t`Unassigned`}</SelectItem>
+                      <SelectItem
+                        value={UNASSIGNED}
+                      >{t`Unassigned`}</SelectItem>
                       {sortCategories(categories).map((c) => (
-                        <SelectItem key={c.id} value={String(c.id)}>{c.display ?? c.label}</SelectItem>
+                        <SelectItem key={c.id} value={String(c.id)}>
+                          {c.display ?? c.label}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
-                  <Button variant="outline" size="sm" onClick={() => remove(topic)} title={t`Remove (re-create on next notification)`} aria-label={t`Remove (re-create on next notification)`}>
-                    <X className="h-4 w-4" />
+                  <Button
+                    variant='outline'
+                    size='sm'
+                    onClick={() => remove(topic)}
+                    title={t`Remove (re-create on next notification)`}
+                    aria-label={t`Remove (re-create on next notification)`}
+                  >
+                    <X className='h-4 w-4' />
                   </Button>
                 </div>
               </div>

@@ -2,12 +2,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useLingui, Trans } from '@lingui/react/macro'
-import { User } from 'lucide-react'
-import { useAccountData, useUpdateIdentity } from '@/hooks/use-account'
-import { DataSection } from './data'
-import { CloseAccountSection } from './close-account'
 import {
   Label,
   Switch,
@@ -24,6 +19,10 @@ import {
   getErrorMessage,
   ServerDocumentsFooter,
 } from '@mochi/web'
+import { User } from 'lucide-react'
+import { useAccountData, useUpdateIdentity } from '@/hooks/use-account'
+import { CloseAccountSection } from './close-account'
+import { DataSection } from './data'
 
 // ============================================================================
 // Identity Section
@@ -52,7 +51,8 @@ function IdentitySection() {
         onSuccess: () => {
           toast.success(
             privacy === 'public'
-              ? t`Identity is now listed in the directory` : t`Identity is no longer listed in the directory`
+              ? t`Identity is now listed in the directory`
+              : t`Identity is no longer listed in the directory`
           )
         },
         onError: (err) => {
@@ -63,9 +63,7 @@ function IdentitySection() {
   }
 
   return (
-    <Section
-      title={t`Identity`}
-    >
+    <Section title={t`Identity`}>
       {error ? (
         <GeneralError error={error} minimal mode='inline' reset={refetch} />
       ) : isLoading ? (
@@ -94,8 +92,11 @@ function IdentitySection() {
               chipClassName='flex-1'
             />
           </FieldRow>
-          <div className='flex items-center justify-between py-4 border-t border-border/40'>
-            <Label htmlFor='identity-public' className='text-muted-foreground pe-4 text-sm font-medium'>
+          <div className='border-border/40 flex items-center justify-between border-t py-4'>
+            <Label
+              htmlFor='identity-public'
+              className='text-muted-foreground pe-4 text-sm font-medium'
+            >
               <Trans>Allow others to find you in directory</Trans>
             </Label>
             <Switch
@@ -125,7 +126,10 @@ export function UserAccount() {
 
   return (
     <>
-      <PageHeader title={t`Account`} icon={<User className='size-4 md:size-5' />} />
+      <PageHeader
+        title={t`Account`}
+        icon={<User className='size-4 md:size-5' />}
+      />
       <Main>
         <div className='space-y-8 pb-6'>
           <IdentitySection />

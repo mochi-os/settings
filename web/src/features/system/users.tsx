@@ -2,41 +2,10 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useEffect, useState } from 'react'
-import { useLingui, Trans } from '@lingui/react/macro'
-import { plural } from '@lingui/core/macro'
 import type { User, Session } from '@/types/users'
-import { useStepUp } from '@/lib/use-step-up'
-import {
-  Ban,
-  Check,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  ChevronUp,
-  Key,
-  Loader2,
-  MoreHorizontal,
-  Pencil,
-  Plus,
-  Search,
-  Trash2,
-  UserCheck,
-  UserPlus,
-  Users,
-} from 'lucide-react'
-import {
-  useSystemUsersData,
-  useCreateUser,
-  useUpdateUser,
-  useDeleteUser,
-  useSuspendUser,
-  useActivateUser,
-  useUserSessions,
-  useRevokeUserSessions,
-} from '@/hooks/use-system-users'
-import { useAccountData, useAgentName } from '@/hooks/use-account'
+import { plural } from '@lingui/core/macro'
+import { useLingui, Trans } from '@lingui/react/macro'
 import {
   Badge,
   Button,
@@ -76,6 +45,36 @@ import {
   useDebounce,
   useFormat,
 } from '@mochi/web'
+import {
+  Ban,
+  Check,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
+  Key,
+  Loader2,
+  MoreHorizontal,
+  Pencil,
+  Plus,
+  Search,
+  Trash2,
+  UserCheck,
+  UserPlus,
+  Users,
+} from 'lucide-react'
+import { useStepUp } from '@/lib/use-step-up'
+import { useAccountData, useAgentName } from '@/hooks/use-account'
+import {
+  useSystemUsersData,
+  useCreateUser,
+  useUpdateUser,
+  useDeleteUser,
+  useSuspendUser,
+  useActivateUser,
+  useUserSessions,
+  useRevokeUserSessions,
+} from '@/hooks/use-system-users'
 
 function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
   const { t } = useLingui()
@@ -114,11 +113,15 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
       <ResponsiveDialogContent>
         <form onSubmit={handleSubmit}>
           <ResponsiveDialogHeader>
-            <ResponsiveDialogTitle><Trans>Create user</Trans></ResponsiveDialogTitle>
+            <ResponsiveDialogTitle>
+              <Trans>Create user</Trans>
+            </ResponsiveDialogTitle>
           </ResponsiveDialogHeader>
           <div className='grid gap-4 py-4'>
             <div className='grid gap-2'>
-              <Label htmlFor='username'><Trans>Email</Trans></Label>
+              <Label htmlFor='username'>
+                <Trans>Email</Trans>
+              </Label>
               <Input
                 id='username'
                 type='email'
@@ -129,14 +132,20 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
               />
             </div>
             <div className='grid gap-2'>
-              <Label htmlFor='role'><Trans>Role</Trans></Label>
+              <Label htmlFor='role'>
+                <Trans>Role</Trans>
+              </Label>
               <Select value={role} onValueChange={setRole}>
                 <SelectTrigger className='w-full'>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value='administrator'><Trans>Administrator</Trans></SelectItem>
-                  <SelectItem value='user'><Trans>User</Trans></SelectItem>
+                  <SelectItem value='administrator'>
+                    <Trans>Administrator</Trans>
+                  </SelectItem>
+                  <SelectItem value='user'>
+                    <Trans>User</Trans>
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -150,7 +159,11 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
               <Trans>Cancel</Trans>
             </Button>
             <Button type='submit' disabled={createUser.isPending}>
-              {createUser.isPending ? <Loader2 className='size-4 animate-spin' /> : <UserPlus className='size-4' />}
+              {createUser.isPending ? (
+                <Loader2 className='size-4 animate-spin' />
+              ) : (
+                <UserPlus className='size-4' />
+              )}
               <Trans>Create user</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -195,70 +208,89 @@ function EditUserDialog({
       onOpenChange(false)
       return
     }
-    stepUp.request((token) => updateUser.mutate(
-      { uid: user.uid, username, role, token },
-      {
-        onSuccess: () => {
-          toast.success(t`User updated`)
-          onOpenChange(false)
-          onSuccess()
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to update user`))
-        },
-      }
-    ))
+    stepUp.request((token) =>
+      updateUser.mutate(
+        { uid: user.uid, username, role, token },
+        {
+          onSuccess: () => {
+            toast.success(t`User updated`)
+            onOpenChange(false)
+            onSuccess()
+          },
+          onError: (error) => {
+            toast.error(getErrorMessage(error, t`Failed to update user`))
+          },
+        }
+      )
+    )
   }
 
   return (
     <>
-    {stepUp.dialog}
-    <ResponsiveDialog open={open} onOpenChange={onOpenChange}>
-      <ResponsiveDialogContent>
-        <form onSubmit={handleSubmit}>
-          <ResponsiveDialogHeader>
-            <ResponsiveDialogTitle><Trans>Edit user</Trans></ResponsiveDialogTitle>
-          </ResponsiveDialogHeader>
-          <div className='grid gap-4 py-4'>
-            <div className='grid gap-2'>
-              <Label htmlFor='edit-username'><Trans>Email</Trans></Label>
-              <Input
-                id='edit-username'
-                type='email'
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
+      {stepUp.dialog}
+      <ResponsiveDialog open={open} onOpenChange={onOpenChange}>
+        <ResponsiveDialogContent>
+          <form onSubmit={handleSubmit}>
+            <ResponsiveDialogHeader>
+              <ResponsiveDialogTitle>
+                <Trans>Edit user</Trans>
+              </ResponsiveDialogTitle>
+            </ResponsiveDialogHeader>
+            <div className='grid gap-4 py-4'>
+              <div className='grid gap-2'>
+                <Label htmlFor='edit-username'>
+                  <Trans>Email</Trans>
+                </Label>
+                <Input
+                  id='edit-username'
+                  type='email'
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                />
+              </div>
+              <div className='grid gap-2'>
+                <Label htmlFor='edit-role'>
+                  <Trans>Role</Trans>
+                </Label>
+                <Select value={role} onValueChange={setRole}>
+                  <SelectTrigger className='w-full'>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value='administrator'>
+                      <Trans>Administrator</Trans>
+                    </SelectItem>
+                    <SelectItem value='user'>
+                      <Trans>User</Trans>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
-            <div className='grid gap-2'>
-              <Label htmlFor='edit-role'><Trans>Role</Trans></Label>
-              <Select value={role} onValueChange={setRole}>
-                <SelectTrigger className='w-full'>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value='administrator'><Trans>Administrator</Trans></SelectItem>
-                  <SelectItem value='user'><Trans>User</Trans></SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-          <ResponsiveDialogFooter>
-            <Button
-              type='button'
-              variant='outline'
-              onClick={() => onOpenChange(false)}
-            >
-              <Trans>Cancel</Trans>
-            </Button>
-            <Button type='submit' disabled={updateUser.isPending || !hasChanges}>
-              {updateUser.isPending ? <Loader2 className='size-4 animate-spin' /> : <Check className='size-4' />}
-              <Trans>Save changes</Trans>
-            </Button>
-          </ResponsiveDialogFooter>
-        </form>
-      </ResponsiveDialogContent>
-    </ResponsiveDialog>
+            <ResponsiveDialogFooter>
+              <Button
+                type='button'
+                variant='outline'
+                onClick={() => onOpenChange(false)}
+              >
+                <Trans>Cancel</Trans>
+              </Button>
+              <Button
+                type='submit'
+                disabled={updateUser.isPending || !hasChanges}
+              >
+                {updateUser.isPending ? (
+                  <Loader2 className='size-4 animate-spin' />
+                ) : (
+                  <Check className='size-4' />
+                )}
+                <Trans>Save changes</Trans>
+              </Button>
+            </ResponsiveDialogFooter>
+          </form>
+        </ResponsiveDialogContent>
+      </ResponsiveDialog>
     </>
   )
 }
@@ -287,7 +319,10 @@ function SessionsDialog({
           toast.success(
             session
               ? t`Session revoked`
-              : plural(result.revoked, { one: 'Revoked 1 session', other: 'Revoked # sessions' })
+              : plural(result.revoked, {
+                  one: 'Revoked 1 session',
+                  other: 'Revoked # sessions',
+                })
           )
           setRevokeAllOpen(false)
           refetch()
@@ -305,7 +340,9 @@ function SessionsDialog({
     <ResponsiveDialog open={open} onOpenChange={onOpenChange}>
       <ResponsiveDialogContent className='max-w-2xl'>
         <ResponsiveDialogHeader>
-          <ResponsiveDialogTitle><Trans>Sessions for {user.username}</Trans></ResponsiveDialogTitle>
+          <ResponsiveDialogTitle>
+            <Trans>Sessions for {user.username}</Trans>
+          </ResponsiveDialogTitle>
           <ResponsiveDialogDescription>
             <Trans>View and revoke active sessions for this user.</Trans>
           </ResponsiveDialogDescription>
@@ -317,9 +354,15 @@ function SessionsDialog({
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead><Trans>Device</Trans></TableHead>
-                  <TableHead><Trans>IP address</Trans></TableHead>
-                  <TableHead><Trans>Last accessed</Trans></TableHead>
+                  <TableHead>
+                    <Trans>Device</Trans>
+                  </TableHead>
+                  <TableHead>
+                    <Trans>IP address</Trans>
+                  </TableHead>
+                  <TableHead>
+                    <Trans>Last accessed</Trans>
+                  </TableHead>
                   <TableHead className='w-[80px]' />
                 </TableRow>
               </TableHeader>
@@ -330,9 +373,7 @@ function SessionsDialog({
                     <TableCell className='font-mono text-sm'>
                       {session.address || t`Unknown`}
                     </TableCell>
-                    <TableCell>
-                      {formatTimestamp(session.accessed)}
-                    </TableCell>
+                    <TableCell>{formatTimestamp(session.accessed)}</TableCell>
                     <TableCell>
                       <Button
                         variant='ghost'
@@ -397,7 +438,15 @@ function SessionsDialog({
   )
 }
 
-function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void; isSelf: boolean }) {
+function UserRow({
+  user,
+  onUpdate,
+  isSelf,
+}: {
+  user: User
+  onUpdate: () => void
+  isSelf: boolean
+}) {
   const { t } = useLingui()
   const { formatTimestamp } = useFormat()
   const [editOpen, setEditOpen] = useState(false)
@@ -413,30 +462,42 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
   const isSuspended = user.status === 'suspended'
 
   const handleDelete = () => {
-    stepUp.request((token) => deleteUser.mutate({ uid: user.uid, token }, {
-      onSuccess: () => {
-        toast.success(t`User deleted`)
-        setDeleteOpen(false)
-        onUpdate()
-      },
-      onError: (error) => {
-        toast.error(getErrorMessage(error, t`Failed to delete user`))
-      },
-    }))
+    stepUp.request((token) =>
+      deleteUser.mutate(
+        { uid: user.uid, token },
+        {
+          onSuccess: () => {
+            toast.success(t`User deleted`)
+            setDeleteOpen(false)
+            onUpdate()
+          },
+          onError: (error) => {
+            toast.error(getErrorMessage(error, t`Failed to delete user`))
+          },
+        }
+      )
+    )
   }
 
   const handleToggleStatus = () => {
     const action = isSuspended ? activateUser : suspendUser
-    stepUp.request((token) => action.mutate({ uid: user.uid, token }, {
-      onSuccess: () => {
-        toast.success(isSuspended ? t`Suspension removed` : t`User suspended`)
-        setSuspendOpen(false)
-        onUpdate()
-      },
-      onError: (error) => {
-        toast.error(getErrorMessage(error, t`Failed to update user status`))
-      },
-    }))
+    stepUp.request((token) =>
+      action.mutate(
+        { uid: user.uid, token },
+        {
+          onSuccess: () => {
+            toast.success(
+              isSuspended ? t`Suspension removed` : t`User suspended`
+            )
+            setSuspendOpen(false)
+            onUpdate()
+          },
+          onError: (error) => {
+            toast.error(getErrorMessage(error, t`Failed to update user status`))
+          },
+        }
+      )
+    )
   }
 
   return (
@@ -451,7 +512,9 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
             {isAdmin ? <Trans>Administrator</Trans> : <Trans>User</Trans>}
           </Badge>
           {isSuspended && (
-            <Badge variant='destructive'><Trans>Suspended</Trans></Badge>
+            <Badge variant='destructive'>
+              <Trans>Suspended</Trans>
+            </Badge>
           )}
         </div>
       </TableCell>
@@ -459,7 +522,9 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
         {user.last ? (
           formatTimestamp(user.last)
         ) : (
-          <span className='italic'><Trans>Never</Trans></span>
+          <span className='italic'>
+            <Trans>Never</Trans>
+          </span>
         )}
       </TableCell>
       <TableCell className='w-[50px]'>
@@ -480,7 +545,9 @@ function UserRow({ user, onUpdate, isSelf }: { user: User; onUpdate: () => void;
             </DropdownMenuItem>
             {!isSelf && (
               <DropdownMenuItem
-                onClick={isSuspended ? handleToggleStatus : () => setSuspendOpen(true)}
+                onClick={
+                  isSuspended ? handleToggleStatus : () => setSuspendOpen(true)
+                }
               >
                 {isSuspended ? (
                   <>
@@ -630,7 +697,9 @@ export function SystemUsers() {
   // click. Step back to the last page that still has rows, during render for
   // the same reason the query reset above is.
   if (data && offset > 0 && offset >= data.count) {
-    setOffset(Math.max(0, Math.floor(Math.max(0, data.count - 1) / limit) * limit))
+    setOffset(
+      Math.max(0, Math.floor(Math.max(0, data.count - 1) / limit) * limit)
+    )
   }
 
   const handleSort = (column: SortColumn) => {
@@ -647,10 +716,11 @@ export function SystemUsers() {
   if (ErrorComponent) {
     return (
       <>
-        <PageHeader title={t`Users`} icon={<Users className='size-4 md:size-5' />} />
-        <Main>
-          {ErrorComponent}
-        </Main>
+        <PageHeader
+          title={t`Users`}
+          icon={<Users className='size-4 md:size-5' />}
+        />
+        <Main>{ErrorComponent}</Main>
       </>
     )
   }
@@ -730,10 +800,14 @@ export function SystemUsers() {
 
             {/* Pagination */}
             {data && data.count > limit && (
-              <div className='flex items-center justify-between py-4 mt-4'>
+              <div className='mt-4 flex items-center justify-between py-4'>
                 <div className='text-muted-foreground flex items-center gap-2 text-sm'>
                   <span>
-                    <Trans>Showing {offset + 1}-{Math.min(offset + limit, data.count)} of {data.count} users</Trans>
+                    <Trans>
+                      Showing {offset + 1}-
+                      {Math.min(offset + limit, data.count)} of {data.count}{' '}
+                      users
+                    </Trans>
                   </span>
                   <Select
                     value={String(limit)}
@@ -779,8 +853,16 @@ export function SystemUsers() {
         ) : (
           <EmptyState
             icon={Users}
-            title={debouncedSearch ? t`No users match your search` : t`No users found`}
-            description={debouncedSearch ? t`Try adjusting your search criteria` : undefined}
+            title={
+              debouncedSearch
+                ? t`No users match your search`
+                : t`No users found`
+            }
+            description={
+              debouncedSearch
+                ? t`Try adjusting your search criteria`
+                : undefined
+            }
             className='p-4'
           />
         )}

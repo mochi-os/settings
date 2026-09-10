@@ -2,23 +2,34 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useQueryWithError, requestHelpers } from '@mochi/web'
 import type { User, SessionsData } from '@/types/users'
+import { useQueryWithError, requestHelpers } from '@mochi/web'
 import endpoints from '@/api/endpoints'
-import {
-  type SystemUsersResponse,
-  systemUsersApi,
-} from '@/api/system-users'
+import { type SystemUsersResponse, systemUsersApi } from '@/api/system-users'
+
 const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
 } as const
 
 const systemUserKeys = {
   all: () => ['system-users'] as const,
-  list: (limit: number, offset: number, search: string, sort: string, order: string) =>
-    [...systemUserKeys.all(), 'list', limit, offset, search, sort, order] as const,
+  list: (
+    limit: number,
+    offset: number,
+    search: string,
+    sort: string,
+    order: string
+  ) =>
+    [
+      ...systemUserKeys.all(),
+      'list',
+      limit,
+      offset,
+      search,
+      sort,
+      order,
+    ] as const,
   sessions: (uid: string) =>
     [...systemUserKeys.all(), 'sessions', uid] as const,
 }

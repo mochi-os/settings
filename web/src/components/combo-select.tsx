@@ -2,10 +2,8 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useState, type ReactNode } from 'react'
 import { Trans, useLingui } from '@lingui/react/macro'
-import { Check, ChevronsUpDown } from 'lucide-react'
 import {
   cn,
   Button,
@@ -18,6 +16,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@mochi/web'
+import { Check, ChevronsUpDown } from 'lucide-react'
 
 interface ComboSelectProps {
   value: string
@@ -42,9 +41,13 @@ export function ComboSelect({
   const [open, setOpen] = useState(false)
   const placeholderText = placeholder ?? t`Select...`
   const displayValue = options[value] ?? value
-  const renderedValue = renderValue
-    ? renderValue(value, displayValue)
-    : <span className='truncate text-start'>{displayValue || placeholderText}</span>
+  const renderedValue = renderValue ? (
+    renderValue(value, displayValue)
+  ) : (
+    <span className='truncate text-start'>
+      {displayValue || placeholderText}
+    </span>
+  )
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -60,10 +63,15 @@ export function ComboSelect({
           <ChevronsUpDown className='ms-2 h-4 w-4 shrink-0 opacity-50' />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='w-[--radix-popover-trigger-width] p-0' align='start'>
+      <PopoverContent
+        className='w-[--radix-popover-trigger-width] p-0'
+        align='start'
+      >
         <Command>
           <CommandList>
-            <CommandEmpty><Trans>No options found.</Trans></CommandEmpty>
+            <CommandEmpty>
+              <Trans>No options found.</Trans>
+            </CommandEmpty>
             <CommandGroup>
               {Object.entries(options).map(([optValue, label]) => (
                 <CommandItem
@@ -80,7 +88,11 @@ export function ComboSelect({
                       value === optValue ? 'opacity-100' : 'opacity-0'
                     )}
                   />
-                  {renderOption ? renderOption(optValue, label) : <span className='truncate'>{label}</span>}
+                  {renderOption ? (
+                    renderOption(optValue, label)
+                  ) : (
+                    <span className='truncate'>{label}</span>
+                  )}
                 </CommandItem>
               ))}
             </CommandGroup>

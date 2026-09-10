@@ -2,8 +2,11 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
-import { requestHelpers, type StepUpClient, type StepUpResult } from '@mochi/web'
+import {
+  requestHelpers,
+  type StepUpClient,
+  type StepUpResult,
+} from '@mochi/web'
 import endpoints from '@/api/endpoints'
 
 // Errors surface inline in the StepUpDialog, so suppress the global toast.
@@ -13,7 +16,9 @@ type MethodStateMap = Record<string, { state: string }>
 
 async function fetchMethodStates(): Promise<MethodStateMap> {
   return (
-    await requestHelpers.get<{ methods: MethodStateMap }>(endpoints.user.accountMethods)
+    await requestHelpers.get<{ methods: MethodStateMap }>(
+      endpoints.user.accountMethods
+    )
   ).methods
 }
 
@@ -45,7 +50,10 @@ function randomVerifier(): string {
 // challenge = base64url(sha256(verifier)); the dialog holds the verifier and
 // sends only the challenge to begin, then presents the verifier to finish.
 async function challengeFor(verifier: string): Promise<string> {
-  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier))
+  const digest = await crypto.subtle.digest(
+    'SHA-256',
+    new TextEncoder().encode(verifier)
+  )
   return base64url(new Uint8Array(digest))
 }
 
@@ -64,27 +72,39 @@ export const stepUpClient: StepUpClient = {
     // oauthProviders). A factor's state is "disabled" when the user turned it
     // off or its credential is missing.
     return ['email', 'passkey', 'totp'].filter(
-      (m) => map[m] && map[m].state !== 'disabled',
+      (m) => map[m] && map[m].state !== 'disabled'
     )
   },
   send: async () => {
-    await requestHelpers.post<{ ok: boolean }>(endpoints.user.accountCode, {}, NO_TOAST)
+    await requestHelpers.post<{ ok: boolean }>(
+      endpoints.user.accountCode,
+      {},
+      NO_TOAST
+    )
   },
   verifyEmail: (code) =>
-    requestHelpers.post<StepUpResult>(endpoints.user.accountCodeVerify, { code }, NO_TOAST),
+    requestHelpers.post<StepUpResult>(
+      endpoints.user.accountCodeVerify,
+      { code },
+      NO_TOAST
+    ),
   verifyTotp: (code) =>
-    requestHelpers.post<StepUpResult>(endpoints.user.accountTotpVerify, { code }, NO_TOAST),
+    requestHelpers.post<StepUpResult>(
+      endpoints.user.accountTotpVerify,
+      { code },
+      NO_TOAST
+    ),
   passkeyBegin: () =>
     requestHelpers.post<{ ceremony: string; options: unknown }>(
       endpoints.user.accountPasskeyVerifyBegin,
       {},
-      NO_TOAST,
+      NO_TOAST
     ),
   passkeyFinish: (ceremony, assertion) =>
     requestHelpers.post<StepUpResult>(
       endpoints.user.accountPasskeyVerifyFinish,
       { ceremony, assertion },
-      NO_TOAST,
+      NO_TOAST
     ),
   oauthProviders: async () => {
     // OAuth satisfies a step-up only when oauth is required, or nothing is
@@ -94,11 +114,13 @@ export const stepUpClient: StepUpClient = {
     const required = requiredFactors(map)
     const acceptable =
       required.includes('oauth') ||
-      (required.length === 0 && Boolean(map.oauth) && map.oauth.state !== 'disabled')
+      (required.length === 0 &&
+        Boolean(map.oauth) &&
+        map.oauth.state !== 'disabled')
     if (!acceptable) return []
-    const { identities } = await requestHelpers.get<{ identities: Array<{ provider: string }> }>(
-      endpoints.user.accountOauth,
-    )
+    const { identities } = await requestHelpers.get<{
+      identities: Array<{ provider: string }>
+    }>(endpoints.user.accountOauth)
     return Array.from(new Set((identities ?? []).map((i) => i.provider)))
   },
   oauthVerify: async (provider) => {
@@ -107,7 +129,7 @@ export const stepUpClient: StepUpClient = {
     const { url } = await requestHelpers.post<{ url: string }>(
       endpoints.user.accountOauthVerifyBegin,
       { provider, challenge },
-      NO_TOAST,
+      NO_TOAST
     )
     // In the sandboxed shell iframe window.open returns null even though the
     // popup opens, so null is not failure: poll for the proof either way, and
@@ -120,12 +142,13 @@ export const stepUpClient: StepUpClient = {
       const result = await requestHelpers.post<StepUpResult>(
         endpoints.user.accountOauthVerifyFinish,
         { verifier },
-        NO_TOAST,
+        NO_TOAST
       )
       if (result && (result.token || result.remaining)) return result
       if (popup && popup.closed) {
         if (!closedAt) closedAt = Date.now()
-        else if (Date.now() - closedAt > 2500) throw new Error('oauth-cancelled')
+        else if (Date.now() - closedAt > 2500)
+          throw new Error('oauth-cancelled')
       }
       if (Date.now() > deadline) throw new Error('oauth-timeout')
     }

@@ -96,12 +96,7 @@ export interface RecoveryGenerateResponse {
 }
 
 // OAuth
-export type OAuthProvider =
-  | 'facebook'
-  | 'github'
-  | 'google'
-  | 'microsoft'
-  | 'x'
+export type OAuthProvider = 'facebook' | 'github' | 'google' | 'microsoft' | 'x'
 
 export interface OAuthIdentity {
   provider: OAuthProvider

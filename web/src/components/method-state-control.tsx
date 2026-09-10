@@ -2,9 +2,8 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
-import { useLingui } from '@lingui/react/macro'
 import type { MethodState } from '@/types/account'
+import { useLingui } from '@lingui/react/macro'
 
 // Canonical slot order, matching the system settings segmented control so
 // the per-user login-methods grid lines up with the operator one.
@@ -28,10 +27,14 @@ export function MethodStateControl({
 }) {
   const { t } = useLingui()
   const label = (slot: MethodState) =>
-    slot === 'disabled' ? t`Disabled` : slot === 'allowed' ? t`Allowed` : t`Required`
+    slot === 'disabled'
+      ? t`Disabled`
+      : slot === 'allowed'
+        ? t`Allowed`
+        : t`Required`
 
   return (
-    <div className='inline-flex rounded-md border bg-background p-0.5'>
+    <div className='bg-background inline-flex rounded-md border p-0.5'>
       {SLOT_ORDER.filter((slot) => slots.includes(slot)).map((slot) => {
         const active = value === slot
         const blocked = unavailable?.has(slot) ?? false
@@ -42,7 +45,7 @@ export function MethodStateControl({
             onClick={() => onChange(slot)}
             disabled={busy || active || blocked}
             className={
-              'w-20 py-1 text-xs font-medium rounded-sm transition-colors ' +
+              'w-20 rounded-sm py-1 text-xs font-medium transition-colors ' +
               (active
                 ? 'bg-primary text-primary-foreground'
                 : blocked

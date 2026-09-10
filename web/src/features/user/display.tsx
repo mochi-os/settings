@@ -2,18 +2,8 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useState } from 'react'
 import { Trans, useLingui } from '@lingui/react/macro'
-import {
-  Loader2,
-  RotateCcw,
-  Palette,
-  ChevronRight,
-  Monitor,
-  Moon,
-  Sun,
-} from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -46,26 +36,54 @@ import {
   usePageTitle,
   useTheme,
 } from '@mochi/web'
+import {
+  Loader2,
+  RotateCcw,
+  Palette,
+  ChevronRight,
+  Monitor,
+  Moon,
+  Sun,
+} from 'lucide-react'
 import { colorThemeFromSelections, prefsFromData } from '@/lib/color-theme'
+import {
+  usePreferencesData,
+  useSetPreference,
+  useUnsetPreferences,
+} from '@/hooks/use-preferences'
+import { ComboSelect } from '@/components/combo-select'
+import { ThemePreviewCard } from '@/components/theme-preview-card'
 
 function AppearanceIcon({ value }: { value: string }) {
   switch (value) {
     case 'light':
-      return <Sun className='size-4 shrink-0 text-muted-foreground' strokeWidth={1.8} aria-hidden />
+      return (
+        <Sun
+          className='text-muted-foreground size-4 shrink-0'
+          strokeWidth={1.8}
+          aria-hidden
+        />
+      )
     case 'dark':
-      return <Moon className='size-4 shrink-0 text-muted-foreground' strokeWidth={1.8} aria-hidden />
+      return (
+        <Moon
+          className='text-muted-foreground size-4 shrink-0'
+          strokeWidth={1.8}
+          aria-hidden
+        />
+      )
     default:
-      return <Monitor className='size-4 shrink-0 text-muted-foreground' strokeWidth={1.8} aria-hidden />
+      return (
+        <Monitor
+          className='text-muted-foreground size-4 shrink-0'
+          strokeWidth={1.8}
+          aria-hidden
+        />
+      )
   }
 }
 
-function AppearanceLabel({
-  value,
-  label,
-}: {
-  value: string
-  label: string
-}) {
+function AppearanceLabel({ value, label }: { value: string; label: string }) {
   return (
     <span className='flex min-w-0 items-center gap-2'>
       <AppearanceIcon value={value} />
@@ -74,15 +92,16 @@ function AppearanceLabel({
   )
 }
 
-import { ComboSelect } from '@/components/combo-select'
-import { ThemePreviewCard } from '@/components/theme-preview-card'
-import {
-  usePreferencesData,
-  useSetPreference,
-  useUnsetPreferences,
-} from '@/hooks/use-preferences'
-
-const DISPLAY_PREF_KEYS = ['appearance', 'theme', 'density', 'radius', 'card', 'background', 'font', 'font_size'] as const
+const DISPLAY_PREF_KEYS = [
+  'appearance',
+  'theme',
+  'density',
+  'radius',
+  'card',
+  'background',
+  'font',
+  'font_size',
+] as const
 
 export function UserDisplay() {
   const { t } = useLingui()
@@ -99,7 +118,14 @@ export function UserDisplay() {
   const { setTheme, setColorTheme } = useTheme()
   const [themeSheetOpen, setThemeSheetOpen] = useState(false)
 
-  const themeOverrideKeys = ['density', 'radius', 'card', 'background', 'font', 'font_size'] as const
+  const themeOverrideKeys = [
+    'density',
+    'radius',
+    'card',
+    'background',
+    'font',
+    'font_size',
+  ] as const
 
   const handleChange = (key: string, value: string) => {
     setPreference.mutate(
@@ -112,7 +138,12 @@ export function UserDisplay() {
           if ((themeOverrideKeys as readonly string[]).includes(key) && data) {
             const updated = { ...prefsFromData(data.preferences), [key]: value }
             setColorTheme(
-              colorThemeFromSelections(data.themes, data.preferences.theme, updated, data.presets)
+              colorThemeFromSelections(
+                data.themes,
+                data.preferences.theme,
+                updated,
+                data.presets
+              )
             )
           }
           toast.success(t`Preference updated`)
@@ -146,8 +177,17 @@ export function UserDisplay() {
             colorThemeFromSelections(
               data?.themes,
               theme.id,
-              data ? prefsFromData(data.preferences) : { density: 'theme', radius: 'theme', card: 'theme', background: 'theme', font: 'theme', font_size: 'theme' },
-              data?.presets,
+              data
+                ? prefsFromData(data.preferences)
+                : {
+                    density: 'theme',
+                    radius: 'theme',
+                    card: 'theme',
+                    background: 'theme',
+                    font: 'theme',
+                    font_size: 'theme',
+                  },
+              data?.presets
             )
           )
           toast.success(t`Theme updated`)
@@ -179,41 +219,53 @@ export function UserDisplay() {
       <PageHeader
         title={t`Display`}
         icon={<Palette className='size-4 md:size-5' />}
-        actions={!error ? (
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button
-                variant='outline'
-                size='sm'
-                disabled={isLoading || setPreference.isPending || unsetPreferences.isPending}
-              >
-                {unsetPreferences.isPending ? (
-                  <Loader2 className='me-2 h-3.5 w-3.5 animate-spin' />
-                ) : (
-                  <RotateCcw className='me-2 h-3.5 w-3.5' />
-                )}
-                <Trans>Reset to defaults</Trans>
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle><Trans>Reset display?</Trans></AlertDialogTitle>
-                <AlertDialogDescription>
-                  <Trans>This will reset display settings to their default values.</Trans>
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel><Trans>Cancel</Trans></AlertDialogCancel>
-                <AlertDialogAction onClick={handleReset}>
-                  <Trans>Reset</Trans>
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        ) : undefined}
+        actions={
+          !error ? (
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant='outline'
+                  size='sm'
+                  disabled={
+                    isLoading ||
+                    setPreference.isPending ||
+                    unsetPreferences.isPending
+                  }
+                >
+                  {unsetPreferences.isPending ? (
+                    <Loader2 className='me-2 h-3.5 w-3.5 animate-spin' />
+                  ) : (
+                    <RotateCcw className='me-2 h-3.5 w-3.5' />
+                  )}
+                  <Trans>Reset to defaults</Trans>
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>
+                    <Trans>Reset display?</Trans>
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    <Trans>
+                      This will reset display settings to their default values.
+                    </Trans>
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>
+                    <Trans>Cancel</Trans>
+                  </AlertDialogCancel>
+                  <AlertDialogAction onClick={handleReset}>
+                    <Trans>Reset</Trans>
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          ) : undefined
+        }
       />
 
-      <Main className="space-y-6">
+      <Main className='space-y-6'>
         {error ? (
           <GeneralError error={error} minimal mode='inline' reset={refetch} />
         ) : isLoading ? (
@@ -221,7 +273,7 @@ export function UserDisplay() {
         ) : data ? (
           <div className='divide-y-0'>
             <FieldRow label={t`Appearance`}>
-              <div className="w-full">
+              <div className='w-full'>
                 <ComboSelect
                   value={data.preferences.appearance}
                   options={appearanceLabels}
@@ -240,34 +292,48 @@ export function UserDisplay() {
             {(data.themes ?? []).length > 0 && (
               <FieldRow label={t`Theme`}>
                 <Button
-                  variant="outline"
-                  className="w-full justify-between"
+                  variant='outline'
+                  className='w-full justify-between'
                   onClick={() => setThemeSheetOpen(true)}
                 >
-                  <span className="flex items-center gap-2">
+                  <span className='flex items-center gap-2'>
                     {(() => {
-                      const current = (data.themes ?? []).find(theme => theme.id === data.preferences.theme)
+                      const current = (data.themes ?? []).find(
+                        (theme) => theme.id === data.preferences.theme
+                      )
                       if (current) {
                         return (
                           <>
-                            <span className="size-3.5 rounded-full shrink-0" style={{ backgroundColor: `oklch(${current.overrides?.['--primary-l'] ?? '0.488'} ${current.chroma} ${current.hue})` }} />
-                            {current.development ? t`${current.label} (development)` : current.label}
+                            <span
+                              className='size-3.5 shrink-0 rounded-full'
+                              style={{
+                                backgroundColor: `oklch(${current.overrides?.['--primary-l'] ?? '0.488'} ${current.chroma} ${current.hue})`,
+                              }}
+                            />
+                            {current.development
+                              ? t`${current.label} (development)`
+                              : current.label}
                           </>
                         )
                       }
                       return t`Default`
                     })()}
                   </span>
-                  <ChevronRight className="size-4 text-muted-foreground rtl:rotate-180" />
+                  <ChevronRight className='text-muted-foreground size-4 rtl:rotate-180' />
                 </Button>
               </FieldRow>
             )}
             <Sheet open={themeSheetOpen} onOpenChange={setThemeSheetOpen}>
-              <SheetContent className="overflow-y-auto sm:max-w-md" onInteractOutside={() => {}}>
+              <SheetContent
+                className='overflow-y-auto sm:max-w-md'
+                onInteractOutside={() => {}}
+              >
                 <SheetHeader>
-                  <SheetTitle><Trans>Theme</Trans></SheetTitle>
+                  <SheetTitle>
+                    <Trans>Theme</Trans>
+                  </SheetTitle>
                 </SheetHeader>
-                <div className="grid grid-cols-2 gap-4 px-1 pt-4 pb-6">
+                <div className='grid grid-cols-2 gap-4 px-1 pt-4 pb-6'>
                   {(data.themes ?? []).map((theme) => {
                     const isSelected = data.preferences.theme === theme.id
                     return (
@@ -288,7 +354,7 @@ export function UserDisplay() {
             </Sheet>
 
             <FieldRow label={t`Density`}>
-              <div className="w-full">
+              <div className='w-full'>
                 <ComboSelect
                   value={data.preferences.density || 'theme'}
                   options={densityLabels}
@@ -299,7 +365,7 @@ export function UserDisplay() {
             </FieldRow>
 
             <FieldRow label={t`Radius`}>
-              <div className="w-full">
+              <div className='w-full'>
                 <ComboSelect
                   value={data.preferences.radius || 'theme'}
                   options={radiusLabels}
@@ -310,7 +376,7 @@ export function UserDisplay() {
             </FieldRow>
 
             <FieldRow label={t`Card style`}>
-              <div className="w-full">
+              <div className='w-full'>
                 <ComboSelect
                   value={data.preferences.card || 'theme'}
                   options={cardLabels}
@@ -321,7 +387,7 @@ export function UserDisplay() {
             </FieldRow>
 
             <FieldRow label={t`Background`}>
-              <div className="w-full">
+              <div className='w-full'>
                 <ComboSelect
                   value={data.preferences.background || 'theme'}
                   options={{ theme: t`From theme`, off: t`None` }}
@@ -332,7 +398,7 @@ export function UserDisplay() {
             </FieldRow>
 
             <FieldRow label={t`Font`}>
-              <div className="w-full">
+              <div className='w-full'>
                 <ComboSelect
                   value={data.preferences.font || 'theme'}
                   options={fontLabels}
@@ -343,7 +409,7 @@ export function UserDisplay() {
             </FieldRow>
 
             <FieldRow label={t`Font size`}>
-              <div className="w-full">
+              <div className='w-full'>
                 <ComboSelect
                   value={data.preferences.font_size || 'theme'}
                   options={fontSizeLabels}

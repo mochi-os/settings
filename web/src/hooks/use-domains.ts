@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import type {
   DomainsData,
@@ -11,8 +10,8 @@ import type {
   App,
   Entity,
 } from '@/types/domains'
-import endpoints from '@/api/endpoints'
 import { naturalCompare, requestHelpers, useDebounce } from '@mochi/web'
+import endpoints from '@/api/endpoints'
 
 const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
@@ -54,11 +53,7 @@ export function useDomainDetails(domain: string) {
 export function useUpdateDomain() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (data: {
-      domain: string
-      verified?: boolean
-      tls?: boolean
-    }) =>
+    mutationFn: (data: { domain: string; verified?: boolean; tls?: boolean }) =>
       requestHelpers.post(
         endpoints.domains.update,
         data,
@@ -163,11 +158,7 @@ export function useDeleteRoute() {
 export function useCreateDelegation() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (data: {
-      domain: string
-      path: string
-      owner: string
-    }) =>
+    mutationFn: (data: { domain: string; path: string; owner: string }) =>
       requestHelpers.post(
         endpoints.domains.delegationCreate,
         data,
@@ -182,11 +173,7 @@ export function useCreateDelegation() {
 export function useDeleteDelegation() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (data: {
-      domain: string
-      path: string
-      owner: string
-    }) =>
+    mutationFn: (data: { domain: string; path: string; owner: string }) =>
       requestHelpers.post(
         endpoints.domains.delegationDelete,
         data,

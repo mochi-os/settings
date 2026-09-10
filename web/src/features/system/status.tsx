@@ -2,9 +2,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import type { ReactNode } from 'react'
-import { Activity, Download, Loader2 } from 'lucide-react'
 import { Trans, useLingui } from '@lingui/react/macro'
 import {
   Button,
@@ -27,16 +25,17 @@ import {
   usePageTitle,
   formatSystemTimestamp,
 } from '@mochi/web'
-import { useSystemSettingsData } from '@/hooks/use-system-settings'
+import { Activity, Download, Loader2 } from 'lucide-react'
+import { peerDisplayName, hyphenateFingerprint } from '@/lib/peer'
 import { useStepUp } from '@/lib/use-step-up'
 import { useSystemPeers, type PeerEntry } from '@/hooks/use-system-peers'
-import { PeerIdentity } from '@/components/peer-identity'
-import { peerDisplayName, hyphenateFingerprint } from '@/lib/peer'
+import { useSystemSettingsData } from '@/hooks/use-system-settings'
 import {
   useInstallSystemUpdate,
   useSystemUpdate,
   type SystemUpdateInfo,
 } from '@/hooks/use-system-update'
+import { PeerIdentity } from '@/components/peer-identity'
 
 export function SystemStatus() {
   const { t } = useLingui()
@@ -56,7 +55,10 @@ export function SystemStatus() {
 
   return (
     <>
-      <PageHeader title={t`Status`} icon={<Activity className='size-4 md:size-5' />} />
+      <PageHeader
+        title={t`Status`}
+        icon={<Activity className='size-4 md:size-5' />}
+      />
 
       <Main>
         {error ? (
@@ -66,26 +68,40 @@ export function SystemStatus() {
         ) : (
           <dl className='grid gap-3 text-sm'>
             <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-              <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'><Trans>Version</Trans></dt>
+              <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'>
+                <Trans>Version</Trans>
+              </dt>
               <dd className='font-medium'>{serverVersion}</dd>
             </div>
             <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-              <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'><Trans>Started</Trans></dt>
+              <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'>
+                <Trans>Started</Trans>
+              </dt>
               <dd className='font-mono text-xs'>
-                {formatSystemTimestamp(parseInt(serverStarted, 10), serverStarted)}
+                {formatSystemTimestamp(
+                  parseInt(serverStarted, 10),
+                  serverStarted
+                )}
               </dd>
             </div>
             {serverFingerprint && (
               <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-                <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'><Trans>Fingerprint</Trans></dt>
+                <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'>
+                  <Trans>Fingerprint</Trans>
+                </dt>
                 <dd className='min-w-0 flex-1'>
-                  <DataChip value={hyphenateFingerprint(serverFingerprint)} truncate='middle' />
+                  <DataChip
+                    value={hyphenateFingerprint(serverFingerprint)}
+                    truncate='middle'
+                  />
                 </dd>
               </div>
             )}
             {peerId && (
               <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-                <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'><Trans>Peer ID</Trans></dt>
+                <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'>
+                  <Trans>Peer ID</Trans>
+                </dt>
                 <dd className='min-w-0 flex-1'>
                   <DataChip value={peerId} truncate='none' />
                 </dd>
@@ -93,7 +109,9 @@ export function SystemStatus() {
             )}
             {showUpdate && (
               <div className='flex flex-col gap-2 sm:flex-row sm:gap-4'>
-                <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'><Trans>Update</Trans></dt>
+                <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'>
+                  <Trans>Update</Trans>
+                </dt>
                 <dd className='flex flex-col gap-2'>
                   <UpdateAction info={update} />
                 </dd>
@@ -107,10 +125,18 @@ export function SystemStatus() {
   )
 }
 
-function StatusRow({ label, children }: { label: ReactNode; children: ReactNode }) {
+function StatusRow({
+  label,
+  children,
+}: {
+  label: ReactNode
+  children: ReactNode
+}) {
   return (
     <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-      <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'>{label}</dt>
+      <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'>
+        {label}
+      </dt>
       <dd className='font-medium'>{children}</dd>
     </div>
   )
@@ -140,21 +166,26 @@ function NetworkStatus() {
     (a: PeerEntry, b: PeerEntry) =>
       naturalCompare(peerDisplayName(a), peerDisplayName(b)) ||
       naturalCompare(a.fingerprint ?? '', b.fingerprint ?? '') ||
-      (a.peer < b.peer ? -1 : a.peer > b.peer ? 1 : 0),
+      (a.peer < b.peer ? -1 : a.peer > b.peer ? 1 : 0)
   )
   const connected = peers.filter((p) => p.connected).length
   const queued = peers.reduce((sum, p) => sum + p.queued, 0)
-  const reachability = {
-    public: t`Public`,
-    private: t`Private`,
-    unknown: t`Unknown`,
-  }[network.reachability] ?? t`Unknown`
+  const reachability =
+    {
+      public: t`Public`,
+      private: t`Private`,
+      unknown: t`Unknown`,
+    }[network.reachability] ?? t`Unknown`
 
   return (
     <>
       <dl className='mt-3 grid gap-3 text-sm'>
-        <StatusRow label={<Trans>Users</Trans>}>{formatNumber(counts.users)}</StatusRow>
-        <StatusRow label={<Trans>Entities</Trans>}>{formatNumber(counts.entities)}</StatusRow>
+        <StatusRow label={<Trans>Users</Trans>}>
+          {formatNumber(counts.users)}
+        </StatusRow>
+        <StatusRow label={<Trans>Entities</Trans>}>
+          {formatNumber(counts.entities)}
+        </StatusRow>
         <StatusRow label={<Trans>Reachability</Trans>}>
           {reachability}
           {network.relay ? ` · ${t`Via relay`}` : ''}
@@ -166,47 +197,77 @@ function NetworkStatus() {
             </span>
           </StatusRow>
         )}
-        {network.holepunch && network.holepunch.success + network.holepunch.failure > 0 && (
-          <StatusRow label={<Trans>Hole punch</Trans>}>
-            <Trans>
-              {formatNumber(network.holepunch.success)} succeeded · {formatNumber(network.holepunch.failure)} failed
-            </Trans>
-          </StatusRow>
-        )}
+        {network.holepunch &&
+          network.holepunch.success + network.holepunch.failure > 0 && (
+            <StatusRow label={<Trans>Hole punch</Trans>}>
+              <Trans>
+                {formatNumber(network.holepunch.success)} succeeded ·{' '}
+                {formatNumber(network.holepunch.failure)} failed
+              </Trans>
+            </StatusRow>
+          )}
         {network.relaying?.active && (
           <StatusRow label={<Trans>Relay service</Trans>}>
             <Trans>
-              {formatNumber(network.relaying.reservations.held)} / {formatNumber(network.relaying.reservations.maximum)} reservations · {formatNumber(network.relaying.circuits)} circuits · {formatNumber(network.relaying.rejected)} refused
+              {formatNumber(network.relaying.reservations.held)} /{' '}
+              {formatNumber(network.relaying.reservations.maximum)} reservations
+              · {formatNumber(network.relaying.circuits)} circuits ·{' '}
+              {formatNumber(network.relaying.rejected)} refused
             </Trans>
           </StatusRow>
         )}
-        <StatusRow label={<Trans>Messages awaiting routing</Trans>}>{formatNumber(network.unresolved)}</StatusRow>
-        <StatusRow label={<Trans>Queued messages</Trans>}>{formatNumber(queued)}</StatusRow>
-        <StatusRow label={<Trans>Queued broadcast messages</Trans>}>{formatNumber(network.queued)}</StatusRow>
+        <StatusRow label={<Trans>Messages awaiting routing</Trans>}>
+          {formatNumber(network.unresolved)}
+        </StatusRow>
+        <StatusRow label={<Trans>Queued messages</Trans>}>
+          {formatNumber(queued)}
+        </StatusRow>
+        <StatusRow label={<Trans>Queued broadcast messages</Trans>}>
+          {formatNumber(network.queued)}
+        </StatusRow>
       </dl>
       {peers.length > 0 && (
         <section className='mt-8 space-y-2'>
-          <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'><Trans>Peers</Trans></h2>
+          <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'>
+            <Trans>Peers</Trans>
+          </h2>
           <p className='text-muted-foreground text-sm'>
-            <Trans>Known</Trans> {formatNumber(peers.length)} · <Trans>Connected</Trans>{' '}
-            {formatNumber(connected)} · <Trans>Broadcast mesh</Trans> {formatNumber(network.mesh)}
+            <Trans>Known</Trans> {formatNumber(peers.length)} ·{' '}
+            <Trans>Connected</Trans> {formatNumber(connected)} ·{' '}
+            <Trans>Broadcast mesh</Trans> {formatNumber(network.mesh)}
           </p>
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className='h-auto w-[26%] py-2 align-top whitespace-normal'><Trans>Peer</Trans></TableHead>
-                <TableHead className='h-auto w-[10%] py-2 align-top whitespace-normal'><Trans>Status</Trans></TableHead>
-                <TableHead className='h-auto w-[26%] py-2 align-top whitespace-normal'><Trans>Address</Trans></TableHead>
-                <TableHead className='h-auto w-[14%] py-2 align-top whitespace-normal'><Trans>Last seen</Trans></TableHead>
-                <TableHead className='h-auto w-[10%] py-2 text-end align-top whitespace-normal'><Trans>Queued messages</Trans></TableHead>
-                <TableHead className='h-auto w-[14%] ps-8 py-2 align-top whitespace-normal'><Trans>Oldest queued message</Trans></TableHead>
+                <TableHead className='h-auto w-[26%] py-2 align-top whitespace-normal'>
+                  <Trans>Peer</Trans>
+                </TableHead>
+                <TableHead className='h-auto w-[10%] py-2 align-top whitespace-normal'>
+                  <Trans>Status</Trans>
+                </TableHead>
+                <TableHead className='h-auto w-[26%] py-2 align-top whitespace-normal'>
+                  <Trans>Address</Trans>
+                </TableHead>
+                <TableHead className='h-auto w-[14%] py-2 align-top whitespace-normal'>
+                  <Trans>Last seen</Trans>
+                </TableHead>
+                <TableHead className='h-auto w-[10%] py-2 text-end align-top whitespace-normal'>
+                  <Trans>Queued messages</Trans>
+                </TableHead>
+                <TableHead className='h-auto w-[14%] py-2 ps-8 align-top whitespace-normal'>
+                  <Trans>Oldest queued message</Trans>
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {peers.map((p) => (
                 <TableRow key={p.peer}>
                   <TableCell className='align-top whitespace-normal'>
-                    <PeerIdentity peer={p.peer} name={p.name} fingerprint={p.fingerprint} />
+                    <PeerIdentity
+                      peer={p.peer}
+                      name={p.name}
+                      fingerprint={p.fingerprint}
+                    />
                   </TableCell>
                   <TableCell className='text-muted-foreground align-top text-sm'>
                     {p.connected ? (
@@ -217,15 +278,21 @@ function NetworkStatus() {
                       <Trans>Disconnected</Trans>
                     )}
                   </TableCell>
-                  <TableCell className='align-top font-mono text-xs break-all whitespace-normal'>{p.address}</TableCell>
-                  <TableCell className='align-top font-mono text-xs'>
-                    {p.seen > 0 ? formatSystemTimestamp(p.seen, String(p.seen)) : ''}
+                  <TableCell className='align-top font-mono text-xs break-all whitespace-normal'>
+                    {p.address}
                   </TableCell>
-                  <TableCell className='align-top text-end text-sm'>
+                  <TableCell className='align-top font-mono text-xs'>
+                    {p.seen > 0
+                      ? formatSystemTimestamp(p.seen, String(p.seen))
+                      : ''}
+                  </TableCell>
+                  <TableCell className='text-end align-top text-sm'>
                     {formatNumber(p.queued)}
                   </TableCell>
                   <TableCell className='ps-8 align-top font-mono text-xs'>
-                    {p.queued > 0 ? formatSystemTimestamp(p.oldest, String(p.oldest)) : '-'}
+                    {p.queued > 0
+                      ? formatSystemTimestamp(p.oldest, String(p.oldest))
+                      : '-'}
                   </TableCell>
                 </TableRow>
               ))}
@@ -257,14 +324,24 @@ function UpdateAction({ info }: { info: SystemUpdateInfo }) {
   )
 }
 
-function UpdateButton({ platform, latest }: { platform: string; latest: string }) {
+function UpdateButton({
+  platform,
+  latest,
+}: {
+  platform: string
+  latest: string
+}) {
   switch (platform) {
     case 'linux-deb':
-      return <CommandHint command='sudo apt update && sudo apt install mochi-server' />
+      return (
+        <CommandHint command='sudo apt update && sudo apt install mochi-server' />
+      )
     case 'linux-rpm':
       return <CommandHint command='sudo dnf upgrade mochi-server' />
     case 'docker':
-      return <CommandHint command='docker compose pull && docker compose up -d' />
+      return (
+        <CommandHint command='docker compose pull && docker compose up -d' />
+      )
     case 'windows':
       return <InstallButton latest={latest} />
     case 'macos-arm64':
@@ -302,17 +379,21 @@ function InstallButton({ latest }: { latest: string }) {
     })
   return (
     <>
-    {stepUp.dialog}
-    <Button
-      variant='default'
-      size='sm'
-      onClick={onClick}
-      disabled={install.isPending}
-      title={t`Download Mochi ${latest} and restart the server`}
-    >
-      {install.isPending ? <Loader2 className='animate-spin' /> : <Download />}
-      <Trans>Install update</Trans>
-    </Button>
+      {stepUp.dialog}
+      <Button
+        variant='default'
+        size='sm'
+        onClick={onClick}
+        disabled={install.isPending}
+        title={t`Download Mochi ${latest} and restart the server`}
+      >
+        {install.isPending ? (
+          <Loader2 className='animate-spin' />
+        ) : (
+          <Download />
+        )}
+        <Trans>Install update</Trans>
+      </Button>
     </>
   )
 }
@@ -320,7 +401,9 @@ function InstallButton({ latest }: { latest: string }) {
 function CommandHint({ command }: { command: string }) {
   return (
     <div className='flex items-center gap-2'>
-      <code className='bg-muted px-2 py-1 rounded text-xs flex-1 break-all'>{command}</code>
+      <code className='bg-muted flex-1 rounded px-2 py-1 text-xs break-all'>
+        {command}
+      </code>
       <CopyButton value={command} />
     </div>
   )

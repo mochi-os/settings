@@ -2,30 +2,11 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { Trans, useLingui } from '@lingui/react/macro'
-import { msg } from '@lingui/core/macro'
 import { i18n } from '@lingui/core'
-import {
-  Bell,
-  Brain,
-  Check,
-  CheckCircle2,
-  Clock,
-  Link,
-  Loader2,
-  Mail,
-  MoreHorizontal,
-  Pencil,
-  Plus,
-  Server,
-  Share2,
-  Smartphone,
-  Trash2,
-  Zap,
-} from 'lucide-react'
+import { msg } from '@lingui/core/macro'
+import { Trans, useLingui } from '@lingui/react/macro'
 import {
   Button,
   ConfirmDialog,
@@ -63,7 +44,28 @@ import {
   toast,
   useFormat,
   type Account,
-  type Provider, naturalCompare, textUnchanged,} from '@mochi/web'
+  type Provider,
+  naturalCompare,
+  textUnchanged,
+} from '@mochi/web'
+import {
+  Bell,
+  Brain,
+  Check,
+  CheckCircle2,
+  Clock,
+  Link,
+  Loader2,
+  Mail,
+  MoreHorizontal,
+  Pencil,
+  Plus,
+  Server,
+  Share2,
+  Smartphone,
+  Trash2,
+  Zap,
+} from 'lucide-react'
 import endpoints from '@/api/endpoints'
 
 const APP_BASE = getAppPath()
@@ -95,13 +97,21 @@ function DevicesTable({
   const rows = [...devices].sort((a, b) => naturalCompare(a.label, b.label))
   return (
     <>
-      <h2 className='mb-2 text-base font-medium'><Trans>Devices</Trans></h2>
+      <h2 className='mb-2 text-base font-medium'>
+        <Trans>Devices</Trans>
+      </h2>
       <Table className='mb-6'>
         <TableHeader>
           <TableRow>
-            <TableHead><Trans>Name</Trans></TableHead>
-            <TableHead className='hidden sm:table-cell'><Trans>Push</Trans></TableHead>
-            <TableHead className='hidden sm:table-cell'><Trans>Last seen</Trans></TableHead>
+            <TableHead>
+              <Trans>Name</Trans>
+            </TableHead>
+            <TableHead className='hidden sm:table-cell'>
+              <Trans>Push</Trans>
+            </TableHead>
+            <TableHead className='hidden sm:table-cell'>
+              <Trans>Last seen</Trans>
+            </TableHead>
             <TableHead className='w-24'></TableHead>
           </TableRow>
         </TableHeader>
@@ -110,13 +120,22 @@ function DevicesTable({
             const push = accounts.filter((a) => a.device === device.id)
             return (
               <TableRow key={device.id}>
-                <TableCell className='font-medium'>{device.label || t`Device`}</TableCell>
-                <TableCell className='hidden sm:table-cell text-muted-foreground'>
+                <TableCell className='font-medium'>
+                  {device.label || t`Device`}
+                </TableCell>
+                <TableCell className='text-muted-foreground hidden sm:table-cell'>
                   {push.map((a) => getProviderLabel(a.type)).join(', ')}
                 </TableCell>
-                <TableCell className='hidden sm:table-cell text-muted-foreground'>{formatTimestamp(device.seen)}</TableCell>
+                <TableCell className='text-muted-foreground hidden sm:table-cell'>
+                  {formatTimestamp(device.seen)}
+                </TableCell>
                 <TableCell className='text-end'>
-                  <Button variant='outline' size='sm' disabled={forgettingId === device.id} onClick={() => setForgetting(device)}>
+                  <Button
+                    variant='outline'
+                    size='sm'
+                    disabled={forgettingId === device.id}
+                    onClick={() => setForgetting(device)}
+                  >
                     <Trans>Forget</Trans>
                   </Button>
                 </TableCell>
@@ -128,7 +147,9 @@ function DevicesTable({
       {forgetting && (
         <ConfirmDialog
           open={!!forgetting}
-          onOpenChange={(open) => { if (!open) setForgetting(null) }}
+          onOpenChange={(open) => {
+            if (!open) setForgetting(null)
+          }}
           title={t`Forget device?`}
           desc={t`This will forget the device "${forgetting.label || t`Device`}" and stop notifications to it.`}
           confirmText={t`Forget`}
@@ -155,7 +176,13 @@ function getProviderIcon(type: string) {
       return <Smartphone className='h-4 w-4' />
     case 'pushbullet':
       return (
-        <svg className='h-4 w-4' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2'>
+        <svg
+          className='h-4 w-4'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          strokeWidth='2'
+        >
           <circle cx='12' cy='12' r='9' />
         </svg>
       )
@@ -168,7 +195,6 @@ function getProviderIcon(type: string) {
       return <Share2 className='h-4 w-4' />
   }
 }
-
 
 function getBrowserFromEndpoint(endpoint: string): string {
   // The named browsers are brands and stay verbatim; the fallback is ordinary
@@ -259,21 +285,24 @@ function AccountRow({
       {/* Name */}
       <TableCell>
         <div className='flex items-center gap-3'>
-          <div className='flex h-8 w-8 items-center justify-center rounded-full bg-muted shrink-0'>
+          <div className='bg-muted flex h-8 w-8 shrink-0 items-center justify-center rounded-full'>
             {getProviderIcon(account.type)}
           </div>
           <div className='flex flex-col'>
             <div className='flex items-center gap-2'>
               <span className='font-medium sm:font-normal'>{displayName}</span>
               {isAi && account.default === 'ai' && (
-                <span className='inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary'>
+                <span className='bg-primary/10 text-primary inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium'>
                   <Trans>Default for AI</Trans>
                 </span>
               )}
             </div>
             <span className='text-muted-foreground text-xs sm:hidden'>
               {getProviderLabel(account.type)}
-              {isAi && account.identifier && account.identifier !== 'default' && ` - ${account.identifier}`}
+              {isAi &&
+                account.identifier &&
+                account.identifier !== 'default' &&
+                ` - ${account.identifier}`}
             </span>
           </div>
         </div>
@@ -283,7 +312,10 @@ function AccountRow({
       <TableCell className='hidden sm:table-cell'>
         <span>
           {getProviderLabel(account.type)}
-          {isAi && account.identifier && account.identifier !== 'default' && ` - ${account.identifier}`}
+          {isAi &&
+            account.identifier &&
+            account.identifier !== 'default' &&
+            ` - ${account.identifier}`}
         </span>
       </TableCell>
 
@@ -295,12 +327,12 @@ function AccountRow({
             <Trans>Pending</Trans>
           </span>
         ) : provider?.verify && isVerified ? (
-          <span className='inline-flex items-center gap-1 text-xs text-success'>
+          <span className='text-success inline-flex items-center gap-1 text-xs'>
             <CheckCircle2 className='h-3 w-3' />
             <Trans>Verified</Trans>
           </span>
         ) : (
-          <span className='inline-flex items-center gap-1 text-xs text-success'>
+          <span className='text-success inline-flex items-center gap-1 text-xs'>
             <CheckCircle2 className='h-3 w-3' />
             <Trans>Connected</Trans>
           </span>
@@ -319,7 +351,7 @@ function AccountRow({
       </TableCell>
 
       {/* Added */}
-      <TableCell className='text-muted-foreground text-sm hidden lg:table-cell'>
+      <TableCell className='text-muted-foreground hidden text-sm lg:table-cell'>
         {formatTimestamp(account.created)}
       </TableCell>
 
@@ -327,13 +359,19 @@ function AccountRow({
       <TableCell className='text-end'>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant='ghost' size='sm' disabled={isRemoving || testingId === account.id}>
+            <Button
+              variant='ghost'
+              size='sm'
+              disabled={isRemoving || testingId === account.id}
+            >
               {isRemoving || testingId === account.id ? (
                 <Loader2 className='h-4 w-4 animate-spin' />
               ) : (
                 <MoreHorizontal className='h-4 w-4' />
               )}
-              <span className='sr-only'><Trans>Actions</Trans></span>
+              <span className='sr-only'>
+                <Trans>Actions</Trans>
+              </span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align='end'>
@@ -351,9 +389,7 @@ function AccountRow({
               <Pencil className='me-2 h-4 w-4' />
               <Trans>Settings</Trans>
             </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => setShowDeleteDialog(true)}
-            >
+            <DropdownMenuItem onClick={() => setShowDeleteDialog(true)}>
               <Trash2 className='me-2 h-4 w-4' />
               <Trans>Remove</Trans>
             </DropdownMenuItem>
@@ -406,24 +442,35 @@ export function ConnectedAccounts() {
   const queryClient = useQueryClient()
   const devicesQuery = useQuery({
     queryKey: ['notifications', 'devices'],
-    queryFn: () => requestHelpers.get<Device[]>(endpoints.notifications.devices),
+    queryFn: () =>
+      requestHelpers.get<Device[]>(endpoints.notifications.devices),
   })
   const devices = Array.isArray(devicesQuery.data) ? devicesQuery.data : []
   const deviceIds = new Set(devices.map((d) => d.id))
   // An account bound to a listed device is that device's, shown in its row.
-  const visibleAccounts = accounts.filter((a) => !a.device || !deviceIds.has(a.device))
-  const [forgettingDeviceId, setForgettingDeviceId] = useState<string | null>(null)
+  const visibleAccounts = accounts.filter(
+    (a) => !a.device || !deviceIds.has(a.device)
+  )
+  const [forgettingDeviceId, setForgettingDeviceId] = useState<string | null>(
+    null
+  )
 
   const handleForgetDevice = async (device: Device) => {
     setForgettingDeviceId(device.id)
     try {
       const params = new URLSearchParams()
       params.append('id', device.id)
-      await requestHelpers.post(endpoints.notifications.devicesRemove, params.toString(), {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      })
+      await requestHelpers.post(
+        endpoints.notifications.devicesRemove,
+        params.toString(),
+        {
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        }
+      )
       toast.success(t`Device forgotten`)
-      void queryClient.invalidateQueries({ queryKey: ['notifications', 'devices'] })
+      void queryClient.invalidateQueries({
+        queryKey: ['notifications', 'devices'],
+      })
       await refetch()
     } catch (error) {
       toast.error(getErrorMessage(error, t`Failed to forget device`))
@@ -432,7 +479,12 @@ export function ConnectedAccounts() {
     }
   }
 
-  const handleAdd = async (type: string, fields: Record<string, string>, addToExisting: boolean, setAsDefault?: boolean) => {
+  const handleAdd = async (
+    type: string,
+    fields: Record<string, string>,
+    addToExisting: boolean,
+    setAsDefault?: boolean
+  ) => {
     try {
       const account = await add(type, fields, addToExisting)
       if (setAsDefault) {
@@ -488,12 +540,18 @@ export function ConnectedAccounts() {
       await verify(id)
       toast.success(t`Verification code sent`)
     } catch (error) {
-      const message = getErrorMessage(error, t`Failed to send verification code`)
+      const message = getErrorMessage(
+        error,
+        t`Failed to send verification code`
+      )
       toast.error(message)
     }
   }
 
-  const handleSaveSettings = async (id: string, fields: Record<string, string>) => {
+  const handleSaveSettings = async (
+    id: string,
+    fields: Record<string, string>
+  ) => {
     try {
       await update(id, fields)
       toast.success(t`Account updated`)
@@ -567,65 +625,89 @@ export function ConnectedAccounts() {
 
       <Main>
         {providersError ? (
-          <GeneralError error={providersError} minimal mode='inline' reset={refetch} />
+          <GeneralError
+            error={providersError}
+            minimal
+            mode='inline'
+            reset={refetch}
+          />
         ) : accountsError ? (
-          <GeneralError error={accountsError} minimal mode='inline' reset={refetch} />
+          <GeneralError
+            error={accountsError}
+            minimal
+            mode='inline'
+            reset={refetch}
+          />
         ) : isLoading ? (
           <ListSkeleton variant='simple' height='h-12' count={3} />
         ) : (
           <>
-          {devices.length > 0 && (
-            <DevicesTable
-              devices={devices}
-              accounts={accounts}
-              onForget={handleForgetDevice}
-              forgettingId={forgettingDeviceId}
-            />
-          )}
-          {visibleAccounts.length === 0 ? (
-          <EmptyState
-            icon={Link}
-            title={t`No connected accounts`}
-            className='p-4'
-          />
-          ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead><Trans>Name</Trans></TableHead>
-                <TableHead className='hidden sm:table-cell'><Trans>Type</Trans></TableHead>
-                <TableHead className='hidden sm:table-cell'><Trans>Status</Trans></TableHead>
-                <TableHead className='hidden md:table-cell'>
-                  <Trans>Notify by default</Trans>
-                </TableHead>
-                <TableHead className='hidden lg:table-cell'><Trans>Added</Trans></TableHead>
-                <TableHead className='w-12'></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {[...visibleAccounts]
-                .sort((a, b) => {
-                  const nameCompare = naturalCompare(getAccountDisplayName(a), getAccountDisplayName(b))
-                  if (nameCompare !== 0) return nameCompare
-                  return naturalCompare(getProviderLabel(a.type), getProviderLabel(b.type))
-                })
-                .map((account) => (
-                  <AccountRow
-                    key={account.id}
-                    account={account}
-                    providers={providers}
-                    onRemove={handleRemove}
-                    onVerify={setVerifyAccount}
-                    onSettings={setSettingsAccount}
-                    onTest={handleTest}
-                    onToggleEnabled={handleToggleEnabled}
-                    isRemoving={removingId === account.id}
-                    testingId={testingId}
-                  />
-                ))}
-            </TableBody>
-          </Table>
-          )}
+            {devices.length > 0 && (
+              <DevicesTable
+                devices={devices}
+                accounts={accounts}
+                onForget={handleForgetDevice}
+                forgettingId={forgettingDeviceId}
+              />
+            )}
+            {visibleAccounts.length === 0 ? (
+              <EmptyState
+                icon={Link}
+                title={t`No connected accounts`}
+                className='p-4'
+              />
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>
+                      <Trans>Name</Trans>
+                    </TableHead>
+                    <TableHead className='hidden sm:table-cell'>
+                      <Trans>Type</Trans>
+                    </TableHead>
+                    <TableHead className='hidden sm:table-cell'>
+                      <Trans>Status</Trans>
+                    </TableHead>
+                    <TableHead className='hidden md:table-cell'>
+                      <Trans>Notify by default</Trans>
+                    </TableHead>
+                    <TableHead className='hidden lg:table-cell'>
+                      <Trans>Added</Trans>
+                    </TableHead>
+                    <TableHead className='w-12'></TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {[...visibleAccounts]
+                    .sort((a, b) => {
+                      const nameCompare = naturalCompare(
+                        getAccountDisplayName(a),
+                        getAccountDisplayName(b)
+                      )
+                      if (nameCompare !== 0) return nameCompare
+                      return naturalCompare(
+                        getProviderLabel(a.type),
+                        getProviderLabel(b.type)
+                      )
+                    })
+                    .map((account) => (
+                      <AccountRow
+                        key={account.id}
+                        account={account}
+                        providers={providers}
+                        onRemove={handleRemove}
+                        onVerify={setVerifyAccount}
+                        onSettings={setSettingsAccount}
+                        onTest={handleTest}
+                        onToggleEnabled={handleToggleEnabled}
+                        isRemoving={removingId === account.id}
+                        testingId={testingId}
+                      />
+                    ))}
+                </TableBody>
+              </Table>
+            )}
           </>
         )}
       </Main>
@@ -637,7 +719,10 @@ export function ConnectedAccounts() {
         onAdd={handleAdd}
         isAdding={isAdding}
         appBase={APP_BASE}
-        hasExistingAiAccount={accounts.some((a) => (a.type === 'claude' || a.type === 'openai') && a.default === 'ai')}
+        hasExistingAiAccount={accounts.some(
+          (a) =>
+            (a.type === 'claude' || a.type === 'openai') && a.default === 'ai'
+        )}
       />
 
       {verifyAccount && (
@@ -654,7 +739,9 @@ export function ConnectedAccounts() {
       {settingsAccount && (
         <AccountSettingsDialog
           account={settingsAccount}
-          onOpenChange={(open) => { if (!open) setSettingsAccount(null) }}
+          onOpenChange={(open) => {
+            if (!open) setSettingsAccount(null)
+          }}
           onSave={handleSaveSettings}
           onSetDefault={handleSetDefault}
         />
@@ -675,14 +762,19 @@ function AccountSettingsDialog({
   onSetDefault: (id: string, isDefault: boolean) => Promise<void>
 }) {
   const { t } = useLingui()
-  const [nameValue, setNameValue] = useState(account.label || getAccountDisplayName(account))
-  const [modelValue, setModelValue] = useState(account.identifier === 'default' ? '' : account.identifier || '')
+  const [nameValue, setNameValue] = useState(
+    account.label || getAccountDisplayName(account)
+  )
+  const [modelValue, setModelValue] = useState(
+    account.identifier === 'default' ? '' : account.identifier || ''
+  )
   const [isDefault, setIsDefault] = useState(account.default === 'ai')
   const isAi = account.type === 'claude' || account.type === 'openai'
   const modelPlaceholder = t`default`
 
   const origLabel = account.label || getAccountDisplayName(account)
-  const origModel = account.identifier === 'default' ? '' : account.identifier || ''
+  const origModel =
+    account.identifier === 'default' ? '' : account.identifier || ''
   const origDefault = account.default === 'ai'
 
   const labelDirty = !textUnchanged(nameValue, origLabel)
@@ -718,11 +810,15 @@ function AccountSettingsDialog({
     <ResponsiveDialog open onOpenChange={onOpenChange}>
       <ResponsiveDialogContent className='sm:max-w-[425px]'>
         <ResponsiveDialogHeader>
-          <ResponsiveDialogTitle><Trans>Account settings</Trans></ResponsiveDialogTitle>
+          <ResponsiveDialogTitle>
+            <Trans>Account settings</Trans>
+          </ResponsiveDialogTitle>
         </ResponsiveDialogHeader>
         <div className='grid gap-4 py-4'>
           <div className='grid gap-2'>
-            <Label htmlFor='settings-name'><Trans>Name</Trans></Label>
+            <Label htmlFor='settings-name'>
+              <Trans>Name</Trans>
+            </Label>
             <Input
               id='settings-name'
               value={nameValue}
@@ -732,7 +828,9 @@ function AccountSettingsDialog({
           {isAi && (
             <>
               <div className='grid gap-2'>
-                <Label htmlFor='settings-model'><Trans>Model</Trans></Label>
+                <Label htmlFor='settings-model'>
+                  <Trans>Model</Trans>
+                </Label>
                 <Input
                   id='settings-model'
                   value={modelValue}
@@ -741,7 +839,9 @@ function AccountSettingsDialog({
                 />
               </div>
               <div className='flex items-center justify-between'>
-                <Label htmlFor='settings-default'><Trans>Default AI account</Trans></Label>
+                <Label htmlFor='settings-default'>
+                  <Trans>Default AI account</Trans>
+                </Label>
                 <Switch
                   id='settings-default'
                   checked={isDefault}

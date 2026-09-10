@@ -2,9 +2,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useEffect, useState } from 'react'
-import { useLingui, Trans } from '@lingui/react/macro'
 import type {
   AuthMethodsResponse,
   MethodInfo,
@@ -14,42 +12,7 @@ import type {
   Passkey,
   TotpSetupResponse,
 } from '@/types/account'
-import { MethodStateControl } from '@/components/method-state-control'
-import type { startRegistration } from '@simplewebauthn/browser'
-import {
-  Check,
-  Copy,
-  Key,
-  Link2,
-  Loader2,
-  Lock,
-  Pencil,
-  Plus,
-  RefreshCw,
-  Shield,
-  Trash2,
-} from 'lucide-react'
-import { QRCodeSVG } from 'qrcode.react'
-import {
-  useAuthMethods,
-  useMethods,
-  useOauthBegin,
-  useOauthIdentities,
-  useOauthUnlink,
-  usePasskeyDelete,
-  usePasskeyRegisterBegin,
-  usePasskeyRegisterFinish,
-  usePasskeyRename,
-  usePasskeys,
-  useRecoveryGenerate,
-  useRecoveryStatus,
-  useSetMethod,
-  useTotpDisable,
-  useTotpSetup,
-  useTotpStatus,
-  useTotpVerify,
-} from '@/hooks/use-account'
-import { useStepUp } from '@/lib/use-step-up'
+import { useLingui, Trans } from '@lingui/react/macro'
 import {
   Button,
   ConfirmDialog,
@@ -93,8 +56,46 @@ import {
   ServerDocumentsFooter,
   providerName,
 } from '@mochi/web'
+import type { startRegistration } from '@simplewebauthn/browser'
+import {
+  Check,
+  Copy,
+  Key,
+  Link2,
+  Loader2,
+  Lock,
+  Pencil,
+  Plus,
+  RefreshCw,
+  Shield,
+  Trash2,
+} from 'lucide-react'
+import { QRCodeSVG } from 'qrcode.react'
+import { useStepUp } from '@/lib/use-step-up'
+import {
+  useAuthMethods,
+  useMethods,
+  useOauthBegin,
+  useOauthIdentities,
+  useOauthUnlink,
+  usePasskeyDelete,
+  usePasskeyRegisterBegin,
+  usePasskeyRegisterFinish,
+  usePasskeyRename,
+  usePasskeys,
+  useRecoveryGenerate,
+  useRecoveryStatus,
+  useSetMethod,
+  useTotpDisable,
+  useTotpSetup,
+  useTotpStatus,
+  useTotpVerify,
+} from '@/hooks/use-account'
+import { MethodStateControl } from '@/components/method-state-control'
 
-type RegistrationOptionsJSON = Parameters<typeof startRegistration>[0]['optionsJSON']
+type RegistrationOptionsJSON = Parameters<
+  typeof startRegistration
+>[0]['optionsJSON']
 
 // ============================================================================
 // Login Methods Section
@@ -151,62 +152,65 @@ function LoginRequirementsSection() {
         { method, state, token },
         {
           onSuccess: () => toast.success(t`Login methods updated`),
-          onError: (e) => toast.error(getErrorMessage(e, t`Failed to update login methods`)),
-        },
-      ),
+          onError: (e) =>
+            toast.error(getErrorMessage(e, t`Failed to update login methods`)),
+        }
+      )
     )
   }
 
   return (
     <>
-    <Section title={t`Login methods`}>
-      {error ? (
-        <GeneralError error={error} minimal mode='inline' reset={refetch} />
-      ) : isLoading || !states ? (
-        <ListSkeleton variant='simple' height='h-12' count={3} />
-      ) : (
-        <div className='divide-y-0'>
-          {LOGIN_METHOD_ROWS.map(({ method, twoState }) => {
-            const info = states[method]
-            if (!info || !visible(method, info)) return null
+      <Section title={t`Login methods`}>
+        {error ? (
+          <GeneralError error={error} minimal mode='inline' reset={refetch} />
+        ) : isLoading || !states ? (
+          <ListSkeleton variant='simple' height='h-12' count={3} />
+        ) : (
+          <div className='divide-y-0'>
+            {LOGIN_METHOD_ROWS.map(({ method, twoState }) => {
+              const info = states[method]
+              if (!info || !visible(method, info)) return null
 
-            const base: MethodState[] = twoState
-              ? ['disabled', 'allowed']
-              : ['disabled', 'allowed', 'required']
-            // Always include the current state so a value set by operator
-            // policy (e.g. a system-required method) stays visible.
-            const slots = base.includes(info.state) ? base : [...base, info.state]
+              const base: MethodState[] = twoState
+                ? ['disabled', 'allowed']
+                : ['disabled', 'allowed', 'required']
+              // Always include the current state so a value set by operator
+              // policy (e.g. a system-required method) stays visible.
+              const slots = base.includes(info.state)
+                ? base
+                : [...base, info.state]
 
-            const unavailable = new Set<MethodState>()
-            if (info.system === 'disabled') {
-              unavailable.add('allowed')
-              unavailable.add('required')
-            }
-            if (info.system === 'required') {
-              unavailable.add('disabled')
-              unavailable.add('allowed')
-            }
-            if (!info.available) {
-              unavailable.add('allowed')
-              unavailable.add('required')
-            }
+              const unavailable = new Set<MethodState>()
+              if (info.system === 'disabled') {
+                unavailable.add('allowed')
+                unavailable.add('required')
+              }
+              if (info.system === 'required') {
+                unavailable.add('disabled')
+                unavailable.add('allowed')
+              }
+              if (!info.available) {
+                unavailable.add('allowed')
+                unavailable.add('required')
+              }
 
-            return (
-              <FieldRow key={method} label={methodLabel(method)}>
-                <MethodStateControl
-                  value={info.state}
-                  slots={slots}
-                  unavailable={unavailable}
-                  busy={setMethod.isPending}
-                  onChange={(next) => handleChange(method, next)}
-                />
-              </FieldRow>
-            )
-          })}
-        </div>
-      )}
-    </Section>
-    {stepUp.dialog}
+              return (
+                <FieldRow key={method} label={methodLabel(method)}>
+                  <MethodStateControl
+                    value={info.state}
+                    slots={slots}
+                    unavailable={unavailable}
+                    busy={setMethod.isPending}
+                    onChange={(next) => handleChange(method, next)}
+                  />
+                </FieldRow>
+              )
+            })}
+          </div>
+        )}
+      </Section>
+      {stepUp.dialog}
     </>
   )
 }
@@ -252,7 +256,12 @@ function PasskeyRow({
                 if (e.key === 'Escape') setIsRenaming(false)
               }}
             />
-            <Button size='sm' variant='ghost' onClick={handleRename} aria-label={t`Save passkey name`}>
+            <Button
+              size='sm'
+              variant='ghost'
+              onClick={handleRename}
+              aria-label={t`Save passkey name`}
+            >
               <Check className='h-4 w-4' />
             </Button>
           </div>
@@ -268,10 +277,20 @@ function PasskeyRow({
       </TableCell>
       <TableCell className='text-end'>
         <div className='flex justify-end gap-1'>
-          <Button variant='ghost' size='sm' onClick={() => setIsRenaming(true)} aria-label={t`Rename passkey`}>
+          <Button
+            variant='ghost'
+            size='sm'
+            onClick={() => setIsRenaming(true)}
+            aria-label={t`Rename passkey`}
+          >
             <Pencil className='h-4 w-4' />
           </Button>
-          <Button variant='ghost' size='sm' onClick={() => setShowDeleteDialog(true)} aria-label={t`Delete passkey`}>
+          <Button
+            variant='ghost'
+            size='sm'
+            onClick={() => setShowDeleteDialog(true)}
+            aria-label={t`Delete passkey`}
+          >
             <Trash2 className='h-4 w-4' />
           </Button>
           <ConfirmDialog
@@ -343,7 +362,8 @@ function PasskeysSection() {
       { id, name },
       {
         onSuccess: () => toast.success(t`Passkey renamed`),
-        onError: (error) => toast.error(getErrorMessage(error, t`Failed to rename passkey`)),
+        onError: (error) =>
+          toast.error(getErrorMessage(error, t`Failed to rename passkey`)),
       }
     )
   }
@@ -356,7 +376,8 @@ function PasskeysSection() {
         { id, token },
         {
           onSuccess: () => toast.success(t`Passkey deleted`),
-          onError: (error) => toast.error(getErrorMessage(error, t`Failed to delete passkey`)),
+          onError: (error) =>
+            toast.error(getErrorMessage(error, t`Failed to delete passkey`)),
         }
       )
     )
@@ -365,7 +386,10 @@ function PasskeysSection() {
   const passkeys = data?.passkeys ?? []
 
   const addButton = (
-    <ResponsiveDialog open={registerDialogOpen} onOpenChange={setRegisterDialogOpen}>
+    <ResponsiveDialog
+      open={registerDialogOpen}
+      onOpenChange={setRegisterDialogOpen}
+    >
       <Button
         variant='outline'
         size='sm'
@@ -377,13 +401,17 @@ function PasskeysSection() {
       </Button>
       <ResponsiveDialogContent>
         <ResponsiveDialogHeader>
-          <ResponsiveDialogTitle><Trans>Register passkey</Trans></ResponsiveDialogTitle>
+          <ResponsiveDialogTitle>
+            <Trans>Register passkey</Trans>
+          </ResponsiveDialogTitle>
           <ResponsiveDialogDescription>
             <Trans>Use a security key, fingerprint, or face recognition.</Trans>
           </ResponsiveDialogDescription>
         </ResponsiveDialogHeader>
         <div className='py-4'>
-          <Label htmlFor='passkey-name'><Trans>Passkey name</Trans></Label>
+          <Label htmlFor='passkey-name'>
+            <Trans>Passkey name</Trans>
+          </Label>
           <Input
             id='passkey-name'
             placeholder={t`My passkey`}
@@ -394,7 +422,11 @@ function PasskeysSection() {
         </div>
         <ResponsiveDialogFooter>
           <Button onClick={handleRegister} disabled={isRegistering}>
-            {isRegistering ? <Loader2 className='size-4 animate-spin' /> : <Plus className='size-4' />}
+            {isRegistering ? (
+              <Loader2 className='size-4 animate-spin' />
+            ) : (
+              <Plus className='size-4' />
+            )}
             <Trans>Register</Trans>
           </Button>
         </ResponsiveDialogFooter>
@@ -404,45 +436,52 @@ function PasskeysSection() {
 
   return (
     <>
-    <Section
-      title={t`Passkeys`}
-      action={addButton}
-    >
-      {passkeyDisabled && (
-        <p className='text-muted-foreground mb-2 px-4 text-sm leading-relaxed'>
-          <Trans>Passkeys are turned off by the server administrator.</Trans>
-        </p>
-      )}
-      {error ? (
-        <GeneralError error={error} minimal mode='inline' reset={refetch} />
-      ) : isLoading ? (
-        <ListSkeleton variant='simple' height='h-10' count={2} />
-      ) : passkeys.length === 0 ? (
-        <EmptyState icon={Key} title={t`No passkeys registered`} className='p-4' />
-      ) : (
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead><Trans>Name</Trans></TableHead>
-              <TableHead><Trans>Created</Trans></TableHead>
-              <TableHead><Trans>Last used</Trans></TableHead>
-              <TableHead className='w-24'></TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {passkeys.map((passkey) => (
-              <PasskeyRow
-                key={passkey.id}
-                passkey={passkey}
-                onRename={handleRename}
-                onDelete={handleDelete}
-              />
-            ))}
-          </TableBody>
-        </Table>
-      )}
-    </Section>
-    {stepUp.dialog}
+      <Section title={t`Passkeys`} action={addButton}>
+        {passkeyDisabled && (
+          <p className='text-muted-foreground mb-2 px-4 text-sm leading-relaxed'>
+            <Trans>Passkeys are turned off by the server administrator.</Trans>
+          </p>
+        )}
+        {error ? (
+          <GeneralError error={error} minimal mode='inline' reset={refetch} />
+        ) : isLoading ? (
+          <ListSkeleton variant='simple' height='h-10' count={2} />
+        ) : passkeys.length === 0 ? (
+          <EmptyState
+            icon={Key}
+            title={t`No passkeys registered`}
+            className='p-4'
+          />
+        ) : (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>
+                  <Trans>Name</Trans>
+                </TableHead>
+                <TableHead>
+                  <Trans>Created</Trans>
+                </TableHead>
+                <TableHead>
+                  <Trans>Last used</Trans>
+                </TableHead>
+                <TableHead className='w-24'></TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {passkeys.map((passkey) => (
+                <PasskeyRow
+                  key={passkey.id}
+                  passkey={passkey}
+                  onRename={handleRename}
+                  onDelete={handleDelete}
+                />
+              ))}
+            </TableBody>
+          </Table>
+        )}
+      </Section>
+      {stepUp.dialog}
     </>
   )
 }
@@ -498,107 +537,126 @@ function AuthenticatorSection() {
     stepUp.request((token) =>
       disableTotp.mutate(token, {
         onSuccess: () => toast.success(t`Authenticator app disabled`),
-        onError: (error) => toast.error(getErrorMessage(error, t`Failed to disable authenticator`)),
-      }))
+        onError: (error) =>
+          toast.error(
+            getErrorMessage(error, t`Failed to disable authenticator`)
+          ),
+      })
+    )
   }
 
   const isEnabled = data?.enabled ?? false
 
-  const action = setupData
-    ? null
-    : isEnabled ? (
-      <Button
-        variant='outline'
-        size='sm'
-        onClick={() => setShowDisableDialog(true)}
-      >
-        <Trash2 className='me-2 h-4 w-4' />
-        <Trans>Disable</Trans>
-      </Button>
-    ) : (
-      <Button
-        variant='outline'
-        size='sm'
-        onClick={handleSetup}
-        disabled={setupTotp.isPending}
-      >
-        <Plus className='me-2 h-4 w-4' />
-        <Trans>Set up</Trans>
-      </Button>
-    )
+  const action = setupData ? null : isEnabled ? (
+    <Button
+      variant='outline'
+      size='sm'
+      onClick={() => setShowDisableDialog(true)}
+    >
+      <Trash2 className='me-2 h-4 w-4' />
+      <Trans>Disable</Trans>
+    </Button>
+  ) : (
+    <Button
+      variant='outline'
+      size='sm'
+      onClick={handleSetup}
+      disabled={setupTotp.isPending}
+    >
+      <Plus className='me-2 h-4 w-4' />
+      <Trans>Set up</Trans>
+    </Button>
+  )
 
   return (
     <>
-    <Section
-      title={t`Authenticator app`}
-      action={action}
-    >
-      {error ? (
-        <GeneralError error={error} minimal mode='inline' reset={refetch} />
-      ) : isLoading ? (
-        <div className='py-2'>
-          <Skeleton className='h-20 w-full' />
-        </div>
-      ) : setupData ? (
-        <div className='space-y-6 py-4'>
-          <div className='space-y-3'>
-            <p className='text-sm font-medium'><Trans>1. Scan QR code</Trans></p>
-            <div className='flex justify-center rounded-xl border-2 bg-white p-6 shadow-sm'>
-              <QRCodeSVG value={setupData.url} size={200} />
+      <Section title={t`Authenticator app`} action={action}>
+        {error ? (
+          <GeneralError error={error} minimal mode='inline' reset={refetch} />
+        ) : isLoading ? (
+          <div className='py-2'>
+            <Skeleton className='h-20 w-full' />
+          </div>
+        ) : setupData ? (
+          <div className='space-y-6 py-4'>
+            <div className='space-y-3'>
+              <p className='text-sm font-medium'>
+                <Trans>1. Scan QR code</Trans>
+              </p>
+              <div className='flex justify-center rounded-xl border-2 bg-white p-6 shadow-sm'>
+                <QRCodeSVG value={setupData.url} size={200} />
+              </div>
+            </div>
+            <div className='space-y-2.5'>
+              <Label className='text-sm font-medium'>
+                <Trans>2. Manual entry</Trans>
+              </Label>
+              <DataChip value={setupData.secret} chipClassName='flex-1' />
+            </div>
+            <div className='space-y-4 border-t pt-6'>
+              <p className='text-sm font-medium'>
+                <Trans>3. Verify code</Trans>
+              </p>
+              <div className='flex items-center gap-3'>
+                <Input
+                  placeholder='000000'
+                  value={verifyCode}
+                  onChange={(e) => setVerifyCode(e.target.value)}
+                  className='w-32 text-center font-mono'
+                  maxLength={6}
+                />
+                <Button
+                  onClick={handleVerify}
+                  disabled={isVerifying || !verifyCode}
+                >
+                  {isVerifying ? (
+                    <Loader2 className='size-4 animate-spin' />
+                  ) : (
+                    <Check className='size-4' />
+                  )}
+                  <Trans>Verify and enable</Trans>
+                </Button>
+                <Button variant='ghost' onClick={() => setSetupData(null)}>
+                  <Trans>Cancel</Trans>
+                </Button>
+              </div>
             </div>
           </div>
-          <div className='space-y-2.5'>
-            <Label className='text-sm font-medium'><Trans>2. Manual entry</Trans></Label>
-            <DataChip value={setupData.secret} chipClassName='flex-1' />
-          </div>
-          <div className='border-t pt-6 space-y-4'>
-            <p className='text-sm font-medium'><Trans>3. Verify code</Trans></p>
-            <div className='flex items-center gap-3'>
-              <Input
-                placeholder='000000'
-                value={verifyCode}
-                onChange={(e) => setVerifyCode(e.target.value)}
-                className='w-32 font-mono text-center'
-                maxLength={6}
-              />
-              <Button
-                onClick={handleVerify}
-                disabled={isVerifying || !verifyCode}
-              >
-                {isVerifying ? <Loader2 className='size-4 animate-spin' /> : <Check className='size-4' />}
-                <Trans>Verify and enable</Trans>
-              </Button>
-              <Button variant='ghost' onClick={() => setSetupData(null)}><Trans>Cancel</Trans></Button>
+        ) : isEnabled ? (
+          <div className='flex items-center gap-3 py-4'>
+            <div className='bg-success/15 dark:bg-success/25 flex h-10 w-10 items-center justify-center rounded-full'>
+              <Check className='text-success h-5 w-5' />
+            </div>
+            <div>
+              <p className='text-sm font-medium'>
+                <Trans>Enabled</Trans>
+              </p>
+              <p className='text-muted-foreground text-xs'>
+                <Trans>Authenticator app is active</Trans>
+              </p>
             </div>
           </div>
-        </div>
-      ) : isEnabled ? (
-        <div className='flex items-center gap-3 py-4'>
-          <div className='flex h-10 w-10 items-center justify-center rounded-full bg-success/15 dark:bg-success/25'>
-            <Check className='h-5 w-5 text-success' />
-          </div>
-          <div>
-            <p className='text-sm font-medium'><Trans>Enabled</Trans></p>
-            <p className='text-muted-foreground text-xs'><Trans>Authenticator app is active</Trans></p>
-          </div>
-        </div>
-      ) : (
-        <EmptyState icon={Shield} title={t`No authenticator set up`} className='p-4' />
-      )}
-      <ConfirmDialog
-        open={showDisableDialog}
-        onOpenChange={setShowDisableDialog}
-        title={t`Disable authenticator?`}
-        desc={t`This will remove the app from your account.`}
-        confirmText={t`Disable`}
-        destructive
-        handleConfirm={() => {
-          handleDisable()
-          setShowDisableDialog(false)
-        }}
-      />
-    </Section>
-    {stepUp.dialog}
+        ) : (
+          <EmptyState
+            icon={Shield}
+            title={t`No authenticator set up`}
+            className='p-4'
+          />
+        )}
+        <ConfirmDialog
+          open={showDisableDialog}
+          onOpenChange={setShowDisableDialog}
+          title={t`Disable authenticator?`}
+          desc={t`This will remove the app from your account.`}
+          confirmText={t`Disable`}
+          destructive
+          handleConfirm={() => {
+            handleDisable()
+            setShowDisableDialog(false)
+          }}
+        />
+      </Section>
+      {stepUp.dialog}
     </>
   )
 }
@@ -645,66 +703,101 @@ function RecoveryCodesSection() {
 
   return (
     <>
-    <Section
-      title={t`Recovery codes`}
-      action={action}
-    >
-      {error ? (
-        <GeneralError error={error} minimal mode='inline' reset={refetch} />
-      ) : isLoading ? (
-        <div className='py-2'><Skeleton className='h-20 w-full' /></div>
-      ) : showCodes ? (
-        <div className='space-y-5 py-4'>
-          <Alert variant='destructive' className='bg-amber-50 dark:bg-amber-950/20 border-amber-200'>
-            <Shield className='h-4 w-4 text-amber-600' />
-            <AlertTitle><Trans>Save these codes</Trans></AlertTitle>
-            <AlertDescription><Trans>Each code can only be used once.</Trans></AlertDescription>
-          </Alert>
-          <div className='bg-muted/30 rounded-xl border p-5'>
-            <div className='grid grid-cols-2 gap-3 font-mono text-sm'>
-              {showCodes.map((code, i) => (
-                <div key={i} className='bg-background flex items-center justify-center rounded-md border py-2.5 font-semibold'>{code}</div>
-              ))}
+      <Section title={t`Recovery codes`} action={action}>
+        {error ? (
+          <GeneralError error={error} minimal mode='inline' reset={refetch} />
+        ) : isLoading ? (
+          <div className='py-2'>
+            <Skeleton className='h-20 w-full' />
+          </div>
+        ) : showCodes ? (
+          <div className='space-y-5 py-4'>
+            <Alert
+              variant='destructive'
+              className='border-amber-200 bg-amber-50 dark:bg-amber-950/20'
+            >
+              <Shield className='h-4 w-4 text-amber-600' />
+              <AlertTitle>
+                <Trans>Save these codes</Trans>
+              </AlertTitle>
+              <AlertDescription>
+                <Trans>Each code can only be used once.</Trans>
+              </AlertDescription>
+            </Alert>
+            <div className='bg-muted/30 rounded-xl border p-5'>
+              <div className='grid grid-cols-2 gap-3 font-mono text-sm'>
+                {showCodes.map((code, i) => (
+                  <div
+                    key={i}
+                    className='bg-background flex items-center justify-center rounded-md border py-2.5 font-semibold'
+                  >
+                    {code}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className='flex gap-2'>
+              <Button
+                variant='outline'
+                size='sm'
+                onClick={() => {
+                  void shellClipboardWrite(showCodes.join('\n')).then((ok) => {
+                    // Say so on failure too. Recovery codes are shown once, and a
+                    // silent no-op left the user believing they had them saved.
+                    if (ok) toast.success(t`Codes copied`)
+                    else
+                      toast.error(
+                        t`Could not copy the codes. Select and copy them manually.`
+                      )
+                  })
+                }}
+              >
+                <Copy className='size-3.5' />
+                <Trans>Copy all</Trans>
+              </Button>
+              <Button
+                variant='ghost'
+                size='sm'
+                onClick={() => setShowCodes(null)}
+              >
+                <Trans>Done</Trans>
+              </Button>
             </div>
           </div>
-          <div className='flex gap-2'>
-            <Button variant='outline' size='sm' onClick={() => {
-              void shellClipboardWrite(showCodes.join('\n')).then((ok) => {
-                // Say so on failure too. Recovery codes are shown once, and a
-                // silent no-op left the user believing they had them saved.
-                if (ok) toast.success(t`Codes copied`)
-                else toast.error(t`Could not copy the codes. Select and copy them manually.`)
-              })
-            }}><Copy className='size-3.5' /><Trans>Copy all</Trans></Button>
-            <Button variant='ghost' size='sm' onClick={() => setShowCodes(null)}><Trans>Done</Trans></Button>
+        ) : count > 0 ? (
+          <div className='flex items-center gap-3 py-4'>
+            <div className='bg-primary/10 dark:bg-primary/20 flex h-10 w-10 items-center justify-center rounded-full'>
+              <RefreshCw className='text-primary h-5 w-5' />
+            </div>
+            <div>
+              <p className='text-sm font-medium'>
+                <Trans>{count} remaining</Trans>
+              </p>
+              <p className='text-muted-foreground text-xs'>
+                <Trans>Recovery codes</Trans>
+              </p>
+            </div>
           </div>
-        </div>
-      ) : count > 0 ? (
-        <div className='flex items-center gap-3 py-4'>
-          <div className='flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20'>
-            <RefreshCw className='h-5 w-5 text-primary' />
-          </div>
-          <div>
-            <p className='text-sm font-medium'><Trans>{count} remaining</Trans></p>
-            <p className='text-muted-foreground text-xs'><Trans>Recovery codes</Trans></p>
-          </div>
-        </div>
-      ) : (
-        <EmptyState icon={RefreshCw} title={t`No recovery codes`} className='p-4' />
-      )}
-      <ConfirmDialog
-        open={showGenerateDialog}
-        onOpenChange={setShowGenerateDialog}
-        title={count > 0 ? t`Regenerate?` : t`Generate?`}
-        desc={t`Make sure to save the new codes.`}
-        confirmText={t`Proceed`}
-        handleConfirm={() => {
-          void handleGenerate()
-          setShowGenerateDialog(false)
-        }}
-      />
-    </Section>
-    {stepUp.dialog}
+        ) : (
+          <EmptyState
+            icon={RefreshCw}
+            title={t`No recovery codes`}
+            className='p-4'
+          />
+        )}
+        <ConfirmDialog
+          open={showGenerateDialog}
+          onOpenChange={setShowGenerateDialog}
+          title={count > 0 ? t`Regenerate?` : t`Generate?`}
+          desc={t`Make sure to save the new codes.`}
+          confirmText={t`Proceed`}
+          handleConfirm={() => {
+            void handleGenerate()
+            setShowGenerateDialog(false)
+          }}
+        />
+      </Section>
+      {stepUp.dialog}
     </>
   )
 }
@@ -743,9 +836,7 @@ function OauthIdentityRow({
   return (
     <TableRow>
       <TableCell>
-        <span className='font-medium'>
-          {providerName(identity.provider)}
-        </span>
+        <span className='font-medium'>{providerName(identity.provider)}</span>
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
         {identity.email || '—'}
@@ -836,71 +927,75 @@ function OauthSection() {
     return null
   }
 
-  const linkButton = availableToLink.length > 0 ? (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant='outline'
-          size='sm'
-          disabled={oauthBegin.isPending}
-        >
-          <Plus className='me-2 h-4 w-4' />
-          <Trans>Link account</Trans>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align='end'>
-        {availableToLink.map((provider) => (
-          <DropdownMenuItem
-            key={provider}
-            onClick={() => handleLink(provider)}
-          >
-            {providerName(provider)}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  ) : null
+  const linkButton =
+    availableToLink.length > 0 ? (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant='outline' size='sm' disabled={oauthBegin.isPending}>
+            <Plus className='me-2 h-4 w-4' />
+            <Trans>Link account</Trans>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align='end'>
+          {availableToLink.map((provider) => (
+            <DropdownMenuItem
+              key={provider}
+              onClick={() => handleLink(provider)}
+            >
+              {providerName(provider)}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    ) : null
 
   return (
     <>
-    <Section
-      title={t`Third-party login`}
-      action={linkButton}
-    >
-      {identities.error ? (
-        <GeneralError
-          error={identities.error}
-          minimal
-          mode='inline'
-          reset={identities.refetch}
-        />
-      ) : identities.isLoading ? (
-        <ListSkeleton variant='simple' height='h-10' count={2} />
-      ) : linked.length === 0 ? (
-        <EmptyState icon={Link2} title={t`No accounts linked`} className='p-4' />
-      ) : (
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead><Trans>Provider</Trans></TableHead>
-              <TableHead><Trans>Email</Trans></TableHead>
-              <TableHead><Trans>Last used</Trans></TableHead>
-              <TableHead className='w-16'></TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {linked.map((identity) => (
-              <OauthIdentityRow
-                key={identity.provider}
-                identity={identity}
-                onUnlink={handleUnlink}
-              />
-            ))}
-          </TableBody>
-        </Table>
-      )}
-    </Section>
-    {stepUp.dialog}
+      <Section title={t`Third-party login`} action={linkButton}>
+        {identities.error ? (
+          <GeneralError
+            error={identities.error}
+            minimal
+            mode='inline'
+            reset={identities.refetch}
+          />
+        ) : identities.isLoading ? (
+          <ListSkeleton variant='simple' height='h-10' count={2} />
+        ) : linked.length === 0 ? (
+          <EmptyState
+            icon={Link2}
+            title={t`No accounts linked`}
+            className='p-4'
+          />
+        ) : (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>
+                  <Trans>Provider</Trans>
+                </TableHead>
+                <TableHead>
+                  <Trans>Email</Trans>
+                </TableHead>
+                <TableHead>
+                  <Trans>Last used</Trans>
+                </TableHead>
+                <TableHead className='w-16'></TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {linked.map((identity) => (
+                <OauthIdentityRow
+                  key={identity.provider}
+                  identity={identity}
+                  onUnlink={handleUnlink}
+                />
+              ))}
+            </TableBody>
+          </Table>
+        )}
+      </Section>
+      {stepUp.dialog}
     </>
   )
 }
@@ -956,14 +1051,19 @@ export function UserLogin() {
   useEffect(() => {
     if (window.location.hash !== '#oauth') return
     const timer = setTimeout(() => {
-      document.getElementById('oauth')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      document
+        .getElementById('oauth')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }, 150)
     return () => clearTimeout(timer)
   }, [])
 
   return (
     <>
-      <PageHeader title={t`Login`} icon={<Lock className='size-4 md:size-5' />} />
+      <PageHeader
+        title={t`Login`}
+        icon={<Lock className='size-4 md:size-5' />}
+      />
       <Main>
         <div className='space-y-8 pb-6'>
           <LoginRequirementsSection />

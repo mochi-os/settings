@@ -2,12 +2,11 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useEffect, useMemo, useState } from 'react'
-import { Trans, useLingui } from '@lingui/react/macro'
-import { i18n } from '@lingui/core'
 import { useNavigate } from '@tanstack/react-router'
-import { Check, FileText, Loader2, RotateCcw } from 'lucide-react'
+import { Route } from '@/routes/_authenticated/system/documents'
+import { i18n } from '@lingui/core'
+import { Trans, useLingui } from '@lingui/react/macro'
 import {
   Badge,
   Button,
@@ -33,14 +32,14 @@ import {
   toast,
   usePageTitle,
 } from '@mochi/web'
+import { Check, FileText, Loader2, RotateCcw } from 'lucide-react'
+import { useStepUp } from '@/lib/use-step-up'
 import {
   useSystemDocumentsData,
   useSystemDocument,
   useSetSystemDocument,
   type SystemDocument,
 } from '@/hooks/use-system-documents'
-import { Route } from '@/routes/_authenticated/system/documents'
-import { useStepUp } from '@/lib/use-step-up'
 
 type DocumentName = 'rules' | 'terms' | 'privacy'
 
@@ -91,11 +90,15 @@ function DocumentEditor({
 
   return (
     <div className='space-y-3'>
-      <div className='flex items-center gap-2 text-sm text-muted-foreground'>
+      <div className='text-muted-foreground flex items-center gap-2 text-sm'>
         {customised ? (
-          <Badge variant='secondary'><Trans>Customised</Trans></Badge>
+          <Badge variant='secondary'>
+            <Trans>Customised</Trans>
+          </Badge>
         ) : (
-          <Badge variant='outline'><Trans>Using bundled default</Trans></Badge>
+          <Badge variant='outline'>
+            <Trans>Using bundled default</Trans>
+          </Badge>
         )}
         {document.updated > 0 && (
           <span>
@@ -112,13 +115,22 @@ function DocumentEditor({
       />
       <div className='flex items-center justify-end gap-2'>
         {body !== document.default && (
-          <Button variant='outline' size='sm' onClick={handleRevert} disabled={isSaving}>
+          <Button
+            variant='outline'
+            size='sm'
+            onClick={handleRevert}
+            disabled={isSaving}
+          >
             <RotateCcw className='me-2 h-4 w-4' />
             <Trans>Revert to default</Trans>
           </Button>
         )}
         <Button size='sm' onClick={handleSave} disabled={isSaving || !dirty}>
-          {isSaving ? <Loader2 className='size-4 animate-spin' /> : <Check className='size-4' />}
+          {isSaving ? (
+            <Loader2 className='size-4 animate-spin' />
+          ) : (
+            <Check className='size-4' />
+          )}
           <Trans>Save</Trans>
         </Button>
       </div>
@@ -141,7 +153,11 @@ export function SystemDocuments() {
   const documents = data?.documents
 
   const languagesByName = useMemo(() => {
-    const out: Record<DocumentName, string[]> = { rules: [], terms: [], privacy: [] }
+    const out: Record<DocumentName, string[]> = {
+      rules: [],
+      terms: [],
+      privacy: [],
+    }
     for (const d of documents ?? []) {
       if (d.name === 'rules' || d.name === 'terms' || d.name === 'privacy') {
         out[d.name].push(d.language)
@@ -162,7 +178,10 @@ export function SystemDocuments() {
   // The index says which pairs exist; the body of the one on screen is its own
   // query, so switching tab or language fetches ~7 KB rather than re-reading
   // every document in every language.
-  const { data: current, isLoading: currentLoading } = useSystemDocument(tab, language)
+  const { data: current, isLoading: currentLoading } = useSystemDocument(
+    tab,
+    language
+  )
 
   const setTab = (next: DocumentName) => {
     void navigate({
@@ -188,23 +207,26 @@ export function SystemDocuments() {
       setDocument.mutate(
         { name: current.name, language: current.language, body, token },
         {
-        onSuccess: () => {
-          toast.success(t`Document saved`)
-          setSavingKey(null)
-        },
-        onError: (err) => {
-          toast.error(getErrorMessage(err, t`Failed to save document`))
-          setSavingKey(null)
-        },
-      }
-    )
+          onSuccess: () => {
+            toast.success(t`Document saved`)
+            setSavingKey(null)
+          },
+          onError: (err) => {
+            toast.error(getErrorMessage(err, t`Failed to save document`))
+            setSavingKey(null)
+          },
+        }
+      )
     })
   }
 
   return (
     <>
       {stepUp.dialog}
-      <PageHeader title={t`Documents`} icon={<FileText className='size-4 md:size-5' />} />
+      <PageHeader
+        title={t`Documents`}
+        icon={<FileText className='size-4 md:size-5' />}
+      />
       <Main className='space-y-6'>
         {error ? (
           <GeneralError error={error} minimal mode='inline' reset={refetch} />
@@ -225,7 +247,7 @@ export function SystemDocuments() {
               {DOCUMENT_NAMES.map((name) => (
                 <TabsContent key={name} value={name} className='space-y-4 pt-4'>
                   <div className='flex items-center gap-3'>
-                    <span className='text-sm text-muted-foreground'>
+                    <span className='text-muted-foreground text-sm'>
                       <Trans>Language</Trans>
                     </span>
                     <Select value={language} onValueChange={setLanguage}>
@@ -247,10 +269,12 @@ export function SystemDocuments() {
                     <DocumentEditor
                       document={current}
                       onSave={handleSave}
-                      isSaving={savingKey === `${current.name}/${current.language}`}
+                      isSaving={
+                        savingKey === `${current.name}/${current.language}`
+                      }
                     />
                   ) : (
-                    <p className='text-sm text-muted-foreground'>
+                    <p className='text-muted-foreground text-sm'>
                       <Trans>No document available for this language.</Trans>
                     </p>
                   )}

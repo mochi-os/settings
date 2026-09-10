@@ -2,15 +2,9 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-
 import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Trans, useLingui } from '@lingui/react/macro'
-import {
-  Loader2,
-  RotateCcw,
-  Sliders,
-} from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -52,15 +46,24 @@ import {
   resolveInstalled,
   type LocalePreferences,
 } from '@mochi/web'
-
-import { ComboSelect } from '@/components/combo-select'
+import { Loader2, RotateCcw, Sliders } from 'lucide-react'
 import {
   usePreferencesData,
   useSetPreference,
   useUnsetPreferences,
 } from '@/hooks/use-preferences'
+import { ComboSelect } from '@/components/combo-select'
 
-const REGIONAL_PREF_KEYS = ['language', 'timezone', 'date_format', 'time_format', 'timestamp_display', 'week_start', 'number_format', 'units'] as const
+const REGIONAL_PREF_KEYS = [
+  'language',
+  'timezone',
+  'date_format',
+  'time_format',
+  'timestamp_display',
+  'week_start',
+  'number_format',
+  'units',
+] as const
 
 export function UserPreferences() {
   const { t, i18n } = useLingui()
@@ -76,7 +79,14 @@ export function UserPreferences() {
   const unsetPreferences = useUnsetPreferences()
   const { raw: currentLocale } = useLocale()
 
-  const localeKeys = ['date_format', 'time_format', 'timestamp_display', 'week_start', 'number_format', 'units'] as const
+  const localeKeys = [
+    'date_format',
+    'time_format',
+    'timestamp_display',
+    'week_start',
+    'number_format',
+    'units',
+  ] as const
 
   // Languages installed across all apps' labels/<lang>.conf files. The picker
   // hides the field when only English is present (no real choice yet) — once
@@ -110,7 +120,8 @@ export function UserPreferences() {
     // the fallback because the server's resolver ends there too.
     const installed = new Set(tags.map((s) => s.toLowerCase()))
     const resolved = resolveInstalled(detectLanguage(), installed, 'en')
-    out['auto'] = `${t`Detect from web browser`}: ${nativeName(resolved, i18n.locale)}`
+    out['auto'] =
+      `${t`Detect from web browser`}: ${nativeName(resolved, i18n.locale)}`
     for (const { tag, native } of describeLanguages(tags)) {
       out[tag] = native
     }
@@ -123,8 +134,14 @@ export function UserPreferences() {
       { [key]: value },
       {
         onSuccess: () => {
-          if ((localeKeys as readonly string[]).includes(key) || key === 'timezone') {
-            const updated = { ...currentLocale, [key]: value } as LocalePreferences
+          if (
+            (localeKeys as readonly string[]).includes(key) ||
+            key === 'timezone'
+          ) {
+            const updated = {
+              ...currentLocale,
+              [key]: value,
+            } as LocalePreferences
             shellSetLocale(updated)
           }
           if (key === 'language') {
@@ -176,41 +193,53 @@ export function UserPreferences() {
       <PageHeader
         title={t`Preferences`}
         icon={<Sliders className='size-4 md:size-5' />}
-        actions={!error ? (
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button
-                variant='outline'
-                size='sm'
-                disabled={isLoading || unsetPreferences.isPending || setPreference.isPending}
-              >
-                {unsetPreferences.isPending ? (
-                  <Loader2 className='me-2 h-3.5 w-3.5 animate-spin' />
-                ) : (
-                  <RotateCcw className='me-2 h-3.5 w-3.5' />
-                )}
-                <Trans>Reset to defaults</Trans>
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle><Trans>Reset preferences?</Trans></AlertDialogTitle>
-                <AlertDialogDescription>
-                  <Trans>This will reset all preferences to their default values.</Trans>
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel><Trans>Cancel</Trans></AlertDialogCancel>
-                <AlertDialogAction onClick={handleReset}>
-                  <Trans>Reset</Trans>
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        ) : undefined}
+        actions={
+          !error ? (
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant='outline'
+                  size='sm'
+                  disabled={
+                    isLoading ||
+                    unsetPreferences.isPending ||
+                    setPreference.isPending
+                  }
+                >
+                  {unsetPreferences.isPending ? (
+                    <Loader2 className='me-2 h-3.5 w-3.5 animate-spin' />
+                  ) : (
+                    <RotateCcw className='me-2 h-3.5 w-3.5' />
+                  )}
+                  <Trans>Reset to defaults</Trans>
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>
+                    <Trans>Reset preferences?</Trans>
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    <Trans>
+                      This will reset all preferences to their default values.
+                    </Trans>
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>
+                    <Trans>Cancel</Trans>
+                  </AlertDialogCancel>
+                  <AlertDialogAction onClick={handleReset}>
+                    <Trans>Reset</Trans>
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          ) : undefined
+        }
       />
 
-      <Main className="space-y-6">
+      <Main className='space-y-6'>
         {error ? (
           <GeneralError error={error} minimal mode='inline' reset={refetch} />
         ) : isLoading ? (
@@ -219,7 +248,7 @@ export function UserPreferences() {
           <div className='divide-y-0'>
             {languagesError ? (
               <FieldRow label={t`Language`}>
-                <div className="w-full">
+                <div className='w-full'>
                   <GeneralError
                     error={languagesError}
                     minimal
@@ -230,7 +259,7 @@ export function UserPreferences() {
               </FieldRow>
             ) : showLanguagePicker ? (
               <FieldRow label={t`Language`}>
-                <div className="w-full">
+                <div className='w-full'>
                   <ComboSelect
                     value={data.preferences.language || 'auto'}
                     options={languageOptions}
@@ -242,7 +271,7 @@ export function UserPreferences() {
             ) : null}
 
             <FieldRow label={t`Time zone`}>
-              <div className="w-full">
+              <div className='w-full'>
                 <TimezoneSelect
                   value={data.preferences.timezone}
                   onChange={(value) => handleChange('timezone', value)}
@@ -252,10 +281,13 @@ export function UserPreferences() {
             </FieldRow>
 
             <FieldRow label={t`Units`}>
-              <div className="w-full">
+              <div className='w-full'>
                 <ComboSelect
                   value={data.preferences.units || 'auto'}
-                  options={{ ...unitLabels, auto: `${unitLabels.auto}: ${unitLabels[detectUnits()] || detectUnits()}` }}
+                  options={{
+                    ...unitLabels,
+                    auto: `${unitLabels.auto}: ${unitLabels[detectUnits()] || detectUnits()}`,
+                  }}
                   onChange={(value) => handleChange('units', value)}
                   disabled={setPreference.isPending}
                 />
@@ -263,10 +295,13 @@ export function UserPreferences() {
             </FieldRow>
 
             <FieldRow label={t`Number format`}>
-              <div className="w-full">
+              <div className='w-full'>
                 <ComboSelect
                   value={data.preferences.number_format || 'auto'}
-                  options={{ ...numberFormatLabels, auto: `${numberFormatLabels.auto}: ${detectNumberFormat()}` }}
+                  options={{
+                    ...numberFormatLabels,
+                    auto: `${numberFormatLabels.auto}: ${detectNumberFormat()}`,
+                  }}
                   onChange={(value) => handleChange('number_format', value)}
                   disabled={setPreference.isPending}
                 />
@@ -274,10 +309,13 @@ export function UserPreferences() {
             </FieldRow>
 
             <FieldRow label={t`Date format`}>
-              <div className="w-full">
+              <div className='w-full'>
                 <ComboSelect
                   value={data.preferences.date_format || 'auto'}
-                  options={{ ...dateFormatLabels, auto: `${dateFormatLabels.auto}: ${detectDateFormat()}` }}
+                  options={{
+                    ...dateFormatLabels,
+                    auto: `${dateFormatLabels.auto}: ${detectDateFormat()}`,
+                  }}
                   onChange={(value) => handleChange('date_format', value)}
                   disabled={setPreference.isPending}
                 />
@@ -285,10 +323,13 @@ export function UserPreferences() {
             </FieldRow>
 
             <FieldRow label={t`Time format`}>
-              <div className="w-full">
+              <div className='w-full'>
                 <ComboSelect
                   value={data.preferences.time_format || 'auto'}
-                  options={{ ...timeFormatLabels, auto: `${timeFormatLabels.auto}: ${timeFormatLabels[detectTimeFormat()] ?? detectTimeFormat()}` }}
+                  options={{
+                    ...timeFormatLabels,
+                    auto: `${timeFormatLabels.auto}: ${timeFormatLabels[detectTimeFormat()] ?? detectTimeFormat()}`,
+                  }}
                   onChange={(value) => handleChange('time_format', value)}
                   disabled={setPreference.isPending}
                 />
@@ -296,12 +337,12 @@ export function UserPreferences() {
             </FieldRow>
 
             <FieldRow label={t`Week starts on`}>
-              <div className="w-full">
+              <div className='w-full'>
                 <ComboSelect
                   value={data.preferences.week_start || 'auto'}
                   options={{
                     ...weekStartLabels,
-                    auto: `${weekStartLabels.auto}: ${weekStartLabels[(['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][detectWeekStart()]) ?? 'monday'] ?? ''}`,
+                    auto: `${weekStartLabels.auto}: ${weekStartLabels[['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][detectWeekStart()] ?? 'monday'] ?? ''}`,
                   }}
                   onChange={(value) => handleChange('week_start', value)}
                   disabled={setPreference.isPending}
@@ -310,7 +351,7 @@ export function UserPreferences() {
             </FieldRow>
 
             <FieldRow label={t`Timestamps`}>
-              <div className="w-full">
+              <div className='w-full'>
                 <ComboSelect
                   value={data.preferences.timestamp_display || 'auto'}
                   options={timestampDisplayLabels}
