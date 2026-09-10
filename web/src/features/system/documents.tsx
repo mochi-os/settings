@@ -138,11 +138,11 @@ export function SystemDocuments() {
   const [savingKey, setSavingKey] = useState<string | null>(null)
 
   const tab: DocumentName = search.tab ?? 'rules'
-  const documents = data?.documents ?? []
+  const documents = data?.documents
 
   const languagesByName = useMemo(() => {
     const out: Record<DocumentName, string[]> = { rules: [], terms: [], privacy: [] }
-    for (const d of documents) {
+    for (const d of documents ?? []) {
       if (d.name === 'rules' || d.name === 'terms' || d.name === 'privacy') {
         out[d.name].push(d.language)
       }

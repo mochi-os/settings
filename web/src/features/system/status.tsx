@@ -30,7 +30,8 @@ import {
 import { useSystemSettingsData } from '@/hooks/use-system-settings'
 import { useStepUp } from '@/lib/use-step-up'
 import { useSystemPeers, type PeerEntry } from '@/hooks/use-system-peers'
-import { PeerIdentity, peerDisplayName, hyphenateFingerprint } from '@/components/peer-identity'
+import { PeerIdentity } from '@/components/peer-identity'
+import { peerDisplayName, hyphenateFingerprint } from '@/lib/peer'
 import {
   useInstallSystemUpdate,
   useSystemUpdate,
