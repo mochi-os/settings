@@ -274,8 +274,8 @@ function EditUserDialog({
                 type='submit'
                 loading={updateUser.isPending}
                 disabled={!hasChanges}
+                icon={<Check className='size-4' />}
               >
-                <Check className='size-4' />
                 <Trans>Save changes</Trans>
               </Button>
             </ResponsiveDialogFooter>

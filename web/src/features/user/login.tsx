@@ -556,8 +556,8 @@ function AuthenticatorSection() {
       size='sm'
       onClick={handleSetup}
       loading={setupTotp.isPending}
+      icon={<Plus className='me-2 h-4 w-4' />}
     >
-      <Plus className='me-2 h-4 w-4' />
       <Trans>Set up</Trans>
     </Button>
   )
@@ -603,8 +603,8 @@ function AuthenticatorSection() {
                   onClick={handleVerify}
                   loading={isVerifying}
                   disabled={!verifyCode}
+                  icon={<Check className='size-4' />}
                 >
-                  <Check className='size-4' />
                   <Trans>Verify and enable</Trans>
                 </Button>
                 <Button variant='ghost' onClick={() => setSetupData(null)}>

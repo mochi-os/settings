@@ -665,8 +665,8 @@ function CategoryDialog({
             onClick={handleSave}
             loading={saving}
             disabled={category !== undefined && !categoryDirty}
+            icon={<Check className='size-4' />}
           >
-            <Check className='size-4' />
             <Trans>Save</Trans>
           </Button>
         </DialogFooter>

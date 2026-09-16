@@ -380,8 +380,8 @@ function AddRouteDialog({
               type='submit'
               loading={createRoute.isPending}
               disabled={!admin && !pathAllowed}
+              icon={<Plus className='size-4' />}
             >
-              <Plus className='size-4' />
               <Trans>Add route</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -610,8 +610,8 @@ function EditRouteDialog({
               type='submit'
               loading={updateRoute.isPending}
               disabled={!routeDirty}
+              icon={<Check className='size-4' />}
             >
-              <Check className='size-4' />
               <Trans>Save changes</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -766,8 +766,8 @@ function AddDelegationDialog({
               type='submit'
               loading={createDelegation.isPending}
               disabled={!selectedUser}
+              icon={<Plus className='size-4' />}
             >
-              <Plus className='size-4' />
               <Trans>Add delegation</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -1248,8 +1248,8 @@ function DomainDetails({
                   size='sm'
                   onClick={() => setShowDeleteDialog(true)}
                   loading={isDeleting}
+                  icon={<Trash2 className='me-2 size-4' />}
                 >
-                  <Trash2 className='me-2 size-4' />
                   <Trans>Delete</Trans>
                 </Button>
               </div>
