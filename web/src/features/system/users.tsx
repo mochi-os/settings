@@ -53,7 +53,6 @@ import {
   ChevronRight,
   ChevronUp,
   Key,
-  Loader2,
   MoreHorizontal,
   Pencil,
   Plus,
@@ -158,12 +157,7 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
             >
               <Trans>Cancel</Trans>
             </Button>
-            <Button type='submit' disabled={createUser.isPending}>
-              {createUser.isPending ? (
-                <Loader2 className='size-4 animate-spin' />
-              ) : (
-                <UserPlus className='size-4' />
-              )}
+            <Button type='submit' loading={createUser.isPending} icon={<UserPlus className='size-4' />}>
               <Trans>Create user</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -278,13 +272,10 @@ function EditUserDialog({
               </Button>
               <Button
                 type='submit'
-                disabled={updateUser.isPending || !hasChanges}
+                loading={updateUser.isPending}
+                disabled={!hasChanges}
               >
-                {updateUser.isPending ? (
-                  <Loader2 className='size-4 animate-spin' />
-                ) : (
-                  <Check className='size-4' />
-                )}
+                <Check className='size-4' />
                 <Trans>Save changes</Trans>
               </Button>
             </ResponsiveDialogFooter>
@@ -379,7 +370,7 @@ function SessionsDialog({
                         variant='ghost'
                         size='sm'
                         onClick={() => handleRevoke(session.id)}
-                        disabled={revokeSession.isPending}
+                        loading={revokeSession.isPending}
                       >
                         <Trans>Revoke</Trans>
                       </Button>
@@ -404,11 +395,8 @@ function SessionsDialog({
             <Button
               variant='outline'
               onClick={() => setRevokeAllOpen(true)}
-              disabled={revokeSession.isPending}
+              loading={revokeSession.isPending}
             >
-              {revokeSession.isPending && (
-                <Loader2 className='me-2 h-4 w-4 animate-spin' />
-              )}
               <Trans>Revoke all sessions</Trans>
             </Button>
           )}
@@ -420,16 +408,7 @@ function SessionsDialog({
         onOpenChange={setRevokeAllOpen}
         title={t`Revoke all sessions?`}
         desc={t`"${user.username}" will be signed out on every device and will have to sign in again.`}
-        confirmText={
-          revokeSession.isPending ? (
-            <>
-              <Loader2 className='me-2 h-4 w-4 animate-spin' />
-              <Trans>Revoking...</Trans>
-            </>
-          ) : (
-            t`Revoke all`
-          )
-        }
+        confirmText={t`Revoke all`}
         destructive
         handleConfirm={() => handleRevoke()}
         isLoading={revokeSession.isPending}
@@ -588,16 +567,7 @@ function UserRow({
           onOpenChange={setSuspendOpen}
           title={t`Suspend user?`}
           desc={t`"${user.username}" will be signed out and unable to sign in again until the suspension is removed.`}
-          confirmText={
-            suspendUser.isPending ? (
-              <>
-                <Loader2 className='me-2 h-4 w-4 animate-spin' />
-                <Trans>Suspending...</Trans>
-              </>
-            ) : (
-              t`Suspend`
-            )
-          }
+          confirmText={t`Suspend`}
           destructive
           handleConfirm={handleToggleStatus}
           isLoading={suspendUser.isPending}
@@ -608,16 +578,7 @@ function UserRow({
           onOpenChange={setDeleteOpen}
           title={t`Delete user?`}
           desc={t`This will permanently delete the user "${user.username}". This action cannot be undone.`}
-          confirmText={
-            deleteUser.isPending ? (
-              <>
-                <Loader2 className='me-2 h-4 w-4 animate-spin' />
-                <Trans>Deleting...</Trans>
-              </>
-            ) : (
-              t`Delete`
-            )
-          }
+          confirmText={t`Delete`}
           destructive
           handleConfirm={handleDelete}
           isLoading={deleteUser.isPending}

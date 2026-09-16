@@ -136,12 +136,7 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
             >
               <Trans>Cancel</Trans>
             </Button>
-            <Button type='submit' disabled={createDomain.isPending}>
-              {createDomain.isPending ? (
-                <Loader2 className='size-4 animate-spin' />
-              ) : (
-                <Plus className='size-4' />
-              )}
+            <Button type='submit' loading={createDomain.isPending} icon={<Plus className='size-4' />}>
               <Trans>Add domain</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -383,13 +378,10 @@ function AddRouteDialog({
             </Button>
             <Button
               type='submit'
-              disabled={createRoute.isPending || (!admin && !pathAllowed)}
+              loading={createRoute.isPending}
+              disabled={!admin && !pathAllowed}
             >
-              {createRoute.isPending ? (
-                <Loader2 className='size-4 animate-spin' />
-              ) : (
-                <Plus className='size-4' />
-              )}
+              <Plus className='size-4' />
               <Trans>Add route</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -616,13 +608,10 @@ function EditRouteDialog({
             </Button>
             <Button
               type='submit'
-              disabled={updateRoute.isPending || !routeDirty}
+              loading={updateRoute.isPending}
+              disabled={!routeDirty}
             >
-              {updateRoute.isPending ? (
-                <Loader2 className='size-4 animate-spin' />
-              ) : (
-                <Check className='size-4' />
-              )}
+              <Check className='size-4' />
               <Trans>Save changes</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -775,13 +764,10 @@ function AddDelegationDialog({
             </Button>
             <Button
               type='submit'
-              disabled={createDelegation.isPending || !selectedUser}
+              loading={createDelegation.isPending}
+              disabled={!selectedUser}
             >
-              {createDelegation.isPending ? (
-                <Loader2 className='size-4 animate-spin' />
-              ) : (
-                <Plus className='size-4' />
-              )}
+              <Plus className='size-4' />
               <Trans>Add delegation</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -825,15 +811,11 @@ function RouteRow({
                 variant='ghost'
                 size='icon'
                 className='h-8 w-8'
-                disabled={isDeleting}
+                loading={isDeleting}
+                icon={<Trash2 className='h-4 w-4' />}
                 aria-label={t`Delete route`}
                 onClick={() => setShowDeleteDialog(true)}
               >
-                {isDeleting ? (
-                  <Loader2 className='h-4 w-4 animate-spin' />
-                ) : (
-                  <Trash2 className='h-4 w-4' />
-                )}
               </Button>
             </TooltipTrigger>
             <TooltipContent>{t`Delete route`}</TooltipContent>
@@ -881,15 +863,11 @@ function DelegationRow({
             <Button
               variant='ghost'
               size='icon'
-              disabled={isDeleting}
+              loading={isDeleting}
+              icon={<Trash2 className='h-4 w-4' />}
               aria-label={t`Delete delegation`}
               onClick={() => setShowDeleteDialog(true)}
             >
-              {isDeleting ? (
-                <Loader2 className='h-4 w-4 animate-spin' />
-              ) : (
-                <Trash2 className='h-4 w-4' />
-              )}
             </Button>
           </TooltipTrigger>
           <TooltipContent>{t`Delete delegation`}</TooltipContent>
@@ -1092,7 +1070,8 @@ function DomainDetails({
                     <Button
                       size='sm'
                       variant='outline'
-                      disabled={verifyDomain.isPending}
+                      loading={verifyDomain.isPending}
+                      icon={<Search className='me-2 h-4 w-4' />}
                       onClick={() => {
                         verifyDomain.mutate(domain.domain, {
                           onSuccess: (data) => {
@@ -1110,11 +1089,6 @@ function DomainDetails({
                         })
                       }}
                     >
-                      {verifyDomain.isPending ? (
-                        <Loader2 className='me-2 h-4 w-4 animate-spin' />
-                      ) : (
-                        <Search className='me-2 h-4 w-4' />
-                      )}
                       <Trans>Verify DNS</Trans>
                     </Button>
                   )}
@@ -1273,7 +1247,7 @@ function DomainDetails({
                   variant='outline'
                   size='sm'
                   onClick={() => setShowDeleteDialog(true)}
-                  disabled={isDeleting}
+                  loading={isDeleting}
                 >
                   <Trash2 className='me-2 size-4' />
                   <Trans>Delete</Trans>

@@ -384,14 +384,10 @@ function InstallButton({ latest }: { latest: string }) {
         variant='default'
         size='sm'
         onClick={onClick}
-        disabled={install.isPending}
+        loading={install.isPending}
+        icon={<Download />}
         title={t`Download Mochi ${latest} and restart the server`}
       >
-        {install.isPending ? (
-          <Loader2 className='animate-spin' />
-        ) : (
-          <Download />
-        )}
         <Trans>Install update</Trans>
       </Button>
     </>

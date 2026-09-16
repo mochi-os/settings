@@ -37,7 +37,6 @@ import {
   useTheme,
 } from '@mochi/web'
 import {
-  Loader2,
   RotateCcw,
   Palette,
   ChevronRight,
@@ -231,12 +230,9 @@ export function UserDisplay() {
                     setPreference.isPending ||
                     unsetPreferences.isPending
                   }
+                  loading={unsetPreferences.isPending}
+                  icon={<RotateCcw className='me-2 h-3.5 w-3.5' />}
                 >
-                  {unsetPreferences.isPending ? (
-                    <Loader2 className='me-2 h-3.5 w-3.5 animate-spin' />
-                  ) : (
-                    <RotateCcw className='me-2 h-3.5 w-3.5' />
-                  )}
                   <Trans>Reset to defaults</Trans>
                 </Button>
               </AlertDialogTrigger>

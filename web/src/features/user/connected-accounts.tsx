@@ -55,7 +55,6 @@ import {
   CheckCircle2,
   Clock,
   Link,
-  Loader2,
   Mail,
   MoreHorizontal,
   Pencil,
@@ -362,13 +361,9 @@ function AccountRow({
             <Button
               variant='ghost'
               size='sm'
-              disabled={isRemoving || testingId === account.id}
+              loading={isRemoving || testingId === account.id}
+              icon={<MoreHorizontal className='h-4 w-4' />}
             >
-              {isRemoving || testingId === account.id ? (
-                <Loader2 className='h-4 w-4 animate-spin' />
-              ) : (
-                <MoreHorizontal className='h-4 w-4' />
-              )}
               <span className='sr-only'>
                 <Trans>Actions</Trans>
               </span>

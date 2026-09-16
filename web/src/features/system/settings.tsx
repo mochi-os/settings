@@ -36,7 +36,6 @@ import {
 } from '@mochi/web'
 import {
   Check,
-  Loader2,
   Lock,
   RotateCcw,
   Settings,
@@ -422,15 +421,10 @@ function SettingField({
                   size='sm'
                   onClick={() => fileInputRef.current?.click()}
                   disabled={isSaving}
+                  loading={isSaving}
+                  icon={<Upload className='h-4 w-4' />}
                 >
-                  {isSaving ? (
-                    <Loader2 className='h-4 w-4 animate-spin' />
-                  ) : (
-                    <>
-                      <Upload className='h-4 w-4' />
-                      <Trans>Replace</Trans>
-                    </>
-                  )}
+                  <Trans>Replace</Trans>
                 </Button>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -453,15 +447,10 @@ function SettingField({
                 size='sm'
                 onClick={() => fileInputRef.current?.click()}
                 disabled={isSaving}
+                loading={isSaving}
+                icon={<Upload className='h-4 w-4' />}
               >
-                {isSaving ? (
-                  <Loader2 className='h-4 w-4 animate-spin' />
-                ) : (
-                  <>
-                    <Upload className='h-4 w-4' />
-                    <Trans>Choose file</Trans>
-                  </>
-                )}
+                <Trans>Choose file</Trans>
               </Button>
             )}
           </div>
@@ -480,12 +469,12 @@ function SettingField({
               disabled={isSaving}
             />
             {hasChanged ? (
-              <Button size='sm' onClick={handleSave} disabled={isSaving}>
-                {isSaving ? (
-                  <Loader2 className='size-4 animate-spin' />
-                ) : (
-                  <Check className='size-4' />
-                )}
+              <Button
+                size='sm'
+                onClick={handleSave}
+                loading={isSaving}
+                icon={<Check className='size-4' />}
+              >
                 <Trans>Save</Trans>
               </Button>
             ) : (
