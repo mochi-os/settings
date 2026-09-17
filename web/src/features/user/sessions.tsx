@@ -31,7 +31,7 @@ import {
   toast,
   useFormat,
 } from '@mochi/web'
-import { Loader2, LogOut, Monitor } from 'lucide-react'
+import { LogOut, Monitor } from 'lucide-react'
 import {
   useAgentName,
   useSessions,
@@ -87,13 +87,9 @@ function SessionRow({
             <Button
               variant='ghost'
               size='sm'
-              disabled={revokeSession.isPending}
+              loading={revokeSession.isPending}
+              icon={<LogOut className='h-4 w-4' />}
             >
-              {revokeSession.isPending ? (
-                <Loader2 className='h-4 w-4 animate-spin' />
-              ) : (
-                <LogOut className='h-4 w-4' />
-              )}
               <span className='sr-only'>
                 <Trans>Revoke session</Trans>
               </span>

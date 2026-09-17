@@ -46,7 +46,7 @@ import {
   resolveInstalled,
   type LocalePreferences,
 } from '@mochi/web'
-import { Loader2, RotateCcw, Sliders } from 'lucide-react'
+import { RotateCcw, Sliders } from 'lucide-react'
 import {
   usePreferencesData,
   useSetPreference,
@@ -200,17 +200,10 @@ export function UserPreferences() {
                 <Button
                   variant='outline'
                   size='sm'
-                  disabled={
-                    isLoading ||
-                    unsetPreferences.isPending ||
-                    setPreference.isPending
-                  }
+                  loading={unsetPreferences.isPending}
+                  disabled={isLoading || setPreference.isPending}
+                  icon={<RotateCcw className='me-2 h-3.5 w-3.5' />}
                 >
-                  {unsetPreferences.isPending ? (
-                    <Loader2 className='me-2 h-3.5 w-3.5 animate-spin' />
-                  ) : (
-                    <RotateCcw className='me-2 h-3.5 w-3.5' />
-                  )}
                   <Trans>Reset to defaults</Trans>
                 </Button>
               </AlertDialogTrigger>

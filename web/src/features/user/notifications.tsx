@@ -52,7 +52,6 @@ import {
 import {
   Bell,
   Check,
-  Loader2,
   Pencil,
   Plus,
   Send,
@@ -664,13 +663,10 @@ function CategoryDialog({
           </Button>
           <Button
             onClick={handleSave}
-            disabled={saving || (category !== undefined && !categoryDirty)}
+            loading={saving}
+            disabled={category !== undefined && !categoryDirty}
+            icon={<Check className='size-4' />}
           >
-            {saving ? (
-              <Loader2 className='size-4 animate-spin' />
-            ) : (
-              <Check className='size-4' />
-            )}
             <Trans>Save</Trans>
           </Button>
         </DialogFooter>
@@ -821,8 +817,7 @@ function CategoryDeleteDialog({
           <AlertDialogCancel disabled={deleting}>
             <Trans>Cancel</Trans>
           </AlertDialogCancel>
-          <AlertDialogAction onClick={run} disabled={deleting}>
-            {deleting && <Loader2 className='me-2 h-4 w-4 animate-spin' />}
+          <AlertDialogAction onClick={run} loading={deleting}>
             <Trans>Delete</Trans>
           </AlertDialogAction>
         </AlertDialogFooter>

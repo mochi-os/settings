@@ -62,7 +62,6 @@ import {
   Copy,
   Key,
   Link2,
-  Loader2,
   Lock,
   Pencil,
   Plus,
@@ -421,12 +420,7 @@ function PasskeysSection() {
           />
         </div>
         <ResponsiveDialogFooter>
-          <Button onClick={handleRegister} disabled={isRegistering}>
-            {isRegistering ? (
-              <Loader2 className='size-4 animate-spin' />
-            ) : (
-              <Plus className='size-4' />
-            )}
+          <Button onClick={handleRegister} loading={isRegistering} icon={<Plus className='size-4' />}>
             <Trans>Register</Trans>
           </Button>
         </ResponsiveDialogFooter>
@@ -561,9 +555,9 @@ function AuthenticatorSection() {
       variant='outline'
       size='sm'
       onClick={handleSetup}
-      disabled={setupTotp.isPending}
+      loading={setupTotp.isPending}
+      icon={<Plus className='me-2 h-4 w-4' />}
     >
-      <Plus className='me-2 h-4 w-4' />
       <Trans>Set up</Trans>
     </Button>
   )
@@ -607,13 +601,10 @@ function AuthenticatorSection() {
                 />
                 <Button
                   onClick={handleVerify}
-                  disabled={isVerifying || !verifyCode}
+                  loading={isVerifying}
+                  disabled={!verifyCode}
+                  icon={<Check className='size-4' />}
                 >
-                  {isVerifying ? (
-                    <Loader2 className='size-4 animate-spin' />
-                  ) : (
-                    <Check className='size-4' />
-                  )}
                   <Trans>Verify and enable</Trans>
                 </Button>
                 <Button variant='ghost' onClick={() => setSetupData(null)}>
@@ -931,8 +922,7 @@ function OauthSection() {
     availableToLink.length > 0 ? (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant='outline' size='sm' disabled={oauthBegin.isPending}>
-            <Plus className='me-2 h-4 w-4' />
+          <Button variant='outline' size='sm' loading={oauthBegin.isPending} icon={<Plus className='me-2 h-4 w-4' />}>
             <Trans>Link account</Trans>
           </Button>
         </DropdownMenuTrigger>

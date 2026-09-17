@@ -32,7 +32,7 @@ import {
   toast,
   usePageTitle,
 } from '@mochi/web'
-import { Check, FileText, Loader2, RotateCcw } from 'lucide-react'
+import { Check, FileText, RotateCcw } from 'lucide-react'
 import { useStepUp } from '@/lib/use-step-up'
 import {
   useSystemDocumentsData,
@@ -125,12 +125,7 @@ function DocumentEditor({
             <Trans>Revert to default</Trans>
           </Button>
         )}
-        <Button size='sm' onClick={handleSave} disabled={isSaving || !dirty}>
-          {isSaving ? (
-            <Loader2 className='size-4 animate-spin' />
-          ) : (
-            <Check className='size-4' />
-          )}
+        <Button size='sm' onClick={handleSave} loading={isSaving} disabled={!dirty} icon={<Check className='size-4' />}>
           <Trans>Save</Trans>
         </Button>
       </div>
