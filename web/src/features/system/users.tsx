@@ -370,7 +370,11 @@ function SessionsDialog({
                         variant='ghost'
                         size='sm'
                         onClick={() => handleRevoke(session.id)}
-                        loading={revokeSession.isPending}
+                        disabled={revokeSession.isPending}
+                        loading={
+                          revokeSession.isPending &&
+                          revokeSession.variables?.session === session.id
+                        }
                       >
                         <Trans>Revoke</Trans>
                       </Button>
@@ -395,7 +399,8 @@ function SessionsDialog({
             <Button
               variant='outline'
               onClick={() => setRevokeAllOpen(true)}
-              loading={revokeSession.isPending}
+              disabled={revokeSession.isPending}
+              loading={revokeSession.isPending && !revokeSession.variables?.session}
             >
               <Trans>Revoke all sessions</Trans>
             </Button>
