@@ -136,7 +136,11 @@ function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
             >
               <Trans>Cancel</Trans>
             </Button>
-            <Button type='submit' loading={createDomain.isPending} icon={<Plus className='size-4' />}>
+            <Button
+              type='submit'
+              loading={createDomain.isPending}
+              icon={<Plus className='size-4' />}
+            >
               <Trans>Add domain</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -815,8 +819,7 @@ function RouteRow({
                 icon={<Trash2 className='h-4 w-4' />}
                 aria-label={t`Delete route`}
                 onClick={() => setShowDeleteDialog(true)}
-              >
-              </Button>
+              ></Button>
             </TooltipTrigger>
             <TooltipContent>{t`Delete route`}</TooltipContent>
           </Tooltip>
@@ -867,8 +870,7 @@ function DelegationRow({
               icon={<Trash2 className='h-4 w-4' />}
               aria-label={t`Delete delegation`}
               onClick={() => setShowDeleteDialog(true)}
-            >
-            </Button>
+            ></Button>
           </TooltipTrigger>
           <TooltipContent>{t`Delete delegation`}</TooltipContent>
         </Tooltip>

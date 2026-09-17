@@ -125,7 +125,13 @@ function DocumentEditor({
             <Trans>Revert to default</Trans>
           </Button>
         )}
-        <Button size='sm' onClick={handleSave} loading={isSaving} disabled={!dirty} icon={<Check className='size-4' />}>
+        <Button
+          size='sm'
+          onClick={handleSave}
+          loading={isSaving}
+          disabled={!dirty}
+          icon={<Check className='size-4' />}
+        >
           <Trans>Save</Trans>
         </Button>
       </div>

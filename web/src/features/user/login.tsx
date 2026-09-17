@@ -420,7 +420,11 @@ function PasskeysSection() {
           />
         </div>
         <ResponsiveDialogFooter>
-          <Button onClick={handleRegister} loading={isRegistering} icon={<Plus className='size-4' />}>
+          <Button
+            onClick={handleRegister}
+            loading={isRegistering}
+            icon={<Plus className='size-4' />}
+          >
             <Trans>Register</Trans>
           </Button>
         </ResponsiveDialogFooter>
@@ -922,7 +926,12 @@ function OauthSection() {
     availableToLink.length > 0 ? (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant='outline' size='sm' loading={oauthBegin.isPending} icon={<Plus className='me-2 h-4 w-4' />}>
+          <Button
+            variant='outline'
+            size='sm'
+            loading={oauthBegin.isPending}
+            icon={<Plus className='me-2 h-4 w-4' />}
+          >
             <Trans>Link account</Trans>
           </Button>
         </DropdownMenuTrigger>

@@ -157,7 +157,11 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
             >
               <Trans>Cancel</Trans>
             </Button>
-            <Button type='submit' loading={createUser.isPending} icon={<UserPlus className='size-4' />}>
+            <Button
+              type='submit'
+              loading={createUser.isPending}
+              icon={<UserPlus className='size-4' />}
+            >
               <Trans>Create user</Trans>
             </Button>
           </ResponsiveDialogFooter>
@@ -400,7 +404,9 @@ function SessionsDialog({
               variant='outline'
               onClick={() => setRevokeAllOpen(true)}
               disabled={revokeSession.isPending}
-              loading={revokeSession.isPending && !revokeSession.variables?.session}
+              loading={
+                revokeSession.isPending && !revokeSession.variables?.session
+              }
             >
               <Trans>Revoke all sessions</Trans>
             </Button>

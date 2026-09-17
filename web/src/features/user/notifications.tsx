@@ -49,15 +49,7 @@ import {
   textUnchanged,
   setsEqual,
 } from '@mochi/web'
-import {
-  Bell,
-  Check,
-  Pencil,
-  Plus,
-  Send,
-  Trash2,
-  X,
-} from 'lucide-react'
+import { Bell, Check, Pencil, Plus, Send, Trash2, X } from 'lucide-react'
 import endpoints from '@/api/endpoints'
 
 type TabId = 'categories' | 'topics'

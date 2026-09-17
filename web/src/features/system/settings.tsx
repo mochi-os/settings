@@ -34,14 +34,7 @@ import {
   TooltipContent,
   naturalCompare,
 } from '@mochi/web'
-import {
-  Check,
-  Lock,
-  RotateCcw,
-  Settings,
-  Upload,
-  X,
-} from 'lucide-react'
+import { Check, Lock, RotateCcw, Settings, Upload, X } from 'lucide-react'
 import { useStepUp } from '@/lib/use-step-up'
 import {
   useSystemSettingsData,
