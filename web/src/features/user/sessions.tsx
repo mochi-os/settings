@@ -63,7 +63,7 @@ function SessionRow({
 
   return (
     <TableRow>
-      <TableCell>
+      <TableCell className='bg-background'>
         <div className='flex flex-col'>
           <span className='font-medium'>
             {agentName(session.agent)}
@@ -149,10 +149,10 @@ export function UserSessions() {
             className='p-4'
           />
         ) : (
-          <Table>
+          <Table stickyFirstColumn>
             <TableHeader>
               <TableRow>
-                <TableHead>
+                <TableHead className='bg-muted'>
                   <Trans>Session</Trans>
                 </TableHead>
                 <TableHead>

@@ -44,6 +44,7 @@ import {
   EmptyState,
   useDebounce,
   useFormat,
+  cn,
 } from '@mochi/web'
 import {
   Ban,
@@ -346,10 +347,10 @@ function SessionsDialog({
           {isLoading ? (
             <ListSkeleton count={2} height='h-12' variant='simple' />
           ) : data?.sessions && data.sessions.length > 0 ? (
-            <Table>
+            <Table stickyFirstColumn>
               <TableHeader>
                 <TableRow>
-                  <TableHead>
+                  <TableHead className='bg-muted'>
                     <Trans>Device</Trans>
                   </TableHead>
                   <TableHead>
@@ -364,7 +365,9 @@ function SessionsDialog({
               <TableBody>
                 {data.sessions.map((session: Session) => (
                   <TableRow key={session.id}>
-                    <TableCell>{formatSession(session)}</TableCell>
+                    <TableCell className='bg-background'>
+                      {formatSession(session)}
+                    </TableCell>
                     <TableCell className='font-mono text-sm'>
                       {session.address || t`Unknown`}
                     </TableCell>
@@ -493,7 +496,7 @@ function UserRow({
   return (
     <TableRow className={isSuspended ? 'opacity-60' : ''}>
       {stepUp.dialog}
-      <TableCell>
+      <TableCell className='bg-background'>
         <span className='font-medium'>{user.username}</span>
       </TableCell>
       <TableCell>
@@ -608,17 +611,19 @@ function SortableHeader({
   currentSort,
   currentOrder,
   onSort,
+  className,
 }: {
   column: SortColumn
   label: string
   currentSort: SortColumn
   currentOrder: SortOrder
   onSort: (column: SortColumn) => void
+  className?: string
 }) {
   const isActive = currentSort === column
   return (
     <TableHead
-      className='hover:bg-hover cursor-pointer select-none'
+      className={cn('hover:bg-hover cursor-pointer select-none', className)}
       onClick={() => onSort(column)}
     >
       <div className='flex items-center gap-1'>
@@ -731,12 +736,13 @@ export function SystemUsers() {
           <ListSkeleton count={3} height='h-12' variant='simple' />
         ) : users.length > 0 ? (
           <>
-            <Table>
+            <Table stickyFirstColumn>
               <TableHeader>
                 <TableRow>
                   <SortableHeader
                     column='username'
                     label={t`User`}
+                    className='bg-muted'
                     currentSort={sort}
                     currentOrder={order}
                     onSort={handleSort}
