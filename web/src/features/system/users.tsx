@@ -35,6 +35,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
+  TableSortHeader,
   PageHeader,
   Main,
   usePageTitle,
@@ -44,15 +45,12 @@ import {
   EmptyState,
   useDebounce,
   useFormat,
-  cn,
 } from '@mochi/web'
 import {
   Ban,
   Check,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
-  ChevronUp,
   Key,
   MoreHorizontal,
   Pencil,
@@ -350,7 +348,7 @@ function SessionsDialog({
             <Table stickyFirstColumn>
               <TableHeader>
                 <TableRow>
-                  <TableHead className='bg-muted'>
+                  <TableHead>
                     <Trans>Device</Trans>
                   </TableHead>
                   <TableHead>
@@ -365,9 +363,7 @@ function SessionsDialog({
               <TableBody>
                 {data.sessions.map((session: Session) => (
                   <TableRow key={session.id}>
-                    <TableCell className='bg-background'>
-                      {formatSession(session)}
-                    </TableCell>
+                    <TableCell>{formatSession(session)}</TableCell>
                     <TableCell className='font-mono text-sm'>
                       {session.address || t`Unknown`}
                     </TableCell>
@@ -496,7 +492,7 @@ function UserRow({
   return (
     <TableRow className={isSuspended ? 'opacity-60' : ''}>
       {stepUp.dialog}
-      <TableCell className='bg-background'>
+      <TableCell>
         <span className='font-medium'>{user.username}</span>
       </TableCell>
       <TableCell>
@@ -611,31 +607,21 @@ function SortableHeader({
   currentSort,
   currentOrder,
   onSort,
-  className,
 }: {
   column: SortColumn
   label: string
   currentSort: SortColumn
   currentOrder: SortOrder
   onSort: (column: SortColumn) => void
-  className?: string
 }) {
-  const isActive = currentSort === column
   return (
-    <TableHead
-      className={cn('hover:bg-hover cursor-pointer select-none', className)}
-      onClick={() => onSort(column)}
+    <TableSortHeader
+      active={currentSort === column}
+      direction={currentOrder}
+      onToggle={() => onSort(column)}
     >
-      <div className='flex items-center gap-1'>
-        {label}
-        {isActive &&
-          (currentOrder === 'asc' ? (
-            <ChevronUp className='h-4 w-4' />
-          ) : (
-            <ChevronDown className='h-4 w-4' />
-          ))}
-      </div>
-    </TableHead>
+      {label}
+    </TableSortHeader>
   )
 }
 
@@ -742,7 +728,6 @@ export function SystemUsers() {
                   <SortableHeader
                     column='username'
                     label={t`User`}
-                    className='bg-muted'
                     currentSort={sort}
                     currentOrder={order}
                     onSort={handleSort}
