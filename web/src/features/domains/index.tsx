@@ -1133,7 +1133,7 @@ function DomainDetails({
             ) : isLoading ? (
               <Skeleton className='h-20 w-full' />
             ) : data?.routes && data.routes.length > 0 ? (
-              <Table>
+              <Table bordered={false}>
                 <TableHeader>
                   <TableRow>
                     <TableHead>
@@ -1196,7 +1196,7 @@ function DomainDetails({
               ) : isLoading ? (
                 <Skeleton className='h-20 w-full' />
               ) : data?.delegations && data.delegations.length > 0 ? (
-                <Table>
+                <Table bordered={false}>
                   <TableHeader>
                     <TableRow>
                       <TableHead>
