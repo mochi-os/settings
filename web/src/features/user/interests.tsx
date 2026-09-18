@@ -3,7 +3,7 @@
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import { useState, useRef, useCallback, useEffect } from 'react'
-import { Trans, useLingui } from '@lingui/react/macro'
+import { useLingui } from '@lingui/react/macro'
 import {
   Button,
   EmptyState,
@@ -12,6 +12,7 @@ import {
   ListSkeleton,
   Main,
   PageHeader,
+  Section,
   Slider,
   usePageTitle,
   getErrorMessage,
@@ -283,46 +284,53 @@ export function UserInterests() {
         icon={<Star className='size-4 md:size-5' />}
       />
 
-      <Main className='space-y-4'>
+      <Main className='space-y-8'>
         {summary && (
-          <div className='space-y-1.5'>
-            <div className='flex items-center gap-2'>
-              <h4 className='text-sm font-medium'>
-                <Trans>Summary</Trans>
-              </h4>
+          <Section
+            title={t`Summary`}
+            action={
               <Button
                 variant='ghost'
                 size='sm'
-                className='size-7 p-0'
+                className='size-8 p-0'
                 onClick={handleRegenerate}
                 disabled={regenerateSummary.isPending}
+                title={t`Regenerate summary`}
+                aria-label={t`Regenerate summary`}
               >
                 {regenerateSummary.isPending ? (
-                  <Loader2 className='size-3.5 animate-spin' />
+                  <Loader2 className='size-4 animate-spin' />
                 ) : (
-                  <RefreshCw className='size-3.5' />
+                  <RefreshCw className='size-4' />
                 )}
               </Button>
+            }
+          >
+            <p className='text-muted-foreground py-2 text-sm'>{summary}</p>
+          </Section>
+        )}
+
+        <Section title={t`Interests`} contentClassName='space-y-2 pt-4'>
+          <InterestSearch />
+
+          {error ? (
+            <GeneralError error={error} minimal mode='inline' reset={refetch} />
+          ) : isLoading ? (
+            <ListSkeleton variant='simple' height='h-10' count={5} />
+          ) : interests.length === 0 ? (
+            <EmptyState
+              icon={Star}
+              title={t`No interests yet`}
+              className='p-4'
+            />
+          ) : (
+            <div className='divide-border divide-y'>
+              {interests.map((interest) => (
+                <InterestRow key={interest.qid} interest={interest} />
+              ))}
             </div>
-            <p className='text-muted-foreground text-sm'>{summary}</p>
-          </div>
-        )}
-
-        <InterestSearch />
-
-        {error ? (
-          <GeneralError error={error} minimal mode='inline' reset={refetch} />
-        ) : isLoading ? (
-          <ListSkeleton variant='simple' height='h-10' count={5} />
-        ) : interests.length === 0 ? (
-          <EmptyState icon={Star} title={t`No interests yet`} className='p-4' />
-        ) : (
-          <div className='divide-border divide-y'>
-            {interests.map((interest) => (
-              <InterestRow key={interest.qid} interest={interest} />
-            ))}
-          </div>
-        )}
+          )}
+        </Section>
       </Main>
     </>
   )

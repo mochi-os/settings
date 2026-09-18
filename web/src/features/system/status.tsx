@@ -8,10 +8,12 @@ import {
   Button,
   CopyButton,
   DataChip,
+  FieldRow,
   GeneralError,
   ListSkeleton,
   PageHeader,
   Main,
+  Section,
   Table,
   TableBody,
   TableCell,
@@ -60,86 +62,56 @@ export function SystemStatus() {
         icon={<Activity className='size-4 md:size-5' />}
       />
 
-      <Main>
-        {error ? (
-          <GeneralError error={error} minimal mode='inline' reset={refetch} />
-        ) : isLoading ? (
-          <ListSkeleton variant='simple' height='h-4' count={2} />
-        ) : (
-          <dl className='grid gap-3 text-sm'>
-            <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-              <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'>
-                <Trans>Version</Trans>
-              </dt>
-              <dd className='font-medium'>{serverVersion}</dd>
-            </div>
-            <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-              <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'>
-                <Trans>Started</Trans>
-              </dt>
-              <dd className='font-mono text-xs'>
-                {formatSystemTimestamp(
-                  parseInt(serverStarted, 10),
-                  serverStarted
-                )}
-              </dd>
-            </div>
-            {serverFingerprint && (
-              <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-                <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'>
-                  <Trans>Fingerprint</Trans>
-                </dt>
-                <dd className='min-w-0 flex-1'>
+      <Main className='space-y-8'>
+        <Section title={t`Server`}>
+          {error ? (
+            <GeneralError error={error} minimal mode='inline' reset={refetch} />
+          ) : isLoading ? (
+            <ListSkeleton variant='simple' height='h-9' count={4} />
+          ) : (
+            <div className='divide-y-0'>
+              <FieldRow label={t`Version`}>
+                <span className='text-sm'>{serverVersion}</span>
+              </FieldRow>
+              <FieldRow label={t`Started`}>
+                <span className='text-sm tabular-nums'>
+                  {formatSystemTimestamp(
+                    parseInt(serverStarted, 10),
+                    serverStarted
+                  )}
+                </span>
+              </FieldRow>
+              {serverFingerprint && (
+                <FieldRow label={t`Fingerprint`}>
                   <DataChip
                     value={hyphenateFingerprint(serverFingerprint)}
                     truncate='middle'
                   />
-                </dd>
-              </div>
-            )}
-            {peerId && (
-              <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-                <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'>
-                  <Trans>Peer ID</Trans>
-                </dt>
-                <dd className='min-w-0 flex-1'>
+                </FieldRow>
+              )}
+              {peerId && (
+                <FieldRow label={t`Peer ID`}>
                   <DataChip value={peerId} truncate='none' />
-                </dd>
-              </div>
-            )}
-            {showUpdate && (
-              <div className='flex flex-col gap-2 sm:flex-row sm:gap-4'>
-                <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'>
-                  <Trans>Update</Trans>
-                </dt>
-                <dd className='flex flex-col gap-2'>
-                  <UpdateAction info={update} />
-                </dd>
-              </div>
-            )}
-          </dl>
-        )}
+                </FieldRow>
+              )}
+              {showUpdate && (
+                <FieldRow label={t`Update`}>
+                  <div className='flex flex-col gap-2 py-1'>
+                    <UpdateAction info={update} />
+                  </div>
+                </FieldRow>
+              )}
+            </div>
+          )}
+        </Section>
         <NetworkStatus />
       </Main>
     </>
   )
 }
 
-function StatusRow({
-  label,
-  children,
-}: {
-  label: ReactNode
-  children: ReactNode
-}) {
-  return (
-    <div className='flex flex-col gap-1 sm:flex-row sm:gap-4'>
-      <dt className='text-muted-foreground w-64 shrink-0 whitespace-nowrap'>
-        {label}
-      </dt>
-      <dd className='font-medium'>{children}</dd>
-    </div>
-  )
+function StatusValue({ children }: { children: ReactNode }) {
+  return <span className='text-sm tabular-nums'>{children}</span>
 }
 
 function NetworkStatus() {
@@ -151,10 +123,18 @@ function NetworkStatus() {
   // nothing to report: the whole network section, peer table included, simply
   // was not on the page, with no message and nothing to retry.
   if (error) {
-    return <GeneralError error={error} minimal mode='inline' reset={refetch} />
+    return (
+      <Section title={t`Network`}>
+        <GeneralError error={error} minimal mode='inline' reset={refetch} />
+      </Section>
+    )
   }
   if (isLoading || !data) {
-    return <ListSkeleton variant='simple' height='h-4' count={3} />
+    return (
+      <Section title={t`Network`}>
+        <ListSkeleton variant='simple' height='h-9' count={4} />
+      </Section>
+    )
   }
 
   const network = data.network
@@ -179,82 +159,92 @@ function NetworkStatus() {
 
   return (
     <>
-      <dl className='mt-3 grid gap-3 text-sm'>
-        <StatusRow label={<Trans>Users</Trans>}>
-          {formatNumber(counts.users)}
-        </StatusRow>
-        <StatusRow label={<Trans>Entities</Trans>}>
-          {formatNumber(counts.entities)}
-        </StatusRow>
-        <StatusRow label={<Trans>Reachability</Trans>}>
-          {reachability}
-          {network.relay ? ` · ${t`Via relay`}` : ''}
-        </StatusRow>
-        {network.last > 0 && (
-          <StatusRow label={<Trans>Last broadcast</Trans>}>
-            <span className='font-mono text-xs font-normal'>
-              {formatSystemTimestamp(network.last, String(network.last))}
-            </span>
-          </StatusRow>
-        )}
-        {network.holepunch &&
-          network.holepunch.success + network.holepunch.failure > 0 && (
-            <StatusRow label={<Trans>Hole punch</Trans>}>
-              <Trans>
-                {formatNumber(network.holepunch.success)} succeeded ·{' '}
-                {formatNumber(network.holepunch.failure)} failed
-              </Trans>
-            </StatusRow>
+      <Section title={t`Network`}>
+        <div className='divide-y-0'>
+          <FieldRow label={t`Users`}>
+            <StatusValue>{formatNumber(counts.users)}</StatusValue>
+          </FieldRow>
+          <FieldRow label={t`Entities`}>
+            <StatusValue>{formatNumber(counts.entities)}</StatusValue>
+          </FieldRow>
+          <FieldRow label={t`Reachability`}>
+            <StatusValue>
+              {reachability}
+              {network.relay ? ` · ${t`Via relay`}` : ''}
+            </StatusValue>
+          </FieldRow>
+          {network.last > 0 && (
+            <FieldRow label={t`Last broadcast`}>
+              <StatusValue>
+                {formatSystemTimestamp(network.last, String(network.last))}
+              </StatusValue>
+            </FieldRow>
           )}
-        {network.relaying?.active && (
-          <StatusRow label={<Trans>Relay service</Trans>}>
-            <Trans>
-              {formatNumber(network.relaying.reservations.held)} /{' '}
-              {formatNumber(network.relaying.reservations.maximum)} reservations
-              · {formatNumber(network.relaying.circuits)} circuits ·{' '}
-              {formatNumber(network.relaying.rejected)} refused
-            </Trans>
-          </StatusRow>
-        )}
-        <StatusRow label={<Trans>Messages awaiting routing</Trans>}>
-          {formatNumber(network.unresolved)}
-        </StatusRow>
-        <StatusRow label={<Trans>Queued messages</Trans>}>
-          {formatNumber(queued)}
-        </StatusRow>
-        <StatusRow label={<Trans>Queued broadcast messages</Trans>}>
-          {formatNumber(network.queued)}
-        </StatusRow>
-      </dl>
+          {network.holepunch &&
+            network.holepunch.success + network.holepunch.failure > 0 && (
+              <FieldRow label={t`Hole punch`}>
+                <StatusValue>
+                  <Trans>
+                    {formatNumber(network.holepunch.success)} succeeded ·{' '}
+                    {formatNumber(network.holepunch.failure)} failed
+                  </Trans>
+                </StatusValue>
+              </FieldRow>
+            )}
+          {network.relaying?.active && (
+            <FieldRow label={t`Relay service`}>
+              <StatusValue>
+                <Trans>
+                  {formatNumber(network.relaying.reservations.held)} /{' '}
+                  {formatNumber(network.relaying.reservations.maximum)}{' '}
+                  reservations · {formatNumber(network.relaying.circuits)}{' '}
+                  circuits · {formatNumber(network.relaying.rejected)} refused
+                </Trans>
+              </StatusValue>
+            </FieldRow>
+          )}
+          <FieldRow label={t`Messages awaiting routing`}>
+            <StatusValue>{formatNumber(network.unresolved)}</StatusValue>
+          </FieldRow>
+          <FieldRow label={t`Queued messages`}>
+            <StatusValue>{formatNumber(queued)}</StatusValue>
+          </FieldRow>
+          <FieldRow label={t`Queued broadcast messages`}>
+            <StatusValue>{formatNumber(network.queued)}</StatusValue>
+          </FieldRow>
+        </div>
+      </Section>
       {peers.length > 0 && (
-        <section className='mt-8 space-y-2'>
-          <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'>
-            <Trans>Peers</Trans>
-          </h2>
-          <p className='text-muted-foreground text-sm'>
-            <Trans>Known</Trans> {formatNumber(peers.length)} ·{' '}
-            <Trans>Connected</Trans> {formatNumber(connected)} ·{' '}
-            <Trans>Broadcast mesh</Trans> {formatNumber(network.mesh)}
-          </p>
-          <Table>
+        <Section
+          title={t`Peers`}
+          contentClassName='px-0 py-0'
+          action={
+            <span className='text-muted-foreground text-end text-sm'>
+              <Trans>Known</Trans> {formatNumber(peers.length)} ·{' '}
+              <Trans>Connected</Trans> {formatNumber(connected)} ·{' '}
+              <Trans>Broadcast mesh</Trans> {formatNumber(network.mesh)}
+            </span>
+          }
+        >
+          <Table bordered={false} stickyFirstColumn>
             <TableHeader>
               <TableRow>
-                <TableHead className='h-auto w-[26%] py-2 align-top whitespace-normal'>
+                <TableHead>
                   <Trans>Peer</Trans>
                 </TableHead>
-                <TableHead className='h-auto w-[10%] py-2 align-top whitespace-normal'>
+                <TableHead>
                   <Trans>Status</Trans>
                 </TableHead>
-                <TableHead className='h-auto w-[26%] py-2 align-top whitespace-normal'>
+                <TableHead>
                   <Trans>Address</Trans>
                 </TableHead>
-                <TableHead className='h-auto w-[14%] py-2 align-top whitespace-normal'>
+                <TableHead>
                   <Trans>Last seen</Trans>
                 </TableHead>
-                <TableHead className='h-auto w-[10%] py-2 text-end align-top whitespace-normal'>
+                <TableHead className='text-end'>
                   <Trans>Queued messages</Trans>
                 </TableHead>
-                <TableHead className='h-auto w-[14%] py-2 ps-8 align-top whitespace-normal'>
+                <TableHead>
                   <Trans>Oldest queued message</Trans>
                 </TableHead>
               </TableRow>
@@ -262,14 +252,17 @@ function NetworkStatus() {
             <TableBody>
               {peers.map((p) => (
                 <TableRow key={p.peer}>
-                  <TableCell className='align-top whitespace-normal'>
+                  {/* The table sits in a card, so the sticky cell takes the
+                      card's fill rather than the page background the shared
+                      table defaults to. */}
+                  <TableCell className='bg-surface-1'>
                     <PeerIdentity
                       peer={p.peer}
                       name={p.name}
                       fingerprint={p.fingerprint}
                     />
                   </TableCell>
-                  <TableCell className='text-muted-foreground align-top text-sm'>
+                  <TableCell className='text-muted-foreground'>
                     {p.connected ? (
                       <Trans>Connected</Trans>
                     ) : p.unreachable ? (
@@ -278,18 +271,18 @@ function NetworkStatus() {
                       <Trans>Disconnected</Trans>
                     )}
                   </TableCell>
-                  <TableCell className='align-top font-mono text-xs break-all whitespace-normal'>
+                  <TableCell className='font-mono text-xs'>
                     {p.address}
                   </TableCell>
-                  <TableCell className='align-top font-mono text-xs'>
+                  <TableCell className='text-muted-foreground tabular-nums'>
                     {p.seen > 0
                       ? formatSystemTimestamp(p.seen, String(p.seen))
                       : ''}
                   </TableCell>
-                  <TableCell className='text-end align-top text-sm'>
+                  <TableCell className='text-end tabular-nums'>
                     {formatNumber(p.queued)}
                   </TableCell>
-                  <TableCell className='ps-8 align-top font-mono text-xs'>
+                  <TableCell className='text-muted-foreground tabular-nums'>
                     {p.queued > 0
                       ? formatSystemTimestamp(p.oldest, String(p.oldest))
                       : '-'}
@@ -298,7 +291,7 @@ function NetworkStatus() {
               ))}
             </TableBody>
           </Table>
-        </section>
+        </Section>
       )}
     </>
   )
