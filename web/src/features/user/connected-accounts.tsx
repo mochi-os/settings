@@ -99,16 +99,16 @@ function DevicesTable({
       <h2 className='mb-2 text-base font-medium'>
         <Trans>Devices</Trans>
       </h2>
-      <Table className='mb-6'>
+      <Table containerClassName='mb-6'>
         <TableHeader>
           <TableRow>
             <TableHead>
               <Trans>Name</Trans>
             </TableHead>
-            <TableHead className='hidden sm:table-cell'>
+            <TableHead>
               <Trans>Push</Trans>
             </TableHead>
-            <TableHead className='hidden sm:table-cell'>
+            <TableHead>
               <Trans>Last seen</Trans>
             </TableHead>
             <TableHead className='w-24'></TableHead>
@@ -122,10 +122,10 @@ function DevicesTable({
                 <TableCell className='font-medium'>
                   {device.label || t`Device`}
                 </TableCell>
-                <TableCell className='text-muted-foreground hidden sm:table-cell'>
+                <TableCell className='text-muted-foreground'>
                   {push.map((a) => getProviderLabel(a.type)).join(', ')}
                 </TableCell>
-                <TableCell className='text-muted-foreground hidden sm:table-cell'>
+                <TableCell className='text-muted-foreground'>
                   {formatTimestamp(device.seen)}
                 </TableCell>
                 <TableCell className='text-end'>
@@ -287,28 +287,19 @@ function AccountRow({
           <div className='bg-muted flex h-8 w-8 shrink-0 items-center justify-center rounded-full'>
             {getProviderIcon(account.type)}
           </div>
-          <div className='flex flex-col'>
-            <div className='flex items-center gap-2'>
-              <span className='font-medium sm:font-normal'>{displayName}</span>
-              {isAi && account.default === 'ai' && (
-                <span className='bg-primary/10 text-primary inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium'>
-                  <Trans>Default for AI</Trans>
-                </span>
-              )}
-            </div>
-            <span className='text-muted-foreground text-xs sm:hidden'>
-              {getProviderLabel(account.type)}
-              {isAi &&
-                account.identifier &&
-                account.identifier !== 'default' &&
-                ` - ${account.identifier}`}
-            </span>
+          <div className='flex items-center gap-2'>
+            <span>{displayName}</span>
+            {isAi && account.default === 'ai' && (
+              <span className='bg-primary/10 text-primary inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium'>
+                <Trans>Default for AI</Trans>
+              </span>
+            )}
           </div>
         </div>
       </TableCell>
 
       {/* Type */}
-      <TableCell className='hidden sm:table-cell'>
+      <TableCell>
         <span>
           {getProviderLabel(account.type)}
           {isAi &&
@@ -319,7 +310,7 @@ function AccountRow({
       </TableCell>
 
       {/* Status */}
-      <TableCell className='hidden sm:table-cell'>
+      <TableCell>
         {needsVerification ? (
           <span className='inline-flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400'>
             <Clock className='h-3 w-3' />
@@ -339,7 +330,7 @@ function AccountRow({
       </TableCell>
 
       {/* Notify by default */}
-      <TableCell className='hidden md:table-cell'>
+      <TableCell>
         {provider?.capabilities?.includes('notify') && (
           <Switch
             checked={account.enabled > 0}
@@ -350,7 +341,7 @@ function AccountRow({
       </TableCell>
 
       {/* Added */}
-      <TableCell className='text-muted-foreground hidden text-sm lg:table-cell'>
+      <TableCell className='text-muted-foreground text-sm'>
         {formatTimestamp(account.created)}
       </TableCell>
 
@@ -658,16 +649,16 @@ export function ConnectedAccounts() {
                     <TableHead>
                       <Trans>Name</Trans>
                     </TableHead>
-                    <TableHead className='hidden sm:table-cell'>
+                    <TableHead>
                       <Trans>Type</Trans>
                     </TableHead>
-                    <TableHead className='hidden sm:table-cell'>
+                    <TableHead>
                       <Trans>Status</Trans>
                     </TableHead>
-                    <TableHead className='hidden md:table-cell'>
+                    <TableHead>
                       <Trans>Notify by default</Trans>
                     </TableHead>
-                    <TableHead className='hidden lg:table-cell'>
+                    <TableHead>
                       <Trans>Added</Trans>
                     </TableHead>
                     <TableHead className='w-12'></TableHead>

@@ -229,7 +229,7 @@ function NetworkStatus() {
           <Table bordered={false} stickyFirstColumn>
             <TableHeader>
               <TableRow>
-                <TableHead>
+                <TableHead className='w-48 max-w-48'>
                   <Trans>Peer</Trans>
                 </TableHead>
                 <TableHead>
@@ -255,14 +255,14 @@ function NetworkStatus() {
                   {/* The table sits in a card, so the sticky cell takes the
                       card's fill rather than the page background the shared
                       table defaults to. */}
-                  <TableCell className='bg-surface-1'>
+                  <TableCell className='bg-surface-1 w-48 max-w-48 align-top whitespace-normal'>
                     <PeerIdentity
                       peer={p.peer}
                       name={p.name}
                       fingerprint={p.fingerprint}
                     />
                   </TableCell>
-                  <TableCell className='text-muted-foreground'>
+                  <TableCell className='text-muted-foreground align-top'>
                     {p.connected ? (
                       <Trans>Connected</Trans>
                     ) : p.unreachable ? (
@@ -271,18 +271,18 @@ function NetworkStatus() {
                       <Trans>Disconnected</Trans>
                     )}
                   </TableCell>
-                  <TableCell className='font-mono text-xs'>
+                  <TableCell className='align-top font-mono text-xs break-all whitespace-normal'>
                     {p.address}
                   </TableCell>
-                  <TableCell className='text-muted-foreground tabular-nums'>
+                  <TableCell className='text-muted-foreground align-top tabular-nums'>
                     {p.seen > 0
                       ? formatSystemTimestamp(p.seen, String(p.seen))
                       : ''}
                   </TableCell>
-                  <TableCell className='text-end tabular-nums'>
+                  <TableCell className='text-end align-top tabular-nums'>
                     {formatNumber(p.queued)}
                   </TableCell>
-                  <TableCell className='text-muted-foreground tabular-nums'>
+                  <TableCell className='text-muted-foreground align-top tabular-nums'>
                     {p.queued > 0
                       ? formatSystemTimestamp(p.oldest, String(p.oldest))
                       : '-'}
