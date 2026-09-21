@@ -35,6 +35,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
+  TableSortHeader,
   PageHeader,
   Main,
   usePageTitle,
@@ -48,10 +49,8 @@ import {
 import {
   Ban,
   Check,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
-  ChevronUp,
   Key,
   MoreHorizontal,
   Pencil,
@@ -346,7 +345,7 @@ function SessionsDialog({
           {isLoading ? (
             <ListSkeleton count={2} height='h-12' variant='simple' />
           ) : data?.sessions && data.sessions.length > 0 ? (
-            <Table>
+            <Table stickyFirstColumn>
               <TableHeader>
                 <TableRow>
                   <TableHead>
@@ -615,22 +614,14 @@ function SortableHeader({
   currentOrder: SortOrder
   onSort: (column: SortColumn) => void
 }) {
-  const isActive = currentSort === column
   return (
-    <TableHead
-      className='hover:bg-hover cursor-pointer select-none'
-      onClick={() => onSort(column)}
+    <TableSortHeader
+      active={currentSort === column}
+      direction={currentOrder}
+      onToggle={() => onSort(column)}
     >
-      <div className='flex items-center gap-1'>
-        {label}
-        {isActive &&
-          (currentOrder === 'asc' ? (
-            <ChevronUp className='h-4 w-4' />
-          ) : (
-            <ChevronDown className='h-4 w-4' />
-          ))}
-      </div>
-    </TableHead>
+      {label}
+    </TableSortHeader>
   )
 }
 
@@ -731,7 +722,7 @@ export function SystemUsers() {
           <ListSkeleton count={3} height='h-12' variant='simple' />
         ) : users.length > 0 ? (
           <>
-            <Table>
+            <Table stickyFirstColumn>
               <TableHeader>
                 <TableRow>
                   <SortableHeader

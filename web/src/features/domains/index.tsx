@@ -8,7 +8,10 @@ import { useLingui, Trans } from '@lingui/react/macro'
 import {
   Badge,
   Button,
+  Card,
+  CardContent,
   ConfirmDialog,
+  FieldRow,
   ResponsiveDialog,
   ResponsiveDialogContent,
   ResponsiveDialogDescription,
@@ -32,7 +35,6 @@ import {
   TableRow,
   PageHeader,
   Main,
-  Section,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
@@ -988,9 +990,9 @@ function DomainDetails({
   }
 
   return (
-    <div className='border-b last:border-b-0'>
+    <Card className='gap-0 py-0 shadow-md'>
       <div
-        className='flex cursor-pointer items-center justify-between py-4'
+        className='flex cursor-pointer items-center justify-between px-[var(--card-px)] py-4'
         onClick={() => setExpanded(!expanded)}
       >
         <div className='flex items-center gap-3'>
@@ -1032,80 +1034,71 @@ function DomainDetails({
         />
       </div>
       {expanded && (
-        <div className='space-y-6 pb-6'>
+        <CardContent className='space-y-6 border-t pt-2 pb-6'>
           {/* Admin-only: Settings */}
           {isAdmin && (
-            <div className='space-y-4'>
-              <div className='flex items-center justify-between'>
-                <div className='space-y-0.5'>
-                  <Label>
-                    <Trans>Verified</Trans>
-                  </Label>
-                  <p className='text-muted-foreground text-xs'>
-                    <Trans>Domain ownership has been verified</Trans>
-                  </p>
-                </div>
+            <div className='divide-y-0'>
+              <FieldRow label={t`Verified`}>
                 <Switch
                   checked={domain.verified === 1}
                   onCheckedChange={handleToggleVerified}
                   disabled={updateDomain.isPending}
                 />
-              </div>
+              </FieldRow>
               {domain.token && (
-                <div className='flex items-center justify-between'>
-                  <div className='space-y-0.5'>
-                    <Label>
-                      <Trans>DNS verification</Trans>
-                    </Label>
-                    <p className='text-muted-foreground text-xs'>
-                      <Trans>Create a TXT record for</Trans>{' '}
-                      <code className='bg-muted rounded px-1'>
-                        _mochi-verify.{domain.domain}
-                      </code>
-                    </p>
-                    <p className='text-muted-foreground font-mono text-xs break-all'>
-                      {/* jsx-text-ok: verbatim DNS TXT record value the user copies */}
-                      mochi-verify={domain.token}
-                    </p>
+                <FieldRow label={t`DNS verification`}>
+                  <div className='flex w-full flex-wrap items-center justify-between gap-3'>
+                    <div className='min-w-0 space-y-1'>
+                      <p className='text-muted-foreground text-sm'>
+                        <Trans>Create a TXT record for</Trans>{' '}
+                        <code className='bg-muted rounded px-1'>
+                          _mochi-verify.{domain.domain}
+                        </code>
+                      </p>
+                      <p className='font-mono text-xs break-all'>
+                        {/* jsx-text-ok: verbatim DNS TXT record value the user copies */}
+                        mochi-verify={domain.token}
+                      </p>
+                    </div>
+                    {!domain.verified && (
+                      <Button
+                        size='sm'
+                        variant='outline'
+                        loading={verifyDomain.isPending}
+                        icon={<Search className='me-2 h-4 w-4' />}
+                        onClick={() => {
+                          verifyDomain.mutate(domain.domain, {
+                            onSuccess: (data) => {
+                              if (data.verified) {
+                                toast.success(t`Domain verified`)
+                              } else {
+                                toast.error(t`TXT record not found`)
+                              }
+                            },
+                            onError: (error) => {
+                              toast.error(
+                                getErrorMessage(
+                                  error,
+                                  t`Failed to verify domain`
+                                )
+                              )
+                            },
+                          })
+                        }}
+                      >
+                        <Trans>Verify DNS</Trans>
+                      </Button>
+                    )}
                   </div>
-                  {!domain.verified && (
-                    <Button
-                      size='sm'
-                      variant='outline'
-                      loading={verifyDomain.isPending}
-                      icon={<Search className='me-2 h-4 w-4' />}
-                      onClick={() => {
-                        verifyDomain.mutate(domain.domain, {
-                          onSuccess: (data) => {
-                            if (data.verified) {
-                              toast.success(t`Domain verified`)
-                            } else {
-                              toast.error(t`TXT record not found`)
-                            }
-                          },
-                          onError: (error) => {
-                            toast.error(
-                              getErrorMessage(error, t`Failed to verify domain`)
-                            )
-                          },
-                        })
-                      }}
-                    >
-                      <Trans>Verify DNS</Trans>
-                    </Button>
-                  )}
-                </div>
+                </FieldRow>
               )}
-              <div className='flex items-center justify-between'>
-                <Label>
-                  <Trans>Automatic certificates</Trans>
-                </Label>
+              <FieldRow label={t`Automatic certificates`}>
                 <Switch
                   checked={domain.tls === 1}
                   onCheckedChange={handleToggleTls}
                   disabled={updateDomain.isPending}
                 />
-              </div>
+              </FieldRow>
             </div>
           )}
 
@@ -1133,7 +1126,7 @@ function DomainDetails({
             ) : isLoading ? (
               <Skeleton className='h-20 w-full' />
             ) : data?.routes && data.routes.length > 0 ? (
-              <Table>
+              <Table bordered={false}>
                 <TableHeader>
                   <TableRow>
                     <TableHead>
@@ -1196,7 +1189,7 @@ function DomainDetails({
               ) : isLoading ? (
                 <Skeleton className='h-20 w-full' />
               ) : data?.delegations && data.delegations.length > 0 ? (
-                <Table>
+                <Table bordered={false}>
                   <TableHeader>
                     <TableRow>
                       <TableHead>
@@ -1233,18 +1226,7 @@ function DomainDetails({
           {/* Admin-only: Delete domain */}
           {isAdmin && onDelete && (
             <>
-              <hr className='border-border' />
-              <div className='flex items-center justify-between'>
-                <div className='space-y-0.5'>
-                  <Label>
-                    <Trans>Delete domain</Trans>
-                  </Label>
-                  <p className='text-muted-foreground text-xs'>
-                    <Trans>
-                      Permanently delete this domain and all its routes.
-                    </Trans>
-                  </p>
-                </div>
+              <FieldRow label={t`Delete domain`} className='border-t pt-4'>
                 <Button
                   variant='outline'
                   size='sm'
@@ -1254,7 +1236,7 @@ function DomainDetails({
                 >
                   <Trans>Delete</Trans>
                 </Button>
-              </div>
+              </FieldRow>
               <ConfirmDialog
                 open={showDeleteDialog}
                 onOpenChange={setShowDeleteDialog}
@@ -1270,7 +1252,7 @@ function DomainDetails({
               />
             </>
           )}
-        </div>
+        </CardContent>
       )}
       <ConfirmDialog
         open={showTlsDialog}
@@ -1285,7 +1267,7 @@ function DomainDetails({
         }}
         isLoading={updateDomain.isPending}
       />
-    </div>
+    </Card>
   )
 }
 
@@ -1330,48 +1312,39 @@ export function Domains() {
         actions={isAdmin && <AddDomainDialog onSuccess={() => refetch()} />}
       />
 
-      <Main>
-        <Section title={t`Domains`}>
-          <div className='divide-y'>
-            {error ? (
-              <GeneralError
-                error={error}
-                minimal
-                mode='inline'
-                reset={refetch}
+      <Main className='space-y-4'>
+        {error ? (
+          <GeneralError error={error} minimal mode='inline' reset={refetch} />
+        ) : isLoading ? (
+          <ListSkeleton variant='simple' height='h-20' count={2} />
+        ) : data?.domains && data.domains.length > 0 ? (
+          [...data.domains]
+            .sort((a, b) => naturalCompare(a.domain, b.domain))
+            .map((domain) => (
+              <DomainDetails
+                key={domain.domain}
+                domain={domain}
+                isAdmin={isAdmin}
+                onDelete={() => handleDelete(domain.domain)}
+                isDeleting={deletingDomain === domain.domain}
               />
-            ) : isLoading ? (
-              <ListSkeleton variant='simple' height='h-20' count={2} />
-            ) : data?.domains && data.domains.length > 0 ? (
-              [...data.domains]
-                .sort((a, b) => naturalCompare(a.domain, b.domain))
-                .map((domain) => (
-                  <DomainDetails
-                    key={domain.domain}
-                    domain={domain}
-                    isAdmin={isAdmin}
-                    onDelete={() => handleDelete(domain.domain)}
-                    isDeleting={deletingDomain === domain.domain}
-                  />
-                ))
-            ) : (
-              <EmptyState
-                icon={Shield}
-                title={
-                  isAdmin
-                    ? t`No domains configured`
-                    : t`You don't have access to any domains.`
-                }
-                description={
-                  isAdmin
-                    ? undefined
-                    : t`Contact an administrator to get a delegation.`
-                }
-                className='p-4'
-              />
-            )}
-          </div>
-        </Section>
+            ))
+        ) : (
+          <EmptyState
+            icon={Shield}
+            title={
+              isAdmin
+                ? t`No domains configured`
+                : t`You don't have access to any domains.`
+            }
+            description={
+              isAdmin
+                ? undefined
+                : t`Contact an administrator to get a delegation.`
+            }
+            className='p-4'
+          />
+        )}
       </Main>
     </>
   )

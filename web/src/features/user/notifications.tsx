@@ -21,6 +21,7 @@ import {
   TabsList,
   TabsTrigger,
   EmptyState,
+  FieldRow,
   Dialog,
   DialogContent,
   DialogDescription,
@@ -32,6 +33,7 @@ import {
   Label,
   Main,
   PageHeader,
+  Section,
   Select,
   SelectContent,
   SelectItem,
@@ -191,6 +193,7 @@ export function UserNotifications() {
     <>
       <PageHeader
         title={t`Notifications`}
+        icon={<Bell className='size-4 md:size-5' />}
         primaryAction={<BrowserPushButton onChanged={bumpReload} />}
       />
       <Main>
@@ -200,25 +203,13 @@ export function UserNotifications() {
           onValueChange={(value) => setActiveTab(value as TabId)}
           className='mb-4'
         >
-          <div className='flex items-center justify-between border-b'>
-            <TabsList className='w-auto border-b-0'>
-              {tabs.map((tab) => (
-                <TabsTrigger key={tab.id} value={tab.id}>
-                  {tab.label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-            {activeTab === 'categories' && (
-              <Button
-                variant='outline'
-                size='sm'
-                onClick={() => setCreating(true)}
-                className='mb-1'
-              >
-                <Plus className='me-2 h-4 w-4' /> <Trans>Add category</Trans>
-              </Button>
-            )}
-          </div>
+          <TabsList>
+            {tabs.map((tab) => (
+              <TabsTrigger key={tab.id} value={tab.id}>
+                {tab.label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
         </Tabs>
         {activeTab === 'categories' ? (
           <CategoriesTab creating={creating} setCreating={setCreating} />
@@ -324,7 +315,14 @@ function CategoriesTab({
 
   return (
     <>
-      <div className='flex flex-col gap-4'>
+      <Section
+        title={t`Categories`}
+        action={
+          <Button variant='outline' size='sm' onClick={() => setCreating(true)}>
+            <Plus className='me-2 h-4 w-4' /> <Trans>Add category</Trans>
+          </Button>
+        }
+      >
         <div className='divide-border divide-y'>
           {visibleCategories.map((cat) => (
             <CategoryRow
@@ -373,7 +371,7 @@ function CategoriesTab({
             />
           ))}
         </div>
-      </div>
+      </Section>
       {creating && (
         <CategoryDialog
           available={available}
@@ -919,22 +917,18 @@ function TopicsTab() {
   }
 
   return (
-    <div className='divide-border flex flex-col divide-y'>
+    <div className='space-y-8'>
       {groups.map((group) => (
-        <div key={group.app.id} className='py-4 first:pt-0 last:pb-0'>
-          <h2 className='text-[1.125rem] leading-tight font-semibold md:text-lg'>
-            {group.app.name}
-          </h2>
-          <div>
+        <Section key={group.app.id} title={group.app.name}>
+          <div className='divide-y-0'>
             {group.items.map((topic) => (
-              <div
+              <FieldRow
                 key={`${topic.app.id}|${topic.topic}|${topic.object}`}
-                className='flex flex-col gap-3 py-2 ps-6 sm:flex-row sm:items-center sm:justify-between'
+                label={
+                  topicDisplayName(topic) +
+                  (topic.name ? `: ${topic.name}` : '')
+                }
               >
-                <p className='text-sm'>
-                  {topicDisplayName(topic)}
-                  {topic.name ? `: ${topic.name}` : ''}
-                </p>
                 <div className='flex items-center gap-2'>
                   <Select
                     value={
@@ -970,10 +964,10 @@ function TopicsTab() {
                     <X className='h-4 w-4' />
                   </Button>
                 </div>
-              </div>
+              </FieldRow>
             ))}
           </div>
-        </div>
+        </Section>
       ))}
     </div>
   )

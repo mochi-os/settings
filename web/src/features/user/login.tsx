@@ -451,7 +451,7 @@ function PasskeysSection() {
             className='p-4'
           />
         ) : (
-          <Table>
+          <Table bordered={false}>
             <TableHeader>
               <TableRow>
                 <TableHead>
@@ -967,7 +967,7 @@ function OauthSection() {
             className='p-4'
           />
         ) : (
-          <Table>
+          <Table bordered={false}>
             <TableHeader>
               <TableRow>
                 <TableHead>

@@ -149,7 +149,7 @@ export function UserSessions() {
             className='p-4'
           />
         ) : (
-          <Table>
+          <Table stickyFirstColumn>
             <TableHeader>
               <TableRow>
                 <TableHead>

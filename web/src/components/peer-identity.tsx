@@ -25,7 +25,8 @@ export function PeerIdentity({
       {name && <div className='text-sm font-medium break-all'>{name}</div>}
       <button
         type='button'
-        className='text-muted-foreground hover:text-foreground cursor-pointer font-mono text-xs'
+        // A % cap would not bound auto table layout; 10rem is w-48 less px-4.
+        className='text-muted-foreground hover:text-foreground block max-w-40 cursor-pointer truncate font-mono text-xs'
         title={peer}
         onClick={async () => {
           const ok = await shellClipboardWrite(peer)
