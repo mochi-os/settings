@@ -38,21 +38,25 @@ function InterestRow({ interest }: { interest: Interest }) {
   const [weight, setWeight] = useState(interest.weight)
   const lastSign = useRef(Math.sign(weight) || 1)
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = Number(e.target.value)
+  // The weight after snapping. Radix commits the raw step value on a key
+  // press, so the commit reads this rather than its own argument.
+  const shown = useRef(weight)
+
+  const handleChange = useCallback(([raw]: number[]) => {
     const sign = Math.sign(raw)
     // Snap to 0 when crossing from one side to the other
     if (sign !== 0 && sign !== lastSign.current && Math.abs(raw) <= 8) {
+      shown.current = 0
       setWeight(0)
       // Don't update lastSign — keep it on the old side so dragging further through updates it
     } else {
       if (sign !== 0) lastSign.current = sign
+      shown.current = raw
       setWeight(raw)
     }
   }, [])
 
-  // The last weight sent, so the keyboard and blur paths below cannot send the
-  // same value twice.
+  // The last weight sent, so a commit that repeats it sends nothing.
   const committed = useRef(interest.weight)
 
   const handleWeightCommit = (w: number) => {
@@ -97,26 +101,13 @@ function InterestRow({ interest }: { interest: Interest }) {
           min={-100}
           max={100}
           step={1}
-          value={weight}
-          onChange={handleChange}
-          onMouseUp={(e) =>
-            handleWeightCommit(Number((e.target as HTMLInputElement).value))
-          }
-          onTouchEnd={(e) =>
-            handleWeightCommit(Number((e.target as HTMLInputElement).value))
-          }
-          // Arrow keys move the slider through onChange but never reach a
-          // pointer release, so without these a keyboard user's change was
-          // shown and then silently dropped. Blur covers a focus change that
-          // skips the key release.
-          onKeyUp={(e) =>
-            handleWeightCommit(Number((e.target as HTMLInputElement).value))
-          }
-          onBlur={(e) =>
-            handleWeightCommit(Number((e.target as HTMLInputElement).value))
-          }
+          aria-label={interest.label}
+          value={[weight]}
+          onValueChange={handleChange}
+          // Fires on pointer release and on every key step.
+          onValueCommit={() => handleWeightCommit(shown.current)}
           className='w-full'
-          style={{ accentColor: interestColor(weight) }}
+          style={{ '--primary': interestColor(weight) } as React.CSSProperties}
         />
         <div className='bg-muted-foreground/50 pointer-events-none absolute top-full left-1/2 h-2 w-px -translate-x-1/2' />
       </div>
