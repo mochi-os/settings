@@ -100,6 +100,20 @@ preferences_schema = [
         "options": ["auto", "metric", "imperial", "usa"],
         "default": "auto",
     },
+    # Where a location or a flight number links to, set on the Links page and
+    # read by every app; the first option is the default, there is no "auto".
+    {
+        "key": "maps",
+        "type": "select",
+        "options": ["openstreetmap", "google"],
+        "default": "openstreetmap",
+    },
+    {
+        "key": "flights",
+        "type": "select",
+        "options": ["flightradar24", "flightaware"],
+        "default": "flightradar24",
+    },
 ]
 
 def action_user_preferences(a):

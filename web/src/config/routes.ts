@@ -14,6 +14,7 @@ export const APP_ROUTES = {
       PREFERENCES: '/user/preferences',
       DISPLAY: '/user/display',
       ACCOUNTS: '/user/accounts',
+      LINKS: '/user/links',
       INTERESTS: '/user/interests',
       NOTIFICATIONS: '/user/notifications',
       SESSIONS: '/user/sessions',

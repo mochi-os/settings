@@ -123,9 +123,21 @@ msgstr "{count, plural, one {#vk} other {#vk}}"
 msgid "{count} remaining"
 msgstr "{count} jäljellä"
 
+#: ../../../lib/web/src/components/calendar/tooltip.ts
+msgid "{day}, {from} to {to}"
+msgstr "{day}, {from}–{to}"
+
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "{entityLabel} name"
 msgstr "{entityLabel}: nimi"
+
+#: ../../../lib/web/src/components/calendar/tooltip.ts
+msgid "{from} to {to}"
+msgstr "{from}–{to}"
+
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+msgid "{hidden, plural, one {+# more} other {+# more}}"
+msgstr "{hidden, plural, one {+# lisää} other {+# lisää}}"
 
 #: src/features/user/notifications.tsx
 msgid "{name} · app"
@@ -388,6 +400,10 @@ msgstr "Ylläpitäjä"
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "AI"
 msgstr "Tekoäly"
+
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "All day"
+msgstr "Koko päivä"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Allow anyone to search for {entityLabel}"
@@ -703,6 +719,11 @@ msgstr "Muutettu"
 msgid "Changed {field}"
 msgstr "{field} muutettu"
 
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "Changed occurrence"
+msgstr "Muutettu toistokerta"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checkbox"
 msgstr "Valintaruutu"
@@ -710,6 +731,10 @@ msgstr "Valintaruutu"
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Tarkistuslista"
+
+#: ../../../lib/web/src/components/ui/date-picker.tsx
+msgid "Choose a date"
+msgstr "Valitse päivämäärä"
 
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
@@ -805,6 +830,7 @@ msgid "Collapse sidebar"
 msgstr "Tiivistä sivupalkki"
 
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Colour"
 msgstr "Väri"
 
@@ -1788,6 +1814,7 @@ msgid "Failed to update name"
 msgstr "Nimen päivitys epäonnistui"
 
 #: src/features/user/display.tsx
+#: src/features/user/links.tsx
 #: src/features/user/preferences.tsx
 msgid "Failed to update preference"
 msgstr "Asetuksen päivitys epäonnistui"
@@ -1867,6 +1894,10 @@ msgstr "Liput"
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Flat"
 msgstr "Litteä"
+
+#: src/features/user/links.tsx
+msgid "Flights"
+msgstr "Lennot"
 
 #: src/features/user/display.tsx
 msgid "Font"
@@ -2158,6 +2189,9 @@ msgid "Linked {label}"
 msgstr "{label} liitetty"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/links.tsx
+#: src/features/user/links.tsx
 msgid "Links"
 msgstr "Linkit"
 
@@ -2265,6 +2299,10 @@ msgstr "Karttaruudun lähdemerkintä"
 msgid "Map tile URL"
 msgstr "Karttaruudun URL-osoite"
 
+#: src/features/user/links.tsx
+msgid "Maps"
+msgstr "Kartat"
+
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Mark all as read"
@@ -2349,6 +2387,10 @@ msgstr "Moderointi"
 msgid "Monday"
 msgstr "Maanantai"
 
+#: ../../../lib/web/src/components/calendar/date-header.tsx
+msgid "Month"
+msgstr "Kuukausi"
+
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "More options"
 msgstr "Lisää vaihtoehtoja"
@@ -2360,6 +2402,11 @@ msgstr "Siirretty"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 msgid "Moved {field}"
 msgstr "{field} siirretty"
+
+#. placeholder {0}: dragging.day
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+msgid "Moving to {0}"
+msgstr "Siirretään päivälle {0}"
 
 #: src/features/user/login.tsx
 msgid "My passkey"
@@ -2438,6 +2485,14 @@ msgstr "Seuraava"
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 msgid "Next image"
 msgstr "Seuraava kuva"
+
+#: ../../../lib/web/src/components/calendar/date-header.tsx
+msgid "Next month"
+msgstr "Seuraava kuukausi"
+
+#: ../../../lib/web/src/components/calendar/date-header.tsx
+msgid "Next year"
+msgstr "Seuraava vuosi"
 
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 msgid "No {parentClassNames} to add to"
@@ -2850,6 +2905,7 @@ msgid "Posts and comments"
 msgstr "Julkaisut ja kommentit"
 
 #: src/features/user/display.tsx
+#: src/features/user/links.tsx
 #: src/features/user/preferences.tsx
 msgid "Preference updated"
 msgstr "Mieltymys päivitetty"
@@ -2872,6 +2928,14 @@ msgstr "Edellinen"
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 msgid "Previous image"
 msgstr "Edellinen kuva"
+
+#: ../../../lib/web/src/components/calendar/date-header.tsx
+msgid "Previous month"
+msgstr "Edellinen kuukausi"
+
+#: ../../../lib/web/src/components/calendar/date-header.tsx
+msgid "Previous year"
+msgstr "Edellinen vuosi"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3120,6 +3184,11 @@ msgstr "Nimeä pääsyavain uudelleen"
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename this board column"
 msgstr "Nimeä tämä taulun sarake uudelleen"
+
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "Repeats"
+msgstr "Toistuu"
 
 #: src/features/system/settings.tsx
 msgid "Replace"
@@ -4286,6 +4355,10 @@ msgstr "X-asiakastunnus"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X-asiakassalaisuus"
+
+#: ../../../lib/web/src/components/calendar/date-header.tsx
+msgid "Year"
+msgstr "Vuosi"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
