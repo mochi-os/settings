@@ -14,6 +14,7 @@ import {
   flightService,
   getErrorMessage,
   mapService,
+  naturalCompare,
   shellSetLocale,
   toast,
   useLocale,
@@ -23,6 +24,16 @@ import {
 import { ExternalLink } from 'lucide-react'
 import { usePreferencesData, useSetPreference } from '@/hooks/use-preferences'
 import { ComboSelect } from '@/components/combo-select'
+
+// The services in alphabetical order, whichever is the default.
+function alphabetical(names: Record<string, string>): Record<string, string> {
+  return Object.fromEntries(
+    Object.entries(names).sort(([, a], [, b]) => naturalCompare(a, b))
+  )
+}
+
+const MAPS = alphabetical(MAP_SERVICE_NAMES)
+const FLIGHTS = alphabetical(FLIGHT_SERVICE_NAMES)
 
 /** Where links open: the map a location goes to, the tracker a flight goes to. */
 export function UserLinks() {
@@ -70,7 +81,7 @@ export function UserLinks() {
               <div className='w-full'>
                 <ComboSelect
                   value={mapService(data.preferences.maps)}
-                  options={MAP_SERVICE_NAMES}
+                  options={MAPS}
                   onChange={(value) => handleChange('maps', value)}
                   disabled={setPreference.isPending}
                 />
@@ -80,7 +91,7 @@ export function UserLinks() {
               <div className='w-full'>
                 <ComboSelect
                   value={flightService(data.preferences.flights)}
-                  options={FLIGHT_SERVICE_NAMES}
+                  options={FLIGHTS}
                   onChange={(value) => handleChange('flights', value)}
                   disabled={setPreference.isPending}
                 />

@@ -61,6 +61,23 @@ describe('UserLinks', () => {
     expect(screen.getAllByRole('combobox')[0].textContent).toBe('OpenStreetMap')
   })
 
+  it('lists the services alphabetically, whichever is the default', async () => {
+    show()
+    fireEvent.click(screen.getAllByRole('combobox')[0])
+    await screen.findByRole('option', { name: 'Google Maps' })
+    expect(
+      screen.getAllByRole('option').map((option) => option.textContent)
+    ).toEqual(['Google Maps', 'OpenStreetMap'])
+    fireEvent.keyDown(document.activeElement ?? document.body, {
+      key: 'Escape',
+    })
+    fireEvent.click(screen.getAllByRole('combobox')[1])
+    await screen.findByRole('option', { name: 'FlightAware' })
+    expect(
+      screen.getAllByRole('option').map((option) => option.textContent)
+    ).toEqual(['FlightAware', 'Flightradar24'])
+  })
+
   it('writes the chosen map service as the maps preference', async () => {
     show()
     fireEvent.click(screen.getAllByRole('combobox')[0])
