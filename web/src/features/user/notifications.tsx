@@ -8,26 +8,19 @@ import { useNavigate, useSearch } from '@tanstack/react-router'
 import { plural } from '@lingui/core/macro'
 import { Trans, useLingui } from '@lingui/react/macro'
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
   Button,
+  ConfirmDialog,
   Tabs,
   TabsList,
   TabsTrigger,
   EmptyState,
   FieldRow,
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
+  ResponsiveDialog,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogFooter,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
   GeneralError,
   Input,
   Label,
@@ -583,33 +576,33 @@ function CategoryDialog({
   }
 
   return (
-    <Dialog
+    <ResponsiveDialog
       open
       onOpenChange={(v) => {
         if (!v) onClose()
       }}
     >
-      <DialogContent
-        className='max-w-lg'
+      <ResponsiveDialogContent
+        className='sm:max-w-lg'
         onOpenAutoFocus={(e) => e.preventDefault()}
       >
-        <DialogHeader>
-          <DialogTitle>
+        <ResponsiveDialogHeader>
+          <ResponsiveDialogTitle>
             {category ? (
               <Trans>Edit category</Trans>
             ) : (
               <Trans>New category</Trans>
             )}
-          </DialogTitle>
+          </ResponsiveDialogTitle>
           {isSuppress && (
-            <DialogDescription>
+            <ResponsiveDialogDescription>
               <Trans>
                 The "No notifications" category silences any topic assigned to
                 it.
               </Trans>
-            </DialogDescription>
+            </ResponsiveDialogDescription>
           )}
-        </DialogHeader>
+        </ResponsiveDialogHeader>
         <div className='space-y-6 py-2'>
           <div className='space-y-2'>
             <Label htmlFor='cat-label'>
@@ -647,7 +640,7 @@ function CategoryDialog({
             </>
           )}
         </div>
-        <DialogFooter>
+        <ResponsiveDialogFooter>
           <Button variant='outline' onClick={onClose} disabled={saving}>
             <Trans>Cancel</Trans>
           </Button>
@@ -659,9 +652,9 @@ function CategoryDialog({
           >
             <Trans>Save</Trans>
           </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+        </ResponsiveDialogFooter>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   )
 }
 
@@ -773,46 +766,35 @@ function CategoryDeleteDialog({
   }
 
   return (
-    <AlertDialog
+    <ConfirmDialog
       open
       onOpenChange={(v) => {
         if (!v) onClose()
       }}
+      title={<Trans>Delete "{category.display ?? category.label}"?</Trans>}
+      desc=''
+      confirmText={t`Delete`}
+      isLoading={deleting}
+      handleConfirm={run}
     >
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>
-            <Trans>Delete "{category.display ?? category.label}"?</Trans>
-          </AlertDialogTitle>
-          <AlertDialogDescription />
-        </AlertDialogHeader>
-        <div className='flex items-center justify-between gap-3 py-2'>
-          <Label htmlFor='reassign-target'>
-            <Trans>Change current notifications to</Trans>
-          </Label>
-          <Select value={target} onValueChange={setTarget}>
-            <SelectTrigger id='reassign-target' className='w-48'>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {others.map((c) => (
-                <SelectItem key={c.id} value={String(c.id)}>
-                  {c.display ?? c.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <AlertDialogFooter>
-          <AlertDialogCancel disabled={deleting}>
-            <Trans>Cancel</Trans>
-          </AlertDialogCancel>
-          <AlertDialogAction onClick={run} loading={deleting}>
-            <Trans>Delete</Trans>
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+      <div className='flex items-center justify-between gap-3 py-2'>
+        <Label htmlFor='reassign-target'>
+          <Trans>Change current notifications to</Trans>
+        </Label>
+        <Select value={target} onValueChange={setTarget}>
+          <SelectTrigger id='reassign-target' className='w-48'>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {others.map((c) => (
+              <SelectItem key={c.id} value={String(c.id)}>
+                {c.display ?? c.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    </ConfirmDialog>
   )
 }
 

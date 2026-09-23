@@ -6,16 +6,8 @@ import { useRef, useState } from 'react'
 import type { SystemSetting } from '@/types/settings'
 import { Trans, useLingui } from '@lingui/react/macro'
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
   Button,
+  ConfirmDialog,
   Input,
   GeneralError,
   ListSkeleton,
@@ -269,146 +261,127 @@ function SettingField({
     })
   }
 
+  const [showReset, setShowReset] = useState(false)
+
   return (
-    <FieldRow
-      label={settingNameLabel}
-      className='sm:grid-cols-[400px_minmax(0,1fr)]'
-    >
-      <div className='flex w-full items-center gap-2'>
-        {setting.read_only ? (
-          <DataChip
-            value={emptyValueLabel(setting.value)}
-            icon={setting.read_only ? <Lock className='size-3' /> : undefined}
-          />
-        ) : methodStates ? (
-          <div className='flex items-center gap-2'>
-            <div className='bg-background inline-flex rounded-md border p-0.5'>
-              {methodStateSlots
-                .filter((slot) => methodStates.has(slot))
-                .map((slot) => (
-                  <button
-                    key={slot}
-                    type='button'
-                    onClick={() => handlePick(slot)}
-                    disabled={isSaving || localValue === slot}
-                    className={
-                      'w-20 rounded-sm py-1 text-xs font-medium transition-colors ' +
-                      (localValue === slot
-                        ? 'bg-primary text-primary-foreground'
-                        : 'text-muted-foreground hover:text-foreground')
-                    }
-                  >
-                    {methodStateLabel(slot)}
-                  </button>
-                ))}
+    <>
+      <FieldRow
+        label={settingNameLabel}
+        className='sm:grid-cols-[400px_minmax(0,1fr)]'
+      >
+        <div className='flex w-full items-center gap-2'>
+          {setting.read_only ? (
+            <DataChip
+              value={emptyValueLabel(setting.value)}
+              icon={setting.read_only ? <Lock className='size-3' /> : undefined}
+            />
+          ) : methodStates ? (
+            <div className='flex items-center gap-2'>
+              <div className='bg-background inline-flex rounded-md border p-0.5'>
+                {methodStateSlots
+                  .filter((slot) => methodStates.has(slot))
+                  .map((slot) => (
+                    <button
+                      key={slot}
+                      type='button'
+                      onClick={() => handlePick(slot)}
+                      disabled={isSaving || localValue === slot}
+                      className={
+                        'w-20 rounded-sm py-1 text-xs font-medium transition-colors ' +
+                        (localValue === slot
+                          ? 'bg-primary text-primary-foreground'
+                          : 'text-muted-foreground hover:text-foreground')
+                      }
+                    >
+                      {methodStateLabel(slot)}
+                    </button>
+                  ))}
+              </div>
+              {!isDefault && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant='ghost'
+                      size='icon'
+                      className='text-muted-foreground h-8 w-8'
+                      disabled={isSaving}
+                      aria-label={t`Reset to default`}
+                      onClick={() => setShowReset(true)}
+                    >
+                      <RotateCcw className='h-4 w-4' />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>{t`Reset to default`}</TooltipContent>
+                </Tooltip>
+              )}
             </div>
-            {!isDefault && (
-              <AlertDialog>
+          ) : isBoolean ? (
+            <div className='flex items-center gap-3'>
+              <Switch
+                checked={localValue === 'true'}
+                onCheckedChange={handleToggle}
+                disabled={isSaving}
+              />
+              {!isDefault && (
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <AlertDialogTrigger asChild>
-                      <Button
-                        variant='ghost'
-                        size='icon'
-                        className='text-muted-foreground h-8 w-8'
-                        disabled={isSaving}
-                        aria-label={t`Reset to default`}
-                      >
-                        <RotateCcw className='h-4 w-4' />
-                      </Button>
-                    </AlertDialogTrigger>
+                    <Button
+                      variant='ghost'
+                      size='icon'
+                      className='text-muted-foreground h-8 w-8'
+                      disabled={isSaving}
+                      aria-label={t`Reset to default`}
+                      onClick={() => setShowReset(true)}
+                    >
+                      <RotateCcw className='h-4 w-4' />
+                    </Button>
                   </TooltipTrigger>
                   <TooltipContent>{t`Reset to default`}</TooltipContent>
                 </Tooltip>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>
-                      <Trans>Reset to default?</Trans>
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>
-                      <Trans>
-                        This will reset "{settingNameLabel}" to its default
-                        value ({defaultLabel}).
-                      </Trans>
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>
-                      <Trans>Cancel</Trans>
-                    </AlertDialogCancel>
-                    <AlertDialogAction onClick={handleReset}>
-                      <Trans>Reset</Trans>
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-            )}
-          </div>
-        ) : isBoolean ? (
-          <div className='flex items-center gap-3'>
-            <Switch
-              checked={localValue === 'true'}
-              onCheckedChange={handleToggle}
-              disabled={isSaving}
-            />
-            {!isDefault && (
-              <AlertDialog>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <AlertDialogTrigger asChild>
+              )}
+            </div>
+          ) : isFileUpload ? (
+            <div className='flex w-full items-center gap-2'>
+              <input
+                ref={fileInputRef}
+                type='file'
+                accept='application/json,.json'
+                onChange={handleFileChosen}
+                className='hidden'
+                disabled={isSaving}
+              />
+              {storedSet ? (
+                <>
+                  <DataChip
+                    value={t`Configured`}
+                    icon={<Check className='size-3' />}
+                  />
+                  <Button
+                    variant='outline'
+                    size='sm'
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={isSaving}
+                    loading={isSaving}
+                    icon={<Upload className='h-4 w-4' />}
+                  >
+                    <Trans>Replace</Trans>
+                  </Button>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
                       <Button
                         variant='ghost'
                         size='icon'
-                        className='text-muted-foreground h-8 w-8'
+                        onClick={handleClearFile}
                         disabled={isSaving}
-                        aria-label={t`Reset to default`}
+                        aria-label={t`Clear`}
                       >
-                        <RotateCcw className='h-4 w-4' />
+                        <X className='h-4 w-4' />
                       </Button>
-                    </AlertDialogTrigger>
-                  </TooltipTrigger>
-                  <TooltipContent>{t`Reset to default`}</TooltipContent>
-                </Tooltip>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>
-                      <Trans>Reset to default?</Trans>
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>
-                      <Trans>
-                        This will reset "{settingNameLabel}" to its default
-                        value ({defaultLabel}).
-                      </Trans>
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>
-                      <Trans>Cancel</Trans>
-                    </AlertDialogCancel>
-                    <AlertDialogAction onClick={handleReset}>
-                      <Trans>Reset</Trans>
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-            )}
-          </div>
-        ) : isFileUpload ? (
-          <div className='flex w-full items-center gap-2'>
-            <input
-              ref={fileInputRef}
-              type='file'
-              accept='application/json,.json'
-              onChange={handleFileChosen}
-              className='hidden'
-              disabled={isSaving}
-            />
-            {storedSet ? (
-              <>
-                <DataChip
-                  value={t`Configured`}
-                  icon={<Check className='size-3' />}
-                />
+                    </TooltipTrigger>
+                    <TooltipContent>{t`Clear`}</TooltipContent>
+                  </Tooltip>
+                </>
+              ) : (
                 <Button
                   variant='outline'
                   size='sm'
@@ -417,113 +390,80 @@ function SettingField({
                   loading={isSaving}
                   icon={<Upload className='h-4 w-4' />}
                 >
-                  <Trans>Replace</Trans>
+                  <Trans>Choose file</Trans>
                 </Button>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant='ghost'
-                      size='icon'
-                      onClick={handleClearFile}
-                      disabled={isSaving}
-                      aria-label={t`Clear`}
-                    >
-                      <X className='h-4 w-4' />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>{t`Clear`}</TooltipContent>
-                </Tooltip>
-              </>
-            ) : (
-              <Button
-                variant='outline'
-                size='sm'
-                onClick={() => fileInputRef.current?.click()}
-                disabled={isSaving}
-                loading={isSaving}
-                icon={<Upload className='h-4 w-4' />}
-              >
-                <Trans>Choose file</Trans>
-              </Button>
-            )}
-          </div>
-        ) : setting.secret ? (
-          <SecretField
-            configured={storedSet}
-            onSave={(v) => onSave(setting.name, v)}
-            inputClassName='h-9 font-mono text-sm'
-          />
-        ) : (
-          <div className='flex w-full items-center gap-2'>
-            <Input
-              value={localValue}
-              onChange={(e) => setLocalValue(e.target.value)}
-              className='h-9 font-mono text-sm'
-              disabled={isSaving}
+              )}
+            </div>
+          ) : setting.secret ? (
+            <SecretField
+              configured={storedSet}
+              onSave={(v) => onSave(setting.name, v)}
+              inputClassName='h-9 font-mono text-sm'
             />
-            {hasChanged ? (
-              <Button
-                size='sm'
-                onClick={handleSave}
-                loading={isSaving}
-                icon={<Check className='size-4' />}
-              >
-                <Trans>Save</Trans>
-              </Button>
-            ) : (
-              !isDefault && (
-                <AlertDialog>
+          ) : (
+            <div className='flex w-full items-center gap-2'>
+              <Input
+                value={localValue}
+                onChange={(e) => setLocalValue(e.target.value)}
+                className='h-9 font-mono text-sm'
+                disabled={isSaving}
+              />
+              {hasChanged ? (
+                <Button
+                  size='sm'
+                  onClick={handleSave}
+                  loading={isSaving}
+                  icon={<Check className='size-4' />}
+                >
+                  <Trans>Save</Trans>
+                </Button>
+              ) : (
+                !isDefault && (
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <AlertDialogTrigger asChild>
-                        <Button
-                          variant='ghost'
-                          size='icon'
-                          className='text-muted-foreground h-9 w-9'
-                          disabled={isSaving}
-                          aria-label={t`Reset to default`}
-                        >
-                          <RotateCcw className='h-4 w-4' />
-                        </Button>
-                      </AlertDialogTrigger>
+                      <Button
+                        variant='ghost'
+                        size='icon'
+                        className='text-muted-foreground h-9 w-9'
+                        disabled={isSaving}
+                        aria-label={t`Reset to default`}
+                        onClick={() => setShowReset(true)}
+                      >
+                        <RotateCcw className='h-4 w-4' />
+                      </Button>
                     </TooltipTrigger>
                     <TooltipContent>{t`Reset to default`}</TooltipContent>
                   </Tooltip>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>
-                        <Trans>Reset to default?</Trans>
-                      </AlertDialogTitle>
-                      <AlertDialogDescription>
-                        {setting.default ? (
-                          <Trans>
-                            This will reset "{settingNameLabel}" to its default
-                            value ({defaultLabel}).
-                          </Trans>
-                        ) : (
-                          <Trans>
-                            This will reset "{settingNameLabel}" to its default
-                            (empty).
-                          </Trans>
-                        )}
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>
-                        <Trans>Cancel</Trans>
-                      </AlertDialogCancel>
-                      <AlertDialogAction onClick={handleReset}>
-                        <Trans>Reset</Trans>
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              )
-            )}
-          </div>
-        )}
-      </div>
-    </FieldRow>
+                )
+              )}
+            </div>
+          )}
+        </div>
+      </FieldRow>
+
+      <ConfirmDialog
+        open={showReset}
+        onOpenChange={setShowReset}
+        title={t`Reset to default?`}
+        desc={
+          setting.default ? (
+            <Trans>
+              This will reset "{settingNameLabel}" to its default value (
+              {defaultLabel}).
+            </Trans>
+          ) : (
+            <Trans>
+              This will reset "{settingNameLabel}" to its default (empty).
+            </Trans>
+          )
+        }
+        confirmText={t`Reset`}
+        handleConfirm={() => {
+          handleReset()
+          setShowReset(false)
+        }}
+      />
+    </>
   )
 }
 
