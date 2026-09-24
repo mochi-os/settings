@@ -123,6 +123,7 @@ msgstr "{count, plural, one {#週} other {#週}}"
 msgid "{count} remaining"
 msgstr "剩餘 {count} 個"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
 msgstr "{day} {from} 至 {to}"
@@ -131,6 +132,7 @@ msgstr "{day} {from} 至 {to}"
 msgid "{entityLabel} name"
 msgstr "{entityLabel}名稱"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "{from} 至 {to}"
@@ -228,6 +230,7 @@ msgstr "帳戶"
 msgid "Account added"
 msgstr "帳戶已新增"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Account linked"
 msgstr "帳戶已連結"
@@ -398,9 +401,11 @@ msgid "Administrator"
 msgstr "管理員"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "All day"
 msgstr "整天"
@@ -631,6 +636,14 @@ msgstr "瀏覽器"
 #: src/features/user/notifications.tsx
 msgid "Browser notifications"
 msgstr "瀏覽器通知"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Calendar"
+msgstr "行事曆"
+
+#: ../../../lib/web/src/features/accounts/types.ts
+msgid "Calendar server"
+msgstr "行事曆伺服器"
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Camera permission denied"
@@ -934,6 +947,10 @@ msgstr "繼續"
 msgid "Continue with {label}"
 msgstr "使用 {label} 繼續"
 
+#: ../../../lib/web/src/features/accounts/account-add.tsx
+msgid "Continue with {providerLabel}"
+msgstr "使用 {providerLabel} 繼續"
+
 #: ../../../lib/web/src/lib/toast-utils.ts
 msgid "Copied"
 msgstr "已複製"
@@ -942,6 +959,10 @@ msgstr "已複製"
 msgid "Copied to clipboard"
 msgstr "已複製到剪貼簿"
 
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
 msgid "Copy"
 msgstr "複製"
@@ -958,6 +979,7 @@ msgstr "無法關閉你的帳戶"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "無法複製代碼。請手動選取並複製。"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not link account"
 msgstr "無法連結帳戶"
@@ -966,6 +988,7 @@ msgstr "無法連結帳戶"
 msgid "Could not load this document. Please try again later."
 msgstr "無法載入此文件,請稍後再試。"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not start linking"
 msgstr "無法開始連結"
@@ -2192,6 +2215,7 @@ msgstr "連結"
 msgid "Link account"
 msgstr "連結帳號"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Linked {label}"
 msgstr "已連結 {label}"
@@ -2411,8 +2435,10 @@ msgstr "已移動"
 msgid "Moved {field}"
 msgstr "已移動{field}"
 
-#. placeholder {0}: dragging.day
+#. placeholder {0}: dayName(current.day)
+#. placeholder {0}: dayName(dragging.day)
 #: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "Moving to {0}"
 msgstr "正在移動到 {0}"
 
@@ -2690,6 +2716,7 @@ msgid "Nothing found"
 msgstr "找不到任何項目"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 msgid "Notifications"
@@ -3285,8 +3312,14 @@ msgid "Revoke"
 msgstr "撤銷"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/connected-accounts.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "Revoke access"
 msgstr "撤銷存取權限"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Revoke access?"
+msgstr "撤銷存取權限?"
 
 #: src/features/system/users.tsx
 msgid "Revoke all"
@@ -3663,6 +3696,10 @@ msgstr "請使用有權存取 <0/> 此資源的帳戶登入。"
 msgid "Sign out"
 msgstr "登出"
 
+#: src/features/user/connected-accounts.tsx
+msgid "Sign-in"
+msgstr "登入"
+
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."
 msgstr "登出中..."
@@ -3821,6 +3858,7 @@ msgstr "測試已傳送至 {total} 個目的地中的 {sent} 個"
 msgid "Text"
 msgstr "文字"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That account is already linked to another user"
 msgstr "該帳戶已連結至其他使用者"
@@ -3833,6 +3871,7 @@ msgstr "該代碼不正確或已過期。"
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "無法傳送。檔案可能太大，或您的連線失敗。請嘗試較小的檔案。"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That email is already registered to another account"
 msgstr "該電子郵件已註冊於其他帳戶"
@@ -3962,6 +4001,11 @@ msgstr "這將會把所有偏好設定重設為預設值。"
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "這會將顯示設定重置為預設值。"
+
+#. placeholder {0}: getProviderLabel(account.type)
+#: src/features/user/connected-accounts.tsx
+msgid "This will revoke the calendar access of \"{displayName}\". Signing in with {0} stays until you unlink it on the Login page."
+msgstr "這將撤銷「{displayName}」的行事曆存取權限。使用 {0} 登入將保留,直到你在登入頁面取消連結。"
 
 #: src/features/user/sessions.tsx
 msgid "This will sign out this session. If this is your current session, you will need to sign in again."

@@ -123,6 +123,7 @@ msgstr "{count, plural, one {#vk} other {#vk}}"
 msgid "{count} remaining"
 msgstr "{count} okusele"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
 msgstr "{day}, kusukela ku-{from} kuya ku-{to}"
@@ -131,6 +132,7 @@ msgstr "{day}, kusukela ku-{from} kuya ku-{to}"
 msgid "{entityLabel} name"
 msgstr "Igama le-{entityLabel}"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "kusukela ku-{from} kuya ku-{to}"
@@ -228,6 +230,7 @@ msgstr "I-akhawunti"
 msgid "Account added"
 msgstr "I-akhawunti yengeziwe"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Account linked"
 msgstr "I-akhawunti ixhunyiwe"
@@ -398,9 +401,11 @@ msgid "Administrator"
 msgstr "Umlawuli"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "I-AI"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "All day"
 msgstr "Usuku lonke"
@@ -631,6 +636,14 @@ msgstr "Isiphequluli"
 #: src/features/user/notifications.tsx
 msgid "Browser notifications"
 msgstr "Izaziso zebhrawuza"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Calendar"
+msgstr "Ikhalenda"
+
+#: ../../../lib/web/src/features/accounts/types.ts
+msgid "Calendar server"
+msgstr "Iseva yekhalenda"
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Camera permission denied"
@@ -934,6 +947,10 @@ msgstr "Qhubeka"
 msgid "Continue with {label}"
 msgstr "Qhubeka nge-{label}"
 
+#: ../../../lib/web/src/features/accounts/account-add.tsx
+msgid "Continue with {providerLabel}"
+msgstr "Qhubeka nge-{providerLabel}"
+
 #: ../../../lib/web/src/lib/toast-utils.ts
 msgid "Copied"
 msgstr "Kukopishiwe"
@@ -942,6 +959,10 @@ msgstr "Kukopishiwe"
 msgid "Copied to clipboard"
 msgstr "Kukopishelwe kwi-clipboard"
 
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
 msgid "Copy"
 msgstr "Kopisha"
@@ -958,6 +979,7 @@ msgstr "Ayikwazanga ukuvalwa i-akhawunti yakho"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Amakhodi awakopishekanga. Wakhethe uwakopishe ngesandla."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not link account"
 msgstr "Akukwazanga ukuxhuma i-akhawunti"
@@ -966,6 +988,7 @@ msgstr "Akukwazanga ukuxhuma i-akhawunti"
 msgid "Could not load this document. Please try again later."
 msgstr "Asikwazanga ukulayisha le dokhumenti. Sicela uzame futhi ngokuhamba kwesikhathi."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not start linking"
 msgstr "Akukwazanga ukuqala ukuxhuma"
@@ -2192,6 +2215,7 @@ msgstr "Isixhumanisi"
 msgid "Link account"
 msgstr "Xhuma i-akhawunti"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Linked {label}"
 msgstr "Kuxhunyiwe i-{label}"
@@ -2411,8 +2435,10 @@ msgstr "Kuhanjiswe"
 msgid "Moved {field}"
 msgstr "Kuhanjiswe {field}"
 
-#. placeholder {0}: dragging.day
+#. placeholder {0}: dayName(current.day)
+#. placeholder {0}: dayName(dragging.day)
 #: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "Moving to {0}"
 msgstr "Kuhanjiswa ku-{0}"
 
@@ -2690,6 +2716,7 @@ msgid "Nothing found"
 msgstr "Akukho okutholakele"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 msgid "Notifications"
@@ -3285,8 +3312,14 @@ msgid "Revoke"
 msgstr "Hoxisa"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/connected-accounts.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "Revoke access"
 msgstr "Buyisela ukufinyelela"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Revoke access?"
+msgstr "Hoxisa ukufinyelela?"
 
 #: src/features/system/users.tsx
 msgid "Revoke all"
@@ -3663,6 +3696,10 @@ msgstr "Ngena ngokusebenzisa i-akhawunti enokufinyelela <0/> kulesi sisetshenzis
 msgid "Sign out"
 msgstr "Phuma"
 
+#: src/features/user/connected-accounts.tsx
+msgid "Sign-in"
+msgstr "Ukungena"
+
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."
 msgstr "Kuyaphunywa..."
@@ -3821,6 +3858,7 @@ msgstr "Ukuhlolwa kuthunyelwe ku-{sent} kwezingu-{total} izindawo"
 msgid "Text"
 msgstr "Umbhalo"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That account is already linked to another user"
 msgstr "Leyo akhawunti isivele ixhunywe komunye umsebenzisi"
@@ -3833,6 +3871,7 @@ msgstr "Leyo khodi ayilungile noma isiphelelwe yisikhathi."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Akukwazanga ukuthunyelwa. Amafayela angase abe makhulu kakhulu, noma uxhumano lwakho luhlulekile. Zama amafayela amancane."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That email is already registered to another account"
 msgstr "Leyo i-imeyili isivele ibhaliselwe kwenye i-akhawunti"
@@ -3962,6 +4001,11 @@ msgstr "Lokhu kuzosetha kabusha zonke izintandokazi zibe yizilinganiso ezizenzak
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Lokhu kuzobuyisela izilungiselelo zesibonisi emananí awo azenzakalelayo."
+
+#. placeholder {0}: getProviderLabel(account.type)
+#: src/features/user/connected-accounts.tsx
+msgid "This will revoke the calendar access of \"{displayName}\". Signing in with {0} stays until you unlink it on the Login page."
+msgstr "Lokhu kuzohoxisa ukufinyelela kwekhalenda kuka \"{displayName}\". Ukungena nge-{0} kuzohlala kuze uyisuse ekhasini lokuNgena."
 
 #: src/features/user/sessions.tsx
 msgid "This will sign out this session. If this is your current session, you will need to sign in again."

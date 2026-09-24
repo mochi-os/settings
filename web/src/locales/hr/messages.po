@@ -123,6 +123,7 @@ msgstr "{count, plural, one {#tj} other {#tj}}"
 msgid "{count} remaining"
 msgstr "{count} preostalo"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
 msgstr "{day}, od {from} do {to}"
@@ -131,6 +132,7 @@ msgstr "{day}, od {from} do {to}"
 msgid "{entityLabel} name"
 msgstr "Naziv {entityLabel}"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "od {from} do {to}"
@@ -228,6 +230,7 @@ msgstr "Račun"
 msgid "Account added"
 msgstr "Račun dodan"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Account linked"
 msgstr "Račun povezan"
@@ -398,9 +401,11 @@ msgid "Administrator"
 msgstr "Administrator"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "All day"
 msgstr "Cijeli dan"
@@ -631,6 +636,14 @@ msgstr "Preglednik"
 #: src/features/user/notifications.tsx
 msgid "Browser notifications"
 msgstr "Obavijesti preglednika"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Calendar"
+msgstr "Kalendar"
+
+#: ../../../lib/web/src/features/accounts/types.ts
+msgid "Calendar server"
+msgstr "Poslužitelj kalendara"
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Camera permission denied"
@@ -934,6 +947,10 @@ msgstr "Nastavi"
 msgid "Continue with {label}"
 msgstr "Nastavi s {label}"
 
+#: ../../../lib/web/src/features/accounts/account-add.tsx
+msgid "Continue with {providerLabel}"
+msgstr "Nastavi s {providerLabel}"
+
 #: ../../../lib/web/src/lib/toast-utils.ts
 msgid "Copied"
 msgstr "Kopirano"
@@ -942,6 +959,10 @@ msgstr "Kopirano"
 msgid "Copied to clipboard"
 msgstr "Kopirano u međuspremnik"
 
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
 msgid "Copy"
 msgstr "Kopiraj"
@@ -958,6 +979,7 @@ msgstr "Nije moguće zatvoriti vaš račun"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kodove nije bilo moguće kopirati. Označite ih i kopirajte ručno."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not link account"
 msgstr "Nije moguće povezati račun"
@@ -966,6 +988,7 @@ msgstr "Nije moguće povezati račun"
 msgid "Could not load this document. Please try again later."
 msgstr "Nije moguće učitati ovaj dokument. Pokušajte ponovno kasnije."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not start linking"
 msgstr "Nije moguće započeti povezivanje"
@@ -2192,6 +2215,7 @@ msgstr "Poveznica"
 msgid "Link account"
 msgstr "Poveži račun"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Linked {label}"
 msgstr "Povezano {label}"
@@ -2411,8 +2435,10 @@ msgstr "Premješteno"
 msgid "Moved {field}"
 msgstr "Premješteno {field}"
 
-#. placeholder {0}: dragging.day
+#. placeholder {0}: dayName(current.day)
+#. placeholder {0}: dayName(dragging.day)
 #: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "Moving to {0}"
 msgstr "Premještanje na {0}"
 
@@ -2690,6 +2716,7 @@ msgid "Nothing found"
 msgstr "Ništa nije pronađeno"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 msgid "Notifications"
@@ -3285,8 +3312,14 @@ msgid "Revoke"
 msgstr "Opozovi"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/connected-accounts.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "Revoke access"
 msgstr "Opozovi pristup"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Revoke access?"
+msgstr "Opozvati pristup?"
 
 #: src/features/system/users.tsx
 msgid "Revoke all"
@@ -3663,6 +3696,10 @@ msgstr "Prijavite se računom koji ima pristup <0/> ovom resursu."
 msgid "Sign out"
 msgstr "Odjava"
 
+#: src/features/user/connected-accounts.tsx
+msgid "Sign-in"
+msgstr "Prijava"
+
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."
 msgstr "Odjavljivanje..."
@@ -3821,6 +3858,7 @@ msgstr "Test poslan na {sent} od {total} odredišta"
 msgid "Text"
 msgstr "Tekst"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That account is already linked to another user"
 msgstr "Taj račun je već povezan s drugim korisnikom"
@@ -3833,6 +3871,7 @@ msgstr "Taj kôd nije ispravan ili je istekao."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Slanje nije uspjelo. Datoteke su možda prevelike ili je veza prekinuta. Pokušajte s manjim datotekama."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That email is already registered to another account"
 msgstr "Ta e-pošta je već registrirana na drugom računu"
@@ -3962,6 +4001,11 @@ msgstr "Ovo će ponovno postaviti sve preferencije na zadane vrijednosti."
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Ovo će vratiti postavke prikaza na njihove zadane vrijednosti."
+
+#. placeholder {0}: getProviderLabel(account.type)
+#: src/features/user/connected-accounts.tsx
+msgid "This will revoke the calendar access of \"{displayName}\". Signing in with {0} stays until you unlink it on the Login page."
+msgstr "Time ćete opozvati pristup kalendaru za \"{displayName}\". Prijava putem {0} ostaje dok je ne razvežete na stranici Prijava."
 
 #: src/features/user/sessions.tsx
 msgid "This will sign out this session. If this is your current session, you will need to sign in again."

@@ -123,6 +123,7 @@ msgstr "{count, plural, one {#w} other {#w}}"
 msgid "{count} remaining"
 msgstr "{count} oor"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
 msgstr "{day}, {from} tot {to}"
@@ -131,6 +132,7 @@ msgstr "{day}, {from} tot {to}"
 msgid "{entityLabel} name"
 msgstr "{entityLabel}-naam"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "{from} tot {to}"
@@ -228,6 +230,7 @@ msgstr "Rekening"
 msgid "Account added"
 msgstr "Rekening bygevoeg"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Account linked"
 msgstr "Rekening gekoppel"
@@ -398,9 +401,11 @@ msgid "Administrator"
 msgstr "Administrateur"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "KI"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "All day"
 msgstr "Heeldag"
@@ -631,6 +636,14 @@ msgstr "Blaaier"
 #: src/features/user/notifications.tsx
 msgid "Browser notifications"
 msgstr "Blaaierkennisgewings"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Calendar"
+msgstr "Kalender"
+
+#: ../../../lib/web/src/features/accounts/types.ts
+msgid "Calendar server"
+msgstr "Kalenderbediener"
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Camera permission denied"
@@ -934,6 +947,10 @@ msgstr "Gaan voort"
 msgid "Continue with {label}"
 msgstr "Gaan voort met {label}"
 
+#: ../../../lib/web/src/features/accounts/account-add.tsx
+msgid "Continue with {providerLabel}"
+msgstr "Gaan voort met {providerLabel}"
+
 #: ../../../lib/web/src/lib/toast-utils.ts
 msgid "Copied"
 msgstr "Gekopieer"
@@ -942,6 +959,10 @@ msgstr "Gekopieer"
 msgid "Copied to clipboard"
 msgstr "Gekopieer na knipbord"
 
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
 msgid "Copy"
 msgstr "Kopieer"
@@ -958,6 +979,7 @@ msgstr "Kon nie jou rekening sluit nie"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kon nie die kodes kopieer nie. Merk en kopieer hulle self."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not link account"
 msgstr "Kon nie rekening koppel nie"
@@ -966,6 +988,7 @@ msgstr "Kon nie rekening koppel nie"
 msgid "Could not load this document. Please try again later."
 msgstr "Kon nie hierdie dokument laai nie. Probeer later weer."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not start linking"
 msgstr "Kon nie koppeling begin nie"
@@ -2192,6 +2215,7 @@ msgstr "Skakel"
 msgid "Link account"
 msgstr "Koppel rekening"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Linked {label}"
 msgstr "{label} gekoppel"
@@ -2411,8 +2435,10 @@ msgstr "Geskuif"
 msgid "Moved {field}"
 msgstr "{field} geskuif"
 
-#. placeholder {0}: dragging.day
+#. placeholder {0}: dayName(current.day)
+#. placeholder {0}: dayName(dragging.day)
 #: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "Moving to {0}"
 msgstr "Skuif na {0}"
 
@@ -2690,6 +2716,7 @@ msgid "Nothing found"
 msgstr "Niks gevind nie"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 msgid "Notifications"
@@ -3285,8 +3312,14 @@ msgid "Revoke"
 msgstr "Herroep"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/connected-accounts.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "Revoke access"
 msgstr "Herroep toegang"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Revoke access?"
+msgstr "Herroep toegang?"
 
 #: src/features/system/users.tsx
 msgid "Revoke all"
@@ -3663,6 +3696,10 @@ msgstr "Meld aan met 'n rekening <0/> wat toegang tot hierdie hulpbron het."
 msgid "Sign out"
 msgstr "Meld af"
 
+#: src/features/user/connected-accounts.tsx
+msgid "Sign-in"
+msgstr "Aanmelding"
+
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."
 msgstr "Besig om af te meld..."
@@ -3821,6 +3858,7 @@ msgstr "Toets na {sent} van {total} bestemmings gestuur"
 msgid "Text"
 msgstr "Teks"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That account is already linked to another user"
 msgstr "Daardie rekening is reeds gekoppel aan 'n ander gebruiker"
@@ -3833,6 +3871,7 @@ msgstr "Daardie kode is verkeerd of het verval."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Dit kon nie gestuur word nie. Die lêers is dalk te groot, of jou verbinding het gefaal. Probeer kleiner lêers."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That email is already registered to another account"
 msgstr "Daardie e-pos is reeds geregistreer by 'n ander rekening"
@@ -3962,6 +4001,11 @@ msgstr "Dit sal alle voorkeure terugstel na hul verstekwaardes."
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Dit herstel skerm-instellings na hul verstekwaardes."
+
+#. placeholder {0}: getProviderLabel(account.type)
+#: src/features/user/connected-accounts.tsx
+msgid "This will revoke the calendar access of \"{displayName}\". Signing in with {0} stays until you unlink it on the Login page."
+msgstr "Dit sal die kalendertoegang van \"{displayName}\" herroep. Aanmelding met {0} bly totdat jy dit op die Aanmeld-bladsy ontkoppel."
 
 #: src/features/user/sessions.tsx
 msgid "This will sign out this session. If this is your current session, you will need to sign in again."

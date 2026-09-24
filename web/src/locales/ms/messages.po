@@ -123,6 +123,7 @@ msgstr "{count, plural, one {#mgg} other {#mgg}}"
 msgid "{count} remaining"
 msgstr "{count} berbaki"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
 msgstr "{day}, {from} hingga {to}"
@@ -131,6 +132,7 @@ msgstr "{day}, {from} hingga {to}"
 msgid "{entityLabel} name"
 msgstr "Nama {entityLabel}"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "{from} hingga {to}"
@@ -228,6 +230,7 @@ msgstr "Akaun"
 msgid "Account added"
 msgstr "Akaun ditambah"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Account linked"
 msgstr "Akaun dipautkan"
@@ -398,9 +401,11 @@ msgid "Administrator"
 msgstr "Pentadbir"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "All day"
 msgstr "Sepanjang hari"
@@ -631,6 +636,14 @@ msgstr "Pelayar"
 #: src/features/user/notifications.tsx
 msgid "Browser notifications"
 msgstr "Pemberitahuan pelayar"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Calendar"
+msgstr "Kalendar"
+
+#: ../../../lib/web/src/features/accounts/types.ts
+msgid "Calendar server"
+msgstr "Pelayan kalendar"
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Camera permission denied"
@@ -934,6 +947,10 @@ msgstr "Teruskan"
 msgid "Continue with {label}"
 msgstr "Teruskan dengan {label}"
 
+#: ../../../lib/web/src/features/accounts/account-add.tsx
+msgid "Continue with {providerLabel}"
+msgstr "Teruskan dengan {providerLabel}"
+
 #: ../../../lib/web/src/lib/toast-utils.ts
 msgid "Copied"
 msgstr "Disalin"
@@ -942,6 +959,10 @@ msgstr "Disalin"
 msgid "Copied to clipboard"
 msgstr "Disalin ke papan keratan"
 
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
 msgid "Copy"
 msgstr "Salin"
@@ -958,6 +979,7 @@ msgstr "Tidak dapat menutup akaun anda"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kod tidak dapat disalin. Pilih dan salin secara manual."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not link account"
 msgstr "Tidak dapat memautkan akaun"
@@ -966,6 +988,7 @@ msgstr "Tidak dapat memautkan akaun"
 msgid "Could not load this document. Please try again later."
 msgstr "Dokumen ini tidak dapat dimuatkan. Sila cuba lagi nanti."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not start linking"
 msgstr "Tidak dapat memulakan pemautan"
@@ -2192,6 +2215,7 @@ msgstr "Pautan"
 msgid "Link account"
 msgstr "Pautkan akaun"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Linked {label}"
 msgstr "{label} dipautkan"
@@ -2411,8 +2435,10 @@ msgstr "Dipindahkan"
 msgid "Moved {field}"
 msgstr "{field} dipindahkan"
 
-#. placeholder {0}: dragging.day
+#. placeholder {0}: dayName(current.day)
+#. placeholder {0}: dayName(dragging.day)
 #: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "Moving to {0}"
 msgstr "Mengalihkan ke {0}"
 
@@ -2690,6 +2716,7 @@ msgid "Nothing found"
 msgstr "Tiada apa-apa dijumpai"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 msgid "Notifications"
@@ -3285,8 +3312,14 @@ msgid "Revoke"
 msgstr "Batalkan"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/connected-accounts.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "Revoke access"
 msgstr "Batalkan akses"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Revoke access?"
+msgstr "Batalkan akses?"
 
 #: src/features/system/users.tsx
 msgid "Revoke all"
@@ -3663,6 +3696,10 @@ msgstr "Log masuk dengan akaun yang mempunyai akses <0/> kepada sumber ini."
 msgid "Sign out"
 msgstr "Log keluar"
 
+#: src/features/user/connected-accounts.tsx
+msgid "Sign-in"
+msgstr "Log masuk"
+
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."
 msgstr "Sedang log keluar..."
@@ -3821,6 +3858,7 @@ msgstr "Ujian dihantar ke {sent} daripada {total} destinasi"
 msgid "Text"
 msgstr "Teks"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That account is already linked to another user"
 msgstr "Akaun itu telah dipautkan kepada pengguna lain"
@@ -3833,6 +3871,7 @@ msgstr "Kod itu tidak betul atau telah tamat tempoh."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Tidak dapat dihantar. Fail mungkin terlalu besar, atau sambungan anda gagal. Cuba fail yang lebih kecil."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That email is already registered to another account"
 msgstr "E-mel itu telah didaftarkan ke akaun lain"
@@ -3962,6 +4001,11 @@ msgstr "Ini akan menetapkan semula semua keutamaan kepada nilai lalainya."
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Ini akan menetapkan semula tetapan paparan kepada nilai lalainya."
+
+#. placeholder {0}: getProviderLabel(account.type)
+#: src/features/user/connected-accounts.tsx
+msgid "This will revoke the calendar access of \"{displayName}\". Signing in with {0} stays until you unlink it on the Login page."
+msgstr "Ini akan membatalkan akses kalendar \"{displayName}\". Log masuk dengan {0} kekal sehingga anda menyahpautnya di halaman Log masuk."
 
 #: src/features/user/sessions.tsx
 msgid "This will sign out this session. If this is your current session, you will need to sign in again."

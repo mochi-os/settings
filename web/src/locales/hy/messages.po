@@ -123,6 +123,7 @@ msgstr "{count, plural, one {#շաբ} other {#շաբ}}"
 msgid "{count} remaining"
 msgstr "{count} մնացած"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
 msgstr "{day}, {from}-ից մինչև {to}"
@@ -131,6 +132,7 @@ msgstr "{day}, {from}-ից մինչև {to}"
 msgid "{entityLabel} name"
 msgstr "{entityLabel}-ի անունը"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "{from}-ից մինչև {to}"
@@ -228,6 +230,7 @@ msgstr "Հաշիվ"
 msgid "Account added"
 msgstr "Հաշիվն ավելացվեց"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Account linked"
 msgstr "Հաշիվը կապակցվեց"
@@ -398,9 +401,11 @@ msgid "Administrator"
 msgstr "Ադմինիստրատոր"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "All day"
 msgstr "Ամբողջ օրը"
@@ -631,6 +636,14 @@ msgstr "Դիտարկիչ"
 #: src/features/user/notifications.tsx
 msgid "Browser notifications"
 msgstr "Բրաուզերի ծանուցումներ"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Calendar"
+msgstr "Օրացույց"
+
+#: ../../../lib/web/src/features/accounts/types.ts
+msgid "Calendar server"
+msgstr "Օրացույցի սերվեր"
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Camera permission denied"
@@ -934,6 +947,10 @@ msgstr "Շարունակել"
 msgid "Continue with {label}"
 msgstr "Շարունակել {label}-ով"
 
+#: ../../../lib/web/src/features/accounts/account-add.tsx
+msgid "Continue with {providerLabel}"
+msgstr "Շարունակել {providerLabel}-ով"
+
 #: ../../../lib/web/src/lib/toast-utils.ts
 msgid "Copied"
 msgstr "Պատճենվեց"
@@ -942,6 +959,10 @@ msgstr "Պատճենվեց"
 msgid "Copied to clipboard"
 msgstr "Պատճենվեց սեղմատախտակին"
 
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
 msgid "Copy"
 msgstr "Պատճենել"
@@ -958,6 +979,7 @@ msgstr "Չհաջողվեց փակել ձեր հաշիվը"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Չհաջողվեց պատճենել կոդերը։ Ընտրեք և պատճենեք դրանք ձեռքով։"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not link account"
 msgstr "Չհաջողվեց կապել հաշիվը"
@@ -966,6 +988,7 @@ msgstr "Չհաջողվեց կապել հաշիվը"
 msgid "Could not load this document. Please try again later."
 msgstr "Չհաջողվեց բեռնել այս փաստաթուղթը։ Խնդրում ենք փորձել ավելի ուշ։"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not start linking"
 msgstr "Չհաջողվեց սկսել կապումը"
@@ -2192,6 +2215,7 @@ msgstr "Հղում"
 msgid "Link account"
 msgstr "Կապել հաշիվը"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Linked {label}"
 msgstr "Կապվել է {label}"
@@ -2411,8 +2435,10 @@ msgstr "Տեղափոխվել է"
 msgid "Moved {field}"
 msgstr "Տեղափոխվել է {field}"
 
-#. placeholder {0}: dragging.day
+#. placeholder {0}: dayName(current.day)
+#. placeholder {0}: dayName(dragging.day)
 #: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "Moving to {0}"
 msgstr "Տեղափոխվում է {0}"
 
@@ -2690,6 +2716,7 @@ msgid "Nothing found"
 msgstr "Ոչինչ չի գտնվել"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 msgid "Notifications"
@@ -3285,8 +3312,14 @@ msgid "Revoke"
 msgstr "Հետ վերցնել"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/connected-accounts.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "Revoke access"
 msgstr "Չեղարկել մուտքը"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Revoke access?"
+msgstr "Չեղարկե՞լ մուտքը"
 
 #: src/features/system/users.tsx
 msgid "Revoke all"
@@ -3663,6 +3696,10 @@ msgstr "Մուտք գործեք հաշվով, որն ունի հասանելիո
 msgid "Sign out"
 msgstr "Դուրս գալ"
 
+#: src/features/user/connected-accounts.tsx
+msgid "Sign-in"
+msgstr "Մուտք"
+
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."
 msgstr "Դուրս է գալիս..."
@@ -3821,6 +3858,7 @@ msgstr "Թեստն ուղարկվել է {sent} նպատակակետի՝ {total}
 msgid "Text"
 msgstr "Տեքստ"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That account is already linked to another user"
 msgstr "Այդ հաշիվն արդեն կապակցված է մեկ այլ օգտատիրոջ հետ"
@@ -3833,6 +3871,7 @@ msgstr "Այդ կոդը սխալ է կամ ժամկետանց է։"
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Չհաջողվեց ուղարկել։ Ֆայլերը կարող են չափազանց մեծ լինել, կամ կապը խզվել է։ Փորձեք ավելի փոքր ֆայլեր։"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That email is already registered to another account"
 msgstr "Այդ էլ. փոստն արդեն գրանցված է մեկ այլ հաշվում"
@@ -3962,6 +4001,11 @@ msgstr "Սա կվերականգնի բոլոր նախընտրություննե�
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Սա կվերակայի ցուցադրման կարգավորումները լռելյայն արժեքներին:"
+
+#. placeholder {0}: getProviderLabel(account.type)
+#: src/features/user/connected-accounts.tsx
+msgid "This will revoke the calendar access of \"{displayName}\". Signing in with {0} stays until you unlink it on the Login page."
+msgstr "Սա կչեղարկի \"{displayName}\"-ի օրացույցի մուտքը։ {0}-ով մուտքը կմնա, քանի դեռ չեք ապակապակցել այն Մուտք էջում։"
 
 #: src/features/user/sessions.tsx
 msgid "This will sign out this session. If this is your current session, you will need to sign in again."

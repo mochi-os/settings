@@ -123,6 +123,7 @@ msgstr "{count, plural, one {#hét} other {#hét}}"
 msgid "{count} remaining"
 msgstr "{count} hátra"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
 msgstr "{day}, {from} és {to} között"
@@ -131,6 +132,7 @@ msgstr "{day}, {from} és {to} között"
 msgid "{entityLabel} name"
 msgstr "{entityLabel} neve"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "{from} és {to} között"
@@ -228,6 +230,7 @@ msgstr "Fiók"
 msgid "Account added"
 msgstr "Fiók hozzáadva"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Account linked"
 msgstr "Fiók összekapcsolva"
@@ -398,9 +401,11 @@ msgid "Administrator"
 msgstr "Adminisztrátor"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "MI"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "All day"
 msgstr "Egész nap"
@@ -631,6 +636,14 @@ msgstr "Böngésző"
 #: src/features/user/notifications.tsx
 msgid "Browser notifications"
 msgstr "Böngészőértesítések"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Calendar"
+msgstr "Naptár"
+
+#: ../../../lib/web/src/features/accounts/types.ts
+msgid "Calendar server"
+msgstr "Naptárkiszolgáló"
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Camera permission denied"
@@ -934,6 +947,10 @@ msgstr "Folytatás"
 msgid "Continue with {label}"
 msgstr "Folytatás a következővel: {label}"
 
+#: ../../../lib/web/src/features/accounts/account-add.tsx
+msgid "Continue with {providerLabel}"
+msgstr "Folytatás ezzel: {providerLabel}"
+
 #: ../../../lib/web/src/lib/toast-utils.ts
 msgid "Copied"
 msgstr "Másolva"
@@ -942,6 +959,10 @@ msgstr "Másolva"
 msgid "Copied to clipboard"
 msgstr "A vágólapra másolva"
 
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
 msgid "Copy"
 msgstr "Másolás"
@@ -958,6 +979,7 @@ msgstr "Nem sikerült bezárni a fiókját"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "A kódokat nem sikerült másolni. Jelölje ki és másolja őket kézzel."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not link account"
 msgstr "A fiók összekapcsolása sikertelen"
@@ -966,6 +988,7 @@ msgstr "A fiók összekapcsolása sikertelen"
 msgid "Could not load this document. Please try again later."
 msgstr "Nem sikerült betölteni ezt a dokumentumot. Próbálja újra később."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not start linking"
 msgstr "Az összekapcsolás indítása sikertelen"
@@ -2192,6 +2215,7 @@ msgstr "Hivatkozás"
 msgid "Link account"
 msgstr "Fiók összekapcsolása"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Linked {label}"
 msgstr "{label} csatolva"
@@ -2411,8 +2435,10 @@ msgstr "Áthelyezve"
 msgid "Moved {field}"
 msgstr "{field} áthelyezve"
 
-#. placeholder {0}: dragging.day
+#. placeholder {0}: dayName(current.day)
+#. placeholder {0}: dayName(dragging.day)
 #: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "Moving to {0}"
 msgstr "Áthelyezés ide: {0}"
 
@@ -2690,6 +2716,7 @@ msgid "Nothing found"
 msgstr "Semmi sem található"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 msgid "Notifications"
@@ -3285,8 +3312,14 @@ msgid "Revoke"
 msgstr "Visszavonás"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/connected-accounts.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "Revoke access"
 msgstr "Hozzáférés visszavonása"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Revoke access?"
+msgstr "Visszavonja a hozzáférést?"
 
 #: src/features/system/users.tsx
 msgid "Revoke all"
@@ -3663,6 +3696,10 @@ msgstr "Jelentkezzen be olyan fiókkal, amely hozzáfér <0/> ehhez az erőforr�
 msgid "Sign out"
 msgstr "Kijelentkezés"
 
+#: src/features/user/connected-accounts.tsx
+msgid "Sign-in"
+msgstr "Bejelentkezés"
+
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."
 msgstr "Kijelentkezés..."
@@ -3821,6 +3858,7 @@ msgstr "Teszt elküldve {sent}/{total} célra"
 msgid "Text"
 msgstr "Szöveg"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That account is already linked to another user"
 msgstr "Ez a fiók már egy másik felhasználóhoz van társítva"
@@ -3833,6 +3871,7 @@ msgstr "Ez a kód helytelen vagy lejárt."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Nem sikerült elküldeni. A fájlok túl nagyok lehetnek, vagy a kapcsolat megszakadt. Próbáljon kisebb fájlokat."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That email is already registered to another account"
 msgstr "Ez az e-mail már egy másik fiókhoz van regisztrálva"
@@ -3962,6 +4001,11 @@ msgstr "Ez visszaállítja az összes beállítást az alapértelmezett érték�
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Ez visszaállítja a kijelző beállításait az alapértelmezett értékekre."
+
+#. placeholder {0}: getProviderLabel(account.type)
+#: src/features/user/connected-accounts.tsx
+msgid "This will revoke the calendar access of \"{displayName}\". Signing in with {0} stays until you unlink it on the Login page."
+msgstr "Ez visszavonja a(z) \"{displayName}\" naptár-hozzáférését. A(z) {0} szolgáltatással való bejelentkezés megmarad, amíg le nem választja a Bejelentkezés oldalon."
 
 #: src/features/user/sessions.tsx
 msgid "This will sign out this session. If this is your current session, you will need to sign in again."

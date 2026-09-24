@@ -123,6 +123,7 @@ msgstr "{count, plural, one {#sem} other {#sem}}"
 msgid "{count} remaining"
 msgstr "{count} restantes"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
 msgstr "{day}, das {from} às {to}"
@@ -131,6 +132,7 @@ msgstr "{day}, das {from} às {to}"
 msgid "{entityLabel} name"
 msgstr "Nome do {entityLabel}"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "de {from} a {to}"
@@ -228,6 +230,7 @@ msgstr "Conta"
 msgid "Account added"
 msgstr "Conta adicionada"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Account linked"
 msgstr "Conta vinculada"
@@ -398,9 +401,11 @@ msgid "Administrator"
 msgstr "Administrador"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "IA"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "All day"
 msgstr "O dia todo"
@@ -631,6 +636,14 @@ msgstr "Navegador"
 #: src/features/user/notifications.tsx
 msgid "Browser notifications"
 msgstr "Notificações do navegador"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Calendar"
+msgstr "Calendário"
+
+#: ../../../lib/web/src/features/accounts/types.ts
+msgid "Calendar server"
+msgstr "Servidor de calendário"
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Camera permission denied"
@@ -934,6 +947,10 @@ msgstr "Continuar"
 msgid "Continue with {label}"
 msgstr "Continuar com {label}"
 
+#: ../../../lib/web/src/features/accounts/account-add.tsx
+msgid "Continue with {providerLabel}"
+msgstr "Continuar com {providerLabel}"
+
 #: ../../../lib/web/src/lib/toast-utils.ts
 msgid "Copied"
 msgstr "Copiado"
@@ -942,6 +959,10 @@ msgstr "Copiado"
 msgid "Copied to clipboard"
 msgstr "Copiado para a área de transferência"
 
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
 msgid "Copy"
 msgstr "Copiar"
@@ -958,6 +979,7 @@ msgstr "Não foi possível encerrar sua conta"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Não foi possível copiar os códigos. Selecione-os e copie manualmente."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not link account"
 msgstr "Não foi possível vincular a conta"
@@ -966,6 +988,7 @@ msgstr "Não foi possível vincular a conta"
 msgid "Could not load this document. Please try again later."
 msgstr "Não foi possível carregar este documento. Tente novamente mais tarde."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not start linking"
 msgstr "Não foi possível iniciar o vínculo"
@@ -2192,6 +2215,7 @@ msgstr "Link"
 msgid "Link account"
 msgstr "Vincular conta"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Linked {label}"
 msgstr "{label} vinculado"
@@ -2411,8 +2435,10 @@ msgstr "Movido"
 msgid "Moved {field}"
 msgstr "Movido {field}"
 
-#. placeholder {0}: dragging.day
+#. placeholder {0}: dayName(current.day)
+#. placeholder {0}: dayName(dragging.day)
 #: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "Moving to {0}"
 msgstr "Movendo para {0}"
 
@@ -2690,6 +2716,7 @@ msgid "Nothing found"
 msgstr "Nada encontrado"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 msgid "Notifications"
@@ -3285,8 +3312,14 @@ msgid "Revoke"
 msgstr "Revogar"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/connected-accounts.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "Revoke access"
 msgstr "Revogar acesso"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Revoke access?"
+msgstr "Revogar o acesso?"
 
 #: src/features/system/users.tsx
 msgid "Revoke all"
@@ -3663,6 +3696,10 @@ msgstr "Entre com uma conta que tenha acesso <0/> a este recurso."
 msgid "Sign out"
 msgstr "Sair"
 
+#: src/features/user/connected-accounts.tsx
+msgid "Sign-in"
+msgstr "Login"
+
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."
 msgstr "Saindo..."
@@ -3821,6 +3858,7 @@ msgstr "Teste enviado para {sent} de {total} destinos"
 msgid "Text"
 msgstr "Texto"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That account is already linked to another user"
 msgstr "Essa conta já está vinculada a outro usuário"
@@ -3833,6 +3871,7 @@ msgstr "Esse código está incorreto ou expirou."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Não foi possível enviar. Os arquivos podem ser grandes demais, ou sua conexão falhou. Tente arquivos menores."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That email is already registered to another account"
 msgstr "Esse e-mail já está registrado em outra conta"
@@ -3962,6 +4001,11 @@ msgstr "Isso redefinirá todas as preferências para seus valores padrão."
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Isso redefinirá as configurações de exibição para seus valores padrão."
+
+#. placeholder {0}: getProviderLabel(account.type)
+#: src/features/user/connected-accounts.tsx
+msgid "This will revoke the calendar access of \"{displayName}\". Signing in with {0} stays until you unlink it on the Login page."
+msgstr "Isso revogará o acesso ao calendário de \"{displayName}\". Entrar com {0} continua valendo até você desvinculá-lo na página de Login."
 
 #: src/features/user/sessions.tsx
 msgid "This will sign out this session. If this is your current session, you will need to sign in again."

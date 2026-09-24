@@ -123,6 +123,7 @@ msgstr "{count, plural, one {#set} other {#set}}"
 msgid "{count} remaining"
 msgstr "Queden {count}"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
 msgstr "{day}, de {from} a {to}"
@@ -131,6 +132,7 @@ msgstr "{day}, de {from} a {to}"
 msgid "{entityLabel} name"
 msgstr "Nom de {entityLabel}"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "{from} a {to}"
@@ -228,6 +230,7 @@ msgstr "Compte"
 msgid "Account added"
 msgstr "Compte afegit"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Account linked"
 msgstr "Compte vinculat"
@@ -398,9 +401,11 @@ msgid "Administrator"
 msgstr "Administrador"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "IA"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "All day"
 msgstr "Tot el dia"
@@ -631,6 +636,14 @@ msgstr "Navegador"
 #: src/features/user/notifications.tsx
 msgid "Browser notifications"
 msgstr "Notificacions del navegador"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Calendar"
+msgstr "Calendari"
+
+#: ../../../lib/web/src/features/accounts/types.ts
+msgid "Calendar server"
+msgstr "Servidor de calendari"
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Camera permission denied"
@@ -934,6 +947,10 @@ msgstr "Continua"
 msgid "Continue with {label}"
 msgstr "Continua amb {label}"
 
+#: ../../../lib/web/src/features/accounts/account-add.tsx
+msgid "Continue with {providerLabel}"
+msgstr "Continua amb {providerLabel}"
+
 #: ../../../lib/web/src/lib/toast-utils.ts
 msgid "Copied"
 msgstr "Copiat"
@@ -942,6 +959,10 @@ msgstr "Copiat"
 msgid "Copied to clipboard"
 msgstr "Copiat al porta-retalls"
 
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
 msgid "Copy"
 msgstr "Copia"
@@ -958,6 +979,7 @@ msgstr "No s'ha pogut tancar el compte"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "No s'han pogut copiar els codis. Selecciona'ls i copia'ls manualment."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not link account"
 msgstr "No s'ha pogut vincular el compte"
@@ -966,6 +988,7 @@ msgstr "No s'ha pogut vincular el compte"
 msgid "Could not load this document. Please try again later."
 msgstr "No s'ha pogut carregar aquest document. Torna-ho a provar més tard."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not start linking"
 msgstr "No s'ha pogut iniciar la vinculació"
@@ -2192,6 +2215,7 @@ msgstr "Enllaç"
 msgid "Link account"
 msgstr "Enllaça el compte"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Linked {label}"
 msgstr "S'ha enllaçat {label}"
@@ -2411,8 +2435,10 @@ msgstr "Mogut"
 msgid "Moved {field}"
 msgstr "S'ha mogut {field}"
 
-#. placeholder {0}: dragging.day
+#. placeholder {0}: dayName(current.day)
+#. placeholder {0}: dayName(dragging.day)
 #: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "Moving to {0}"
 msgstr "S'està movent a {0}"
 
@@ -2690,6 +2716,7 @@ msgid "Nothing found"
 msgstr "No s'ha trobat res"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 msgid "Notifications"
@@ -3285,8 +3312,14 @@ msgid "Revoke"
 msgstr "Revoca"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/connected-accounts.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "Revoke access"
 msgstr "Revoca l'accés"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Revoke access?"
+msgstr "Vols revocar l'accés?"
 
 #: src/features/system/users.tsx
 msgid "Revoke all"
@@ -3663,6 +3696,10 @@ msgstr "Inicieu la sessió amb un compte que tingui accés <0/> a aquest recurs.
 msgid "Sign out"
 msgstr "Tanca la sessió"
 
+#: src/features/user/connected-accounts.tsx
+msgid "Sign-in"
+msgstr "Inici de sessió"
+
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."
 msgstr "Tancant sessió..."
@@ -3821,6 +3858,7 @@ msgstr "Prova enviada a {sent} de {total} destinacions"
 msgid "Text"
 msgstr "Text"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That account is already linked to another user"
 msgstr "Aquest compte ja està vinculat a un altre usuari"
@@ -3833,6 +3871,7 @@ msgstr "Aquest codi és incorrecte o ha caducat."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "No s'ha pogut enviar. Els fitxers poden ser massa grans o la connexió ha fallat. Proveu fitxers més petits."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That email is already registered to another account"
 msgstr "Aquest correu ja està registrat a un altre compte"
@@ -3962,6 +4001,11 @@ msgstr "Això restablirà totes les preferències als seus valors per defecte."
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Això restablirà la configuració de visualització als seus valors per defecte."
+
+#. placeholder {0}: getProviderLabel(account.type)
+#: src/features/user/connected-accounts.tsx
+msgid "This will revoke the calendar access of \"{displayName}\". Signing in with {0} stays until you unlink it on the Login page."
+msgstr "Això revocarà l'accés al calendari de \"{displayName}\". L'inici de sessió amb {0} es manté fins que el desvinculis a la pàgina d'inici de sessió."
 
 #: src/features/user/sessions.tsx
 msgid "This will sign out this session. If this is your current session, you will need to sign in again."

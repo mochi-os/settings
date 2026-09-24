@@ -123,6 +123,7 @@ msgstr "{count, plural, one {#lin} other {#lin}}"
 msgid "{count} remaining"
 msgstr "{count} natitira"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
 msgstr "{day}, {from} hanggang {to}"
@@ -131,6 +132,7 @@ msgstr "{day}, {from} hanggang {to}"
 msgid "{entityLabel} name"
 msgstr "Pangalan ng {entityLabel}"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "{from} hanggang {to}"
@@ -228,6 +230,7 @@ msgstr "Account"
 msgid "Account added"
 msgstr "Naidagdag ang account"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Account linked"
 msgstr "Naka-link na ang account"
@@ -398,9 +401,11 @@ msgid "Administrator"
 msgstr "Administrator"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "All day"
 msgstr "Buong araw"
@@ -631,6 +636,14 @@ msgstr "Browser"
 #: src/features/user/notifications.tsx
 msgid "Browser notifications"
 msgstr "Mga notification ng browser"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Calendar"
+msgstr "Kalendaryo"
+
+#: ../../../lib/web/src/features/accounts/types.ts
+msgid "Calendar server"
+msgstr "Server ng kalendaryo"
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Camera permission denied"
@@ -934,6 +947,10 @@ msgstr "Magpatuloy"
 msgid "Continue with {label}"
 msgstr "Magpatuloy gamit ang {label}"
 
+#: ../../../lib/web/src/features/accounts/account-add.tsx
+msgid "Continue with {providerLabel}"
+msgstr "Magpatuloy gamit ang {providerLabel}"
+
 #: ../../../lib/web/src/lib/toast-utils.ts
 msgid "Copied"
 msgstr "Nakopya"
@@ -942,6 +959,10 @@ msgstr "Nakopya"
 msgid "Copied to clipboard"
 msgstr "Nakopya sa clipboard"
 
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
 msgid "Copy"
 msgstr "Kopyahin"
@@ -958,6 +979,7 @@ msgstr "Hindi maisara ang iyong account"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Hindi makopya ang mga code. Piliin at kopyahin ang mga ito nang manu-mano."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not link account"
 msgstr "Hindi na-link ang account"
@@ -966,6 +988,7 @@ msgstr "Hindi na-link ang account"
 msgid "Could not load this document. Please try again later."
 msgstr "Hindi ma-load ang dokumentong ito. Pakisubukang muli mamaya."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not start linking"
 msgstr "Hindi nasimulan ang pag-link"
@@ -2192,6 +2215,7 @@ msgstr "Link"
 msgid "Link account"
 msgstr "I-link ang account"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Linked {label}"
 msgstr "Naka-link ang {label}"
@@ -2411,8 +2435,10 @@ msgstr "Inilipat"
 msgid "Moved {field}"
 msgstr "Inilipat ang {field}"
 
-#. placeholder {0}: dragging.day
+#. placeholder {0}: dayName(current.day)
+#. placeholder {0}: dayName(dragging.day)
 #: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 msgid "Moving to {0}"
 msgstr "Inililipat sa {0}"
 
@@ -2690,6 +2716,7 @@ msgid "Nothing found"
 msgstr "Walang nakita"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 msgid "Notifications"
@@ -3285,8 +3312,14 @@ msgid "Revoke"
 msgstr "Bawiin"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/connected-accounts.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "Revoke access"
 msgstr "Bawiin ang access"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Revoke access?"
+msgstr "Bawiin ang access?"
 
 #: src/features/system/users.tsx
 msgid "Revoke all"
@@ -3663,6 +3696,10 @@ msgstr "Mag-sign in gamit ang account na may access <0/> sa mapagkukunang ito."
 msgid "Sign out"
 msgstr "Mag-sign out"
 
+#: src/features/user/connected-accounts.tsx
+msgid "Sign-in"
+msgstr "Pag-login"
+
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."
 msgstr "Nag-si-sign out..."
@@ -3821,6 +3858,7 @@ msgstr "Naipadala ang pagsubok sa {sent} sa {total} na destinasyon"
 msgid "Text"
 msgstr "Teksto"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That account is already linked to another user"
 msgstr "Naka-link na ang account na iyon sa ibang user"
@@ -3833,6 +3871,7 @@ msgstr "Mali ang code na iyon o nag-expire na."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Hindi maipadala. Maaaring masyadong malaki ang mga file, o nabigo ang iyong koneksyon. Subukan ang mas maliliit na file."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That email is already registered to another account"
 msgstr "Nakarehistro na ang email na iyon sa ibang account"
@@ -3962,6 +4001,11 @@ msgstr "Ire-reset nito ang lahat ng preference sa kanilang mga default value."
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Ire-reset nito ang mga setting ng display sa kanilang mga default na halaga."
+
+#. placeholder {0}: getProviderLabel(account.type)
+#: src/features/user/connected-accounts.tsx
+msgid "This will revoke the calendar access of \"{displayName}\". Signing in with {0} stays until you unlink it on the Login page."
+msgstr "Babawiin nito ang access sa kalendaryo ng \"{displayName}\". Mananatili ang pag-login gamit ang {0} hanggang sa alisin mo ang link sa pahinang Pag-login."
 
 #: src/features/user/sessions.tsx
 msgid "This will sign out this session. If this is your current session, you will need to sign in again."
