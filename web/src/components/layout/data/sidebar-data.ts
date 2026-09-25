@@ -16,6 +16,7 @@ import {
   Users,
   Activity,
   Link2,
+  ExternalLink,
   Star,
   Bell,
   FileText,
@@ -45,6 +46,11 @@ export function useFilteredSidebarData(
         title: t`Connected accounts`,
         url: APP_ROUTES.SETTINGS.USER.ACCOUNTS,
         icon: Link2,
+      },
+      {
+        title: t`Links`,
+        url: APP_ROUTES.SETTINGS.USER.LINKS,
+        icon: ExternalLink,
       },
       {
         title: t`Notifications`,

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { i18n } from '@lingui/core'
 import { msg } from '@lingui/core/macro'
@@ -41,6 +41,7 @@ import {
   getAppPath,
   getProviderLabel,
   requestHelpers,
+  shellNavigateTop,
   toast,
   useFormat,
   type Account,
@@ -51,9 +52,11 @@ import {
 import {
   Bell,
   Brain,
+  CalendarDays,
   Check,
   CheckCircle2,
   Clock,
+  KeyRound,
   Link,
   Mail,
   MoreHorizontal,
@@ -66,6 +69,9 @@ import {
   Zap,
 } from 'lucide-react'
 import endpoints from '@/api/endpoints'
+import { useOauthBegin } from '@/hooks/use-account'
+import type { OAuthProvider } from '@/types/account'
+import { useStepUp } from '@/lib/use-step-up'
 
 const APP_BASE = getAppPath()
 
@@ -188,11 +194,38 @@ function getProviderIcon(type: string) {
     case 'claude':
     case 'openai':
       return <Brain className='h-4 w-4' />
+    case 'google':
+    case 'microsoft':
+    case 'github':
+    case 'facebook':
+    case 'x':
+      return <KeyRound className='h-4 w-4' />
+    case 'apple':
+    case 'caldav':
+      return <CalendarDays className='h-4 w-4' />
     case 'mcp':
       return <Server className='h-4 w-4' />
     default:
       return <Share2 className='h-4 w-4' />
   }
+}
+
+// The account types a provider's sign-in owns, and the ones that hold a
+// calendar credential.
+const OAUTH_TYPES = new Set(['google', 'microsoft', 'github', 'facebook', 'x'])
+const CALENDAR_TYPES = new Set(['apple', 'caldav'])
+
+// The words for each capability an account may hold, built per call so a
+// language change is picked up (the same reason providerLabels is a function).
+function capabilityLabel(capability: string): string {
+  const labels: Record<string, string> = {
+    login: i18n._(msg`Sign-in`),
+    calendar: i18n._(msg`Calendar`),
+    notify: i18n._(msg`Notifications`),
+    ai: i18n._(msg`AI`),
+    mcp: 'MCP',
+  }
+  return labels[capability] ?? capability
 }
 
 function getBrowserFromEndpoint(endpoint: string): string {
@@ -226,6 +259,12 @@ function getAccountDisplayName(account: Account): string {
   // For AI accounts, use provider label as the name
   if (account.type === 'claude' || account.type === 'openai') {
     return getProviderLabel(account.type)
+  }
+
+  // A provider's own account: the address it is held under, else the
+  // provider's name.
+  if (OAUTH_TYPES.has(account.type) || CALENDAR_TYPES.has(account.type)) {
+    return account.identifier || getProviderLabel(account.type)
   }
 
   // Mobile-push tokens / UnifiedPush endpoints are 100+ char opaque strings
@@ -271,6 +310,11 @@ function AccountRow({
   const provider = providersList.find((p) => p.type === account.type)
   const needsVerification = provider?.verify && !isVerified
   const isAi = account.type === 'claude' || account.type === 'openai'
+  // An account a provider's sign-in owns: it is not added or removed here, it
+  // holds whatever the user consented to, and the Login page ends the sign-in.
+  const isOauth = provider?.flow === 'oauth'
+  const granted = account.granted ?? []
+  const signInOnly = isOauth && granted.length === 1 && granted[0] === 'login'
 
   const handleDelete = () => {
     onRemove(account.id)
@@ -311,7 +355,11 @@ function AccountRow({
 
       {/* Status */}
       <TableCell>
-        {needsVerification ? (
+        {isOauth && granted.length > 0 ? (
+          <span className='text-muted-foreground text-xs'>
+            {granted.map(capabilityLabel).join(', ')}
+          </span>
+        ) : needsVerification ? (
           <span className='inline-flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400'>
             <Clock className='h-3 w-3' />
             <Trans>Pending</Trans>
@@ -375,19 +423,29 @@ function AccountRow({
               <Pencil className='me-2 h-4 w-4' />
               <Trans>Settings</Trans>
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setShowDeleteDialog(true)}>
-              <Trash2 className='me-2 h-4 w-4' />
-              <Trans>Remove</Trans>
-            </DropdownMenuItem>
+            {!signInOnly && (
+              <DropdownMenuItem onClick={() => setShowDeleteDialog(true)}>
+                <Trash2 className='me-2 h-4 w-4' />
+                {isOauth ? (
+                  <Trans>Revoke access</Trans>
+                ) : (
+                  <Trans>Remove</Trans>
+                )}
+              </DropdownMenuItem>
+            )}
           </DropdownMenuContent>
         </DropdownMenu>
 
         <ConfirmDialog
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
-          title={t`Remove account?`}
-          desc={t`This will remove the connected account "${displayName}".`}
-          confirmText={t`Remove`}
+          title={isOauth ? t`Revoke access?` : t`Remove account?`}
+          desc={
+            isOauth
+              ? t`This will revoke the calendar access of "${displayName}". Signing in with ${getProviderLabel(account.type)} stays until you unlink it on the Login page.`
+              : t`This will remove the connected account "${displayName}".`
+          }
+          confirmText={isOauth ? t`Revoke access` : t`Remove`}
           destructive
           handleConfirm={handleDelete}
         />
@@ -396,9 +454,56 @@ function AccountRow({
   )
 }
 
+// Suppress the one-shot OAuth toast on React StrictMode's double mount. Module
+// scope, not sessionStorage: the shell iframe partitions storage per load. The
+// Login page keeps its own copy; neither exports it.
+const oauthResultShown = new Set<string>()
+
+const OAUTH_PROVIDERS: OAuthProvider[] = [
+  'google',
+  'github',
+  'microsoft',
+  'facebook',
+  'x',
+]
+
 export function ConnectedAccounts() {
   const { t } = useLingui()
   usePageTitle(t`Connected accounts`)
+  const stepUp = useStepUp()
+  const oauthBegin = useOauthBegin()
+
+  // The provider returns the browser here after a link, so this page says how
+  // it went rather than leaving the result on the query alone.
+  useEffect(() => {
+    const key = 'oauth_result_shown:' + window.location.search
+    if (oauthResultShown.has(key)) return
+    const params = new URLSearchParams(window.location.search)
+    const linked = params.get('oauth_linked')
+    const errored = params.get('oauth_error')
+    if (!linked && !errored) return
+    oauthResultShown.add(key)
+
+    // Deferred a tick: the toaster subscribes in a sibling effect, and a
+    // message published before it has is dropped.
+    setTimeout(() => {
+      if (linked) {
+        // Only a known provider is named: `linked` is a query parameter, so
+        // falling back to it would put attacker-chosen text in a toast the
+        // page presents as its own result.
+        const label = OAUTH_PROVIDERS.includes(linked as OAuthProvider)
+          ? getProviderLabel(linked)
+          : undefined
+        toast.success(label ? t`Linked ${label}` : t`Account linked`)
+      } else if (errored === 'already_linked') {
+        toast.error(t`That account is already linked to another user`)
+      } else if (errored === 'email_exists') {
+        toast.error(t`That email is already registered to another account`)
+      } else {
+        toast.error(t`Could not link account`)
+      }
+    }, 0)
+  }, [t])
   const [isAddOpen, setIsAddOpen] = useState(false)
   const [verifyAccount, setVerifyAccount] = useState<Account | null>(null)
   const [settingsAccount, setSettingsAccount] = useState<Account | null>(null)
@@ -489,6 +594,24 @@ export function ConnectedAccounts() {
       toast.error(message)
       throw error
     }
+  }
+
+  // An OAuth account is made by linking the provider for sign-in, not by the
+  // add form: re-authenticate, then hand the browser to the provider.
+  const handleLink = (type: string) => {
+    setIsAddOpen(false)
+    stepUp.request(async (token) => {
+      try {
+        const { url } = await oauthBegin.mutateAsync({
+          provider: type as OAuthProvider,
+          link: true,
+          token,
+        })
+        shellNavigateTop(url)
+      } catch (error) {
+        toast.error(getErrorMessage(error, t`Could not start linking`))
+      }
+    })
   }
 
   const handleRemove = async (id: string) => {
@@ -703,6 +826,7 @@ export function ConnectedAccounts() {
         onOpenChange={setIsAddOpen}
         providers={providers}
         onAdd={handleAdd}
+        onLink={handleLink}
         isAdding={isAdding}
         appBase={APP_BASE}
         hasExistingAiAccount={accounts.some(
@@ -732,6 +856,8 @@ export function ConnectedAccounts() {
           onSetDefault={handleSetDefault}
         />
       )}
+
+      {stepUp.dialog}
     </>
   )
 }

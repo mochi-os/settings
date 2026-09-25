@@ -123,9 +123,23 @@ msgstr "{count, plural, one {#ġim} other {#ġim}}"
 msgid "{count} remaining"
 msgstr "{count} fadlu"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/tooltip.ts
+msgid "{day}, {from} to {to}"
+msgstr "{day}, minn {from} sa {to}"
+
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "{entityLabel} name"
 msgstr "Isem ta' {entityLabel}"
+
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/tooltip.ts
+msgid "{from} to {to}"
+msgstr "minn {from} sa {to}"
+
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+msgid "{hidden, plural, one {+# more} other {+# more}}"
+msgstr "{hidden, plural, one {+# ieħor} two {+# oħra} few {+# oħra} many {+# oħra} other {+# oħra}}"
 
 #: src/features/user/notifications.tsx
 msgid "{name} · app"
@@ -216,6 +230,7 @@ msgstr "Kont"
 msgid "Account added"
 msgstr "Kont miżjud"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Account linked"
 msgstr "Il-kont ġie llinkjat"
@@ -386,8 +401,14 @@ msgid "Administrator"
 msgstr "Amministratur"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "All day"
+msgstr "Il-ġurnata kollha"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Allow anyone to search for {entityLabel}"
@@ -489,6 +510,10 @@ msgstr "Żgur trid tirriżenja? {opponentName} tirbaħ il-logħba."
 #: ../../../lib/web/src/components/ui/sort-direction-button.tsx
 msgid "Ascending"
 msgstr "Axxendenti"
+
+#: ../../../lib/web/src/components/timezone-select.tsx
+msgid "At sea"
+msgstr "Fuq il-baħar"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Attach comment files"
@@ -612,6 +637,14 @@ msgstr "Brawżer"
 msgid "Browser notifications"
 msgstr "Notifiki tal-browser"
 
+#: src/features/user/connected-accounts.tsx
+msgid "Calendar"
+msgstr "Kalendarju"
+
+#: ../../../lib/web/src/features/accounts/types.ts
+msgid "Calendar server"
+msgstr "Server tal-kalendarju"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Camera permission denied"
 msgstr "Il-permess tal-kamera ġie miċħud"
@@ -703,6 +736,11 @@ msgstr "Inbidel"
 msgid "Changed {field}"
 msgstr "Inbidel {field}"
 
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "Changed occurrence"
+msgstr "Okkorrenza mibdula"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checkbox"
 msgstr "Checkbox"
@@ -710,6 +748,10 @@ msgstr "Checkbox"
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Checklist"
+
+#: ../../../lib/web/src/components/ui/date-picker.tsx
+msgid "Choose a date"
+msgstr "Agħżel data"
 
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
@@ -798,6 +840,7 @@ msgid "Collapse sidebar"
 msgstr "Iġbed il-barra tal-ġenb"
 
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
+#: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Colour"
 msgstr "Kulur"
 
@@ -897,6 +940,10 @@ msgstr "Kompli"
 msgid "Continue with {label}"
 msgstr "Kompli b'{label}"
 
+#: ../../../lib/web/src/features/accounts/account-add.tsx
+msgid "Continue with {providerLabel}"
+msgstr "Kompli b'{providerLabel}"
+
 #: ../../../lib/web/src/lib/toast-utils.ts
 msgid "Copied"
 msgstr "Ikkupjat"
@@ -905,6 +952,10 @@ msgstr "Ikkupjat"
 msgid "Copied to clipboard"
 msgstr "Ikkupjat fil-clipboard"
 
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
 msgid "Copy"
 msgstr "Ikkupja"
@@ -921,6 +972,7 @@ msgstr "Ma setax jingħalaq il-kont tiegħek"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Il-kodiċijiet ma setgħux jiġu kkupjati. Agħżilhom u kkupjahom manwalment."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not link account"
 msgstr "Ma setax jillinkja l-kont"
@@ -929,6 +981,7 @@ msgstr "Ma setax jillinkja l-kont"
 msgid "Could not load this document. Please try again later."
 msgstr "Ma setax itella' dan id-dokument. Jekk jogħġbok ipprova mill-ġdid iktar tard."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Could not start linking"
 msgstr "Ma setax jibda l-illinkjar"
@@ -1470,6 +1523,10 @@ msgstr "Path vojt jagħti aċċess sħiħ għad-dominju"
 msgid "Enabled"
 msgstr "Attivat"
 
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "Ends before it starts"
+msgstr "Jispiċċa qabel ma jibda"
+
 #: ../../../lib/web/src/components/banner-section.tsx
 msgid "Enter banner text (markdown supported)..."
 msgstr "Daħħal it-test tal-banner (markdown sapportit)..."
@@ -1780,6 +1837,7 @@ msgid "Failed to update name"
 msgstr "Ma rnexxiex jiġi aġġornat l-isem"
 
 #: src/features/user/display.tsx
+#: src/features/user/links.tsx
 #: src/features/user/preferences.tsx
 msgid "Failed to update preference"
 msgstr "Ma rnexxiex tiġi aġġornata l-preferenza"
@@ -1859,6 +1917,10 @@ msgstr "Bandieri"
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Flat"
 msgstr "Ċatta"
+
+#: src/features/user/links.tsx
+msgid "Flights"
+msgstr "Titjiriet"
 
 #: src/features/user/display.tsx
 msgid "Font"
@@ -2145,11 +2207,15 @@ msgstr "Ħolqa"
 msgid "Link account"
 msgstr "Orbot kont"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "Linked {label}"
 msgstr "Marbut {label}"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/links.tsx
+#: src/features/user/links.tsx
 msgid "Links"
 msgstr "Links"
 
@@ -2257,6 +2323,10 @@ msgstr "Attribuzzjoni tal-madum tal-mappa"
 msgid "Map tile URL"
 msgstr "URL tal-madum tal-mappa"
 
+#: src/features/user/links.tsx
+msgid "Maps"
+msgstr "Mapep"
+
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Mark all as read"
@@ -2341,6 +2411,10 @@ msgstr "Moderazzjoni"
 msgid "Monday"
 msgstr "It-Tnejn"
 
+#: ../../../lib/web/src/components/calendar/date-header.tsx
+msgid "Month"
+msgstr "Xahar"
+
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "More options"
 msgstr "Aktar għażliet"
@@ -2352,6 +2426,13 @@ msgstr "Ġie mċaqlaq"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 msgid "Moved {field}"
 msgstr "Ġie mċaqlaq {field}"
+
+#. placeholder {0}: dayName(current.day)
+#. placeholder {0}: dayName(dragging.day)
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "Moving to {0}"
+msgstr "Qed jiġi mċaqlaq għal {0}"
 
 #: src/features/user/login.tsx
 msgid "My passkey"
@@ -2430,6 +2511,14 @@ msgstr "Li jmiss"
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 msgid "Next image"
 msgstr "Stampa li jmiss"
+
+#: ../../../lib/web/src/components/calendar/date-header.tsx
+msgid "Next month"
+msgstr "Ix-xahar li ġej"
+
+#: ../../../lib/web/src/components/calendar/date-header.tsx
+msgid "Next year"
+msgstr "Is-sena li ġejja"
 
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 msgid "No {parentClassNames} to add to"
@@ -2619,6 +2708,7 @@ msgid "Nothing found"
 msgstr "Ma nstab xejn"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 msgid "Notifications"
@@ -2842,6 +2932,7 @@ msgid "Posts and comments"
 msgstr "Posts u kummenti"
 
 #: src/features/user/display.tsx
+#: src/features/user/links.tsx
 #: src/features/user/preferences.tsx
 msgid "Preference updated"
 msgstr "Preferenza aġġornata"
@@ -2864,6 +2955,14 @@ msgstr "Preċedenti"
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 msgid "Previous image"
 msgstr "Stampa preċedenti"
+
+#: ../../../lib/web/src/components/calendar/date-header.tsx
+msgid "Previous month"
+msgstr "Ix-xahar preċedenti"
+
+#: ../../../lib/web/src/components/calendar/date-header.tsx
+msgid "Previous year"
+msgstr "Is-sena preċedenti"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3114,6 +3213,11 @@ msgstr "Ibdel l-isem tal-passkey"
 msgid "Rename this board column"
 msgstr "Irrinomina din il-kolonna tal-bord"
 
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "Repeats"
+msgstr "Jirrepeti"
+
 #: src/features/system/settings.tsx
 msgid "Replace"
 msgstr "Ibdel"
@@ -3201,8 +3305,14 @@ msgid "Revoke"
 msgstr "Irrevoka"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/connected-accounts.tsx
+#: src/features/user/connected-accounts.tsx
 msgid "Revoke access"
 msgstr "Irrevoka l-aċċess"
+
+#: src/features/user/connected-accounts.tsx
+msgid "Revoke access?"
+msgstr "Tirrevoka l-aċċess?"
 
 #: src/features/system/users.tsx
 msgid "Revoke all"
@@ -3579,6 +3689,10 @@ msgstr "Idħol b'kont li għandu aċċess <0/> għal din ir-riżorsa."
 msgid "Sign out"
 msgstr "Oħroġ"
 
+#: src/features/user/connected-accounts.tsx
+msgid "Sign-in"
+msgstr "Login"
+
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."
 msgstr "Qed toħroġ..."
@@ -3737,6 +3851,7 @@ msgstr "It-test intbagħat lil {sent} minn {total} destinazzjoni"
 msgid "Text"
 msgstr "Test"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That account is already linked to another user"
 msgstr "Dak il-kont diġà huwa konness ma' utent ieħor"
@@ -3749,6 +3864,7 @@ msgstr "Dak il-kodiċi mhux korrett jew skada."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Ma setax jintbagħat. Il-fajls jistgħu jkunu kbar wisq, jew il-konnessjoni tiegħek falliet. Ipprova fajls iżgħar."
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 msgid "That email is already registered to another account"
 msgstr "Dak l-email diġà huwa rreġistrat ma' kont ieħor"
@@ -3878,6 +3994,11 @@ msgstr "Dan se jirrisettja l-preferenzi kollha għall-valuri default tagħhom."
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Dan jirresetja s-settings tal-wirja għall-valuri default tagħhom."
+
+#. placeholder {0}: getProviderLabel(account.type)
+#: src/features/user/connected-accounts.tsx
+msgid "This will revoke the calendar access of \"{displayName}\". Signing in with {0} stays until you unlink it on the Login page."
+msgstr "Dan se jirrevoka l-aċċess għall-kalendarju ta' \"{displayName}\". Il-login b'{0} jibqa' sakemm tneħħi l-link fil-paġna Login."
 
 #: src/features/user/sessions.tsx
 msgid "This will sign out this session. If this is your current session, you will need to sign in again."
@@ -4279,6 +4400,10 @@ msgstr "ID tal-klijent X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "Sigriet tal-klijent X"
+
+#: ../../../lib/web/src/components/calendar/date-header.tsx
+msgid "Year"
+msgstr "Sena"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
