@@ -38,7 +38,7 @@ const FLIGHTS = alphabetical(FLIGHT_SERVICE_NAMES)
 /** Where links open: the map a location goes to, the tracker a flight goes to. */
 export function UserLinks() {
   const { t } = useLingui()
-  usePageTitle(t`Links`)
+  usePageTitle(t({ message: 'Links', context: 'external links' }))
   const { data, isLoading, error, refetch } = usePreferencesData()
   const setPreference = useSetPreference()
   const { raw: currentLocale } = useLocale()
@@ -66,7 +66,7 @@ export function UserLinks() {
   return (
     <>
       <PageHeader
-        title={t`Links`}
+        title={t({ message: 'Links', context: 'external links' })}
         icon={<ExternalLink className='size-4 md:size-5' />}
       />
 
