@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-import { useState, useRef, useCallback, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useLingui } from '@lingui/react/macro'
 import {
   Button,
@@ -38,21 +38,31 @@ function InterestRow({ interest }: { interest: Interest }) {
   const [weight, setWeight] = useState(interest.weight)
   const lastSign = useRef(Math.sign(weight) || 1)
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = Number(e.target.value)
-    const sign = Math.sign(raw)
-    // Snap to 0 when crossing from one side to the other
-    if (sign !== 0 && sign !== lastSign.current && Math.abs(raw) <= 8) {
-      setWeight(0)
-      // Don't update lastSign — keep it on the old side so dragging further through updates it
-    } else {
-      if (sign !== 0) lastSign.current = sign
-      setWeight(raw)
-    }
-  }, [])
+  // Whether the last move came from the keyboard rather than a pointer.
+  const keyed = useRef(false)
 
-  // The last weight sent, so the keyboard and blur paths below cannot send the
-  // same value twice.
+  // Snap to 0 when crossing from one side to the other. Pure, so the commit
+  // can snap its own argument: on a key step Radix calls onValueCommit before
+  // onValueChange, so nothing set by the change handler is ready yet. A key
+  // step off 0 is never snapped: every arrow step from 0 lands within the
+  // snap distance, so the arrow keys could not cross to the other side.
+  const snap = (raw: number) => {
+    if (keyed.current && weight === 0) return raw
+    const sign = Math.sign(raw)
+    return sign !== 0 && sign !== lastSign.current && Math.abs(raw) <= 8
+      ? 0
+      : raw
+  }
+
+  const handleChange = ([raw]: number[]) => {
+    const next = snap(raw)
+    // Keep lastSign on the old side through a snap, so dragging further
+    // through updates it
+    if (next !== 0) lastSign.current = Math.sign(next)
+    setWeight(next)
+  }
+
+  // The last weight sent, so a commit that repeats it sends nothing.
   const committed = useRef(interest.weight)
 
   const handleWeightCommit = (w: number) => {
@@ -70,6 +80,26 @@ function InterestRow({ interest }: { interest: Interest }) {
         },
       }
     )
+  }
+
+  // A held key repeats, and Radix commits every repeat, which sent a save
+  // and a list reload for each one. A repeat's weight waits here instead and
+  // is sent once when the key comes up or focus leaves.
+  const repeating = useRef(false)
+  const held = useRef<number | null>(null)
+
+  const handleCommit = ([raw]: number[]) => {
+    const w = snap(raw)
+    if (repeating.current) held.current = w
+    else handleWeightCommit(w)
+  }
+
+  const release = () => {
+    repeating.current = false
+    if (held.current === null) return
+    const w = held.current
+    held.current = null
+    handleWeightCommit(w)
   }
 
   const handleRemove = () => {
@@ -97,26 +127,24 @@ function InterestRow({ interest }: { interest: Interest }) {
           min={-100}
           max={100}
           step={1}
-          value={weight}
-          onChange={handleChange}
-          onMouseUp={(e) =>
-            handleWeightCommit(Number((e.target as HTMLInputElement).value))
-          }
-          onTouchEnd={(e) =>
-            handleWeightCommit(Number((e.target as HTMLInputElement).value))
-          }
-          // Arrow keys move the slider through onChange but never reach a
-          // pointer release, so without these a keyboard user's change was
-          // shown and then silently dropped. Blur covers a focus change that
-          // skips the key release.
-          onKeyUp={(e) =>
-            handleWeightCommit(Number((e.target as HTMLInputElement).value))
-          }
-          onBlur={(e) =>
-            handleWeightCommit(Number((e.target as HTMLInputElement).value))
-          }
+          aria-label={interest.label}
+          value={[weight]}
+          onValueChange={handleChange}
+          // Fires on pointer release and on every key step.
+          onValueCommit={handleCommit}
+          // Runs before Radix's own key handler, so the commit it triggers
+          // already knows how it was moved.
+          onKeyDown={(event) => {
+            keyed.current = true
+            repeating.current = event.repeat
+          }}
+          onKeyUp={release}
+          onBlur={release}
+          onPointerDown={() => {
+            keyed.current = false
+          }}
           className='w-full'
-          style={{ accentColor: interestColor(weight) }}
+          style={{ '--primary': interestColor(weight) } as React.CSSProperties}
         />
         <div className='bg-muted-foreground/50 pointer-events-none absolute top-full left-1/2 h-2 w-px -translate-x-1/2' />
       </div>

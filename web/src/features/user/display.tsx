@@ -20,10 +20,6 @@ import {
   ListSkeleton,
   Main,
   PageHeader,
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
   getErrorMessage,
   useAppearanceLabels,
   useDensityLabels,
@@ -35,6 +31,10 @@ import {
   type ThemeInfo,
   usePageTitle,
   useTheme,
+  SidePanel,
+  SidePanelBody,
+  SidePanelHeader,
+  SidePanelTitle,
 } from '@mochi/web'
 import {
   RotateCcw,
@@ -319,35 +319,34 @@ export function UserDisplay() {
                 </Button>
               </FieldRow>
             )}
-            <Sheet open={themeSheetOpen} onOpenChange={setThemeSheetOpen}>
-              <SheetContent
-                className='overflow-y-auto sm:max-w-md'
-                onInteractOutside={() => {}}
-              >
-                <SheetHeader>
-                  <SheetTitle>
-                    <Trans>Theme</Trans>
-                  </SheetTitle>
-                </SheetHeader>
-                <div className='grid grid-cols-2 gap-4 px-1 pt-4 pb-6'>
-                  {(data.themes ?? []).map((theme) => {
-                    const isSelected = data.preferences.theme === theme.id
-                    return (
-                      <ThemePreviewCard
-                        key={theme.id}
-                        theme={theme}
-                        presets={data.presets}
-                        isSelected={isSelected}
-                        onClick={() => {
-                          handleThemeChange(isSelected ? null : theme)
-                        }}
-                        disabled={setPreference.isPending}
-                      />
-                    )
-                  })}
-                </div>
-              </SheetContent>
-            </Sheet>
+            <SidePanel
+              open={themeSheetOpen}
+              onOpenChange={setThemeSheetOpen}
+              dismissOnOutsideClick
+            >
+              <SidePanelHeader>
+                <SidePanelTitle>
+                  <Trans>Theme</Trans>
+                </SidePanelTitle>
+              </SidePanelHeader>
+              <SidePanelBody className='grid grid-cols-2 content-start gap-4'>
+                {(data.themes ?? []).map((theme) => {
+                  const isSelected = data.preferences.theme === theme.id
+                  return (
+                    <ThemePreviewCard
+                      key={theme.id}
+                      theme={theme}
+                      presets={data.presets}
+                      isSelected={isSelected}
+                      onClick={() => {
+                        handleThemeChange(isSelected ? null : theme)
+                      }}
+                      disabled={setPreference.isPending}
+                    />
+                  )
+                })}
+              </SidePanelBody>
+            </SidePanel>
 
             <FieldRow label={t`Density`}>
               <div className='w-full'>
