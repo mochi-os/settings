@@ -45,7 +45,7 @@ function InterestRow({ interest }: { interest: Interest }) {
   // can snap its own argument: on a key step Radix calls onValueCommit before
   // onValueChange, so nothing set by the change handler is ready yet. A key
   // step off 0 is never snapped: every arrow step from 0 lands within the
-  // snap distance, so the arrow keys could not cross to the other side.
+  // snap distance, so snapping it would hold the keyboard at 0.
   const snap = (raw: number) => {
     if (keyed.current && weight === 0) return raw
     const sign = Math.sign(raw)
@@ -82,9 +82,9 @@ function InterestRow({ interest }: { interest: Interest }) {
     )
   }
 
-  // A held key repeats, and Radix commits every repeat, which sent a save
-  // and a list reload for each one. A repeat's weight waits here instead and
-  // is sent once when the key comes up or focus leaves.
+  // A held key repeats, and Radix commits every repeat. A repeat's weight
+  // waits here and is sent once when the key comes up or focus leaves, rather
+  // than as a save and a list reload per step.
   const repeating = useRef(false)
   const held = useRef<number | null>(null)
 
