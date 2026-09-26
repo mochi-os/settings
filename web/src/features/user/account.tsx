@@ -71,10 +71,14 @@ function IdentitySection() {
       ) : data?.identity ? (
         <div className='divide-y-0'>
           <EditableFieldRow
-            label={t`Name`}
+            label={t({ message: 'Name', context: 'person' })}
             value={data.identity.name}
             onSave={handleRename}
-            validate={(value) => (value.trim() ? null : t`Name is required`)}
+            validate={(value) =>
+              value.trim()
+                ? null
+                : t({ message: 'Name is required', context: 'person' })
+            }
             emphasize
           />
           <FieldRow label={t`Username`}>
