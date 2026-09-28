@@ -44,6 +44,11 @@ msgstr "(leer)"
 msgid "(expand)"
 msgstr "(erweitern)"
 
+#: ../../../lib/web/src/components/calendar/event-title.tsx
+#: ../../../lib/web/src/components/calendar/tooltip.ts
+msgid "(No title)"
+msgstr "(Kein Titel)"
+
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "(you)"
 msgstr "(du)"
@@ -137,13 +142,10 @@ msgid "{entityLabel} name"
 msgstr "{entityLabel}-Name"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "{from} bis {to}"
-
-#: ../../../lib/web/src/components/calendar/month-grid.tsx
-msgid "{hidden, plural, one {+# more} other {+# more}}"
-msgstr "{hidden, plural, one {+# weiterer} other {+# weitere}}"
 
 #: src/features/user/notifications.tsx
 msgid "{name} · app"
@@ -616,7 +618,7 @@ msgstr "Blockiert"
 
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
-msgstr "Brett"
+msgstr "Board"
 
 #: ../../../lib/web/src/components/post-tags.tsx
 #: ../../../lib/web/src/components/post-tags.tsx
@@ -704,6 +706,11 @@ msgstr "Antwort abbrechen"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Cancelled"
 msgstr "Abgebrochen"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
+msgid "Cancelled"
+msgstr "Abgesagt"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 #: ../../../lib/web/src/components/attachment-composer.tsx
@@ -2071,7 +2078,7 @@ msgstr "Bildbetrachter: {0}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Imperial"
-msgstr "Imperial"
+msgstr "Angloamerikanisch"
 
 #: ../../../lib/web/src/features/access/types.ts
 msgid "Including anonymous users"
@@ -2218,9 +2225,13 @@ msgid "Linked {label}"
 msgstr "{label} verknüpft"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+msgid "Links"
+msgstr "Links"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/links.tsx
 #: src/features/user/links.tsx
+msgctxt "external links"
 msgid "Links"
 msgstr "Links"
 
@@ -2270,7 +2281,7 @@ msgstr "Abmelden …"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 msgid "Login"
-msgstr "Anmelden"
+msgstr "Anmeldung"
 
 #: src/features/user/login.tsx
 msgid "Login methods"
@@ -2448,7 +2459,6 @@ msgstr "Mein Passkey"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
-#: src/features/user/account.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2457,12 +2467,21 @@ msgstr "Mein Passkey"
 msgid "Name"
 msgstr "Name"
 
+#: src/features/user/account.tsx
+msgctxt "person"
+msgid "Name"
+msgstr "Name"
+
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
 msgstr "Der Name darf keine Zeichen < oder > enthalten"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
+msgid "Name is required"
+msgstr "Name ist erforderlich"
+
 #: src/features/user/account.tsx
+msgctxt "person"
 msgid "Name is required"
 msgstr "Name ist erforderlich"
 
@@ -2495,9 +2514,13 @@ msgid "Never"
 msgstr "Nie"
 
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
-#: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "New"
 msgstr "Neu"
+
+#: ../../../lib/web/src/components/ui/sort-selector.tsx
+msgctxt "sort order"
+msgid "New"
+msgstr "Neueste"
 
 #: src/features/user/notifications.tsx
 msgid "New category"
@@ -2729,11 +2752,15 @@ msgstr "Benachrichtigungen: {0}"
 msgid "Notify by default"
 msgstr "Standardmäßig benachrichtigen"
 
-#: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Number"
 msgstr "Zahl"
+
+#: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+msgctxt "item number"
+msgid "Number"
+msgstr "Nummer"
 
 #: src/features/user/preferences.tsx
 msgid "Number format"
@@ -3139,6 +3166,11 @@ msgstr "Relevanz {relevance}"
 msgid "Relevance {relevance}, interest {weight}"
 msgstr "Relevanz {relevance}, Interesse {weight}"
 
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "Reminder"
+msgstr "Erinnerung"
+
 #: ../../../lib/web/src/components/attachment-composer.tsx
 #: ../../../lib/web/src/components/attachment-composer.tsx
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
@@ -3497,7 +3529,7 @@ msgstr "Wird gesucht..."
 
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Select"
-msgstr "Auswählen"
+msgstr "Auswahl"
 
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Select a field"
@@ -3750,7 +3782,7 @@ msgstr "Nicht mehr beobachten"
 
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Subject"
-msgstr "Betreff"
+msgstr "Benutzer oder Gruppe"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Submit comment"
@@ -3802,10 +3834,18 @@ msgstr "Sperre aufgehoben"
 msgid "Switch to view 1-9"
 msgstr "Zu Ansicht 1-9 wechseln"
 
+#: ../../../lib/web/src/lib/preference-utils.ts
+#: ../../../lib/web/src/lib/preference-utils.ts
+msgid "System"
+msgstr "System"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
-#: ../../../lib/web/src/lib/preference-utils.ts
-#: ../../../lib/web/src/lib/preference-utils.ts
+msgctxt "actor"
+msgid "System"
+msgstr "System"
+
 #: src/components/layout/data/sidebar-data.ts
+msgctxt "administration section"
 msgid "System"
 msgstr "System"
 
@@ -3833,6 +3873,11 @@ msgstr "Tags"
 #: src/features/domains/index.tsx
 msgid "Target"
 msgstr "Ziel"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
+msgid "Tentative"
+msgstr "Vorläufig"
 
 #: ../../../lib/web/src/components/server-documents-footer.tsx
 #: ../../../lib/web/src/features/document/document-page.tsx
@@ -3911,7 +3956,7 @@ msgstr "Der Server hat eine Webseite statt Daten zurückgegeben."
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
 msgid "Theme"
-msgstr "Theme"
+msgstr "Design"
 
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
@@ -4059,7 +4104,7 @@ msgstr "Zu viele Anfragen"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "Top"
-msgstr "Oben"
+msgstr "Top"
 
 #: src/features/user/notifications.tsx
 msgid "Topics"

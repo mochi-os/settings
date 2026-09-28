@@ -44,6 +44,11 @@ msgstr "(порожньо)"
 msgid "(expand)"
 msgstr "(розгорнути)"
 
+#: ../../../lib/web/src/components/calendar/event-title.tsx
+#: ../../../lib/web/src/components/calendar/tooltip.ts
+msgid "(No title)"
+msgstr "(Без назви)"
+
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "(you)"
 msgstr "(ви)"
@@ -137,13 +142,10 @@ msgid "{entityLabel} name"
 msgstr "Назва {entityLabel}"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "з {from} до {to}"
-
-#: ../../../lib/web/src/components/calendar/month-grid.tsx
-msgid "{hidden, plural, one {+# more} other {+# more}}"
-msgstr "{hidden, plural, one {ще +#} few {ще +#} many {ще +#} other {ще +#}}"
 
 #: src/features/user/notifications.tsx
 msgid "{name} · app"
@@ -450,7 +452,7 @@ msgstr "Сталася неочікувана помилка"
 
 #: ../../../lib/web/src/features/accounts/types.ts
 msgid "Android push"
-msgstr "Push для Android"
+msgstr "Пуш для Android"
 
 #: src/features/system/settings.tsx
 msgid "Announce hostname and domains to other servers"
@@ -629,7 +631,7 @@ msgstr "Колір рамки"
 
 #: src/features/system/status.tsx
 msgid "Broadcast mesh"
-msgstr "Mesh трансляції"
+msgstr "Коміркова мережа трансляції"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -702,6 +704,11 @@ msgstr "Скасувати відповідь"
 #: ../../../lib/web/src/lib/shell-errors.ts
 #: ../../../lib/web/src/lib/shell-errors.ts
 #: ../../../lib/web/src/lib/shell-errors.ts
+msgid "Cancelled"
+msgstr "Скасовано"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
 msgid "Cancelled"
 msgstr "Скасовано"
 
@@ -1594,7 +1601,7 @@ msgstr "Ідентифікатор застосунку Facebook"
 
 #: src/features/system/settings.tsx
 msgid "Facebook App secret"
-msgstr "Секрет Facebook App"
+msgstr "Секрет застосунку Facebook"
 
 #: ../../../lib/web/src/hooks/use-accounts.ts
 #: src/features/user/connected-accounts.tsx
@@ -2218,9 +2225,13 @@ msgid "Linked {label}"
 msgstr "{label} зв'язано"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+msgid "Links"
+msgstr "Посилання"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/links.tsx
 #: src/features/user/links.tsx
+msgctxt "external links"
 msgid "Links"
 msgstr "Посилання"
 
@@ -2389,7 +2400,7 @@ msgstr "Секрет клієнта Microsoft"
 
 #: src/features/system/settings.tsx
 msgid "Microsoft tenant"
-msgstr "Microsoft tenant"
+msgstr "Тенант Microsoft"
 
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 msgid "Minimum length"
@@ -2448,27 +2459,35 @@ msgstr "Мій ключ доступу"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
-#: src/features/user/account.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
+msgstr "Назва"
+
+#: src/features/user/account.tsx
+msgctxt "person"
+msgid "Name"
 msgstr "Ім'я"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
-msgstr "Ім'я не може містити символи < або >"
+msgstr "Назва не може містити символи < або >"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
+msgid "Name is required"
+msgstr "Назва обов'язкова"
+
 #: src/features/user/account.tsx
+msgctxt "person"
 msgid "Name is required"
 msgstr "Ім'я обов'язкове"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name must be 1000 characters or less"
-msgstr "Ім'я має містити 1000 символів або менше"
+msgstr "Назва має містити 1000 символів або менше"
 
 #: src/features/user/account.tsx
 msgid "Name updated"
@@ -2495,9 +2514,13 @@ msgid "Never"
 msgstr "Ніколи"
 
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
-#: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "New"
 msgstr "Нове"
+
+#: ../../../lib/web/src/components/ui/sort-selector.tsx
+msgctxt "sort order"
+msgid "New"
+msgstr "Нові"
 
 #: src/features/user/notifications.tsx
 msgid "New category"
@@ -2729,11 +2752,15 @@ msgstr "Сповіщення: {0}"
 msgid "Notify by default"
 msgstr "Сповіщати за замовчуванням"
 
-#: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Number"
 msgstr "Число"
+
+#: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+msgctxt "item number"
+msgid "Number"
+msgstr "Номер"
 
 #: src/features/user/preferences.tsx
 msgid "Number format"
@@ -3015,15 +3042,15 @@ msgstr "Публічний URL для OAuth-перенаправлень"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Push"
-msgstr "Push"
+msgstr "Пуш-сповіщення"
 
 #: ../../../lib/web/src/features/accounts/types.ts
 msgid "Push notification"
-msgstr "Push-сповіщення"
+msgstr "Пуш-сповіщення"
 
 #: src/features/system/settings.tsx
 msgid "Push notifications"
-msgstr "Push-сповіщення"
+msgstr "Пуш-сповіщення"
 
 #: src/features/system/status.tsx
 msgid "Queued broadcast messages"
@@ -3138,6 +3165,11 @@ msgstr "Релевантність {relevance}"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}, interest {weight}"
 msgstr "Релевантність {relevance}, інтерес {weight}"
+
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "Reminder"
+msgstr "Нагадування"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 #: ../../../lib/web/src/components/attachment-composer.tsx
@@ -3416,7 +3448,7 @@ msgstr "Зберегти зміни"
 
 #: src/features/user/login.tsx
 msgid "Save passkey name"
-msgstr "Зберегти ім’я ключа"
+msgstr "Зберегти назву ключа"
 
 #: src/features/user/login.tsx
 msgid "Save these codes"
@@ -3497,7 +3529,7 @@ msgstr "Пошук..."
 
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Select"
-msgstr "Вибрати"
+msgstr "Вибір"
 
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Select a field"
@@ -3631,7 +3663,7 @@ msgstr "Сесію відкликано"
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Sessions"
-msgstr "Сесії"
+msgstr "Сеанси"
 
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
@@ -3750,7 +3782,7 @@ msgstr "Припинити стеження"
 
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Subject"
-msgstr "Тема"
+msgstr "Користувач або група"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Submit comment"
@@ -3802,10 +3834,18 @@ msgstr "Призупинення скасовано"
 msgid "Switch to view 1-9"
 msgstr "Перейти до вигляду 1-9"
 
+#: ../../../lib/web/src/lib/preference-utils.ts
+#: ../../../lib/web/src/lib/preference-utils.ts
+msgid "System"
+msgstr "Система"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
-#: ../../../lib/web/src/lib/preference-utils.ts
-#: ../../../lib/web/src/lib/preference-utils.ts
+msgctxt "actor"
+msgid "System"
+msgstr "Система"
+
 #: src/components/layout/data/sidebar-data.ts
+msgctxt "administration section"
 msgid "System"
 msgstr "Система"
 
@@ -3833,6 +3873,11 @@ msgstr "Теги"
 #: src/features/domains/index.tsx
 msgid "Target"
 msgstr "Ціль"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
+msgid "Tentative"
+msgstr "Під питанням"
 
 #: ../../../lib/web/src/components/server-documents-footer.tsx
 #: ../../../lib/web/src/features/document/document-page.tsx
@@ -4059,7 +4104,7 @@ msgstr "Забагато запитів"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "Top"
-msgstr "Верх"
+msgstr "Найкращі"
 
 #: src/features/user/notifications.tsx
 msgid "Topics"
@@ -4203,7 +4248,7 @@ msgstr "Не перевірено"
 
 #: src/features/system/status.tsx
 msgid "Update"
-msgstr "Оновлення"
+msgstr "Оновити"
 
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx

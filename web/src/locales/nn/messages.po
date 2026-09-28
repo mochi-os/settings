@@ -44,6 +44,11 @@ msgstr "(tom)"
 msgid "(expand)"
 msgstr "(utvid)"
 
+#: ../../../lib/web/src/components/calendar/event-title.tsx
+#: ../../../lib/web/src/components/calendar/tooltip.ts
+msgid "(No title)"
+msgstr "(Ingen tittel)"
+
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "(you)"
 msgstr "(deg)"
@@ -84,7 +89,7 @@ msgstr "{0} · app"
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
 msgid "{0} · push"
-msgstr "{0} · push"
+msgstr "{0} · push-varsel"
 
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
@@ -137,13 +142,10 @@ msgid "{entityLabel} name"
 msgstr "{entityLabel}-namn"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "{from} til {to}"
-
-#: ../../../lib/web/src/components/calendar/month-grid.tsx
-msgid "{hidden, plural, one {+# more} other {+# more}}"
-msgstr "{hidden, plural, one {+# til} other {+# til}}"
 
 #: src/features/user/notifications.tsx
 msgid "{name} · app"
@@ -151,7 +153,7 @@ msgstr "{name} · app"
 
 #: src/features/user/notifications.tsx
 msgid "{name} · push"
-msgstr "{name} · push"
+msgstr "{name} · push-varsel"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "{opponentName} offered a draw"
@@ -616,7 +618,7 @@ msgstr "Blokker"
 
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
-msgstr "Brett"
+msgstr "Tavle"
 
 #: ../../../lib/web/src/components/post-tags.tsx
 #: ../../../lib/web/src/components/post-tags.tsx
@@ -704,6 +706,11 @@ msgstr "Avbryt svar"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Cancelled"
 msgstr "Avbroten"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
+msgid "Cancelled"
+msgstr "Avlyst"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 #: ../../../lib/web/src/components/attachment-composer.tsx
@@ -2071,7 +2078,7 @@ msgstr "Biletvisar: {0}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Imperial"
-msgstr "Imperial"
+msgstr "Imperialsk"
 
 #: ../../../lib/web/src/features/access/types.ts
 msgid "Including anonymous users"
@@ -2190,7 +2197,7 @@ msgstr "Sist nytta"
 
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
-msgstr "Layout"
+msgstr "Oppsett"
 
 #: src/features/domains/index.tsx
 msgid "Leave empty for root path"
@@ -2218,11 +2225,15 @@ msgid "Linked {label}"
 msgstr "Kopla {label}"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+msgid "Links"
+msgstr "Lenker"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/links.tsx
 #: src/features/user/links.tsx
+msgctxt "external links"
 msgid "Links"
-msgstr "Lenker"
+msgstr "Lenkjer"
 
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "List"
@@ -2389,7 +2400,7 @@ msgstr "Microsoft klient-løyndom"
 
 #: src/features/system/settings.tsx
 msgid "Microsoft tenant"
-msgstr "Microsoft tenant"
+msgstr "Microsoft-leigetakar"
 
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 msgid "Minimum length"
@@ -2448,7 +2459,6 @@ msgstr "Min nykel"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
-#: src/features/user/account.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2457,12 +2467,21 @@ msgstr "Min nykel"
 msgid "Name"
 msgstr "Namn"
 
+#: src/features/user/account.tsx
+msgctxt "person"
+msgid "Name"
+msgstr "Namn"
+
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
 msgstr "Namn kan ikkje innehalda < eller >"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
+msgid "Name is required"
+msgstr "Namn er påkravd"
+
 #: src/features/user/account.tsx
+msgctxt "person"
 msgid "Name is required"
 msgstr "Namn er påkravd"
 
@@ -2495,9 +2514,13 @@ msgid "Never"
 msgstr "Aldri"
 
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
-#: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "New"
 msgstr "Ny"
+
+#: ../../../lib/web/src/components/ui/sort-selector.tsx
+msgctxt "sort order"
+msgid "New"
+msgstr "Nyaste"
 
 #: src/features/user/notifications.tsx
 msgid "New category"
@@ -2729,11 +2752,15 @@ msgstr "Varsel: {0}"
 msgid "Notify by default"
 msgstr "Varsla som standard"
 
-#: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Number"
 msgstr "Tal"
+
+#: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+msgctxt "item number"
+msgid "Number"
+msgstr "Nummer"
 
 #: src/features/user/preferences.tsx
 msgid "Number format"
@@ -2834,7 +2861,7 @@ msgstr "Forelder"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 msgid "Passkey"
-msgstr "Nykel"
+msgstr "Tilgangsnøkkel"
 
 #: src/features/user/login.tsx
 msgid "Passkey deleted"
@@ -2860,7 +2887,7 @@ msgstr "Stadfesting av tilgangsnøkkelen feila. Prøv igjen."
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: src/features/user/login.tsx
 msgid "Passkeys"
-msgstr "Nyklar"
+msgstr "Tilgangsnøklar"
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Passkeys are not available in this browser"
@@ -3015,7 +3042,7 @@ msgstr "Offentleg URL for OAuth-omdirigeringar"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Push"
-msgstr "Push"
+msgstr "Push-varsel"
 
 #: ../../../lib/web/src/features/accounts/types.ts
 msgid "Push notification"
@@ -3138,6 +3165,11 @@ msgstr "Relevans {relevance}"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}, interest {weight}"
 msgstr "Relevans {relevance}, interesse {weight}"
+
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "Reminder"
+msgstr "Påminning"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 #: ../../../lib/web/src/components/attachment-composer.tsx
@@ -3497,7 +3529,7 @@ msgstr "Søkjer..."
 
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Select"
-msgstr "Vel"
+msgstr "Val"
 
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Select a field"
@@ -3750,7 +3782,7 @@ msgstr "Slutt å sjå på"
 
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Subject"
-msgstr "Emne"
+msgstr "Brukar eller gruppe"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Submit comment"
@@ -3802,10 +3834,18 @@ msgstr "Suspensjon fjerna"
 msgid "Switch to view 1-9"
 msgstr "Byt til vising 1-9"
 
+#: ../../../lib/web/src/lib/preference-utils.ts
+#: ../../../lib/web/src/lib/preference-utils.ts
+msgid "System"
+msgstr "System"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
-#: ../../../lib/web/src/lib/preference-utils.ts
-#: ../../../lib/web/src/lib/preference-utils.ts
+msgctxt "actor"
+msgid "System"
+msgstr "System"
+
 #: src/components/layout/data/sidebar-data.ts
+msgctxt "administration section"
 msgid "System"
 msgstr "System"
 
@@ -3833,6 +3873,11 @@ msgstr "Etikettar"
 #: src/features/domains/index.tsx
 msgid "Target"
 msgstr "Mål"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
+msgid "Tentative"
+msgstr "Førebels"
 
 #: ../../../lib/web/src/components/server-documents-footer.tsx
 #: ../../../lib/web/src/features/document/document-page.tsx

@@ -48,7 +48,7 @@ export function useFilteredSidebarData(
         icon: Link2,
       },
       {
-        title: t`Links`,
+        title: t({ message: 'Links', context: 'external links' }),
         url: APP_ROUTES.SETTINGS.USER.LINKS,
         icon: ExternalLink,
       },
@@ -70,7 +70,7 @@ export function useFilteredSidebarData(
     ],
   }
   const systemNavGroup = {
-    title: t`System`,
+    title: t({ message: 'System', context: 'administration section' }),
     items: [
       {
         title: t`System settings`,

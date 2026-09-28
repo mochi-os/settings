@@ -44,6 +44,11 @@ msgstr "(tómt)"
 msgid "(expand)"
 msgstr "(útvíkka)"
 
+#: ../../../lib/web/src/components/calendar/event-title.tsx
+#: ../../../lib/web/src/components/calendar/tooltip.ts
+msgid "(No title)"
+msgstr "(Enginn titill)"
+
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "(you)"
 msgstr "(þú)"
@@ -79,12 +84,12 @@ msgstr "{0, plural, one {1 lota afturkölluð} other {# lotur afturkallaðar}}"
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
 msgid "{0} · app"
-msgstr "{0} · app"
+msgstr "{0} · forrit"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
 msgid "{0} · push"
-msgstr "{0} · push"
+msgstr "{0} · ýting"
 
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
@@ -137,21 +142,18 @@ msgid "{entityLabel} name"
 msgstr "Nafn {entityLabel}"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "{from} til {to}"
 
-#: ../../../lib/web/src/components/calendar/month-grid.tsx
-msgid "{hidden, plural, one {+# more} other {+# more}}"
-msgstr "{hidden, plural, one {+# til viðbótar} other {+# til viðbótar}}"
-
 #: src/features/user/notifications.tsx
 msgid "{name} · app"
-msgstr "{name} · app"
+msgstr "{name} · forrit"
 
 #: src/features/user/notifications.tsx
 msgid "{name} · push"
-msgstr "{name} · push"
+msgstr "{name} · ýting"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "{opponentName} offered a draw"
@@ -616,7 +618,7 @@ msgstr "Lokar"
 
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
-msgstr "Borð"
+msgstr "Tafla"
 
 #: ../../../lib/web/src/components/post-tags.tsx
 #: ../../../lib/web/src/components/post-tags.tsx
@@ -704,6 +706,11 @@ msgstr "Hætta við svar"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Cancelled"
 msgstr "Hætt við"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
+msgid "Cancelled"
+msgstr "Aflýst"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 #: ../../../lib/web/src/components/attachment-composer.tsx
@@ -1335,7 +1342,7 @@ msgstr "Aftengt"
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
 msgid "Dismiss"
-msgstr "Hafna"
+msgstr "Hunsa"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -2218,9 +2225,13 @@ msgid "Linked {label}"
 msgstr "{label} tengt"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+msgid "Links"
+msgstr "Tenglar"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/links.tsx
 #: src/features/user/links.tsx
+msgctxt "external links"
 msgid "Links"
 msgstr "Tenglar"
 
@@ -2448,7 +2459,6 @@ msgstr "Aðgangslykillinn minn"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
-#: src/features/user/account.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2457,12 +2467,21 @@ msgstr "Aðgangslykillinn minn"
 msgid "Name"
 msgstr "Nafn"
 
+#: src/features/user/account.tsx
+msgctxt "person"
+msgid "Name"
+msgstr "Nafn"
+
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
 msgstr "Nafn má ekki innihalda stafi < eða >"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
+msgid "Name is required"
+msgstr "Nafn er nauðsynlegt"
+
 #: src/features/user/account.tsx
+msgctxt "person"
 msgid "Name is required"
 msgstr "Nafn er nauðsynlegt"
 
@@ -2495,9 +2514,13 @@ msgid "Never"
 msgstr "Aldrei"
 
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
-#: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "New"
 msgstr "Nýtt"
+
+#: ../../../lib/web/src/components/ui/sort-selector.tsx
+msgctxt "sort order"
+msgid "New"
+msgstr "Nýjast"
 
 #: src/features/user/notifications.tsx
 msgid "New category"
@@ -2510,7 +2533,7 @@ msgstr "Nýr leikur"
 
 #: src/features/system/users.tsx
 msgid "Next"
-msgstr "Næst"
+msgstr "Áfram"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -2729,11 +2752,15 @@ msgstr "Tilkynningar: {0}"
 msgid "Notify by default"
 msgstr "Tilkynna sjálfgefið"
 
-#: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Number"
 msgstr "Tala"
+
+#: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+msgctxt "item number"
+msgid "Number"
+msgstr "Númer"
 
 #: src/features/user/preferences.tsx
 msgid "Number format"
@@ -3015,7 +3042,7 @@ msgstr "Opinber vefslóð fyrir OAuth-áframsendingar"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Push"
-msgstr "Push"
+msgstr "Ýting"
 
 #: ../../../lib/web/src/features/accounts/types.ts
 msgid "Push notification"
@@ -3138,6 +3165,11 @@ msgstr "Mikilvægi {relevance}"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}, interest {weight}"
 msgstr "Mikilvægi {relevance}, áhugi {weight}"
+
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "Reminder"
+msgstr "Áminning"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 #: ../../../lib/web/src/components/attachment-composer.tsx
@@ -3497,7 +3529,7 @@ msgstr "Leita..."
 
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Select"
-msgstr "Velja"
+msgstr "Val"
 
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Select a field"
@@ -3631,7 +3663,7 @@ msgstr "Seta afturkölluð"
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Sessions"
-msgstr "Setur"
+msgstr "Lotur"
 
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
@@ -3750,7 +3782,7 @@ msgstr "Hætta að fylgjast með"
 
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Subject"
-msgstr "Efni"
+msgstr "Notandi eða hópur"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Submit comment"
@@ -3802,10 +3834,18 @@ msgstr "Frestun fjarlægð"
 msgid "Switch to view 1-9"
 msgstr "Skipta yfir í sýn 1-9"
 
+#: ../../../lib/web/src/lib/preference-utils.ts
+#: ../../../lib/web/src/lib/preference-utils.ts
+msgid "System"
+msgstr "Kerfi"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
-#: ../../../lib/web/src/lib/preference-utils.ts
-#: ../../../lib/web/src/lib/preference-utils.ts
+msgctxt "actor"
+msgid "System"
+msgstr "Kerfi"
+
 #: src/components/layout/data/sidebar-data.ts
+msgctxt "administration section"
 msgid "System"
 msgstr "Kerfi"
 
@@ -3833,6 +3873,11 @@ msgstr "Merki"
 #: src/features/domains/index.tsx
 msgid "Target"
 msgstr "Markmið"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
+msgid "Tentative"
+msgstr "Bráðabirgða"
 
 #: ../../../lib/web/src/components/server-documents-footer.tsx
 #: ../../../lib/web/src/features/document/document-page.tsx
@@ -4059,7 +4104,7 @@ msgstr "Of margar beiðnir"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "Top"
-msgstr "Efst"
+msgstr "Hæst metið"
 
 #: src/features/user/notifications.tsx
 msgid "Topics"

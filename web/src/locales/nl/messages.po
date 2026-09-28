@@ -44,6 +44,11 @@ msgstr "(leeg)"
 msgid "(expand)"
 msgstr "(uitvouwen)"
 
+#: ../../../lib/web/src/components/calendar/event-title.tsx
+#: ../../../lib/web/src/components/calendar/tooltip.ts
+msgid "(No title)"
+msgstr "(Geen titel)"
+
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "(you)"
 msgstr "(jij)"
@@ -137,13 +142,10 @@ msgid "{entityLabel} name"
 msgstr "{entityLabel}-naam"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "{from} tot {to}"
-
-#: ../../../lib/web/src/components/calendar/month-grid.tsx
-msgid "{hidden, plural, one {+# more} other {+# more}}"
-msgstr "{hidden, plural, one {+# meer} other {+# meer}}"
 
 #: src/features/user/notifications.tsx
 msgid "{name} · app"
@@ -702,6 +704,11 @@ msgstr "Antwoord annuleren"
 #: ../../../lib/web/src/lib/shell-errors.ts
 #: ../../../lib/web/src/lib/shell-errors.ts
 #: ../../../lib/web/src/lib/shell-errors.ts
+msgid "Cancelled"
+msgstr "Geannuleerd"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
 msgid "Cancelled"
 msgstr "Geannuleerd"
 
@@ -2218,9 +2225,13 @@ msgid "Linked {label}"
 msgstr "{label} gekoppeld"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+msgid "Links"
+msgstr "Links"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/links.tsx
 #: src/features/user/links.tsx
+msgctxt "external links"
 msgid "Links"
 msgstr "Links"
 
@@ -2448,7 +2459,6 @@ msgstr "Mijn passkey"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
-#: src/features/user/account.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2457,12 +2467,21 @@ msgstr "Mijn passkey"
 msgid "Name"
 msgstr "Naam"
 
+#: src/features/user/account.tsx
+msgctxt "person"
+msgid "Name"
+msgstr "Naam"
+
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
 msgstr "Naam mag geen < of > tekens bevatten"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
+msgid "Name is required"
+msgstr "Naam is verplicht"
+
 #: src/features/user/account.tsx
+msgctxt "person"
 msgid "Name is required"
 msgstr "Naam is verplicht"
 
@@ -2495,9 +2514,13 @@ msgid "Never"
 msgstr "Nooit"
 
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
-#: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "New"
 msgstr "Nieuw"
+
+#: ../../../lib/web/src/components/ui/sort-selector.tsx
+msgctxt "sort order"
+msgid "New"
+msgstr "Nieuwste"
 
 #: src/features/user/notifications.tsx
 msgid "New category"
@@ -2729,9 +2752,13 @@ msgstr "Meldingen: {0}"
 msgid "Notify by default"
 msgstr "Standaard meldingen geven"
 
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts
+msgid "Number"
+msgstr "Nummer"
+
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
-#: ../../../lib/web/src/hooks/use-field-type-labels.ts
+msgctxt "item number"
 msgid "Number"
 msgstr "Nummer"
 
@@ -3079,7 +3106,7 @@ msgstr "Herstelcodes"
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 msgid "Redirect"
-msgstr "Redirect"
+msgstr "Omleiding"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Redirecting to login."
@@ -3138,6 +3165,11 @@ msgstr "Relevantie {relevance}"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}, interest {weight}"
 msgstr "Relevantie {relevance}, interesse {weight}"
+
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "Reminder"
+msgstr "Herinnering"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 #: ../../../lib/web/src/components/attachment-composer.tsx
@@ -3497,7 +3529,7 @@ msgstr "Bezig met zoeken..."
 
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Select"
-msgstr "Selecteren"
+msgstr "Keuzelijst"
 
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Select a field"
@@ -3750,7 +3782,7 @@ msgstr "Stoppen met volgen"
 
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Subject"
-msgstr "Onderwerp"
+msgstr "Gebruiker of groep"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Submit comment"
@@ -3802,10 +3834,18 @@ msgstr "Schorsing verwijderd"
 msgid "Switch to view 1-9"
 msgstr "Schakelen naar weergave 1-9"
 
+#: ../../../lib/web/src/lib/preference-utils.ts
+#: ../../../lib/web/src/lib/preference-utils.ts
+msgid "System"
+msgstr "Systeem"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
-#: ../../../lib/web/src/lib/preference-utils.ts
-#: ../../../lib/web/src/lib/preference-utils.ts
+msgctxt "actor"
+msgid "System"
+msgstr "Systeem"
+
 #: src/components/layout/data/sidebar-data.ts
+msgctxt "administration section"
 msgid "System"
 msgstr "Systeem"
 
@@ -3833,6 +3873,11 @@ msgstr "Tags"
 #: src/features/domains/index.tsx
 msgid "Target"
 msgstr "Doel"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
+msgid "Tentative"
+msgstr "Voorlopig"
 
 #: ../../../lib/web/src/components/server-documents-footer.tsx
 #: ../../../lib/web/src/features/document/document-page.tsx
@@ -4059,7 +4104,7 @@ msgstr "Te veel verzoeken"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "Top"
-msgstr "Boven"
+msgstr "Beste"
 
 #: src/features/user/notifications.tsx
 msgid "Topics"

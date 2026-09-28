@@ -44,6 +44,11 @@ msgstr "(prazno)"
 msgid "(expand)"
 msgstr "(razširi)"
 
+#: ../../../lib/web/src/components/calendar/event-title.tsx
+#: ../../../lib/web/src/components/calendar/tooltip.ts
+msgid "(No title)"
+msgstr "(Brez naslova)"
+
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "(you)"
 msgstr "(vi)"
@@ -84,7 +89,7 @@ msgstr "{0} · aplikacija"
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
 msgid "{0} · push"
-msgstr "{0} · push"
+msgstr "{0} · push obvestila"
 
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
@@ -137,13 +142,10 @@ msgid "{entityLabel} name"
 msgstr "Ime {entityLabel}"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "{from} do {to}"
-
-#: ../../../lib/web/src/components/calendar/month-grid.tsx
-msgid "{hidden, plural, one {+# more} other {+# more}}"
-msgstr "{hidden, plural, one {+# več} two {+# več} few {+# več} other {+# več}}"
 
 #: src/features/user/notifications.tsx
 msgid "{name} · app"
@@ -151,7 +153,7 @@ msgstr "{name} · aplikacija"
 
 #: src/features/user/notifications.tsx
 msgid "{name} · push"
-msgstr "{name} · push"
+msgstr "{name} · push obvestila"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "{opponentName} offered a draw"
@@ -450,7 +452,7 @@ msgstr "Prišlo je do nepričakovane napake"
 
 #: ../../../lib/web/src/features/accounts/types.ts
 msgid "Android push"
-msgstr "Android push"
+msgstr "Android push obvestila"
 
 #: src/features/system/settings.tsx
 msgid "Announce hostname and domains to other servers"
@@ -459,7 +461,7 @@ msgstr "Objavi ime gostitelja in domene drugim strežnikom"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: ../../../lib/web/src/features/access/types.ts
 msgid "Anyone"
-msgstr "Kdorkoli"
+msgstr "Kdor koli"
 
 #: ../../../lib/web/src/features/access/types.ts
 msgid "Anyone who is logged in"
@@ -704,6 +706,11 @@ msgstr "Prekliči odgovor"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Cancelled"
 msgstr "Preklicano"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
+msgid "Cancelled"
+msgstr "Odpovedano"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 #: ../../../lib/web/src/components/attachment-composer.tsx
@@ -2218,9 +2225,13 @@ msgid "Linked {label}"
 msgstr "Povezano {label}"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+msgid "Links"
+msgstr "Povezave"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/links.tsx
 #: src/features/user/links.tsx
+msgctxt "external links"
 msgid "Links"
 msgstr "Povezave"
 
@@ -2448,7 +2459,6 @@ msgstr "Moj geslo-ključ"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
-#: src/features/user/account.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2457,12 +2467,21 @@ msgstr "Moj geslo-ključ"
 msgid "Name"
 msgstr "Ime"
 
+#: src/features/user/account.tsx
+msgctxt "person"
+msgid "Name"
+msgstr "Ime"
+
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
 msgstr "Ime ne sme vsebovati znakov < ali >"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
+msgid "Name is required"
+msgstr "Ime je obvezno"
+
 #: src/features/user/account.tsx
+msgctxt "person"
 msgid "Name is required"
 msgstr "Ime je obvezno"
 
@@ -2495,9 +2514,13 @@ msgid "Never"
 msgstr "Nikoli"
 
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
-#: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "New"
 msgstr "Novo"
+
+#: ../../../lib/web/src/components/ui/sort-selector.tsx
+msgctxt "sort order"
+msgid "New"
+msgstr "Najnovejše"
 
 #: src/features/user/notifications.tsx
 msgid "New category"
@@ -2729,9 +2752,13 @@ msgstr "Obvestila: {0}"
 msgid "Notify by default"
 msgstr "Privzeto obvešča"
 
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts
+msgid "Number"
+msgstr "Številka"
+
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
-#: ../../../lib/web/src/hooks/use-field-type-labels.ts
+msgctxt "item number"
 msgid "Number"
 msgstr "Številka"
 
@@ -3015,7 +3042,7 @@ msgstr "Javni URL za OAuth preusmeritve"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Push"
-msgstr "Push"
+msgstr "Push obvestila"
 
 #: ../../../lib/web/src/features/accounts/types.ts
 msgid "Push notification"
@@ -3138,6 +3165,11 @@ msgstr "Ustreznost {relevance}"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}, interest {weight}"
 msgstr "Ustreznost {relevance}, zanimanje {weight}"
+
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "Reminder"
+msgstr "Opomnik"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 #: ../../../lib/web/src/components/attachment-composer.tsx
@@ -3497,7 +3529,7 @@ msgstr "Iskanje..."
 
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Select"
-msgstr "Izberi"
+msgstr "Izbira"
 
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Select a field"
@@ -3750,7 +3782,7 @@ msgstr "Prenehaj spremljati"
 
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Subject"
-msgstr "Zadeva"
+msgstr "Uporabnik ali skupina"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Submit comment"
@@ -3802,10 +3834,18 @@ msgstr "Ustavitev odstranjena"
 msgid "Switch to view 1-9"
 msgstr "Preklopi na pogled 1-9"
 
+#: ../../../lib/web/src/lib/preference-utils.ts
+#: ../../../lib/web/src/lib/preference-utils.ts
+msgid "System"
+msgstr "Sistem"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
-#: ../../../lib/web/src/lib/preference-utils.ts
-#: ../../../lib/web/src/lib/preference-utils.ts
+msgctxt "actor"
+msgid "System"
+msgstr "Sistem"
+
 #: src/components/layout/data/sidebar-data.ts
+msgctxt "administration section"
 msgid "System"
 msgstr "Sistem"
 
@@ -3834,6 +3874,11 @@ msgstr "Oznake"
 msgid "Target"
 msgstr "Cilj"
 
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
+msgid "Tentative"
+msgstr "Začasno"
+
 #: ../../../lib/web/src/components/server-documents-footer.tsx
 #: ../../../lib/web/src/features/document/document-page.tsx
 #: src/features/system/documents.tsx
@@ -3843,7 +3888,7 @@ msgstr "Pogoji uporabe"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
-msgstr "Test"
+msgstr "Preizkusi"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Test failed"
@@ -4059,7 +4104,7 @@ msgstr "Preveč zahtev"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "Top"
-msgstr "Vrh"
+msgstr "Najboljše"
 
 #: src/features/user/notifications.tsx
 msgid "Topics"

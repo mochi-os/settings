@@ -44,6 +44,11 @@ msgstr "(kosong)"
 msgid "(expand)"
 msgstr "(perluas)"
 
+#: ../../../lib/web/src/components/calendar/event-title.tsx
+#: ../../../lib/web/src/components/calendar/tooltip.ts
+msgid "(No title)"
+msgstr "(Tanpa judul)"
+
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "(you)"
 msgstr "(Anda)"
@@ -137,13 +142,10 @@ msgid "{entityLabel} name"
 msgstr "Nama {entityLabel}"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "{from} sampai {to}"
-
-#: ../../../lib/web/src/components/calendar/month-grid.tsx
-msgid "{hidden, plural, one {+# more} other {+# more}}"
-msgstr "{hidden, plural, other {+# lainnya}}"
 
 #: src/features/user/notifications.tsx
 msgid "{name} · app"
@@ -705,6 +707,11 @@ msgstr "Batalkan balasan"
 msgid "Cancelled"
 msgstr "Dibatalkan"
 
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
+msgid "Cancelled"
+msgstr "Dibatalkan"
+
 #: ../../../lib/web/src/components/attachment-composer.tsx
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Caption"
@@ -751,7 +758,7 @@ msgstr "Kotak centang"
 
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
-msgstr "Checklist"
+msgstr "Daftar periksa"
 
 #: ../../../lib/web/src/components/ui/date-picker.tsx
 msgid "Choose a date"
@@ -1089,7 +1096,7 @@ msgstr "default"
 #: src/features/user/display.tsx
 #: src/features/user/notifications.tsx
 msgid "Default"
-msgstr "Default"
+msgstr "Bawaan"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1570,7 +1577,7 @@ msgstr "example.com atau *.example.com"
 #: ../../../lib/web/src/components/tree-row.tsx
 #: ../../../lib/web/src/components/tree-row.tsx
 msgid "Expand"
-msgstr "Bentangkan"
+msgstr "Perluas"
 
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Expand sidebar"
@@ -1901,7 +1908,7 @@ msgstr "Berkas"
 #: src/features/system/status.tsx
 #: src/features/user/account.tsx
 msgid "Fingerprint"
-msgstr "Fingerprint"
+msgstr "Sidik jari"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 msgid "Finish moving your account"
@@ -2218,9 +2225,13 @@ msgid "Linked {label}"
 msgstr "{label} terhubung"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+msgid "Links"
+msgstr "Tautan"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/links.tsx
 #: src/features/user/links.tsx
+msgctxt "external links"
 msgid "Links"
 msgstr "Tautan"
 
@@ -2448,7 +2459,6 @@ msgstr "Passkey saya"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
-#: src/features/user/account.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2457,12 +2467,21 @@ msgstr "Passkey saya"
 msgid "Name"
 msgstr "Nama"
 
+#: src/features/user/account.tsx
+msgctxt "person"
+msgid "Name"
+msgstr "Nama"
+
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
 msgstr "Nama tidak boleh mengandung karakter < atau >"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
+msgid "Name is required"
+msgstr "Nama wajib diisi"
+
 #: src/features/user/account.tsx
+msgctxt "person"
 msgid "Name is required"
 msgstr "Nama wajib diisi"
 
@@ -2495,9 +2514,13 @@ msgid "Never"
 msgstr "Tidak pernah"
 
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
-#: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "New"
 msgstr "Baru"
+
+#: ../../../lib/web/src/components/ui/sort-selector.tsx
+msgctxt "sort order"
+msgid "New"
+msgstr "Terbaru"
 
 #: src/features/user/notifications.tsx
 msgid "New category"
@@ -2729,11 +2752,15 @@ msgstr "Notifikasi: {0}"
 msgid "Notify by default"
 msgstr "Beri tahu secara default"
 
-#: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
-#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Number"
 msgstr "Angka"
+
+#: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
+#: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+msgctxt "item number"
+msgid "Number"
+msgstr "Nomor"
 
 #: src/features/user/preferences.tsx
 msgid "Number format"
@@ -2879,7 +2906,7 @@ msgstr "Kata sandi"
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 msgid "Path"
-msgstr "Path"
+msgstr "Jalur"
 
 #. placeholder {0}: allowedPaths.join(', ')
 #: src/features/domains/index.tsx
@@ -3097,7 +3124,7 @@ msgstr "Regenerasi"
 #: src/features/user/interests.tsx
 #: src/features/user/interests.tsx
 msgid "Regenerate summary"
-msgstr "Regenerasi ringkasan"
+msgstr "Buat ulang ringkasan"
 
 #: src/features/user/login.tsx
 msgid "Regenerate?"
@@ -3138,6 +3165,11 @@ msgstr "Relevansi {relevance}"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}, interest {weight}"
 msgstr "Relevansi {relevance}, minat {weight}"
+
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "Reminder"
+msgstr "Pengingat"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 #: ../../../lib/web/src/components/attachment-composer.tsx
@@ -3258,7 +3290,7 @@ msgstr "Kirim ulang email"
 #: src/features/user/display.tsx
 #: src/features/user/preferences.tsx
 msgid "Reset"
-msgstr "Reset"
+msgstr "Setel ulang"
 
 #: src/features/user/display.tsx
 msgid "Reset display?"
@@ -3497,7 +3529,7 @@ msgstr "Mencari..."
 
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Select"
-msgstr "Pilih"
+msgstr "Pilihan"
 
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Select a field"
@@ -3750,7 +3782,7 @@ msgstr "Berhenti memantau"
 
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Subject"
-msgstr "Subjek"
+msgstr "Pengguna atau grup"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Submit comment"
@@ -3802,10 +3834,18 @@ msgstr "Penangguhan dihapus"
 msgid "Switch to view 1-9"
 msgstr "Beralih ke tampilan 1-9"
 
+#: ../../../lib/web/src/lib/preference-utils.ts
+#: ../../../lib/web/src/lib/preference-utils.ts
+msgid "System"
+msgstr "Sistem"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
-#: ../../../lib/web/src/lib/preference-utils.ts
-#: ../../../lib/web/src/lib/preference-utils.ts
+msgctxt "actor"
+msgid "System"
+msgstr "Sistem"
+
 #: src/components/layout/data/sidebar-data.ts
+msgctxt "administration section"
 msgid "System"
 msgstr "Sistem"
 
@@ -3833,6 +3873,11 @@ msgstr "Tag"
 #: src/features/domains/index.tsx
 msgid "Target"
 msgstr "Target"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
+msgid "Tentative"
+msgstr "Sementara"
 
 #: ../../../lib/web/src/components/server-documents-footer.tsx
 #: ../../../lib/web/src/features/document/document-page.tsx
@@ -4059,7 +4104,7 @@ msgstr "Terlalu banyak permintaan"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "Top"
-msgstr "Atas"
+msgstr "Teratas"
 
 #: src/features/user/notifications.tsx
 msgid "Topics"
@@ -4203,7 +4248,7 @@ msgstr "Belum diverifikasi"
 
 #: src/features/system/status.tsx
 msgid "Update"
-msgstr "Pembaruan"
+msgstr "Perbarui"
 
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx

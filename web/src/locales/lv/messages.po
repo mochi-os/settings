@@ -44,6 +44,11 @@ msgstr "(tukšs)"
 msgid "(expand)"
 msgstr "(izvērst)"
 
+#: ../../../lib/web/src/components/calendar/event-title.tsx
+#: ../../../lib/web/src/components/calendar/tooltip.ts
+msgid "(No title)"
+msgstr "(Bez nosaukuma)"
+
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "(you)"
 msgstr "(jūs)"
@@ -84,7 +89,7 @@ msgstr "{0} · lietotne"
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
 msgid "{0} · push"
-msgstr "{0} · push"
+msgstr "{0} · push paziņojumi"
 
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
@@ -137,13 +142,10 @@ msgid "{entityLabel} name"
 msgstr "{entityLabel} nosaukums"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "no {from} līdz {to}"
-
-#: ../../../lib/web/src/components/calendar/month-grid.tsx
-msgid "{hidden, plural, one {+# more} other {+# more}}"
-msgstr "{hidden, plural, zero {+# vēl} one {+# vēl} other {+# vēl}}"
 
 #: src/features/user/notifications.tsx
 msgid "{name} · app"
@@ -151,7 +153,7 @@ msgstr "{name} · lietotne"
 
 #: src/features/user/notifications.tsx
 msgid "{name} · push"
-msgstr "{name} · push"
+msgstr "{name} · push paziņojumi"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "{opponentName} offered a draw"
@@ -450,7 +452,7 @@ msgstr "Radās negaidīta kļūda"
 
 #: ../../../lib/web/src/features/accounts/types.ts
 msgid "Android push"
-msgstr "Android push"
+msgstr "Android push paziņojumi"
 
 #: src/features/system/settings.tsx
 msgid "Announce hostname and domains to other servers"
@@ -616,7 +618,7 @@ msgstr "Bloki"
 
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
-msgstr "Galds"
+msgstr "Dēlis"
 
 #: ../../../lib/web/src/components/post-tags.tsx
 #: ../../../lib/web/src/components/post-tags.tsx
@@ -702,6 +704,11 @@ msgstr "Atcelt atbildi"
 #: ../../../lib/web/src/lib/shell-errors.ts
 #: ../../../lib/web/src/lib/shell-errors.ts
 #: ../../../lib/web/src/lib/shell-errors.ts
+msgid "Cancelled"
+msgstr "Atcelts"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
 msgid "Cancelled"
 msgstr "Atcelts"
 
@@ -2218,9 +2225,13 @@ msgid "Linked {label}"
 msgstr "Saistīts {label}"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+msgid "Links"
+msgstr "Saites"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/links.tsx
 #: src/features/user/links.tsx
+msgctxt "external links"
 msgid "Links"
 msgstr "Saites"
 
@@ -2448,7 +2459,6 @@ msgstr "Mana piekļuves atslēga"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
-#: src/features/user/account.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2457,14 +2467,23 @@ msgstr "Mana piekļuves atslēga"
 msgid "Name"
 msgstr "Nosaukums"
 
+#: src/features/user/account.tsx
+msgctxt "person"
+msgid "Name"
+msgstr "Vārds"
+
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
 msgstr "Nosaukums nedrīkst saturēt rakstzīmes < vai >"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
-#: src/features/user/account.tsx
 msgid "Name is required"
 msgstr "Nosaukums ir obligāts"
+
+#: src/features/user/account.tsx
+msgctxt "person"
+msgid "Name is required"
+msgstr "Vārds ir obligāts"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name must be 1000 characters or less"
@@ -2472,7 +2491,7 @@ msgstr "Nosaukums nedrīkst pārsniegt 1000 rakstzīmes"
 
 #: src/features/user/account.tsx
 msgid "Name updated"
-msgstr "Nosaukums atjaunināts"
+msgstr "Vārds atjaunināts"
 
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -2495,9 +2514,13 @@ msgid "Never"
 msgstr "Nekad"
 
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
-#: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "New"
 msgstr "Jauns"
+
+#: ../../../lib/web/src/components/ui/sort-selector.tsx
+msgctxt "sort order"
+msgid "New"
+msgstr "Jaunākie"
 
 #: src/features/user/notifications.tsx
 msgid "New category"
@@ -2729,9 +2752,13 @@ msgstr "Paziņojumi: {0}"
 msgid "Notify by default"
 msgstr "Pēc noklusējuma paziņot"
 
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts
+msgid "Number"
+msgstr "Numurs"
+
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
-#: ../../../lib/web/src/hooks/use-field-type-labels.ts
+msgctxt "item number"
 msgid "Number"
 msgstr "Numurs"
 
@@ -3015,7 +3042,7 @@ msgstr "Publisks URL OAuth pāradresācijām"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Push"
-msgstr "Push"
+msgstr "Push paziņojumi"
 
 #: ../../../lib/web/src/features/accounts/types.ts
 msgid "Push notification"
@@ -3097,7 +3124,7 @@ msgstr "Atjaunot"
 #: src/features/user/interests.tsx
 #: src/features/user/interests.tsx
 msgid "Regenerate summary"
-msgstr "Atjaunot kopsavilkumu"
+msgstr "Pārģenerēt kopsavilkumu"
 
 #: src/features/user/login.tsx
 msgid "Regenerate?"
@@ -3138,6 +3165,11 @@ msgstr "Atbilstība {relevance}"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}, interest {weight}"
 msgstr "Atbilstība {relevance}, interese {weight}"
+
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "Reminder"
+msgstr "Atgādinājums"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 #: ../../../lib/web/src/components/attachment-composer.tsx
@@ -3497,7 +3529,7 @@ msgstr "Meklē..."
 
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Select"
-msgstr "Atlasīt"
+msgstr "Izvēle"
 
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Select a field"
@@ -3750,7 +3782,7 @@ msgstr "Pārtraukt skatīšanos"
 
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Subject"
-msgstr "Tēma"
+msgstr "Lietotājs vai grupa"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Submit comment"
@@ -3802,10 +3834,18 @@ msgstr "Apturēšana noņemta"
 msgid "Switch to view 1-9"
 msgstr "Pārslēgt uz skatu 1-9"
 
+#: ../../../lib/web/src/lib/preference-utils.ts
+#: ../../../lib/web/src/lib/preference-utils.ts
+msgid "System"
+msgstr "Sistēma"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
-#: ../../../lib/web/src/lib/preference-utils.ts
-#: ../../../lib/web/src/lib/preference-utils.ts
+msgctxt "actor"
+msgid "System"
+msgstr "Sistēma"
+
 #: src/components/layout/data/sidebar-data.ts
+msgctxt "administration section"
 msgid "System"
 msgstr "Sistēma"
 
@@ -3833,6 +3873,11 @@ msgstr "Tagi"
 #: src/features/domains/index.tsx
 msgid "Target"
 msgstr "Mērķis"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
+msgid "Tentative"
+msgstr "Provizorisks"
 
 #: ../../../lib/web/src/components/server-documents-footer.tsx
 #: ../../../lib/web/src/features/document/document-page.tsx
@@ -4059,7 +4104,7 @@ msgstr "Pārāk daudz pieprasījumu"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "Top"
-msgstr "Augšā"
+msgstr "Labākie"
 
 #: src/features/user/notifications.tsx
 msgid "Topics"

@@ -44,6 +44,11 @@ msgstr "(boʻsh)"
 msgid "(expand)"
 msgstr "(yoyish)"
 
+#: ../../../lib/web/src/components/calendar/event-title.tsx
+#: ../../../lib/web/src/components/calendar/tooltip.ts
+msgid "(No title)"
+msgstr "(Sarlavhasiz)"
+
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "(you)"
 msgstr "(siz)"
@@ -84,7 +89,7 @@ msgstr "{0} · ilova"
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
 msgid "{0} · push"
-msgstr "{0} · push"
+msgstr "{0} · push bildirishnomalar"
 
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
@@ -137,13 +142,10 @@ msgid "{entityLabel} name"
 msgstr "{entityLabel} nomi"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{from} to {to}"
 msgstr "{from} – {to}"
-
-#: ../../../lib/web/src/components/calendar/month-grid.tsx
-msgid "{hidden, plural, one {+# more} other {+# more}}"
-msgstr "{hidden, plural, one {+# ta} other {+# ta}}"
 
 #: src/features/user/notifications.tsx
 msgid "{name} · app"
@@ -151,7 +153,7 @@ msgstr "{name} · ilova"
 
 #: src/features/user/notifications.tsx
 msgid "{name} · push"
-msgstr "{name} · push"
+msgstr "{name} · push bildirishnomalar"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "{opponentName} offered a draw"
@@ -450,7 +452,7 @@ msgstr "Kutilmagan xatolik yuz berdi"
 
 #: ../../../lib/web/src/features/accounts/types.ts
 msgid "Android push"
-msgstr "Android push"
+msgstr "Android push bildirishnomalari"
 
 #: src/features/system/settings.tsx
 msgid "Announce hostname and domains to other servers"
@@ -530,7 +532,7 @@ msgstr "Javob fayllarini biriktirish"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: ../../../lib/web/src/features/access/types.ts
 msgid "Authenticated users"
-msgstr "Autentifikatsiyadan o'tgan foydalanuvchilar"
+msgstr "Autentifikatsiyadan oʻtgan foydalanuvchilar"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -702,6 +704,11 @@ msgstr "Javobni bekor qilish"
 #: ../../../lib/web/src/lib/shell-errors.ts
 #: ../../../lib/web/src/lib/shell-errors.ts
 #: ../../../lib/web/src/lib/shell-errors.ts
+msgid "Cancelled"
+msgstr "Bekor qilindi"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
 msgid "Cancelled"
 msgstr "Bekor qilindi"
 
@@ -2218,9 +2225,13 @@ msgid "Linked {label}"
 msgstr "{label} bogʻlandi"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+msgid "Links"
+msgstr "Havolalar"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/links.tsx
 #: src/features/user/links.tsx
+msgctxt "external links"
 msgid "Links"
 msgstr "Havolalar"
 
@@ -2448,7 +2459,6 @@ msgstr "Mening passkey"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
-#: src/features/user/account.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2457,14 +2467,23 @@ msgstr "Mening passkey"
 msgid "Name"
 msgstr "Nomi"
 
+#: src/features/user/account.tsx
+msgctxt "person"
+msgid "Name"
+msgstr "Ism"
+
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
 msgstr "Nom < yoki > belgilarini oʻz ichiga olishi mumkin emas"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
-#: src/features/user/account.tsx
 msgid "Name is required"
 msgstr "Nom kerak"
+
+#: src/features/user/account.tsx
+msgctxt "person"
+msgid "Name is required"
+msgstr "Ism kerak"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name must be 1000 characters or less"
@@ -2495,9 +2514,13 @@ msgid "Never"
 msgstr "Hech qachon"
 
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
-#: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "New"
 msgstr "Yangi"
+
+#: ../../../lib/web/src/components/ui/sort-selector.tsx
+msgctxt "sort order"
+msgid "New"
+msgstr "Eng yangi"
 
 #: src/features/user/notifications.tsx
 msgid "New category"
@@ -2510,7 +2533,7 @@ msgstr "Yangi oʻyin"
 
 #: src/features/system/users.tsx
 msgid "Next"
-msgstr "Keyingisi"
+msgstr "Keyingi"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -2729,9 +2752,13 @@ msgstr "Bildirishnomalar: {0}"
 msgid "Notify by default"
 msgstr "Sukut boʻyicha xabar berish"
 
+#: ../../../lib/web/src/hooks/use-field-type-labels.ts
+msgid "Number"
+msgstr "Raqam"
+
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
-#: ../../../lib/web/src/hooks/use-field-type-labels.ts
+msgctxt "item number"
 msgid "Number"
 msgstr "Raqam"
 
@@ -3015,7 +3042,7 @@ msgstr "OAuth yoʻnaltirishlar uchun ommaviy URL"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Push"
-msgstr "Push"
+msgstr "Push bildirishnomalar"
 
 #: ../../../lib/web/src/features/accounts/types.ts
 msgid "Push notification"
@@ -3138,6 +3165,11 @@ msgstr "Moslik {relevance}"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}, interest {weight}"
 msgstr "Moslik {relevance}, qiziqish {weight}"
+
+#: ../../../lib/web/src/components/calendar/month-grid.tsx
+#: ../../../lib/web/src/components/calendar/time-grid.tsx
+msgid "Reminder"
+msgstr "Eslatma"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 #: ../../../lib/web/src/components/attachment-composer.tsx
@@ -3497,7 +3529,7 @@ msgstr "Qidirilmoqda..."
 
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Select"
-msgstr "Tanlash"
+msgstr "Tanlov"
 
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Select a field"
@@ -3631,7 +3663,7 @@ msgstr "Sessiya bekor qilindi"
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Sessions"
-msgstr "Sessiyalar"
+msgstr "Seanslar"
 
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
@@ -3750,7 +3782,7 @@ msgstr "Kuzatishni toʻxtatish"
 
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Subject"
-msgstr "Mavzu"
+msgstr "Foydalanuvchi yoki guruh"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Submit comment"
@@ -3802,10 +3834,18 @@ msgstr "Toʻxtatib qoʻyish bekor qilindi"
 msgid "Switch to view 1-9"
 msgstr "1-9 koʻrinishiga oʻtish"
 
+#: ../../../lib/web/src/lib/preference-utils.ts
+#: ../../../lib/web/src/lib/preference-utils.ts
+msgid "System"
+msgstr "Tizim"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
-#: ../../../lib/web/src/lib/preference-utils.ts
-#: ../../../lib/web/src/lib/preference-utils.ts
+msgctxt "actor"
+msgid "System"
+msgstr "Tizim"
+
 #: src/components/layout/data/sidebar-data.ts
+msgctxt "administration section"
 msgid "System"
 msgstr "Tizim"
 
@@ -3833,6 +3873,11 @@ msgstr "Teglar"
 #: src/features/domains/index.tsx
 msgid "Target"
 msgstr "Maqsad"
+
+#: ../../../lib/web/src/components/calendar/status.ts
+msgctxt "event status"
+msgid "Tentative"
+msgstr "Taxminiy"
 
 #: ../../../lib/web/src/components/server-documents-footer.tsx
 #: ../../../lib/web/src/features/document/document-page.tsx
@@ -4059,7 +4104,7 @@ msgstr "Juda koʻp soʻrovlar"
 
 #: ../../../lib/web/src/components/ui/sort-selector.tsx
 msgid "Top"
-msgstr "Yuqori"
+msgstr "Eng yaxshi"
 
 #: src/features/user/notifications.tsx
 msgid "Topics"
