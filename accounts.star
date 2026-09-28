@@ -50,7 +50,7 @@ def action_accounts_add(a):
     # Build fields dict from form inputs. Bound each field like the
     # notifications app's add path - core's own validation accepts up to 1MB.
     fields = {}
-    for key in ["label", "address", "token", "api_key", "url", "endpoint", "auth", "p256dh", "secret", "topic", "server"]:
+    for key in ["label", "address", "token", "api_key", "url", "endpoint", "auth", "p256dh", "secret", "topic", "server", "username", "password"]:
         val = a.input(key)
         if val:
             if len(val) > 4096:
