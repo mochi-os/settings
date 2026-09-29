@@ -69,7 +69,7 @@ import {
   Zap,
 } from 'lucide-react'
 import endpoints from '@/api/endpoints'
-import { useOauthBegin } from '@/hooks/use-account'
+import { useOauthLink } from '@/hooks/use-account'
 import type { OAuthProvider } from '@/types/account'
 import { useStepUp } from '@/lib/use-step-up'
 
@@ -471,7 +471,7 @@ export function ConnectedAccounts() {
   const { t } = useLingui()
   usePageTitle(t`Connected accounts`)
   const stepUp = useStepUp()
-  const oauthBegin = useOauthBegin()
+  const oauthLink = useOauthLink()
 
   // The provider returns the browser here after a link, so this page says how
   // it went rather than leaving the result on the query alone.
@@ -602,9 +602,8 @@ export function ConnectedAccounts() {
     setIsAddOpen(false)
     stepUp.request(async (token) => {
       try {
-        const { url } = await oauthBegin.mutateAsync({
+        const { url } = await oauthLink.mutateAsync({
           provider: type as OAuthProvider,
-          link: true,
           token,
         })
         shellNavigateTop(url)

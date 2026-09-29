@@ -29,12 +29,12 @@ const endpoints = {
     accountRecoveryGenerate: '-/user/account/recovery/generate',
     // OAuth identities
     accountOauth: '-/user/account/oauth',
+    accountOauthLink: '-/user/account/oauth/link',
     accountOauthUnlink: '-/user/account/oauth/unlink',
     accountOauthVerifyBegin: '-/user/account/oauth/verify/begin',
     accountOauthVerifyFinish: '-/user/account/oauth/verify/finish',
     // Auth methods available on the server (public) - for OAuth begin flow
     authMethods: '/_/auth/methods',
-    authOauthBegin: (provider: string) => `/_/auth/oauth/${provider}/begin`,
     // Preferences
     preferences: '-/user/preferences/data',
     preferencesSet: '-/user/preferences/set',

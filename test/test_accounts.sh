@@ -288,12 +288,12 @@ if [ -n "$ACCOUNT_ID" ]; then
     fi
 fi
 
-# Test: Get non-existent account returns None/null
+# Test: Get non-existent account answers not found
 RESULT=$(settings_curl GET "/-/accounts/get?id=99999")
-if echo "$RESULT" | grep -q 'null' || echo "$RESULT" | grep -q '{}' || [ "$(echo "$RESULT" | python3 -c "import sys, json; print(json.load(sys.stdin).get('data'))" 2>/dev/null)" == "None" ]; then
-    pass "Get non-existent account returns None"
+if echo "$RESULT" | grep -q 'Account not found'; then
+    pass "Get non-existent account answers not found"
 else
-    fail "Get non-existent account returns None" "$RESULT"
+    fail "Get non-existent account answers not found" "$RESULT"
 fi
 
 # ============================================================================
@@ -397,6 +397,30 @@ if echo "$RESULT" | grep -q 'false' || echo "$RESULT" | grep -q '"data":false'; 
     pass "Remove non-existent account returns false"
 else
     fail "Remove non-existent account returns false" "$RESULT"
+fi
+
+# ============================================================================
+# OAUTH LINK TESTS
+# ============================================================================
+
+echo ""
+echo "--- OAuth Link Tests ---"
+
+# Linking a provider's sign-in goes through the app's own action: the shell's
+# sandboxed frame reaches core's /_/ begin route as cross-site, which it
+# refuses. Linking adds a way to sign in, so it takes a step-up proof.
+RESULT=$(settings_curl POST "/-/user/account/oauth/link" -d "provider=")
+if echo "$RESULT" | grep -q 'Missing provider'; then
+    pass "Link without a provider is refused"
+else
+    fail "Link without a provider is refused" "$RESULT"
+fi
+
+RESULT=$(settings_curl POST "/-/user/account/oauth/link" -d "provider=github&token=bogus")
+if echo "$RESULT" | grep -qi 're-\?authentication'; then
+    pass "Link without a valid step-up proof is refused"
+else
+    fail "Link without a valid step-up proof is refused" "$RESULT"
 fi
 
 # ============================================================================

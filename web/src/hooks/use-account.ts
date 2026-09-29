@@ -314,25 +314,22 @@ export function useAuthMethods() {
   })
 }
 
-export function useOauthBegin() {
+// Starts linking a provider's sign-in through this app's own action: the
+// shell's sandboxed frame reaches core's begin route as a cross-site request,
+// which that route refuses.
+export function useOauthLink() {
   return useMutation({
     mutationFn: ({
       provider,
-      link,
       token,
     }: {
       provider: OAuthProvider
-      link?: boolean
-      // Step-up proof, required by the server when link is true.
-      token?: string
+      // Step-up proof: linking adds a way to sign in.
+      token: string
     }) =>
       requestHelpers.post<OAuthBeginResponse>(
-        endpoints.user.authOauthBegin(provider),
-        {
-          link: link ?? false,
-          target: window.location.pathname,
-          token: token ?? '',
-        },
+        endpoints.user.accountOauthLink,
+        { provider, token, target: window.location.pathname },
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
   })

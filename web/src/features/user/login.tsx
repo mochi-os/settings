@@ -74,7 +74,7 @@ import { useStepUp } from '@/lib/use-step-up'
 import {
   useAuthMethods,
   useMethods,
-  useOauthBegin,
+  useOauthLink,
   useOauthIdentities,
   useOauthUnlink,
   usePasskeyDelete,
@@ -869,7 +869,7 @@ function OauthSection() {
   const { t } = useLingui()
   const identities = useOauthIdentities()
   const authMethods = useAuthMethods()
-  const oauthBegin = useOauthBegin()
+  const oauthLink = useOauthLink()
   const oauthUnlink = useOauthUnlink()
   const stepUp = useStepUp()
 
@@ -885,9 +885,8 @@ function OauthSection() {
     // every later passphrase, passkey and TOTP change.
     stepUp.request(async (token) => {
       try {
-        const { url } = await oauthBegin.mutateAsync({
+        const { url } = await oauthLink.mutateAsync({
           provider,
-          link: true,
           token,
         })
         shellNavigateTop(url)
@@ -929,7 +928,7 @@ function OauthSection() {
           <Button
             variant='outline'
             size='sm'
-            loading={oauthBegin.isPending}
+            loading={oauthLink.isPending}
             icon={<Plus className='me-2 h-4 w-4' />}
           >
             <Trans>Link account</Trans>

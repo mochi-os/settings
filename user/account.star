@@ -380,6 +380,23 @@ def action_user_account_oauth_unlink(a):
     mochi.user.oauth.unlink(provider)
     a.json({"ok": True})
 
+def action_user_account_oauth_link(a):
+    """Begin linking an OAuth provider's sign-in to the current user. Step-up
+    gated, as unlink is: linking adds a way to sign in. Answers {url}, which
+    the browser visits; the provider's callback writes the link."""
+    provider = a.input("provider")
+    if not provider:
+        a.error.label(400, "errors.missing_provider")
+        return
+    if not mochi.user.session.reauthenticate(a.input("token", "")):
+        a.error.label(400, "errors.reauthentication_required")
+        return
+    result = mochi.user.oauth.link(provider, a.input("target", ""))
+    if not result:
+        a.error.label(400, "errors.unknown_provider")
+        return
+    a.json(result)
+
 def action_user_account_oauth_verify_begin(a):
     """Begin a popup OAuth step-up. challenge = base64url(sha256(verifier));
     the client keeps the verifier and presents it to the finish action."""
