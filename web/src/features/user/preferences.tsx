@@ -248,6 +248,7 @@ export function UserPreferences() {
             <FieldRow label={t`Time zone`}>
               <div className='w-full'>
                 <TimezoneSelect
+                  title={t`Time zone`}
                   value={data.preferences.timezone}
                   onChange={(value) => handleChange('timezone', value)}
                   disabled={setPreference.isPending}
