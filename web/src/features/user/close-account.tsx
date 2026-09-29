@@ -7,14 +7,13 @@ import { useLingui, Trans } from '@lingui/react/macro'
 import {
   AlertDialog,
   AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
   Button,
+  ConfirmDialog,
   Section,
   getErrorMessage,
   shellNavigateTop,
@@ -38,6 +37,7 @@ export function CloseAccountSection() {
   const closeAccount = useCloseAccount()
   const stepUp = useStepUp()
   const [purgeAt, setPurgeAt] = useState<number | null>(null)
+  const [showClose, setShowClose] = useState(false)
   const purgeDate = purgeAt !== null ? formatDate(new Date(purgeAt * 1000)) : ''
 
   // Confirmed in the dialog, then step-up verified: mark the account for
@@ -62,41 +62,40 @@ export function CloseAccountSection() {
       <Section
         title={t`Close account`}
         action={
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button variant='outline' size='sm'>
-                <UserX className='me-2 h-4 w-4' />
-                <Trans>Close account</Trans>
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>
-                  <Trans>Close your account?</Trans>
-                </AlertDialogTitle>
-                <AlertDialogDescription>
-                  <Trans>
-                    Your account will be scheduled for deletion and you'll be
-                    signed out. You can cancel any time before the deletion date
-                    by logging back in. Download your data first if you want to
-                    keep a copy.
-                  </Trans>
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>
-                  <Trans>Cancel</Trans>
-                </AlertDialogCancel>
-                <AlertDialogAction
-                  variant='destructive'
-                  onClick={() => stepUp.request(runClose)}
-                >
+          <>
+            <Button
+              variant='outline'
+              size='sm'
+              onClick={() => setShowClose(true)}
+            >
+              <UserX className='me-2 h-4 w-4' />
+              <Trans>Close account</Trans>
+            </Button>
+            <ConfirmDialog
+              open={showClose}
+              onOpenChange={setShowClose}
+              title={t`Close your account?`}
+              desc={
+                <Trans>
+                  Your account will be scheduled for deletion and you'll be
+                  signed out. You can cancel any time before the deletion date
+                  by logging back in. Download your data first if you want to
+                  keep a copy.
+                </Trans>
+              }
+              confirmText={
+                <>
                   <UserX className='me-2 h-4 w-4' />
                   <Trans>Close account</Trans>
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+                </>
+              }
+              destructive
+              handleConfirm={() => {
+                setShowClose(false)
+                stepUp.request(runClose)
+              }}
+            />
+          </>
         }
       />
       {stepUp.dialog}

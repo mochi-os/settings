@@ -2,19 +2,12 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
+import { useState } from 'react'
 import type { Session } from '@/types/account'
 import { Trans, useLingui } from '@lingui/react/macro'
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
   Button,
+  ConfirmDialog,
   EmptyState,
   GeneralError,
   ListSkeleton,
@@ -49,11 +42,13 @@ function SessionRow({
   const { formatTimestamp } = useFormat()
   const agentName = useAgentName()
   const revokeSession = useRevokeSession()
+  const [showRevoke, setShowRevoke] = useState(false)
 
   const handleRevoke = () => {
     revokeSession.mutate(session.id, {
       onSuccess: () => {
         toast.success(t`Session revoked`)
+        setShowRevoke(false)
       },
       onError: (error) => {
         toast.error(getErrorMessage(error, t`Failed to revoke session`))
@@ -82,41 +77,26 @@ function SessionRow({
         {formatTimestamp(session.accessed, t`Never`)}
       </TableCell>
       <TableCell className='text-end'>
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button
-              variant='ghost'
-              size='sm'
-              loading={revokeSession.isPending}
-              icon={<LogOut className='h-4 w-4' />}
-            >
-              <span className='sr-only'>
-                <Trans>Revoke session</Trans>
-              </span>
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>
-                <Trans>Revoke session?</Trans>
-              </AlertDialogTitle>
-              <AlertDialogDescription>
-                <Trans>
-                  This will sign out this session. If this is your current
-                  session, you will need to sign in again.
-                </Trans>
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>
-                <Trans>Cancel</Trans>
-              </AlertDialogCancel>
-              <AlertDialogAction onClick={handleRevoke}>
-                <Trans>Revoke</Trans>
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <Button
+          variant='ghost'
+          size='sm'
+          loading={revokeSession.isPending}
+          icon={<LogOut className='h-4 w-4' />}
+          onClick={() => setShowRevoke(true)}
+        >
+          <span className='sr-only'>
+            <Trans>Revoke session</Trans>
+          </span>
+        </Button>
+        <ConfirmDialog
+          open={showRevoke}
+          onOpenChange={setShowRevoke}
+          title={t`Revoke session?`}
+          desc={t`This will sign out this session. If this is your current session, you will need to sign in again.`}
+          confirmText={t`Revoke`}
+          isLoading={revokeSession.isPending}
+          handleConfirm={handleRevoke}
+        />
       </TableCell>
     </TableRow>
   )

@@ -5,16 +5,8 @@
 import { useState } from 'react'
 import { Trans, useLingui } from '@lingui/react/macro'
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
   Button,
+  ConfirmDialog,
   FieldRow,
   GeneralError,
   ListSkeleton,
@@ -116,6 +108,7 @@ export function UserDisplay() {
   const unsetPreferences = useUnsetPreferences()
   const { setTheme, setColorTheme } = useTheme()
   const [themeSheetOpen, setThemeSheetOpen] = useState(false)
+  const [showReset, setShowReset] = useState(false)
 
   const themeOverrideKeys = [
     'density',
@@ -206,6 +199,7 @@ export function UserDisplay() {
         setColorTheme(null)
         setTheme('system')
         toast.success(t`Display reset to defaults`)
+        setShowReset(false)
       },
       onError: (error) => {
         toast.error(getErrorMessage(error, t`Failed to reset display`))
@@ -220,43 +214,31 @@ export function UserDisplay() {
         icon={<Palette className='size-4 md:size-5' />}
         actions={
           !error ? (
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button
-                  variant='outline'
-                  size='sm'
-                  disabled={
-                    isLoading ||
-                    setPreference.isPending ||
-                    unsetPreferences.isPending
-                  }
-                  loading={unsetPreferences.isPending}
-                  icon={<RotateCcw className='me-2 h-3.5 w-3.5' />}
-                >
-                  <Trans>Reset to defaults</Trans>
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>
-                    <Trans>Reset display?</Trans>
-                  </AlertDialogTitle>
-                  <AlertDialogDescription>
-                    <Trans>
-                      This will reset display settings to their default values.
-                    </Trans>
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>
-                    <Trans>Cancel</Trans>
-                  </AlertDialogCancel>
-                  <AlertDialogAction onClick={handleReset}>
-                    <Trans>Reset</Trans>
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+            <>
+              <Button
+                variant='outline'
+                size='sm'
+                disabled={
+                  isLoading ||
+                  setPreference.isPending ||
+                  unsetPreferences.isPending
+                }
+                loading={unsetPreferences.isPending}
+                icon={<RotateCcw className='me-2 h-3.5 w-3.5' />}
+                onClick={() => setShowReset(true)}
+              >
+                <Trans>Reset to defaults</Trans>
+              </Button>
+              <ConfirmDialog
+                open={showReset}
+                onOpenChange={setShowReset}
+                title={t`Reset display?`}
+                desc={t`This will reset display settings to their default values.`}
+                confirmText={t`Reset`}
+                isLoading={unsetPreferences.isPending}
+                handleConfirm={handleReset}
+              />
+            </>
           ) : undefined
         }
       />

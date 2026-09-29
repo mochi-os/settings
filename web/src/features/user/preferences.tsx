@@ -2,20 +2,12 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Trans, useLingui } from '@lingui/react/macro'
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
   Button,
+  ConfirmDialog,
   FieldRow,
   GeneralError,
   ListSkeleton,
@@ -77,6 +69,7 @@ export function UserPreferences() {
   const { data, isLoading, error, refetch } = usePreferencesData()
   const setPreference = useSetPreference()
   const unsetPreferences = useUnsetPreferences()
+  const [showReset, setShowReset] = useState(false)
   const { raw: currentLocale } = useLocale()
 
   const localeKeys = [
@@ -181,6 +174,7 @@ export function UserPreferences() {
         setStoredLanguage('auto')
         shellSetLanguage(detectLanguage())
         toast.success(t`Preferences reset to defaults`)
+        setShowReset(false)
       },
       onError: (error) => {
         toast.error(getErrorMessage(error, t`Failed to reset preferences`))
@@ -195,39 +189,27 @@ export function UserPreferences() {
         icon={<Sliders className='size-4 md:size-5' />}
         actions={
           !error ? (
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button
-                  variant='outline'
-                  size='sm'
-                  loading={unsetPreferences.isPending}
-                  disabled={isLoading || setPreference.isPending}
-                  icon={<RotateCcw className='me-2 h-3.5 w-3.5' />}
-                >
-                  <Trans>Reset to defaults</Trans>
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>
-                    <Trans>Reset preferences?</Trans>
-                  </AlertDialogTitle>
-                  <AlertDialogDescription>
-                    <Trans>
-                      This will reset all preferences to their default values.
-                    </Trans>
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>
-                    <Trans>Cancel</Trans>
-                  </AlertDialogCancel>
-                  <AlertDialogAction onClick={handleReset}>
-                    <Trans>Reset</Trans>
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+            <>
+              <Button
+                variant='outline'
+                size='sm'
+                loading={unsetPreferences.isPending}
+                disabled={isLoading || setPreference.isPending}
+                icon={<RotateCcw className='me-2 h-3.5 w-3.5' />}
+                onClick={() => setShowReset(true)}
+              >
+                <Trans>Reset to defaults</Trans>
+              </Button>
+              <ConfirmDialog
+                open={showReset}
+                onOpenChange={setShowReset}
+                title={t`Reset preferences?`}
+                desc={t`This will reset all preferences to their default values.`}
+                confirmText={t`Reset`}
+                isLoading={unsetPreferences.isPending}
+                handleConfirm={handleReset}
+              />
+            </>
           ) : undefined
         }
       />
