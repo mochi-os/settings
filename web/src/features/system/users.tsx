@@ -80,11 +80,11 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
   const [username, setUsername] = useState('')
   const [role, setRole] = useState('user')
   const createUser = useCreateUser()
+  const stepUp = useStepUp()
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  const create = (token?: string) =>
     createUser.mutate(
-      { username, role },
+      { username, role, token },
       {
         onSuccess: () => {
           toast.success(t`User created`)
@@ -98,75 +98,85 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
         },
       }
     )
+
+  // Creating an administrator grants a privilege, so it takes the same
+  // step-up as promoting one; an ordinary user does not.
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (role === 'administrator') stepUp.request(create)
+    else create()
   }
 
   return (
-    <ResponsiveDialog open={open} onOpenChange={setOpen}>
-      <ResponsiveDialogTrigger asChild>
-        <Button variant='outline' size='sm'>
-          <Plus className='me-2 h-4 w-4' />
-          <Trans>Add user</Trans>
-        </Button>
-      </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent>
-        <form onSubmit={handleSubmit}>
-          <ResponsiveDialogHeader>
-            <ResponsiveDialogTitle>
-              <Trans>Create user</Trans>
-            </ResponsiveDialogTitle>
-          </ResponsiveDialogHeader>
-          <div className='grid gap-4 py-4'>
-            <div className='grid gap-2'>
-              <Label htmlFor='username'>
-                <Trans>Email</Trans>
-              </Label>
-              <Input
-                id='username'
-                type='email'
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder='user@example.com'
-                required
-              />
+    <>
+      {stepUp.dialog}
+      <ResponsiveDialog open={open} onOpenChange={setOpen}>
+        <ResponsiveDialogTrigger asChild>
+          <Button variant='outline' size='sm'>
+            <Plus className='me-2 h-4 w-4' />
+            <Trans>Add user</Trans>
+          </Button>
+        </ResponsiveDialogTrigger>
+        <ResponsiveDialogContent>
+          <form onSubmit={handleSubmit}>
+            <ResponsiveDialogHeader>
+              <ResponsiveDialogTitle>
+                <Trans>Create user</Trans>
+              </ResponsiveDialogTitle>
+            </ResponsiveDialogHeader>
+            <div className='grid gap-4 py-4'>
+              <div className='grid gap-2'>
+                <Label htmlFor='username'>
+                  <Trans>Email</Trans>
+                </Label>
+                <Input
+                  id='username'
+                  type='email'
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder='user@example.com'
+                  required
+                />
+              </div>
+              <div className='grid gap-2'>
+                <Label htmlFor='role'>
+                  <Trans>Role</Trans>
+                </Label>
+                <Select value={role} onValueChange={setRole}>
+                  <SelectTrigger className='w-full'>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value='administrator'>
+                      <Trans>Administrator</Trans>
+                    </SelectItem>
+                    <SelectItem value='user'>
+                      <Trans>User</Trans>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
-            <div className='grid gap-2'>
-              <Label htmlFor='role'>
-                <Trans>Role</Trans>
-              </Label>
-              <Select value={role} onValueChange={setRole}>
-                <SelectTrigger className='w-full'>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value='administrator'>
-                    <Trans>Administrator</Trans>
-                  </SelectItem>
-                  <SelectItem value='user'>
-                    <Trans>User</Trans>
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-          <ResponsiveDialogFooter>
-            <Button
-              type='button'
-              variant='outline'
-              onClick={() => setOpen(false)}
-            >
-              <Trans>Cancel</Trans>
-            </Button>
-            <Button
-              type='submit'
-              loading={createUser.isPending}
-              icon={<UserPlus className='size-4' />}
-            >
-              <Trans>Create user</Trans>
-            </Button>
-          </ResponsiveDialogFooter>
-        </form>
-      </ResponsiveDialogContent>
-    </ResponsiveDialog>
+            <ResponsiveDialogFooter>
+              <Button
+                type='button'
+                variant='outline'
+                onClick={() => setOpen(false)}
+              >
+                <Trans>Cancel</Trans>
+              </Button>
+              <Button
+                type='submit'
+                loading={createUser.isPending}
+                icon={<UserPlus className='size-4' />}
+              >
+                <Trans>Create user</Trans>
+              </Button>
+            </ResponsiveDialogFooter>
+          </form>
+        </ResponsiveDialogContent>
+      </ResponsiveDialog>
+    </>
   )
 }
 

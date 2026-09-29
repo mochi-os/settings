@@ -50,7 +50,7 @@ export function useSystemUsersData(
 export const useCreateUser = () => {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (data: { username: string; role: string }) =>
+    mutationFn: (data: { username: string; role: string; token?: string }) =>
       requestHelpers.post<User>(
         endpoints.system.usersCreate,
         data,
