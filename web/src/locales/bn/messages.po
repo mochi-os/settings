@@ -94,6 +94,7 @@ msgstr "{0} · পুশ"
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
 #: src/components/theme-preview-card.tsx
+#: src/features/system/settings.tsx
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (ডেভেলপমেন্ট)"
@@ -400,6 +401,7 @@ msgstr "\"{0}\" যোগ করা হয়েছে"
 msgid "Address"
 msgstr "ঠিকানা"
 
+#: src/features/domains/index.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -436,8 +438,7 @@ msgstr "অনুসারে সাজানো অনুমতি দিন"
 msgid "Allow users to install apps"
 msgstr "ব্যবহারকারীদের অ্যাপ ইনস্টল করতে অনুমতি দিন"
 
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Allowed"
 msgstr "অনুমোদিত"
 
@@ -471,7 +472,6 @@ msgstr "যে কেউ লগ ইন করেছেন"
 msgid "Anything subscribed to this feed will stop receiving it. You can copy a new URL afterwards."
 msgstr "এই ফিডে সাবস্ক্রাইব করা সবকিছু এটি পাওয়া বন্ধ করবে। পরে আপনি একটি নতুন URL কপি করতে পারেন।"
 
-#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 msgid "App"
 msgstr "অ্যাপ"
@@ -1313,10 +1313,9 @@ msgstr "নিষ্ক্রিয় করুন"
 msgid "Disable authenticator?"
 msgstr "অথেনটিকেটর নিষ্ক্রিয় করবেন?"
 
-#: src/components/method-state-control.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "নিষ্ক্রিয়"
 
@@ -1555,7 +1554,6 @@ msgid "Entities"
 msgstr "সত্তাসমূহ"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Entity"
 msgstr "সত্তা"
 
@@ -1735,6 +1733,10 @@ msgstr "সরানো ব্যর্থ"
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Failed to post comment"
 msgstr "মন্তব্য পোস্ট করতে ব্যর্থ"
+
+#: src/features/system/settings.tsx
+msgid "Failed to read file"
+msgstr "ফাইল পড়তে ব্যর্থ"
 
 #: src/features/user/interests.tsx
 msgid "Failed to regenerate summary"
@@ -3103,7 +3105,6 @@ msgid "Recovery codes"
 msgstr "রিকভারি কোড"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "রিডাইরেক্ট"
 
@@ -3194,6 +3195,7 @@ msgstr "{0} ফিল্টার সরান"
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
+#: src/features/user/interests.tsx
 msgid "Remove {name}"
 msgstr "{name} সরান"
 
@@ -3274,8 +3276,7 @@ msgid "Require domain verification"
 msgstr "ডোমেইন যাচাইকরণ প্রয়োজন"
 
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Required"
 msgstr "প্রয়োজনীয়"
 
@@ -3297,6 +3298,8 @@ msgstr "প্রদর্শন রিসেট করবেন?"
 msgid "Reset preferences?"
 msgstr "পছন্দগুলি রিসেট করবেন?"
 
+#: src/features/system/settings.tsx
+#: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
@@ -3632,14 +3635,6 @@ msgstr "সার্ভারের নিয়মাবলী"
 #: src/features/system/documents.tsx
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "আপনার ব্যবহারকারীদের দেখানো সার্ভারের নিয়মাবলী, শর্তাবলী, এবং গোপনীয়তা নোটিশ"
-
-#: src/features/system/settings.tsx
-msgid "Server started"
-msgstr "সার্ভার শুরু হয়েছে"
-
-#: src/features/system/settings.tsx
-msgid "Server version"
-msgstr "সার্ভার সংস্করণ"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -4206,6 +4201,10 @@ msgstr "অজানা"
 msgid "Unknown browser"
 msgstr "অজানা ব্রাউজার"
 
+#: src/features/system/settings.tsx
+msgid "Unknown theme"
+msgstr "অজানা থিম"
+
 #: src/features/user/login.tsx
 msgid "Unlink"
 msgstr "লিঙ্ক বিচ্ছিন্ন"
@@ -4283,6 +4282,7 @@ msgstr "আপনার পাসকি ব্যবহার করুন"
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
+#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/users.tsx

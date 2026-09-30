@@ -94,6 +94,7 @@ msgstr "{0} · push jakinarazpenak"
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
 #: src/components/theme-preview-card.tsx
+#: src/features/system/settings.tsx
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (garapena)"
@@ -400,6 +401,7 @@ msgstr "\"{0}\" gehitu da"
 msgid "Address"
 msgstr "Helbidea"
 
+#: src/features/domains/index.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -436,8 +438,7 @@ msgstr "Baimendu honela ordenatzea"
 msgid "Allow users to install apps"
 msgstr "Baimendu erabiltzaileei aplikazioak instalatzea"
 
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Allowed"
 msgstr "Baimendua"
 
@@ -471,7 +472,6 @@ msgstr "Saioa hasi duen edonor"
 msgid "Anything subscribed to this feed will stop receiving it. You can copy a new URL afterwards."
 msgstr "Jario honetara harpidetutako guztiak jasotzeari utziko dio. Ondoren URL berri bat kopia dezakezu."
 
-#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 msgid "App"
 msgstr "Aplikazioa"
@@ -1313,10 +1313,9 @@ msgstr "Desgaitu"
 msgid "Disable authenticator?"
 msgstr "Desgaitu autentifikatzailea?"
 
-#: src/components/method-state-control.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "Desgaituta"
 
@@ -1555,7 +1554,6 @@ msgid "Entities"
 msgstr "Entitateak"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Entity"
 msgstr "Entitatea"
 
@@ -1735,6 +1733,10 @@ msgstr "Ezin izan da mugitu"
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Failed to post comment"
 msgstr "Ezin izan da iruzkina argitaratu"
+
+#: src/features/system/settings.tsx
+msgid "Failed to read file"
+msgstr "Ezin izan da fitxategia irakurri"
 
 #: src/features/user/interests.tsx
 msgid "Failed to regenerate summary"
@@ -3103,7 +3105,6 @@ msgid "Recovery codes"
 msgstr "Berreskuratze-kodeak"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Birbideratu"
 
@@ -3194,6 +3195,7 @@ msgstr "Kendu {0} iragazkia"
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
+#: src/features/user/interests.tsx
 msgid "Remove {name}"
 msgstr "Kendu {name}"
 
@@ -3274,8 +3276,7 @@ msgid "Require domain verification"
 msgstr "Eskatu domeinu-egiaztapena"
 
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Required"
 msgstr "Beharrezkoa"
 
@@ -3297,6 +3298,8 @@ msgstr "Bistaratzea berrezarri?"
 msgid "Reset preferences?"
 msgstr "Hobespenak berrezarri?"
 
+#: src/features/system/settings.tsx
+#: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
@@ -3632,14 +3635,6 @@ msgstr "Zerbitzariaren arauak"
 #: src/features/system/documents.tsx
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "Zure erabiltzaileei erakusten zaizkien zerbitzariaren arauak, baldintzak eta pribatutasun-oharra"
-
-#: src/features/system/settings.tsx
-msgid "Server started"
-msgstr "Zerbitzaria abiarazita"
-
-#: src/features/system/settings.tsx
-msgid "Server version"
-msgstr "Zerbitzariaren bertsioa"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -4206,6 +4201,10 @@ msgstr "Ezezaguna"
 msgid "Unknown browser"
 msgstr "Nabigatzaile ezezaguna"
 
+#: src/features/system/settings.tsx
+msgid "Unknown theme"
+msgstr "Gai ezezaguna"
+
 #: src/features/user/login.tsx
 msgid "Unlink"
 msgstr "Desestekatu"
@@ -4283,6 +4282,7 @@ msgstr "Erabili zure sarbide-gakoa"
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
+#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/users.tsx

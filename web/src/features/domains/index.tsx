@@ -74,6 +74,12 @@ import {
   useEntities,
 } from '@/hooks/use-domains'
 
+// A route method's label, for the method pickers and the route table alike.
+function useMethodLabels(): Record<string, string> {
+  const { t } = useLingui()
+  return { app: t`App`, entity: t`Entity`, redirect: t`Redirect` }
+}
+
 function AddDomainDialog({ onSuccess }: { onSuccess: () => void }) {
   const { t } = useLingui()
   const [open, setOpen] = useState(false)
@@ -164,6 +170,7 @@ function AddRouteDialog({
   admin: boolean
 }) {
   const { t } = useLingui()
+  const methodLabels = useMethodLabels()
   const [open, setOpen] = useState(false)
   const [path, setPath] = useState('')
   const [method, setMethod] = useState('app')
@@ -285,15 +292,9 @@ function AddRouteDialog({
                 }}
                 className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:ring-1 focus-visible:outline-none'
               >
-                <option value='app'>
-                  <Trans>App</Trans>
-                </option>
-                <option value='entity'>
-                  <Trans>Entity</Trans>
-                </option>
-                <option value='redirect'>
-                  <Trans>Redirect</Trans>
-                </option>
+                <option value='app'>{methodLabels.app}</option>
+                <option value='entity'>{methodLabels.entity}</option>
+                <option value='redirect'>{methodLabels.redirect}</option>
               </select>
             </div>
             <div className='grid gap-2'>
@@ -405,6 +406,7 @@ function EditRouteDialog({
   onSuccess: () => void
 }) {
   const { t } = useLingui()
+  const methodLabels = useMethodLabels()
   const [open, setOpen] = useState(false)
   const [method, setMethod] = useState(route.method)
   const [target, setTarget] = useState(route.target)
@@ -503,15 +505,9 @@ function EditRouteDialog({
                 }}
                 className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:ring-1 focus-visible:outline-none'
               >
-                <option value='app'>
-                  <Trans>App</Trans>
-                </option>
-                <option value='entity'>
-                  <Trans>Entity</Trans>
-                </option>
-                <option value='redirect'>
-                  <Trans>Redirect</Trans>
-                </option>
+                <option value='app'>{methodLabels.app}</option>
+                <option value='entity'>{methodLabels.entity}</option>
+                <option value='redirect'>{methodLabels.redirect}</option>
               </select>
             </div>
             <div className='grid gap-2'>
@@ -746,7 +742,9 @@ function AddDelegationDialog({
                         >
                           <span>{user.username}</span>
                           <span className='text-muted-foreground text-xs'>
-                            {user.role}
+                            {user.role === 'administrator'
+                              ? t`Administrator`
+                              : t`User`}
                           </span>
                         </button>
                       ))
@@ -795,12 +793,13 @@ function RouteRow({
   isDeleting: boolean
 }) {
   const { t } = useLingui()
+  const methodLabels = useMethodLabels()
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 
   return (
     <TableRow>
       <TableCell className='font-mono text-sm'>{route.path || '/'}</TableCell>
-      <TableCell className='capitalize'>{route.method}</TableCell>
+      <TableCell>{methodLabels[route.method] ?? route.method}</TableCell>
       <TableCell className='max-w-[200px] truncate text-sm'>
         {route.target_name || route.target}
       </TableCell>
@@ -991,16 +990,18 @@ function DomainDetails({
 
   return (
     <Card className='gap-0 py-0 shadow-md'>
-      <div
-        className='flex cursor-pointer items-center justify-between px-[var(--card-px)] py-4'
+      <button
+        type='button'
+        className='flex w-full cursor-pointer items-center justify-between px-[var(--card-px)] py-4 text-start'
+        aria-expanded={expanded}
         onClick={() => setExpanded(!expanded)}
       >
-        <div className='flex items-center gap-3'>
+        <span className='flex items-center gap-3'>
           <Globe className='text-muted-foreground h-5 w-5' />
-          <div>
+          <span className='block'>
             <span className='text-base font-semibold'>{domain.domain}</span>
             {isAdmin && (
-              <div className='mt-1 flex items-center gap-2'>
+              <span className='mt-1 flex items-center gap-2'>
                 {domain.verified ? (
                   <Badge variant='default' className='text-xs'>
                     <Check className='me-1 h-3 w-3' />
@@ -1023,16 +1024,16 @@ function DomainDetails({
                     TLS
                   </Badge>
                 ) : null}
-              </div>
+              </span>
             )}
-          </div>
-        </div>
+          </span>
+        </span>
         <ChevronRight
           className={`text-muted-foreground h-5 w-5 transition-transform ${
             expanded ? 'rotate-90' : ''
           }`}
         />
-      </div>
+      </button>
       {expanded && (
         <CardContent className='space-y-6 border-t pt-2 pb-6'>
           {/* Admin-only: Settings */}

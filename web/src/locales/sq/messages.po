@@ -94,6 +94,7 @@ msgstr "{0} · njoftime push"
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
 #: src/components/theme-preview-card.tsx
+#: src/features/system/settings.tsx
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (zhvillim)"
@@ -400,6 +401,7 @@ msgstr "U shtua \"{0}\""
 msgid "Address"
 msgstr "Adresa"
 
+#: src/features/domains/index.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -436,8 +438,7 @@ msgstr "Lejo renditjen sipas"
 msgid "Allow users to install apps"
 msgstr "Lejo përdoruesit të instalojnë aplikacione"
 
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Allowed"
 msgstr "I lejuar"
 
@@ -471,7 +472,6 @@ msgstr "Kushdo që ka hyrë"
 msgid "Anything subscribed to this feed will stop receiving it. You can copy a new URL afterwards."
 msgstr "Gjithçka e abonuar në këtë prurje do të ndalojë ta marrë. Më pas mund të kopjoni një URL të ri."
 
-#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 msgid "App"
 msgstr "Aplikacioni"
@@ -1313,10 +1313,9 @@ msgstr "Çaktivizo"
 msgid "Disable authenticator?"
 msgstr "Të çaktivizohet autentikuesi?"
 
-#: src/components/method-state-control.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "I çaktivizuar"
 
@@ -1555,7 +1554,6 @@ msgid "Entities"
 msgstr "Entitetet"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Entity"
 msgstr "Entiteti"
 
@@ -1735,6 +1733,10 @@ msgstr "Zhvendosja dështoi"
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Failed to post comment"
 msgstr "Postimi i komentit dështoi"
+
+#: src/features/system/settings.tsx
+msgid "Failed to read file"
+msgstr "Leximi i skedarit dështoi"
 
 #: src/features/user/interests.tsx
 msgid "Failed to regenerate summary"
@@ -3103,7 +3105,6 @@ msgid "Recovery codes"
 msgstr "Kodet e rikuperimit"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Ridrejto"
 
@@ -3194,6 +3195,7 @@ msgstr "Hiq filtrin {0}"
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
+#: src/features/user/interests.tsx
 msgid "Remove {name}"
 msgstr "Hiq {name}"
 
@@ -3274,8 +3276,7 @@ msgid "Require domain verification"
 msgstr "Kërko verifikim domeni"
 
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Required"
 msgstr "I detyrueshëm"
 
@@ -3297,6 +3298,8 @@ msgstr "Rivendos ekranin?"
 msgid "Reset preferences?"
 msgstr "Të rivendosen preferencat?"
 
+#: src/features/system/settings.tsx
+#: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
@@ -3632,14 +3635,6 @@ msgstr "Rregullat e serverit"
 #: src/features/system/documents.tsx
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "Rregullat e serverit, kushtet dhe njoftimi i privatësisë që u shfaqen përdoruesve tuaj"
-
-#: src/features/system/settings.tsx
-msgid "Server started"
-msgstr "Serveri filloi"
-
-#: src/features/system/settings.tsx
-msgid "Server version"
-msgstr "Versioni i serverit"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -4206,6 +4201,10 @@ msgstr "I panjohur"
 msgid "Unknown browser"
 msgstr "Shfletues i panjohur"
 
+#: src/features/system/settings.tsx
+msgid "Unknown theme"
+msgstr "Temë e panjohur"
+
 #: src/features/user/login.tsx
 msgid "Unlink"
 msgstr "Shkëput"
@@ -4283,6 +4282,7 @@ msgstr "Përdorni çelësin tuaj të hyrjes"
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
+#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/users.tsx

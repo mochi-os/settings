@@ -98,6 +98,11 @@ def action_system_users_create(a):
     if role not in user_roles:
         a.error.label(400, "errors.invalid_value_for_key", key="role")
         return
+    # Core refuses a duplicate too, but by aborting the action, which reaches
+    # the administrator as a bare 500.
+    if mochi.user.get.username(username):
+        a.error.label(400, "errors.user_exists")
+        return
     # Creating an administrator grants a privilege as promoting one does, so
     # it takes the same step-up: otherwise a stolen administrator session
     # could make itself a fresh administrator account and, with factors of its

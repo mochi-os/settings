@@ -25,9 +25,14 @@ import {
   TooltipTrigger,
   TooltipContent,
   naturalCompare,
+  type ThemeInfo,
 } from '@mochi/web'
 import { Check, Lock, RotateCcw, Settings, Upload, X } from 'lucide-react'
 import { useStepUp } from '@/lib/use-step-up'
+import { MethodStateControl } from '@/components/method-state-control'
+import { useMethodStateLabel } from '@/hooks/use-method-state-label'
+import { ComboSelect } from '@/components/combo-select'
+import type { MethodState } from '@/types/account'
 import {
   useSystemSettingsData,
   useSetSystemSetting,
@@ -68,8 +73,6 @@ function useSettingLabels(): Record<string, string> {
     operator_name: t`Operator name`,
     operator_email: t`Operator email`,
     operator_jurisdiction: t`Operator jurisdiction`,
-    server_started: t`Server started`,
-    server_version: t`Server version`,
     signup_enabled: t`Allow new signups`,
   }
 }
@@ -102,20 +105,20 @@ function useEmptyValueLabel() {
   }
 }
 
-function useMethodStateLabel() {
+// Each theme's label keyed by its id, in label order, or null when there are
+// no themes to pick from.
+function useThemeLabels(
+  themes: ThemeInfo[] | undefined
+): Record<string, string> | null {
   const { t } = useLingui()
-  return (slot: string): string => {
-    switch (slot) {
-      case 'disabled':
-        return t`Disabled`
-      case 'allowed':
-        return t`Allowed`
-      case 'required':
-        return t`Required`
-      default:
-        return slot
-    }
-  }
+  if (!themes || themes.length === 0) return null
+  const sorted = [...themes].sort((a, b) => naturalCompare(a.label, b.label))
+  return Object.fromEntries(
+    sorted.map((theme) => [
+      theme.id,
+      theme.development ? t`${theme.label} (development)` : theme.label,
+    ])
+  )
 }
 
 function isBooleanSetting(setting: SystemSetting): boolean {
@@ -142,27 +145,28 @@ function enumOptions(setting: SystemSetting): string[] | null {
   return opts
 }
 
-// Full slot list for auth-method state settings so allowed/disabled line up
-// across rows regardless of whether a setting supports "required". Returns
-// null for any enum pattern that isn't part of the required/allowed/disabled
-// family.
-const methodStateSlots = ['disabled', 'allowed', 'required'] as const
-function methodStateOptions(opts: string[] | null): Set<string> | null {
-  if (!opts) return null
-  if (!opts.every((o) => (methodStateSlots as readonly string[]).includes(o))) {
-    return null
-  }
-  return new Set(opts)
+// The auth-method state settings: an enum pattern made only of these states
+// renders as the segmented control. Returns null for any other enum.
+const methodStateSlots: readonly string[] = ['disabled', 'allowed', 'required']
+function isMethodState(value: string): value is MethodState {
+  return methodStateSlots.includes(value)
+}
+function methodStateOptions(opts: string[] | null): MethodState[] | null {
+  if (!opts || !opts.every(isMethodState)) return null
+  return opts
 }
 
 function SettingField({
   setting,
   onSave,
   isSaving,
+  themes,
 }: {
   setting: SystemSetting
   onSave: (name: string, value: string) => Promise<void>
   isSaving: boolean
+  // The themes default_theme may name; the setting is picked from these.
+  themes?: ThemeInfo[]
 }) {
   const { t } = useLingui()
   const labels = useSettingLabels()
@@ -187,12 +191,19 @@ function SettingField({
   const isFileUpload = isFileUploadSetting(setting)
   const enumOpts = enumOptions(setting)
   const methodStates = methodStateOptions(enumOpts)
+  // default_theme holds an entity:theme id, which no one should read or type,
+  // so it is picked from the installed themes by label.
+  const themeLabels = useThemeLabels(
+    setting.name === 'default_theme' ? themes : undefined
+  )
   const fileInputRef = useRef<HTMLInputElement | null>(null)
   // What the reset dialogs name as the default. The stored form is a raw enum
   // or "true"/"false"; the same labels the controls use belong here too.
   const defaultLabel = methodStates
     ? methodStateLabel(setting.default)
-    : isBoolean
+    : themeLabels
+      ? (themeLabels[setting.default] ?? t`Unknown theme`)
+      : isBoolean
       ? setting.default === 'true'
         ? t`Enabled`
         : t`Disabled`
@@ -238,16 +249,19 @@ function SettingField({
     // Reset the input so re-uploading the same filename re-fires onChange.
     event.target.value = ''
     if (!file) return
-    file.text().then((text) => {
-      const previous = localValue
-      const wasSet = storedSet
-      setLocalValue(text)
-      setStoredSet(true)
-      optimistic(text, () => {
-        setLocalValue(previous)
-        setStoredSet(wasSet)
+    file
+      .text()
+      .then((text) => {
+        const previous = localValue
+        const wasSet = storedSet
+        setLocalValue(text)
+        setStoredSet(true)
+        optimistic(text, () => {
+          setLocalValue(previous)
+          setStoredSet(wasSet)
+        })
       })
-    })
+      .catch((error) => toast.error(getErrorMessage(error, t`Failed to read file`)))
   }
 
   const handleClearFile = () => {
@@ -273,30 +287,16 @@ function SettingField({
           {setting.read_only ? (
             <DataChip
               value={emptyValueLabel(setting.value)}
-              icon={setting.read_only ? <Lock className='size-3' /> : undefined}
+              icon={<Lock className='size-3' />}
             />
           ) : methodStates ? (
             <div className='flex items-center gap-2'>
-              <div className='bg-background inline-flex rounded-md border p-0.5'>
-                {methodStateSlots
-                  .filter((slot) => methodStates.has(slot))
-                  .map((slot) => (
-                    <button
-                      key={slot}
-                      type='button'
-                      onClick={() => handlePick(slot)}
-                      disabled={isSaving || localValue === slot}
-                      className={
-                        'w-20 rounded-sm py-1 text-xs font-medium transition-colors ' +
-                        (localValue === slot
-                          ? 'bg-primary text-primary-foreground'
-                          : 'text-muted-foreground hover:text-foreground')
-                      }
-                    >
-                      {methodStateLabel(slot)}
-                    </button>
-                  ))}
-              </div>
+              <MethodStateControl
+                value={localValue as MethodState}
+                slots={methodStates}
+                busy={isSaving}
+                onChange={handlePick}
+              />
               {!isDefault && (
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -304,6 +304,34 @@ function SettingField({
                       variant='ghost'
                       size='icon'
                       className='text-muted-foreground h-8 w-8'
+                      disabled={isSaving}
+                      aria-label={t`Reset to default`}
+                      onClick={() => setShowReset(true)}
+                    >
+                      <RotateCcw className='h-4 w-4' />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>{t`Reset to default`}</TooltipContent>
+                </Tooltip>
+              )}
+            </div>
+          ) : themeLabels ? (
+            <div className='flex w-full items-center gap-2'>
+              <div className='w-full'>
+                <ComboSelect
+                  value={themeLabels[localValue] ? localValue : ''}
+                  options={themeLabels}
+                  onChange={handlePick}
+                  disabled={isSaving}
+                />
+              </div>
+              {!isDefault && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant='ghost'
+                      size='icon'
+                      className='text-muted-foreground h-9 w-9'
                       disabled={isSaving}
                       aria-label={t`Reset to default`}
                       onClick={() => setShowReset(true)}
@@ -548,6 +576,7 @@ export function SystemSettings() {
         setting={setting}
         onSave={handleSave}
         isSaving={savingName === setting.name}
+        themes={data?.themes}
       />
     ))
 

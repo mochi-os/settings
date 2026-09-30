@@ -11,7 +11,9 @@ def action_system_settings_list(a):
     if not require_admin(a):
         return
     settings = mochi.setting.list()
-    a.json({"settings": settings, "server": {"id": mochi.server.id(), "fingerprint": mochi.server.fingerprint()}})
+    # The themes default_theme may name, so the page offers a picker by label
+    # rather than a field for a raw entity:theme id.
+    a.json({"settings": settings, "server": {"id": mochi.server.id(), "fingerprint": mochi.server.fingerprint()}, "themes": mochi.app.themes()})
 
 def action_system_peers(a):
     """Known peers with connection and outbound-queue state, plus

@@ -17,6 +17,46 @@ def delegation_covers(delegated, path):
         return True
     return path == delegated or path.startswith(delegated + "/")
 
+# Core stores whatever string it is given as a domain name and refuses bad
+# route and delegation input by aborting the action, which reaches the user as
+# a 500 with untranslated text. These mirror its rules so the refusal is a
+# translated 400 or 404 instead; core stays the invariant for other callers.
+
+# A hostname: dot-separated labels of letters, digits and inner hyphens, at
+# most 253 characters, optionally a wildcard ("*.") over the rest.
+domain_pattern = "^(\\*\\.)?[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*$"
+
+# The methods core routes on (route_methods in core/server/domains.go).
+route_methods = ["app", "entity", "redirect"]
+
+def domain_known(a, domain):
+    """The domain's row, answering 404 when there is none"""
+    info = mochi.domain.get(domain)
+    if not info:
+        a.error.label(404, "errors.domain_not_found")
+    return info
+
+def route_context_valid(context):
+    """Mirrors core's route_context_valid: letters, digits, _ and -, at most
+    64 characters, or empty"""
+    return context == "" or mochi.text.valid(context, "^[A-Za-z0-9_-]{1,64}$")
+
+def route_existing(a, domain, path):
+    """The route an update or delete names, answering 404 when the domain or
+    the route is missing and 403 when a delegate names a route another account
+    owns: a delegation covers a path, not the routes already standing on it,
+    so core refuses those too."""
+    if not domain_known(a, domain):
+        return None
+    route = mochi.domain.route.get(domain, path)
+    if not route:
+        a.error.label(404, "errors.route_not_found")
+        return None
+    if not is_admin(a) and route["owner"] != a.user.id:
+        a.error.label(403, "errors.no_permission_to_manage_this_path")
+        return None
+    return route
+
 def can_manage_path(a, domain, path):
     """Check if user can manage a path on a domain"""
     delegations = mochi.domain.delegation.list(domain, a.user.id)
@@ -44,9 +84,15 @@ def action_domains_create(a):
     """Create a new domain (admin only)"""
     if not require_admin(a):
         return
-    domain = a.input("domain")
+    domain = (a.input("domain") or "").strip().lower()
     if not domain:
         a.error.label(400, "errors.missing_domain")
+        return
+    if len(domain) > 253 or not mochi.text.valid(domain, domain_pattern):
+        a.error.label(400, "errors.invalid_value_for_key", key="domain")
+        return
+    if mochi.domain.get(domain):
+        a.error.label(400, "errors.domain_exists")
         return
     result = mochi.domain.register(domain)
     a.json(result)
@@ -144,6 +190,8 @@ def action_domains_update(a):
             a.error.label(400, "errors.invalid_value_for_key", key="tls")
             return
         tls_bool = tls == "true"
+    if not domain_known(a, domain):
+        return
     mochi.domain.update(domain, verified=verified_bool, tls=tls_bool)
     a.json({"ok": True})
 
@@ -166,6 +214,8 @@ def action_domains_verify(a):
     if not domain:
         a.error.label(400, "errors.missing_domain")
         return
+    if not domain_known(a, domain):
+        return
     result = mochi.domain.verify(domain)
     a.json({"verified": result})
 
@@ -184,8 +234,19 @@ def action_domains_route_create(a):
         if not can_manage_path(a, domain, path):
             a.error.label(403, "errors.no_permission_to_manage_this_path")
             return
+    if method not in route_methods:
+        a.error.label(400, "errors.invalid_value_for_key", key="method")
+        return
     priority = parse_int(a.input("priority"), 0)
     context = a.input("context") or ""
+    if not route_context_valid(context):
+        a.error.label(400, "errors.invalid_value_for_key", key="context")
+        return
+    if not domain_known(a, domain):
+        return
+    if mochi.domain.route.get(domain, path):
+        a.error.label(400, "errors.route_exists")
+        return
     result = mochi.domain.route.create(domain, path, method, target, priority, context=context)
     a.json(result)
 
@@ -200,12 +261,17 @@ def action_domains_route_update(a):
         if not can_manage_path(a, domain, path):
             a.error.label(403, "errors.no_permission_to_manage_this_path")
             return
+    if not route_existing(a, domain, path):
+        return
     method = a.input("method")
     target = a.input("target")
     priority = a.input("priority")
     enabled = a.input("enabled")
     kwargs = {}
     if method:
+        if method not in route_methods:
+            a.error.label(400, "errors.invalid_value_for_key", key="method")
+            return
         kwargs["method"] = method
     if target:
         kwargs["target"] = target
@@ -229,6 +295,8 @@ def action_domains_route_delete(a):
         if not can_manage_path(a, domain, path):
             a.error.label(403, "errors.no_permission_to_manage_this_path")
             return
+    if not route_existing(a, domain, path):
+        return
     mochi.domain.route.delete(domain, path)
     a.json({"ok": True})
 
@@ -243,6 +311,11 @@ def action_domains_delegation_create(a):
     owner = a.input("owner")
     if not domain or path == None or not owner:
         a.error.label(400, "errors.missing_required_fields_domain_path_owner")
+        return
+    if not domain_known(a, domain):
+        return
+    if not mochi.user.get(owner):
+        a.error.label(404, "errors.user_not_found")
         return
     mochi.domain.delegation.create(domain, path, owner)
     a.json({"ok": True})

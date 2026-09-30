@@ -42,7 +42,7 @@ export function useApplyDisplayPreferences() {
     setColorTheme(
       colorThemeFromSelections(
         data.themes,
-        data.preferences.theme,
+        data.preferences.theme || data.default_theme,
         prefsFromData(data.preferences),
         data.presets
       )

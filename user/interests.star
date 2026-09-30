@@ -16,19 +16,24 @@ def interests_language(a):
 # List user interests with resolved labels
 def action_interests_list(a):
     interests = mochi.interests.list()
+    # The language the labels are resolved in, so the client links each
+    # interest to the same language's Wikipedia.
+    language = interests_language(a)
     if len(interests) == 0:
-        a.json({"interests": [], "summary": ""})
+        a.json({"interests": [], "summary": "", "language": language})
         return
 
     # Resolve QID labels
     qids = [i["qid"] for i in interests]
-    labels = mochi.qid.lookup(qids, interests_language(a))
+    labels = mochi.qid.lookup(qids, language)
+    if type(labels) != "dict":
+        labels = {}
 
     for i in interests:
-        i["label"] = labels.get(i["qid"], i["qid"]) if type(labels) == type({}) else labels
+        i["label"] = labels.get(i["qid"], i["qid"])
 
     summary = mochi.interests.summary()
-    a.json({"interests": interests, "summary": summary})
+    a.json({"interests": interests, "summary": summary, "language": language})
 
 # Set an interest weight
 def action_interests_set(a):

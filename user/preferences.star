@@ -122,10 +122,13 @@ def action_user_preferences(a):
     for p in preferences_schema:
         value = a.user.preference.get(p["key"])
         prefs[p["key"]] = value if value != None else p["default"]
-    # Include theme preference (not in schema since options are dynamic)
+    # The theme the user chose, or "" when they follow the server's default:
+    # filling in default_theme here made the default look chosen, so the
+    # clients offered to deselect a theme that was never selected. They fall
+    # back to default_theme themselves.
     theme = a.user.preference.get("theme")
     default_theme = mochi.setting.get("default_theme")
-    prefs["theme"] = theme if theme != None else default_theme
+    prefs["theme"] = theme if theme != None else ""
     a.json({"preferences": prefs, "themes": mochi.app.themes(), "presets": mochi.app.presets(), "default_theme": default_theme})
 
 def action_user_preferences_set(a):

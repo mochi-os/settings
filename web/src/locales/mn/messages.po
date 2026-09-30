@@ -94,6 +94,7 @@ msgstr "{0} · пуш"
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
 #: src/components/theme-preview-card.tsx
+#: src/features/system/settings.tsx
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (хөгжүүлэлт)"
@@ -400,6 +401,7 @@ msgstr "\"{0}\"-г нэмсэн"
 msgid "Address"
 msgstr "Хаяг"
 
+#: src/features/domains/index.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -436,8 +438,7 @@ msgstr "Дараах байдлаар эрэмбэлэхийг зөвшөөрө�
 msgid "Allow users to install apps"
 msgstr "Хэрэглэгчдэд апп суулгахыг зөвшөөрөх"
 
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Allowed"
 msgstr "Зөвшөөрөгдсөн"
 
@@ -471,7 +472,6 @@ msgstr "Нэвтэрсэн хэн ч"
 msgid "Anything subscribed to this feed will stop receiving it. You can copy a new URL afterwards."
 msgstr "Энэ хангамжид бүртгүүлсэн бүх зүйл хүлээн авахаа болино. Дараа нь та шинэ URL хуулж болно."
 
-#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 msgid "App"
 msgstr "Апп"
@@ -1313,10 +1313,9 @@ msgstr "Идэвхгүй болгох"
 msgid "Disable authenticator?"
 msgstr "Баталгаажуулагчийг идэвхгүй болгох уу?"
 
-#: src/components/method-state-control.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "Идэвхгүй"
 
@@ -1555,7 +1554,6 @@ msgid "Entities"
 msgstr "Нэгжүүд"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Entity"
 msgstr "Нэгж"
 
@@ -1735,6 +1733,10 @@ msgstr "Зөөж чадсангүй"
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Failed to post comment"
 msgstr "Сэтгэгдэл нийтэлж чадсангүй"
+
+#: src/features/system/settings.tsx
+msgid "Failed to read file"
+msgstr "Файл уншиж чадсангүй"
 
 #: src/features/user/interests.tsx
 msgid "Failed to regenerate summary"
@@ -3103,7 +3105,6 @@ msgid "Recovery codes"
 msgstr "Сэргээх кодууд"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Дахин чиглүүлэлт"
 
@@ -3194,6 +3195,7 @@ msgstr "{0} шүүлтүүр хасах"
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
+#: src/features/user/interests.tsx
 msgid "Remove {name}"
 msgstr "{name} хасах"
 
@@ -3274,8 +3276,7 @@ msgid "Require domain verification"
 msgstr "Домэйны баталгаажуулалт шаардах"
 
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Required"
 msgstr "Шаардлагатай"
 
@@ -3297,6 +3298,8 @@ msgstr "Дэлгэцийг буцаах уу?"
 msgid "Reset preferences?"
 msgstr "Тохиргоог сэргээх үү?"
 
+#: src/features/system/settings.tsx
+#: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
@@ -3632,14 +3635,6 @@ msgstr "Серверийн дүрэм"
 #: src/features/system/documents.tsx
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "Хэрэглэгчдэд харуулах серверийн дүрэм, нөхцөл, нууцлалын мэдэгдэл"
-
-#: src/features/system/settings.tsx
-msgid "Server started"
-msgstr "Сервер эхэлсэн"
-
-#: src/features/system/settings.tsx
-msgid "Server version"
-msgstr "Серверийн хувилбар"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -4206,6 +4201,10 @@ msgstr "Үл мэдэгдэх"
 msgid "Unknown browser"
 msgstr "Үл мэдэгдэх хөтөч"
 
+#: src/features/system/settings.tsx
+msgid "Unknown theme"
+msgstr "Тодорхойгүй загвар"
+
 #: src/features/user/login.tsx
 msgid "Unlink"
 msgstr "Холбоо тасалах"
@@ -4283,6 +4282,7 @@ msgstr "Нэвтрэх түлхүүрээ ашиглах"
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
+#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/users.tsx

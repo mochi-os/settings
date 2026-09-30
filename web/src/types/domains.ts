@@ -6,7 +6,8 @@
 export interface Domain {
   domain: string
   verified: number
-  token: string
+  // The DNS verification token. Only an administrator is sent it.
+  token?: string
   tls: number
   // Whether a certificate was installed by hand for this domain. It overrides
   // tls entirely, so this is what decides whether switching automatic

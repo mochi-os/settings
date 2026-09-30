@@ -94,6 +94,7 @@ msgstr "{0} · పుష్"
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
 #: src/components/theme-preview-card.tsx
+#: src/features/system/settings.tsx
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (అభివృద్ధి)"
@@ -400,6 +401,7 @@ msgstr "\"{0}\" జోడించబడింది"
 msgid "Address"
 msgstr "చిరునామా"
 
+#: src/features/domains/index.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -436,8 +438,7 @@ msgstr "వీటి ద్వారా క్రమబద్ధీకరణన�
 msgid "Allow users to install apps"
 msgstr "యాప్‌లను ఇన్‌స్టాల్ చేయడానికి వినియోగదారులను అనుమతించండి"
 
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Allowed"
 msgstr "అనుమతించబడింది"
 
@@ -471,7 +472,6 @@ msgstr "లాగిన్ అయిన ఎవరైనా"
 msgid "Anything subscribed to this feed will stop receiving it. You can copy a new URL afterwards."
 msgstr "ఈ ఫీడ్‌కు సభ్యత్వం పొందిన ప్రతిదీ దాన్ని స్వీకరించడం ఆపేస్తుంది. ఆ తర్వాత మీరు కొత్త URLని కాపీ చేయవచ్చు."
 
-#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 msgid "App"
 msgstr "యాప్"
@@ -1313,10 +1313,9 @@ msgstr "నిలిపివేయండి"
 msgid "Disable authenticator?"
 msgstr "ప్రామాణీకరణ యాప్‌ను నిలిపివేయాలా?"
 
-#: src/components/method-state-control.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "నిలిపివేయబడింది"
 
@@ -1555,7 +1554,6 @@ msgid "Entities"
 msgstr "ఎంటిటీలు"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Entity"
 msgstr "సంస్థ"
 
@@ -1735,6 +1733,10 @@ msgstr "తరలించడంలో విఫలమైంది"
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Failed to post comment"
 msgstr "వ్యాఖ్యను పోస్ట్ చేయడంలో విఫలమైంది"
+
+#: src/features/system/settings.tsx
+msgid "Failed to read file"
+msgstr "ఫైల్‌ను చదవడంలో విఫలమైంది"
 
 #: src/features/user/interests.tsx
 msgid "Failed to regenerate summary"
@@ -3103,7 +3105,6 @@ msgid "Recovery codes"
 msgstr "రికవరీ కోడ్‌లు"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "రీడైరెక్ట్"
 
@@ -3194,6 +3195,7 @@ msgstr "{0} ఫిల్టర్‌ను తొలగించండి"
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
+#: src/features/user/interests.tsx
 msgid "Remove {name}"
 msgstr "{name}ని తొలగించండి"
 
@@ -3274,8 +3276,7 @@ msgid "Require domain verification"
 msgstr "డొమైన్ వెరిఫికేషన్‌ను అవసరం చేయండి"
 
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Required"
 msgstr "అవసరం"
 
@@ -3297,6 +3298,8 @@ msgstr "ప్రదర్శనను రీసెట్ చేయాలా?"
 msgid "Reset preferences?"
 msgstr "ప్రాధాన్యతలను రీసెట్ చేయాలా?"
 
+#: src/features/system/settings.tsx
+#: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
@@ -3632,14 +3635,6 @@ msgstr "సర్వర్ నియమాలు"
 #: src/features/system/documents.tsx
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "మీ వినియోగదారులకు చూపబడే సర్వర్ నియమాలు, నియమాలు మరియు షరతులు, మరియు గోప్యత నోటీసు"
-
-#: src/features/system/settings.tsx
-msgid "Server started"
-msgstr "సర్వర్ ప్రారంభమైంది"
-
-#: src/features/system/settings.tsx
-msgid "Server version"
-msgstr "సర్వర్ వెర్షన్"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -4206,6 +4201,10 @@ msgstr "తెలియదు"
 msgid "Unknown browser"
 msgstr "తెలియని బ్రౌజర్"
 
+#: src/features/system/settings.tsx
+msgid "Unknown theme"
+msgstr "తెలియని థీమ్"
+
 #: src/features/user/login.tsx
 msgid "Unlink"
 msgstr "అన్‌లింక్ చేయండి"
@@ -4283,6 +4282,7 @@ msgstr "మీ పాస్‌కీని ఉపయోగించండి"
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
+#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/users.tsx

@@ -143,6 +143,12 @@ def action_user_account_identity_update(a):
         if not name:
             a.error.label(400, "errors.name_cannot_be_empty")
             return
+        # Core refuses a name its "name" rule rejects (too long, a line break,
+        # angle brackets) by aborting the action, which reaches the user as a
+        # 500 with untranslated text.
+        if not mochi.text.valid(name, "name"):
+            a.error.label(400, "errors.invalid_name")
+            return
         kwargs["name"] = name
     if privacy != None:
         if privacy != "public" and privacy != "private":

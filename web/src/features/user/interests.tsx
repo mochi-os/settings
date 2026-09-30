@@ -30,8 +30,15 @@ import {
   type Interest,
   type SearchResult,
 } from '@/hooks/use-interests'
+import { interestLink } from '@/lib/interests'
 
-function InterestRow({ interest }: { interest: Interest }) {
+function InterestRow({
+  interest,
+  language,
+}: {
+  interest: Interest
+  language: string | undefined
+}) {
   const { t } = useLingui()
   const setInterest = useInterestSet()
   const removeInterest = useInterestRemove()
@@ -102,6 +109,8 @@ function InterestRow({ interest }: { interest: Interest }) {
     handleWeightCommit(w)
   }
 
+  const name = interest.label
+
   const handleRemove = () => {
     removeInterest.mutate(interest.qid, {
       onError: (error) => {
@@ -114,7 +123,7 @@ function InterestRow({ interest }: { interest: Interest }) {
     <div className='flex items-center gap-4 py-2.5'>
       <div className='min-w-0 flex-1'>
         <a
-          href={`https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/${interest.qid}`}
+          href={interestLink(interest.qid, language)}
           target='_blank'
           rel='noopener noreferrer'
           className='text-sm font-medium hover:underline'
@@ -161,6 +170,7 @@ function InterestRow({ interest }: { interest: Interest }) {
         className='shrink-0'
         onClick={handleRemove}
         disabled={removeInterest.isPending}
+        aria-label={t`Remove ${name}`}
       >
         {removeInterest.isPending ? (
           <Loader2 className='size-4 animate-spin' />
@@ -212,6 +222,9 @@ function InterestSearch() {
   const inputRef = useRef<HTMLInputElement>(null)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const blurTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  // The query results are for. A search that answers after the box has moved
+  // on (shortened, cleared, or a result picked) is dropped rather than shown.
+  const wanted = useRef('')
 
   useEffect(() => {
     return () => {
@@ -223,14 +236,17 @@ function InterestSearch() {
   const handleSearch = (value: string) => {
     setQuery(value)
     if (timerRef.current) clearTimeout(timerRef.current)
-    if (value.trim().length < 2) {
+    const term = value.trim()
+    wanted.current = term.length < 2 ? '' : term
+    if (term.length < 2) {
       setResults([])
       setShowResults(false)
       return
     }
     timerRef.current = setTimeout(() => {
-      search.mutate(value.trim(), {
+      search.mutate(term, {
         onSuccess: (data) => {
+          if (wanted.current !== term) return
           setResults(data.results)
           setShowResults(true)
         },
@@ -253,6 +269,8 @@ function InterestSearch() {
         },
       }
     )
+    if (timerRef.current) clearTimeout(timerRef.current)
+    wanted.current = ''
     setQuery('')
     setResults([])
     setShowResults(false)
@@ -354,7 +372,11 @@ export function UserInterests() {
           ) : (
             <div className='divide-border divide-y'>
               {interests.map((interest) => (
-                <InterestRow key={interest.qid} interest={interest} />
+                <InterestRow
+                  key={interest.qid}
+                  interest={interest}
+                  language={data?.language}
+                />
               ))}
             </div>
           )}

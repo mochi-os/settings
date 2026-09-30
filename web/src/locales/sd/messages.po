@@ -94,6 +94,7 @@ msgstr "{0} · پش"
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
 #: src/components/theme-preview-card.tsx
+#: src/features/system/settings.tsx
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (ترقي)"
@@ -400,6 +401,7 @@ msgstr "\"{0}\" شامل ڪيو ويو"
 msgid "Address"
 msgstr "پتو"
 
+#: src/features/domains/index.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -436,8 +438,7 @@ msgstr "ترتيب جي اجازت ڏيو"
 msgid "Allow users to install apps"
 msgstr "صارفن کي ايپس انسٽال ڪرڻ جي اجازت ڏيو"
 
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Allowed"
 msgstr "اجازت يافته"
 
@@ -471,7 +472,6 @@ msgstr "ڪو به جيڪو لاگ ان آهي"
 msgid "Anything subscribed to this feed will stop receiving it. You can copy a new URL afterwards."
 msgstr "هن فيڊ جي رڪنيت وٺندڙ سڀ ڪجهه ان کي حاصل ڪرڻ بند ڪري ڇڏيندو. بعد ۾ توهان نئون URL ڪاپي ڪري سگهو ٿا."
 
-#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 msgid "App"
 msgstr "ايپ"
@@ -1313,10 +1313,9 @@ msgstr "غيرفعال ڪريو"
 msgid "Disable authenticator?"
 msgstr "تصديق ڪندڙ غيرفعال ڪجي؟"
 
-#: src/components/method-state-control.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "غيرفعال"
 
@@ -1555,7 +1554,6 @@ msgid "Entities"
 msgstr "هستيون"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Entity"
 msgstr "اينٽٽي"
 
@@ -1735,6 +1733,10 @@ msgstr "منتقل ڪرڻ ۾ ناڪام"
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Failed to post comment"
 msgstr "تبصرو پوسٽ ڪرڻ ۾ ناڪام"
+
+#: src/features/system/settings.tsx
+msgid "Failed to read file"
+msgstr "فائل پڙهڻ ۾ ناڪام"
 
 #: src/features/user/interests.tsx
 msgid "Failed to regenerate summary"
@@ -3103,7 +3105,6 @@ msgid "Recovery codes"
 msgstr "بحالي ڪوڊ"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "ريڊائريڪٽ"
 
@@ -3194,6 +3195,7 @@ msgstr "{0} فلٽر هٽايو"
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
+#: src/features/user/interests.tsx
 msgid "Remove {name}"
 msgstr "{name} هٽايو"
 
@@ -3274,8 +3276,7 @@ msgid "Require domain verification"
 msgstr "ڊومين تصديق گهرجي"
 
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Required"
 msgstr "گهربل"
 
@@ -3297,6 +3298,8 @@ msgstr "ڊسپلي ٻيهر سيٽ ڪجي؟"
 msgid "Reset preferences?"
 msgstr "ترجيحون ري سيٽ ڪجن؟"
 
+#: src/features/system/settings.tsx
+#: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
@@ -3632,14 +3635,6 @@ msgstr "سرور جا ضابطا"
 #: src/features/system/documents.tsx
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "سرور جا ضابطا، شرطون ۽ شرطون، ۽ پرائيويسي نوٽيس جيڪي توهان جي صارفن کي ڏيکاريا وڃن"
-
-#: src/features/system/settings.tsx
-msgid "Server started"
-msgstr "سرور شروع ٿيو"
-
-#: src/features/system/settings.tsx
-msgid "Server version"
-msgstr "سرور ورزن"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -4206,6 +4201,10 @@ msgstr "اڻڄاتل"
 msgid "Unknown browser"
 msgstr "اڻڄاتل برائوزر"
 
+#: src/features/system/settings.tsx
+msgid "Unknown theme"
+msgstr "اڻڄاتل ٿيم"
+
 #: src/features/user/login.tsx
 msgid "Unlink"
 msgstr "لنڪ ھٽايو"
@@ -4283,6 +4282,7 @@ msgstr "پنهنجي پاس ڪي استعمال ڪريو"
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
+#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/users.tsx

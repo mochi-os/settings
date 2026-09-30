@@ -132,7 +132,7 @@ export function UserDisplay() {
             setColorTheme(
               colorThemeFromSelections(
                 data.themes,
-                data.preferences.theme,
+                data.preferences.theme || data.default_theme,
                 updated,
                 data.presets
               )
@@ -149,11 +149,22 @@ export function UserDisplay() {
 
   const handleThemeChange = (theme: ThemeInfo | null) => {
     // Deselecting is a clear, not a set: the server validates theme against
-    // the ids it offers, and "" is not one of them.
+    // the ids it offers, and "" is not one of them. Only a theme the user
+    // chose shows as selected, so only that can be deselected; the page then
+    // falls back to the server's default theme.
     if (!theme) {
       unsetPreferences.mutate(['theme'], {
         onSuccess: () => {
-          setColorTheme(null)
+          setColorTheme(
+            data
+              ? colorThemeFromSelections(
+                  data.themes,
+                  data.default_theme,
+                  prefsFromData(data.preferences),
+                  data.presets
+                )
+              : null
+          )
           toast.success(t`Theme updated`)
         },
         onError: (error) =>

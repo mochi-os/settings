@@ -94,6 +94,7 @@ msgstr "{0} · პუშ-შეტყობინებები"
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
 #: src/components/theme-preview-card.tsx
+#: src/features/system/settings.tsx
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (დამუშავება)"
@@ -400,6 +401,7 @@ msgstr "დამატებულია „{0}“"
 msgid "Address"
 msgstr "მისამართი"
 
+#: src/features/domains/index.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -436,8 +438,7 @@ msgstr "დახარისხების დაშვება"
 msgid "Allow users to install apps"
 msgstr "მომხმარებლებისთვის აპების ინსტალაციის დაშვება"
 
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Allowed"
 msgstr "ნებადართული"
 
@@ -471,7 +472,6 @@ msgstr "ნებისმიერი, ვინც შესულია"
 msgid "Anything subscribed to this feed will stop receiving it. You can copy a new URL afterwards."
 msgstr "ყველაფერი, რაც ამ არხზეა გამოწერილი, შეწყვეტს მის მიღებას. შემდეგ შეგიძლიათ დააკოპიროთ ახალი URL."
 
-#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 msgid "App"
 msgstr "აპი"
@@ -1313,10 +1313,9 @@ msgstr "გათიშვა"
 msgid "Disable authenticator?"
 msgstr "ავთენტიფიკატორის გათიშვა?"
 
-#: src/components/method-state-control.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "გათიშულია"
 
@@ -1555,7 +1554,6 @@ msgid "Entities"
 msgstr "ერთეულები"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Entity"
 msgstr "ერთეული"
 
@@ -1735,6 +1733,10 @@ msgstr "გადატანა ვერ მოხერხდა"
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Failed to post comment"
 msgstr "კომენტარის გამოქვეყნება ვერ მოხერხდა"
+
+#: src/features/system/settings.tsx
+msgid "Failed to read file"
+msgstr "ფაილის წაკითხვა ვერ მოხერხდა"
 
 #: src/features/user/interests.tsx
 msgid "Failed to regenerate summary"
@@ -3103,7 +3105,6 @@ msgid "Recovery codes"
 msgstr "აღდგენის კოდები"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "გადამისამართება"
 
@@ -3194,6 +3195,7 @@ msgstr "{0} ფილტრის წაშლა"
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
+#: src/features/user/interests.tsx
 msgid "Remove {name}"
 msgstr "{name}-ის წაშლა"
 
@@ -3274,8 +3276,7 @@ msgid "Require domain verification"
 msgstr "დომენის გადამოწმების მოთხოვნა"
 
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Required"
 msgstr "აუცილებელი"
 
@@ -3297,6 +3298,8 @@ msgstr "ჩვენების დაყენება?"
 msgid "Reset preferences?"
 msgstr "უპირატესობების გადაყენება?"
 
+#: src/features/system/settings.tsx
+#: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
@@ -3632,14 +3635,6 @@ msgstr "სერვერის წესები"
 #: src/features/system/documents.tsx
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "სერვერის წესები, პირობები და კონფიდენციალურობის შეტყობინება, რომელიც ნაჩვენებია თქვენი მომხმარებლებისთვის"
-
-#: src/features/system/settings.tsx
-msgid "Server started"
-msgstr "სერვერი გაეშვა"
-
-#: src/features/system/settings.tsx
-msgid "Server version"
-msgstr "სერვერის ვერსია"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -4206,6 +4201,10 @@ msgstr "უცნობი"
 msgid "Unknown browser"
 msgstr "უცნობი"
 
+#: src/features/system/settings.tsx
+msgid "Unknown theme"
+msgstr "უცნობი თემა"
+
 #: src/features/user/login.tsx
 msgid "Unlink"
 msgstr "ბმულის მოხსნა"
@@ -4283,6 +4282,7 @@ msgstr "გამოიყენეთ თქვენი წვდომის 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
+#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/users.tsx

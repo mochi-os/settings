@@ -94,6 +94,7 @@ msgstr "{0} · 푸시"
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
 #: src/components/theme-preview-card.tsx
+#: src/features/system/settings.tsx
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (개발)"
@@ -400,6 +401,7 @@ msgstr "\"{0}\"이(가) 추가되었어요"
 msgid "Address"
 msgstr "주소"
 
+#: src/features/domains/index.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -436,8 +438,7 @@ msgstr "정렬 허용"
 msgid "Allow users to install apps"
 msgstr "사용자가 앱을 설치할 수 있도록 허용"
 
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Allowed"
 msgstr "허용됨"
 
@@ -471,7 +472,6 @@ msgstr "로그인한 모든 사람"
 msgid "Anything subscribed to this feed will stop receiving it. You can copy a new URL afterwards."
 msgstr "이 피드를 구독 중인 모든 것이 수신을 중단합니다. 이후에 새 URL을 복사할 수 있습니다."
 
-#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 msgid "App"
 msgstr "앱"
@@ -1313,10 +1313,9 @@ msgstr "비활성화"
 msgid "Disable authenticator?"
 msgstr "인증 앱을 비활성화할까요?"
 
-#: src/components/method-state-control.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "비활성화됨"
 
@@ -1555,7 +1554,6 @@ msgid "Entities"
 msgstr "엔터티"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Entity"
 msgstr "엔티티"
 
@@ -1735,6 +1733,10 @@ msgstr "이동 실패"
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Failed to post comment"
 msgstr "댓글 게시에 실패했어요"
+
+#: src/features/system/settings.tsx
+msgid "Failed to read file"
+msgstr "파일 읽기에 실패했어요"
 
 #: src/features/user/interests.tsx
 msgid "Failed to regenerate summary"
@@ -3103,7 +3105,6 @@ msgid "Recovery codes"
 msgstr "복구 코드"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "리디렉션"
 
@@ -3194,6 +3195,7 @@ msgstr "{0} 필터 제거"
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
+#: src/features/user/interests.tsx
 msgid "Remove {name}"
 msgstr "{name} 제거"
 
@@ -3274,8 +3276,7 @@ msgid "Require domain verification"
 msgstr "도메인 확인이 필요해요"
 
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Required"
 msgstr "필수"
 
@@ -3297,6 +3298,8 @@ msgstr "화면을 재설정할까요?"
 msgid "Reset preferences?"
 msgstr "환경설정을 재설정할까요?"
 
+#: src/features/system/settings.tsx
+#: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
@@ -3632,14 +3635,6 @@ msgstr "서버 규칙"
 #: src/features/system/documents.tsx
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "사용자에게 표시되는 서버 규칙, 이용 약관, 그리고 프라이버시 통지"
-
-#: src/features/system/settings.tsx
-msgid "Server started"
-msgstr "서버가 시작되었어요"
-
-#: src/features/system/settings.tsx
-msgid "Server version"
-msgstr "서버 버전"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -4206,6 +4201,10 @@ msgstr "알 수 없음"
 msgid "Unknown browser"
 msgstr "알 수 없는 브라우저"
 
+#: src/features/system/settings.tsx
+msgid "Unknown theme"
+msgstr "알 수 없는 테마"
+
 #: src/features/user/login.tsx
 msgid "Unlink"
 msgstr "연결 해제"
@@ -4283,6 +4282,7 @@ msgstr "패스키 사용"
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
+#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/users.tsx

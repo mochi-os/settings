@@ -16,6 +16,8 @@ interface Interest {
 interface InterestsResponse {
   interests: Interest[]
   summary: string
+  // The language the labels were resolved in.
+  language: string
 }
 
 interface SearchResult {

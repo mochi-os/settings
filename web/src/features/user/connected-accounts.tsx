@@ -58,6 +58,7 @@ import {
   Clock,
   KeyRound,
   Link,
+  Loader2,
   Mail,
   MoreHorizontal,
   Pencil,
@@ -576,23 +577,32 @@ export function ConnectedAccounts() {
     addToExisting: boolean,
     setAsDefault?: boolean
   ) => {
+    let account
     try {
-      const account = await add(type, fields, addToExisting)
-      if (setAsDefault) {
-        await handleSetDefault(account.id, true)
-      }
-      toast.success(t`Account added`)
-      setIsAddOpen(false)
-
-      // If verification is required, show verify dialog
-      const provider = providers.find((p) => p.type === type)
-      if (provider?.verify && account.verified === 0) {
-        setVerifyAccount(account)
-      }
+      account = await add(type, fields, addToExisting)
     } catch (error) {
-      const message = getErrorMessage(error, t`Failed to add account`)
-      toast.error(message)
-      throw error
+      // Reported here and not rethrown: the add form's submit handler has no
+      // catch, so a rethrow surfaced as an unhandled rejection.
+      toast.error(getErrorMessage(error, t`Failed to add account`))
+      return
+    }
+    // The account exists from here on, so the dialog closes whatever follows.
+    // Holding it open while the default was set, and failing the whole add
+    // when only that step failed, invited a second Add of the same account.
+    toast.success(t`Account added`)
+    setIsAddOpen(false)
+    if (setAsDefault) {
+      try {
+        await handleSetDefault(account.id, true)
+      } catch {
+        // handleSetDefault reported it; the account itself was added.
+      }
+    }
+
+    // If verification is required, show verify dialog
+    const provider = providers.find((p) => p.type === type)
+    if (provider?.verify && account.verified === 0) {
+      setVerifyAccount(account)
     }
   }
 
@@ -670,9 +680,8 @@ export function ConnectedAccounts() {
     }
   }
 
-  // No toast of its own: both callers (add, and the settings dialog's Save)
-  // report the whole gesture themselves, so one here made two for one click.
-  // Rethrows so the caller can stop rather than report success afterwards.
+  // Reports its own failure and rethrows, so a caller can stop rather than
+  // report success afterwards; neither caller reports it again.
   const handleSetDefault = async (accountId: string, isDefault: boolean) => {
     try {
       await requestHelpers.post(endpoints.accounts.default, {
@@ -893,12 +902,15 @@ function AccountSettingsDialog({
   const defaultDirty = isAi && isDefault !== origDefault
   const settingsDirty = labelDirty || modelDirty
   const dialogDirty = settingsDirty || defaultDirty
+  // Save runs up to two requests; without this a second click sent them again.
+  const [saving, setSaving] = useState(false)
 
   const handleSave = async () => {
     if (!dialogDirty) {
       onOpenChange(false)
       return
     }
+    setSaving(true)
     try {
       if (isAi && defaultDirty) {
         await onSetDefault(account.id, isDefault)
@@ -913,6 +925,8 @@ function AccountSettingsDialog({
     } catch {
       // Both handlers have already reported it; stay open so the entry survives.
       return
+    } finally {
+      setSaving(false)
     }
     onOpenChange(false)
   }
@@ -966,8 +980,15 @@ function AccountSettingsDialog({
           <Button variant='outline' onClick={() => onOpenChange(false)}>
             <Trans>Cancel</Trans>
           </Button>
-          <Button onClick={() => void handleSave()} disabled={!dialogDirty}>
-            <Check className='size-4' />
+          <Button
+            onClick={() => void handleSave()}
+            disabled={!dialogDirty || saving}
+          >
+            {saving ? (
+              <Loader2 className='size-4 animate-spin' />
+            ) : (
+              <Check className='size-4' />
+            )}
             <Trans>Save</Trans>
           </Button>
         </ResponsiveDialogFooter>

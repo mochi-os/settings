@@ -94,6 +94,7 @@ msgstr "{0} · thông báo đẩy"
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
 #: src/components/theme-preview-card.tsx
+#: src/features/system/settings.tsx
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (đang phát triển)"
@@ -400,6 +401,7 @@ msgstr "Đã thêm \"{0}\""
 msgid "Address"
 msgstr "Địa chỉ"
 
+#: src/features/domains/index.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -436,8 +438,7 @@ msgstr "Cho phép sắp xếp theo"
 msgid "Allow users to install apps"
 msgstr "Cho phép người dùng cài đặt ứng dụng"
 
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Allowed"
 msgstr "Được phép"
 
@@ -471,7 +472,6 @@ msgstr "Bất kỳ ai đã đăng nhập"
 msgid "Anything subscribed to this feed will stop receiving it. You can copy a new URL afterwards."
 msgstr "Mọi thứ đã đăng ký nguồn cấp này sẽ ngừng nhận. Bạn có thể sao chép URL mới sau đó."
 
-#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 msgid "App"
 msgstr "Ứng dụng"
@@ -1313,10 +1313,9 @@ msgstr "Tắt"
 msgid "Disable authenticator?"
 msgstr "Tắt trình xác thực?"
 
-#: src/components/method-state-control.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "Đã tắt"
 
@@ -1555,7 +1554,6 @@ msgid "Entities"
 msgstr "Thực thể"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Entity"
 msgstr "Thực thể"
 
@@ -1735,6 +1733,10 @@ msgstr "Không thể di chuyển"
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Failed to post comment"
 msgstr "Không đăng bình luận được"
+
+#: src/features/system/settings.tsx
+msgid "Failed to read file"
+msgstr "Không đọc tệp được"
 
 #: src/features/user/interests.tsx
 msgid "Failed to regenerate summary"
@@ -3103,7 +3105,6 @@ msgid "Recovery codes"
 msgstr "Mã khôi phục"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Chuyển hướng"
 
@@ -3194,6 +3195,7 @@ msgstr "Xóa bộ lọc {0}"
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
+#: src/features/user/interests.tsx
 msgid "Remove {name}"
 msgstr "Xoá {name}"
 
@@ -3274,8 +3276,7 @@ msgid "Require domain verification"
 msgstr "Yêu cầu xác minh tên miền"
 
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Required"
 msgstr "Bắt buộc"
 
@@ -3297,6 +3298,8 @@ msgstr "Đặt lại hiển thị?"
 msgid "Reset preferences?"
 msgstr "Đặt lại tuỳ chọn?"
 
+#: src/features/system/settings.tsx
+#: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
@@ -3632,14 +3635,6 @@ msgstr "Quy tắc máy chủ"
 #: src/features/system/documents.tsx
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "Quy tắc máy chủ, điều khoản và điều kiện, và thông báo quyền riêng tư hiển thị cho người dùng của bạn"
-
-#: src/features/system/settings.tsx
-msgid "Server started"
-msgstr "Máy chủ đã khởi động"
-
-#: src/features/system/settings.tsx
-msgid "Server version"
-msgstr "Phiên bản máy chủ"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -4206,6 +4201,10 @@ msgstr "Không rõ"
 msgid "Unknown browser"
 msgstr "Trình duyệt không xác định"
 
+#: src/features/system/settings.tsx
+msgid "Unknown theme"
+msgstr "Giao diện không xác định"
+
 #: src/features/user/login.tsx
 msgid "Unlink"
 msgstr "Hủy liên kết"
@@ -4283,6 +4282,7 @@ msgstr "Dùng mã khóa của bạn"
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
+#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/users.tsx

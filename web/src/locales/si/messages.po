@@ -94,6 +94,7 @@ msgstr "{0} · පුෂ්"
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
 #: src/components/theme-preview-card.tsx
+#: src/features/system/settings.tsx
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (සංවර්ධනය)"
@@ -400,6 +401,7 @@ msgstr "\"{0}\" එක් කරන ලදී"
 msgid "Address"
 msgstr "ලිපිනය"
 
+#: src/features/domains/index.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -436,8 +438,7 @@ msgstr "මෙයින් වර්ග කිරීමට අවසර දෙ�
 msgid "Allow users to install apps"
 msgstr "පරිශීලකයන්ට apps ස්ථාපනය කිරීමට අවසර දෙන්න"
 
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Allowed"
 msgstr "අවසර ඇත"
 
@@ -471,7 +472,6 @@ msgstr "පිවිසී සිටින ඕනෑම කෙනෙක්"
 msgid "Anything subscribed to this feed will stop receiving it. You can copy a new URL afterwards."
 msgstr "මෙම සංග්‍රහයට දායක වූ සියල්ල එය ලැබීම නවත්වනු ඇත. පසුව ඔබට නව URL එකක් පිටපත් කළ හැකිය."
 
-#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 msgid "App"
 msgstr "යෙදුම"
@@ -1313,10 +1313,9 @@ msgstr "අක්‍රිය කරන්න"
 msgid "Disable authenticator?"
 msgstr "සත්‍යාපකය අක්‍රිය කරනවාද?"
 
-#: src/components/method-state-control.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "අක්‍රියයි"
 
@@ -1555,7 +1554,6 @@ msgid "Entities"
 msgstr "ඒකක"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Entity"
 msgstr "ආයතනය"
 
@@ -1735,6 +1733,10 @@ msgstr "ගෙනයාම අසාර්ථකයි"
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Failed to post comment"
 msgstr "අදහස පළ කිරීමට අසමත් විය"
+
+#: src/features/system/settings.tsx
+msgid "Failed to read file"
+msgstr "ගොනුව කියවීමට අසමත් විය"
 
 #: src/features/user/interests.tsx
 msgid "Failed to regenerate summary"
@@ -3103,7 +3105,6 @@ msgid "Recovery codes"
 msgstr "ප්‍රතිසාධන කේත"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "යළි-යොමු කිරීම"
 
@@ -3194,6 +3195,7 @@ msgstr "{0} පෙරහන ඉවත් කරන්න"
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
+#: src/features/user/interests.tsx
 msgid "Remove {name}"
 msgstr "{name} ඉවත් කරන්න"
 
@@ -3274,8 +3276,7 @@ msgid "Require domain verification"
 msgstr "වසම් සත්‍යාපනය අවශ්‍ය කරන්න"
 
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Required"
 msgstr "අවශ්‍යයි"
 
@@ -3297,6 +3298,8 @@ msgstr "සංදර්ශනය යළි සකසන්නද?"
 msgid "Reset preferences?"
 msgstr "අභිරුචියන් යළි සකසන්නද?"
 
+#: src/features/system/settings.tsx
+#: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
@@ -3632,14 +3635,6 @@ msgstr "සේවාදායක නීති"
 #: src/features/system/documents.tsx
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "ඔබේ පරිශීලකයන්ට පෙන්වන සේවාදායක නීති, නියම සහ කොන්දේසි, සහ රහස්‍යතා දැන්වීම"
-
-#: src/features/system/settings.tsx
-msgid "Server started"
-msgstr "සේවාදායකය ආරම්භ විය"
-
-#: src/features/system/settings.tsx
-msgid "Server version"
-msgstr "සේවාදායක අනුවාදය"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -4206,6 +4201,10 @@ msgstr "නොදන්නා"
 msgid "Unknown browser"
 msgstr "නොදන්නා බ්‍රවුසරය"
 
+#: src/features/system/settings.tsx
+msgid "Unknown theme"
+msgstr "නොදන්නා තේමාව"
+
 #: src/features/user/login.tsx
 msgid "Unlink"
 msgstr "සම්බන්ධතාවය ඉවත් කරන්න"
@@ -4283,6 +4282,7 @@ msgstr "ඔබගේ මුරයතුර භාවිතා කරන්න"
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
+#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/users.tsx

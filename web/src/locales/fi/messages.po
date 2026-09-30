@@ -94,6 +94,7 @@ msgstr "{0} · push-ilmoitukset"
 #. placeholder {0}: current.label
 #. placeholder {0}: theme.label
 #: src/components/theme-preview-card.tsx
+#: src/features/system/settings.tsx
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (kehitys)"
@@ -400,6 +401,7 @@ msgstr "Lisätty \"{0}\""
 msgid "Address"
 msgstr "Osoite"
 
+#: src/features/domains/index.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -436,8 +438,7 @@ msgstr "Salli järjestäminen"
 msgid "Allow users to install apps"
 msgstr "Salli käyttäjien asentaa sovelluksia"
 
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Allowed"
 msgstr "Sallittu"
 
@@ -471,7 +472,6 @@ msgstr "Kuka tahansa kirjautunut"
 msgid "Anything subscribed to this feed will stop receiving it. You can copy a new URL afterwards."
 msgstr "Kaikki tätä syötettä tilaavat lakkaavat vastaanottamasta sitä. Voit kopioida uuden URL-osoitteen jälkeenpäin."
 
-#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 msgid "App"
 msgstr "Sovellus"
@@ -1313,10 +1313,9 @@ msgstr "Poista käytöstä"
 msgid "Disable authenticator?"
 msgstr "Poistetaanko todentaja käytöstä?"
 
-#: src/components/method-state-control.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "Pois käytöstä"
 
@@ -1555,7 +1554,6 @@ msgid "Entities"
 msgstr "Entiteetit"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Entity"
 msgstr "Entiteetti"
 
@@ -1735,6 +1733,10 @@ msgstr "Siirto epäonnistui"
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Failed to post comment"
 msgstr "Kommentin lähettäminen epäonnistui"
+
+#: src/features/system/settings.tsx
+msgid "Failed to read file"
+msgstr "Tiedoston lukeminen epäonnistui"
 
 #: src/features/user/interests.tsx
 msgid "Failed to regenerate summary"
@@ -3103,7 +3105,6 @@ msgid "Recovery codes"
 msgstr "Palautuskoodit"
 
 #: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Uudelleenohjaus"
 
@@ -3194,6 +3195,7 @@ msgstr "Poista suodatin {0}"
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
 #: ../../../lib/web/src/components/person-picker.tsx
+#: src/features/user/interests.tsx
 msgid "Remove {name}"
 msgstr "Poista {name}"
 
@@ -3274,8 +3276,7 @@ msgid "Require domain verification"
 msgstr "Vaadi verkkotunnuksen vahvistus"
 
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
-#: src/components/method-state-control.tsx
-#: src/features/system/settings.tsx
+#: src/hooks/use-method-state-label.ts
 msgid "Required"
 msgstr "Pakollinen"
 
@@ -3297,6 +3298,8 @@ msgstr "Palauta näyttö?"
 msgid "Reset preferences?"
 msgstr "Palautetaanko mieltymykset?"
 
+#: src/features/system/settings.tsx
+#: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
 #: src/features/system/settings.tsx
@@ -3632,14 +3635,6 @@ msgstr "Palvelimen säännöt"
 #: src/features/system/documents.tsx
 msgid "Server rules, terms and conditions, and privacy notice shown to your users"
 msgstr "Palvelimen säännöt, käyttöehdot ja tietosuojailmoitus, jotka näytetään käyttäjillesi"
-
-#: src/features/system/settings.tsx
-msgid "Server started"
-msgstr "Palvelin käynnistetty"
-
-#: src/features/system/settings.tsx
-msgid "Server version"
-msgstr "Palvelimen versio"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -4206,6 +4201,10 @@ msgstr "Tuntematon"
 msgid "Unknown browser"
 msgstr "Tuntematon selain"
 
+#: src/features/system/settings.tsx
+msgid "Unknown theme"
+msgstr "Tuntematon teema"
+
 #: src/features/user/login.tsx
 msgid "Unlink"
 msgstr "Poista liitos"
@@ -4283,6 +4282,7 @@ msgstr "Käytä avainkoodiasi"
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
+#: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
 #: src/features/system/users.tsx

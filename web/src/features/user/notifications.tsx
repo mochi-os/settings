@@ -44,7 +44,16 @@ import {
   textUnchanged,
   setsEqual,
 } from '@mochi/web'
-import { Bell, Check, Pencil, Plus, Send, Trash2, X } from 'lucide-react'
+import {
+  Bell,
+  Check,
+  Loader2,
+  Pencil,
+  Plus,
+  Send,
+  Trash2,
+  X,
+} from 'lucide-react'
 import endpoints from '@/api/endpoints'
 
 type TabId = 'categories' | 'topics'
@@ -70,7 +79,7 @@ interface Category {
 }
 
 interface Account {
-  id: number
+  id: string
   type: string
   label: string
   identifier?: string
@@ -269,6 +278,8 @@ function CategoriesTab({
   const queryClient = useQueryClient()
   const [editing, setEditing] = useState<Category | null>(null)
   const [deleting, setDeleting] = useState<Category | null>(null)
+  // The category whose test notification is in flight.
+  const [testing, setTesting] = useState<string | null>(null)
 
   const { data, error, refetch } = useQuery({
     queryKey: ['notifications', 'categories'],
@@ -324,7 +335,12 @@ function CategoriesTab({
               available={available}
               onEdit={() => setEditing(cat)}
               onDelete={() => setDeleting(cat)}
+              testing={testing === cat.id}
               onTest={async () => {
+                // Each click sends a notification to every destination, so a
+                // second one while the first is in flight is dropped.
+                if (testing !== null) return
+                setTesting(cat.id)
                 try {
                   const params = new URLSearchParams({ id: String(cat.id) })
                   const res = await requestHelpers.post<{
@@ -359,6 +375,8 @@ function CategoriesTab({
                   }
                 } catch (e) {
                   toast.error(getErrorMessage(e, t`Failed to send test`))
+                } finally {
+                  setTesting(null)
                 }
               }}
             />
@@ -407,12 +425,14 @@ function CategoryRow({
   onEdit,
   onDelete,
   onTest,
+  testing,
 }: {
   category: Category
   available: DestinationsAvailable
   onEdit: () => void
   onDelete: () => void
   onTest: () => void
+  testing: boolean
 }) {
   const { t } = useLingui()
   const destSummary = useMemo(() => {
@@ -427,7 +447,7 @@ function CategoryRow({
         const name = deviceLabel(d.target)
         if (name !== undefined) labels.push(t`${name || t`Device`} · app`)
       } else if (d.type === 'account') {
-        const acc = available.accounts.find((a) => String(a.id) === d.target)
+        const acc = available.accounts.find((a) => a.id === d.target)
         if (!acc) continue
         const name = acc.device ? deviceLabel(acc.device) : undefined
         labels.push(
@@ -459,8 +479,18 @@ function CategoryRow({
         <p className='text-muted-foreground text-sm'>{destSummary}</p>
       </div>
       <div className='flex flex-wrap gap-2'>
-        <Button variant='outline' size='sm' onClick={onTest}>
-          <Send className='me-2 h-4 w-4' /> <Trans>Test</Trans>
+        <Button
+          variant='outline'
+          size='sm'
+          onClick={onTest}
+          disabled={testing}
+        >
+          {testing ? (
+            <Loader2 className='me-2 h-4 w-4 animate-spin' />
+          ) : (
+            <Send className='me-2 h-4 w-4' />
+          )}{' '}
+          <Trans>Test</Trans>
         </Button>
         <Button variant='outline' size='sm' onClick={onEdit}>
           <Pencil className='me-2 h-4 w-4' /> <Trans>Edit</Trans>
@@ -498,7 +528,7 @@ function CategoryDialog({
       set.add(destKey('web', ''))
       for (const dev of available.devices) set.add(destKey('device', dev.id))
       for (const acc of available.accounts) {
-        if (acc.enabled) set.add(destKey('account', String(acc.id)))
+        if (acc.enabled) set.add(destKey('account', acc.id))
       }
     }
     return set
@@ -685,7 +715,7 @@ function DestinationsGrid({
     for (const acc of available.accounts) {
       if (acc.device === dev.id)
         rows.push({
-          key: destKey('account', String(acc.id)),
+          key: destKey('account', acc.id),
           label: t`${name} · push`,
         })
     }
@@ -697,7 +727,7 @@ function DestinationsGrid({
     const name = accountDisplayName(acc)
     const kind = getProviderLabel(acc.type)
     rows.push({
-      key: destKey('account', String(acc.id)),
+      key: destKey('account', acc.id),
       label: isPushAccount(acc) && name !== kind ? `${name} · ${kind}` : name,
     })
   }
