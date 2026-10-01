@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-import { useEffect, useMemo, useState } from 'react'
-import { useNavigate } from '@tanstack/react-router'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { useBlocker, useNavigate } from '@tanstack/react-router'
 import { Route } from '@/routes/_authenticated/system/documents'
 import { i18n } from '@lingui/core'
 import { Trans, useLingui } from '@lingui/react/macro'
@@ -189,10 +189,20 @@ export function SystemDocuments() {
     language
   )
 
-  // Switching document or language replaces the editor, so unsaved edits
-  // are confirmed first rather than dropped.
+  // Switching document or language replaces the editor, and leaving the page
+  // drops it, so unsaved edits are confirmed first rather than lost.
   const [dirty, setDirty] = useState(false)
   const [pending, setPending] = useState<DocumentSearch | null>(null)
+  const unsaved = useRef(false)
+  unsaved.current = dirty
+  // The tab and language are search parameters on this page, which choose()
+  // guards; a change of path is somewhere else.
+  const leaving = useBlocker({
+    shouldBlockFn: ({ current, next }) =>
+      unsaved.current && current.pathname !== next.pathname,
+    enableBeforeUnload: () => unsaved.current,
+    withResolver: true,
+  })
   const go = (next: DocumentSearch) => {
     setDirty(false)
     void navigate({ to: '/system/documents', search: next, replace: true })
@@ -287,17 +297,22 @@ export function SystemDocuments() {
               ))}
             </Tabs>
             <ConfirmDialog
-              open={pending !== null}
+              open={pending !== null || leaving.status === 'blocked'}
               onOpenChange={(open) => {
-                if (!open) setPending(null)
+                if (open) return
+                setPending(null)
+                leaving.reset?.()
               }}
-              title={t`Discard unsaved changes?`}
+              title={t`Discard changes?`}
               desc=''
               confirmText={t`Discard`}
               icon={<X className='size-4' />}
               destructive
               handleConfirm={() => {
-                if (pending) go(pending)
+                if (leaving.status === 'blocked') {
+                  unsaved.current = false
+                  leaving.proceed()
+                } else if (pending) go(pending)
                 setPending(null)
               }}
             />
