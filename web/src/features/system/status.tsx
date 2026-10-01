@@ -3,6 +3,7 @@
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import type { ReactNode } from 'react'
+import { plural } from '@lingui/core/macro'
 import { Trans, useLingui } from '@lingui/react/macro'
 import {
   Button,
@@ -150,6 +151,37 @@ function NetworkStatus() {
   )
   const connected = peers.filter((p) => p.connected).length
   const queued = peers.reduce((sum, p) => sum + p.queued, 0)
+  const known = formatNumber(peers.length)
+  const linked = formatNumber(connected)
+  const mesh = formatNumber(network.mesh)
+
+  // Each count carries its own plural: a language agrees each word with the
+  // number beside it.
+  const holepunch = network.holepunch
+  const succeeded = formatNumber(holepunch?.success ?? 0)
+  const failed = formatNumber(holepunch?.failure ?? 0)
+  const holepunchLabel = t`${plural(holepunch?.success ?? 0, {
+    one: `${succeeded} succeeded`,
+    other: `${succeeded} succeeded`,
+  })} · ${plural(holepunch?.failure ?? 0, {
+    one: `${failed} failed`,
+    other: `${failed} failed`,
+  })}`
+  const relaying = network.relaying
+  const held = formatNumber(relaying?.reservations.held ?? 0)
+  const maximum = formatNumber(relaying?.reservations.maximum ?? 0)
+  const circuits = formatNumber(relaying?.circuits ?? 0)
+  const refused = formatNumber(relaying?.rejected ?? 0)
+  const relayingLabel = t`${plural(relaying?.reservations.maximum ?? 0, {
+    one: `${held} / ${maximum} reservation`,
+    other: `${held} / ${maximum} reservations`,
+  })} · ${plural(relaying?.circuits ?? 0, {
+    one: `${circuits} circuit`,
+    other: `${circuits} circuits`,
+  })} · ${plural(relaying?.rejected ?? 0, {
+    one: `${refused} refused`,
+    other: `${refused} refused`,
+  })}`
   const reachability =
     {
       public: t`Public`,
@@ -169,8 +201,7 @@ function NetworkStatus() {
           </FieldRow>
           <FieldRow label={t`Reachability`}>
             <StatusValue>
-              {reachability}
-              {network.relay ? ` · ${t`Via relay`}` : ''}
+              {network.relay ? t`${reachability} · via relay` : reachability}
             </StatusValue>
           </FieldRow>
           {network.last > 0 && (
@@ -184,23 +215,13 @@ function NetworkStatus() {
             network.holepunch.success + network.holepunch.failure > 0 && (
               <FieldRow label={t`Hole punch`}>
                 <StatusValue>
-                  <Trans>
-                    {formatNumber(network.holepunch.success)} succeeded ·{' '}
-                    {formatNumber(network.holepunch.failure)} failed
-                  </Trans>
+                  {holepunchLabel}
                 </StatusValue>
               </FieldRow>
             )}
           {network.relaying?.active && (
             <FieldRow label={t`Relay service`}>
-              <StatusValue>
-                <Trans>
-                  {formatNumber(network.relaying.reservations.held)} /{' '}
-                  {formatNumber(network.relaying.reservations.maximum)}{' '}
-                  reservations · {formatNumber(network.relaying.circuits)}{' '}
-                  circuits · {formatNumber(network.relaying.rejected)} refused
-                </Trans>
-              </StatusValue>
+              <StatusValue>{relayingLabel}</StatusValue>
             </FieldRow>
           )}
           <FieldRow label={t`Messages awaiting routing`}>
@@ -220,9 +241,7 @@ function NetworkStatus() {
           contentClassName='px-0 py-0'
           action={
             <span className='text-muted-foreground text-end text-sm'>
-              <Trans>Known</Trans> {formatNumber(peers.length)} ·{' '}
-              <Trans>Connected</Trans> {formatNumber(connected)} ·{' '}
-              <Trans>Broadcast mesh</Trans> {formatNumber(network.mesh)}
+              {t`Known ${known} · Connected ${linked} · Broadcast mesh ${mesh}`}
             </span>
           }
         >

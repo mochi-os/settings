@@ -57,6 +57,19 @@ msgstr "(राउर)"
 msgid "[not set]"
 msgstr "[सेट नइखे]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} आरक्षण} other {{held} / {maximum} आरक्षण}} · {1, plural, one {{circuits} सर्किट} other {{circuits} सर्किट}} · {2, plural, one {{refused} अस्वीकृत} other {{refused} अस्वीकृत}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} सफल} other {{succeeded} सफल}} · {1, plural, one {{failed} विफल} other {{failed} विफल}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# नेस्टेड} other {+# नेस्टे�
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {1 सत्र निरस्त कइल गइल} other {# सत्र निरस्त कइल गइल}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {# सत्र निरस्त कइल गइल} other {# सत्र निरस्त कइल गइल}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {{total} उपयोगकर्ता में से {first}–{last} देखावल जा रहल बा} other {{total} उपयोगकर्ता में से {first}–{last} देखावल जा रहल बा}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · पुश"
 msgid "{0} (development)"
 msgstr "{0} (विकास)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} आरक्षण · {2} सर्किट · {3} अस्वीकृत"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} सफल · {1} विफल"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {# बाँचल} other {# बाँचल}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#मि} other {#मि}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#सप्ता} other {#सप्ता}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} बाँचल"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} से {to} तक"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · ऐप"
 
@@ -160,6 +172,10 @@ msgstr "{name} · पुश"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} ड्रॉ के प्रस्ताव दिहले"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · रिले के जरिए"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {# गंतव्य पर टेस्ट भेजल गइल} other {# गंतव्य पर टेस्ट भेजल गइल}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {# गंतव्य पर टेस्ट भे�
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{totalLabel} में से {sentLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {# में से {sent} गंतव्य पर टेस्ट भेजल गइल} other {# में से {sent} गंतव्य पर टेस्ट भेजल गइल}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# आइटम} other {# आइटम}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# आइटम} other {# आइटम}}"
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# जवाब} other {+# अउरी जवाब}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "खाता"
 msgid "Account added"
 msgstr "खाता जोड़ल गइल"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "खाता जुड़ गइल"
 
@@ -295,14 +318,6 @@ msgstr "एगो नया खाता जोड़ीं"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "एह वर्ग में एगो नया फील्ड जोड़ीं"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "{domain} में एगो नया रास्ता जोड़ीं"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "{domain} में एगो नया रास्ता जोड़ीं। रउआ ई रस्ता के प्रबंधन कर सकत बानी:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "रुचि बढ़ाईं"
 msgid "Border colour"
 msgstr "किनारा रंग"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "प्रसारण मेश"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "कार्ड के शैली"
 msgid "Categories"
 msgstr "श्रेणी"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "एकर सूचना सभ खातिर श्रेणी"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "एह सूचना सभ खातिर श्रेणी"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "मौजूदा सूचना के बदलीं"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "पुष्टि करीं कि ई रउआ बानी"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "जुड़ल बा"
@@ -922,10 +932,6 @@ msgstr "जुड़ल खाता"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "जुड़त बा..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "प्रत्यायोजन पावे खातिर एगो प्रशासक से संपर्क करीं।"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "रउआ के खाता बंद ना हो सकल"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "कोड कॉपी ना हो सकल। इनका चुन के खुद कॉपी करीं।"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "खाता ना जुड़ सकल"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "{entityLabel} बनाईं"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "एकरा खातिर एगो TXT रिकॉर्ड बनाईं"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "<0>{record}</0> खातिर एगो TXT रिकॉर्ड बनाईं"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1057,10 +1062,6 @@ msgstr "मौजूदा जगह"
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
-msgstr "अनुकूलित"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
 msgstr "अनुकूलित"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "अक्षम"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "छोड़ीं"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "ड्राफ्ट छोड़ दीं?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "बिना सहेजल बदलाव छोड़ दीं?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,8 +1347,9 @@ msgstr "खारिज करीं"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
-msgstr "देखाईं"
+msgstr "डिस्प्ले"
 
 #: src/features/user/display.tsx
 msgid "Display reset to defaults"
@@ -1487,11 +1494,6 @@ msgstr "विकल्प {0} संपादित करीं"
 msgid "Edit route"
 msgstr "रूट संपादित करीं"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "पथ खातिर रूट संपादित करीं: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "चुनल कार्ड संपादित करीं"
@@ -1517,10 +1519,6 @@ msgstr "ईमेल"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "ईमेल कोड"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "खाली पथ पूरा डोमेन पहुँच देला"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "Google क्लाइंट ID"
 msgid "Google client secret"
 msgstr "Google क्लाइंट सीक्रेट"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "{domain} पर रूट प्रबंधित करे खातिर एगो यूजर के अनुमति दीं"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "समूह"
@@ -2026,11 +2020,6 @@ msgstr "के अनुसार समूह"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "समूह: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "अधिक प्राथमिकता वाला रूट पहिले मिलावल जाला"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "कीबोर्ड शॉर्टकट"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "ज्ञात"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "ज्ञात {known} · जुड़ल {linked} · प्रसारण मेश {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "आखिरी बेर इस्तेमाल"
 msgid "Layout"
 msgstr "लेआउट"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "रूट पथ खातिर खाली छोड़ीं"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "खाली अक्षर, अंक, खाली जगह, हाइफन आ स्लैश"
@@ -2220,8 +2205,7 @@ msgstr "लिंक"
 msgid "Link account"
 msgstr "खाता जोड़ीं"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} जुड़ल"
 
@@ -2423,6 +2407,10 @@ msgstr "मॉडल"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "मॉडरेशन"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "संशोधित"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "पासकी नाम"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "पासकी ना जोड़ल गइल"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "पासकी पंजीकृत भइल"
 
@@ -2909,7 +2901,7 @@ msgstr "पासफ्रेज"
 msgid "Path"
 msgstr "पथ"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "पथ के अनुमति नइखे। रउआ खाली ए के तहत रूट जोड़ सकेनी: {0}"
@@ -3137,10 +3129,6 @@ msgstr "पंजीकृत करीं"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "पासकी पंजीकृत करीं"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "पंजीकरण रद्द भइल"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "ए कोड सहेजीं"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "खोजीं"
 
@@ -3579,16 +3568,6 @@ msgstr "व्यक्ति चुनीं..."
 msgid "Select previous card"
 msgstr "पिछला कार्ड चुनीं"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "रूट करे खातिर ऐप चुनीं"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "रूट करे खातिर इकाई चुनीं"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "सर्वर त्रुटि"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "सर्वर नियम"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "सर्वर नियम, शर्त, आ गोपनीयता सूचना जे आपके उपयोगकर्तन के देखावल जाला"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "फ़ील्ड सब देखाईं"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "ई मदद देखाईं"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "{2} उपयोगकर्ता में से {0}-{1} देखावल जा रहल बा"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "परीक्षण"
 msgid "Test failed"
 msgstr "परीक्षण विफल"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "परीक्षण {total} में से {sent} गंतव्य पर भेजल गइल"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "टेक्स्ट"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "ऊ खाता पहिले से दूसरा उपयोगकर्ता से जुड़ल बा"
 
@@ -3905,8 +3868,7 @@ msgstr "ऊ कोड गलत बा भा ओकर मियाद खत�
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "भेजल ना जा सकल। फाइल बहुत बड़ हो सकेला, भा राउर कनेक्शन टूट गइल। छोट फाइल आजमाईं।"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "ऊ ईमेल पहिले से दूसरा खाता पर पंजीकृत बा"
 
@@ -3914,10 +3876,6 @@ msgstr "ऊ ईमेल पहिले से दूसरा खाता प
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "अपलोड खातिर बहुत बड़ रहे। फाइल हटाईं भा छोट करीं आ फेर से कोसिस करीं।"
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "\"कवनो सूचना ना\" श्रेणी एकरा से जुड़ल कवनो विषय के चुप करा देला।"
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "ई ऐप के रउआ पासकी इस्तेमाल क
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "ई एगो पूरा बैकअप बा जेके रउआ एह या कौनो दोसर Mochi सर्वर पर बहाल कर सकीलें। आगे बढ़े खातिर पुष्टि करीं कि ई रउआ बानी।"
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "ई रउआ खाता में सुरक्षा बदलाव बा। आगे बढ़े खातिर पुष्टि करीं कि ई रउआ बानी।"
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "ई खेल आ ओकर चैट के स्थायी रूप से मेटा दी। एकरा वापस नइखे कईल जा सकत।"
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "एह उपयोगकर्ता के कवनो सक्रिय सत्र नइखे।"
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "ई \"{settingNameLabel}\" के ओकर डिफ़ॉल्ट (�
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "ई \"{settingNameLabel}\" के ओकर डिफ़ॉल्ट मान ({defaultLabel}) पर रीसेट कर दी।"
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "ई सब वरीयता के ओकर डिफ़ॉल्ट मान पर रीसेट कर दी।"
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "ई डिस्प्ले सेटिंग के डिफ़ॉल्ट मान पर रीसेट कर दिही।"
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "ई एह वरीयता सभ के ओकर डिफ़ॉल्ट मान पर रीसेट कर दी।"
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "विषय सब"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "यात्रा कर रहल बा"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "अपना खोज मानदंड समायोजित करे के कोशिश करीं"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "अपलोड करीं"
 msgid "Upload progress"
 msgstr "अपलोड के प्रगति"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "रीडायरेक्ट करे खातिर URL"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "वाइल्डकार्ड डोमेन खातिर *.domain.com के उपयोग करीं"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "एगो सुरक्षा कुंजी, फिंगरप्रिंट, या चेहरा पहचान के उपयोग करीं।"
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "आपन पासकी इस्तेमाल करीं"
@@ -4372,10 +4305,6 @@ msgstr "ईमेल पता सत्यापित करीं"
 msgid "Version"
 msgstr "संस्करण"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "रिले के जरिए"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "वीडियो थंबनेल"
@@ -4393,10 +4322,6 @@ msgstr "सब सूचना देखीं"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "वस्तु विवरण देखीं आ संपादित करीं"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "एह उपयोगकर्ता खातिर सक्रिय सत्र देखीं आ निरस्त करीं।"
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "X क्लाइंट गुप्त"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "साल"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "रउआ एह पथ सभ के प्रबंधन कर सकत बानी: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

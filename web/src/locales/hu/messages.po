@@ -57,6 +57,19 @@ msgstr "(te)"
 msgid "[not set]"
 msgstr "[nincs beállítva]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} foglalás} other {{held} / {maximum} foglalás}} · {1, plural, one {{circuits} áramkör} other {{circuits} áramkör}} · {2, plural, one {{refused} elutasítva} other {{refused} elutasítva}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} sikeres} other {{succeeded} sikeres}} · {1, plural, one {{failed} sikertelen} other {{failed} sikertelen}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# beágyazott} other {+# beágyazott}}"
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {1 munkamenet visszavonva} other {# munkamenet visszavonva}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {# munkamenet visszavonva} other {# munkamenet visszavonva}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {{total} felhasználóból {first}–{last} megjelenítése} other {{total} felhasználóból {first}–{last} megjelenítése}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · push értesítés"
 msgid "{0} (development)"
 msgstr "{0} (fejlesztés)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} foglalások · {2} áramkörök · {3} elutasítva"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} sikeres · {1} sikertelen"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {# maradt} other {# maradt}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#p} other {#p}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#hét} other {#hét}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} hátra"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} és {to} között"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · alkalmazás"
 
@@ -160,6 +172,10 @@ msgstr "{name} · push értesítés"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} döntetlent ajánlott"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · továbbítón keresztül"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Teszt elküldve # célhelyre} other {Teszt elküldve # célhelyre}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {Teszt elküldve # célhelyre} other {Teszt elküldve
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} / {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {Teszt elküldve {sent}/# célhelyre} other {Teszt elküldve {sent}/# célhelyre}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# elem} other {# elem}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# elem} other {# elem}}"
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# válasz} other {+# további válasz}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Fiók"
 msgid "Account added"
 msgstr "Fiók hozzáadva"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Fiók összekapcsolva"
 
@@ -295,14 +318,6 @@ msgstr "Új fiók hozzáadása"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Új mező hozzáadása ehhez az osztályhoz"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Új útvonal hozzáadása a következőhöz: {domain}"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Új útvonal hozzáadása a következőhöz: {domain}. Ezeket az útvonalakat kezelheti:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Érdeklődés növelése"
 msgid "Border colour"
 msgstr "Szegélyszín"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Közvetítési mesh"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Kártya stílusa"
 msgid "Categories"
 msgstr "Kategóriák"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Az értesítéseinek kategóriája"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Ezen értesítések kategóriája"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Jelenlegi értesítések módosítása erre"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Igazolja, hogy ön az"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Csatlakoztatva"
@@ -922,10 +932,6 @@ msgstr "Csatlakoztatott fiókok"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Csatlakozás…"
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Lépj kapcsolatba egy adminisztrátorral, hogy delegálást kapj."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Nem sikerült bezárni a fiókját"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "A kódokat nem sikerült másolni. Jelölje ki és másolja őket kézzel."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "A fiók összekapcsolása sikertelen"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "{entityLabel} létrehozása"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "TXT rekord létrehozása"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "Hozzon létre egy TXT-rekordot a következőhöz: <0>{record}</0>"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1057,10 +1062,6 @@ msgstr "Jelenlegi hely"
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
-msgstr "Egyéni"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
 msgstr "Egyéni"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Letiltva"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Elvetés"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "Elveted a piszkozatot?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "Elveti a nem mentett módosításokat?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,6 +1347,7 @@ msgstr "Elvetés"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
 msgstr "Megjelenítés"
 
@@ -1487,11 +1494,6 @@ msgstr "{0} lehetőség szerkesztése"
 msgid "Edit route"
 msgstr "Útvonal szerkesztése"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "Útvonal szerkesztése a következő útvonalhoz: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Kijelölt kártya szerkesztése"
@@ -1517,10 +1519,6 @@ msgstr "E-mail"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "E-mail kód"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Az üres elérési út teljes tartomány-hozzáférést biztosít"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "Google kliens azonosító"
 msgid "Google client secret"
 msgstr "Google kliens titkos kulcs"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Engedély adása egy felhasználónak az útvonalak kezelésére a következőn: {domain}"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Csoport"
@@ -2026,11 +2020,6 @@ msgstr "Csoportosítás"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Csoport: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "A magasabb prioritású útvonalak illeszkednek először"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Billentyűparancsok"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Ismert"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Ismert {known} · Csatlakoztatva {linked} · Közvetítési mesh {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Utoljára használt"
 msgid "Layout"
 msgstr "Elrendezés"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Hagyja üresen a gyökér elérési úthoz"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Csak betűk, számok, szóközök, kötőjelek és perjelek"
@@ -2220,8 +2205,7 @@ msgstr "Hivatkozás"
 msgid "Link account"
 msgstr "Fiók összekapcsolása"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} csatolva"
 
@@ -2423,6 +2407,10 @@ msgstr "Modell"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Moderálás"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Módosítva"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Passkey neve"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Az azonosítókulcs nem lett hozzáadva"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Passkey regisztrálva"
 
@@ -2909,7 +2901,7 @@ msgstr "Jelmondat"
 msgid "Path"
 msgstr "Útvonal"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Az útvonal nem engedélyezett. Csak a következő alatt adhatsz hozzá útvonalakat: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Regisztráció"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Passkey regisztrálása"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Regisztráció megszakítva"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Mentse el ezeket a kódokat"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Keresés"
 
@@ -3579,16 +3568,6 @@ msgstr "Válasszon személyt…"
 msgid "Select previous card"
 msgstr "Előző kártya kijelölése"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Válaszd ki az alkalmazást, amelyre irányítasz"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Válaszd ki az entitást, amelyre irányítasz"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Kiszolgálóhiba"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Szerverszabályzat"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "A felhasználóknak megjelenített szerverszabályzat, általános szerződési feltételek és adatvédelmi tájékoztató"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Mezők megjelenítése"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Súgó megjelenítése"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "{0}-{1} megjelenítése a(z) {2} felhasználó közül"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Teszt"
 msgid "Test failed"
 msgstr "A teszt sikertelen"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Teszt elküldve {sent}/{total} célra"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Szöveg"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Ez a fiók már egy másik felhasználóhoz van társítva"
 
@@ -3905,8 +3868,7 @@ msgstr "Ez a kód helytelen vagy lejárt."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Nem sikerült elküldeni. A fájlok túl nagyok lehetnek, vagy a kapcsolat megszakadt. Próbáljon kisebb fájlokat."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Ez az e-mail már egy másik fiókhoz van regisztrálva"
 
@@ -3914,10 +3876,6 @@ msgstr "Ez az e-mail már egy másik fiókhoz van regisztrálva"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Túl nagy volt a feltöltéshez. Távolítson el vagy kicsinyítsen fájlokat, és próbálja újra."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "A „Nincs értesítés” kategória elnémít minden hozzárendelt témát."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Ez az alkalmazás nem használhatja az Ön passkey-ét. Engedélyezze a 
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Ez egy teljes biztonsági mentés, amelyet visszaállíthat ezen vagy egy másik Mochi-kiszolgálón. A folytatáshoz igazolja, hogy ön az."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Ez egy biztonsági módosítás a fiókján. A folytatáshoz igazolja, hogy ön az."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Ez véglegesen törli a játékot és a hozzá tartozó csevegést. Ez a művelet nem vonható vissza."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Ennek a felhasználónak nincsenek aktív munkamenetei."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Ez visszaállítja a következőt: „{settingNameLabel}” az alapérte
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Ez visszaállítja a következőt: „{settingNameLabel}” az alapértelmezett értékére ({defaultLabel})."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Ez visszaállítja az összes beállítást az alapértelmezett értékére."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Ez visszaállítja a kijelző beállításait az alapértelmezett értékekre."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Ez visszaállítja ezeket a preferenciákat az alapértelmezett értékükre."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Témák"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "Utazás"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Próbáld meg módosítani a keresési feltételeket"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Feltöltés"
 msgid "Upload progress"
 msgstr "Feltöltés folyamata"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "URL az átirányításhoz"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Használd a *.domain.com-ot helyettesítő karakteres domainekhez"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Használjon biztonsági kulcsot, ujjlenyomatot vagy arcfelismerést."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Használja a hozzáférési kulcsát"
@@ -4372,10 +4305,6 @@ msgstr "E-mail-cím ellenőrzése"
 msgid "Version"
 msgstr "Verzió"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Relén keresztül"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Videó indexképe"
@@ -4393,10 +4322,6 @@ msgstr "Összes értesítés megtekintése"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Tétel adatainak megtekintése és szerkesztése"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "A felhasználó aktív munkameneteinek megtekintése és visszavonása."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "X klienstitok"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Év"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Ezeket az útvonalakat kezelheti: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

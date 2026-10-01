@@ -57,6 +57,19 @@ msgstr "(אתה)"
 msgid "[not set]"
 msgstr "[לא מוגדר]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} הזמנה} two {{held} / {maximum} הזמנות} many {{held} / {maximum} הזמנות} other {{held} / {maximum} הזמנות}} · {1, plural, one {{circuits} מעגל} two {{circuits} מעגלים} many {{circuits} מעגלים} other {{circuits} מעגלים}} · {2, plural, one {{refused} נדחה} two {{refused} נדחו} many {{refused} נדחו} other {{refused} נדחו}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} הצליח} two {{succeeded} הצליחו} many {{succeeded} הצליחו} other {{succeeded} הצליחו}} · {1, plural, one {{failed} נכשל} two {{failed} נכשלו} many {{failed} נכשלו} other {{failed} נכשלו}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# מקונן} two {+# מקוננים} many {+# מקו�
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {הופסקה הפעלה אחת} two {הופסקו 2 הפעלות} many {הופסקו # הפעלות} other {הופסקו # הפעלות}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {בוטלה # הפעלה} two {בוטלו # הפעלות} many {בוטלו # הפעלות} other {בוטלו # הפעלות}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {מציג {first}–{last} מתוך {total} משתמש} two {מציג {first}–{last} מתוך {total} משתמשים} many {מציג {first}–{last} מתוך {total} משתמשים} other {מציג {first}–{last} מתוך {total} משתמשים}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · פוש"
 msgid "{0} (development)"
 msgstr "{0} (פיתוח)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} הזמנות · {2} מעגלים · {3} נדחו"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} הצליחו · {1} נכשלו"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {נותר #} two {נותרו #} many {נותרו #} other {נותרו #}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#דק} other {#דק}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#שב} other {#שב}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "נותרו {count}"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} עד {to}"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · אפליקציה"
 
@@ -160,6 +172,10 @@ msgstr "{name} · פוש"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} הציע תיקו"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · דרך ממסר"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {הבדיקה נשלחה ליעד אחד} two {הבדיקה נשלחה לשני יעדים} many {הבדיקה נשלחה ל-# יעדים} other {הבדיקה נשלחה ל-# יעדים}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {הבדיקה נשלחה ליעד אחד} two {הבד
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} מתוך {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {הבדיקה נשלחה אל {sent} מתוך # יעד} two {הבדיקה נשלחה אל {sent} מתוך # יעדים} many {הבדיקה נשלחה אל {sent} מתוך # יעדים} other {הבדיקה נשלחה אל {sent} מתוך # יעדים}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {פריט אחד} two {שני פריטים} many {# פריטים} other {# פריטים}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {פריט אחד} two {שני פריטים} man
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {תגובה אחת} two {+# תגובות נוספות} many {+# תגובות נוספות} other {+# תגובות נוספות}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "חשבון"
 msgid "Account added"
 msgstr "החשבון נוסף"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "החשבון קושר"
 
@@ -295,14 +318,6 @@ msgstr "הוסף חשבון חדש"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "הוסף שדה חדש למחלקה זו"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "הוסף נתיב חדש ל-{domain}"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "הוסף נתיב חדש ל-{domain}. ניתן לנהל את הנתיבים האלה:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "הגבר עניין"
 msgid "Border colour"
 msgstr "צבע מסגרת"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "רשת שידור"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "סגנון הכרטיס"
 msgid "Categories"
 msgstr "קטגוריות"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "קטגוריה עבור ההתראות שלה"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "קטגוריה עבור התראות אלו"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "שנה התראות נוכחיות ל"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "אימות הזהות שלך"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "מחובר"
@@ -922,10 +932,6 @@ msgstr "חשבונות מחוברים"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "מתחבר..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "צור קשר עם מנהל כדי לקבל האצלה."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "לא ניתן היה לסגור את החשבון שלך"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "לא ניתן היה להעתיק את הקודים. סמן והעתק אותם ידנית."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "לא ניתן היה לקשר חשבון"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "יצירת {entityLabel}"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "צור רשומת TXT עבור"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "צור רשומת TXT עבור <0>{record}</0>"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1057,10 +1062,6 @@ msgstr "מיקום נוכחי"
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
-msgstr "מותאם אישית"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
 msgstr "מותאם אישית"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "מושבת"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "מחיקה"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "למחוק את הטיוטה?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "לבטל את השינויים שלא נשמרו?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,6 +1347,7 @@ msgstr "סגור"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
 msgstr "תצוגה"
 
@@ -1487,11 +1494,6 @@ msgstr "ערוך אפשרות {0}"
 msgid "Edit route"
 msgstr "ערוך נתיב"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "ערוך נתיב עבור נתיב: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "ערוך כרטיס נבחר"
@@ -1517,10 +1519,6 @@ msgstr "אימייל"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "קוד אימייל"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "נתיב ריק מעניק גישה מלאה לדומיין"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "מזהה לקוח של Google"
 msgid "Google client secret"
 msgstr "סוד לקוח של Google"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "הענק למשתמש הרשאה לנהל נתיבים ב-{domain}"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "קבוצה"
@@ -2026,11 +2020,6 @@ msgstr "קבץ לפי"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "קבוצה: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "נתיבים בעדיפות גבוהה יותר מותאמים ראשונים"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "קיצורי מקלדת"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "מוכרים"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "מוכרים {known} · מחוברים {linked} · רשת שידור {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "שימוש אחרון"
 msgid "Layout"
 msgstr "פריסה"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "השאר ריק לנתיב השורש"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "אותיות, ספרות, רווחים, מקפים ולוכסנים בלבד"
@@ -2220,8 +2205,7 @@ msgstr "קישור"
 msgid "Link account"
 msgstr "קשר חשבון"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} מקושר"
 
@@ -2423,6 +2407,10 @@ msgstr "מודל"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "ניהול תוכן"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "שונה"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "שם מפתח הגישה"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "מפתח הגישה לא נוסף"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "מפתח הגישה נרשם"
 
@@ -2909,7 +2901,7 @@ msgstr "ביטוי סיסמה"
 msgid "Path"
 msgstr "נתיב"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "נתיב לא מותר. אתה יכול להוסיף נתיבים רק תחת: {0}"
@@ -3137,10 +3129,6 @@ msgstr "הירשם"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "רשום מפתח גישה"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "הרישום בוטל"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "שמור קודים אלה"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "חיפוש"
 
@@ -3579,16 +3568,6 @@ msgstr "בחר אדם..."
 msgid "Select previous card"
 msgstr "בחר את הכרטיס הקודם"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "בחר את האפליקציה לנתב אליה"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "בחר את הישות לנתב אליה"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "שגיאת שרת"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "כללי השרת"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "כללי השרת, תנאים והגבלות, והודעת הפרטיות המוצגים למשתמשים שלך"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "הצג שדות"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "הצג עזרה זו"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "מציג {0}-{1} מתוך {2} משתמשים"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "בדיקה"
 msgid "Test failed"
 msgstr "הבדיקה נכשלה"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "הבדיקה נשלחה אל {sent} מתוך {total} יעדים"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "טקסט"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "החשבון הזה כבר מקושר למשתמש אחר"
 
@@ -3905,8 +3868,7 @@ msgstr "הקוד שגוי או שתוקפו פג."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "לא ניתן היה לשלוח. ייתכן שהקבצים גדולים מדי, או שהחיבור נכשל. נסו קבצים קטנים יותר."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "כתובת האימייל הזו כבר רשומה לחשבון אחר"
 
@@ -3914,10 +3876,6 @@ msgstr "כתובת האימייל הזו כבר רשומה לחשבון אחר"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "זה היה גדול מדי להעלאה. הסירו או הקטינו קבצים ונסו שוב."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "הקטגוריה \"ללא התראות\" משתיקה כל נושא המשויך אליה."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "לאפליקציה זו אין הרשאה להשתמש במפתח הגי
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "זהו גיבוי מלא שניתן לשחזר בשרת Mochi זה או בשרת אחר. כדי להמשיך, אמת שזה אתה."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "זהו שינוי אבטחה בחשבון שלך. כדי להמשיך, אמת שזה אתה."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "פעולה זו תמחק לצמיתות את המשחק ואת הצ'אט שלו. לא ניתן לבטל פעולה זו."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "למשתמש זה אין הפעלות פעילות."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "פעולה זו תאפס את \"{settingNameLabel}\" לברירת המח
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "פעולה זו תאפס את \"{settingNameLabel}\" לערך ברירת המחדל ({defaultLabel})."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "פעולה זו תאפס את כל ההעדפות לערכי ברירת המחדל שלהן."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "פעולה זו תאפס את הגדרות התצוגה לערכי ברירת המחדל."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "פעולה זו תאפס את ההעדפות האלה לערכי ברירת המחדל שלהן."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "נושאים"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "בנסיעה"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "נסה להתאים את קריטריוני החיפוש שלך"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "העלה"
 msgid "Upload progress"
 msgstr "התקדמות ההעלאה"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "כתובת URL להפניה אליה"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "השתמש ב-*.domain.com עבור דומיינים מוטיביים"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "השתמש במפתח אבטחה, טביעת אצבע או זיהוי פנים."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "השתמש במפתח הגישה שלך"
@@ -4372,10 +4305,6 @@ msgstr "אמת כתובת אימייל"
 msgid "Version"
 msgstr "גרסה"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "דרך ממסר"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "תמונה ממוזערת של הסרטון"
@@ -4393,10 +4322,6 @@ msgstr "הצג את כל ההתראות"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "הצג וערוך פרטי פריט"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "הצג ובטל הפעלות פעילות עבור משתמש זה."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "סוד לקוח X"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "שנה"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "ניתן לנהל את הנתיבים האלה: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

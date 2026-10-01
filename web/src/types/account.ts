@@ -26,7 +26,6 @@ export interface Session {
 export interface AccountData {
   identity: Identity
   role: string
-  sessions: Session[]
 }
 
 export interface SessionsResponse {

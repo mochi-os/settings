@@ -5,7 +5,8 @@
 import { useState, useMemo } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate, useSearch } from '@tanstack/react-router'
-import { plural } from '@lingui/core/macro'
+import { i18n } from '@lingui/core'
+import { msg, plural } from '@lingui/core/macro'
 import { Trans, useLingui } from '@lingui/react/macro'
 import {
   Button,
@@ -17,7 +18,6 @@ import {
   FieldRow,
   ResponsiveDialog,
   ResponsiveDialogContent,
-  ResponsiveDialogDescription,
   ResponsiveDialogFooter,
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
@@ -37,6 +37,7 @@ import {
   getErrorMessage,
   requestHelpers,
   toast,
+  useFormat,
   usePageTitle,
   usePush,
   naturalCompare,
@@ -168,6 +169,13 @@ function topicDisplayName(topic: Topic): string {
   return humanizeTopic(topic.topic)
 }
 
+// A topic's row label, naming the object it is about when there is one.
+function topicLabel(topic: Topic): string {
+  const label = topicDisplayName(topic)
+  const name = topic.name
+  return name ? i18n._(msg`${label}: ${name}`) : label
+}
+
 export function UserNotifications() {
   const { t } = useLingui()
   usePageTitle(t`Notifications`)
@@ -176,14 +184,15 @@ export function UserNotifications() {
     { id: 'topics', label: t`Topics` },
   ]
 
-  const search = useSearch({ strict: false }) as { tab?: TabId }
+  const search = useSearch({ from: '/_authenticated/user/notifications' })
   const navigate = useNavigate()
   const activeTab: TabId = search.tab ?? 'categories'
   const setActiveTab = (next: TabId) => {
     void navigate({
-      search: (prev: Record<string, unknown>) => ({ ...prev, tab: next }),
+      to: '/user/notifications',
+      search: { tab: next },
       replace: true,
-    } as never)
+    })
   }
   const [creating, setCreating] = useState(false)
   const queryClient = useQueryClient()
@@ -363,7 +372,10 @@ function CategoriesTab({
                     toast.error(t`No destinations configured`)
                   } else if (sent < total) {
                     toast.error(
-                      t`Test sent to ${sent} of ${total} destinations`
+                      plural(total, {
+                        one: `Test sent to ${sent} of # destination`,
+                        other: `Test sent to ${sent} of # destinations`,
+                      })
                     )
                   } else {
                     toast.success(
@@ -435,6 +447,7 @@ function CategoryRow({
   testing: boolean
 }) {
   const { t } = useLingui()
+  const { formatList } = useFormat()
   const destSummary = useMemo(() => {
     const dests = category.destinations
     if (dests.length === 0) return t`No destinations`
@@ -461,8 +474,8 @@ function CategoryRow({
       }
     }
     labels.sort(naturalCompare)
-    return labels.length > 0 ? labels.join(', ') : t`No destinations`
-  }, [category, available, t])
+    return labels.length > 0 ? formatList(labels) : t`No destinations`
+  }, [category, available, formatList, t])
   return (
     <div className='flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:justify-between'>
       <div>
@@ -515,8 +528,11 @@ function CategoryDialog({
   onSaved: () => void | Promise<void>
 }) {
   const { t } = useLingui()
-  const isSuppress = category?.id === '0'
-  const [label, setLabel] = useState(category?.label ?? '')
+  // A seeded category's stored label is English, translated only as it is
+  // read, so the field shows the name the list shows. The stored label is
+  // sent back unless the user changes it.
+  const shown = category?.display ?? category?.label ?? ''
+  const [label, setLabel] = useState(shown)
   const [isDefault, setIsDefault] = useState<boolean>(category?.default === 1)
   const [saving, setSaving] = useState(false)
 
@@ -546,14 +562,13 @@ function CategoryDialog({
 
   const categoryDirty = useMemo(() => {
     if (!category) return true
-    if (!textUnchanged(label.trim(), category.label)) return true
+    if (!textUnchanged(label.trim(), shown)) return true
     if (isDefault !== (category.default === 1)) return true
-    if (isSuppress) return false
     const originalKeys = new Set(
       category.destinations.map((d) => destKey(d.type, d.target))
     )
     return !setsEqual(checked, originalKeys)
-  }, [category, label, isDefault, isSuppress, checked])
+  }, [category, label, shown, isDefault, checked])
 
   const handleSave = async () => {
     if (!label.trim()) {
@@ -567,18 +582,19 @@ function CategoryDialog({
     setSaving(true)
     try {
       const destinations: DestinationRow[] = []
-      if (!isSuppress) {
-        for (const key of checked) {
-          const [type, target] = key.split(':', 2)
-          destinations.push({ type, target: target ?? '' })
-        }
+      for (const key of checked) {
+        const [type, target] = key.split(':', 2)
+        destinations.push({ type, target: target ?? '' })
       }
       const params = new URLSearchParams()
-      params.append('label', label.trim())
-      if (!isSuppress) {
-        params.append('destinations', JSON.stringify(destinations))
-        if (isDefault) params.append('default', '1')
-      }
+      params.append(
+        'label',
+        category && textUnchanged(label.trim(), shown)
+          ? category.label
+          : label.trim()
+      )
+      params.append('destinations', JSON.stringify(destinations))
+      if (isDefault) params.append('default', '1')
       if (category) {
         params.append('id', String(category.id))
         await requestHelpers.post(
@@ -624,14 +640,6 @@ function CategoryDialog({
               <Trans>New category</Trans>
             )}
           </ResponsiveDialogTitle>
-          {isSuppress && (
-            <ResponsiveDialogDescription>
-              <Trans>
-                The "No notifications" category silences any topic assigned to
-                it.
-              </Trans>
-            </ResponsiveDialogDescription>
-          )}
         </ResponsiveDialogHeader>
         <div className='space-y-6 py-2'>
           <div className='space-y-2'>
@@ -644,31 +652,27 @@ function CategoryDialog({
               onChange={(e) => setLabel(e.target.value)}
             />
           </div>
-          {!isSuppress && (
-            <>
-              <div className='flex items-center justify-between'>
-                <Label htmlFor='cat-default' className='cursor-pointer'>
-                  <Trans>Default category</Trans>
-                </Label>
-                <Switch
-                  id='cat-default'
-                  checked={isDefault}
-                  onCheckedChange={setIsDefault}
-                  disabled={category?.default === 1}
-                />
-              </div>
-              <div className='space-y-2'>
-                <Label>
-                  <Trans>Destinations</Trans>
-                </Label>
-                <DestinationsGrid
-                  available={available}
-                  checked={checked}
-                  onToggle={toggle}
-                />
-              </div>
-            </>
-          )}
+          <div className='flex items-center justify-between'>
+            <Label htmlFor='cat-default' className='cursor-pointer'>
+              <Trans>Default category</Trans>
+            </Label>
+            <Switch
+              id='cat-default'
+              checked={isDefault}
+              onCheckedChange={setIsDefault}
+              disabled={category?.default === 1}
+            />
+          </div>
+          <div className='space-y-2'>
+            <Label>
+              <Trans>Destinations</Trans>
+            </Label>
+            <DestinationsGrid
+              available={available}
+              checked={checked}
+              onToggle={toggle}
+            />
+          </div>
         </div>
         <ResponsiveDialogFooter>
           <Button variant='outline' onClick={onClose} disabled={saving}>
@@ -728,7 +732,7 @@ function DestinationsGrid({
     const kind = getProviderLabel(acc.type)
     rows.push({
       key: destKey('account', acc.id),
-      label: isPushAccount(acc) && name !== kind ? `${name} · ${kind}` : name,
+      label: isPushAccount(acc) && name !== kind ? t`${name} · ${kind}` : name,
     })
   }
   for (const feed of available.feeds) {
@@ -804,12 +808,14 @@ function CategoryDeleteDialog({
       title={<Trans>Delete "{category.display ?? category.label}"?</Trans>}
       desc=''
       confirmText={t`Delete`}
+      icon={<Trash2 className='size-4' />}
+      destructive
       isLoading={deleting}
       handleConfirm={run}
     >
       <div className='flex items-center justify-between gap-3 py-2'>
         <Label htmlFor='reassign-target'>
-          <Trans>Change current notifications to</Trans>
+          <Trans>Category for its notifications</Trans>
         </Label>
         <Select value={target} onValueChange={setTarget}>
           <SelectTrigger id='reassign-target' className='w-48'>
@@ -936,10 +942,7 @@ function TopicsTab() {
             {group.items.map((topic) => (
               <FieldRow
                 key={`${topic.app.id}|${topic.topic}|${topic.object}`}
-                label={
-                  topicDisplayName(topic) +
-                  (topic.name ? `: ${topic.name}` : '')
-                }
+                label={topicLabel(topic)}
               >
                 <div className='flex items-center gap-2'>
                   <Select

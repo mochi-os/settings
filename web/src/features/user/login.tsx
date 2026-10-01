@@ -4,7 +4,6 @@
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import { useEffect, useState } from 'react'
 import type {
-  AuthMethodsResponse,
   MethodInfo,
   MethodState,
   OAuthIdentity,
@@ -12,6 +11,7 @@ import type {
   Passkey,
   TotpSetupResponse,
 } from '@/types/account'
+import { plural } from '@lingui/core/macro'
 import { useLingui, Trans } from '@lingui/react/macro'
 import {
   Button,
@@ -22,7 +22,6 @@ import {
   DropdownMenuTrigger,
   ResponsiveDialog,
   ResponsiveDialogContent,
-  ResponsiveDialogDescription,
   ResponsiveDialogFooter,
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
@@ -56,7 +55,6 @@ import {
   ServerDocumentsFooter,
   providerName,
 } from '@mochi/web'
-import type { startRegistration } from '@simplewebauthn/browser'
 import {
   Check,
   Copy,
@@ -91,10 +89,7 @@ import {
   useTotpVerify,
 } from '@/hooks/use-account'
 import { MethodStateControl } from '@/components/method-state-control'
-
-type RegistrationOptionsJSON = Parameters<
-  typeof startRegistration
->[0]['optionsJSON']
+import { OAUTH_PROVIDERS, useOauthResult } from '@/hooks/use-oauth-result'
 
 // ============================================================================
 // Login Methods Section
@@ -218,6 +213,9 @@ function LoginRequirementsSection() {
 // Passkeys Section
 // ============================================================================
 
+// The server's bound on a passkey's name, in code points.
+const PASSKEY_NAME_MAXIMUM = 255
+
 function PasskeyRow({
   passkey,
   onRename,
@@ -233,9 +231,17 @@ function PasskeyRow({
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const [newName, setNewName] = useState(passkey.name)
 
+  // Each rename starts from the current name, so text abandoned with Escape
+  // or left by a failed rename does not come back.
+  const startRename = () => {
+    setNewName(passkey.name)
+    setIsRenaming(true)
+  }
+
   const handleRename = () => {
-    if (newName.trim() && newName !== passkey.name) {
-      onRename(passkey.id, newName.trim())
+    const name = newName.trim()
+    if (name && name !== passkey.name) {
+      onRename(passkey.id, name)
     }
     setIsRenaming(false)
   }
@@ -248,6 +254,7 @@ function PasskeyRow({
             <Input
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
+              maxLength={PASSKEY_NAME_MAXIMUM}
               className='h-8 w-40'
               autoFocus
               onKeyDown={(e) => {
@@ -279,7 +286,7 @@ function PasskeyRow({
           <Button
             variant='ghost'
             size='sm'
-            onClick={() => setIsRenaming(true)}
+            onClick={startRename}
             aria-label={t`Rename passkey`}
           >
             <Pencil className='h-4 w-4' />
@@ -298,6 +305,7 @@ function PasskeyRow({
             title={t`Delete passkey?`}
             desc={t`This will remove "${passkey.name}" from your account. You won't be able to use it to sign in anymore.`}
             confirmText={t`Delete`}
+            icon={<Trash2 className='size-4' />}
             destructive
             handleConfirm={() => {
               onDelete(passkey.id)
@@ -333,20 +341,18 @@ function PasskeysSection() {
       setIsRegistering(true)
       try {
         const beginResult = await registerBegin.mutateAsync()
-        const credential = await shellWebauthnCreate(
-          beginResult.options as RegistrationOptionsJSON
-        )
+        const credential = await shellWebauthnCreate(beginResult.options)
         await registerFinish.mutateAsync({
           ceremony: beginResult.ceremony,
           credential,
-          name: passkeyName || t`Passkey`,
+          name: passkeyName.trim() || t`Passkey`,
           token,
         })
         toast.success(t`Passkey registered`)
         setPasskeyName('')
       } catch (error) {
         if ((error as { name?: string })?.name === 'NotAllowedError') {
-          toast.error(t`Registration cancelled`)
+          toast.error(t`Passkey not added`)
         } else {
           toast.error(getErrorMessage(error, t`Failed to register passkey`))
         }
@@ -403,9 +409,6 @@ function PasskeysSection() {
           <ResponsiveDialogTitle>
             <Trans>Register passkey</Trans>
           </ResponsiveDialogTitle>
-          <ResponsiveDialogDescription>
-            <Trans>Use a security key, fingerprint, or face recognition.</Trans>
-          </ResponsiveDialogDescription>
         </ResponsiveDialogHeader>
         <div className='py-4'>
           <Label htmlFor='passkey-name'>
@@ -416,6 +419,7 @@ function PasskeysSection() {
             placeholder={t`My passkey`}
             value={passkeyName}
             onChange={(e) => setPasskeyName(e.target.value)}
+            maxLength={PASSKEY_NAME_MAXIMUM}
             className='mt-2'
           />
         </div>
@@ -504,7 +508,7 @@ function AuthenticatorSection() {
     // Re-authenticate before enabling a new factor.
     stepUp.request(async (token) => {
       try {
-        const result = await setupTotp.mutateAsync(token)
+        const result = await setupTotp.run(token)
         setSetupData(result)
       } catch (error) {
         toast.error(getErrorMessage(error, t`Failed to set up authenticator`))
@@ -644,6 +648,7 @@ function AuthenticatorSection() {
           title={t`Disable authenticator?`}
           desc={t`This will remove the app from your account.`}
           confirmText={t`Disable`}
+          icon={<Trash2 className='size-4' />}
           destructive
           handleConfirm={() => {
             handleDisable()
@@ -671,7 +676,7 @@ function RecoveryCodesSection() {
   const handleGenerate = () => {
     stepUp.request(async (token) => {
       try {
-        const result = await generateCodes.mutateAsync(token)
+        const result = await generateCodes.run(token)
         setShowCodes(result.codes)
       } catch (error) {
         toast.error(getErrorMessage(error, t`Failed to generate codes`))
@@ -707,11 +712,8 @@ function RecoveryCodesSection() {
           </div>
         ) : showCodes ? (
           <div className='space-y-5 py-4'>
-            <Alert
-              variant='destructive'
-              className='border-amber-200 bg-amber-50 dark:bg-amber-950/20'
-            >
-              <Shield className='h-4 w-4 text-amber-600' />
+            <Alert className='border-warning/50 bg-warning/10'>
+              <Shield className='text-warning h-4 w-4' />
               <AlertTitle>
                 <Trans>Save these codes</Trans>
               </AlertTitle>
@@ -766,7 +768,7 @@ function RecoveryCodesSection() {
             </div>
             <div>
               <p className='text-sm font-medium'>
-                <Trans>{count} remaining</Trans>
+                {plural(count, { one: '# remaining', other: '# remaining' })}
               </p>
               <p className='text-muted-foreground text-xs'>
                 <Trans>Recovery codes</Trans>
@@ -786,6 +788,13 @@ function RecoveryCodesSection() {
           title={count > 0 ? t`Regenerate?` : t`Generate?`}
           desc={t`Make sure to save the new codes.`}
           confirmText={t`Proceed`}
+          icon={
+            count > 0 ? (
+              <RefreshCw className='size-4' />
+            ) : (
+              <Plus className='size-4' />
+            )
+          }
           handleConfirm={() => {
             void handleGenerate()
             setShowGenerateDialog(false)
@@ -800,22 +809,6 @@ function RecoveryCodesSection() {
 // ============================================================================
 // OAuth Section (third-party sign-in linking)
 // ============================================================================
-
-const oauthProviderOrder: OAuthProvider[] = [
-  'facebook',
-  'github',
-  'google',
-  'microsoft',
-  'x',
-]
-
-// Suppress the one-shot OAuth toast on React StrictMode's double mount. Module
-// scope, not sessionStorage: the shell iframe partitions storage per load.
-const oauthResultShown = new Set<string>()
-
-function oauthResultKey(): string {
-  return 'oauth_result_shown:' + window.location.search
-}
 
 function OauthIdentityRow({
   identity,
@@ -854,6 +847,7 @@ function OauthIdentityRow({
           title={t`Unlink provider?`}
           desc={t`You won't be able to sign in with ${providerName(identity.provider)} anymore. Make sure you still have another way to log in.`}
           confirmText={t`Unlink`}
+          icon={<Trash2 className='size-4' />}
           destructive
           handleConfirm={() => {
             onUnlink(identity.provider)
@@ -873,10 +867,10 @@ function OauthSection() {
   const oauthUnlink = useOauthUnlink()
   const stepUp = useStepUp()
 
-  const enabled = (authMethods.data as AuthMethodsResponse | undefined)?.oauth
+  const enabled = authMethods.data?.oauth
   const linked = identities.data?.identities ?? []
   const linkedSet = new Set(linked.map((i) => i.provider))
-  const availableToLink = oauthProviderOrder.filter(
+  const availableToLink = OAUTH_PROVIDERS.filter(
     (p) => enabled?.[p] && !linkedSet.has(p)
   )
 
@@ -1006,41 +1000,7 @@ export function UserLogin() {
   const { t } = useLingui()
   usePageTitle(t`Login`)
 
-  // Read a one-shot OAuth callback result so the user sees a confirmation toast
-  // after returning from a provider's consent page. Guarded against React
-  // StrictMode double-mount so the toast fires exactly once per visit.
-  useEffect(() => {
-    const key = oauthResultKey()
-    if (oauthResultShown.has(key)) return
-    const params = new URLSearchParams(window.location.search)
-    const linked = params.get('oauth_linked')
-    const errored = params.get('oauth_error')
-    if (!linked && !errored) return
-    oauthResultShown.add(key)
-
-    // Defer by a tick so Sonner's Toaster has mounted and subscribed to the
-    // toast store before we publish. Without this delay the toast is published
-    // to zero subscribers (the effect runs before Toaster's sibling effect)
-    // and is silently dropped.
-    setTimeout(() => {
-      if (linked) {
-        // Only a known provider is named. `linked` is a query parameter, so
-        // falling back to it put attacker-chosen text inside a toast the page
-        // presents as its own result - React escapes it, so a sentence they
-        // get to write rather than script they get to run.
-        const label = oauthProviderOrder.includes(linked as OAuthProvider)
-          ? providerName(linked)
-          : undefined
-        toast.success(label ? t`Linked ${label}` : t`Account linked`)
-      } else if (errored === 'already_linked') {
-        toast.error(t`That account is already linked to another user`)
-      } else if (errored === 'email_exists') {
-        toast.error(t`That email is already registered to another account`)
-      } else {
-        toast.error(t`Could not link account`)
-      }
-    }, 0)
-  }, [t])
+  useOauthResult()
 
   // The post-restore banner links here with #oauth to take the user
   // straight to re-linking. In the shell the page scrolls an inner

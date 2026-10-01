@@ -57,6 +57,19 @@ msgstr "(qam)"
 msgid "[not set]"
 msgstr "[mana churasqa]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} waqaychay} other {{held} / {maximum} waqaychaykuna}} · {1, plural, one {{circuits} circuito} other {{circuits} circuitokuna}} · {2, plural, one {{refused} mana chaskisqa} other {{refused} mana chaskisqa}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} atipasqa} other {{succeeded} atipasqa}} · {1, plural, one {{failed} mana atipasqa} other {{failed} mana atipasqa}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# ukhupi} other {+# ukhupi}}"
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {1 session qichusqa} other {# sessionkuna qichusqa}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {# sesion qichusqa} other {# sesionkuna qichusqa}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {{total} apaykachaqmanta {first}–{last} rikuchichkan} other {{total} apaykachaqkunamanta {first}–{last} rikuchichkan}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · push willakuy"
 msgid "{0} (development)"
 msgstr "{0} (wiñachiy)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} waqaychay · {2} circuitos · {3} mana chaskisqa"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} atipasqa · {1} mana atipasqa"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {# puchun} other {# puchun}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#sem} other {#sem}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} puchun"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} {to} kama"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · aplicación"
 
@@ -160,6 +172,10 @@ msgstr "{name} · push willakuy"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} kuska kayta nirqan"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · relay nisqawan"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {# cheqasman pruebata apachisqa} other {# cheqaskunaman pruebata apachisqa}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {# cheqasman pruebata apachisqa} other {# cheqaskunam
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} / {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {Prueba {sent} cheqasman apachisqa, # cheqasmanta} other {Prueba {sent} cheqaskunaman apachisqa, # cheqaskunamanta}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# ima} other {# imakuna}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# ima} other {# imakuna}}"
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# kutichiy} other {+# aswan kutichiykuna}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Cuenta"
 msgid "Account added"
 msgstr "Cuenta yapasqa"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Cuenta tinkichisqa"
 
@@ -295,14 +318,6 @@ msgstr "Musuq cuenta yapay"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Musuq campo kay clase-man yapay"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Musuq ñan {domain}-man yapay"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Musuq ñan {domain}-man yapay. Kay ñankunata kamachiyta atinki:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Munay yapay"
 msgid "Border colour"
 msgstr "K'illa llinp'i"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Ch'eqechiy mesh"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Karta rikch'ay"
 msgid "Categories"
 msgstr "Categorías"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Willaykunanpaq categoría"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Kay willaykunapaq categoría"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Kunan willaykuna tikray:"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Qan kasqaykita takyachiy"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Tinkichisqa"
@@ -922,10 +932,6 @@ msgstr "Tinkichisqa cuentas"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Tinkichkan..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Administrador-wan rimay delegación apinaykipaq."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Cuentaykita mana wichqayta atikurqachu"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Manam códigokunata copiayta atinchu. Akllaspa kikiyki copiay."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Cuenta tinkichiyta mana atirqachu"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "{entityLabel} kamay"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "TXT registro kamariy"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "<0>{record}</0>-paq huk TXT registro kamariy"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1058,10 +1063,6 @@ msgstr "Kunan cheqa"
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
 msgstr "Sapankuq"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
-msgstr "Sapanchasqa"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Dark"
@@ -1116,7 +1117,7 @@ msgstr "Allichay predeterminado"
 
 #: src/features/system/settings.tsx
 msgid "Default theme"
-msgstr "Default tema"
+msgstr "Predeterminado tema"
 
 #: src/features/domains/index.tsx
 msgid "Delegation created"
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Wañusqa"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Wikch'uy"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "¿Qillqa qallariyta wikch'unkichu?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "¿Mana waqaychasqa hukchaykunata wikch'unkichu?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,8 +1347,9 @@ msgstr "Wischuy"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
-msgstr "Qhaway"
+msgstr "Rikuchina"
 
 #: src/features/user/display.tsx
 msgid "Display reset to defaults"
@@ -1487,11 +1494,6 @@ msgstr "Akllay {0} hukchay"
 msgid "Edit route"
 msgstr "Ñanta hukchay"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "{0} ñanpaq hukchay"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Akllasqa cardta hukchay"
@@ -1517,10 +1519,6 @@ msgstr "Email"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "Email código"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Ch'usaq ñan llapan dominioman yaykunata haywan"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -1870,7 +1868,7 @@ msgstr "Mana configuracionta musuqyachiyta atinchu"
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
 msgid "Failed to update theme"
-msgstr "Mana themata musuqyachiyta atinchu"
+msgstr "Mana temata musuqyachiyta atinchu"
 
 #: src/features/user/notifications.tsx
 msgid "Failed to update topic"
@@ -2010,10 +2008,6 @@ msgstr "Google cliente ID"
 msgid "Google client secret"
 msgstr "Google client pakasqa"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Llamkaqman {domain}-pi ñankunata kamachiy permisota haywaykuy"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Huñu"
@@ -2026,11 +2020,6 @@ msgstr "Kayman hina huñuchiy"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Huñu: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Aswan prioridadniyuq ñankuna ñawpaqta tinkuchikun"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Teclado pisi ñankuna"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Riqsisqa"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Riqsisqa {known} · Tinkichisqa {linked} · Ch'eqechiy llika {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Tukuy llamkachisqa"
 msgid "Layout"
 msgstr "Churana"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Saphi ñanpaq ch'usaqta saqiy"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Sanampakunalla, yupaykunalla, ch'usaqkunalla, guionkunalla, barrakunalla"
@@ -2220,8 +2205,7 @@ msgstr "T'inki"
 msgid "Link account"
 msgstr "Cuentata watay"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Wataska {label}"
 
@@ -2423,6 +2407,10 @@ msgstr "Modelo"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Qhawakipay"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Hukchasqa"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Passkey suti"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Yaykuna llave mana yapasqachu"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Passkey qillqakusqa"
 
@@ -2909,7 +2901,7 @@ msgstr "Fraseyta"
 msgid "Path"
 msgstr "Ñan"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Ñan mana atikunchu. Kaykuna ukhullapi rutakunata yapayta atinki: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Qillqakuy"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Passkey qillqakuy"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Qillqakuy mana ruway"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Kay códigokunata waqaychay"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Maskay"
 
@@ -3579,16 +3568,6 @@ msgstr "Runata akllay..."
 msgid "Select previous card"
 msgstr "Ñawpaq tarjetata akllay"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Mayman ruta ruwanapaq appta akllay"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Mayman ruta ruwanapaq entidadta akllay"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Servidorpi pantay"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Server kamachiykuna"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Apaykachaqkunaman rikuchisqa server kamachiykuna, condicionkuna, privacidad willakuy"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Campoykunata rikuchiy"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Kay yanapayta rikuchiy"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "{2} apaykachaqkunamanta {0}-{1} rikuchichkan"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Pruebay"
 msgid "Test failed"
 msgstr "Prueba mana atikurqanchu"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Prueba apachisqa: {sent}/{total}"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Qillqa"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Chay cuenta huk apaykachaqman watasqaña"
 
@@ -3905,8 +3868,7 @@ msgstr "Chay codigoqa mana allinchu utaq pisipasqañam."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Manam apachikuyta atikurqachu. Archivokunaqa ancha hatunchá kanku, utaq conexionniyki t'ipisqa. Aswan huch'uy archivokunata ruway."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Chay email huk cuentapi qillqasqaña"
 
@@ -3914,10 +3876,6 @@ msgstr "Chay email huk cuentapi qillqasqaña"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Ancha hatun karqa churanapaq. Archivokunata hurquy utaq huch'uyachiy, hinaspa wakmanta ruway."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "\"Mana willakuykuna\" categoría chayman churasqa imayna temapas ch'inyachin."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Kay aplicacionqa manam passkeykita llamk'achiyta atinchu. Ajustes ukhupi
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Kayqa hunt'asqa waqaychaymi, kay Mochi servidorpi utaq huk servidorpi kutichiyta atinki. Qan kasqaykita takyachiy qatinaykipaq."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Kayqa cuentaykipi amachay tikraymi. Qan kasqaykita takyachiy qatinaykipaq."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Kayqa pukllayta rimanakuywantin wiñaypaq wischun. Kayta mana kutichinachu."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Kay apaykachaqpaq mana atichasqa sessions kanchu."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Kayqa \"{settingNameLabel}\"ta defaultninman tikranqa (ch'usaq)."
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Kayqa \"{settingNameLabel}\"ta default valorninman tikranqa ({defaultLabel})."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Kayqa lliw munaykunata default valorninman tikranqa."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Kayqa rikuy chimpunakuna tukuypiman kutiyanqa."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Kayqa kay munaykunata ñawpaq chaninkunaman kutichinqa."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Temakuna"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "Puriy"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Maskay criterioykita allichayta ruway"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Wichachiy"
 msgid "Upload progress"
 msgstr "Cargasqa puririynin"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "Tikrachinapaq URL"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Wildcard domainkunapaq *.domain.comta apaykachay"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Seguridad llaveta, ruk'ana siq'ita, utaq uya riqsiyta apaykachay."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Yaykuna llaveykita llamk'achiy"
@@ -4372,10 +4305,6 @@ msgstr "Email direccionta qhaway"
 msgid "Version"
 msgstr "Version"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Relay nisqawan"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Vidiyup uñanchanan"
@@ -4393,10 +4322,6 @@ msgstr "Llapan willakuykunata qhaway"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Itemq detallenkunata qhaway hinaspa tikray"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Kay apaykachaqpaq atichasqa sessionkunata qhaway hinaspa qichuy."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "X cliente pakasqa"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Wata"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Kay ñankunata kamachiyta atinki: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

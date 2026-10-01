@@ -57,6 +57,19 @@ msgstr "(jy)"
 msgid "[not set]"
 msgstr "[nie gestel nie]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} reservering} other {{held} / {maximum} reserverings}} · {1, plural, one {{circuits} stroombaan} other {{circuits} stroombane}} · {2, plural, one {{refused} geweier} other {{refused} geweier}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} geslaag} other {{succeeded} geslaag}} · {1, plural, one {{failed} misluk} other {{failed} misluk}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# geneste} other {+# geneste}}"
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {1 sessie herroep} other {# sessies herroep}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {# sessie herroep} other {# sessies herroep}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {Wys {first}–{last} van {total} gebruiker} other {Wys {first}–{last} van {total} gebruikers}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · stoot"
 msgid "{0} (development)"
 msgstr "{0} (ontwikkeling)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} reserverings · {2} stroombane · {3} geweier"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} geslaag · {1} misluk"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {# oor} other {# oor}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#m} other {#m}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#w} other {#w}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} oor"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} tot {to}"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · toepassing"
 
@@ -160,6 +172,10 @@ msgstr "{name} · stoot"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} het gelykop aangebied"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · via relê"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Toets na # bestemming gestuur} other {Toets na # bestemmings gestuur}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {Toets na # bestemming gestuur} other {Toets na # bes
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} van {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {Toets na {sent} van # bestemming gestuur} other {Toets na {sent} van # bestemmings gestuur}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# item} other {# items}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# item} other {# items}}"
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# antwoord} other {+# meer antwoorde}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Rekening"
 msgid "Account added"
 msgstr "Rekening bygevoeg"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Rekening gekoppel"
 
@@ -295,14 +318,6 @@ msgstr "Voeg 'n nuwe rekening by"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Voeg 'n nuwe veld by hierdie klas"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Voeg 'n nuwe roete by {domain}"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Voeg 'n nuwe roete by {domain}. Jy kan hierdie paaie bestuur:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Versterk belangstelling"
 msgid "Border colour"
 msgstr "Randkleur"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Uitsaai-mesh"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Kaartstyl"
 msgid "Categories"
 msgstr "Kategorieë"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Kategorie vir sy kennisgewings"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Kategorie vir hierdie kennisgewings"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Verander huidige kennisgewings na"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Bevestig dit is jy"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Verbind"
@@ -922,10 +932,6 @@ msgstr "Verbinde rekeninge"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Verbind tans..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Kontak 'n administrateur vir 'n delegasie."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Kon nie jou rekening sluit nie"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kon nie die kodes kopieer nie. Merk en kopieer hulle self."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Kon nie rekening koppel nie"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "Skep {entityLabel}"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "Skep 'n TXT-rekord vir"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "Skep 'n TXT-rekord vir <0>{record}</0>"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1058,10 +1063,6 @@ msgstr "Huidige ligging"
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
 msgstr "Pasgemaak"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
-msgstr "Aangepas"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Dark"
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Gedeaktiveer"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Gooi weg"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "Konsep weggooi?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "Ongestoorde veranderinge weggooi?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,8 +1347,9 @@ msgstr "Sluit"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
-msgstr "Vertoon"
+msgstr "Vertoning"
 
 #: src/features/user/display.tsx
 msgid "Display reset to defaults"
@@ -1487,11 +1494,6 @@ msgstr "Wysig opsie {0}"
 msgid "Edit route"
 msgstr "Wysig roete"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "Wysig roete vir pad: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Wysig geselekteerde kaart"
@@ -1517,10 +1519,6 @@ msgstr "E-pos"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "E-poskode"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Leë pad gee volle domeintoegang"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "Google-kliënt-ID"
 msgid "Google client secret"
 msgstr "Google-kliëntgeheim"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Gee 'n gebruiker toestemming om roetes op {domain} te bestuur"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Groep"
@@ -2026,11 +2020,6 @@ msgstr "Groepeer volgens"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Groep: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Hoër prioriteit roetes word eerste gekoppel"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Sleutelbordkortpaaie"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Bekend"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Bekend {known} · Verbind {linked} · Uitsaai-mesh {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Laas gebruik"
 msgid "Layout"
 msgstr "Uitleg"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Laat leeg vir wortelpad"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Slegs letters, syfers, spasies, koppeltekens en skuinsstrepe"
@@ -2220,8 +2205,7 @@ msgstr "Skakel"
 msgid "Link account"
 msgstr "Koppel rekening"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} gekoppel"
 
@@ -2423,6 +2407,10 @@ msgstr "Model"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Moderering"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Gewysig"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Passkey-naam"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Toegangsleutel nie bygevoeg nie"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Passkey geregistreer"
 
@@ -2909,7 +2901,7 @@ msgstr "Wagfrase"
 msgid "Path"
 msgstr "Pad"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Pad nie toegelaat nie. Jy kan slegs roetes onder {0} byvoeg"
@@ -3137,10 +3129,6 @@ msgstr "Registreer"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Registreer passkey"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Registrasie gekanselleer"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Stoor hierdie kodes"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Soek"
 
@@ -3579,16 +3568,6 @@ msgstr "Kies persoon..."
 msgid "Select previous card"
 msgstr "Kies vorige kaart"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Kies die toepassing om na te roeteer"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Kies die entiteit om na te roeteer"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Bedienerfout"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Bediener-reëls"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Bediener-reëls, bepalings en voorwaardes, en privaatheidkennisgewing wat aan jou gebruikers gewys word"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Wys velde"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Wys hierdie hulp"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "Wys {0}-{1} van {2} gebruikers"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Toets"
 msgid "Test failed"
 msgstr "Toets het misluk"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Toets na {sent} van {total} bestemmings gestuur"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Teks"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Daardie rekening is reeds gekoppel aan 'n ander gebruiker"
 
@@ -3905,8 +3868,7 @@ msgstr "Daardie kode is verkeerd of het verval."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Dit kon nie gestuur word nie. Die lêers is dalk te groot, of jou verbinding het gefaal. Probeer kleiner lêers."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Daardie e-pos is reeds geregistreer by 'n ander rekening"
 
@@ -3914,10 +3876,6 @@ msgstr "Daardie e-pos is reeds geregistreer by 'n ander rekening"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Dit was te groot om op te laai. Verwyder of verklein lêers en probeer weer."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "Die \"Geen kennisgewings\"-kategorie demp enige onderwerp wat daaraan toegewys is."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Hierdie toepassing mag nie jou passkey gebruik nie. Laat dit toe in Inst
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Dit is 'n volledige rugsteun wat jy op hierdie of 'n ander Mochi-bediener kan herstel. Bevestig dit is jy om voort te gaan."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Dit is 'n sekuriteitsverandering aan jou rekening. Bevestig dit is jy om voort te gaan."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Dit verwyder die spel en die klets permanent. Dit kan nie ontdaan word nie."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Hierdie gebruiker het geen aktiewe sessies nie."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Dit sal \"{settingNameLabel}\" terugstel na sy verstek (leeg)."
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Dit sal \"{settingNameLabel}\" terugstel na sy verstekwaarde ({defaultLabel})."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Dit sal alle voorkeure terugstel na hul verstekwaardes."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Dit herstel skerm-instellings na hul verstekwaardes."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Dit sal hierdie voorkeure terugstel na hul verstekwaardes."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Onderwerpe"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "Op reis"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Probeer jou soekkriteria aanpas"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Laai op"
 msgid "Upload progress"
 msgstr "Oplaaivordering"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "URL om na te herlei"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Gebruik *.domain.com vir wildcard-domeine"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Gebruik 'n sekuriteitsleutel, vingerafdruk of gesigsherkenning."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Gebruik jou wagsleutel"
@@ -4372,10 +4305,6 @@ msgstr "Verifieer e-posadres"
 msgid "Version"
 msgstr "Weergawe"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Via relê"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Video-duimnael"
@@ -4393,10 +4322,6 @@ msgstr "Bekyk alle kennisgewings"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Bekyk en wysig item-besonderhede"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Bekyk en herroep aktiewe sessies vir hierdie gebruiker."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "X-kliëntgeheim"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Jaar"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Jy kan hierdie paaie bestuur: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

@@ -24,11 +24,10 @@ def user_identity(a):
     }
 
 def action_user_account(a):
-    """User account overview - returns identity and sessions"""
+    """User account overview - returns identity and role"""
     a.json({
         "identity": user_identity(a),
         "role": a.user.role,
-        "sessions": mochi.user.session.list(),
     })
 
 def action_user_account_code(a):
@@ -239,10 +238,12 @@ def action_user_account_passkey_register_finish(a):
         return
     ceremony = a.input("ceremony")
     credential = a.input("credential")
-    name = a.input("name") or "Passkey"
+    name = (a.input("name") or "").strip() or "Passkey"
 
     if not ceremony or not credential:
         a.error.label(400, "errors.missing_ceremony_or_credential")
+        return
+    if not passkey_name_valid(a, name):
         return
 
     result = mochi.user.passkey.register.finish(ceremony, credential, name)
@@ -265,6 +266,16 @@ def action_user_account_passkey_verify_finish(a):
         return
     a.json(result)
 
+# A passkey's name, bounded the same for a new passkey and a renamed one.
+# Counted in code points, as the clients count it.
+_PASSKEY_NAME_MAXIMUM = 255
+
+def passkey_name_valid(a, name):
+    if len([c for c in name.codepoints()]) > _PASSKEY_NAME_MAXIMUM:
+        a.error.label(400, "errors.value_too_long", maximum=_PASSKEY_NAME_MAXIMUM)
+        return False
+    return True
+
 # Whether the caller holds a passkey with this id. mochi.user.passkey.list is
 # already scoped to the caller, so a hit is both existence and ownership.
 def passkey_owned(id):
@@ -277,13 +288,12 @@ def passkey_owned(id):
 def action_user_account_passkey_rename(a):
     """Rename a passkey"""
     id = a.input("id")
-    name = a.input("name")
+    name = (a.input("name") or "").strip()
 
     if not id or not name:
         a.error.label(400, "errors.missing_id_or_name")
         return
-    if len(name) > 255:
-        a.error.label(400, "errors.value_too_long", maximum=255)
+    if not passkey_name_valid(a, name):
         return
     # Core aborts on an unknown or malformed id, which reaches the user as a
     # bare 500.

@@ -13,7 +13,6 @@ import {
   IconButton,
   ResponsiveDialog,
   ResponsiveDialogContent,
-  ResponsiveDialogDescription,
   ResponsiveDialogFooter,
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
@@ -52,6 +51,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Key,
+  LogOut,
   MoreHorizontal,
   Pencil,
   Plus,
@@ -324,7 +324,7 @@ function SessionsDialog({
             session
               ? t`Session revoked`
               : plural(result.revoked, {
-                  one: 'Revoked 1 session',
+                  one: 'Revoked # session',
                   other: 'Revoked # sessions',
                 })
           )
@@ -347,9 +347,6 @@ function SessionsDialog({
           <ResponsiveDialogTitle>
             <Trans>Sessions for {user.username}</Trans>
           </ResponsiveDialogTitle>
-          <ResponsiveDialogDescription>
-            <Trans>View and revoke active sessions for this user.</Trans>
-          </ResponsiveDialogDescription>
         </ResponsiveDialogHeader>
         <div className='py-4'>
           {isLoading ? (
@@ -400,7 +397,6 @@ function SessionsDialog({
             <EmptyState
               icon={Key}
               title={t`No active sessions`}
-              description={t`This user has no active sessions.`}
             />
           )}
         </div>
@@ -429,6 +425,7 @@ function SessionsDialog({
         title={t`Revoke all sessions?`}
         desc={t`"${user.username}" will be signed out on every device and will have to sign in again.`}
         confirmText={t`Revoke all`}
+        icon={<LogOut className='size-4' />}
         destructive
         handleConfirm={() => handleRevoke()}
         isLoading={revokeSession.isPending}
@@ -588,6 +585,7 @@ function UserRow({
           title={t`Suspend user?`}
           desc={t`"${user.username}" will be signed out and unable to sign in again until the suspension is removed.`}
           confirmText={t`Suspend`}
+          icon={<Ban className='size-4' />}
           destructive
           handleConfirm={handleToggleStatus}
           isLoading={suspendUser.isPending}
@@ -599,6 +597,7 @@ function UserRow({
           title={t`Delete user?`}
           desc={t`This will permanently delete the user "${user.username}". This action cannot be undone.`}
           confirmText={t`Delete`}
+          icon={<Trash2 className='size-4' />}
           destructive
           handleConfirm={handleDelete}
           isLoading={deleteUser.isPending}
@@ -637,6 +636,7 @@ function SortableHeader({
 
 export function SystemUsers() {
   const { t } = useLingui()
+  const { formatNumber } = useFormat()
   usePageTitle(t`Users`)
   const [search, setSearch] = useState('')
   const [limit, setLimit] = useState(25)
@@ -674,6 +674,11 @@ export function SystemUsers() {
       Math.max(0, Math.floor(Math.max(0, data.count - 1) / limit) * limit)
     )
   }
+
+  // The page's place in the list, for the pagination line.
+  const first = formatNumber(offset + 1)
+  const last = formatNumber(Math.min(offset + limit, data?.count ?? 0))
+  const total = formatNumber(data?.count ?? 0)
 
   const handleSort = (column: SortColumn) => {
     if (sort === column) {
@@ -776,11 +781,10 @@ export function SystemUsers() {
               <div className='mt-4 flex items-center justify-between py-4'>
                 <div className='text-muted-foreground flex items-center gap-2 text-sm'>
                   <span>
-                    <Trans>
-                      Showing {offset + 1}-
-                      {Math.min(offset + limit, data.count)} of {data.count}{' '}
-                      users
-                    </Trans>
+                    {plural(data.count, {
+                      one: `Showing ${first}–${last} of ${total} user`,
+                      other: `Showing ${first}–${last} of ${total} users`,
+                    })}
                   </span>
                   <Select
                     value={String(limit)}
@@ -830,11 +834,6 @@ export function SystemUsers() {
               debouncedSearch
                 ? t`No users match your search`
                 : t`No users found`
-            }
-            description={
-              debouncedSearch
-                ? t`Try adjusting your search criteria`
-                : undefined
             }
             className='p-4'
           />

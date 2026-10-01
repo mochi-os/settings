@@ -57,6 +57,19 @@ msgstr "(вы)"
 msgid "[not set]"
 msgstr "[не зададзена]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} браніраванне} few {{held} / {maximum} браніраванні} many {{held} / {maximum} браніраванняў} other {{held} / {maximum} браніравання}} · {1, plural, one {{circuits} ланцуг} few {{circuits} ланцугі} many {{circuits} ланцугоў} other {{circuits} ланцуга}} · {2, plural, one {{refused} адхілена} few {{refused} адхілена} many {{refused} адхілена} other {{refused} адхілена}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} паспяхова} few {{succeeded} паспяхова} many {{succeeded} паспяхова} other {{succeeded} паспяхова}} · {1, plural, one {{failed} няўдала} few {{failed} няўдала} many {{failed} няўдала} other {{failed} няўдала}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# укладзены} few {+# укладзеныя} ma
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {Адклікана 1 сесія} few {Адклікана # сесіі} many {Адклікана # сесій} other {Адклікана # сесіі}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {Адклікана # сесія} few {Адклікана # сесіі} many {Адклікана # сесій} other {Адклікана # сесіі}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {Паказана {first}–{last} з {total} карыстальніка} few {Паказана {first}–{last} з {total} карыстальнікаў} many {Паказана {first}–{last} з {total} карыстальнікаў} other {Паказана {first}–{last} з {total} карыстальніка}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · пуш"
 msgid "{0} (development)"
 msgstr "{0} (распрацоўка)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} браніраванні · {2} ланцугі · {3} адхілена"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} паспяхова · {1} няўдала"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {Засталося: #} few {Засталося: #} many {Засталося: #} other {Засталося: #}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#хв} other {#хв}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#тыд} other {#тыд}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} засталося"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "з {from} да {to}"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · праграма"
 
@@ -160,6 +172,10 @@ msgstr "{name} · пуш"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} прапанаваў нічыю"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · праз рэтранслятар"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Тэст адпраўлены на # адрас} few {Тэст адпраўлены на # адрасы} many {Тэст адпраўлены на # адрасоў} other {Тэст адпраўлены на # адраса}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {Тэст адпраўлены на # адрас} few
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} з {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {Тэст адпраўлены на {sent} з # адраса} few {Тэст адпраўлены на {sent} з # адрасоў} many {Тэст адпраўлены на {sent} з # адрасоў} other {Тэст адпраўлены на {sent} з # адраса}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# элемент} few {# элементы} many {# элементаў} other {# элемента}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# элемент} few {# элементы} man
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# адказ} few {+# больш адказаў} many {+# больш адказаў} other {+# больш адказаў}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Уліковы запіс"
 msgid "Account added"
 msgstr "Уліковы запіс дададзены"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Уліковы запіс звязаны"
 
@@ -295,14 +318,6 @@ msgstr "Дадаць новы ўліковы запіс"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Дадаць новае поле ў гэты клас"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Дадаць новы маршрут да {domain}"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Дадаць новы маршрут да {domain}. Вы можаце кіраваць гэтымі шляхамі:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Узмацніць цікавасць"
 msgid "Border colour"
 msgstr "Колер мяжы"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Сетка трансляцыі"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Стыль карткі"
 msgid "Categories"
 msgstr "Катэгорыі"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Катэгорыя для яе апавяшчэнняў"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Катэгорыя для гэтых апавяшчэнняў"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Змяніць бягучыя апавяшчэнні на"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Пацвердзіце, што гэта вы"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Падключана"
@@ -922,10 +932,6 @@ msgstr "Падключаныя ўліковыя запісы"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Злучэнне..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Звяжыцеся з адміністратарам, каб атрымаць дэлегаванне."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Не ўдалося закрыць ваш рахунак"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Не ўдалося скапіяваць коды. Вылучыце і скапіюйце іх уручную."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Не атрымалася звязаць уліковы запіс"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "Стварыць {entityLabel}"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "Стварыце TXT-запіс для"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "Стварыце TXT-запіс для <0>{record}</0>"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1058,10 +1063,6 @@ msgstr "Бягучае месца"
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
 msgstr "Карыстальніцкі"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
-msgstr "Наладжана"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Dark"
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Адключана"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Адхіліць"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "Адхіліць чарнавік?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "Адхіліць незахаваныя змены?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,6 +1347,7 @@ msgstr "Закрыць"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
 msgstr "Адлюстраванне"
 
@@ -1487,11 +1494,6 @@ msgstr "Рэдагаваць опцыю {0}"
 msgid "Edit route"
 msgstr "Рэдагаваць маршрут"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "Рэдагаваць маршрут для шляху: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Рэдагаваць выбраную картку"
@@ -1517,10 +1519,6 @@ msgstr "Эл. пошта"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "Код па эл. пошце"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Пусты шлях дае поўны доступ да дамена"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "ID кліента Google"
 msgid "Google client secret"
 msgstr "Сакрэт кліента Google"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Прадаставіць карыстальніку дазвол кіраваць маршрутамі на {domain}"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Група"
@@ -2026,11 +2020,6 @@ msgstr "Групаваць па"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Група: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Маршруты з вышэйшым прыярытэтам супастаўляюцца першымі"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Спалучэнні клавіш"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Вядомыя"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Вядомыя {known} · Падключаныя {linked} · Сетка трансляцыі {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Апошняе выкарыстанне"
 msgid "Layout"
 msgstr "Разметка"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Пакіньце пустым для каранёвага шляху"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Толькі літары, лічбы, прабелы, злучкі і касыя рысы"
@@ -2220,8 +2205,7 @@ msgstr "Спасылка"
 msgid "Link account"
 msgstr "Звязаць акаўнт"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Звязана {label}"
 
@@ -2423,6 +2407,10 @@ msgstr "Мадэль"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Мадэрацыя"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Зменены"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Назва ключа доступу"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Ключ доступу не дададзены"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Ключ доступу зарэгістраваны"
 
@@ -2909,7 +2901,7 @@ msgstr "Кодавая фраза"
 msgid "Path"
 msgstr "Шлях"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Шлях не дазволены. Маршруты можна дадаваць толькі пад: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Зарэгістравацца"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Зарэгістраваць ключ доступу"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Рэгістрацыя адменена"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Захавайце гэтыя коды"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Пошук"
 
@@ -3579,16 +3568,6 @@ msgstr "Выберыце асобу..."
 msgid "Select previous card"
 msgstr "Выбраць папярэднюю картку"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Выбраць праграму для маршрутызацыі"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Выбраць сутнасць для маршрутызацыі"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Памылка сервера"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Правілы сервера"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Правілы сервера, умовы і паведамленне аб канфідэнцыйнасці, якія паказваюцца карыстальнікам"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Паказаць палі"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Паказаць гэтую дапамогу"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "Паказана {0}-{1} з {2} карыстальнікаў"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Тэст"
 msgid "Test failed"
 msgstr "Тэст не пройдзены"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Тэст адпраўлены на {sent} з {total} прызначэнняў"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Тэкст"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Гэты ўліковы запіс ужо прывязаны да іншага карыстальніка"
 
@@ -3905,8 +3868,7 @@ msgstr "Гэты код няправільны або састарэў."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Не ўдалося адправіць. Магчыма, файлы занадта вялікія або злучэнне перарвалася. Паспрабуйце меншыя файлы."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Гэты email ужо зарэгістраваны на іншы ўліковы запіс"
 
@@ -3914,10 +3876,6 @@ msgstr "Гэты email ужо зарэгістраваны на іншы ўлі�
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Занадта вялікі памер для запампоўкі. Выдаліце або паменшыце файлы і паўтарыце спробу."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "Катэгорыя «Без апавяшчэнняў» адключае гук для любой прызначанай ёй тэмы."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Гэтай праграме не дазволена выкарыстоў
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Гэта поўная рэзервовая копія, якую вы можаце аднавіць на гэтым або іншым серверы Mochi. Каб працягнуць, пацвердзіце, што гэта вы."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Гэта змена бяспекі вашага ўліковага запісу. Каб працягнуць, пацвердзіце, што гэта вы."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Гэта незваротна выдаліць гульню і яе чат. Гэтае дзеянне нельга адрабіць."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "У гэтага карыстальніка няма актыўных сесій."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Гэта скіне «{settingNameLabel}» да значэння па з
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Гэта скіне «{settingNameLabel}» да значэння па змаўчанні ({defaultLabel})."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Гэта скіне ўсе перавагі да значэнняў па змаўчанні."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Гэта скіне налады адлюстравання да значэнняў па змаўчанні."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Гэта скіне гэтыя налады да значэнняў па змаўчанні."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Тэмы"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "У дарозе"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Паспрабуйце наладзіць крытэрыі пошуку"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Загрузіць"
 msgid "Upload progress"
 msgstr "Ход запампоўкі"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "URL для перанакіравання"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Выкарыстоўвайце *.domain.com для дамэнаў з падстаноўкай"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Выкарыстоўвайце ключ бяспекі, адбітак пальца або распазнаванне твару."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Скарыстайцеся ключом доступу"
@@ -4372,10 +4305,6 @@ msgstr "Пацвердзіць email-адрас"
 msgid "Version"
 msgstr "Версія"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Праз рэтранслятар"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Мініяцюра відэа"
@@ -4393,10 +4322,6 @@ msgstr "Паглядзець усе апавяшчэнні"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Паглядзіце і адрэдагуйце дэталі элемента"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Паглядзіце і адклічце актыўныя сесіі для гэтага карыстальніка."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "Сакрэт кліента X"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Год"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Вы можаце кіраваць гэтымі шляхамі: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

@@ -57,6 +57,19 @@ msgstr "(tú)"
 msgid "[not set]"
 msgstr "[sin definir]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} reserva} other {{held} / {maximum} reservas}} · {1, plural, one {{circuits} circuito} other {{circuits} circuitos}} · {2, plural, one {{refused} rechazada} other {{refused} rechazadas}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} con éxito} other {{succeeded} con éxito}} · {1, plural, one {{failed} fallida} other {{failed} fallidas}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# anidado} other {+# anidados}}"
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {Se revocó 1 sesión} other {Se revocaron # sesiones}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {Se revocó # sesión} other {Se revocaron # sesiones}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {Mostrando {first}–{last} de {total} usuario} other {Mostrando {first}–{last} de {total} usuarios}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · push"
 msgid "{0} (development)"
 msgstr "{0} (desarrollo)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} reservas · {2} circuitos · {3} rechazadas"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} con éxito · {1} fallidas"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {# restante} other {# restantes}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#sem} other {#sem}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} restantes"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} a {to}"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · app"
 
@@ -160,6 +172,10 @@ msgstr "{name} · push"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} ofreció tablas"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · mediante retransmisión"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Prueba enviada a # destino} other {Prueba enviada a # destinos}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {Prueba enviada a # destino} other {Prueba enviada a 
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} de {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {Prueba enviada a {sent} de # destino} other {Prueba enviada a {sent} de # destinos}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# elemento} other {# elementos}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# elemento} other {# elementos}}"
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# respuesta} other {+# respuestas más}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Cuenta"
 msgid "Account added"
 msgstr "Cuenta añadida"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Cuenta vinculada"
 
@@ -295,14 +318,6 @@ msgstr "Añadir una nueva cuenta"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Añadir un nuevo campo a esta clase"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Añadir una nueva ruta a {domain}"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Añadir una nueva ruta a {domain}. Puedes gestionar estas rutas:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Impulsar interés"
 msgid "Border colour"
 msgstr "Color del borde"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Malla de difusión"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Estilo de tarjeta"
 msgid "Categories"
 msgstr "Categorías"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Categoría para sus notificaciones"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Categoría para estas notificaciones"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Cambiar las notificaciones actuales a"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Confirma que eres tú"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Conectado"
@@ -922,10 +932,6 @@ msgstr "Cuentas conectadas"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Conectando..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Contacte con un administrador para obtener una delegación."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "No se pudo cerrar tu cuenta"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "No se pudieron copiar los códigos. Selecciónalos y cópialos manualmente."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "No se pudo vincular la cuenta"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "Crear {entityLabel}"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "Crear un registro TXT para"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "Crea un registro TXT para <0>{record}</0>"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1057,10 +1062,6 @@ msgstr "Ubicación actual"
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
-msgstr "Personalizado"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
 msgstr "Personalizado"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Desactivado"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Descartar"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "¿Descartar el borrador?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "¿Descartar los cambios sin guardar?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,8 +1347,9 @@ msgstr "Descartar"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
-msgstr "Mostrar"
+msgstr "Pantalla"
 
 #: src/features/user/display.tsx
 msgid "Display reset to defaults"
@@ -1487,11 +1494,6 @@ msgstr "Editar opción {0}"
 msgid "Edit route"
 msgstr "Editar ruta"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "Editar ruta para la ruta: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Editar tarjeta seleccionada"
@@ -1517,10 +1519,6 @@ msgstr "Correo electrónico"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "Código de correo electrónico"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Una ruta vacía otorga acceso completo al dominio"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "ID de cliente de Google"
 msgid "Google client secret"
 msgstr "Secreto de cliente de Google"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Conceder permiso a un usuario para gestionar rutas en {domain}"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Grupo"
@@ -2026,11 +2020,6 @@ msgstr "Agrupar por"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Grupo: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Las rutas de mayor prioridad coinciden primero"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Atajos de teclado"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Conocidos"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Conocidos {known} · Conectados {linked} · Malla de difusión {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Último uso"
 msgid "Layout"
 msgstr "Diseño"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Dejar vacío para la ruta raíz"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Solo letras, números, espacios, guiones y barras"
@@ -2220,8 +2205,7 @@ msgstr "Enlace"
 msgid "Link account"
 msgstr "Vincular cuenta"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Vinculado {label}"
 
@@ -2423,6 +2407,10 @@ msgstr "Modelo"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Moderación"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Modificado"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Nombre de la clave de acceso"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Clave de acceso no agregada"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Clave de acceso registrada"
 
@@ -2909,7 +2901,7 @@ msgstr "Frase de contraseña"
 msgid "Path"
 msgstr "Ruta"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Ruta no permitida. Solo puedes añadir rutas bajo: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Registrar"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Registrar clave de acceso"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Registro cancelado"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Guarda estos códigos"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Buscar"
 
@@ -3579,16 +3568,6 @@ msgstr "Selecciona una persona..."
 msgid "Select previous card"
 msgstr "Seleccionar tarjeta anterior"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Selecciona la aplicación a la que enrutar"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Selecciona la entidad a la que enrutar"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Error del servidor"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Reglas del servidor"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Reglas del servidor, términos y condiciones y aviso de privacidad que se muestran a tus usuarios"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Mostrar campos"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Mostrar esta ayuda"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "Mostrando {0}-{1} de {2} usuarios"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Probar"
 msgid "Test failed"
 msgstr "Prueba fallida"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Prueba enviada a {sent} de {total} destinos"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Texto"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Esa cuenta ya está vinculada a otro usuario"
 
@@ -3905,8 +3868,7 @@ msgstr "Ese código es incorrecto o expiró."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "No se pudo enviar. Puede que los archivos sean demasiado grandes o que la conexión haya fallado. Prueba con archivos más pequeños."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Ese correo electrónico ya está registrado en otra cuenta"
 
@@ -3914,10 +3876,6 @@ msgstr "Ese correo electrónico ya está registrado en otra cuenta"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Era demasiado grande para subir. Elimina o reduce archivos e inténtalo de nuevo."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "La categoría \"Sin notificaciones\" silencia cualquier tema asignado a ella."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Esta aplicación no puede usar tu clave de acceso. Permítelo en Configu
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Es un respaldo completo que puedes restaurar en este u otro servidor Mochi. Verifica tu identidad para continuar."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Es un cambio de seguridad en tu cuenta. Verifica tu identidad para continuar."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Esto elimina permanentemente la partida y su chat. Esta acción no se puede deshacer."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Este usuario no tiene sesiones activas."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Esto restablecerá \"{settingNameLabel}\" a su valor predeterminado (vac
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Esto restablecerá \"{settingNameLabel}\" a su valor predeterminado ({defaultLabel})."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Esto restablecerá todas las preferencias a sus valores predeterminados."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Esto restablecerá la configuración de pantalla a sus valores predeterminados."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Esto restablecerá estas preferencias a sus valores predeterminados."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Temas"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "Viajando"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Intenta ajustar tus criterios de búsqueda"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Subir"
 msgid "Upload progress"
 msgstr "Progreso de la subida"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "URL a la que redirigir"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Usa *.domain.com para dominios comodín"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Usa una llave de seguridad, huella digital o reconocimiento facial."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Usa tu llave de acceso"
@@ -4372,10 +4305,6 @@ msgstr "Verificar dirección de correo electrónico"
 msgid "Version"
 msgstr "Versión"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Vía relay"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Miniatura del video"
@@ -4393,10 +4322,6 @@ msgstr "Ver todas las notificaciones"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Ver y editar detalles del elemento"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Ver y revocar sesiones activas para este usuario."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "Secreto de cliente de X"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Año"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Puedes administrar estas rutas: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

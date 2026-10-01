@@ -57,6 +57,19 @@ msgstr "(þú)"
 msgid "[not set]"
 msgstr "[ekki stillt]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} frátekt} other {{held} / {maximum} frátektir}} · {1, plural, one {{circuits} rás} other {{circuits} rásir}} · {2, plural, one {{refused} hafnað} other {{refused} hafnað}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} tókst} other {{succeeded} tókust}} · {1, plural, one {{failed} mistókst} other {{failed} mistókust}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# undirliður} other {+# undirliðir}}"
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {1 lota afturkölluð} other {# lotur afturkallaðar}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {# lota afturkölluð} other {# lotur afturkallaðar}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {Sýni {first}–{last} af {total} notanda} other {Sýni {first}–{last} af {total} notendum}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · ýting"
 msgid "{0} (development)"
 msgstr "{0} (þróun)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} frátektir · {2} rásir · {3} hafnað"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} tókst · {1} mistókst"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {# eftir} other {# eftir}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#mín} other {#mín}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#v} other {#v}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} eftir"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} til {to}"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · forrit"
 
@@ -160,6 +172,10 @@ msgstr "{name} · ýting"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} bauð jafntefli"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · um endurvarpa"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Prófun send á # áfangastað} other {Prófun send á # áfangastaði}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {Prófun send á # áfangastað} other {Prófun send 
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} af {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {Prófun send á {sent} af # áfangastað} other {Prófun send á {sent} af # áfangastöðum}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# atriði} other {# atriði}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# atriði} other {# atriði}}"
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# svar} other {+# fleiri svör}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Reikningur"
 msgid "Account added"
 msgstr "Reikningi bætt við"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Reikningur tengdur"
 
@@ -295,14 +318,6 @@ msgstr "Bæta við nýjum reikningi"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Bæta nýju sviði við þennan flokk"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Bæta nýrri slóð við {domain}"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Bæta nýrri slóð við {domain}. Þú getur stjórnað þessum slóðum:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Auka áhuga"
 msgid "Border colour"
 msgstr "Litur ramma"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Útsendingar-mesh"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Stíll spjalds"
 msgid "Categories"
 msgstr "Flokkar"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Flokkur fyrir tilkynningar hans"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Flokkur fyrir þessar tilkynningar"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Breyta núverandi tilkynningum í"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Staðfestu að þetta sért þú"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Tengt"
@@ -922,10 +932,6 @@ msgstr "Tengdir reikningar"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Tengist..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Hafðu samband við stjórnanda til að fá framsal."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Ekki tókst að loka reikningnum þínum"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Ekki tókst að afrita kóðana. Veldu þá og afritaðu handvirkt."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Tókst ekki að tengja reikning"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "Búa til {entityLabel}"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "Búðu til TXT færslu fyrir"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "Búðu til TXT-færslu fyrir <0>{record}</0>"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1057,10 +1062,6 @@ msgstr "Núverandi staðsetning"
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
-msgstr "Sérsniðið"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
 msgstr "Sérsniðið"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Slökkt"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Henda"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "Henda drögum?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "Henda óvistuðum breytingum?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,6 +1347,7 @@ msgstr "Hunsa"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
 msgstr "Birting"
 
@@ -1487,11 +1494,6 @@ msgstr "Breyta valkosti {0}"
 msgid "Edit route"
 msgstr "Breyta slóð"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "Breyta slóð fyrir slóð: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Breyta völdu spjaldi"
@@ -1517,10 +1519,6 @@ msgstr "Tölvupóstur"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "Tölvupóstkóði"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Tóm slóð veitir fullan aðgang að léni"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "Google viðskiptavinar-ID"
 msgid "Google client secret"
 msgstr "Google viðskiptavinaleynd"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Veita notanda heimild til að stjórna slóðum á {domain}"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Hópur"
@@ -2026,11 +2020,6 @@ msgstr "Hópa eftir"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Hópur: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Slóðir með hærra forgangsstig eru paraðar fyrst"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Flýtilyklar"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Þekktir"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Þekktir {known} · Tengdir {linked} · Útsendingar-mesh {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Síðast notað"
 msgid "Layout"
 msgstr "Umgjörð"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Skildu eftir autt fyrir rótarslóð"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Aðeins bókstafir, tölur, bil, bandstrik og skástrik"
@@ -2220,8 +2205,7 @@ msgstr "Tengill"
 msgid "Link account"
 msgstr "Tengja reikning"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} tengt"
 
@@ -2423,6 +2407,10 @@ msgstr "Líkan"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Umsjón"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Breytt"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Heiti aðgangslykils"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Aðgangslykli ekki bætt við"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Aðgangslykill skráður"
 
@@ -2909,7 +2901,7 @@ msgstr "Lykilsetning"
 msgid "Path"
 msgstr "Slóð"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Slóð ekki leyfð. Þú getur aðeins bætt við slóðum undir: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Skrá"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Skrá aðgangslykil"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Skráningu aflýst"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Vista þessa kóða"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Leita"
 
@@ -3579,16 +3568,6 @@ msgstr "Veldu einstakling..."
 msgid "Select previous card"
 msgstr "Velja fyrra spjald"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Veldu forritið til að beina að"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Veldu eininguna til að beina að"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Þjónsvilla"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Reglur þjónsins"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Reglur þjóns, skilmálar og skilyrði og persónuverndartilkynning sem birtast notendum þínum"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Sýna reiti"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Sýna þessa hjálp"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "Sýnir {0}-{1} af {2} notendum"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Prófa"
 msgid "Test failed"
 msgstr "Prófun mistókst"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Prufa send á {sent} af {total} áfangastöðum"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Texti"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Sá reikningur er nú þegar tengdur öðrum notanda"
 
@@ -3905,8 +3868,7 @@ msgstr "Þessi kóði er rangur eða útrunninn."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Ekki tókst að senda. Skrárnar gætu verið of stórar eða tengingin rofnaði. Prófaðu minni skrár."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Þetta netfang er nú þegar skráð á annan reikning"
 
@@ -3914,10 +3876,6 @@ msgstr "Þetta netfang er nú þegar skráð á annan reikning"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Það var of stórt til að hlaða upp. Fjarlægðu eða minnkaðu skrár og reyndu aftur."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "Flokkurinn „Engar tilkynningar“ þaggar í öllum efnum sem honum eru úthlutuð."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Þetta forrit má ekki nota aðgangslykilinn þinn. Leyfðu það í Sti
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Þetta er heildaröryggisafrit sem þú getur endurheimt á þessum eða öðrum Mochi-þjóni. Staðfestu auðkenni þitt til að halda áfram."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Þetta er öryggisbreyting á reikningnum þínum. Staðfestu auðkenni þitt til að halda áfram."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Þetta eyðir leiknum og spjallinu varanlega. Ekki er hægt að afturkalla þessa aðgerð."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Þessi notandi er ekki með neinar virkar setur."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Þetta mun endurstilla „{settingNameLabel}“ á sjálfgefið gildi (a
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Þetta mun endurstilla „{settingNameLabel}“ á sjálfgefið gildi ({defaultLabel})."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Þetta mun endurstilla allar stillingar á sjálfgefin gildi."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Þetta endurstillir birtingarstillingar á sjálfgefin gildi."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Þetta mun endurstilla þessar kjörstillingar á sjálfgefin gildi."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Efni"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "Á ferðalagi"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Reyndu að aðlaga leitarforsendur þínar"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Hlaða upp"
 msgid "Upload progress"
 msgstr "Framvinda upphleðslu"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "URL til að beina á"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Notaðu *.domain.com fyrir villtækisvæði"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Nota öryggislykil, fingrafar eða andlitsgreiningu."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Notaðu aðgangslykilinn þinn"
@@ -4372,10 +4305,6 @@ msgstr "Sannprófa netfang"
 msgid "Version"
 msgstr "Útgáfa"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Um endurvarpa"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Smámynd myndbands"
@@ -4393,10 +4322,6 @@ msgstr "Skoða allar tilkynningar"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Skoða og breyta upplýsingum hlutarins"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Skoða og afturkalla virkar setur fyrir þennan notanda."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "X biðlaraleynd"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Ár"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Þú getur stjórnað þessum slóðum: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

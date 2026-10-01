@@ -10,6 +10,7 @@ import {
   Command,
   CommandEmpty,
   CommandGroup,
+  CommandInput,
   CommandItem,
   CommandList,
   Popover,
@@ -18,12 +19,14 @@ import {
 } from '@mochi/web'
 import { Check, ChevronsUpDown } from 'lucide-react'
 
+// Options beyond which the list gets a search box.
+const SEARCHABLE = 8
+
 interface ComboSelectProps {
   value: string
   options: Record<string, string>
   onChange: (value: string) => void
   disabled?: boolean
-  placeholder?: string
   renderOption?: (optValue: string, label: string) => ReactNode
   renderValue?: (optValue: string, label: string) => ReactNode
 }
@@ -33,19 +36,19 @@ export function ComboSelect({
   options,
   onChange,
   disabled,
-  placeholder,
   renderOption,
   renderValue,
 }: ComboSelectProps) {
   const { t } = useLingui()
   const [open, setOpen] = useState(false)
-  const placeholderText = placeholder ?? t`Select...`
   const displayValue = options[value] ?? value
+  // A list longer than a glance, such as the languages, is searched by name.
+  const searchable = Object.keys(options).length > SEARCHABLE
   const renderedValue = renderValue ? (
     renderValue(value, displayValue)
   ) : (
     <span className='truncate text-start'>
-      {displayValue || placeholderText}
+      {displayValue || t`Select...`}
     </span>
   )
 
@@ -68,6 +71,7 @@ export function ComboSelect({
         align='start'
       >
         <Command>
+          {searchable && <CommandInput aria-label={t`Search`} />}
           <CommandList>
             <CommandEmpty>
               <Trans>No options found.</Trans>
@@ -77,6 +81,7 @@ export function ComboSelect({
                 <CommandItem
                   key={optValue}
                   value={optValue}
+                  keywords={[label]}
                   onSelect={() => {
                     onChange(optValue)
                     setOpen(false)

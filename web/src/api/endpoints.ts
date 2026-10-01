@@ -6,7 +6,6 @@
 const endpoints = {
   user: {
     account: '-/user/account/data',
-    accountIdentity: '-/user/account/identity',
     accountIdentityUpdate: '-/user/account/identity/update',
     accountSessions: '-/user/account/sessions',
     accountSessionRevoke: '-/user/account/session/revoke',

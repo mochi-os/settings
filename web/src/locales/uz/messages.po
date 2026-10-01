@@ -57,6 +57,19 @@ msgstr "(siz)"
 msgid "[not set]"
 msgstr "[oʻrnatilmagan]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} bron} other {{held} / {maximum} bron}} · {1, plural, one {{circuits} zanjir} other {{circuits} zanjir}} · {2, plural, one {{refused} rad etildi} other {{refused} rad etildi}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} muvaffaqiyatli} other {{succeeded} muvaffaqiyatli}} · {1, plural, one {{failed} muvaffaqiyatsiz} other {{failed} muvaffaqiyatsiz}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# ichki} other {+# ichki}}"
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {1 sessiya bekor qilindi} other {# sessiya bekor qilindi}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {# sessiya bekor qilindi} other {# sessiya bekor qilindi}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {{total} foydalanuvchidan {first}–{last} koʻrsatilmoqda} other {{total} foydalanuvchidan {first}–{last} koʻrsatilmoqda}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · push bildirishnomalar"
 msgid "{0} (development)"
 msgstr "{0} (ishlab chiqish)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} bronlar · {2} zanjirlar · {3} rad etilgan"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} muvaffaqiyatli · {1} muvaffaqiyatsiz"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {# ta qoldi} other {# ta qoldi}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#daq} other {#daq}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#hafta} other {#hafta}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} qoldi"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} – {to}"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · ilova"
 
@@ -160,6 +172,10 @@ msgstr "{name} · push bildirishnomalar"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} durang taklif qildi"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · rele orqali"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Sinov # manzilga yuborildi} other {Sinov # manzilga yuborildi}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {Sinov # manzilga yuborildi} other {Sinov # manzilga 
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{totalLabel} dan {sentLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {Sinov # manzildan {sent} tasiga yuborildi} other {Sinov # manzildan {sent} tasiga yuborildi}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# element} other {# element}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# element} other {# element}}"
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# javob} other {+# koʻproq javoblar}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Hisob"
 msgid "Account added"
 msgstr "Hisob qoʻshildi"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Hisob bogʻlandi"
 
@@ -295,14 +318,6 @@ msgstr "Yangi hisob qoʻshish"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Bu sinfga yangi maydon qoʻshish"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "{domain} ga yangi marshrut qoʻshish"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "{domain} ga yangi marshrut qoʻshish. Siz bu yoʻllarni boshqarishingiz mumkin:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Qiziqishni kuchaytirish"
 msgid "Border colour"
 msgstr "Hoshiya rangi"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Translyatsiya mesh"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Karta uslubi"
 msgid "Categories"
 msgstr "Toifalar"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Uning bildirishnomalari uchun toifa"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Bu bildirishnomalar uchun toifa"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Joriy bildirishnomalarni oʻzgartirish"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Bu siz ekanligingizni tasdiqlang"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Ulangan"
@@ -922,10 +932,6 @@ msgstr "Ulangan hisoblar"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Ulanmoqda..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Delegatsiya olish uchun administrator bilan bogʻlaning."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Hisobingizni yopib bo'lmadi"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kodlarni nusxalab boʻlmadi. Ularni belgilab, qoʻlda nusxalang."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Hisobni bogʻlab boʻlmadi"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "{entityLabel} yaratish"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "Quyidagi uchun TXT yozuv yarating"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "<0>{record}</0> uchun TXT yozuv yarating"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1058,10 +1063,6 @@ msgstr "Joriy joylashuv"
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
 msgstr "Maxsus"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
-msgstr "Moslashtirilgan"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Dark"
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Oʻchirilgan"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
-msgstr "Bekor qilish"
+msgstr "Tashlab yuborish"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "Qoralama bekor qilinsinmi?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "Saqlanmagan oʻzgarishlar bekor qilinsinmi?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,8 +1347,9 @@ msgstr "Bekor qilish"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
-msgstr "Koʻrsatish"
+msgstr "Ekran"
 
 #: src/features/user/display.tsx
 msgid "Display reset to defaults"
@@ -1487,11 +1494,6 @@ msgstr "{0} variantni tahrirlash"
 msgid "Edit route"
 msgstr "Yoʻnalishni tahrirlash"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "Yoʻl uchun yoʻnalishni tahrirlash: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Tanlangan kartani tahrirlash"
@@ -1517,10 +1519,6 @@ msgstr "Email"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "Email kodi"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Boʻsh yoʻl toʻliq domen kirishini beradi"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "Google mijoz ID"
 msgid "Google client secret"
 msgstr "Google mijoz maxfiy soʻzi"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "{domain} dagi yoʻnalishlarni boshqarish uchun foydalanuvchiga ruxsat bering"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Guruh"
@@ -2026,11 +2020,6 @@ msgstr "Boʻyicha guruhlash"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Guruh: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Yuqori ustuvor yoʻnalishlar avval moslashtiriladi"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Klaviatura yorliqlari"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Ma'lum"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Maʼlum {known} · Ulangan {linked} · Translyatsiya tarmogʻi {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Oxirgi ishlatilgan"
 msgid "Layout"
 msgstr "Tartib"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Ildiz yoʻli uchun boʻsh qoldiring"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Faqat harflar, raqamlar, boʻshliqlar, defislar va qiya chiziqlar"
@@ -2220,8 +2205,7 @@ msgstr "Havola"
 msgid "Link account"
 msgstr "Hisobni bogʻlash"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} bogʻlandi"
 
@@ -2423,6 +2407,10 @@ msgstr "Model"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Moderatsiya"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Oʻzgartirilgan"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Passkey nomi"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Kirish kaliti qoʻshilmadi"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Passkey roʻyxatdan oʻtkazildi"
 
@@ -2909,7 +2901,7 @@ msgstr "Parol iborasi"
 msgid "Path"
 msgstr "Yoʻl"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Yoʻlga ruxsat yoʻq. Marshrutlarni faqat shu yoʻllar ostida qoʻshishingiz mumkin: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Roʻyxatdan oʻtish"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Passkey roʻyxatdan oʻtkazish"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Roʻyxatdan oʻtish bekor qilindi"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Bu kodlarni saqlang"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Qidirish"
 
@@ -3579,16 +3568,6 @@ msgstr "Odamni tanlang..."
 msgid "Select previous card"
 msgstr "Oldingi kartani tanlang"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Yoʻnaltiriladigan ilovani tanlang"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Yoʻnaltiriladigan obyektni tanlang"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Server xatosi"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Server qoidalari"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Foydalanuvchilarga koʻrsatiladigan server qoidalari, shartlari va maxfiylik bildirishnomasi"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Maydonlarni koʻrsatish"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Ushbu yordamni koʻrsatish"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "{2} foydalanuvchidan {0}-{1} koʻrsatilmoqda"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Sinov"
 msgid "Test failed"
 msgstr "Sinov muvaffaqiyatsiz"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Sinov {total} manzildan {sent} tasiga yuborildi"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Matn"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Bu hisob allaqachon boshqa foydalanuvchiga bogʻlangan"
 
@@ -3905,8 +3868,7 @@ msgstr "Bu kod noto'g'ri yoki muddati o'tgan."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Yuborib bo‘lmadi. Fayllar juda katta bo‘lishi mumkin yoki aloqa uzildi. Kichikroq fayllarni sinab ko‘ring."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Bu email allaqachon boshqa hisobga roʻyxatdan oʻtkazilgan"
 
@@ -3914,10 +3876,6 @@ msgstr "Bu email allaqachon boshqa hisobga roʻyxatdan oʻtkazilgan"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Yuklash uchun juda katta edi. Fayllarni olib tashlang yoki kichraytiring va qayta urinib ko‘ring."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "\"Bildirishnomalar yoʻq\" toifasi unga belgilangan har qanday mavzuni jim qiladi."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Bu ilovaga passkey’ingizdan foydalanishga ruxsat berilmagan. Sozlamala
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Bu siz ushbu yoki boshqa Mochi serverida tiklashingiz mumkin bo'lgan to'liq zaxira nusxasidir. Davom etish uchun bu siz ekanligingizni tasdiqlang."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Bu hisobingizdagi xavfsizlik o'zgarishidir. Davom etish uchun bu siz ekanligingizni tasdiqlang."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Bu oʻyin va uning chatini butunlay oʻchirib tashlaydi. Bu amalni bekor qilib boʻlmaydi."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Bu foydalanuvchining faol sessiyalari yoʻq."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Bu \"{settingNameLabel}\" ni standart (boʻsh) qiymatiga qaytaradi."
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Bu \"{settingNameLabel}\" ni standart qiymatiga ({defaultLabel}) qaytaradi."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Bu barcha sozlamalarni standart qiymatlariga qaytaradi."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Bu ekran sozlamalarini standart qiymatlariga qaytaradi."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Bu ushbu sozlamalarni standart qiymatlariga qaytaradi."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Mavzular"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "Sayohatda"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Qidiruv mezonlaringizni sozlashga harakat qiling"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Yuklash"
 msgid "Upload progress"
 msgstr "Yuklash jarayoni"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "Yoʻnaltiriladigan URL"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Wildcard domenlar uchun *.domain.com dan foydalaning"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Xavfsizlik kaliti, barmoq izi yoki yuzni tanish dan foydalaning."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Kirish kalitingizdan foydalaning"
@@ -4372,10 +4305,6 @@ msgstr "Email manzilini tasdiqlash"
 msgid "Version"
 msgstr "Versiya"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Rele orqali"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Video eskizi"
@@ -4393,10 +4322,6 @@ msgstr "Barcha bildirishnomalarni koʻrish"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Element tafsilotlarini koʻrish va tahrirlash"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Ushbu foydalanuvchining faol sessiyalarini koʻrish va bekor qilish."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "X mijoz siri"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Yil"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Siz bu yoʻllarni boshqarishingiz mumkin: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

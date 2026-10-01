@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
+import { useCallback } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import type {
   AccountData,
@@ -27,6 +28,31 @@ import endpoints from '@/api/endpoints'
 const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
 } as const
+
+// A mutation whose input or answer is secret: an export passphrase, a TOTP
+// secret, recovery codes. React Query keeps a settled mutation's variables and
+// data for its gcTime, five minutes by default, and for as long as a mounted
+// observer holds it. `run` resets the observer once the call settles and the
+// mutation is collected at once, so the only copy left is whatever the caller
+// keeps to show.
+function useSecretMutation<T, V>(
+  call: (variables: V) => Promise<T>,
+  onSuccess?: () => void
+) {
+  const mutation = useMutation({ mutationFn: call, onSuccess, gcTime: 0 })
+  const { mutateAsync, reset } = mutation
+  const run = useCallback(
+    async (variables: V) => {
+      try {
+        return await mutateAsync(variables)
+      } finally {
+        reset()
+      }
+    },
+    [mutateAsync, reset]
+  )
+  return { run, isPending: mutation.isPending }
+}
 
 // Name the browser a session's user-agent belongs to. The raw string is a
 // hundred characters of version soup, so both session views show the family
@@ -215,15 +241,15 @@ export function useTotpStatus() {
   })
 }
 
+// Answers the new TOTP secret, so it runs as a secret mutation.
 export function useTotpSetup() {
-  return useMutation({
-    mutationFn: (token: string) =>
-      requestHelpers.post<TotpSetupResponse>(
-        endpoints.user.accountTotpSetup,
-        { token },
-        NO_GLOBAL_ERROR_TOAST_CONFIG
-      ),
-  })
+  return useSecretMutation((token: string) =>
+    requestHelpers.post<TotpSetupResponse>(
+      endpoints.user.accountTotpSetup,
+      { token },
+      NO_GLOBAL_ERROR_TOAST_CONFIG
+    )
+  )
 }
 
 export function useTotpVerify() {
@@ -276,22 +302,23 @@ export function useRecoveryStatus() {
   })
 }
 
+// Answers the new recovery codes, so it runs as a secret mutation.
 export function useRecoveryGenerate() {
   const queryClient = useQueryClient()
-  return useMutation({
-    mutationFn: (token: string) =>
+  return useSecretMutation(
+    (token: string) =>
       requestHelpers.post<RecoveryGenerateResponse>(
         endpoints.user.accountRecoveryGenerate,
         { token },
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
-    onSuccess: () => {
+    () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'recovery'] })
       // Adding or removing a credential changes which factors are available,
       // which is what the login-methods grid renders.
       queryClient.invalidateQueries({ queryKey: ['account', 'methods'] })
-    },
-  })
+    }
+  )
 }
 
 // ============================================================================
@@ -359,22 +386,16 @@ export function useOauthUnlink() {
 
 // Build the export bundle. Gated by step-up re-authentication: the caller
 // runs the StepUpDialog to earn a proof token (passed here) and supplies
-// the passphrase that encrypts the keys.
+// the passphrase that encrypts the keys, so it runs as a secret mutation.
 export function useExportData() {
-  return useMutation({
-    mutationFn: ({
-      passphrase,
-      token,
-    }: {
-      passphrase: string
-      token: string
-    }) =>
+  return useSecretMutation(
+    ({ passphrase, token }: { passphrase: string; token: string }) =>
       requestHelpers.post<{ filename: string }>(
         endpoints.user.accountExport,
         { passphrase, token },
         NO_GLOBAL_ERROR_TOAST_CONFIG
-      ),
-  })
+      )
+  )
 }
 
 // useCloseAccount marks the user's own account for deletion after the grace

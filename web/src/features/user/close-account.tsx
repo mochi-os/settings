@@ -83,12 +83,8 @@ export function CloseAccountSection() {
                   keep a copy.
                 </Trans>
               }
-              confirmText={
-                <>
-                  <UserX className='me-2 h-4 w-4' />
-                  <Trans>Close account</Trans>
-                </>
-              }
+              confirmText={t`Close account`}
+              icon={<UserX className='size-4' />}
               destructive
               handleConfirm={() => {
                 setShowClose(false)

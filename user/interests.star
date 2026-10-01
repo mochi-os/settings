@@ -6,12 +6,16 @@
 
 # Language for QID labels, matching the language core writes the summary in.
 # "auto" and unset mean detect-from-browser, which this API cannot do, so
-# English.
+# English. A private-use part ("en-x-pseudo") is dropped: the label lookup
+# refuses its one-letter subtag by aborting, and no label carries one anyway.
 def interests_language(a):
     pref = a.user.preference.get("language") if a.user else None
     if not pref or pref == "auto":
         return "en"
-    return str(pref).strip().lower()
+    language = str(pref).strip().lower().split("-x-")[0]
+    if not mochi.text.valid(language, "locale"):
+        return "en"
+    return language
 
 # List user interests with resolved labels
 def action_interests_list(a):

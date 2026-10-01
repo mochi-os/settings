@@ -10,11 +10,11 @@ import { Trans, useLingui } from '@lingui/react/macro'
 import {
   Badge,
   Button,
+  ConfirmDialog,
   GeneralError,
   ListSkeleton,
   Main,
   PageHeader,
-  Section,
   Select,
   SelectContent,
   SelectItem,
@@ -32,7 +32,7 @@ import {
   toast,
   usePageTitle,
 } from '@mochi/web'
-import { Check, FileText, RotateCcw } from 'lucide-react'
+import { Check, FileText, RotateCcw, X } from 'lucide-react'
 import { useStepUp } from '@/lib/use-step-up'
 import {
   useSystemDocumentsData,
@@ -44,6 +44,8 @@ import {
 type DocumentName = 'rules' | 'terms' | 'privacy'
 
 const DOCUMENT_NAMES: DocumentName[] = ['rules', 'terms', 'privacy']
+
+type DocumentSearch = { tab: DocumentName; language?: string }
 
 function useDocumentLabels(): Record<DocumentName, string> {
   const { t } = useLingui()
@@ -68,10 +70,12 @@ function sortedLanguages(tags: string[]): string[] {
 function DocumentEditor({
   document,
   onSave,
+  onDirty,
   isSaving,
 }: {
   document: SystemDocument
   onSave: (body: string) => void
+  onDirty: (dirty: boolean) => void
   isSaving: boolean
 }) {
   const [body, setBody] = useState(document.body)
@@ -82,8 +86,9 @@ function DocumentEditor({
     setBody(document.body)
   }, [document.name, document.language, document.body])
 
-  const customised = document.body !== document.default
+  const modified = document.body !== document.default
   const dirty = body !== document.body
+  useEffect(() => onDirty(dirty), [dirty, onDirty])
 
   const handleSave = () => onSave(body)
   const handleRevert = () => setBody(document.default)
@@ -91,9 +96,9 @@ function DocumentEditor({
   return (
     <div className='space-y-3'>
       <div className='text-muted-foreground flex items-center gap-2 text-sm'>
-        {customised ? (
+        {modified ? (
           <Badge variant='secondary'>
-            <Trans>Customised</Trans>
+            <Trans>Modified</Trans>
           </Badge>
         ) : (
           <Badge variant='outline'>
@@ -184,21 +189,21 @@ export function SystemDocuments() {
     language
   )
 
-  const setTab = (next: DocumentName) => {
-    void navigate({
-      to: '/system/documents',
-      search: { tab: next, language: search.language },
-      replace: true,
-    })
+  // Switching document or language replaces the editor, so unsaved edits
+  // are confirmed first rather than dropped.
+  const [dirty, setDirty] = useState(false)
+  const [pending, setPending] = useState<DocumentSearch | null>(null)
+  const go = (next: DocumentSearch) => {
+    setDirty(false)
+    void navigate({ to: '/system/documents', search: next, replace: true })
   }
-
-  const setLanguage = (next: string) => {
-    void navigate({
-      to: '/system/documents',
-      search: { tab, language: next },
-      replace: true,
-    })
+  const choose = (next: DocumentSearch) => {
+    if (dirty) setPending(next)
+    else go(next)
   }
+  const setTab = (next: DocumentName) =>
+    choose({ tab: next, language: search.language })
+  const setLanguage = (next: string) => choose({ tab, language: next })
 
   const handleSave = (body: string) => {
     if (!current) return
@@ -234,9 +239,7 @@ export function SystemDocuments() {
         ) : isLoading ? (
           <ListSkeleton variant='simple' height='h-12' count={4} />
         ) : (
-          <Section
-            title={t`Server rules, terms and conditions, and privacy notice shown to your users`}
-          >
+          <>
             <Tabs value={tab} onValueChange={(v) => setTab(v as DocumentName)}>
               <TabsList className='grid w-full grid-cols-3'>
                 {DOCUMENT_NAMES.map((name) => (
@@ -270,6 +273,7 @@ export function SystemDocuments() {
                     <DocumentEditor
                       document={current}
                       onSave={handleSave}
+                      onDirty={setDirty}
                       isSaving={
                         savingKey === `${current.name}/${current.language}`
                       }
@@ -282,7 +286,22 @@ export function SystemDocuments() {
                 </TabsContent>
               ))}
             </Tabs>
-          </Section>
+            <ConfirmDialog
+              open={pending !== null}
+              onOpenChange={(open) => {
+                if (!open) setPending(null)
+              }}
+              title={t`Discard unsaved changes?`}
+              desc=''
+              confirmText={t`Discard`}
+              icon={<X className='size-4' />}
+              destructive
+              handleConfirm={() => {
+                if (pending) go(pending)
+                setPending(null)
+              }}
+            />
+          </>
         )}
       </Main>
     </>

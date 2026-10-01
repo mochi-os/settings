@@ -42,7 +42,6 @@ export function useStepUp(): {
         setOpen(next)
       }}
       title={t`Confirm it's you`}
-      description={t`This is a security change to your account. Verify it's you to continue.`}
       client={stepUpClient}
       onVerified={(token) => {
         setOpen(false)

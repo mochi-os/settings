@@ -115,7 +115,7 @@ function DownloadDialog({
   // bundle and stream it down.
   const onVerified = async (token: string) => {
     try {
-      const { filename } = await exportData.mutateAsync({
+      const { filename } = await exportData.run({
         passphrase: passphrase.trim(),
         token,
       })

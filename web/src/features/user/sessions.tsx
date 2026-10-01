@@ -21,6 +21,7 @@ import {
   Main,
   usePageTitle,
   getErrorMessage,
+  shellNavigateTop,
   toast,
   useFormat,
 } from '@mochi/web'
@@ -47,6 +48,12 @@ function SessionRow({
   const handleRevoke = () => {
     revokeSession.mutate(session.id, {
       onSuccess: () => {
+        // This page was signed in with that session, so every later request
+        // is refused: go where signing in again starts.
+        if (isCurrent) {
+          shellNavigateTop('/')
+          return
+        }
         toast.success(t`Session revoked`)
         setShowRevoke(false)
       },
@@ -94,6 +101,7 @@ function SessionRow({
           title={t`Revoke session?`}
           desc={t`This will sign out this session. If this is your current session, you will need to sign in again.`}
           confirmText={t`Revoke`}
+          icon={<LogOut className='size-4' />}
           isLoading={revokeSession.isPending}
           handleConfirm={handleRevoke}
         />

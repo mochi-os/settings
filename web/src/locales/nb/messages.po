@@ -57,6 +57,19 @@ msgstr "(deg)"
 msgid "[not set]"
 msgstr "[ikke satt]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} reservasjon} other {{held} / {maximum} reservasjoner}} · {1, plural, one {{circuits} krets} other {{circuits} kretser}} · {2, plural, one {{refused} avvist} other {{refused} avvist}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} vellykket} other {{succeeded} vellykkede}} · {1, plural, one {{failed} mislykket} other {{failed} mislykkede}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# nestet} other {+# nestede}}"
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {1 økt tilbakekalt} other {# økter tilbakekalt}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {# økt tilbakekalt} other {# økter tilbakekalt}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {Viser {first}–{last} av {total} bruker} other {Viser {first}–{last} av {total} brukere}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · push-varsler"
 msgid "{0} (development)"
 msgstr "{0} (utvikling)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} reservasjoner · {2} kretser · {3} avvist"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} vellykket · {1} mislyktes"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {# igjen} other {# igjen}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#u} other {#u}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} igjen"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} til {to}"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · app"
 
@@ -160,6 +172,10 @@ msgstr "{name} · push-varsler"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} tilbød remis"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · via relé"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Test sendt til # destinasjon} other {Test sendt til # destinasjoner}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {Test sendt til # destinasjon} other {Test sendt til 
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} av {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {Test sendt til {sent} av # destinasjon} other {Test sendt til {sent} av # destinasjoner}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# element} other {# elementer}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# element} other {# elementer}}"
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# svar} other {+# flere svar}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Konto"
 msgid "Account added"
 msgstr "Konto lagt til"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Konto koblet"
 
@@ -295,14 +318,6 @@ msgstr "Legg til en ny konto"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Legg til et nytt felt i denne klassen"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Legg til en ny rute til {domain}"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Legg til en ny rute til {domain}. Du kan administrere disse stiene:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Øk interesse"
 msgid "Border colour"
 msgstr "Kantfarge"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Kringkastingsmesh"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Kortstil"
 msgid "Categories"
 msgstr "Kategorier"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Kategori for varslene dens"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Kategori for disse varslene"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Endre gjeldende varsler til"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Bekreft at det er deg"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Tilkoblet"
@@ -922,10 +932,6 @@ msgstr "Tilkoblede kontoer"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Kobler til..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Kontakt en administrator for å få en delegering."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Kunne ikke lukke kontoen din"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kunne ikke kopiere kodene. Merk og kopier dem manuelt."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Kunne ikke koble til konto"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "Opprett {entityLabel}"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "Opprett en TXT-post for"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "Opprett en TXT-post for <0>{record}</0>"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1057,10 +1062,6 @@ msgstr "Nåværende posisjon"
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
-msgstr "Tilpasset"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
 msgstr "Tilpasset"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Deaktivert"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Forkast"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "Forkaste utkastet?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "Forkaste ulagrede endringer?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,6 +1347,7 @@ msgstr "Lukk"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
 msgstr "Visning"
 
@@ -1487,11 +1494,6 @@ msgstr "Rediger alternativ {0}"
 msgid "Edit route"
 msgstr "Rediger rute"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "Rediger rute for sti: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Rediger valgt kort"
@@ -1517,10 +1519,6 @@ msgstr "E-post"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "E-postkode"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Tom sti gir full domenetilgang"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "Google-klient-ID"
 msgid "Google client secret"
 msgstr "Google-klienthemmelighet"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Gi en bruker tillatelse til å administrere ruter på {domain}"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Gruppe"
@@ -2026,11 +2020,6 @@ msgstr "Grupper etter"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Gruppe: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Ruter med høyere prioritet matches først"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Tastatursnarveier"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Kjente"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Kjente {known} · Tilkoblet {linked} · Kringkastingsmesh {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Sist brukt"
 msgid "Layout"
 msgstr "Oppsett"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "La stå tom for rotsti"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Kun bokstaver, tall, mellomrom, bindestreker og skråstreker"
@@ -2220,8 +2205,7 @@ msgstr "Lenke"
 msgid "Link account"
 msgstr "Koble til konto"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} koblet"
 
@@ -2423,6 +2407,10 @@ msgstr "Modell"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Moderering"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Endret"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Passnøkkelnavn"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Passnøkkelen ble ikke lagt til"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Passnøkkel registrert"
 
@@ -2909,7 +2901,7 @@ msgstr "Passfrase"
 msgid "Path"
 msgstr "Sti"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Sti ikke tillatt. Du kan bare legge til ruter under: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Registrer"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Registrer passnøkkel"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Registrering avbrutt"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Lagre disse kodene"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Søk"
 
@@ -3579,16 +3568,6 @@ msgstr "Velg person..."
 msgid "Select previous card"
 msgstr "Velg forrige kort"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Velg appen å rute til"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Velg enheten å rute til"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Serverfeil"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Serverregler"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Serverregler, vilkår og betingelser, og personvernerklæring som vises til brukerne dine"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Vis felter"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Vis denne hjelpen"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "Viser {0}-{1} av {2} brukere"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Test"
 msgid "Test failed"
 msgstr "Testen mislyktes"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Test sendt til {sent} av {total} destinasjoner"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Tekst"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Den kontoen er allerede koblet til en annen bruker"
 
@@ -3905,8 +3868,7 @@ msgstr "Den koden er feil eller har utløpt."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Det kunne ikke sendes. Filene kan være for store, eller tilkoblingen sviktet. Prøv mindre filer."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Den e-postadressen er allerede registrert på en annen konto"
 
@@ -3914,10 +3876,6 @@ msgstr "Den e-postadressen er allerede registrert på en annen konto"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Det var for stort til å laste opp. Fjern eller forminsk filer og prøv igjen."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "Kategorien «Ingen varsler» demper alle emner som tilordnes den."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Denne appen har ikke tillatelse til å bruke passnøkkelen din. Tillat d
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Dette er en fullstendig sikkerhetskopi du kan gjenopprette på denne eller en annen Mochi-server. Bekreft at det er deg for å fortsette."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Dette er en sikkerhetsendring på kontoen din. Bekreft at det er deg for å fortsette."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Dette sletter spillet og chatten permanent. Dette kan ikke angres."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Denne brukeren har ingen aktive økter."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Dette tilbakestiller «{settingNameLabel}» til standardverdien (tom)."
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Dette tilbakestiller «{settingNameLabel}» til standardverdien ({defaultLabel})."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Dette tilbakestiller alle preferanser til standardverdiene."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Dette vil tilbakestille visningsinnstillingene til standardverdiene."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Dette tilbakestiller disse preferansene til standardverdiene."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Emner"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "På reise"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Prøv å justere søkekriteriene dine"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Last opp"
 msgid "Upload progress"
 msgstr "Fremdrift for opplasting"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "URL å omdirigere til"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Bruk *.domain.com for jokerdomener"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Bruk en sikkerhetsnøkkel, fingeravtrykk eller ansiktsgjenkjenning."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Bruk passnøkkelen din"
@@ -4372,10 +4305,6 @@ msgstr "Verifiser e-postadresse"
 msgid "Version"
 msgstr "Versjon"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Via relé"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Videominiatyr"
@@ -4393,10 +4322,6 @@ msgstr "Vis alle varsler"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Vis og rediger elementdetaljer"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Vis og tilbakekall aktive økter for denne brukeren."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "X-klienthemmelighet"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "År"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Du kan administrere disse stiene: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

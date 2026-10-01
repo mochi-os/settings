@@ -57,6 +57,19 @@ msgstr "(juma)"
 msgid "[not set]"
 msgstr "[jan uskuta]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} reserva} other {{held} / {maximum} reservanaka}} · {1, plural, one {{circuits} circuito} other {{circuits} circuitonaka}} · {2, plural, one {{refused} jarkʼata} other {{refused} jarkʼata}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} phuqhata} other {{succeeded} phuqhata}} · {1, plural, one {{failed} pantjata} other {{failed} pantjata}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# manqhankiri} other {+# manqhankiri}}"
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {Staff yatiyäwi} other {Staff yatiyäwinaka}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {# sesión aparata} other {# sesionanaka aparata}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {{first}–{last} uñstayasa, {total} apnaqirita} other {{first}–{last} uñstayasa, {total} apnaqirinakata}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · push yatiyawi"
 msgid "{0} (development)"
 msgstr "{0} (desarrollo)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} reservanaka · {2} circuitos · {3} jarkʼata"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} phuqhata · {1} pantjata"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {# jiltawa} other {# jiltawa}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#sem} other {#sem}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} jiltawa"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} {to} kama"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · aplicación"
 
@@ -160,6 +172,10 @@ msgstr "{name} · push yatiyawi"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} resignasta — gantata!"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · relay tuqi"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Yant'awi # cheqaru khitanitawa} other {Yant'awi # cheqanakaru khitanitawa}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {Yant'awi # cheqaru khitanitawa} other {Yant'awi # ch
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} / {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {Yant'awi {sent} cheqaru khitanitawa, # cheqata} other {Yant'awi {sent} cheqaru khitanitawa, # cheqanakata}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# yänaka} other {# yänaka}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# yänaka} other {# yänaka}}"
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {1 kutsuwi} other {# mayamp kutsuwinaka}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Cuenta"
 msgid "Account added"
 msgstr "Cuenta yapxatata"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Cuenta chikthapita"
 
@@ -295,14 +318,6 @@ msgstr "Mä machaq cuenta yapxataña"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Mä machaq campo yapxataña aka classnru"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Mä machaq thaki yapxataña {domain}-ru"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Mä machaq thaki yapxataña {domain}-ru. Aka thakhinaka apnaqasma:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Munawi jiltayaña"
 msgid "Border colour"
 msgstr "Borde colora"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Difusión mesh"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Cartan saynata"
 msgid "Categories"
 msgstr "Kastanaka"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Yatiyäwinakapan kastapa"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Aka yatiyäwinakan kastapa"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Jichha yatiyäwinak mayjt'ayaña uka:"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Jumäwa sañ yatiyma"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Chinjata"
@@ -922,10 +932,6 @@ msgstr "Chinjat cuentanaka"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Mayacht'asiskiwa..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Mä administradorimpi parlt'aña delegación jaqañataki."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Janiw cuentamax jist'antañ atkiti"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Janiw jamuqañ atkiti. Jumpach ajlliñma ukat jamuqañma."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Janiw cuenta chinjañ atkiti"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "{entityLabel} luraña"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "Mä TXT record luraña aka taqi:"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "<0>{record}</0> layku mä TXT registro luram"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1058,10 +1063,6 @@ msgstr "Jichha cheqa"
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
 msgstr "Sapa"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
-msgstr "Sapa lurata"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Dark"
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Jark'ata"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Jaqsuña"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "¿Qillqäwi jaqsuñati?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "¿Jan imat mayjt'awinaka jaqsuñati?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,6 +1347,7 @@ msgstr "Apaqaña"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
 msgstr "Uñacht'awi"
 
@@ -1487,11 +1494,6 @@ msgstr "{0} opción askichaña"
 msgid "Edit route"
 msgstr "Ruta askichaña"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "{0} thakhin rutapa askichaña"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Ajllita tarjeta askichaña"
@@ -1517,10 +1519,6 @@ msgstr "Email"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "Email código"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Wakischa thakhix dominio taypin acceso churi"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "Google cliente ID"
 msgid "Google client secret"
 msgstr "Google client imantata"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Mä apnaqirir permiso churaña {domain} rutanak apnaqañataki"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Grupo"
@@ -2026,11 +2020,6 @@ msgstr "Akham tamachaña"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Tama: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Jach'a prioridad rutanakax nayraqatawa kuptaña"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Teclado atajonaka"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Uñt'ata"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Uñt'ata {known} · Chinjata {linked} · Yatiyaw llika {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Qhipïr apnaqata"
 msgid "Layout"
 msgstr "Diseño"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Root thakhitakix wakischa jaytaña"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Qillqanaka, jakhunaka, ch'usanaka, jisk'a chimpunaka ukat k'umu chimpunakakiwa"
@@ -2220,8 +2205,7 @@ msgstr "Enlace"
 msgid "Link account"
 msgstr "Cuenta enlazaña"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} enlazatawa"
 
@@ -2423,6 +2407,10 @@ msgstr "Modelo"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Moderación"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Mayjt'ata"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Passkey suti"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Mantañ llawix janiw yapxatatäkiti"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Passkey qillqata"
 
@@ -2909,7 +2901,7 @@ msgstr "Contraseña parlana"
 msgid "Path"
 msgstr "Thakhi"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Thakhi jan permitita. Akan rutanak yapxatañ atipta: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Qillqantaña"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Passkey qillqantma"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Qillqantaña jaytata"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Aka códigonak imaña"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Thaqhama"
 
@@ -3579,16 +3568,6 @@ msgstr "Jaqi ajlliña..."
 msgid "Select previous card"
 msgstr "Nayrïr tarjeta ajlliña"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Kawkïr app ruta apayañasa, uka ajlliña"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Kawkïr entidad ruta apayañasa, uka ajlliña"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Servidor juch'a"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Servidor reglas"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Servidor reglas, condicionanaka, ukat privacidad notificación apnaqirinakamar uñstayata"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Camponaka uñstayaña"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Aka yanapt'aña uñstayaña"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "{0}-{1} uñstayasa, {2} apnaqirinakata"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Yant'aña"
 msgid "Test failed"
 msgstr "Yant'awix jan walt'awiyat"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Yant'awi apayata: {sent}/{total}"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Texto"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Uka cuentax mä mayni apnaqirimp juntayatawa"
 
@@ -3905,8 +3868,7 @@ msgstr "Uka codigox jan walikiti jan ukax tukutawa."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Janiw apayañjamäkiti. Archivonakax sinti jach'aspawa, jan ukax conexionamax t'unjasiwa. Jisk'a archivonak yant'am."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Uka emailax mä mayni cuentamp registratawa"
 
@@ -3914,10 +3876,6 @@ msgstr "Uka emailax mä mayni cuentamp registratawa"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Apkatañatakix sinti jach'awa. Archivonak apsum jan ukax jisk'aptayam, ukat wasitat yant'am."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "\"Jan yatiyawinaka\" categoría aka ukar juntayata mä temax amukt'ayi."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Aka aplicacionax janiw passkeymamp apnaqañ yatiykiti. Ajustes ukan, Per
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Akax mä phuqhata qillqarawi, aka jan ukax yaqha Mochi servidoran kuttʼayasma. Sarantañataki jumäwa sañ yatiyma."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Akax cuentaman mä jan walt'awi jarktʼäwiwa. Sarantañataki jumäwa sañ yatiyma."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Aka anatawixa aruskipäwipampi chhaqtayani. Janiw kuttʼayasiñäkiti."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Aka wikix mä origen wikir suscribita, ukatpach machaqanak katuqi."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Akax \"{settingNameLabel}\" ukax nayra chaninkamaw kuttayani (ch'usa)."
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Akax \"{settingNameLabel}\" ukax nayra chanipar kuttayani ({defaultLabel})."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Akax jist'arata disputa resolveni."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Aka uñjañ chimpunakx tukuypiman kutiyaniwa."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Akax aka ajllinak nayrir chimpunakaparu kutt'ayani."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Temas"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "Sarnaqaskiwa"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Thaqhañ términonak yapxat'am yant'am"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Apkataña"
 msgid "Upload progress"
 msgstr "Apkatäwi sarantawi"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "US dollar"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Yaqha cuenta apnaqam"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Mä autenticador app código apnaqam mantañataki"
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Passkey ukma apnaqama"
@@ -4372,10 +4305,6 @@ msgstr "Passkey ukamp verificaña"
 msgid "Version"
 msgstr "Versión"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Relay tuqi"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Video uñacht'awi"
@@ -4393,10 +4322,6 @@ msgstr "Taqi posts uñjaña"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Aka apnaqirin activa sesionanak uñjaña ukat jaytaña."
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Aka apnaqirin sesionanakap uñjam ukat jaytam."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "Maranchata"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Mara"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Aka thakhinaka apnaqasma: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

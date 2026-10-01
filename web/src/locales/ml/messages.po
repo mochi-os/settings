@@ -57,6 +57,19 @@ msgstr "(നിങ്ങൾ)"
 msgid "[not set]"
 msgstr "[സജ്ജമാക്കിയിട്ടില്ല]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} റിസർവേഷൻ} other {{held} / {maximum} റിസർവേഷനുകൾ}} · {1, plural, one {{circuits} സർക്യൂട്ട്} other {{circuits} സർക്യൂട്ടുകൾ}} · {2, plural, one {{refused} നിരസിച്ചു} other {{refused} നിരസിച്ചു}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} വിജയിച്ചു} other {{succeeded} വിജയിച്ചു}} · {1, plural, one {{failed} പരാജയപ്പെട്ടു} other {{failed} പരാജയപ്പെട്ടു}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# നെസ്റ്റഡ്} other {+# നെസ്�
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {1 സെഷൻ റദ്ദാക്കി} other {# സെഷനുകൾ റദ്ദാക്കി}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {# സെഷൻ റദ്ദാക്കി} other {# സെഷനുകൾ റദ്ദാക്കി}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {{total} ഉപയോക്താവിൽ {first}–{last} കാണിക്കുന്നു} other {{total} ഉപയോക്താക്കളിൽ {first}–{last} കാണിക്കുന്നു}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · പുഷ്"
 msgid "{0} (development)"
 msgstr "{0} (വികസനം)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} റിസർവേഷനുകൾ · {2} സർക്യൂട്ടുകൾ · {3} നിരസിച്ചു"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} വിജയിച്ചു · {1} പരാജയപ്പെട്ടു"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {# ബാക്കി} other {# ബാക്കി}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#മി} other {#മി}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#ആ} other {#ആ}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} ബാക്കി"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} മുതൽ {to} വരെ"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · ആപ്പ്"
 
@@ -160,6 +172,10 @@ msgstr "{name} · പുഷ്"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} സമനില വാഗ്ദാനം ചെയ്തു"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · റിലേ വഴി"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {# ലക്ഷ്യസ്ഥാനത്തേക്ക് പരിശോധന അയച്ചു} other {# ലക്ഷ്യസ്ഥാനങ്ങളിലേക്ക് പരിശോധന അയച്ചു}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {# ലക്ഷ്യസ്ഥാനത്തേക�
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{totalLabel}-ൽ {sentLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {# ലക്ഷ്യസ്ഥാനത്തിൽ {sent} എണ്ണത്തിലേക്ക് പരിശോധന അയച്ചു} other {# ലക്ഷ്യസ്ഥാനങ്ങളിൽ {sent} എണ്ണത്തിലേക്ക് പരിശോധന അയച്ചു}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# ഇനം} other {# ഇനങ്ങൾ}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# ഇനം} other {# ഇനങ്ങൾ}}"
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# മറുപടി} other {+# കൂടുതൽ മറുപടികൾ}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "അക്കൗണ്ട്"
 msgid "Account added"
 msgstr "അക്കൗണ്ട് ചേർത്തു"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "അക്കൗണ്ട് ലിങ്ക് ചെയ്തു"
 
@@ -295,14 +318,6 @@ msgstr "ഒരു പുതിയ അക്കൗണ്ട് ചേർക്ക
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "ഈ ക്ലാസിലേക്ക് ഒരു പുതിയ ഫീൽഡ് ചേർക്കുക"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "{domain}-ലേക്ക് ഒരു പുതിയ റൂട്ട് ചേർക്കുക"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "{domain}-ലേക്ക് ഒരു പുതിയ റൂട്ട് ചേർക്കുക. നിങ്ങൾക്ക് ഈ പാതകൾ കൈകാര്യം ചെയ്യാം:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "താൽപ്പര്യം വർദ്ധിപ്പിക്ക�
 msgid "Border colour"
 msgstr "ബോർഡർ നിറം"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "ബ്രോഡ്കാസ്റ്റ് മെഷ്"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "കാർഡ് ശൈലി"
 msgid "Categories"
 msgstr "വിഭാഗങ്ങൾ"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "അതിന്റെ അറിയിപ്പുകൾക്കുള്ള വിഭാഗം"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "ഈ അറിയിപ്പുകൾക്കുള്ള വിഭാഗം"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "നിലവിലെ അറിയിപ്പുകൾ ഇതിലേക്ക് മാറ്റുക"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "നിങ്ങളാണെന്ന് സ്ഥിരീകരിക�
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "കണക്റ്റ് ചെയ്തു"
@@ -922,10 +932,6 @@ msgstr "കണക്റ്റ് ചെയ്ത അക്കൗണ്ടുക�
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "ബന്ധിപ്പിക്കുന്നു..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "ഒരു ഡെലിഗേഷൻ ലഭിക്കാൻ ഒരു അഡ്മിനിസ്ട്രേറ്ററെ ബന്ധപ്പെടുക."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "നിങ്ങളുടെ അക്കൗണ്ട് അടയ്ക�
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "കോഡുകൾ പകർത്താനായില്ല. അവ തിരഞ്ഞെടുത്ത് സ്വയം പകർത്തുക."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "അക്കൗണ്ട് ലിങ്ക് ചെയ്യാൻ കഴിഞ്ഞില്ല"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "{entityLabel} സൃഷ്ടിക്കുക"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "ഇതിനായി ഒരു TXT റെക്കോർഡ് സൃഷ്ടിക്കുക"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "<0>{record}</0> എന്നതിനായി ഒരു TXT റെക്കോർഡ് സൃഷ്ടിക്കുക"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1058,10 +1063,6 @@ msgstr "നിലവിലെ സ്ഥാനം"
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
 msgstr "ഇഷ്ടാനുസൃതം"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
-msgstr "ഇഷ്ടാനുസൃതമാക്കിയത്"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Dark"
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "പ്രവർത്തനരഹിതം"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "ഉപേക്ഷിക്കുക"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "ഡ്രാഫ്റ്റ് ഉപേക്ഷിക്കണോ?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "സംരക്ഷിക്കാത്ത മാറ്റങ്ങൾ ഉപേക്ഷിക്കണോ?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,8 +1347,9 @@ msgstr "ഒഴിവാക്കുക"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
-msgstr "പ്രദർശിപ്പിക്കുക"
+msgstr "ഡിസ്പ്ലേ"
 
 #: src/features/user/display.tsx
 msgid "Display reset to defaults"
@@ -1487,11 +1494,6 @@ msgstr "ഓപ്ഷൻ {0} എഡിറ്റ് ചെയ്യുക"
 msgid "Edit route"
 msgstr "റൂട്ട് എഡിറ്റ് ചെയ്യുക"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "പാത {0}-നുള്ള റൂട്ട് എഡിറ്റ് ചെയ്യുക"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "തിരഞ്ഞെടുത്ത കാർഡ് എഡിറ്റ് ചെയ്യുക"
@@ -1517,10 +1519,6 @@ msgstr "ഇമെയിൽ"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "ഇമെയിൽ കോഡ്"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "ശൂന്യമായ പാത്ത് മുഴുവൻ ഡൊമെയിൻ ആക്സസ് നൽകുന്നു"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "Google ക്ലയന്റ് ID"
 msgid "Google client secret"
 msgstr "Google ക്ലയന്റ് രഹസ്യം"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "{domain}-ലെ റൂട്ടുകൾ കൈകാര്യം ചെയ്യാൻ ഒരു ഉപയോക്താവിന് അനുമതി നൽകുക"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "ഗ്രൂപ്പ്"
@@ -2026,11 +2020,6 @@ msgstr "ഇത് പ്രകാരം ഗ്രൂപ്പുചെയ്യ�
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "ഗ്രൂപ്പ്: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "ഉയർന്ന മുൻഗണനയുള്ള റൂട്ടുകൾ ആദ്യം പൊരുത്തപ്പെടുത്തുന്നു"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "കീബോർഡ് കുറുക്കുവഴികൾ"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "അറിയപ്പെടുന്നവ"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "അറിയപ്പെടുന്നവ {known} · കണക്റ്റ് ചെയ്തവ {linked} · ബ്രോഡ്കാസ്റ്റ് മെഷ് {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "അവസാനമായി ഉപയോഗിച്ചത്"
 msgid "Layout"
 msgstr "ലേഔട്ട്"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "റൂട്ട് പാത്തിനായി ശൂന്യമായി വിടുക"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "അക്ഷരങ്ങൾ, അക്കങ്ങൾ, സ്പേസുകൾ, ഹൈഫനുകൾ, സ്ലാഷുകൾ മാത്രം"
@@ -2220,8 +2205,7 @@ msgstr "ലിങ്ക്"
 msgid "Link account"
 msgstr "അക്കൗണ്ട് ലിങ്ക് ചെയ്യുക"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} ലിങ്ക് ചെയ്തു"
 
@@ -2423,6 +2407,10 @@ msgstr "മോഡൽ"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "മോഡറേഷൻ"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "പരിഷ്കരിച്ചത്"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "പാസ്കീ പേര്"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "പാസ്കീ ചേർത്തില്ല"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "പാസ്കീ രജിസ്റ്റർ ചെയ്തു"
 
@@ -2909,7 +2901,7 @@ msgstr "രഹസ്യ വാക്യം"
 msgid "Path"
 msgstr "പാത്ത്"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "പാത അനുവദനീയമല്ല. നിങ്ങൾക്ക് {0}-ന് കീഴിൽ മാത്രമേ റൂട്ടുകൾ ചേർക്കാൻ കഴിയൂ"
@@ -3137,10 +3129,6 @@ msgstr "രജിസ്റ്റർ ചെയ്യുക"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "രജിസ്ട്രേഷൻ റദ്ദാക്കി"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "രജിസ്ട്രേഷൻ പ്രവർത്തനരഹിതമാക്കി"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "ഈ കോഡുകൾ സേവ് ചെയ്യുക"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "തിരയുക"
 
@@ -3579,16 +3568,6 @@ msgstr "വ്യക്തിയെ തിരഞ്ഞെടുക്കുക..
 msgid "Select previous card"
 msgstr "മുൻ കാർഡ് തിരഞ്ഞെടുക്കുക"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "റൂട്ട് ചെയ്യാൻ ആപ്പ് തിരഞ്ഞെടുക്കുക"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "റൂട്ട് ചെയ്യാൻ എന്റിറ്റി തിരഞ്ഞെടുക്കുക"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "സെർവർ പിശക്"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "സെർവർ നിയമങ്ങൾ"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "നിങ്ങളുടെ ഉപയോക്താക്കൾക്ക് കാണിക്കുന്ന സെർവർ നിയമങ്ങൾ, നിബന്ധനകളും വ്യവസ്ഥകളും, സ്വകാര്യതാ അറിയിപ്പ്"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "ഫീൽഡുകൾ കാണിക്കുക"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "ഈ സഹായം കാണിക്കുക"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "{2} ഉപയോക്താക്കളിൽ {0}-{1} കാണിക്കുന്നു"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "ടെസ്റ്റ്"
 msgid "Test failed"
 msgstr "ടെസ്റ്റ് പരാജയപ്പെട്ടു"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "{total}ൽ {sent} ലക്ഷ്യങ്ങളിലേക്ക് പരീക്ഷണം അയച്ചു"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "ടെക്സ്റ്റ്"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "ആ അക്കൗണ്ട് ഇതിനകം മറ്റൊരു ഉപയോക്താവുമായി ലിങ്ക് ചെയ്തിരിക്കുന്നു"
 
@@ -3905,8 +3868,7 @@ msgstr "ആ കോഡ് തെറ്റാണ് അല്ലെങ്കിൽ
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "അയയ്ക്കാനായില്ല. ഫയലുകൾ വളരെ വലുതാകാം, അല്ലെങ്കിൽ നിങ്ങളുടെ കണക്ഷൻ പരാജയപ്പെട്ടു. ചെറിയ ഫയലുകൾ ശ്രമിക്കുക."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "ആ ഇമെയിൽ ഇതിനകം മറ്റൊരു അക്കൗണ്ടിൽ രജിസ്റ്റർ ചെയ്തിരിക്കുന്നു"
 
@@ -3914,10 +3876,6 @@ msgstr "ആ ഇമെയിൽ ഇതിനകം മറ്റൊരു അക�
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "അപ്‌ലോഡ് ചെയ്യാൻ വളരെ വലുതായിരുന്നു. ഫയലുകൾ നീക്കം ചെയ്യുകയോ ചെറുതാക്കുകയോ ചെയ്ത് വീണ്ടും ശ്രമിക്കുക."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "\"അറിയിപ്പുകളില്ല\" വിഭാഗം അതിലേക്ക് നിയോഗിച്ച ഏത് വിഷയത്തെയും നിശബ്ദമാക്കുന്നു."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "ഈ ആപ്പിന് നിങ്ങളുടെ പാസ്കീ
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "ഇത് ഈ Mochi സെർവറിലോ മറ്റൊരു Mochi സെർവറിലോ പുനഃസ്ഥാപിക്കാവുന്ന ഒരു സമ്പൂർണ്ണ ബാക്കപ്പാണ്. തുടരാൻ നിങ്ങളാണെന്ന് സ്ഥിരീകരിക്കുക."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "ഇത് നിങ്ങളുടെ അക്കൗണ്ടിലെ ഒരു സുരക്ഷാ മാറ്റമാണ്. തുടരാൻ നിങ്ങളാണെന്ന് സ്ഥിരീകരിക്കുക."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "ഇത് ഗെയിമും അതിന്റെ ചാറ്റും ശാശ്വതമായി ഇല്ലാതാക്കും. ഈ പ്രവർത്തി പഴയപടിയാക്കാൻ കഴിയില്ല."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "ഈ ഉപയോക്താവിന് സജീവ സെഷനുകൾ ഒന്നുമില്ല."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "ഇത് \"{settingNameLabel}\" അതിന്റെ സ്ഥിര�
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "ഇത് \"{settingNameLabel}\" അതിന്റെ സ്ഥിരസ്ഥിതി മൂല്യത്തിലേക്ക് ({defaultLabel}) റീസെറ്റ് ചെയ്യും."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "ഇത് എല്ലാ മുൻഗണനകളും അവയുടെ സ്ഥിരസ്ഥിതി മൂല്യങ്ങളിലേക്ക് റീസെറ്റ് ചെയ്യും."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "ഇത് ഡിസ്പ്ലേ ക്രമീകരണങ്ങളെ അവയുടെ സ്ഥിരസ്ഥിതി മൂല്യങ്ങളിലേക്ക് പുനഃക്രമീകരിക്കും."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "ഇത് ഈ മുൻഗണനകളെ അവയുടെ ഡിഫോൾട്ട് മൂല്യങ്ങളിലേക്ക് റീസെറ്റ് ചെയ്യും."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "വിഷയങ്ങൾ"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "യാത്ര ചെയ്യുന്നു"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "നിങ്ങളുടെ തിരയൽ മാനദണ്ഡങ്ങൾ ക്രമീകരിക്കാൻ ശ്രമിക്കുക"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "അപ്‌ലോഡ് ചെയ്യുക"
 msgid "Upload progress"
 msgstr "അപ്‌ലോഡ് പുരോഗതി"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "റീഡയറക്ട് ചെയ്യാനുള്ള URL"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "വൈൽഡ്‌കാർഡ് ഡൊമെയ്‌നുകൾക്കായി *.domain.com ഉപയോഗിക്കുക"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "സെക്യൂരിറ്റി കീ, ഫിംഗർപ്രിന്റ് അല്ലെങ്കിൽ ഫേസ് റെക്കഗ്നിഷൻ ഉപയോഗിക്കുക."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "നിങ്ങളുടെ പാസ്‌കീ ഉപയോഗിക്കുക"
@@ -4372,10 +4305,6 @@ msgstr "ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്�
 msgid "Version"
 msgstr "പതിപ്പ്"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "റിലേ വഴി"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "വീഡിയോ തംബ്നെയിൽ"
@@ -4393,10 +4322,6 @@ msgstr "എല്ലാ അറിയിപ്പുകളും കാണുക"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "ഇനത്തിന്റെ വിശദാംശങ്ങൾ കാണുകയും എഡിറ്റ് ചെയ്യുകയും ചെയ്യുക"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "ഈ ഉപയോക്താവിനായുള്ള സജീവ സെഷനുകൾ കാണുകയും റദ്ദാക്കുകയും ചെയ്യുക."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "X ക്ലയന്റ് സീക്രട്ട്"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "വർഷം"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "നിങ്ങൾക്ക് ഈ പാത്തുകൾ കൈകാര്യം ചെയ്യാം: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

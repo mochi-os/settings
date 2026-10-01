@@ -57,6 +57,19 @@ msgstr "(ju)"
 msgid "[not set]"
 msgstr "[i pavendosur]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} rezervim} other {{held} / {maximum} rezervime}} · {1, plural, one {{circuits} qark} other {{circuits} qarqe}} · {2, plural, one {{refused} i refuzuar} other {{refused} të refuzuar}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} i suksesshëm} other {{succeeded} të suksesshme}} · {1, plural, one {{failed} i dështuar} other {{failed} të dështuara}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# i ndërfutur} other {+# të ndërfutur}}"
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {U revokua 1 sesion} other {U revokuan # sesione}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {U revokua # sesion} other {U revokuan # sesione}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {Duke shfaqur {first}–{last} nga {total} përdorues} other {Duke shfaqur {first}–{last} nga {total} përdorues}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · njoftime push"
 msgid "{0} (development)"
 msgstr "{0} (zhvillim)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} rezervime · {2} qarqe · {3} refuzuar"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} të suksesshme · {1} të dështuara"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {# i mbetur} other {# të mbetura}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#javë} other {#javë}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} të mbetura"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "nga {from} deri në {to}"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · aplikacion"
 
@@ -160,6 +172,10 @@ msgstr "{name} · njoftime push"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} ofroi një barazim"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · me rele"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Testi u dërgua te # destinacion} other {Testi u dërgua te # destinacione}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {Testi u dërgua te # destinacion} other {Testi u dë
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} nga {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {Testi u dërgua te {sent} nga # destinacion} other {Testi u dërgua te {sent} nga # destinacione}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# artikull} other {# artikuj}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# artikull} other {# artikuj}}"
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# përgjigje} other {+# përgjigje të tjera}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Llogaria"
 msgid "Account added"
 msgstr "Llogaria u shtua"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Llogaria u lidh"
 
@@ -295,14 +318,6 @@ msgstr "Shto një llogari të re"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Shto një fushë të re në këtë klasë"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Shto një rrugë të re te {domain}"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Shto një rrugë të re te {domain}. Mund të menaxhoni këto shtigje:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Rrit interesin"
 msgid "Border colour"
 msgstr "Ngjyra e kornizës"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Mesh i transmetimit"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Stili i kartës"
 msgid "Categories"
 msgstr "Kategoritë"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Kategoria për njoftimet e saj"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Kategoria për këto njoftime"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Ndrysho njoftimet aktuale në"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Konfirmoni se jeni ju"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "I lidhur"
@@ -922,10 +932,6 @@ msgstr "Llogaritë e lidhura"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Po lidhet..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Kontakto një administrator për të marrë një delegim."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Llogaria juaj nuk mund të mbyllej"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kodet nuk u kopjuan dot. Zgjidhini dhe kopjojini manualisht."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Nuk mund të lidhej llogaria"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "Krijo {entityLabel}"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "Krijo një rekord TXT për"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "Krijoni një rekord TXT për <0>{record}</0>"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1058,10 +1063,6 @@ msgstr "Vendndodhja aktuale"
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
 msgstr "Personalizuar"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
-msgstr "I personalizuar"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Dark"
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "I çaktivizuar"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Hidh"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "Ta hedhësh draftin?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "Të hidhen ndryshimet e paruajtura?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,6 +1347,7 @@ msgstr "Hidhe"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
 msgstr "Shfaqja"
 
@@ -1487,11 +1494,6 @@ msgstr "Modifiko opsionin {0}"
 msgid "Edit route"
 msgstr "Modifiko rrugën"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "Modifiko rrugën për shtegun: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Modifiko kartën e zgjedhur"
@@ -1517,10 +1519,6 @@ msgstr "Email"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "Kodi me email"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Shtegu bosh jep qasje të plotë në domain"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "ID e klientit Google"
 msgid "Google client secret"
 msgstr "Sekreti i klientit Google"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Jepi një përdoruesi lejen për të menaxhuar rrugët në {domain}"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Grupi"
@@ -2026,11 +2020,6 @@ msgstr "Grupo sipas"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Grupi: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Rrugët me përparësi më të lartë përputhen të parat"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Shkurtoret e tastierës"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Të njohur"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Të njohur {known} · Të lidhur {linked} · Mesh i transmetimit {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Përdorur së fundmi"
 msgid "Layout"
 msgstr "Paraqitja"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Lini bosh për shtegun rrënjë"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Vetëm shkronja, numra, hapësira, vija ndarëse dhe vija të pjerrëta"
@@ -2220,8 +2205,7 @@ msgstr "Lidhje"
 msgid "Link account"
 msgstr "Lidh llogarinë"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "U lidh {label}"
 
@@ -2423,6 +2407,10 @@ msgstr "Modeli"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Moderimi"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "I modifikuar"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Emri i kyçit"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Kyçi nuk u shtua"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Kyçi u regjistrua"
 
@@ -2909,7 +2901,7 @@ msgstr "Fjalëkalim"
 msgid "Path"
 msgstr "Shtegu"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Shtegu nuk lejohet. Mund të shtoni rrugë vetëm nën: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Regjistrohu"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Regjistro kyçin"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Regjistrimi u anulua"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Ruaj këto kode"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Kërko"
 
@@ -3579,16 +3568,6 @@ msgstr "Zgjidhni një person..."
 msgid "Select previous card"
 msgstr "Zgjidh kartën e mëparshme"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Zgjidh aplikacionin për ridrejtim"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Zgjidh entitetin për ridrejtim"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Gabim serveri"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Rregullat e serverit"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Rregullat e serverit, kushtet dhe njoftimi i privatësisë që u shfaqen përdoruesve tuaj"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Shfaq fushat"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Shfaq këtë ndihmë"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "Duke shfaqur {0}-{1} nga {2} përdorues"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Provo"
 msgid "Test failed"
 msgstr "Testi dështoi"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Testi u dërgua te {sent} nga {total} destinacione"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Teksti"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Ajo llogari është lidhur tashmë me një përdorues tjetër"
 
@@ -3905,8 +3868,7 @@ msgstr "Ai kod është i pasaktë ose ka skaduar."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Nuk mund të dërgohej. Skedarët mund të jenë tepër të mëdhenj, ose lidhja juaj dështoi. Provo skedarë më të vegjël."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Ai email është regjistruar tashmë te një llogari tjetër"
 
@@ -3914,10 +3876,6 @@ msgstr "Ai email është regjistruar tashmë te një llogari tjetër"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Ishte tepër i madh për t'u ngarkuar. Hiq ose zvogëlo skedarë dhe provo përsëri."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "Kategoria \"Pa njoftime\" heshton çdo temë të caktuar tek ajo."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Ky aplikacion nuk lejohet të përdorë kyçin tuaj. Lejojeni te Cilësi
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Ky është një kopje rezervë e plotë që mund ta riktheni në këtë ose në një server tjetër Mochi. Verifikoni se jeni ju për të vazhduar."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Ky është një ndryshim sigurie në llogarinë tuaj. Verifikoni se jeni ju për të vazhduar."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Kjo do të fshijë përgjithmonë lojën dhe bisedën e saj. Ky veprim nuk mund të zhbëhet."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Ky përdorues nuk ka sesione aktive."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Kjo do të rivendosë \"{settingNameLabel}\" në parazgjedhjen e tij (bo
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Kjo do të rivendosë \"{settingNameLabel}\" në vlerën e tij të parazgjedhur ({defaultLabel})."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Kjo do të rivendosë të gjitha preferencat në vlerat e tyre të parazgjedhura."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Kjo do të rivendosë cilësimet e ekranit në vlerat e tyre të parazgjedhura."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Kjo do t'i rivendosë këto preferenca në vlerat e tyre të parazgjedhura."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Temat"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "Duke udhëtuar"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Provo të rregullosh kriteret e kërkimit"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Ngarko"
 msgid "Upload progress"
 msgstr "Ecuria e ngarkimit"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "URL për ridrejtim"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Përdor *.domain.com për domene me shenjë të gjerë"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Përdor një çelës sigurie, gjurmë gishti ose njohje fytyre."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Përdorni çelësin tuaj të hyrjes"
@@ -4372,10 +4305,6 @@ msgstr "Verifiko adresën e email-it"
 msgid "Version"
 msgstr "Versioni"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Me rele"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Miniatura e videos"
@@ -4393,10 +4322,6 @@ msgstr "Shiko të gjitha njoftimet"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Shiko dhe redakto detajet e artikullit"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Shiko dhe revoko sesionet aktive për këtë përdorues."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "Sekreti i klientit X"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Viti"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Mund t'i menaxhoni këto shtigje: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

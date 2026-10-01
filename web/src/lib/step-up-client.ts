@@ -123,7 +123,7 @@ export const stepUpClient: StepUpClient = {
     }>(endpoints.user.accountOauth)
     return Array.from(new Set((identities ?? []).map((i) => i.provider)))
   },
-  oauthVerify: async (provider) => {
+  oauthVerify: async (provider, signal) => {
     const verifier = randomVerifier()
     const challenge = await challengeFor(verifier)
     const { url } = await requestHelpers.post<{ url: string }>(
@@ -133,12 +133,14 @@ export const stepUpClient: StepUpClient = {
     )
     // In the sandboxed shell iframe window.open returns null even though the
     // popup opens, so null is not failure: poll for the proof either way, and
-    // use popup.closed for fast cancellation only when a handle exists.
+    // use popup.closed for fast cancellation only when a handle exists. The
+    // dialog aborts `signal` when it is dismissed, which ends the polling.
     const popup = window.open(url, 'mochi-oauth-stepup', 'width=520,height=680')
+    signal.addEventListener('abort', () => popup?.close(), { once: true })
     const deadline = Date.now() + 120_000
     let closedAt = 0
     for (;;) {
-      await new Promise((resolve) => setTimeout(resolve, 800))
+      await pause(800, signal)
       const result = await requestHelpers.post<StepUpResult>(
         endpoints.user.accountOauthVerifyFinish,
         { verifier },
@@ -153,4 +155,23 @@ export const stepUpClient: StepUpClient = {
       if (Date.now() > deadline) throw new Error('oauth-timeout')
     }
   },
+}
+
+// Waits `ms`, or rejects as soon as `signal` aborts.
+function pause(ms: number, signal: AbortSignal): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (signal.aborted) {
+      reject(new Error('oauth-cancelled'))
+      return
+    }
+    const timer = setTimeout(() => {
+      signal.removeEventListener('abort', stop)
+      resolve()
+    }, ms)
+    const stop = () => {
+      clearTimeout(timer)
+      reject(new Error('oauth-cancelled'))
+    }
+    signal.addEventListener('abort', stop, { once: true })
+  })
 }

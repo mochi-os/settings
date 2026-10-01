@@ -5,7 +5,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { act, fireEvent, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen, within } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { UserNotifications } from './notifications'
 
@@ -39,6 +39,15 @@ vi.mock('@mochi/web', async (original) => {
                   id: '8',
                   label: 'Second',
                   default: 0,
+                  created: 0,
+                  destinations: [],
+                },
+                // Seeded: the stored label is English, shown translated.
+                {
+                  id: '1',
+                  label: 'Normal',
+                  display: 'Normale',
+                  default: 1,
                   created: 0,
                   destinations: [],
                 },
@@ -77,5 +86,54 @@ describe('Notification categories', () => {
     expect(state.post).toHaveBeenCalledTimes(1)
     await act(async () => finish({ sent: 1, failed: 0, total: 1, web: false }))
     expect(test).not.toBeDisabled()
+  })
+})
+
+describe('Editing a seeded category', () => {
+  function show() {
+    render(
+      <QueryClientProvider client={new QueryClient()}>
+        <I18nProvider i18n={i18n}>
+          <UserNotifications />
+        </I18nProvider>
+      </QueryClientProvider>
+    )
+  }
+
+  async function edit() {
+    const row = (await screen.findByText('Normale')).closest(
+      'div.flex-col'
+    ) as HTMLElement
+    fireEvent.click(within(row).getByRole('button', { name: /Edit/ }))
+    return screen.getByRole('dialog')
+  }
+
+  const sent = () =>
+    new URLSearchParams(state.post.mock.lastCall?.[1] as string).get('label')
+
+  it('shows the name the list shows, and keeps the stored label', async () => {
+    state.post.mockReset().mockResolvedValue({})
+    show()
+    const dialog = await edit()
+    expect(within(dialog).getByLabelText('Name')).toHaveValue('Normale')
+    fireEvent.click(within(dialog).getByRole('switch', { name: 'Web browser' }))
+    await act(async () => {
+      fireEvent.click(within(dialog).getByRole('button', { name: /Save/ }))
+    })
+    // Saving a destination change must not store the translation as the name.
+    expect(sent()).toBe('Normal')
+  })
+
+  it('sends a name the user typed', async () => {
+    state.post.mockReset().mockResolvedValue({})
+    show()
+    const dialog = await edit()
+    fireEvent.change(within(dialog).getByLabelText('Name'), {
+      target: { value: 'Everyday' },
+    })
+    await act(async () => {
+      fireEvent.click(within(dialog).getByRole('button', { name: /Save/ }))
+    })
+    expect(sent()).toBe('Everyday')
   })
 })

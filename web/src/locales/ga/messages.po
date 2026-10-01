@@ -57,6 +57,19 @@ msgstr "(tusa)"
 msgid "[not set]"
 msgstr "[gan socrú]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} áirithint} two {{held} / {maximum} áirithint} few {{held} / {maximum} áirithint} many {{held} / {maximum} n-áirithint} other {{held} / {maximum} áirithintí}} · {1, plural, one {{circuits} ciorcad} two {{circuits} chiorcad} few {{circuits} chiorcad} many {{circuits} gciorcad} other {{circuits} ciorcaid}} · {2, plural, one {{refused} diúltaithe} two {{refused} diúltaithe} few {{refused} diúltaithe} many {{refused} diúltaithe} other {{refused} diúltaithe}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} rathúil} two {{succeeded} rathúil} few {{succeeded} rathúil} many {{succeeded} rathúil} other {{succeeded} rathúil}} · {1, plural, one {{failed} teipthe} two {{failed} teipthe} few {{failed} teipthe} many {{failed} teipthe} other {{failed} teipthe}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# neadaithe} two {+# neadaithe} few {+# neadaithe} man
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {Cúlghaireadh 1 seisiún} two {Cúlghaireadh # sheisiún} few {Cúlghaireadh # sheisiún} many {Cúlghaireadh # seisiún} other {Cúlghaireadh # seisiúin}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {Cúlghaireadh # seisiún} two {Cúlghaireadh # sheisiún} few {Cúlghaireadh # sheisiún} many {Cúlghaireadh # seisiún} other {Cúlghaireadh # seisiúin}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {Ag taispeáint {first}–{last} as {total} úsáideoir} two {Ag taispeáint {first}–{last} as {total} úsáideoir} few {Ag taispeáint {first}–{last} as {total} úsáideoir} many {Ag taispeáint {first}–{last} as {total} n-úsáideoir} other {Ag taispeáint {first}–{last} as {total} úsáideoir}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · brú"
 msgid "{0} (development)"
 msgstr "{0} (forbairt)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} áirithintí · {2} ciorcaid · {3} diúltaithe"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} rathúil · {1} teipthe"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {# fágtha} two {# fágtha} few {# fágtha} many {# fágtha} other {# fágtha}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#nóim} other {#nóim}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#sea} other {#sea}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} fágtha"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} go {to}"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · aip"
 
@@ -160,6 +172,10 @@ msgstr "{name} · brú"
 msgid "{opponentName} offered a draw"
 msgstr "Mhol {opponentName} comhscór"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · trí athsheachadán"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Seoladh an tástáil chuig # cheann scríbe} two {Seoladh an tástáil chuig # cheann scríbe} few {Seoladh an tástáil chuig # cheann scríbe} many {Seoladh an tástáil chuig # gceann scríbe} other {Seoladh an tástáil chuig # ceann scríbe}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {Seoladh an tástáil chuig # cheann scríbe} two {Se
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} as {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {Seoladh an tástáil chuig {sent} as # cheann scríbe} two {Seoladh an tástáil chuig {sent} as # cheann scríbe} few {Seoladh an tástáil chuig {sent} as # cheann scríbe} many {Seoladh an tástáil chuig {sent} as # gceann scríbe} other {Seoladh an tástáil chuig {sent} as # ceann scríbe}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# mhír} two {# mhír} few {# mhír} many {# mír} other {# mír}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# mhír} two {# mhír} few {# mhír} many {# m
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# fhreagra} two {+# fhreagra eile} few {+# fhreagraí eile} many {+# bhfreagra eile} other {+# freagraí eile}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Cuntas"
 msgid "Account added"
 msgstr "Cuntas curtha leis"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Cuntas nasctha"
 
@@ -295,14 +318,6 @@ msgstr "Cuir cuntas nua leis"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Cuir réimse nua leis an rang seo"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Cuir bealach nua le {domain}"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Cuir bealach nua le {domain}. Is féidir leat na cosáin seo a bhainistiú:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Spreag spéis"
 msgid "Border colour"
 msgstr "Dath na himlíne"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Mogalra craolacháin"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Stíl an chárta"
 msgid "Categories"
 msgstr "Catagóirí"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Catagóir dá fógraí"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Catagóir do na fógraí seo"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Athraigh fógraí reatha go"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Deimhnigh gur tusa atá ann"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Ceangailte"
@@ -922,10 +932,6 @@ msgstr "Cuntais cheangailte"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Ag nascadh..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Téigh i dteagmháil le riarthóir chun tarmligean a fháil."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Níorbh fhéidir do chuntas a dhúnadh"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Níorbh fhéidir na cóid a chóipeáil. Roghnaigh agus cóipeáil de láimh iad."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Níorbh fhéidir an cuntas a nascadh"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "Cruthaigh {entityLabel}"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "Cruthaigh taifead TXT do"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "Cruthaigh taifead TXT do <0>{record}</0>"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1057,10 +1062,6 @@ msgstr "Suíomh reatha"
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
-msgstr "Saincheaptha"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
 msgstr "Saincheaptha"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Díchumasaithe"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Cuir i leataobh"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "An gcuirfear an dréacht i leataobh?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "Cuir athruithe nár sábháladh i leataobh?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,8 +1347,9 @@ msgstr "Dún"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
-msgstr "Taispeáin"
+msgstr "Taispeáint"
 
 #: src/features/user/display.tsx
 msgid "Display reset to defaults"
@@ -1487,11 +1494,6 @@ msgstr "Cuir rogha {0} in eagar"
 msgid "Edit route"
 msgstr "Cuir bealach in eagar"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "Cuir bealach in eagar do chosán: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Cuir cárta roghnaithe in eagar"
@@ -1517,10 +1519,6 @@ msgstr "Ríomhphost"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "Cód ríomhphoist"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Tugann cosán folamh rochtain iomlán ar an bhfearann"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "Aitheantas cliaint Google"
 msgid "Google client secret"
 msgstr "Rún cliaint Google"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Tabhair cead don úsáideoir bealaí a bhainistiú ar {domain}"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Grúpa"
@@ -2026,11 +2020,6 @@ msgstr "Grúpáil de réir"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Grúpa: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Meaitseáiltear bealaí le tosaíocht níos airde ar dtús"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Aicearraí méarchláir"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Ar eolas"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Ar eolas {known} · Ceangailte {linked} · Mogalra craolacháin {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Úsáidte go deireanach"
 msgid "Layout"
 msgstr "Leagan amach"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Fág folamh do chosán fréimhe"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Litreacha, uimhreacha, spásanna, fleiscíní agus slaiseanna amháin"
@@ -2220,8 +2205,7 @@ msgstr "Nasc"
 msgid "Link account"
 msgstr "Nasc cuntas"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} nasctha"
 
@@ -2423,6 +2407,10 @@ msgstr "Samhail"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Modhnóireacht"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Athraithe"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Ainm pasluiche"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Níor cuireadh an pasluiche leis"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Pasluiche cláraithe"
 
@@ -2909,7 +2901,7 @@ msgstr "Frása faire"
 msgid "Path"
 msgstr "Cosán"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Ní cheadaítear an cosán. Ní féidir leat ach bealaí a chur leis faoi: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Cláraigh"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Cláraigh pasluiche"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Cealaíodh an clárú"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Sábháil na cóid seo"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Cuardach"
 
@@ -3579,16 +3568,6 @@ msgstr "Roghnaigh duine..."
 msgid "Select previous card"
 msgstr "Roghnaigh an cárta roimhe seo"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Roghnaigh an aip le cuardach uirthi"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Roghnaigh an t-aonán le cuardach air"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Earráid fhreastalaí"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Rialacha an fhreastalaí"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Rialacha an fhreastalaí, téarmaí agus coinníollacha, agus fógra príobháideachais a thaispeántar do d'úsáideoirí"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Taispeáin réimsí"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Taispeáin an chabhair seo"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "{0}-{1} de {2} úsáideoirí á dtaispeáint"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Tástáil"
 msgid "Test failed"
 msgstr "Theip ar an tástáil"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Seoladh an tástáil chuig {sent} as {total} sprioc"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Téacs"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Tá an cuntas sin ceangailte cheana le húsáideoir eile"
 
@@ -3905,8 +3868,7 @@ msgstr "Tá an cód sin mícheart nó tá sé imithe in éag."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Níorbh fhéidir é a sheoladh. Seans go bhfuil na comhaid rómhór, nó theip ar do nasc. Bain triail as comhaid níos lú."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Tá an ríomhphost sin cláraithe cheana le cuntas eile"
 
@@ -3914,10 +3876,6 @@ msgstr "Tá an ríomhphost sin cláraithe cheana le cuntas eile"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Bhí sé rómhór le huaslódáil. Bain nó laghdaigh comhaid agus bain triail eile as."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "Ciúnaíonn an chatagóir \"Gan fógraí\" aon topaic atá sannta dó."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Níl cead ag an aip seo do phasluí a úsáid. Ceadaigh é i Socruithe, 
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Cúltaca iomlán é seo is féidir leat a athchóiriú ar an bhfreastalaí Mochi seo nó ar cheann eile. Fíoraigh gur tusa atá ann chun leanúint ar aghaidh."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Athrú slándála ar do chuntas é seo. Fíoraigh gur tusa atá ann chun leanúint ar aghaidh."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Scriosfaidh sé seo an cluiche agus a chomhrá go buan. Ní féidir é seo a chur ar ceal."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Níl aon seisiúin ghníomhacha ag an úsáideoir seo."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Athshocróidh sé seo \"{settingNameLabel}\" go dtí a réamhshocrú (fo
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Athshocróidh sé seo \"{settingNameLabel}\" go dtí a luach réamhshocraithe ({defaultLabel})."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Athshocróidh sé seo gach sainrogha go dtí a luachanna réamhshocraithe."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Athshocróidh sé seo socruithe taispeána chuig a luachanna réamhshocraithe."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Athshocróidh sé seo na sainroghanna seo go dtí a luachanna réamhshocraithe."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Topaicí"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "Ag taisteal"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Bain triail as critéir do chuardaigh a choigeartú"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Uaslódáil"
 msgid "Upload progress"
 msgstr "Dul chun cinn an uaslódála"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "URL le hathsheoladh chuige"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Úsáid *.fearann.com le haghaidh fearainn saoróg"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Úsáid eochair slándála, méarlorg nó aitheantas aghaidhe."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Úsáid d'eochair rochtana"
@@ -4372,10 +4305,6 @@ msgstr "Fíoraigh seoladh ríomhphoist"
 msgid "Version"
 msgstr "Leagan"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Trí athsheachadán"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Mionsamhail físeáin"
@@ -4393,10 +4322,6 @@ msgstr "Féach ar gach fógra"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Féach ar shonraí na míre agus cuir in eagar iad"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Féach ar agus cúlghair seisiúin ghníomhacha don úsáideoir seo."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "Rún cliaint X"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Bliain"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Is féidir leat na cosáin seo a bhainistiú: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

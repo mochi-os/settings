@@ -102,7 +102,7 @@ export function UserDisplay() {
   const cardLabels = useCardLabels()
   const fontLabels = useFontLabels()
   const fontSizeLabels = useFontSizeLabels()
-  usePageTitle(t`Display`)
+  usePageTitle(t({ message: 'Display', context: 'settings section' }))
   const { data, isLoading, error, refetch } = usePreferencesData()
   const setPreference = useSetPreference()
   const unsetPreferences = useUnsetPreferences()
@@ -221,7 +221,7 @@ export function UserDisplay() {
   return (
     <>
       <PageHeader
-        title={t`Display`}
+        title={t({ message: 'Display', context: 'settings section' })}
         icon={<Palette className='size-4 md:size-5' />}
         actions={
           !error ? (
@@ -246,6 +246,7 @@ export function UserDisplay() {
                 title={t`Reset display?`}
                 desc={t`This will reset display settings to their default values.`}
                 confirmText={t`Reset`}
+                icon={<RotateCcw className='size-4' />}
                 isLoading={unsetPreferences.isPending}
                 handleConfirm={handleReset}
               />

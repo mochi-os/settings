@@ -144,17 +144,13 @@ def action_user_preferences_set(a):
         if p["type"] == "select" and value not in p["options"]:
             a.error.label(400, "errors.invalid_value_for_key", key=p["key"])
             return
-        # locale-language: BCP 47 tag, lowercase. Accept the value if it
-        # looks plausible — server-side resolver falls back gracefully if
-        # no catalog matches, so we don't need to enforce an installed list.
-        if p["type"] == "locale-language":
-            if len(value) > 35 or len(value) < 2:
-                a.error.label(400, "errors.invalid_value_for_key", key=p["key"])
-                return
-            for ch in value.elems():
-                if not (ch.isalnum() or ch == "-"):
-                    a.error.label(400, "errors.invalid_value_for_key", key=p["key"])
-                    return
+        # locale-language: "auto" or a BCP 47 tag of the shape core stores,
+        # checked with core's own rule. Core refuses any other value by
+        # aborting the action, after the keys before it were written. The
+        # tag need not name an installed catalogue: the resolver falls back.
+        if p["type"] == "locale-language" and value != "auto" and not mochi.text.valid(value.lower(), "locale"):
+            a.error.label(400, "errors.invalid_value_for_key", key=p["key"])
+            return
         # Core refuses an unloadable zone by aborting the action, which the
         # server reports as a 500; answer a clean 400 with the same rule.
         if p["type"] == "timezone" and value not in ("", "auto") and not mochi.text.valid(value, "timezone"):

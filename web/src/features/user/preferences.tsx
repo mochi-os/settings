@@ -204,8 +204,9 @@ export function UserPreferences() {
                 open={showReset}
                 onOpenChange={setShowReset}
                 title={t`Reset preferences?`}
-                desc={t`This will reset all preferences to their default values.`}
+                desc={t`This will reset these preferences to their default values.`}
                 confirmText={t`Reset`}
+                icon={<RotateCcw className='size-4' />}
                 isLoading={unsetPreferences.isPending}
                 handleConfirm={handleReset}
               />

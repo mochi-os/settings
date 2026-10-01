@@ -38,7 +38,7 @@ export function useFilteredSidebarData(
         icon: Sliders,
       },
       {
-        title: t`Display`,
+        title: t({ message: 'Display', context: 'settings section' }),
         url: APP_ROUTES.SETTINGS.USER.DISPLAY,
         icon: Palette,
       },

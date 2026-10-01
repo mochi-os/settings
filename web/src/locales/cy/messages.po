@@ -57,6 +57,19 @@ msgstr "(chi)"
 msgid "[not set]"
 msgstr "[heb ei osod]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, zero {{held} / {maximum} archeb} one {{held} / {maximum} archeb} two {{held} / {maximum} archeb} few {{held} / {maximum} archeb} many {{held} / {maximum} archeb} other {{held} / {maximum} archeb}} · {1, plural, zero {{circuits} cylched} one {{circuits} cylched} two {{circuits} cylched} few {{circuits} cylched} many {{circuits} cylched} other {{circuits} cylched}} · {2, plural, zero {{refused} wedi'u gwrthod} one {{refused} wedi'i wrthod} two {{refused} wedi'u gwrthod} few {{refused} wedi'u gwrthod} many {{refused} wedi'u gwrthod} other {{refused} wedi'u gwrthod}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, zero {{succeeded} yn llwyddiannus} one {{succeeded} yn llwyddiannus} two {{succeeded} yn llwyddiannus} few {{succeeded} yn llwyddiannus} many {{succeeded} yn llwyddiannus} other {{succeeded} yn llwyddiannus}} · {1, plural, zero {{failed} wedi methu} one {{failed} wedi methu} two {{failed} wedi methu} few {{failed} wedi methu} many {{failed} wedi methu} other {{failed} wedi methu}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, zero {+# nythog} one {+# nythog} two {+# nythog} few {+# nyt
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, zero {Diddymwyd 1 sesiwn} one {Diddymwyd 1 sesiwn} two {Diddymwyd # sesiwn} few {Diddymwyd # sesiwn} many {Diddymwyd # sesiwn} other {Diddymwyd # sesiwn}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, zero {Diddymwyd # sesiwn} one {Diddymwyd # sesiwn} two {Diddymwyd # sesiwn} few {Diddymwyd # sesiwn} many {Diddymwyd # sesiwn} other {Diddymwyd # sesiwn}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, zero {Yn dangos {first}–{last} o {total} defnyddiwr} one {Yn dangos {first}–{last} o {total} defnyddiwr} two {Yn dangos {first}–{last} o {total} defnyddiwr} few {Yn dangos {first}–{last} o {total} defnyddiwr} many {Yn dangos {first}–{last} o {total} defnyddiwr} other {Yn dangos {first}–{last} o {total} defnyddiwr}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · gwthio"
 msgid "{0} (development)"
 msgstr "{0} (datblygu)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} archebion · {2} cylchedau · {3} gwrthodwyd"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} llwyddiant · {1} methiant"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, zero {# ar ôl} one {# ar ôl} two {# ar ôl} few {# ar ôl} many {# ar ôl} other {# ar ôl}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#mun} other {#mun}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#wyth} other {#wyth}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} ar ôl"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} i {to}"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · ap"
 
@@ -160,6 +172,10 @@ msgstr "{name} · gwthio"
 msgid "{opponentName} offered a draw"
 msgstr "Cynigiodd {opponentName} gêm gyfartal"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · trwy relái"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, zero {Anfonwyd y prawf i # cyrchfan} one {Anfonwyd y prawf i # cyrchfan} two {Anfonwyd y prawf i # gyrchfan} few {Anfonwyd y prawf i # chyrchfan} many {Anfonwyd y prawf i # chyrchfan} other {Anfonwyd y prawf i # cyrchfan}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, zero {Anfonwyd y prawf i # cyrchfan} one {Anfonwyd y praw
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} o {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, zero {Anfonwyd y prawf at {sent} o # cyrchfan} one {Anfonwyd y prawf at {sent} o # cyrchfan} two {Anfonwyd y prawf at {sent} o # gyrchfan} few {Anfonwyd y prawf at {sent} o # chyrchfan} many {Anfonwyd y prawf at {sent} o # chyrchfan} other {Anfonwyd y prawf at {sent} o # cyrchfan}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, zero {# eitem} one {# eitem} two {# eitem} few {# eitem} many {# eitem} other {# eitem}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, zero {# eitem} one {# eitem} two {# eitem} few {# e
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, zero {# ateb} one {# ateb} two {+# ateb arall} few {+# ateb arall} many {+# ateb arall} other {+# ateb arall}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Cyfrif"
 msgid "Account added"
 msgstr "Cyfrif wedi'i ychwanegu"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Cyfrif wedi'i gysylltu"
 
@@ -295,14 +318,6 @@ msgstr "Ychwanegu cyfrif newydd"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Ychwanegu maes newydd at y dosbarth hwn"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Ychwanegu llwybr newydd at {domain}"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Ychwanegu llwybr newydd at {domain}. Gallwch reoli’r llwybrau hyn:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Hybu diddordeb"
 msgid "Border colour"
 msgstr "Lliw ymyl"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Mesh darlledu"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Arddull cerdyn"
 msgid "Categories"
 msgstr "Categorïau"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Categori ar gyfer ei hysbysiadau"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Categori ar gyfer yr hysbysiadau hyn"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Newid hysbysiadau cyfredol i"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Cadarnhau mai chi sydd yna"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Wedi cysylltu"
@@ -922,10 +932,6 @@ msgstr "Cyfrifon cysylltiedig"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Yn cysylltu..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Cysylltwch â gweinyddwr i gael dirprwyaeth."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Methwyd â chau eich cyfrif"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Methwyd copïo'r codau. Dewiswch a'u copïo â llaw."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Methwyd cysylltu cyfrif"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "Creu {entityLabel}"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "Creu cofnod TXT ar gyfer"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "Creu cofnod TXT ar gyfer <0>{record}</0>"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1057,10 +1062,6 @@ msgstr "Lleoliad presennol"
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
-msgstr "Wedi'i addasu"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
 msgstr "Wedi'i addasu"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Wedi'i analluogi"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Hepgor"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "Hepgor y drafft?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "Hepgor newidiadau heb eu cadw?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,8 +1347,9 @@ msgstr "Diystyru"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
-msgstr "Arddangos"
+msgstr "Arddangosfa"
 
 #: src/features/user/display.tsx
 msgid "Display reset to defaults"
@@ -1487,11 +1494,6 @@ msgstr "Golygu opsiwn {0}"
 msgid "Edit route"
 msgstr "Golygu llwybr"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "Golygu llwybr ar gyfer y llwybr: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Golygu'r cerdyn dewisedig"
@@ -1517,10 +1519,6 @@ msgstr "E-bost"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "Cod e-bost"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Mae llwybr gwag yn rhoi mynediad llawn i'r parth"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "ID cleient Google"
 msgid "Google client secret"
 msgstr "Cyfrinach cleient Google"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Caniatáu i ddefnyddiwr reoli llwybrau ar {domain}"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Grŵp"
@@ -2026,11 +2020,6 @@ msgstr "Grwpio yn ôl"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Grŵp: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Cyfatebir llwybrau blaenoriaeth uwch yn gyntaf"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Llwybrau byr bysellfwrdd"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Hysbys"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Hysbys {known} · Wedi cysylltu {linked} · Mesh darlledu {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Defnyddiwyd ddiwethaf"
 msgid "Layout"
 msgstr "Cynllun"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Gadewch yn wag ar gyfer y llwybr gwraidd"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Llythrennau, rhifau, bylchau, cysylltnodau a slaesau yn unig"
@@ -2220,8 +2205,7 @@ msgstr "Dolen"
 msgid "Link account"
 msgstr "Cysylltu cyfrif"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Cysylltwyd {label}"
 
@@ -2423,6 +2407,10 @@ msgstr "Model"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Cymedroli"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Wedi'i addasu"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Enw'r pasallwedd"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Pasallwedd heb ei ychwanegu"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Pasallwedd wedi'i gofrestru"
 
@@ -2909,7 +2901,7 @@ msgstr "Ymadrodd cyfrinachol"
 msgid "Path"
 msgstr "Llwybr"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Llwybr heb ei ganiatáu. Gallwch ond ychwanegu llwybrau o dan: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Cofrestru"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Cofrestru pasallwedd"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Cofrestru wedi'i ganslo"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Cadwch y codau hyn"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Chwilio"
 
@@ -3579,16 +3568,6 @@ msgstr "Dewiswch berson..."
 msgid "Select previous card"
 msgstr "Dewis y cerdyn blaenorol"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Dewis yr ap i'w lwybro iddo"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Dewis yr endid i'w lwybro iddo"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Gwall gweinydd"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Rheolau'r gweinydd"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Rheolau'r gweinydd, telerau ac amodau, a hysbysiad preifatrwydd a ddangosir i'ch defnyddwyr"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Dangos meysydd"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Dangos y cymorth hwn"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "Yn dangos {0}-{1} o {2} defnyddiwr"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Prawf"
 msgid "Test failed"
 msgstr "Prawf wedi methu"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Anfonwyd y prawf at {sent} o {total} cyrchfan"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Testun"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Mae'r cyfrif hwnnw eisoes wedi'i gysylltu â defnyddiwr arall"
 
@@ -3905,8 +3868,7 @@ msgstr "Mae'r cod hwnnw'n anghywir neu wedi dod i ben."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Nid oedd modd ei anfon. Efallai fod y ffeiliau'n rhy fawr, neu fe fethodd eich cysylltiad. Rhowch gynnig ar ffeiliau llai."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Mae'r e-bost hwnnw eisoes wedi'i gofrestru i gyfrif arall"
 
@@ -3914,10 +3876,6 @@ msgstr "Mae'r e-bost hwnnw eisoes wedi'i gofrestru i gyfrif arall"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Roedd yn rhy fawr i'w lwytho i fyny. Tynnwch neu lleihewch ffeiliau a cheisiwch eto."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "Mae'r categori \"Dim hysbysiadau\" yn distewi unrhyw bwnc a neilltuir iddo."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Nid yw'r ap hwn yn cael defnyddio eich pasallwedd. Caniatewch hynny yn G
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Mae hwn yn gopi wrth gefn cyflawn y gallwch ei adfer ar y gweinydd Mochi hwn neu un arall. Gwiriwch mai chi sydd yna i barhau."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Mae hwn yn newid diogelwch i'ch cyfrif. Gwiriwch mai chi sydd yna i barhau."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Bydd hyn yn dileu'r gêm a'i sgwrs yn barhaol. Ni ellir dadwneud hyn."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Nid oes gan y defnyddiwr hwn unrhyw sesiynau gweithredol."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Bydd hyn yn ailosod \"{settingNameLabel}\" i'w ddiofyn (gwag)."
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Bydd hyn yn ailosod \"{settingNameLabel}\" i'w werth diofyn ({defaultLabel})."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Bydd hyn yn ailosod yr holl ddewisiadau i'w gwerthoedd diofyn."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Bydd hyn yn ailosod gosodiadau arddangos i'w gwerthoedd rhagosodedig."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Bydd hyn yn ailosod y dewisiadau hyn i'w gwerthoedd diofyn."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Pynciau"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "Yn teithio"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Ceisiwch addasu eich meini prawf chwilio"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Llwytho i fyny"
 msgid "Upload progress"
 msgstr "Cynnydd llwytho i fyny"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "URL i ailgyfeirio iddo"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Defnyddiwch *.parth.com ar gyfer parthau gwyllt"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Defnyddiwch allwedd diogelwch, ôl bys, neu adnabod wyneb."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Defnyddiwch eich allwedd mynediad"
@@ -4372,10 +4305,6 @@ msgstr "Dilysu cyfeiriad e-bost"
 msgid "Version"
 msgstr "Fersiwn"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Trwy relái"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Bawd fideo"
@@ -4393,10 +4322,6 @@ msgstr "Gweld pob hysbysiad"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Gweld a golygu manylion eitem"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Gweld a diddymu sesiynau gweithredol ar gyfer y defnyddiwr hwn."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "Cyfrinach cleient X"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Blwyddyn"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Gallwch reoli'r llwybrau hyn: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

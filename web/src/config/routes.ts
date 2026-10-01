@@ -6,8 +6,6 @@
 export const APP_ROUTES = {
   // Settings app (current)
   SETTINGS: {
-    BASE: '/',
-    HOME: '/',
     USER: {
       ACCOUNT: '/user/account',
       LOGIN: '/user/login',

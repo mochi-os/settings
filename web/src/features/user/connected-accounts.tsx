@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { i18n } from '@lingui/core'
 import { msg } from '@lingui/core/macro'
@@ -71,6 +71,7 @@ import {
 } from 'lucide-react'
 import endpoints from '@/api/endpoints'
 import { useOauthLink } from '@/hooks/use-account'
+import { OAUTH_PROVIDERS, useOauthResult } from '@/hooks/use-oauth-result'
 import type { OAuthProvider } from '@/types/account'
 import { useStepUp } from '@/lib/use-step-up'
 
@@ -98,7 +99,7 @@ function DevicesTable({
   forgettingId: string | null
 }) {
   const { t } = useLingui()
-  const { formatTimestamp } = useFormat()
+  const { formatList, formatTimestamp } = useFormat()
   const [forgetting, setForgetting] = useState<Device | null>(null)
   const rows = [...devices].sort((a, b) => naturalCompare(a.label, b.label))
   return (
@@ -130,7 +131,7 @@ function DevicesTable({
                   {device.label || t`Device`}
                 </TableCell>
                 <TableCell className='text-muted-foreground'>
-                  {push.map((a) => getProviderLabel(a.type)).join(', ')}
+                  {formatList(push.map((a) => getProviderLabel(a.type)))}
                 </TableCell>
                 <TableCell className='text-muted-foreground'>
                   {formatTimestamp(device.seen)}
@@ -159,6 +160,7 @@ function DevicesTable({
           title={t`Forget device?`}
           desc={t`This will forget the device "${forgetting.label || t`Device`}" and stop notifications to it.`}
           confirmText={t`Forget`}
+          icon={<Trash2 className='size-4' />}
           destructive
           handleConfirm={async () => {
             const device = forgetting
@@ -213,7 +215,7 @@ function getProviderIcon(type: string) {
 
 // The account types a provider's sign-in owns, and the ones that hold a
 // calendar credential.
-const OAUTH_TYPES = new Set(['google', 'microsoft', 'github', 'facebook', 'x'])
+const OAUTH_TYPES = new Set<string>(OAUTH_PROVIDERS)
 const CALENDAR_TYPES = new Set(['apple', 'caldav'])
 
 // The words for each capability an account may hold, built per call so a
@@ -303,7 +305,7 @@ function AccountRow({
   testingId: string | null
 }) {
   const { t } = useLingui()
-  const { formatTimestamp } = useFormat()
+  const { formatList, formatTimestamp } = useFormat()
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const isVerified = account.verified > 0
   // Defensive check to ensure providers is an array
@@ -323,6 +325,8 @@ function AccountRow({
   }
 
   const displayName = getAccountDisplayName(account)
+  const type = getProviderLabel(account.type)
+  const identifier = account.identifier
 
   return (
     <TableRow>
@@ -346,11 +350,9 @@ function AccountRow({
       {/* Type */}
       <TableCell>
         <span>
-          {getProviderLabel(account.type)}
-          {isAi &&
-            account.identifier &&
-            account.identifier !== 'default' &&
-            ` - ${account.identifier}`}
+          {isAi && identifier && identifier !== 'default'
+            ? t`${type} - ${identifier}`
+            : type}
         </span>
       </TableCell>
 
@@ -358,10 +360,10 @@ function AccountRow({
       <TableCell>
         {isOauth && granted.length > 0 ? (
           <span className='text-muted-foreground text-xs'>
-            {granted.map(capabilityLabel).join(', ')}
+            {formatList(granted.map(capabilityLabel))}
           </span>
         ) : needsVerification ? (
-          <span className='inline-flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400'>
+          <span className='text-warning inline-flex items-center gap-1 text-xs'>
             <Clock className='h-3 w-3' />
             <Trans>Pending</Trans>
           </span>
@@ -447,6 +449,7 @@ function AccountRow({
               : t`This will remove the connected account "${displayName}".`
           }
           confirmText={isOauth ? t`Revoke access` : t`Remove`}
+          icon={<Trash2 className='size-4' />}
           destructive
           handleConfirm={handleDelete}
         />
@@ -455,56 +458,13 @@ function AccountRow({
   )
 }
 
-// Suppress the one-shot OAuth toast on React StrictMode's double mount. Module
-// scope, not sessionStorage: the shell iframe partitions storage per load. The
-// Login page keeps its own copy; neither exports it.
-const oauthResultShown = new Set<string>()
-
-const OAUTH_PROVIDERS: OAuthProvider[] = [
-  'google',
-  'github',
-  'microsoft',
-  'facebook',
-  'x',
-]
-
 export function ConnectedAccounts() {
   const { t } = useLingui()
   usePageTitle(t`Connected accounts`)
   const stepUp = useStepUp()
   const oauthLink = useOauthLink()
 
-  // The provider returns the browser here after a link, so this page says how
-  // it went rather than leaving the result on the query alone.
-  useEffect(() => {
-    const key = 'oauth_result_shown:' + window.location.search
-    if (oauthResultShown.has(key)) return
-    const params = new URLSearchParams(window.location.search)
-    const linked = params.get('oauth_linked')
-    const errored = params.get('oauth_error')
-    if (!linked && !errored) return
-    oauthResultShown.add(key)
-
-    // Deferred a tick: the toaster subscribes in a sibling effect, and a
-    // message published before it has is dropped.
-    setTimeout(() => {
-      if (linked) {
-        // Only a known provider is named: `linked` is a query parameter, so
-        // falling back to it would put attacker-chosen text in a toast the
-        // page presents as its own result.
-        const label = OAUTH_PROVIDERS.includes(linked as OAuthProvider)
-          ? getProviderLabel(linked)
-          : undefined
-        toast.success(label ? t`Linked ${label}` : t`Account linked`)
-      } else if (errored === 'already_linked') {
-        toast.error(t`That account is already linked to another user`)
-      } else if (errored === 'email_exists') {
-        toast.error(t`That email is already registered to another account`)
-      } else {
-        toast.error(t`Could not link account`)
-      }
-    }, 0)
-  }, [t])
+  useOauthResult()
   const [isAddOpen, setIsAddOpen] = useState(false)
   const [verifyAccount, setVerifyAccount] = useState<Account | null>(null)
   const [settingsAccount, setSettingsAccount] = useState<Account | null>(null)

@@ -57,6 +57,19 @@ msgstr "(vy)"
 msgid "[not set]"
 msgstr "[neuvedeno]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} rezervace} few {{held} / {maximum} rezervace} many {{held} / {maximum} rezervace} other {{held} / {maximum} rezervací}} · {1, plural, one {{circuits} okruh} few {{circuits} okruhy} many {{circuits} okruhu} other {{circuits} okruhů}} · {2, plural, one {{refused} odmítnutý} few {{refused} odmítnuté} many {{refused} odmítnutého} other {{refused} odmítnutých}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} úspěšný} few {{succeeded} úspěšné} many {{succeeded} úspěšného} other {{succeeded} úspěšných}} · {1, plural, one {{failed} neúspěšný} few {{failed} neúspěšné} many {{failed} neúspěšného} other {{failed} neúspěšných}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# vnořená} few {+# vnořené} many {+# vnořené} ot
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {1 relace zrušena} few {# relace zrušeny} other {# relací zrušeno}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {Zrušena # relace} few {Zrušeny # relace} many {Zrušeno # relace} other {Zrušeno # relací}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {Zobrazeno {first}–{last} z {total} uživatele} few {Zobrazeno {first}–{last} z {total} uživatelů} many {Zobrazeno {first}–{last} z {total} uživatele} other {Zobrazeno {first}–{last} z {total} uživatelů}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · push"
 msgid "{0} (development)"
 msgstr "{0} (vývoj)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} rezervace · {2} okruhy · {3} odmítnuto"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} úspěšných · {1} neúspěšných"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {Zbývá #} few {Zbývají #} many {Zbývá #} other {Zbývá #}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#týd} other {#týd}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "Zbývá {count}"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} až {to}"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · aplikace"
 
@@ -160,6 +172,10 @@ msgstr "{name} · push"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} nabídl remízu"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · přes relé"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Test odeslán na # cíl} few {Test odeslán na # cíle} other {Test odeslán na # cílů}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {Test odeslán na # cíl} few {Test odeslán na # cí
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} z {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {Test odeslán na {sent} z # cíle} few {Test odeslán na {sent} z # cílů} many {Test odeslán na {sent} z # cíle} other {Test odeslán na {sent} z # cílů}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# položka} few {# položky} other {# položek}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# položka} few {# položky} other {# položek
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# odpověď} few {+# dalších odpovědí} other {+# dalších odpovědí}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Účet"
 msgid "Account added"
 msgstr "Účet přidán"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Účet propojen"
 
@@ -295,14 +318,6 @@ msgstr "Přidat nový účet"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Přidat do této třídy nové pole"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Přidat novou cestu do {domain}"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Přidat novou cestu do {domain}. Můžete spravovat tyto cesty:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Zvýšit zájem"
 msgid "Border colour"
 msgstr "Barva okraje"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Vysílací mesh"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Styl karty"
 msgid "Categories"
 msgstr "Kategorie"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Kategorie pro její oznámení"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Kategorie pro tato oznámení"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Změnit aktuální oznámení na"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Potvrďte, že jste to vy"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Připojeno"
@@ -922,10 +932,6 @@ msgstr "Připojené účty"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Připojování..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Kontaktujte administrátora pro získání delegace."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Váš účet se nepodařilo zrušit"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kódy se nepodařilo zkopírovat. Označte je a zkopírujte ručně."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Nelze propojit účet"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "Vytvořit {entityLabel}"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "Vytvořte TXT záznam pro"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "Vytvořte TXT záznam pro <0>{record}</0>"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1058,10 +1063,6 @@ msgstr "Aktuální poloha"
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
 msgstr "Vlastní"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
-msgstr "Přizpůsobeno"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Dark"
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Zakázáno"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Zahodit"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "Zahodit koncept?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "Zahodit neuložené změny?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,6 +1347,7 @@ msgstr "Zavřít"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
 msgstr "Zobrazení"
 
@@ -1487,11 +1494,6 @@ msgstr "Upravit možnost {0}"
 msgid "Edit route"
 msgstr "Upravit trasu"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "Upravit cestu pro cestu: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Upravit vybranou kartu"
@@ -1517,10 +1519,6 @@ msgstr "E-mail"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "E-mailový kód"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Prázdná cesta uděluje plný přístup k doméně"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "ID klienta Google"
 msgid "Google client secret"
 msgstr "Tajný klíč klienta Google"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Udělit uživateli oprávnění spravovat cesty v {domain}"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Skupina"
@@ -2026,11 +2020,6 @@ msgstr "Seskupit podle"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Skupina: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Trasy s vyšší prioritou se shodují jako první"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Klávesové zkratky"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Známé"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Známé {known} · Připojené {linked} · Vysílací mesh {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Naposledy použito"
 msgid "Layout"
 msgstr "Rozvržení"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Ponechte prázdné pro kořenovou cestu"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Pouze písmena, číslice, mezery, spojovníky a lomítka"
@@ -2220,8 +2205,7 @@ msgstr "Odkaz"
 msgid "Link account"
 msgstr "Propojit účet"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Propojeno {label}"
 
@@ -2423,6 +2407,10 @@ msgstr "Model"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Moderování"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Upraveno"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Název passkey"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Přístupový klíč nebyl přidán"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Passkey zaregistrován"
 
@@ -2909,7 +2901,7 @@ msgstr "Přístupové heslo"
 msgid "Path"
 msgstr "Cesta"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Cesta není povolena. Můžete přidávat pouze cesty pod: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Registrovat"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Registrovat passkey"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Registrace zrušena"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Uložte si tyto kódy"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Hledat"
 
@@ -3579,16 +3568,6 @@ msgstr "Vyberte osobu..."
 msgid "Select previous card"
 msgstr "Vybrat předchozí kartu"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Vyberte aplikaci pro směrování"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Vyberte entitu pro směrování"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Chyba serveru"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Pravidla serveru"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Pravidla serveru, smluvní podmínky a zásady ochrany soukromí zobrazované vašim uživatelům"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Zobrazit pole"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Zobrazit tuto nápovědu"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "Zobrazuje se {0}-{1} z {2} uživatelů"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Test"
 msgid "Test failed"
 msgstr "Test selhal"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Test odeslán do {sent} z {total} cílů"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Text"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Tento účet je již propojen s jiným uživatelem"
 
@@ -3905,8 +3868,7 @@ msgstr "Tento kód je nesprávný nebo vypršela jeho platnost."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Nepodařilo se odeslat. Soubory mohou být příliš velké, nebo selhalo připojení. Zkuste menší soubory."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Tento e-mail je již zaregistrován k jinému účtu"
 
@@ -3914,10 +3876,6 @@ msgstr "Tento e-mail je již zaregistrován k jinému účtu"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Bylo to příliš velké k nahrání. Odeberte nebo zmenšete soubory a zkuste to znovu."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "Kategorie „Žádná oznámení“ ztiší jakékoli téma, které je k ní přiřazeno."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Tato aplikace nemá povolení používat váš passkey. Povolte ji v Nas
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Toto je úplná záloha, kterou můžete obnovit na tomto nebo jiném serveru Mochi. Pokračujte ověřením, že jste to vy."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Toto je bezpečnostní změna vašeho účtu. Pokračujte ověřením, že jste to vy."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Tímto trvale smažete hru a její chat. Tuto akci nelze vzít zpět."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Tento uživatel nemá žádné aktivní relace."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Tímto resetujete „{settingNameLabel}“ na výchozí hodnotu (prázdn
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Tímto resetujete „{settingNameLabel}“ na výchozí hodnotu ({defaultLabel})."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Tímto resetujete všechny předvolby na výchozí hodnoty."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Tímto se nastavení zobrazení vrátí na výchozí hodnoty."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Tímto obnovíte tyto předvolby na výchozí hodnoty."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Témata"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "Cestuje se"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Zkuste upravit kritéria vyhledávání"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Nahrát"
 msgid "Upload progress"
 msgstr "Průběh nahrávání"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "URL pro přesměrování"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Použijte *.domain.com pro zástupné domény"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Použijte bezpečnostní klíč, otisk prstu nebo rozpoznávání obličeje."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Použijte svůj přístupový klíč"
@@ -4372,10 +4305,6 @@ msgstr "Ověřit e-mailovou adresu"
 msgid "Version"
 msgstr "Verze"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Přes relay"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Náhled videa"
@@ -4393,10 +4322,6 @@ msgstr "Zobrazit všechna oznámení"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Zobrazit a upravit detaily položky"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Zobrazit a odvolat aktivní relace tohoto uživatele."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "Klientský tajný klíč pro X"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Rok"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Můžete spravovat tyto cesty: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

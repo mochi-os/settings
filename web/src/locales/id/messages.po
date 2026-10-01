@@ -57,6 +57,19 @@ msgstr "(Anda)"
 msgid "[not set]"
 msgstr "[tidak diatur]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, other {{held} / {maximum} reservasi}} · {1, plural, other {{circuits} sirkuit}} · {2, plural, other {{refused} ditolak}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, other {{succeeded} berhasil}} · {1, plural, other {{failed} gagal}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, other {+# bersarang}}"
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {1 sesi dicabut} other {# sesi dicabut}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, other {# sesi dicabut}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, other {Menampilkan {first}–{last} dari {total} pengguna}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · push"
 msgid "{0} (development)"
 msgstr "{0} (pengembangan)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} reservasi · {2} sirkuit · {3} ditolak"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} berhasil · {1} gagal"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, other {# tersisa}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#mnt} other {#mnt}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#mg} other {#mg}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} tersisa"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} sampai {to}"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · aplikasi"
 
@@ -160,6 +172,10 @@ msgstr "{name} · push"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} menawarkan remis"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · melalui relai"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Uji coba dikirim ke # tujuan} other {Uji coba dikirim ke # tujuan}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {Uji coba dikirim ke # tujuan} other {Uji coba dikiri
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} dari {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, other {Uji coba dikirim ke {sent} dari # tujuan}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# item} other {# item}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# item} other {# item}}"
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# balasan} other {+# balasan lainnya}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Akun"
 msgid "Account added"
 msgstr "Akun ditambahkan"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Akun tertaut"
 
@@ -295,14 +318,6 @@ msgstr "Tambah akun baru"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Tambah field baru ke kelas ini"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Tambahkan rute baru ke {domain}"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Tambahkan rute baru ke {domain}. Anda dapat mengelola jalur ini:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Tingkatkan minat"
 msgid "Border colour"
 msgstr "Warna border"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Mesh siaran"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Gaya kartu"
 msgid "Categories"
 msgstr "Kategori"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Kategori untuk notifikasinya"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Kategori untuk notifikasi ini"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Ubah notifikasi saat ini menjadi"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Konfirmasi bahwa ini Anda"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Terhubung"
@@ -922,10 +932,6 @@ msgstr "Akun yang terhubung"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Menghubungkan..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Hubungi administrator untuk mendapatkan delegasi."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Tidak dapat menutup akun Anda"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kode tidak dapat disalin. Pilih dan salin secara manual."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Tidak dapat menghubungkan akun"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "Buat {entityLabel}"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "Buat catatan TXT untuk"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "Buat catatan TXT untuk <0>{record}</0>"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1058,10 +1063,6 @@ msgstr "Lokasi saat ini"
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
 msgstr "Kustom"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
-msgstr "Disesuaikan"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Dark"
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Dinonaktifkan"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Buang"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "Buang draf?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "Buang perubahan yang belum disimpan?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,6 +1347,7 @@ msgstr "Tutup"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
 msgstr "Tampilan"
 
@@ -1487,11 +1494,6 @@ msgstr "Edit opsi {0}"
 msgid "Edit route"
 msgstr "Edit rute"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "Edit rute untuk jalur: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Edit kartu terpilih"
@@ -1517,10 +1519,6 @@ msgstr "Email"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "Kode email"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Jalur kosong memberikan akses penuh ke domain"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "ID klien Google"
 msgid "Google client secret"
 msgstr "Rahasia klien Google"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Berikan pengguna izin untuk mengelola rute di {domain}"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Grup"
@@ -2026,11 +2020,6 @@ msgstr "Kelompokkan menurut"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Grup: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Rute dengan prioritas lebih tinggi dicocokkan terlebih dahulu"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Pintasan keyboard"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Dikenal"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Dikenal {known} · Terhubung {linked} · Mesh siaran {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Terakhir digunakan"
 msgid "Layout"
 msgstr "Tata letak"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Kosongkan untuk jalur root"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Hanya huruf, angka, spasi, tanda hubung, dan garis miring"
@@ -2220,8 +2205,7 @@ msgstr "Tautan"
 msgid "Link account"
 msgstr "Tautkan akun"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} terhubung"
 
@@ -2423,6 +2407,10 @@ msgstr "Model"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Moderasi"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Diubah"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Nama passkey"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Passkey tidak ditambahkan"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Passkey terdaftar"
 
@@ -2909,7 +2901,7 @@ msgstr "Kata sandi"
 msgid "Path"
 msgstr "Jalur"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Jalur tidak diizinkan. Anda hanya dapat menambahkan rute di bawah: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Daftar"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Daftarkan passkey"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Pendaftaran dibatalkan"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Simpan kode ini"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Cari"
 
@@ -3579,16 +3568,6 @@ msgstr "Pilih orang..."
 msgid "Select previous card"
 msgstr "Pilih kartu sebelumnya"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Pilih aplikasi untuk dirutekan"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Pilih entitas untuk dirutekan"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Kesalahan server"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Aturan server"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Aturan server, syarat dan ketentuan, dan pemberitahuan privasi yang ditampilkan kepada pengguna Anda"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Tampilkan bidang"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Tampilkan bantuan ini"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "Menampilkan {0}-{1} dari {2} pengguna"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Uji"
 msgid "Test failed"
 msgstr "Pengujian gagal"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Pengujian dikirim ke {sent} dari {total} tujuan"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Teks"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Akun tersebut sudah ditautkan ke pengguna lain"
 
@@ -3905,8 +3868,7 @@ msgstr "Kode tersebut salah atau telah kedaluwarsa."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Tidak dapat dikirim. Berkas mungkin terlalu besar, atau koneksi Anda gagal. Coba berkas yang lebih kecil."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Email tersebut sudah terdaftar ke akun lain"
 
@@ -3914,10 +3876,6 @@ msgstr "Email tersebut sudah terdaftar ke akun lain"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Terlalu besar untuk diunggah. Hapus atau perkecil berkas lalu coba lagi."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "Kategori \"Tanpa notifikasi\" membisukan topik apa pun yang ditetapkan padanya."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Aplikasi ini tidak diizinkan menggunakan passkey Anda. Izinkan di Pengat
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Ini adalah cadangan lengkap yang dapat Anda pulihkan di server Mochi ini atau lainnya. Verifikasi identitas Anda untuk melanjutkan."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Ini adalah perubahan keamanan pada akun Anda. Verifikasi identitas Anda untuk melanjutkan."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Ini akan menghapus permainan dan obrolannya secara permanen. Tindakan ini tidak dapat dibatalkan."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Pengguna ini tidak memiliki sesi aktif."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Ini akan mengatur ulang \"{settingNameLabel}\" ke default (kosong)."
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Ini akan mengatur ulang \"{settingNameLabel}\" ke nilai default ({defaultLabel})."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Ini akan mengatur ulang semua preferensi ke nilai defaultnya."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Ini akan menyetel ulang pengaturan tampilan ke nilai defaultnya."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Ini akan mengatur ulang preferensi ini ke nilai defaultnya."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Topik"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "Bepergian"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Coba sesuaikan kriteria pencarian Anda"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Unggah"
 msgid "Upload progress"
 msgstr "Progres unggahan"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "URL untuk dialihkan"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Gunakan *.domain.com untuk domain wildcard"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Gunakan kunci keamanan, sidik jari, atau pengenalan wajah."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Gunakan kunci sandi Anda"
@@ -4372,10 +4305,6 @@ msgstr "Verifikasi alamat email"
 msgid "Version"
 msgstr "Versi"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Melalui relay"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Gambar mini video"
@@ -4393,10 +4322,6 @@ msgstr "Lihat semua notifikasi"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Lihat dan edit detail item"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Lihat dan cabut sesi aktif untuk pengguna ini."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "Rahasia klien X"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Tahun"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Anda dapat mengelola jalur ini: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

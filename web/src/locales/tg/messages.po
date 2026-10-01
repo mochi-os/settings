@@ -57,6 +57,19 @@ msgstr "(шумо)"
 msgid "[not set]"
 msgstr "[таъин нашудааст]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} захира} other {{held} / {maximum} захира}} · {1, plural, one {{circuits} занҷир} other {{circuits} занҷир}} · {2, plural, one {{refused} рад шуд} other {{refused} рад шуд}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} муваффақ} other {{succeeded} муваффақ}} · {1, plural, one {{failed} ноком} other {{failed} ноком}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# дохилӣ} other {+# дохилӣ}}"
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {1 сессия бекор карда шуд} other {# сессия бекор карда шуд}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {# сессия бекор карда шуд} other {# сессия бекор карда шуд}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {{first}–{last} аз {total} корбар нишон дода мешавад} other {{first}–{last} аз {total} корбар нишон дода мешавад}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · пуш"
 msgid "{0} (development)"
 msgstr "{0} (тавсеа)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} захираҳо · {2} занҷирҳо · {3} рад шуд"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} муваффақ · {1} ноком"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {# боқӣ монд} other {# боқӣ монд}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#дақ} other {#дақ}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#ҳаф} other {#ҳаф}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} боқимонда"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "аз {from} то {to}"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · барнома"
 
@@ -160,6 +172,10 @@ msgstr "{name} · пуш"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} баробариро пешниҳод кард"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · тавассути реле"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Санҷиш ба # мақсад фиристода шуд} other {Санҷиш ба # мақсад фиристода шуд}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {Санҷиш ба # мақсад фиристода 
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} аз {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {Санҷиш ба {sent} аз # мақсад фиристода шуд} other {Санҷиш ба {sent} аз # мақсад фиристода шуд}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# ҷузъ} other {# ҷузъ}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# ҷузъ} other {# ҷузъ}}"
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# ҷавоб} other {+# ҷавоби бештар}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Ҳисоб"
 msgid "Account added"
 msgstr "Ҳисоб илова карда шуд"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Ҳисоб пайваст шуд"
 
@@ -295,14 +318,6 @@ msgstr "Иловаи ҳисоби нав"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Иловаи майдони нав ба ин синф"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Иловаи роҳи нав ба {domain}"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Иловаи роҳи нав ба {domain}. Шумо метавонед ин роҳҳоро идора кунед:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Афзоиши таваҷҷуҳ"
 msgid "Border colour"
 msgstr "Ранги ҳошия"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Меши пахш"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Сабки корт"
 msgid "Categories"
 msgstr "Категорияҳо"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Категория барои огоҳиномаҳои он"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Категория барои ин огоҳиномаҳо"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Тағйири огоҳиномаҳои ҷорӣ ба"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Тасдиқ кунед, ки ин шумо ҳастед"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Пайваст шуда"
@@ -922,10 +932,6 @@ msgstr "Ҳисобҳои пайвастшуда"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Пайваст шуда истодааст..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Барои гирифтани делегатсия бо маъмур тамос гиред."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Бастани ҳисоби шумо имконнопазир буд"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Рамзҳо нусхабардорӣ нашуданд. Онҳоро интихоб карда, дастӣ нусха гиред."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Ҳисобро пайваст карда натавонист"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "Сохтани {entityLabel}"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "Барои сабти TXT эҷод кунед"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "Барои <0>{record}</0> сабти TXT эҷод кунед"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1058,10 +1063,6 @@ msgstr "Ҷойгиршавии ҷорӣ"
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
 msgstr "Танзимшаванда"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
-msgstr "Танзимшуда"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Dark"
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Ғайрифаъолшуда"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Партофтан"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "Сиёҳнависро партофта мешавад?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "Тағйироти захиранашуда партофта шавад?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,6 +1347,7 @@ msgstr "Пӯшидан"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
 msgstr "Намоиш"
 
@@ -1487,11 +1494,6 @@ msgstr "Таҳрири интихоби {0}"
 msgid "Edit route"
 msgstr "Таҳрири масир"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "Таҳрири масир барои роҳ: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Таҳрири корти интихобшуда"
@@ -1517,10 +1519,6 @@ msgstr "Имейл"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "Рамзи email"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Роҳи холӣ дастрасии пурраи доменро медиҳад"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "ID-и муштарии Google"
 msgid "Google client secret"
 msgstr "Сирри муштарии Google"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Ба корбар иҷозаи идоракунии масирҳо дар {domain}-ро диҳед"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Гурӯҳ"
@@ -2026,11 +2020,6 @@ msgstr "Гурӯҳбандӣ аз рӯи"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Гурӯҳ: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Масирҳои афзалияти баландтар аввал мутобиқ карда мешаванд"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Миёнбурҳои клавиатура"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Маълум"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Маълум {known} · Пайваст {linked} · Шабакаи пахш {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Бори охирин истифода шуд"
 msgid "Layout"
 msgstr "Тарҳбандӣ"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Барои роҳи решагӣ холӣ гузоред"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Танҳо ҳарфҳо, рақамҳо, фосилаҳо, дефисҳо ва хатҳои каҷ"
@@ -2220,8 +2205,7 @@ msgstr "Пайванд"
 msgid "Link account"
 msgstr "Пайвасткунии ҳисоб"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Пайваст шуд {label}"
 
@@ -2423,6 +2407,10 @@ msgstr "Модел"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Модератсия"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Тағйирёфта"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Номи калиди дастрасӣ"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Калиди дастрасӣ илова нашуд"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Калиди дастрасӣ ба қайд гирифта шуд"
 
@@ -2909,7 +2901,7 @@ msgstr "Ибораи рамзӣ"
 msgid "Path"
 msgstr "Роҳ"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Роҳ иҷозат дода намешавад. Шумо метавонед танҳо масирҳо илова кунед дар: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Бақайдгирӣ"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Бақайдгирии калиди дастрасӣ"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Бақайдгирӣ бекор карда шуд"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Захираи ин рамзҳо"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Ҷустуҷӯ"
 
@@ -3579,16 +3568,6 @@ msgstr "Шахсро интихоб кунед..."
 msgid "Select previous card"
 msgstr "Корти қаблиро интихоб кунед"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Барномаеро, ки ба он гузаронидан мехоҳед, интихоб кунед"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Объектеро, ки ба он гузаронидан мехоҳед, интихоб кунед"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Хатогии сервер"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Қоидаҳои сервер"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Қоидаҳои сервер, шартҳо ва шартномаҳо ва огоҳии махфият, ки ба корбарони шумо нишон дода мешавад"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Майдонҳоро нишон додан"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Ин кӯмакро нишон додан"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "{0}-{1} аз {2} корбарон нишон дода мешавад"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Санҷиш"
 msgid "Test failed"
 msgstr "Санҷиш ноком шуд"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Тест ба {sent} аз {total} ҷои таъинот фиристода шуд"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Матн"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Он ҳисоб аллакай ба корбари дигар пайваст карда шудааст"
 
@@ -3905,8 +3868,7 @@ msgstr "Он рамз нодуруст аст ё мӯҳлаташ гузашта
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Фиристодан имконнопазир буд. Шояд файлҳо хеле калон бошанд ё пайвастшавӣ қатъ шуд. Файлҳои хурдтарро санҷед."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Он почтаи электронӣ аллакай ба ҳисоби дигар сабт карда шудааст"
 
@@ -3914,10 +3876,6 @@ msgstr "Он почтаи электронӣ аллакай ба ҳисоби д
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Барои боркунӣ хеле калон буд. Файлҳоро тоза кунед ё хурд кунед ва аз нав кӯшиш кунед."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "Категорияи \"Огоҳиҳо нест\" ҳама мавзӯъҳои ба он таъиншударо хомӯш мекунад."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Ба ин барнома иҷозат дода нашудааст, ки 
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Ин нусхаи пурраи эҳтиётист, ки шумо метавонед онро дар ҳамин ё дигар сервери Mochi барқарор кунед. Барои идома тасдиқ кунед, ки ин шумо ҳастед."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Ин тағйироти амниятӣ ба ҳисоби шумост. Барои идома тасдиқ кунед, ки ин шумо ҳастед."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Ин бозӣ ва чати онро якумра нест мекунад. Ин амалро баргардонидан мумкин нест."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Ин корбар сессияҳои фаъол надорад."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Ин \"{settingNameLabel}\"-ро ба ҳолати пешфарзи он
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Ин \"{settingNameLabel}\"-ро ба арзиши пешфарзи он ({defaultLabel}) барқарор мекунад."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Ин ҳама афзалиятҳоро ба арзишҳои пешфарзи онҳо барқарор мекунад."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Ин танзимоти намоишро ба арзишҳои пешфарзи онҳо барқарор мекунад."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Ин амал ин афзалиятҳоро ба арзишҳои пешфарзашон барқарор мекунад."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Мавзӯот"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "Сафар"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Меъёрҳои ҷустуҷӯи худро танзим кунед"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Бор кардан"
 msgid "Upload progress"
 msgstr "Рафти боркунӣ"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "URL барои равонакунӣ"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Барои доменҳо бо аломати ивазкунанда *.domain.com-ро истифода баред"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Калиди амниятӣ, изи ангушт ё шинохти чеҳраро истифода баред."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Калиди дастрасии худро истифода баред"
@@ -4372,10 +4305,6 @@ msgstr "Тасдиқи суроғаи почтаи электронӣ"
 msgid "Version"
 msgstr "Версия"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Тавассути реле"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Эскизи видео"
@@ -4393,10 +4322,6 @@ msgstr "Ҳама огоҳиҳоро дидан"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Тафсилоти ҷузъро дидан ва таҳрир кардан"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Сессияҳои фаъоли ин корбарро бубинед ва бекор кунед."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "Сирри муштарии X"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Сол"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Шумо метавонед ин роҳҳоро идора кунед: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

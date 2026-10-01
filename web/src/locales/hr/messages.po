@@ -57,6 +57,19 @@ msgstr "(vi)"
 msgid "[not set]"
 msgstr "[nije postavljeno]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} rezervacija} few {{held} / {maximum} rezervacije} other {{held} / {maximum} rezervacija}} · {1, plural, one {{circuits} krug} few {{circuits} kruga} other {{circuits} krugova}} · {2, plural, one {{refused} odbijen} few {{refused} odbijena} other {{refused} odbijenih}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} uspješan} few {{succeeded} uspješna} other {{succeeded} uspješnih}} · {1, plural, one {{failed} neuspješan} few {{failed} neuspješna} other {{failed} neuspješnih}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# ugniježđen} few {+# ugniježđena} other {+# ugnij
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {Opozvana 1 sesija} few {Opozvane # sesije} other {Opozvano # sesija}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {Opozvana # sesija} few {Opozvane # sesije} other {Opozvano # sesija}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {Prikaz {first}–{last} od {total} korisnika} few {Prikaz {first}–{last} od {total} korisnika} other {Prikaz {first}–{last} od {total} korisnika}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · push"
 msgid "{0} (development)"
 msgstr "{0} (razvoj)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} rezervacije · {2} krugovi · {3} odbijeno"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} uspješnih · {1} neuspješnih"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {# preostao} few {# preostala} other {# preostalih}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#tj} other {#tj}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} preostalo"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "od {from} do {to}"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · aplikacija"
 
@@ -160,6 +172,10 @@ msgstr "{name} · push"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName} je ponudio neriješeno"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · putem releja"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Test poslan na # odredište} few {Test poslan na # odredišta} other {Test poslan na # odredišta}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {Test poslan na # odredište} few {Test poslan na # o
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} od {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {Test poslan na {sent} od # odredišta} few {Test poslan na {sent} od # odredišta} other {Test poslan na {sent} od # odredišta}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {# stavka} few {# stavke} other {# stavki}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {# stavka} few {# stavke} other {# stavki}}"
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# odgovor} few {+# još odgovora} other {+# još odgovora}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Račun"
 msgid "Account added"
 msgstr "Račun dodan"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Račun povezan"
 
@@ -295,14 +318,6 @@ msgstr "Dodaj novi račun"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Dodajte novo polje u ovu klasu"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Dodaj novu rutu na {domain}"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Dodaj novu rutu na {domain}. Možete upravljati ovim putanjama:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Pojačaj interes"
 msgid "Border colour"
 msgstr "Boja ruba"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Mesh emitiranja"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Stil kartice"
 msgid "Categories"
 msgstr "Kategorije"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Kategorija za njezine obavijesti"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Kategorija za ove obavijesti"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Promijeni trenutne obavijesti u"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Potvrdite da ste to vi"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Povezano"
@@ -922,10 +932,6 @@ msgstr "Povezani računi"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Povezivanje..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Obratite se administratoru za delegaciju."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Nije moguće zatvoriti vaš račun"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kodove nije bilo moguće kopirati. Označite ih i kopirajte ručno."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Nije moguće povezati račun"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "Stvori {entityLabel}"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "Stvori TXT zapis za"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "Stvorite TXT zapis za <0>{record}</0>"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1057,10 +1062,6 @@ msgstr "Trenutna lokacija"
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
-msgstr "Prilagođeno"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
 msgstr "Prilagođeno"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Onemogućeno"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Odbaci"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "Odbaciti skicu?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "Odbaciti nespremljene promjene?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,6 +1347,7 @@ msgstr "Odbaci"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
 msgstr "Prikaz"
 
@@ -1487,11 +1494,6 @@ msgstr "Uredi opciju {0}"
 msgid "Edit route"
 msgstr "Uredi rutu"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "Uredi rutu za stazu: {0}"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Uredi odabranu karticu"
@@ -1517,10 +1519,6 @@ msgstr "E-pošta"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "Kod e-pošte"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Prazna staza dopušta puni pristup domeni"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "Google ID klijenta"
 msgid "Google client secret"
 msgstr "Google tajni ključ klijenta"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Dodijelite korisniku dopuštenje za upravljanje rutama na {domain}"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Grupa"
@@ -2026,11 +2020,6 @@ msgstr "Grupiraj prema"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Grupa: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Rute s višim prioritetom prve se podudaraju"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Tipkovnički prečaci"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Poznati"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Poznati {known} · Povezani {linked} · Mesh emitiranja {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Zadnje korišteno"
 msgid "Layout"
 msgstr "Izgled"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Ostavite prazno za korijensku stazu"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Samo slova, brojevi, razmaci, crtice i kose crte"
@@ -2220,8 +2205,7 @@ msgstr "Poveznica"
 msgid "Link account"
 msgstr "Poveži račun"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Povezano {label}"
 
@@ -2423,6 +2407,10 @@ msgstr "Model"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Moderiranje"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Izmijenjeno"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Naziv passkeya"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Pristupni ključ nije dodan"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Passkey registriran"
 
@@ -2909,7 +2901,7 @@ msgstr "Zaporna fraza"
 msgid "Path"
 msgstr "Putanja"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Putanja nije dopuštena. Možete dodavati rute samo pod: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Registriraj"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Registriraj passkey"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Registracija otkazana"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Spremite ove kodove"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Pretraži"
 
@@ -3579,16 +3568,6 @@ msgstr "Odaberite osobu..."
 msgid "Select previous card"
 msgstr "Odaberi prethodnu karticu"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Odaberi aplikaciju za usmjeravanje"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Odaberi entitet za usmjeravanje"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Pogreška poslužitelja"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Pravila poslužitelja"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Pravila poslužitelja, uvjeti korištenja i obavijest o privatnosti prikazani vašim korisnicima"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Prikaži polja"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Prikaži ovu pomoć"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "Prikazujem {0}-{1} od {2} korisnika"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Testiraj"
 msgid "Test failed"
 msgstr "Test nije uspio"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Test poslan na {sent} od {total} odredišta"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Tekst"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Taj račun je već povezan s drugim korisnikom"
 
@@ -3905,8 +3868,7 @@ msgstr "Taj kôd nije ispravan ili je istekao."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Slanje nije uspjelo. Datoteke su možda prevelike ili je veza prekinuta. Pokušajte s manjim datotekama."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Ta e-pošta je već registrirana na drugom računu"
 
@@ -3914,10 +3876,6 @@ msgstr "Ta e-pošta je već registrirana na drugom računu"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Preveliko za prijenos. Uklonite ili smanjite datoteke i pokušajte ponovno."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "Kategorija \"Bez obavijesti\" stišava sve teme koje su joj dodijeljene."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Ova aplikacija ne smije koristiti vaš passkey. Dopustite joj to u Posta
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Ovo je potpuna sigurnosna kopija koju možete vratiti na ovaj ili drugi Mochi poslužitelj. Potvrdite svoj identitet za nastavak."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Ovo je sigurnosna promjena na vašem računu. Potvrdite svoj identitet za nastavak."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Ovo će trajno izbrisati igru i njezin razgovor. Ova radnja ne može se poništiti."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Ovaj korisnik nema aktivnih sesija."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Ovo će ponovno postaviti \"{settingNameLabel}\" na zadanu vrijednost (p
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Ovo će ponovno postaviti \"{settingNameLabel}\" na zadanu vrijednost ({defaultLabel})."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Ovo će ponovno postaviti sve preferencije na zadane vrijednosti."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Ovo će vratiti postavke prikaza na njihove zadane vrijednosti."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Ovo će vratiti ove postavke na zadane vrijednosti."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Teme"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "Putovanje"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Pokušajte prilagoditi kriterije pretrage"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Učitaj"
 msgid "Upload progress"
 msgstr "Napredak prijenosa"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "URL za preusmjeravanje"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Koristite *.domain.com za zamjenske domene"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Koristite sigurnosni ključ, otisak prsta ili prepoznavanje lica."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Upotrijebite svoj pristupni ključ"
@@ -4372,10 +4305,6 @@ msgstr "Provjeri adresu e-pošte"
 msgid "Version"
 msgstr "Verzija"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Putem releja"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Sličica videa"
@@ -4393,10 +4322,6 @@ msgstr "Prikaži sve obavijesti"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Pogledaj i uredi detalje stavke"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Pogledajte i opozovite aktivne sesije za ovog korisnika."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "X klijent tajna"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Godina"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Možete upravljati ovim putanjama: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."

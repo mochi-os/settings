@@ -486,6 +486,7 @@ function SettingField({
           )
         }
         confirmText={t`Reset`}
+        icon={<RotateCcw className='size-4' />}
         handleConfirm={() => {
           handleReset()
           setShowReset(false)

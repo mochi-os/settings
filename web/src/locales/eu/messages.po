@@ -57,6 +57,19 @@ msgstr "(zu)"
 msgid "[not set]"
 msgstr "[ezarri gabe]"
 
+#. placeholder {0}: relaying?.reservations.maximum ?? 0
+#. placeholder {1}: relaying?.circuits ?? 0
+#. placeholder {2}: relaying?.rejected ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{held} / {maximum} reservation} other {{held} / {maximum} reservations}} · {1, plural, one {{circuits} circuit} other {{circuits} circuits}} · {2, plural, one {{refused} refused} other {{refused} refused}}"
+msgstr "{0, plural, one {{held} / {maximum} erreserba} other {{held} / {maximum} erreserba}} · {1, plural, one {{circuits} zirkuitu} other {{circuits} zirkuitu}} · {2, plural, one {{refused} ukatuta} other {{refused} ukatuta}}"
+
+#. placeholder {0}: holepunch?.success ?? 0
+#. placeholder {1}: holepunch?.failure ?? 0
+#: src/features/system/status.tsx
+msgid "{0, plural, one {{succeeded} succeeded} other {{succeeded} succeeded}} · {1, plural, one {{failed} failed} other {{failed} failed}}"
+msgstr "{0, plural, one {{succeeded} ondo} other {{succeeded} ondo}} · {1, plural, one {{failed} huts} other {{failed} huts}}"
+
 #. placeholder {0}: visible.length
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 msgid "{0, plural, one {# result} other {# results}}"
@@ -78,8 +91,13 @@ msgstr "{0, plural, one {+# habiaratu} other {+# habiaratu}}"
 
 #. placeholder {0}: result.revoked
 #: src/features/system/users.tsx
-msgid "{0, plural, one {Revoked 1 session} other {Revoked # sessions}}"
-msgstr "{0, plural, one {1 saio baliogabetuta} other {# saio baliogabetuta}}"
+msgid "{0, plural, one {Revoked # session} other {Revoked # sessions}}"
+msgstr "{0, plural, one {# saio indargabetu da} other {# saio indargabetu dira}}"
+
+#. placeholder {0}: data.count
+#: src/features/system/users.tsx
+msgid "{0, plural, one {Showing {first}–{last} of {total} user} other {Showing {first}–{last} of {total} users}}"
+msgstr "{0, plural, one {{total} erabiltzailetik {first}–{last} erakusten} other {{total} erabiltzailetik {first}–{last} erakusten}}"
 
 #. placeholder {0}: name || t`Device`
 #: src/features/user/notifications.tsx
@@ -99,19 +117,9 @@ msgstr "{0} · push jakinarazpenak"
 msgid "{0} (development)"
 msgstr "{0} (garapena)"
 
-#. placeholder {0}: formatNumber(network.relaying.reservations.held)
-#. placeholder {1}: formatNumber(network.relaying.reservations.maximum)
-#. placeholder {2}: formatNumber(network.relaying.circuits)
-#. placeholder {3}: formatNumber(network.relaying.rejected)
-#: src/features/system/status.tsx
-msgid "{0} / {1} reservations · {2} circuits · {3} refused"
-msgstr "{0} / {1} erreserbak · {2} zirkuituak · {3} ukatuak"
-
-#. placeholder {0}: formatNumber(network.holepunch.success)
-#. placeholder {1}: formatNumber(network.holepunch.failure)
-#: src/features/system/status.tsx
-msgid "{0} succeeded · {1} failed"
-msgstr "{0} ondo · {1} huts"
+#: src/features/user/login.tsx
+msgid "{count, plural, one {# remaining} other {# remaining}}"
+msgstr "{count, plural, one {# geratzen da} other {# geratzen dira}}"
 
 #: ../../../lib/web/src/lib/locale-format.ts
 msgid "{count, plural, one {#d} other {#d}}"
@@ -129,10 +137,6 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#ast} other {#ast}}"
 
-#: src/features/user/login.tsx
-msgid "{count} remaining"
-msgstr "{count} geratzen da"
-
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -149,6 +153,14 @@ msgid "{from} to {to}"
 msgstr "{from} - {to}"
 
 #: src/features/user/notifications.tsx
+msgid "{label}: {name}"
+msgstr "{label}: {name}"
+
+#: src/features/user/notifications.tsx
+msgid "{name} · {kind}"
+msgstr "{name} · {kind}"
+
+#: src/features/user/notifications.tsx
 msgid "{name} · app"
 msgstr "{name} · aplikazioa"
 
@@ -160,6 +172,10 @@ msgstr "{name} · push jakinarazpenak"
 msgid "{opponentName} offered a draw"
 msgstr "{opponentName}-(e)k berdinketa eskaini du"
 
+#: src/features/system/status.tsx
+msgid "{reachability} · via relay"
+msgstr "{reachability} · errele bidez"
+
 #: src/features/user/notifications.tsx
 msgid "{sent, plural, one {Test sent to # destination} other {Test sent to # destinations}}"
 msgstr "{sent, plural, one {Proba helmuga # (e)ra bidali da} other {Proba # helmugatara bidali da}}"
@@ -169,6 +185,10 @@ msgstr "{sent, plural, one {Proba helmuga # (e)ra bidali da} other {Proba # helm
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} / {totalLabel}"
 
+#: src/features/user/notifications.tsx
+msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
+msgstr "{total, plural, one {Proba {sent}/# helmugatara bidali da} other {Proba {sent}/# helmugatara bidali da}}"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "{totalCount, plural, one {# item} other {# items}}"
 msgstr "{totalCount, plural, one {elementu #} other {# elementu}}"
@@ -176,6 +196,10 @@ msgstr "{totalCount, plural, one {elementu #} other {# elementu}}"
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 msgid "{totalDescendants, plural, one {# reply} other {+# more replies}}"
 msgstr "{totalDescendants, plural, one {# erantzun} other {+# erantzun gehiago}}"
+
+#: src/features/user/connected-accounts.tsx
+msgid "{type} - {identifier}"
+msgstr "{type} - {identifier}"
 
 #: ../../../lib/web/src/components/layout/mochi-menu.tsx
 msgid "{unreadCount, plural, one {Open menu (# unread notification)} other {Open menu (# unread notifications)}}"
@@ -237,8 +261,7 @@ msgstr "Kontua"
 msgid "Account added"
 msgstr "Kontua gehitu da"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Kontua lotuta"
 
@@ -295,14 +318,6 @@ msgstr "Gehitu kontu berri bat"
 #: ../../../lib/web/src/components/entity/add-field-dialog.tsx
 msgid "Add a new field to this class"
 msgstr "Gehitu eremu berri bat klase honi"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}"
-msgstr "Gehitu bide berri bat {domain}-(e)ra"
-
-#: src/features/domains/index.tsx
-msgid "Add a new route to {domain}. You can manage these paths:"
-msgstr "Gehitu bide berri bat {domain}-(e)ra. Bide hauek kudea ditzakezu:"
 
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Add access"
@@ -629,10 +644,6 @@ msgstr "Bultzatu interesa"
 msgid "Border colour"
 msgstr "Ertzaren kolorea"
 
-#: src/features/system/status.tsx
-msgid "Broadcast mesh"
-msgstr "Igorpen mesh"
-
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Browser"
@@ -717,13 +728,13 @@ msgstr "Txartelaren estiloa"
 msgid "Categories"
 msgstr "Kategoriak"
 
+#: src/features/user/notifications.tsx
+msgid "Category for its notifications"
+msgstr "Bere jakinarazpenen kategoria"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Category for these notifications"
 msgstr "Jakinarazpen hauentzako kategoria"
-
-#: src/features/user/notifications.tsx
-msgid "Change current notifications to"
-msgstr "Aldatu uneko jakinarazpenak hauetara"
 
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
@@ -908,7 +919,6 @@ msgstr "Berretsi zu zarela"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
-#: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 msgid "Connected"
 msgstr "Konektatua"
@@ -922,10 +932,6 @@ msgstr "Konektatutako kontuak"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Konektatzen..."
-
-#: src/features/domains/index.tsx
-msgid "Contact an administrator to get a delegation."
-msgstr "Jarri harremanetan administratzaile batekin eskuordetza lortzeko."
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -979,8 +985,7 @@ msgstr "Ezin izan da zure kontua itxi"
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Ezin izan dira kodeak kopiatu. Hautatu eta kopiatu eskuz."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Ezin izan da kontua estekatu"
 
@@ -1026,8 +1031,8 @@ msgid "Create {entityLabel}"
 msgstr "Sortu {entityLabel}"
 
 #: src/features/domains/index.tsx
-msgid "Create a TXT record for"
-msgstr "Sortu TXT erregistro bat honentzat"
+msgid "Create a TXT record for <0>{record}</0>"
+msgstr "Sortu TXT erregistro bat honetarako: <0>{record}</0>"
 
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Create new item"
@@ -1057,10 +1062,6 @@ msgstr "Uneko kokapena"
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 #: ../../../lib/web/src/components/colour-picker.tsx
 msgid "Custom"
-msgstr "Pertsonalizatua"
-
-#: src/features/system/documents.tsx
-msgid "Customised"
 msgstr "Pertsonalizatua"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -1320,12 +1321,17 @@ msgid "Disabled"
 msgstr "Desgaituta"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
+#: src/features/system/documents.tsx
 msgid "Discard"
 msgstr "Baztertu"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 msgid "Discard draft?"
 msgstr "Zirriborroa baztertu?"
+
+#: src/features/system/documents.tsx
+msgid "Discard unsaved changes?"
+msgstr "Gorde gabeko aldaketak baztertu?"
 
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: ../../../lib/web/src/lib/chat-ui.ts
@@ -1341,8 +1347,9 @@ msgstr "Baztertu"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
 #: src/features/user/display.tsx
+msgctxt "settings section"
 msgid "Display"
-msgstr "Bistaratu"
+msgstr "Pantaila"
 
 #: src/features/user/display.tsx
 msgid "Display reset to defaults"
@@ -1487,11 +1494,6 @@ msgstr "Editatu {0} aukera"
 msgid "Edit route"
 msgstr "Editatu bidea"
 
-#. placeholder {0}: route.path || '/'
-#: src/features/domains/index.tsx
-msgid "Edit route for path: {0}"
-msgstr "Editatu {0} bide-izenerako bidea"
-
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Edit selected card"
 msgstr "Editatu hautatutako txartela"
@@ -1517,10 +1519,6 @@ msgstr "Posta elektronikoa"
 #: src/features/user/login.tsx
 msgid "Email code"
 msgstr "Posta elektronikoko kodea"
-
-#: src/features/domains/index.tsx
-msgid "Empty path grants full domain access"
-msgstr "Bide hutsak domeinu osorako sarbidea ematen du"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -2010,10 +2008,6 @@ msgstr "Google bezeroaren IDa"
 msgid "Google client secret"
 msgstr "Google bezeroaren sekretua"
 
-#: src/features/domains/index.tsx
-msgid "Grant a user permission to manage routes on {domain}"
-msgstr "Eman erabiltzaile bati {domain} domeinuko bideak kudeatzeko baimena"
-
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Group"
 msgstr "Taldea"
@@ -2026,11 +2020,6 @@ msgstr "Taldekatu honen arabera"
 #: ../../../lib/web/src/features/access/access-list.tsx
 msgid "Group: {0}"
 msgstr "Taldea: {0}"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Higher priority routes are matched first"
-msgstr "Lehentasun handiagoko bideak lehenik parekatzen dira"
 
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
@@ -2147,8 +2136,8 @@ msgid "Keyboard shortcuts"
 msgstr "Teklatuko lasterbideak"
 
 #: src/features/system/status.tsx
-msgid "Known"
-msgstr "Ezagunak"
+msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
+msgstr "Ezagunak {known} · Konektatuak {linked} · Igorpen mesh {mesh}"
 
 #: src/features/user/notifications.tsx
 msgid "Label is required"
@@ -2200,10 +2189,6 @@ msgstr "Azken erabilera"
 msgid "Layout"
 msgstr "Diseinua"
 
-#: src/features/domains/index.tsx
-msgid "Leave empty for root path"
-msgstr "Utzi hutsik erroko bide-izenerako"
-
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Letrak, zenbakiak, zuriuneak, marratxoak eta barrak soilik"
@@ -2220,8 +2205,7 @@ msgstr "Esteka"
 msgid "Link account"
 msgstr "Lotu kontua"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Lotuta: {label}"
 
@@ -2423,6 +2407,10 @@ msgstr "Modeloa"
 #: ../../../lib/web/src/components/options-menu.tsx
 msgid "Moderation"
 msgstr "Moderazioa"
+
+#: src/features/system/documents.tsx
+msgid "Modified"
+msgstr "Aldatua"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Monday"
@@ -2873,6 +2861,10 @@ msgid "Passkey name"
 msgstr "Sarbide-gakoaren izena"
 
 #: src/features/user/login.tsx
+msgid "Passkey not added"
+msgstr "Ez da sarbide-gakoa gehitu"
+
+#: src/features/user/login.tsx
 msgid "Passkey registered"
 msgstr "Sarbide-gakoa erregistratuta"
 
@@ -2909,7 +2901,7 @@ msgstr "Pasahitz-esaldia"
 msgid "Path"
 msgstr "Bidea"
 
-#. placeholder {0}: allowedPaths.join(', ')
+#. placeholder {0}: formatList(allowedPaths)
 #: src/features/domains/index.tsx
 msgid "Path not allowed. You can only add routes under: {0}"
 msgstr "Bidea ez da onartzen. Ibilbideak hemen bakarrik gehi ditzakezu: {0}"
@@ -3137,10 +3129,6 @@ msgstr "Erregistratu"
 #: src/features/user/login.tsx
 msgid "Register passkey"
 msgstr "Erregistratu sarbide-gakoa"
-
-#: src/features/user/login.tsx
-msgid "Registration cancelled"
-msgstr "Erregistroa bertan behera utzi da"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Relates"
@@ -3456,6 +3444,7 @@ msgstr "Gorde kode hauek"
 #: ../../../lib/web/src/components/filter-bar.tsx
 #: ../../../lib/web/src/components/header-search.tsx
 #: ../../../lib/web/src/components/search.tsx
+#: src/components/combo-select.tsx
 msgid "Search"
 msgstr "Bilatu"
 
@@ -3579,16 +3568,6 @@ msgstr "Hautatu pertsona..."
 msgid "Select previous card"
 msgstr "Hautatu aurreko txartela"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the app to route to"
-msgstr "Hautatu zein aplikaziora birbideratu"
-
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "Select the entity to route to"
-msgstr "Hautatu zein entitatera birbideratu"
-
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: src/components/combo-select.tsx
@@ -3631,10 +3610,6 @@ msgstr "Zerbitzariaren errorea"
 #: src/features/system/documents.tsx
 msgid "Server rules"
 msgstr "Zerbitzariaren arauak"
-
-#: src/features/system/documents.tsx
-msgid "Server rules, terms and conditions, and privacy notice shown to your users"
-msgstr "Zure erabiltzaileei erakusten zaizkien zerbitzariaren arauak, baldintzak eta pribatutasun-oharra"
 
 #: src/features/user/sessions.tsx
 msgid "Session"
@@ -3692,13 +3667,6 @@ msgstr "Erakutsi eremuak"
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Show this help"
 msgstr "Erakutsi laguntza hau"
-
-#. placeholder {0}: offset + 1
-#. placeholder {1}: Math.min(offset + limit, data.count)
-#. placeholder {2}: data.count
-#: src/features/system/users.tsx
-msgid "Showing {0}-{1} of {2} users"
-msgstr "{2} erabiltzailetik {0}-{1} erakusten"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Showing {totalShown} of {total}"
@@ -3884,16 +3852,11 @@ msgstr "Probatu"
 msgid "Test failed"
 msgstr "Probak huts egin du"
 
-#: src/features/user/notifications.tsx
-msgid "Test sent to {sent} of {total} destinations"
-msgstr "Proba {total} helburutik {sent}-era bidali da"
-
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Text"
 msgstr "Testua"
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That account is already linked to another user"
 msgstr "Kontu hori beste erabiltzaile bati lotuta dago jada"
 
@@ -3905,8 +3868,7 @@ msgstr "Kode hori okerra da edo iraungi egin da."
 msgid "That could not be sent. The files may be too large, or your connection failed. Try smaller files."
 msgstr "Ezin izan da bidali. Fitxategiak handiegiak izan daitezke, edo konexioak huts egin du. Probatu fitxategi txikiagoak."
 
-#: src/features/user/connected-accounts.tsx
-#: src/features/user/login.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "That email is already registered to another account"
 msgstr "Helbide elektroniko hori beste kontu batean dago erregistratuta jada"
 
@@ -3914,10 +3876,6 @@ msgstr "Helbide elektroniko hori beste kontu batean dago erregistratuta jada"
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
 msgstr "Handiegia zen igotzeko. Kendu edo txikitu fitxategiak eta saiatu berriro."
-
-#: src/features/user/notifications.tsx
-msgid "The \"No notifications\" category silences any topic assigned to it."
-msgstr "\"Jakinarazpenik ez\" kategoriak bertan jartzen den edozein gai isilarazten du."
 
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The camera is already in use"
@@ -3967,17 +3925,9 @@ msgstr "Aplikazio honek ez du baimenik zure sarbide-gakoa erabiltzeko. Baimendu 
 msgid "This is a complete backup you can restore on this or another Mochi server. Verify it's you to continue."
 msgstr "Hau babeskopia oso bat da, Mochi zerbitzari honetan edo beste batean lehengoratu dezakezuna. Egiaztatu zure nortasuna jarraitzeko."
 
-#: src/lib/use-step-up.tsx
-msgid "This is a security change to your account. Verify it's you to continue."
-msgstr "Hau zure kontuaren segurtasun-aldaketa bat da. Egiaztatu zure nortasuna jarraitzeko."
-
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Honek jokoa eta bere txata betiko ezabatuko ditu. Ekintza hau ezin da desegin."
-
-#: src/features/system/users.tsx
-msgid "This user has no active sessions."
-msgstr "Erabiltzaile honek ez du saio aktiborik."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4026,13 +3976,13 @@ msgstr "Honek \"{settingNameLabel}\" bere lehenetsira (hutsa) berrezarriko du."
 msgid "This will reset \"{settingNameLabel}\" to its default value ({defaultLabel})."
 msgstr "Honek \"{settingNameLabel}\" bere balio lehenetsira ({defaultLabel}) berrezarriko du."
 
-#: src/features/user/preferences.tsx
-msgid "This will reset all preferences to their default values."
-msgstr "Honek hobespen guztiak balio lehenetsietara berrezarriko ditu."
-
 #: src/features/user/display.tsx
 msgid "This will reset display settings to their default values."
 msgstr "Honek bistaratze ezarpenak haien balio lehenetsietara berrezarriko ditu."
+
+#: src/features/user/preferences.tsx
+msgid "This will reset these preferences to their default values."
+msgstr "Honek hobespen hauek balio lehenetsietara berrezarriko ditu."
 
 #. placeholder {0}: getProviderLabel(account.type)
 #: src/features/user/connected-accounts.tsx
@@ -4102,10 +4052,6 @@ msgstr "Gaiak"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "Travelling"
 msgstr "Bidaian"
-
-#: src/features/system/users.tsx
-msgid "Try adjusting your search criteria"
-msgstr "Saiatu zure bilaketa-irizpideak doitzen"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Try adjusting your search terms"
@@ -4262,19 +4208,6 @@ msgstr "Igo"
 msgid "Upload progress"
 msgstr "Igoeraren aurrerapena"
 
-#: src/features/domains/index.tsx
-#: src/features/domains/index.tsx
-msgid "URL to redirect to"
-msgstr "Birbideratzeko URLa"
-
-#: src/features/domains/index.tsx
-msgid "Use *.domain.com for wildcard domains"
-msgstr "Erabili *.domeinua.com komodin-domeinuetarako"
-
-#: src/features/user/login.tsx
-msgid "Use a security key, fingerprint, or face recognition."
-msgstr "Erabili segurtasun-gakoa, hatz-marka edo aurpegi-ezagutza."
-
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Use your passkey"
 msgstr "Erabili zure sarbide-gakoa"
@@ -4372,10 +4305,6 @@ msgstr "Egiaztatu helbide elektronikoa"
 msgid "Version"
 msgstr "Bertsioa"
 
-#: src/features/system/status.tsx
-msgid "Via relay"
-msgstr "Relay bidez"
-
 #: ../../../lib/web/src/components/attachment-gallery.tsx
 msgid "Video thumbnail"
 msgstr "Bideoaren miniatura"
@@ -4393,10 +4322,6 @@ msgstr "Ikusi jakinarazpen guztiak"
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 msgid "View and edit item details"
 msgstr "Ikusi eta editatu elementuaren xehetasunak"
-
-#: src/features/system/users.tsx
-msgid "View and revoke active sessions for this user."
-msgstr "Ikusi eta baliogabetu erabiltzaile honen saio aktiboak."
 
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 msgid "View controls"
@@ -4449,6 +4374,10 @@ msgstr "X bezero-sekretua"
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Urtea"
+
+#: src/features/domains/index.tsx
+msgid "You can manage these paths: {paths}"
+msgstr "Bide hauek kudea ditzakezu: {paths}"
 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
