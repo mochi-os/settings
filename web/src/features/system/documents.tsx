@@ -259,7 +259,7 @@ export function SystemDocuments() {
                       <Trans>Language</Trans>
                     </span>
                     <Select value={language} onValueChange={setLanguage}>
-                      <SelectTrigger className='w-72'>
+                      <SelectTrigger className='min-w-0 flex-1 sm:w-72 sm:flex-none'>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
