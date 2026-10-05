@@ -986,7 +986,7 @@ function DomainDetails({
           {/* Admin-only: Settings */}
           {isAdmin && (
             <div className='divide-y-0'>
-              <FieldRow label={t`Verified`}>
+              <FieldRow label={t`Verified`} inline>
                 <Switch
                   checked={domain.verified === 1}
                   onCheckedChange={handleToggleVerified}
@@ -1040,7 +1040,7 @@ function DomainDetails({
                   </div>
                 </FieldRow>
               )}
-              <FieldRow label={t`Automatic certificates`}>
+              <FieldRow label={t`Automatic certificates`} inline>
                 <Switch
                   checked={domain.tls === 1}
                   onCheckedChange={handleToggleTls}

@@ -34,6 +34,7 @@ import {
   SelectValue,
   Skeleton,
   Switch,
+  SwitchLabel,
   getErrorMessage,
   requestHelpers,
   toast,
@@ -742,16 +743,12 @@ function DestinationsGrid({
   return (
     <div className='flex flex-col'>
       {rows.map((r) => (
-        <label
-          key={r.key}
-          className='flex cursor-pointer items-center gap-3 py-2'
-        >
+        <SwitchLabel key={r.key} label={r.label} className='gap-3 py-2'>
           <Switch
             checked={checked.has(r.key)}
             onCheckedChange={() => onToggle(r.key)}
           />
-          <span className='text-sm'>{r.label}</span>
-        </label>
+        </SwitchLabel>
       ))}
     </div>
   )

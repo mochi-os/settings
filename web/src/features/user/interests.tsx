@@ -120,7 +120,9 @@ function InterestRow({
   }
 
   return (
-    <div className='flex items-center gap-4 py-2.5'>
+    // Below sm the slider cannot share a line with the name: the name and
+    // Remove take the first line, the slider and its value the second.
+    <div className='flex flex-wrap items-center gap-x-4 gap-y-2 py-2.5 sm:flex-nowrap'>
       <div className='min-w-0 flex-1'>
         <a
           href={interestLink(interest.qid, language)}
@@ -131,7 +133,7 @@ function InterestRow({
           {interest.label}
         </a>
       </div>
-      <div className='relative w-64 shrink-0 pb-2'>
+      <div className='relative order-3 min-w-0 basis-[calc(100%-3rem)] pb-2 sm:order-none sm:w-64 sm:shrink-0 sm:basis-auto'>
         <Slider
           min={-100}
           max={100}
@@ -158,7 +160,7 @@ function InterestRow({
         <div className='bg-muted-foreground/50 pointer-events-none absolute top-full left-1/2 h-2 w-px -translate-x-1/2' />
       </div>
       <span
-        className='w-8 shrink-0 text-end text-xs tabular-nums'
+        className='order-4 w-8 shrink-0 text-end text-xs tabular-nums sm:order-none'
         style={{ color: interestColor(weight) }}
       >
         {weight > 0 ? '+' : ''}

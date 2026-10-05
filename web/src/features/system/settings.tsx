@@ -282,6 +282,7 @@ function SettingField({
       <FieldRow
         label={settingNameLabel}
         className='sm:grid-cols-[400px_minmax(0,1fr)]'
+        inline={isBoolean && !setting.read_only && !methodStates}
       >
         <div className='flex w-full items-center gap-2'>
           {setting.read_only ? (
@@ -344,7 +345,9 @@ function SettingField({
               )}
             </div>
           ) : isBoolean ? (
-            <div className='flex items-center gap-3'>
+            // Reversed below sm so the switch keeps the row's end whether or
+            // not Reset is showing beside it.
+            <div className='flex flex-row-reverse items-center gap-3 sm:flex-row'>
               <Switch
                 checked={localValue === 'true'}
                 onCheckedChange={handleToggle}

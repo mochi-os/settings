@@ -717,14 +717,14 @@ export function SystemUsers() {
           </div>
         }
         actions={
-          <div className='flex items-center gap-4'>
-            <div className='relative'>
-              <Search className='text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4' />
+          <div className='flex w-full items-center gap-2 md:w-auto md:gap-4'>
+            <div className='relative min-w-0 flex-1 md:flex-none'>
+              <Search className='text-muted-foreground absolute start-2.5 top-2.5 h-4 w-4' />
               <Input
                 placeholder={t`Search users...`}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className='w-64 ps-8'
+                className='w-full ps-8 md:w-64'
               />
             </div>
             <CreateUserDialog onSuccess={() => refetch()} />
