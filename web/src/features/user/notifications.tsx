@@ -213,21 +213,25 @@ export function UserNotifications() {
           variant='underline'
           value={activeTab}
           onValueChange={(value) => setActiveTab(value as TabId)}
-          className='mb-4'
+          className='gap-4'
         >
-          <TabsList>
+          {/* The panels sit inside Tabs with the strip: a sticky strip only
+              holds for as long as its parent is on screen. */}
+          <TabsList sticky>
             {tabs.map((tab) => (
               <TabsTrigger key={tab.id} value={tab.id}>
                 {tab.label}
               </TabsTrigger>
             ))}
           </TabsList>
+          <div>
+            {activeTab === 'categories' ? (
+              <CategoriesTab creating={creating} setCreating={setCreating} />
+            ) : (
+              <TopicsTab />
+            )}
+          </div>
         </Tabs>
-        {activeTab === 'categories' ? (
-          <CategoriesTab creating={creating} setCreating={setCreating} />
-        ) : (
-          <TopicsTab />
-        )}
       </Main>
     </>
   )
