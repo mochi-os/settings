@@ -77,6 +77,10 @@ import { useStepUp } from '@/lib/use-step-up'
 
 const APP_BASE = getAppPath()
 
+// The Android client's latest release: a stable link the release points at
+// each new build.
+const ANDROID_CLIENT = 'https://packages.mochi-os.org/android/mochi.apk'
+
 // A phone or tablet the user runs Mochi on. Its push account hangs off it, so
 // the account is shown here as the device's transport rather than as a row of
 // its own, and forgetting the device takes the account with it.
@@ -107,50 +111,64 @@ function DevicesTable({
       <h2 className='mb-2 text-base font-medium'>
         <Trans>Devices</Trans>
       </h2>
-      <Table containerClassName='mb-6'>
-        <TableHeader>
-          <TableRow>
-            <TableHead>
-              <Trans>Name</Trans>
-            </TableHead>
-            <TableHead>
-              <Trans>Push</Trans>
-            </TableHead>
-            <TableHead>
-              <Trans>Last seen</Trans>
-            </TableHead>
-            <TableHead className='w-24'></TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {rows.map((device) => {
-            const push = accounts.filter((a) => a.device === device.id)
-            return (
-              <TableRow key={device.id}>
-                <TableCell className='font-medium'>
-                  {device.label || t`Device`}
-                </TableCell>
-                <TableCell className='text-muted-foreground'>
-                  {formatList(push.map((a) => getProviderLabel(a.type)))}
-                </TableCell>
-                <TableCell className='text-muted-foreground'>
-                  {formatTimestamp(device.seen)}
-                </TableCell>
-                <TableCell className='text-end'>
-                  <Button
-                    variant='outline'
-                    size='sm'
-                    disabled={forgettingId === device.id}
-                    onClick={() => setForgetting(device)}
-                  >
-                    <Trans>Forget</Trans>
-                  </Button>
-                </TableCell>
-              </TableRow>
-            )
-          })}
-        </TableBody>
-      </Table>
+      {/* In a new tab: the shell's sandbox allows popups, so a plain anchor is
+        enough, and a phone's browser offers to install what it downloads. */}
+      <p className='mb-4'>
+        <a
+          href={ANDROID_CLIENT}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='text-sm font-medium hover:underline'
+        >
+          <Trans>Android Client</Trans>
+        </a>
+      </p>
+      {rows.length > 0 && (
+        <Table containerClassName='mb-6'>
+          <TableHeader>
+            <TableRow>
+              <TableHead>
+                <Trans>Name</Trans>
+              </TableHead>
+              <TableHead>
+                <Trans>Push</Trans>
+              </TableHead>
+              <TableHead>
+                <Trans>Last seen</Trans>
+              </TableHead>
+              <TableHead className='w-24'></TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {rows.map((device) => {
+              const push = accounts.filter((a) => a.device === device.id)
+              return (
+                <TableRow key={device.id}>
+                  <TableCell className='font-medium'>
+                    {device.label || t`Device`}
+                  </TableCell>
+                  <TableCell className='text-muted-foreground'>
+                    {formatList(push.map((a) => getProviderLabel(a.type)))}
+                  </TableCell>
+                  <TableCell className='text-muted-foreground'>
+                    {formatTimestamp(device.seen)}
+                  </TableCell>
+                  <TableCell className='text-end'>
+                    <Button
+                      variant='outline'
+                      size='sm'
+                      disabled={forgettingId === device.id}
+                      onClick={() => setForgetting(device)}
+                    >
+                      <Trans>Forget</Trans>
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              )
+            })}
+          </TableBody>
+        </Table>
+      )}
       {forgetting && (
         <ConfirmDialog
           open={!!forgetting}
@@ -429,11 +447,7 @@ function AccountRow({
             {!signInOnly && (
               <DropdownMenuItem onClick={() => setShowDeleteDialog(true)}>
                 <Trash2 className='me-2 h-4 w-4' />
-                {isOauth ? (
-                  <Trans>Revoke access</Trans>
-                ) : (
-                  <Trans>Remove</Trans>
-                )}
+                {isOauth ? <Trans>Revoke access</Trans> : <Trans>Remove</Trans>}
               </DropdownMenuItem>
             )}
           </DropdownMenuContent>
@@ -719,14 +733,12 @@ export function ConnectedAccounts() {
           <ListSkeleton variant='simple' height='h-12' count={3} />
         ) : (
           <>
-            {devices.length > 0 && (
-              <DevicesTable
-                devices={devices}
-                accounts={accounts}
-                onForget={handleForgetDevice}
-                forgettingId={forgettingDeviceId}
-              />
-            )}
+            <DevicesTable
+              devices={devices}
+              accounts={accounts}
+              onForget={handleForgetDevice}
+              forgettingId={forgettingDeviceId}
+            />
             {visibleAccounts.length === 0 ? (
               <EmptyState
                 icon={Link}

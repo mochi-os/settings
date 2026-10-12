@@ -136,6 +136,21 @@ describe('Adding an account', () => {
   })
 })
 
+describe('Devices', () => {
+  it('links to the Android client even before any device is connected', async () => {
+    show()
+    const link = await screen.findByRole('link', { name: 'Android Client' })
+    expect(link).toHaveAttribute(
+      'href',
+      'https://packages.mochi-os.org/android/mochi.apk'
+    )
+    expect(link).toHaveAttribute('target', '_blank')
+    expect(screen.getByRole('heading', { name: 'Devices' })).toBeInTheDocument()
+    // No device yet, so no empty table of them.
+    expect(screen.queryByRole('columnheader', { name: 'Last seen' })).toBeNull()
+  })
+})
+
 describe('Account settings', () => {
   beforeEach(() => {
     state.update.mockReset()
