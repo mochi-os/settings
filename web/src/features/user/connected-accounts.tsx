@@ -120,7 +120,7 @@ function DevicesTable({
           rel='noopener noreferrer'
           className='text-sm font-medium hover:underline'
         >
-          <Trans>Android Client</Trans>
+          <Trans>Android client</Trans>
         </a>
       </p>
       {rows.length > 0 && (

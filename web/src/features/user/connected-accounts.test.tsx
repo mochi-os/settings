@@ -139,7 +139,7 @@ describe('Adding an account', () => {
 describe('Devices', () => {
   it('links to the Android client even before any device is connected', async () => {
     show()
-    const link = await screen.findByRole('link', { name: 'Android Client' })
+    const link = await screen.findByRole('link', { name: 'Android client' })
     expect(link).toHaveAttribute(
       'href',
       'https://packages.mochi-os.org/android/mochi.apk'
