@@ -6,6 +6,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useAuthStore, AuthenticatedLayout } from '@mochi/web'
 import { useAccountData } from '@/hooks/use-account'
 import { useDomainsData } from '@/hooks/use-domains'
+import { useNetworksData } from '@/hooks/use-networks'
 import { useApplyDisplayPreferences } from '@/hooks/use-preferences'
 import { useFilteredSidebarData } from '@/components/layout/data/sidebar-data'
 
@@ -13,16 +14,18 @@ function SettingsLayout() {
   useApplyDisplayPreferences()
   const { data: accountData } = useAccountData()
   const { data: domainsData } = useDomainsData()
+  const { data: networksData } = useNetworksData()
 
   const isAdmin = accountData?.role === 'administrator'
   const hasDomainAccess = isAdmin || (domainsData?.delegations?.length ?? 0) > 0
+  const hasNetworks = networksData?.offered === true
 
   // Only show the full sidebar once we know what's available. Until then the
   // no-admin, no-domains shape is the fallback - which is exactly what
   // useFilteredSidebarData answers for (false, false).
   const isLoaded = accountData !== undefined && domainsData !== undefined
-  const fallback = useFilteredSidebarData(false, false)
-  const filtered = useFilteredSidebarData(isAdmin, hasDomainAccess)
+  const fallback = useFilteredSidebarData(false, false, false)
+  const filtered = useFilteredSidebarData(isAdmin, hasDomainAccess, hasNetworks)
   const filteredSidebarData = isLoaded ? filtered : fallback
 
   return <AuthenticatedLayout sidebarData={filteredSidebarData} />

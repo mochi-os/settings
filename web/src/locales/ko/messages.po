@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "인터넷 연결을 확인하고 다시 시도하세요."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" 및 그 아래의 이름이 해제되어 누구나 가져갈 수 있게 됩니다. 해당 계정과 그 계정들이 게시한 모든 내용, 팔로워가 삭제됩니다."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\"이(가) 삭제되며, 게시한 모든 내용과 팔로워도 함께 삭제됩니다."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" 사용자는 로그아웃되며 정지가 해제될 때까지 �
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" 사용자는 모든 기기에서 로그아웃되며 다시 로그인해야 합니다."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\"의 연결이 해제됩니다. 이를 통해 게시된 내용은 {1}에 남습니다."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "이 서버가 제공하는 모든 네트워크에서 \"{address}\"을(를) 사용하게 됩니다. 핸들은 이름을 바꿀 수 없으며, 나중에 해제하면 해당 계정과 팔로워가 삭제됩니다."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · 푸시"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (개발)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{1}의 {0}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. 코드 확인"
 msgid "A recording is already in progress."
 msgstr "이미 녹음이 진행 중입니다."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "복구 키를 사용하면 계정을 이전하거나 손상된 서버가 한 작업을 되돌릴 수 있습니다. 이전 키를 대체하며 한 번만 표시됩니다."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "절대값 (날짜 및 시간)"
@@ -274,15 +304,26 @@ msgstr "접근 수준"
 msgid "Account"
 msgstr "계정"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "계정 작업"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "계정이 추가되었어요"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "계정이 생성되었어요"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "계정이 연결되었습니다"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "계정이 제거되었어요"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "계정 유형"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "계정이 업데이트되었어요"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "계정이 인증되었어요"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "계정"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "활동"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "추가"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "댓글 추가..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "이름 추가"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "{0} 아래에 이름 추가"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\"이(가) 추가되었어요"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "주소"
 
@@ -444,6 +501,10 @@ msgstr "관리자"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "알고리즘"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "인증 코드"
 msgid "Automatic certificates"
 msgstr "인증서 자동 발급"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "사용 가능"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "사용 가능한 키보드 단축키"
@@ -716,6 +781,9 @@ msgstr "카메라를 사용할 수 없음"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "취소"
@@ -783,6 +851,10 @@ msgstr "변경된 일정"
 msgid "Checkbox"
 msgstr "체크박스"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "확인 중…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "체크리스트"
@@ -794,6 +866,10 @@ msgstr "날짜 선택"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "사이드바에서 게임을 선택하거나 새로 시작하세요."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "핸들 선택"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "검색 지우기"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "닫기"
 
@@ -945,6 +1022,7 @@ msgstr "본인 확인"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "연결됨"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "맥락 정보 및 세부 사항."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "계속"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "{providerLabel}(으)로 계속"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "복사됨"
 
@@ -996,6 +1076,7 @@ msgstr "클립보드에 복사되었어요"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "복사"
 
@@ -1003,21 +1084,58 @@ msgstr "복사"
 msgid "Copy all"
 msgstr "모두 복사"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "이름을 추가할 수 없었어요"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "계정을 닫을 수 없습니다"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "복사할 수 없었어요"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "코드를 복사하지 못했습니다. 직접 선택해 복사하세요."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "계정을 만들 수 없었어요"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "계정을 연결할 수 없었어요"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "계정을 연결할 수 없었어요"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "이 문서를 불러올 수 없습니다. 잠시 후 다시 시도해 주세요."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "복구 키를 만들 수 없었어요"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "핸들을 해제할 수 없었어요"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "계정을 제거할 수 없었어요"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "키를 교체할 수 없었어요"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "핸들을 예약할 수 없었어요"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "연결을 시작할 수 없었어요"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "공급자 연결을 해제할 수 없었어요"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "계정을 업데이트할 수 없었어요"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "사용자 생성"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "생성됨"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "필요한 패턴과 일치하지 않습니다"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "도메인"
 
@@ -1924,6 +2048,10 @@ msgstr "코드 확인에 실패했어요"
 msgid "Failed to verify domain"
 msgstr "도메인 확인에 실패했어요"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "페디버스"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "그룹화 기준"
 msgid "Group: {0}"
 msgstr "그룹: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "핸들"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "핸들 작업"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "핸들이 해제되었어요"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "핸들이 예약되었어요"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "기록"
@@ -2061,6 +2205,10 @@ msgstr "홀 펀치"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "홈"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "호스팅"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "방금"
 msgid "Keyboard shortcuts"
 msgstr "키보드 단축키"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "키"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "키가 교체되었어요"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "종류"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "알려짐 {known} · 연결됨 {linked} · 브로드캐스트 메시 {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "마지막 사용"
 msgid "Layout"
 msgstr "레이아웃"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "영문자와 숫자만 사용, 영문자로 시작, 3~20자"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "문자, 숫자, 공백, 하이픈, 슬래시만 사용할 수 있습니다"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "라이트"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "링크"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "계정 연결"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "계정 연결"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "연결됨"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "복구 코드로 로그인"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "TOTP 인증 앱으로 로그인"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "복구 키를 만들까요?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "키 만들기"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "내 패스키"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "이름"
@@ -2486,6 +2674,10 @@ msgstr "이름"
 msgctxt "person"
 msgid "Name"
 msgstr "이름"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "이름이 추가되었어요"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "이름이 업데이트되었어요"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "네트워크"
 
@@ -2518,6 +2712,12 @@ msgstr "네트워크"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "네트워크 오류"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "네트워크"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "비교하지 않음: {0}보다 큼"
 msgid "Not compared: over the size limit"
 msgstr "비교하지 않음: 크기 제한 초과"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "연결되지 않음"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "옵션"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "기타"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "다른 서버는 계정 문서에서 새 키를 확인합니다. 이전 키로 서명된 내용은 더 이상 검증되지 않습니다."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "진행"
 msgid "Processing…"
 msgstr "처리 중…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "프로필"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "프롬프트가 저장되었어요"
@@ -3129,6 +3342,11 @@ msgstr "녹음에 소리가 없습니다"
 msgid "Recovery codes"
 msgstr "복구 코드"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "복구 키"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "리디렉션"
@@ -3179,6 +3397,15 @@ msgstr "24시간 이내는 상대적, 그 외는 절대적"
 msgid "Relay service"
 msgstr "릴레이 서비스"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "해제"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "이 핸들을 해제할까요?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "관련도 {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "알림"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "제거"
 
@@ -3256,6 +3485,10 @@ msgstr "링크 제거"
 msgid "Remove suspension"
 msgstr "정지 해제"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "이 계정을 제거할까요?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "반복됨"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "교체"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "키 교체"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "키를 교체할까요?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "필수"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "이메일 다시 보내기"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "예약"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "이 핸들을 예약할까요?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "토요일"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "저장"
@@ -3705,6 +3957,10 @@ msgstr "이 도움말 표시"
 msgid "Showing {totalShown} of {total}"
 msgstr "{total} 중 {totalShown} 표시 중"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "한 번만 표시됩니다. 안전한 곳에 보관하세요. 여기에는 저장되지 않습니다."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "사이드바"
@@ -3767,6 +4023,7 @@ msgstr "시작됨"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "상태"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "이용 약관"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "테스트"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "테스트에 실패했어요"
 
@@ -3909,6 +4168,22 @@ msgstr "보낼 수 없습니다. 파일이 너무 크거나 연결이 실패했�
 msgid "That email is already registered to another account"
 msgstr "해당 이메일은 이미 다른 계정에 등록되어 있어요"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "관리자용 이름입니다"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "서버용으로 예약된 이름입니다"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "사용할 수 없는 이름입니다"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "이미 사용 중인 이름입니다"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "카메라가 이미 사용 중입니다"
 msgid "The camera request was not answered"
 msgstr "카메라 요청에 응답이 없었습니다"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "이 이름이 속한 핸들은 본인 소유가 아닙니다"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "마이크 요청에 응답이 없었습니다"
@@ -3933,6 +4212,10 @@ msgstr "패스키 요청에 응답이 없었습니다"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "요청한 콘텐츠를 찾을 수 없습니다."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "서버가 연결을 허용하지 않았어요"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "이 백업은 이 서버 또는 다른 Mochi 서버에서 복원할 수 
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "이 작업은 게임과 채팅을 영구적으로 삭제합니다. 이 작업은 되돌릴 수 없습니다."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "이 서버는 다른 네트워크를 제공하지 않습니다."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "알 수 없는 테마"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "연결 해제"
 
@@ -4202,6 +4490,10 @@ msgstr "제공자 연결 해제"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "공급자 연결을 해제할까요?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "이 계정의 연결을 해제할까요?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X 클라이언트 ID"
 msgid "X client secret"
 msgstr "X 클라이언트 비밀"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "연도"
@@ -4419,6 +4715,10 @@ msgstr "연도"
 msgid "You can manage these paths: {paths}"
 msgstr "다음 경로를 관리할 수 있어요: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "이 도메인에서는 이름을 예약할 수 없습니다"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "이 섹션에 대한 접근 권한이 없습니다."
@@ -4426,6 +4726,10 @@ msgstr "이 섹션에 대한 접근 권한이 없습니다."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "어떤 도메인에도 접근 권한이 없어요."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "핸들 한도에 도달했습니다"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

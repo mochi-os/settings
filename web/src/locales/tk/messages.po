@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Internet birikmäňizi barlaň we täzeden synanyşyň."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" we onuň aşagyndaky atlar islendik adam alyp biler ýaly boşadylar. Olaryň hasaplary, çap eden ähli zatlary we yzarlaýjylary aýrylar."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" çap eden ähli zady we yzarlaýjylary bilen bilelikde aýrylar."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" ulgamdan çykarylar we togtatma aýrylýança gaýtadan girip bi
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" ähli enjamda ulgamdan çykarylar we gaýtadan girmeli bolar."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" bilen baglanyşyk aýrylar. Onuň üsti bilen çap edilenler {1} serwerinde galar."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" bu serweriň hödürleýän ähli torlarynda siziňki bolar. Lakamyň adyny üýtgedip bolmaýar; ony soňra boşatsaňyz, onuň hasaplary we olaryň yzarlaýjylary aýrylar."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · push bildirişleri"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (ösüş)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{1} üçin {0}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Kody barlaň"
 msgid "A recording is already in progress."
 msgstr "Ýazgy eýýäm dowam edýär."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Dikeldiş açary hasaby göçürmäge ýa-da ele salnan serweriň eden işini yzyna gaýtarmaga mümkinçilik berýär. Ol öňki islendik açaryň ornuny tutýar we diňe bir gezek görkezilýär."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Mutlak (sene we wagt)"
@@ -274,15 +304,26 @@ msgstr "Giriş derejesi"
 msgid "Account"
 msgstr "Hasap"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Hasap hereketleri"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Hasap goşuldy"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Hasap döredildi"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Hasap baglanyldy"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Hasap aýryldy"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Hasap görnüşi"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Hasap täzelendi"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Hasap tassyklandy"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Hasaplar"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Hereketlilik"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Goşmak"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Teswir goşuň..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "At goşmak"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "{0} aşagynda at goşmak"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" goşuldy"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Salgy"
 
@@ -444,6 +501,10 @@ msgstr "Administrator"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algoritm"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Autentifikator kody"
 msgid "Automatic certificates"
 msgstr "Awtomatik şahadatnamalar"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Elýeterli"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Elýeterli klawiatura gysga ýollary"
@@ -716,6 +781,9 @@ msgstr "Kamera elýeterli däl"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Ýatyrmak"
@@ -783,6 +851,10 @@ msgstr "Üýtgedilen gaýtalanma"
 msgid "Checkbox"
 msgstr "Bellik gutusy"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Barlanýar…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Kontrol sanawy"
@@ -794,6 +866,10 @@ msgstr "Senäni saýlaň"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Gapdal panelden oýun saýlaň ýa-da täzesini başlaň."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Lakam saýlaň"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Gözlegi arassalamak"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Ýapmak"
 
@@ -945,6 +1022,7 @@ msgstr "Bu siziň özüňizdigiňizi tassyklaň"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Baglandy"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Kontekstual maglumat we jikme-jiklikler."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Dowam etmek"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "{providerLabel} bilen dowam et"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Göçürildi"
 
@@ -996,6 +1076,7 @@ msgstr "Aralyk buferine nusgalandy"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Nusgalamak"
 
@@ -1003,21 +1084,58 @@ msgstr "Nusgalamak"
 msgid "Copy all"
 msgstr "Hemmesini nusgalamak"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Ady goşup bolmady"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Hasabyňyzy ýapyp bolmady"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Göçürip bolmady"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kodlar göçürilmedi. Olary saýlap, el bilen göçüriň."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Hasaby döredip bolmady"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Hasap baglanyp bolmady"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "Hasaby baglap bolmady"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Bu resminamany ýüklemedi. Soň gaýtadan synanyşyň."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Dikeldiş açaryny döredip bolmady"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Lakamy boşadyp bolmady"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Hasaby aýryp bolmady"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Açarlary çalşyp bolmady"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Lakamy bronlap bolmady"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Baglamak başlap bolmady"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Üpjün edijini aýryp bolmady"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Hasaby täzeläp bolmady"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Ulanyjy döretmek"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Döredildi"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Talap edilýän nusga gabat gelmeýär"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domen"
 
@@ -1924,6 +2048,10 @@ msgstr "Kod tassyklanmady"
 msgid "Failed to verify domain"
 msgstr "Domen tassyklanmady"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Boýunça topla"
 msgid "Group: {0}"
 msgstr "Topar: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Lakam"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Lakam hereketleri"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Lakam boşadyldy"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Lakam bronlandy"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Taryh"
@@ -2061,6 +2205,10 @@ msgstr "Deşik açma"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Baş sahypa"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Ýerleşdirilen"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Häzir"
 msgid "Keyboard shortcuts"
 msgstr "Klawiatura gysga ýollary"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Açarlar"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Açarlar çalşyldy"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Görnüş"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Belli {known} · Baglanan {linked} · Ýaýlym tory {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Soňky ulanylan"
 msgid "Layout"
 msgstr "Ýerleşiş"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Diňe harplar we sanlar, harp bilen başlanýar, 3-den 20-ä çenli nyşan"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Diňe harplar, sanlar, boşluklar, defisler we kese çyzyklar"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Açyk"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Salgy"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Hasaby baglanyşdyr"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Hasap baglamak"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Baglanyşdyryldy"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Dikeldiş kody bilen gir"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "TOTP autentifikator programmasyny ulanyp gir"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Dikeldiş açaryny döretmelimi?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Açar döret"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Meniň geçiş açarym"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "At"
@@ -2486,6 +2674,10 @@ msgstr "At"
 msgctxt "person"
 msgid "Name"
 msgstr "At"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "At goşuldy"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "At täzelendi"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Tor"
 
@@ -2518,6 +2712,12 @@ msgstr "Tor"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Tor ýalňyşlygy"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Torlar"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Deňeşdirilmedi: {0}-dan uly"
 msgid "Not compared: over the size limit"
 msgstr "Deňeşdirilmedi: ölçeg çäginden ýokary"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Baglanmadyk"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Wariantlar"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Beýleki"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Beýleki serwerler täze açary hasabyň resminamasyndan öwrenýärler. Köne açar bilen gol çekilen islendik zat indi barlagdan geçmeýär."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Dowam et"
 msgid "Processing…"
 msgstr "Işlenýär…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Profil"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Soraw saklandy"
@@ -3129,6 +3342,11 @@ msgstr "Ýazgyda ses ýok"
 msgid "Recovery codes"
 msgstr "Dikeldiş kodlary"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Dikeldiş açary"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Gönükdirmek"
@@ -3179,6 +3397,15 @@ msgstr "24 sagat içinde otnositel, başga absolýut"
 msgid "Relay service"
 msgstr "Geçiriji hyzmaty"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Boşat"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Bu lakamy boşatmalymy?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Degişlilik {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Ýatladyş"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Aýyr"
 
@@ -3256,6 +3485,10 @@ msgstr "Baglanyşygy aýyr"
 msgid "Remove suspension"
 msgstr "Togtatmany aýyr"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Bu hasaby aýyrmalymy?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Gaýtalanýar"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Çalşyr"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Açarlary çalyş"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Açarlary çalyşmalymy?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Talap edilýär"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "E-poçtany gaýtadan iber"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Bronla"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Bu lakamy bronlamalymy?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Şenbe"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Saklamak"
@@ -3705,6 +3957,10 @@ msgstr "Bu kömegi görkez"
 msgid "Showing {totalShown} of {total}"
 msgstr "{total} sany {totalShown} görkezilýär"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Diňe bir gezek görkezilýär. Ony howpsuz ýerde saklaň: ol bu ýerde saklanmaýar."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Gapdal panel"
@@ -3767,6 +4023,7 @@ msgstr "Başlandy"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Ýagdaý"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Şertler"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Synag"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Synag şowsuz boldy"
 
@@ -3909,6 +4168,22 @@ msgstr "Iberip bolmady. Faýllar gaty uly bolup biler ýa-da baglanyşygyňyz ke
 msgid "That email is already registered to another account"
 msgstr "Bu e-poçta eýýäm başga hasaba hasaba alnan"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Bu at administratorlar üçin"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Bu at serwer üçin saklanýar"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Bu at elýeterli däl"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Bu at eýýäm alnan"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Kamera eýýäm ulanylýar"
 msgid "The camera request was not answered"
 msgstr "Kamera haýyşyna jogap berilmedi"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Bu adyň degişli lakamy siziňki däl"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Mikrofon haýyşyna jogap berilmedi"
@@ -3933,6 +4212,10 @@ msgstr "Geçiş açary haýyşyna jogap berilmedi"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Soralan mazmun tapylmady."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Serwer baglanyşyga rugsat bermedi"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Bu siziň şu ýa-da başga Mochi serwerinde dikeldip biljek doly ätiý
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Bu oýny we onuň söhbetdeşligini hemişelik pozar. Bu hereketi yzyna gaýtaryp bolmaz."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Bu serwer başga torlary hödürlemeýär."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Näbelli tema"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Baglanyşdyrmany aýyr"
 
@@ -4202,6 +4490,10 @@ msgstr "Hyzmatdaşy aýyr"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Üpjün edijiniň baglanyşdyrmasy aýyrylsynmy?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Bu hasap bilen baglanyşygy aýyrmalymy?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X müşderi ID"
 msgid "X client secret"
 msgstr "X müşderi syry"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Ýyl"
@@ -4419,6 +4715,10 @@ msgstr "Ýyl"
 msgid "You can manage these paths: {paths}"
 msgstr "Siz bu ýollary dolandyryp bilersiňiz: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Bu domende at bronlap bilmersiňiz"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Bu bölüme girmäge rugsadyňyz ýok."
@@ -4426,6 +4726,10 @@ msgstr "Bu bölüme girmäge rugsadyňyz ýok."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Hiç bir domene rugsadyň ýok."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Siz lakamlaryňyzyň çägine ýetdiňiz"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

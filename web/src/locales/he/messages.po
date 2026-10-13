@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "בדקו את חיבור האינטרנט ונסו שוב."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" והשמות שתחתיו ישוחררו כך שכל אחד יוכל לקחת אותם. החשבונות שלהם, כל מה שפרסמו והעוקבים שלהם יוסרו."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" יוסר יחד עם כל מה שפרסם והעוקבים שלו."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" ינותק ולא יוכל להתחבר שוב עד שההשעי
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" ינותק בכל מכשיר ויצטרך להתחבר שוב."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "הקישור של \"{0}\" יבוטל. מה שפורסם דרכו יישאר ב-{1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" יהיה שלך בכל רשת שהשרת הזה מציע. לא ניתן לשנות שם משתמש; שחרורו בהמשך מסיר את החשבונות שלו ואת העוקבים שלהם."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · פוש"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (פיתוח)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} עבור {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. אמת קוד"
 msgid "A recording is already in progress."
 msgstr "הקלטה כבר מתבצעת."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "מפתח שחזור מאפשר לך להעביר את החשבון או לבטל את מה ששרת פרוץ עשה. הוא מחליף כל מפתח קודם ומוצג פעם אחת בלבד."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "מוחלט (תאריך ושעה)"
@@ -274,15 +304,26 @@ msgstr "רמת גישה"
 msgid "Account"
 msgstr "חשבון"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "פעולות חשבון"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "החשבון נוסף"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "החשבון נוצר"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "החשבון קושר"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "החשבון הוסר"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "סוג חשבון"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "החשבון עודכן"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "החשבון אומת"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "חשבונות"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "פעילות"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "הוספה"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "הוסף תגובה..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "הוסף שם"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "הוסף שם תחת {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "נוסף \"{0}\""
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "כתובת"
 
@@ -444,6 +501,10 @@ msgstr "מנהל מערכת"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "אלגוריתם"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "קוד אימות"
 msgid "Automatic certificates"
 msgstr "אישורים אוטומטיים"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "זמין"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "קיצורי מקלדת זמינים"
@@ -716,6 +781,9 @@ msgstr "המצלמה אינה זמינה"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "ביטול"
@@ -783,6 +851,10 @@ msgstr "מופע ששונה"
 msgid "Checkbox"
 msgstr "תיבת סימון"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "בודק…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "רשימת משימות"
@@ -794,6 +866,10 @@ msgstr "בחירת תאריך"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "בחר משחק מהסרגל הצדדי או התחל אחד חדש."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "בחר שם משתמש"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "נקה חיפוש"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "סגור"
 
@@ -945,6 +1022,7 @@ msgstr "אימות הזהות שלך"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "מחובר"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "מידע קונטקסטואלי ופרטים."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "המשך"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "המשך עם {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "הועתק"
 
@@ -996,6 +1076,7 @@ msgstr "הועתק ללוח"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "העתק"
 
@@ -1003,21 +1084,58 @@ msgstr "העתק"
 msgid "Copy all"
 msgstr "העתק הכול"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "לא ניתן היה להוסיף את השם"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "לא ניתן היה לסגור את החשבון שלך"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "לא ניתן היה להעתיק"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "לא ניתן היה להעתיק את הקודים. סמן והעתק אותם ידנית."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "לא ניתן היה ליצור את החשבון"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "לא ניתן היה לקשר חשבון"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "לא ניתן היה לקשר את החשבון"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "לא ניתן לטעון מסמך זה. נסה שוב מאוחר יותר."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "לא ניתן היה ליצור את מפתח השחזור"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "לא ניתן היה לשחרר את שם המשתמש"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "לא ניתן היה להסיר את החשבון"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "לא ניתן היה להחליף את המפתחות"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "לא ניתן היה לשריין את שם המשתמש"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "לא ניתן היה להתחיל קישור"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "לא ניתן היה לבטל קישור ספק"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "לא ניתן היה לעדכן את החשבון"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "צור משתמש"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "נוצר"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "לא תואם לתבנית הנדרשת"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "דומיין"
 
@@ -1924,6 +2048,10 @@ msgstr "אימות הקוד נכשל"
 msgid "Failed to verify domain"
 msgstr "אימות הדומיין נכשל"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "קבץ לפי"
 msgid "Group: {0}"
 msgstr "קבוצה: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "שם משתמש"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "פעולות שם משתמש"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "שם המשתמש שוחרר"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "שם המשתמש שוריין"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "היסטוריה"
@@ -2061,6 +2205,10 @@ msgstr "ניקוב"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "בית"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "מתארח"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "הרגע"
 msgid "Keyboard shortcuts"
 msgstr "קיצורי מקלדת"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "מפתחות"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "המפתחות הוחלפו"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "סוג"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "מוכרים {known} · מחוברים {linked} · רשת שידור {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "שימוש אחרון"
 msgid "Layout"
 msgstr "פריסה"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "אותיות וספרות בלבד, מתחיל באות, 3 עד 20 תווים"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "אותיות, ספרות, רווחים, מקפים ולוכסנים בלבד"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "בהיר"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "קישור"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "קשר חשבון"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "קשר חשבון"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "מקושר"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "התחברות באמצעות קוד שחזור"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "התחברות באמצעות אפליקציית מאמת TOTP"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "ליצור מפתח שחזור?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "צור מפתח"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "מפתח הגישה שלי"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "שם"
@@ -2486,6 +2674,10 @@ msgstr "שם"
 msgctxt "person"
 msgid "Name"
 msgstr "שם"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "השם נוסף"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "השם עודכן"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "רשת"
 
@@ -2518,6 +2712,12 @@ msgstr "רשת"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "שגיאת רשת"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "רשתות"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "לא הושווה: גדול מ-{0}"
 msgid "Not compared: over the size limit"
 msgstr "לא הושווה: חורג ממגבלת הגודל"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "לא מחובר"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "אפשרויות"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "אחר"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "שרתים אחרים לומדים על המפתח החדש ממסמך החשבון. כל מה שנחתם במפתח הישן לא יעבור עוד אימות."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "המשך"
 msgid "Processing…"
 msgstr "מעבד…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "פרופיל"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "הפרומפט נשמר"
@@ -3129,6 +3342,11 @@ msgstr "ההקלטה אינה מכילה שמע"
 msgid "Recovery codes"
 msgstr "קודי שחזור"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "מפתח שחזור"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "הפניה"
@@ -3179,6 +3397,15 @@ msgstr "יחסי בתוך 24 שעות, אחרת מוחלט"
 msgid "Relay service"
 msgstr "שירות ממסר"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "שחרר"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "לשחרר את שם המשתמש הזה?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "רלוונטיות {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "תזכורת"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "הסר"
 
@@ -3256,6 +3485,10 @@ msgstr "הסרת קישור"
 msgid "Remove suspension"
 msgstr "הסר השעיה"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "להסיר את החשבון הזה?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "חוזר"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "החלף"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "החלף מפתחות"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "להחליף את המפתחות?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "נדרש"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "שלח את האימייל שוב"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "שריין"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "לשריין את שם המשתמש הזה?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "שבת"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "שמור"
@@ -3705,6 +3957,10 @@ msgstr "הצג עזרה זו"
 msgid "Showing {totalShown} of {total}"
 msgstr "מציג {totalShown} מתוך {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "מוצג פעם אחת בלבד. שמור אותו במקום בטוח: הוא לא נשמר כאן."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "סרגל צד"
@@ -3767,6 +4023,7 @@ msgstr "התחיל"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "סטטוס"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "תנאים והגבלות"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "בדיקה"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "הבדיקה נכשלה"
 
@@ -3909,6 +4168,22 @@ msgstr "לא ניתן היה לשלוח. ייתכן שהקבצים גדולים 
 msgid "That email is already registered to another account"
 msgstr "כתובת האימייל הזו כבר רשומה לחשבון אחר"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "השם הזה מיועד למנהלים"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "השם הזה שמור לשרת"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "השם הזה אינו זמין"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "השם הזה תפוס"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "המצלמה כבר בשימוש"
 msgid "The camera request was not answered"
 msgstr "בקשת המצלמה לא נענתה"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "שם המשתמש שהשם הזה נמצא תחתיו אינו שלך"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "בקשת המיקרופון לא נענתה"
@@ -3933,6 +4212,10 @@ msgstr "בקשת מפתח הגישה לא נענתה"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "לא ניתן למצוא את התוכן המבוקש."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "השרת לא איפשר את הקישור"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "זהו גיבוי מלא שניתן לשחזר בשרת Mochi זה או 
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "פעולה זו תמחק לצמיתות את המשחק ואת הצ'אט שלו. לא ניתן לבטל פעולה זו."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "השרת הזה אינו מציע רשתות אחרות."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "ערכת נושא לא ידועה"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "בטל קישור"
 
@@ -4202,6 +4490,10 @@ msgstr "נתק ספק"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "לבטל קישור ספק?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "לבטל את הקישור של החשבון הזה?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "מזהה לקוח X"
 msgid "X client secret"
 msgstr "סוד לקוח X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "שנה"
@@ -4419,6 +4715,10 @@ msgstr "שנה"
 msgid "You can manage these paths: {paths}"
 msgstr "ניתן לנהל את הנתיבים האלה: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "לא ניתן לשריין שם בדומיין הזה"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "אין לך גישה לאזור זה."
@@ -4426,6 +4726,10 @@ msgstr "אין לך גישה לאזור זה."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "אין לך גישה לאף דומיין."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "הגעת למגבלת שמות המשתמש שלך"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

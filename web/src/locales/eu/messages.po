@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Egiaztatu zure interneteko konexioa eta saiatu berriro."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" eta haren azpiko izenak askatu egingo dira, edonork har ditzan. Haien kontuak, argitaratu duten guztia eta jarraitzaileak kenduko dira."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" kendu egingo da, argitaratu duen guztiarekin eta jarraitzaileekin batera."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" erabiltzailearen saioa itxiko da eta ezingo du berriro saioa has
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" erabiltzailearen saioa gailu guztietan itxiko da eta berriro hasi beharko du saioa."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" desestekatu egingo da. Haren bidez argitaratutakoa {1} zerbitzarian geratuko da."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" zurea izango da zerbitzari honek eskaintzen duen sare guztietan. Erabiltzaile-izena ezin da berrizendatu; geroago askatzen baduzu, haren kontuak eta horien jarraitzaileak kenduko dira."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · push jakinarazpenak"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (garapena)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} ({1})"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Egiaztatu kodea"
 msgid "A recording is already in progress."
 msgstr "Grabazio bat abian da dagoeneko."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Berreskuratze-gakoari esker, kontua lekuz alda dezakezu edo arriskuan jarritako zerbitzari batek egindakoa desegin. Aurreko edozein gako ordezten du eta behin bakarrik erakusten da."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absolutua (data eta ordua)"
@@ -274,15 +304,26 @@ msgstr "Sarbide maila"
 msgid "Account"
 msgstr "Kontua"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Kontuaren ekintzak"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Kontua gehitu da"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Kontua sortu da"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Kontua lotuta"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Kontua kendua"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Kontu mota"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Kontua eguneratua"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Kontua egiaztatua"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Kontuak"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Jarduera"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Gehitu"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Gehitu iruzkin bat..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Gehitu izen bat"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Gehitu izen bat honen azpian: {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" gehitu da"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Helbidea"
 
@@ -444,6 +501,10 @@ msgstr "Administratzailea"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AA"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algoritmoa"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Autentifikatzaile kodea"
 msgid "Automatic certificates"
 msgstr "Ziurtagiri automatikoak"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Erabilgarri"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Eskuragarri dauden teklatu lasterbideak"
@@ -716,6 +781,9 @@ msgstr "Kamera ez dago erabilgarri"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Utzi"
@@ -783,6 +851,10 @@ msgstr "Aldatutako agerraldia"
 msgid "Checkbox"
 msgstr "Kontrol-laukia"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Egiaztatzen…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Egiaztapen-zerrenda"
@@ -794,6 +866,10 @@ msgstr "Aukeratu data"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Aukeratu joko bat alboko barratik edo hasi berri bat."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Aukeratu erabiltzaile-izen bat"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Garbitu bilaketa"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Itxi"
 
@@ -945,6 +1022,7 @@ msgstr "Berretsi zu zarela"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Konektatua"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Testuinguruko informazioa eta xehetasunak."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Jarraitu"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Jarraitu {providerLabel} erabiliz"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Kopiatuta"
 
@@ -996,6 +1076,7 @@ msgstr "Arbelera kopiatu da"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Kopiatu"
 
@@ -1003,21 +1084,58 @@ msgstr "Kopiatu"
 msgid "Copy all"
 msgstr "Kopiatu dena"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Ezin izan da izena gehitu"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Ezin izan da zure kontua itxi"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Ezin izan da kopiatu"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Ezin izan dira kodeak kopiatu. Hautatu eta kopiatu eskuz."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Ezin izan da kontua sortu"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "Ezin izan da kontua estekatu"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "Ezin izan da kontua estekatu"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Ezin izan da dokumentu hau kargatu. Saiatu berriro geroago."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Ezin izan da berreskuratze-gakoa sortu"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Ezin izan da erabiltzaile-izena askatu"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Ezin izan da kontua kendu"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Ezin izan dira gakoak ordeztu"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Ezin izan da erabiltzaile-izena erreserbatu"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Ezin izan da estekatzea hasi"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Ezin izan da hornitzailea desestekatu"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Ezin izan da kontua eguneratu"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Sortu erabiltzailea"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Sortua"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Ez dator bat beharrezko ereduarekin"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domeinua"
 
@@ -1924,6 +2048,10 @@ msgstr "Ezin izan da kodea egiaztatu"
 msgid "Failed to verify domain"
 msgstr "Ezin izan da domeinua egiaztatu"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fedibertso"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Taldekatu honen arabera"
 msgid "Group: {0}"
 msgstr "Taldea: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Erabiltzaile-izena"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Erabiltzaile-izenaren ekintzak"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Erabiltzaile-izena askatu da"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Erabiltzaile-izena erreserbatu da"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Historia"
@@ -2061,6 +2205,10 @@ msgstr "Zulaketa"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Hasiera"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Ostatatua"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Oraintxe"
 msgid "Keyboard shortcuts"
 msgstr "Teklatuko lasterbideak"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Gakoak"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Gakoak ordeztu dira"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Mota"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Ezagunak {known} · Konektatuak {linked} · Igorpen mesh {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Azken erabilera"
 msgid "Layout"
 msgstr "Diseinua"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Letrak eta zenbakiak soilik, letra batez hasita, 3 eta 20 karaktere artean"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Letrak, zenbakiak, zuriuneak, marratxoak eta barrak soilik"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Argia"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Esteka"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Lotu kontua"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Estekatu kontu bat"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Estekatuta"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Hasi saioa berreskuratze-kodearekin"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Hasi saioa TOTP autentifikatzaile-aplikazioarekin"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Berreskuratze-gako bat sortu?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Sortu gakoa"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Nire sarbide-gakoa"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Izena"
@@ -2486,6 +2674,10 @@ msgstr "Izena"
 msgctxt "person"
 msgid "Name"
 msgstr "Izena"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Izena gehitu da"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Izena eguneratu da"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Sarea"
 
@@ -2518,6 +2712,12 @@ msgstr "Sarea"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Sareko errorea"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Sareak"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Ez da konparatu: {0} baino handiagoa"
 msgid "Not compared: over the size limit"
 msgstr "Ez da konparatu: tamaina-muga gainditzen du"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Konektatu gabe"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Aukerak"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Bestelakoa"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Beste zerbitzariek kontuaren dokumentutik ezagutzen dute gako berria. Gako zaharrarekin sinatutako ezer ez da gehiago egiaztatzen."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Jarraitu"
 msgid "Processing…"
 msgstr "Prozesatzen…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Profila"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Galdera-aukera gorde da"
@@ -3129,6 +3342,11 @@ msgstr "Grabazioak ez du audiorik"
 msgid "Recovery codes"
 msgstr "Berreskuratze-kodeak"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Berreskuratze-gakoa"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Birbideratu"
@@ -3179,6 +3397,15 @@ msgstr "Erlatiboa 24 ordu barruan, bestela absolutua"
 msgid "Relay service"
 msgstr "Errele-zerbitzua"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Askatu"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Erabiltzaile-izen hau askatu?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Garrantzia {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Oroigarria"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Kendu"
 
@@ -3256,6 +3485,10 @@ msgstr "Kendu esteka"
 msgid "Remove suspension"
 msgstr "Kendu eteneta"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Kontu hau kendu?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Errepikatzen da"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Ordeztu"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Ordeztu gakoak"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Gakoak ordeztu?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Beharrezkoa"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Bidali mezua berriro"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Erreserbatu"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Erabiltzaile-izen hau erreserbatu?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Larunbata"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Gorde"
@@ -3705,6 +3957,10 @@ msgstr "Erakutsi laguntza hau"
 msgid "Showing {totalShown} of {total}"
 msgstr "{total}etik {totalShown} erakusten"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Behin bakarrik erakusten da. Gorde leku seguru batean: ez da hemen gordetzen."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Alboko barra"
@@ -3767,6 +4023,7 @@ msgstr "Hasita"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Egoera"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Baldintzak"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Probatu"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Probak huts egin du"
 
@@ -3909,6 +4168,22 @@ msgstr "Ezin izan da bidali. Fitxategiak handiegiak izan daitezke, edo konexioak
 msgid "That email is already registered to another account"
 msgstr "Helbide elektroniko hori beste kontu batean dago erregistratuta jada"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Izen hori administratzaileentzat da"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Izen hori zerbitzariarentzat gordeta dago"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Izen hori ez dago erabilgarri"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Izen hori hartuta dago"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Kamera dagoeneko erabiltzen ari da"
 msgid "The camera request was not answered"
 msgstr "Kamera eskaerak ez du erantzunik jaso"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Izen hau dagoen erabiltzaile-izena ez da zurea"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Mikrofono eskaerak ez du erantzunik jaso"
@@ -3933,6 +4212,10 @@ msgstr "Sarbide-gakoaren eskaerak ez du erantzunik jaso"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Eskatutako edukia ezin izan da aurkitu."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Zerbitzariak ez du estekatzea onartu"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Hau babeskopia oso bat da, Mochi zerbitzari honetan edo beste batean leh
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Honek jokoa eta bere txata betiko ezabatuko ditu. Ekintza hau ezin da desegin."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Zerbitzari honek ez du beste sarerik eskaintzen."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Gai ezezaguna"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Desestekatu"
 
@@ -4202,6 +4490,10 @@ msgstr "Desestekatu hornitzailea"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Hornitzailea desestekatu?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Kontu hau desestekatu?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X bezero IDa"
 msgid "X client secret"
 msgstr "X bezero-sekretua"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Urtea"
@@ -4419,6 +4715,10 @@ msgstr "Urtea"
 msgid "You can manage these paths: {paths}"
 msgstr "Bide hauek kudea ditzakezu: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Ezin duzu izenik erreserbatu domeinu honetan"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Ez duzu atal honetarako sarbiderik."
@@ -4426,6 +4726,10 @@ msgstr "Ez duzu atal honetarako sarbiderik."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Ez duzu domeinurik atzitzeko sarbiderik."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Erabiltzaile-izenen mugara iritsi zara"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณแล้วลองอีกครั้ง"
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" และชื่อที่อยู่ภายใต้จะถูกปล่อยให้ใครก็ได้นำไปใช้ บัญชีของชื่อเหล่านั้น ทุกสิ่งที่บัญชีเหล่านั้นเผยแพร่ และผู้ติดตามจะถูกลบออก"
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" จะถูกลบออกพร้อมทุกสิ่งที่เผยแพร่และผู้ติดตาม"
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" จะถูกออกจากระบบและจะเ�
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" จะถูกออกจากระบบในทุกอุปกรณ์และต้องเข้าสู่ระบบใหม่"
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" จะถูกเลิกเชื่อมโยง สิ่งที่เผยแพร่ผ่านบัญชีนี้จะยังคงอยู่บน {1}"
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" จะเป็นของคุณในทุกเครือข่ายที่เซิร์ฟเวอร์นี้มีให้ ชื่อแฝงเปลี่ยนชื่อไม่ได้ หากปล่อยในภายหลังจะลบบัญชีของชื่อแฝงนั้นและผู้ติดตามของบัญชีเหล่านั้น"
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · พุช"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (กำลังพัฒนา)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} สำหรับ {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. ตรวจสอบรหัส"
 msgid "A recording is already in progress."
 msgstr "กำลังบันทึกเสียงอยู่แล้ว"
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "คีย์กู้คืนช่วยให้คุณย้ายบัญชีหรือย้อนกลับสิ่งที่เซิร์ฟเวอร์ที่ถูกเจาะได้ทำไป คีย์นี้จะแทนที่คีย์ก่อนหน้าและแสดงเพียงครั้งเดียว"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "สัมบูรณ์ (วันที่และเวลา)"
@@ -274,15 +304,26 @@ msgstr "ระดับการเข้าถึง"
 msgid "Account"
 msgstr "บัญชี"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "การดำเนินการของบัญชี"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "เพิ่มบัญชีแล้ว"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "สร้างบัญชีแล้ว"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "เชื่อมบัญชีแล้ว"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "ลบบัญชีแล้ว"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "ประเภทบัญชี"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "อัปเดตบัญชีแล้ว"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "ยืนยันบัญชีแล้ว"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "บัญชี"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "กิจกรรม"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "เพิ่ม"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "เพิ่มความคิดเห็น..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "เพิ่มชื่อ"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "เพิ่มชื่อภายใต้ {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "เพิ่ม\"{0}\"แล้ว"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "ที่อยู่"
 
@@ -444,6 +501,10 @@ msgstr "ผู้ดูแลระบบ"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "อัลกอริทึม"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "รหัสยืนยันตัวตน"
 msgid "Automatic certificates"
 msgstr "ใบรับรองอัตโนมัติ"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "ใช้ได้"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "ปุ่มลัดที่ใช้ได้"
@@ -716,6 +781,9 @@ msgstr "กล้องไม่พร้อมใช้งาน"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "ยกเลิก"
@@ -783,6 +851,10 @@ msgstr "ครั้งที่ถูกเปลี่ยนแปลง"
 msgid "Checkbox"
 msgstr "ช่องทำเครื่องหมาย"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "กำลังตรวจสอบ…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "เช็คลิสต์"
@@ -794,6 +866,10 @@ msgstr "เลือกวันที่"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "เลือกเกมจากแถบด้านข้างหรือเริ่มเกมใหม่"
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "เลือกชื่อแฝง"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "ล้างการค้นหา"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "ปิด"
 
@@ -945,6 +1022,7 @@ msgstr "ยืนยันว่าเป็นคุณ"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "เชื่อมต่อแล้ว"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "ข้อมูลบริบทและรายละเอียด"
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "ดำเนินการต่อ"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "ดำเนินการต่อด้วย {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "คัดลอกแล้ว"
 
@@ -996,6 +1076,7 @@ msgstr "คัดลอกไปยังคลิปบอร์ดแล้ว
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "คัดลอก"
 
@@ -1003,21 +1084,58 @@ msgstr "คัดลอก"
 msgid "Copy all"
 msgstr "คัดลอกทั้งหมด"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "เพิ่มชื่อไม่ได้"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "ไม่สามารถปิดบัญชีของคุณได้"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "คัดลอกไม่ได้"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "คัดลอกรหัสไม่สำเร็จ เลือกและคัดลอกด้วยตนเอง"
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "สร้างบัญชีไม่ได้"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "ไม่สามารถเชื่อมโยงบัญชีได้"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "เชื่อมโยงบัญชีไม่ได้"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "ไม่สามารถโหลดเอกสารนี้ได้ โปรดลองอีกครั้งในภายหลัง"
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "สร้างคีย์กู้คืนไม่ได้"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "ปล่อยชื่อแฝงไม่ได้"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "ลบบัญชีไม่ได้"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "แทนที่คีย์ไม่ได้"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "จองชื่อแฝงไม่ได้"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "ไม่สามารถเริ่มการเชื่อมโ
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "ไม่สามารถเลิกเชื่อมโยงผู้ให้บริการได้"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "อัปเดตบัญชีไม่ได้"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "สร้างผู้ใช้"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "สร้างแล้ว"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "ไม่ตรงกับรูปแบบที่กำหนด"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "โดเมน"
 
@@ -1924,6 +2048,10 @@ msgstr "ไม่สามารถยืนยันรหัสได้"
 msgid "Failed to verify domain"
 msgstr "ไม่สามารถยืนยันโดเมนได้"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "จัดกลุ่มตาม"
 msgid "Group: {0}"
 msgstr "กลุ่ม: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "ชื่อแฝง"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "การดำเนินการของชื่อแฝง"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "ปล่อยชื่อแฝงแล้ว"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "จองชื่อแฝงแล้ว"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "ประวัติ"
@@ -2061,6 +2205,10 @@ msgstr "การเจาะรู"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "หน้าหลัก"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "โฮสต์ที่นี่"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "เมื่อสักครู่"
 msgid "Keyboard shortcuts"
 msgstr "ทางลัดแป้นพิมพ์"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "กุญแจ"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "แทนที่คีย์แล้ว"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "ประเภท"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "รู้จัก {known} · เชื่อมต่อแล้ว {linked} · เมชบรอดแคสต์ {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "ใช้งานล่าสุด"
 msgid "Layout"
 msgstr "เลย์เอาต์"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "ตัวอักษรและตัวเลขเท่านั้น ขึ้นต้นด้วยตัวอักษร ยาว 3 ถึง 20 อักขระ"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "ใช้ได้เฉพาะตัวอักษร ตัวเลข ช่องว่าง ยัติภังค์ และเครื่องหมายทับ"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "สว่าง"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "ลิงก์"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "เชื่อมโยงบัญชี"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "เชื่อมโยงบัญชี"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "เชื่อมโยงแล้ว"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "เข้าสู่ระบบด้วยรหัสกู้คื
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "เข้าสู่ระบบด้วยแอปยืนยันตัวตน TOTP"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "สร้างคีย์กู้คืนหรือไม่?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "สร้างคีย์"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "พาสคีย์ของฉัน"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "ชื่อ"
@@ -2486,6 +2674,10 @@ msgstr "ชื่อ"
 msgctxt "person"
 msgid "Name"
 msgstr "ชื่อ"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "เพิ่มชื่อแล้ว"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "อัปเดตชื่อแล้ว"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "เครือข่าย"
 
@@ -2518,6 +2712,12 @@ msgstr "เครือข่าย"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "ข้อผิดพลาดของเครือข่าย"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "เครือข่าย"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "ไม่ได้เปรียบเทียบ: ใหญ่กว�
 msgid "Not compared: over the size limit"
 msgstr "ไม่ได้เปรียบเทียบ: เกินขีดจำกัดขนาด"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "ไม่ได้เชื่อมต่อ"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "ตัวเลือก"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "อื่น ๆ"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "เซิร์ฟเวอร์อื่นจะทราบคีย์ใหม่จากเอกสารของบัญชี สิ่งใดที่ลงนามด้วยคีย์เก่าจะตรวจสอบไม่ผ่านอีกต่อไป"
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "ดำเนินการต่อ"
 msgid "Processing…"
 msgstr "กำลังประมวลผล…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "โปรไฟล์"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "บันทึกพรอมต์แล้ว"
@@ -3129,6 +3342,11 @@ msgstr "การบันทึกไม่มีเสียง"
 msgid "Recovery codes"
 msgstr "รหัสกู้คืน"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "คีย์กู้คืน"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "เปลี่ยนเส้นทาง"
@@ -3179,6 +3397,15 @@ msgstr "สัมพัทธ์ภายใน 24 ชั่วโมง นอ�
 msgid "Relay service"
 msgstr "บริการรีเลย์"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "ปล่อย"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "ปล่อยชื่อแฝงนี้หรือไม่?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "ความเกี่ยวข้อง {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "การแจ้งเตือน"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "ลบ"
 
@@ -3256,6 +3485,10 @@ msgstr "ลบลิงก์"
 msgid "Remove suspension"
 msgstr "ปลดการระงับ"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "ลบบัญชีนี้หรือไม่?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "ทำซ้ำ"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "แทนที่"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "แทนที่คีย์"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "แทนที่คีย์หรือไม่?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "จำเป็น"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "ส่งอีเมลอีกครั้ง"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "จอง"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "จองชื่อแฝงนี้หรือไม่?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "วันเสาร์"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "บันทึก"
@@ -3705,6 +3957,10 @@ msgstr "แสดงความช่วยเหลือนี้"
 msgid "Showing {totalShown} of {total}"
 msgstr "แสดง {totalShown} จาก {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "แสดงเพียงครั้งเดียว เก็บไว้ในที่ปลอดภัย: คีย์นี้ไม่ได้จัดเก็บไว้ที่นี่"
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "แถบด้านข้าง"
@@ -3767,6 +4023,7 @@ msgstr "เริ่มแล้ว"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "สถานะ"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "ข้อกำหนดและเงื่อนไข"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "ทดสอบ"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "ทดสอบไม่สำเร็จ"
 
@@ -3909,6 +4168,22 @@ msgstr "ส่งไม่ได้ ไฟล์อาจใหญ่เกิ�
 msgid "That email is already registered to another account"
 msgstr "อีเมลนั้นได้ลงทะเบียนกับบัญชีอื่นแล้ว"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "ชื่อนั้นสงวนไว้สำหรับผู้ดูแลระบบ"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "ชื่อนั้นสงวนไว้สำหรับเซิร์ฟเวอร์"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "ไม่สามารถใช้ชื่อนั้นได้"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "ชื่อนั้นมีผู้ใช้แล้ว"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "กล้องกำลังถูกใช้งานอยู่แ
 msgid "The camera request was not answered"
 msgstr "คำขอกล้องไม่ได้รับการตอบกลับ"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "ชื่อแฝงที่ชื่อนี้อยู่ภายใต้ไม่ใช่ของคุณ"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "คำขอไมโครโฟนไม่ได้รับการตอบกลับ"
@@ -3933,6 +4212,10 @@ msgstr "คำขอพาสคีย์ไม่ได้รับการต
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "ไม่พบเนื้อหาที่ร้องขอ"
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "เซิร์ฟเวอร์ไม่อนุญาตการเชื่อมโยง"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "นี่คือข้อมูลสำรองฉบับสมบ
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "การดำเนินการนี้จะลบเกมและแชทของเกมอย่างถาวร ไม่สามารถยกเลิกการดำเนินการนี้ได้"
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "เซิร์ฟเวอร์นี้ไม่มีเครือข่ายอื่นให้ใช้"
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "ธีมที่ไม่รู้จัก"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "เลิกเชื่อมโยง"
 
@@ -4202,6 +4490,10 @@ msgstr "เลิกเชื่อมโยงผู้ให้บริกา
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "เลิกเชื่อมโยงผู้ให้บริการ?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "เลิกเชื่อมโยงบัญชีนี้หรือไม่?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "ID ไคลเอ็นต์ X"
 msgid "X client secret"
 msgstr "ความลับไคลเอ็นต์ X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "ปี"
@@ -4419,6 +4715,10 @@ msgstr "ปี"
 msgid "You can manage these paths: {paths}"
 msgstr "คุณจัดการเส้นทางเหล่านี้ได้: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "คุณจองชื่อในโดเมนนี้ไม่ได้"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "คุณไม่มีสิทธิ์เข้าถึงส่วนนี้"
@@ -4426,6 +4726,10 @@ msgstr "คุณไม่มีสิทธิ์เข้าถึงส่ว
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "คุณไม่มีสิทธิ์เข้าถึงโดเมนใดๆ"
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "คุณมีชื่อแฝงครบตามจำนวนที่กำหนดแล้ว"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

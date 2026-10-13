@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "សូមពិនិត្យការតភ្ជាប់អ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។"
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" និងឈ្មោះនៅក្រោមវានឹងត្រូវបានដោះលែង ដើម្បីឱ្យអ្នកណាក៏អាចយកបាន។ គណនីរបស់ពួកវា អ្វីៗទាំងអស់ដែលគណនីទាំងនោះបានបោះផ្សាយ និងអ្នកតាមដានរបស់ពួកវានឹងត្រូវបានដកចេញ។"
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" នឹងត្រូវបានដកចេញ រួមជាមួយអ្វីៗទាំងអស់ដែលវាបានបោះផ្សាយ និងអ្នកតាមដានរបស់វា។"
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" នឹងត្រូវបានចេញពីគណនី ហ
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" នឹងត្រូវបានចេញពីគណនីលើគ្រប់ឧបករណ៍ ហើយត្រូវចូលម្តងទៀត។"
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" នឹងត្រូវបានផ្តាច់។ អ្វីដែលបានបោះផ្សាយតាមរយៈវានៅតែមាននៅលើ {1}។"
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" នឹងក្លាយជារបស់អ្នកនៅលើគ្រប់បណ្តាញដែលម៉ាស៊ីនមេនេះផ្តល់ជូន។ ឈ្មោះអ្នកប្រើមិនអាចប្តូរឈ្មោះបានទេ ហើយការដោះលែងវានៅពេលក្រោយនឹងដកគណនីរបស់វា និងអ្នកតាមដានរបស់គណនីទាំងនោះចេញ។"
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · ការជូនដំណឹងរុញ"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (ការអភិវឌ្ឍ)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} សម្រាប់ {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "៣. ផ្ទៀងផ្ទាត់កូដ"
 msgid "A recording is already in progress."
 msgstr "ការថតកំពុងដំណើរការរួចហើយ។"
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "កូនសោស្តារអនុញ្ញាតឱ្យអ្នកផ្លាស់ទីគណនី ឬលុបចោលអ្វីដែលម៉ាស៊ីនមេដែលត្រូវបានលួចចូលបានធ្វើ។ វាជំនួសកូនសោមុនៗ ហើយត្រូវបានបង្ហាញតែម្តងប៉ុណ្ណោះ។"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "ដាច់ខាត (កាលបរិច្ឆេទ និងពេលវេលា)"
@@ -274,15 +304,26 @@ msgstr "កម្រិតការចូលប្រើ"
 msgid "Account"
 msgstr "គណនី"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "សកម្មភាពគណនី"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "បានបន្ថែមគណនី"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "បានបង្កើតគណនី"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "បានភ្ជាប់គណនី"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "បានដកគណនី"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "ប្រភេទគណនី"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "បានធ្វើបច្ចុប្បន្នភាពគណនី"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "គណនីត្រូវបានផ្ទៀងផ្ទាត់"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "គណនី"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "សកម្មភាព"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "បន្ថែម"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "បន្ថែមមតិយោបល់..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "បន្ថែមឈ្មោះ"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "បន្ថែមឈ្មោះនៅក្រោម {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "បានបន្ថែម \"{0}\""
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "អាសយដ្ឋាន"
 
@@ -444,6 +501,10 @@ msgstr "អ្នកគ្រប់គ្រង"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "ក្បួនដោះស្រាយ"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "កូដកម្មវិធីផ្ទៀងផ្ទាត់"
 msgid "Automatic certificates"
 msgstr "វិញ្ញាបនបត្រស្វ័យប្រវត្តិ"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "អាចប្រើបាន"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "ផ្លូវកាត់គ្រាប់ចុចដែលមាន"
@@ -716,6 +781,9 @@ msgstr "កាមេរ៉ាមិនអាចប្រើបាន"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "បោះបង់"
@@ -783,6 +851,10 @@ msgstr "ការកើតឡើងដែលបានផ្លាស់ប្ត
 msgid "Checkbox"
 msgstr "ប្រអប់ធីក"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "កំពុងពិនិត្យ…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "បញ្ជីពិនិត្យ"
@@ -794,6 +866,10 @@ msgstr "ជ្រើសរើសកាលបរិច្ឆេទ"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "ជ្រើសរើសហ្គេមពីរបារចំហៀង ឬចាប់ផ្តើមថ្មី។"
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "ជ្រើសរើសឈ្មោះអ្នកប្រើ"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "សម្អាតការស្វែងរក"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "បិទ"
 
@@ -945,6 +1022,7 @@ msgstr "បញ្ជាក់ថាជាអ្នក"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "បានភ្ជាប់"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "ព័ត៌មាន និងព័ត៌មានលម្អិតតាមបរិបទ។"
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "បន្ត"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "បន្តជាមួយ {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "បានចម្លង"
 
@@ -996,6 +1076,7 @@ msgstr "បានចម្លងទៅក្ដារតម្បៀតខ្ទ
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "ចម្លង"
 
@@ -1003,21 +1084,58 @@ msgstr "ចម្លង"
 msgid "Copy all"
 msgstr "ចម្លងទាំងអស់"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "មិនអាចបន្ថែមឈ្មោះបានទេ"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "មិនអាចបិទគណនីរបស់អ្នកបានទេ"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "មិនអាចចម្លងបានទេ"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "មិនអាចចម្លងលេខកូដបានទេ។ ជ្រើសរើស និងចម្លងដោយដៃ។"
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "មិនអាចបង្កើតគណនីបានទេ"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "មិនអាចភ្ជាប់គណនី"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "មិនអាចភ្ជាប់គណនីបានទេ"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "មិនអាចផ្ទុកឯកសារនេះ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។"
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "មិនអាចបង្កើតកូនសោស្តារបានទេ"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "មិនអាចដោះលែងឈ្មោះអ្នកប្រើបានទេ"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "មិនអាចដកគណនីចេញបានទេ"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "មិនអាចជំនួសកូនសោបានទេ"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "មិនអាចកក់ឈ្មោះអ្នកប្រើបានទេ"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "មិនអាចចាប់ផ្តើមភ្ជាប់"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "មិនអាចផ្ដាច់អ្នកផ្ដល់សេវា"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "មិនអាចធ្វើបច្ចុប្បន្នភាពគណនីបានទេ"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "បង្កើតអ្នកប្រើប្រាស់"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "បានបង្កើត"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "មិនត្រូវនឹងលំនាំដែលទាមទារ"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "ដែន"
 
@@ -1924,6 +2048,10 @@ msgstr "បរាជ័យក្នុងការផ្ទៀងផ្ទាត
 msgid "Failed to verify domain"
 msgstr "បរាជ័យក្នុងការផ្ទៀងផ្ទាត់ដែន"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "ដាក់ជាក្រុមតាម"
 msgid "Group: {0}"
 msgstr "ក្រុម៖ {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "ឈ្មោះអ្នកប្រើ"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "សកម្មភាពឈ្មោះអ្នកប្រើ"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "បានដោះលែងឈ្មោះអ្នកប្រើ"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "បានកក់ឈ្មោះអ្នកប្រើ"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "ប្រវត្តិ"
@@ -2061,6 +2205,10 @@ msgstr "ការទម្លុះ"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "ទំព័រដើម"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "បានបង្ហោះ"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "អម្បាញ់មិញ"
 msgid "Keyboard shortcuts"
 msgstr "ផ្លូវកាត់ក្ដារចុច"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "កូនសោ"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "បានជំនួសកូនសោ"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "ប្រភេទ"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "ស្គាល់ {known} · បានភ្ជាប់ {linked} · បណ្ដាញសំណាញ់ផ្សាយ {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "បានប្រើចុងក្រោយ"
 msgid "Layout"
 msgstr "ប្លង់"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "តែអក្សរឡាតាំង និងលេខប៉ុណ្ណោះ ចាប់ផ្តើមដោយអក្សរ ពី 3 ដល់ 20 តួ"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "តែអក្សរ លេខ ចន្លោះ សញ្ញាដក និងសញ្ញាទ្រេតប៉ុណ្ណោះ"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "ភ្លឺ"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "តំណ"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "ភ្ជាប់គណនី"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "ភ្ជាប់គណនី"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "បានភ្ជាប់"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "ចូលដោយប្រើកូដសង្គ្រោះ"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "ចូលដោយប្រើកម្មវិធីផ្ទៀងផ្ទាត់ TOTP"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "បង្កើតកូនសោស្តារ?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "បង្កើតកូនសោ"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "កូនសោចូលរបស់ខ្ញុំ"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "ឈ្មោះ"
@@ -2486,6 +2674,10 @@ msgstr "ឈ្មោះ"
 msgctxt "person"
 msgid "Name"
 msgstr "ឈ្មោះ"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "បានបន្ថែមឈ្មោះ"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "បានធ្វើបច្ចុប្បន្នភាពឈ្ម
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "បណ្តាញ"
 
@@ -2518,6 +2712,12 @@ msgstr "បណ្តាញ"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "កំហុសបណ្តាញ"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "បណ្តាញ"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "មិនបានប្រៀបធៀបទេ៖ ធំជាង {0}"
 msgid "Not compared: over the size limit"
 msgstr "មិនបានប្រៀបធៀបទេ៖ លើសដែនកំណត់ទំហំ"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "មិនបានភ្ជាប់"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "ជម្រើស"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "ផ្សេងទៀត"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "ម៉ាស៊ីនមេផ្សេងទៀតដឹងពីកូនសោថ្មីពីឯកសាររបស់គណនី។ អ្វីៗដែលបានចុះហត្ថលេខាដោយកូនសោចាស់នឹងលែងផ្ទៀងផ្ទាត់បានទៀតហើយ។"
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "បន្ត"
 msgid "Processing…"
 msgstr "កំពុងដំណើរការ…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "ប្រវត្តិរូប"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "បានរក្សាទុកការសួរ"
@@ -3129,6 +3342,11 @@ msgstr "ការថតគ្មានសំឡេងទេ"
 msgid "Recovery codes"
 msgstr "កូដស្តារ"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "កូនសោស្តារ"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "ការបញ្ជូនបន្ត"
@@ -3179,6 +3397,15 @@ msgstr "ទាក់ទងក្នុង 24 ម៉ោង បើមិនដូ�
 msgid "Relay service"
 msgstr "សេវាបញ្ជូនបន្ត"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "ដោះលែង"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "ដោះលែងឈ្មោះអ្នកប្រើនេះ?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "ភាពពាក់ព័ន្ធ {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "ការរំលឹក"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "យកចេញ"
 
@@ -3256,6 +3485,10 @@ msgstr "លុបតំណ"
 msgid "Remove suspension"
 msgstr "យកការផ្អាកចេញ"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "ដកគណនីនេះចេញ?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "ធ្វើឡើងវិញ"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "ជំនួស"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "ជំនួសកូនសោ"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "ជំនួសកូនសោ?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "ត្រូវការ"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "ផ្ញើអ៊ីមែលឡើងវិញ"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "កក់"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "កក់ឈ្មោះអ្នកប្រើនេះ?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "ថ្ងៃសៅរ៍"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "រក្សាទុក"
@@ -3705,6 +3957,10 @@ msgstr "បង្ហាញជំនួយនេះ"
 msgid "Showing {totalShown} of {total}"
 msgstr "កំពុងបង្ហាញ {totalShown} នៃ {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "បង្ហាញតែម្តងប៉ុណ្ណោះ។ សូមរក្សាទុកវានៅកន្លែងសុវត្ថិភាព៖ វាមិនត្រូវបានរក្សាទុកនៅទីនេះទេ។"
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "របារចំហៀង"
@@ -3767,6 +4023,7 @@ msgstr "បានចាប់ផ្តើម"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "ស្ថានភាព"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "លក្ខខណ្ឌ"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "សាកល្បង"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "ការសាកល្បងបរាជ័យ"
 
@@ -3909,6 +4168,22 @@ msgstr "មិនអាចផ្ញើបានទេ។ ឯកសារប្�
 msgid "That email is already registered to another account"
 msgstr "អ៊ីមែលនោះត្រូវបានចុះឈ្មោះទៅគណនីផ្សេងទៀតរួចហើយ"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "ឈ្មោះនោះសម្រាប់អ្នកគ្រប់គ្រង"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "ឈ្មោះនោះត្រូវបានបម្រុងទុកសម្រាប់ម៉ាស៊ីនមេ"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "ឈ្មោះនោះមិនអាចប្រើបានទេ"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "ឈ្មោះនោះមានគេយករួចហើយ"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "កាមេរ៉ាកំពុងត្រូវបានប្រើ
 msgid "The camera request was not answered"
 msgstr "សំណើកាមេរ៉ាមិនត្រូវបានឆ្លើយតបទេ"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "ឈ្មោះអ្នកប្រើដែលឈ្មោះនេះស្ថិតនៅក្រោម មិនមែនជារបស់អ្នកទេ"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "សំណើមីក្រូហ្វូនមិនត្រូវបានឆ្លើយតបទេ"
@@ -3933,6 +4212,10 @@ msgstr "សំណើកូនសោចូលមិនត្រូវបានឆ
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "រកមិនឃើញខ្លឹមសារដែលបានស្នើសុំទេ។"
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "ម៉ាស៊ីនមេមិនបានអនុញ្ញាតការភ្ជាប់ទេ"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "នេះគឺជាការបម្រុងទុកពេញលេ
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "សកម្មភាពនេះនឹងលុបហ្គេម និងជជែកកំសាន្តរបស់វាជាអចិន្ត្រៃយ៍។ សកម្មភាពនេះមិនអាចត្រឡប់វិញបានទេ។"
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "ម៉ាស៊ីនមេនេះមិនផ្តល់បណ្តាញផ្សេងទៀតទេ។"
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "រូបរាងមិនស្គាល់"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "ផ្តាច់"
 
@@ -4202,6 +4490,10 @@ msgstr "ផ្តាច់អ្នកផ្ដល់សេវា"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "ផ្តាច់អ្នកផ្តល់សេវា?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "ផ្តាច់គណនីនេះ?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "លេខសម្គាល់អតិថិជន X"
 msgid "X client secret"
 msgstr "សម្ងាត់អតិថិជន X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "ឆ្នាំ"
@@ -4419,6 +4715,10 @@ msgstr "ឆ្នាំ"
 msgid "You can manage these paths: {paths}"
 msgstr "អ្នកអាចគ្រប់គ្រងផ្លូវទាំងនេះ៖ {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "អ្នកមិនអាចកក់ឈ្មោះនៅលើដែននេះបានទេ"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "អ្នកមិនមានសិទ្ធិចូលប្រើផ្នែកនេះទេ។"
@@ -4426,6 +4726,10 @@ msgstr "អ្នកមិនមានសិទ្ធិចូលប្រើផ
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "អ្នកមិនមានសិទ្ធិចូលប្រើដែនណាមួយទេ។"
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "អ្នកបានដល់ដែនកំណត់ឈ្មោះអ្នកប្រើរបស់អ្នកហើយ"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

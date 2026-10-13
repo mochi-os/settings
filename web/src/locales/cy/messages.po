@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Gwiriwch eich cysylltiad rhyngrwyd a rhowch gynnig arall arni."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "Bydd \"{0}\" a'r enwau oddi tano yn cael eu rhyddhau i unrhyw un eu cymryd. Bydd eu cyfrifon, popeth a gyhoeddwyd ganddynt a'u dilynwyr yn cael eu tynnu."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "Bydd \"{0}\" yn cael ei dynnu gyda phopeth a gyhoeddodd a'i ddilynwyr."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "Bydd \"{0}\" yn cael ei allgofnodi ac ni fydd yn gallu mewngofnodi eto n
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "Bydd \"{0}\" yn cael ei allgofnodi ar bob dyfais a bydd rhaid iddo fewngofnodi eto."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "Bydd \"{0}\" yn cael ei ddatgysylltu. Bydd yr hyn a gyhoeddwyd drwyddo yn aros ar {1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "Bydd \"{address}\" yn eiddo i chi ar bob rhwydwaith y mae'r gweinydd hwn yn ei gynnig. Nid oes modd ailenwi enw defnyddiwr; bydd ei ryddhau yn nes ymlaen yn tynnu ei gyfrifon a'u dilynwyr."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · gwthio"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (datblygu)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} ar gyfer {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Gwirio cod"
 msgid "A recording is already in progress."
 msgstr "Mae recordiad eisoes ar y gweill."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Mae allwedd adfer yn gadael i chi symud y cyfrif neu ddadwneud yr hyn a wnaeth gweinydd sydd wedi'i beryglu. Mae'n disodli unrhyw un blaenorol ac yn cael ei dangos unwaith yn unig."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absoliwt (dyddiad ac amser)"
@@ -274,15 +304,26 @@ msgstr "Lefel mynediad"
 msgid "Account"
 msgstr "Cyfrif"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Gweithredoedd y cyfrif"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Cyfrif wedi'i ychwanegu"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Cyfrif wedi'i greu"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Cyfrif wedi'i gysylltu"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Cyfrif wedi'i dynnu"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Math o gyfrif"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Cyfrif wedi'i ddiweddaru"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Cyfrif wedi'i wirio"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Cyfrifon"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Gweithgaredd"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Ychwanegu"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Ychwanegu sylw..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Ychwanegu enw"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Ychwanegu enw o dan {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "Ychwanegwyd \"{0}\""
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Cyfeiriad"
 
@@ -444,6 +501,10 @@ msgstr "Gweinyddwr"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algorithm"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Cod dilyswr"
 msgid "Automatic certificates"
 msgstr "Tystysgrifau awtomatig"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Ar gael"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Llwybrau bysellfwrdd ar gael"
@@ -716,6 +781,9 @@ msgstr "Camera ddim ar gael"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Canslo"
@@ -783,6 +851,10 @@ msgstr "Achlysur wedi'i newid"
 msgid "Checkbox"
 msgstr "Blwch ticio"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Yn gwirio…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Rhestr wirio"
@@ -794,6 +866,10 @@ msgstr "Dewiswch ddyddiad"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Dewiswch gêm o'r bar ochr neu dechreuwch un newydd."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Dewiswch enw defnyddiwr"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Clirio chwiliad"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Cau"
 
@@ -945,6 +1022,7 @@ msgstr "Cadarnhau mai chi sydd yna"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Wedi cysylltu"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Gwybodaeth a manylion cyd-destunol."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Parhau"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Parhau gyda {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Copïwyd"
 
@@ -996,6 +1076,7 @@ msgstr "Wedi'i gopïo i'r clipfwrdd"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Copïo"
 
@@ -1003,21 +1084,58 @@ msgstr "Copïo"
 msgid "Copy all"
 msgstr "Copïo'r cyfan"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Methwyd ychwanegu'r enw"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Methwyd â chau eich cyfrif"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Methwyd copïo"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Methwyd copïo'r codau. Dewiswch a'u copïo â llaw."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Methwyd creu'r cyfrif"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Methwyd cysylltu cyfrif"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "Methwyd cysylltu'r cyfrif"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Methwyd llwytho'r ddogfen hon. Rhowch gynnig arni eto yn nes ymlaen."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Methwyd creu'r allwedd adfer"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Methwyd rhyddhau'r enw defnyddiwr"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Methwyd tynnu'r cyfrif"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Methwyd disodli'r allweddi"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Methwyd neilltuo'r enw defnyddiwr"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Methwyd cychwyn cysylltu"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Methwyd dadgysylltu darparwr"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Methwyd diweddaru'r cyfrif"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Creu defnyddiwr"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Wedi'i greu"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Nid yw'n cyfateb i'r patrwm gofynnol"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Parth"
 
@@ -1924,6 +2048,10 @@ msgstr "Methwyd dilysu'r cod"
 msgid "Failed to verify domain"
 msgstr "Methwyd dilysu'r parth"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Grwpio yn ôl"
 msgid "Group: {0}"
 msgstr "Grŵp: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Enw defnyddiwr"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Gweithredoedd yr enw defnyddiwr"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Enw defnyddiwr wedi'i ryddhau"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Enw defnyddiwr wedi'i neilltuo"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Hanes"
@@ -2061,6 +2205,10 @@ msgstr "Tyllu"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Cartref"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Wedi'i letya"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Nawr"
 msgid "Keyboard shortcuts"
 msgstr "Llwybrau byr bysellfwrdd"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Allweddi"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Allweddi wedi'u disodli"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Math"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Hysbys {known} · Wedi cysylltu {linked} · Mesh darlledu {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Defnyddiwyd ddiwethaf"
 msgid "Layout"
 msgstr "Cynllun"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Llythrennau a digidau yn unig, yn dechrau â llythyren, 3 i 20 nod"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Llythrennau, rhifau, bylchau, cysylltnodau a slaesau yn unig"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Golau"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Dolen"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Cysylltu cyfrif"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Cysylltu cyfrif"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Cysylltiedig"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Mewngofnodi gan ddefnyddio cod adfer"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Mewngofnodi gan ddefnyddio ap dilysu TOTP"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Creu allwedd adfer?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Creu allwedd"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Fy mhasallwedd"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Enw"
@@ -2486,6 +2674,10 @@ msgstr "Enw"
 msgctxt "person"
 msgid "Name"
 msgstr "Enw"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Enw wedi'i ychwanegu"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Enw wedi'i ddiweddaru"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Rhwydwaith"
 
@@ -2518,6 +2712,12 @@ msgstr "Rhwydwaith"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Gwall rhwydwaith"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Rhwydweithiau"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Heb ei gymharu: yn fwy na {0}"
 msgid "Not compared: over the size limit"
 msgstr "Heb ei gymharu: dros y terfyn maint"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Heb gysylltu"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Opsiynau"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Arall"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Mae gweinyddion eraill yn dysgu'r allwedd newydd o ddogfen y cyfrif. Bydd unrhyw beth a lofnodwyd â'r hen allwedd yn methu'r gwiriad."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Parhau"
 msgid "Processing…"
 msgstr "Wrthi'n prosesu…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Proffil"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Anogiad wedi'i gadw"
@@ -3129,6 +3342,11 @@ msgstr "Nid oes sain yn y recordiad"
 msgid "Recovery codes"
 msgstr "Codau adfer"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Allwedd adfer"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Ailgyfeirio"
@@ -3179,6 +3397,15 @@ msgstr "Cymharol o fewn 24 awr, fel arall yn absoliwt"
 msgid "Relay service"
 msgstr "Gwasanaeth relái"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Rhyddhau"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Rhyddhau'r enw defnyddiwr hwn?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Perthnasedd {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Nodyn atgoffa"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Tynnu"
 
@@ -3256,6 +3485,10 @@ msgstr "Tynnu dolen"
 msgid "Remove suspension"
 msgstr "Tynnu ataliad"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Tynnu'r cyfrif hwn?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Yn ailadrodd"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Newid"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Disodli allweddi"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Disodli'r allweddi?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Gofynnol"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Ailanfon yr e-bost"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Neilltuo"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Neilltuo'r enw defnyddiwr hwn?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Dydd Sadwrn"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Cadw"
@@ -3705,6 +3957,10 @@ msgstr "Dangos y cymorth hwn"
 msgid "Showing {totalShown} of {total}"
 msgstr "Yn dangos {totalShown} o {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Yn cael ei dangos unwaith yn unig. Cadwch hi rywle diogel: nid yw'n cael ei storio yma."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Bar ochr"
@@ -3767,6 +4023,7 @@ msgstr "Wedi cychwyn"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Statws"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Telerau ac amodau"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Prawf"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Prawf wedi methu"
 
@@ -3909,6 +4168,22 @@ msgstr "Nid oedd modd ei anfon. Efallai fod y ffeiliau'n rhy fawr, neu fe fethod
 msgid "That email is already registered to another account"
 msgstr "Mae'r e-bost hwnnw eisoes wedi'i gofrestru i gyfrif arall"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Mae'r enw hwnnw ar gyfer gweinyddwyr"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Mae'r enw hwnnw wedi'i gadw i'r gweinydd"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Nid yw'r enw hwnnw ar gael"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Mae'r enw hwnnw wedi'i gymryd"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Mae'r camera eisoes yn cael ei ddefnyddio"
 msgid "The camera request was not answered"
 msgstr "Ni chafodd y cais camera ei ateb"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Nid chi biau'r enw defnyddiwr y mae'r enw hwn oddi tano"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Ni chafodd y cais meicroffon ei ateb"
@@ -3933,6 +4212,10 @@ msgstr "Ni chafodd y cais pasallwedd ei ateb"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Nid oedd modd dod o hyd i'r cynnwys y gofynnwyd amdano."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Ni chaniataodd y gweinydd y cysylltiad"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Mae hwn yn gopi wrth gefn cyflawn y gallwch ei adfer ar y gweinydd Mochi
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Bydd hyn yn dileu'r gêm a'i sgwrs yn barhaol. Ni ellir dadwneud hyn."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Nid yw'r gweinydd hwn yn cynnig rhwydweithiau eraill."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Thema anhysbys"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Datgysylltu"
 
@@ -4202,6 +4490,10 @@ msgstr "Datgysylltu’r darparwr"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Datgysylltu darparwr?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Datgysylltu'r cyfrif hwn?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "ID cleient X"
 msgid "X client secret"
 msgstr "Cyfrinach cleient X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Blwyddyn"
@@ -4419,6 +4715,10 @@ msgstr "Blwyddyn"
 msgid "You can manage these paths: {paths}"
 msgstr "Gallwch reoli'r llwybrau hyn: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Ni allwch neilltuo enw ar y parth hwn"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Nid oes gennych fynediad i'r adran hon."
@@ -4426,6 +4726,10 @@ msgstr "Nid oes gennych fynediad i'r adran hon."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Nid oes gennych fynediad i unrhyw barthau."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Rydych wedi cyrraedd eich terfyn enwau defnyddiwr"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

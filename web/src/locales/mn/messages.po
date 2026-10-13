@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Интернет холболтоо шалгаад дахин оролдоно уу."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" болон түүний доорх нэрс чөлөөлөгдөж, хэн ч авах боломжтой болно. Тэдгээрийн бүртгэлүүд, тэдгээр бүртгэлийн нийтэлсэн бүх зүйл болон дагагчид устгагдана."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" нь нийтэлсэн бүх зүйл болон дагагчдынхаа хамт устгагдана."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" гарах бөгөөд түр зогсоолтыг арилга
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" бүх төхөөрөмж дээр гарах бөгөөд дахин нэвтрэх шаардлагатай."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\"-ийн холболт салгагдана. Түүгээр дамжуулан нийтэлсэн зүйлс {1} дээр үлдэнэ."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" нь энэ серверийн санал болгож буй бүх сүлжээнд таных болно. Хэрэглэгчийн нэрийг өөрчлөх боломжгүй; дараа нь чөлөөлбөл түүний бүртгэлүүд болон тэдгээрийн дагагчид устгагдана."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · пуш"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (хөгжүүлэлт)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{1}-д зориулсан {0}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Кодыг шалгах"
 msgid "A recording is already in progress."
 msgstr "Бичлэг аль хэдийн явагдаж байна."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Сэргээх түлхүүр нь бүртгэлийг шилжүүлэх эсвэл халдлагад өртсөн серверийн хийсэн зүйлийг буцаах боломж олгоно. Энэ нь өмнөх аливаа түлхүүрийг орлох бөгөөд зөвхөн нэг удаа харагдана."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Үнэмлэхүй (огноо ба цаг)"
@@ -274,15 +304,26 @@ msgstr "Хандалтын түвшин"
 msgid "Account"
 msgstr "Бүртгэл"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Бүртгэлийн үйлдлүүд"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Бүртгэл нэмэгдсэн"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Бүртгэл үүсгэгдлээ"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Бүртгэл холбогдлоо"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Бүртгэл хасагдсан"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Бүртгэлийн төрөл"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Бүртгэл шинэчлэгдсэн"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Бүртгэл баталгаажсан"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Бүртгэлүүд"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Үйл ажиллагаа"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Нэмэх"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Сэтгэгдэл нэмэх..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Нэр нэмэх"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "{0}-ийн доор нэр нэмэх"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\"-г нэмсэн"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Хаяг"
 
@@ -444,6 +501,10 @@ msgstr "Системийн зохицуулагч"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Алгоритм"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Баталгаажуулагчийн код"
 msgid "Automatic certificates"
 msgstr "Автомат гэрчилгээ"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Боломжтой"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Боломжит товчлуурын хослолууд"
@@ -716,6 +781,9 @@ msgstr "Камер ашиглах боломжгүй"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Цуцлах"
@@ -783,6 +851,10 @@ msgstr "Өөрчлөгдсөн давталт"
 msgid "Checkbox"
 msgstr "Чекбокс"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Шалгаж байна…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Жагсаалт"
@@ -794,6 +866,10 @@ msgstr "Огноо сонгох"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Хажуугийн талбараас тоглоом сонгох эсвэл шинээр эхлүүлнэ үү."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Хэрэглэгчийн нэр сонгох"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Хайлтыг цэвэрлэх"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Хаах"
 
@@ -945,6 +1022,7 @@ msgstr "Энэ та мөн эсэхийг баталгаажуулна уу"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Холбогдсон"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Контекст мэдээлэл ба дэлгэрэнгүй."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Үргэлжлүүлэх"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "{providerLabel}-ээр үргэлжлүүлэх"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Хуулагдлаа"
 
@@ -996,6 +1076,7 @@ msgstr "Хуулбарласан"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Хуулах"
 
@@ -1003,21 +1084,58 @@ msgstr "Хуулах"
 msgid "Copy all"
 msgstr "Бүгдийг хуулах"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Нэрийг нэмж чадсангүй"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Таны бүртгэлийг хааж чадсангүй"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Хуулж чадсангүй"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Кодуудыг хуулж чадсангүй. Тэдгээрийг сонгож гараар хуулна уу."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Бүртгэл үүсгэж чадсангүй"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "Бүртгэлийг холбож чадсангүй"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "Бүртгэлийг холбож чадсангүй"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Энэ баримт бичгийг ачаалж чадсангүй. Дараа дахин оролдоно уу."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Сэргээх түлхүүр үүсгэж чадсангүй"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Хэрэглэгчийн нэрийг чөлөөлж чадсангүй"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Бүртгэлийг хасаж чадсангүй"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Түлхүүрүүдийг сольж чадсангүй"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Хэрэглэгчийн нэрийг нөөцөлж чадсангүй"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Холболт эхлүүлж чадсангүй"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Нийлүүлэгчийг тасалж чадсангүй"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Бүртгэлийг шинэчилж чадсангүй"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Хэрэглэгч үүсгэх"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Үүсгэгдсэн"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Шаардлагатай хэв маягт тохирохгүй байна"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Домэйн"
 
@@ -1924,6 +2048,10 @@ msgstr "Код баталгаажуулж чадсангүй"
 msgid "Failed to verify domain"
 msgstr "Домэйн баталгаажуулж чадсангүй"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Федиверс"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Бүлэглэх"
 msgid "Group: {0}"
 msgstr "Бүлэг: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Хэрэглэгчийн нэр"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Хэрэглэгчийн нэрийн үйлдлүүд"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Хэрэглэгчийн нэр чөлөөлөгдлөө"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Хэрэглэгчийн нэр нөөцлөгдлөө"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Түүх"
@@ -2061,6 +2205,10 @@ msgstr "Нүхлэлт"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Нүүр"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Энэ серверт"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Дөнгөж сая"
 msgid "Keyboard shortcuts"
 msgstr "Гарын товчлолууд"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Түлхүүрүүд"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Түлхүүрүүд солигдлоо"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Төрөл"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Мэдэгдсэн {known} · Холбогдсон {linked} · Цацалтын тор {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Сүүлд ашигласан"
 msgid "Layout"
 msgstr "Зохион байгуулалт"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Зөвхөн латин үсэг ба тоо, үсгээр эхэлсэн, 3-аас 20 тэмдэгт"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Зөвхөн үсэг, тоо, хоосон зай, зураас, ташуу зураас"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Цайвар"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Холбоос"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Бүртгэл холбох"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Бүртгэл холбох"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Холбогдсон"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Сэргээх код ашиглан нэвтрэх"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "TOTP баталгаажуулагч апп ашиглан нэвтрэх"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Сэргээх түлхүүр үүсгэх үү?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Түлхүүр үүсгэх"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Миний нэвтрэх түлхүүр"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Нэр"
@@ -2486,6 +2674,10 @@ msgstr "Нэр"
 msgctxt "person"
 msgid "Name"
 msgstr "Нэр"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Нэр нэмэгдлээ"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Нэр шинэчлэгдсэн"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Сүлжээ"
 
@@ -2518,6 +2712,12 @@ msgstr "Сүлжээ"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Сүлжээний алдаа"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Сүлжээнүүд"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Харьцуулаагүй: {0}-аас том"
 msgid "Not compared: over the size limit"
 msgstr "Харьцуулаагүй: хэмжээний хязгаараас хэтэрсэн"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Холбогдоогүй"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Сонголтууд"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Бусад"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Бусад серверүүд шинэ түлхүүрийг бүртгэлийн баримт бичгээс мэдэж авна. Хуучин түлхүүрээр гарын үсэг зурсан бүх зүйл цаашид шалгалтад тэнцэхгүй."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Үргэлжлүүлэх"
 msgid "Processing…"
 msgstr "Боловсруулж байна…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Профайл"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Промпт хадгалагдсан"
@@ -3129,6 +3342,11 @@ msgstr "Бичлэгт дуу алга"
 msgid "Recovery codes"
 msgstr "Сэргээх кодууд"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Сэргээх түлхүүр"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Дахин чиглүүлэлт"
@@ -3179,6 +3397,15 @@ msgstr "24 цагийн дотор харьцангуй, эс бөгөөс үн�
 msgid "Relay service"
 msgstr "Дамжуулагч үйлчилгээ"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Чөлөөлөх"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Энэ хэрэглэгчийн нэрийг чөлөөлөх үү?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Хамаарал {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Сануулга"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Хасах"
 
@@ -3256,6 +3485,10 @@ msgstr "Холбоосыг хасах"
 msgid "Remove suspension"
 msgstr "Түр зогсоолтыг арилгах"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Энэ бүртгэлийг хасах уу?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Давтагдана"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Солих"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Түлхүүрүүдийг солих"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Түлхүүрүүдийг солих уу?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Шаардлагатай"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Имэйлийг дахин илгээх"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Нөөцлөх"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Энэ хэрэглэгчийн нэрийг нөөцлөх үү?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Бямба"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Хадгалах"
@@ -3705,6 +3957,10 @@ msgstr "Энэ тусламжийг харуулах"
 msgid "Showing {totalShown} of {total}"
 msgstr "Нийт {total}-аас {totalShown} харуулж байна"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Зөвхөн нэг удаа харагдана. Үүнийг аюулгүй газар хадгална уу: энд хадгалагдахгүй."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Хажуугийн самбар"
@@ -3767,6 +4023,7 @@ msgstr "Эхэлсэн"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Төлөв"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Нөхцөл"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Тест"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Тест амжилтгүй"
 
@@ -3909,6 +4168,22 @@ msgstr "Илгээж чадсангүй. Файлууд хэт том байж �
 msgid "That email is already registered to another account"
 msgstr "Тэр имэйл өөр данстай бүртгэгдсэн байна"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Энэ нэр админуудад зориулагдсан"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Энэ нэр серверт нөөцлөгдсөн"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Энэ нэр боломжгүй"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Энэ нэр аль хэдийн авагдсан"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Камер аль хэдийн ашиглагдаж байна"
 msgid "The camera request was not answered"
 msgstr "Камерын хүсэлтэд хариу ирсэнгүй"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Энэ нэрийн харьяалагдах хэрэглэгчийн нэр таных биш"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Микрофоны хүсэлтэд хариу ирсэнгүй"
@@ -3933,6 +4212,10 @@ msgstr "Нэвтрэх түлхүүрийн хүсэлтэд хариу ирсэ
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Хүссэн агуулга олдсонгүй."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Сервер холболтыг зөвшөөрсөнгүй"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Энэ нь та энэ эсвэл өөр Mochi серверт сэрг�
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Энэ нь тоглоом болон түүний чатыг бүрмөсөн устгана. Энэ үйлдлийг буцаах боломжгүй."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Энэ сервер өөр сүлжээ санал болгодоггүй."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Тодорхойгүй загвар"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Холбоо тасалах"
 
@@ -4202,6 +4490,10 @@ msgstr "Үйлчилгээ үзүүлэгчийг салгах"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Үйлчилгээ үзүүлэгчтэй холбоо тасалах уу?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Энэ бүртгэлийн холболтыг салгах уу?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X клиент ID"
 msgid "X client secret"
 msgstr "X клиент нууц"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Жил"
@@ -4419,6 +4715,10 @@ msgstr "Жил"
 msgid "You can manage these paths: {paths}"
 msgstr "Та эдгээр замыг удирдаж болно: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Та энэ домэйн дээр нэр нөөцлөх боломжгүй"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Та энэ хэсэгт хандах эрхгүй байна."
@@ -4426,6 +4726,10 @@ msgstr "Та энэ хэсэгт хандах эрхгүй байна."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Танд ямар ч домейнд хандах эрх алга."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Та хэрэглэгчийн нэрийн хязгаартаа хүрсэн байна"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

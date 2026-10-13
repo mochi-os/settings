@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Da fatan a duba haɗin intanet ɗinka sannan a sake gwadawa."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "Za a saki \"{0}\" da sunayen da ke ƙarƙashinsa domin kowa ya iya ɗauka. Za a cire asusunsu, duk abin da suka wallafa da mabiyansu."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "Za a cire \"{0}\" tare da duk abin da ya wallafa da mabiyansa."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "Za a fitar da \"{0}\" kuma ba zai iya shiga ba har sai an cire dakatarwa
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "Za a fitar da \"{0}\" a kowace na'ura kuma zai buƙaci sake shiga."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "Za a cire haɗin \"{0}\". Abin da aka wallafa ta hanyarsa zai ci gaba da kasancewa a {1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" zai zama naka a kowace hanyar sadarwa da wannan sabar ke bayarwa. Ba za a iya canza sunan mai amfani ba; idan ka sake shi daga baya, za a cire asusunsa da mabiyansu."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · tura"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (haɓakawa)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} na {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Tabbatar da lambar"
 msgid "A recording is already in progress."
 msgstr "Ana ci gaba da yin rikodi tuni."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Maɓallin dawowa yana ba ka damar matsar da asusun ko soke abin da sabar da aka kutsa ta yi. Yana maye gurbin kowane maɓalli na baya kuma ana nuna shi sau ɗaya kawai."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Cikakke (kwanan wata da lokaci)"
@@ -274,15 +304,26 @@ msgstr "Matakin shiga"
 msgid "Account"
 msgstr "Asusu"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Ayyukan asusu"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "An ƙara asusu"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "An ƙirƙiri asusu"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "An haɗa asusu"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "An cire asusu"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Nau'in asusu"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "An sabunta asusu"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "An tabbatar da asusu"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Asusai"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Aiki"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Ƙara"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Ƙara sharhi..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Ƙara suna"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Ƙara suna ƙarƙashin {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "An ƙara \"{0}\""
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adireshi"
 
@@ -444,6 +501,10 @@ msgstr "Mai gudanarwa"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algoritim"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Code na authenticator"
 msgid "Automatic certificates"
 msgstr "Takardun shaida ta atomatik"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Akwai shi"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Gajerun hanyoyi na keyboard da ake samu"
@@ -716,6 +781,9 @@ msgstr "Babu kyamara"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Soke"
@@ -783,6 +851,10 @@ msgstr "Maimaicin da aka canza"
 msgid "Checkbox"
 msgstr "Akwatin zaɓi"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Ana duba…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Jerin dubawa"
@@ -794,6 +866,10 @@ msgstr "Zaɓi kwanan wata"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Zaɓi wasa daga sidebar ko fara sabo."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Zaɓi sunan mai amfani"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Share bincike"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Rufe"
 
@@ -945,6 +1022,7 @@ msgstr "Tabbatar da cewa kai ne"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "An haɗa"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Bayanan da suka shafi mahallin da cikakkun bayanai."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Ci gaba"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Ci gaba da {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "An kwafi"
 
@@ -996,6 +1076,7 @@ msgstr "An kwafi zuwa clipboard"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Kwafi"
 
@@ -1003,21 +1084,58 @@ msgstr "Kwafi"
 msgid "Copy all"
 msgstr "Kwafi duka"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Ba a iya ƙara sunan ba"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "An kasa rufe asusunka"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Ba a iya kwafi ba"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "An kasa kwafi lambobin. Zaɓe su ka kwafa da hannu."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Ba a iya ƙirƙirar asusun ba"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Ba a iya haɗa asusu ba"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "Ba a iya haɗa asusun ba"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Ba a iya ɗora wannan takarda ba. Da fatan a sake gwadawa daga baya."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Ba a iya ƙirƙirar maɓallin dawowa ba"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Ba a iya sakin sunan mai amfani ba"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Ba a iya cire asusun ba"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Ba a iya maye gurbin maɓallan ba"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Ba a iya keɓe sunan mai amfani ba"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Ba a iya fara haɗawa ba"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Ba a iya cire haɗin provider ba"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Ba a iya sabunta asusun ba"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Ƙirƙira mai amfani"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "An ƙirƙira"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Bai dace da tsarin da ake buƙata ba"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Yanki"
 
@@ -1924,6 +2048,10 @@ msgstr "An gaza tabbatar da code"
 msgid "Failed to verify domain"
 msgstr "An gaza tabbatar da domain"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Haɗa bisa"
 msgid "Group: {0}"
 msgstr "Rukuni: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Sunan mai amfani"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Ayyukan sunan mai amfani"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "An saki sunan mai amfani"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "An keɓe sunan mai amfani"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Tarihi"
@@ -2061,6 +2205,10 @@ msgstr "Hudawa"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Gida"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "A wannan sabar"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Yanzu"
 msgid "Keyboard shortcuts"
 msgstr "Shortcuts na keyboard"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Maɓallai"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "An maye gurbin maɓallai"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Nau'i"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Sananne {known} · An haɗa {linked} · Ragar watsawa {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Amfani na ƙarshe"
 msgid "Layout"
 msgstr "Tsari"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Haruffa da lambobi kawai, farawa da harafi, haruffa 3 zuwa 20"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Haruffa, lambobi, gurare, gajerun layuka da layukan karkata kawai"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Haske"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Hanyar haɗi"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Haɗa account"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Haɗa asusu"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "An haɗa"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Shiga ta amfani da lambar dawowa"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Shiga ta amfani da app na TOTP authenticator"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "A ƙirƙiri maɓallin dawowa?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Ƙirƙiri maɓalli"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Maɓallin shiga nawa"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Suna"
@@ -2486,6 +2674,10 @@ msgstr "Suna"
 msgctxt "person"
 msgid "Name"
 msgstr "Suna"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "An ƙara suna"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "An sabunta suna"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Hanyar sadarwa"
 
@@ -2518,6 +2712,12 @@ msgstr "Hanyar sadarwa"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Kuskuren hanyar sadarwa"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Hanyoyin sadarwa"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Ba a kwatanta ba: ya fi {0} girma"
 msgid "Not compared: over the size limit"
 msgstr "Ba a kwatanta ba: ya wuce iyakar girma"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Ba a haɗa ba"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Zaɓuɓɓuka"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Sauran"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Sauran sabobi suna samun sabon maɓallin daga takardar asusun. Duk abin da aka sa hannu da tsohon maɓallin ba zai ƙara wucewa tantancewa ba."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Ci gaba"
 msgid "Processing…"
 msgstr "Ana sarrafawa…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Bayanin martaba"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "An adana prompt"
@@ -3129,6 +3342,11 @@ msgstr "Rikodin ba shi da sauti"
 msgid "Recovery codes"
 msgstr "Lambobin dawowa"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Maɓallin dawowa"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Karkatarwa"
@@ -3179,6 +3397,15 @@ msgstr "Relative cikin sa'o'i 24, in ba haka ba absolute"
 msgid "Relay service"
 msgstr "Sabis na watsawa"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Saki"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "A saki wannan sunan mai amfani?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Dacewa {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Tunatarwa"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Cire"
 
@@ -3256,6 +3485,10 @@ msgstr "Cire mahaɗi"
 msgid "Remove suspension"
 msgstr "Cire suspension"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "A cire wannan asusu?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Yana maimaituwa"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Maye gurbi"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Maye gurbin maɓallai"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "A maye gurbin maɓallan?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Ana buƙata"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Sake aika imel"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Keɓe"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "A keɓe wannan sunan mai amfani?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Asabar"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Adana"
@@ -3705,6 +3957,10 @@ msgstr "Nuna wannan taimako"
 msgid "Showing {totalShown} of {total}"
 msgstr "Ana nuna {totalShown} daga {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Ana nuna shi sau ɗaya kawai. Ajiye shi a wuri mai aminci: ba a adana shi a nan ba."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Sandar gefe"
@@ -3767,6 +4023,7 @@ msgstr "An fara"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Matsayi"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Sharuɗɗa da yanayi"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Gwaji"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Gwaji ya gaza"
 
@@ -3909,6 +4168,22 @@ msgstr "Ba a iya aikawa ba. Wataƙila fayilolin sun yi girma, ko haɗinka ya gaz
 msgid "That email is already registered to another account"
 msgstr "Wannan imel ɗin ya riga an yi rajista da shi don wani account"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Wannan suna na masu gudanarwa ne"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "An keɓe wannan suna don sabar"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Wannan suna babu shi"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "An riga an ɗauki wannan suna"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Ana amfani da kyamara tuni"
 msgid "The camera request was not answered"
 msgstr "Ba a amsa buƙatar kyamara ba"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Sunan mai amfani da wannan suna ke ƙarƙashinsa ba naka ba ne"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Ba a amsa buƙatar makirufo ba"
@@ -3933,6 +4212,10 @@ msgstr "Ba a amsa buƙatar maɓallin shiga ba"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Ba a iya samun abun cikin da aka nema ba."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Sabar ba ta ba da izinin haɗin ba"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Wannan cikakken ajiya ne wanda za ka iya maido da shi a wannan ko wani s
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Wannan zai goge wasan da hirarsa har abada. Ba za a iya sokewa ba."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Wannan sabar ba ta bayar da wasu hanyoyin sadarwa."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Jigo da ba a sani ba"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Cire haɗin"
 
@@ -4202,6 +4490,10 @@ msgstr "Cire alaƙa da mai bayarwa"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Cire haɗin provider?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "A cire haɗin wannan asusu?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "ID na abokin ciniki na X"
 msgid "X client secret"
 msgstr "Sirrin abokin ciniki na X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Shekara"
@@ -4419,6 +4715,10 @@ msgstr "Shekara"
 msgid "You can manage these paths: {paths}"
 msgstr "Kuna iya sarrafa waɗannan hanyoyin: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Ba za ka iya keɓe suna a wannan yanki ba"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Ba ka da damar shiga wannan sashe ba."
@@ -4426,6 +4726,10 @@ msgstr "Ba ka da damar shiga wannan sashe ba."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Ba ku da damar shiga kowane domains."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Ka kai iyakar sunayen mai amfani naka"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

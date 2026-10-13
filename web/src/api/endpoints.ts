@@ -58,6 +58,20 @@ const endpoints = {
   accounts: {
     default: '-/accounts/default',
   },
+  networks: {
+    data: '-/user/networks/data',
+    handleAvailable: '-/user/networks/handle/available',
+    handleReserve: '-/user/networks/handle/reserve',
+    handleRelease: '-/user/networks/handle/release',
+    accountCreate: '-/user/networks/account/create',
+    accountLink: '-/user/networks/account/link',
+    accountRemove: '-/user/networks/account/remove',
+    accountUpdate: '-/user/networks/account/update',
+    accountTest: '-/user/networks/account/test',
+    accountKeys: '-/user/networks/account/keys',
+    accountKeysReplace: '-/user/networks/account/keys/replace',
+    accountKeysRecovery: '-/user/networks/account/keys/recovery',
+  },
   system: {
     peers: '-/system/peers',
     settings: '-/system/settings/list',

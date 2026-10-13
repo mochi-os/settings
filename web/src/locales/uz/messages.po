@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Internet aloqangizni tekshiring va qayta urinib ko‘ring."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" va uning ostidagi nomlar boʻshatiladi, ularni istalgan kishi olishi mumkin. Ularning hisoblari, ular eʼlon qilgan hamma narsa va obunachilari oʻchiriladi."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" u eʼlon qilgan hamma narsa va obunachilari bilan birga oʻchiriladi."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" tizimdan chiqariladi va toʻxtatib qoʻyish olib tashlanmaguncha
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" barcha qurilmada tizimdan chiqariladi va qayta kirishi kerak bo‘ladi."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" bilan bogʻlanish uziladi. U orqali eʼlon qilingan narsalar {1} serverida qoladi."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" ushbu server taklif qiladigan barcha tarmoqlarda sizniki boʻladi. Taxallusni qayta nomlab boʻlmaydi; keyinroq uni boʻshatsangiz, uning hisoblari va ularning obunachilari oʻchiriladi."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · push bildirishnomalar"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (ishlab chiqish)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{1} uchun {0}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Kodni tasdiqlang"
 msgid "A recording is already in progress."
 msgstr "Yozib olish allaqachon davom etmoqda."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Tiklash kaliti hisobni koʻchirish yoki buzib kirilgan server qilgan ishlarni bekor qilish imkonini beradi. U avvalgi har qanday kalitning oʻrnini egallaydi va faqat bir marta koʻrsatiladi."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Aniq (sana va vaqt)"
@@ -274,15 +304,26 @@ msgstr "Kirish darajasi"
 msgid "Account"
 msgstr "Hisob"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Hisob amallari"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Hisob qoʻshildi"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Hisob yaratildi"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Hisob bogʻlandi"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Hisob olib tashlandi"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Hisob turi"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Hisob yangilandi"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Hisob tasdiqlandi"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Hisoblar"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Faollik"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Qoʻshish"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Izoh qoʻshing..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Nom qoʻshish"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "{0} ostiga nom qoʻshish"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" qoʻshildi"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Manzil"
 
@@ -444,6 +501,10 @@ msgstr "Administrator"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algoritm"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Autentifikator kodi"
 msgid "Automatic certificates"
 msgstr "Avtomatik sertifikatlar"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Mavjud"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Mavjud klaviatura yorliqlari"
@@ -716,6 +781,9 @@ msgstr "Kamera mavjud emas"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Bekor qilish"
@@ -783,6 +851,10 @@ msgstr "Oʻzgartirilgan takror"
 msgid "Checkbox"
 msgstr "Belgilash katakchasi"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Tekshirilmoqda…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Roʻyxat"
@@ -794,6 +866,10 @@ msgstr "Sanani tanlang"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Yon paneldan oʻyin tanlang yoki yangisini boshlang."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Taxallus tanlang"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Qidiruvni tozalash"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Yopish"
 
@@ -945,6 +1022,7 @@ msgstr "Bu siz ekanligingizni tasdiqlang"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Ulangan"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Kontekstli maʼlumotlar va tafsilotlar."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Davom etish"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "{providerLabel} bilan davom etish"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Nusxalandi"
 
@@ -996,6 +1076,7 @@ msgstr "Buferga nusxalandi"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Nusxalash"
 
@@ -1003,21 +1084,58 @@ msgstr "Nusxalash"
 msgid "Copy all"
 msgstr "Hammasini nusxalash"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Nomni qoʻshib boʻlmadi"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Hisobingizni yopib bo'lmadi"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Nusxalab boʻlmadi"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kodlarni nusxalab boʻlmadi. Ularni belgilab, qoʻlda nusxalang."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Hisobni yaratib boʻlmadi"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "Hisobni bogʻlab boʻlmadi"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "Hisobni bogʻlab boʻlmadi"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Bu hujjatni yuklab boʻlmadi. Iltimos, keyinroq qayta urinib koʻring."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Tiklash kalitini yaratib boʻlmadi"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Taxallusni boʻshatib boʻlmadi"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Hisobni oʻchirib boʻlmadi"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Kalitlarni almashtirib boʻlmadi"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Taxallusni band qilib boʻlmadi"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Bogʻlashni boshlab boʻlmadi"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Provayder bogʻlanishini uzib boʻlmadi"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Hisobni yangilab boʻlmadi"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Foydalanuvchi yaratish"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Yaratildi"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Talab qilingan namunaga mos kelmaydi"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domen"
 
@@ -1924,6 +2048,10 @@ msgstr "Kodni tasdiqlab boʻlmadi"
 msgid "Failed to verify domain"
 msgstr "Domenni tasdiqlab boʻlmadi"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Boʻyicha guruhlash"
 msgid "Group: {0}"
 msgstr "Guruh: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Taxallus"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Taxallus amallari"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Taxallus boʻshatildi"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Taxallus band qilindi"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Tarix"
@@ -2061,6 +2205,10 @@ msgstr "Teshish"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Bosh sahifa"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Joylashtirilgan"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Hozirgina"
 msgid "Keyboard shortcuts"
 msgstr "Klaviatura yorliqlari"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Kalitlar"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Kalitlar almashtirildi"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Tur"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Maʼlum {known} · Ulangan {linked} · Translyatsiya tarmogʻi {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Oxirgi ishlatilgan"
 msgid "Layout"
 msgstr "Tartib"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Faqat harflar va raqamlar, harf bilan boshlanadi, 3 tadan 20 tagacha belgi"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Faqat harflar, raqamlar, boʻshliqlar, defislar va qiya chiziqlar"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Yorugʻ"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Havola"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Hisobni bogʻlash"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Hisobni bogʻlash"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Bogʻlangan"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Tiklash kodi yordamida kirish"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "TOTP autentifikator ilovasi yordamida kirish"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Tiklash kaliti yaratilsinmi?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Kalit yaratish"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Mening kirish kalitim"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Nomi"
@@ -2486,6 +2674,10 @@ msgstr "Nomi"
 msgctxt "person"
 msgid "Name"
 msgstr "Ism"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Nom qoʻshildi"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Nom yangilandi"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Tarmoq"
 
@@ -2518,6 +2712,12 @@ msgstr "Tarmoq"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Tarmoq xatosi"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Tarmoqlar"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Solishtirilmadi: {0} dan katta"
 msgid "Not compared: over the size limit"
 msgstr "Solishtirilmadi: hajm chegarasidan oshadi"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Ulanmagan"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Variantlar"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Boshqa"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Boshqa serverlar yangi kalitni hisob hujjatidan bilib oladi. Eski kalit bilan imzolangan hech narsa endi tekshiruvdan oʻtmaydi."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Davom etish"
 msgid "Processing…"
 msgstr "Qayta ishlanmoqda…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Profil"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Soʻrov saqlandi"
@@ -3129,6 +3342,11 @@ msgstr "Yozuvda ovoz yoʻq"
 msgid "Recovery codes"
 msgstr "Tiklash kodlari"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Tiklash kaliti"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Yoʻnaltirish"
@@ -3179,6 +3397,15 @@ msgstr "24 soat ichida nisbiy, aks holda mutlaq"
 msgid "Relay service"
 msgstr "Relay xizmati"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Boʻshatish"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Bu taxallus boʻshatilsinmi?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Moslik {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Eslatma"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Olib tashlash"
 
@@ -3256,6 +3485,10 @@ msgstr "Havolani olib tashlash"
 msgid "Remove suspension"
 msgstr "Toʻxtatishni olib tashlash"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Bu hisob oʻchirilsinmi?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Takrorlanadi"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Almashtirish"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Kalitlarni almashtirish"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Kalitlar almashtirilsinmi?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Talab qilinadi"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Xatni qayta yuborish"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Band qilish"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Bu taxallus band qilinsinmi?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Shanba"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Saqlash"
@@ -3705,6 +3957,10 @@ msgstr "Ushbu yordamni koʻrsatish"
 msgid "Showing {totalShown} of {total}"
 msgstr "{total} dan {totalShown} koʻrsatilmoqda"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Faqat bir marta koʻrsatiladi. Uni xavfsiz joyda saqlang: u bu yerda saqlanmaydi."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Yon panel"
@@ -3767,6 +4023,7 @@ msgstr "Boshlandi"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Holat"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Shartlar va qoidalar"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Sinov"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Sinov muvaffaqiyatsiz"
 
@@ -3909,6 +4168,22 @@ msgstr "Yuborib bo‘lmadi. Fayllar juda katta bo‘lishi mumkin yoki aloqa uzil
 msgid "That email is already registered to another account"
 msgstr "Bu email allaqachon boshqa hisobga roʻyxatdan oʻtkazilgan"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Bu nom administratorlar uchun"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Bu nom server uchun ajratilgan"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Bu nom mavjud emas"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Bu nom band"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Kamera allaqachon ishlatilmoqda"
 msgid "The camera request was not answered"
 msgstr "Kamera so‘roviga javob berilmadi"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Bu nom joylashgan taxallus sizniki emas"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Mikrofon so‘roviga javob berilmadi"
@@ -3933,6 +4212,10 @@ msgstr "Kirish kaliti soʻroviga javob berilmadi"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Soʻralgan kontent topilmadi."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Server bogʻlanishga ruxsat bermadi"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Bu siz ushbu yoki boshqa Mochi serverida tiklashingiz mumkin bo'lgan to'
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Bu oʻyin va uning chatini butunlay oʻchirib tashlaydi. Bu amalni bekor qilib boʻlmaydi."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Bu server boshqa tarmoqlarni taklif qilmaydi."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Nomaʼlum mavzu"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Bogʻlamani yechish"
 
@@ -4202,6 +4490,10 @@ msgstr "Provayderni ajratish"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Provayder bogʻlamasini yechish?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Bu hisob bilan bogʻlanish uzilsinmi?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X mijoz ID si"
 msgid "X client secret"
 msgstr "X mijoz siri"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Yil"
@@ -4419,6 +4715,10 @@ msgstr "Yil"
 msgid "You can manage these paths: {paths}"
 msgstr "Siz bu yoʻllarni boshqarishingiz mumkin: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Bu domenda nom band qila olmaysiz"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Bu boʻlimga kirish huquqingiz yoʻq."
@@ -4426,6 +4726,10 @@ msgstr "Bu boʻlimga kirish huquqingiz yoʻq."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Sizda hech qanday domenlarga kirish ruxsati yoʻq."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Taxalluslar chegarasiga yetdingiz"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

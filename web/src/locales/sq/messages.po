@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Kontrolloni lidhjen tuaj me internetin dhe provoni përsëri."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "Pseudonimi \"{0}\" dhe emrat nën të do të lirohen që t'i marrë kushdo. Llogaritë e tyre, gjithçka që kanë publikuar dhe ndjekësit e tyre do të hiqen."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "Llogaria \"{0}\" do të hiqet bashkë me gjithçka që ka publikuar dhe ndjekësit e saj."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" do të dilet nga llogaria dhe nuk do të mund të hyjë përsër
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" do të dilet nga llogaria në çdo pajisje dhe do t'i duhet të hyjë përsëri."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "Llogaria \"{0}\" do të shkëputet. Ajo që u publikua përmes saj mbetet në {1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" do të jetë i juaji në çdo rrjet që ofron ky server. Një pseudonim nuk mund të riemërtohet; lirimi i tij më vonë heq llogaritë e tij dhe ndjekësit e tyre."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · njoftime push"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (zhvillim)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} për {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Verifiko kodin"
 msgid "A recording is already in progress."
 msgstr "Një regjistrim është tashmë në proces."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Një çelës rikuperimi ju lejon të zhvendosni llogarinë ose të zhbëni atë që bëri një server i komprometuar. Ai zëvendëson çdo çelës të mëparshëm dhe shfaqet vetëm një herë."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absolut (data dhe ora)"
@@ -274,15 +304,26 @@ msgstr "Niveli i qasjes"
 msgid "Account"
 msgstr "Llogaria"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Veprimet e llogarisë"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Llogaria u shtua"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Llogaria u krijua"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Llogaria u lidh"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Llogaria u hoq"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Lloji i llogarisë"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Llogaria u përditësua"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Llogaria u verifikua"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Llogaritë"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Aktiviteti"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Shto"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Shto një koment..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Shto një emër"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Shto një emër nën {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "U shtua \"{0}\""
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adresa"
 
@@ -444,6 +501,10 @@ msgstr "Administrator"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algoritmi"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Kodi i autentikuesit"
 msgid "Automatic certificates"
 msgstr "Certifikata automatike"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "I disponueshëm"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Shkurtoret e disponueshme të tastierës"
@@ -716,6 +781,9 @@ msgstr "Kamera nuk është e disponueshme"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Anulo"
@@ -783,6 +851,10 @@ msgstr "Përsëritje e ndryshuar"
 msgid "Checkbox"
 msgstr "Kuti zgjedhjeje"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Duke kontrolluar…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Listë kontrolli"
@@ -794,6 +866,10 @@ msgstr "Zgjidh një datë"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Zgjidh një lojë nga ana ose nis një të re."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Zgjidhni një pseudonim"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Pastro kërkimin"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Mbyll"
 
@@ -945,6 +1022,7 @@ msgstr "Konfirmoni se jeni ju"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "I lidhur"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Informacion kontekstual dhe detaje."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Vazhdo"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Vazhdo me {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "U kopjua"
 
@@ -996,6 +1076,7 @@ msgstr "U kopjua në kujtesën e fragmenteve"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Kopjo"
 
@@ -1003,21 +1084,58 @@ msgstr "Kopjo"
 msgid "Copy all"
 msgstr "Kopjo të gjitha"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Emri nuk mund të shtohej"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Llogaria juaj nuk mund të mbyllej"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Nuk mund të kopjohej"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kodet nuk u kopjuan dot. Zgjidhini dhe kopjojini manualisht."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Llogaria nuk mund të krijohej"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Nuk mund të lidhej llogaria"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "Llogaria nuk mund të lidhej"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Nuk mund të ngarkohej ky dokument. Provo më vonë."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Çelësi i rikuperimit nuk mund të krijohej"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Pseudonimi nuk mund të lirohej"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Llogaria nuk mund të hiqej"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Çelësat nuk mund të zëvendësoheshin"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Pseudonimi nuk mund të rezervohej"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Nuk mund të nisej lidhja"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Nuk mund të çlidhej ofruesi"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Llogaria nuk mund të përditësohej"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Krijo përdorues"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "U krijua"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Nuk përputhet me modelin e kërkuar"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domeni"
 
@@ -1924,6 +2048,10 @@ msgstr "Verifikimi i kodit dështoi"
 msgid "Failed to verify domain"
 msgstr "Verifikimi i domain dështoi"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Grupo sipas"
 msgid "Group: {0}"
 msgstr "Grupi: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Pseudonimi"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Veprimet e pseudonimit"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Pseudonimi u lirua"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Pseudonimi u rezervua"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Historia"
@@ -2061,6 +2205,10 @@ msgstr "Shpim"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Faqja kryesore"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "I strehuar"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Sapo"
 msgid "Keyboard shortcuts"
 msgstr "Shkurtoret e tastierës"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Çelësat"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Çelësat u zëvendësuan"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Lloji"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Të njohur {known} · Të lidhur {linked} · Mesh i transmetimit {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Përdorur së fundmi"
 msgid "Layout"
 msgstr "Paraqitja"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Vetëm shkronja dhe shifra, duke filluar me shkronjë, nga 3 deri në 20 karaktere"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Vetëm shkronja, numra, hapësira, vija ndarëse dhe vija të pjerrëta"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "E çelët"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Lidhje"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Lidh llogarinë"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Lidh një llogari"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "I lidhur"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Kyçu duke përdorur kodin e rikuperimit"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Kyçu duke përdorur aplikacionin autentikues TOTP"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Të krijohet një çelës rikuperimi?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Krijo çelësin"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Kyçi im"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Emri"
@@ -2486,6 +2674,10 @@ msgstr "Emri"
 msgctxt "person"
 msgid "Name"
 msgstr "Emri"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Emri u shtua"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Emri u përditësua"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Rrjeti"
 
@@ -2518,6 +2712,12 @@ msgstr "Rrjeti"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Gabim rrjeti"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Rrjetet"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Nuk u krahasua: më i madh se {0}"
 msgid "Not compared: over the size limit"
 msgstr "Nuk u krahasua: mbi kufirin e madhësisë"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "I palidhur"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Opsione"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Tjetër"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Serverët e tjerë e mësojnë çelësin e ri nga dokumenti i llogarisë. Çdo gjë e nënshkruar me çelësin e vjetër nuk verifikohet më."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Vazhdo"
 msgid "Processing…"
 msgstr "Po përpunohet…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Profili"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Prompti u ruajt"
@@ -3129,6 +3342,11 @@ msgstr "Regjistrimi nuk përmban audio"
 msgid "Recovery codes"
 msgstr "Kodet e rikuperimit"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Çelësi i rikuperimit"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Ridrejto"
@@ -3179,6 +3397,15 @@ msgstr "Relative brenda 24 orëve, përndryshe absolute"
 msgid "Relay service"
 msgstr "Shërbim rele"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Liro"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Të lirohet ky pseudonim?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Përkatësia {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Kujtesë"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Hiq"
 
@@ -3256,6 +3485,10 @@ msgstr "Hiq lidhjen"
 msgid "Remove suspension"
 msgstr "Hiq pezullimin"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Të hiqet kjo llogari?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Përsëritet"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Zëvendëso"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Zëvendëso çelësat"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Të zëvendësohen çelësat?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "I detyrueshëm"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Ridërgo email-in"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Rezervo"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Të rezervohet ky pseudonim?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "E shtunë"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Ruaj"
@@ -3705,6 +3957,10 @@ msgstr "Shfaq këtë ndihmë"
 msgid "Showing {totalShown} of {total}"
 msgstr "Duke shfaqur {totalShown} nga {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Shfaqet vetëm një herë. Ruajeni në një vend të sigurt: nuk ruhet këtu."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Shiriti anësor"
@@ -3767,6 +4023,7 @@ msgstr "Filluar"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Statusi"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Kushtet dhe rregullat"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Provo"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Testi dështoi"
 
@@ -3909,6 +4168,22 @@ msgstr "Nuk mund të dërgohej. Skedarët mund të jenë tepër të mëdhenj, os
 msgid "That email is already registered to another account"
 msgstr "Ai email është regjistruar tashmë te një llogari tjetër"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Ky emër është për administratorët"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Ky emër është i rezervuar për serverin"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Ky emër nuk është i disponueshëm"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Ky emër është i zënë"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Kamera është tashmë në përdorim"
 msgid "The camera request was not answered"
 msgstr "Kërkesa për kamerë nuk mori përgjigje"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Pseudonimi nën të cilin ndodhet ky emër nuk është i juaji"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Kërkesa për mikrofon nuk mori përgjigje"
@@ -3933,6 +4212,10 @@ msgstr "Kërkesa për kyç nuk mori përgjigje"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Përmbajtja e kërkuar nuk u gjet."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Serveri nuk e lejoi lidhjen"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Ky është një kopje rezervë e plotë që mund ta riktheni në këtë 
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Kjo do të fshijë përgjithmonë lojën dhe bisedën e saj. Ky veprim nuk mund të zhbëhet."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Ky server nuk ofron rrjete të tjera."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Temë e panjohur"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Shkëput"
 
@@ -4202,6 +4490,10 @@ msgstr "Shkëput ofruesin"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Të shkëput ofruesin?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Të shkëputet kjo llogari?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "ID-ja e klientit X"
 msgid "X client secret"
 msgstr "Sekreti i klientit X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Viti"
@@ -4419,6 +4715,10 @@ msgstr "Viti"
 msgid "You can manage these paths: {paths}"
 msgstr "Mund t'i menaxhoni këto shtigje: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Nuk mund të rezervoni një emër në këtë domen"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Nuk keni qasje në këtë seksion."
@@ -4426,6 +4726,10 @@ msgstr "Nuk keni qasje në këtë seksion."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Nuk ke akses në asnjë domen."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Keni arritur kufirin e pseudonimeve"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

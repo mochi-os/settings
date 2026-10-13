@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Gaan asseblief jou internetverbinding na en probeer weer."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" en die name daaronder word vrygestel sodat enigiemand dit kan neem. Hul rekeninge, alles wat daardeur gepubliseer is, en hul volgers word verwyder."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" word verwyder saam met alles wat dit gepubliseer het en sy volgers."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" sal afgemeld word en nie weer kan aanmeld voordat die opskorting
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" sal op elke toestel afgemeld word en sal weer moet aanmeld."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" word ontkoppel. Wat daardeur gepubliseer is, bly op {1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" sal joune wees op elke netwerk wat hierdie bediener aanbied. 'n Gebruikersnaam kan nie hernoem word nie; as jy dit later vrystel, word sy rekeninge en hul volgers verwyder."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · stoot"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (ontwikkeling)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} vir {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Verifieer kode"
 msgid "A recording is already in progress."
 msgstr "'n Opname is reeds aan die gang."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "'n Herstelsleutel laat jou toe om die rekening te skuif of ongedaan te maak wat 'n gekompromitteerde bediener gedoen het. Dit vervang enige vorige sleutel en word net een keer gewys."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absoluut (datum en tyd)"
@@ -274,15 +304,26 @@ msgstr "Toegangsvlak"
 msgid "Account"
 msgstr "Rekening"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Rekeningaksies"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Rekening bygevoeg"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Rekening geskep"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Rekening gekoppel"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Rekening verwyder"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Rekeningtipe"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Rekening opgedateer"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Rekening geverifieer"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Rekeninge"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Aktiwiteit"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Voeg by"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Voeg 'n kommentaar by..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Voeg 'n naam by"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Voeg 'n naam onder {0} by"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" bygevoeg"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adres"
 
@@ -444,6 +501,10 @@ msgstr "Administrateur"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "KI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algoritme"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Verifikasiekode"
 msgid "Automatic certificates"
 msgstr "Outomatiese sertifikate"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Beskikbaar"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Beskikbare sleutelbordkortpaaie"
@@ -716,6 +781,9 @@ msgstr "Kamera nie beskikbaar nie"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Kanselleer"
@@ -783,6 +851,10 @@ msgstr "Veranderde herhaling"
 msgid "Checkbox"
 msgstr "Merkblokkie"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Besig om te kontroleer…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Kontrolelys"
@@ -794,6 +866,10 @@ msgstr "Kies 'n datum"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Kies 'n speletjie uit die sybalk of begin 'n nuwe een."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Kies 'n gebruikersnaam"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Maak soektog skoon"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Sluit"
 
@@ -945,6 +1022,7 @@ msgstr "Bevestig dit is jy"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Verbind"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Kontekstuele inligting en besonderhede."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Gaan voort"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Gaan voort met {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Gekopieer"
 
@@ -996,6 +1076,7 @@ msgstr "Gekopieer na knipbord"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Kopieer"
 
@@ -1003,21 +1084,58 @@ msgstr "Kopieer"
 msgid "Copy all"
 msgstr "Kopieer alles"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Kon nie die naam byvoeg nie"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Kon nie jou rekening sluit nie"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Kon nie kopieer nie"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kon nie die kodes kopieer nie. Merk en kopieer hulle self."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Kon nie die rekening skep nie"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Kon nie rekening koppel nie"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "Kon nie die rekening koppel nie"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Kon nie hierdie dokument laai nie. Probeer later weer."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Kon nie die herstelsleutel maak nie"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Kon nie die gebruikersnaam vrystel nie"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Kon nie die rekening verwyder nie"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Kon nie die sleutels vervang nie"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Kon nie die gebruikersnaam bespreek nie"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Kon nie koppeling begin nie"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Kon nie verskaffer ontkoppel nie"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Kon nie die rekening opdateer nie"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Skep gebruiker"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Geskep"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Stem nie met die vereiste patroon ooreen nie"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domein"
 
@@ -1924,6 +2048,10 @@ msgstr "Kon nie kode verifieer nie"
 msgid "Failed to verify domain"
 msgstr "Kon nie domein verifieer nie"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Groepeer volgens"
 msgid "Group: {0}"
 msgstr "Groep: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Gebruikersnaam"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Gebruikersnaamaksies"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Gebruikersnaam vrygestel"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Gebruikersnaam bespreek"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Geskiedenis"
@@ -2061,6 +2205,10 @@ msgstr "Gaatjie-deurboor"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Tuis"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Gehuisves"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Nou net"
 msgid "Keyboard shortcuts"
 msgstr "Sleutelbordkortpaaie"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Sleutels"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Sleutels vervang"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Tipe"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Bekend {known} · Verbind {linked} · Uitsaai-mesh {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Laas gebruik"
 msgid "Layout"
 msgstr "Uitleg"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Slegs letters en syfers, begin met 'n letter, 3 tot 20 karakters"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Slegs letters, syfers, spasies, koppeltekens en skuinsstrepe"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Lig"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Skakel"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Koppel rekening"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Koppel 'n rekening"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Gekoppel"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Meld aan met herstelkode"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Meld aan met TOTP-verifikasieprogram"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Maak 'n herstelsleutel?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Maak sleutel"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "My toegangsleutel"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Naam"
@@ -2486,6 +2674,10 @@ msgstr "Naam"
 msgctxt "person"
 msgid "Name"
 msgstr "Naam"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Naam bygevoeg"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Naam opgedateer"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Netwerk"
 
@@ -2518,6 +2712,12 @@ msgstr "Netwerk"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Netwerkfout"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Netwerke"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Nie vergelyk nie: groter as {0}"
 msgid "Not compared: over the size limit"
 msgstr "Nie vergelyk nie: bo die groottelimiet"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Nie verbind nie"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Opsies"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Ander"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Ander bedieners kry die nuwe sleutel uit die rekening se dokument. Enigiets wat met die ou sleutel onderteken is, kan nie meer geverifieer word nie."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Gaan voort"
 msgid "Processing…"
 msgstr "Verwerk…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Profiel"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Aanwysing gestoor"
@@ -3129,6 +3342,11 @@ msgstr "Die opname bevat geen klank nie"
 msgid "Recovery codes"
 msgstr "Herstelkodes"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Herstelsleutel"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Herlei"
@@ -3179,6 +3397,15 @@ msgstr "Relatief binne 24 uur, andersins absoluut"
 msgid "Relay service"
 msgstr "Relêdiens"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Stel vry"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Stel hierdie gebruikersnaam vry?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Relevansie {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Herinnering"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Verwyder"
 
@@ -3256,6 +3485,10 @@ msgstr "Verwyder skakel"
 msgid "Remove suspension"
 msgstr "Verwyder skorsing"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Verwyder hierdie rekening?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Herhaal"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Vervang"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Vervang sleutels"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Vervang die sleutels?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Vereis"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Stuur e-pos weer"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Bespreek"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Bespreek hierdie gebruikersnaam?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Saterdag"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Stoor"
@@ -3705,6 +3957,10 @@ msgstr "Wys hierdie hulp"
 msgid "Showing {totalShown} of {total}"
 msgstr "Wys {totalShown} van {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Word net een keer gewys. Hou dit êrens veilig: dit word nie hier gestoor nie."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Sybalk"
@@ -3767,6 +4023,7 @@ msgstr "Begin"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Status"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Bepalings en voorwaardes"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Toets"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Toets het misluk"
 
@@ -3909,6 +4168,22 @@ msgstr "Dit kon nie gestuur word nie. Die lêers is dalk te groot, of jou verbin
 msgid "That email is already registered to another account"
 msgstr "Daardie e-pos is reeds geregistreer by 'n ander rekening"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Daardie naam is vir administrateurs"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Daardie naam word vir die bediener gehou"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Daardie naam is nie beskikbaar nie"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Daardie naam is reeds geneem"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Die kamera is reeds in gebruik"
 msgid "The camera request was not answered"
 msgstr "Die kameraversoek is nie beantwoord nie"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Die gebruikersnaam waaronder hierdie naam val, is nie joune nie"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Die mikrofoonversoek is nie beantwoord nie"
@@ -3933,6 +4212,10 @@ msgstr "Die toegangsleutelversoek is nie beantwoord nie"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Die aangevraagde inhoud kon nie gevind word nie."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Die bediener het die koppeling nie toegelaat nie"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Dit is 'n volledige rugsteun wat jy op hierdie of 'n ander Mochi-bediene
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Dit verwyder die spel en die klets permanent. Dit kan nie ontdaan word nie."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Hierdie bediener bied nie ander netwerke aan nie."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Onbekende tema"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Ontkoppel"
 
@@ -4202,6 +4490,10 @@ msgstr "Ontkoppel verskaffer"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Ontkoppel verskaffer?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Ontkoppel hierdie rekening?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X-kliënt-ID"
 msgid "X client secret"
 msgstr "X-kliëntgeheim"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Jaar"
@@ -4419,6 +4715,10 @@ msgstr "Jaar"
 msgid "You can manage these paths: {paths}"
 msgstr "Jy kan hierdie paaie bestuur: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Jy kan nie 'n naam op hierdie domein bespreek nie"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Jy het nie toegang tot hierdie afdeling nie."
@@ -4426,6 +4726,10 @@ msgstr "Jy het nie toegang tot hierdie afdeling nie."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Jy het nie toegang tot enige domeine nie."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Jy het jou limiet van gebruikersname bereik"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

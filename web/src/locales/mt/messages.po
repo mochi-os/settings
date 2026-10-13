@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Jekk jogħġbok iċċekkja l-konnessjoni tal-internet tiegħek u erġa' pprova."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" u l-ismijiet taħtu se jinħelsu biex kulħadd ikun jista' jieħuhom. Il-kontijiet tagħhom, dak kollu li ppubblikaw dawk il-kontijiet u s-segwaċi tagħhom jitneħħew."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" se jitneħħa flimkien ma' dak kollu li ppubblika u mas-segwaċi tiegħu."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" se jinħareġ u ma jkunx jista' jerġa' jidħol sakemm titneħħ
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" se jinħareġ minn kull apparat u jkollu jerġa' jidħol."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "Ir-rabta ma' \"{0}\" se tinqata'. Dak li ġie ppubblikat permezz tiegħu jibqa' fuq {1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" se jkun tiegħek fuq kull netwerk li joffri dan is-server. Isem tal-utent ma jistax jingħata isem ġdid; jekk teħilsu aktar tard, jitneħħew il-kontijiet tiegħu u s-segwaċi tagħhom."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · notifika push"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (żvilupp)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} għal {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Ivverifika l-kodiċi"
 msgid "A recording is already in progress."
 msgstr "Diġà għaddejja reġistrazzjoni."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Ċavetta ta' rkupru tħallik tmexxi l-kont jew tħassar dak li għamel server kompromess. Tissostitwixxi kwalunkwe ċavetta preċedenti u tintwera darba biss."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Assolut (data u ħin)"
@@ -274,15 +304,26 @@ msgstr "Livell ta' aċċess"
 msgid "Account"
 msgstr "Kont"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Azzjonijiet tal-kont"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Kont miżjud"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Kont maħluq"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Il-kont ġie llinkjat"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Kont imneħħi"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Tip ta' kont"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Kont aġġornat"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Kont ivverifikat"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Kontijiet"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Attività"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Żid"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Żid kumment..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Żid isem"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Żid isem taħt {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "Miżjud \"{0}\""
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Indirizz"
 
@@ -444,6 +501,10 @@ msgstr "Amministratur"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algoritmu"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Kodiċi tal-awtentikazzjoni"
 msgid "Automatic certificates"
 msgstr "Ċertifikati awtomatiċi"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Disponibbli"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Shortcuts tat-tastiera disponibbli"
@@ -716,6 +781,9 @@ msgstr "Il-kamera mhix disponibbli"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Ikkanċella"
@@ -783,6 +851,10 @@ msgstr "Okkorrenza mibdula"
 msgid "Checkbox"
 msgstr "Kaxxa tal-għażla"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Qiegħed jivverifika…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Lista ta' kontroll"
@@ -794,6 +866,10 @@ msgstr "Agħżel data"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Agħżel logħba mill-barra tal-ġenb jew ibda waħda ġdida."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Agħżel isem tal-utent"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Naddaf it-tiftix"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Agħlaq"
 
@@ -945,6 +1022,7 @@ msgstr "Ikkonferma li int"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Konness"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Informazzjoni u dettalji kuntestwali."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Kompli"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Kompli b'{providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Ikkupjat"
 
@@ -996,6 +1076,7 @@ msgstr "Ikkupjat fil-clipboard"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Ikkupja"
 
@@ -1003,21 +1084,58 @@ msgstr "Ikkupja"
 msgid "Copy all"
 msgstr "Ikkupja kollox"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Ma setax jiżdied l-isem"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Ma setax jingħalaq il-kont tiegħek"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Ma setax jiġi kkupjat"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Il-kodiċijiet ma setgħux jiġu kkupjati. Agħżilhom u kkupjahom manwalment."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Ma setax jinħoloq il-kont"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Ma setax jillinkja l-kont"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "Ma setax jiġi llinkjat il-kont"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Ma setax itella' dan id-dokument. Jekk jogħġbok ipprova mill-ġdid iktar tard."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Ma setgħetx issir iċ-ċavetta ta' rkupru"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Ma setax jinħeles l-isem tal-utent"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Ma setax jitneħħa l-kont"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Ma setgħux jinbidlu ċ-ċwievet"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Ma setax jiġi riżervat l-isem tal-utent"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Ma setax jibda l-illinkjar"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Ma setax jiddiskonettja l-provider"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Ma setax jiġi aġġornat il-kont"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Oħloq utent"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Maħluq"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Ma jaqbilx mal-mudell meħtieġ"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Dominju"
 
@@ -1924,6 +2048,10 @@ msgstr "Ma rnexxiex jiġi vverifikat il-kodiċi"
 msgid "Failed to verify domain"
 msgstr "Ma rnexxiex jiġi vverifikat id-dominju"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Iggrupp skont"
 msgid "Group: {0}"
 msgstr "Grupp: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Isem tal-utent"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Azzjonijiet tal-isem tal-utent"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Isem tal-utent meħlus"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Isem tal-utent riżervat"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Storja"
@@ -2061,6 +2205,10 @@ msgstr "Titqib"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Paġna ewlenija"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Ospitat"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Issa"
 msgid "Keyboard shortcuts"
 msgstr "Shortcuts tat-tastiera"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Ċwievet"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Ċwievet mibdula"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Tip"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Magħrufa {known} · Konnessi {linked} · Mesh tax-xandir {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Użat l-aħħar"
 msgid "Layout"
 msgstr "Tqassim"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Ittri u ċifri biss, jibda b'ittra, minn 3 sa 20 karattru"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Ittri, numri, spazji, sing u sing obliku biss"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Ċar"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Ħolqa"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Orbot kont"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Illinkja kont"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Illinkjat"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Idħol billi tuża kodiċi tal-irkupru"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Idħol billi tuża l-app awtentikatur TOTP"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Toħloq ċavetta ta' rkupru?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Oħloq ċavetta"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Iċ-ċavetta tal-aċċess tiegħi"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Isem"
@@ -2486,6 +2674,10 @@ msgstr "Isem"
 msgctxt "person"
 msgid "Name"
 msgstr "Isem"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Isem miżjud"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Isem aġġornat"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Netwerk"
 
@@ -2518,6 +2712,12 @@ msgstr "Netwerk"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Żball tan-network"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Netwerks"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Mhux imqabbel: akbar minn {0}"
 msgid "Not compared: over the size limit"
 msgstr "Mhux imqabbel: jaqbeż il-limitu tad-daqs"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Mhux konness"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Għażliet"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Oħra"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Is-servers l-oħra jsiru jafu ċ-ċavetta l-ġdida mid-dokument tal-kont. Kull ma ġie ffirmat biċ-ċavetta l-qadima ma jibqax jgħaddi mill-verifika."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Ipproċedi"
 msgid "Processing…"
 msgstr "Qed jiġi pproċessat…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Profil"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Prompt issejvjat"
@@ -3129,6 +3342,11 @@ msgstr "Ir-reġistrazzjoni ma fihiex ħoss"
 msgid "Recovery codes"
 msgstr "Kodiċi ta' rkupru"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Ċavetta ta' rkupru"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Ridirezzjoni"
@@ -3179,6 +3397,15 @@ msgstr "Relattiv fi 24 siegħa, inkella assolut"
 msgid "Relay service"
 msgstr "Servizz tar-relay"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Eħles"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Teħles dan l-isem tal-utent?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Rilevanza {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Tfakkira"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Neħħi"
 
@@ -3256,6 +3485,10 @@ msgstr "Neħħi l-link"
 msgid "Remove suspension"
 msgstr "Neħħi s-sospensjoni"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Tneħħi dan il-kont?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Jirrepeti"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Ibdel"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Ibdel iċ-ċwievet"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Tibdel iċ-ċwievet?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Meħtieġ"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Erġa' ibgħat l-email"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Irriżerva"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Tirriżerva dan l-isem tal-utent?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Is-Sibt"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Issejvja"
@@ -3705,6 +3957,10 @@ msgstr "Uri din l-għajnuna"
 msgid "Showing {totalShown} of {total}"
 msgstr "Qed juri {totalShown} minn {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Tintwera darba biss. Żommha f'post sigur: mhix maħżuna hawn."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Barra tal-ġenb"
@@ -3767,6 +4023,7 @@ msgstr "Inbeda"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Status"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Termini u kondizzjonijiet"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Ittestja"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Test falla"
 
@@ -3909,6 +4168,22 @@ msgstr "Ma setax jintbagħat. Il-fajls jistgħu jkunu kbar wisq, jew il-konnessj
 msgid "That email is already registered to another account"
 msgstr "Dak l-email diġà huwa rreġistrat ma' kont ieħor"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Dak l-isem huwa għall-amministraturi"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Dak l-isem huwa riżervat għas-server"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Dak l-isem mhux disponibbli"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Dak l-isem diġà meħud"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Il-kamera diġà qed tintuża"
 msgid "The camera request was not answered"
 msgstr "It-talba għall-kamera ma twiġbitx"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "L-isem tal-utent li taħtu jinsab dan l-isem mhuwiex tiegħek"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "It-talba għall-mikrofonu ma twiġbitx"
@@ -3933,6 +4212,10 @@ msgstr "It-talba għaċ-ċavetta tal-aċċess ma twiġbitx"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Il-kontenut mitlub ma setax jinstab."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Is-server ma ppermettiex ir-rabta"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Din hija backup sħiħa li tista' tirrestawra fuq dan is-server Mochi je
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Dan għad iħassar il-logħba u ċ-chat tagħha b'mod permanenti. Din l-azzjoni ma tistax titħassar."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Dan is-server ma joffrix netwerks oħra."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Tema mhux magħrufa"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Aqta'"
 
@@ -4202,6 +4490,10 @@ msgstr "Skonnettja l-fornitur"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Taqta' l-fornitur?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Taqta' r-rabta ma' dan il-kont?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "ID tal-klijent X"
 msgid "X client secret"
 msgstr "Sigriet tal-klijent X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Sena"
@@ -4419,6 +4715,10 @@ msgstr "Sena"
 msgid "You can manage these paths: {paths}"
 msgstr "Tista' timmaniġġja dawn il-mogħdijiet: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Ma tistax tirriżerva isem fuq dan id-dominju"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "M'għandekx aċċess għal din it-taqsima."
@@ -4426,6 +4726,10 @@ msgstr "M'għandekx aċċess għal din it-taqsima."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "M'għandekx aċċess għal kwalunkwe domain."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Lħaqt il-limitu tiegħek ta' ismijiet tal-utent"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

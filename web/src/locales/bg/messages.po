@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Проверете интернет връзката си и опитайте отново."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" и имената под него ще бъдат освободени и всеки ще може да ги вземе. Техните акаунти, всичко публикувано от тях и последователите им ще бъдат премахнати."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" ще бъде премахнат заедно с всичко, което е публикувал, и последователите си."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" ще бъде отписан и няма да може да вл
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" ще бъде отписан на всички устройства и ще трябва да влезе отново."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "Връзката с \"{0}\" ще бъде прекратена. Публикуваното чрез него остава в {1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" ще бъде ваше във всяка мрежа, която предлага този сървър. Потребителското име не може да бъде преименувано; освобождаването му по-късно премахва неговите акаунти и последователите им."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · пуш"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (разработка)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} за {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Проверка на кода"
 msgid "A recording is already in progress."
 msgstr "Вече тече запис."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Ключът за възстановяване ви позволява да преместите акаунта или да отмените действията на компрометиран сървър. Той заменя всеки предишен ключ и се показва само веднъж."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Абсолютно (дата и час)"
@@ -274,15 +304,26 @@ msgstr "Ниво на достъп"
 msgid "Account"
 msgstr "Акаунт"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Действия с акаунта"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Акаунтът е добавен"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Акаунтът е създаден"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Профилът е свързан"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Акаунтът е премахнат"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Тип акаунт"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Акаунтът е обновен"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Акаунтът е потвърден"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Акаунти"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Активност"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Добави"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Добавете коментар..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Добави име"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Добави име под {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "Добавено \"{0}\""
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Адрес"
 
@@ -444,6 +501,10 @@ msgstr "Администратор"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Алгоритъм"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Код от удостоверител"
 msgid "Automatic certificates"
 msgstr "Автоматични сертификати"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Свободно"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Налични клавишни комбинации"
@@ -716,6 +781,9 @@ msgstr "Камерата не е достъпна"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Отказ"
@@ -783,6 +851,10 @@ msgstr "Променено повторение"
 msgid "Checkbox"
 msgstr "Чекбокс"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Проверка…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Чек-лист"
@@ -794,6 +866,10 @@ msgstr "Изберете дата"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Изберете игра от страничната лента или започнете нова."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Изберете потребителско име"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Изчисти търсенето"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Затвори"
 
@@ -945,6 +1022,7 @@ msgstr "Потвърдете, че сте вие"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Свързано"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Контекстуална информация и детайли."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Продължи"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Продължи с {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Копирано"
 
@@ -996,6 +1076,7 @@ msgstr "Копирано в клипборда"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Копирай"
 
@@ -1003,21 +1084,58 @@ msgstr "Копирай"
 msgid "Copy all"
 msgstr "Копирай всичко"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Името не можа да бъде добавено"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Акаунтът ви не можа да бъде закрит"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Неуспешно копиране"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Кодовете не можаха да се копират. Маркирайте и ги копирайте ръчно."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Акаунтът не можа да бъде създаден"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Акаунтът не може да бъде свързан"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "Акаунтът не можа да бъде свързан"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Документът не може да бъде зареден. Моля, опитайте по-късно."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Ключът за възстановяване не можа да бъде създаден"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Потребителското име не можа да бъде освободено"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Акаунтът не можа да бъде премахнат"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Ключовете не можаха да бъдат заменени"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Потребителското име не можа да бъде запазено"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Свързването не може да започне"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Доставчикът не може да бъде разкачен"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Акаунтът не можа да бъде обновен"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Създай потребител"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Създадено"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Не съответства на изисквания шаблон"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Домейн"
 
@@ -1924,6 +2048,10 @@ msgstr "Неуспешна проверка на код"
 msgid "Failed to verify domain"
 msgstr "Неуспешна проверка на домейн"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Федиверс"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Групиране по"
 msgid "Group: {0}"
 msgstr "Група: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Потребителско име"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Действия с потребителското име"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Потребителското име е освободено"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Потребителското име е запазено"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "История"
@@ -2061,6 +2205,10 @@ msgstr "Пробив на NAT"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Начало"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Хостван"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Току-що"
 msgid "Keyboard shortcuts"
 msgstr "Клавишни комбинации"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Ключове"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Ключовете са заменени"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Тип"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Известни {known} · Свързани {linked} · Мрежа за излъчване {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Последно използвано"
 msgid "Layout"
 msgstr "Оформление"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Само букви и цифри, започва с буква, от 3 до 20 знака"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Само букви, цифри, интервали, тирета и наклонени черти"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Светъл"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Връзка"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Свържи акаунт"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Свържи акаунт"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Свързан"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Вход с код за възстановяване"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Вход с TOTP приложение за удостоверяване"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Да се създаде ли ключ за възстановяване?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Създай ключ"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Моят ключ за достъп"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Име"
@@ -2486,6 +2674,10 @@ msgstr "Име"
 msgctxt "person"
 msgid "Name"
 msgstr "Име"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Името е добавено"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Името е обновено"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Мрежа"
 
@@ -2518,6 +2712,12 @@ msgstr "Мрежа"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Мрежова грешка"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Мрежи"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Не е сравнен: по-голям от {0}"
 msgid "Not compared: over the size limit"
 msgstr "Не е сравнен: над ограничението за размер"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Не е свързан"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Опции"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Друго"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Другите сървъри научават новия ключ от документа на акаунта. Всичко, подписано със стария ключ, вече не преминава проверка."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Продължи"
 msgid "Processing…"
 msgstr "Обработва се…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Профил"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Промптът е запазен"
@@ -3129,6 +3342,11 @@ msgstr "Записът не съдържа звук"
 msgid "Recovery codes"
 msgstr "Кодове за възстановяване"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Ключ за възстановяване"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Пренасочване"
@@ -3179,6 +3397,15 @@ msgstr "Относително в рамките на 24 часа, иначе а
 msgid "Relay service"
 msgstr "Релейна услуга"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Освободи"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Да се освободи ли това потребителско име?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Релевантност {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Напомняне"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Премахни"
 
@@ -3256,6 +3485,10 @@ msgstr "Премахване на връзката"
 msgid "Remove suspension"
 msgstr "Премахни спирането"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Да се премахне ли този акаунт?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Повтаря се"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Замени"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Замени ключовете"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Да се заменят ли ключовете?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Задължително"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Изпрати имейла отново"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Запази"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Да се запази ли това потребителско име?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Събота"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Запази"
@@ -3705,6 +3957,10 @@ msgstr "Покажи тази помощ"
 msgid "Showing {totalShown} of {total}"
 msgstr "Показани са {totalShown} от {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Показва се само веднъж. Пазете го на сигурно място: тук не се съхранява."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Странична лента"
@@ -3767,6 +4023,7 @@ msgstr "Стартирано"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Състояние"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Общи условия"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Тест"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Тестът не успя"
 
@@ -3909,6 +4168,22 @@ msgstr "Изпращането не успя. Файловете може да �
 msgid "That email is already registered to another account"
 msgstr "Този имейл вече е регистриран към друг профил"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Това име е за администратори"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Това име е запазено за сървъра"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Това име не е налично"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Това име е заето"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Камерата вече се използва"
 msgid "The camera request was not answered"
 msgstr "Заявката за камера остана без отговор"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Потребителското име, под което е това име, не е ваше"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Заявката за микрофон остана без отговор"
@@ -3933,6 +4212,10 @@ msgstr "Заявката за ключ за достъп остана без о�
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Заявеното съдържание не беше намерено."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Сървърът не разреши свързването"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Това е пълно резервно копие, което може�
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Това ще изтрие завинаги играта и нейния чат. Това действие не може да бъде отменено."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Този сървър не предлага други мрежи."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Непозната тема"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Прекъсни връзката"
 
@@ -4202,6 +4490,10 @@ msgstr "Откачи доставчика"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Прекъсване на връзката с доставчика?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Да се прекъсне ли връзката с този акаунт?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "ID на клиента X"
 msgid "X client secret"
 msgstr "Клиентска тайна на X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Година"
@@ -4419,6 +4715,10 @@ msgstr "Година"
 msgid "You can manage these paths: {paths}"
 msgstr "Можете да управлявате тези пътища: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Не можете да запазите име в този домейн"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Нямате достъп до този раздел."
@@ -4426,6 +4726,10 @@ msgstr "Нямате достъп до този раздел."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Нямате достъп до никакви домейни."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Достигнахте ограничението си за потребителски имена"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

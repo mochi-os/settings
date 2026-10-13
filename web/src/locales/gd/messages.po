@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Thoir sùil air a' cheangal eadar-lìn agad agus feuch ris a-rithist."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "Thèid \"{0}\" agus na h-ainmean fodha a shaoradh airson duine sam bith a ghabhail. Thèid na cunntasan aca, gach rud a dh'fhoillsich iad agus an luchd-leantainn aca a thoirt air falbh."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "Thèid \"{0}\" a thoirt air falbh còmhla ris gach rud a dh'fhoillsich e agus an luchd-leantainn aige."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "Thèid \"{0}\" a chlàradh a-mach agus chan urrainn dha clàradh a-steac
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "Thèid \"{0}\" a chlàradh a-mach air a h-uile uidheam agus feumaidh e clàradh a-steach a-rithist."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "Thèid \"{0}\" a dhì-cheangal. Fanaidh na chaidh fhoillseachadh tromhe air {1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "Bidh \"{address}\" agad air gach lìonra a tha am frithealaiche seo a' tairgsinn. Chan urrainn dhut ainm-cleachdaiche ath-ainmeachadh; ma shaoras tu e an ceann greis, thèid na cunntasan aige is an luchd-leantainn aca a thoirt air falbh."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · putadh"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (leasachadh)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} airson {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Dearbhaich an còd"
 msgid "A recording is already in progress."
 msgstr "Tha clàradh a' dol air adhart mu thràth."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Le iuchair aisig, is urrainn dhut an cunntas a ghluasad no na rinn frithealaiche a chaidh a bhriseadh a neo-dhèanamh. Thèid i an àite iuchair sam bith roimhpe agus cha tèid a sealltainn ach aon turas."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Iomlan (ceann-là agus àm)"
@@ -274,15 +304,26 @@ msgstr "Ìre inntrigidh"
 msgid "Account"
 msgstr "Cunntas"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Gnìomhan a' chunntais"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Cunntas air a chur ris"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Cunntas air a chruthachadh"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Cunntas ceangailte"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Cunntas air a thoirt air falbh"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Seòrsa cunntais"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Cunntas air ùrachadh"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Cunntas dearbhte"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Cunntasan"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Gnìomhachd"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Cuir ris"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Cuir beachd ris..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Cuir ainm ris"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Cuir ainm ris fo {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "Chaidh \"{0}\" a chur ris"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Seòladh"
 
@@ -444,6 +501,10 @@ msgstr "Rianadair"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algairim"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Còd dearbhachaidh"
 msgid "Automatic certificates"
 msgstr "Teisteanasan fèin-obrachail"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Ri fhaighinn"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Ath-ghoiridean meur-chlàir ri làimh"
@@ -716,6 +781,9 @@ msgstr "Chan eil an camara ri fhaighinn"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Sguir dheth"
@@ -783,6 +851,10 @@ msgstr "Turas atharraichte"
 msgid "Checkbox"
 msgstr "Bogsa-cromaige"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "A' sgrùdadh…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Liosta-dearbhaidh"
@@ -794,6 +866,10 @@ msgstr "Tagh ceann-là"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Tagh geama bhon bhàr-thaobh no tòisich fear ùr."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Tagh ainm-cleachdaiche"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Falamhaich an lorg"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Dùin"
 
@@ -945,6 +1022,7 @@ msgstr "Dearbhaich gur tusa a th' ann"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Ceangailte"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Fiosrachadh agus mion-fhiosrachadh co-theacsail."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Lean air adhart"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Lean air adhart le {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Chaidh lethbhreac a dhèanamh"
 
@@ -996,6 +1076,7 @@ msgstr "Air a chopaigeadh chun a' chliopaboird"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Dèan lethbhreac"
 
@@ -1003,21 +1084,58 @@ msgstr "Dèan lethbhreac"
 msgid "Copy all"
 msgstr "Dèan lethbhreac den a h-uile"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Cha b' urrainn an t-ainm a chur ris"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Cha b' urrainn do chunntas a dhùnadh"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Cha b' urrainn lethbhreac a dhèanamh"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Cha b' urrainn na còdan a chopaigeadh. Tagh is copaig iad a làimh."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Cha b' urrainn an cunntas a chruthachadh"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "Cha b' urrainn an cunntas a cheangal"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "Cha b' urrainn an cunntas a cheangal"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Cha b' urrainn an sgrìobhainn seo a luchdachadh. Feuch ris a-rithist nas anmoiche."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Cha b' urrainn an iuchair aisig a chruthachadh"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Cha b' urrainn an t-ainm-cleachdaiche a shaoradh"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Cha b' urrainn an cunntas a thoirt air falbh"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Cha b' urrainn na h-iuchraichean a chur 'nan àite"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Cha b' urrainn an t-ainm-cleachdaiche a ghlèidheadh"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Cha b' urrainn ceangal a thòiseachadh"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Cha b' urrainn am solaraiche a dhì-cheangal"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Cha b' urrainn an cunntas ùrachadh"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Cruthaich cleachdaiche"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Cruthaichte"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Chan eil e a' freagairt ris a' phàtran riatanach"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Àrainn"
 
@@ -1924,6 +2048,10 @@ msgstr "Cha b' urrainn an còd a dhearbhadh"
 msgid "Failed to verify domain"
 msgstr "Cha b' urrainn an àrainn a dhearbhadh"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Cuir ann am buidhnean a rèir"
 msgid "Group: {0}"
 msgstr "Buidheann: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Ainm-cleachdaiche"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Gnìomhan an ainm-chleachdaiche"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Ainm-cleachdaiche air a shaoradh"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Ainm-cleachdaiche air a ghlèidheadh"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Eachdraidh"
@@ -2061,6 +2205,10 @@ msgstr "Tolladh"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Dachaigh"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Air òstadh"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "An-dràsta fhèin"
 msgid "Keyboard shortcuts"
 msgstr "Ath-ghoiridean a' mheur-chlàir"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Iuchraichean"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Iuchraichean air an cur 'nan àite"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Seòrsa"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Aithnichte {known} · Ceangailte {linked} · Mogal craolaidh {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Cleachdadh mu dheireadh"
 msgid "Layout"
 msgstr "Cruth"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Litrichean is àireamhan a-mhàin, a' tòiseachadh le litir, 3 gu 20 caractar"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Litrichean, àireamhan, beàrnan, tàthanan is slaisichean a-mhàin"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Soilleir"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Ceangal"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Ceangail an cunntas"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Ceangail cunntas"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Ceangailte"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Clàradh le còd aiseig"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Clàradh le app dearbhaiche TOTP"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "A bheil thu airson iuchair aisig a chruthachadh?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Cruthaich iuchair"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Mo phasgair"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Ainm"
@@ -2486,6 +2674,10 @@ msgstr "Ainm"
 msgctxt "person"
 msgid "Name"
 msgstr "Ainm"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Ainm air a chur ris"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Chaidh an t-ainm ùrachadh"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Lìonra"
 
@@ -2518,6 +2712,12 @@ msgstr "Lìonra"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Mearachd lìonraidh"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Lìonraidhean"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Cha deach a choimeas: nas motha na {0}"
 msgid "Not compared: over the size limit"
 msgstr "Cha deach a choimeas: thar crìoch a' mheud"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Gun cheangal"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Roghainnean"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Eile"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Gheibh frithealaichean eile an iuchair ùr à sgrìobhainn a' chunntais. Cha tèid rud sam bith a chaidh a shoidhneadh leis an t-seann iuchair a dhearbhadh tuilleadh."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Lean air adhart"
 msgid "Processing…"
 msgstr "'Ga phròiseasadh…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Pròifil"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Chaidh an t-iarrtas a shàbhaladh"
@@ -3129,6 +3342,11 @@ msgstr "Chan eil fuaim sam bith san chlàradh"
 msgid "Recovery codes"
 msgstr "Còdaichean ath-shlànachaidh"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Iuchair aisig"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Ath-stiùireadh"
@@ -3179,6 +3397,15 @@ msgstr "Coimeasach taobh a-staigh 24 uair, no fuirich absoluteach"
 msgid "Relay service"
 msgstr "Seirbheis ath-sheachadaidh"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Saor"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "A bheil thu airson an t-ainm-cleachdaiche seo a shaoradh?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Buntainneas {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Cuimhneachan"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Thoir air falbh"
 
@@ -3256,6 +3485,10 @@ msgstr "Thoir an ceangal air falbh"
 msgid "Remove suspension"
 msgstr "Thoir am bacadh air falbh"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "A bheil thu airson an cunntas seo a thoirt air falbh?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Ag ath-aithris"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Cuir 'na àite"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Cuir iuchraichean ùra 'nan àite"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "A bheil thu airson na h-iuchraichean a chur 'nan àite?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Riatanach"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Cuir am post-d a-rithist"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Glèidh"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "A bheil thu airson an t-ainm-cleachdaiche seo a ghlèidheadh?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Disathairne"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Sàbhail"
@@ -3705,6 +3957,10 @@ msgstr "Seall a' chobhair seo"
 msgid "Showing {totalShown} of {total}"
 msgstr "A' sealltainn {totalShown} de {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Cha tèid a sealltainn ach aon turas. Cùm i an àiteigin sàbhailte: chan eil i air a stòradh an-seo."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Bàr-taoibh"
@@ -3767,6 +4023,7 @@ msgstr "Air tòiseachadh"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Cor"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Teirmichean is cùmhnantan"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Deuchainn"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Dh'fhàillig an deuchainn"
 
@@ -3909,6 +4168,22 @@ msgstr "Cha b' urrainn a chur. Dh'fhaodadh gu bheil na faidhlichean ro mhòr, no
 msgid "That email is already registered to another account"
 msgstr "Tha am post-d sin clàraichte ri cunntas eile mu thràth"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Tha an t-ainm sin do rianairean"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Tha an t-ainm sin glèidhte don fhrithealaiche"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Chan eil an t-ainm sin ri fhaighinn"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Chaidh an t-ainm sin a ghabhail mu thràth"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Tha an camara ga chleachdadh mu thràth"
 msgid "The camera request was not answered"
 msgstr "Cha deach an t-iarrtas camara a fhreagairt"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Chan ann leatsa a tha an t-ainm-cleachdaiche fon a bheil an t-ainm seo"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Cha deach an t-iarrtas micreofon a fhreagairt"
@@ -3933,6 +4212,10 @@ msgstr "Cha deach an t-iarrtas pasgair a fhreagairt"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Cha b' urrainn dhuinn an t-susbaint a chaidh iarraidh a lorg."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Cha do cheadaich am frithealaiche an ceangal"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Seo lethbhreac-glèidhidh iomlan as urrainn dhut aiseag air an fhritheal
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Sguabaidh seo às an geama agus an cabadaich aige gu buan. Chan urrainn seo a neo-dhèanamh."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Chan eil am frithealaiche seo a' tairgsinn lìonraidhean eile."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Ùrlar neo-aithnichte"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Dì-cheangail"
 
@@ -4202,6 +4490,10 @@ msgstr "Dì-cheangail an solaraiche"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Dì-cheangail solaraiche?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "A bheil thu airson an cunntas seo a dhì-cheangal?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "ID cliant X"
 msgid "X client secret"
 msgstr "Rùn cliant X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Bliadhna"
@@ -4419,6 +4715,10 @@ msgstr "Bliadhna"
 msgid "You can manage these paths: {paths}"
 msgstr "Faodaidh tu na slighean seo a stiùireadh: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Chan urrainn dhut ainm a ghlèidheadh air an àrainn seo"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Chan eil cead-inntrigidh agad dhan earrann seo."
@@ -4426,6 +4726,10 @@ msgstr "Chan eil cead-inntrigidh agad dhan earrann seo."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Chan eil cead-inntrigidh agad gu àrainn sam bith."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Ràinig thu a' chrìoch air ainmean-cleachdaiche"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

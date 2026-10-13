@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "تکایە پەیوەندی ئینتەرنێتەکەت بپشکنە و دووبارە هەوڵ بدەرەوە."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" و ئەو ناوانەی لە ژێریدان ئازاد دەکرێن بۆ ئەوەی هەر کەسێک بیانبات. هەژمارەکانیان، هەموو ئەوەی بڵاویان کردووەتەوە و شوێنکەوتووانیان لادەبرێن."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" لەگەڵ هەموو ئەوەی بڵاوی کردووەتەوە و شوێنکەوتووانی لادەبرێت."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" دەردەچێت و ناتوانێت دووبارە بچێتە �
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" لە هەموو ئامێرەکاندا دەردەچێت و دەبێت دووبارە بچێتە ژوورەوە."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "بەستنی \"{0}\" لادەبرێت. ئەوەی لە ڕێگەیەوە بڵاوکراوەتەوە لە {1} دەمێنێتەوە."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" لە هەموو ئەو تۆڕانەی ئەم ڕاژەکارە پێشکەشیان دەکات هی تۆ دەبێت. ناوی بەکارهێنەر ناتوانرێت بگۆڕدرێت؛ ئەگەر دواتر ئازادی بکەیت، هەژمارەکانی و شوێنکەوتووانیان لادەبرێن."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · پوش"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (پەرەپێدان)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} بۆ {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "٣. پشتڕاستکردنەوەی کۆد"
 msgid "A recording is already in progress."
 msgstr "تۆمارکردنێک پێشتر بەردەوامە."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "کلیلی گەڕاندنەوە ڕێگەت پێدەدات هەژمارەکە بگوازیتەوە یان ئەوەی ڕاژەکارێکی تێکشکاو کردوویەتی هەڵبوەشێنیتەوە. جێگەی هەر کلیلێکی پێشوو دەگرێتەوە و تەنها یەک جار پیشان دەدرێت."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "ڕاستەوخۆ (بەروار و کات)"
@@ -274,15 +304,26 @@ msgstr "ئاستی دەستڕاگەیشتن"
 msgid "Account"
 msgstr "هەژمار"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "کردارەکانی هەژمار"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "هەژمار زیادکرا"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "هەژمار دروستکرا"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "هەژمار بەستراوە"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "هەژمار لابرا"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "جۆری هەژمار"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "هەژمار نوێکرایەوە"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "هەژمار پشتڕاست کرایەوە"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "هەژمارەکان"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "چالاکی"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "زیادکردن"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "لێدوانێک زیاد بکە..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "ناوێک زیاد بکە"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "ناوێک لە ژێر {0} زیاد بکە"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" زیادکرا"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "ناونیشان"
 
@@ -444,6 +501,10 @@ msgstr "بەڕێوەبەر"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "ئەلگۆریتم"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "کۆدی پشتڕاستکەرەوە"
 msgid "Automatic certificates"
 msgstr "بڕوانامەی خۆکار"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "بەردەستە"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "کورتکراوەی تەختەکلیلی بەردەست"
@@ -716,6 +781,9 @@ msgstr "کامێرا بەردەست نییە"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "هەڵوەشاندنەوە"
@@ -783,6 +851,10 @@ msgstr "ڕوودانی گۆڕاو"
 msgid "Checkbox"
 msgstr "بۆکسی پشکنین"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "پشکنین…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "لیستی پشکنین"
@@ -794,6 +866,10 @@ msgstr "بەروارێک هەڵبژێرە"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "یارییەک هەڵبژێرە لە لاتەنیشت یان نوێیەک دەست پێ بکە."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "ناوی بەکارهێنەرێک هەڵبژێرە"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "پاککردنەوەی گەڕان"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "داخستن"
 
@@ -945,6 +1022,7 @@ msgstr "دڵنیای بکەرەوە کە خۆتیت"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "پەیوەستکراو"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "زانیاری و وردەکاری چوارچێوە."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "بەردەوامبوون"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "بەردەوامبوون بە {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "کۆپی کرا"
 
@@ -996,6 +1076,7 @@ msgstr "کۆپی کرا بۆ کلیپبۆرد"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "کۆپیکردن"
 
@@ -1003,21 +1084,58 @@ msgstr "کۆپیکردن"
 msgid "Copy all"
 msgstr "کۆپیکردنی هەموو"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "نەتوانرا ناوەکە زیاد بکرێت"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "نەتوانرا هەژمارەکەت دابخرێت"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "نەتوانرا کۆپی بکرێت"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "نەتوانرا کۆدەکان لەبەربگیرێن. خۆت دیاریان بکە و لەبەریان بگرە."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "نەتوانرا هەژمارەکە دروست بکرێت"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "نەکرا هەژمار پەیوەست بکرێت"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "نەتوانرا هەژمارەکە ببەسترێت"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "ئەم دۆکومێنتە نەخوێنرایەوە. تکایە دواتر هەوڵ بدە."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "نەتوانرا کلیلی گەڕاندنەوە دروست بکرێت"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "نەتوانرا ناوی بەکارهێنەر ئازاد بکرێت"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "نەتوانرا هەژمارەکە لابدرێت"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "نەتوانرا کلیلەکان بگۆڕدرێن"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "نەتوانرا ناوی بەکارهێنەر تەرخان بکرێت"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "پەیوەستکردن دەست پێ نەکرا"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "نەکرا دابینکەر هەڵگیرسێنرێتەوە"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "نەتوانرا هەژمارەکە نوێ بکرێتەوە"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "دروستکردنی بەکارهێنەر"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "دروستکرا"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "لەگەڵ ئەو نەخشەیەی داواکراوە ناگونجێت"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "دۆمەین"
 
@@ -1924,6 +2048,10 @@ msgstr "پشتڕاستکردنەوەی کۆد سەرکەوتوو نەبوو"
 msgid "Failed to verify domain"
 msgstr "پشتڕاستکردنەوەی دۆمەین سەرکەوتوو نەبوو"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "گرووپکردن بەپێی"
 msgid "Group: {0}"
 msgstr "گروپ: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "ناوی بەکارهێنەر"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "کردارەکانی ناوی بەکارهێنەر"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "ناوی بەکارهێنەر ئازادکرا"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "ناوی بەکارهێنەر تەرخانکرا"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "مێژوو"
@@ -2061,6 +2205,10 @@ msgstr "کونکردن"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "ماڵەوە"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "میوانداریکراو"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "هەر ئێستا"
 msgid "Keyboard shortcuts"
 msgstr "کورتە کلیلەکان"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "کلیلەکان"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "کلیلەکان گۆڕدران"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "جۆر"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "ناسراو {known} · پەیوەستکراو {linked} · تۆڕی بڵاوکردنەوە {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "دواین جار بەکار هاتووە"
 msgid "Layout"
 msgstr "ڕێکخستن"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "تەنها پیت و ژمارە، بە پیتێک دەست پێدەکات، ٣ تا ٢٠ نووسە"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "تەنها پیت، ژمارە، بۆشایی، هێڵی بچووک و سلاش"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "ڕووناک"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "بەستەر"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "بەستنی هەژمار"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "هەژمارێک ببەستە"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "بەستراوە"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "چوونەژوورەوە بە کۆدی هێنانەوە"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "چوونەژوورەوە بە ئەپی پشتڕاستکەرەوەی TOTP"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "کلیلی گەڕاندنەوە دروست بکرێت؟"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "کلیل دروست بکە"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "پاسکی من"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "ناو"
@@ -2486,6 +2674,10 @@ msgstr "ناو"
 msgctxt "person"
 msgid "Name"
 msgstr "ناو"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "ناو زیادکرا"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "ناو نوێ کرایەوە"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "تۆڕ"
 
@@ -2518,6 +2712,12 @@ msgstr "تۆڕ"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "هەڵەی تۆڕ"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "تۆڕەکان"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "بەراورد نەکراوە: گەورەترە لە {0}"
 msgid "Not compared: over the size limit"
 msgstr "بەراورد نەکراوە: لە سنووری قەبارە زیاترە"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "پەیوەست نەکراوە"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "هەڵبژاردەکان"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "هیتر"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "ڕاژەکارەکانی تر کلیلە نوێیەکە لە بەڵگەنامەی هەژمارەکەوە دەزانن. هەر شتێک بە کلیلە کۆنەکە واژۆ کرابێت چیتر پشتڕاست ناکرێتەوە."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "بەردەوامبوون"
 msgid "Processing…"
 msgstr "پرۆسەکردن…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "پڕۆفایل"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "پرۆمپت پاشەکەوت کرا"
@@ -3129,6 +3342,11 @@ msgstr "تۆمارەکە هیچ دەنگێکی تێدا نییە"
 msgid "Recovery codes"
 msgstr "کۆدەکانی گەڕانەوە"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "کلیلی گەڕاندنەوە"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "ڕەوانەکردنەوە"
@@ -3179,6 +3397,15 @@ msgstr "ڕێژەیی لە ماوەی ٢٤ کاتژمێر، ئەگەرنا تەو
 msgid "Relay service"
 msgstr "خزمەتی گواستنەوە"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "ئازادکردن"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "ئەم ناوی بەکارهێنەرە ئازاد بکرێت؟"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "پەیوەندیدارێتی {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "بیرخەرەوە"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "لابردن"
 
@@ -3256,6 +3485,10 @@ msgstr "بەستەر بسڕەوە"
 msgid "Remove suspension"
 msgstr "لابردنی ڕاگرتن"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "ئەم هەژمارە لابدرێت؟"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "دووبارە دەبێتەوە"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "بیگۆڕە"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "گۆڕینی کلیلەکان"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "کلیلەکان بگۆڕدرێن؟"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "پێویست"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "ئیمەیڵ دووبارە بنێرە"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "تەرخانکردن"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "ئەم ناوی بەکارهێنەرە تەرخان بکرێت؟"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "شەممە"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "پاشەکەوتکردن"
@@ -3705,6 +3957,10 @@ msgstr "ئەم یارمەتییە پیشانبدە"
 msgid "Showing {totalShown} of {total}"
 msgstr "پیشاندانی {totalShown} لە {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "تەنها یەک جار پیشان دەدرێت. لە شوێنێکی پارێزراو هەڵیبگرە: لێرە پاشەکەوت ناکرێت."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "لاتەنیشت"
@@ -3767,6 +4023,7 @@ msgstr "دەستپێکرا"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "دۆخ"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "مەرج و یاساکان"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "تاقیکردنەوە"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "تاقیکردنەوە سەرکەوتوو نەبوو"
 
@@ -3909,6 +4168,22 @@ msgstr "نەتوانرا بنێردرێت. لەوانەیە فایلەکان ز�
 msgid "That email is already registered to another account"
 msgstr "ئەو ئیمەیڵە پێشتر تۆمارکراوە بۆ هەژمارێکی تر"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "ئەو ناوە بۆ بەڕێوەبەرانە"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "ئەو ناوە بۆ ڕاژەکار هەڵگیراوە"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "ئەو ناوە بەردەست نییە"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "ئەو ناوە گیراوە"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "کامێرا پێشتر لە بەکارهێناندایە"
 msgid "The camera request was not answered"
 msgstr "داواکاری کامێرا وەڵام نەدرایەوە"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "ئەو ناوی بەکارهێنەرەی ئەم ناوە لە ژێریدایە هی تۆ نییە"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "داواکاری مایکرۆفۆن وەڵام نەدرایەوە"
@@ -3933,6 +4212,10 @@ msgstr "داواکاری پاسکی وەڵام نەدرایەوە"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "ناوەڕۆکی داواکراو نەدۆزرایەوە."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "ڕاژەکار ڕێگەی بە بەستنەکە نەدا"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "ئەمە پاڵپشتییەکی تەواوە کە دەتوانیت لە�
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "ئەمە یارییەکە و چاتەکەی بە یەکجاری دەسڕێتەوە. ئەم کردارە ناتوانرێت پووچ بکرێتەوە."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "ئەم ڕاژەکارە تۆڕی تر پێشکەش ناکات."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "ڕووکاری نەناسراو"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "بەستن لابرە"
 
@@ -4202,6 +4490,10 @@ msgstr "بەستنەوەی دابینکەر هەڵبوەشێنە"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "بەستنی دابینکەر لاببەم؟"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "بەستنی ئەم هەژمارە لابدرێت؟"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "ID ی کڵاینتی X"
 msgid "X client secret"
 msgstr "نهێنی کڵاینتی X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "ساڵ"
@@ -4419,6 +4715,10 @@ msgstr "ساڵ"
 msgid "You can manage these paths: {paths}"
 msgstr "دەتوانیت ئەم ڕێڕەوانە بەڕێوە ببەیت: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "ناتوانیت ناوێک لەم دۆمەینەدا تەرخان بکەیت"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "دەستپێگەیشتنت بەم بەشە نییە."
@@ -4426,6 +4726,10 @@ msgstr "دەستپێگەیشتنت بەم بەشە نییە."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "دەستڕاگەیشتنت بە هیچ دۆمەینێک نییە."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "گەیشتوویتە سنووری ناوەکانی بەکارهێنەر"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

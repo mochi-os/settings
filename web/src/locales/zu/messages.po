@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Sicela uhlole uxhumano lwakho lwe-inthanethi bese uzama futhi."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" namagama angaphansi kwalo azokhululwa ukuze noma ubani awathathe. Ama-akhawunti awo, konke akushicilele nabalandeli bawo kuzosuswa."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" izosuswa kanye nakho konke ekushicilele nabalandeli bayo."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" uzophuma futhi ngeke akwazi ukungena futhi kuze kususwe ukumiswa
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" uzophuma kuwo wonke amadivayisi futhi kuzodingeka angene futhi."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "Isixhumanisi se-\"{0}\" sizosuswa. Okushicilelwe ngayo kuhlala ku-{1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" izoba ngeyakho kuyo yonke inethiwekhi enikezwa yile seva. Isidlaliso asikwazi ukuqanjwa kabusha; ukusikhulula kamuva kususa ama-akhawunti aso nabalandeli bawo."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · i-push"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (intuthuko)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} ka-{1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Qinisekisa ikhodi"
 msgid "A recording is already in progress."
 msgstr "Ukuqopha sekuqhubeka kakade."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Ukhiye wokubuyisela ukuvumela ukuthi uhambise i-akhawunti noma uhlehlise lokho okwenziwe yiseva eyehlelwe. Uthatha indawo yanoma yimuphi ukhiye wangaphambilini futhi uboniswa kanye kuphela."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Okuphelele (usuku nesikhathi)"
@@ -274,15 +304,26 @@ msgstr "Izinga lokufinyelela"
 msgid "Account"
 msgstr "I-akhawunti"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Izenzo ze-akhawunti"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "I-akhawunti yengeziwe"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "I-akhawunti idaliwe"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "I-akhawunti ixhunyiwe"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "I-akhawunti isusiwe"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Uhlobo lwe-akhawunti"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "I-akhawunti ibuyekeziwe"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "I-akhawunti iqinisekisiwe"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Ama-akhawunti"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Umsebenzi"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Engeza"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Engeza umbono..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Engeza igama"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Engeza igama ngaphansi kuka-{0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "Kwengezwe okuthi \"{0}\""
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Ikheli"
 
@@ -444,6 +501,10 @@ msgstr "Umlawuli"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "I-AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "I-algorithm"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Ikhodi yesiqinisekisi"
 msgid "Automatic certificates"
 msgstr "Izitifiketi ezizenzakalelayo"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Liyatholakala"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Izindlela ezimfishane zekhibhodi ezitholakalayo"
@@ -716,6 +781,9 @@ msgstr "Ikhamera ayitholakali"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Khansela"
@@ -783,6 +851,10 @@ msgstr "Isenzeko esishintshiwe"
 msgid "Checkbox"
 msgstr "Ibhokisi lokumaka"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Iyahlola…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Uhlu lokuhlola"
@@ -794,6 +866,10 @@ msgstr "Khetha usuku"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Khetha umdlalo kubha eseceleni noma uqale omusha."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Khetha isidlaliso"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Sula usesho"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Vala"
 
@@ -945,6 +1022,7 @@ msgstr "Qinisekisa ukuthi nguwe"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Kuxhunyiwe"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Ulwazi nemininingwane yomongo."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Qhubeka"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Qhubeka nge-{providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Kukopishiwe"
 
@@ -996,6 +1076,7 @@ msgstr "Kukopishelwe kwi-clipboard"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Kopisha"
 
@@ -1003,21 +1084,58 @@ msgstr "Kopisha"
 msgid "Copy all"
 msgstr "Kopisha konke"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Akukwazanga ukwengeza igama"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Ayikwazanga ukuvalwa i-akhawunti yakho"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Akukwazanga ukukopisha"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Amakhodi awakopishekanga. Wakhethe uwakopishe ngesandla."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Akukwazanga ukudala i-akhawunti"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "Akukwazanga ukuxhuma i-akhawunti"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "Akukwazanga ukuxhuma i-akhawunti"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Asikwazanga ukulayisha le dokhumenti. Sicela uzame futhi ngokuhamba kwesikhathi."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Akukwazanga ukudala ukhiye wokubuyisela"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Akukwazanga ukukhulula isidlaliso"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Akukwazanga ukususa i-akhawunti"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Akukwazanga ukushintsha okhiye"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Akukwazanga ukubhukha isidlaliso"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Akukwazanga ukuqala ukuxhuma"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Akukwazanga ukususa ukuxhuma komhlinzeki"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Akukwazanga ukubuyekeza i-akhawunti"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Dala umsebenzisi"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Kudaliwe"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Ayihambisani nephethini edingekayo"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Idomeyini"
 
@@ -1924,6 +2048,10 @@ msgstr "Kuhlulekile ukuqinisekisa ikhodi"
 msgid "Failed to verify domain"
 msgstr "Kuhlulekile ukuqinisekisa idomeyini"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Hlanganisa nge"
 msgid "Group: {0}"
 msgstr "Iqembu: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Isidlaliso"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Izenzo zesidlaliso"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Isidlaliso sikhululiwe"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Isidlaliso sibhukhiwe"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Umlando"
@@ -2061,6 +2205,10 @@ msgstr "Ukubhoboza"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Ikhaya"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Isingathiwe"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Manje nje"
 msgid "Keyboard shortcuts"
 msgstr "Izinqamuleli zekhibhodi"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Okhiye"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Okhiye bashintshiwe"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Uhlobo"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Eyaziwayo {known} · Exhunyiwe {linked} · I-mesh yokusakaza {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Kusetshenziswe okokugcina"
 msgid "Layout"
 msgstr "Isakhiwo"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Izinhlamvu nezinombolo kuphela, kuqalwa ngohlamvu, izinhlamvu ezi-3 kuya kwezi-20"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Izinhlamvu, izinombolo, izikhala, ohayifeni namaslashi kuphela"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Okukhanyayo"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Isixhumanisi"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Xhuma i-akhawunti"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Xhuma i-akhawunti"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Kuxhunyiwe"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Ngena usebenzisa ikhodi yokubuyisela"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Ngena usebenzisa i-app yesiqinisekisi se-TOTP"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Dala ukhiye wokubuyisela?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Dala ukhiye"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Ukhiye wami wokungena"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Igama"
@@ -2486,6 +2674,10 @@ msgstr "Igama"
 msgctxt "person"
 msgid "Name"
 msgstr "Igama"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Igama lengeziwe"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Igama libuyekeziwe"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Inethiwekhi"
 
@@ -2518,6 +2712,12 @@ msgstr "Inethiwekhi"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Iphutha lenethiwekhi"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Amanethiwekhi"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Akuqhathaniswanga: kukhulu kuna-{0}"
 msgid "Not compared: over the size limit"
 msgstr "Akuqhathaniswanga: kungaphezu komkhawulo wosayizi"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Akuxhunyiwe"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Izinketho"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Okunye"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Amanye amaseva athola ukhiye omusha kudokhumenti ye-akhawunti. Noma yini esayinwe ngokhiye omdala ngeke isaqinisekiswa."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Qhubeka"
 msgid "Processing…"
 msgstr "Iyacutshungulwa…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Iphrofayela"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Isikhuthazi silondoloziwe"
@@ -3129,6 +3342,11 @@ msgstr "Okuqoshiwe akunamsindo"
 msgid "Recovery codes"
 msgstr "Amakhodi okubuyisela"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Ukhiye wokubuyisela"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Qondisa kabusha"
@@ -3179,6 +3397,15 @@ msgstr "Okuhlobene phakathi kwamahora angu-24, ngale kwalokho okuphelele"
 msgid "Relay service"
 msgstr "Isevisi yokudlulisa"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Khulula"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Khulula lesi sidlaliso?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Ukufaneleka {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Isikhumbuzi"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Khipha"
 
@@ -3256,6 +3485,10 @@ msgstr "Susa isixhumanisi"
 msgid "Remove suspension"
 msgstr "Khipha ukumiswa"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Susa le akhawunti?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Iyaphindwa"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Buyisela"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Shintsha okhiye"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Shintsha okhiye?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Kuyadingeka"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Thumela i-imeyili futhi"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Bhukha"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Bhukha lesi sidlaliso?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "UMgqibelo"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Londoloza"
@@ -3705,6 +3957,10 @@ msgstr "Bonisa lolu sizo"
 msgid "Showing {totalShown} of {total}"
 msgstr "Kuboniswa {totalShown} ku-{total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Uboniswa kanye kuphela. Wugcine endaweni ephephile: awugcinwa lapha."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Ibha eseceleni"
@@ -3767,6 +4023,7 @@ msgstr "Kuqalile"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Isimo"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Imibandela nemigomo"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Hlola"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Ukuhlola kuhlulekile"
 
@@ -3909,6 +4168,22 @@ msgstr "Akukwazanga ukuthunyelwa. Amafayela angase abe makhulu kakhulu, noma uxh
 msgid "That email is already registered to another account"
 msgstr "Leyo i-imeyili isivele ibhaliselwe kwenye i-akhawunti"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Lelo gama ngelabaphathi"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Lelo gama ligcinelwe iseva"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Lelo gama alitholakali"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Lelo gama selithathiwe"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Ikhamera isivele isetshenziswa"
 msgid "The camera request was not answered"
 msgstr "Isicelo sekhamera asiphendulwanga"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Isidlaliso eli gama elingaphansi kwaso akusona esakho"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Isicelo semakrofoni asiphendulwanga"
@@ -3933,6 +4212,10 @@ msgstr "Isicelo sikakhiye wokungena asiphendulwanga"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Okuqukethwe okuceliwe akutholakalanga."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Iseva ayizange ivumele ukuxhuma"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Lokhu yikopi yokugcina epheleleyo ongayibuyisela kule noma kwenye iseva 
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Lokhu kuzosusa umdlalo nengxoxo yawo unomphela. Lesi senzo asikwazi ukuhlehliswa."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Le seva ayinikezi amanye amanethiwekhi."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Indikimba engaziwa"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Susa isixhumanisi"
 
@@ -4202,6 +4490,10 @@ msgstr "Khipha umhlinzeki"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Susa ukuxhuma kumhlinzeki?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Susa ukuxhuma kwale akhawunti?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "I-ID yeklayenti le-X"
 msgid "X client secret"
 msgstr "Imfihlo yeklayenti le-X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Unyaka"
@@ -4419,6 +4715,10 @@ msgstr "Unyaka"
 msgid "You can manage these paths: {paths}"
 msgstr "Ungaphatha lezi zindlela: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Awukwazi ukubhukha igama kule domeyini"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Awunakho ukufinyelela kule ngxenye."
@@ -4426,6 +4726,10 @@ msgstr "Awunakho ukufinyelela kule ngxenye."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Awunakho ukufinyelela kunoma yimaphi amasizinda."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Ufinyelele umkhawulo wakho wezidlaliso"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

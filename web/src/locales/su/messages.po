@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Mangga pariksa sambungan internet anjeun teras cobian deui."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" jeung ngaran-ngaran di handapeunana bakal dileupaskeun sangkan bisa dicokot ku saha waé. Akun-akunna, sagala anu dipedalkeunana, jeung pengikutna bakal dipiceun."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" bakal dipiceun babarengan jeung sagala anu dipedalkeunana sarta pengikutna."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" bakal kaluar sarta teu bisa asup deui nepi ka panundaan dicabut.
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" bakal kaluar dina unggal parangkat sarta kudu asup deui."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "Tumbu ka \"{0}\" bakal dicabut. Anu dipedalkeun ngaliwatan éta tetep aya di {1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" bakal jadi milik anjeun di unggal jaringan anu disayogikeun ku server ieu. Landihan teu bisa diganti ngaranna; upami engké dileupaskeun, akun-akunna jeung pengikutna bakal dipiceun."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · béwara"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (pamekaran)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} pikeun {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Pariksa kode"
 msgid "A recording is already in progress."
 msgstr "Rékaman geus lumangsung."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Konci pamulihan ngamungkinkeun anjeun mindahkeun akun atawa ngabatalkeun naon anu dilakukeun ku server anu dibobol. Konci ieu ngagantikeun konci saméméhna sarta ngan dipintonkeun sakali."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Mutlak (tanggal jeung waktu)"
@@ -274,15 +304,26 @@ msgstr "Tingkat aksés"
 msgid "Account"
 msgstr "Akun"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Tindakan akun"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Akun ditambahkeun"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Akun dijieun"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Akun geus dihubungkeun"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Akun dipiceun"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Tipe akun"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Akun diropéa"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Akun diverifikasi"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Akun"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Aktivitas"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Tambah"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Tambah koméntar..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Tambah ngaran"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Tambah ngaran di handapeun {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "Ditambahkeun \"{0}\""
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Alamat"
 
@@ -444,6 +501,10 @@ msgstr "Administrator"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algoritma"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Kode authenticator"
 msgid "Automatic certificates"
 msgstr "Sertipikat otomatis"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Sadia"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Pintasan keyboard nu aya"
@@ -716,6 +781,9 @@ msgstr "Kaméra teu sayogi"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Batalkeun"
@@ -783,6 +851,10 @@ msgstr "Kajadian nu dirobah"
 msgid "Checkbox"
 msgstr "Kotak centang"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Mariksa…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Ceklis"
@@ -794,6 +866,10 @@ msgstr "Pilih tanggal"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Pilih kaulinan ti sidebar atawa mimitian nu anyar."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Pilih landihan"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Bersihkeun panéangan"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Tutup"
 
@@ -945,6 +1022,7 @@ msgstr "Pastikeun ieu anjeun"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Tersambung"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Inpormasi konteks jeung détil."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Teruskeun"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Teruskeun nganggo {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Disalin"
 
@@ -996,6 +1076,7 @@ msgstr "Disalin ka clipboard"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Salin"
 
@@ -1003,21 +1084,58 @@ msgstr "Salin"
 msgid "Copy all"
 msgstr "Salin sadaya"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Teu bisa nambah ngaran"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Teu tiasa nutup akun anjeun"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Teu bisa nyalin"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kode teu bisa disalin. Pilih tuluy salin sorangan."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Teu bisa nyieun akun"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "Teu bisa ngahubungkeun akun"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "Teu bisa ngahubungkeun akun"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Teu bisa ngamuat dokumén ieu. Mangga cobian deui engké."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Teu bisa nyieun konci pamulihan"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Teu bisa ngaleupaskeun landihan"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Teu bisa miceun akun"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Teu bisa ngaganti konci"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Teu bisa mesen landihan"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Teu bisa ngamimitian ngahubungkeun"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Teu bisa megatkeun panyadia"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Teu bisa ngaropéa akun"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Jieun pamaké"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Dijieun"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Teu cocog jeung pola nu diperlukeun"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Doméin"
 
@@ -1924,6 +2048,10 @@ msgstr "Gagal mariksa kode"
 msgid "Failed to verify domain"
 msgstr "Gagal mariksa doméin"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Kelompokkeun dumasar"
 msgid "Group: {0}"
 msgstr "Grup: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Landihan"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Tindakan landihan"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Landihan dileupaskeun"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Landihan dipesen"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Riwayat"
@@ -2061,6 +2205,10 @@ msgstr "Nembus liang"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Imah"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Dihosting"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Nembé"
 msgid "Keyboard shortcuts"
 msgstr "Pintasan keyboard"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Konci"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Konci diganti"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Jenis"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Dipikawanoh {known} · Tersambung {linked} · Mesh siaran {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Dipake panungtung"
 msgid "Layout"
 msgstr "Tata letak"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Ngan hurup jeung angka, dimimitian ku hurup, 3 nepi ka 20 karakter"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Ngan hurup, angka, spasi, tanda hubung, jeung garis miring"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Caang"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Tumbu"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Hubungkeun akun"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Hubungkeun akun"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Kahubungkeun"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Asup nganggo kode pamulihan"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Asup nganggo aplikasi TOTP authenticator"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Jieun konci pamulihan?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Jieun konci"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Konci akses kuring"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Ngaran"
@@ -2486,6 +2674,10 @@ msgstr "Ngaran"
 msgctxt "person"
 msgid "Name"
 msgstr "Ngaran"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Ngaran ditambahkeun"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Ngaran diropéa"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Jaringan"
 
@@ -2518,6 +2712,12 @@ msgstr "Jaringan"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Kasalahan jaringan"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Jaringan"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Teu dibandingkeun: leuwih badag ti {0}"
 msgid "Not compared: over the size limit"
 msgstr "Teu dibandingkeun: ngaleuwihan wates ukuran"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Teu tersambung"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Pilihan"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Séjén"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Server séjén meunang konci anyar tina dokumén akun. Naon waé anu ditandatanganan ku konci heubeul moal lulus pamariksaan deui."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Tuluykeun"
 msgid "Processing…"
 msgstr "Ngolah…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Profil"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Prompt disimpen"
@@ -3129,6 +3342,11 @@ msgstr "Rékaman euweuh sorana"
 msgid "Recovery codes"
 msgstr "Kode pamulihan"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Konci pamulihan"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Pangalihan"
@@ -3179,6 +3397,15 @@ msgstr "Rélatif dina 24 jam, salian éta absolut"
 msgid "Relay service"
 msgstr "Layanan relay"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Leupaskeun"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Leupaskeun landihan ieu?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Relevansi {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Panginget"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Pupus"
 
@@ -3256,6 +3485,10 @@ msgstr "Hapus tautan"
 msgid "Remove suspension"
 msgstr "Cabut suspénsi"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Piceun akun ieu?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Diulang"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Ganti"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Ganti konci"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Ganti konci?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Peryogi"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Kirim deui email"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Pesen"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Pesen landihan ieu?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Saptu"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Simpen"
@@ -3705,6 +3957,10 @@ msgstr "Tembongkeun bantosan ieu"
 msgid "Showing {totalShown} of {total}"
 msgstr "Némbongkeun {totalShown} ti {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Ngan dipintonkeun sakali. Simpen di tempat anu aman: konci ieu henteu disimpen di dieu."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Bar sisi"
@@ -3767,6 +4023,7 @@ msgstr "Dimimitian"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Status"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Sarat jeung kondisi"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Tés"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Tés gagal"
 
@@ -3909,6 +4168,22 @@ msgstr "Teu bisa dikirim. Berkasna meureun kagedéan, atawa sambungan anjeun gag
 msgid "That email is already registered to another account"
 msgstr "Email éta tos kadaptar dina akun séjén"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Ngaran éta pikeun administrator"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Ngaran éta disimpen pikeun server"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Ngaran éta teu sadia"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Ngaran éta geus dipaké"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Kaméra geus dipaké"
 msgid "The camera request was not answered"
 msgstr "Paménta kaméra teu diwaler"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Landihan anu ngawengku ngaran ieu sanés milik anjeun"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Paménta mikropon teu diwaler"
@@ -3933,6 +4212,10 @@ msgstr "Paménta konci akses teu diwaler"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Eusi anu dipénta teu kapanggih."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Server henteu ngidinan tumbu"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Ieu mangrupa cadangan lengkep nu bisa dipulihkeun dina ieu atawa server 
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Ieu bakal ngahapus kaulinan sareng obrolanana sacara permanén. Tindakan ieu teu tiasa dibatalkeun."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Server ieu henteu nyayogikeun jaringan séjén."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Téma teu dipikawanoh"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Cabut tali"
 
@@ -4202,6 +4490,10 @@ msgstr "Pegatkeun panyadia"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Cabut tali panyadia?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Cabut tumbu akun ieu?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "ID klien X"
 msgid "X client secret"
 msgstr "Rusiah klien X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Taun"
@@ -4419,6 +4715,10 @@ msgstr "Taun"
 msgid "You can manage these paths: {paths}"
 msgstr "Anjeun tiasa ngatur jalur ieu: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Anjeun teu bisa mesen ngaran dina domain ieu"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Anjeun teu gaduh aksés kana bagian ieu."
@@ -4426,6 +4726,10 @@ msgstr "Anjeun teu gaduh aksés kana bagian ieu."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Anjeun teu boga aksés ka domain naon waé."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Anjeun geus ngahontal wates landihan"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

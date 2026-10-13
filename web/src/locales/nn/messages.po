@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Sjekk internettsambandet ditt og prøv igjen."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" og namna under det blir frigjevne, slik at kven som helst kan ta dei. Kontoane deira, alt dei kontoane har publisert og følgjarane deira blir fjerna."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" blir fjerna saman med alt som er publisert frå kontoen, og følgjarane til kontoen."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" blir logga ut og kan ikkje logge inn att før utestenginga er op
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" blir logga ut på alle einingar og må logge inn på nytt."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" blir kopla frå. Det som vart publisert gjennom kontoen, blir verande på {1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" blir ditt på alle nettverk denne tenaren tilbyr. Eit brukarnamn kan ikkje få nytt namn; frigjev du det seinare, blir kontoane og følgjarane deira fjerna."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · push-varsel"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (utvikling)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} for {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Stadfest kode"
 msgid "A recording is already in progress."
 msgstr "Eit opptak er allereie i gang."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Ein gjenopprettingsnøkkel lèt deg flytte kontoen eller angre det ein kompromittert tenar har gjort. Han erstattar ein eventuell tidlegare nøkkel og blir berre vist éin gong."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absolutt (dato og tid)"
@@ -274,15 +304,26 @@ msgstr "Tilgangsnivå"
 msgid "Account"
 msgstr "Konto"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Kontohandlingar"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Konto lagt til"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Konto oppretta"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Konto kopla"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Konto fjerna"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Kontotype"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Konto oppdatert"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Konto stadfesta"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Kontoar"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Aktivitet"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Legg til"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Legg til ein kommentar..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Legg til eit namn"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Legg til eit namn under {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "La til «{0}»"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adresse"
 
@@ -444,6 +501,10 @@ msgstr "Administrator"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "KI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algoritme"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Autentiseringskode"
 msgid "Automatic certificates"
 msgstr "Automatiske sertifikat"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Ledig"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Tilgjengelege tastatursnarvegar"
@@ -716,6 +781,9 @@ msgstr "Kamera ikkje tilgjengeleg"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Avbryt"
@@ -783,6 +851,10 @@ msgstr "Endra førekomst"
 msgid "Checkbox"
 msgstr "Avkryssingsboks"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Kontrollerer…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Sjekkliste"
@@ -794,6 +866,10 @@ msgstr "Vel ein dato"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Vel eit spel frå sidestolpen eller start eit nytt."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Vel eit brukarnamn"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Tøm søk"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Lat att"
 
@@ -945,6 +1022,7 @@ msgstr "Stadfest at det er deg"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Tilkopla"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Kontekstinformasjon og detaljar."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Hald fram"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Hald fram med {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Kopiert"
 
@@ -996,6 +1076,7 @@ msgstr "Kopiert til utklippstavla"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Kopier"
 
@@ -1003,21 +1084,58 @@ msgstr "Kopier"
 msgid "Copy all"
 msgstr "Kopier alle"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Klarte ikkje å leggje til namnet"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Klarte ikkje å lukke kontoen din"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Klarte ikkje å kopiere"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Kunne ikkje kopiere kodane. Merk og kopier dei manuelt."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Klarte ikkje å opprette kontoen"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Kunne ikkje kople til konto"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "Klarte ikkje å kople til kontoen"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Kunne ikkje lasta dette dokumentet. Prøv igjen seinare."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Klarte ikkje å lage gjenopprettingsnøkkelen"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Klarte ikkje å frigje brukarnamnet"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Klarte ikkje å fjerne kontoen"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Klarte ikkje å erstatte nøklane"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Klarte ikkje å reservere brukarnamnet"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Kunne ikkje starte tilkopling"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Kunne ikkje kople frå leverandøren"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Klarte ikkje å oppdatere kontoen"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Opprett brukar"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Oppretta"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Samsvarar ikkje med det påkravde mønsteret"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domene"
 
@@ -1924,6 +2048,10 @@ msgstr "Klarte ikkje stadfesta kode"
 msgid "Failed to verify domain"
 msgstr "Klarte ikkje stadfesta domene"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverset"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Grupper etter"
 msgid "Group: {0}"
 msgstr "Gruppe: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Brukarnamn"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Brukarnamnhandlingar"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Brukarnamn frigjeve"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Brukarnamn reservert"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Historikk"
@@ -2061,6 +2205,10 @@ msgstr "Holslag"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Heim"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Hosta"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Nettopp no"
 msgid "Keyboard shortcuts"
 msgstr "Snøggtastar"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Nøklar"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Nøklar erstatta"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Type"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Kjende {known} · Tilkopla {linked} · Kringkastingsmesh {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Sist nytta"
 msgid "Layout"
 msgstr "Oppsett"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Berre bokstavar og siffer, må byrje med ein bokstav, 3 til 20 teikn"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Berre bokstavar, tal, mellomrom, bindestrekar og skråstrekar"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Lyst"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Lenkje"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Kopla konto"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Kople til ein konto"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Kopla"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Logg inn med gjenopprettingskode"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Logg inn med TOTP-autentiseringsapp"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Lage ein gjenopprettingsnøkkel?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Lag nøkkel"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Min tilgangsnøkkel"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Namn"
@@ -2486,6 +2674,10 @@ msgstr "Namn"
 msgctxt "person"
 msgid "Name"
 msgstr "Namn"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Namn lagt til"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Namn oppdatert"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Nettverk"
 
@@ -2518,6 +2712,12 @@ msgstr "Nettverk"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Nettverksfeil"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Nettverk"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Ikkje samanlikna: større enn {0}"
 msgid "Not compared: over the size limit"
 msgstr "Ikkje samanlikna: over storleiksgrensa"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Ikkje tilkopla"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Alternativ"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Anna"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Andre tenarar får den nye nøkkelen frå dokumentet til kontoen. Alt som er signert med den gamle nøkkelen, kan ikkje lenger verifiserast."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Hald fram"
 msgid "Processing…"
 msgstr "Handsamar…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Profil"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Leiarmelding lagra"
@@ -3129,6 +3342,11 @@ msgstr "Opptaket gav ingen lyd"
 msgid "Recovery codes"
 msgstr "Gjenopprettingskodar"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Gjenopprettingsnøkkel"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Omdirigering"
@@ -3179,6 +3397,15 @@ msgstr "Relativ innan 24 timar, elles absolutt"
 msgid "Relay service"
 msgstr "Reléteneste"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Frigje"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Frigje dette brukarnamnet?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Relevans {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Påminning"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Fjern"
 
@@ -3256,6 +3485,10 @@ msgstr "Fjern lenkja"
 msgid "Remove suspension"
 msgstr "Fjern utestenging"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Fjerne denne kontoen?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Gjentek seg"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Byt ut"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Erstatt nøklar"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Erstatte nøklane?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Påkravd"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Send e-posten på nytt"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Reserver"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Reservere dette brukarnamnet?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Laurdag"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Lagre"
@@ -3705,6 +3957,10 @@ msgstr "Vis denne hjelpa"
 msgid "Showing {totalShown} of {total}"
 msgstr "Viser {totalShown} av {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Blir berre vist éin gong. Oppbevar han på ein trygg stad: han blir ikkje lagra her."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Sidestolpe"
@@ -3767,6 +4023,7 @@ msgstr "Starta"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Status"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Vilkår"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Test"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Test mislukkast"
 
@@ -3909,6 +4168,22 @@ msgstr "Det kunne ikkje sendast. Filene kan vere for store, eller tilkoplinga sv
 msgid "That email is already registered to another account"
 msgstr "Den e-posten er allereie registrert på ein annan konto"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Det namnet er reservert for administratorar"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Det namnet er reservert for tenaren"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Det namnet er ikkje tilgjengeleg"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Det namnet er oppteke"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Kameraet er allereie i bruk"
 msgid "The camera request was not answered"
 msgstr "Kameraførespurnaden vart ikkje svara på"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Brukarnamnet dette namnet høyrer til under, er ikkje ditt"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Mikrofonførespurnaden vart ikkje svara på"
@@ -3933,6 +4212,10 @@ msgstr "Førespurnaden om tilgangsnøkkel vart ikkje svara på"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Fann ikkje innhaldet du bad om."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Tenaren tillét ikkje koplinga"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Dette er ein fullstendig tryggingskopi du kan gjenopprette på denne ell
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Dette slettar spelet og praten permanent. Denne handlinga kan ikkje angrast."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Denne tenaren tilbyr ikkje andre nettverk."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Ukjent tema"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Kople frå"
 
@@ -4202,6 +4490,10 @@ msgstr "Kopl frå leverandøren"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Kople frå leverandør?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Kople frå denne kontoen?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X-klient-ID"
 msgid "X client secret"
 msgstr "X-klient-løyndom"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "År"
@@ -4419,6 +4715,10 @@ msgstr "År"
 msgid "You can manage these paths: {paths}"
 msgstr "Du kan administrere desse stiane: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Du kan ikkje reservere eit namn på dette domenet"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Du har ikkje tilgang til denne bolken."
@@ -4426,6 +4726,10 @@ msgstr "Du har ikkje tilgang til denne bolken."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Du har ikkje tilgang til nokon domene."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Du har nådd grensa for tal på brukarnamn"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

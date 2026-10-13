@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Controlla la connessione a internet e riprova."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" e i nomi sotto di esso saranno liberati e chiunque potrà prenderli. I relativi account, tutto ciò che hanno pubblicato e i loro follower verranno rimossi."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" verrà rimosso insieme a tutto ciò che ha pubblicato e ai suoi follower."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" verrà disconnesso e non potrà accedere di nuovo finché la sos
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" verrà disconnesso su tutti i dispositivi e dovrà accedere di nuovo."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" verrà scollegato. Ciò che è stato pubblicato tramite esso resta su {1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" sarà tuo su ogni rete offerta da questo server. Un nome utente non può essere rinominato; rilasciarlo in seguito rimuove i suoi account e i relativi follower."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · push"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (sviluppo)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} per {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Verifica il codice"
 msgid "A recording is already in progress."
 msgstr "Una registrazione è già in corso."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Una chiave di recupero ti permette di spostare l'account o di annullare ciò che ha fatto un server compromesso. Sostituisce qualsiasi chiave precedente e viene mostrata una sola volta."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Assoluto (data e ora)"
@@ -274,15 +304,26 @@ msgstr "Livello di accesso"
 msgid "Account"
 msgstr "Account"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Azioni dell'account"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Account aggiunto"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Account creato"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Account collegato"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Account rimosso"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Tipo di account"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Account aggiornato"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Account verificato"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Account"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Attività"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Aggiungi"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Aggiungi un commento..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Aggiungi un nome"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Aggiungi un nome sotto {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" aggiunto"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Indirizzo"
 
@@ -444,6 +501,10 @@ msgstr "Amministratore"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "IA"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algoritmo"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Codice dell'autenticatore"
 msgid "Automatic certificates"
 msgstr "Certificati automatici"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Disponibile"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Scorciatoie da tastiera disponibili"
@@ -716,6 +781,9 @@ msgstr "Fotocamera non disponibile"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Annulla"
@@ -783,6 +851,10 @@ msgstr "Ricorrenza modificata"
 msgid "Checkbox"
 msgstr "Casella di controllo"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Verifica in corso…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Checklist"
@@ -794,6 +866,10 @@ msgstr "Scegli una data"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Scegli una partita dalla barra laterale o avviane una nuova."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Scegli un nome utente"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Cancella ricerca"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Chiudi"
 
@@ -945,6 +1022,7 @@ msgstr "Conferma la tua identità"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Connesso"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Informazioni e dettagli contestuali."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Continua"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Continua con {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Copiato"
 
@@ -996,6 +1076,7 @@ msgstr "Copiato negli appunti"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Copia"
 
@@ -1003,21 +1084,58 @@ msgstr "Copia"
 msgid "Copy all"
 msgstr "Copia tutto"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Impossibile aggiungere il nome"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Impossibile chiudere il tuo account"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Impossibile copiare"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Impossibile copiare i codici. Selezionali e copiali manualmente."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Impossibile creare l'account"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "Impossibile collegare l'account"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "Impossibile collegare l'account"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Impossibile caricare questo documento. Riprova più tardi."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Impossibile creare la chiave di recupero"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Impossibile rilasciare il nome utente"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Impossibile rimuovere l'account"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Impossibile sostituire le chiavi"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Impossibile riservare il nome utente"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Impossibile avviare il collegamento"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Impossibile scollegare il provider"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Impossibile aggiornare l'account"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Crea utente"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Creato"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Non corrisponde al modello richiesto"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Dominio"
 
@@ -1924,6 +2048,10 @@ msgstr "Impossibile verificare il codice"
 msgid "Failed to verify domain"
 msgstr "Impossibile verificare il dominio"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverso"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Raggruppa per"
 msgid "Group: {0}"
 msgstr "Gruppo: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Nome utente"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Azioni del nome utente"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Nome utente rilasciato"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Nome utente riservato"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Cronologia"
@@ -2061,6 +2205,10 @@ msgstr "Perforazione"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Home"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Ospitato"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Proprio ora"
 msgid "Keyboard shortcuts"
 msgstr "Scorciatoie da tastiera"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Chiavi"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Chiavi sostituite"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Tipo"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Conosciuti {known} · Connessi {linked} · Mesh di trasmissione {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Ultimo utilizzo"
 msgid "Layout"
 msgstr "Layout"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Solo lettere e cifre, iniziando con una lettera, da 3 a 20 caratteri"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Solo lettere, numeri, spazi, trattini e barre"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Chiaro"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Link"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Collega account"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Collega un account"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Collegato"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Accedi con codice di recupero"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Accedi con app di autenticazione TOTP"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Creare una chiave di recupero?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Crea chiave"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "La mia passkey"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Nome"
@@ -2486,6 +2674,10 @@ msgstr "Nome"
 msgctxt "person"
 msgid "Name"
 msgstr "Nome"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Nome aggiunto"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Nome aggiornato"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Rete"
 
@@ -2518,6 +2712,12 @@ msgstr "Rete"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Errore di rete"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Reti"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Non confrontato: più grande di {0}"
 msgid "Not compared: over the size limit"
 msgstr "Non confrontato: oltre il limite di dimensione"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Non connesso"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Opzioni"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Altro"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Gli altri server apprendono la nuova chiave dal documento dell'account. Tutto ciò che è stato firmato con la vecchia chiave non supera più la verifica."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Procedi"
 msgid "Processing…"
 msgstr "Elaborazione…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Profilo"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Prompt salvato"
@@ -3129,6 +3342,11 @@ msgstr "La registrazione non ha prodotto audio"
 msgid "Recovery codes"
 msgstr "Codici di recupero"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Chiave di recupero"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Reindirizzamento"
@@ -3179,6 +3397,15 @@ msgstr "Relativo entro 24 ore, altrimenti assoluto"
 msgid "Relay service"
 msgstr "Servizio di inoltro"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Rilascia"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Rilasciare questo nome utente?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Pertinenza {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Promemoria"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Rimuovi"
 
@@ -3256,6 +3485,10 @@ msgstr "Rimuovi collegamento"
 msgid "Remove suspension"
 msgstr "Rimuovi sospensione"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Rimuovere questo account?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Si ripete"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Sostituisci"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Sostituisci chiavi"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Sostituire le chiavi?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Obbligatorio"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Invia di nuovo l'email"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Riserva"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Riservare questo nome utente?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Sabato"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Salva"
@@ -3705,6 +3957,10 @@ msgstr "Mostra questa guida"
 msgid "Showing {totalShown} of {total}"
 msgstr "Visualizzati {totalShown} di {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Viene mostrata una sola volta. Conservala in un luogo sicuro: non viene memorizzata qui."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Barra laterale"
@@ -3767,6 +4023,7 @@ msgstr "Iniziato"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Stato"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Termini e condizioni"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Prova"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Test non riuscito"
 
@@ -3909,6 +4168,22 @@ msgstr "Impossibile inviare. I file potrebbero essere troppo grandi o la conness
 msgid "That email is already registered to another account"
 msgstr "Quell'indirizzo email è già registrato con un altro account"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Quel nome è riservato agli amministratori"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Quel nome è riservato al server"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Quel nome non è disponibile"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Quel nome è già in uso"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "La fotocamera è già in uso"
 msgid "The camera request was not answered"
 msgstr "La richiesta della fotocamera non ha ricevuto risposta"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Il nome utente sotto cui si trova questo nome non è tuo"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "La richiesta del microfono non ha ricevuto risposta"
@@ -3933,6 +4212,10 @@ msgstr "La richiesta di passkey non ha ricevuto risposta"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Impossibile trovare il contenuto richiesto."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Il server non ha consentito il collegamento"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Questo è un backup completo che puoi ripristinare su questo o su un alt
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Questa azione eliminerà definitivamente la partita e la relativa chat. Questa azione non può essere annullata."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Questo server non offre altre reti."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Tema sconosciuto"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Scollega"
 
@@ -4202,6 +4490,10 @@ msgstr "Scollega provider"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Scollegare il provider?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Scollegare questo account?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "ID client X"
 msgid "X client secret"
 msgstr "Segreto client X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Anno"
@@ -4419,6 +4715,10 @@ msgstr "Anno"
 msgid "You can manage these paths: {paths}"
 msgstr "Puoi gestire questi percorsi: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Non puoi riservare un nome su questo dominio"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Non hai accesso a questa sezione."
@@ -4426,6 +4726,10 @@ msgstr "Non hai accesso a questa sezione."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Non hai accesso ad alcun dominio."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Hai raggiunto il limite di nomi utente"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "သင့်အင်တာနက်ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်မံကြိုးစားပါ။"
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" နှင့် ၎င်းအောက်ရှိ အမည်များကို မည်သူမဆို ယူနိုင်ရန် လွှတ်ပေးပါမည်။ ၎င်းတို့၏ အကောင့်များ၊ ထိုအကောင့်များ ထုတ်ဝေခဲ့သမျှနှင့် ၎င်းတို့၏ နောက်လိုက်များကို ဖယ်ရှားပါမည်။"
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" ကို ၎င်းထုတ်ဝေခဲ့သမျှနှင့် ၎င်း၏ နောက်လိုက်များနှင့်အတူ ဖယ်ရှားပါမည်။"
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" ကို ထွက်ခွာစေမည်ဖြစ်ပြ
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" ကို စက်တိုင်းတွင် ထွက်ခွာစေမည်ဖြစ်ပြီး ပြန်လည်ဝင်ရောက်ရမည်ဖြစ်သည်။"
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" ၏ ချိတ်ဆက်မှုကို ဖြုတ်ပါမည်။ ၎င်းမှတစ်ဆင့် ထုတ်ဝေခဲ့သည်များသည် {1} တွင် ဆက်ရှိနေပါမည်။"
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" သည် ဤဆာဗာက ပေးသော ကွန်ရက်တိုင်းတွင် သင့်ပိုင် ဖြစ်လာပါမည်။ သုံးစွဲသူအမည်ကို အမည်ပြောင်း၍ မရပါ။ နောင်တွင် ၎င်းကို လွှတ်ပေးပါက ၎င်း၏ အကောင့်များနှင့် ထိုအကောင့်များ၏ နောက်လိုက်များကို ဖယ်ရှားပါမည်။"
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · တွန်းပို့"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (ဖွံ့ဖြိုးတိုးတက်မှု)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{1} အတွက် {0}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "၃။ ကုဒ်အတည်ပြုရန်"
 msgid "A recording is already in progress."
 msgstr "အသံဖမ်းယူမှု လုပ်ဆောင်နေပြီးဖြစ်သည်။"
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "ပြန်လည်ရယူရေးသော့ဖြင့် အကောင့်ကို ရွှေ့နိုင်သည် သို့မဟုတ် ထိုးဖောက်ခံရသော ဆာဗာက ပြုလုပ်ခဲ့သည်များကို ပြန်ဖျက်နိုင်သည်။ ၎င်းသည် ယခင်သော့မှန်သမျှကို အစားထိုးပြီး တစ်ကြိမ်သာ ပြသပါမည်။"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "အပြည့်အစုံ (ရက်စွဲနှင့် အချိန်)"
@@ -274,15 +304,26 @@ msgstr "ဝင်ရောက်ခွင့်အဆင့်"
 msgid "Account"
 msgstr "အကောင့်"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "အကောင့် လုပ်ဆောင်ချက်များ"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "အကောင့် ထည့်ပြီး"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "အကောင့် ဖန်တီးပြီး"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "အကောင့် ချိတ်ဆက်ပြီး"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "အကောင့် ဖယ်ရှားပြီး"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "အကောင့်အမျိုးအစား"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "အကောင့် ပြောင်းပြီး"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "အကောင့် အတည်ပြုပြီး"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "အကောင့်များ"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "လှုပ်ရှားမှု"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "ထည့်မည်"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "မှတ်ချက်ထည့်ရန်..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "အမည် ထည့်မည်"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "{0} အောက်တွင် အမည် ထည့်မည်"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" ထည့်ပြီး"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "လိပ်စာ"
 
@@ -444,6 +501,10 @@ msgstr "စီမံခန့်ခွဲသူ"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "အယ်လဂိုရီသမ်"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "အထောက်အထားစိစစ်ရေး ကုဒ်"
 msgid "Automatic certificates"
 msgstr "အလိုအလျောက် လက်မှတ်များ"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "ရနိုင်သည်"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "ရရှိနိုင်သော ကီးဘုတ်ဖြတ်လမ်းများ"
@@ -716,6 +781,9 @@ msgstr "ကင်မရာ မရနိုင်ပါ"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "မလုပ်တော့ပါ"
@@ -783,6 +851,10 @@ msgstr "ပြောင်းလဲထားသော အကြိမ်"
 msgid "Checkbox"
 msgstr "အမှန်ခြစ်ကွက်"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "စစ်ဆေးနေသည်…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "စစ်ဆေးစာရင်း"
@@ -794,6 +866,10 @@ msgstr "ရက်စွဲ ရွေးပါ"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "ဘေးဘားမှ ဂိမ်းတစ်ခုကို ရွေးချယ်ပါ သို့မဟုတ် အသစ်တစ်ခု စတင်ပါ။"
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "သုံးစွဲသူအမည် ရွေးပါ"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "ရှာဖွေမှု ရှင်းမည်"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "ပိတ်မည်"
 
@@ -945,6 +1022,7 @@ msgstr "သင်ဖြစ်ကြောင်း အတည်ပြုပါ"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "ချိတ်ဆက်ပြီး"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "ဆက်စပ်အချက်အလက်နှင့် အသေးစိတ်များ။"
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "ဆက်လက်လုပ်ဆောင်မည်"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "{providerLabel} ဖြင့် ဆက်လုပ်မည်"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "ကူးယူပြီးပါပြီ"
 
@@ -996,6 +1076,7 @@ msgstr "ကလစ်ဘုတ်သို့ ကူးပြီး"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "ကူးမည်"
 
@@ -1003,21 +1084,58 @@ msgstr "ကူးမည်"
 msgid "Copy all"
 msgstr "အားလုံး ကူးမည်"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "အမည် ထည့်၍ မရပါ"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "သင့်အကောင့်ကို ပိတ်၍မရပါ"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "ကူးယူ၍ မရပါ"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "ကုဒ်များ ကူးယူ၍မရပါ။ ၎င်းတို့ကို ရွေးပြီး ကိုယ်တိုင်ကူးပါ။"
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "အကောင့် ဖန်တီး၍ မရပါ"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "အကောင့် ချိတ်ဆက်၍ မရပါ"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "အကောင့် ချိတ်ဆက်၍ မရပါ"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "ဤစာရွက်စာတမ်းကို ဖွင့်၍ မရပါ။ နောက်မှ ထပ်စမ်းကြည့်ပါ။"
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "ပြန်လည်ရယူရေးသော့ ပြုလုပ်၍ မရပါ"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "သုံးစွဲသူအမည်ကို လွှတ်ပေး၍ မရပါ"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "အကောင့်ကို ဖယ်ရှား၍ မရပါ"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "သော့များကို အစားထိုး၍ မရပါ"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "သုံးစွဲသူအမည်ကို ကြိုတင်ယူထား၍ မရပါ"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "ချိတ်ဆက်ခြင်း စတင်၍ မရပါ"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "ဝန်ဆောင်မှုပေးသူ ဖြုတ်၍ မရပါ"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "အကောင့်ကို အပ်ဒိတ်လုပ်၍ မရပါ"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "သုံးစွဲသူ ဖန်တီးမည်"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "ဖန်တီးပြီး"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "လိုအပ်သော ပုံစံနှင့် မကိုက်ညီပါ"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "ဒိုမိန်း"
 
@@ -1924,6 +2048,10 @@ msgstr "ကုဒ် အတည်ပြု၍ မရပါ"
 msgid "Failed to verify domain"
 msgstr "ဒိုမိန်း အတည်ပြု၍ မရပါ"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "အလိုက် အုပ်စုဖွဲ့ရန်"
 msgid "Group: {0}"
 msgstr "အုပ်စု- {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "သုံးစွဲသူအမည်"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "သုံးစွဲသူအမည် လုပ်ဆောင်ချက်များ"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "သုံးစွဲသူအမည် လွှတ်ပေးပြီး"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "သုံးစွဲသူအမည် ကြိုတင်ယူထားပြီး"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "မှတ်တမ်း"
@@ -2061,6 +2205,10 @@ msgstr "ပေါက်ဖောက်ခြင်း"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "ပင်မ"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "ဤဆာဗာတွင်"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "အခုပဲ"
 msgid "Keyboard shortcuts"
 msgstr "ကီးဘုတ် ဖြတ်လမ်းများ"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "သော့များ"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "သော့များ အစားထိုးပြီး"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "အမျိုးအစား"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "သိရှိ {known} · ချိတ်ဆက်ပြီး {linked} · ထုတ်လွှင့်မှု မက်ရှ် {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "နောက်ဆုံး အသုံးပြုခဲ့သည်"
 msgid "Layout"
 msgstr "အပြင်အဆင်"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "လက်တင်အက္ခရာနှင့် ဂဏန်းများသာ၊ အက္ခရာဖြင့် စရမည်၊ စာလုံး 3 မှ 20 အထိ"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "စာလုံး၊ ဂဏန်း၊ နေရာလွတ်၊ တံစက်ခြစ် နှင့် မျဉ်းစောင်းများသာ"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "အလင်း"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "လင့်ခ်"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "အကောင့် ချိတ်ဆက်"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "အကောင့် ချိတ်ဆက်မည်"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "ချိတ်ဆက်ထား"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "ပြန်လည်ရယူရေး ကုဒ်ဖြင့် ဝ�
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "TOTP အထောက်အထား အက်ပ်ဖြင့် ဝင်"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "ပြန်လည်ရယူရေးသော့ ပြုလုပ်မလား?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "သော့ ပြုလုပ်မည်"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "ကျွန်ုပ်၏ ဝင်ရောက်ခွင့်သ�
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "အမည်"
@@ -2486,6 +2674,10 @@ msgstr "အမည်"
 msgctxt "person"
 msgid "Name"
 msgstr "အမည်"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "အမည် ထည့်ပြီး"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "အမည် ပြင်ဆင်ပြီးပါပြီ"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "ကွန်ရက်"
 
@@ -2518,6 +2712,12 @@ msgstr "ကွန်ရက်"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "ကွန်ရက် အမှား"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "ကွန်ရက်များ"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "နှိုင်းယှဉ်မထားပါ - {0} ထက်က�
 msgid "Not compared: over the size limit"
 msgstr "နှိုင်းယှဉ်မထားပါ - အရွယ်အစားကန့်သတ်ချက်ကို ကျော်လွန်သည်"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "ချိတ်ဆက်မထားပါ"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "ရွေးချယ်စရာများ"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "အခြား"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "အခြားဆာဗာများသည် အကောင့်၏ စာရွက်စာတမ်းမှ သော့အသစ်ကို သိရှိကြသည်။ သော့ဟောင်းဖြင့် လက်မှတ်ထိုးထားသမျှကို နောက်ထပ် အတည်ပြု၍ ရတော့မည် မဟုတ်ပါ။"
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "ဆက်လုပ်"
 msgid "Processing…"
 msgstr "လုပ်ဆောင်နေသည်…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "ပရိုဖိုင်"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "ညွှန်ကြားချက် သိမ်းပြီးပါပြီ"
@@ -3129,6 +3342,11 @@ msgstr "အသံဖမ်းယူမှုတွင် အသံမပါရ�
 msgid "Recovery codes"
 msgstr "ပြန်လည်ရယူရေး ကုဒ် များ"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "ပြန်လည်ရယူရေးသော့"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "လမ်းကြောင်းလွှဲ"
@@ -3179,6 +3397,15 @@ msgstr "၂၄ နာရီအတွင်း ဆက်စပ်၊ ပြင်
 msgid "Relay service"
 msgstr "ထပ်ဆင့်ပို့ဝန်ဆောင်မှု"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "လွှတ်ပေးမည်"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "ဤသုံးစွဲသူအမည်ကို လွှတ်ပေးမလား?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "သက်ဆိုင်မှု {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "သတိပေးချက်"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "ဖယ်ရှား"
 
@@ -3256,6 +3485,10 @@ msgstr "လင့်ခ် ဖယ်ရှားရန်"
 msgid "Remove suspension"
 msgstr "ဆိုင်းငံ့ထား ဖယ်ရှား"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "ဤအကောင့်ကို ဖယ်ရှားမလား?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "ထပ်ခါထပ်ခါ ဖြစ်သည်"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "အစားထိုးပါ"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "သော့များ အစားထိုးမည်"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "သော့များကို အစားထိုးမလား?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "လိုအပ်"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "အီးမေးလ်ပြန်ပို့ရန်"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "ကြိုတင်ယူမည်"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "ဤသုံးစွဲသူအမည်ကို ကြိုတင်ယူမလား?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "စနေနေ့"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "သိမ်းမည်"
@@ -3705,6 +3957,10 @@ msgstr "ဤ အကူအညီကို ပြမည်"
 msgid "Showing {totalShown} of {total}"
 msgstr "{total} ထဲမှ {totalShown} ကို ပြသနေသည်"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "တစ်ကြိမ်သာ ပြသသည်။ ဘေးကင်းသောနေရာတွင် သိမ်းထားပါ- ဤနေရာတွင် သိမ်းဆည်းမထားပါ။"
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "ဘေးဘား"
@@ -3767,6 +4023,7 @@ msgstr "စတင်ပြီး"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "အခြေအနေ"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "စည်းကမ်းချက်များ"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "စမ်းသပ်မည်"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "စမ်းသပ်မှု မအောင်မြင်ပါ"
 
@@ -3909,6 +4168,22 @@ msgstr "ပို့၍မရပါ။ ဖိုင်များ ကြီး�
 msgid "That email is already registered to another account"
 msgstr "ထိုအီးမေးလ်ကို အခြားအကောင့်တွင် မှတ်ပုံတင်ထားပြီးဖြစ်သည်"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "ထိုအမည်သည် စီမံခန့်ခွဲသူများအတွက် ဖြစ်သည်"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "ထိုအမည်ကို ဆာဗာအတွက် သီးသန့်ထားသည်"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "ထိုအမည်ကို မရနိုင်ပါ"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "ထိုအမည်ကို ယူထားပြီး ဖြစ်သည်"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "ကင်မရာကို အသုံးပြုနေပြီး�
 msgid "The camera request was not answered"
 msgstr "ကင်မရာ တောင်းဆိုမှုကို မဖြေကြားခဲ့ပါ"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "ဤအမည်ရှိရာ သုံးစွဲသူအမည်သည် သင့်ပိုင် မဟုတ်ပါ"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "မိုက်ခရိုဖုန်း တောင်းဆိုမှုကို မဖြေကြားခဲ့ပါ"
@@ -3933,6 +4212,10 @@ msgstr "ဝင်ရောက်ခွင့်သော့ တောင်း�
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "တောင်းဆိုထားသော အကြောင်းအရာကို ရှာမတွေ့ပါ။"
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "ဆာဗာက ချိတ်ဆက်မှုကို ခွင့်မပြုခဲ့ပါ"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "ဤသည်မှာ ဤ Mochi ဆာဗာ သို့မဟုတ်
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "ဤလုပ်ဆောင်ချက်သည် ဂိမ်းနှင့် ၎င်း၏ ချတ်ကို အပြီးအပိုင် ဖျက်ပစ်မည်ဖြစ်သည်။ ဤလုပ်ဆောင်ချက်ကို ပြန်ပြောင်း၍မရပါ။"
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "ဤဆာဗာသည် အခြားကွန်ရက်များကို မပေးပါ။"
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "အမည်မသိ အပြင်အဆင်"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "ချိတ်ဆက်မှု ဖြုတ်မည်"
 
@@ -4202,6 +4490,10 @@ msgstr "ဝန်ဆောင်မှုပေးသူကို ဆက်စ�
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "ချိတ်ဆက်မှုကို ဖြုတ်မှာလား?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "ဤအကောင့်၏ ချိတ်ဆက်မှုကို ဖြုတ်မလား?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X ကလိုင်းယင့် ID"
 msgid "X client secret"
 msgstr "X ကလိုင်းယင့် လျှို့ဝှက်ချက်"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "နှစ်"
@@ -4419,6 +4715,10 @@ msgstr "နှစ်"
 msgid "You can manage these paths: {paths}"
 msgstr "ဤလမ်းကြောင်းများကို သင်စီမံနိုင်သည်: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "ဤဒိုမိန်းတွင် အမည်ကို ကြိုတင်ယူ၍ မရပါ"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "ဤအပိုင်းသို့ သင့်တွင် ဝင်ရောက်ခွင့်မရှိပါ။"
@@ -4426,6 +4726,10 @@ msgstr "ဤအပိုင်းသို့ သင့်တွင် ဝင်�
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "သင့်တွင် မည်သည့် domain ကိုမှ ဝင်ခွင့်မရှိပါ။"
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "သုံးစွဲသူအမည် ကန့်သတ်ချက်သို့ ရောက်ရှိသွားပါပြီ"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

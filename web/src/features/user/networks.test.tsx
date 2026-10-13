@@ -1,0 +1,244 @@
+// Copyright © 2026 Mochisoft OÜ
+// SPDX-License-Identifier: AGPL-3.0-only
+// This file is part of Mochi, licensed under the GNU AGPL v3 with the
+// Mochi Application Interface Exception - see license.txt and license-exception.md.
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { i18n } from '@lingui/core'
+import { I18nProvider } from '@lingui/react'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { Networks } from './networks'
+import { suggestHandle } from '@/lib/handles'
+import type { NetworksData } from '@/types/networks'
+
+const state = vi.hoisted(() => ({
+  get: vi.fn(),
+  post: vi.fn(),
+  success: vi.fn(),
+  error: vi.fn(),
+  navigate: vi.fn(),
+}))
+
+vi.mock('@mochi/web', async (original) => {
+  const actual = await original<typeof import('@mochi/web')>()
+  return {
+    ...actual,
+    toast: { success: state.success, error: state.error },
+    shellNavigateTop: state.navigate,
+    requestHelpers: {
+      ...actual.requestHelpers,
+      get: state.get,
+      post: state.post,
+    },
+    usePageTitle: () => {},
+  }
+})
+
+const alice = {
+  domain: 'example.com',
+  name: 'alice',
+  parent: '',
+  kind: 'handle',
+  created: 1,
+  addresses: {
+    fediverse: 'alice@example.com',
+    bluesky: 'alice.example.com',
+  },
+}
+
+const data: NetworksData = {
+  offered: true,
+  networks: ['fediverse', 'bluesky'],
+  domains: ['example.com'],
+  handles: { handles: [alice], limit: 1, counted: 1, unlimited: false },
+  accounts: [
+    {
+      id: 'f1',
+      type: 'fediverse',
+      label: '',
+      identifier: 'alice@example.com',
+      created: 1,
+      verified: 1,
+      enabled: 1,
+      default: '',
+      hosted: true,
+      server: 'example.com',
+    },
+    {
+      id: 'm1',
+      type: 'mastodon',
+      label: 'Alice',
+      identifier: '@alice@mastodon.social',
+      created: 2,
+      verified: 1,
+      enabled: 1,
+      default: '',
+      hosted: false,
+      server: 'mastodon.social',
+    },
+  ],
+  providers: [
+    {
+      type: 'mastodon',
+      capabilities: ['social'],
+      link: {
+        flow: 'oauth',
+        fields: [
+          {
+            name: 'server',
+            label: 'Server',
+            type: 'text',
+            required: true,
+            placeholder: 'mastodon.social',
+          },
+        ],
+      },
+    },
+  ],
+  name: 'Alice Example',
+}
+
+function show(answer: NetworksData = data) {
+  state.get.mockResolvedValue(answer)
+  const client = new QueryClient({
+    defaultOptions: { queries: { retry: false } },
+  })
+  return render(
+    <QueryClientProvider client={client}>
+      <I18nProvider i18n={i18n}>
+        <Networks />
+      </I18nProvider>
+    </QueryClientProvider>
+  )
+}
+
+describe('Networks', () => {
+  beforeEach(() => {
+    i18n.load('en', {})
+    i18n.activate('en')
+    state.get.mockReset()
+    state.post.mockReset()
+    state.success.mockReset()
+    state.error.mockReset()
+    state.navigate.mockReset()
+  })
+
+  it('suggests a handle from the name within the rule', () => {
+    expect(suggestHandle('Alice Example')).toBe('aliceexample')
+    expect(suggestHandle('Zoë 99')).toBe('zoe99')
+    expect(suggestHandle('123')).toBe('')
+    expect(suggestHandle('a')).toBe('')
+    expect(suggestHandle('x'.repeat(30))).toBe('x'.repeat(20))
+  })
+
+  it('shows each handle with a switch per network and the accounts together', async () => {
+    show()
+    await screen.findByText('alice')
+    // The address under the handle's switch, and the account's row.
+    expect(screen.getAllByText('alice@example.com')).toHaveLength(2)
+    expect(screen.getByText('alice.example.com')).toBeTruthy()
+    const switches = screen.getAllByRole('switch')
+    expect(switches).toHaveLength(2)
+    expect(switches[0]).toHaveAttribute('aria-checked', 'true')
+    expect(switches[1]).toHaveAttribute('aria-checked', 'false')
+    expect(screen.getByText('@alice@mastodon.social')).toBeTruthy()
+    expect(screen.getByText('Hosted')).toBeTruthy()
+    expect(screen.getByText('Linked')).toBeTruthy()
+    // The limit is reached, so no chooser.
+    expect(screen.queryByText('Choose a handle')).toBeNull()
+  })
+
+  it('switching a network on creates the hosted account', async () => {
+    state.post.mockResolvedValue({ id: 'b1' })
+    show()
+    await screen.findByText('alice')
+    await act(async () => {
+      fireEvent.click(screen.getAllByRole('switch')[1])
+    })
+    await waitFor(() => expect(state.post).toHaveBeenCalled())
+    expect(state.post.mock.calls[0][0]).toBe('-/user/networks/account/create')
+    expect(state.post.mock.calls[0][1]).toEqual({
+      network: 'bluesky',
+      handle: 'alice',
+      domain: 'example.com',
+    })
+    expect(state.success).toHaveBeenCalledWith('Account created')
+  })
+
+  it('switching a network off asks before removing the account', async () => {
+    state.post.mockResolvedValue({ removed: true })
+    show()
+    await screen.findByText('alice')
+    await act(async () => {
+      fireEvent.click(screen.getAllByRole('switch')[0])
+    })
+    expect(state.post).not.toHaveBeenCalled()
+    expect(await screen.findByText('Remove this account?')).toBeTruthy()
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Remove' }))
+    })
+    await waitFor(() => expect(state.post).toHaveBeenCalled())
+    expect(state.post.mock.calls[0][0]).toBe('-/user/networks/account/remove')
+    expect(state.post.mock.calls[0][1]).toEqual({ id: 'f1' })
+  })
+
+  it('offers the chooser with the suggestion while a handle may be reserved', async () => {
+    state.post.mockResolvedValue({
+      available: true,
+      reason: '',
+      domain: 'example.com',
+      name: 'aliceexample',
+    })
+    show({
+      ...data,
+      handles: { handles: [], limit: 1, counted: 0, unlimited: false },
+      accounts: [],
+    })
+    await screen.findByText('Choose a handle')
+    const input = screen.getByLabelText('Handle') as HTMLInputElement
+    expect(input.value).toBe('aliceexample')
+    await waitFor(() =>
+      expect(state.post).toHaveBeenCalledWith(
+        '-/user/networks/handle/available',
+        { name: 'aliceexample', domain: 'example.com' },
+        expect.anything()
+      )
+    )
+    expect(await screen.findByText('Available')).toBeTruthy()
+  })
+
+  it('links an account at the remote server when its provider says oauth', async () => {
+    state.post.mockResolvedValue({ url: '/_/auth/oauth/mastodon/start?state=x' })
+    show()
+    await screen.findByText('alice')
+    await act(async () => {
+      // The page header renders its actions for both layouts.
+      fireEvent.click(
+        screen.getAllByRole('button', { name: 'Link an account' })[0]
+      )
+    })
+    const server = await screen.findByLabelText('Server')
+    await act(async () => {
+      fireEvent.change(server, { target: { value: 'mastodon.social' } })
+    })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Continue' }))
+    })
+    await waitFor(() => expect(state.navigate).toHaveBeenCalled())
+    expect(state.post.mock.calls[0][0]).toBe('-/user/networks/account/link')
+    expect(state.post.mock.calls[0][1]).toEqual({
+      type: 'mastodon',
+      server: 'mastodon.social',
+    })
+    expect(state.navigate).toHaveBeenCalledWith(
+      '/_/auth/oauth/mastodon/start?state=x'
+    )
+  })
+
+  it('says so where the server offers no networks', async () => {
+    show({ ...data, offered: false, networks: [], providers: [] })
+    expect(
+      await screen.findByText('This server does not offer other networks.')
+    ).toBeTruthy()
+  })
+})

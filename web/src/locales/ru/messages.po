@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Проверьте подключение к интернету и попробуйте снова."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "Псевдоним \"{0}\" и имена под ним будут освобождены, и их сможет занять кто угодно. Их аккаунты, всё, что в них опубликовано, и их подписчики будут удалены."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "Аккаунт \"{0}\" будет удалён вместе со всем, что в нём опубликовано, и его подписчиками."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "Пользователь \"{0}\" будет выведен из сист
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "Пользователь \"{0}\" будет выведен из системы на всех устройствах и должен будет войти заново."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "Аккаунт \"{0}\" будет отвязан. Опубликованное через него останется на сервере {1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "Адрес \"{address}\" станет вашим во всех сетях, которые предлагает этот сервер. Псевдоним нельзя переименовать; если позже освободить его, будут удалены его аккаунты и их подписчики."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · пуш"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (разработка)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} для {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Проверьте код"
 msgid "A recording is already in progress."
 msgstr "Запись уже идёт."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Ключ восстановления позволяет перенести аккаунт или отменить действия скомпрометированного сервера. Он заменяет любой предыдущий ключ и показывается только один раз."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Абсолютное (дата и время)"
@@ -274,15 +304,26 @@ msgstr "Уровень доступа"
 msgid "Account"
 msgstr "Аккаунт"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Действия с аккаунтом"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Аккаунт добавлен"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Аккаунт создан"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Аккаунт связан"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Аккаунт удалён"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Тип аккаунта"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Аккаунт обновлён"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Аккаунт подтверждён"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Аккаунты"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Активность"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Добавить"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Добавить комментарий..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Добавить имя"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Добавить имя под {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "Добавлено «{0}»"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Адрес"
 
@@ -444,6 +501,10 @@ msgstr "Администратор"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "ИИ"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Алгоритм"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Код аутентификатора"
 msgid "Automatic certificates"
 msgstr "Автоматические сертификаты"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Доступно"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Доступные клавиатурные сочетания"
@@ -716,6 +781,9 @@ msgstr "Камера недоступна"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Отмена"
@@ -783,6 +851,10 @@ msgstr "Изменённое повторение"
 msgid "Checkbox"
 msgstr "Флажок"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Проверка…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Чек-лист"
@@ -794,6 +866,10 @@ msgstr "Выберите дату"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Выберите игру в боковой панели или начните новую."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Выберите псевдоним"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Очистить поиск"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Закрыть"
 
@@ -945,6 +1022,7 @@ msgstr "Подтвердите, что это вы"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Подключено"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Контекстная информация и подробности."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Продолжить"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Продолжить с {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Скопировано"
 
@@ -996,6 +1076,7 @@ msgstr "Скопировано в буфер обмена"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Копировать"
 
@@ -1003,21 +1084,58 @@ msgstr "Копировать"
 msgid "Copy all"
 msgstr "Копировать всё"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Не удалось добавить имя"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Не удалось закрыть ваш аккаунт"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Не удалось скопировать"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Не удалось скопировать коды. Выделите и скопируйте их вручную."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Не удалось создать аккаунт"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Не удалось привязать аккаунт"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "Не удалось связать аккаунт"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Не удалось загрузить этот документ. Повторите попытку позже."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Не удалось создать ключ восстановления"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Не удалось освободить псевдоним"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Не удалось удалить аккаунт"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Не удалось заменить ключи"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Не удалось зарезервировать псевдоним"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Не удалось начать привязку"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Не удалось отвязать провайдера"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Не удалось обновить аккаунт"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Создать пользователя"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Создано"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Не соответствует требуемому шаблону"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Домен"
 
@@ -1924,6 +2048,10 @@ msgstr "Не удалось проверить код"
 msgid "Failed to verify domain"
 msgstr "Не удалось проверить домен"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Федиверс"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Группировать по"
 msgid "Group: {0}"
 msgstr "Группа: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Псевдоним"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Действия с псевдонимом"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Псевдоним освобождён"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Псевдоним зарезервирован"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "История"
@@ -2061,6 +2205,10 @@ msgstr "Пробивание"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Главная"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Размещён"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Только что"
 msgid "Keyboard shortcuts"
 msgstr "Сочетания клавиш"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Ключи"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Ключи заменены"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Вид"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Известные {known} · Подключённые {linked} · Ячеистая сеть трансляции {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Последнее использование"
 msgid "Layout"
 msgstr "Макет"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Только буквы и цифры, начиная с буквы, от 3 до 20 символов"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Только буквы, цифры, пробелы, дефисы и косые черты"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Светлая"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Ссылка"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Связать аккаунт"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Связать аккаунт"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Связан"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Вход с помощью кода восстановления"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Вход через приложение-аутентификатор TOTP"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Создать ключ восстановления?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Создать ключ"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Мой ключ доступа"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Название"
@@ -2486,6 +2674,10 @@ msgstr "Название"
 msgctxt "person"
 msgid "Name"
 msgstr "Имя"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Имя добавлено"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Имя обновлено"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Сеть"
 
@@ -2518,6 +2712,12 @@ msgstr "Сеть"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Ошибка сети"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Сети"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Не сравнивался: больше {0}"
 msgid "Not compared: over the size limit"
 msgstr "Не сравнивался: превышает лимит размера"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Не подключено"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Параметры"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Другое"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Другие серверы узнают новый ключ из документа аккаунта. Всё, что подписано старым ключом, перестанет проходить проверку."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Продолжить"
 msgid "Processing…"
 msgstr "Обработка…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Профиль"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Промпт сохранён"
@@ -3129,6 +3342,11 @@ msgstr "Запись не содержит звука"
 msgid "Recovery codes"
 msgstr "Коды восстановления"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Ключ восстановления"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Перенаправление"
@@ -3179,6 +3397,15 @@ msgstr "Относительный в пределах 24 часов, иначе
 msgid "Relay service"
 msgstr "Служба ретрансляции"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Освободить"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Освободить этот псевдоним?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Релевантность {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Напоминание"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Удалить"
 
@@ -3256,6 +3485,10 @@ msgstr "Удалить ссылку"
 msgid "Remove suspension"
 msgstr "Снять приостановку"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Удалить этот аккаунт?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Повторяется"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Заменить"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Заменить ключи"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Заменить ключи?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Обязательно"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Отправить письмо повторно"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Зарезервировать"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Зарезервировать этот псевдоним?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Суббота"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Сохранить"
@@ -3705,6 +3957,10 @@ msgstr "Показать эту справку"
 msgid "Showing {totalShown} of {total}"
 msgstr "Показано {totalShown} из {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Показывается только один раз. Храните его в надёжном месте: здесь он не сохраняется."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Боковая панель"
@@ -3767,6 +4023,7 @@ msgstr "Начато"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Статус"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Условия использования"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Тест"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Тест не пройден"
 
@@ -3909,6 +4168,22 @@ msgstr "Не удалось отправить. Возможно, файлы с�
 msgid "That email is already registered to another account"
 msgstr "Этот email уже зарегистрирован на другом аккаунте"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Это имя предназначено для администраторов"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Это имя зарезервировано для сервера"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Это имя недоступно"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Это имя занято"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Камера уже используется"
 msgid "The camera request was not answered"
 msgstr "Запрос камеры остался без ответа"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Псевдоним, под которым находится это имя, вам не принадлежит"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Запрос микрофона остался без ответа"
@@ -3933,6 +4212,10 @@ msgstr "Запрос ключа доступа остался без ответ�
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Не удалось найти запрошенный контент."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Сервер не разрешил связывание"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Это полная резервная копия, которую мож
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Это навсегда удалит игру и её чат. Это действие нельзя отменить."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Этот сервер не предлагает других сетей."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Неизвестная тема"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Отвязать"
 
@@ -4202,6 +4490,10 @@ msgstr "Отвязать провайдера"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Отвязать провайдера?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Отвязать этот аккаунт?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "Идентификатор клиента X"
 msgid "X client secret"
 msgstr "Секрет клиента X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Год"
@@ -4419,6 +4715,10 @@ msgstr "Год"
 msgid "You can manage these paths: {paths}"
 msgstr "Вы можете управлять этими путями: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Вы не можете зарезервировать имя в этом домене"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "У вас нет доступа к этому разделу."
@@ -4426,6 +4726,10 @@ msgstr "У вас нет доступа к этому разделу."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "У вас нет доступа ни к одному домену."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Вы достигли лимита псевдонимов"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

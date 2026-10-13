@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Maaloo walqunnamtii intarneetii kee mirkaneeffadhuutii irra deebi'ii yaali."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\"fi maqaawwan isa jala jiran akka namni kamiyyuu fudhachuu danda'uuf ni gadhiifamu. Akkaawuntiiwwan isaanii, wanti akkaawuntiiwwan sun maxxansan hundi fi hordoftoonni isaanii ni haqamu."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" waan inni maxxanse hunda fi hordoftoota isaa waliin ni haqama."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" ni baʼa, hanga adabni ka'amutti hin deebi'u."
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" meeshaa hunda irratti ni baʼa, irra deebiʼee seenuu qaba."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "Hidhaan \"{0}\" ni kaafama. Wanti karaa isaa maxxanfame {1} irra ni hafa."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" networkii sarvariin kun dhiyeessu hunda irratti kan kee ta'a. Maqaan fayyadamaa maqaa haaraa argachuu hin danda'u; booda yoo gadhiifte, akkaawuntiiwwan isaa fi hordoftoonni isaanii ni haqamu."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · push"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (guddina)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} kan {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Koodii mirkaneessi"
 msgid "A recording is already in progress."
 msgstr "Waraabuun duraanuu itti fufaa jira."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Furtuun deebii akkaawuntii akka sochoosttu ykn waan sarvariin miidhame raawwate akka haqxu si dandeessisa. Furtuu kamiyyuu kanaan dura ture bakka bu'a, yeroo tokko qofa ni mul'ata."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Sirrii (guyyaa fi sa'aatii)"
@@ -274,15 +304,26 @@ msgstr "Sadarkaa seensaa"
 msgid "Account"
 msgstr "Akkaawuntii"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Gochawwan akkaawuntii"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Akkaawuntiin dabalame"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Akkaawuntiin uumame"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Herregi walqabsiifame"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Akkaawuntiin haqame"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Gosa akkaawuntii"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Akkaawuntiin haaromfame"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Akkaawuntiin mirkanaa'e"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Akkaawuntiilee"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Sochii"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Dabali"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Yaada dabali..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Maqaa dabali"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Maqaa {0} jala dabali"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" dabalame"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Teessoo"
 
@@ -444,6 +501,10 @@ msgstr "Bulchaa"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algoritimii"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Koodii mirkaneessaa"
 msgid "Automatic certificates"
 msgstr "Ragga ofumaan"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Ni argama"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Furtuulee qaxxaamuraa jiran"
@@ -716,6 +781,9 @@ msgstr "Kaameraan hin argamu"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Haquu"
@@ -783,6 +851,10 @@ msgstr "Taatee jijjiirame"
 msgid "Checkbox"
 msgstr "Saanduqa filannoo"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Sakatta'aa jira…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Tarree sakatta'iinsaa"
@@ -794,6 +866,10 @@ msgstr "Guyyaa filadhu"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Cinaa keessaa tapha filadhu ykn haaraa eegali."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Maqaa fayyadamaa filadhu"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Barbaadii cilliisi"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Cufi"
 
@@ -945,6 +1022,7 @@ msgstr "Si akka taate mirkaneessi"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Walitti hidhame"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Odeeffannoo fi caasaa naannoo."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Itti fufi"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "{providerLabel} waliin itti fufi"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Garagalfame"
 
@@ -996,6 +1076,7 @@ msgstr "Garagalfamee gara saanduqa garagalchaa"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Garagalchi"
 
@@ -1003,21 +1084,58 @@ msgstr "Garagalchi"
 msgid "Copy all"
 msgstr "Hunda garagalchi"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Maqaa dabaluu hin dandeenye"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Akaawuntii kee cufuu hin dandeenye"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Garagalchuu hin dandeenye"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Koodiiwwan garagalchuun hin danda'amne. Filadhuutii harkaan garagalchi."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Akkaawuntii uumuu hin dandeenye"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "Akkaawuntii walitti hidhuu hin dandeenye"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "Akkaawuntii walitti hidhuu hin dandeenye"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Galmee kana fe'uu hin dandeenye. Booda yaali."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Furtuu deebii uumuu hin dandeenye"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Maqaa fayyadamaa gadhiisuu hin dandeenye"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Akkaawuntii haquu hin dandeenye"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Furtuuwwan bakka buusuu hin dandeenye"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Maqaa fayyadamaa dursee qabachuu hin dandeenye"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Walitti hidhuu eegaluu hin dandeenye"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Hidhaa kennaa kaasuu hin dandeenye"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Akkaawuntii haaromsuu hin dandeenye"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Fayyadamaa uumi"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Uumame"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Boca barbaachisu wajjin wal hin simu"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domeenii"
 
@@ -1924,6 +2048,10 @@ msgstr "Koodii mirkaneessuu hin dandeenye"
 msgid "Failed to verify domain"
 msgstr "Daameenii mirkaneessuu hin dandeenye"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Akkaataa gareessuu"
 msgid "Group: {0}"
 msgstr "Garee: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Maqaa fayyadamaa"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Gochawwan maqaa fayyadamaa"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Maqaan fayyadamaa gadhiifame"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Maqaan fayyadamaa dursee qabame"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Seenaa"
@@ -2061,6 +2205,10 @@ msgstr "Holee punch"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Mana"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Sarvarii kana irratti"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Amma"
 msgid "Keyboard shortcuts"
 msgstr "Karoora keyboardii"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Furtuulee"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Furtuuwwan bakka buufaman"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Gosa"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Beekamaa {known} · Walitti hidhame {linked} · Mesh tamsaasaa {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Yeroo dhumaa kan fayyadame"
 msgid "Layout"
 msgstr "Bocii"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Qubeewwan Laatinii fi lakkoofsota qofa, qubeedhaan kan jalqabu, mallattoo 3 hanga 20"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Qubee, lakkoofsa, iddoo duwwaa, sarara gabaabaa fi sarara dabaa qofa"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Ifaa"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Hidhaa"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Akkaawuntii hidhi"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Akkaawuntii walitti hidhi"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Walitti hidhame"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Koodii deebisaa fayyadamuun seeni"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Appii authenticator TOTP fayyadamuun seeni"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Furtuu deebii uumi?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Furtuu uumi"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Passkey koo"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Maqaa"
@@ -2486,6 +2674,10 @@ msgstr "Maqaa"
 msgctxt "person"
 msgid "Name"
 msgstr "Maqaa"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Maqaan dabalame"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Maqaan haaromfame"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Networkii"
 
@@ -2518,6 +2712,12 @@ msgstr "Networkii"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Dogoggora networkii"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Networkiiwwan"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Hin madaalamne: {0} caalaa guddaa"
 msgid "Not compared: over the size limit"
 msgstr "Hin madaalamne: daangaa guddinaa caala"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Walitti hin hidhamne"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Filannoowwan"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Biraa"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Sarvaroonni biroo furtuu haaraa sanada akkaawuntii irraa baru. Wanti furtuu moofaadhaan mallattaa'e kamiyyuu kana booda hin mirkanaa'u."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Itti fufi"
 msgid "Processing…"
 msgstr "Adeemsifamaa jira…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Piroofaayilii"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Gaaffii olkaa'ame"
@@ -3129,6 +3342,11 @@ msgstr "Waraabbiin sagalee hin qabu"
 msgid "Recovery codes"
 msgstr "Koodiwwan deebii"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Furtuu deebii"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Deebi'iinsa"
@@ -3179,6 +3397,15 @@ msgstr "Sa'aatii 24 keessatti walqabataa, kanaa alatti guutuu"
 msgid "Relay service"
 msgstr "Tajaajila daddabarsaa"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Gadhiisi"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Maqaa fayyadamaa kana gadhiisi?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Wal-simannaa {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Yaadachiisa"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Haqi"
 
@@ -3256,6 +3485,10 @@ msgstr "Hidhata haquu"
 msgid "Remove suspension"
 msgstr "Adabbii haqi"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Akkaawuntii kana haqi?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Ni irra deebi'a"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Bakka buusi"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Furtuuwwan bakka buusi"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Furtuuwwan bakka buusi?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Barbaachisaa"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Imeelii irra deebi'ii ergi"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Dursee qabadhu"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Maqaa fayyadamaa kana dursee qabadhu?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Sanbata"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Olkaa'i"
@@ -3705,6 +3957,10 @@ msgstr "Gargaarsa kana agarsiisi"
 msgid "Showing {totalShown} of {total}"
 msgstr "Agarsiisaa jira {totalShown} keessaa {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Yeroo tokko qofa mul'ata. Bakka nageenya qabu kaa'i: asitti hin kuufamu."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Cinaa"
@@ -3767,6 +4023,7 @@ msgstr "Jalqabameera"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Haala"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Haalota fi tarsiimoolee"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Qoraadhu"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Qoraannoon hin milkoofne"
 
@@ -3909,6 +4168,22 @@ msgstr "Erguun hin danda'amne. Faayilonni baay'ee guddaa ta'uu danda'u, yookiin 
 msgid "That email is already registered to another account"
 msgstr "Iimeeliin sun akkaawuntii biraatti galmaa'eera"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Maqaan sun bulchitootaaf qofa"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Maqaan sun sarvariif qabameera"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Maqaan sun hin argamu"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Maqaan sun qabameera"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Kaameraan duraanuu fayyadamaa jira"
 msgid "The camera request was not answered"
 msgstr "Gaaffiin kaameraa deebii hin arganne"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Maqaan fayyadamaa maqaan kun jala jiru kan kee miti"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Gaaffiin maayikroofoonii deebii hin arganne"
@@ -3933,6 +4212,10 @@ msgstr "Gaaffiin passkey deebii hin arganne"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Qabiyyeen gaafatame argamuu hin dandeenye."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Sarvariin walitti hidhamuu hin heyyamne"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Kun baackaappii guutuu sarvarii Mochi kana yookaan sarvarii Mochi biraa 
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Kun taphicha fi haasawa isaa bara baraan ni haqa. Wanti kun deebi'ee hin dandeenyu."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Sarvariin kun networkiiwwan biroo hin dhiyeessu."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Bifa hin beekamne"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Hidhuu kaasi"
 
@@ -4202,6 +4490,10 @@ msgstr "Dhiyeessaa adda baasuu"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Galaa'iinsa hidhuu kaasita?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Hidhaa akkaawuntii kanaa kaasi?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "ID maamilaa X"
 msgid "X client secret"
 msgstr "Iccitii maamilaa X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Waggaa"
@@ -4419,6 +4715,10 @@ msgstr "Waggaa"
 msgid "You can manage these paths: {paths}"
 msgstr "Karaalee kanneen bulchuu dandeessu: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Domeenii kana irratti maqaa dursee qabachuu hin dandeessu"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Kutaa kanaaf dhaqqabummaa hin qabdu."
@@ -4426,6 +4726,10 @@ msgstr "Kutaa kanaaf dhaqqabummaa hin qabdu."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Domeenotaaf ittigaltee hin qabdu."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Daangaa maqaalee fayyadamaa kee irra geesseerta"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

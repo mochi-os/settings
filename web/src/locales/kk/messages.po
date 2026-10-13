@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Интернет байланысын тексеріп, қайталап көріңіз."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" және оның астындағы атаулар босатылады, оларды кез келген адам ала алады. Олардың тіркелгілері, сол тіркелгілер жариялаған барлық нәрсе және олардың жазылушылары жойылады."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" өзі жариялаған барлық нәрсемен және жазылушыларымен бірге жойылады."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" жүйеден шығарылады және тоқтату ал
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" барлық құрылғыда жүйеден шығарылады және қайта кіруі керек."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" байланысы үзіледі. Ол арқылы жарияланғандар {1} серверінде қалады."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" осы сервер ұсынатын әрбір желіде сіздікі болады. Пайдаланушы атын өзгертуге болмайды; оны кейін босату оның тіркелгілері мен олардың жазылушыларын жояды."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · Push хабарландырулары"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (әзірлеу)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{1} үшін {0}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Кодты тексеру"
 msgid "A recording is already in progress."
 msgstr "Жазба әлдеқашан жүріп жатыр."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Қалпына келтіру кілті тіркелгіні көшіруге немесе бұзылған сервер жасаған әрекеттердің күшін жоюға мүмкіндік береді. Ол бұрынғы кез келген кілтті ауыстырады және тек бір рет көрсетіледі."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Абсолютті (күн және уақыт)"
@@ -274,15 +304,26 @@ msgstr "Қол жеткізу деңгейі"
 msgid "Account"
 msgstr "Тіркелгі"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Тіркелгі әрекеттері"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Тіркелгі қосылды"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Тіркелгі құрылды"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Тіркелгі байланыстырылды"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Тіркелгі алып тасталды"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Тіркелгі түрі"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Тіркелгі жаңартылды"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Тіркелгі расталды"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Тіркелгілер"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Әрекет"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Қосу"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Пікір қосу..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Атау қосу"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "{0} астына атау қосу"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" қосылды"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Мекенжай"
 
@@ -444,6 +501,10 @@ msgstr "Әкімші"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Алгоритм"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Аутентификатор коды"
 msgid "Automatic certificates"
 msgstr "Автоматты сертификаттар"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Қолжетімді"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Қолжетімді пернетақта таңбашалары"
@@ -716,6 +781,9 @@ msgstr "Камера қолжетімсіз"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Болдырмау"
@@ -783,6 +851,10 @@ msgstr "Өзгертілген қайталану"
 msgid "Checkbox"
 msgstr "Белгілеу ұяшығы"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Тексерілуде…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Тапсырмалар тізімі"
@@ -794,6 +866,10 @@ msgstr "Күнді таңдаңыз"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Бүйір тақтадан ойынды таңдаңыз немесе жаңасын бастаңыз."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Пайдаланушы атын таңдаңыз"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Іздеуді тазалау"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Жабу"
 
@@ -945,6 +1022,7 @@ msgstr "Бұл сіз екеніңізді растаңыз"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Қосылды"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Мәтінмәндік ақпарат пен мәліметтер."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Жалғастыру"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "{providerLabel} арқылы жалғастыру"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Көшірілді"
 
@@ -996,6 +1076,7 @@ msgstr "Алмасу буферіне көшірілді"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Көшіру"
 
@@ -1003,21 +1084,58 @@ msgstr "Көшіру"
 msgid "Copy all"
 msgstr "Барлығын көшіру"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Атауды қосу мүмкін болмады"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Тіркелгіңізді жабу мүмкін болмады"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Көшіру мүмкін болмады"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Кодтарды көшіру мүмкін болмады. Оларды белгілеп, қолмен көшіріңіз."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Тіркелгіні құру мүмкін болмады"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "Тіркелгіні байланыстыру мүмкін болмады"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "Тіркелгіні байланыстыру мүмкін болмады"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Бұл құжатты жүктеу мүмкін болмады. Кейінірек қайталап көріңіз."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Қалпына келтіру кілтін жасау мүмкін болмады"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Пайдаланушы атын босату мүмкін болмады"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Тіркелгіні жою мүмкін болмады"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Кілттерді ауыстыру мүмкін болмады"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Пайдаланушы атын брондау мүмкін болмады"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Байланыстыруды бастау мүмкін болмады"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Провайдерді ажырату мүмкін болмады"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Тіркелгіні жаңарту мүмкін болмады"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Пайдаланушы құру"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Құрылды"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Қажетті үлгіге сәйкес келмейді"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Домен"
 
@@ -1924,6 +2048,10 @@ msgstr "Кодты растау сәтсіз аяқталды"
 msgid "Failed to verify domain"
 msgstr "Доменді растау сәтсіз аяқталды"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Федиверс"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Бойынша топтау"
 msgid "Group: {0}"
 msgstr "Топ: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Пайдаланушы аты"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Пайдаланушы аты әрекеттері"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Пайдаланушы аты босатылды"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Пайдаланушы аты брондалды"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Тарих"
@@ -2061,6 +2205,10 @@ msgstr "Тесу"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Басты бет"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Осы серверде"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Дәл қазір"
 msgid "Keyboard shortcuts"
 msgstr "Пернелер тіркесімдері"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Кілттер"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Кілттер ауыстырылды"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Түрі"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Белгілі {known} · Қосылған {linked} · Тарату торы {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Соңғы пайдаланылды"
 msgid "Layout"
 msgstr "Орналасу"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Тек латын әріптері мен сандар, әріптен басталады, 3–20 таңба"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Тек әріптер, сандар, бос орындар, дефистер және қиғаш сызықтар"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Ашық"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Сілтеме"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Тіркелгіні байланыстыру"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Тіркелгіні байланыстыру"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Байланыстырылған"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Қалпына келтіру коды арқылы кіру"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "TOTP аутентификатор қолданбасы арқылы кіру"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Қалпына келтіру кілтін жасау керек пе?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Кілт жасау"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Менің кіру кілтім"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Атау"
@@ -2486,6 +2674,10 @@ msgstr "Атау"
 msgctxt "person"
 msgid "Name"
 msgstr "Аты"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Атау қосылды"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Аты жаңартылды"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Желі"
 
@@ -2518,6 +2712,12 @@ msgstr "Желі"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Желі қатесі"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Желілер"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Салыстырылмады: {0} мәнінен үлкен"
 msgid "Not compared: over the size limit"
 msgstr "Салыстырылмады: өлшем шегінен асады"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Қосылмаған"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Опциялар"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Басқа"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Басқа серверлер жаңа кілтті тіркелгінің құжатынан біледі. Ескі кілтпен қол қойылғанның бәрі бұдан былай тексеруден өтпейді."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Жалғастыру"
 msgid "Processing…"
 msgstr "Өңделуде…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Профиль"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Сұрау сақталды"
@@ -3129,6 +3342,11 @@ msgstr "Жазбада дыбыс жоқ"
 msgid "Recovery codes"
 msgstr "Қалпына келтіру кодтары"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Қалпына келтіру кілті"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Қайта бағыттау"
@@ -3179,6 +3397,15 @@ msgstr "24 сағат ішінде салыстырмалы, әйтпесе аб
 msgid "Relay service"
 msgstr "Реле қызметі"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Босату"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Бұл пайдаланушы атын босату керек пе?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Өзектілік {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Еске салғыш"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Жою"
 
@@ -3256,6 +3485,10 @@ msgstr "Сілтемені жою"
 msgid "Remove suspension"
 msgstr "Тоқтатуды жою"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Бұл тіркелгіні жою керек пе?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Қайталанады"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Алмастыру"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Кілттерді ауыстыру"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Кілттерді ауыстыру керек пе?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Міндетті"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Хатты қайта жіберу"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Брондау"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Бұл пайдаланушы атын брондау керек пе?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Сенбі"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Сақтау"
@@ -3705,6 +3957,10 @@ msgstr "Осы анықтаманы көрсету"
 msgid "Showing {totalShown} of {total}"
 msgstr "{total} ішінен {totalShown} көрсетілуде"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Тек бір рет көрсетіледі. Оны қауіпсіз жерде сақтаңыз: ол мұнда сақталмайды."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Бүйірлік панель"
@@ -3767,6 +4023,7 @@ msgstr "Басталды"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Күй"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Шарттар мен ережелер"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Тест"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Тест сәтсіз"
 
@@ -3909,6 +4168,22 @@ msgstr "Жіберу мүмкін болмады. Файлдар тым үлке
 msgid "That email is already registered to another account"
 msgstr "Бұл электрондық пошта басқа есептік жазбаға тіркелген"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Бұл атау әкімшілерге арналған"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Бұл атау сервер үшін сақталған"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Бұл атау қолжетімсіз"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Бұл атау бос емес"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Камера қазірдің өзінде пайдаланылуда"
 msgid "The camera request was not answered"
 msgstr "Камера сұрауына жауап берілмеді"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Бұл атау тиесілі пайдаланушы аты сіздікі емес"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Микрофон сұрауына жауап берілмеді"
@@ -3933,6 +4212,10 @@ msgstr "Кіру кілті сұрауына жауап берілмеді"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Сұралған мазмұн табылмады."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Сервер байланыстыруға рұқсат бермеді"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Бұл — осы немесе басқа Mochi серверінде қ�
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Бұл ойын мен оның чатын біржола жояды. Бұл әрекетті болдырмауға болмайды."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Бұл сервер басқа желілерді ұсынбайды."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Белгісіз тақырып"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Байланысын үзу"
 
@@ -4202,6 +4490,10 @@ msgstr "Провайдерді ажырату"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Провайдердің байланысын үзу керек пе?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Бұл тіркелгінің байланысын үзу керек пе?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X клиент ID"
 msgid "X client secret"
 msgstr "X клиент құпиясы"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Жыл"
@@ -4419,6 +4715,10 @@ msgstr "Жыл"
 msgid "You can manage these paths: {paths}"
 msgstr "Сіз бұл жолдарды басқара аласыз: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Бұл доменде атауды брондай алмайсыз"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Сізде бұл бөлімге кіру мүмкіндігі жоқ."
@@ -4426,6 +4726,10 @@ msgstr "Сізде бұл бөлімге кіру мүмкіндігі жоқ."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Сізде ешбір доменге қолжетімділік жоқ."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Пайдаланушы аттарының шегіне жеттіңіз"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

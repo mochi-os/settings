@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "దయచేసి మీ ఇంటర్నెట్ కనెక్షన్‌ను తనిఖీ చేసి మళ్లీ ప్రయత్నించండి."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" మరియు దాని కింద ఉన్న పేర్లు ఎవరైనా తీసుకునేలా విడుదల చేయబడతాయి. వాటి ఖాతాలు, అవి ప్రచురించిన ప్రతిదీ, వాటి అనుచరులు తీసివేయబడతాయి."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" అది ప్రచురించిన ప్రతిదానితో పాటు దాని అనుచరులతో సహా తీసివేయబడుతుంది."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" సైన్ అవుట్ చేయబడతారు, సస
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" ప్రతి పరికరంలో సైన్ అవుట్ చేయబడతారు, మళ్లీ సైన్ ఇన్ చేయాల్సి ఉంటుంది."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" అన్‌లింక్ చేయబడుతుంది. దాని ద్వారా ప్రచురించినవి {1}లో అలాగే ఉంటాయి."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "ఈ సర్వర్ అందించే ప్రతి నెట్‌వర్క్‌లో \"{address}\" మీదవుతుంది. హ్యాండిల్ పేరు మార్చలేరు; తర్వాత దాన్ని విడుదల చేస్తే దాని ఖాతాలు, వాటి అనుచరులు తీసివేయబడతాయి."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · పుష్"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (అభివృద్ధి)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{1} కోసం {0}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. కోడ్‌ను ధృవీకరించండి"
 msgid "A recording is already in progress."
 msgstr "రికార్డింగ్ ఇప్పటికే జరుగుతోంది."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "రికవరీ కీతో మీరు ఖాతాను తరలించవచ్చు లేదా రాజీపడిన సర్వర్ చేసిన దాన్ని రద్దు చేయవచ్చు. ఇది మునుపటి ఏ కీనైనా భర్తీ చేస్తుంది, ఒక్కసారి మాత్రమే చూపబడుతుంది."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "సంపూర్ణ (తేదీ మరియు సమయం)"
@@ -274,15 +304,26 @@ msgstr "యాక్సెస్ స్థాయి"
 msgid "Account"
 msgstr "ఖాతా"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "ఖాతా చర్యలు"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "ఖాతా జోడించబడింది"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "ఖాతా సృష్టించబడింది"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "ఖాతా లింక్ అయింది"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "ఖాతా తీసివేయబడింది"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "ఖాతా రకం"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "ఖాతా నవీకరించబడింది"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "ఖాతా ధృవీకరించబడింది"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "ఖాతాలు"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "కార్యకలాపం"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "జోడించండి"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "ఒక వ్యాఖ్యను జోడించండి..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "పేరును జోడించండి"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "{0} కింద పేరును జోడించండి"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" జోడించబడింది"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "చిరునామా"
 
@@ -444,6 +501,10 @@ msgstr "నిర్వాహకుడు"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "అల్గారిథమ్"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "ఆథెంటికేటర్ కోడ్"
 msgid "Automatic certificates"
 msgstr "స్వయంచాలక ధ్రువపత్రాలు"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "అందుబాటులో ఉంది"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "అందుబాటులో ఉన్న కీబోర్డ్ షార్ట్‌కట్‌లు"
@@ -716,6 +781,9 @@ msgstr "కెమెరా అందుబాటులో లేదు"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "రద్దు చేయండి"
@@ -783,6 +851,10 @@ msgstr "మార్చిన పునరావృత్తి"
 msgid "Checkbox"
 msgstr "చెక్‌బాక్స్"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "తనిఖీ చేస్తోంది…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "చెక్‌లిస్ట్"
@@ -794,6 +866,10 @@ msgstr "తేదీని ఎంచుకోండి"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "సైడ్‌బార్ నుండి ఆటను ఎంచుకోండి లేదా కొత్తదాన్ని ప్రారంభించండి."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "హ్యాండిల్‌ను ఎంచుకోండి"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "శోధనను క్లియర్ చేయండి"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "మూసివేయండి"
 
@@ -945,6 +1022,7 @@ msgstr "ఇది మీరేనని నిర్ధారించండి"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "కనెక్ట్ చేయబడింది"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "సందర్భోచిత సమాచారం మరియు వివరాలు."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "కొనసాగించండి"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "{providerLabel} తో కొనసాగించండి"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "కాపీ అయింది"
 
@@ -996,6 +1076,7 @@ msgstr "క్లిప్‌బోర్డ్‌కి కాపీ చేయ�
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "కాపీ చేయండి"
 
@@ -1003,21 +1084,58 @@ msgstr "కాపీ చేయండి"
 msgid "Copy all"
 msgstr "అన్నీ కాపీ చేయండి"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "పేరును జోడించలేకపోయింది"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "మీ ఖాతాను మూసివేయడం సాధ్యం కాలేదు"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "కాపీ చేయలేకపోయింది"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "కోడ్‌లను కాపీ చేయలేకపోయాము. వాటిని ఎంచుకుని మీరే కాపీ చేయండి."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "ఖాతాను సృష్టించలేకపోయింది"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "ఖాతాను లింక్ చేయలేకపోయింది"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "ఖాతాను లింక్ చేయలేకపోయింది"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "ఈ పత్రాన్ని లోడ్ చేయలేకపోయాము. దయచేసి తర్వాత మళ్లీ ప్రయత్నించండి."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "రికవరీ కీని సృష్టించలేకపోయింది"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "హ్యాండిల్‌ను విడుదల చేయలేకపోయింది"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "ఖాతాను తీసివేయలేకపోయింది"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "కీలను భర్తీ చేయలేకపోయింది"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "హ్యాండిల్‌ను రిజర్వ్ చేయలేకపోయింది"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "లింకింగ్‌ను ప్రారంభించలే�
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "ప్రదాతను అన్‌లింక్ చేయలేకపోయింది"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "ఖాతాను నవీకరించలేకపోయింది"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "వినియోగదారుని సృష్టించండ�
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "సృష్టించబడింది"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "అవసరమైన నమూనాతో సరిపోలడం లేదు"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "డొమైన్"
 
@@ -1924,6 +2048,10 @@ msgstr "కోడ్‌ను ధృవీకరించడంలో విఫ�
 msgid "Failed to verify domain"
 msgstr "డొమైన్‌ను ధృవీకరించడంలో విఫలమైంది"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "దీని ద్వారా సమూహపరచు"
 msgid "Group: {0}"
 msgstr "సమూహం: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "హ్యాండిల్"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "హ్యాండిల్ చర్యలు"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "హ్యాండిల్ విడుదల చేయబడింది"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "హ్యాండిల్ రిజర్వ్ చేయబడింది"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "చరిత్ర"
@@ -2061,6 +2205,10 @@ msgstr "హోల్ పంచ్"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "హోమ్"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "హోస్ట్ చేయబడింది"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "ఇప్పుడే"
 msgid "Keyboard shortcuts"
 msgstr "కీబోర్డ్ షార్ట్‌కట్‌లు"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "కీలు"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "కీలు భర్తీ చేయబడ్డాయి"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "రకం"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "తెలిసినవి {known} · కనెక్ట్ అయినవి {linked} · ప్రసార మెష్ {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "చివరిగా ఉపయోగించబడింది"
 msgid "Layout"
 msgstr "లేఅవుట్"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "అక్షరాలు, అంకెలు మాత్రమే, అక్షరంతో మొదలై, 3 నుండి 20 అక్షరాలు"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "అక్షరాలు, సంఖ్యలు, ఖాళీలు, హైఫన్‌లు, స్లాష్‌లు మాత్రమే"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "లైట్"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "లింక్"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "ఖాతాను లింక్ చేయండి"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "ఖాతాను లింక్ చేయండి"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "లింక్ చేయబడింది"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "రికవరీ కోడ్ ఉపయోగించి లాగి
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "TOTP ప్రామాణీకరణ యాప్ ఉపయోగించి లాగిన్ చేయండి"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "రికవరీ కీని సృష్టించాలా?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "కీని సృష్టించండి"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "నా పాస్‌కీ"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "పేరు"
@@ -2486,6 +2674,10 @@ msgstr "పేరు"
 msgctxt "person"
 msgid "Name"
 msgstr "పేరు"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "పేరు జోడించబడింది"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "పేరు అప్‌డేట్ చేయబడింది"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "నెట్‌వర్క్"
 
@@ -2518,6 +2712,12 @@ msgstr "నెట్‌వర్క్"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "నెట్‌వర్క్ లోపం"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "నెట్‌వర్క్‌లు"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "పోల్చలేదు: {0} కంటే పెద్దది"
 msgid "Not compared: over the size limit"
 msgstr "పోల్చలేదు: పరిమాణ పరిమితిని మించింది"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "కనెక్ట్ కాలేదు"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "ఆప్షన్‌లు"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "ఇతర"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "ఇతర సర్వర్‌లు ఖాతా పత్రం నుండి కొత్త కీని తెలుసుకుంటాయి. పాత కీతో సంతకం చేసినవేవీ ఇకపై ధృవీకరణలో నెగ్గవు."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "కొనసాగించండి"
 msgid "Processing…"
 msgstr "ప్రాసెస్ అవుతోంది…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "ప్రొఫైల్"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "ప్రాంప్ట్ సేవ్ చేయబడింది"
@@ -3129,6 +3342,11 @@ msgstr "రికార్డింగ్‌లో శబ్దం లేదు"
 msgid "Recovery codes"
 msgstr "రికవరీ కోడ్‌లు"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "రికవరీ కీ"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "రీడైరెక్ట్"
@@ -3179,6 +3397,15 @@ msgstr "24 గంటల్లో సాపేక్ష, లేకపోతే �
 msgid "Relay service"
 msgstr "రిలే సేవ"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "విడుదల చేయండి"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "ఈ హ్యాండిల్‌ను విడుదల చేయాలా?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "ఔచిత్యం {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "రిమైండర్"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "తొలగించండి"
 
@@ -3256,6 +3485,10 @@ msgstr "లింక్‌ను తీసివేయి"
 msgid "Remove suspension"
 msgstr "సస్పెన్షన్‌ను తొలగించండి"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "ఈ ఖాతాను తీసివేయాలా?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "పునరావృతమవుతుంది"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "భర్తీ చేయండి"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "కీలను భర్తీ చేయండి"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "కీలను భర్తీ చేయాలా?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "అవసరం"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "ఇమెయిల్‌ను మళ్లీ పంపండి"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "రిజర్వ్ చేయండి"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "ఈ హ్యాండిల్‌ను రిజర్వ్ చేయాలా?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "శనివారం"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "సేవ్ చేయండి"
@@ -3705,6 +3957,10 @@ msgstr "ఈ సహాయాన్ని చూపించు"
 msgid "Showing {totalShown} of {total}"
 msgstr "{total}లో {totalShown} చూపిస్తోంది"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "ఒక్కసారి మాత్రమే చూపబడుతుంది. దీన్ని సురక్షితమైన చోట ఉంచుకోండి: ఇది ఇక్కడ నిల్వ చేయబడదు."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "సైడ్‌బార్"
@@ -3767,6 +4023,7 @@ msgstr "ప్రారంభమైంది"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "స్థితి"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "నియమాలు మరియు షరతులు"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "టెస్ట్"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "టెస్ట్ విఫలమైంది"
 
@@ -3909,6 +4168,22 @@ msgstr "పంపడం సాధ్యం కాలేదు. ఫైళ్ల�
 msgid "That email is already registered to another account"
 msgstr "ఆ ఇమెయిల్ ఇప్పటికే మరొక ఖాతాకు రిజిస్టర్ చేయబడింది"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "ఆ పేరు నిర్వాహకుల కోసం"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "ఆ పేరు సర్వర్ కోసం ఉంచబడింది"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "ఆ పేరు అందుబాటులో లేదు"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "ఆ పేరు ఇప్పటికే తీసుకోబడింది"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "కెమెరా ఇప్పటికే వాడుకలో ఉం
 msgid "The camera request was not answered"
 msgstr "కెమెరా అభ్యర్థనకు స్పందన లేదు"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "ఈ పేరు ఉన్న హ్యాండిల్ మీది కాదు"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "మైక్రోఫోన్ అభ్యర్థనకు స్పందన లేదు"
@@ -3933,6 +4212,10 @@ msgstr "పాస్‌కీ అభ్యర్థనకు స్పందన 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "అభ్యర్థించిన కంటెంట్ కనుగొనబడలేదు."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "సర్వర్ లింక్‌ను అనుమతించలేదు"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "ఇది మీరు ఈ లేదా మరో Mochi సర్వర�
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "ఇది గేమ్‌ను మరియు దాని చాట్‌ను శాశ్వతంగా తొలగిస్తుంది. ఈ చర్యను తిరిగి మార్చలేరు."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "ఈ సర్వర్ ఇతర నెట్‌వర్క్‌లను అందించదు."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "తెలియని థీమ్"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "అన్‌లింక్ చేయండి"
 
@@ -4202,6 +4490,10 @@ msgstr "ప్రొవైడర్‌ను అన్‌లింక్ చే�
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "ప్రొవైడర్‌ను అన్‌లింక్ చేయాలా?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "ఈ ఖాతాను అన్‌లింక్ చేయాలా?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X క్లయింట్ ID"
 msgid "X client secret"
 msgstr "X క్లయింట్ సీక్రెట్"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "సంవత్సరం"
@@ -4419,6 +4715,10 @@ msgstr "సంవత్సరం"
 msgid "You can manage these paths: {paths}"
 msgstr "మీరు ఈ పాత్‌లను నిర్వహించవచ్చు: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "మీరు ఈ డొమైన్‌లో పేరును రిజర్వ్ చేయలేరు"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "ఈ విభాగానికి మీకు యాక్సెస్ లేదు."
@@ -4426,6 +4726,10 @@ msgstr "ఈ విభాగానికి మీకు యాక్సెస్
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "మీకు ఏ డొమైన్‌లకు యాక్సెస్ లేదు."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "మీరు హ్యాండిల్‌ల పరిమితిని చేరుకున్నారు"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

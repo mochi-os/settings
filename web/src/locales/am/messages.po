@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "እባክዎ የበይነመረብ ግንኙነትዎን አረጋግጠው እንደገና ይሞክሩ።"
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" እና በሥሩ ያሉት ስሞች ማንም እንዲወስዳቸው ነፃ ይደረጋሉ። መለያዎቻቸው፣ ያተሙት ሁሉ እና ተከታዮቻቸው ይወገዳሉ።"
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" ካተመው ሁሉ እና ከተከታዮቹ ጋር ይወገዳል።"
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" ከመለያው ይወጣል፣ እገዳው እስኪነሳ ድ
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" ከሁሉም መሣሪያዎች ይወጣል፣ እንደገናም መግባት ይኖርበታል።"
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" ግንኙነቱ ይቋረጣል። በእሱ በኩል የታተመው በ{1} ላይ ይቆያል።"
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" ይህ ሰርቨር በሚያቀርበው በእያንዳንዱ አውታረ መረብ ላይ የእርስዎ ይሆናል። የተጠቃሚ ስም እንደገና ሊሰየም አይችልም፤ በኋላ ነፃ ማድረግ መለያዎቹን እና ተከታዮቻቸውን ያስወግዳል።"
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · ግፋ"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (ልማት)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} ለ{1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. ኮድ ያረጋግጡ"
 msgid "A recording is already in progress."
 msgstr "ቀረጻ አስቀድሞ በሂደት ላይ ነው።"
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "የመልሶ ማግኛ ቁልፍ መለያውን እንዲያንቀሳቅሱ ወይም የተጠለፈ ሰርቨር ያደረገውን እንዲቀለብሱ ያስችልዎታል። ማንኛውንም የቀድሞ ቁልፍ ይተካል እና አንድ ጊዜ ብቻ ይታያል።"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "ፍጹም (ቀንና ሰዓት)"
@@ -274,15 +304,26 @@ msgstr "የመዳረሻ ደረጃ"
 msgid "Account"
 msgstr "መለያ"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "የመለያ እርምጃዎች"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "መለያ ተጨምሯል"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "መለያ ተፈጥሯል"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "መለያ ተገናኝቷል"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "መለያ ተወግዷል"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "የመለያ ዓይነት"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "መለያ ተዘምኗል"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "መለያ ተረጋግጧል"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "መለያዎች"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "እንቅስቃሴ"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "ጨምር"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "አስተያየት ጨምር..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "ስም አክል"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "በ{0} ስር ስም አክል"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" ተጨምሯል"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "አድራሻ"
 
@@ -444,6 +501,10 @@ msgstr "አስተዳዳሪ"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "ስልተ ቀመር"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "የማረጋገጫ ኮድ"
 msgid "Automatic certificates"
 msgstr "ራስ-ሰር የምስክር ወረቀቶች"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "ይገኛል"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "ያሉ የቁልፍ ሰሌዳ አቋራጮች"
@@ -716,6 +781,9 @@ msgstr "ካሜራ አይገኝም"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "ይቅር"
@@ -783,6 +851,10 @@ msgstr "የተቀየረ ድግግሞሽ"
 msgid "Checkbox"
 msgstr "ቼክቦክስ"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "በማረጋገጥ ላይ…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "ዝርዝር"
@@ -794,6 +866,10 @@ msgstr "ቀን ይምረጡ"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "ከጎን አሞሌ ጨዋታ ምረጥ ወይም አዲስ ጀምር።"
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "የተጠቃሚ ስም ይምረጡ"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "ፍለጋ አጽዳ"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "ዝጋ"
 
@@ -945,6 +1022,7 @@ msgstr "እርስዎ መሆንዎን ያረጋግጡ"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "ተገናኝቷል"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "የአውድ መረጃና ዝርዝሮች።"
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "ቀጥል"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "በ{providerLabel} ይቀጥሉ"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "ተቀድቷል"
 
@@ -996,6 +1076,7 @@ msgstr "ወደ ቅንጥብ ሰሌዳ ተቀድቷል"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "ቅዳ"
 
@@ -1003,21 +1084,58 @@ msgstr "ቅዳ"
 msgid "Copy all"
 msgstr "ሁሉንም ቅዳ"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "ስሙን ማከል አልተቻለም"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "መለያዎን መዝጋት አልተቻለም"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "መቅዳት አልተቻለም"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "ኮዶቹን መቅዳት አልተቻለም። እራስዎ ይምረጡና ይቅዱ።"
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "መለያውን መፍጠር አልተቻለም"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "መለያ ሊገናኝ አልቻለም"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "መለያውን ማገናኘት አልተቻለም"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "ይህን ሰነድ መጫን አልተቻለም። እባክዎ ቆይተው ደግመው ይሞክሩ።"
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "የመልሶ ማግኛ ቁልፉን መፍጠር አልተቻለም"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "የተጠቃሚ ስሙን ነፃ ማድረግ አልተቻለም"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "መለያውን ማስወገድ አልተቻለም"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "ቁልፎቹን መተካት አልተቻለም"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "የተጠቃሚ ስሙን መያዝ አልተቻለም"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "ማገናኘት ሊጀመር አልቻለም"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "አቅራቢ ሊቋረጥ አልቻለም"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "መለያውን ማዘመን አልተቻለም"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "ተጠቃሚ ፍጠር"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "ተፈጥሯል"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "ከሚያስፈልገው ስርዓተ ጥለት ጋር አይዛመድም"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "ዶሜን"
 
@@ -1924,6 +2048,10 @@ msgstr "ኮድ ማረጋገጥ አልተሳካም"
 msgid "Failed to verify domain"
 msgstr "ዶሜን ማረጋገጥ አልተሳካም"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "በቡድን ይመድቡ"
 msgid "Group: {0}"
 msgstr "ቡድን፦ {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "የተጠቃሚ ስም"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "የተጠቃሚ ስም እርምጃዎች"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "የተጠቃሚ ስም ነፃ ተደርጓል"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "የተጠቃሚ ስም ተይዟል"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "ታሪክ"
@@ -2061,6 +2205,10 @@ msgstr "የጉድጓድ ምት"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "መነሻ"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "የተስተናገደ"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "አሁን"
 msgid "Keyboard shortcuts"
 msgstr "የቁልፍ ሰሌዳ አቋራጮች"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "ቁልፎች"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "ቁልፎች ተተክተዋል"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "አይነት"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "የታወቁ {known} · የተገናኙ {linked} · የስርጭት መረብ {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "መጨረሻ የተጠቀመው"
 msgid "Layout"
 msgstr "አቀማመጥ"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "ፊደላት እና አሃዞች ብቻ፣ በፊደል የሚጀምር፣ ከ3 እስከ 20 ቁምፊዎች"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "ፊደላት፣ ቁጥሮች፣ ክፍተቶች፣ ሰረዞች እና ሰያፍ መስመሮች ብቻ"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "ብርሃን"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "አገናኝ"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "መለያ አገናኝ"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "መለያ አገናኝ"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "ተገናኝቷል"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "የመልሶ ማግኛ ኮድን በመጠቀም ግባ"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "የTOTP ማረጋገጫ መተግበሪያን በመጠቀም ግባ"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "የመልሶ ማግኛ ቁልፍ ይፈጠር?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "ቁልፍ ፍጠር"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "የእኔ ፓስኪ"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "ስም"
@@ -2486,6 +2674,10 @@ msgstr "ስም"
 msgctxt "person"
 msgid "Name"
 msgstr "ስም"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "ስም ታክሏል"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "ስም ተዘምኗል"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "አውታረ መረብ"
 
@@ -2518,6 +2712,12 @@ msgstr "አውታረ መረብ"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "የአውታረ መረብ ስህተት"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "አውታረ መረቦች"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "አልተነጻጸረም፦ ከ{0} ይበልጣል"
 msgid "Not compared: over the size limit"
 msgstr "አልተነጻጸረም፦ ከመጠን ገደብ በላይ ነው"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "አልተገናኘም"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "አማራጮች"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "ሌላ"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "ሌሎች ሰርቨሮች አዲሱን ቁልፍ ከመለያው ሰነድ ያገኛሉ። በአሮጌው ቁልፍ የተፈረመ ማንኛውም ነገር ከአሁን በኋላ አይረጋገጥም።"
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "ቀጥል"
 msgid "Processing…"
 msgstr "በሂደት ላይ…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "መገለጫ"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "ጥያቄ ተቀምጧል"
@@ -3129,6 +3342,11 @@ msgstr "ቀረጻው ድምፅ የለውም"
 msgid "Recovery codes"
 msgstr "የመልሶ ማግኛ ኮዶች"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "የመልሶ ማግኛ ቁልፍ"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "ድጋሚ ማዘዋወር"
@@ -3179,6 +3397,15 @@ msgstr "በ24 ሰዓታት ውስጥ አንፃራዊ፣ ካልሆነ ፍጹም"
 msgid "Relay service"
 msgstr "የማስተላለፊያ አገልግሎት"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "ነፃ አድርግ"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "ይህ የተጠቃሚ ስም ነፃ ይደረግ?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "አግባብነት {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "አስታዋሽ"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "አስወግድ"
 
@@ -3256,6 +3485,10 @@ msgstr "አገናኙን አስወግድ"
 msgid "Remove suspension"
 msgstr "እገዳ አስወግድ"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "ይህ መለያ ይወገድ?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "ይደገማል"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "ተካ"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "ቁልፎችን ተካ"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "ቁልፎቹ ይተኩ?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "ያስፈልጋል"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "ኢሜይል እንደገና ላክ"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "ያዝ"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "ይህ የተጠቃሚ ስም ይያዝ?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "ቅዳሜ"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "ያስቀምጡ"
@@ -3705,6 +3957,10 @@ msgstr "ይህን እርዳታ አሳይ"
 msgid "Showing {totalShown} of {total}"
 msgstr "ከ{total} ውስጥ {totalShown} እያሳየ"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "አንድ ጊዜ ብቻ ይታያል። ደህንነቱ በተጠበቀ ቦታ ያስቀምጡት፤ እዚህ አይቀመጥም።"
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "የጎን አሞሌ"
@@ -3767,6 +4023,7 @@ msgstr "ጀምሯል"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "ሁኔታ"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "ውሎችና መመሪያዎች"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "ሙከራ"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "ሙከራ አልተሳካም"
 
@@ -3909,6 +4168,22 @@ msgstr "መላክ አልተቻለም። ፋይሎቹ በጣም ትልቅ ሊሆ�
 msgid "That email is already registered to another account"
 msgstr "ያ ኢሜይል አስቀድሞ ከሌላ መለያ ጋር ተመዝግቧል"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "ያ ስም ለአስተዳዳሪዎች ነው"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "ያ ስም ለሰርቨሩ የተያዘ ነው"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "ያ ስም አይገኝም"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "ያ ስም ተወስዷል"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "ካሜራው አስቀድሞ በጥቅም ላይ ነው"
 msgid "The camera request was not answered"
 msgstr "የካሜራ ጥያቄው መልስ አላገኘም"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "ይህ ስም የሚገኝበት የተጠቃሚ ስም የእርስዎ አይደለም"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "የማይክሮፎን ጥያቄው መልስ አላገኘም"
@@ -3933,6 +4212,10 @@ msgstr "የፓስኪ ጥያቄው መልስ አላገኘም"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "የተጠየቀው ይዘት ሊገኝ አልቻለም።"
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "ሰርቨሩ ግንኙነቱን አልፈቀደም"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "ይህ በዚህ ወይም በሌላ Mochi አገልጋይ ላይ መል
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "ይህ ጨዋታውን እና ውይይቱን በቋሚነት ይሰርዛል። ይህ ወደኋላ ሊመለስ አይችልም።"
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "ይህ ሰርቨር ሌሎች አውታረ መረቦችን አያቀርብም።"
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "ያልታወቀ ገጽታ"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "ግንኙነት አቋርጥ"
 
@@ -4202,6 +4490,10 @@ msgstr "አቅራቢውን አላቅቅ"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "አቅራቢን ያላቅቁ?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "የዚህ መለያ ግንኙነት ይቋረጥ?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "የX ደንበኛ መታወቂያ"
 msgid "X client secret"
 msgstr "የX ደንበኛ ሚስጥር"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "ዓመት"
@@ -4419,6 +4715,10 @@ msgstr "ዓመት"
 msgid "You can manage these paths: {paths}"
 msgstr "እነዚህን መንገዶች ማስተዳደር ይችላሉ፦ {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "በዚህ ዶሜን ላይ ስም መያዝ አይችሉም"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "የዚህ ክፍል መዳረሻ የለዎትም።"
@@ -4426,6 +4726,10 @@ msgstr "የዚህ ክፍል መዳረሻ የለዎትም።"
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "ለማንኛውም ዶሜን መዳረሻ የለዎትም።"
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "የተጠቃሚ ስሞች ገደብዎ ላይ ደርሰዋል"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

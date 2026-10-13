@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "ກະລຸນາກວດສອບການເຊື່ອມຕໍ່ອິນເຕີເນັດຂອງທ່ານ ແລະ ລອງໃໝ່ອີກຄັ້ງ."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" ແລະ ຊື່ທີ່ຢູ່ພາຍໃຕ້ມັນຈະຖືກປ່ອຍໃຫ້ທຸກຄົນສາມາດເອົາໄປໄດ້. ບັນຊີຂອງພວກມັນ, ທຸກຢ່າງທີ່ບັນຊີເຫຼົ່ານັ້ນໄດ້ເຜີຍແຜ່ ແລະ ຜູ້ຕິດຕາມຂອງພວກມັນຈະຖືກລຶບອອກ."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" ຈະຖືກລຶບອອກພ້ອມກັບທຸກຢ່າງທີ່ມັນໄດ້ເຜີຍແຜ່ ແລະ ຜູ້ຕິດຕາມຂອງມັນ."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" ຈະຖືກອອກຈາກລະບົບ ແລະບໍ
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" ຈະຖືກອອກຈາກລະບົບໃນທຸກອຸປະກອນ ແລະຕ້ອງເຂົ້າສູ່ລະບົບໃໝ່."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" ຈະຖືກຕັດການເຊື່ອມໂຍງ. ສິ່ງທີ່ເຜີຍແຜ່ຜ່ານມັນຈະຍັງຄົງຢູ່ໃນ {1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" ຈະເປັນຂອງທ່ານໃນທຸກເຄືອຂ່າຍທີ່ເຊີບເວີນີ້ໃຫ້ບໍລິການ. ຊື່ຜູ້ໃຊ້ບໍ່ສາມາດປ່ຽນຊື່ໄດ້; ການປ່ອຍມັນໃນພາຍຫຼັງຈະລຶບບັນຊີຂອງມັນ ແລະ ຜູ້ຕິດຕາມຂອງບັນຊີເຫຼົ່ານັ້ນອອກ."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · ການແຈ້ງເຕືອນແບບພຸຊ"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (ການພັດທະນາ)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} ສຳລັບ {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. ຢືນຢັນລະຫັດ"
 msgid "A recording is already in progress."
 msgstr "ການບັນທຶກກຳລັງດຳເນີນຢູ່ແລ້ວ."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "ກະແຈກູ້ຄືນຊ່ວຍໃຫ້ທ່ານຍ້າຍບັນຊີ ຫຼື ຍົກເລີກສິ່ງທີ່ເຊີບເວີທີ່ຖືກບຸກລຸກໄດ້ເຮັດ. ມັນຈະແທນທີ່ກະແຈກ່ອນໜ້າ ແລະ ຈະສະແດງພຽງຄັ້ງດຽວ."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "ສົມບູນ (ວັນທີ ແລະ ເວລາ)"
@@ -274,15 +304,26 @@ msgstr "ລະດັບການເຂົ້າເຖິງ"
 msgid "Account"
 msgstr "ບັນຊີ"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "ການດຳເນີນການບັນຊີ"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "ເພີ່ມບັນຊີແລ້ວ"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "ສ້າງບັນຊີແລ້ວ"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "ເຊື່ອມບັນຊີແລ້ວ"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "ລົບບັນຊີແລ້ວ"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "ປະເພດບັນຊີ"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "ອັບເດດບັນຊີແລ້ວ"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "ບັນຊີຢືນຢັນແລ້ວ"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "ບັນຊີ"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "ກິດຈະກຳ"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "ເພີ່ມ"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "ເພີ່ມຄຳເຫັນ..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "ເພີ່ມຊື່"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "ເພີ່ມຊື່ພາຍໃຕ້ {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "ເພີ່ມ \"{0}\" ແລ້ວ"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "ທີ່ຢູ່"
 
@@ -444,6 +501,10 @@ msgstr "ຜູ້ບໍລິຫານ"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "ອັລກໍຣິທຶມ"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "ລະຫັດຢືນຢັນຕົວຕົນ"
 msgid "Automatic certificates"
 msgstr "ໃບຮັບຮອງອັດຕະໂນມັດ"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "ວ່າງ"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "ປຸ່ມລັດແປ້ນພິມທີ່ມີຢູ່"
@@ -716,6 +781,9 @@ msgstr "ບໍ່ມີກ້ອງຖ່າຍຮູບ"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "ຍົກເລີກ"
@@ -783,6 +851,10 @@ msgstr "ຄັ້ງທີ່ຖືກປ່ຽນແປງ"
 msgid "Checkbox"
 msgstr "ກ່ອງໝາຍ"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "ກຳລັງກວດສອບ…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "ລາຍການກວດສອບ"
@@ -794,6 +866,10 @@ msgstr "ເລືອກວັນທີ"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "ເລືອກເກມຈາກແຖບຂ້າງ ຫຼື ເລີ່ມຕົ້ນອັນໃໝ່."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "ເລືອກຊື່ຜູ້ໃຊ້"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "ລ້າງການຄົ້ນຫາ"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "ປິດ"
 
@@ -945,6 +1022,7 @@ msgstr "ຢືນຢັນວ່າແມ່ນທ່ານ"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "ເຊື່ອມຕໍ່ແລ້ວ"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "ຂໍ້ມູນຕາມບໍລິບົດ ແລະ ລາຍລະອຽດ."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "ຕໍ່"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "ດຳເນີນຕໍ່ດ້ວຍ {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "ສຳເນົາແລ້ວ"
 
@@ -996,6 +1076,7 @@ msgstr "ສຳເນົາໄປຄລິບບອດແລ້ວ"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "ສຳເນົາ"
 
@@ -1003,21 +1084,58 @@ msgstr "ສຳເນົາ"
 msgid "Copy all"
 msgstr "ສຳເນົາທັງໝົດ"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "ບໍ່ສາມາດເພີ່ມຊື່ໄດ້"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "ບໍ່ສາມາດປິດບັນຊີຂອງທ່ານໄດ້"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "ບໍ່ສາມາດສຳເນົາໄດ້"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "ບໍ່ສາມາດສຳເນົາລະຫັດໄດ້. ເລືອກ ແລະສຳເນົາເອງ."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "ບໍ່ສາມາດສ້າງບັນຊີໄດ້"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "ບໍ່ສາມາດເຊື່ອມຕໍ່ບັນຊີໄດ້"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "ບໍ່ສາມາດເຊື່ອມຕໍ່ບັນຊີໄດ້"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "ບໍ່ສາມາດໂຫລດເອກະສານນີ້ໄດ້. ກະລຸນາລອງອີກຄັ້ງໃນພາຍຫຼັງ."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "ບໍ່ສາມາດສ້າງກະແຈກູ້ຄືນໄດ້"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "ບໍ່ສາມາດປ່ອຍຊື່ຜູ້ໃຊ້ໄດ້"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "ບໍ່ສາມາດລຶບບັນຊີໄດ້"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "ບໍ່ສາມາດແທນທີ່ກະແຈໄດ້"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "ບໍ່ສາມາດຈອງຊື່ຜູ້ໃຊ້ໄດ້"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "ບໍ່ສາມາດເລີ່ມການເຊື່ອມຕໍ
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "ບໍ່ສາມາດຕັດການເຊື່ອມໂຍງຜູ້ໃຫ້ບໍລິການໄດ້"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "ບໍ່ສາມາດອັບເດດບັນຊີໄດ້"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "ສ້າງຜູ້ໃຊ້"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "ສ້າງແລ້ວ"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "ບໍ່ກົງກັບຮູບແບບທີ່ຕ້ອງການ"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "ໂດເມນ"
 
@@ -1924,6 +2048,10 @@ msgstr "ຢືນຢັນລະຫັດລົ້ມເຫຼວ"
 msgid "Failed to verify domain"
 msgstr "ຢືນຢັນໂດເມນລົ້ມເຫຼວ"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "ຈັດກຸ່ມຕາມ"
 msgid "Group: {0}"
 msgstr "ກຸ່ມ: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "ຊື່ຜູ້ໃຊ້"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "ການດຳເນີນການຊື່ຜູ້ໃຊ້"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "ປ່ອຍຊື່ຜູ້ໃຊ້ແລ້ວ"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "ຈອງຊື່ຜູ້ໃຊ້ແລ້ວ"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "ປະຫວັດ"
@@ -2061,6 +2205,10 @@ msgstr "ການເຈາະ"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "ໜ້າຫຼັກ"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "ຢູ່ໃນເຊີບເວີນີ້"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "ຫາກໍ່ດຽວນີ້"
 msgid "Keyboard shortcuts"
 msgstr "ປຸ່ມລັດແປ້ນພິມ"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "ກະແຈ"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "ແທນທີ່ກະແຈແລ້ວ"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "ປະເພດ"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "ຮູ້ຈັກ {known} · ເຊື່ອມຕໍ່ແລ້ວ {linked} · ເມສອອກອາກາດ {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "ໃຊ້ຄັ້ງສຸດທ້າຍ"
 msgid "Layout"
 msgstr "ຮູບແບບ"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "ຕົວອັກສອນລາຕິນ ແລະ ຕົວເລກເທົ່ານັ້ນ, ເລີ່ມດ້ວຍຕົວອັກສອນ, 3 ຫາ 20 ຕົວ"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "ໃຊ້ໄດ້ສະເພາະຕົວອັກສອນ ຕົວເລກ ຍະຫວ່າງ ຂີດກາງ ແລະ ຂີດຂວາງ"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "ສະຫວ່າງ"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "ລິ້ງ"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "ເຊື່ອມຕໍ່ບັນຊີ"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "ເຊື່ອມຕໍ່ບັນຊີ"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "ເຊື່ອມຕໍ່ແລ້ວ"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "ເຂົ້າສູ່ລະບົບໂດຍໃຊ້ລະຫັດ
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "ເຂົ້າສູ່ລະບົບໂດຍໃຊ້ແອັບຢືນຢັນ TOTP"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "ສ້າງກະແຈກູ້ຄືນບໍ?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "ສ້າງກະແຈ"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "ກະແຈຜ່ານຂອງຂ້ອຍ"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "ຊື່"
@@ -2486,6 +2674,10 @@ msgstr "ຊື່"
 msgctxt "person"
 msgid "Name"
 msgstr "ຊື່"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "ເພີ່ມຊື່ແລ້ວ"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "ອັບເດດຊື່ແລ້ວ"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "ເຄືອຂ່າຍ"
 
@@ -2518,6 +2712,12 @@ msgstr "ເຄືອຂ່າຍ"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "ຂໍ້ຜິດພາດເຄືອຂ່າຍ"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "ເຄືອຂ່າຍ"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "ບໍ່ໄດ້ປຽບທຽບ: ໃຫຍ່ກວ່າ {0}"
 msgid "Not compared: over the size limit"
 msgstr "ບໍ່ໄດ້ປຽບທຽບ: ເກີນຂີດຈຳກັດຂະໜາດ"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "ບໍ່ໄດ້ເຊື່ອມຕໍ່"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "ຕົວເລືອກ"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "ອື່ນໆ"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "ເຊີບເວີອື່ນຈະຮູ້ກະແຈໃໝ່ຈາກເອກະສານຂອງບັນຊີ. ທຸກຢ່າງທີ່ລົງລາຍເຊັນດ້ວຍກະແຈເກົ່າຈະບໍ່ສາມາດກວດສອບໄດ້ອີກ."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "ດຳເນີນການຕໍ່"
 msgid "Processing…"
 msgstr "ກຳລັງປະມວນຜົນ…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "ໂປຣໄຟລ໌"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "ບັນທຶກພຣອມທ໌ແລ້ວ"
@@ -3129,6 +3342,11 @@ msgstr "ການບັນທຶກບໍ່ມີສຽງ"
 msgid "Recovery codes"
 msgstr "ລະຫັດກູ້ຄືນ"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "ກະແຈກູ້ຄືນ"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "ປ່ຽນເສັ້ນທາງ"
@@ -3179,6 +3397,15 @@ msgstr "ສຳພັດພາຍໃນ 24 ຊົ່ວໂມງ, ຖ້າບໍ
 msgid "Relay service"
 msgstr "ບໍລິການຣີເລ"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "ປ່ອຍ"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "ປ່ອຍຊື່ຜູ້ໃຊ້ນີ້ບໍ?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "ຄວາມກ່ຽວຂ້ອງ {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "ການແຈ້ງເຕືອນ"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "ລຶບອອກ"
 
@@ -3256,6 +3485,10 @@ msgstr "ລຶບລິ້ງ"
 msgid "Remove suspension"
 msgstr "ປົດການໂຈະ"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "ລຶບບັນຊີນີ້ບໍ?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "ເຮັດຊ້ຳ"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "ແທນທີ່"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "ແທນທີ່ກະແຈ"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "ແທນທີ່ກະແຈບໍ?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "ຕ້ອງການ"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "ສົ່ງອີເມວອີກຄັ້ງ"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "ຈອງ"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "ຈອງຊື່ຜູ້ໃຊ້ນີ້ບໍ?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "ວັນເສົາ"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "ບັນທຶກ"
@@ -3705,6 +3957,10 @@ msgstr "ສະແດງວິທີໃຊ້ນີ້"
 msgid "Showing {totalShown} of {total}"
 msgstr "ກຳລັງສະແດງ {totalShown} ຈາກ {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "ສະແດງພຽງຄັ້ງດຽວ. ເກັບມັນໄວ້ໃນບ່ອນທີ່ປອດໄພ: ມັນບໍ່ໄດ້ຖືກເກັບໄວ້ທີ່ນີ້."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "ແຖບຂ້າງ"
@@ -3767,6 +4023,7 @@ msgstr "ເລີ່ມແລ້ວ"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "ສະຖານະ"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "ຂໍ້ກຳນົດແລະເງື່ອນໄຂ"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "ທົດສອບ"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "ການທົດສອບລົ້ມເຫຼວ"
 
@@ -3909,6 +4168,22 @@ msgstr "ສົ່ງບໍ່ໄດ້. ໄຟລ໌ອາດໃຫຍ່ເກ�
 msgid "That email is already registered to another account"
 msgstr "ອີເມວນັ້ນຖືກລົງທະບຽນກັບບັນຊີອື່ນແລ້ວ"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "ຊື່ນັ້ນສຳລັບຜູ້ດູແລລະບົບ"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "ຊື່ນັ້ນຖືກສະຫງວນໄວ້ສຳລັບເຊີບເວີ"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "ຊື່ນັ້ນບໍ່ວ່າງ"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "ຊື່ນັ້ນຖືກໃຊ້ແລ້ວ"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "ກ້ອງກຳລັງຖືກໃຊ້ຢູ່ແລ້ວ"
 msgid "The camera request was not answered"
 msgstr "ຄຳຮ້ອງຂໍກ້ອງບໍ່ໄດ້ຮັບການຕອບ"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "ຊື່ຜູ້ໃຊ້ທີ່ຊື່ນີ້ຢູ່ພາຍໃຕ້ບໍ່ແມ່ນຂອງທ່ານ"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "ຄຳຮ້ອງຂໍໄມໂຄຣໂຟນບໍ່ໄດ້ຮັບການຕອບ"
@@ -3933,6 +4212,10 @@ msgstr "ຄຳຮ້ອງຂໍກະແຈຜ່ານບໍ່ໄດ້ຮັ
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "ບໍ່ພົບເນື້ອຫາທີ່ຮ້ອງຂໍ."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "ເຊີບເວີບໍ່ອະນຸຍາດການເຊື່ອມຕໍ່"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "ນີ້ແມ່ນການສໍາຮອງຂໍ້ມູນທີ
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "ການດຳເນີນການນີ້ຈະລົບເກມ ແລະ ການສົນທະນາຂອງມັນຖາວອນ. ບໍ່ສາມາດຍົກເລີກການດຳເນີນການນີ້ໄດ້."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "ເຊີບເວີນີ້ບໍ່ມີເຄືອຂ່າຍອື່ນໃຫ້."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "ຮູບແບບທີ່ບໍ່ຮູ້ຈັກ"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "ຕັດການເຊື່ອມໂຍງ"
 
@@ -4202,6 +4490,10 @@ msgstr "ຕັດການເຊື່ອມໂຍງຜູ້ໃຫ້ບໍລ
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "ຕັດການເຊື່ອມໂຍງຜູ້ໃຫ້ບໍລິການບໍ?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "ຕັດການເຊື່ອມໂຍງບັນຊີນີ້ບໍ?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "ID ລູກຄ້າ X"
 msgid "X client secret"
 msgstr "ຄວາມລັບລູກຄ້າ X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "ປີ"
@@ -4419,6 +4715,10 @@ msgstr "ປີ"
 msgid "You can manage these paths: {paths}"
 msgstr "ທ່ານສາມາດຈັດການເສັ້ນທາງເຫຼົ່ານີ້ໄດ້: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "ທ່ານບໍ່ສາມາດຈອງຊື່ໃນໂດເມນນີ້ໄດ້"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "ທ່ານບໍ່ມີສິດເຂົ້າເຖິງພາກສ່ວນນີ້."
@@ -4426,6 +4726,10 @@ msgstr "ທ່ານບໍ່ມີສິດເຂົ້າເຖິງພາກ
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "ທ່ານບໍ່ມີສິດການເຂົ້າເຖິງ domain ໃດໆ."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "ທ່ານມີຊື່ຜູ້ໃຊ້ຄົບຈຳນວນສູງສຸດແລ້ວ"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "لطفاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" و نام‌های زیرمجموعه‌اش آزاد می‌شوند تا هر کسی بتواند آن‌ها را بگیرد. حساب‌هایشان، هر آنچه منتشر کرده‌اند و دنبال‌کنندگانشان حذف می‌شوند."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" همراه با هر آنچه منتشر کرده و دنبال‌کنندگانش حذف می‌شود."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" از حساب خارج می‌شود و تا زمانی که ت�
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" روی همهٔ دستگاه‌ها از حساب خارج می‌شود و باید دوباره وارد شود."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "پیوند \"{0}\" قطع می‌شود. آنچه از طریق آن منتشر شده در {1} باقی می‌ماند."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" در همهٔ شبکه‌هایی که این سرور ارائه می‌دهد مال شما خواهد بود. نام کاربری را نمی‌توان تغییر داد؛ آزاد کردن آن در آینده حساب‌هایش و دنبال‌کنندگان آن‌ها را حذف می‌کند."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · پوش"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (در حال توسعه)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} برای {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "۳. تأیید کد"
 msgid "A recording is already in progress."
 msgstr "ضبط از قبل در حال انجام است."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "کلید بازیابی به شما امکان می‌دهد حساب را منتقل کنید یا کاری را که یک سرور نفوذشده انجام داده برگردانید. این کلید جایگزین هر کلید قبلی می‌شود و فقط یک بار نمایش داده می‌شود."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "مطلق (تاریخ و زمان)"
@@ -274,15 +304,26 @@ msgstr "سطح دسترسی"
 msgid "Account"
 msgstr "حساب"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "کنش‌های حساب"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "حساب افزوده شد"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "حساب ایجاد شد"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "حساب پیوند داده شد"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "حساب حذف شد"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "نوع حساب"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "حساب به‌روزرسانی شد"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "حساب تأیید شد"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "حساب‌ها"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "فعالیت"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "افزودن"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "افزودن نظر..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "افزودن نام"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "افزودن نام زیر {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "«{0}» افزوده شد"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "آدرس"
 
@@ -444,6 +501,10 @@ msgstr "مدیر"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "هوش مصنوعی"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "الگوریتم"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "کد احراز هویت"
 msgid "Automatic certificates"
 msgstr "گواهی‌های خودکار"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "در دسترس"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "میان‌برهای صفحه‌کلید موجود"
@@ -716,6 +781,9 @@ msgstr "دوربین در دسترس نیست"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "لغو"
@@ -783,6 +851,10 @@ msgstr "رخداد تغییریافته"
 msgid "Checkbox"
 msgstr "کادر انتخاب"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "در حال بررسی…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "چک‌لیست"
@@ -794,6 +866,10 @@ msgstr "یک تاریخ انتخاب کنید"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "از نوار کناری یک بازی انتخاب کنید یا بازی جدیدی شروع کنید."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "یک نام کاربری انتخاب کنید"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "پاک کردن جست‌وجو"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "بستن"
 
@@ -945,6 +1022,7 @@ msgstr "تأیید کنید که خودتان هستید"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "متصل"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "اطلاعات زمینه‌ای و جزئیات."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "ادامه"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "ادامه با {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "کپی شد"
 
@@ -996,6 +1076,7 @@ msgstr "در کلیپ‌بورد کپی شد"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "کپی"
 
@@ -1003,21 +1084,58 @@ msgstr "کپی"
 msgid "Copy all"
 msgstr "کپی همه"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "افزودن نام ممکن نشد"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "بستن حساب شما ممکن نشد"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "کپی ممکن نشد"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "کدها کپی نشد. آن‌ها را انتخاب و دستی کپی کنید."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "ایجاد حساب ممکن نشد"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "اتصال حساب ممکن نشد"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "پیوند دادن حساب ممکن نشد"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "بارگذاری این سند ممکن نشد. لطفاً بعداً دوباره تلاش کنید."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "ساخت کلید بازیابی ممکن نشد"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "آزاد کردن نام کاربری ممکن نشد"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "حذف حساب ممکن نشد"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "جایگزینی کلیدها ممکن نشد"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "رزرو نام کاربری ممکن نشد"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "شروع اتصال ممکن نشد"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "قطع اتصال ارائه‌دهنده ممکن نشد"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "به‌روزرسانی حساب ممکن نشد"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "ساخت کاربر"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "ساخته شد"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "با الگوی موردنیاز مطابقت ندارد"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "دامنه"
 
@@ -1924,6 +2048,10 @@ msgstr "تأیید کد ناموفق بود"
 msgid "Failed to verify domain"
 msgstr "تأیید دامنه ناموفق بود"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "گروه‌بندی بر اساس"
 msgid "Group: {0}"
 msgstr "گروه: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "نام کاربری"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "کنش‌های نام کاربری"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "نام کاربری آزاد شد"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "نام کاربری رزرو شد"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "تاریخچه"
@@ -2061,6 +2205,10 @@ msgstr "سوراخ‌کاری"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "خانه"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "میزبانی‌شده"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "همین حالا"
 msgid "Keyboard shortcuts"
 msgstr "میانبرهای صفحه‌کلید"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "کلیدها"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "کلیدها جایگزین شدند"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "نوع"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "شناخته‌شده {known} · متصل {linked} · مش پخش {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "آخرین استفاده"
 msgid "Layout"
 msgstr "چیدمان"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "فقط حروف و ارقام، شروع با یک حرف، ۳ تا ۲۰ نویسه"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "فقط حروف، اعداد، فاصله، خط تیره و اسلش"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "روشن"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "پیوند"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "اتصال حساب"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "پیوند دادن حساب"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "پیوند داده شده"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "ورود با کد بازیابی"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "ورود با اپ احراز هویت TOTP"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "کلید بازیابی ساخته شود؟"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "ساخت کلید"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "پسکی من"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "نام"
@@ -2486,6 +2674,10 @@ msgstr "نام"
 msgctxt "person"
 msgid "Name"
 msgstr "نام"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "نام افزوده شد"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "نام به‌روزرسانی شد"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "شبکه"
 
@@ -2518,6 +2712,12 @@ msgstr "شبکه"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "خطای شبکه"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "شبکه‌ها"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "مقایسه نشد: بزرگ‌تر از {0}"
 msgid "Not compared: over the size limit"
 msgstr "مقایسه نشد: بیش از حد مجاز اندازه"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "متصل نیست"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "گزینه‌ها"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "سایر"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "سرورهای دیگر کلید جدید را از سند حساب دریافت می‌کنند. هر چیزی که با کلید قدیمی امضا شده دیگر تأیید نمی‌شود."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "ادامه"
 msgid "Processing…"
 msgstr "در حال پردازش…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "پروفایل"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "پرامپت ذخیره شد"
@@ -3129,6 +3342,11 @@ msgstr "ضبط صدایی ندارد"
 msgid "Recovery codes"
 msgstr "کدهای بازیابی"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "کلید بازیابی"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "تغییر مسیر"
@@ -3179,6 +3397,15 @@ msgstr "در ۲۴ ساعت نسبی، در غیر این صورت مطلق"
 msgid "Relay service"
 msgstr "سرویس رله"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "آزاد کردن"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "این نام کاربری آزاد شود؟"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "ارتباط {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "یادآور"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "حذف"
 
@@ -3256,6 +3485,10 @@ msgstr "حذف پیوند"
 msgid "Remove suspension"
 msgstr "حذف تعلیق"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "این حساب حذف شود؟"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "تکرار می‌شود"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "جایگزینی"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "جایگزینی کلیدها"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "کلیدها جایگزین شوند؟"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "الزامی"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "ارسال مجدد ایمیل"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "رزرو"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "این نام کاربری رزرو شود؟"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "شنبه"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "ذخیره"
@@ -3705,6 +3957,10 @@ msgstr "نمایش این راهنما"
 msgid "Showing {totalShown} of {total}"
 msgstr "نمایش {totalShown} از {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "فقط یک بار نمایش داده می‌شود. آن را جایی امن نگه دارید: اینجا ذخیره نمی‌شود."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "نوار کناری"
@@ -3767,6 +4023,7 @@ msgstr "آغاز شد"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "وضعیت"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "شرایط و ضوابط"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "آزمون"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "آزمون ناموفق بود"
 
@@ -3909,6 +4168,22 @@ msgstr "ارسال نشد. ممکن است فایل‌ها بیش از حد بز
 msgid "That email is already registered to another account"
 msgstr "این ایمیل از پیش با حساب دیگری ثبت شده است"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "این نام برای مدیران است"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "این نام برای سرور نگه داشته شده است"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "این نام در دسترس نیست"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "این نام قبلاً گرفته شده است"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "دوربین در حال حاضر در حال استفاده است"
 msgid "The camera request was not answered"
 msgstr "درخواست دوربین پاسخ داده نشد"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "نام کاربری‌ای که این نام زیر آن قرار دارد متعلق به شما نیست"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "درخواست میکروفون پاسخ داده نشد"
@@ -3933,6 +4212,10 @@ msgstr "درخواست پسکی پاسخ داده نشد"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "محتوای درخواستی یافت نشد."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "سرور اجازهٔ پیوند را نداد"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "این یک پشتیبان کامل است که می‌توانید آن
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "این کار بازی و گفتگوی آن را برای همیشه حذف می‌کند. این عمل قابل بازگشت نیست."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "این سرور شبکهٔ دیگری ارائه نمی‌دهد."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "تم ناشناخته"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "قطع پیوند"
 
@@ -4202,6 +4490,10 @@ msgstr "قطع ارتباط ارائه‌دهنده"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "پیوند ارائه‌دهنده قطع شود؟"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "پیوند این حساب قطع شود؟"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "شناسه کلاینت X"
 msgid "X client secret"
 msgstr "رمز کلاینت X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "سال"
@@ -4419,6 +4715,10 @@ msgstr "سال"
 msgid "You can manage these paths: {paths}"
 msgstr "می‌توانید این مسیرها را مدیریت کنید: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "نمی‌توانید در این دامنه نامی رزرو کنید"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "شما به این بخش دسترسی ندارید."
@@ -4426,6 +4726,10 @@ msgstr "شما به این بخش دسترسی ندارید."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "شما به هیچ دامنه‌ای دسترسی ندارید."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "به سقف تعداد نام‌های کاربری خود رسیده‌اید"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

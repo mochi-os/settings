@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "කරුණාකර ඔබගේ අන්තර්ජාල සම්බන්ධතාවය පරීක්ෂා කර නැවත උත්සාහ කරන්න."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" සහ එය යටතේ ඇති නම් ඕනෑම කෙනෙකුට ගත හැකි වන සේ නිදහස් කෙරේ. ඒවායේ ගිණුම්, ඒවා ප්‍රකාශ කළ සියල්ල සහ ඒවායේ අනුගාමිකයින් ඉවත් කෙරේ."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" එය ප්‍රකාශ කළ සියල්ල සහ එහි අනුගාමිකයින් සමඟ ඉවත් කෙරේ."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" වෙතින් නික්මෙන අතර අත්හ�
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" සෑම උපාංගයකින්ම නික්මෙන අතර නැවත පිවිසිය යුතුය."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" හි සම්බන්ධතාවය ඉවත් කෙරේ. එය හරහා ප්‍රකාශ කළ දේ {1} හි රැඳේ."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "මෙම සේවාදායකය පිරිනමන සෑම ජාලයකම \"{address}\" ඔබගේ වනු ඇත. අන්වර්ථ නාමයක් නැවත නම් කළ නොහැක; පසුව එය නිදහස් කිරීමෙන් එහි ගිණුම් සහ ඒවායේ අනුගාමිකයින් ඉවත් වේ."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · පුෂ්"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (සංවර්ධනය)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{1} සඳහා {0}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. කේතය සත්‍යාපනය කරන්න"
 msgid "A recording is already in progress."
 msgstr "පටිගත කිරීමක් දැනටමත් සිදුවෙමින් පවතී."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "ප්‍රතිසාධන යතුරකින් ඔබට ගිණුම ගෙන යාමට හෝ අවදානමට ලක් වූ සේවාදායකයක් කළ දේ අහෝසි කිරීමට හැකිය. එය ඕනෑම පෙර යතුරක් ප්‍රතිස්ථාපනය කරන අතර එක් වරක් පමණක් පෙන්වයි."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "නිරපේක්ෂ (දිනය සහ වේලාව)"
@@ -274,15 +304,26 @@ msgstr "ප්‍රවේශ මට්ටම"
 msgid "Account"
 msgstr "ගිණුම"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "ගිණුම් ක්‍රියා"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "ගිණුම එක් කරන ලදී"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "ගිණුම සාදන ලදී"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "ගිණුම සම්බන්ධ කළා"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "ගිණුම ඉවත් කරන ලදී"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "ගිණුම් වර්ගය"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "ගිණුම යාවත්කාලීන කරන ලදී"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "ගිණුම සත්‍යාපනය කරන ලදී"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "ගිණුම්"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "ක්‍රියාකාරකම"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "එක් කරන්න"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "අදහසක් එක් කරන්න..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "නමක් එක් කරන්න"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "{0} යටතේ නමක් එක් කරන්න"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" එක් කරන ලදී"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "ලිපිනය"
 
@@ -444,6 +501,10 @@ msgstr "පරිපාලක"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "ඇල්ගොරිතමය"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "සත්‍යාපන කේතය"
 msgid "Automatic certificates"
 msgstr "ස්වයංක්‍රීය සහතික"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "ලබා ගත හැක"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "පවතින යතුරුපුවරු කෙටි මං"
@@ -716,6 +781,9 @@ msgstr "කැමරාව නොමැත"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "අවලංගු කරන්න"
@@ -783,6 +851,10 @@ msgstr "වෙනස් කළ පුනරාවර්තනය"
 msgid "Checkbox"
 msgstr "පරීක්ෂා පෙට්ටිය"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "පරීක්ෂා කරමින්…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "පරීක්ෂා ලැයිස්තුව"
@@ -794,6 +866,10 @@ msgstr "දිනයක් තෝරන්න"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "පැති තීරුවෙන් ක්‍රීඩාවක් තෝරන්න හෝ නව එකක් ආරම්භ කරන්න."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "අන්වර්ථ නාමයක් තෝරන්න"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "සෙවුම හිස් කරන්න"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "වසන්න"
 
@@ -945,6 +1022,7 @@ msgstr "එය ඔබ බව තහවුරු කරන්න"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "සම්බන්ධිතයි"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "සන්දර්භීය තොරතුරු සහ විස්තර."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "ඉදිරියට"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "{providerLabel} සමඟ ඉදිරියට"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "පිටපත් කළා"
 
@@ -996,6 +1076,7 @@ msgstr "ක්ලිප්බෝඩ් වෙත පිටපත් කරන �
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "පිටපත් කරන්න"
 
@@ -1003,21 +1084,58 @@ msgstr "පිටපත් කරන්න"
 msgid "Copy all"
 msgstr "සියල්ල පිටපත් කරන්න"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "නම එක් කළ නොහැකි විය"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "ඔබේ ගිණුම වැසීමට නොහැකි විය"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "පිටපත් කළ නොහැකි විය"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "කේත පිටපත් කළ නොහැකි විය. ඒවා තෝරා අතින් පිටපත් කරන්න."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "ගිණුම සෑදිය නොහැකි විය"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "ගිණුම සම්බන්ධ කළ නොහැකි විය"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "ගිණුම සම්බන්ධ කළ නොහැකි විය"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "මෙම ලේඛනය පූරණය කළ නොහැකි විය. කරුණාකර පසුව නැවත උත්සාහ කරන්න."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "ප්‍රතිසාධන යතුර සෑදිය නොහැකි විය"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "අන්වර්ථ නාමය නිදහස් කළ නොහැකි විය"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "ගිණුම ඉවත් කළ නොහැකි විය"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "යතුරු ප්‍රතිස්ථාපනය කළ නොහැකි විය"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "අන්වර්ථ නාමය වෙන් කළ නොහැකි විය"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "සම්බන්ධ කිරීම ආරම්භ කළ නොහ�
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "සැපයුම්කරු විසන්ධි කළ නොහැකි විය"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "ගිණුම යාවත්කාලීන කළ නොහැකි විය"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "පරිශීලකයෙකු නිර්මාණය කරන්�
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "නිර්මාණය කරන ලදී"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "අවශ්‍ය රටාවට නොගැළපේ"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "වසම"
 
@@ -1924,6 +2048,10 @@ msgstr "කේතය සත්‍යාපනය කිරීමට අසමත
 msgid "Failed to verify domain"
 msgstr "වසම සත්‍යාපනය කිරීමට අසමත් විය"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "අනුව කාණ්ඩ කරන්න"
 msgid "Group: {0}"
 msgstr "කණ්ඩායම: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "අන්වර්ථ නාමය"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "අන්වර්ථ නාම ක්‍රියා"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "අන්වර්ථ නාමය නිදහස් කරන ලදී"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "අන්වර්ථ නාමය වෙන් කරන ලදී"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "ඉතිහාසය"
@@ -2061,6 +2205,10 @@ msgstr "සිදුර විදීම"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "මුල් පිටුව"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "සත්කාරක"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "මේ දැන්"
 msgid "Keyboard shortcuts"
 msgstr "යතුරුපුවරු කෙටි මං"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "යතුරු"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "යතුරු ප්‍රතිස්ථාපනය කරන ලදී"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "වර්ගය"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "දන්නා {known} · සම්බන්ධිත {linked} · විකාශ දැල් ජාලය {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "අවසන් වරට භාවිත කළ"
 msgid "Layout"
 msgstr "පිරිසැලසුම"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "අකුරු සහ ඉලක්කම් පමණි, අකුරකින් ආරම්භ වන, අක්ෂර 3 සිට 20 දක්වා"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "අකුරු, ඉලක්කම්, හිස්තැන්, ඉරි සහ ස්ලෑෂ් පමණි"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "ලා"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "සබැඳිය"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "ගිණුම සම්බන්ධ කරන්න"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "ගිණුමක් සම්බන්ධ කරන්න"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "සම්බන්ධයි"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "ප්‍රතිසාධන කේතය භාවිතයෙන් 
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "TOTP සත්‍යාපක යෙදුම භාවිත කර පිවිසෙන්න"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "ප්‍රතිසාධන යතුරක් සාදන්නද?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "යතුර සාදන්න"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "මගේ මුරයතුර"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "නම"
@@ -2486,6 +2674,10 @@ msgstr "නම"
 msgctxt "person"
 msgid "Name"
 msgstr "නම"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "නම එක් කරන ලදී"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "නම යාවත්කාලීන කරන ලදී"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "ජාලය"
 
@@ -2518,6 +2712,12 @@ msgstr "ජාලය"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "ජාල දෝෂය"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "ජාල"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "සංසන්දනය නොකළේය: {0} ට වඩා විශ
 msgid "Not compared: over the size limit"
 msgstr "සංසන්දනය නොකළේය: ප්‍රමාණ සීමාව ඉක්මවයි"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "සම්බන්ධ නැත"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "විකල්ප"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "වෙනත්"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "අනෙකුත් සේවාදායක නව යතුර ගිණුමේ ලේඛනයෙන් දැන ගනී. පැරණි යතුරෙන් අත්සන් කළ කිසිවක් තවදුරටත් සත්‍යාපනය නොවේ."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "ඉදිරියට යන්න"
 msgid "Processing…"
 msgstr "සකසමින්…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "පැතිකඩ"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "විමසුම සුරකින ලදී"
@@ -3129,6 +3342,11 @@ msgstr "පටිගත කිරීමේ ශබ්දයක් නැත"
 msgid "Recovery codes"
 msgstr "ප්‍රතිසාධන කේත"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "ප්‍රතිසාධන යතුර"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "යළි-යොමු කිරීම"
@@ -3179,6 +3397,15 @@ msgstr "පැය 24 තුළ සාපේක්ෂ, නැතහොත් න�
 msgid "Relay service"
 msgstr "රිලේ සේවාව"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "නිදහස් කරන්න"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "මෙම අන්වර්ථ නාමය නිදහස් කරන්නද?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "අදාළත්වය {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "මතක් කිරීම"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "ඉවත් කරන්න"
 
@@ -3256,6 +3485,10 @@ msgstr "සබැඳිය ඉවත් කරන්න"
 msgid "Remove suspension"
 msgstr "අත්හිටුවීම ඉවත් කරන්න"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "මෙම ගිණුම ඉවත් කරන්නද?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "පුනරාවර්තනය වේ"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "ප්‍රතිස්ථාපනය"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "යතුරු ප්‍රතිස්ථාපනය කරන්න"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "යතුරු ප්‍රතිස්ථාපනය කරන්නද?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "අවශ්‍යයි"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "විද්‍යුත් තැපෑල නැවත එවන්න"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "වෙන් කරන්න"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "මෙම අන්වර්ථ නාමය වෙන් කරන්නද?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "සෙනසුරාදා"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "සුරකින්න"
@@ -3705,6 +3957,10 @@ msgstr "මෙම උදව් පෙන්වන්න"
 msgid "Showing {totalShown} of {total}"
 msgstr "{total}න් {totalShown}ක් පෙන්වමින්"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "එක් වරක් පමණක් පෙන්වයි. එය ආරක්ෂිත ස්ථානයක තබා ගන්න: එය මෙහි ගබඩා නොකෙරේ."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "පැති තීරුව"
@@ -3767,6 +4023,7 @@ msgstr "ආරම්භ විය"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "තත්ත්වය"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "නියම සහ කොන්දේසි"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "පරීක්ෂාව"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "පරීක්ෂණය අසාර්ථක විය"
 
@@ -3909,6 +4168,22 @@ msgstr "යැවීමට නොහැකි විය. ගොනු ඉතා 
 msgid "That email is already registered to another account"
 msgstr "එම ඊමේල් දැනටමත් වෙනත් ගිණුමකට ලියාපදිංචි කර ඇත"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "එම නම පරිපාලකයින් සඳහා වේ"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "එම නම සේවාදායකය සඳහා වෙන් කර ඇත"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "එම නම ලබාගත නොහැක"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "එම නම දැනටමත් ගෙන ඇත"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "කැමරාව දැනටමත් භාවිතයේ පවත
 msgid "The camera request was not answered"
 msgstr "කැමරා ඉල්ලීමට පිළිතුරු ලැබුණේ නැත"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "මෙම නම පවතින අන්වර්ථ නාමය ඔබගේ නොවේ"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "මයික්‍රොෆෝන ඉල්ලීමට පිළිතුරු ලැබුණේ නැත"
@@ -3933,6 +4212,10 @@ msgstr "මුරයතුරු ඉල්ලීමට පිළිතුරු 
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "ඉල්ලූ අන්තර්ගතය සොයාගත නොහැකි විය."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "සේවාදායකය සම්බන්ධ කිරීමට ඉඩ නොදුන්නේය"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "මෙය ඔබට මෙම හෝ වෙනත් Mochi සේවා�
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "මෙය ක්‍රීඩාව සහ එහි කතාබස් ස්ථිරවම මකා දමයි. මෙම ක්‍රියාව අහෝසි කළ නොහැක."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "මෙම සේවාදායකය වෙනත් ජාල ලබා නොදේ."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "නොදන්නා තේමාව"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "සම්බන්ධතාවය ඉවත් කරන්න"
 
@@ -4202,6 +4490,10 @@ msgstr "සපයන්නා වෙන් කරන්න"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "සේවා සපයන්නා සම්බන්ධ කිරීම ඉවත් කරන්නද?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "මෙම ගිණුමේ සම්බන්ධතාවය ඉවත් කරන්නද?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X සේවාලාභී ID"
 msgid "X client secret"
 msgstr "X සේවාලාභී රහස"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "වර්ෂය"
@@ -4419,6 +4715,10 @@ msgstr "වර්ෂය"
 msgid "You can manage these paths: {paths}"
 msgstr "ඔබට මෙම මාර්ග කළමනාකරණය කළ හැක: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "ඔබට මෙම වසමේ නමක් වෙන් කළ නොහැක"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "ඔබට මෙම කොටසට ප්‍රවේශය නොමැත."
@@ -4426,6 +4726,10 @@ msgstr "ඔබට මෙම කොටසට ප්‍රවේශය නොම�
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "ඔබට කිසිදු වසම් වෙත ප්‍රවේශය නොමැත."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "ඔබ අන්වර්ථ නාම සීමාවට ළඟා වී ඇත"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

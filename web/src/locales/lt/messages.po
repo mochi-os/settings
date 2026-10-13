@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Patikrinkite interneto ryšį ir bandykite dar kartą."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "„{0}“ ir po juo esantys vardai bus atlaisvinti, kad bet kas galėtų juos užimti. Jų paskyros, viskas, ką tos paskyros paskelbė, ir jų sekėjai bus pašalinti."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "„{0}“ bus pašalinta kartu su viskuo, ką ji paskelbė, ir jos sekėjais."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" bus atjungtas ir negalės vėl prisijungti, kol sustabdymas nebu
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" bus atjungtas visuose įrenginiuose ir turės prisijungti iš naujo."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "„{0}“ bus atsieta. Tai, kas per ją paskelbta, liks serveryje {1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "„{address}“ bus jūsų kiekviename šio serverio siūlomame tinkle. Vartotojo vardo negalima pervadinti; vėliau jį atlaisvinus bus pašalintos jo paskyros ir jų sekėjai."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · push pranešimai"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (kuriama)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} vardui {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Patvirtinkite kodą"
 msgid "A recording is already in progress."
 msgstr "Įrašymas jau vyksta."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Atkūrimo raktas leidžia perkelti paskyrą arba atšaukti tai, ką padarė pažeistas serveris. Jis pakeičia bet kurį ankstesnį raktą ir rodomas tik kartą."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absoliutus (data ir laikas)"
@@ -274,15 +304,26 @@ msgstr "Prieigos lygis"
 msgid "Account"
 msgstr "Paskyra"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Paskyros veiksmai"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Paskyra pridėta"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Paskyra sukurta"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Paskyra susieta"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Paskyra pašalinta"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Paskyros tipas"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Paskyra atnaujinta"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Paskyra patvirtinta"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Paskyros"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Veikla"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Pridėti"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Pridėti komentarą..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Pridėti vardą"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Pridėti vardą po {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "Pridėta „{0}“"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adresas"
 
@@ -444,6 +501,10 @@ msgstr "Administratorius"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "DI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algoritmas"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Autentifikatoriaus kodas"
 msgid "Automatic certificates"
 msgstr "Automatiniai sertifikatai"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Laisvas"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Prieinami klaviatūros sparčiosios klavišai"
@@ -716,6 +781,9 @@ msgstr "Kamera nepasiekiama"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Atšaukti"
@@ -783,6 +851,10 @@ msgstr "Pakeistas pasikartojimas"
 msgid "Checkbox"
 msgstr "Žymimasis langelis"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Tikrinama…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Užduočių sąrašas"
@@ -794,6 +866,10 @@ msgstr "Pasirinkite datą"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Pasirinkite žaidimą iš šoninės juostos arba pradėkite naują."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Pasirinkite vartotojo vardą"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Išvalyti paiešką"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Uždaryti"
 
@@ -945,6 +1022,7 @@ msgstr "Patvirtinkite, kad tai jūs"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Prijungta"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Kontekstinė informacija ir detalės."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Tęsti"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Tęsti su {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Nukopijuota"
 
@@ -996,6 +1076,7 @@ msgstr "Nukopijuota į iškarpinę"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Kopijuoti"
 
@@ -1003,21 +1084,58 @@ msgstr "Kopijuoti"
 msgid "Copy all"
 msgstr "Kopijuoti viską"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Nepavyko pridėti vardo"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Nepavyko uždaryti jūsų paskyros"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Nepavyko nukopijuoti"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Nepavyko nukopijuoti kodų. Pažymėkite ir nukopijuokite juos ranka."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Nepavyko sukurti paskyros"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "Nepavyko susieti paskyros"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "Nepavyko susieti paskyros"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Nepavyko įkelti šio dokumento. Pabandykite dar kartą vėliau."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Nepavyko sukurti atkūrimo rakto"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Nepavyko atlaisvinti vartotojo vardo"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Nepavyko pašalinti paskyros"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Nepavyko pakeisti raktų"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Nepavyko rezervuoti vartotojo vardo"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Nepavyko pradėti susiejimo"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Nepavyko atsieti tiekėjo"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Nepavyko atnaujinti paskyros"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Sukurti vartotoją"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Sukurta"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Neatitinka reikalaujamo šablono"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domenas"
 
@@ -1924,6 +2048,10 @@ msgstr "Nepavyko patvirtinti kodo"
 msgid "Failed to verify domain"
 msgstr "Nepavyko patvirtinti domeno"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Grupuoti pagal"
 msgid "Group: {0}"
 msgstr "Grupė: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Vartotojo vardas"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Vartotojo vardo veiksmai"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Vartotojo vardas atlaisvintas"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Vartotojo vardas rezervuotas"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Istorija"
@@ -2061,6 +2205,10 @@ msgstr "Pragręžimas"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Pradžia"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Talpinamas čia"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Ką tik"
 msgid "Keyboard shortcuts"
 msgstr "Klaviatūros sparčiosios klavišų kombinacijos"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Raktai"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Raktai pakeisti"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Tipas"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Žinomi {known} · Prijungti {linked} · Transliacijos mesh {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Paskutinį kartą naudotas"
 msgid "Layout"
 msgstr "Išdėstymas"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Tik raidės ir skaitmenys, pradedant raide, nuo 3 iki 20 simbolių"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Tik raidės, skaičiai, tarpai, brūkšneliai ir pasvirieji brūkšniai"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Šviesi"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Nuoroda"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Susieti paskyrą"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Susieti paskyrą"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Susietas"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Prisijunkite naudodami atkūrimo kodą"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Prisijunkite naudodami TOTP autentifikatoriaus programėlę"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Sukurti atkūrimo raktą?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Sukurti raktą"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Mano slaptaraktis"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Pavadinimas"
@@ -2486,6 +2674,10 @@ msgstr "Pavadinimas"
 msgctxt "person"
 msgid "Name"
 msgstr "Vardas"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Vardas pridėtas"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Pavadinimas atnaujintas"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Tinklas"
 
@@ -2518,6 +2712,12 @@ msgstr "Tinklas"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Tinklo klaida"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Tinklai"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Nepalyginta: didesnis nei {0}"
 msgid "Not compared: over the size limit"
 msgstr "Nepalyginta: viršija dydžio limitą"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Neprijungta"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Parinktys"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Kita"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Kiti serveriai naująjį raktą sužino iš paskyros dokumento. Viskas, kas pasirašyta senuoju raktu, nebepraeis patikros."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Tęsti"
 msgid "Processing…"
 msgstr "Apdorojama…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Profilis"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Užklausa išsaugota"
@@ -3129,6 +3342,11 @@ msgstr "Įraše nėra garso"
 msgid "Recovery codes"
 msgstr "Atkūrimo kodai"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Atkūrimo raktas"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Peradresavimas"
@@ -3179,6 +3397,15 @@ msgstr "Santykinis per 24 val., kitaip absoliutus"
 msgid "Relay service"
 msgstr "Perdavimo paslauga"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Atlaisvinti"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Atlaisvinti šį vartotojo vardą?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Aktualumas {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Priminimas"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Šalinti"
 
@@ -3256,6 +3485,10 @@ msgstr "Pašalinti nuorodą"
 msgid "Remove suspension"
 msgstr "Šalinti suspendavimą"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Pašalinti šią paskyrą?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Kartojasi"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Pakeisti"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Pakeisti raktus"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Pakeisti raktus?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Privaloma"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Siųsti el. laišką dar kartą"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Rezervuoti"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Rezervuoti šį vartotojo vardą?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Šeštadienis"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Išsaugoti"
@@ -3705,6 +3957,10 @@ msgstr "Rodyti šią pagalbą"
 msgid "Showing {totalShown} of {total}"
 msgstr "Rodoma {totalShown} iš {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Rodomas tik kartą. Laikykite jį saugioje vietoje: čia jis nesaugomas."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Šoninė juosta"
@@ -3767,6 +4023,7 @@ msgstr "Pradėta"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Būsena"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Sąlygos ir nuostatos"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Bandymas"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Bandymas nepavyko"
 
@@ -3909,6 +4168,22 @@ msgstr "Nepavyko išsiųsti. Failai gali būti per dideli arba nutrūko ryšys. 
 msgid "That email is already registered to another account"
 msgstr "Šis el. paštas jau užregistruotas kitai paskyrai"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Šis vardas skirtas administratoriams"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Šis vardas rezervuotas serveriui"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Šis vardas negalimas"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Šis vardas užimtas"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Kamera jau naudojama"
 msgid "The camera request was not answered"
 msgstr "Į kameros užklausą neatsakyta"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Vartotojo vardas, kuriam priklauso šis vardas, nėra jūsų"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Į mikrofono užklausą neatsakyta"
@@ -3933,6 +4212,10 @@ msgstr "Į slaptarakčio užklausą neatsakyta"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Prašomo turinio rasti nepavyko."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Serveris neleido susieti"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Tai visa atsarginė kopija, kurią galite atkurti šiame arba kitame Moc
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Tai visam laikui ištrins žaidimą ir jo pokalbį. Šio veiksmo negalima anuliuoti."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Šis serveris nesiūlo kitų tinklų."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Nežinoma tema"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Atsieti"
 
@@ -4202,6 +4490,10 @@ msgstr "Atjungti teikėją"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Atsieti teikėją?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Atsieti šią paskyrą?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X kliento ID"
 msgid "X client secret"
 msgstr "X kliento paslaptis"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Metai"
@@ -4419,6 +4715,10 @@ msgstr "Metai"
 msgid "You can manage these paths: {paths}"
 msgstr "Galite valdyti šiuos kelius: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Šiame domene negalite rezervuoti vardo"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Neturite prieigos prie šios skilties."
@@ -4426,6 +4726,10 @@ msgstr "Neturite prieigos prie šios skilties."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Neturite prieigos prie jokių domenų."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Pasiekėte vartotojo vardų limitą"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

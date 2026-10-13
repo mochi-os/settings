@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Ehechami nde internet conexión ha eha'ã jey."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" ha umi téra oĩva iguýpe oñemosãsóta oimeraẽva ojagarra hag̃ua. Oñemboguéta imba'etekuéra, opa mba'e omoherakuãva'ekue ha hapykuerihakuéra."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" oñemboguéta opa mba'e omoherakuãva'ekue ha hapykuerihakuéra ndive."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" osẽta ha ndaikatumo'ãi oike jey ojepe'a peve pe ñembopyta."
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" osẽta opaite mba'e'okápe ha oike jeyva'erã."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" oñedesvinculáta. Umi mba'e oñemoherakuãva'ekue hese opytáta {1}-pe."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" nde mba'éta opa ñanduti ko mohendaha ome'ẽvape. Puruhára réra ndaikatúi oñemoambue; remosãsóramo upe rire, oñemboguéta imba'etekuéra ha hapykuerihakuéra."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · momarandu"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (jejapokuaa)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} {1}-pe g̃uarã"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Ehechajey código"
 msgid "A recording is already in progress."
 msgstr "Peteĩ grabación oñepyrũma."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Llave jeguerujeyrã omoneĩ remongu'e hag̃ua mba'ete térã reipe'a hag̃ua pe mohendaha oñembyaiva'ekue ojapova'ekue. Omyengovia oimeraẽ llave yma ha ojehechauka peteĩ jey añónte."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Hetéva (ára ha aravo)"
@@ -274,15 +304,26 @@ msgstr "Jeike nivel"
 msgid "Account"
 msgstr "Mba'ete"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Mba'ete rembiapokuéra"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Mba'ete oñembojuajúma"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Mba'ete oñemoheñóima"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Mba'ete ojoajúma"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Mba'ete oñehundíma"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Mba'ete peteĩchagua"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Mba'ete oñembohekopyahúma"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Mba'ete jehechajeypyre"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Mba'etekuéra"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Tembiapo"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Embojuaju"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Embojuaju peteĩ comentario..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Embojuaju peteĩ téra"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Embojuaju peteĩ téra {0} guýpe"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "Oñembojuajúma \"{0}\""
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Dirección"
 
@@ -444,6 +501,10 @@ msgstr "Sãmbyhyhára"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algoritmo"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Autenticador código"
 msgid "Automatic certificates"
 msgstr "Certificado ijeheguíva"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Ikatu ojeipyhy"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Teclado atajo oĩva"
@@ -716,6 +781,9 @@ msgstr "Cámara ndaipóri"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Heja"
@@ -783,6 +851,10 @@ msgstr "Evento oñemoambuéva"
 msgid "Checkbox"
 msgstr "Casilla"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Ojehechajey hína…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Lista jehechajey"
@@ -794,6 +866,10 @@ msgstr "Eiporavo peteĩ ára"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Eiporavo peteĩ ñembosarái yke panel-gui térã eñepyrũ peteĩ pyahu."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Eiporavo peteĩ puruhára réra"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Embopotĩ jeheka"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Mboty"
 
@@ -945,6 +1022,7 @@ msgstr "Emoneĩ nde ha'eha"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Oñembojuaju"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Contexto marandu ha detalle."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Tenonde"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Eku'e {providerLabel} ndive"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Oñekopiáma"
 
@@ -996,6 +1076,7 @@ msgstr "Oñekopiáma clipboard-pe"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Kopia"
 
@@ -1003,21 +1084,58 @@ msgstr "Kopia"
 msgid "Copy all"
 msgstr "Kopia opaite"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Ndaikatúi oñembojuaju téra"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Ndaikatúi oñemboty nde mba'ete"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Ndaikatúi oñekopia"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Ndaikatúi ombokopia código. Eiporavo ha embokopia nde po pe."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Ndaikatúi oñemoheñói mba'ete"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "Ndaikatúi oñembojuaju mba'ete"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "Ndaikatúi ojoaju mba'ete"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Ndaikatúi oñemyanyhẽ ko documento. Eha'ã jeýta upéi."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Ndaikatúi oñemoheñói llave jeguerujeyrã"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Ndaikatúi oñemosãso puruhára réra"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Ndaikatúi oñembogue mba'ete"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Ndaikatúi oñembyekovia llavekuéra"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Ndaikatúi oñereserva puruhára réra"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Ndaikatúi oñepyrũ ñembojuaju"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Ndaikatúi oñeipe'a proveedor juajuha"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Ndaikatúi oñembohekopyahu mba'ete"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Emoheñói puruhára"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Oñemoheñói"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Ndojojái pe patrón ojejeruréva ndive"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Dominio"
 
@@ -1924,6 +2048,10 @@ msgstr "Ndaikatúi ojehechajey código"
 msgid "Failed to verify domain"
 msgstr "Ndaikatúi ojehechajey dominio"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Embyaty rupive"
 msgid "Group: {0}"
 msgstr "Atypy: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Puruhára réra"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Puruhára réra rembiapokuéra"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Puruhára réra oñemosãsóma"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Puruhára réra oñereservama"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Tembiasakue"
@@ -2061,6 +2205,10 @@ msgstr "NAT ñembokua"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Óga"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Ko mohendahápe"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Ko'ág̃aite"
 msgid "Keyboard shortcuts"
 msgstr "Teclado atajo"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Llave-kuéra"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Llavekuéra oñembyekoviáma"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Mba'éichagua"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Ojekuaáva {known} · Oñembojuajúva {linked} · Mesh ñemyasãi {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Pahague jepuru"
 msgid "Layout"
 msgstr "Ñemohenda"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Tai ha papapy añoite, oñepyrũva tai reheve, 3 guive 20 peve tai"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Achegety, papapy, pa'ũ, guión ha barra añoite"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Hesakã"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Juajuha"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Embojuaju mba'ete"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Ejoaju peteĩ mba'ete"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Ojejuaju"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Jeike recuperación código ndive"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Jeike TOTP autenticador app ndive"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Emoheñói peteĩ llave jeguerujeyrã?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Emoheñói llave"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Che jeike rape"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Téra"
@@ -2486,6 +2674,10 @@ msgstr "Téra"
 msgctxt "person"
 msgid "Name"
 msgstr "Téra"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Téra oñembojuajúma"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Téra oñembohekopyahu"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Ñanduti"
 
@@ -2518,6 +2712,12 @@ msgstr "Ñanduti"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Jejavy ñanduti rehegua"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Ñandutikuéra"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Noñembojojái: {0} ári"
 msgid "Not compared: over the size limit"
 msgstr "Noñembojojái: ohasa tuichakue límite"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Noñembojuajúi"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Jeporavorã"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Ambue"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Ambue mohendaha oikuaa llave pyahu mba'ete kuatiágui. Oimeraẽ mba'e oñemboheraguapyva'ekue llave ymáre ndojehechakuaái véima."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Eku'e"
 msgid "Processing…"
 msgstr "Oñemba'apo hína…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Perfil"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Prompt oñeñongatu"
@@ -3129,6 +3342,11 @@ msgstr "Pe grabación ndoguerekói mba'epu"
 msgid "Recovery codes"
 msgstr "Recuperación códigokuéra"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Llave jeguerujeyrã"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Redirección"
@@ -3179,6 +3397,15 @@ msgstr "Relativo 24 aravo ryepýpe, ambueháicha absoluto"
 msgid "Relay service"
 msgstr "Relay servicio"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Emosãso"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Emosãso ko puruhára réra?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Relevancia {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Mandu'arã"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Embogue"
 
@@ -3256,6 +3485,10 @@ msgstr "Embogue juajuha"
 msgid "Remove suspension"
 msgstr "Embogue suspensión"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Embogue ko mba'ete?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Oiko jey"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Embyekovia"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Embyekovia llavekuéra"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Embyekovia llavekuéra?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Oñeikotevẽ"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Emondo jey email"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Ereserva"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Ereserva ko puruhára réra?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Arapoteĩ"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Eñongatu"
@@ -3705,6 +3957,10 @@ msgstr "Ehechauka ko pytyvõ"
 msgid "Showing {totalShown} of {total}"
 msgstr "Ojehechauka {totalShown} {total} apytégui"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Ojehechauka peteĩ jey añónte. Eñongatu tenda hekorosãvape: ndojeñongatúi ko'ápe."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Yke panel"
@@ -3767,6 +4023,7 @@ msgstr "Oñepyrũma"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Mba'éichapa"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Término ha condiciónkuéra"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Eha'ã"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Ñeha'ã ndoikói"
 
@@ -3909,6 +4168,22 @@ msgstr "Ndaikatúi oñemondo. Umi archivo ikatu tuichaiterei, térã ne conexió
 msgid "That email is already registered to another account"
 msgstr "Pe email oĩma ambue mba'etépe"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Upe téra ha'e ñangarekoharakuérape g̃uarã"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Upe téra oñeñongatu mohendahápe g̃uarã"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Upe téra ndaipóri"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Upe téra ojeipyhýma"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Cámara ojeporúma"
 msgid "The camera request was not answered"
 msgstr "Cámara jerure ndojehechái mbohovái"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Puruhára réra ko téra oĩháme ndaha'éi nde mba'e"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Micrófono jerure ndojehechái mbohovái"
@@ -3933,6 +4212,10 @@ msgstr "Jeike rape jerure noñembohováiri"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Ndaikatúi ojejuhu tetepy ojejeruréva."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Mohendaha nomoneĩri juajuha"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Kóva ha'e peteĩ respaldo opavave ikatúva remoĩ jey ko mohendahápe t
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Kóva ombogue tapiaite ñembosarái ha ichat. Kóva ndaikatúi oñembojevy."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Ko mohendaha nome'ẽi ambue ñanduti."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Téma ojekuaa'ỹva"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Edesvincula"
 
@@ -4202,6 +4490,10 @@ msgstr "Edesvincula proveedor"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "¿Edesvincula proveedor?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Edesvincula ko mba'ete?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X cliente ID"
 msgid "X client secret"
 msgstr "X cliente ñemigua"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Ary"
@@ -4419,6 +4715,10 @@ msgstr "Ary"
 msgid "You can manage these paths: {paths}"
 msgstr "Ikatu eñangareko ko'ã tapére: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Ndaikatúi ereserva téra ko dominio-pe"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Ndereguerekói jeike ko vorépe."
@@ -4426,6 +4726,10 @@ msgstr "Ndereguerekói jeike ko vorépe."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Ndereguerekói jeike mba'eveichagua dominio-pe."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Rehupytýma nde puruhára réra límite"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

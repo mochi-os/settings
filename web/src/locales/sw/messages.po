@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Tafadhali angalia muunganisho wako wa intaneti na ujaribu tena."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" na majina yaliyo chini yake yataachiliwa ili mtu yeyote ayachukue. Akaunti zake, kila kitu zilichochapisha na wafuasi wake vitaondolewa."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" itaondolewa pamoja na kila kitu ilichochapisha na wafuasi wake."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" atatolewa nje na hataweza kuingia tena hadi kusimamishwa kuondol
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" atatolewa nje kwenye kila kifaa na atalazimika kuingia tena."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "Muunganisho wa \"{0}\" utaondolewa. Kilichochapishwa kupitia akaunti hiyo kitabaki kwenye {1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" itakuwa yako kwenye kila mtandao ambao seva hii inatoa. Jina la utani haliwezi kubadilishwa; kuliachilia baadaye kunaondoa akaunti zake na wafuasi wao."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · arifa za push"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (maendeleo)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} kwa {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Thibitisha msimbo"
 msgid "A recording is already in progress."
 msgstr "Kurekodi tayari kunaendelea."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Ufunguo wa kurejesha hukuwezesha kuhamisha akaunti au kutendua kile ambacho seva iliyoingiliwa ilifanya. Unachukua nafasi ya ufunguo wowote wa awali na unaonyeshwa mara moja tu."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Kamili (tarehe na muda)"
@@ -274,15 +304,26 @@ msgstr "Kiwango cha ufikiaji"
 msgid "Account"
 msgstr "Akaunti"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Vitendo vya akaunti"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Akaunti imeongezwa"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Akaunti imeundwa"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Akaunti imeunganishwa"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Akaunti imeondolewa"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Aina ya akaunti"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Akaunti imesasishwa"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Akaunti imethibitishwa"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Akaunti"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Shughuli"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Ongeza"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Ongeza maoni..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Ongeza jina"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Ongeza jina chini ya {0}"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "Imeongezwa \"{0}\""
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Anwani"
 
@@ -444,6 +501,10 @@ msgstr "Msimamizi"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algorithimu"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Msimbo wa mthibitishaji"
 msgid "Automatic certificates"
 msgstr "Vyeti otomatiki"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Linapatikana"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Njia za mkato za kibodi zinazopatikana"
@@ -716,6 +781,9 @@ msgstr "Kamera haipatikani"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Ghairi"
@@ -783,6 +851,10 @@ msgstr "Marudio yaliyobadilishwa"
 msgid "Checkbox"
 msgstr "Kisanduku cha kuteua"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Inakagua…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Orodha ya ukaguzi"
@@ -794,6 +866,10 @@ msgstr "Chagua tarehe"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Chagua mchezo kutoka upau wa pembeni au anzisha mpya."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Chagua jina la utani"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Futa utafutaji"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Funga"
 
@@ -945,6 +1022,7 @@ msgstr "Thibitisha kuwa ni wewe"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Imeunganishwa"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Maelezo ya muktadha na undani."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Endelea"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Endelea na {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Imenakiliwa"
 
@@ -996,6 +1076,7 @@ msgstr "Imenakiliwa kwenye ubao wa kunakili"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Nakili"
 
@@ -1003,21 +1084,58 @@ msgstr "Nakili"
 msgid "Copy all"
 msgstr "Nakili vyote"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Haikuweza kuongeza jina"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Imeshindwa kufunga akaunti yako"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Haikuweza kunakili"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Misimbo haikunakiliwa. Ichague na uinakili mwenyewe."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Haikuweza kuunda akaunti"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "Haikuweza kuunganisha akaunti"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "Haikuweza kuunganisha akaunti"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Hati hii haikuweza kupakiwa. Tafadhali jaribu tena baadaye."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Haikuweza kuunda ufunguo wa kurejesha"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Haikuweza kuachilia jina la utani"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Haikuweza kuondoa akaunti"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Haikuweza kubadilisha funguo"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Haikuweza kutenga jina la utani"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Haikuweza kuanza kuunganisha"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Haikuweza kuondoa muunganisho wa mtoaji"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Haikuweza kusasisha akaunti"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Unda mtumiaji"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Imeundwa"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Hailingani na muundo unaohitajika"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Kikoa"
 
@@ -1924,6 +2048,10 @@ msgstr "Imeshindwa kuthibitisha msimbo"
 msgid "Failed to verify domain"
 msgstr "Imeshindwa kuthibitisha kikoa"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Panga kwa makundi"
 msgid "Group: {0}"
 msgstr "Kikundi: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Jina la utani"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Vitendo vya jina la utani"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Jina la utani limeachiliwa"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Jina la utani limetengwa"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Historia"
@@ -2061,6 +2205,10 @@ msgstr "Kutoboa"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Nyumbani"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Imepangishwa"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Sasa hivi"
 msgid "Keyboard shortcuts"
 msgstr "Njia za mkato za kibodi"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Funguo"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Funguo zimebadilishwa"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Aina"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Zinazojulikana {known} · Zilizounganishwa {linked} · Mesh ya matangazo {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Imetumika mwisho"
 msgid "Layout"
 msgstr "Mpangilio"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Herufi na tarakimu pekee, ikianza na herufi, herufi 3 hadi 20"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Herufi, nambari, nafasi, vistari na mikwaju pekee"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Mwepesi"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Kiungo"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Unganisha akaunti"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Unganisha akaunti"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Imeunganishwa"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Ingia kwa kutumia msimbo wa kurejesha"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Ingia kwa kutumia programu ya kithibitishaji ya TOTP"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Unda ufunguo wa kurejesha?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Unda ufunguo"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Pasiki yangu"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Jina"
@@ -2486,6 +2674,10 @@ msgstr "Jina"
 msgctxt "person"
 msgid "Name"
 msgstr "Jina"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Jina limeongezwa"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Jina limesasishwa"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Mtandao"
 
@@ -2518,6 +2712,12 @@ msgstr "Mtandao"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Hitilafu ya mtandao"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Mitandao"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Haijalinganishwa: kubwa kuliko {0}"
 msgid "Not compared: over the size limit"
 msgstr "Haijalinganishwa: inazidi kikomo cha ukubwa"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Haijaunganishwa"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Chaguo"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Nyingine"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Seva nyingine hupata ufunguo mpya kutoka kwenye hati ya akaunti. Chochote kilichotiwa sahihi kwa ufunguo wa zamani hakithibitishwi tena."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Endelea"
 msgid "Processing…"
 msgstr "Inachakata…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Wasifu"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Kidokezo kimehifadhiwa"
@@ -3129,6 +3342,11 @@ msgstr "Rekodi haina sauti"
 msgid "Recovery codes"
 msgstr "Misimbo ya kurejesha"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Ufunguo wa kurejesha"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Elekeza"
@@ -3179,6 +3397,15 @@ msgstr "Linganifu ndani ya saa 24, vinginevyo kamili"
 msgid "Relay service"
 msgstr "Huduma ya rele"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Achilia"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Achilia jina hili la utani?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Umuhimu {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Kikumbusho"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Ondoa"
 
@@ -3256,6 +3485,10 @@ msgstr "Ondoa kiungo"
 msgid "Remove suspension"
 msgstr "Ondoa kusimamishwa"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Ondoa akaunti hii?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Hurudiwa"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Badilisha"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Badilisha funguo"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Badilisha funguo?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Inahitajika"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Tuma barua pepe tena"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Tenga"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Tenga jina hili la utani?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Jumamosi"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Hifadhi"
@@ -3705,6 +3957,10 @@ msgstr "Onyesha msaada huu"
 msgid "Showing {totalShown} of {total}"
 msgstr "Inaonyesha {totalShown} kati ya {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Unaonyeshwa mara moja tu. Uhifadhi mahali salama: haujahifadhiwa hapa."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Upau wa kando"
@@ -3767,6 +4023,7 @@ msgstr "Imeanza"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Hali"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Masharti na vigezo"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Jaribio"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Jaribio limeshindwa"
 
@@ -3909,6 +4168,22 @@ msgstr "Haikuweza kutumwa. Huenda faili ni kubwa mno, au muunganisho wako ulikat
 msgid "That email is already registered to another account"
 msgstr "Barua pepe hiyo tayari imesajiliwa kwenye akaunti nyingine"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "Jina hilo ni la wasimamizi"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "Jina hilo limetengwa kwa ajili ya seva"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "Jina hilo halipatikani"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "Jina hilo limeshachukuliwa"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Kamera tayari inatumika"
 msgid "The camera request was not answered"
 msgstr "Ombi la kamera halikujibiwa"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Jina la utani ambalo jina hili liko chini yake si lako"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Ombi la maikrofoni halikujibiwa"
@@ -3933,6 +4212,10 @@ msgstr "Ombi la pasiki halikujibiwa"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Maudhui yaliyoombwa hayakupatikana."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Seva haikuruhusu muunganisho"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "Hii ni nakala kamili rudufu unayoweza kurejesha kwenye seva hii au seva 
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "Hatua hii itafuta mchezo na mazungumzo yake kabisa. Hatua hii haiwezi kutenduliwa."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "Seva hii haitoi mitandao mingine."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Mandhari yasiyojulikana"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Tenganisha"
 
@@ -4202,6 +4490,10 @@ msgstr "Tenganisha mtoa huduma"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Tenganisha mtoa huduma?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Tenganisha akaunti hii?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "Kitambulisho cha mteja cha X"
 msgid "X client secret"
 msgstr "Siri ya mteja ya X"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Mwaka"
@@ -4419,6 +4715,10 @@ msgstr "Mwaka"
 msgid "You can manage these paths: {paths}"
 msgstr "Unaweza kudhibiti njia hizi: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Huwezi kutenga jina kwenye kikoa hiki"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Huna ruhusa ya kufikia sehemu hii."
@@ -4426,6 +4726,10 @@ msgstr "Huna ruhusa ya kufikia sehemu hii."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Huna ufikiaji wa vikoa vyovyote."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Umefikia kikomo chako cha majina ya utani"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

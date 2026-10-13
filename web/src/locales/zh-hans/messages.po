@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "请检查您的网络连接后重试。"
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "“{0}”及其下的名称将被释放，任何人都可以使用。它们的账户、所发布的全部内容及关注者都会被移除。"
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "“{0}”将连同其发布的所有内容和关注者一起被移除。"
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "“{0}”将被退出登录，在解除暂停前无法再次登录。"
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "“{0}”将在所有设备上退出登录，需要重新登录。"
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "“{0}”将被解除关联。通过它发布的内容仍保留在 {1} 上。"
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "“{address}”将在此服务器提供的每个网络上归你所有。用户识别符无法重命名；以后释放它会移除其账户及这些账户的关注者。"
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · 推送"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (开发中)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{1} 的 {0}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. 验证代码"
 msgid "A recording is already in progress."
 msgstr "已有录音正在进行。"
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "恢复密钥可让你迁移账户，或撤销被入侵的服务器所做的操作。它会替换之前的任何恢复密钥，且只显示一次。"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "绝对(日期和时间)"
@@ -274,15 +304,26 @@ msgstr "访问级别"
 msgid "Account"
 msgstr "账户"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "账户操作"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "账户已添加"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "账户已创建"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "账户已关联"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "账户已移除"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "账户类型"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "账户已更新"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "账户已验证"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "账户"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "动态"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "添加"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "添加评论..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "添加名称"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "在 {0} 下添加名称"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "已添加 \"{0}\""
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "地址"
 
@@ -444,6 +501,10 @@ msgstr "管理员"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "算法"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "身份验证码"
 msgid "Automatic certificates"
 msgstr "自动获取证书"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "可用"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "可用键盘快捷键"
@@ -716,6 +781,9 @@ msgstr "相机不可用"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "取消"
@@ -783,6 +851,10 @@ msgstr "已修改的重复项"
 msgid "Checkbox"
 msgstr "复选框"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "检查中…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "清单"
@@ -794,6 +866,10 @@ msgstr "选择日期"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "从侧边栏选择一个游戏或开始新游戏。"
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "选择用户识别符"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "清除搜索"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "关闭"
 
@@ -945,6 +1022,7 @@ msgstr "确认是您本人"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "已连接"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "上下文信息和详情。"
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "继续"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "使用 {providerLabel} 继续"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "已复制"
 
@@ -996,6 +1076,7 @@ msgstr "已复制到剪贴板"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "复制"
 
@@ -1003,21 +1084,58 @@ msgstr "复制"
 msgid "Copy all"
 msgstr "全部复制"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "无法添加名称"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "无法关闭你的账户"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "无法复制"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "无法复制代码。请手动选择并复制。"
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "无法创建账户"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "无法关联账户"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "无法关联账户"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "无法加载此文档,请稍后重试。"
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "无法创建恢复密钥"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "无法释放用户识别符"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "无法移除账户"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "无法替换密钥"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "无法预留用户识别符"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "无法开始关联"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "无法解除提供商关联"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "无法更新账户"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "创建用户"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "已创建"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "与所需的模式不匹配"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "域名"
 
@@ -1924,6 +2048,10 @@ msgstr "验证码校验失败"
 msgid "Failed to verify domain"
 msgstr "验证域名失败"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "联邦宇宙"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "分组方式"
 msgid "Group: {0}"
 msgstr "群组：{0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "用户识别符"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "用户识别符操作"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "用户识别符已释放"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "用户识别符已预留"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "历史"
@@ -2061,6 +2205,10 @@ msgstr "打洞穿透"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "首页"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "托管"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "刚刚"
 msgid "Keyboard shortcuts"
 msgstr "键盘快捷键"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "密钥"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "密钥已替换"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "类型"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "已知 {known} · 已连接 {linked} · 广播网状网络 {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "最后使用"
 msgid "Layout"
 msgstr "布局"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "仅限字母和数字，以字母开头，3 到 20 个字符"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "仅限字母、数字、空格、连字符和斜杠"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "浅色"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "链接"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "关联账户"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "关联账户"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "已关联"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "使用恢复码登录"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "使用 TOTP 验证器应用登录"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "创建恢复密钥？"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "创建密钥"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "我的通行密钥"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "名称"
@@ -2486,6 +2674,10 @@ msgstr "名称"
 msgctxt "person"
 msgid "Name"
 msgstr "姓名"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "名称已添加"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "名称已更新"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "网络"
 
@@ -2518,6 +2712,12 @@ msgstr "网络"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "网络错误"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "网络"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "未比较：大于 {0}"
 msgid "Not compared: over the size limit"
 msgstr "未比较：超过大小限制"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "未连接"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "选项"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "其他"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "其他服务器会从账户文档中获取新密钥。用旧密钥签名的任何内容将无法再通过验证。"
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "继续"
 msgid "Processing…"
 msgstr "处理中…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "个人资料"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "提示词已保存"
@@ -3129,6 +3342,11 @@ msgstr "录音没有声音"
 msgid "Recovery codes"
 msgstr "恢复码"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "恢复密钥"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "重定向"
@@ -3179,6 +3397,15 @@ msgstr "24 小时内显示相对时间,否则显示绝对时间"
 msgid "Relay service"
 msgstr "中继服务"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "释放"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "释放此用户识别符？"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "相关性 {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "提醒"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "移除"
 
@@ -3256,6 +3485,10 @@ msgstr "移除链接"
 msgid "Remove suspension"
 msgstr "解除停用"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "移除此账户？"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "重复进行"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "替换"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "替换密钥"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "替换密钥？"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "必填"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "重新发送邮件"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "预留"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "预留此用户识别符？"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "星期六"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "保存"
@@ -3705,6 +3957,10 @@ msgstr "显示此帮助"
 msgid "Showing {totalShown} of {total}"
 msgstr "显示 {total} 中的 {totalShown} 条"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "仅显示一次。请妥善保管：此处不会存储。"
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "侧边栏"
@@ -3767,6 +4023,7 @@ msgstr "已开始"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "状态"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "服务条款"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "测试"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "测试失败"
 
@@ -3909,6 +4168,22 @@ msgstr "无法发送。文件可能太大，或者您的连接失败。请尝试
 msgid "That email is already registered to another account"
 msgstr "该邮箱已注册到其他账户"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "该名称仅供管理员使用"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "该名称由服务器保留"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "该名称不可用"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "该名称已被占用"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "相机已在使用中"
 msgid "The camera request was not answered"
 msgstr "相机请求未获回应"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "此名称所属的用户识别符不属于你"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "麦克风请求未获回应"
@@ -3933,6 +4212,10 @@ msgstr "通行密钥请求未获回应"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "找不到请求的内容。"
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "服务器不允许关联"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "这是一份完整备份，您可以在本服务器或其他 Mochi 服�
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "此操作将永久删除对局及其聊天记录，且无法撤销。"
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "此服务器不提供其他网络。"
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "未知主题"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "解除关联"
 
@@ -4202,6 +4490,10 @@ msgstr "解除提供商关联"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "解除提供方关联?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "解除此账户的关联？"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X 客户端 ID"
 msgid "X client secret"
 msgstr "X 客户端密钥"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "年"
@@ -4419,6 +4715,10 @@ msgstr "年"
 msgid "You can manage these paths: {paths}"
 msgstr "您可以管理以下路径：{paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "你无法在此域名上预留名称"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "您无权访问此部分。"
@@ -4426,6 +4726,10 @@ msgstr "您无权访问此部分。"
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "您无权访问任何域名。"
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "你的用户识别符数量已达上限"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "कृपया अपना इंटरनेट कनेक्शन जाँचें और फिर से प्रयास करें।"
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" और उसके अंतर्गत आने वाले नाम मुक्त कर दिए जाएँगे ताकि कोई भी उन्हें ले सके। उनके खाते, उनके द्वारा प्रकाशित सब कुछ और उनके फ़ॉलोअर हटा दिए जाएँगे।"
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" को उसके द्वारा प्रकाशित सब कुछ और उसके फ़ॉलोअर के साथ हटा दिया जाएगा।"
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" को साइन आउट कर दिया जाएग�
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" को हर डिवाइस पर साइन आउट कर दिया जाएगा और उन्हें दोबारा साइन इन करना होगा।"
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" को अनलिंक कर दिया जाएगा। उसके ज़रिए जो प्रकाशित हुआ, वह {1} पर बना रहेगा।"
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" इस सर्वर द्वारा दिए जाने वाले हर नेटवर्क पर आपका होगा। हैंडल का नाम नहीं बदला जा सकता; बाद में इसे छोड़ने पर इसके खाते और उनके फ़ॉलोअर हट जाते हैं।"
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · पुश"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (विकास)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{1} के लिए {0}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. कोड सत्यापित करें"
 msgid "A recording is already in progress."
 msgstr "एक रिकॉर्डिंग पहले से चल रही है।"
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "रिकवरी कुंजी से आप खाते को स्थानांतरित कर सकते हैं या किसी असुरक्षित हुए सर्वर द्वारा किए गए काम को पलट सकते हैं। यह किसी भी पिछली कुंजी की जगह लेती है और केवल एक बार दिखाई जाती है।"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "निरपेक्ष (दिनांक और समय)"
@@ -274,15 +304,26 @@ msgstr "एक्सेस स्तर"
 msgid "Account"
 msgstr "अकाउंट"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "खाता क्रियाएँ"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "अकाउंट जोड़ा गया"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "खाता बनाया गया"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "खाता लिंक हो गया"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "अकाउंट हटाया गया"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "अकाउंट प्रकार"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "अकाउंट अपडेट किया गया"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "अकाउंट सत्यापित"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "अकाउंट्स"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "गतिविधि"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "जोड़ें"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "एक टिप्पणी जोड़ें..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "नाम जोड़ें"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "{0} के अंतर्गत नाम जोड़ें"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" जोड़ा गया"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "पता"
 
@@ -444,6 +501,10 @@ msgstr "प्रशासक"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "एल्गोरिदम"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "ऑथेंटिकेटर कोड"
 msgid "Automatic certificates"
 msgstr "स्वचालित प्रमाणपत्र"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "उपलब्ध"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "उपलब्ध कीबोर्ड शॉर्टकट"
@@ -716,6 +781,9 @@ msgstr "कैमरा उपलब्ध नहीं"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "रद्द करें"
@@ -783,6 +851,10 @@ msgstr "बदली गई पुनरावृत्ति"
 msgid "Checkbox"
 msgstr "चेकबॉक्स"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "जाँच हो रही है…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "चेकलिस्ट"
@@ -794,6 +866,10 @@ msgstr "तारीख चुनें"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "साइडबार से एक गेम चुनें या नया शुरू करें।"
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "हैंडल चुनें"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "खोज साफ़ करें"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "बंद करें"
 
@@ -945,6 +1022,7 @@ msgstr "पुष्टि करें कि यह आप ही हैं"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "कनेक्ट किया गया"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "प्रासंगिक जानकारी और विवरण।"
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "जारी रखें"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "{providerLabel} के साथ जारी रखें"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "कॉपी किया गया"
 
@@ -996,6 +1076,7 @@ msgstr "क्लिपबोर्ड पर कॉपी किया गय�
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "कॉपी करें"
 
@@ -1003,21 +1084,58 @@ msgstr "कॉपी करें"
 msgid "Copy all"
 msgstr "सब कॉपी करें"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "नाम नहीं जोड़ा जा सका"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "आपका खाता बंद नहीं किया जा सका"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "कॉपी नहीं किया जा सका"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "कोड कॉपी नहीं हो सके। उन्हें चुनकर मैन्युअल रूप से कॉपी करें।"
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "खाता नहीं बनाया जा सका"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
 msgstr "अकाउंट लिंक नहीं किया जा सका"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
+msgstr "खाता लिंक नहीं किया जा सका"
+
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "यह दस्तावेज़ लोड नहीं हो सका। कृपया बाद में पुनः प्रयास करें।"
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "रिकवरी कुंजी नहीं बनाई जा सकी"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "हैंडल नहीं छोड़ा जा सका"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "खाता नहीं हटाया जा सका"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "कुंजियाँ नहीं बदली जा सकीं"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "हैंडल आरक्षित नहीं किया जा सका"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "लिंकिंग शुरू नहीं की जा सकी"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "प्रोवाइडर अनलिंक नहीं किया जा सका"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "खाता अपडेट नहीं किया जा सका"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "उपयोगकर्ता बनाएँ"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "बनाया गया"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "आवश्यक पैटर्न से मेल नहीं खाता"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "डोमेन"
 
@@ -1924,6 +2048,10 @@ msgstr "कोड सत्यापित करने में विफल"
 msgid "Failed to verify domain"
 msgstr "डोमेन सत्यापित करने में विफल"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "इसके अनुसार समूहित करें"
 msgid "Group: {0}"
 msgstr "समूह: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "हैंडल"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "हैंडल क्रियाएँ"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "हैंडल छोड़ा गया"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "हैंडल आरक्षित किया गया"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "इतिहास"
@@ -2061,6 +2205,10 @@ msgstr "होल पंच"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "होम"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "होस्ट किया गया"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "अभी-अभी"
 msgid "Keyboard shortcuts"
 msgstr "कीबोर्ड शॉर्टकट"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "कुंजियाँ"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "कुंजियाँ बदली गईं"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "प्रकार"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "ज्ञात {known} · कनेक्टेड {linked} · प्रसारण मेश {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "अंतिम बार उपयोग किया गया"
 msgid "Layout"
 msgstr "लेआउट"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "केवल अक्षर और अंक, अक्षर से शुरू, 3 से 20 वर्ण"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "केवल अक्षर, अंक, रिक्त स्थान, हाइफ़न और स्लैश"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "लाइट"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "लिंक"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "खाता लिंक करें"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "खाता लिंक करें"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "लिंक किया गया"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "रिकवरी कोड का उपयोग करके लॉ�
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "TOTP ऑथेंटिकेटर ऐप का उपयोग करके लॉगिन"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "रिकवरी कुंजी बनाएँ?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "कुंजी बनाएँ"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "मेरी पासकी"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "नाम"
@@ -2486,6 +2674,10 @@ msgstr "नाम"
 msgctxt "person"
 msgid "Name"
 msgstr "नाम"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "नाम जोड़ा गया"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "नाम अपडेट हो गया"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "नेटवर्क"
 
@@ -2518,6 +2712,12 @@ msgstr "नेटवर्क"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "नेटवर्क त्रुटि"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "नेटवर्क"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "तुलना नहीं की गई: {0} से बड़ी"
 msgid "Not compared: over the size limit"
 msgstr "तुलना नहीं की गई: आकार सीमा से अधिक"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "कनेक्ट नहीं है"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "विकल्प"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "अन्य"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "अन्य सर्वर खाते के दस्तावेज़ से नई कुंजी के बारे में जानते हैं। पुरानी कुंजी से हस्ताक्षरित कुछ भी अब सत्यापित नहीं होगा।"
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "आगे बढ़ें"
 msgid "Processing…"
 msgstr "प्रोसेस हो रहा है…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "प्रोफ़ाइल"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "प्रॉम्प्ट सहेजा गया"
@@ -3129,6 +3342,11 @@ msgstr "रिकॉर्डिंग में कोई आवाज़ न�
 msgid "Recovery codes"
 msgstr "रिकवरी कोड्स"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "रिकवरी कुंजी"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "रीडायरेक्ट"
@@ -3179,6 +3397,15 @@ msgstr "24 घंटे के भीतर सापेक्ष, अन्य�
 msgid "Relay service"
 msgstr "रिले सेवा"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "छोड़ें"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "यह हैंडल छोड़ें?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "प्रासंगिकता {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "रिमाइंडर"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "हटाएँ"
 
@@ -3256,6 +3485,10 @@ msgstr "लिंक हटाएँ"
 msgid "Remove suspension"
 msgstr "निलंबन हटाएँ"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "यह खाता हटाएँ?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "दोहराया जाता है"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "बदलें"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "कुंजियाँ बदलें"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "कुंजियाँ बदलें?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "आवश्यक"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "ईमेल फिर से भेजें"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "आरक्षित करें"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "यह हैंडल आरक्षित करें?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "शनिवार"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "सेव करें"
@@ -3705,6 +3957,10 @@ msgstr "यह सहायता दिखाएँ"
 msgid "Showing {totalShown} of {total}"
 msgstr "{total} में से {totalShown} दिखाए जा रहे हैं"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "केवल एक बार दिखाई जाती है। इसे किसी सुरक्षित जगह रखें: यह यहाँ संग्रहीत नहीं होती।"
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "साइडबार"
@@ -3767,6 +4023,7 @@ msgstr "शुरू हुआ"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "स्टेटस"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "नियम और शर्तें"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "टेस्ट"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "टेस्ट विफल"
 
@@ -3909,6 +4168,22 @@ msgstr "भेजा नहीं जा सका। फ़ाइलें ब�
 msgid "That email is already registered to another account"
 msgstr "वह ईमेल पहले से किसी अन्य अकाउंट के साथ रजिस्टर्ड है"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "वह नाम व्यवस्थापकों के लिए है"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "वह नाम सर्वर के लिए रखा गया है"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "वह नाम उपलब्ध नहीं है"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "वह नाम पहले ही ले लिया गया है"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "कैमरा पहले से उपयोग में है"
 msgid "The camera request was not answered"
 msgstr "कैमरा अनुरोध का उत्तर नहीं मिला"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "जिस हैंडल के अंतर्गत यह नाम है, वह आपका नहीं है"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "माइक्रोफ़ोन अनुरोध का उत्तर नहीं मिला"
@@ -3933,6 +4212,10 @@ msgstr "पासकी अनुरोध का उत्तर नहीं �
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "अनुरोधित सामग्री नहीं मिल सकी।"
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "सर्वर ने लिंक की अनुमति नहीं दी"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "यह एक संपूर्ण बैकअप है जिसे 
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "यह गेम और उसकी चैट को स्थायी रूप से हटा देगा। इसे वापस नहीं लाया जा सकता।"
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "यह सर्वर अन्य नेटवर्क उपलब्ध नहीं कराता।"
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "अज्ञात थीम"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "अनलिंक करें"
 
@@ -4202,6 +4490,10 @@ msgstr "प्रदाता अनलिंक करें"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "प्रोवाइडर अनलिंक करें?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "यह खाता अनलिंक करें?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X क्लाइंट ID"
 msgid "X client secret"
 msgstr "X क्लाइंट सीक्रेट"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "वर्ष"
@@ -4419,6 +4715,10 @@ msgstr "वर्ष"
 msgid "You can manage these paths: {paths}"
 msgstr "आप इन पथों का प्रबंधन कर सकते हैं: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "आप इस डोमेन पर नाम आरक्षित नहीं कर सकते"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "आपके पास इस अनुभाग तक पहुँच नहीं है।"
@@ -4426,6 +4726,10 @@ msgstr "आपके पास इस अनुभाग तक पहुँच 
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "आपके पास किसी भी डोमेन का एक्सेस नहीं है।"
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "आप हैंडल की अपनी सीमा तक पहुँच गए हैं"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx

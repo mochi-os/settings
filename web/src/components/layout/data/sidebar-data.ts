@@ -20,11 +20,13 @@ import {
   Star,
   Bell,
   FileText,
+  Share2,
 } from 'lucide-react'
 
 export function useFilteredSidebarData(
   isAdmin: boolean,
-  hasDomainAccess: boolean
+  hasDomainAccess: boolean,
+  hasNetworks: boolean
 ): SidebarData {
   const { t } = useLingui()
   const userNavGroup = {
@@ -47,6 +49,17 @@ export function useFilteredSidebarData(
         url: APP_ROUTES.SETTINGS.USER.ACCOUNTS,
         icon: Link2,
       },
+      // Offered only where the server hosts or links accounts on other
+      // networks; until then the page is not reachable from here.
+      ...(hasNetworks
+        ? [
+            {
+              title: t`Networks`,
+              url: APP_ROUTES.SETTINGS.USER.NETWORKS,
+              icon: Share2,
+            },
+          ]
+        : []),
       {
         title: t({ message: 'Links', context: 'external links' }),
         url: APP_ROUTES.SETTINGS.USER.LINKS,

@@ -18,6 +18,16 @@ msgstr ""
 msgid "Please check your internet connection and try again."
 msgstr "Kontrolli internetiühendust ja proovi uuesti."
 
+#. placeholder {0}: releasing.name
+#: src/features/user/networks.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
+msgstr "\"{0}\" ja selle all olevad nimed vabastatakse, et igaüks saaks need võtta. Nende kontod, kõik, mida need on avaldanud, ja nende jälgijad eemaldatakse."
+
+#. placeholder {0}: removing.identifier
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be removed with everything it published and its followers."
+msgstr "\"{0}\" eemaldatakse koos kõige selle kaudu avaldatu ja selle jälgijatega."
+
 #. placeholder {0}: user.username
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
@@ -27,6 +37,16 @@ msgstr "\"{0}\" logitakse välja ega saa uuesti sisse logida, kuni peatamine on 
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" logitakse välja kõigis seadmetes ja ta peab uuesti sisse logima."
+
+#. placeholder {0}: removing.identifier
+#. placeholder {1}: removing.server ?? ''
+#: src/features/user/networks.tsx
+msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
+msgstr "\"{0}\" sidumine tühistatakse. Selle kaudu avaldatu jääb serverisse {1}."
+
+#: src/features/user/networks.tsx
+msgid "\"{address}\" will be yours on every network this server offers. A handle cannot be renamed; releasing it later removes its accounts and their followers."
+msgstr "\"{address}\" kuulub teile igas võrgus, mida see server pakub. Kasutajanime ei saa ümber nimetada; kui selle hiljem vabastate, eemaldatakse selle kontod ja nende jälgijad."
 
 #: src/features/user/sessions.tsx
 msgid "(current)"
@@ -129,6 +149,12 @@ msgstr "{0} · tõuketeade"
 #: src/features/user/display.tsx
 msgid "{0} (development)"
 msgstr "{0} (arendus)"
+
+#. placeholder {0}: networkLabel(network)
+#. placeholder {1}: row.name
+#: src/features/user/networks.tsx
+msgid "{0} for {1}"
+msgstr "{0} kasutajanimele {1}"
 
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
@@ -251,6 +277,10 @@ msgstr "3. Kinnita kood"
 msgid "A recording is already in progress."
 msgstr "Salvestamine on juba pooleli."
 
+#: src/features/user/networks.tsx
+msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
+msgstr "Taastevõti võimaldab teil konto teisaldada või tühistada selle, mida ohustatud server tegi. See asendab kõik varasemad võtmed ja kuvatakse ainult üks kord."
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absoluutne (kuupäev ja kellaaeg)"
@@ -274,15 +304,26 @@ msgstr "Juurdepääsu tase"
 msgid "Account"
 msgstr "Konto"
 
+#: src/features/user/networks.tsx
+msgid "Account actions"
+msgstr "Konto toimingud"
+
 #: src/features/user/connected-accounts.tsx
 msgid "Account added"
 msgstr "Konto lisatud"
 
+#: src/features/user/networks.tsx
+msgid "Account created"
+msgstr "Konto loodud"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Konto ühendatud"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account removed"
 msgstr "Konto eemaldatud"
 
@@ -299,12 +340,17 @@ msgid "Account type"
 msgstr "Konto tüüp"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Konto uuendatud"
 
 #: src/features/user/connected-accounts.tsx
 msgid "Account verified"
 msgstr "Konto kinnitatud"
+
+#: src/features/user/networks.tsx
+msgid "Accounts"
+msgstr "Kontod"
 
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
@@ -321,12 +367,22 @@ msgstr "Tegevus"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "Lisa"
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
 msgstr "Lisa kommentaar..."
+
+#: src/features/user/networks.tsx
+msgid "Add a name"
+msgstr "Lisa nimi"
+
+#. placeholder {0}: parent.name
+#: src/features/user/networks.tsx
+msgid "Add a name under {0}"
+msgstr "Lisa nimi {0} alla"
 
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Add a new account"
@@ -430,6 +486,7 @@ msgid "Added \"{0}\""
 msgstr "Lisatud \"{0}\""
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Aadress"
 
@@ -444,6 +501,10 @@ msgstr "Administraator"
 #: src/features/user/connected-accounts.tsx
 msgid "AI"
 msgstr "AI"
+
+#: src/features/user/networks.tsx
+msgid "Algorithm"
+msgstr "Algoritm"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -595,6 +656,10 @@ msgstr "Autentija kood"
 msgid "Automatic certificates"
 msgstr "Automaatsed sertifikaadid"
 
+#: src/features/user/networks.tsx
+msgid "Available"
+msgstr "Saadaval"
+
 #: ../../../lib/web/src/components/entity/keyboard-shortcuts-help.tsx
 msgid "Available keyboard shortcuts"
 msgstr "Saadaolevad klahvikombinatsioonid"
@@ -716,6 +781,9 @@ msgstr "Kaamera pole saadaval"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "Tühista"
@@ -783,6 +851,10 @@ msgstr "Muudetud kordus"
 msgid "Checkbox"
 msgstr "Märkeruut"
 
+#: src/features/user/networks.tsx
+msgid "Checking…"
+msgstr "Kontrollimine…"
+
 #: ../../../lib/web/src/hooks/use-field-type-labels.ts
 msgid "Checklist"
 msgstr "Kontrollnimekiri"
@@ -794,6 +866,10 @@ msgstr "Vali kuupäev"
 #: ../../../lib/web/src/components/game/game-empty-state.tsx
 msgid "Choose a game from the sidebar or start a new one."
 msgstr "Vali külgribalt mäng või alusta uut."
+
+#: src/features/user/networks.tsx
+msgid "Choose a handle"
+msgstr "Valige kasutajanimi"
 
 #: ../../../lib/web/src/components/ui/time-picker.tsx
 msgid "Choose a time"
@@ -836,6 +912,7 @@ msgstr "Tühjenda otsing"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Sulge"
 
@@ -945,6 +1022,7 @@ msgstr "Kinnitage, et see olete teie"
 #: ../../../lib/web/src/lib/chat-ui.ts
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Connected"
 msgstr "Ühendatud"
 
@@ -971,6 +1049,7 @@ msgid "Contextual information and details."
 msgstr "Kontekstuaalne teave ja üksikasjad."
 
 #: ../../../lib/web/src/components/responsive-confirm-dialog.tsx
+#: src/features/user/networks.tsx
 msgid "Continue"
 msgstr "Jätka"
 
@@ -983,6 +1062,7 @@ msgid "Continue with {providerLabel}"
 msgstr "Jätka teenusega {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Kopeeritud"
 
@@ -996,6 +1076,7 @@ msgstr "Kopeeritud lõikelauale"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Kopeeri"
 
@@ -1003,21 +1084,58 @@ msgstr "Kopeeri"
 msgid "Copy all"
 msgstr "Kopeeri kõik"
 
+#: src/features/user/networks.tsx
+msgid "Could not add the name"
+msgstr "Nime lisamine ebaõnnestus"
+
 #: src/features/user/close-account.tsx
 msgid "Could not close your account"
 msgstr "Teie kontot ei õnnestunud sulgeda"
+
+#: src/features/user/networks.tsx
+msgid "Could not copy"
+msgstr "Kopeerimine ebaõnnestus"
 
 #: src/features/user/login.tsx
 msgid "Could not copy the codes. Select and copy them manually."
 msgstr "Koode ei õnnestunud kopeerida. Vali ja kopeeri need käsitsi."
 
+#: src/features/user/networks.tsx
+msgid "Could not create the account"
+msgstr "Konto loomine ebaõnnestus"
+
 #: src/hooks/use-oauth-result.ts
 msgid "Could not link account"
+msgstr "Konto sidumine ebaõnnestus"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Could not link the account"
 msgstr "Konto sidumine ebaõnnestus"
 
 #: ../../../lib/web/src/features/document/document-page.tsx
 msgid "Could not load this document. Please try again later."
 msgstr "Selle dokumendi laadimine ebaõnnestus. Palun proovi hiljem uuesti."
+
+#: src/features/user/networks.tsx
+msgid "Could not make the recovery key"
+msgstr "Taastevõtme loomine ebaõnnestus"
+
+#: src/features/user/networks.tsx
+msgid "Could not release the handle"
+msgstr "Kasutajanime vabastamine ebaõnnestus"
+
+#: src/features/user/networks.tsx
+msgid "Could not remove the account"
+msgstr "Konto eemaldamine ebaõnnestus"
+
+#: src/features/user/networks.tsx
+msgid "Could not replace the keys"
+msgstr "Võtmete asendamine ebaõnnestus"
+
+#: src/features/user/networks.tsx
+msgid "Could not reserve the handle"
+msgstr "Kasutajanime broneerimine ebaõnnestus"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1027,6 +1145,10 @@ msgstr "Sidumise alustamine ebaõnnestus"
 #: src/features/user/login.tsx
 msgid "Could not unlink provider"
 msgstr "Pakkuja lahutamine ebaõnnestus"
+
+#: src/features/user/networks.tsx
+msgid "Could not update the account"
+msgstr "Konto uuendamine ebaõnnestus"
 
 #: ../../../lib/web/src/components/layout/notification-menu.tsx
 msgid "Couldn't load notifications"
@@ -1073,6 +1195,7 @@ msgstr "Loo kasutaja"
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Loodud"
@@ -1404,6 +1527,7 @@ msgid "Does not match the required pattern"
 msgstr "Ei vasta nõutud mustrile"
 
 #: src/features/domains/index.tsx
+#: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domeen"
 
@@ -1924,6 +2048,10 @@ msgstr "Koodi kontrollimine ebaõnnestus"
 msgid "Failed to verify domain"
 msgstr "Domeeni kontrollimine ebaõnnestus"
 
+#: src/features/user/networks.tsx
+msgid "Fediverse"
+msgstr "Fediverse"
+
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2047,6 +2175,22 @@ msgstr "Rühmita"
 msgid "Group: {0}"
 msgstr "Rühm: {0}"
 
+#: src/features/user/networks.tsx
+msgid "Handle"
+msgstr "Kasutajanimi"
+
+#: src/features/user/networks.tsx
+msgid "Handle actions"
+msgstr "Kasutajanime toimingud"
+
+#: src/features/user/networks.tsx
+msgid "Handle released"
+msgstr "Kasutajanimi vabastatud"
+
+#: src/features/user/networks.tsx
+msgid "Handle reserved"
+msgstr "Kasutajanimi broneeritud"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Ajalugu"
@@ -2061,6 +2205,10 @@ msgstr "Augustamine"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Avaleht"
+
+#: src/features/user/networks.tsx
+msgid "Hosted"
+msgstr "Majutatud"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2161,6 +2309,21 @@ msgstr "Just praegu"
 msgid "Keyboard shortcuts"
 msgstr "Klahvikombinatsioonid"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgctxt "cryptographic"
+msgid "Keys"
+msgstr "Võtmed"
+
+#: src/features/user/networks.tsx
+msgid "Keys replaced"
+msgstr "Võtmed asendatud"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Kind"
+msgstr "Tüüp"
+
 #: src/features/system/status.tsx
 msgid "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgstr "Teada {known} · Ühendatud {linked} · Edastus-mesh {mesh}"
@@ -2215,6 +2378,10 @@ msgstr "Viimati kasutatud"
 msgid "Layout"
 msgstr "Paigutus"
 
+#: src/features/user/networks.tsx
+msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
+msgstr "Ainult tähed ja numbrid, algab tähega, 3 kuni 20 märki"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Letters, numbers, spaces, hyphens, and slashes only"
 msgstr "Ainult tähed, numbrid, tühikud, sidekriipsud ja kaldkriipsud"
@@ -2224,12 +2391,22 @@ msgid "Light"
 msgstr "Hele"
 
 #: ../../../lib/web/src/components/options-menu.tsx
+#: src/features/user/networks.tsx
 msgid "Link"
 msgstr "Link"
 
 #: src/features/user/login.tsx
 msgid "Link account"
 msgstr "Lingi konto"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Link an account"
+msgstr "Seo konto"
+
+#: src/features/user/networks.tsx
+msgid "Linked"
+msgstr "Seotud"
 
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
@@ -2321,6 +2498,14 @@ msgstr "Sisselogimine taastekoodiga"
 #: src/features/system/settings.tsx
 msgid "Login using TOTP authenticator app"
 msgstr "Sisselogimine TOTP autentimisrakendusega"
+
+#: src/features/user/networks.tsx
+msgid "Make a recovery key?"
+msgstr "Kas luua taastevõti?"
+
+#: src/features/user/networks.tsx
+msgid "Make key"
+msgstr "Loo võti"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2478,6 +2663,9 @@ msgstr "Minu pääsuvõti"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Nimi"
@@ -2486,6 +2674,10 @@ msgstr "Nimi"
 msgctxt "person"
 msgid "Name"
 msgstr "Nimi"
+
+#: src/features/user/networks.tsx
+msgid "Name added"
+msgstr "Nimi lisatud"
 
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name cannot contain < or > characters"
@@ -2511,6 +2703,8 @@ msgstr "Nimi uuendatud"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Võrk"
 
@@ -2518,6 +2712,12 @@ msgstr "Võrk"
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Network error"
 msgstr "Võrguviga"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Networks"
+msgstr "Võrgud"
 
 #: src/features/system/users.tsx
 #: src/features/user/login.tsx
@@ -2744,6 +2944,10 @@ msgstr "Võrdlemata: suurem kui {0}"
 msgid "Not compared: over the size limit"
 msgstr "Võrdlemata: üle suuruspiirangu"
 
+#: src/features/user/networks.tsx
+msgid "Not connected"
+msgstr "Pole ühendatud"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -2863,6 +3067,10 @@ msgstr "Valikud"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Muu"
+
+#: src/features/user/networks.tsx
+msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
+msgstr "Teised serverid saavad uue võtme konto dokumendist. Miski, mis on vana võtmega allkirjastatud, ei läbi enam kontrolli."
 
 #: src/features/system/settings.tsx
 msgid "Other settings"
@@ -3046,6 +3254,11 @@ msgstr "Jätka"
 msgid "Processing…"
 msgstr "Töötlemine…"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Profile"
+msgstr "Profiil"
+
 #: ../../../lib/web/src/components/ai-prompts-editor.tsx
 msgid "Prompt saved"
 msgstr "Viip salvestatud"
@@ -3129,6 +3342,11 @@ msgstr "Salvestis ei sisaldanud heli"
 msgid "Recovery codes"
 msgstr "Taastekoodid"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Recovery key"
+msgstr "Taastevõti"
+
 #: src/features/domains/index.tsx
 msgid "Redirect"
 msgstr "Ümbersuunamine"
@@ -3179,6 +3397,15 @@ msgstr "Suhteline 24 tunni jooksul, muidu absoluutne"
 msgid "Relay service"
 msgstr "Releeteenus"
 
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Release"
+msgstr "Vabasta"
+
+#: src/features/user/networks.tsx
+msgid "Release this handle?"
+msgstr "Kas vabastada see kasutajanimi?"
+
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Relevance {relevance}"
 msgstr "Asjakohasus {relevance}"
@@ -3198,6 +3425,8 @@ msgstr "Meeldetuletus"
 #: ../../../lib/web/src/features/access/access-list.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Remove"
 msgstr "Eemalda"
 
@@ -3256,6 +3485,10 @@ msgstr "Eemalda link"
 msgid "Remove suspension"
 msgstr "Eemalda peatamine"
 
+#: src/features/user/networks.tsx
+msgid "Remove this account?"
+msgstr "Kas eemaldada see konto?"
+
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 #: ../../../lib/web/src/components/entity/entity-board-column.tsx
 msgid "Rename"
@@ -3279,8 +3512,17 @@ msgid "Repeats"
 msgstr "Kordub"
 
 #: src/features/system/settings.tsx
+#: src/features/user/networks.tsx
 msgid "Replace"
 msgstr "Asenda"
+
+#: src/features/user/networks.tsx
+msgid "Replace keys"
+msgstr "Asenda võtmed"
+
+#: src/features/user/networks.tsx
+msgid "Replace the keys?"
+msgstr "Kas asendada võtmed?"
 
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
 #: ../../../lib/web/src/components/entity/entity-comment-thread.tsx
@@ -3304,6 +3546,15 @@ msgstr "Kohustuslik"
 #: ../../../lib/web/src/components/step-up-dialog.tsx
 msgid "Resend email"
 msgstr "Saada e-kiri uuesti"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Reserve"
+msgstr "Broneeri"
+
+#: src/features/user/networks.tsx
+msgid "Reserve this handle?"
+msgstr "Kas broneerida see kasutajanimi?"
 
 #: src/features/system/settings.tsx
 #: src/features/user/display.tsx
@@ -3456,6 +3707,7 @@ msgstr "Laupäev"
 #: src/features/system/documents.tsx
 #: src/features/system/settings.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Save"
 msgstr "Salvesta"
@@ -3705,6 +3957,10 @@ msgstr "Näita seda abi"
 msgid "Showing {totalShown} of {total}"
 msgstr "Näidatakse {totalShown} / {total}"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Keep it somewhere safe: it is not stored here."
+msgstr "Kuvatakse ainult üks kord. Hoidke seda turvalises kohas: seda ei salvestata siia."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Külgriba"
@@ -3767,6 +4023,7 @@ msgstr "Alustatud"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Olek"
 
@@ -3881,11 +4138,13 @@ msgid "Terms and conditions"
 msgstr "Tingimused"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Test"
 msgstr "Testi"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 msgid "Test failed"
 msgstr "Test ebaõnnestus"
 
@@ -3909,6 +4168,22 @@ msgstr "Saatmine ebaõnnestus. Failid võivad olla liiga suured või ühendus ka
 msgid "That email is already registered to another account"
 msgstr "See e-post on juba registreeritud teisele kontole"
 
+#: src/features/user/networks.tsx
+msgid "That name is for administrators"
+msgstr "See nimi on administraatoritele"
+
+#: src/features/user/networks.tsx
+msgid "That name is kept for the server"
+msgstr "See nimi on reserveeritud serverile"
+
+#: src/features/user/networks.tsx
+msgid "That name is not available"
+msgstr "See nimi ei ole saadaval"
+
+#: src/features/user/networks.tsx
+msgid "That name is taken"
+msgstr "See nimi on juba võetud"
+
 #: ../../../lib/web/src/hooks/use-attachment-error.ts
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "That was too large to upload. Remove or shrink files and try again."
@@ -3922,6 +4197,10 @@ msgstr "Kaamera on juba kasutusel"
 msgid "The camera request was not answered"
 msgstr "Kaamera päringule ei vastatud"
 
+#: src/features/user/networks.tsx
+msgid "The handle this name sits under is not yours"
+msgstr "Kasutajanimi, mille all see nimi on, ei kuulu teile"
+
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "The microphone request was not answered"
 msgstr "Mikrofoni päringule ei vastatud"
@@ -3933,6 +4212,10 @@ msgstr "Pääsuvõtme päringule ei vastatud"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "The requested content could not be found."
 msgstr "Soovitud sisu ei õnnestunud leida."
+
+#: src/features/user/networks.tsx
+msgid "The server did not allow the link"
+msgstr "Server ei lubanud sidumist"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -3965,6 +4248,10 @@ msgstr "See on täielik varukoopia, mille saate taastada sellesse või mõnda te
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "This permanently deletes the game and its chat. This cannot be undone."
 msgstr "See kustutab mängu ja selle vestluse jäädavalt. Seda ei saa tagasi võtta."
+
+#: src/features/user/networks.tsx
+msgid "This server does not offer other networks."
+msgstr "See server ei paku teisi võrke."
 
 #. placeholder {0}: forgetting.label || t`Device`
 #: src/features/user/connected-accounts.tsx
@@ -4192,6 +4479,7 @@ msgid "Unknown theme"
 msgstr "Tundmatu teema"
 
 #: src/features/user/login.tsx
+#: src/features/user/networks.tsx
 msgid "Unlink"
 msgstr "Eemalda link"
 
@@ -4202,6 +4490,10 @@ msgstr "Lahuta pakkuja"
 #: src/features/user/login.tsx
 msgid "Unlink provider?"
 msgstr "Eemaldada lingitud teenusepakkuja?"
+
+#: src/features/user/networks.tsx
+msgid "Unlink this account?"
+msgstr "Kas tühistada selle konto sidumine?"
 
 #. placeholder {0}: providerName(provider)
 #: src/features/user/login.tsx
@@ -4411,6 +4703,10 @@ msgstr "X kliendi ID"
 msgid "X client secret"
 msgstr "X kliendi saladus"
 
+#: src/features/user/networks.tsx
+msgid "XMPP"
+msgstr "XMPP"
+
 #: ../../../lib/web/src/components/calendar/date-header.tsx
 msgid "Year"
 msgstr "Aasta"
@@ -4419,6 +4715,10 @@ msgstr "Aasta"
 msgid "You can manage these paths: {paths}"
 msgstr "Saate hallata neid teid: {paths}"
 
+#: src/features/user/networks.tsx
+msgid "You cannot reserve a name on this domain"
+msgstr "Selles domeenis ei saa te nime broneerida"
+
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "You do not have access to this section."
 msgstr "Sul puudub juurdepääs sellele jaotisele."
@@ -4426,6 +4726,10 @@ msgstr "Sul puudub juurdepääs sellele jaotisele."
 #: src/features/domains/index.tsx
 msgid "You don't have access to any domains."
 msgstr "Sul pole juurdepääsu ühelegi domeenile."
+
+#: src/features/user/networks.tsx
+msgid "You have reached your limit of handles"
+msgstr "Olete jõudnud kasutajanimede piirini"
 
 #. placeholder {0}: providerName(identity.provider)
 #: src/features/user/login.tsx
