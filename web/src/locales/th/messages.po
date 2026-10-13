@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {ส่งการทดสอบไปยัง # �
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} จาก {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} จะถูกออกจากระบบ {0} และต้องเข้าสู่ระบบอีกครั้ง"
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, other {ส่งการทดสอบไปยัง {sent} จาก # ปลายทางแล้ว}}"
@@ -306,6 +311,7 @@ msgstr "ระดับการเข้าถึง"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "บัญชี"
 
@@ -492,6 +498,7 @@ msgstr "เพิ่ม\"{0}\"แล้ว"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "ที่อยู่"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "ทุกอย่างที่สมัครรับฟีดนี้จะหยุดรับ คุณสามารถคัดลอก URL ใหม่ได้ภายหลัง"
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "แอป"
 
@@ -585,6 +593,15 @@ msgstr "แอปที่จัดการการลงชื่อเข้
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "ลักษณะ"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "แอปที่เข้าสู่ระบบอยู่"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "แอปที่เข้าสู่ระบบ {0} ด้วยรหัสผ่านนี้จะถูกออกจากระบบ"
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "ล้างการค้นหา"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "ปิด"
 
@@ -1078,6 +1096,7 @@ msgstr "ดำเนินการต่อด้วย {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "คัดลอกแล้ว"
 
@@ -1091,6 +1110,9 @@ msgstr "คัดลอกไปยังคลิปบอร์ดแล้ว
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "คัดลอก"
@@ -1107,6 +1129,7 @@ msgstr "เพิ่มชื่อไม่ได้"
 msgid "Could not close your account"
 msgstr "ไม่สามารถปิดบัญชีของคุณได้"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "คัดลอกไม่ได้"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "ไม่สามารถโหลดเอกสารนี้ได้ โปรดลองอีกครั้งในภายหลัง"
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "ไม่สามารถสร้างรหัสผ่านได้"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "สร้างคีย์กู้คืนไม่ได้"
 
@@ -1152,6 +1179,10 @@ msgstr "แทนที่คีย์ไม่ได้"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "จองชื่อแฝงไม่ได้"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "ไม่สามารถเพิกถอนได้"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "สร้างผู้ใช้"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "สร้างแล้ว"
@@ -1453,9 +1485,11 @@ msgstr "ตรวจจับจากเว็บเบราว์เซอร
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "อุปกรณ์"
 
@@ -2424,6 +2458,7 @@ msgstr "เห็นล่าสุด"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "ใช้งานล่าสุด"
 
@@ -2559,6 +2594,10 @@ msgstr "สร้างคีย์กู้คืนหรือไม่?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "สร้างคีย์"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "สร้างรหัสผ่าน"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "เครือข่าย"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "พาสคีย์ถูกปิดใช้งานโดยผู
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "วลีรหัสผ่าน"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "รหัสผ่าน"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "เพิกถอนรหัสผ่านแล้ว"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "รหัสผ่าน"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "คืนค่าเริ่มต้น"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "เพิกถอน"
 
@@ -3722,6 +3777,14 @@ msgstr "เพิกถอนเซสชัน"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "เพิกถอนเซสชัน?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "เพิกถอนรหัสผ่านนี้หรือไม่?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "เพิกถอนการเข้าสู่ระบบนี้หรือไม่?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "เซริฟ"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "เซิร์ฟเวอร์"
 
@@ -4042,9 +4106,18 @@ msgstr "แสดง {totalShown} จาก {total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "แสดงเพียงครั้งเดียว เก็บไว้ในที่ปลอดภัย: คีย์นี้ไม่ได้จัดเก็บไว้ที่นี่"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "แสดงเพียงครั้งเดียว พิมพ์เป็นรหัสผ่านในแอป"
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "แถบด้านข้าง"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "เข้าสู่ระบบจากแอปอื่น"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "ออกจากระบบ"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "เข้าสู่ระบบ"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "เพิกถอนการเข้าสู่ระบบแล้ว"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

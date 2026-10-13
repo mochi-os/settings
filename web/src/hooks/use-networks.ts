@@ -155,3 +155,16 @@ export function useAccountKeysRecovery() {
     },
   })
 }
+
+// A password for signing in to a hosted account from another app, shown once.
+export function useAccountPassword() {
+  return useMutation({
+    mutationFn: (data: { id: string; name: string }) =>
+      requestHelpers.post<{ password: string }>(
+        endpoints.networks.accountPassword,
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      ),
+    gcTime: 0,
+  })
+}

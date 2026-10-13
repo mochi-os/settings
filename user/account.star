@@ -159,8 +159,30 @@ def action_user_account_identity_update(a):
     a.json({"ok": True})
 
 def action_user_account_sessions(a):
-    """List active sessions for current user"""
-    a.json({"sessions": mochi.user.session.list()})
+    """List active sessions for current user, with the sign-ins by other
+    networks' apps and the minted passwords, which the same page revokes."""
+    a.json({
+        "sessions": mochi.user.session.list(),
+        "signins": mochi.token.list(kind="signin"),
+        "passwords": mochi.token.list(kind="password"),
+    })
+
+def action_user_account_token_revoke(a):
+    """Revoke a sign-in by another app or a minted password."""
+    hash = a.input("hash", "")
+    if not hash:
+        a.error.label(400, "errors.missing_token")
+        return
+    known = False
+    for token in (mochi.token.list(kind="signin") or []) + (mochi.token.list(kind="password") or []):
+        if token.get("hash") == hash:
+            known = True
+            break
+    if not known:
+        a.error.label(404, "errors.not_found")
+        return
+    mochi.token.delete(hash)
+    a.json({"ok": True})
 
 def action_user_account_session_revoke(a):
     """Revoke a session"""

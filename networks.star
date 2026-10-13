@@ -164,3 +164,21 @@ def action_networks_account_keys_recovery(a):
     if not account:
         return
     a.json(mochi.account.key.recovery(account["id"]))
+
+def action_networks_account_password(a):
+    """Mint a password for signing in to a hosted account from another app,
+    named for the device it is typed on. Shown once; kept hashed."""
+    account = networks_account(a)
+    if not account:
+        return
+    if not account.get("hosted"):
+        a.error.label(400, "errors.account_not_hosted")
+        return
+    name = a.input("name", "").strip()
+    if not name:
+        a.error.label(400, "errors.name_is_required")
+        return
+    if len(name) > 100:
+        a.error.label(400, "errors.value_too_long", field="name", maximum=100)
+        return
+    a.json({"password": mochi.account.password(account["id"], name)})

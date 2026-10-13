@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {已向 # 个目标发送测试} other {已向 # 个�
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} / {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} 将从 {0} 退出登录，需要重新登录。"
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, other {测试已发送至 # 个目标中的 {sent} 个}}"
@@ -306,6 +311,7 @@ msgstr "访问级别"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "账户"
 
@@ -492,6 +498,7 @@ msgstr "已添加 \"{0}\""
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "地址"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "订阅此源的一切都将停止接收。之后你可以复制新的网址。"
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "应用"
 
@@ -585,6 +593,15 @@ msgstr "处理登录的应用"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "外观"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "已登录的应用"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "使用此密码登录 {0} 的应用将被退出登录。"
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "清除搜索"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "关闭"
 
@@ -1078,6 +1096,7 @@ msgstr "使用 {providerLabel} 继续"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "已复制"
 
@@ -1091,6 +1110,9 @@ msgstr "已复制到剪贴板"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "复制"
@@ -1107,6 +1129,7 @@ msgstr "无法添加名称"
 msgid "Could not close your account"
 msgstr "无法关闭你的账户"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "无法复制"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "无法加载此文档,请稍后重试。"
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "无法生成密码"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "无法创建恢复密钥"
 
@@ -1152,6 +1179,10 @@ msgstr "无法替换密钥"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "无法预留用户识别符"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "无法撤销"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "创建用户"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "已创建"
@@ -1453,9 +1485,11 @@ msgstr "从浏览器检测"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "设备"
 
@@ -2424,6 +2458,7 @@ msgstr "最后看到"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "最后使用"
 
@@ -2559,6 +2594,10 @@ msgstr "创建恢复密钥？"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "创建密钥"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "生成密码"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "网络"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "通行密钥已被服务器管理员关闭。"
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "密码短语"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "密码"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "密码已撤销"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "密码"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "恢复为默认"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "撤销"
 
@@ -3722,6 +3777,14 @@ msgstr "撤销会话"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "撤销会话?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "撤销此密码？"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "撤销此登录？"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "衬线体"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "服务器"
 
@@ -4042,9 +4106,18 @@ msgstr "显示 {total} 中的 {totalShown} 条"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "仅显示一次。请妥善保管：此处不会存储。"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "仅显示一次。请在应用中将其作为密码输入。"
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "侧边栏"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "从其他应用登录"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "退出登录"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "登录"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "登录已撤销"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

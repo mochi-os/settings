@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {Тест послат на # одредиште} few
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} од {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "Апликација {title} биће одјављена са {0} и мораће поново да се пријави."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {Тест је послат на {sent} од # одредишта} few {Тест је послат на {sent} од # одредишта} other {Тест је послат на {sent} од # одредишта}}"
@@ -306,6 +311,7 @@ msgstr "Ниво приступа"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "Налог"
 
@@ -492,6 +498,7 @@ msgstr "Додато „{0}“"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Адреса"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "Све што је претплаћено на овај фид престаће да га прима. Затим можете копирати нови URL."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "Апликација"
 
@@ -585,6 +593,15 @@ msgstr "Апликација која обрађује пријаву"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "Изглед"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "Пријављене апликације"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "Апликације пријављене на {0} са овом лозинком биће одјављене."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "Очисти претрагу"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Затвори"
 
@@ -1078,6 +1096,7 @@ msgstr "Настави са {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Копирано"
 
@@ -1091,6 +1110,9 @@ msgstr "Копирано у привремену меморију"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Копирај"
@@ -1107,6 +1129,7 @@ msgstr "Додавање имена није успело"
 msgid "Could not close your account"
 msgstr "Није било могуће затворити ваш налог"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "Копирање није успело"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "Није могуће учитати овај документ. Покушајте поново касније."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "Није могуће направити лозинку"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "Креирање кључа за опоравак није успело"
 
@@ -1152,6 +1179,10 @@ msgstr "Замена кључева није успела"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "Резервисање надимка није успело"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "Није могуће опозвати"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "Креирај корисника"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Креирано"
@@ -1453,9 +1485,11 @@ msgstr "Препознај из веб прегледача"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "Уређај"
 
@@ -2424,6 +2458,7 @@ msgstr "Последњи пут виђен"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "Последње коришћено"
 
@@ -2559,6 +2594,10 @@ msgstr "Креирати кључ за опоравак?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "Креирај кључ"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "Направи лозинку"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "Мреже"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "Приступне кључеве је искључио админист
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "Приступна фраза"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "Лозинка"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "Лозинка је опозвана"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "Лозинке"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "Врати на подразумевано"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "Опозови"
 
@@ -3722,6 +3777,14 @@ msgstr "Опозови сесију"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "Опозвати сесију?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "Опозвати ову лозинку?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "Опозвати ову пријаву?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "Сериф"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "Сервер"
 
@@ -4042,9 +4106,18 @@ msgstr "Приказ {totalShown} од {total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "Приказује се само једном. Чувајте га на безбедном месту: овде се не чува."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "Приказује се само једном. Унеси је као лозинку у апликацији."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Бочна трака"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "Пријава из друге апликације"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "Одјави се"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "Пријава"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "Пријава је опозвана"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

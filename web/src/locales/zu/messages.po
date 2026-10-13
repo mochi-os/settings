@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {Ukuhlolwa kuthunyelwe endaweni engu-#} other {Ukuhlo
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} kokungu-{totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "I-{title} izokhishwa ku-{0} futhi kufanele iphinde ingene."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {Ukuhlolwa kuthunyelwe ku-{sent} kwendawo engu-#} other {Ukuhlolwa kuthunyelwe ku-{sent} kwezindawo ezingu-#}}"
@@ -306,6 +311,7 @@ msgstr "Izinga lokufinyelela"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "I-akhawunti"
 
@@ -492,6 +498,7 @@ msgstr "Kwengezwe okuthi \"{0}\""
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Ikheli"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "Konke okubhalisele lo mfudlana kuzoyeka ukukuthola. Ungakopisha i-URL entsha ngemva kwalokho."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "I-app"
 
@@ -585,6 +593,15 @@ msgstr "Uhlelo olusingatha ukungena"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "Ukubukeka"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "Ama-app angenile"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "Ama-app angene ku-{0} ngale phasiwedi azokhishwa."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "Sula usesho"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Vala"
 
@@ -1078,6 +1096,7 @@ msgstr "Qhubeka nge-{providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Kukopishiwe"
 
@@ -1091,6 +1110,9 @@ msgstr "Kukopishelwe kwi-clipboard"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Kopisha"
@@ -1107,6 +1129,7 @@ msgstr "Akukwazanga ukwengeza igama"
 msgid "Could not close your account"
 msgstr "Ayikwazanga ukuvalwa i-akhawunti yakho"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "Akukwazanga ukukopisha"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "Asikwazanga ukulayisha le dokhumenti. Sicela uzame futhi ngokuhamba kwesikhathi."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "Akukwazanga ukwenza iphasiwedi"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "Akukwazanga ukudala ukhiye wokubuyisela"
 
@@ -1152,6 +1179,10 @@ msgstr "Akukwazanga ukushintsha okhiye"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "Akukwazanga ukubhukha isidlaliso"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "Akukwazanga ukuhoxisa"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "Dala umsebenzisi"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Kudaliwe"
@@ -1453,9 +1485,11 @@ msgstr "Bona kusuka kubhrawuza ye-web"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "Idivayisi"
 
@@ -2424,6 +2458,7 @@ msgstr "Igcine ukubonwa"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "Kusetshenziswe okokugcina"
 
@@ -2559,6 +2594,10 @@ msgstr "Dala ukhiye wokubuyisela?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "Dala ukhiye"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "Yenza iphasiwedi"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "Amanethiwekhi"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "Okhiye bokungena bavalwe ngumlawuli weseva."
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "Umusho wephasiwedi"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "Iphasiwedi"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "Iphasiwedi ihoxisiwe"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "Amaphasiwedi"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "Buyisela kokuzenzakalelayo"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "Hoxisa"
 
@@ -3722,6 +3777,14 @@ msgstr "Hoxisa iseshini"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "Hoxisa iseshini?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "Hoxisa le phasiwedi?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "Hoxisa lokhu kungena?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "I-Serif"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "Iseva"
 
@@ -4042,9 +4106,18 @@ msgstr "Kuboniswa {totalShown} ku-{total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "Uboniswa kanye kuphela. Wugcine endaweni ephephile: awugcinwa lapha."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "Iboniswa kanye kuphela. Yithayiphe njengephasiwedi ku-app."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Ibha eseceleni"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "Ngena usebenzisa enye i-app"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "Phuma"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "Ukungena"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "Ukungena kuhoxisiwe"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

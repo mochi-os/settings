@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {Prófun send á # áfangastað} other {Prófun send 
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} af {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} verður skráð út af {0} og þarf að skrá sig inn aftur."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {Prófun send á {sent} af # áfangastað} other {Prófun send á {sent} af # áfangastöðum}}"
@@ -306,6 +311,7 @@ msgstr "Aðgangsstig"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "Reikningur"
 
@@ -492,6 +498,7 @@ msgstr "Bætti við „{0}“"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Vistfang"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "Allt sem er áskrifandi að þessari veitu hættir að fá hana. Þú getur afritað nýja vefslóð á eftir."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "Forrit"
 
@@ -585,6 +593,15 @@ msgstr "Forrit sem sér um innskráningu"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "Útlit"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "Innskráð forrit"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "Forrit sem eru skráð inn á {0} með þessu lykilorði verða skráð út."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "Hreinsa leit"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Loka"
 
@@ -1078,6 +1096,7 @@ msgstr "Halda áfram með {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Afritað"
 
@@ -1091,6 +1110,9 @@ msgstr "Afritað á klippiborðið"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Afrita"
@@ -1107,6 +1129,7 @@ msgstr "Ekki tókst að bæta við nafninu"
 msgid "Could not close your account"
 msgstr "Ekki tókst að loka reikningnum þínum"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "Ekki tókst að afrita"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "Ekki var hægt að hlaða þessu skjali. Reyndu aftur síðar."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "Ekki tókst að búa til lykilorðið"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "Ekki tókst að búa til endurheimtarlykilinn"
 
@@ -1152,6 +1179,10 @@ msgstr "Ekki tókst að skipta út lyklunum"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "Ekki tókst að taka frá notandanafnið"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "Ekki tókst að afturkalla"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "Búa til notanda"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Búið til"
@@ -1453,9 +1485,11 @@ msgstr "Greina út frá vafra"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "Tæki"
 
@@ -2424,6 +2458,7 @@ msgstr "Síðast séð"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "Síðast notað"
 
@@ -2559,6 +2594,10 @@ msgstr "Búa til endurheimtarlykil?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "Búa til lykil"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "Búa til lykilorð"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "Net"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "Aðgangslyklar hafa verið slökktir af kerfisstjóra netþjónsins."
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "Lykilsetning"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "Lykilorð"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "Lykilorð afturkallað"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "Lykilorð"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "Setja á sjálfgefið"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "Afturkalla"
 
@@ -3722,6 +3777,14 @@ msgstr "Afturkalla setu"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "Afturkalla setu?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "Afturkalla þetta lykilorð?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "Afturkalla þessa innskráningu?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "Þverstrik"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "Þjónn"
 
@@ -4042,9 +4106,18 @@ msgstr "Sýni {totalShown} af {total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "Aðeins sýndur einu sinni. Geymdu hann á öruggum stað: hann er ekki vistaður hér."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "Aðeins sýnt einu sinni. Sláðu það inn sem lykilorð í forritinu."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Hliðarstika"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "Innskráning úr öðru forriti"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "Skrá út"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "Innskráning"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "Innskráning afturkölluð"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {Сыноо # дарекке жөнөтүлдү} othe
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{totalLabel} ичинен {sentLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} {0} аккаунтунан чыгарылат жана кайра кириши керек."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {Сыноо # даректен {sent} дарекке жөнөтүлдү} other {Сыноо # даректен {sent} дарекке жөнөтүлдү}}"
@@ -306,6 +311,7 @@ msgstr "Жетки деңгээли"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "Аккаунт"
 
@@ -492,6 +498,7 @@ msgstr "\"{0}\" кошулду"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Дарек"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "Бул тасмага жазылган нерселердин баары аны алууну токтотот. Андан кийин жаңы URL көчүрө аласыз."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "Колдонмо"
 
@@ -585,6 +593,15 @@ msgstr "Кирүүнү иштеткен колдонмо"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "Көрүнүш"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "Кирген колдонмолор"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "Бул сырсөз менен {0} аккаунтуна кирген колдонмолор чыгарылат."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "Издөөнү тазалоо"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Жабуу"
 
@@ -1078,6 +1096,7 @@ msgstr "{providerLabel} менен улантуу"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Көчүрүлдү"
 
@@ -1091,6 +1110,9 @@ msgstr "Алмашуу буферине көчүрүлдү"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Көчүрүү"
@@ -1107,6 +1129,7 @@ msgstr "Атты кошуу мүмкүн болбоду"
 msgid "Could not close your account"
 msgstr "Эсебиңизди жабуу мүмкүн болгон жок"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "Көчүрүү мүмкүн болбоду"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "Бул документти жүктөө мүмкүн болбоду. Кийинчерээк кайра аракет кылыңыз."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "Сырсөздү түзүү мүмкүн болбоду"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "Калыбына келтирүү ачкычын түзүү мүмкүн болбоду"
 
@@ -1152,6 +1179,10 @@ msgstr "Ачкычтарды алмаштыруу мүмкүн болбоду"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "Колдонуучу атын ээлеп коюу мүмкүн болбоду"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "Кайтарып алуу мүмкүн болбоду"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "Колдонуучу түзүү"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Түзүлдү"
@@ -1453,9 +1485,11 @@ msgstr "Веб-браузерден аныктоо"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "Түзмөк"
 
@@ -2424,6 +2458,7 @@ msgstr "Акыркы жолу көрүлгөн"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "Акыркы колдонулду"
 
@@ -2559,6 +2594,10 @@ msgstr "Калыбына келтирүү ачкычын түзөсүзбү?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "Ачкыч түзүү"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "Сырсөз түзүү"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "Тармактар"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "Кирүү ачкычтары сервер администратору 
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "Купуя сөз айкашы"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "Сырсөз"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "Сырсөз кайтарылып алынды"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "Сырсөздөр"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "Демейкиге кайтаруу"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "Кайтарып алуу"
 
@@ -3722,6 +3777,14 @@ msgstr "Сессияны кайтарып алуу"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "Сессияны кайтарып аласызбы?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "Бул сырсөздү кайтарып аласызбы?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "Бул кирүүнү кайтарып аласызбы?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "Серифтүү"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "Сервер"
 
@@ -4042,9 +4106,18 @@ msgstr "{total} ичинен {totalShown} көрсөтүлүүдө"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "Бир гана жолу көрсөтүлөт. Аны коопсуз жерде сактаңыз: ал бул жерде сакталбайт."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "Бир гана жолу көрсөтүлөт. Аны колдонмодо сырсөз катары териңиз."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Каптал панель"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "Башка колдонмодон кирүү"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "Чыгуу"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "Кирүү"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "Кирүү кайтарылып алынды"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

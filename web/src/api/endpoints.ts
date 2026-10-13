@@ -9,6 +9,7 @@ const endpoints = {
     accountIdentityUpdate: '-/user/account/identity/update',
     accountSessions: '-/user/account/sessions',
     accountSessionRevoke: '-/user/account/session/revoke',
+    accountTokenRevoke: '-/user/account/token/revoke',
     // Login methods
     accountMethods: '-/user/account/methods',
     accountMethodsSet: '-/user/account/methods/set',
@@ -71,6 +72,7 @@ const endpoints = {
     accountKeys: '-/user/networks/account/keys',
     accountKeysReplace: '-/user/networks/account/keys/replace',
     accountKeysRecovery: '-/user/networks/account/keys/recovery',
+    accountPassword: '-/user/networks/account/password',
   },
   system: {
     peers: '-/system/peers',

@@ -229,6 +229,11 @@ msgstr "{sent, plural, other {បានផ្ញើការសាកល្ប�
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} នៃ {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} នឹងត្រូវចាកចេញពី {0} ហើយត្រូវចូលម្តងទៀត។"
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, other {បានផ្ញើការសាកល្បងទៅ {sent} ក្នុងចំណោម # ទិសដៅ}}"
@@ -306,6 +311,7 @@ msgstr "កម្រិតការចូលប្រើ"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "គណនី"
 
@@ -492,6 +498,7 @@ msgstr "បានបន្ថែម \"{0}\""
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "អាសយដ្ឋាន"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "អ្វីៗដែលបានជាវព័ត៌មាននេះនឹងឈប់ទទួលបាន។ បន្ទាប់មកអ្នកអាចចម្លង URL ថ្មី។"
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "កម្មវិធី"
 
@@ -585,6 +593,15 @@ msgstr "កម្មវិធីដែលគ្រប់គ្រងការច
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "រូបរាង"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "កម្មវិធីដែលបានចូល"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "កម្មវិធីដែលបានចូល {0} ដោយប្រើពាក្យសម្ងាត់នេះនឹងត្រូវចាកចេញ។"
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "សម្អាតការស្វែងរក"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "បិទ"
 
@@ -1078,6 +1096,7 @@ msgstr "បន្តជាមួយ {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "បានចម្លង"
 
@@ -1091,6 +1110,9 @@ msgstr "បានចម្លងទៅក្ដារតម្បៀតខ្ទ
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "ចម្លង"
@@ -1107,6 +1129,7 @@ msgstr "មិនអាចបន្ថែមឈ្មោះបានទេ"
 msgid "Could not close your account"
 msgstr "មិនអាចបិទគណនីរបស់អ្នកបានទេ"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "មិនអាចចម្លងបានទេ"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "មិនអាចផ្ទុកឯកសារនេះ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។"
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "មិនអាចបង្កើតពាក្យសម្ងាត់បានទេ"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "មិនអាចបង្កើតកូនសោស្តារបានទេ"
 
@@ -1152,6 +1179,10 @@ msgstr "មិនអាចជំនួសកូនសោបានទេ"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "មិនអាចកក់ឈ្មោះអ្នកប្រើបានទេ"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "មិនអាចដកហូតបានទេ"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "បង្កើតអ្នកប្រើប្រាស់"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "បានបង្កើត"
@@ -1453,9 +1485,11 @@ msgstr "រកឃើញពីកម្មវិធីរុករកគេហទ
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "ឧបករណ៍"
 
@@ -2424,6 +2458,7 @@ msgstr "ឃើញចុងក្រោយ"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "បានប្រើចុងក្រោយ"
 
@@ -2559,6 +2594,10 @@ msgstr "បង្កើតកូនសោស្តារ?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "បង្កើតកូនសោ"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "បង្កើតពាក្យសម្ងាត់"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "បណ្តាញ"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "កូនសោចូលត្រូវបានបិទដោយអ្
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "ឃ្លាសម្ងាត់"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "ពាក្យសម្ងាត់"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "បានដកហូតពាក្យសម្ងាត់"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "ពាក្យសម្ងាត់"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "ត្រឡប់ទៅលំនាំដើម"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "ដកសិទ្ធិ"
 
@@ -3722,6 +3777,14 @@ msgstr "ដកវគ្គ"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "ដកវគ្គ?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "ដកហូតពាក្យសម្ងាត់នេះ?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "ដកហូតការចូលនេះ?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "សេរីហ្វ"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "ម៉ាស៊ីនមេ"
 
@@ -4042,9 +4106,18 @@ msgstr "កំពុងបង្ហាញ {totalShown} នៃ {total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "បង្ហាញតែម្តងប៉ុណ្ណោះ។ សូមរក្សាទុកវានៅកន្លែងសុវត្ថិភាព៖ វាមិនត្រូវបានរក្សាទុកនៅទីនេះទេ។"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "បង្ហាញតែម្តងប៉ុណ្ណោះ។ វាយវាជាពាក្យសម្ងាត់នៅក្នុងកម្មវិធី។"
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "របារចំហៀង"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "ចូលពីកម្មវិធីផ្សេង"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "ចេញ"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "ការចូល"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "បានដកហូតការចូល"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

@@ -98,6 +98,21 @@ export function useSessions() {
   })
 }
 
+export function useRevokeToken() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (hash: string) =>
+      requestHelpers.post<{ ok: boolean }>(
+        endpoints.user.accountTokenRevoke,
+        { hash },
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      ),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ['account', 'sessions'] })
+    },
+  })
+}
+
 export function useRevokeSession() {
   const queryClient = useQueryClient()
   return useMutation({

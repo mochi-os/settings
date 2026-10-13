@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {Test odeslán na # cíl} few {Test odeslán na # cí
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} z {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "Aplikace {title} bude odhlášena z {0} a bude se muset znovu přihlásit."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {Test odeslán na {sent} z # cíle} few {Test odeslán na {sent} z # cílů} many {Test odeslán na {sent} z # cíle} other {Test odeslán na {sent} z # cílů}}"
@@ -306,6 +311,7 @@ msgstr "Úroveň přístupu"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "Účet"
 
@@ -492,6 +498,7 @@ msgstr "Přidáno „{0}“"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adresa"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "Vše, co je k tomuto kanálu přihlášeno, jej přestane dostávat. Poté můžete zkopírovat novou adresu URL."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "Aplikace"
 
@@ -585,6 +593,15 @@ msgstr "Aplikace obsluhující přihlášení"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "Vzhled"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "Přihlášené aplikace"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "Aplikace přihlášené k {0} tímto heslem budou odhlášeny."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "Vymazat hledání"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Zavřít"
 
@@ -1078,6 +1096,7 @@ msgstr "Pokračovat s {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Zkopírováno"
 
@@ -1091,6 +1110,9 @@ msgstr "Zkopírováno do schránky"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Kopírovat"
@@ -1107,6 +1129,7 @@ msgstr "Jméno se nepodařilo přidat"
 msgid "Could not close your account"
 msgstr "Váš účet se nepodařilo uzavřít"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "Nepodařilo se zkopírovat"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "Tento dokument se nepodařilo načíst. Zkuste to prosím později."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "Heslo se nepodařilo vytvořit"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "Klíč pro obnovení se nepodařilo vytvořit"
 
@@ -1152,6 +1179,10 @@ msgstr "Klíče se nepodařilo nahradit"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "Uživatelské jméno se nepodařilo rezervovat"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "Odvolání se nezdařilo"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "Vytvořit uživatele"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Vytvořeno"
@@ -1453,9 +1485,11 @@ msgstr "Detekovat z webového prohlížeče"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "Zařízení"
 
@@ -2424,6 +2458,7 @@ msgstr "Naposledy viděn"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "Naposledy použito"
 
@@ -2559,6 +2594,10 @@ msgstr "Vytvořit klíč pro obnovení?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "Vytvořit klíč"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "Vytvořit heslo"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "Sítě"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "Přístupové klíče byly vypnuty správcem serveru."
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "Přístupové heslo"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "Heslo"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "Heslo odvoláno"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "Hesla"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "Obnovit výchozí"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "Odvolat"
 
@@ -3722,6 +3777,14 @@ msgstr "Odvolat relaci"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "Odvolat relaci?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "Odvolat toto heslo?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "Odvolat toto přihlášení?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "Patkové"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "Server"
 
@@ -4042,9 +4106,18 @@ msgstr "Zobrazeno {totalShown} z {total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "Zobrazí se jen jednou. Uložte si ho na bezpečné místo: zde se neukládá."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "Zobrazí se jen jednou. Zadejte ho v aplikaci jako heslo."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Postranní panel"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "Přihlásit se z jiné aplikace"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "Odhlásit se"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "Přihlášení"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "Přihlášení odvoláno"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

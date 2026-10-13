@@ -11,6 +11,7 @@ import { UserSessions } from './sessions'
 const state = vi.hoisted(() => ({
   navigate: vi.fn(),
   success: vi.fn(),
+  revoked: [] as string[],
 }))
 
 vi.mock('@mochi/web', async (original) => ({
@@ -18,6 +19,25 @@ vi.mock('@mochi/web', async (original) => ({
   shellNavigateTop: state.navigate,
   toast: { success: state.success, error: vi.fn() },
 }))
+
+const token = (
+  hash: string,
+  kind: 'signin' | 'password',
+  name: string,
+  device = ''
+) => ({
+  hash,
+  name,
+  created: 1,
+  used: 2,
+  expires: 0,
+  kind,
+  client: { id: 'c1', name: kind === 'signin' ? name : '', website: '' },
+  account: 'f1',
+  address: 'alice@example.com',
+  network: 'fediverse',
+  device,
+})
 
 const session = (id: string, agent: string, current = false) => ({
   id,
@@ -34,6 +54,8 @@ vi.mock('@/hooks/use-account', () => ({
   useSessions: () => ({
     data: {
       sessions: [session('a', 'Firefox', true), session('b', 'Chrome')],
+      signins: [token('s1', 'signin', 'Ivory', 'phone')],
+      passwords: [token('p1', 'password', 'Laptop')],
     },
     isLoading: false,
     error: null,
@@ -42,6 +64,13 @@ vi.mock('@/hooks/use-account', () => ({
   useRevokeSession: () => ({
     mutate: (_id: string, options: { onSuccess: () => void }) =>
       options.onSuccess(),
+    isPending: false,
+  }),
+  useRevokeToken: () => ({
+    mutate: (hash: string, options: { onSuccess: () => void }) => {
+      state.revoked.push(hash)
+      options.onSuccess()
+    },
     isPending: false,
   }),
 }))
@@ -56,6 +85,7 @@ describe('Revoking a session', () => {
   beforeEach(() => {
     state.navigate.mockReset()
     state.success.mockReset()
+    state.revoked.length = 0
     render(
       <I18nProvider i18n={i18n}>
         <UserSessions />
@@ -73,5 +103,24 @@ describe('Revoking a session', () => {
     revoke('Chrome')
     expect(state.navigate).not.toHaveBeenCalled()
     expect(state.success).toHaveBeenCalled()
+  })
+
+  it('lists the apps signed in and the minted passwords with their accounts', () => {
+    expect(screen.getByText('Apps signed in')).toBeTruthy()
+    expect(screen.getByText('Ivory')).toBeTruthy()
+    expect(screen.getByText('phone')).toBeTruthy()
+    expect(screen.getByText('Passwords')).toBeTruthy()
+    expect(screen.getByText('Laptop')).toBeTruthy()
+    expect(screen.getAllByText('alice@example.com')).toHaveLength(2)
+  })
+
+  it('revokes a sign-in by its hash and stays on the page', () => {
+    const row = screen.getByText('Ivory').closest('tr') as HTMLElement
+    fireEvent.click(within(row).getByRole('button', { name: /Revoke/ }))
+    expect(screen.getByText('Revoke this sign-in?')).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'Revoke' }))
+    expect(state.revoked).toEqual(['s1'])
+    expect(state.navigate).not.toHaveBeenCalled()
+    expect(state.success).toHaveBeenCalledWith('Sign-in revoked')
   })
 })

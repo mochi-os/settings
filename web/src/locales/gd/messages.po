@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {Chaidh an deuchainn a chur gu # cheann-uidhe} two {C
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} à {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "Thèid {title} a chlàradh a-mach à {0} agus feumaidh e clàradh a-steach a-rithist."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {Chaidh an deuchainn a chur gu {sent} à # cheann-uidhe} two {Chaidh an deuchainn a chur gu {sent} à # cheann-uidhe} few {Chaidh an deuchainn a chur gu {sent} à # cinn-uidhe} other {Chaidh an deuchainn a chur gu {sent} à # ceann-uidhe}}"
@@ -306,6 +311,7 @@ msgstr "Ìre inntrigidh"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "Cunntas"
 
@@ -492,6 +498,7 @@ msgstr "Chaidh \"{0}\" a chur ris"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Seòladh"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "Sguiridh rud sam bith a tha air fo-sgrìobhadh ris an inbhir seo ga fhaighinn. 'S urrainn dhut URL ùr a chopaigeadh às a dhèidh."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "Aplacaid"
 
@@ -585,6 +593,15 @@ msgstr "An aplacaid a làimhsicheas clàradh a-steach"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "Coltas"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "Aplacaidean a chlàraich a-steach"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "Thèid aplacaidean a chlàraich a-steach gu {0} leis an fhacal-fhaire seo a chlàradh a-mach."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "Falamhaich an lorg"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Dùin"
 
@@ -1078,6 +1096,7 @@ msgstr "Lean air adhart le {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Chaidh lethbhreac a dhèanamh"
 
@@ -1091,6 +1110,9 @@ msgstr "Air a chopaigeadh chun a' chliopaboird"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Dèan lethbhreac"
@@ -1107,6 +1129,7 @@ msgstr "Cha b' urrainn an t-ainm a chur ris"
 msgid "Could not close your account"
 msgstr "Cha b' urrainn do chunntas a dhùnadh"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "Cha b' urrainn lethbhreac a dhèanamh"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "Cha b' urrainn an sgrìobhainn seo a luchdachadh. Feuch ris a-rithist nas anmoiche."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "Cha b' urrainn am facal-faire a chruthachadh"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "Cha b' urrainn an iuchair aisig a chruthachadh"
 
@@ -1152,6 +1179,10 @@ msgstr "Cha b' urrainn na h-iuchraichean a chur 'nan àite"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "Cha b' urrainn an t-ainm-cleachdaiche a ghlèidheadh"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "Cha b' urrainn a chùl-ghairm"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "Cruthaich cleachdaiche"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Cruthaichte"
@@ -1453,9 +1485,11 @@ msgstr "Lorg bhon bhrabhsair-lìn"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "Inneal"
 
@@ -2424,6 +2458,7 @@ msgstr "Air fhaicinn mu dheireadh"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "Cleachdadh mu dheireadh"
 
@@ -2559,6 +2594,10 @@ msgstr "A bheil thu airson iuchair aisig a chruthachadh?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "Cruthaich iuchair"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "Cruthaich facal-faire"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "Lìonraidhean"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "Chaidh na pasgairean a chur dheth le rianaire an fhrithealaiche."
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "Abairt-fhaire"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "Facal-faire"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "Facal-faire air a chùl-ghairm"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "Faclan-faire"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "Aisig chun a' bhun-tuiteamais"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "Cùl-ghairm"
 
@@ -3722,6 +3777,14 @@ msgstr "Cùl-ghairm an seisean"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "An cùl-ghairm an seisean?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "A bheil thu airson am facal-faire seo a chùl-ghairm?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "A bheil thu airson an clàradh a-steach seo a chùl-ghairm?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "Serif"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "Frithealaiche"
 
@@ -4042,9 +4106,18 @@ msgstr "A' sealltainn {totalShown} de {total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "Cha tèid a sealltainn ach aon turas. Cùm i an àiteigin sàbhailte: chan eil i air a stòradh an-seo."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "Cha tèid a shealltainn ach aon turas. Taip e mar am facal-faire san aplacaid."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Bàr-taoibh"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "Clàraich a-steach o aplacaid eile"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "Clàraich a-mach"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "Clàradh a-steach"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "Clàradh a-steach air a chùl-ghairm"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

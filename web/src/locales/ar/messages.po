@@ -229,6 +229,11 @@ msgstr "{sent, plural, zero {لم يتم إرسال الاختبار إلى أي
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} من {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "سيتم تسجيل خروج {title} من {0} وسيتعين عليه تسجيل الدخول مرة أخرى."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, zero {تم إرسال الاختبار إلى {sent} من أصل # وجهة} one {تم إرسال الاختبار إلى {sent} من أصل # وجهة} two {تم إرسال الاختبار إلى {sent} من أصل # وجهتين} few {تم إرسال الاختبار إلى {sent} من أصل # وجهات} many {تم إرسال الاختبار إلى {sent} من أصل # وجهة} other {تم إرسال الاختبار إلى {sent} من أصل # وجهة}}"
@@ -306,6 +311,7 @@ msgstr "مستوى الوصول"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "الحساب"
 
@@ -492,6 +498,7 @@ msgstr "تمت إضافة \"{0}\""
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "العنوان"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "سيتوقف أي شيء مشترك في هذه التغذية عن تلقيها. يمكنك نسخ عنوان URL جديد بعد ذلك."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "التطبيق"
 
@@ -585,6 +593,15 @@ msgstr "التطبيق الذي يتولى تسجيل الدخول"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "المظهر"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "التطبيقات المسجّل دخولها"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "سيتم تسجيل خروج التطبيقات التي سجّلت الدخول إلى {0} بكلمة المرور هذه."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "مسح البحث"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "إغلاق"
 
@@ -1078,6 +1096,7 @@ msgstr "المتابعة باستخدام {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "تم النسخ"
 
@@ -1091,6 +1110,9 @@ msgstr "تم النسخ إلى الحافظة"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "نسخ"
@@ -1107,6 +1129,7 @@ msgstr "تعذّر إضافة الاسم"
 msgid "Could not close your account"
 msgstr "تعذّر إغلاق حسابك"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "تعذّر النسخ"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "تعذّر تحميل هذا المستند. يرجى المحاولة لاحقًا."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "تعذّر إنشاء كلمة المرور"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "تعذّر إنشاء مفتاح الاسترداد"
 
@@ -1152,6 +1179,10 @@ msgstr "تعذّر استبدال المفاتيح"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "تعذّر حجز المعرّف"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "تعذّر الإبطال"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "إنشاء مستخدم"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "تم الإنشاء"
@@ -1453,9 +1485,11 @@ msgstr "اكتشاف من متصفح الويب"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "جهاز"
 
@@ -2424,6 +2458,7 @@ msgstr "آخر ظهور"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "آخر استخدام"
 
@@ -2559,6 +2594,10 @@ msgstr "إنشاء مفتاح استرداد؟"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "إنشاء المفتاح"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "إنشاء كلمة مرور"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "الشبكات"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "تم إيقاف مفاتيح المرور من قبل مسؤول الخ�
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "عبارة المرور"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "كلمة المرور"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "تم إبطال كلمة المرور"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "كلمات المرور"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "العودة إلى الافتراضي"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "إبطال"
 
@@ -3722,6 +3777,14 @@ msgstr "إبطال الجلسة"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "إبطال الجلسة؟"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "إبطال كلمة المرور هذه؟"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "إبطال تسجيل الدخول هذا؟"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "سيريف"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "الخادم"
 
@@ -4042,9 +4106,18 @@ msgstr "عرض {totalShown} من {total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "يُعرض مرة واحدة فقط. احتفظ به في مكان آمن: فهو غير مخزّن هنا."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "تُعرض مرة واحدة فقط. اكتبها ككلمة المرور في التطبيق."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "الشريط الجانبي"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "تسجيل الدخول من تطبيق آخر"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "تسجيل الخروج"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "تسجيل الدخول"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "تم إبطال تسجيل الدخول"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

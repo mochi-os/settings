@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {Тестът е изпратен до # местон
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} от {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} ще излезе от {0} и ще трябва да влезе отново."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {Тестът е изпратен до {sent} от # местоназначение} other {Тестът е изпратен до {sent} от # местоназначения}}"
@@ -306,6 +311,7 @@ msgstr "Ниво на достъп"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "Акаунт"
 
@@ -492,6 +498,7 @@ msgstr "Добавено \"{0}\""
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Адрес"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "Всичко, абонирано за този канал, ще спре да го получава. След това можете да копирате нов URL адрес."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "Приложение"
 
@@ -585,6 +593,15 @@ msgstr "Приложение, което обработва влизането"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "Външен вид"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "Влезли приложения"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "Приложенията, влезли в {0} с тази парола, ще бъдат отписани."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "Изчисти търсенето"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Затвори"
 
@@ -1078,6 +1096,7 @@ msgstr "Продължи с {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Копирано"
 
@@ -1091,6 +1110,9 @@ msgstr "Копирано в клипборда"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Копирай"
@@ -1107,6 +1129,7 @@ msgstr "Името не можа да бъде добавено"
 msgid "Could not close your account"
 msgstr "Акаунтът ви не можа да бъде закрит"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "Неуспешно копиране"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "Документът не може да бъде зареден. Моля, опитайте по-късно."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "Паролата не можа да бъде създадена"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "Ключът за възстановяване не можа да бъде създаден"
 
@@ -1152,6 +1179,10 @@ msgstr "Ключовете не можаха да бъдат заменени"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "Потребителското име не можа да бъде запазено"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "Неуспешно оттегляне"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "Създай потребител"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Създадено"
@@ -1453,9 +1485,11 @@ msgstr "Засечи от уеб браузъра"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "Устройство"
 
@@ -2424,6 +2458,7 @@ msgstr "Последно видян"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "Последно използвано"
 
@@ -2559,6 +2594,10 @@ msgstr "Да се създаде ли ключ за възстановяване
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "Създай ключ"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "Създай парола"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "Мрежи"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "Ключовете за достъп са изключени от адм
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "Парола-фраза"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "Парола"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "Паролата е оттеглена"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "Пароли"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "Върни към подразбиране"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "Оттегли"
 
@@ -3722,6 +3777,14 @@ msgstr "Оттегли сесия"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "Да оттегля ли сесията?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "Да се оттегли ли тази парола?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "Да се оттегли ли този вход?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "Серифен"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "Сървър"
 
@@ -4042,9 +4106,18 @@ msgstr "Показани са {totalShown} от {total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "Показва се само веднъж. Пазете го на сигурно място: тук не се съхранява."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "Показва се само веднъж. Въведете я като парола в приложението."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Странична лента"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "Вход от друго приложение"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "Изход"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "Вход"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "Входът е оттеглен"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

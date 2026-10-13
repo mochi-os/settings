@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {# गंतव्य पर परीक्षण �
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{totalLabel} में से {sentLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} को {0} से साइन आउट कर दिया जाएगा और उसे दोबारा साइन इन करना होगा।"
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {# में से {sent} गंतव्य पर परीक्षण भेजा गया} other {# में से {sent} गंतव्यों पर परीक्षण भेजा गया}}"
@@ -306,6 +311,7 @@ msgstr "एक्सेस स्तर"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "अकाउंट"
 
@@ -492,6 +498,7 @@ msgstr "\"{0}\" जोड़ा गया"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "पता"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "इस फ़ीड की सदस्यता लेने वाली हर चीज़ इसे मिलना बंद हो जाएगी। बाद में आप नया URL कॉपी कर सकते हैं।"
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "ऐप"
 
@@ -585,6 +593,15 @@ msgstr "साइन इन संभालने वाला ऐप"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "दिखावट"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "साइन इन किए हुए ऐप्स"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "इस पासवर्ड से {0} में साइन इन किए हुए ऐप्स साइन आउट हो जाएँगे।"
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "खोज साफ़ करें"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "बंद करें"
 
@@ -1078,6 +1096,7 @@ msgstr "{providerLabel} के साथ जारी रखें"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "कॉपी किया गया"
 
@@ -1091,6 +1110,9 @@ msgstr "क्लिपबोर्ड पर कॉपी किया गय�
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "कॉपी करें"
@@ -1107,6 +1129,7 @@ msgstr "नाम नहीं जोड़ा जा सका"
 msgid "Could not close your account"
 msgstr "आपका खाता बंद नहीं किया जा सका"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "कॉपी नहीं किया जा सका"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "यह दस्तावेज़ लोड नहीं हो सका। कृपया बाद में पुनः प्रयास करें।"
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "पासवर्ड नहीं बनाया जा सका"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "रिकवरी कुंजी नहीं बनाई जा सकी"
 
@@ -1152,6 +1179,10 @@ msgstr "कुंजियाँ नहीं बदली जा सकीं"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "हैंडल आरक्षित नहीं किया जा सका"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "वापस नहीं लिया जा सका"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "उपयोगकर्ता बनाएँ"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "बनाया गया"
@@ -1453,9 +1485,11 @@ msgstr "वेब ब्राउज़र से पता लगाएँ"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "डिवाइस"
 
@@ -2424,6 +2458,7 @@ msgstr "अंतिम बार देखा गया"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "अंतिम बार उपयोग किया गया"
 
@@ -2559,6 +2594,10 @@ msgstr "रिकवरी कुंजी बनाएँ?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "कुंजी बनाएँ"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "पासवर्ड बनाएँ"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "नेटवर्क"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "पासकी सर्वर व्यवस्थापक द्व
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "पासफ़्रेज़"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "पासवर्ड"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "पासवर्ड वापस ले लिया गया"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "पासवर्ड्स"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "डिफ़ॉल्ट पर वापस लौटें"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "वापस लें"
 
@@ -3722,6 +3777,14 @@ msgstr "सेशन वापस लें"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "सेशन वापस लें?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "यह पासवर्ड वापस लें?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "यह साइन-इन वापस लें?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "सेरिफ़"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "सर्वर"
 
@@ -4042,9 +4106,18 @@ msgstr "{total} में से {totalShown} दिखाए जा रहे �
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "केवल एक बार दिखाई जाती है। इसे किसी सुरक्षित जगह रखें: यह यहाँ संग्रहीत नहीं होती।"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "केवल एक बार दिखाया जाता है। इसे ऐप में पासवर्ड के रूप में टाइप करें।"
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "साइडबार"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "किसी दूसरे ऐप से साइन इन करें"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "साइन आउट करें"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "साइन-इन"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "साइन-इन वापस ले लिया गया"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

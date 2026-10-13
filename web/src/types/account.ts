@@ -28,8 +28,26 @@ export interface AccountData {
   role: string
 }
 
+// A sign-in by another network's app, or a password minted for one: listed
+// and revoked beside the sessions.
+export interface OtherToken {
+  hash: string
+  name: string
+  created: number
+  used: number
+  expires: number
+  kind: 'signin' | 'password'
+  client: { id: string; name: string; website: string }
+  account: string
+  address: string
+  network: string
+  device: string
+}
+
 export interface SessionsResponse {
   sessions: Session[]
+  signins: OtherToken[]
+  passwords: OtherToken[]
 }
 
 // Login methods — per-method tri-state, plus the operator policy and

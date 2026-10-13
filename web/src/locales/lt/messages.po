@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {Bandymas išsiųstas į # paskirties vietą} few {Ba
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} iš {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "Programėlė {title} bus atjungta nuo {0} ir turės prisijungti iš naujo."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {Bandymas išsiųstas į {sent} iš # paskirties vietos} few {Bandymas išsiųstas į {sent} iš # paskirties vietų} many {Bandymas išsiųstas į {sent} iš # paskirties vietos} other {Bandymas išsiųstas į {sent} iš # paskirties vietų}}"
@@ -306,6 +311,7 @@ msgstr "Prieigos lygis"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "Paskyra"
 
@@ -492,6 +498,7 @@ msgstr "Pridėta „{0}“"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adresas"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "Viskas, kas prenumeruoja šį srautą, nustos jį gauti. Vėliau galėsite nukopijuoti naują URL."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "Programėlė"
 
@@ -585,6 +593,15 @@ msgstr "Programa, tvarkanti prisijungimą"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "Išvaizda"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "Prisijungusios programėlės"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "Programėlės, prisijungusios prie {0} šiuo slaptažodžiu, bus atjungtos."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "Išvalyti paiešką"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Uždaryti"
 
@@ -1078,6 +1096,7 @@ msgstr "Tęsti su {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Nukopijuota"
 
@@ -1091,6 +1110,9 @@ msgstr "Nukopijuota į iškarpinę"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Kopijuoti"
@@ -1107,6 +1129,7 @@ msgstr "Nepavyko pridėti vardo"
 msgid "Could not close your account"
 msgstr "Nepavyko uždaryti jūsų paskyros"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "Nepavyko nukopijuoti"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "Nepavyko įkelti šio dokumento. Pabandykite dar kartą vėliau."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "Nepavyko sukurti slaptažodžio"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "Nepavyko sukurti atkūrimo rakto"
 
@@ -1152,6 +1179,10 @@ msgstr "Nepavyko pakeisti raktų"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "Nepavyko rezervuoti vartotojo vardo"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "Nepavyko panaikinti"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "Sukurti vartotoją"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Sukurta"
@@ -1453,9 +1485,11 @@ msgstr "Aptikti iš naršyklės"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "Įrenginys"
 
@@ -2424,6 +2458,7 @@ msgstr "Paskutinį kartą matytas"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "Paskutinį kartą naudotas"
 
@@ -2559,6 +2594,10 @@ msgstr "Sukurti atkūrimo raktą?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "Sukurti raktą"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "Sukurti slaptažodį"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "Tinklai"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "Slaptarakčius išjungė serverio administratorius."
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "Slaptafrazė"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "Slaptažodis"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "Slaptažodis panaikintas"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "Slaptažodžiai"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "Atstatyti į numatytąjį"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "Panaikinti"
 
@@ -3722,6 +3777,14 @@ msgstr "Panaikinti sesiją"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "Panaikinti sesiją?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "Panaikinti šį slaptažodį?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "Panaikinti šį prisijungimą?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "Serifinis"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "Serveris"
 
@@ -4042,9 +4106,18 @@ msgstr "Rodoma {totalShown} iš {total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "Rodomas tik kartą. Laikykite jį saugioje vietoje: čia jis nesaugomas."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "Rodomas tik kartą. Įveskite jį kaip slaptažodį programėlėje."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Šoninė juosta"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "Prisijungti iš kitos programėlės"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "Atsijungti"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "Prisijungimas"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "Prisijungimas panaikintas"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

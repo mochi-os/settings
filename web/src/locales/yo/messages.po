@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {A rán ìdánwò sí ibi #} other {A rán ìdánwò 
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} nínú {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} yóò jáde kúrò nínú {0}, yóò sì ní láti wọlé lẹ́ẹ̀kan sí i."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, other {A fi ìdánwò ránṣẹ́ sí {sent} nínú ibi #}}"
@@ -306,6 +311,7 @@ msgstr "Ìpele ìwọlé"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "Àkáǹtì"
 
@@ -492,6 +498,7 @@ msgstr "A ti fi \"{0}\" kún"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Àdírẹ́sì"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "Gbogbo ohun tí ó forúkọsílẹ̀ sí ìjẹun yìí yóò dáwọ́ gbígbà rẹ̀ dúró. O lè ṣe àdàkọ URL tuntun lẹ́yìn náà."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "App"
 
@@ -585,6 +593,15 @@ msgstr "Ohun-èlò tí ó ń mójútó wíwọlé"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "Ìrísí"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "Àwọn app tí ó ti wọlé"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "Àwọn app tí ó wọlé sí {0} pẹ̀lú ọ̀rọ̀ aṣínà yìí yóò jáde."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "Pa àwárí rẹ́"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Tì"
 
@@ -1078,6 +1096,7 @@ msgstr "Tẹ̀síwájú pẹ̀lú {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Ti dàkọ"
 
@@ -1091,6 +1110,9 @@ msgstr "A ti ṣe àdàkọ sí clipboard"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Ṣe àdàkọ"
@@ -1107,6 +1129,7 @@ msgstr "Kò lè fi orúkọ náà kún"
 msgid "Could not close your account"
 msgstr "Kò lè pa àkáǹtì rẹ"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "Kò lè ṣe àdàkọ"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "Ko le gba iwe yii wọle. Jọwọ gbiyanju lẹẹkansi lẹhin igba diẹ."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "Kò lè ṣe ọ̀rọ̀ aṣínà náà"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "Kò lè ṣẹ̀dá kọ́kọ́rọ́ ìmúpadàbọ̀sípò"
 
@@ -1152,6 +1179,10 @@ msgstr "Kò lè rọ́pò àwọn kọ́kọ́rọ́ náà"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "Kò lè gba ìnagijẹ náà sílẹ̀"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "Kò lè gbà padà"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "Dá olùmúlò"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Tí a dá"
@@ -1453,9 +1485,11 @@ msgstr "Ṣàwárí láti web browser"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "Ẹ̀rọ"
 
@@ -2424,6 +2458,7 @@ msgstr "Tí a rí kẹ́yìn"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "Tí a kẹ́yìn lò"
 
@@ -2559,6 +2594,10 @@ msgstr "Ṣẹ̀dá kọ́kọ́rọ́ ìmúpadàbọ̀sípò?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "Ṣẹ̀dá kọ́kọ́rọ́"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "Ṣe ọ̀rọ̀ aṣínà"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "Àwọn nẹ́tíwọ́kì"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "Alábòójútó olùpèsè ti pa àwọn kọ́kọ́rọ́-ìwọlé."
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "Gbolohun ọrọ igbaniwọle"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "Ọ̀rọ̀ aṣínà"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "A ti gba ọ̀rọ̀ aṣínà padà"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "Àwọn ọ̀rọ̀ aṣínà"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "Padà sí àìyípadà"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "Gbà padà"
 
@@ -3722,6 +3777,14 @@ msgstr "Gba ìpàdé padà"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "Gba ìpàdé padà?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "Gba ọ̀rọ̀ aṣínà yìí padà?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "Gba ìwọlé yìí padà?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "Serif"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "Sáfà"
 
@@ -4042,9 +4106,18 @@ msgstr "Ń fi {totalShown} hàn nínú {total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "A ó fi hàn lẹ́ẹ̀kan ṣoṣo. Fi pamọ́ sí ibi tó ní ààbò: a kò tọ́jú rẹ̀ síbí."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "A ó fi hàn lẹ́ẹ̀kan ṣoṣo. Tẹ̀ ẹ́ gẹ́gẹ́ bí ọ̀rọ̀ aṣínà nínú app náà."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Ọ̀pá ẹ̀gbẹ́"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "Wọlé láti app mìíràn"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "Jáde"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "Ìwọlé"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "A ti gba ìwọlé padà"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

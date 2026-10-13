@@ -53,6 +53,7 @@ import {
   Copy,
   KeyRound,
   Link2,
+  LogIn,
   Loader2,
   MoreHorizontal,
   Pencil,
@@ -67,6 +68,7 @@ import {
   useAccountKeysRecovery,
   useAccountKeysReplace,
   useAccountLink,
+  useAccountPassword,
   useAccountRemove,
   useAccountTest,
   useAccountUpdate,
@@ -789,10 +791,144 @@ function KeysDialog({
   )
 }
 
+// Signing in from another app (decision 7): the server to give it, the
+// account's address, and a password minted for the device, shown once.
+function serverAddress(account: NetworkAccount): string {
+  const domain = account.domain || account.server || ''
+  switch (account.type) {
+    case 'xmpp':
+      return domain
+    default:
+      return domain ? `https://${domain}` : ''
+  }
+}
+
+export function PasswordDialog({
+  account,
+  onOpenChange,
+}: {
+  account: NetworkAccount
+  onOpenChange: (open: boolean) => void
+}) {
+  const { t } = useLingui()
+  const mint = useAccountPassword()
+  const [name, setName] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleMint = async () => {
+    try {
+      const made = await mint.mutateAsync({ id: account.id, name: name.trim() })
+      setPassword(made.password)
+    } catch (error) {
+      toast.error(getErrorMessage(error, t`Could not make the password`))
+    }
+  }
+  const copy = async (value: string) => {
+    try {
+      await navigator.clipboard.writeText(value)
+      toast.success(t`Copied`)
+    } catch {
+      toast.error(t`Could not copy`)
+    }
+  }
+
+  return (
+    <ResponsiveDialog open onOpenChange={onOpenChange}>
+      <ResponsiveDialogContent className='sm:max-w-[480px]'>
+        <ResponsiveDialogHeader>
+          <ResponsiveDialogTitle>
+            <Trans>Sign in from another app</Trans>
+          </ResponsiveDialogTitle>
+        </ResponsiveDialogHeader>
+        <div className='grid gap-4 py-4'>
+          <div className='grid gap-2'>
+            <Label htmlFor='password-server'>
+              <Trans>Server</Trans>
+            </Label>
+            <div className='flex gap-2'>
+              <Input id='password-server' readOnly value={serverAddress(account)} />
+              <Button
+                variant='outline'
+                onClick={() => void copy(serverAddress(account))}
+                aria-label={t`Copy`}
+                icon={<Copy className='size-4' />}
+              />
+            </div>
+          </div>
+          <div className='grid gap-2'>
+            <Label htmlFor='password-address'>
+              <Trans>Address</Trans>
+            </Label>
+            <div className='flex gap-2'>
+              <Input id='password-address' readOnly value={account.identifier} />
+              <Button
+                variant='outline'
+                onClick={() => void copy(account.identifier)}
+                aria-label={t`Copy`}
+                icon={<Copy className='size-4' />}
+              />
+            </div>
+          </div>
+          {password ? (
+            <div className='grid gap-2'>
+              <Label htmlFor='password-value'>
+                <Trans>Password</Trans>
+              </Label>
+              <div className='flex gap-2'>
+                <Input id='password-value' readOnly value={password} />
+                <Button
+                  variant='outline'
+                  onClick={() => void copy(password)}
+                  aria-label={t`Copy`}
+                  icon={<Copy className='size-4' />}
+                />
+              </div>
+              <p className='text-muted-foreground text-sm'>
+                <Trans>Shown once. Type it as the password in the app.</Trans>
+              </p>
+            </div>
+          ) : (
+            <div className='grid gap-2'>
+              <Label htmlFor='password-device'>
+                <Trans>Device</Trans>
+              </Label>
+              <Input
+                id='password-device'
+                value={name}
+                autoComplete='off'
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+          )}
+        </div>
+        <ResponsiveDialogFooter>
+          <Button variant='outline' onClick={() => onOpenChange(false)}>
+            <Trans>Close</Trans>
+          </Button>
+          {!password && (
+            <Button
+              disabled={!name.trim() || mint.isPending}
+              onClick={() => void handleMint()}
+            >
+              {mint.isPending ? (
+                <Loader2 className='size-4 animate-spin' />
+              ) : (
+                <KeyRound className='size-4' />
+              )}
+              <Trans>Make password</Trans>
+            </Button>
+          )}
+        </ResponsiveDialogFooter>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
+  )
+}
+
 function AccountRow({
   account,
   onRename,
   onKeys,
+  onPassword,
   onTest,
   onRemove,
   busy,
@@ -800,6 +936,7 @@ function AccountRow({
   account: NetworkAccount
   onRename: (account: NetworkAccount) => void
   onKeys: (account: NetworkAccount) => void
+  onPassword: (account: NetworkAccount) => void
   onTest: (account: NetworkAccount) => void
   onRemove: (account: NetworkAccount) => void
   busy: string | null
@@ -846,10 +983,16 @@ function AccountRow({
               <Trans>Profile</Trans>
             </DropdownMenuItem>
             {account.hosted ? (
-              <DropdownMenuItem onClick={() => onKeys(account)}>
-                <KeyRound className='me-2 h-4 w-4' />
-                <Trans context='cryptographic'>Keys</Trans>
-              </DropdownMenuItem>
+              <>
+                <DropdownMenuItem onClick={() => onPassword(account)}>
+                  <LogIn className='me-2 h-4 w-4' />
+                  <Trans>Sign in from another app</Trans>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => onKeys(account)}>
+                  <KeyRound className='me-2 h-4 w-4' />
+                  <Trans context='cryptographic'>Keys</Trans>
+                </DropdownMenuItem>
+              </>
             ) : (
               <DropdownMenuItem onClick={() => onTest(account)}>
                 <Zap className='me-2 h-4 w-4' />
@@ -882,6 +1025,7 @@ export function Networks() {
   const [releasing, setReleasing] = useState<Handle | null>(null)
   const [renaming, setRenaming] = useState<NetworkAccount | null>(null)
   const [keysFor, setKeysFor] = useState<NetworkAccount | null>(null)
+  const [passwordFor, setPasswordFor] = useState<NetworkAccount | null>(null)
   const [removing, setRemoving] = useState<NetworkAccount | null>(null)
   const [busy, setBusy] = useState<string | null>(null)
 
@@ -1051,6 +1195,7 @@ export function Networks() {
                         account={account}
                         onRename={setRenaming}
                         onKeys={setKeysFor}
+                        onPassword={setPasswordFor}
                         onTest={(a) => void handleTest(a)}
                         onRemove={setRemoving}
                         busy={busy}
@@ -1093,6 +1238,14 @@ export function Networks() {
           account={keysFor}
           onOpenChange={(open) => {
             if (!open) setKeysFor(null)
+          }}
+        />
+      )}
+      {passwordFor && (
+        <PasswordDialog
+          account={passwordFor}
+          onOpenChange={(open) => {
+            if (!open) setPasswordFor(null)
           }}
         />
       )}

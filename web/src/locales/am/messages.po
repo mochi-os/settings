@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {ሙከራ ወደ # መድረሻ ተልኳል} other 
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} ከ {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} ከ{0} ይወጣል እና እንደገና መግባት አለበት።"
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {ሙከራው ከ# መድረሻ ወደ {sent} ተልኳል} other {ሙከራው ከ# መድረሻዎች ወደ {sent} ተልኳል}}"
@@ -306,6 +311,7 @@ msgstr "የመዳረሻ ደረጃ"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "መለያ"
 
@@ -492,6 +498,7 @@ msgstr "\"{0}\" ተጨምሯል"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "አድራሻ"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "በዚህ ፊድ የተመዘገበ ማንኛውም ነገር መቀበሉን ያቆማል። ከዚያ በኋላ አዲስ URL መቅዳት ይችላሉ።"
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "መተግበሪያ"
 
@@ -585,6 +593,15 @@ msgstr "መግቢያን የሚያስተናግድ መተግበሪያ"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "መልክ"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "የገቡ መተግበሪያዎች"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "በዚህ የይለፍ ቃል ወደ {0} የገቡ መተግበሪያዎች ይወጣሉ።"
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "ፍለጋ አጽዳ"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "ዝጋ"
 
@@ -1078,6 +1096,7 @@ msgstr "በ{providerLabel} ይቀጥሉ"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "ተቀድቷል"
 
@@ -1091,6 +1110,9 @@ msgstr "ወደ ቅንጥብ ሰሌዳ ተቀድቷል"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "ቅዳ"
@@ -1107,6 +1129,7 @@ msgstr "ስሙን ማከል አልተቻለም"
 msgid "Could not close your account"
 msgstr "መለያዎን መዝጋት አልተቻለም"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "መቅዳት አልተቻለም"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "ይህን ሰነድ መጫን አልተቻለም። እባክዎ ቆይተው ደግመው ይሞክሩ።"
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "የይለፍ ቃሉን መፍጠር አልተቻለም"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "የመልሶ ማግኛ ቁልፉን መፍጠር አልተቻለም"
 
@@ -1152,6 +1179,10 @@ msgstr "ቁልፎቹን መተካት አልተቻለም"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "የተጠቃሚ ስሙን መያዝ አልተቻለም"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "መሻር አልተቻለም"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "ተጠቃሚ ፍጠር"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "ተፈጥሯል"
@@ -1453,9 +1485,11 @@ msgstr "ከድር አሳሽ አውቅ"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "መሳሪያ"
 
@@ -2424,6 +2458,7 @@ msgstr "መጨረሻ የታየው"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "መጨረሻ የተጠቀመው"
 
@@ -2559,6 +2594,10 @@ msgstr "የመልሶ ማግኛ ቁልፍ ይፈጠር?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "ቁልፍ ፍጠር"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "የይለፍ ቃል ፍጠር"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "አውታረ መረቦች"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "ፓስኪዎች በአገልጋይ አስተዳዳሪው ተሰናክለ
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "የይለፍ ሐረግ"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "የይለፍ ቃል"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "የይለፍ ቃል ተሽሯል"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "የይለፍ ቃሎች"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "ወደ ነባሪ መልስ"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "ይሻሩ"
 
@@ -3722,6 +3777,14 @@ msgstr "ክፍለ-ጊዜን ይሻሩ"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "ክፍለ-ጊዜን ይሻሩ?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "ይህ የይለፍ ቃል ይሻር?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "ይህ መግቢያ ይሻር?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "ሰሪፍ"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "ሰርቨር"
 
@@ -4042,9 +4106,18 @@ msgstr "ከ{total} ውስጥ {totalShown} እያሳየ"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "አንድ ጊዜ ብቻ ይታያል። ደህንነቱ በተጠበቀ ቦታ ያስቀምጡት፤ እዚህ አይቀመጥም።"
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "አንድ ጊዜ ብቻ ይታያል። በመተግበሪያው ውስጥ እንደ የይለፍ ቃል ይተይቡት።"
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "የጎን አሞሌ"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "ከሌላ መተግበሪያ ይግቡ"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "ውጣ"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "መግቢያ"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "መግቢያ ተሽሯል"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

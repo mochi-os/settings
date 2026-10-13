@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {Тест отправлен на # адрес} few {
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} из {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "Приложение {title} выйдет из аккаунта {0}, и ему нужно будет войти снова."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {Тест отправлен на {sent} из # адреса} few {Тест отправлен на {sent} из # адресов} many {Тест отправлен на {sent} из # адресов} other {Тест отправлен на {sent} из # адреса}}"
@@ -306,6 +311,7 @@ msgstr "Уровень доступа"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "Аккаунт"
 
@@ -492,6 +498,7 @@ msgstr "Добавлено «{0}»"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Адрес"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "Всё, что подписано на эту ленту, перестанет её получать. После этого вы сможете скопировать новый URL."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "Приложение"
 
@@ -585,6 +593,15 @@ msgstr "Приложение, которое обрабатывает вход"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "Внешний вид"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "Приложения, выполнившие вход"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "Приложения, вошедшие в {0} с этим паролем, будут выведены из системы."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "Очистить поиск"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Закрыть"
 
@@ -1078,6 +1096,7 @@ msgstr "Продолжить с {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Скопировано"
 
@@ -1091,6 +1110,9 @@ msgstr "Скопировано в буфер обмена"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Копировать"
@@ -1107,6 +1129,7 @@ msgstr "Не удалось добавить имя"
 msgid "Could not close your account"
 msgstr "Не удалось закрыть ваш аккаунт"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "Не удалось скопировать"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "Не удалось загрузить этот документ. Повторите попытку позже."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "Не удалось создать пароль"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "Не удалось создать ключ восстановления"
 
@@ -1152,6 +1179,10 @@ msgstr "Не удалось заменить ключи"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "Не удалось зарезервировать псевдоним"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "Не удалось отозвать"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "Создать пользователя"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Создано"
@@ -1453,9 +1485,11 @@ msgstr "Определить из веб-браузера"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "Устройство"
 
@@ -2424,6 +2458,7 @@ msgstr "Последний раз замечен"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "Последнее использование"
 
@@ -2559,6 +2594,10 @@ msgstr "Создать ключ восстановления?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "Создать ключ"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "Создать пароль"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "Сети"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "Ключи доступа отключены администратор�
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "Кодовая фраза"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "Пароль"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "Пароль отозван"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "Пароли"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "Вернуть к значению по умолчанию"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "Отозвать"
 
@@ -3722,6 +3777,14 @@ msgstr "Отозвать сеанс"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "Отозвать сеанс?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "Отозвать этот пароль?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "Отозвать этот вход?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "С засечками"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "Сервер"
 
@@ -4042,9 +4106,18 @@ msgstr "Показано {totalShown} из {total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "Показывается только один раз. Храните его в надёжном месте: здесь он не сохраняется."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "Показывается один раз. Введите его как пароль в приложении."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Боковая панель"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "Вход из другого приложения"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "Выйти"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "Вход"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "Вход отозван"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {# இலக்குக்கு சோதனை அ
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{totalLabel}இல் {sentLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} {0} இலிருந்து வெளியேற்றப்படும், மீண்டும் உள்நுழைய வேண்டும்."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {# இலக்கில் {sent} இலக்குக்கு சோதனை அனுப்பப்பட்டது} other {# இலக்குகளில் {sent} இலக்குகளுக்கு சோதனை அனுப்பப்பட்டது}}"
@@ -306,6 +311,7 @@ msgstr "அணுகல் நிலை"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "கணக்கு"
 
@@ -492,6 +498,7 @@ msgstr "\"{0}\" சேர்க்கப்பட்டது"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "முகவரி"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "இந்த ஊட்டத்திற்கு குழுசேர்ந்த அனைத்தும் அதைப் பெறுவதை நிறுத்தும். பிறகு நீங்கள் புதிய URL ஐ நகலெடுக்கலாம்."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "பயன்பாடு"
 
@@ -585,6 +593,15 @@ msgstr "உள்நுழைவைக் கையாளும் செயல�
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "தோற்றம்"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "உள்நுழைந்த பயன்பாடுகள்"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "இந்தக் கடவுச்சொல்லுடன் {0} இல் உள்நுழைந்த பயன்பாடுகள் வெளியேற்றப்படும்."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "தேடலை அழி"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "மூடு"
 
@@ -1078,6 +1096,7 @@ msgstr "{providerLabel} மூலம் தொடரவும்"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "நகலெடுக்கப்பட்டது"
 
@@ -1091,6 +1110,9 @@ msgstr "கிளிப்போர்டுக்கு நகலெடுக�
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "நகலெடு"
@@ -1107,6 +1129,7 @@ msgstr "பெயரைச் சேர்க்க முடியவில்�
 msgid "Could not close your account"
 msgstr "உங்கள் கணக்கை மூட முடியவில்லை"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "நகலெடுக்க முடியவில்லை"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "இந்த ஆவணத்தை ஏற்ற முடியவில்லை. பின்னர் மீண்டும் முயற்சிக்கவும்."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "கடவுச்சொல்லை உருவாக்க முடியவில்லை"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "மீட்பு விசையை உருவாக்க முடியவில்லை"
 
@@ -1152,6 +1179,10 @@ msgstr "விசைகளை மாற்ற முடியவில்லை"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "புனைப்பெயரை முன்பதிவு செய்ய முடியவில்லை"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "திரும்பப் பெற முடியவில்லை"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "பயனர் உருவாக்கு"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "உருவாக்கப்பட்டது"
@@ -1453,9 +1485,11 @@ msgstr "வலை உலாவியிலிருந்து கண்டற�
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "சாதனம்"
 
@@ -2424,6 +2458,7 @@ msgstr "கடைசியாகக் காணப்பட்டது"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "கடைசியாக பயன்படுத்தப்பட்டது"
 
@@ -2559,6 +2594,10 @@ msgstr "மீட்பு விசையை உருவாக்கவா?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "விசையை உருவாக்கு"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "கடவுச்சொல்லை உருவாக்கு"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "பிணையங்கள்"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "கடவுக்குறிகள் சேவையக நிர்�
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "கடவுச்சொற்றொடர்"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "கடவுச்சொல்"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "கடவுச்சொல் திரும்பப் பெறப்பட்டது"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "கடவுச்சொற்கள்"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "இயல்புநிலைக்கு மீட்டமை"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "திரும்பப் பெறு"
 
@@ -3722,6 +3777,14 @@ msgstr "அமர்வை திரும்பப் பெறு"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "அமர்வை திரும்பப் பெற வேண்டுமா?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "இந்தக் கடவுச்சொல்லைத் திரும்பப் பெறவா?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "இந்த உள்நுழைவைத் திரும்பப் பெறவா?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "செரிஃப்"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "சர்வர்"
 
@@ -4042,9 +4106,18 @@ msgstr "{total}-ல் {totalShown} காட்டப்படுகிறத�
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "ஒருமுறை மட்டுமே காட்டப்படும். இதைப் பாதுகாப்பான இடத்தில் வைத்துக்கொள்ளவும்: இது இங்கே சேமிக்கப்படுவதில்லை."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "ஒருமுறை மட்டுமே காட்டப்படும். பயன்பாட்டில் இதைக் கடவுச்சொல்லாகத் தட்டச்சு செய்யவும்."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "பக்கப்பட்டி"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "மற்றொரு பயன்பாட்டிலிருந்து உள்நுழை"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "வெளியேறு"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "உள்நுழைவு"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "உள்நுழைவு திரும்பப் பெறப்பட்டது"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

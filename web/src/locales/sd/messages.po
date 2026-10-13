@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {ٽيسٽ # منزل ڏانھن موڪليو ويو} 
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{totalLabel} مان {sentLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} کي {0} مان سائن آئوٽ ڪيو ويندو ۽ ان کي ٻيهر سائن ان ڪرڻو پوندو."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {ٽيسٽ # منزل مان {sent} ڏانھن موڪليو ويو} other {ٽيسٽ # منزلن مان {sent} ڏانھن موڪليو ويو}}"
@@ -306,6 +311,7 @@ msgstr "رسائي جي سطح"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "اڪائونٽ"
 
@@ -492,6 +498,7 @@ msgstr "\"{0}\" شامل ڪيو ويو"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "پتو"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "هن فيڊ جي رڪنيت وٺندڙ سڀ ڪجهه ان کي حاصل ڪرڻ بند ڪري ڇڏيندو. بعد ۾ توهان نئون URL ڪاپي ڪري سگهو ٿا."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "ايپ"
 
@@ -585,6 +593,15 @@ msgstr "ايپ جيڪا سائن ان سنڀاليندي آهي"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "ظاهري شڪل"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "سائن ان ٿيل ايپس"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "هن پاسورڊ سان {0} ۾ سائن ان ٿيل ايپس سائن آئوٽ ٿي وينديون."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "ڳولا صاف ڪريو"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "بند ڪريو"
 
@@ -1078,6 +1096,7 @@ msgstr "{providerLabel} سان جاري رکو"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "ڪاپي ٿيو"
 
@@ -1091,6 +1110,9 @@ msgstr "ڪلپ بورڊ تي ڪاپي ٿيو"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "ڪاپي ڪريو"
@@ -1107,6 +1129,7 @@ msgstr "نالو شامل نه ٿي سگهيو"
 msgid "Could not close your account"
 msgstr "توهان جو اڪائونٽ بند نه ٿي سگهيو"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "ڪاپي نه ٿي سگهيو"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "هي دستاويز لوڊ نه ٿي سگهيو. مهرباني ڪري بعد ۾ ٻيهر ڪوشش ڪريو."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "پاسورڊ ٺاهي نه سگهيو"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "بحالي ڪنجي ٺاهي نه سگهي"
 
@@ -1152,6 +1179,10 @@ msgstr "ڪنجيون بدلائي نه سگهيون"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "هينڊل مخصوص نه ٿي سگهيو"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "رد نه ٿي سگهيو"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "صارف ٺاهيو"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "ٺاهيو ويو"
@@ -1453,9 +1485,11 @@ msgstr "ويب براؤزر کان معلوم ڪريو"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "ڊوائيس"
 
@@ -2424,6 +2458,7 @@ msgstr "آخري ڀيرو ڏٺو ويو"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "آخري ڀيرو استعمال ٿيو"
 
@@ -2559,6 +2594,10 @@ msgstr "بحالي ڪنجي ٺاهجي؟"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "ڪنجي ٺاهيو"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "پاسورڊ ٺاهيو"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "نيٽ ورڪس"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "پاس ڪيز سرور منتظم پاران بند ڪيون ويون آ
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "پاس فريز"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "پاسورڊ"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "پاسورڊ رد ڪيو ويو"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "پاسورڊز"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "ڊفالٽ تي واپس آڻيو"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "رد ڪريو"
 
@@ -3722,6 +3777,14 @@ msgstr "سيشن رد ڪريو"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "سيشن رد ڪجي؟"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "هي پاسورڊ رد ڪريو؟"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "هي سائن ان رد ڪريو؟"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "سيرف"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "سرور"
 
@@ -4042,9 +4106,18 @@ msgstr "{total} مان {totalShown} ڏيکاري رهيو آھي"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "صرف هڪ ڀيرو ڏيکاري ويندي. ان کي ڪنهن محفوظ جاءِ تي رکو: اها هتي محفوظ نه ڪئي ويندي آهي."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "صرف هڪ ڀيرو ڏيکاريو ويندو. ان کي ايپ ۾ پاسورڊ طور ٽائيپ ڪريو."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "سائيڊبار"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "ٻي ايپ مان سائن ان ڪريو"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "سائن آئوٽ ڪريو"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "لاگ ان"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "سائن ان رد ڪيو ويو"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

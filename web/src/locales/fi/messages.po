@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {Testi lähetetty # kohteeseen} other {Testi lähetet
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} / {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} kirjataan ulos tililtä {0}, ja sen on kirjauduttava uudelleen."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {Testi lähetetty {sent}/# kohteeseen} other {Testi lähetetty {sent}/# kohteeseen}}"
@@ -306,6 +311,7 @@ msgstr "Käyttöoikeustaso"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "Tili"
 
@@ -492,6 +498,7 @@ msgstr "Lisätty \"{0}\""
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Osoite"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "Kaikki tätä syötettä tilaavat lakkaavat vastaanottamasta sitä. Voit kopioida uuden URL-osoitteen jälkeenpäin."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "Sovellus"
 
@@ -585,6 +593,15 @@ msgstr "Sovellus, joka hoitaa kirjautumisen"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "Ulkoasu"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "Kirjautuneet sovellukset"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "Tällä salasanalla tiliin {0} kirjautuneet sovellukset kirjataan ulos."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "Tyhjennä haku"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Sulje"
 
@@ -1078,6 +1096,7 @@ msgstr "Jatka palvelulla {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Kopioitu"
 
@@ -1091,6 +1110,9 @@ msgstr "Kopioitu leikepöydälle"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Kopioi"
@@ -1107,6 +1129,7 @@ msgstr "Nimeä ei voitu lisätä"
 msgid "Could not close your account"
 msgstr "Tiliäsi ei voitu sulkea"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "Kopiointi ei onnistunut"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "Tätä asiakirjaa ei voitu ladata. Yritä myöhemmin uudelleen."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "Salasanaa ei voitu luoda"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "Palautusavainta ei voitu luoda"
 
@@ -1152,6 +1179,10 @@ msgstr "Avaimia ei voitu korvata"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "Käyttäjätunnusta ei voitu varata"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "Mitätöinti epäonnistui"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "Luo käyttäjä"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Luotu"
@@ -1453,9 +1485,11 @@ msgstr "Tunnista selaimesta"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "Laite"
 
@@ -2424,6 +2458,7 @@ msgstr "Viimeksi nähty"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "Viimeksi käytetty"
 
@@ -2559,6 +2594,10 @@ msgstr "Luodaanko palautusavain?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "Luo avain"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "Luo salasana"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "Verkot"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "Avainkoodit on poistettu käytöstä palvelimen ylläpitäjän toimesta.
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "Tunnuslause"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "Salasana"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "Salasana mitätöity"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "Salasanat"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "Palauta oletukseen"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "Mitätöi"
 
@@ -3722,6 +3777,14 @@ msgstr "Mitätöi istunto"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "Mitätöidäänkö istunto?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "Mitätöidäänkö tämä salasana?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "Mitätöidäänkö tämä kirjautuminen?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "Pääteviivallinen"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "Palvelin"
 
@@ -4042,9 +4106,18 @@ msgstr "Näytetään {totalShown} / {total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "Näytetään vain kerran. Säilytä se turvallisessa paikassa: sitä ei tallenneta tänne."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "Näytetään vain kerran. Kirjoita se sovellukseen salasanaksi."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Sivupalkki"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "Kirjaudu toisesta sovelluksesta"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "Kirjaudu ulos"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "Kirjautuminen"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "Kirjautuminen mitätöity"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

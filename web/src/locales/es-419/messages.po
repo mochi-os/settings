@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {Prueba enviada a # destino} other {Prueba enviada a 
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} de {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "Se cerrará la sesión de {title} en {0} y tendrá que volver a iniciar sesión."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {Prueba enviada a {sent} de # destino} other {Prueba enviada a {sent} de # destinos}}"
@@ -306,6 +311,7 @@ msgstr "Nivel de acceso"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "Cuenta"
 
@@ -492,6 +498,7 @@ msgstr "Añadido \"{0}\""
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Dirección"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "Todo lo suscrito a este canal dejará de recibirlo. Después puedes copiar una URL nueva."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "Aplicación"
 
@@ -585,6 +593,15 @@ msgstr "Aplicación que gestiona el inicio de sesión"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "Apariencia"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "Aplicaciones con sesión iniciada"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "Se cerrará la sesión de las aplicaciones que iniciaron sesión en {0} con esta contraseña."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "Borrar búsqueda"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Cerrar"
 
@@ -1078,6 +1096,7 @@ msgstr "Continuar con {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Copiado"
 
@@ -1091,6 +1110,9 @@ msgstr "Copiado al portapapeles"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Copiar"
@@ -1107,6 +1129,7 @@ msgstr "No se pudo agregar el nombre"
 msgid "Could not close your account"
 msgstr "No se pudo cerrar tu cuenta"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "No se pudo copiar"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "No se pudo cargar este documento. Inténtalo de nuevo más tarde."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "No se pudo crear la contraseña"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "No se pudo crear la clave de recuperación"
 
@@ -1152,6 +1179,10 @@ msgstr "No se pudieron reemplazar las claves"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "No se pudo reservar el identificador"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "No se pudo revocar"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "Crear usuario"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Creado"
@@ -1453,9 +1485,11 @@ msgstr "Detectar desde el navegador web"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "Dispositivo"
 
@@ -2424,6 +2458,7 @@ msgstr "Visto por última vez"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "Último uso"
 
@@ -2559,6 +2594,10 @@ msgstr "¿Crear una clave de recuperación?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "Crear clave"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "Crear contraseña"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "Redes"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "Las claves de acceso fueron desactivadas por el administrador del servid
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "Frase de contraseña"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "Contraseña"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "Contraseña revocada"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "Contraseñas"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "Restablecer al predeterminado"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "Revocar"
 
@@ -3722,6 +3777,14 @@ msgstr "Revocar sesión"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "¿Revocar sesión?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "¿Revocar esta contraseña?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "¿Revocar este inicio de sesión?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "Con serifa"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "Servidor"
 
@@ -4042,9 +4106,18 @@ msgstr "Mostrando {totalShown} de {total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "Se muestra una sola vez. Guárdala en un lugar seguro: no se almacena aquí."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "Se muestra una sola vez. Escríbela como contraseña en la aplicación."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Barra lateral"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "Iniciar sesión desde otra aplicación"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "Cerrar sesión"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "Inicio de sesión"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "Inicio de sesión revocado"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

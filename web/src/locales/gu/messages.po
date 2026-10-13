@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {# ગંતવ્ય પર પરીક્ષણ �
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{totalLabel}માંથી {sentLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} ને {0} માંથી સાઇન આઉટ કરવામાં આવશે અને ફરી સાઇન ઇન કરવું પડશે."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {# માંથી {sent} ગંતવ્ય પર પરીક્ષણ મોકલાયું} other {# માંથી {sent} ગંતવ્યો પર પરીક્ષણ મોકલાયું}}"
@@ -306,6 +311,7 @@ msgstr "ઍક્સેસ સ્તર"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "ખાતું"
 
@@ -492,6 +498,7 @@ msgstr "\"{0}\" ઉમેર્યું"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "સરનામું"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "આ ફીડ પર સબ્સ્ક્રાઇબ થયેલું બધું તે મળવાનું બંધ કરશે. પછી તમે નવું URL કૉપિ કરી શકો છો."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "એપ્લિકેશન"
 
@@ -585,6 +593,15 @@ msgstr "સાઇન ઇન સંભાળતી એપ"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "દેખાવ"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "સાઇન ઇન થયેલી એપ્લિકેશનો"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "આ પાસવર્ડ વડે {0} માં સાઇન ઇન થયેલી એપ્લિકેશનો સાઇન આઉટ થઈ જશે."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "શોધ સાફ કરો"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "બંધ કરો"
 
@@ -1078,6 +1096,7 @@ msgstr "{providerLabel} સાથે ચાલુ રાખો"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "કૉપિ થયું"
 
@@ -1091,6 +1110,9 @@ msgstr "ક્લિપબોર્ડ પર કૉપિ કર્યું"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "કૉપિ કરો"
@@ -1107,6 +1129,7 @@ msgstr "નામ ઉમેરી શક્યા નહીં"
 msgid "Could not close your account"
 msgstr "તમારું ખાતું બંધ કરી શકાયું નહીં"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "કૉપિ કરી શક્યા નહીં"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "આ દસ્તાવેજ લોડ થઈ શક્યો નથી. કૃપા કરીને થોડા સમય પછી ફરી પ્રયાસ કરો."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "પાસવર્ડ બનાવી શક્યા નહીં"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "રિકવરી કી બનાવી શક્યા નહીં"
 
@@ -1152,6 +1179,10 @@ msgstr "કી બદલી શક્યા નહીં"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "હેન્ડલ આરક્ષિત કરી શક્યા નહીં"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "પાછું ખેંચી શક્યા નહીં"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "વપરાશકર્તા બનાવો"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "બનાવ્યું"
@@ -1453,9 +1485,11 @@ msgstr "વેબ બ્રાઉઝરમાંથી શોધો"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "ઉપકરણ"
 
@@ -2424,6 +2458,7 @@ msgstr "છેલ્લે જોવાયું"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "છેલ્લે વાપર્યું"
 
@@ -2559,6 +2594,10 @@ msgstr "રિકવરી કી બનાવીએ?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "કી બનાવો"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "પાસવર્ડ બનાવો"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "નેટવર્ક્સ"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "પાસકી સર્વર સંચાલક દ્વારા �
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "પાસ-ફ્રેઝ"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "પાસવર્ડ"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "પાસવર્ડ પાછો ખેંચ્યો"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "પાસવર્ડ્સ"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "ડિફૉલ્ટ પર પાછા ફરો"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "પાછું ખેંચો"
 
@@ -3722,6 +3777,14 @@ msgstr "સત્ર પાછું ખેંચો"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "સત્ર પાછું ખેંચવું છે?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "આ પાસવર્ડ પાછો ખેંચવો છે?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "આ સાઇન-ઇન પાછું ખેંચવું છે?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "સેરિફ"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "સર્વર"
 
@@ -4042,9 +4106,18 @@ msgstr "{total} માંથી {totalShown} બતાવી રહ્યું 
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "માત્ર એક જ વાર બતાવવામાં આવે છે. તેને કોઈ સુરક્ષિત જગ્યાએ રાખો: તે અહીં સંગ્રહિત નથી."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "માત્ર એક જ વાર બતાવવામાં આવે છે. એપ્લિકેશનમાં તેને પાસવર્ડ તરીકે ટાઇપ કરો."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "સાઇડબાર"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "બીજી એપ્લિકેશનમાંથી સાઇન ઇન કરો"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "સાઇન આઉટ કરો"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "સાઇન-ઇન"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "સાઇન-ઇન પાછું ખેંચ્યું"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

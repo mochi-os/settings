@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {It-test intbagħat lil # destinazzjoni} two {It-test
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} minn {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} se toħroġ minn {0} u jkollha terġa' tidħol."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {It-test intbagħat lil {sent} minn # destinazzjoni} two {It-test intbagħat lil {sent} minn # destinazzjonijiet} few {It-test intbagħat lil {sent} minn # destinazzjonijiet} many {It-test intbagħat lil {sent} minn # destinazzjoni} other {It-test intbagħat lil {sent} minn # destinazzjoni}}"
@@ -306,6 +311,7 @@ msgstr "Livell ta' aċċess"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "Kont"
 
@@ -492,6 +498,7 @@ msgstr "Miżjud \"{0}\""
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Indirizz"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "Kull ma huwa abbonat għal din il-feed se jieqaf jirċeviha. Wara tista' tikkopja URL ġdid."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "Applikazzjoni"
 
@@ -585,6 +593,15 @@ msgstr "App li timmaniġġja l-illoggjar"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "Dehra"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "Applikazzjonijiet li daħlu"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "L-applikazzjonijiet li daħlu f'{0} b'din il-password se joħorġu."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "Naddaf it-tiftix"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Agħlaq"
 
@@ -1078,6 +1096,7 @@ msgstr "Kompli b'{providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Ikkupjat"
 
@@ -1091,6 +1110,9 @@ msgstr "Ikkupjat fil-clipboard"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Ikkupja"
@@ -1107,6 +1129,7 @@ msgstr "Ma setax jiżdied l-isem"
 msgid "Could not close your account"
 msgstr "Ma setax jingħalaq il-kont tiegħek"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "Ma setax jiġi kkupjat"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "Ma setax itella' dan id-dokument. Jekk jogħġbok ipprova mill-ġdid iktar tard."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "Ma setgħetx issir il-password"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "Ma setgħetx issir iċ-ċavetta ta' rkupru"
 
@@ -1152,6 +1179,10 @@ msgstr "Ma setgħux jinbidlu ċ-ċwievet"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "Ma setax jiġi riżervat l-isem tal-utent"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "Ma setax jiġi rrevokat"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "Oħloq utent"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Maħluq"
@@ -1453,9 +1485,11 @@ msgstr "Iskopri mill-browser"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "Apparat"
 
@@ -2424,6 +2458,7 @@ msgstr "L-aħħar li deher"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "Użat l-aħħar"
 
@@ -2559,6 +2594,10 @@ msgstr "Toħloq ċavetta ta' rkupru?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "Oħloq ċavetta"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "Oħloq password"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "Netwerks"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "Iċ-ċwievet tal-aċċess ġew mitfija mill-amministratur tas-server."
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "Frażi tal-password"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "Password"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "Password revokata"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "Passwords"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "Revert għal default"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "Irrevoka"
 
@@ -3722,6 +3777,14 @@ msgstr "Irrevoka sessjoni"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "Tirrevoka s-sessjoni?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "Tirrevoka din il-password?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "Tirrevoka dan id-dħul?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "Serif"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "Server"
 
@@ -4042,9 +4106,18 @@ msgstr "Qed juri {totalShown} minn {total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "Tintwera darba biss. Żommha f'post sigur: mhix maħżuna hawn."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "Tintwera darba biss. Ittajpjaha bħala l-password fl-applikazzjoni."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Barra tal-ġenb"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "Idħol minn applikazzjoni oħra"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "Oħroġ"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "Dħul"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "Dħul revokat"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

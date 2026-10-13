@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {Test # hedefe gönderildi} other {Test # hedefe gön
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} / {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} uygulamasının {0} oturumu kapatılacak ve yeniden giriş yapması gerekecek."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {Test # hedeften {sent} tanesine gönderildi} other {Test # hedeften {sent} tanesine gönderildi}}"
@@ -306,6 +311,7 @@ msgstr "Erişim düzeyi"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "Hesap"
 
@@ -492,6 +498,7 @@ msgstr "\"{0}\" eklendi"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adres"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "Bu akışa abone olan her şey almayı durduracak. Sonrasında yeni bir URL kopyalayabilirsiniz."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "Uygulama"
 
@@ -585,6 +593,15 @@ msgstr "Oturum açmayı yöneten uygulama"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "Görünüm"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "Giriş yapmış uygulamalar"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "Bu parolayla {0} hesabına giriş yapmış uygulamaların oturumu kapatılacak."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "Aramayı temizle"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Kapat"
 
@@ -1078,6 +1096,7 @@ msgstr "{providerLabel} ile devam et"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Kopyalandı"
 
@@ -1091,6 +1110,9 @@ msgstr "Panoya kopyalandı"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Kopyala"
@@ -1107,6 +1129,7 @@ msgstr "Ad eklenemedi"
 msgid "Could not close your account"
 msgstr "Hesabınız kapatılamadı"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "Kopyalanamadı"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "Bu belge yüklenemedi. Lütfen daha sonra tekrar deneyin."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "Parola oluşturulamadı"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "Kurtarma anahtarı oluşturulamadı"
 
@@ -1152,6 +1179,10 @@ msgstr "Anahtarlar değiştirilemedi"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "Rumuz ayrılamadı"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "Geçersiz kılınamadı"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "Kullanıcı oluştur"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Oluşturuldu"
@@ -1453,9 +1485,11 @@ msgstr "Web tarayıcıdan algıla"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "Cihaz"
 
@@ -2424,6 +2458,7 @@ msgstr "Son görülme"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "Son kullanım"
 
@@ -2559,6 +2594,10 @@ msgstr "Kurtarma anahtarı oluşturulsun mu?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "Anahtar oluştur"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "Parola oluştur"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "Ağlar"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "Geçiş anahtarları sunucu yöneticisi tarafından kapatıldı."
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "Parola cümlesi"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "Parola"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "Parola geçersiz kılındı"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "Parolalar"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "Varsayılana geri dön"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "Geçersiz kıl"
 
@@ -3722,6 +3777,14 @@ msgstr "Oturumu geçersiz kıl"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "Oturum geçersiz kılınsın mı?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "Bu parola geçersiz kılınsın mı?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "Bu giriş geçersiz kılınsın mı?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "Tırnaklı"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "Sunucu"
 
@@ -4042,9 +4106,18 @@ msgstr "{total} öğenin {totalShown} tanesi gösteriliyor"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "Yalnızca bir kez gösterilir. Güvenli bir yerde saklayın: burada saklanmaz."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "Yalnızca bir kez gösterilir. Uygulamada parola olarak yaz."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Kenar çubuğu"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "Başka bir uygulamadan giriş yap"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "Oturumu kapat"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "Oturum açma"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "Giriş geçersiz kılındı"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

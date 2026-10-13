@@ -7,7 +7,7 @@ import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { Networks } from './networks'
+import { Networks, PasswordDialog } from './networks'
 import { suggestHandle } from '@/lib/handles'
 import type { NetworksData } from '@/types/networks'
 
@@ -240,5 +240,45 @@ describe('Networks', () => {
     expect(
       await screen.findByText('This server does not offer other networks.')
     ).toBeTruthy()
+  })
+
+  it('mints a password for signing in from another app and shows it once', async () => {
+    state.post.mockResolvedValue({ password: 'mochi-secret' })
+    const client = new QueryClient()
+    render(
+      <QueryClientProvider client={client}>
+        <I18nProvider i18n={i18n}>
+          <PasswordDialog
+            account={{ ...data.accounts[0], domain: 'example.com' }}
+            onOpenChange={() => {}}
+          />
+        </I18nProvider>
+      </QueryClientProvider>
+    )
+    expect(
+      (screen.getByLabelText('Server') as HTMLInputElement).value
+    ).toBe('https://example.com')
+    expect(
+      (screen.getByLabelText('Address') as HTMLInputElement).value
+    ).toBe('alice@example.com')
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText('Device'), {
+        target: { value: 'Laptop' },
+      })
+    })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Make password' }))
+    })
+    await waitFor(() =>
+      expect(state.post).toHaveBeenCalledWith(
+        '-/user/networks/account/password',
+        { id: 'f1', name: 'Laptop' },
+        expect.anything()
+      )
+    )
+    expect(
+      ((await screen.findByLabelText('Password')) as HTMLInputElement).value
+    ).toBe('mochi-secret')
+    expect(screen.queryByRole('button', { name: 'Make password' })).toBeNull()
   })
 })

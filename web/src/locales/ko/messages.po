@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {# 개 대상에 테스트를 보냈어요} other {# 
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{totalLabel} 중 {sentLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} 앱이 {0}에서 로그아웃되며 다시 로그인해야 해요."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, other {대상 #개 중 {sent}개에 테스트를 보냈어요}}"
@@ -306,6 +311,7 @@ msgstr "접근 수준"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "계정"
 
@@ -492,6 +498,7 @@ msgstr "\"{0}\"이(가) 추가되었어요"
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "주소"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "이 피드를 구독 중인 모든 것이 수신을 중단합니다. 이후에 새 URL을 복사할 수 있습니다."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "앱"
 
@@ -585,6 +593,15 @@ msgstr "로그인을 처리하는 앱"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "외관"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "로그인한 앱"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "이 비밀번호로 {0}에 로그인한 앱은 로그아웃돼요."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "검색 지우기"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "닫기"
 
@@ -1078,6 +1096,7 @@ msgstr "{providerLabel}(으)로 계속"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "복사됨"
 
@@ -1091,6 +1110,9 @@ msgstr "클립보드에 복사되었어요"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "복사"
@@ -1107,6 +1129,7 @@ msgstr "이름을 추가할 수 없었어요"
 msgid "Could not close your account"
 msgstr "계정을 닫을 수 없습니다"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "복사할 수 없었어요"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "이 문서를 불러올 수 없습니다. 잠시 후 다시 시도해 주세요."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "비밀번호를 만들 수 없었어요"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "복구 키를 만들 수 없었어요"
 
@@ -1152,6 +1179,10 @@ msgstr "키를 교체할 수 없었어요"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "핸들을 예약할 수 없었어요"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "철회할 수 없었어요"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "사용자 생성"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "생성됨"
@@ -1453,9 +1485,11 @@ msgstr "웹 브라우저에서 감지"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "기기"
 
@@ -2424,6 +2458,7 @@ msgstr "마지막 확인"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "마지막 사용"
 
@@ -2559,6 +2594,10 @@ msgstr "복구 키를 만들까요?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "키 만들기"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "비밀번호 만들기"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "네트워크"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "패스키가 서버 관리자에 의해 비활성화되었습니다."
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "암호 문구"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "비밀번호"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "비밀번호가 철회되었어요"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "비밀번호"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "기본값으로 되돌리기"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "철회"
 
@@ -3722,6 +3777,14 @@ msgstr "세션 철회"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "세션을 철회할까요?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "이 비밀번호를 철회할까요?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "이 로그인을 철회할까요?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "세리프"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "서버"
 
@@ -4042,9 +4106,18 @@ msgstr "{total} 중 {totalShown} 표시 중"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "한 번만 표시됩니다. 안전한 곳에 보관하세요. 여기에는 저장되지 않습니다."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "한 번만 표시돼요. 앱에서 비밀번호로 입력하세요."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "사이드바"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "다른 앱에서 로그인"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "로그아웃"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "로그인"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "로그인이 철회되었어요"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."

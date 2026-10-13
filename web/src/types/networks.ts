@@ -9,6 +9,7 @@ import type { Account, ProviderField } from '@mochi/web'
 export interface NetworkAccount extends Account {
   hosted?: boolean
   server?: string
+  domain?: string
   url?: string
   name?: string
   avatar?: string

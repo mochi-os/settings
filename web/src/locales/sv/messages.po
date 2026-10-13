@@ -229,6 +229,11 @@ msgstr "{sent, plural, one {Test skickat till # destination} other {Test skickat
 msgid "{sentLabel} of {totalLabel}"
 msgstr "{sentLabel} av {totalLabel}"
 
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "{title} will be signed out of {0} and must sign in again."
+msgstr "{title} loggas ut från {0} och måste logga in igen."
+
 #: src/features/user/notifications.tsx
 msgid "{total, plural, one {Test sent to {sent} of # destination} other {Test sent to {sent} of # destinations}}"
 msgstr "{total, plural, one {Test skickat till {sent} av # destination} other {Test skickat till {sent} av # destinationer}}"
@@ -306,6 +311,7 @@ msgstr "Åtkomstnivå"
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/account.tsx
 #: src/features/user/account.tsx
+#: src/features/user/sessions.tsx
 msgid "Account"
 msgstr "Konto"
 
@@ -492,6 +498,7 @@ msgstr "La till \"{0}\""
 
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adress"
 
@@ -575,6 +582,7 @@ msgid "Anything subscribed to this feed will stop receiving it. You can copy a n
 msgstr "Allt som prenumererar på det här flödet slutar ta emot det. Du kan kopiera en ny webbadress efteråt."
 
 #: src/features/domains/index.tsx
+#: src/features/user/sessions.tsx
 msgid "App"
 msgstr "App"
 
@@ -585,6 +593,15 @@ msgstr "App som hanterar inloggning"
 #: src/features/user/display.tsx
 msgid "Appearance"
 msgstr "Utseende"
+
+#: src/features/user/sessions.tsx
+msgid "Apps signed in"
+msgstr "Inloggade appar"
+
+#. placeholder {0}: token.address
+#: src/features/user/sessions.tsx
+msgid "Apps signed in to {0} with this password will be signed out."
+msgstr "Appar som har loggat in på {0} med det här lösenordet loggas ut."
 
 #. placeholder {0}: deleteTarget?.name
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -924,6 +941,7 @@ msgstr "Rensa sökning"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Stäng"
 
@@ -1078,6 +1096,7 @@ msgstr "Fortsätt med {providerLabel}"
 
 #: ../../../lib/web/src/lib/toast-utils.ts
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Copied"
 msgstr "Kopierat"
 
@@ -1091,6 +1110,9 @@ msgstr "Kopierat till urklipp"
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/ui/copy-button.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Copy"
 msgstr "Kopiera"
@@ -1107,6 +1129,7 @@ msgstr "Det gick inte att lägga till namnet"
 msgid "Could not close your account"
 msgstr "Det gick inte att stänga ditt konto"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not copy"
 msgstr "Det gick inte att kopiera"
@@ -1133,6 +1156,10 @@ msgid "Could not load this document. Please try again later."
 msgstr "Det gick inte att läsa in detta dokument. Försök igen senare."
 
 #: src/features/user/networks.tsx
+msgid "Could not make the password"
+msgstr "Kunde inte skapa lösenordet"
+
+#: src/features/user/networks.tsx
 msgid "Could not make the recovery key"
 msgstr "Det gick inte att skapa återställningsnyckeln"
 
@@ -1152,6 +1179,10 @@ msgstr "Det gick inte att ersätta nycklarna"
 #: src/features/user/networks.tsx
 msgid "Could not reserve the handle"
 msgstr "Det gick inte att reservera aliaset"
+
+#: src/features/user/sessions.tsx
+msgid "Could not revoke"
+msgstr "Kunde inte återkalla"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
@@ -1213,6 +1244,7 @@ msgstr "Skapa användare"
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Created"
 msgstr "Skapad"
@@ -1453,9 +1485,11 @@ msgstr "Identifiera från webbläsare"
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
 #: src/features/user/notifications.tsx
+#: src/features/user/sessions.tsx
 msgid "Device"
 msgstr "Enhet"
 
@@ -2424,6 +2458,7 @@ msgstr "Senast sedd"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
 msgid "Last used"
 msgstr "Senast använd"
 
@@ -2559,6 +2594,10 @@ msgstr "Skapa en återställningsnyckel?"
 #: src/features/user/networks.tsx
 msgid "Make key"
 msgstr "Skapa nyckel"
+
+#: src/features/user/networks.tsx
+msgid "Make password"
+msgstr "Skapa lösenord"
 
 #: src/features/user/login.tsx
 msgid "Make sure to save the new codes."
@@ -2782,6 +2821,8 @@ msgstr "Nätverk"
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 #: src/features/user/sessions.tsx
 msgid "Never"
@@ -3208,6 +3249,18 @@ msgstr "Nycklar har stängts av av serveradministratören."
 #: src/features/user/data.tsx
 msgid "Passphrase"
 msgstr "Lösenfras"
+
+#: src/features/user/networks.tsx
+msgid "Password"
+msgstr "Lösenord"
+
+#: src/features/user/sessions.tsx
+msgid "Password revoked"
+msgstr "Lösenordet återkallat"
+
+#: src/features/user/sessions.tsx
+msgid "Passwords"
+msgstr "Lösenord"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -3686,6 +3739,8 @@ msgstr "Återställ till standard"
 #: ../../../lib/web/src/components/options-menu.tsx
 #: src/features/system/users.tsx
 #: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
+#: src/features/user/sessions.tsx
 msgid "Revoke"
 msgstr "Återkalla"
 
@@ -3722,6 +3777,14 @@ msgstr "Återkalla session"
 #: src/features/user/sessions.tsx
 msgid "Revoke session?"
 msgstr "Återkalla session?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this password?"
+msgstr "Återkalla det här lösenordet?"
+
+#: src/features/user/sessions.tsx
+msgid "Revoke this sign-in?"
+msgstr "Återkalla den här inloggningen?"
 
 #: src/features/system/users.tsx
 #: src/features/system/users.tsx
@@ -3959,6 +4022,7 @@ msgid "Serif"
 msgstr "Serif"
 
 #: src/features/system/status.tsx
+#: src/features/user/networks.tsx
 msgid "Server"
 msgstr "Server"
 
@@ -4042,9 +4106,18 @@ msgstr "Visar {totalShown} av {total}"
 msgid "Shown once. Keep it somewhere safe: it is not stored here."
 msgstr "Visas bara en gång. Förvara den på ett säkert ställe: den sparas inte här."
 
+#: src/features/user/networks.tsx
+msgid "Shown once. Type it as the password in the app."
+msgstr "Visas bara en gång. Skriv det som lösenord i appen."
+
 #: ../../../lib/web/src/components/ui/sidebar.tsx
 msgid "Sidebar"
 msgstr "Sidofält"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Sign in from another app"
+msgstr "Logga in från en annan app"
 
 #: ../../../lib/web/src/features/errors/access-denied-error.tsx
 msgid "Sign in with an account that has access <0/> to this resource."
@@ -4058,6 +4131,10 @@ msgstr "Logga ut"
 #: src/features/user/connected-accounts.tsx
 msgid "Sign-in"
 msgstr "Inloggning"
+
+#: src/features/user/sessions.tsx
+msgid "Sign-in revoked"
+msgstr "Inloggningen återkallad"
 
 #: ../../../lib/web/src/components/layout/authenticated-layout.tsx
 msgid "Signing out..."
