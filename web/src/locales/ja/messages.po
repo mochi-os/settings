@@ -19,6 +19,11 @@ msgid "Please check your internet connection and try again."
 msgstr "インターネット接続を確認して、もう一度お試しください。"
 
 #. placeholder {0}: releasing.name
+#: src/features/system/handles.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. The holder's accounts on them, everything those published and their followers are removed."
+msgstr "「{0}」とその下の名前は解放され、誰でも取得できるようになります。保有者のそれらのアカウント、そこで公開されたすべての内容、およびフォロワーは削除されます。"
+
+#. placeholder {0}: releasing.name
 #: src/features/user/networks.tsx
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "「{0}」とその下の名前は解放され、誰でも取得できるようになります。それらのアカウント、そこで公開されたすべての内容、およびフォロワーは削除されます。"
@@ -829,6 +834,12 @@ msgstr "その通知の移動先カテゴリ"
 msgid "Category for these notifications"
 msgstr "これらの通知のカテゴリ"
 
+#. placeholder {0}: formatNumber(certificates.issued)
+#. placeholder {1}: formatNumber(certificates.limit)
+#: src/features/system/status.tsx
+msgid "Certificates this week {0} / {1}"
+msgstr "今週の証明書 {0} / {1}"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Change notification category"
@@ -994,6 +1005,10 @@ msgstr "コメント"
 msgid "Comments ({0})"
 msgstr "コメント ({0})"
 
+#: src/features/system/handles.tsx
+msgid "Community"
+msgstr "コミュニティ"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Compact"
 msgstr "コンパクト"
@@ -1121,6 +1136,7 @@ msgstr "このドキュメントを読み込めませんでした。後でもう
 msgid "Could not make the recovery key"
 msgstr "リカバリーキーを作成できませんでした"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not release the handle"
 msgstr "ハンドルを解放できませんでした"
@@ -1194,6 +1210,7 @@ msgstr "ユーザーを作成"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
@@ -1465,6 +1482,7 @@ msgstr "認証アプリを無効にしますか?"
 
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
+#: src/features/system/status.tsx
 #: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "無効"
@@ -1527,6 +1545,7 @@ msgid "Does not match the required pattern"
 msgstr "必要なパターンと一致しません"
 
 #: src/features/domains/index.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "ドメイン"
@@ -2048,7 +2067,7 @@ msgstr "コードの検証に失敗しました"
 msgid "Failed to verify domain"
 msgstr "ドメインの認証に失敗しました"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "フェディバース"
 
@@ -2175,14 +2194,17 @@ msgstr "グループ化"
 msgid "Group: {0}"
 msgstr "グループ: {0}"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "ハンドル"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle actions"
 msgstr "ハンドルの操作"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle released"
 msgstr "ハンドルを解放しました"
@@ -2191,9 +2213,23 @@ msgstr "ハンドルを解放しました"
 msgid "Handle reserved"
 msgstr "ハンドルを予約しました"
 
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
+msgid "Handles"
+msgstr "ハンドル"
+
+#: src/features/system/settings.tsx
+msgid "Handles each user may reserve"
+msgstr "各ユーザーが予約できるハンドル数"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "履歴"
+
+#: src/features/system/handles.tsx
+msgid "Holder"
+msgstr "保有者"
 
 #: src/features/system/status.tsx
 msgid "Hole punch"
@@ -2205,6 +2241,22 @@ msgstr "ホールパンチ"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "ホーム"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Bluesky"
+msgstr "Bluesky でアカウントをホスト"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Matrix"
+msgstr "Matrix でアカウントをホスト"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on the fediverse"
+msgstr "フェディバースでアカウントをホスト"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on XMPP"
+msgstr "XMPP でアカウントをホスト"
 
 #: src/features/user/networks.tsx
 msgid "Hosted"
@@ -2319,6 +2371,7 @@ msgstr "鍵"
 msgid "Keys replaced"
 msgstr "キーを置き換えました"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
@@ -2659,6 +2712,7 @@ msgstr "マイパスキー"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2695,6 +2749,11 @@ msgstr "名前が必要です"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name must be 1000 characters or less"
 msgstr "名前は1000文字以下にしてください"
+
+#. placeholder {0}: handle.parent
+#: src/features/system/handles.tsx
+msgid "Name under {0}"
+msgstr "{0} の下の名前"
 
 #: src/features/user/account.tsx
 msgid "Name updated"
@@ -2822,6 +2881,10 @@ msgstr "送信先が設定されていません"
 msgid "No document available for this language."
 msgstr "この言語のドキュメントはありません。"
 
+#: src/features/system/status.tsx
+msgid "No domain is configured"
+msgstr "ドメインが設定されていません"
+
 #: src/features/domains/index.tsx
 msgid "No domains configured"
 msgstr "ドメインが設定されていません"
@@ -2833,6 +2896,10 @@ msgstr "まだゲームがありません"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "No groups available"
 msgstr "利用可能なグループがありません"
+
+#: src/features/system/handles.tsx
+msgid "No handles have been reserved."
+msgstr "予約されたハンドルはありません。"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3067,6 +3134,13 @@ msgstr "オプション"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "その他"
+
+#: src/features/system/settings.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+msgid "Other networks"
+msgstr "その他のネットワーク"
 
 #: src/features/user/networks.tsx
 msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
@@ -3397,11 +3471,14 @@ msgstr "24時間以内は相対、それ以外は絶対"
 msgid "Relay service"
 msgstr "リレーサービス"
 
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Release"
 msgstr "解放"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Release this handle?"
 msgstr "このハンドルを解放しますか？"
@@ -3885,6 +3962,10 @@ msgstr "セリフ"
 msgid "Server"
 msgstr "サーバー"
 
+#: src/features/system/settings.tsx
+msgid "Server description"
+msgstr "サーバーの説明"
+
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Server error"
@@ -4119,6 +4200,10 @@ msgstr "タグは50文字以内にしてください"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Tags"
 msgstr "タグ"
+
+#: src/features/system/handles.tsx
+msgid "Take a name"
+msgstr "名前を取得"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -4441,6 +4526,11 @@ msgstr "未割り当て"
 msgid "Unavailable"
 msgstr "利用不可"
 
+#. placeholder {0}: unavailable(network.reason)
+#: src/features/system/status.tsx
+msgid "Unavailable · {0}"
+msgstr "利用不可 · {0}"
+
 #: ../../../lib/web/src/lib/request.ts
 #: ../../../lib/web/src/lib/request.ts
 msgid "Unexpected API error"
@@ -4695,6 +4785,10 @@ msgstr "水曜日"
 msgid "Week starts on"
 msgstr "週の始まり"
 
+#: src/features/system/status.tsx
+msgid "Working"
+msgstr "稼働中"
+
 #: src/features/system/settings.tsx
 msgid "X client ID"
 msgstr "Xクライアント ID"
@@ -4703,7 +4797,7 @@ msgstr "Xクライアント ID"
 msgid "X client secret"
 msgstr "Xクライアントシークレット"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "XMPP"
 msgstr "XMPP"
 

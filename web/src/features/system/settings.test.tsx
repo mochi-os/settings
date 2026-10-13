@@ -46,6 +46,9 @@ vi.mock('@/hooks/use-system-settings', () => ({
           pattern: '^(disabled|allowed|required)$',
         }),
         setting('fcm.service_account', '', { pattern: 'text' }),
+        setting('handles', '1', { pattern: 'natural' }),
+        setting('fediverse', 'true', { pattern: '^(true|false)$' }),
+        setting('description', '', { pattern: 'line' }),
       ],
       themes: [
         { id: 'app1:blue', app: 'app1', label: 'Blue', hue: 0, chroma: 0, hue_bg: 0 },
@@ -123,5 +126,14 @@ describe('System settings', () => {
       value: 'required',
       token: 'proof',
     })
+  })
+  it('groups the handle limit and the protocol switches under Other networks', () => {
+    show()
+    expect(screen.getByText('Other networks')).toBeTruthy()
+    expect(screen.getByText('Handles each user may reserve')).toBeTruthy()
+    expect(screen.getByText('Host accounts on the fediverse')).toBeTruthy()
+    // The server description sits with the operator's details.
+    expect(screen.getByText('Operator')).toBeTruthy()
+    expect(screen.getByText('Server description')).toBeTruthy()
   })
 })

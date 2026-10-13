@@ -19,6 +19,11 @@ msgid "Please check your internet connection and try again."
 msgstr "သင့်အင်တာနက်ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်မံကြိုးစားပါ။"
 
 #. placeholder {0}: releasing.name
+#: src/features/system/handles.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. The holder's accounts on them, everything those published and their followers are removed."
+msgstr "\"{0}\" နှင့် ၎င်းအောက်ရှိ အမည်များကို မည်သူမဆို ယူနိုင်ရန် လွှတ်ပေးပါမည်။ ပိုင်ရှင်၏ ၎င်းတို့ပေါ်ရှိ အကောင့်များ၊ ထိုအကောင့်များ ထုတ်ဝေခဲ့သမျှနှင့် ၎င်းတို့၏ နောက်လိုက်များကို ဖယ်ရှားပါမည်။"
+
+#. placeholder {0}: releasing.name
 #: src/features/user/networks.tsx
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "\"{0}\" နှင့် ၎င်းအောက်ရှိ အမည်များကို မည်သူမဆို ယူနိုင်ရန် လွှတ်ပေးပါမည်။ ၎င်းတို့၏ အကောင့်များ၊ ထိုအကောင့်များ ထုတ်ဝေခဲ့သမျှနှင့် ၎င်းတို့၏ နောက်လိုက်များကို ဖယ်ရှားပါမည်။"
@@ -829,6 +834,12 @@ msgstr "၎င်း၏ အကြောင်းကြားချက်မျ�
 msgid "Category for these notifications"
 msgstr "ဤအကြောင်းကြားချက်များအတွက် အမျိုးအစား"
 
+#. placeholder {0}: formatNumber(certificates.issued)
+#. placeholder {1}: formatNumber(certificates.limit)
+#: src/features/system/status.tsx
+msgid "Certificates this week {0} / {1}"
+msgstr "ဤအပတ်အတွင်း လက်မှတ်များ {0} / {1}"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Change notification category"
@@ -994,6 +1005,10 @@ msgstr "မှတ်ချက်များ"
 msgid "Comments ({0})"
 msgstr "မှတ်ချက်များ ({0})"
 
+#: src/features/system/handles.tsx
+msgid "Community"
+msgstr "အသိုင်းအဝိုင်း"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Compact"
 msgstr "ကျစ်လျစ်"
@@ -1121,6 +1136,7 @@ msgstr "ဤစာရွက်စာတမ်းကို ဖွင့်၍ မ�
 msgid "Could not make the recovery key"
 msgstr "ပြန်လည်ရယူရေးသော့ ပြုလုပ်၍ မရပါ"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not release the handle"
 msgstr "သုံးစွဲသူအမည်ကို လွှတ်ပေး၍ မရပါ"
@@ -1194,6 +1210,7 @@ msgstr "သုံးစွဲသူ ဖန်တီးမည်"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
@@ -1465,6 +1482,7 @@ msgstr "အထောက်အထားစိစစ်ရေး ပိတ်မ�
 
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
+#: src/features/system/status.tsx
 #: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "ပိတ်ထားသည်"
@@ -1527,6 +1545,7 @@ msgid "Does not match the required pattern"
 msgstr "လိုအပ်သော ပုံစံနှင့် မကိုက်ညီပါ"
 
 #: src/features/domains/index.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "ဒိုမိန်း"
@@ -2048,7 +2067,7 @@ msgstr "ကုဒ် အတည်ပြု၍ မရပါ"
 msgid "Failed to verify domain"
 msgstr "ဒိုမိန်း အတည်ပြု၍ မရပါ"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
 
@@ -2175,14 +2194,17 @@ msgstr "အလိုက် အုပ်စုဖွဲ့ရန်"
 msgid "Group: {0}"
 msgstr "အုပ်စု- {0}"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "သုံးစွဲသူအမည်"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle actions"
 msgstr "သုံးစွဲသူအမည် လုပ်ဆောင်ချက်များ"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle released"
 msgstr "သုံးစွဲသူအမည် လွှတ်ပေးပြီး"
@@ -2191,9 +2213,23 @@ msgstr "သုံးစွဲသူအမည် လွှတ်ပေးပြ�
 msgid "Handle reserved"
 msgstr "သုံးစွဲသူအမည် ကြိုတင်ယူထားပြီး"
 
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
+msgid "Handles"
+msgstr "သုံးစွဲသူအမည်များ"
+
+#: src/features/system/settings.tsx
+msgid "Handles each user may reserve"
+msgstr "သုံးစွဲသူတစ်ဦးစီ ကြိုတင်ယူနိုင်သော သုံးစွဲသူအမည် အရေအတွက်"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "မှတ်တမ်း"
+
+#: src/features/system/handles.tsx
+msgid "Holder"
+msgstr "ပိုင်ရှင်"
 
 #: src/features/system/status.tsx
 msgid "Hole punch"
@@ -2205,6 +2241,22 @@ msgstr "ပေါက်ဖောက်ခြင်း"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "ပင်မ"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Bluesky"
+msgstr "Bluesky တွင် အကောင့်များကို လက်ခံထားရှိမည်"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Matrix"
+msgstr "Matrix တွင် အကောင့်များကို လက်ခံထားရှိမည်"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on the fediverse"
+msgstr "Fediverse တွင် အကောင့်များကို လက်ခံထားရှိမည်"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on XMPP"
+msgstr "XMPP တွင် အကောင့်များကို လက်ခံထားရှိမည်"
 
 #: src/features/user/networks.tsx
 msgid "Hosted"
@@ -2319,6 +2371,7 @@ msgstr "သော့များ"
 msgid "Keys replaced"
 msgstr "သော့များ အစားထိုးပြီး"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
@@ -2659,6 +2712,7 @@ msgstr "ကျွန်ုပ်၏ ဝင်ရောက်ခွင့်သ�
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2695,6 +2749,11 @@ msgstr "အမည် လိုအပ်သည်"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name must be 1000 characters or less"
 msgstr "အမည်သည် စာလုံး ၁၀၀၀ သို့မဟုတ် ထိုထက်နည်းရမည်"
+
+#. placeholder {0}: handle.parent
+#: src/features/system/handles.tsx
+msgid "Name under {0}"
+msgstr "{0} အောက်ရှိ အမည်"
 
 #: src/features/user/account.tsx
 msgid "Name updated"
@@ -2822,6 +2881,10 @@ msgstr "destination များ မသတ်မှတ်ထားပါ"
 msgid "No document available for this language."
 msgstr "ဤဘာသာစကားအတွက် စာရွက်စာတမ်း မရရှိနိုင်ပါ။"
 
+#: src/features/system/status.tsx
+msgid "No domain is configured"
+msgstr "ဒိုမိန်း သတ်မှတ်ထားခြင်း မရှိပါ"
+
 #: src/features/domains/index.tsx
 msgid "No domains configured"
 msgstr "domain များ မသတ်မှတ်ထားပါ"
@@ -2833,6 +2896,10 @@ msgstr "ဂိမ်းများ မရှိသေးပါ"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "No groups available"
 msgstr "အုပ်စုများ မရရှိနိုင်ပါ"
+
+#: src/features/system/handles.tsx
+msgid "No handles have been reserved."
+msgstr "ကြိုတင်ယူထားသော သုံးစွဲသူအမည် မရှိပါ။"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3067,6 +3134,13 @@ msgstr "ရွေးချယ်စရာများ"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "အခြား"
+
+#: src/features/system/settings.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+msgid "Other networks"
+msgstr "အခြားကွန်ရက်များ"
 
 #: src/features/user/networks.tsx
 msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
@@ -3397,11 +3471,14 @@ msgstr "၂၄ နာရီအတွင်း ဆက်စပ်၊ ပြင်
 msgid "Relay service"
 msgstr "ထပ်ဆင့်ပို့ဝန်ဆောင်မှု"
 
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Release"
 msgstr "လွှတ်ပေးမည်"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Release this handle?"
 msgstr "ဤသုံးစွဲသူအမည်ကို လွှတ်ပေးမလား?"
@@ -3885,6 +3962,10 @@ msgstr "ဆာရစ်ဖ်"
 msgid "Server"
 msgstr "ဆာဗာ"
 
+#: src/features/system/settings.tsx
+msgid "Server description"
+msgstr "ဆာဗာ ဖော်ပြချက်"
+
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Server error"
@@ -4119,6 +4200,10 @@ msgstr "တဂ်သည် စာလုံး ၅၀ သို့မဟုတ်
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Tags"
 msgstr "တက်ဂ်များ"
+
+#: src/features/system/handles.tsx
+msgid "Take a name"
+msgstr "အမည်တစ်ခု ယူပါ"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -4441,6 +4526,11 @@ msgstr "မသတ်မှတ်ထား"
 msgid "Unavailable"
 msgstr "မရရှိနိုင်ပါ"
 
+#. placeholder {0}: unavailable(network.reason)
+#: src/features/system/status.tsx
+msgid "Unavailable · {0}"
+msgstr "မရနိုင်ပါ · {0}"
+
 #: ../../../lib/web/src/lib/request.ts
 #: ../../../lib/web/src/lib/request.ts
 msgid "Unexpected API error"
@@ -4695,6 +4785,10 @@ msgstr "ဗုဒ္ဓဟူး"
 msgid "Week starts on"
 msgstr "အပတ်ကို စတင်သည့်ရက်"
 
+#: src/features/system/status.tsx
+msgid "Working"
+msgstr "အလုပ်လုပ်နေသည်"
+
 #: src/features/system/settings.tsx
 msgid "X client ID"
 msgstr "X ကလိုင်းယင့် ID"
@@ -4703,7 +4797,7 @@ msgstr "X ကလိုင်းယင့် ID"
 msgid "X client secret"
 msgstr "X ကလိုင်းယင့် လျှို့ဝှက်ချက်"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "XMPP"
 msgstr "XMPP"
 

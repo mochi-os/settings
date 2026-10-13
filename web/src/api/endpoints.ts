@@ -74,6 +74,9 @@ const endpoints = {
   },
   system: {
     peers: '-/system/peers',
+    networks: '-/system/networks',
+    handlesList: '-/system/handles/list',
+    handlesRelease: '-/system/handles/release',
     settings: '-/system/settings/list',
     settingsSet: '-/system/settings/set',
     documents: '-/system/documents/list',

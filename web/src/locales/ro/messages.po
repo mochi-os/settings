@@ -19,6 +19,11 @@ msgid "Please check your internet connection and try again."
 msgstr "Verifică conexiunea la internet și încearcă din nou."
 
 #. placeholder {0}: releasing.name
+#: src/features/system/handles.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. The holder's accounts on them, everything those published and their followers are removed."
+msgstr "Pseudonimul \"{0}\" și numele de sub el vor fi eliberate, oricine le va putea lua. Conturile deținătorului pe aceste nume, tot ce au publicat acestea și urmăritorii lor vor fi eliminate."
+
+#. placeholder {0}: releasing.name
 #: src/features/user/networks.tsx
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "Pseudonimul \"{0}\" și numele de sub el vor fi eliberate, oricine le va putea lua. Conturile lor, tot ce au publicat acestea și urmăritorii lor vor fi eliminate."
@@ -829,6 +834,12 @@ msgstr "Categorie pentru notificările ei"
 msgid "Category for these notifications"
 msgstr "Categorie pentru aceste notificări"
 
+#. placeholder {0}: formatNumber(certificates.issued)
+#. placeholder {1}: formatNumber(certificates.limit)
+#: src/features/system/status.tsx
+msgid "Certificates this week {0} / {1}"
+msgstr "Certificate săptămâna aceasta {0} / {1}"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Change notification category"
@@ -994,6 +1005,10 @@ msgstr "Comentarii"
 msgid "Comments ({0})"
 msgstr "Comentarii ({0})"
 
+#: src/features/system/handles.tsx
+msgid "Community"
+msgstr "Comunitate"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Compact"
 msgstr "Compact"
@@ -1121,6 +1136,7 @@ msgstr "Nu s-a putut încărca acest document. Încearcă din nou mai târziu."
 msgid "Could not make the recovery key"
 msgstr "Cheia de recuperare nu a putut fi creată"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not release the handle"
 msgstr "Pseudonimul nu a putut fi eliberat"
@@ -1194,6 +1210,7 @@ msgstr "Creează utilizator"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
@@ -1465,6 +1482,7 @@ msgstr "Dezactivezi aplicația de autentificare?"
 
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
+#: src/features/system/status.tsx
 #: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "Dezactivat"
@@ -1527,6 +1545,7 @@ msgid "Does not match the required pattern"
 msgstr "Nu corespunde modelului necesar"
 
 #: src/features/domains/index.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domeniu"
@@ -2048,7 +2067,7 @@ msgstr "Verificarea codului a eșuat"
 msgid "Failed to verify domain"
 msgstr "Verificarea domeniului a eșuat"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fedivers"
 
@@ -2175,14 +2194,17 @@ msgstr "Grupează după"
 msgid "Group: {0}"
 msgstr "Grup: {0}"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Pseudonim"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle actions"
 msgstr "Acțiuni pseudonim"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle released"
 msgstr "Pseudonim eliberat"
@@ -2191,9 +2213,23 @@ msgstr "Pseudonim eliberat"
 msgid "Handle reserved"
 msgstr "Pseudonim rezervat"
 
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
+msgid "Handles"
+msgstr "Pseudonime"
+
+#: src/features/system/settings.tsx
+msgid "Handles each user may reserve"
+msgstr "Pseudonime pe care le poate rezerva fiecare utilizator"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Istoric"
+
+#: src/features/system/handles.tsx
+msgid "Holder"
+msgstr "Deținător"
 
 #: src/features/system/status.tsx
 msgid "Hole punch"
@@ -2205,6 +2241,22 @@ msgstr "Perforare"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Acasă"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Bluesky"
+msgstr "Găzduiește conturi pe Bluesky"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Matrix"
+msgstr "Găzduiește conturi pe Matrix"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on the fediverse"
+msgstr "Găzduiește conturi în fedivers"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on XMPP"
+msgstr "Găzduiește conturi pe XMPP"
 
 #: src/features/user/networks.tsx
 msgid "Hosted"
@@ -2319,6 +2371,7 @@ msgstr "Chei"
 msgid "Keys replaced"
 msgstr "Chei înlocuite"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
@@ -2659,6 +2712,7 @@ msgstr "Cheia mea de acces"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2695,6 +2749,11 @@ msgstr "Numele este obligatoriu"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name must be 1000 characters or less"
 msgstr "Numele trebuie să aibă cel mult 1000 de caractere"
+
+#. placeholder {0}: handle.parent
+#: src/features/system/handles.tsx
+msgid "Name under {0}"
+msgstr "Nume sub {0}"
 
 #: src/features/user/account.tsx
 msgid "Name updated"
@@ -2822,6 +2881,10 @@ msgstr "Nicio destinație configurată"
 msgid "No document available for this language."
 msgstr "Niciun document disponibil pentru această limbă."
 
+#: src/features/system/status.tsx
+msgid "No domain is configured"
+msgstr "Niciun domeniu nu este configurat"
+
 #: src/features/domains/index.tsx
 msgid "No domains configured"
 msgstr "Niciun domeniu configurat"
@@ -2833,6 +2896,10 @@ msgstr "Încă niciun joc"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "No groups available"
 msgstr "Niciun grup disponibil"
+
+#: src/features/system/handles.tsx
+msgid "No handles have been reserved."
+msgstr "Nu a fost rezervat niciun pseudonim."
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3067,6 +3134,13 @@ msgstr "Opțiuni"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Altele"
+
+#: src/features/system/settings.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+msgid "Other networks"
+msgstr "Alte rețele"
 
 #: src/features/user/networks.tsx
 msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
@@ -3397,11 +3471,14 @@ msgstr "Relativ în 24 de ore, altfel absolut"
 msgid "Relay service"
 msgstr "Serviciu de releu"
 
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Release"
 msgstr "Eliberează"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Release this handle?"
 msgstr "Eliberezi acest pseudonim?"
@@ -3885,6 +3962,10 @@ msgstr "Cu serife"
 msgid "Server"
 msgstr "Server"
 
+#: src/features/system/settings.tsx
+msgid "Server description"
+msgstr "Descrierea serverului"
+
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Server error"
@@ -4119,6 +4200,10 @@ msgstr "Eticheta trebuie să aibă cel mult 50 de caractere"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Tags"
 msgstr "Etichete"
+
+#: src/features/system/handles.tsx
+msgid "Take a name"
+msgstr "Ia un nume"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -4441,6 +4526,11 @@ msgstr "Neatribuit"
 msgid "Unavailable"
 msgstr "Indisponibil"
 
+#. placeholder {0}: unavailable(network.reason)
+#: src/features/system/status.tsx
+msgid "Unavailable · {0}"
+msgstr "Indisponibil · {0}"
+
 #: ../../../lib/web/src/lib/request.ts
 #: ../../../lib/web/src/lib/request.ts
 msgid "Unexpected API error"
@@ -4695,6 +4785,10 @@ msgstr "Miercuri"
 msgid "Week starts on"
 msgstr "Săptămâna începe în"
 
+#: src/features/system/status.tsx
+msgid "Working"
+msgstr "Funcționează"
+
 #: src/features/system/settings.tsx
 msgid "X client ID"
 msgstr "ID client X"
@@ -4703,7 +4797,7 @@ msgstr "ID client X"
 msgid "X client secret"
 msgstr "Secret client X"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "XMPP"
 msgstr "XMPP"
 

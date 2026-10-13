@@ -73,7 +73,13 @@ function useSettingLabels(): Record<string, string> {
     operator_name: t`Operator name`,
     operator_email: t`Operator email`,
     operator_jurisdiction: t`Operator jurisdiction`,
+    description: t`Server description`,
     signup_enabled: t`Allow new signups`,
+    handles: t`Handles each user may reserve`,
+    fediverse: t`Host accounts on the fediverse`,
+    bluesky: t`Host accounts on Bluesky`,
+    xmpp: t`Host accounts on XMPP`,
+    matrix: t`Host accounts on Matrix`,
   }
 }
 
@@ -83,7 +89,12 @@ const OPERATOR_SETTINGS = [
   'operator_name',
   'operator_email',
   'operator_jurisdiction',
+  'description',
 ]
+
+// The other networks: the handle limit first, then the protocol switches in
+// their standard order. Listed only where the server offers them.
+const NETWORK_SETTINGS = ['handles', 'fediverse', 'bluesky', 'xmpp', 'matrix']
 
 function formatSettingName(
   name: string,
@@ -543,6 +554,7 @@ export function SystemSettings() {
     name.startsWith('auth_') || name === 'signup_enabled'
   const isOperatorSetting = (name: string) => OPERATOR_SETTINGS.includes(name)
   const isPushSetting = (name: string) => name.startsWith('fcm.')
+  const isNetworkSetting = (name: string) => NETWORK_SETTINGS.includes(name)
 
   const allSettings = data?.settings
     ? [...data.settings]
@@ -564,12 +576,16 @@ export function SystemSettings() {
     allSettings.find((s) => s.name === n)
   ).filter((s): s is NonNullable<typeof s> => s !== undefined)
   const pushSettings = allSettings.filter((s) => isPushSetting(s.name))
+  const networkSettings = NETWORK_SETTINGS.map((n) =>
+    allSettings.find((s) => s.name === n)
+  ).filter((s): s is NonNullable<typeof s> => s !== undefined)
   const other = allSettings.filter(
     (s) =>
       !isLoginSetting(s.name) &&
       !isOauthCredential(s.name) &&
       !isOperatorSetting(s.name) &&
       !isPushSetting(s.name) &&
+      !isNetworkSetting(s.name) &&
       !userDefaultSettings.includes(s.name)
   )
 
@@ -619,6 +635,14 @@ export function SystemSettings() {
               <Section title={t`Operator`}>
                 <div className='divide-y-0'>
                   {renderSettings(operatorSettings)}
+                </div>
+              </Section>
+            )}
+
+            {networkSettings.length > 0 && (
+              <Section title={t`Other networks`}>
+                <div className='divide-y-0'>
+                  {renderSettings(networkSettings)}
                 </div>
               </Section>
             )}

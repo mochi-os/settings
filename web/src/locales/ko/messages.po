@@ -19,6 +19,11 @@ msgid "Please check your internet connection and try again."
 msgstr "인터넷 연결을 확인하고 다시 시도하세요."
 
 #. placeholder {0}: releasing.name
+#: src/features/system/handles.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. The holder's accounts on them, everything those published and their followers are removed."
+msgstr "\"{0}\" 및 그 아래의 이름이 해제되어 누구나 가져갈 수 있게 됩니다. 보유자가 이 이름들로 사용하던 계정과 그 계정들이 게시한 모든 내용, 팔로워가 삭제됩니다."
+
+#. placeholder {0}: releasing.name
 #: src/features/user/networks.tsx
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "\"{0}\" 및 그 아래의 이름이 해제되어 누구나 가져갈 수 있게 됩니다. 해당 계정과 그 계정들이 게시한 모든 내용, 팔로워가 삭제됩니다."
@@ -829,6 +834,12 @@ msgstr "해당 알림을 옮길 카테고리"
 msgid "Category for these notifications"
 msgstr "이 알림들의 카테고리"
 
+#. placeholder {0}: formatNumber(certificates.issued)
+#. placeholder {1}: formatNumber(certificates.limit)
+#: src/features/system/status.tsx
+msgid "Certificates this week {0} / {1}"
+msgstr "이번 주 인증서 {0} / {1}"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Change notification category"
@@ -994,6 +1005,10 @@ msgstr "댓글"
 msgid "Comments ({0})"
 msgstr "댓글 ({0})"
 
+#: src/features/system/handles.tsx
+msgid "Community"
+msgstr "커뮤니티"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Compact"
 msgstr "컴팩트"
@@ -1121,6 +1136,7 @@ msgstr "이 문서를 불러올 수 없습니다. 잠시 후 다시 시도해 �
 msgid "Could not make the recovery key"
 msgstr "복구 키를 만들 수 없었어요"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not release the handle"
 msgstr "핸들을 해제할 수 없었어요"
@@ -1194,6 +1210,7 @@ msgstr "사용자 생성"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
@@ -1465,6 +1482,7 @@ msgstr "인증 앱을 비활성화할까요?"
 
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
+#: src/features/system/status.tsx
 #: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "비활성화됨"
@@ -1527,6 +1545,7 @@ msgid "Does not match the required pattern"
 msgstr "필요한 패턴과 일치하지 않습니다"
 
 #: src/features/domains/index.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "도메인"
@@ -2048,7 +2067,7 @@ msgstr "코드 확인에 실패했어요"
 msgid "Failed to verify domain"
 msgstr "도메인 확인에 실패했어요"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "페디버스"
 
@@ -2175,14 +2194,17 @@ msgstr "그룹화 기준"
 msgid "Group: {0}"
 msgstr "그룹: {0}"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "핸들"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle actions"
 msgstr "핸들 작업"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle released"
 msgstr "핸들이 해제되었어요"
@@ -2191,9 +2213,23 @@ msgstr "핸들이 해제되었어요"
 msgid "Handle reserved"
 msgstr "핸들이 예약되었어요"
 
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
+msgid "Handles"
+msgstr "핸들"
+
+#: src/features/system/settings.tsx
+msgid "Handles each user may reserve"
+msgstr "사용자별 예약 가능한 핸들 수"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "기록"
+
+#: src/features/system/handles.tsx
+msgid "Holder"
+msgstr "보유자"
 
 #: src/features/system/status.tsx
 msgid "Hole punch"
@@ -2205,6 +2241,22 @@ msgstr "홀 펀치"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "홈"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Bluesky"
+msgstr "Bluesky 계정 호스팅"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Matrix"
+msgstr "Matrix 계정 호스팅"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on the fediverse"
+msgstr "페디버스 계정 호스팅"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on XMPP"
+msgstr "XMPP 계정 호스팅"
 
 #: src/features/user/networks.tsx
 msgid "Hosted"
@@ -2319,6 +2371,7 @@ msgstr "키"
 msgid "Keys replaced"
 msgstr "키가 교체되었어요"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
@@ -2659,6 +2712,7 @@ msgstr "내 패스키"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2695,6 +2749,11 @@ msgstr "이름은 필수예요"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name must be 1000 characters or less"
 msgstr "이름은 1000자 이하여야 해요"
+
+#. placeholder {0}: handle.parent
+#: src/features/system/handles.tsx
+msgid "Name under {0}"
+msgstr "{0} 아래의 이름"
 
 #: src/features/user/account.tsx
 msgid "Name updated"
@@ -2822,6 +2881,10 @@ msgstr "설정된 대상이 없어요"
 msgid "No document available for this language."
 msgstr "이 언어로 제공되는 문서가 없습니다."
 
+#: src/features/system/status.tsx
+msgid "No domain is configured"
+msgstr "구성된 도메인이 없습니다"
+
 #: src/features/domains/index.tsx
 msgid "No domains configured"
 msgstr "설정된 도메인이 없어요"
@@ -2833,6 +2896,10 @@ msgstr "아직 게임이 없어요"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "No groups available"
 msgstr "이용 가능한 그룹이 없어요"
+
+#: src/features/system/handles.tsx
+msgid "No handles have been reserved."
+msgstr "예약된 핸들이 없습니다."
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3067,6 +3134,13 @@ msgstr "옵션"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "기타"
+
+#: src/features/system/settings.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+msgid "Other networks"
+msgstr "다른 네트워크"
 
 #: src/features/user/networks.tsx
 msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
@@ -3397,11 +3471,14 @@ msgstr "24시간 이내는 상대적, 그 외는 절대적"
 msgid "Relay service"
 msgstr "릴레이 서비스"
 
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Release"
 msgstr "해제"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Release this handle?"
 msgstr "이 핸들을 해제할까요?"
@@ -3885,6 +3962,10 @@ msgstr "세리프"
 msgid "Server"
 msgstr "서버"
 
+#: src/features/system/settings.tsx
+msgid "Server description"
+msgstr "서버 설명"
+
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Server error"
@@ -4119,6 +4200,10 @@ msgstr "태그는 50자 이하여야 해요"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Tags"
 msgstr "태그"
+
+#: src/features/system/handles.tsx
+msgid "Take a name"
+msgstr "이름 확보"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -4441,6 +4526,11 @@ msgstr "할당되지 않음"
 msgid "Unavailable"
 msgstr "사용할 수 없음"
 
+#. placeholder {0}: unavailable(network.reason)
+#: src/features/system/status.tsx
+msgid "Unavailable · {0}"
+msgstr "사용 불가 · {0}"
+
 #: ../../../lib/web/src/lib/request.ts
 #: ../../../lib/web/src/lib/request.ts
 msgid "Unexpected API error"
@@ -4695,6 +4785,10 @@ msgstr "수요일"
 msgid "Week starts on"
 msgstr "주 시작일"
 
+#: src/features/system/status.tsx
+msgid "Working"
+msgstr "정상 작동"
+
 #: src/features/system/settings.tsx
 msgid "X client ID"
 msgstr "X 클라이언트 ID"
@@ -4703,7 +4797,7 @@ msgstr "X 클라이언트 ID"
 msgid "X client secret"
 msgstr "X 클라이언트 비밀"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "XMPP"
 msgstr "XMPP"
 

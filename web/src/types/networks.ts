@@ -64,3 +64,26 @@ export interface AccountKey {
   public: string
   created: number
 }
+
+// The owner's view: each network's state, and every handle with its holder.
+export interface NetworkState {
+  state: 'working' | 'unavailable' | 'disabled'
+  reason: string
+  certificates?: { issued: number; limit: number }
+}
+
+export interface SystemNetworks {
+  development: boolean
+  networks: Record<string, NetworkState>
+}
+
+export interface RegistryHandle extends Handle {
+  user: string
+  username: string
+  holder: string
+}
+
+export interface SystemHandles {
+  handles: RegistryHandle[]
+  domains: string[]
+}

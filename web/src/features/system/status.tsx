@@ -33,6 +33,8 @@ import { peerDisplayName, hyphenateFingerprint } from '@/lib/peer'
 import { useStepUp } from '@/lib/use-step-up'
 import { useSystemPeers, type PeerEntry } from '@/hooks/use-system-peers'
 import { useSystemSettingsData } from '@/hooks/use-system-settings'
+import { useSystemNetworks } from '@/hooks/use-system-networks'
+import { networkLabel } from '@/lib/networks'
 import {
   useInstallSystemUpdate,
   useSystemUpdate,
@@ -106,10 +108,84 @@ export function SystemStatus() {
           )}
         </Section>
         <NetworkStatus />
+        <OtherNetworks />
       </Main>
     </>
   )
 }
+
+// Why a network is unavailable, in the owner's words. The engines add their
+// own reasons as they are built.
+function useUnavailableReason() {
+  const { t } = useLingui()
+  return (reason: string): string => {
+    switch (reason) {
+      case 'domain':
+        return t`No domain is configured`
+    }
+    return reason
+  }
+}
+
+// Each other network's state: working, unavailable with the reason, or
+// disabled by the owner's setting. Shown only where the server offers them.
+function OtherNetworks() {
+  const { t } = useLingui()
+  const { formatNumber } = useFormat()
+  const unavailable = useUnavailableReason()
+  const { data, isLoading, error, refetch } = useSystemNetworks()
+
+  if (error) {
+    return (
+      <Section title={t`Other networks`}>
+        <GeneralError error={error} minimal mode='inline' reset={refetch} />
+      </Section>
+    )
+  }
+  if (isLoading || !data) {
+    return (
+      <Section title={t`Other networks`}>
+        <ListSkeleton variant='simple' height='h-9' count={4} />
+      </Section>
+    )
+  }
+  if (!data.development) return null
+
+  const names = Object.keys(data.networks).sort(
+    (a, b) => NETWORK_ORDER.indexOf(a) - NETWORK_ORDER.indexOf(b)
+  )
+  return (
+    <Section title={t`Other networks`}>
+      <div className='divide-y-0'>
+        {names.map((name) => {
+          const network = data.networks[name]
+          const certificates = network.certificates
+          return (
+            <FieldRow key={name} label={networkLabel(name)}>
+              <StatusValue>
+                {network.state === 'working' ? (
+                  <Trans>Working</Trans>
+                ) : network.state === 'disabled' ? (
+                  <Trans>Disabled</Trans>
+                ) : (
+                  t`Unavailable · ${unavailable(network.reason)}`
+                )}
+                {certificates && network.state !== 'disabled' && (
+                  <>
+                    {' · '}
+                    {t`Certificates this week ${formatNumber(certificates.issued)} / ${formatNumber(certificates.limit)}`}
+                  </>
+                )}
+              </StatusValue>
+            </FieldRow>
+          )
+        })}
+      </div>
+    </Section>
+  )
+}
+
+const NETWORK_ORDER = ['fediverse', 'bluesky', 'xmpp', 'matrix']
 
 function StatusValue({ children }: { children: ReactNode }) {
   return <span className='text-sm tabular-nums'>{children}</span>

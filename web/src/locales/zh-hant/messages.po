@@ -19,6 +19,11 @@ msgid "Please check your internet connection and try again."
 msgstr "請檢查您的網際網路連線後再試一次。"
 
 #. placeholder {0}: releasing.name
+#: src/features/system/handles.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. The holder's accounts on them, everything those published and their followers are removed."
+msgstr "「{0}」及其下的名稱將被釋出，任何人都可以取用。持有者在這些名稱上的帳戶、發佈的所有內容及追蹤者都會被移除。"
+
+#. placeholder {0}: releasing.name
 #: src/features/user/networks.tsx
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "「{0}」及其下的名稱將被釋出，任何人都可以取用。它們的帳戶、發佈的所有內容及追蹤者都會被移除。"
@@ -829,6 +834,12 @@ msgstr "其通知移至的類別"
 msgid "Category for these notifications"
 msgstr "這些通知的類別"
 
+#. placeholder {0}: formatNumber(certificates.issued)
+#. placeholder {1}: formatNumber(certificates.limit)
+#: src/features/system/status.tsx
+msgid "Certificates this week {0} / {1}"
+msgstr "本週憑證 {0} / {1}"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Change notification category"
@@ -994,6 +1005,10 @@ msgstr "留言"
 msgid "Comments ({0})"
 msgstr "留言 ({0})"
 
+#: src/features/system/handles.tsx
+msgid "Community"
+msgstr "社群"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Compact"
 msgstr "緊湊"
@@ -1121,6 +1136,7 @@ msgstr "無法載入此文件,請稍後再試。"
 msgid "Could not make the recovery key"
 msgstr "無法建立復原金鑰"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not release the handle"
 msgstr "無法釋出帳號代碼"
@@ -1194,6 +1210,7 @@ msgstr "建立使用者"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
@@ -1465,6 +1482,7 @@ msgstr "停用驗證器?"
 
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
+#: src/features/system/status.tsx
 #: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "已停用"
@@ -1527,6 +1545,7 @@ msgid "Does not match the required pattern"
 msgstr "與所需的模式不符"
 
 #: src/features/domains/index.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "網域"
@@ -2048,7 +2067,7 @@ msgstr "驗證代碼失敗"
 msgid "Failed to verify domain"
 msgstr "驗證網域失敗"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "聯邦宇宙"
 
@@ -2175,14 +2194,17 @@ msgstr "分組依據"
 msgid "Group: {0}"
 msgstr "群組：{0}"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "帳號代碼"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle actions"
 msgstr "帳號代碼操作"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle released"
 msgstr "帳號代碼已釋出"
@@ -2191,9 +2213,23 @@ msgstr "帳號代碼已釋出"
 msgid "Handle reserved"
 msgstr "帳號代碼已保留"
 
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
+msgid "Handles"
+msgstr "帳號代碼"
+
+#: src/features/system/settings.tsx
+msgid "Handles each user may reserve"
+msgstr "每位使用者可保留的帳號代碼數量"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "記錄"
+
+#: src/features/system/handles.tsx
+msgid "Holder"
+msgstr "持有者"
 
 #: src/features/system/status.tsx
 msgid "Hole punch"
@@ -2205,6 +2241,22 @@ msgstr "打洞穿透"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "首頁"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Bluesky"
+msgstr "在 Bluesky 上代管帳戶"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Matrix"
+msgstr "在 Matrix 上代管帳戶"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on the fediverse"
+msgstr "在聯邦宇宙上代管帳戶"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on XMPP"
+msgstr "在 XMPP 上代管帳戶"
 
 #: src/features/user/networks.tsx
 msgid "Hosted"
@@ -2319,6 +2371,7 @@ msgstr "金鑰"
 msgid "Keys replaced"
 msgstr "金鑰已更換"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
@@ -2659,6 +2712,7 @@ msgstr "我的通行密鑰"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2695,6 +2749,11 @@ msgstr "需要姓名"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name must be 1000 characters or less"
 msgstr "名稱必須為 1000 個字元或更少"
+
+#. placeholder {0}: handle.parent
+#: src/features/system/handles.tsx
+msgid "Name under {0}"
+msgstr "{0} 下的名稱"
 
 #: src/features/user/account.tsx
 msgid "Name updated"
@@ -2822,6 +2881,10 @@ msgstr "未設定目的地"
 msgid "No document available for this language."
 msgstr "此語言無可用文件。"
 
+#: src/features/system/status.tsx
+msgid "No domain is configured"
+msgstr "未設定網域"
+
 #: src/features/domains/index.tsx
 msgid "No domains configured"
 msgstr "未設定網域"
@@ -2833,6 +2896,10 @@ msgstr "尚無遊戲"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "No groups available"
 msgstr "無可用的群組"
+
+#: src/features/system/handles.tsx
+msgid "No handles have been reserved."
+msgstr "尚未保留任何帳號代碼。"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3067,6 +3134,13 @@ msgstr "選項"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "其他"
+
+#: src/features/system/settings.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+msgid "Other networks"
+msgstr "其他網路"
 
 #: src/features/user/networks.tsx
 msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
@@ -3397,11 +3471,14 @@ msgstr "24 小時內相對,否則絕對"
 msgid "Relay service"
 msgstr "中繼服務"
 
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Release"
 msgstr "釋出"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Release this handle?"
 msgstr "釋出此帳號代碼？"
@@ -3885,6 +3962,10 @@ msgstr "襯線體"
 msgid "Server"
 msgstr "伺服器"
 
+#: src/features/system/settings.tsx
+msgid "Server description"
+msgstr "伺服器說明"
+
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Server error"
@@ -4119,6 +4200,10 @@ msgstr "標籤不得超過 50 個字元"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Tags"
 msgstr "標籤"
+
+#: src/features/system/handles.tsx
+msgid "Take a name"
+msgstr "取用名稱"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -4441,6 +4526,11 @@ msgstr "未指派"
 msgid "Unavailable"
 msgstr "無法使用"
 
+#. placeholder {0}: unavailable(network.reason)
+#: src/features/system/status.tsx
+msgid "Unavailable · {0}"
+msgstr "無法使用 · {0}"
+
 #: ../../../lib/web/src/lib/request.ts
 #: ../../../lib/web/src/lib/request.ts
 msgid "Unexpected API error"
@@ -4695,6 +4785,10 @@ msgstr "星期三"
 msgid "Week starts on"
 msgstr "每週開始於"
 
+#: src/features/system/status.tsx
+msgid "Working"
+msgstr "運作正常"
+
 #: src/features/system/settings.tsx
 msgid "X client ID"
 msgstr "X 用戶端 ID"
@@ -4703,7 +4797,7 @@ msgstr "X 用戶端 ID"
 msgid "X client secret"
 msgstr "X 用戶端密鑰"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "XMPP"
 msgstr "XMPP"
 

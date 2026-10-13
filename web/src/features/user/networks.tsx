@@ -42,7 +42,6 @@ import {
   TableRow,
   getErrorMessage,
   naturalCompare,
-  providerName,
   shellNavigateTop,
   toast,
   useDebounce,
@@ -77,25 +76,13 @@ import {
   useNetworksData,
 } from '@/hooks/use-networks'
 import { suggestHandle } from '@/lib/handles'
+import { networkLabel } from '@/lib/networks'
 import type {
   Availability,
   Handle,
   NetworkAccount,
   NetworkProvider,
 } from '@/types/networks'
-
-// The networks' names. The fediverse is a common noun the languages make their
-// own; XMPP is an initialism the provider naming would miscase; the rest are
-// brands the library capitalises.
-function networkLabel(type: string): string {
-  switch (type) {
-    case 'fediverse':
-      return i18n._(msg`Fediverse`)
-    case 'xmpp':
-      return i18n._(msg`XMPP`)
-  }
-  return providerName(type)
-}
 
 // Why a name cannot be reserved, in the user's words.
 function availabilityReason(reason: string): string {
@@ -204,14 +191,17 @@ function AvailabilityNote({
 }
 
 // Choosing a handle: the field with its live check, a suggestion from the
-// person's name, and a confirmation, since a handle is permanent.
-function HandleChooser({
+// person's name, and a confirmation, since a handle is permanent. The owner's
+// handles page uses it too, to take a name.
+export function HandleChooser({
   domains,
   suggestion,
+  title,
   onReserved,
 }: {
   domains: string[]
   suggestion: string
+  title?: string
   onReserved: () => void
 }) {
   const { t } = useLingui()
@@ -236,7 +226,7 @@ function HandleChooser({
   return (
     <div className='mb-6 rounded-lg border p-4'>
       <h2 className='mb-3 text-base font-medium'>
-        <Trans>Choose a handle</Trans>
+        {title ?? <Trans>Choose a handle</Trans>}
       </h2>
       <div className='flex flex-col gap-3 sm:flex-row sm:items-end'>
         <div className='grid flex-1 gap-2'>

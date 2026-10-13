@@ -19,6 +19,11 @@ msgid "Please check your internet connection and try again."
 msgstr "Lūdzu, pārbaudiet interneta savienojumu un mēģiniet vēlreiz."
 
 #. placeholder {0}: releasing.name
+#: src/features/system/handles.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. The holder's accounts on them, everything those published and their followers are removed."
+msgstr "\"{0}\" un zem tā esošie vārdi tiks atbrīvoti, lai ikviens tos varētu aizņemt. Turētāja konti tajos, viss, ko šie konti publicējuši, un to sekotāji tiks noņemti."
+
+#. placeholder {0}: releasing.name
 #: src/features/user/networks.tsx
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "\"{0}\" un zem tā esošie vārdi tiks atbrīvoti, lai ikviens tos varētu aizņemt. To konti, viss, ko šie konti publicējuši, un to sekotāji tiks noņemti."
@@ -829,6 +834,12 @@ msgstr "Tās paziņojumu kategorija"
 msgid "Category for these notifications"
 msgstr "Šo paziņojumu kategorija"
 
+#. placeholder {0}: formatNumber(certificates.issued)
+#. placeholder {1}: formatNumber(certificates.limit)
+#: src/features/system/status.tsx
+msgid "Certificates this week {0} / {1}"
+msgstr "Šīs nedēļas sertifikāti {0} / {1}"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Change notification category"
@@ -994,6 +1005,10 @@ msgstr "Komentāri"
 msgid "Comments ({0})"
 msgstr "Komentāri ({0})"
 
+#: src/features/system/handles.tsx
+msgid "Community"
+msgstr "Kopiena"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Compact"
 msgstr "Kompakts"
@@ -1121,6 +1136,7 @@ msgstr "Nevarēja ielādēt šo dokumentu. Lūdzu, mēģini vēlāk vēlreiz."
 msgid "Could not make the recovery key"
 msgstr "Nevarēja izveidot atkopšanas atslēgu"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not release the handle"
 msgstr "Nevarēja atbrīvot lietotājvārdu"
@@ -1194,6 +1210,7 @@ msgstr "Izveidot lietotāju"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
@@ -1465,6 +1482,7 @@ msgstr "Atspējot Authenticator?"
 
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
+#: src/features/system/status.tsx
 #: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "Atspējots"
@@ -1527,6 +1545,7 @@ msgid "Does not match the required pattern"
 msgstr "Neatbilst prasītajam šablonam"
 
 #: src/features/domains/index.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domēns"
@@ -2048,7 +2067,7 @@ msgstr "Neizdevās verificēt kodu"
 msgid "Failed to verify domain"
 msgstr "Neizdevās verificēt domēnu"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
 
@@ -2175,14 +2194,17 @@ msgstr "Grupēt pēc"
 msgid "Group: {0}"
 msgstr "Grupa: {0}"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Lietotājvārds"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle actions"
 msgstr "Lietotājvārda darbības"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle released"
 msgstr "Lietotājvārds atbrīvots"
@@ -2191,9 +2213,23 @@ msgstr "Lietotājvārds atbrīvots"
 msgid "Handle reserved"
 msgstr "Lietotājvārds rezervēts"
 
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
+msgid "Handles"
+msgstr "Lietotājvārdi"
+
+#: src/features/system/settings.tsx
+msgid "Handles each user may reserve"
+msgstr "Lietotājvārdu skaits, ko katrs lietotājs drīkst rezervēt"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Vēsture"
+
+#: src/features/system/handles.tsx
+msgid "Holder"
+msgstr "Turētājs"
 
 #: src/features/system/status.tsx
 msgid "Hole punch"
@@ -2205,6 +2241,22 @@ msgstr "Caururšana"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Sākums"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Bluesky"
+msgstr "Mitināt kontus Bluesky tīklā"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Matrix"
+msgstr "Mitināt kontus Matrix tīklā"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on the fediverse"
+msgstr "Mitināt kontus fediverse tīklos"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on XMPP"
+msgstr "Mitināt kontus XMPP tīklā"
 
 #: src/features/user/networks.tsx
 msgid "Hosted"
@@ -2319,6 +2371,7 @@ msgstr "Atslēgas"
 msgid "Keys replaced"
 msgstr "Atslēgas aizstātas"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
@@ -2659,6 +2712,7 @@ msgstr "Mana piekļuves atslēga"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2695,6 +2749,11 @@ msgstr "Vārds ir obligāts"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name must be 1000 characters or less"
 msgstr "Nosaukums nedrīkst pārsniegt 1000 rakstzīmes"
+
+#. placeholder {0}: handle.parent
+#: src/features/system/handles.tsx
+msgid "Name under {0}"
+msgstr "Vārds zem {0}"
 
 #: src/features/user/account.tsx
 msgid "Name updated"
@@ -2822,6 +2881,10 @@ msgstr "Galamērķi nav konfigurēti"
 msgid "No document available for this language."
 msgstr "Nav dokumenta šai valodai."
 
+#: src/features/system/status.tsx
+msgid "No domain is configured"
+msgstr "Nav konfigurēts neviens domēns"
+
 #: src/features/domains/index.tsx
 msgid "No domains configured"
 msgstr "Domēni nav konfigurēti"
@@ -2833,6 +2896,10 @@ msgstr "Vēl nav spēļu"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "No groups available"
 msgstr "Nav pieejamu grupu"
+
+#: src/features/system/handles.tsx
+msgid "No handles have been reserved."
+msgstr "Neviens lietotājvārds nav rezervēts."
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3067,6 +3134,13 @@ msgstr "Iespējas"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Cits"
+
+#: src/features/system/settings.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+msgid "Other networks"
+msgstr "Citi tīkli"
 
 #: src/features/user/networks.tsx
 msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
@@ -3397,11 +3471,14 @@ msgstr "Relatīvs 24 stundu laikā, citādi absolūts"
 msgid "Relay service"
 msgstr "Retranslācijas pakalpojums"
 
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Release"
 msgstr "Atbrīvot"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Release this handle?"
 msgstr "Atbrīvot šo lietotājvārdu?"
@@ -3885,6 +3962,10 @@ msgstr "Serifs"
 msgid "Server"
 msgstr "Serveris"
 
+#: src/features/system/settings.tsx
+msgid "Server description"
+msgstr "Servera apraksts"
+
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Server error"
@@ -4119,6 +4200,10 @@ msgstr "Birkā drīkst būt ne vairāk kā 50 rakstzīmes"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Tags"
 msgstr "Tagi"
+
+#: src/features/system/handles.tsx
+msgid "Take a name"
+msgstr "Aizņemiet vārdu"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -4441,6 +4526,11 @@ msgstr "Nepiešķirts"
 msgid "Unavailable"
 msgstr "Nav pieejams"
 
+#. placeholder {0}: unavailable(network.reason)
+#: src/features/system/status.tsx
+msgid "Unavailable · {0}"
+msgstr "Nav pieejams · {0}"
+
 #: ../../../lib/web/src/lib/request.ts
 #: ../../../lib/web/src/lib/request.ts
 msgid "Unexpected API error"
@@ -4695,6 +4785,10 @@ msgstr "Trešdiena"
 msgid "Week starts on"
 msgstr "Nedēļa sākas"
 
+#: src/features/system/status.tsx
+msgid "Working"
+msgstr "Darbojas"
+
 #: src/features/system/settings.tsx
 msgid "X client ID"
 msgstr "X klienta ID"
@@ -4703,7 +4797,7 @@ msgstr "X klienta ID"
 msgid "X client secret"
 msgstr "X klienta noslēpums"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "XMPP"
 msgstr "XMPP"
 

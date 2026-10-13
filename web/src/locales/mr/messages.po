@@ -19,6 +19,11 @@ msgid "Please check your internet connection and try again."
 msgstr "कृपया तुमचे इंटरनेट कनेक्शन तपासा आणि पुन्हा प्रयत्न करा."
 
 #. placeholder {0}: releasing.name
+#: src/features/system/handles.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. The holder's accounts on them, everything those published and their followers are removed."
+msgstr "\"{0}\" आणि त्याखालील नावे मुक्त केली जातील, जेणेकरून कोणीही ती घेऊ शकेल. धारकाची त्यांवरील खाती, त्या खात्यांनी प्रकाशित केलेले सर्व काही आणि त्यांचे फॉलोअर्स काढून टाकले जातील."
+
+#. placeholder {0}: releasing.name
 #: src/features/user/networks.tsx
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "\"{0}\" आणि त्याखालील नावे मुक्त केली जातील, जेणेकरून कोणीही ती घेऊ शकेल. त्यांची खाती, त्या खात्यांनी प्रकाशित केलेले सर्व काही आणि त्यांचे फॉलोअर्स काढून टाकले जातील."
@@ -829,6 +834,12 @@ msgstr "तिच्या सूचनांसाठी श्रेणी"
 msgid "Category for these notifications"
 msgstr "या सूचनांसाठी श्रेणी"
 
+#. placeholder {0}: formatNumber(certificates.issued)
+#. placeholder {1}: formatNumber(certificates.limit)
+#: src/features/system/status.tsx
+msgid "Certificates this week {0} / {1}"
+msgstr "या आठवड्यातील प्रमाणपत्रे {0} / {1}"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Change notification category"
@@ -994,6 +1005,10 @@ msgstr "टिप्पण्या"
 msgid "Comments ({0})"
 msgstr "टिप्पण्या ({0})"
 
+#: src/features/system/handles.tsx
+msgid "Community"
+msgstr "समुदाय"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Compact"
 msgstr "कॉम्पॅक्ट"
@@ -1121,6 +1136,7 @@ msgstr "हा दस्तऐवज लोड करता आला नाह�
 msgid "Could not make the recovery key"
 msgstr "रिकव्हरी की तयार करता आली नाही"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not release the handle"
 msgstr "वापरकर्तानाव मुक्त करता आले नाही"
@@ -1194,6 +1210,7 @@ msgstr "वापरकर्ता तयार करा"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
@@ -1465,6 +1482,7 @@ msgstr "ऑथेंटिकेटर बंद करायचा?"
 
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
+#: src/features/system/status.tsx
 #: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "बंद"
@@ -1527,6 +1545,7 @@ msgid "Does not match the required pattern"
 msgstr "आवश्यक नमुन्याशी जुळत नाही"
 
 #: src/features/domains/index.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "डोमेन"
@@ -2048,7 +2067,7 @@ msgstr "कोड पडताळण्यात अयशस्वी"
 msgid "Failed to verify domain"
 msgstr "डोमेन पडताळण्यात अयशस्वी"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
 
@@ -2175,14 +2194,17 @@ msgstr "यानुसार गट करा"
 msgid "Group: {0}"
 msgstr "गट: {0}"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "वापरकर्तानाव"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle actions"
 msgstr "वापरकर्तानाव क्रिया"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle released"
 msgstr "वापरकर्तानाव मुक्त केले"
@@ -2191,9 +2213,23 @@ msgstr "वापरकर्तानाव मुक्त केले"
 msgid "Handle reserved"
 msgstr "वापरकर्तानाव राखीव केले"
 
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
+msgid "Handles"
+msgstr "वापरकर्तानावे"
+
+#: src/features/system/settings.tsx
+msgid "Handles each user may reserve"
+msgstr "प्रत्येक वापरकर्त्याला राखीव करता येणारी वापरकर्तानावे"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "इतिहास"
+
+#: src/features/system/handles.tsx
+msgid "Holder"
+msgstr "धारक"
 
 #: src/features/system/status.tsx
 msgid "Hole punch"
@@ -2205,6 +2241,22 @@ msgstr "होल पंच"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "मुख्यपृष्ठ"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Bluesky"
+msgstr "Bluesky वर खाती होस्ट करा"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Matrix"
+msgstr "Matrix वर खाती होस्ट करा"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on the fediverse"
+msgstr "Fediverse वर खाती होस्ट करा"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on XMPP"
+msgstr "XMPP वर खाती होस्ट करा"
 
 #: src/features/user/networks.tsx
 msgid "Hosted"
@@ -2319,6 +2371,7 @@ msgstr "की"
 msgid "Keys replaced"
 msgstr "की बदलल्या"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
@@ -2659,6 +2712,7 @@ msgstr "माझी पासकी"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2695,6 +2749,11 @@ msgstr "नाव आवश्यक आहे"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name must be 1000 characters or less"
 msgstr "नाव 1000 अक्षरे किंवा कमी असावे"
+
+#. placeholder {0}: handle.parent
+#: src/features/system/handles.tsx
+msgid "Name under {0}"
+msgstr "{0} अंतर्गत नाव"
 
 #: src/features/user/account.tsx
 msgid "Name updated"
@@ -2822,6 +2881,10 @@ msgstr "डेस्टिनेशन्स कॉन्फिगर केल�
 msgid "No document available for this language."
 msgstr "या भाषेसाठी कोणताही दस्तऐवज उपलब्ध नाही."
 
+#: src/features/system/status.tsx
+msgid "No domain is configured"
+msgstr "कोणतेही डोमेन कॉन्फिगर केलेले नाही"
+
 #: src/features/domains/index.tsx
 msgid "No domains configured"
 msgstr "डोमेन्स कॉन्फिगर केलेले नाहीत"
@@ -2833,6 +2896,10 @@ msgstr "अद्याप गेम्स नाहीत"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "No groups available"
 msgstr "गट उपलब्ध नाहीत"
+
+#: src/features/system/handles.tsx
+msgid "No handles have been reserved."
+msgstr "कोणतीही वापरकर्तानावे राखीव केलेली नाहीत."
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3067,6 +3134,13 @@ msgstr "पर्याय"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "इतर"
+
+#: src/features/system/settings.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+msgid "Other networks"
+msgstr "इतर नेटवर्क्स"
 
 #: src/features/user/networks.tsx
 msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
@@ -3397,11 +3471,14 @@ msgstr "24 तासांच्या आत सापेक्ष, अन्�
 msgid "Relay service"
 msgstr "रिले सेवा"
 
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Release"
 msgstr "मुक्त करा"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Release this handle?"
 msgstr "हे वापरकर्तानाव मुक्त करायचे?"
@@ -3885,6 +3962,10 @@ msgstr "सेरिफ"
 msgid "Server"
 msgstr "सर्व्हर"
 
+#: src/features/system/settings.tsx
+msgid "Server description"
+msgstr "सर्व्हरचे वर्णन"
+
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Server error"
@@ -4119,6 +4200,10 @@ msgstr "टॅग 50 वर्ण किंवा कमी असावा"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Tags"
 msgstr "टॅग्स"
+
+#: src/features/system/handles.tsx
+msgid "Take a name"
+msgstr "नाव घ्या"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -4441,6 +4526,11 @@ msgstr "नियुक्त न केलेले"
 msgid "Unavailable"
 msgstr "अनुपलब्ध"
 
+#. placeholder {0}: unavailable(network.reason)
+#: src/features/system/status.tsx
+msgid "Unavailable · {0}"
+msgstr "अनुपलब्ध · {0}"
+
 #: ../../../lib/web/src/lib/request.ts
 #: ../../../lib/web/src/lib/request.ts
 msgid "Unexpected API error"
@@ -4695,6 +4785,10 @@ msgstr "बुधवार"
 msgid "Week starts on"
 msgstr "आठवडा सुरू होतो"
 
+#: src/features/system/status.tsx
+msgid "Working"
+msgstr "कार्यरत"
+
 #: src/features/system/settings.tsx
 msgid "X client ID"
 msgstr "X क्लायंट ID"
@@ -4703,7 +4797,7 @@ msgstr "X क्लायंट ID"
 msgid "X client secret"
 msgstr "X क्लायंट सीक्रेट"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "XMPP"
 msgstr "XMPP"
 

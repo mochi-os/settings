@@ -19,6 +19,11 @@ msgid "Please check your internet connection and try again."
 msgstr "براہ کرم اپنا انٹرنیٹ کنکشن چیک کریں اور دوبارہ کوشش کریں۔"
 
 #. placeholder {0}: releasing.name
+#: src/features/system/handles.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. The holder's accounts on them, everything those published and their followers are removed."
+msgstr "\"{0}\" اور اس کے تحت نام آزاد کر دیے جائیں گے تاکہ کوئی بھی انہیں لے سکے۔ ان ناموں پر مالک کے اکاؤنٹس، ان کا شائع کیا ہوا سب کچھ اور ان کے فالوورز ہٹا دیے جائیں گے۔"
+
+#. placeholder {0}: releasing.name
 #: src/features/user/networks.tsx
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "\"{0}\" اور اس کے تحت نام آزاد کر دیے جائیں گے تاکہ کوئی بھی انہیں لے سکے۔ ان کے اکاؤنٹس، ان کا شائع کیا ہوا سب کچھ اور ان کے فالوورز ہٹا دیے جائیں گے۔"
@@ -829,6 +834,12 @@ msgstr "اس کے نوٹیفکیشنز کے لیے زمرہ"
 msgid "Category for these notifications"
 msgstr "ان نوٹیفکیشنز کے لیے زمرہ"
 
+#. placeholder {0}: formatNumber(certificates.issued)
+#. placeholder {1}: formatNumber(certificates.limit)
+#: src/features/system/status.tsx
+msgid "Certificates this week {0} / {1}"
+msgstr "اس ہفتے کے سرٹیفکیٹ {0} / {1}"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Change notification category"
@@ -994,6 +1005,10 @@ msgstr "تبصرے"
 msgid "Comments ({0})"
 msgstr "تبصرے ({0})"
 
+#: src/features/system/handles.tsx
+msgid "Community"
+msgstr "کمیونٹی"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Compact"
 msgstr "کمپیکٹ"
@@ -1121,6 +1136,7 @@ msgstr "یہ دستاویز لوڈ نہیں ہو سکی۔ براہِ کرم بع
 msgid "Could not make the recovery key"
 msgstr "بازیابی کلید نہیں بن سکی"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not release the handle"
 msgstr "ہینڈل آزاد نہیں ہو سکا"
@@ -1194,6 +1210,7 @@ msgstr "صارف بنائیں"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
@@ -1465,6 +1482,7 @@ msgstr "تصدیق کنندہ غیر فعال کریں؟"
 
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
+#: src/features/system/status.tsx
 #: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "غیر فعال"
@@ -1527,6 +1545,7 @@ msgid "Does not match the required pattern"
 msgstr "مطلوبہ نمونے سے مطابقت نہیں رکھتا"
 
 #: src/features/domains/index.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "ڈومین"
@@ -2048,7 +2067,7 @@ msgstr "کوڈ کی تصدیق میں ناکامی"
 msgid "Failed to verify domain"
 msgstr "ڈومین کی تصدیق میں ناکامی"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
 
@@ -2175,14 +2194,17 @@ msgstr "گروپ بندی بلحاظ"
 msgid "Group: {0}"
 msgstr "گروپ: {0}"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "ہینڈل"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle actions"
 msgstr "ہینڈل کی کارروائیاں"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle released"
 msgstr "ہینڈل آزاد کر دیا گیا"
@@ -2191,9 +2213,23 @@ msgstr "ہینڈل آزاد کر دیا گیا"
 msgid "Handle reserved"
 msgstr "ہینڈل ریزرو کر دیا گیا"
 
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
+msgid "Handles"
+msgstr "ہینڈلز"
+
+#: src/features/system/settings.tsx
+msgid "Handles each user may reserve"
+msgstr "ہر صارف جتنے ہینڈل ریزرو کر سکتا ہے"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "تاریخ"
+
+#: src/features/system/handles.tsx
+msgid "Holder"
+msgstr "مالک"
 
 #: src/features/system/status.tsx
 msgid "Hole punch"
@@ -2205,6 +2241,22 @@ msgstr "ہول پنچ"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "ہوم"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Bluesky"
+msgstr "اکاؤنٹس Bluesky پر ہوسٹ کریں"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Matrix"
+msgstr "اکاؤنٹس Matrix پر ہوسٹ کریں"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on the fediverse"
+msgstr "اکاؤنٹس fediverse پر ہوسٹ کریں"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on XMPP"
+msgstr "اکاؤنٹس XMPP پر ہوسٹ کریں"
 
 #: src/features/user/networks.tsx
 msgid "Hosted"
@@ -2319,6 +2371,7 @@ msgstr "کلیدیں"
 msgid "Keys replaced"
 msgstr "کلیدیں تبدیل کر دی گئیں"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
@@ -2659,6 +2712,7 @@ msgstr "میری پاس کی"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2695,6 +2749,11 @@ msgstr "نام درکار ہے"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name must be 1000 characters or less"
 msgstr "نام 1000 حروف یا اس سے کم ہونا چاہیے"
+
+#. placeholder {0}: handle.parent
+#: src/features/system/handles.tsx
+msgid "Name under {0}"
+msgstr "{0} کے تحت نام"
 
 #: src/features/user/account.tsx
 msgid "Name updated"
@@ -2822,6 +2881,10 @@ msgstr "کوئی منزلیں کنفیگر نہیں ہیں"
 msgid "No document available for this language."
 msgstr "اِس زبان کے لیے کوئی دستاویز دستیاب نہیں۔"
 
+#: src/features/system/status.tsx
+msgid "No domain is configured"
+msgstr "کوئی ڈومین کنفیگر نہیں ہے"
+
 #: src/features/domains/index.tsx
 msgid "No domains configured"
 msgstr "کوئی ڈومینز کنفیگر نہیں ہیں"
@@ -2833,6 +2896,10 @@ msgstr "ابھی تک کوئی گیمز نہیں"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "No groups available"
 msgstr "کوئی گروپ دستیاب نہیں"
+
+#: src/features/system/handles.tsx
+msgid "No handles have been reserved."
+msgstr "کوئی ہینڈل ریزرو نہیں کیا گیا۔"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3067,6 +3134,13 @@ msgstr "اختیارات"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "دیگر"
+
+#: src/features/system/settings.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+msgid "Other networks"
+msgstr "دوسرے نیٹ ورکس"
 
 #: src/features/user/networks.tsx
 msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
@@ -3397,11 +3471,14 @@ msgstr "24 گھنٹوں کے اندر نسبتی، ورنہ مطلق"
 msgid "Relay service"
 msgstr "ریلے سروس"
 
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Release"
 msgstr "آزاد کریں"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Release this handle?"
 msgstr "یہ ہینڈل آزاد کریں؟"
@@ -3885,6 +3962,10 @@ msgstr "سیرف"
 msgid "Server"
 msgstr "سرور"
 
+#: src/features/system/settings.tsx
+msgid "Server description"
+msgstr "سرور کی تفصیل"
+
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Server error"
@@ -4119,6 +4200,10 @@ msgstr "ٹیگ 50 حروف یا اس سے کم ہونا چاہیے"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Tags"
 msgstr "ٹیگز"
+
+#: src/features/system/handles.tsx
+msgid "Take a name"
+msgstr "نام لیں"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -4441,6 +4526,11 @@ msgstr "غیر تفویض شدہ"
 msgid "Unavailable"
 msgstr "ناقابل رسائی"
 
+#. placeholder {0}: unavailable(network.reason)
+#: src/features/system/status.tsx
+msgid "Unavailable · {0}"
+msgstr "دستیاب نہیں · {0}"
+
 #: ../../../lib/web/src/lib/request.ts
 #: ../../../lib/web/src/lib/request.ts
 msgid "Unexpected API error"
@@ -4695,6 +4785,10 @@ msgstr "بدھ"
 msgid "Week starts on"
 msgstr "ہفتہ شروع ہوتا ہے"
 
+#: src/features/system/status.tsx
+msgid "Working"
+msgstr "کام کر رہا ہے"
+
 #: src/features/system/settings.tsx
 msgid "X client ID"
 msgstr "X کلائنٹ ID"
@@ -4703,7 +4797,7 @@ msgstr "X کلائنٹ ID"
 msgid "X client secret"
 msgstr "X کلائنٹ سیکریٹ"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "XMPP"
 msgstr "XMPP"
 

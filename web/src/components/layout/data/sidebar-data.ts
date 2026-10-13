@@ -15,6 +15,7 @@ import {
   Settings,
   Users,
   Activity,
+  AtSign,
   Link2,
   ExternalLink,
   Star,
@@ -101,6 +102,15 @@ export function useFilteredSidebarData(
         url: APP_ROUTES.SETTINGS.SYSTEM.STATUS,
         icon: Activity,
       },
+      ...(hasNetworks
+        ? [
+            {
+              title: t`Handles`,
+              url: APP_ROUTES.SETTINGS.SYSTEM.HANDLES,
+              icon: AtSign,
+            },
+          ]
+        : []),
     ],
   }
   const domainsNavItem = {

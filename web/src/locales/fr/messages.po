@@ -19,6 +19,11 @@ msgid "Please check your internet connection and try again."
 msgstr "Veuillez vérifier votre connexion Internet et réessayer."
 
 #. placeholder {0}: releasing.name
+#: src/features/system/handles.tsx
+msgid "\"{0}\" and the names under it will be freed for anyone to take. The holder's accounts on them, everything those published and their followers are removed."
+msgstr "\"{0}\" et les noms qui en dépendent seront libérés et pourront être pris par n'importe qui. Les comptes que leur titulaire y détient, tout ce qu'ils ont publié et leurs abonnés seront supprimés."
+
+#. placeholder {0}: releasing.name
 #: src/features/user/networks.tsx
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "\"{0}\" et les noms qui en dépendent seront libérés et pourront être pris par n'importe qui. Leurs comptes, tout ce qu'ils ont publié et leurs abonnés seront supprimés."
@@ -829,6 +834,12 @@ msgstr "Catégorie pour ses notifications"
 msgid "Category for these notifications"
 msgstr "Catégorie de ces notifications"
 
+#. placeholder {0}: formatNumber(certificates.issued)
+#. placeholder {1}: formatNumber(certificates.limit)
+#: src/features/system/status.tsx
+msgid "Certificates this week {0} / {1}"
+msgstr "Certificats cette semaine {0} / {1}"
+
 #: ../../../lib/web/src/components/notification-category-button.tsx
 #: ../../../lib/web/src/components/notification-category-button.tsx
 msgid "Change notification category"
@@ -994,6 +1005,10 @@ msgstr "Commentaires"
 msgid "Comments ({0})"
 msgstr "Commentaires ({0})"
 
+#: src/features/system/handles.tsx
+msgid "Community"
+msgstr "Communauté"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Compact"
 msgstr "Compact"
@@ -1121,6 +1136,7 @@ msgstr "Impossible de charger ce document. Veuillez réessayer plus tard."
 msgid "Could not make the recovery key"
 msgstr "Impossible de créer la clé de récupération"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not release the handle"
 msgstr "Impossible de libérer l'identifiant"
@@ -1194,6 +1210,7 @@ msgstr "Créer l'utilisateur"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/sessions.tsx
@@ -1465,6 +1482,7 @@ msgstr "Désactiver l'authentificateur ?"
 
 #: src/features/domains/index.tsx
 #: src/features/system/settings.tsx
+#: src/features/system/status.tsx
 #: src/hooks/use-method-state-label.ts
 msgid "Disabled"
 msgstr "Désactivé"
@@ -1527,6 +1545,7 @@ msgid "Does not match the required pattern"
 msgstr "Ne correspond pas au motif requis"
 
 #: src/features/domains/index.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domaine"
@@ -2048,7 +2067,7 @@ msgstr "Échec de la vérification du code"
 msgid "Failed to verify domain"
 msgstr "Échec de la vérification du domaine"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fédiverse"
 
@@ -2175,14 +2194,17 @@ msgstr "Grouper par"
 msgid "Group: {0}"
 msgstr "Groupe : {0}"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Identifiant"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle actions"
 msgstr "Actions de l'identifiant"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle released"
 msgstr "Identifiant libéré"
@@ -2191,9 +2213,23 @@ msgstr "Identifiant libéré"
 msgid "Handle reserved"
 msgstr "Identifiant réservé"
 
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
+msgid "Handles"
+msgstr "Identifiants"
+
+#: src/features/system/settings.tsx
+msgid "Handles each user may reserve"
+msgstr "Identifiants que chaque utilisateur peut réserver"
+
 #: ../../../lib/web/src/components/audit-timeline.tsx
 msgid "History"
 msgstr "Historique"
+
+#: src/features/system/handles.tsx
+msgid "Holder"
+msgstr "Titulaire"
 
 #: src/features/system/status.tsx
 msgid "Hole punch"
@@ -2205,6 +2241,22 @@ msgstr "Perçage"
 #: ../../../lib/web/src/components/layout/top-bar.tsx
 msgid "Home"
 msgstr "Accueil"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Bluesky"
+msgstr "Héberger des comptes sur Bluesky"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on Matrix"
+msgstr "Héberger des comptes sur Matrix"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on the fediverse"
+msgstr "Héberger des comptes sur le fédiverse"
+
+#: src/features/system/settings.tsx
+msgid "Host accounts on XMPP"
+msgstr "Héberger des comptes sur XMPP"
 
 #: src/features/user/networks.tsx
 msgid "Hosted"
@@ -2319,6 +2371,7 @@ msgstr "Clés"
 msgid "Keys replaced"
 msgstr "Clés remplacées"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
@@ -2659,6 +2712,7 @@ msgstr "Ma clé d'accès"
 #: ../../../lib/web/src/components/entity/entity-field-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-option-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -2695,6 +2749,11 @@ msgstr "Le nom est obligatoire"
 #: ../../../lib/web/src/components/ui/create-entity-dialog.tsx
 msgid "Name must be 1000 characters or less"
 msgstr "Le nom doit comporter 1000 caractères ou moins"
+
+#. placeholder {0}: handle.parent
+#: src/features/system/handles.tsx
+msgid "Name under {0}"
+msgstr "Nom sous {0}"
 
 #: src/features/user/account.tsx
 msgid "Name updated"
@@ -2822,6 +2881,10 @@ msgstr "Aucune destination configurée"
 msgid "No document available for this language."
 msgstr "Aucun document disponible pour cette langue."
 
+#: src/features/system/status.tsx
+msgid "No domain is configured"
+msgstr "Aucun domaine n'est configuré"
+
 #: src/features/domains/index.tsx
 msgid "No domains configured"
 msgstr "Aucun domaine configuré"
@@ -2833,6 +2896,10 @@ msgstr "Aucune partie pour le moment"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "No groups available"
 msgstr "Aucun groupe disponible"
+
+#: src/features/system/handles.tsx
+msgid "No handles have been reserved."
+msgstr "Aucun identifiant n'a été réservé."
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3067,6 +3134,13 @@ msgstr "Options"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 msgid "Other"
 msgstr "Autre"
+
+#: src/features/system/settings.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+#: src/features/system/status.tsx
+msgid "Other networks"
+msgstr "Autres réseaux"
 
 #: src/features/user/networks.tsx
 msgid "Other servers learn the new key from the account's document. Anything signed with the old key stops checking."
@@ -3397,11 +3471,14 @@ msgstr "Relatif dans les 24 heures, sinon absolu"
 msgid "Relay service"
 msgstr "Service de relais"
 
+#: src/features/system/handles.tsx
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Release"
 msgstr "Libérer"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Release this handle?"
 msgstr "Libérer cet identifiant ?"
@@ -3885,6 +3962,10 @@ msgstr "Serif"
 msgid "Server"
 msgstr "Serveur"
 
+#: src/features/system/settings.tsx
+msgid "Server description"
+msgstr "Description du serveur"
+
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "Server error"
@@ -4119,6 +4200,10 @@ msgstr "L'étiquette ne doit pas dépasser 50 caractères"
 #: ../../../lib/web/src/components/post-tags.tsx
 msgid "Tags"
 msgstr "Étiquettes"
+
+#: src/features/system/handles.tsx
+msgid "Take a name"
+msgstr "Prenez un nom"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx
@@ -4441,6 +4526,11 @@ msgstr "Non assigné"
 msgid "Unavailable"
 msgstr "Indisponible"
 
+#. placeholder {0}: unavailable(network.reason)
+#: src/features/system/status.tsx
+msgid "Unavailable · {0}"
+msgstr "Indisponible · {0}"
+
 #: ../../../lib/web/src/lib/request.ts
 #: ../../../lib/web/src/lib/request.ts
 msgid "Unexpected API error"
@@ -4695,6 +4785,10 @@ msgstr "Mercredi"
 msgid "Week starts on"
 msgstr "La semaine commence le"
 
+#: src/features/system/status.tsx
+msgid "Working"
+msgstr "Opérationnel"
+
 #: src/features/system/settings.tsx
 msgid "X client ID"
 msgstr "ID client X"
@@ -4703,7 +4797,7 @@ msgstr "ID client X"
 msgid "X client secret"
 msgstr "Secret client X"
 
-#: src/features/user/networks.tsx
+#: src/lib/networks.ts
 msgid "XMPP"
 msgstr "XMPP"
 
