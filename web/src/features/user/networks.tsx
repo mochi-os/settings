@@ -51,6 +51,8 @@ import {
 import {
   Check,
   Copy,
+  Eye,
+  EyeOff,
   KeyRound,
   Link2,
   LogIn,
@@ -930,6 +932,7 @@ function AccountRow({
   onKeys,
   onPassword,
   onTest,
+  onProfile,
   onRemove,
   busy,
 }: {
@@ -938,6 +941,7 @@ function AccountRow({
   onKeys: (account: NetworkAccount) => void
   onPassword: (account: NetworkAccount) => void
   onTest: (account: NetworkAccount) => void
+  onProfile: (account: NetworkAccount) => void
   onRemove: (account: NetworkAccount) => void
   busy: string | null
 }) {
@@ -999,6 +1003,18 @@ function AccountRow({
                 <Trans>Test</Trans>
               </DropdownMenuItem>
             )}
+            <DropdownMenuItem onClick={() => onProfile(account)}>
+              {account.profile ? (
+                <EyeOff className='me-2 h-4 w-4' />
+              ) : (
+                <Eye className='me-2 h-4 w-4' />
+              )}
+              {account.profile ? (
+                <Trans>Hide from profile</Trans>
+              ) : (
+                <Trans>Show on profile</Trans>
+              )}
+            </DropdownMenuItem>
             <DropdownMenuItem onClick={() => onRemove(account)}>
               <Trash2 className='me-2 h-4 w-4' />
               <Trans>Remove</Trans>
@@ -1019,6 +1035,7 @@ export function Networks() {
   const remove = useAccountRemove()
   const release = useHandleRelease()
   const test = useAccountTest()
+  const shown = useAccountUpdate()
 
   const [linking, setLinking] = useState(false)
   const [adding, setAdding] = useState<Handle | null>(null)
@@ -1096,6 +1113,18 @@ export function Networks() {
       toast.success(t`Handle released`)
     } catch (err) {
       toast.error(getErrorMessage(err, t`Could not release the handle`))
+    }
+  }
+
+  // Whether the account is linked from the profile page with rel="me".
+  const handleProfile = async (account: NetworkAccount) => {
+    setBusy(account.id)
+    try {
+      await shown.mutateAsync({ id: account.id, profile: !account.profile })
+    } catch (err) {
+      toast.error(getErrorMessage(err, t`Could not change the profile`))
+    } finally {
+      setBusy(null)
     }
   }
 
@@ -1197,6 +1226,7 @@ export function Networks() {
                         onKeys={setKeysFor}
                         onPassword={setPasswordFor}
                         onTest={(a) => void handleTest(a)}
+                        onProfile={(a) => void handleProfile(a)}
                         onRemove={setRemoving}
                         busy={busy}
                       />

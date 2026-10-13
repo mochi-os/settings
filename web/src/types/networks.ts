@@ -15,6 +15,8 @@ export interface NetworkAccount extends Account {
   avatar?: string
   connected?: boolean
   error?: string
+  // Shown on the user's profile page, with a rel="me" link.
+  profile?: boolean
 }
 
 // A handle, or a name under one, with the address it has on each network.

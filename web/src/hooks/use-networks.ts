@@ -96,7 +96,8 @@ export function useAccountRemove() {
 }
 
 export function useAccountUpdate() {
-  return useNetworksMutation((data: { id: string; label: string }) =>
+  return useNetworksMutation(
+    (data: { id: string; label?: string; profile?: boolean }) =>
     requestHelpers.post<NetworkAccount>(
       endpoints.networks.accountUpdate,
       data,

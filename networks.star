@@ -124,17 +124,24 @@ def action_networks_account_remove(a):
     a.json({"removed": mochi.account.remove(account["id"])})
 
 def action_networks_account_update(a):
-    """Rename an account: the name its profile shows"""
+    """Rename an account - the name its profile shows - or switch whether it
+    is shown on the user's profile page"""
     account = networks_account(a)
     if not account:
         return
     label = a.input("label")
-    if label == None:
+    profile = a.input("profile")
+    if label == None and profile == None:
         return a.error.label(400, "errors.nothing_to_update")
-    label = label.strip()
-    if len(label) > 100:
-        return a.error.label(400, "errors.value_too_long", maximum=100)
-    mochi.account.update(account["id"], label=label)
+    fields = {}
+    if label != None:
+        label = label.strip()
+        if len(label) > 100:
+            return a.error.label(400, "errors.value_too_long", maximum=100)
+        fields["label"] = label
+    if profile != None:
+        fields["profile"] = str(profile).lower() in ("true", "1", "on", "yes")
+    mochi.account.update(account["id"], **fields)
     a.json(mochi.account.get(account["id"]))
 
 def action_networks_account_test(a):
