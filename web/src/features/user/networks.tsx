@@ -412,9 +412,13 @@ function HandleCard({
   return (
     <div className='mb-4 rounded-lg border'>
       <div className='flex items-center justify-between border-b px-4 py-3'>
-        <div>
-          <span className='font-medium'>{handle.name}</span>
-          <span className='text-muted-foreground'> @ {handle.domain}</span>
+        <div className='min-w-0'>
+          <div className='font-medium'>
+            <Trans>Handle</Trans>
+          </div>
+          <div className='text-muted-foreground truncate text-sm'>
+            {handle.name} @ {handle.domain}
+          </div>
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

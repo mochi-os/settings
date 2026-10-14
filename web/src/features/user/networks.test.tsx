@@ -133,7 +133,9 @@ describe('Networks', () => {
 
   it('shows each handle with a switch per network and the accounts together', async () => {
     show()
-    await screen.findByText('alice')
+    // The card says what it holds, then the handle and its domain.
+    await screen.findByText('alice @ example.com')
+    expect(screen.getByText('Handle')).toBeTruthy()
     // The address under the handle's switch, and the account's row.
     expect(screen.getAllByText('alice@example.com')).toHaveLength(2)
     expect(screen.getByText('alice.example.com')).toBeTruthy()
@@ -151,7 +153,7 @@ describe('Networks', () => {
   it('switching a network on creates the hosted account', async () => {
     state.post.mockResolvedValue({ id: 'b1' })
     show()
-    await screen.findByText('alice')
+    await screen.findByText('alice @ example.com')
     await act(async () => {
       fireEvent.click(screen.getAllByRole('switch')[1])
     })
@@ -168,7 +170,7 @@ describe('Networks', () => {
   it('switching a network off asks before removing the account', async () => {
     state.post.mockResolvedValue({ removed: true })
     show()
-    await screen.findByText('alice')
+    await screen.findByText('alice @ example.com')
     await act(async () => {
       fireEvent.click(screen.getAllByRole('switch')[0])
     })
@@ -210,7 +212,7 @@ describe('Networks', () => {
   it('links an account at the remote server when its provider says oauth', async () => {
     state.post.mockResolvedValue({ url: '/_/auth/oauth/mastodon/start?state=x' })
     show()
-    await screen.findByText('alice')
+    await screen.findByText('alice @ example.com')
     await act(async () => {
       // The page header renders its actions for both layouts.
       fireEvent.click(
