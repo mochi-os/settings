@@ -49,6 +49,7 @@ import {
   usePageTitle,
 } from '@mochi/web'
 import {
+  Bot,
   Check,
   Copy,
   Eye,
@@ -933,6 +934,7 @@ function AccountRow({
   onPassword,
   onTest,
   onProfile,
+  onAutomated,
   onRemove,
   busy,
 }: {
@@ -942,6 +944,7 @@ function AccountRow({
   onPassword: (account: NetworkAccount) => void
   onTest: (account: NetworkAccount) => void
   onProfile: (account: NetworkAccount) => void
+  onAutomated: (account: NetworkAccount) => void
   onRemove: (account: NetworkAccount) => void
   busy: string | null
 }) {
@@ -996,6 +999,16 @@ function AccountRow({
                   <KeyRound className='me-2 h-4 w-4' />
                   <Trans context='cryptographic'>Keys</Trans>
                 </DropdownMenuItem>
+                {account.type === 'fediverse' && (
+                  <DropdownMenuItem onClick={() => onAutomated(account)}>
+                    <Bot className='me-2 h-4 w-4' />
+                    {account.automated ? (
+                      <Trans>Mark as a person</Trans>
+                    ) : (
+                      <Trans>Mark as automated</Trans>
+                    )}
+                  </DropdownMenuItem>
+                )}
               </>
             ) : (
               <DropdownMenuItem onClick={() => onTest(account)}>
@@ -1128,6 +1141,19 @@ export function Networks() {
     }
   }
 
+  // Whether a hosted account is shown on its network as automated: fed by
+  // sources rather than the person (decision 30 of the federation plan).
+  const handleAutomated = async (account: NetworkAccount) => {
+    setBusy(account.id)
+    try {
+      await shown.mutateAsync({ id: account.id, automated: !account.automated })
+    } catch (err) {
+      toast.error(getErrorMessage(err, t`Could not change the account`))
+    } finally {
+      setBusy(null)
+    }
+  }
+
   const handleTest = async (account: NetworkAccount) => {
     setBusy(account.id)
     try {
@@ -1227,6 +1253,7 @@ export function Networks() {
                         onPassword={setPasswordFor}
                         onTest={(a) => void handleTest(a)}
                         onProfile={(a) => void handleProfile(a)}
+                        onAutomated={(a) => void handleAutomated(a)}
                         onRemove={setRemoving}
                         busy={busy}
                       />

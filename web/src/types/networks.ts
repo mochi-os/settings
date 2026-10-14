@@ -17,6 +17,9 @@ export interface NetworkAccount extends Account {
   error?: string
   // Shown on the user's profile page, with a rel="me" link.
   profile?: boolean
+  // A hosted account fed by sources rather than the person, shown as such on
+  // its network.
+  automated?: boolean
 }
 
 // A handle, or a name under one, with the address it has on each network.

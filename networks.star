@@ -124,14 +124,16 @@ def action_networks_account_remove(a):
     a.json({"removed": mochi.account.remove(account["id"])})
 
 def action_networks_account_update(a):
-    """Rename an account - the name its profile shows - or switch whether it
-    is shown on the user's profile page"""
+    """Rename an account - the name its profile shows - switch whether it is
+    shown on the user's profile page, or mark a hosted account as automated:
+    fed by sources rather than the person, which the fediverse shows as such"""
     account = networks_account(a)
     if not account:
         return
     label = a.input("label")
     profile = a.input("profile")
-    if label == None and profile == None:
+    automated = a.input("automated")
+    if label == None and profile == None and automated == None:
         return a.error.label(400, "errors.nothing_to_update")
     fields = {}
     if label != None:
@@ -141,6 +143,10 @@ def action_networks_account_update(a):
         fields["label"] = label
     if profile != None:
         fields["profile"] = str(profile).lower() in ("true", "1", "on", "yes")
+    if automated != None:
+        if not account.get("hosted"):
+            return a.error.label(400, "errors.account_not_hosted")
+        fields["automated"] = str(automated).lower() in ("true", "1", "on", "yes")
     mochi.account.update(account["id"], **fields)
     a.json(mochi.account.get(account["id"]))
 
