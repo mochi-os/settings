@@ -17,6 +17,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  FieldRow,
   GeneralError,
   Input,
   Label,
@@ -28,6 +29,7 @@ import {
   ResponsiveDialogFooter,
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
+  Section,
   Select,
   SelectContent,
   SelectItem,
@@ -403,6 +405,7 @@ function HandleCard({
   busy: string | null
 }) {
   const { t } = useLingui()
+  const { domain } = handle
   const rows = [handle, ...children]
   const hosted = (h: Handle, network: string) =>
     accounts.find(
@@ -410,16 +413,11 @@ function HandleCard({
         a.hosted && a.type === network && a.identifier === h.addresses[network]
     )
   return (
-    <div className='mb-4 rounded-lg border'>
-      <div className='flex items-center justify-between border-b px-4 py-3'>
-        <div className='min-w-0'>
-          <div className='font-medium'>
-            <Trans>Handle</Trans>
-          </div>
-          <div className='text-muted-foreground truncate text-sm'>
-            {handle.name} @ {handle.domain}
-          </div>
-        </div>
+    <Section
+      title={handle.name}
+      description={t`Handle on ${domain}`}
+      className='mb-4'
+      action={
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -440,37 +438,32 @@ function HandleCard({
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      </div>
-      <div className='divide-y'>
-        {rows.map((row) =>
-          networks.map((network) => {
-            const account = hosted(row, network)
-            const key = `${row.name}/${network}`
-            return (
-              <div
-                key={key}
-                className='flex items-center justify-between gap-4 px-4 py-2'
-              >
-                <div className='min-w-0'>
-                  <div className='text-sm font-medium'>
-                    {networkLabel(network)}
-                  </div>
-                  <div className='text-muted-foreground truncate text-sm'>
-                    {row.addresses[network]}
-                  </div>
-                </div>
-                <Switch
-                  checked={!!account}
-                  disabled={busy === key}
-                  aria-label={t`${networkLabel(network)} for ${row.name}`}
-                  onCheckedChange={() => onToggle(row, network, account)}
-                />
-              </div>
-            )
-          })
-        )}
-      </div>
-    </div>
+      }
+    >
+      {rows.map((row) =>
+        networks.map((type) => {
+          const account = hosted(row, type)
+          const key = `${row.name}/${type}`
+          const { name } = row
+          const network = networkLabel(type)
+          return (
+            <FieldRow
+              key={key}
+              inline
+              label={row === handle ? network : t`${name} on ${network}`}
+              description={row.addresses[type]}
+            >
+              <Switch
+                checked={!!account}
+                disabled={busy === key}
+                aria-label={t`${network} for ${name}`}
+                onCheckedChange={() => onToggle(row, type, account)}
+              />
+            </FieldRow>
+          )
+        })
+      )}
+    </Section>
   )
 }
 

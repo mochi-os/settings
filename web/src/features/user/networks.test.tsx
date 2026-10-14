@@ -41,8 +41,21 @@ const alice = {
   kind: 'handle',
   created: 1,
   addresses: {
-    fediverse: 'alice@example.com',
+    fediverse: '@alice@example.com',
     bluesky: 'alice.example.com',
+  },
+}
+
+// A name under the handle: free, and listed in the handle's card.
+const news = {
+  domain: 'example.com',
+  name: 'alice_news',
+  parent: 'alice',
+  kind: 'handle',
+  created: 2,
+  addresses: {
+    fediverse: '@alice_news@example.com',
+    bluesky: 'alice-news.example.com',
   },
 }
 
@@ -50,13 +63,13 @@ const data: NetworksData = {
   offered: true,
   networks: ['fediverse', 'bluesky'],
   domains: ['example.com'],
-  handles: { handles: [alice], limit: 1, counted: 1, unlimited: false },
+  handles: { handles: [alice, news], limit: 1, counted: 1, unlimited: false },
   accounts: [
     {
       id: 'f1',
       type: 'fediverse',
       label: '',
-      identifier: 'alice@example.com',
+      identifier: '@alice@example.com',
       created: 1,
       verified: 1,
       enabled: 1,
@@ -133,14 +146,17 @@ describe('Networks', () => {
 
   it('shows each handle with a switch per network and the accounts together', async () => {
     show()
-    // The card says what it holds, then the handle and its domain.
-    await screen.findByText('alice @ example.com')
-    expect(screen.getByText('Handle')).toBeTruthy()
+    // The card is titled with the handle and says what it is; the name under
+    // it has its own rows, labelled with the name.
+    await screen.findByText('Handle on example.com')
+    expect(screen.getByText('alice')).toBeTruthy()
+    expect(screen.getByText('alice_news on Fediverse')).toBeTruthy()
+    expect(screen.getByText('@alice_news@example.com')).toBeTruthy()
     // The address under the handle's switch, and the account's row.
-    expect(screen.getAllByText('alice@example.com')).toHaveLength(2)
+    expect(screen.getAllByText('@alice@example.com')).toHaveLength(2)
     expect(screen.getByText('alice.example.com')).toBeTruthy()
     const switches = screen.getAllByRole('switch')
-    expect(switches).toHaveLength(2)
+    expect(switches).toHaveLength(4)
     expect(switches[0]).toHaveAttribute('aria-checked', 'true')
     expect(switches[1]).toHaveAttribute('aria-checked', 'false')
     expect(screen.getByText('@alice@mastodon.social')).toBeTruthy()
@@ -153,7 +169,7 @@ describe('Networks', () => {
   it('switching a network on creates the hosted account', async () => {
     state.post.mockResolvedValue({ id: 'b1' })
     show()
-    await screen.findByText('alice @ example.com')
+    await screen.findByText('Handle on example.com')
     await act(async () => {
       fireEvent.click(screen.getAllByRole('switch')[1])
     })
@@ -170,7 +186,7 @@ describe('Networks', () => {
   it('switching a network off asks before removing the account', async () => {
     state.post.mockResolvedValue({ removed: true })
     show()
-    await screen.findByText('alice @ example.com')
+    await screen.findByText('Handle on example.com')
     await act(async () => {
       fireEvent.click(screen.getAllByRole('switch')[0])
     })
@@ -212,7 +228,7 @@ describe('Networks', () => {
   it('links an account at the remote server when its provider says oauth', async () => {
     state.post.mockResolvedValue({ url: '/_/auth/oauth/mastodon/start?state=x' })
     show()
-    await screen.findByText('alice @ example.com')
+    await screen.findByText('Handle on example.com')
     await act(async () => {
       // The page header renders its actions for both layouts.
       fireEvent.click(
@@ -262,7 +278,7 @@ describe('Networks', () => {
     ).toBe('https://example.com')
     expect(
       (screen.getByLabelText('Address') as HTMLInputElement).value
-    ).toBe('alice@example.com')
+    ).toBe('@alice@example.com')
     await act(async () => {
       fireEvent.change(screen.getByLabelText('Device'), {
         target: { value: 'Laptop' },
