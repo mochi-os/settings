@@ -24,6 +24,10 @@ export interface NetworkAccount extends Account {
   // which may move to it - and where it has moved to.
   aliases?: string[]
   moved?: string
+  // A hosted Bluesky account's identifier, and whether the user has kept a
+  // recovery key for it.
+  did?: string
+  recovery?: boolean
 }
 
 // A handle, or a name under one, with the address it has on each network.
@@ -95,6 +99,11 @@ export interface NetworkState {
   state: 'working' | 'unavailable' | 'disabled'
   reason: string
   certificates?: { issued: number; limit: number }
+  // How much of the relay's budget of events this server has used.
+  budget?: {
+    hour: { used: number; limit: number }
+    day: { used: number; limit: number }
+  }
 }
 
 export interface SystemNetworks {

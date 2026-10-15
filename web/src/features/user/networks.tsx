@@ -797,12 +797,15 @@ export function MoveDialog({
 }
 
 // A hosted account's keys: what it signs with, replaced here, and on Bluesky
-// the recovery key the user keeps.
+// the recovery key the user keeps - offered as soon as the account is made,
+// with the dialog opening on the question.
 function KeysDialog({
   account,
+  offer,
   onOpenChange,
 }: {
   account: NetworkAccount
+  offer?: boolean
   onOpenChange: (open: boolean) => void
 }) {
   const { t } = useLingui()
@@ -811,7 +814,7 @@ function KeysDialog({
   const replace = useAccountKeysReplace()
   const recovery = useAccountKeysRecovery()
   const [confirmReplace, setConfirmReplace] = useState(false)
-  const [confirmRecovery, setConfirmRecovery] = useState(false)
+  const [confirmRecovery, setConfirmRecovery] = useState(!!offer)
   const [secret, setSecret] = useState('')
   const list = Array.isArray(keys.data) ? keys.data : []
 
@@ -1136,6 +1139,10 @@ function AccountRow({
           <span className='text-destructive'>{account.error}</span>
         ) : account.moved ? (
           <Trans>Moved to {account.moved}</Trans>
+        ) : account.hosted && account.type === 'bluesky' && !account.recovery ? (
+          <span className='text-destructive'>
+            <Trans>No recovery key</Trans>
+          </span>
         ) : !account.hosted && chat ? (
           account.connected ? (
             <Trans>Connected</Trans>
@@ -1356,6 +1363,7 @@ export function Networks() {
   const [aliasesFor, setAliasesFor] = useState<NetworkAccount | null>(null)
   const [movingFor, setMovingFor] = useState<NetworkAccount | null>(null)
   const [keysFor, setKeysFor] = useState<NetworkAccount | null>(null)
+  const [offering, setOffering] = useState(false)
   const [passwordFor, setPasswordFor] = useState<NetworkAccount | null>(null)
   const [removing, setRemoving] = useState<NetworkAccount | null>(null)
   const [busy, setBusy] = useState<string | null>(null)
@@ -1398,12 +1406,17 @@ export function Networks() {
     const key = `${handle.name}/${network}`
     setBusy(key)
     try {
-      await create.mutateAsync({
+      const made = await create.mutateAsync({
         network,
         handle: handle.name,
         domain: handle.domain,
       })
       toast.success(t`Account created`)
+      // A Bluesky account is offered its recovery key the moment it exists.
+      if (network === 'bluesky' && made?.id) {
+        setOffering(true)
+        setKeysFor(made)
+      }
     } catch (err) {
       toast.error(getErrorMessage(err, t`Could not create the account`))
     } finally {
@@ -1624,8 +1637,12 @@ export function Networks() {
       {keysFor && (
         <KeysDialog
           account={keysFor}
+          offer={offering}
           onOpenChange={(open) => {
-            if (!open) setKeysFor(null)
+            if (!open) {
+              setKeysFor(null)
+              setOffering(false)
+            }
           }}
         />
       )}

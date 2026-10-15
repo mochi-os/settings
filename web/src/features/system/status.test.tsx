@@ -95,6 +95,10 @@ describe('Status: other networks', () => {
           state: 'working',
           reason: '',
           certificates: { issued: 3, limit: 50 },
+          budget: {
+            hour: { used: 12, limit: 1500 },
+            day: { used: 40, limit: 10000 },
+          },
         },
         xmpp: { state: 'unavailable', reason: 'domain' },
         matrix: { state: 'disabled', reason: '' },
@@ -108,6 +112,9 @@ describe('Status: other networks', () => {
     ).toBeTruthy()
     expect(screen.getByText('Disabled')).toBeTruthy()
     expect(screen.getByText(/Certificates this week 3 \/ 50/)).toBeTruthy()
+    expect(
+      screen.getByText(/Relay budget 12 \/ 1,500 this hour, 40 \/ 10,000 today/)
+    ).toBeTruthy()
   })
 
   it('shows nothing of the networks where the server does not offer them', () => {

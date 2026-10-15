@@ -176,8 +176,12 @@ describe('Networks', () => {
     expect(screen.queryByText('Choose a handle')).toBeNull()
   })
 
-  it('switching a network on creates the hosted account', async () => {
-    state.post.mockResolvedValue({ id: 'b1' })
+  it('switching a network on creates the hosted account, and Bluesky offers the recovery key', async () => {
+    state.post.mockResolvedValue({
+      id: 'b1',
+      type: 'bluesky',
+      identifier: 'alice.example.com',
+    })
     show()
     await screen.findByText('Handle on example.com')
     await act(async () => {
@@ -191,6 +195,50 @@ describe('Networks', () => {
       domain: 'example.com',
     })
     expect(state.success).toHaveBeenCalledWith('Account created')
+    // The keys dialog opens on the question, so the key is made at once or
+    // declined knowingly.
+    expect(await screen.findByText('Make a recovery key?')).toBeTruthy()
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Make key' }))
+    })
+    // The dialog also lists the keys, so the recovery call is found by its
+    // path rather than its place.
+    await waitFor(() =>
+      expect(
+        state.post.mock.calls.find(
+          (call) => call[0] === '-/user/networks/account/keys/recovery'
+        )
+      ).toBeTruthy()
+    )
+    const made = state.post.mock.calls.find(
+      (call) => call[0] === '-/user/networks/account/keys/recovery'
+    )
+    expect(made?.[1]).toEqual({ id: 'b1' })
+  })
+
+  it("says when a Bluesky account's recovery key has not been kept", async () => {
+    show({
+      ...data,
+      accounts: [
+        ...data.accounts,
+        {
+          id: 'b1',
+          type: 'bluesky',
+          label: '',
+          identifier: 'alice.example.com',
+          created: 3,
+          verified: 1,
+          enabled: 1,
+          default: '',
+          hosted: true,
+          did: 'did:plc:abcdefghijklmnopqrstuvwx',
+          url: 'https://bsky.app/profile/did:plc:abcdefghijklmnopqrstuvwx',
+          recovery: false,
+        },
+      ],
+    })
+    await screen.findByText('Handle on example.com')
+    expect(screen.getByText('No recovery key')).toBeTruthy()
   })
 
   it('switching a network off asks before removing the account', async () => {

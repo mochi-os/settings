@@ -160,6 +160,7 @@ function OtherNetworks() {
         {names.map((name) => {
           const network = data.networks[name]
           const certificates = network.certificates
+          const budget = network.budget
           return (
             <FieldRow key={name} label={networkLabel(name)}>
               <StatusValue>
@@ -174,6 +175,12 @@ function OtherNetworks() {
                   <>
                     {' · '}
                     {t`Certificates this week ${formatNumber(certificates.issued)} / ${formatNumber(certificates.limit)}`}
+                  </>
+                )}
+                {budget && network.state !== 'disabled' && (
+                  <>
+                    {' · '}
+                    {t`Relay budget ${formatNumber(budget.hour.used)} / ${formatNumber(budget.hour.limit)} this hour, ${formatNumber(budget.day.used)} / ${formatNumber(budget.day.limit)} today`}
                   </>
                 )}
               </StatusValue>
