@@ -9,7 +9,12 @@ import { I18nProvider } from '@lingui/react'
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { suggestHandle } from '@/lib/handles'
-import { Networks, PasswordDialog } from './networks'
+import {
+  AliasesDialog,
+  MoveDialog,
+  Networks,
+  PasswordDialog,
+} from './networks'
 
 const state = vi.hoisted(() => ({
   get: vi.fn(),
@@ -351,6 +356,80 @@ describe('Networks', () => {
       expect(state.post).toHaveBeenCalledWith(
         '-/user/networks/block/add',
         { target: 'worse.example' },
+        expect.anything()
+      )
+    )
+  })
+
+  it("sets a hosted account's aliases, one added and one removed", async () => {
+    state.post.mockResolvedValue({})
+    const client = new QueryClient()
+    render(
+      <QueryClientProvider client={client}>
+        <I18nProvider i18n={i18n}>
+          <AliasesDialog
+            account={{ ...data.accounts[0], aliases: ['@alice@old.example'] }}
+            onOpenChange={() => {}}
+          />
+        </I18nProvider>
+      </QueryClientProvider>
+    )
+    expect(screen.getByText('@alice@old.example')).toBeTruthy()
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText('Account elsewhere'), {
+        target: { value: '@alice@older.example' },
+      })
+    })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Add' }))
+    })
+    await waitFor(() =>
+      expect(state.post).toHaveBeenCalledWith(
+        '-/user/networks/account/aliases',
+        {
+          id: 'f1',
+          aliases: JSON.stringify(['@alice@old.example', '@alice@older.example']),
+        },
+        expect.anything()
+      )
+    )
+    await act(async () => {
+      fireEvent.click(
+        screen.getByRole('button', { name: 'Remove @alice@old.example' })
+      )
+    })
+    await waitFor(() =>
+      expect(state.post).toHaveBeenLastCalledWith(
+        '-/user/networks/account/aliases',
+        { id: 'f1', aliases: JSON.stringify(['@alice@older.example']) },
+        expect.anything()
+      )
+    )
+  })
+
+  it('moves a hosted account to the address given', async () => {
+    state.post.mockResolvedValue({})
+    const client = new QueryClient()
+    render(
+      <QueryClientProvider client={client}>
+        <I18nProvider i18n={i18n}>
+          <MoveDialog account={data.accounts[0]} onOpenChange={() => {}} />
+        </I18nProvider>
+      </QueryClientProvider>
+    )
+    expect(screen.getByRole('button', { name: 'Move' })).toBeDisabled()
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText('Account to move to'), {
+        target: { value: '@alice@new.example' },
+      })
+    })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Move' }))
+    })
+    await waitFor(() =>
+      expect(state.post).toHaveBeenCalledWith(
+        '-/user/networks/account/move',
+        { id: 'f1', address: '@alice@new.example' },
         expect.anything()
       )
     )

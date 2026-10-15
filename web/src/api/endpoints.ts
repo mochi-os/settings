@@ -68,6 +68,8 @@ const endpoints = {
     accountLink: '-/user/networks/account/link',
     accountRemove: '-/user/networks/account/remove',
     accountUpdate: '-/user/networks/account/update',
+    accountAliases: '-/user/networks/account/aliases',
+    accountMove: '-/user/networks/account/move',
     accountTest: '-/user/networks/account/test',
     accountKeys: '-/user/networks/account/keys',
     accountKeysReplace: '-/user/networks/account/keys/replace',

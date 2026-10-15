@@ -20,6 +20,10 @@ export interface NetworkAccount extends Account {
   // A hosted account fed by sources rather than the person, shown as such on
   // its network.
   automated?: boolean
+  // A hosted fediverse account's aliases - the person's other identities,
+  // which may move to it - and where it has moved to.
+  aliases?: string[]
+  moved?: string
 }
 
 // A handle, or a name under one, with the address it has on each network.

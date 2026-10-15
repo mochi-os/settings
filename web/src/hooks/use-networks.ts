@@ -111,6 +111,28 @@ export function useAccountUpdate() {
   )
 }
 
+// The aliases of a hosted fediverse account, as one list; an empty list
+// clears them.
+export function useAccountAliases() {
+  return useNetworksMutation((data: { id: string; aliases: string[] }) =>
+    requestHelpers.post<NetworkAccount>(
+      endpoints.networks.accountAliases,
+      { id: data.id, aliases: JSON.stringify(data.aliases) },
+      NO_GLOBAL_ERROR_TOAST_CONFIG
+    )
+  )
+}
+
+export function useAccountMove() {
+  return useNetworksMutation((data: { id: string; address: string }) =>
+    requestHelpers.post<NetworkAccount>(
+      endpoints.networks.accountMove,
+      data,
+      NO_GLOBAL_ERROR_TOAST_CONFIG
+    )
+  )
+}
+
 export function useAccountTest() {
   return (id: string) =>
     requestHelpers.post<{ success: boolean; message: string }>(

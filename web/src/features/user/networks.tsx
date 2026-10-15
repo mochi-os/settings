@@ -59,6 +59,7 @@ import {
   usePageTitle,
 } from '@mochi/web'
 import {
+  ArrowRightLeft,
   Bot,
   Check,
   Copy,
@@ -73,16 +74,19 @@ import {
   Plus,
   Share2,
   Trash2,
+  UserRoundPlus,
   Zap,
 } from 'lucide-react'
 import { suggestHandle } from '@/lib/handles'
 import { networkLabel } from '@/lib/networks'
 import {
+  useAccountAliases,
   useAccountCreate,
   useAccountKeys,
   useAccountKeysRecovery,
   useAccountKeysReplace,
   useAccountLink,
+  useAccountMove,
   useAccountPassword,
   useAccountRemove,
   useAccountTest,
@@ -641,6 +645,157 @@ function RenameDialog({
   )
 }
 
+// A hosted fediverse account's aliases: the person's accounts elsewhere that
+// may move to this one, each named by its handle, which the other server
+// checks when the person moves from it (phase 17).
+export function AliasesDialog({
+  account,
+  onOpenChange,
+}: {
+  account: NetworkAccount
+  onOpenChange: (open: boolean) => void
+}) {
+  const { t } = useLingui()
+  const [aliases, setAliases] = useState<string[]>(account.aliases ?? [])
+  const [address, setAddress] = useState('')
+  const update = useAccountAliases()
+  const save = async (next: string[]) => {
+    try {
+      await update.mutateAsync({ id: account.id, aliases: next })
+      setAliases(next)
+      setAddress('')
+      toast.success(t`Account updated`)
+    } catch (error) {
+      toast.error(getErrorMessage(error, t`Could not update the account`))
+    }
+  }
+  return (
+    <ResponsiveDialog open onOpenChange={onOpenChange}>
+      <ResponsiveDialogContent className='sm:max-w-[480px]'>
+        <ResponsiveDialogHeader>
+          <ResponsiveDialogTitle>
+            <Trans>Aliases</Trans>
+          </ResponsiveDialogTitle>
+        </ResponsiveDialogHeader>
+        <div className='space-y-3 py-2'>
+          {aliases.map((alias) => (
+            <FieldRow key={alias} label={alias} inline>
+              <Button
+                variant='outline'
+                size='sm'
+                disabled={update.isPending}
+                onClick={() => void save(aliases.filter((a) => a !== alias))}
+                aria-label={t`Remove ${alias}`}
+              >
+                <Trash2 className='size-4' />
+              </Button>
+            </FieldRow>
+          ))}
+          <div className='flex items-center gap-2'>
+            <Input
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              aria-label={t`Account elsewhere`}
+              placeholder='@name@server.example'
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && address.trim()) {
+                  e.preventDefault()
+                  void save([...aliases, address.trim()])
+                }
+              }}
+            />
+            <Button
+              size='sm'
+              disabled={!address.trim() || update.isPending}
+              onClick={() => void save([...aliases, address.trim()])}
+            >
+              {update.isPending ? (
+                <Loader2 className='size-4 animate-spin' />
+              ) : (
+                <Plus className='size-4' />
+              )}
+              <Trans>Add</Trans>
+            </Button>
+          </div>
+        </div>
+        <ResponsiveDialogFooter>
+          <Button variant='outline' onClick={() => onOpenChange(false)}>
+            <Trans>Close</Trans>
+          </Button>
+        </ResponsiveDialogFooter>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
+  )
+}
+
+// Moving a hosted fediverse account to an account elsewhere: the followers'
+// servers are told and follow the new account instead (phase 17). The other
+// account must name this one among its aliases first.
+export function MoveDialog({
+  account,
+  onOpenChange,
+}: {
+  account: NetworkAccount
+  onOpenChange: (open: boolean) => void
+}) {
+  const { t } = useLingui()
+  const [address, setAddress] = useState('')
+  const move = useAccountMove()
+  const handleMove = async () => {
+    try {
+      await move.mutateAsync({ id: account.id, address: address.trim() })
+      toast.success(t`Account moved`)
+      onOpenChange(false)
+    } catch (error) {
+      toast.error(getErrorMessage(error, t`Could not move the account`))
+    }
+  }
+  return (
+    <ResponsiveDialog open onOpenChange={onOpenChange}>
+      <ResponsiveDialogContent className='sm:max-w-[480px]'>
+        <ResponsiveDialogHeader>
+          <ResponsiveDialogTitle>
+            <Trans>Move to another account</Trans>
+          </ResponsiveDialogTitle>
+        </ResponsiveDialogHeader>
+        <div className='grid gap-2 py-4'>
+          <Label htmlFor='account-move'>
+            <Trans>Account to move to</Trans>
+          </Label>
+          <Input
+            id='account-move'
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            placeholder='@name@server.example'
+          />
+          <p className='text-muted-foreground text-sm'>
+            <Trans>
+              Add {account.identifier} to that account's aliases there first.
+              Your followers are told to follow it instead.
+            </Trans>
+          </p>
+        </div>
+        <ResponsiveDialogFooter>
+          <Button variant='outline' onClick={() => onOpenChange(false)}>
+            <Trans>Cancel</Trans>
+          </Button>
+          <Button
+            disabled={move.isPending || !address.trim()}
+            onClick={() => void handleMove()}
+          >
+            {move.isPending ? (
+              <Loader2 className='size-4 animate-spin' />
+            ) : (
+              <ArrowRightLeft className='size-4' />
+            )}
+            <Trans>Move</Trans>
+          </Button>
+        </ResponsiveDialogFooter>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
+  )
+}
+
 // A hosted account's keys: what it signs with, replaced here, and on Bluesky
 // the recovery key the user keeps.
 function KeysDialog({
@@ -947,6 +1102,8 @@ function AccountRow({
   onTest,
   onProfile,
   onAutomated,
+  onAliases,
+  onMove,
   onRemove,
   busy,
 }: {
@@ -957,6 +1114,8 @@ function AccountRow({
   onTest: (account: NetworkAccount) => void
   onProfile: (account: NetworkAccount) => void
   onAutomated: (account: NetworkAccount) => void
+  onAliases: (account: NetworkAccount) => void
+  onMove: (account: NetworkAccount) => void
   onRemove: (account: NetworkAccount) => void
   busy: string | null
 }) {
@@ -975,6 +1134,8 @@ function AccountRow({
       <TableCell className='text-muted-foreground text-sm'>
         {account.error ? (
           <span className='text-destructive'>{account.error}</span>
+        ) : account.moved ? (
+          <Trans>Moved to {account.moved}</Trans>
         ) : !account.hosted && chat ? (
           account.connected ? (
             <Trans>Connected</Trans>
@@ -1012,14 +1173,26 @@ function AccountRow({
                   <Trans context='cryptographic'>Keys</Trans>
                 </DropdownMenuItem>
                 {account.type === 'fediverse' && (
-                  <DropdownMenuItem onClick={() => onAutomated(account)}>
-                    <Bot className='me-2 h-4 w-4' />
-                    {account.automated ? (
-                      <Trans>Mark as a person</Trans>
-                    ) : (
-                      <Trans>Mark as automated</Trans>
+                  <>
+                    <DropdownMenuItem onClick={() => onAutomated(account)}>
+                      <Bot className='me-2 h-4 w-4' />
+                      {account.automated ? (
+                        <Trans>Mark as a person</Trans>
+                      ) : (
+                        <Trans>Mark as automated</Trans>
+                      )}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => onAliases(account)}>
+                      <UserRoundPlus className='me-2 h-4 w-4' />
+                      <Trans>Aliases</Trans>
+                    </DropdownMenuItem>
+                    {!account.moved && (
+                      <DropdownMenuItem onClick={() => onMove(account)}>
+                        <ArrowRightLeft className='me-2 h-4 w-4' />
+                        <Trans>Move to another account</Trans>
+                      </DropdownMenuItem>
                     )}
-                  </DropdownMenuItem>
+                  </>
                 )}
               </>
             ) : (
@@ -1180,6 +1353,8 @@ export function Networks() {
   const [adding, setAdding] = useState<Handle | null>(null)
   const [releasing, setReleasing] = useState<Handle | null>(null)
   const [renaming, setRenaming] = useState<NetworkAccount | null>(null)
+  const [aliasesFor, setAliasesFor] = useState<NetworkAccount | null>(null)
+  const [movingFor, setMovingFor] = useState<NetworkAccount | null>(null)
   const [keysFor, setKeysFor] = useState<NetworkAccount | null>(null)
   const [passwordFor, setPasswordFor] = useState<NetworkAccount | null>(null)
   const [removing, setRemoving] = useState<NetworkAccount | null>(null)
@@ -1388,6 +1563,8 @@ export function Networks() {
                         onTest={(a) => void handleTest(a)}
                         onProfile={(a) => void handleProfile(a)}
                         onAutomated={(a) => void handleAutomated(a)}
+                        onAliases={setAliasesFor}
+                        onMove={setMovingFor}
                         onRemove={setRemoving}
                         busy={busy}
                       />
@@ -1425,6 +1602,22 @@ export function Networks() {
           account={renaming}
           onOpenChange={(open) => {
             if (!open) setRenaming(null)
+          }}
+        />
+      )}
+      {aliasesFor && (
+        <AliasesDialog
+          account={aliasesFor}
+          onOpenChange={(open) => {
+            if (!open) setAliasesFor(null)
+          }}
+        />
+      )}
+      {movingFor && (
+        <MoveDialog
+          account={movingFor}
+          onOpenChange={(open) => {
+            if (!open) setMovingFor(null)
           }}
         />
       )}

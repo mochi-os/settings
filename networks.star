@@ -153,6 +153,49 @@ def action_networks_account_update(a):
     mochi.account.update(account["id"], **fields)
     a.json(mochi.account.get(account["id"]))
 
+def action_networks_account_aliases(a):
+    """Set a hosted fediverse account's aliases: the person's accounts
+    elsewhere, by handle, that may move to this one (phase 17). Each must
+    be found on its network; the list replaces the last."""
+    account = networks_account(a)
+    if not account:
+        return
+    if not account.get("hosted") or account.get("type") != "fediverse":
+        return a.error.label(400, "errors.account_not_hosted")
+    raw = json.decode(a.input("aliases") or "[]", None)
+    if type(raw) != "list" or len(raw) > 20:
+        return a.error.label(400, "errors.invalid_aliases")
+    aliases = []
+    for value in raw:
+        address = str(value).strip()
+        if not address:
+            continue
+        if len(address) > 500 or not mochi.account.resolve(address):
+            return a.error.label(400, "errors.alias_not_resolved", address=address)
+        aliases.append(address)
+    mochi.account.update(account["id"], aliases=aliases)
+    a.json(mochi.account.get(account["id"]))
+
+def action_networks_account_move(a):
+    """Move a hosted fediverse account to an account elsewhere, which must
+    already name this one among its own identities; the followers' servers
+    are sent a Move and follow the new account instead (phase 17)."""
+    account = networks_account(a)
+    if not account:
+        return
+    if not account.get("hosted") or account.get("type") != "fediverse":
+        return a.error.label(400, "errors.account_not_hosted")
+    address = (a.input("address") or "").strip()
+    if not address:
+        return a.error.label(400, "errors.handle_is_required")
+    found = mochi.account.resolve(address)
+    if not found or found.get("network") != "fediverse" or not found.get("id"):
+        return a.error.label(400, "errors.alias_not_resolved", address=address)
+    if account.get("url") not in (found.get("aliases") or []):
+        return a.error.label(400, "errors.move_not_named", address=found.get("address") or address)
+    mochi.account.move(account["id"], found["id"])
+    a.json(mochi.account.get(account["id"]))
+
 def action_networks_account_test(a):
     """Check a linked account with its server"""
     account = networks_account(a)

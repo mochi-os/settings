@@ -334,10 +334,18 @@ msgid "Account created"
 msgstr "اڪائونٽ ٺاهيو ويو"
 
 #: src/features/user/networks.tsx
+msgid "Account elsewhere"
+msgstr "ٻئي هنڌ اڪائونٽ"
+
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "اڪائونٽ ڳنڍيو ويو"
+
+#: src/features/user/networks.tsx
+msgid "Account moved"
+msgstr "اڪائونٽ منتقل ٿيو"
 
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
@@ -352,11 +360,16 @@ msgstr "اڪائونٽ ختم ڪرڻ لاءِ مقرر ٿيل"
 msgid "Account settings"
 msgstr "اڪائونٽ سيٽنگون"
 
+#: src/features/user/networks.tsx
+msgid "Account to move to"
+msgstr "جنهن اڪائونٽ ۾ منتقل ڪرڻو آهي"
+
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 msgid "Account type"
 msgstr "اڪائونٽ جو قسم"
 
 #: src/features/user/connected-accounts.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "اڪائونٽ اپڊيٽ ڪيو ويو"
@@ -385,8 +398,14 @@ msgstr "سرگرمي"
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Add"
 msgstr "شامل ڪريو"
+
+#. placeholder {0}: account.identifier
+#: src/features/user/networks.tsx
+msgid "Add {0} to that account's aliases there first. Your followers are told to follow it instead."
+msgstr "پهريان اتي ان اڪائونٽ جي عرفن ۾ {0} شامل ڪريو. توهان جي فالوورز کي ان جي بدران ان کي فالو ڪرڻ لاءِ چيو ويندو."
 
 #: ../../../lib/web/src/components/entity/entity-comment-list.tsx
 msgid "Add a comment..."
@@ -523,6 +542,11 @@ msgstr "AI"
 #: src/features/user/networks.tsx
 msgid "Algorithm"
 msgstr "الگورٿم"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Aliases"
+msgstr "عرف"
 
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
@@ -825,6 +849,7 @@ msgstr "ڪئميرا موجود ناهي"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Cancel"
 msgstr "منسوخ ڪريو"
@@ -963,6 +988,7 @@ msgstr "ڳولا صاف ڪريو"
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: ../../../lib/web/src/components/ui/side-panel.tsx
 #: src/features/system/users.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Close"
@@ -1198,6 +1224,10 @@ msgstr "پاسورڊ ٺاهي نه سگهيو"
 msgid "Could not make the recovery key"
 msgstr "بحالي ڪنجي ٺاهي نه سگهي"
 
+#: src/features/user/networks.tsx
+msgid "Could not move the account"
+msgstr "اڪائونٽ منتقل نه ٿي سگهيو"
+
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not release the handle"
@@ -1228,6 +1258,7 @@ msgstr "ڳنڍڻ شروع نه ٿي سگهيو"
 msgid "Could not unlink provider"
 msgstr "فراهم ڪندڙ ڪڍي نه سگهيو"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
 msgstr "اڪائونٽ اپڊيٽ نه ٿي سگهيو"
@@ -2790,6 +2821,15 @@ msgstr "مهينو"
 msgid "More options"
 msgstr "وڌيڪ اختيار"
 
+#: src/features/user/networks.tsx
+msgid "Move"
+msgstr "منتقل ڪريو"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Move to another account"
+msgstr "ٻئي اڪائونٽ ۾ منتقل ڪريو"
+
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 msgid "Moved"
 msgstr "منتقل ٿيو"
@@ -2797,6 +2837,11 @@ msgstr "منتقل ٿيو"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 msgid "Moved {field}"
 msgstr "{field} منتقل ٿيو"
+
+#. placeholder {0}: account.moved
+#: src/features/user/networks.tsx
+msgid "Moved to {0}"
+msgstr "{0} ۾ منتقل ٿيو"
 
 #. placeholder {0}: dayName(dragging.day)
 #. placeholder {0}: dayName(opening(current, format.zonedDay))
@@ -3637,6 +3682,10 @@ msgstr "هٽايو (اڳيون اطلاع تي ٻيهر ٺاهيو)"
 #: ../../../lib/web/src/components/filter-bar.tsx
 msgid "Remove {0} filter"
 msgstr "{0} فلٽر هٽايو"
+
+#: src/features/user/networks.tsx
+msgid "Remove {alias}"
+msgstr "{alias} هٽايو"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
