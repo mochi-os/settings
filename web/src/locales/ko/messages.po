@@ -155,6 +155,12 @@ msgstr "{0} · 푸시"
 msgid "{0} (development)"
 msgstr "{0} (개발)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} 계정"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, other {#개 남음}}"
@@ -352,6 +358,10 @@ msgstr "계정을 이전했어요"
 msgid "Account removed"
 msgstr "계정이 제거되었어요"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "계정이 복원되었어요"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "삭제 예정인 계정"
@@ -359,6 +369,10 @@ msgstr "삭제 예정인 계정"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "계정 설정"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "계정이 게시 중단되었어요"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "계정 유형"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "계정이 업데이트되었어요"
 
@@ -378,6 +393,7 @@ msgstr "계정이 업데이트되었어요"
 msgid "Account verified"
 msgstr "계정이 인증되었어요"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "계정"
@@ -397,6 +413,7 @@ msgstr "활동"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "신뢰할 수 없는 링크로의 이동이 차단되었어요"
 msgid "Blocks"
 msgstr "차단"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Bluesky 라벨러"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "보드"
@@ -991,6 +1012,7 @@ msgstr "검색 지우기"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "닫기"
 
@@ -1174,6 +1196,7 @@ msgstr "모두 복사"
 msgid "Could not add the name"
 msgstr "이름을 추가할 수 없었어요"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "계정을 변경할 수 없었어요"
@@ -1258,6 +1281,7 @@ msgstr "연결을 시작할 수 없었어요"
 msgid "Could not unlink provider"
 msgstr "공급자 연결을 해제할 수 없었어요"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "알려짐 {known} · 연결됨 {linked} · 브로드캐스트 메시 {me
 msgid "Label is required"
 msgstr "레이블이 필요해요"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "라벨러"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "라벨러"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "설정되지 않음"
 msgid "Nothing found"
 msgstr "찾은 것이 없어요"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "계정의 어떤 콘텐츠도 제공되지 않으며 릴레이에도 알립니다. 계정과 게시한 내용은 그대로 남아 있으며 복원할 수 있습니다."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "릴레이 한도 이번 시간 {0} / {1}, 오늘 {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "릴레이가 이 서버를 알지 못함"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "릴레이가 이 서버를 팔로우 중"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "릴레이가 이 서버를 차단함"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "릴레이가 이 서버에 대해 유휴 상태"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "릴레이가 이 서버를 오프라인으로 봄"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "릴레이 서비스"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "릴레이 상태 알 수 없음"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "릴레이가 이 서버를 제한 중"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "{0} 필터 제거"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "{alias} 제거"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "{labeler} 제거"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "기권"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "게임을 기권할까요?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "{0} 복원"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "태그"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "이름 확보"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "게시 중단"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "{0} 게시 중단"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "{0}을(를) 게시 중단할까요?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "게시 중단됨"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

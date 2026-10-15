@@ -24,6 +24,23 @@ export function useSystemHandles() {
   })
 }
 
+// Taking a hosted Bluesky account down, or restoring it, changes its status
+// in the registry.
+export function useSystemAccountTakedown() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (data: { did: string; down: boolean }) =>
+      requestHelpers.post(
+        endpoints.system.accountTakedown,
+        { did: data.did, down: data.down ? 'true' : 'false' },
+        { mochi: { showGlobalErrorToast: false } }
+      ),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ['system', 'handles'] })
+    },
+  })
+}
+
 // Releasing a handle changes the registry and, where the handle was the
 // owner's own, the Networks page too.
 export function useSystemHandleRelease() {

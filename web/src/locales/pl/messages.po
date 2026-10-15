@@ -155,6 +155,12 @@ msgstr "{0} · push"
 msgid "{0} (development)"
 msgstr "{0} (rozwój)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "Konta: {0} / {1}"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {Pozostał #} few {Pozostały #} many {Pozostało #} other {Pozostało #}}"
@@ -352,6 +358,10 @@ msgstr "Konto przeniesione"
 msgid "Account removed"
 msgstr "Konto usunięte"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Konto przywrócone"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Konto zaplanowane do usunięcia"
@@ -359,6 +369,10 @@ msgstr "Konto zaplanowane do usunięcia"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Ustawienia konta"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Konto zdjęte"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Typ konta"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Konto zaktualizowane"
 
@@ -378,6 +393,7 @@ msgstr "Konto zaktualizowane"
 msgid "Account verified"
 msgstr "Konto zweryfikowane"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Konta"
@@ -397,6 +413,7 @@ msgstr "Aktywność"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Zablokowano nawigację do niezaufanego linku"
 msgid "Blocks"
 msgstr "Blokuje"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Serwisy etykietujące Bluesky"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Tablica"
@@ -991,6 +1012,7 @@ msgstr "Wyczyść wyszukiwanie"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Zamknij"
 
@@ -1174,6 +1196,7 @@ msgstr "Kopiuj wszystko"
 msgid "Could not add the name"
 msgstr "Nie udało się dodać nazwy"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Nie udało się zmienić konta"
@@ -1258,6 +1281,7 @@ msgstr "Nie można rozpocząć łączenia"
 msgid "Could not unlink provider"
 msgstr "Nie można odłączyć dostawcy"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Znane {known} · Połączone {linked} · Mesh rozgłoszeniowy {mesh}"
 msgid "Label is required"
 msgstr "Etykieta jest wymagana"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Serwis etykietujący"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Serwisy etykietujące"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Nie ustawiono"
 msgid "Nothing found"
 msgstr "Nic nie znaleziono"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Nic z konta nie jest udostępniane, a przekaźniki zostają powiadomione. Konto i to, co opublikowało, pozostają i można je przywrócić."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Budżet przekaźnika w tej godzinie {0} / {1}, dzisiaj {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Przekaźnik nie zna tego serwera"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Przekaźnik obserwuje ten serwer"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Przekaźnik zbanował ten serwer"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Przekaźnik bezczynny wobec tego serwera"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Przekaźnik widzi ten serwer jako offline"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Usługa przekaźnika"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Stan przekaźnika nieznany"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Przekaźnik ogranicza ten serwer"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "Usuń filtr {0}"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "Usuń {alias}"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "Usuń {labeler}"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Poddaj się"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Poddać grę?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "Przywróć {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Tagi"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Zajmij nazwę"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Zdejmij"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "Zdejmij {0}"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "Zdjąć {0}?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Zdjęte"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

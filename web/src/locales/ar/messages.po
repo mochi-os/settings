@@ -155,6 +155,12 @@ msgstr "{0} · إشعارات فورية"
 msgid "{0} (development)"
 msgstr "{0} (تطوير)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "الحسابات {0} / {1}"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, zero {المتبقي: #} one {المتبقي: #} two {المتبقي: #} few {المتبقي: #} many {المتبقي: #} other {المتبقي: #}}"
@@ -352,6 +358,10 @@ msgstr "تم نقل الحساب"
 msgid "Account removed"
 msgstr "تمت إزالة الحساب"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "تمت استعادة الحساب"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "الحساب مُجدوَل للحذف"
@@ -359,6 +369,10 @@ msgstr "الحساب مُجدوَل للحذف"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "إعدادات الحساب"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "تم حجب الحساب"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "نوع الحساب"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "تم تحديث الحساب"
 
@@ -378,6 +393,7 @@ msgstr "تم تحديث الحساب"
 msgid "Account verified"
 msgstr "تم التحقق من الحساب"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "الحسابات"
@@ -397,6 +413,7 @@ msgstr "النشاط"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "تم حظر الانتقال إلى رابط غير موثوق"
 msgid "Blocks"
 msgstr "يحظر"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "مُصنِّفو Bluesky"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "اللوحة"
@@ -991,6 +1012,7 @@ msgstr "مسح البحث"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "إغلاق"
 
@@ -1174,6 +1196,7 @@ msgstr "نسخ الكل"
 msgid "Could not add the name"
 msgstr "تعذّر إضافة الاسم"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "تعذّر تغيير الحساب"
@@ -1258,6 +1281,7 @@ msgstr "تعذّر بدء الربط"
 msgid "Could not unlink provider"
 msgstr "تعذّر فك ربط المزوّد"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "معروف {known} · متصل {linked} · شبكة البث {mesh}"
 msgid "Label is required"
 msgstr "التسمية مطلوبة"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "المُصنِّف"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "المُصنِّفون"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "غير محدد"
 msgid "Nothing found"
 msgstr "لم يتم العثور على شيء"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "لا يُقدَّم أي شيء من الحساب ويتم إبلاغ المرحّلات. يبقى الحساب وما نشره، ويمكن استعادته."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "ميزانية الترحيل هذه الساعة {0} / {1}، اليوم {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "المرحّل لا يعرف هذا الخادم"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "المرحّل يتابع هذا الخادم"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "المرحّل حظر هذا الخادم"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "المرحّل خامل تجاه هذا الخادم"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "المرحّل يرى هذا الخادم غير متصل"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "خدمة الترحيل"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "حالة المرحّل غير معروفة"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "المرحّل يقيّد هذا الخادم"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "إزالة فلتر {0}"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "إزالة {alias}"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "إزالة {labeler}"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "الاستسلام"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "الاستسلام في اللعبة؟"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "استعادة {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "الوسوم"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "احجز اسمًا"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "حجب"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "حجب {0}"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "حجب {0}؟"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "محجوب"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

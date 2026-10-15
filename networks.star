@@ -136,7 +136,8 @@ def action_networks_account_update(a):
     label = a.input("label")
     profile = a.input("profile")
     automated = a.input("automated")
-    if label == None and profile == None and automated == None:
+    labelers = a.input("labelers")
+    if label == None and profile == None and automated == None and labelers == None:
         return a.error.label(400, "errors.nothing_to_update")
     fields = {}
     if label != None:
@@ -150,6 +151,15 @@ def action_networks_account_update(a):
         if not account.get("hosted"):
             return a.error.label(400, "errors.account_not_hosted")
         fields["automated"] = str(automated).lower() in ("true", "1", "on", "yes")
+    if labelers != None:
+        # The labellers a hosted Bluesky account reads, by identifier, beside
+        # the server's (phase 19); the list replaces the last.
+        if not account.get("hosted") or account.get("type") != "bluesky":
+            return a.error.label(400, "errors.account_not_hosted")
+        raw = json.decode(labelers or "[]", None)
+        if type(raw) != "list" or len(raw) > 20:
+            return a.error.label(400, "errors.invalid_labelers")
+        fields["labelers"] = [str(value).strip() for value in raw if str(value).strip()]
     mochi.account.update(account["id"], **fields)
     a.json(mochi.account.get(account["id"]))
 

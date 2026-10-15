@@ -48,6 +48,7 @@ vi.mock('@/hooks/use-system-settings', () => ({
         setting('fcm.service_account', '', { pattern: 'text' }),
         setting('handles', '1', { pattern: 'natural' }),
         setting('fediverse', 'true', { pattern: '^(true|false)$' }),
+        setting('labelers', '', { pattern: 'line' }),
         setting('description', '', { pattern: 'line' }),
       ],
       themes: [
@@ -132,6 +133,8 @@ describe('System settings', () => {
     expect(screen.getByText('Other networks')).toBeTruthy()
     expect(screen.getByText('Handles each user may reserve')).toBeTruthy()
     expect(screen.getByText('Host accounts on the fediverse')).toBeTruthy()
+    // Bluesky's labellers sit with the networks, named for what they are.
+    expect(screen.getByText('Bluesky labellers')).toBeTruthy()
     // The server description sits with the operator's details.
     expect(screen.getByText('Operator')).toBeTruthy()
     expect(screen.getByText('Server description')).toBeTruthy()

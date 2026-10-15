@@ -155,6 +155,12 @@ msgstr "{0} · notifika push"
 msgid "{0} (development)"
 msgstr "{0} (żvilupp)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "Kontijiet: {0} / {1}"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {Fadal #} two {Fadal #} few {Fadal #} many {Fadal #} other {Fadal #}}"
@@ -352,6 +358,10 @@ msgstr "Il-kont ġie mċaqlaq"
 msgid "Account removed"
 msgstr "Kont imneħħi"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Kont restawrat"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Kont skedat għat-tħassir"
@@ -359,6 +369,10 @@ msgstr "Kont skedat għat-tħassir"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Settings tal-kont"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Kont oskurat"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Tip ta' kont"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Kont aġġornat"
 
@@ -378,6 +393,7 @@ msgstr "Kont aġġornat"
 msgid "Account verified"
 msgstr "Kont ivverifikat"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Kontijiet"
@@ -397,6 +413,7 @@ msgstr "Attività"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Navigazzjoni mblokkata lejn link mhux fdat"
 msgid "Blocks"
 msgstr "Jimblokka"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Tikkettaturi ta' Bluesky"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Bord"
@@ -991,6 +1012,7 @@ msgstr "Naddaf it-tiftix"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Agħlaq"
 
@@ -1174,6 +1196,7 @@ msgstr "Ikkupja kollox"
 msgid "Could not add the name"
 msgstr "Ma setax jiżdied l-isem"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Il-kont ma setax jinbidel"
@@ -1258,6 +1281,7 @@ msgstr "Ma setax jibda l-illinkjar"
 msgid "Could not unlink provider"
 msgstr "Ma setax jiddiskonettja l-provider"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Magħrufa {known} · Konnessi {linked} · Mesh tax-xandir {mesh}"
 msgid "Label is required"
 msgstr "It-tikketta hija meħtieġa"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Tikkettatur"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Tikkettaturi"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Mhux issettjat"
 msgid "Nothing found"
 msgstr "Ma nstab xejn"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Xejn mill-kont ma jiġi servut u r-relays jiġu infurmati. Il-kont u dak li ppubblika jibqgħu, u jista' jiġi restawrat."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Baġit tar-relay din is-siegħa {0} / {1}, illum {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Ir-relay ma jafx dan is-server"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Ir-relay qed isegwi dan is-server"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Ir-relay ipprojbixxa dan is-server"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Ir-relay inattiv lejn dan is-server"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Ir-relay jara dan is-server offline"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Servizz tar-relay"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "L-istat tar-relay mhux magħruf"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Ir-relay qed jillimita dan is-server"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "Neħħi l-filter ta' {0}"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "Neħħi {alias}"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "Neħħi {labeler}"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Irriżenja"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Tirriżenja l-logħba?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "Restawra {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Tikketti"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Ħu isem"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Oskura"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "Oskura {0}"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "Toskura {0}?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Oskurat"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

@@ -155,6 +155,12 @@ msgstr "{0} · Push хабарландырулары"
 msgid "{0} (development)"
 msgstr "{0} (әзірлеу)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} тіркелгі"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {# қалды} other {# қалды}}"
@@ -352,6 +358,10 @@ msgstr "Тіркелгі көшірілді"
 msgid "Account removed"
 msgstr "Тіркелгі алып тасталды"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Тіркелгі қалпына келтірілді"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Тіркелгі жоюға жоспарланған"
@@ -359,6 +369,10 @@ msgstr "Тіркелгі жоюға жоспарланған"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Тіркелгі параметрлері"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Тіркелгі жариялаудан алынды"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Тіркелгі түрі"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Тіркелгі жаңартылды"
 
@@ -378,6 +393,7 @@ msgstr "Тіркелгі жаңартылды"
 msgid "Account verified"
 msgstr "Тіркелгі расталды"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Тіркелгілер"
@@ -397,6 +413,7 @@ msgstr "Әрекет"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Сенімсіз сілтемеге өту бөгелді"
 msgid "Blocks"
 msgstr "Бөгейді"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Bluesky белгілеушілері"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Тақта"
@@ -991,6 +1012,7 @@ msgstr "Іздеуді тазалау"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Жабу"
 
@@ -1174,6 +1196,7 @@ msgstr "Барлығын көшіру"
 msgid "Could not add the name"
 msgstr "Атауды қосу мүмкін болмады"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Тіркелгіні өзгерту мүмкін болмады"
@@ -1258,6 +1281,7 @@ msgstr "Байланыстыруды бастау мүмкін болмады"
 msgid "Could not unlink provider"
 msgstr "Провайдерді ажырату мүмкін болмады"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Белгілі {known} · Қосылған {linked} · Тарату то
 msgid "Label is required"
 msgstr "Жапсырма қажет"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Белгілеуші"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Белгілеушілер"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Орнатылмаған"
 msgid "Nothing found"
 msgstr "Ештеңе табылмады"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Тіркелгіден ештеңе ұсынылмайды және релелерге хабарланады. Тіркелгі мен оның жариялағандары сақталады және оны қалпына келтіруге болады."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Реле бюджеті осы сағатта {0} / {1}, бүгін {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Реле бұл серверді білмейді"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Реле бұл серверді бақылап отыр"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Реле бұл серверге тыйым салды"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Реле бұл серверге қатысты әрекетсіз"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Реле бұл серверді желіден тыс деп көреді"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Реле қызметі"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Реле күйі белгісіз"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Реле бұл серверді шектеп отыр"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "{0} сүзгісін жою"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "{alias} жою"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "{labeler} жою"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Бас тарту"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Ойыннан бас тарту керек пе?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "{0} қалпына келтіру"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Тегтер"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Атау алыңыз"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Жариялаудан алу"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "{0} жариялаудан алу"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "{0} жариялаудан алынсын ба?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Жариялаудан алынған"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

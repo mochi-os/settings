@@ -155,6 +155,12 @@ msgstr "{0} · पुश"
 msgid "{0} (development)"
 msgstr "{0} (विकास)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} खाता"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {# बाँकी} other {# बाँकी}}"
@@ -352,6 +358,10 @@ msgstr "खाता सारियो"
 msgid "Account removed"
 msgstr "खाता हटाइयो"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "खाता पुनर्स्थापना गरियो"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "खाता मेटाउन निर्धारित"
@@ -359,6 +369,10 @@ msgstr "खाता मेटाउन निर्धारित"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "खाता सेटिङ"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "खाता झिकियो"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "खाता प्रकार"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "खाता अद्यावधिक गरियो"
 
@@ -378,6 +393,7 @@ msgstr "खाता अद्यावधिक गरियो"
 msgid "Account verified"
 msgstr "खाता प्रमाणीकरण गरियो"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "खाताहरू"
@@ -397,6 +413,7 @@ msgstr "गतिविधि"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "अविश्वसित लिङ्कमा नेभिगेस�
 msgid "Blocks"
 msgstr "रोक्छ"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Bluesky लेबलकर्ताहरू"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "बोर्ड"
@@ -991,6 +1012,7 @@ msgstr "खोजी खाली गर्नुहोस्"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "बन्द गर्नुहोस्"
 
@@ -1174,6 +1196,7 @@ msgstr "सबै प्रतिलिपि गर्नुहोस्"
 msgid "Could not add the name"
 msgstr "नाम थप्न सकिएन"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "खाता परिवर्तन गर्न सकिएन"
@@ -1258,6 +1281,7 @@ msgstr "लिङ्किङ सुरु गर्न सकिएन"
 msgid "Could not unlink provider"
 msgstr "प्रदायक अनलिङ्क गर्न सकिएन"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "ज्ञात {known} · जडित {linked} · प्रसार�
 msgid "Label is required"
 msgstr "लेबल आवश्यक छ"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "लेबलकर्ता"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "लेबलकर्ताहरू"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "सेट गरिएको छैन"
 msgid "Nothing found"
 msgstr "केही भेटिएन"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "खाताको केही पनि सेवा गरिँदैन र रिलेहरूलाई जानकारी दिइन्छ। खाता र यसले प्रकाशित गरेका कुराहरू रहन्छन्, र यसलाई पुनर्स्थापना गर्न सकिन्छ।"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "रिले बजेट यो घण्टा {0} / {1}, आज {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "रिलेलाई यो सर्भर थाहा छैन"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "रिलेले यो सर्भर फलो गर्दैछ"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "रिलेले यो सर्भरलाई प्रतिबन्ध लगाएको छ"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "रिले यो सर्भरप्रति निष्क्रिय छ"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "रिलेले यो सर्भरलाई अफलाइन देख्छ"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "रिले सेवा"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "रिलेको स्थिति अज्ञात"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "रिलेले यो सर्भरलाई सीमित गर्दैछ"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "{0} फिल्टर हटाउनुहोस्"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "{alias} हटाउनुहोस्"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "{labeler} हटाउनुहोस्"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "हार स्वीकार्नुहोस्"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "खेल छोड्ने?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "{0} पुनर्स्थापना गर्नुहोस्"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "ट्यागहरू"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "नाम लिनुहोस्"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "झिक्नुहोस्"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "{0} झिक्नुहोस्"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "{0} झिक्ने?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "झिकिएको"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

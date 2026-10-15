@@ -11,6 +11,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { suggestHandle } from '@/lib/handles'
 import {
   AliasesDialog,
+  LabelersDialog,
   MoveDialog,
   Networks,
   PasswordDialog,
@@ -450,6 +451,66 @@ describe('Networks', () => {
       expect(state.post).toHaveBeenLastCalledWith(
         '-/user/networks/account/aliases',
         { id: 'f1', aliases: JSON.stringify(['@alice@older.example']) },
+        expect.anything()
+      )
+    )
+  })
+
+  it("sets a hosted Bluesky account's labellers, one added and one removed", async () => {
+    state.post.mockResolvedValue({})
+    const client = new QueryClient()
+    render(
+      <QueryClientProvider client={client}>
+        <I18nProvider i18n={i18n}>
+          <LabelersDialog
+            account={{
+              ...data.accounts[0],
+              id: 'b1',
+              type: 'bluesky',
+              identifier: 'alice.example.com',
+              labelers: ['did:plc:aaaaaaaaaaaaaaaaaaaaaaaa'],
+            }}
+            onOpenChange={() => {}}
+          />
+        </I18nProvider>
+      </QueryClientProvider>
+    )
+    expect(screen.getByText('did:plc:aaaaaaaaaaaaaaaaaaaaaaaa')).toBeTruthy()
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText('Labeller'), {
+        target: { value: 'did:plc:bbbbbbbbbbbbbbbbbbbbbbbb' },
+      })
+    })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Add' }))
+    })
+    await waitFor(() =>
+      expect(state.post).toHaveBeenCalledWith(
+        '-/user/networks/account/update',
+        {
+          id: 'b1',
+          labelers: JSON.stringify([
+            'did:plc:aaaaaaaaaaaaaaaaaaaaaaaa',
+            'did:plc:bbbbbbbbbbbbbbbbbbbbbbbb',
+          ]),
+        },
+        expect.anything()
+      )
+    )
+    await act(async () => {
+      fireEvent.click(
+        screen.getByRole('button', {
+          name: 'Remove did:plc:aaaaaaaaaaaaaaaaaaaaaaaa',
+        })
+      )
+    })
+    await waitFor(() =>
+      expect(state.post).toHaveBeenLastCalledWith(
+        '-/user/networks/account/update',
+        {
+          id: 'b1',
+          labelers: JSON.stringify(['did:plc:bbbbbbbbbbbbbbbbbbbbbbbb']),
+        },
         expect.anything()
       )
     )

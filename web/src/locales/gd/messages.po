@@ -155,6 +155,12 @@ msgstr "{0} · putadh"
 msgid "{0} (development)"
 msgstr "{0} (leasachadh)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} cunntas"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {# air fhàgail} two {# air fhàgail} few {# air fhàgail} other {# air fhàgail}}"
@@ -352,6 +358,10 @@ msgstr "Chaidh an cunntas a ghluasad"
 msgid "Account removed"
 msgstr "Cunntas air a thoirt air falbh"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Cunntas air aiseag"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Cunntas air a chlàradh airson sguabadh às"
@@ -359,6 +369,10 @@ msgstr "Cunntas air a chlàradh airson sguabadh às"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Roghainnean cunntais"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Cunntas air a thoirt sìos"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Seòrsa cunntais"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Cunntas air ùrachadh"
 
@@ -378,6 +393,7 @@ msgstr "Cunntas air ùrachadh"
 msgid "Account verified"
 msgstr "Cunntas dearbhte"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Cunntasan"
@@ -397,6 +413,7 @@ msgstr "Gnìomhachd"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Chaidh seòladaireachd gu ceangal neo-earbsach a bhacadh"
 msgid "Blocks"
 msgstr "Blocaichean"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Leubailearan Bluesky"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Bòrd"
@@ -991,6 +1012,7 @@ msgstr "Falamhaich an lorg"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Dùin"
 
@@ -1174,6 +1196,7 @@ msgstr "Dèan lethbhreac den a h-uile"
 msgid "Could not add the name"
 msgstr "Cha b' urrainn an t-ainm a chur ris"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Cha b' urrainn dhuinn an cunntas atharrachadh"
@@ -1258,6 +1281,7 @@ msgstr "Cha b' urrainn ceangal a thòiseachadh"
 msgid "Could not unlink provider"
 msgstr "Cha b' urrainn am solaraiche a dhì-cheangal"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Aithnichte {known} · Ceangailte {linked} · Mogal craolaidh {mesh}"
 msgid "Label is required"
 msgstr "Tha feum air leubail"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Leubailear"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Leubailearan"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Cha deach a shuidheachadh"
 msgid "Nothing found"
 msgstr "Cha deach dad a lorg"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Cha tèid dad dhen chunntas a fhrithealadh agus thèid innse dha na h-ath-sheachadain. Fanaidh an cunntas agus na dh'fhoillsich e, agus gabhaidh e aiseag."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Buidseat ath-sheachadaidh an uair seo {0} / {1}, an-diugh {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Chan eil an t-ath-sheachadan eòlach air an fhrithealaiche seo"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "An t-ath-sheachadan a' leantainn an fhrithealaiche seo"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Chuir an t-ath-sheachadan casg air an fhrithealaiche seo"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "An t-ath-sheachadan na thàmh a thaobh an fhrithealaiche seo"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Tha an t-ath-sheachadan a' faicinn an fhrithealaiche seo far loidhne"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Seirbheis ath-sheachadaidh"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Staid an ath-sheachadain neo-aithnichte"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "An t-ath-sheachadan a' cuingeachadh an fhrithealaiche seo"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "Thoir an criathrag {0} air falbh"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "Thoir {alias} air falbh"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "Thoir {labeler} air falbh"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Leig seachad"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "An leig thu seachad an geama?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "Aisig {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Tagaichean"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Gabh ainm"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Thoir sìos"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "Thoir {0} sìos"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "Thoir {0} sìos?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Air a thoirt sìos"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

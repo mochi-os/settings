@@ -155,6 +155,12 @@ msgstr "{0} · пуш"
 msgid "{0} (development)"
 msgstr "{0} (розробка)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "Облікові записи: {0} / {1}"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {Залишилося: #} few {Залишилося: #} many {Залишилося: #} other {Залишилося: #}}"
@@ -352,6 +358,10 @@ msgstr "Обліковий запис переміщено"
 msgid "Account removed"
 msgstr "Обліковий запис видалено"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Обліковий запис відновлено"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Обліковий запис заплановано до видалення"
@@ -359,6 +369,10 @@ msgstr "Обліковий запис заплановано до видален
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Налаштування облікового запису"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Обліковий запис заблоковано"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Тип облікового запису"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Обліковий запис оновлено"
 
@@ -378,6 +393,7 @@ msgstr "Обліковий запис оновлено"
 msgid "Account verified"
 msgstr "Обліковий запис підтверджено"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Облікові записи"
@@ -397,6 +413,7 @@ msgstr "Активність"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Перехід за недовіреним посиланням забл
 msgid "Blocks"
 msgstr "Блокує"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Маркувальники Bluesky"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Дошка"
@@ -991,6 +1012,7 @@ msgstr "Очистити пошук"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Закрити"
 
@@ -1174,6 +1196,7 @@ msgstr "Копіювати все"
 msgid "Could not add the name"
 msgstr "Не вдалося додати ім'я"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Не вдалося змінити обліковий запис"
@@ -1258,6 +1281,7 @@ msgstr "Не вдалося розпочати прив'язку"
 msgid "Could not unlink provider"
 msgstr "Не вдалося відв'язати провайдера"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Відомі {known} · Підключені {linked} · Комірко�
 msgid "Label is required"
 msgstr "Мітка є обов'язковою"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Маркувальник"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Маркувальники"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Не встановлено"
 msgid "Nothing found"
 msgstr "Нічого не знайдено"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Нічого з облікового запису не віддається, а ретранслятори отримують повідомлення. Обліковий запис і те, що він опублікував, залишаються, і його можна відновити."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Бюджет ретранслятора за цю годину {0} / {1}, сьогодні {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Ретранслятор не знає цей сервер"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Ретранслятор підписаний на цей сервер"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Ретранслятор заборонив цей сервер"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Ретранслятор неактивний щодо цього сервера"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Ретранслятор бачить цей сервер офлайн"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Служба ретрансляції"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Статус у ретранслятора невідомий"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Ретранслятор обмежує цей сервер"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "Видалити фільтр {0}"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "Видалити {alias}"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "Видалити {labeler}"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Здатися"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Здатися у грі?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "Відновити {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Теги"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Зайняти ім'я"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Заблокувати"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "Заблокувати {0}"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "Заблокувати {0}?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Заблоковано"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

@@ -155,6 +155,12 @@ msgstr "{0} · پوش"
 msgid "{0} (development)"
 msgstr "{0} (پەرەپێدان)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} هەژمار"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {# ماوە} other {# ماوە}}"
@@ -352,6 +358,10 @@ msgstr "هەژمار گواسترایەوە"
 msgid "Account removed"
 msgstr "هەژمار لابرا"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "هەژمار گەڕێندرایەوە"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "هەژمار بۆ سڕینەوە خشتەبەندی کراوە"
@@ -359,6 +369,10 @@ msgstr "هەژمار بۆ سڕینەوە خشتەبەندی کراوە"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "ڕێکخستنی هەژمار"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "هەژمار داگیرا"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "جۆری هەژمار"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "هەژمار نوێکرایەوە"
 
@@ -378,6 +393,7 @@ msgstr "هەژمار نوێکرایەوە"
 msgid "Account verified"
 msgstr "هەژمار پشتڕاست کرایەوە"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "هەژمارەکان"
@@ -397,6 +413,7 @@ msgstr "چالاکی"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "ڕێگەنەدرا بە چوون بۆ بەستەری نامتمانە"
 msgid "Blocks"
 msgstr "بلۆکەکان"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "نیشانەکەرەکانی Bluesky"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "تەختە"
@@ -991,6 +1012,7 @@ msgstr "پاککردنەوەی گەڕان"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "داخستن"
 
@@ -1174,6 +1196,7 @@ msgstr "کۆپیکردنی هەموو"
 msgid "Could not add the name"
 msgstr "نەتوانرا ناوەکە زیاد بکرێت"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "نەتوانرا هەژمارەکە بگۆڕدرێت"
@@ -1258,6 +1281,7 @@ msgstr "پەیوەستکردن دەست پێ نەکرا"
 msgid "Could not unlink provider"
 msgstr "نەکرا دابینکەر هەڵگیرسێنرێتەوە"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "ناسراو {known} · پەیوەستکراو {linked} · تۆڕی بڵ
 msgid "Label is required"
 msgstr "ناولێنان پێویستە"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "نیشانەکەر"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "نیشانەکەرەکان"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "دانەنراوە"
 msgid "Nothing found"
 msgstr "هیچ نەدۆزرایەوە"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "هیچ شتێک لە هەژمارەکە پێشکەش ناکرێت و ڕاژەکارەکانی گواستنەوە ئاگادار دەکرێنەوە. هەژمارەکە و ئەوەی بڵاوی کردۆتەوە دەمێننەوە، و دەتوانرێت بگەڕێندرێتەوە."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "بودجەی گواستنەوە ئەم کاتژمێرە {0} / {1}، ئەمڕۆ {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "ڕاژەکاری گواستنەوە ئەم ڕاژەکارە ناناسێت"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "ڕاژەکاری گواستنەوە شوێن ئەم ڕاژەکارە دەکەوێت"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "ڕاژەکاری گواستنەوە ئەم ڕاژەکارەی قەدەغە کردووە"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "ڕاژەکاری گواستنەوە بەرامبەر ئەم ڕاژەکارە بێکارە"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "ڕاژەکاری گواستنەوە ئەم ڕاژەکارە بە ئۆفلاین دەبینێت"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "خزمەتی گواستنەوە"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "دۆخی ڕاژەکاری گواستنەوە نەناسراوە"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "ڕاژەکاری گواستنەوە ئەم ڕاژەکارە سنووردار دەکات"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "لابردنی فیلتەری {0}"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "لابردنی {alias}"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "لابردنی {labeler}"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "دەستلەکارکێشانەوە"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "دەست لە یاری بکێشیتەوە؟"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "گەڕاندنەوەی {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "تاگەکان"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "ناوێک وەربگرە"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "داگرتن"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "داگرتنی {0}"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "داگرتنی {0}؟"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "داگیراوە"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

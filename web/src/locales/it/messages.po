@@ -155,6 +155,12 @@ msgstr "{0} · push"
 msgid "{0} (development)"
 msgstr "{0} (sviluppo)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} account"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {# rimanente} other {# rimanenti}}"
@@ -352,6 +358,10 @@ msgstr "Account trasferito"
 msgid "Account removed"
 msgstr "Account rimosso"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Account ripristinato"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Account programmato per l'eliminazione"
@@ -359,6 +369,10 @@ msgstr "Account programmato per l'eliminazione"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Impostazioni account"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Account oscurato"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Tipo di account"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Account aggiornato"
 
@@ -378,6 +393,7 @@ msgstr "Account aggiornato"
 msgid "Account verified"
 msgstr "Account verificato"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Account"
@@ -397,6 +413,7 @@ msgstr "Attività"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Navigazione verso link non attendibile bloccata"
 msgid "Blocks"
 msgstr "Blocca"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Etichettatori Bluesky"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Bacheca"
@@ -991,6 +1012,7 @@ msgstr "Cancella ricerca"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Chiudi"
 
@@ -1174,6 +1196,7 @@ msgstr "Copia tutto"
 msgid "Could not add the name"
 msgstr "Impossibile aggiungere il nome"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Impossibile modificare l'account"
@@ -1258,6 +1281,7 @@ msgstr "Impossibile avviare il collegamento"
 msgid "Could not unlink provider"
 msgstr "Impossibile scollegare il provider"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Conosciuti {known} · Connessi {linked} · Mesh di trasmissione {mesh}"
 msgid "Label is required"
 msgstr "L'etichetta è obbligatoria"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Etichettatore"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Etichettatori"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Non impostato"
 msgid "Nothing found"
 msgstr "Nessun risultato"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Nulla dell'account viene servito e i servizi di inoltro vengono avvisati. L'account e ciò che ha pubblicato restano, e può essere ripristinato."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Budget di inoltro quest'ora {0} / {1}, oggi {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Il servizio di inoltro non conosce questo server"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Il servizio di inoltro segue questo server"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Il servizio di inoltro ha bandito questo server"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Il servizio di inoltro è inattivo verso questo server"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Il servizio di inoltro vede questo server offline"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Servizio di inoltro"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Stato del servizio di inoltro sconosciuto"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Il servizio di inoltro sta limitando questo server"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "Rimuovi il filtro {0}"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "Rimuovi {alias}"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "Rimuovi {labeler}"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Abbandona"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Abbandonare la partita?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "Ripristina {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Tag"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Prendi un nome"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Oscura"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "Oscura {0}"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "Oscurare {0}?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Oscurato"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

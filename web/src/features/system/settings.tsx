@@ -78,6 +78,7 @@ function useSettingLabels(): Record<string, string> {
     handles: t`Handles each user may reserve`,
     fediverse: t`Host accounts on the fediverse`,
     bluesky: t`Host accounts on Bluesky`,
+    labelers: t`Bluesky labellers`,
     xmpp: t`Host accounts on XMPP`,
     matrix: t`Host accounts on Matrix`,
   }
@@ -93,8 +94,16 @@ const OPERATOR_SETTINGS = [
 ]
 
 // The other networks: the handle limit first, then the protocol switches in
-// their standard order. Listed only where the server offers them.
-const NETWORK_SETTINGS = ['handles', 'fediverse', 'bluesky', 'xmpp', 'matrix']
+// their standard order, with Bluesky's labellers after its switch. Listed only
+// where the server offers them.
+const NETWORK_SETTINGS = [
+  'handles',
+  'fediverse',
+  'bluesky',
+  'labelers',
+  'xmpp',
+  'matrix',
+]
 
 function formatSettingName(
   name: string,

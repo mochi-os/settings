@@ -84,6 +84,7 @@ const endpoints = {
     networks: '-/system/networks',
     handlesList: '-/system/handles/list',
     handlesRelease: '-/system/handles/release',
+    accountTakedown: '-/system/accounts/takedown',
     settings: '-/system/settings/list',
     settingsSet: '-/system/settings/set',
     documents: '-/system/documents/list',

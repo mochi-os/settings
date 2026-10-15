@@ -155,6 +155,12 @@ msgstr "{0} · ግፋ"
 msgid "{0} (development)"
 msgstr "{0} (ልማት)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} መለያዎች"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {# ቀሪ} other {# ቀሪ}}"
@@ -352,6 +358,10 @@ msgstr "መለያው ተዛውሯል"
 msgid "Account removed"
 msgstr "መለያ ተወግዷል"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "መለያ ወደነበረበት ተመልሷል"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "መለያ ለመሰረዝ ተይዟል"
@@ -359,6 +369,10 @@ msgstr "መለያ ለመሰረዝ ተይዟል"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "የመለያ ቅንብሮች"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "መለያ ወርዷል"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "የመለያ ዓይነት"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "መለያ ተዘምኗል"
 
@@ -378,6 +393,7 @@ msgstr "መለያ ተዘምኗል"
 msgid "Account verified"
 msgstr "መለያ ተረጋግጧል"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "መለያዎች"
@@ -397,6 +413,7 @@ msgstr "እንቅስቃሴ"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "ወደማይታመን አገናኝ ማሰስ ተከልክሏል"
 msgid "Blocks"
 msgstr "ይገድባል"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "የBluesky ስያሜ ሰጪዎች"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "ሰሌዳ"
@@ -991,6 +1012,7 @@ msgstr "ፍለጋ አጽዳ"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "ዝጋ"
 
@@ -1174,6 +1196,7 @@ msgstr "ሁሉንም ቅዳ"
 msgid "Could not add the name"
 msgstr "ስሙን ማከል አልተቻለም"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "መለያውን መቀየር አልተቻለም"
@@ -1258,6 +1281,7 @@ msgstr "ማገናኘት ሊጀመር አልቻለም"
 msgid "Could not unlink provider"
 msgstr "አቅራቢ ሊቋረጥ አልቻለም"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "የታወቁ {known} · የተገናኙ {linked} · የስርጭት መ�
 msgid "Label is required"
 msgstr "መለያ ያስፈልጋል"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "ስያሜ ሰጪ"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "ስያሜ ሰጪዎች"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "አልተዋቀረም"
 msgid "Nothing found"
 msgstr "ምንም አልተገኘም"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "ከመለያው ምንም ነገር አይቀርብም፣ ማስተላለፊያዎቹም ይነገራቸዋል። መለያውና ያተመው ይቆያሉ፣ ወደነበረበትም መመለስ ይቻላል።"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "የማስተላለፊያ በጀት በዚህ ሰዓት {0} / {1}፣ ዛሬ {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "ማስተላለፊያው ይህን ሰርቨር አያውቀውም"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "ማስተላለፊያው ይህን ሰርቨር እየተከተለ ነው"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "ማስተላለፊያው ይህን ሰርቨር አግዶታል"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "ማስተላለፊያው ለዚህ ሰርቨር ስራ ፈት ነው"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "ማስተላለፊያው ይህን ሰርቨር ከመስመር ውጭ ያየዋል"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "የማስተላለፊያ አገልግሎት"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "የማስተላለፊያው ሁኔታ አይታወቅም"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "ማስተላለፊያው ይህን ሰርቨር እየገደበ ነው"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "የ{0} ማጣሪያን ያስወግዱ"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "{alias}ን አስወግድ"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "{labeler}ን አስወግድ"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "ለቀቅ"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "ጨዋታ ይለቀቅ?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "{0}ን ወደነበረበት መልስ"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "መለያዎች"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "ስም ይውሰዱ"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "አውርድ"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "{0}ን አውርድ"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "{0}ን ማውረድ?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "ወርዷል"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

@@ -73,6 +73,7 @@ import {
   Pencil,
   Plus,
   Share2,
+  Tags,
   Trash2,
   UserRoundPlus,
   Zap,
@@ -85,6 +86,7 @@ import {
   useAccountKeys,
   useAccountKeysRecovery,
   useAccountKeysReplace,
+  useAccountLabelers,
   useAccountLink,
   useAccountMove,
   useAccountPassword,
@@ -728,6 +730,89 @@ export function AliasesDialog({
   )
 }
 
+// The labellers a hosted Bluesky account reads beside the server's: each a
+// labelling service on Bluesky by its identifier, whose labels then hide or
+// warn on what the account reads (phase 19).
+export function LabelersDialog({
+  account,
+  onOpenChange,
+}: {
+  account: NetworkAccount
+  onOpenChange: (open: boolean) => void
+}) {
+  const { t } = useLingui()
+  const [labelers, setLabelers] = useState<string[]>(account.labelers ?? [])
+  const [identifier, setIdentifier] = useState('')
+  const update = useAccountLabelers()
+  const save = async (next: string[]) => {
+    try {
+      await update.mutateAsync({ id: account.id, labelers: next })
+      setLabelers(next)
+      setIdentifier('')
+      toast.success(t`Account updated`)
+    } catch (error) {
+      toast.error(getErrorMessage(error, t`Could not update the account`))
+    }
+  }
+  return (
+    <ResponsiveDialog open onOpenChange={onOpenChange}>
+      <ResponsiveDialogContent className='sm:max-w-[480px]'>
+        <ResponsiveDialogHeader>
+          <ResponsiveDialogTitle>
+            <Trans>Labellers</Trans>
+          </ResponsiveDialogTitle>
+        </ResponsiveDialogHeader>
+        <div className='space-y-3 py-2'>
+          {labelers.map((labeler) => (
+            <FieldRow key={labeler} label={labeler} inline>
+              <Button
+                variant='outline'
+                size='sm'
+                disabled={update.isPending}
+                onClick={() => void save(labelers.filter((l) => l !== labeler))}
+                aria-label={t`Remove ${labeler}`}
+              >
+                <Trash2 className='size-4' />
+              </Button>
+            </FieldRow>
+          ))}
+          <div className='flex items-center gap-2'>
+            <Input
+              value={identifier}
+              onChange={(e) => setIdentifier(e.target.value)}
+              aria-label={t`Labeller`}
+              placeholder='did:plc:...'
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && identifier.trim()) {
+                  e.preventDefault()
+                  void save([...labelers, identifier.trim()])
+                }
+              }}
+            />
+            <Button
+              size='sm'
+              disabled={!identifier.trim() || update.isPending}
+              onClick={() => void save([...labelers, identifier.trim()])}
+            >
+              {update.isPending ? (
+                <Loader2 className='size-4 animate-spin' />
+              ) : (
+                <Plus className='size-4' />
+              )}
+              <Trans>Add</Trans>
+            </Button>
+          </div>
+        </div>
+        <ResponsiveDialogFooter>
+          <Button variant='outline' onClick={() => onOpenChange(false)}>
+            <Trans>Close</Trans>
+          </Button>
+        </ResponsiveDialogFooter>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
+  )
+}
+
 // Moving a hosted fediverse account to an account elsewhere: the followers'
 // servers are told and follow the new account instead (phase 17). The other
 // account must name this one among its aliases first.
@@ -1106,6 +1191,7 @@ function AccountRow({
   onProfile,
   onAutomated,
   onAliases,
+  onLabelers,
   onMove,
   onRemove,
   busy,
@@ -1118,6 +1204,7 @@ function AccountRow({
   onProfile: (account: NetworkAccount) => void
   onAutomated: (account: NetworkAccount) => void
   onAliases: (account: NetworkAccount) => void
+  onLabelers: (account: NetworkAccount) => void
   onMove: (account: NetworkAccount) => void
   onRemove: (account: NetworkAccount) => void
   busy: string | null
@@ -1200,6 +1287,12 @@ function AccountRow({
                       </DropdownMenuItem>
                     )}
                   </>
+                )}
+                {account.type === 'bluesky' && (
+                  <DropdownMenuItem onClick={() => onLabelers(account)}>
+                    <Tags className='me-2 h-4 w-4' />
+                    <Trans>Labellers</Trans>
+                  </DropdownMenuItem>
                 )}
               </>
             ) : (
@@ -1361,6 +1454,7 @@ export function Networks() {
   const [releasing, setReleasing] = useState<Handle | null>(null)
   const [renaming, setRenaming] = useState<NetworkAccount | null>(null)
   const [aliasesFor, setAliasesFor] = useState<NetworkAccount | null>(null)
+  const [labelersFor, setLabelersFor] = useState<NetworkAccount | null>(null)
   const [movingFor, setMovingFor] = useState<NetworkAccount | null>(null)
   const [keysFor, setKeysFor] = useState<NetworkAccount | null>(null)
   const [offering, setOffering] = useState(false)
@@ -1577,6 +1671,7 @@ export function Networks() {
                         onProfile={(a) => void handleProfile(a)}
                         onAutomated={(a) => void handleAutomated(a)}
                         onAliases={setAliasesFor}
+                        onLabelers={setLabelersFor}
                         onMove={setMovingFor}
                         onRemove={setRemoving}
                         busy={busy}
@@ -1623,6 +1718,14 @@ export function Networks() {
           account={aliasesFor}
           onOpenChange={(open) => {
             if (!open) setAliasesFor(null)
+          }}
+        />
+      )}
+      {labelersFor && (
+        <LabelersDialog
+          account={labelersFor}
+          onOpenChange={(open) => {
+            if (!open) setLabelersFor(null)
           }}
         />
       )}

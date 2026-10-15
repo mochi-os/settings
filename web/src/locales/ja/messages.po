@@ -155,6 +155,12 @@ msgstr "{0} · プッシュ"
 msgid "{0} (development)"
 msgstr "{0} (開発)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} アカウント"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, other {残り#件}}"
@@ -352,6 +358,10 @@ msgstr "アカウントを移行しました"
 msgid "Account removed"
 msgstr "アカウントを削除しました"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "アカウントを復元しました"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "アカウントは削除予定です"
@@ -359,6 +369,10 @@ msgstr "アカウントは削除予定です"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "アカウント設定"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "アカウントを公開停止しました"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "アカウントタイプ"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "アカウントを更新しました"
 
@@ -378,6 +393,7 @@ msgstr "アカウントを更新しました"
 msgid "Account verified"
 msgstr "アカウントを確認しました"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "アカウント"
@@ -397,6 +413,7 @@ msgstr "アクティビティ"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "信頼できないリンクへの遷移をブロックしました"
 msgid "Blocks"
 msgstr "ブロック"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Bluesky ラベラー"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "ボード"
@@ -991,6 +1012,7 @@ msgstr "検索をクリア"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "閉じる"
 
@@ -1174,6 +1196,7 @@ msgstr "すべてコピー"
 msgid "Could not add the name"
 msgstr "名前を追加できませんでした"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "アカウントを変更できませんでした"
@@ -1258,6 +1281,7 @@ msgstr "リンクを開始できませんでした"
 msgid "Could not unlink provider"
 msgstr "プロバイダーのリンクを解除できませんでした"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "既知 {known} · 接続済み {linked} · ブロードキャストメ�
 msgid "Label is required"
 msgstr "ラベルが必要です"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "ラベラー"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "ラベラー"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "未設定"
 msgid "Nothing found"
 msgstr "何も見つかりませんでした"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "このアカウントのものは一切配信されず、リレーにも通知されます。アカウントと公開した内容は残り、復元できます。"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "リレー送信枠 この1時間 {0} / {1}、今日 {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "リレーはこのサーバーを認識していません"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "リレーがこのサーバーをフォロー中"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "リレーがこのサーバーを BAN しています"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "リレーはこのサーバーに対して待機中"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "リレーからはこのサーバーがオフラインに見えます"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "リレーサービス"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "リレーの状態は不明"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "リレーがこのサーバーを制限中"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "{0}フィルターを削除"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "{alias} を削除"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "{labeler} を削除"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "投了"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "ゲームを投了しますか?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "{0} を復元"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "タグ"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "名前を取得"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "公開停止"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "{0} を公開停止"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "{0} を公開停止しますか？"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "公開停止中"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

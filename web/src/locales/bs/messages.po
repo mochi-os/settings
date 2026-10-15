@@ -155,6 +155,12 @@ msgstr "{0} · push obavijesti"
 msgid "{0} (development)"
 msgstr "{0} (razvoj)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} računa"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {Preostao #} few {Preostala #} other {Preostalo #}}"
@@ -352,6 +358,10 @@ msgstr "Račun je premješten"
 msgid "Account removed"
 msgstr "Račun uklonjen"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Račun vraćen"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Račun zakazan za brisanje"
@@ -359,6 +369,10 @@ msgstr "Račun zakazan za brisanje"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Postavke računa"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Račun skinut"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Vrsta računa"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Račun ažuriran"
 
@@ -378,6 +393,7 @@ msgstr "Račun ažuriran"
 msgid "Account verified"
 msgstr "Račun verifikovan"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Računi"
@@ -397,6 +413,7 @@ msgstr "Aktivnost"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Blokirana navigacija na nepouzdani link"
 msgid "Blocks"
 msgstr "Blokovi"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Bluesky označivači"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Tabla"
@@ -991,6 +1012,7 @@ msgstr "Očisti pretragu"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Zatvori"
 
@@ -1174,6 +1196,7 @@ msgstr "Kopiraj sve"
 msgid "Could not add the name"
 msgstr "Nije moguće dodati ime"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Nije moguće promijeniti račun"
@@ -1258,6 +1281,7 @@ msgstr "Nije moguće započeti povezivanje"
 msgid "Could not unlink provider"
 msgstr "Nije moguće odvojiti pružatelja"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Poznato {known} · Povezano {linked} · Mreža emitiranja {mesh}"
 msgid "Label is required"
 msgstr "Oznaka je obavezna"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Označivač"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Označivači"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Nije postavljeno"
 msgid "Nothing found"
 msgstr "Ništa nije pronađeno"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Ništa se od računa ne poslužuje i releji se obavještavaju. Račun i ono što je objavio ostaju, a može se vratiti."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Budžet releja ovog sata {0} / {1}, danas {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Relej ne poznaje ovaj server"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Relej prati ovaj server"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Relej je zabranio ovaj server"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Relej miruje prema ovom serveru"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Relej vidi ovaj server van mreže"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Relejna usluga"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Status releja nepoznat"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Relej ograničava ovaj server"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "Ukloni {0} filter"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "Ukloni {alias}"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "Ukloni {labeler}"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Predaj se"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Predati partiju?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "Vrati {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Tagovi"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Uzmite ime"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Skini"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "Skini {0}"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "Skinuti {0}?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Skinut"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

@@ -155,6 +155,12 @@ msgstr "{0} · ការជូនដំណឹងរុញ"
 msgid "{0} (development)"
 msgstr "{0} (ការអភិវឌ្ឍ)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} គណនី"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, other {# នៅសល់}}"
@@ -352,6 +358,10 @@ msgstr "បានផ្លាស់ទីគណនី"
 msgid "Account removed"
 msgstr "បានដកគណនី"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "បានស្តារគណនីឡើងវិញ"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "គណនីត្រូវបានកំណត់ពេលសម្រាប់លុប"
@@ -359,6 +369,10 @@ msgstr "គណនីត្រូវបានកំណត់ពេលសម្រ
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "ការកំណត់គណនី"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "បានដកការផ្សាយគណនី"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "ប្រភេទគណនី"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "បានធ្វើបច្ចុប្បន្នភាពគណនី"
 
@@ -378,6 +393,7 @@ msgstr "បានធ្វើបច្ចុប្បន្នភាពគណន
 msgid "Account verified"
 msgstr "គណនីត្រូវបានផ្ទៀងផ្ទាត់"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "គណនី"
@@ -397,6 +413,7 @@ msgstr "សកម្មភាព"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "បានរារាំងការរុករកទៅតំណមិ
 msgid "Blocks"
 msgstr "ប្លុក"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "អ្នកដាក់ស្លាក Bluesky"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "ក្តារ"
@@ -991,6 +1012,7 @@ msgstr "សម្អាតការស្វែងរក"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "បិទ"
 
@@ -1174,6 +1196,7 @@ msgstr "ចម្លងទាំងអស់"
 msgid "Could not add the name"
 msgstr "មិនអាចបន្ថែមឈ្មោះបានទេ"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "មិនអាចប្តូរគណនីបានទេ"
@@ -1258,6 +1281,7 @@ msgstr "មិនអាចចាប់ផ្តើមភ្ជាប់"
 msgid "Could not unlink provider"
 msgstr "មិនអាចផ្ដាច់អ្នកផ្ដល់សេវា"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "ស្គាល់ {known} · បានភ្ជាប់ {linked} · �
 msgid "Label is required"
 msgstr "ទាមទារស្លាក"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "អ្នកដាក់ស្លាក"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "អ្នកដាក់ស្លាក"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "មិនបានកំណត់"
 msgid "Nothing found"
 msgstr "រកមិនឃើញ"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "គ្មានអ្វីពីគណនីនេះត្រូវបានផ្តល់ជូនទេ ហើយម៉ាស៊ីនបញ្ជូនបន្តត្រូវបានជូនដំណឹង។ គណនី និងអ្វីដែលវាបានបោះផ្សាយនៅដដែល ហើយអាចស្តារឡើងវិញបាន។"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "ថវិកាបញ្ជូនបន្ត ម៉ោងនេះ {0} / {1}, ថ្ងៃនេះ {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "ម៉ាស៊ីនបញ្ជូនបន្តមិនស្គាល់ម៉ាស៊ីនមេនេះទេ"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "ម៉ាស៊ីនបញ្ជូនបន្តកំពុងតាមដានម៉ាស៊ីនមេនេះ"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "ម៉ាស៊ីនបញ្ជូនបន្តបានហាមឃាត់ម៉ាស៊ីនមេនេះ"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "ម៉ាស៊ីនបញ្ជូនបន្តនៅទំនេរចំពោះម៉ាស៊ីនមេនេះ"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "ម៉ាស៊ីនបញ្ជូនបន្តឃើញម៉ាស៊ីនមេនេះនៅក្រៅបណ្តាញ"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "សេវាបញ្ជូនបន្ត"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "មិនស្គាល់ស្ថានភាពម៉ាស៊ីនបញ្ជូនបន្ត"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "ម៉ាស៊ីនបញ្ជូនបន្តកំពុងកំណត់ល្បឿនម៉ាស៊ីនមេនេះ"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "យកតម្រង {0} ចេញ"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "យក {alias} ចេញ"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "យក {labeler} ចេញ"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "ចុះចាញ់"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "ចុះចាញ់ហ្គេម?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "ស្តារ {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "ស្លាក"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "យកឈ្មោះមួយ"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "ដកការផ្សាយ"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "ដកការផ្សាយ {0}"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "ដកការផ្សាយ {0}?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "បានដកការផ្សាយ"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

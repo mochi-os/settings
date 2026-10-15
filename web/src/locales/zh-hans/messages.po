@@ -155,6 +155,12 @@ msgstr "{0} · 推送"
 msgid "{0} (development)"
 msgstr "{0} (开发中)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} 个账户"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, other {剩余 # 个}}"
@@ -352,6 +358,10 @@ msgstr "账户已迁移"
 msgid "Account removed"
 msgstr "账户已移除"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "账户已恢复"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "账户已排定删除"
@@ -359,6 +369,10 @@ msgstr "账户已排定删除"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "账户设置"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "账户已下架"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "账户类型"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "账户已更新"
 
@@ -378,6 +393,7 @@ msgstr "账户已更新"
 msgid "Account verified"
 msgstr "账户已验证"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "账户"
@@ -397,6 +413,7 @@ msgstr "动态"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "已阻止跳转到不可信链接"
 msgid "Blocks"
 msgstr "阻止"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Bluesky 标记者"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "看板"
@@ -991,6 +1012,7 @@ msgstr "清除搜索"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "关闭"
 
@@ -1174,6 +1196,7 @@ msgstr "全部复制"
 msgid "Could not add the name"
 msgstr "无法添加名称"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "无法更改账户"
@@ -1258,6 +1281,7 @@ msgstr "无法开始关联"
 msgid "Could not unlink provider"
 msgstr "无法解除提供商关联"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "已知 {known} · 已连接 {linked} · 广播网状网络 {mesh}"
 msgid "Label is required"
 msgstr "请输入标签"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "标记者"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "标记者"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "未设置"
 msgid "Nothing found"
 msgstr "未找到任何内容"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "该账户的任何内容都不再提供，并会通知中继。账户及其发布的内容会保留，且可以恢复。"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "中继配额 本小时 {0} / {1}，今天 {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "中继不认识此服务器"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "中继正在关注此服务器"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "中继已封禁此服务器"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "中继对此服务器处于空闲状态"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "中继认为此服务器离线"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "中继服务"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "中继状态未知"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "中继正在限流此服务器"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "移除 {0} 筛选"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "移除 {alias}"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "移除 {labeler}"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "认输"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "认输?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "恢复 {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "标签"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "领取名称"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "下架"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "下架 {0}"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "下架 {0}？"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "已下架"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

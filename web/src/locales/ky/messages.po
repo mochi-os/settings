@@ -155,6 +155,12 @@ msgstr "{0} · пуш"
 msgid "{0} (development)"
 msgstr "{0} (иштеп чыгуу)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} аккаунт"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {# калды} other {# калды}}"
@@ -352,6 +358,10 @@ msgstr "Аккаунт көчүрүлдү"
 msgid "Account removed"
 msgstr "Аккаунт алынып салынды"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Аккаунт калыбына келтирилди"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Каттоо эсеби өчүрүүгө пландалган"
@@ -359,6 +369,10 @@ msgstr "Каттоо эсеби өчүрүүгө пландалган"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Аккаунт жөндөөлөрү"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Аккаунт жарыялоодон алынды"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Аккаунт түрү"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Аккаунт жаңыланды"
 
@@ -378,6 +393,7 @@ msgstr "Аккаунт жаңыланды"
 msgid "Account verified"
 msgstr "Аккаунт текшерилди"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Аккаунттар"
@@ -397,6 +413,7 @@ msgstr "Активдүүлүк"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Ишенимсиз шилтемеге өтүү бөгөттөлдү"
 msgid "Blocks"
 msgstr "Блоктор"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Bluesky белгилөөчүлөрү"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Такта"
@@ -991,6 +1012,7 @@ msgstr "Издөөнү тазалоо"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Жабуу"
 
@@ -1174,6 +1196,7 @@ msgstr "Баарын көчүрүү"
 msgid "Could not add the name"
 msgstr "Атты кошуу мүмкүн болбоду"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Аккаунтту өзгөртүү мүмкүн болбоду"
@@ -1258,6 +1281,7 @@ msgstr "Байланыштырууну баштоо мүмкүн болбоду"
 msgid "Could not unlink provider"
 msgstr "Провайдер менен байланышты үзүү мүмкүн болбоду"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Белгилүү {known} · Туташкан {linked} · Берүү та
 msgid "Label is required"
 msgstr "Энбелги талап кылынат"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Белгилөөчү"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Белгилөөчүлөр"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Орнотулган эмес"
 msgid "Nothing found"
 msgstr "Эч нерсе табылган жок"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Аккаунттан эч нерсе берилбейт жана релелерге билдирилет. Аккаунт жана анын жарыялагандары сакталат, аны калыбына келтирүүгө болот."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Реле бюджети ушул саатта {0} / {1}, бүгүн {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Реле бул серверди билбейт"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Реле бул серверди ээрчип жатат"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Реле бул серверге тыюу салган"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Реле бул серверге карата аракетсиз"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Реле бул серверди оффлайн деп көрөт"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Реле кызматы"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Реленин абалы белгисиз"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Реле бул серверди чектеп жатат"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "{0} чыпкасын алуу"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "{alias} алуу"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "{labeler} алуу"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Баш тартуу"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Оюндан баш тартасызбы?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "{0} калыбына келтирүү"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Тегдер"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Ат алыңыз"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Жарыялоодон алуу"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "{0} жарыялоодон алуу"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "{0} жарыялоодон алынсынбы?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Жарыялоодон алынган"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

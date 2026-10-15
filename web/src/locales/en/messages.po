@@ -155,6 +155,12 @@ msgstr "{0} · push"
 msgid "{0} (development)"
 msgstr "{0} (development)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} accounts"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {# remaining} other {# remaining}}"
@@ -352,6 +358,10 @@ msgstr "Account moved"
 msgid "Account removed"
 msgstr "Account removed"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Account restored"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Account scheduled for deletion"
@@ -359,6 +369,10 @@ msgstr "Account scheduled for deletion"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Account settings"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Account taken down"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Account type"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Account updated"
 
@@ -378,6 +393,7 @@ msgstr "Account updated"
 msgid "Account verified"
 msgstr "Account verified"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Accounts"
@@ -397,6 +413,7 @@ msgstr "Activity"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Blocked navigation to untrusted link"
 msgid "Blocks"
 msgstr "Blocks"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Bluesky labellers"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Board"
@@ -991,6 +1012,7 @@ msgstr "Clear search"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Close"
 
@@ -1174,6 +1196,7 @@ msgstr "Copy all"
 msgid "Could not add the name"
 msgstr "Could not add the name"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Could not change the account"
@@ -1258,6 +1281,7 @@ msgstr "Could not start linking"
 msgid "Could not unlink provider"
 msgstr "Could not unlink provider"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Known {known} · Connected {linked} · Broadcast mesh {mesh}"
 msgid "Label is required"
 msgstr "Label is required"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Labeller"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Labellers"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Not set"
 msgid "Nothing found"
 msgstr "Nothing found"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Relay budget {0} / {1} this hour, {2} / {3} today"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Relay does not know this server"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Relay following this server"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Relay has banned this server"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Relay idle towards this server"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Relay sees this server offline"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Relay service"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Relay standing unknown"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Relay throttling this server"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "Remove {0} filter"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "Remove {alias}"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "Remove {labeler}"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Resign"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Resign game?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "Restore {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Tags"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Take a name"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Take down"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "Take down {0}"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "Take down {0}?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Taken down"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

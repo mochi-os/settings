@@ -4,14 +4,18 @@
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { SystemHandles } from './handles'
-import type { SystemHandles as SystemHandlesData } from '@/types/networks'
+import type {
+  RegistryAccount,
+  SystemHandles as SystemHandlesData,
+} from '@/types/networks'
 
 const state = vi.hoisted(() => ({
   data: null as SystemHandlesData | null,
   release: vi.fn(),
+  takedown: vi.fn(),
 }))
 
 vi.mock('@mochi/web', async (original) => ({
@@ -31,6 +35,10 @@ vi.mock('@/hooks/use-system-networks', () => ({
     mutateAsync: state.release,
     isPending: false,
   }),
+  useSystemAccountTakedown: () => ({
+    mutateAsync: state.takedown,
+    isPending: false,
+  }),
 }))
 
 // The chooser is the Networks page's, tested there; here only its heading
@@ -44,7 +52,8 @@ const registry = (
   parent: string,
   holder: string,
   username: string,
-  kind = 'handle'
+  kind = 'handle',
+  accounts: RegistryAccount[] = []
 ) => ({
   domain: 'example.com',
   name,
@@ -55,6 +64,7 @@ const registry = (
   user: `u-${username}`,
   username,
   holder,
+  accounts,
 })
 
 function show(data: SystemHandlesData) {
@@ -71,6 +81,82 @@ describe('System handles', () => {
     i18n.load('en', {})
     i18n.activate('en')
     state.release.mockReset()
+    state.takedown.mockReset()
+  })
+
+  it("lists a handle's accounts, and takes a Bluesky account down or restores it", async () => {
+    state.takedown.mockResolvedValue({})
+    // The menu opens on pointer down, as Radix listens for it.
+    const open = async (trigger: HTMLElement) => {
+      await act(async () => {
+        fireEvent.pointerDown(trigger, { button: 0, ctrlKey: false })
+      })
+    }
+    show({
+      domains: ['example.com'],
+      handles: [
+        registry('alice', '', 'Alice', 'alice@example.com', 'handle', [
+          {
+            id: 'f1',
+            network: 'fediverse',
+            identifier: '@alice@example.com',
+          },
+          {
+            id: 'b1',
+            network: 'bluesky',
+            identifier: 'alice.example.com',
+            did: 'did:plc:aaaaaaaaaaaaaaaaaaaaaaaa',
+          },
+        ]),
+        registry('bob', '', 'Bob', 'bob@example.com', 'handle', [
+          {
+            id: 'b2',
+            network: 'bluesky',
+            identifier: 'bob.example.com',
+            did: 'did:plc:bbbbbbbbbbbbbbbbbbbbbbbb',
+            status: 'takendown',
+          },
+        ]),
+      ],
+    })
+    expect(screen.getByText(/Fediverse · @alice@example.com/)).toBeTruthy()
+    expect(screen.getByText(/Bluesky · alice.example.com/)).toBeTruthy()
+    expect(screen.getByText(/Taken down/)).toBeTruthy()
+
+    // Taking down asks first; only a Bluesky account is offered.
+    await open(screen.getAllByRole('button', { name: 'Handle actions' })[0])
+    const item = await screen.findByRole('menuitem', {
+      name: 'Take down alice.example.com',
+    })
+    expect(
+      screen.queryByRole('menuitem', { name: /Take down @alice/ })
+    ).toBeNull()
+    await act(async () => {
+      fireEvent.click(item)
+    })
+    await act(async () => {
+      fireEvent.click(await screen.findByRole('button', { name: 'Take down' }))
+    })
+    await waitFor(() =>
+      expect(state.takedown).toHaveBeenCalledWith({
+        did: 'did:plc:aaaaaaaaaaaaaaaaaaaaaaaa',
+        down: true,
+      })
+    )
+
+    // Restoring is one step.
+    await open(screen.getAllByRole('button', { name: 'Handle actions' })[1])
+    await act(async () => {
+      fireEvent.click(
+        await screen.findByRole('menuitem', { name: 'Restore bob.example.com' })
+      )
+    })
+    await waitFor(() =>
+      expect(state.takedown).toHaveBeenLastCalledWith({
+        did: 'did:plc:bbbbbbbbbbbbbbbbbbbbbbbb',
+        down: false,
+      })
+    )
   })
 
   it('lists every handle with its holder and kind', () => {

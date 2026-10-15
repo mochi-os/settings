@@ -29,3 +29,17 @@ def action_system_handles_release(a):
         return
     mochi.handle.release(name, domain=a.input("domain", ""))
     a.json({"released": True})
+
+def action_system_account_takedown(a):
+    """Take a hosted Bluesky account down, or restore it: taken down, its
+    repository is not served and the relays are told; the account and its
+    records stay (phase 19)."""
+    if not require_admin(a):
+        return
+    did = a.input("did", "")
+    if not did:
+        a.error.label(400, "errors.account_is_required")
+        return
+    down = str(a.input("down", "true")).lower() in ("true", "1", "on", "yes")
+    mochi.server.account.takedown(did, down=down)
+    a.json({"status": "takendown" if down else ""})

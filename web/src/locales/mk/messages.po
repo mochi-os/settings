@@ -155,6 +155,12 @@ msgstr "{0} · пуш"
 msgid "{0} (development)"
 msgstr "{0} (развој)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} сметки"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {Преостанува #} other {Преостануваат #}}"
@@ -352,6 +358,10 @@ msgstr "Сметката е преместена"
 msgid "Account removed"
 msgstr "Сметката е отстранета"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Сметката е вратена"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Сметката е закажана за бришење"
@@ -359,6 +369,10 @@ msgstr "Сметката е закажана за бришење"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Поставки на сметка"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Сметката е симната"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Тип на сметка"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Сметката е ажурирана"
 
@@ -378,6 +393,7 @@ msgstr "Сметката е ажурирана"
 msgid "Account verified"
 msgstr "Сметката е верификувана"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Сметки"
@@ -397,6 +413,7 @@ msgstr "Активност"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Блокирана навигација до недоверлива вр
 msgid "Blocks"
 msgstr "Блокови"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Означувачи на Bluesky"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Табла"
@@ -991,6 +1012,7 @@ msgstr "Исчисти пребарување"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Затвори"
 
@@ -1174,6 +1196,7 @@ msgstr "Копирај сè"
 msgid "Could not add the name"
 msgstr "Името не можеше да се додаде"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Сметката не можеше да се промени"
@@ -1258,6 +1281,7 @@ msgstr "Поврзувањето не можеше да започне"
 msgid "Could not unlink provider"
 msgstr "Провајдерот не можеше да се одврзе"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Познати {known} · Поврзани {linked} · Мрежа за �
 msgid "Label is required"
 msgstr "Етикетата е потребна"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Означувач"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Означувачи"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Не е поставено"
 msgid "Nothing found"
 msgstr "Ништо не е пронајдено"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Ништо од сметката не се служи, а релеата се известуваат. Сметката и она што го објавила остануваат, и може да се врати."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Буџет на релето овој час {0} / {1}, денес {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Релето не го познава овој сервер"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Релето го следи овој сервер"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Релето го забранило овој сервер"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Релето е неактивно кон овој сервер"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Релето го гледа овој сервер офлајн"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Релејна услуга"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Статусот на релето е непознат"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Релето го ограничува овој сервер"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "Отстрани филтер за {0}"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "Отстрани {alias}"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "Отстрани {labeler}"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Предај се"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Да ја предадете играта?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "Врати {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Ознаки"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Земете име"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Симни"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "Симни {0}"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "Да се симне {0}?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Симната"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

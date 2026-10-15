@@ -99,6 +99,12 @@ describe('Status: other networks', () => {
             hour: { used: 12, limit: 1500 },
             day: { used: 40, limit: 10000 },
           },
+          relay: {
+            host: 'example.com',
+            status: 'active',
+            accounts: 3,
+            limit: 100,
+          },
         },
         xmpp: { state: 'unavailable', reason: 'domain' },
         matrix: { state: 'disabled', reason: '' },
@@ -115,6 +121,24 @@ describe('Status: other networks', () => {
     expect(
       screen.getByText(/Relay budget 12 \/ 1,500 this hour, 40 \/ 10,000 today/)
     ).toBeTruthy()
+    expect(
+      screen.getByText(/Relay following this server, 3 \/ 100 accounts/)
+    ).toBeTruthy()
+  })
+
+  it("says when the relay does not know the server, or gave no answer", () => {
+    show({
+      development: true,
+      networks: {
+        bluesky: {
+          state: 'working',
+          reason: '',
+          relay: { host: 'example.com', status: 'HostNotFound' },
+        },
+      },
+    })
+    expect(screen.getByText(/Relay does not know this server/)).toBeTruthy()
+    expect(screen.queryByText(/accounts/)).toBeNull()
   })
 
   it('shows nothing of the networks where the server does not offer them', () => {

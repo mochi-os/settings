@@ -155,6 +155,12 @@ msgstr "{0} · push bildirişi"
 msgid "{0} (development)"
 msgstr "{0} (inkişaf)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} hesab"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {# qalıb} other {# qalıb}}"
@@ -352,6 +358,10 @@ msgstr "Hesab köçürüldü"
 msgid "Account removed"
 msgstr "Hesab silindi"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Hesab bərpa edildi"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Hesab silinmək üçün planlaşdırılıb"
@@ -359,6 +369,10 @@ msgstr "Hesab silinmək üçün planlaşdırılıb"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Hesab parametrləri"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Hesab yayımdan götürüldü"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Hesab tipi"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Hesab yeniləndi"
 
@@ -378,6 +393,7 @@ msgstr "Hesab yeniləndi"
 msgid "Account verified"
 msgstr "Hesab təsdiqləndi"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Hesablar"
@@ -397,6 +413,7 @@ msgstr "Fəaliyyət"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Etibarsız linkə naviqasiya bloklandı"
 msgid "Blocks"
 msgstr "Bloklar"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Bluesky etiketləyiciləri"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Lövhə"
@@ -991,6 +1012,7 @@ msgstr "Axtarışı təmizlə"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Bağla"
 
@@ -1174,6 +1196,7 @@ msgstr "Hamısını kopyala"
 msgid "Could not add the name"
 msgstr "Ad əlavə edilə bilmədi"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Hesabı dəyişmək mümkün olmadı"
@@ -1258,6 +1281,7 @@ msgstr "Əlaqələndirmə başlana bilmədi"
 msgid "Could not unlink provider"
 msgstr "Provayder ayrılmadı"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Məlum {known} · Qoşulu {linked} · Yayım şəbəkəsi {mesh}"
 msgid "Label is required"
 msgstr "Etiket tələb olunur"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Etiketləyici"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Etiketləyicilər"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Təyin edilməyib"
 msgid "Nothing found"
 msgstr "Heç nə tapılmadı"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Hesabdan heç nə təqdim edilmir və relaylara bildirilir. Hesab və onun dərc etdikləri qalır, onu bərpa etmək olar."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Relay büdcəsi bu saat {0} / {1}, bu gün {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Relay bu serveri tanımır"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Relay bu serveri izləyir"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Relay bu serveri qadağan edib"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Relay bu server üçün fəaliyyətsizdir"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Relay bu serveri oflayn görür"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Relay xidməti"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Relay vəziyyəti naməlumdur"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Relay bu serveri məhdudlaşdırır"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "{0} filtrini sil"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "{alias} sil"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "{labeler} sil"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Təslim ol"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Oyundan təslim olunsun?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "{0} bərpa et"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Etiketlər"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Ad götürün"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Yayımdan götür"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "{0} yayımdan götür"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "{0} yayımdan götürülsün?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Yayımdan götürülüb"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

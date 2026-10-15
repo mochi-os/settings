@@ -155,6 +155,12 @@ msgstr "{0} · push paziņojumi"
 msgid "{0} (development)"
 msgstr "{0} (izstrāde)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "Konti: {0} / {1}"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, zero {Atlikuši #} one {Atlicis #} other {Atlikuši #}}"
@@ -352,6 +358,10 @@ msgstr "Konts pārvietots"
 msgid "Account removed"
 msgstr "Konts noņemts"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Konts atjaunots"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Konts ieplānots dzēšanai"
@@ -359,6 +369,10 @@ msgstr "Konts ieplānots dzēšanai"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Konta iestatījumi"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Konts atslēgts"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Konta veids"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Konts atjaunināts"
 
@@ -378,6 +393,7 @@ msgstr "Konts atjaunināts"
 msgid "Account verified"
 msgstr "Konts verificēts"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Konti"
@@ -397,6 +413,7 @@ msgstr "Aktivitāte"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Navigācija uz neuzticamu saiti bloķēta"
 msgid "Blocks"
 msgstr "Bloki"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Bluesky marķētāji"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Dēlis"
@@ -991,6 +1012,7 @@ msgstr "Notīrīt meklēšanu"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Aizvērt"
 
@@ -1174,6 +1196,7 @@ msgstr "Kopēt visu"
 msgid "Could not add the name"
 msgstr "Nevarēja pievienot vārdu"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Nevarēja mainīt kontu"
@@ -1258,6 +1281,7 @@ msgstr "Nevarēja sākt saistīšanu"
 msgid "Could not unlink provider"
 msgstr "Nevarēja atsaistīt nodrošinātāju"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Zināmie {known} · Savienotie {linked} · Apraides mesh {mesh}"
 msgid "Label is required"
 msgstr "Etiķete ir obligāta"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Marķētājs"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Marķētāji"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Nav iestatīts"
 msgid "Nothing found"
 msgstr "Nekas nav atrasts"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "No konta nekas netiek pasniegts, un retranslatori tiek informēti. Konts un tā publicētais saturs paliek, un to var atjaunot."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Retranslācijas budžets šajā stundā {0} / {1}, šodien {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Retranslators nezina šo serveri"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Retranslators seko šim serverim"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Retranslators ir bloķējis šo serveri"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Retranslators ir dīkstāvē attiecībā pret šo serveri"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Retranslators redz šo serveri bezsaistē"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Retranslācijas pakalpojums"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Retranslatora statuss nezināms"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Retranslators ierobežo šo serveri"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "Noņemt {0} filtru"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "Noņemt {alias}"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "Noņemt {labeler}"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Padoties"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Padoties spēlē?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "Atjaunot {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Tagi"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Aizņemiet vārdu"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Atslēgt"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "Atslēgt {0}"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "Atslēgt {0}?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Atslēgts"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

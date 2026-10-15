@@ -30,20 +30,42 @@ import {
   toast,
   usePageTitle,
 } from '@mochi/web'
-import { AtSign, MoreHorizontal, Trash2 } from 'lucide-react'
-import { HandleChooser } from '@/features/user/networks'
 import {
+  AtSign,
+  Ban,
+  MoreHorizontal,
+  RotateCcw,
+  Trash2,
+} from 'lucide-react'
+import { HandleChooser } from '@/features/user/networks'
+import { networkLabel } from '@/lib/networks'
+import {
+  useSystemAccountTakedown,
   useSystemHandleRelease,
   useSystemHandles,
 } from '@/hooks/use-system-networks'
-import type { RegistryHandle } from '@/types/networks'
+import type { RegistryAccount, RegistryHandle } from '@/types/networks'
 
 export function SystemHandles() {
   const { t } = useLingui()
   usePageTitle(t`Handles`)
   const { data, isLoading, error, refetch } = useSystemHandles()
   const release = useSystemHandleRelease()
+  const takedown = useSystemAccountTakedown()
   const [releasing, setReleasing] = useState<RegistryHandle | null>(null)
+  const [takingDown, setTakingDown] = useState<RegistryAccount | null>(null)
+
+  // Taking a Bluesky account down keeps it and its records but serves
+  // nothing of it and tells the relays; restoring undoes that.
+  const handleTakedown = async (account: RegistryAccount, down: boolean) => {
+    if (!account.did) return
+    try {
+      await takedown.mutateAsync({ did: account.did, down })
+      toast.success(down ? t`Account taken down` : t`Account restored`)
+    } catch (err) {
+      toast.error(getErrorMessage(err, t`Could not change the account`))
+    }
+  }
 
   const handles = [...(data?.handles ?? [])].sort(
     (a, b) =>
@@ -98,6 +120,9 @@ export function SystemHandles() {
                     <Trans>Holder</Trans>
                   </TableHead>
                   <TableHead>
+                    <Trans>Accounts</Trans>
+                  </TableHead>
+                  <TableHead>
                     <Trans>Created</Trans>
                   </TableHead>
                   <TableHead className='w-16'></TableHead>
@@ -107,7 +132,7 @@ export function SystemHandles() {
                 {handles.length === 0 && (
                   <TableRow>
                     <TableCell
-                      colSpan={6}
+                      colSpan={7}
                       className='text-muted-foreground text-center'
                     >
                       <Trans>No handles have been reserved.</Trans>
@@ -143,6 +168,23 @@ export function SystemHandles() {
                         </div>
                       )}
                     </TableCell>
+                    <TableCell className='text-sm'>
+                      {[...(handle.accounts ?? [])]
+                        .sort((a, b) => naturalCompare(a.identifier, b.identifier))
+                        .map((account) => (
+                          <div key={account.id}>
+                            {networkLabel(account.network)}
+                            {' · '}
+                            {account.identifier}
+                            {account.status === 'takendown' && (
+                              <span className='text-destructive'>
+                                {' · '}
+                                <Trans>Taken down</Trans>
+                              </span>
+                            )}
+                          </div>
+                        ))}
+                    </TableCell>
                     <TableCell className='text-muted-foreground tabular-nums'>
                       {formatSystemTimestamp(
                         handle.created,
@@ -160,6 +202,29 @@ export function SystemHandles() {
                           />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align='end'>
+                          {(handle.accounts ?? [])
+                            .filter((account) => account.did)
+                            .map((account) =>
+                              account.status === 'takendown' ? (
+                                <DropdownMenuItem
+                                  key={account.id}
+                                  onClick={() =>
+                                    void handleTakedown(account, false)
+                                  }
+                                >
+                                  <RotateCcw className='me-2 h-4 w-4' />
+                                  <Trans>Restore {account.identifier}</Trans>
+                                </DropdownMenuItem>
+                              ) : (
+                                <DropdownMenuItem
+                                  key={account.id}
+                                  onClick={() => setTakingDown(account)}
+                                >
+                                  <Ban className='me-2 h-4 w-4' />
+                                  <Trans>Take down {account.identifier}</Trans>
+                                </DropdownMenuItem>
+                              )
+                            )}
                           <DropdownMenuItem onClick={() => setReleasing(handle)}>
                             <Trash2 className='me-2 h-4 w-4' />
                             <Trans>Release</Trans>
@@ -174,6 +239,24 @@ export function SystemHandles() {
           </>
         )}
       </Main>
+      {takingDown && (
+        <ConfirmDialog
+          open
+          onOpenChange={(open) => {
+            if (!open) setTakingDown(null)
+          }}
+          title={t`Take down ${takingDown.identifier}?`}
+          desc={t`Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored.`}
+          confirmText={t`Take down`}
+          icon={<Ban className='size-4' />}
+          destructive
+          handleConfirm={async () => {
+            const account = takingDown
+            setTakingDown(null)
+            await handleTakedown(account, true)
+          }}
+        />
+      )}
       {releasing && (
         <ConfirmDialog
           open

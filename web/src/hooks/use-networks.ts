@@ -123,6 +123,17 @@ export function useAccountAliases() {
   )
 }
 
+// The labellers a hosted Bluesky account reads, by identifier (phase 19).
+export function useAccountLabelers() {
+  return useNetworksMutation((data: { id: string; labelers: string[] }) =>
+    requestHelpers.post<NetworkAccount>(
+      endpoints.networks.accountUpdate,
+      { id: data.id, labelers: JSON.stringify(data.labelers) },
+      NO_GLOBAL_ERROR_TOAST_CONFIG
+    )
+  )
+}
+
 export function useAccountMove() {
   return useNetworksMutation((data: { id: string; address: string }) =>
     requestHelpers.post<NetworkAccount>(

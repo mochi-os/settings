@@ -155,6 +155,12 @@ msgstr "{0} · ειδοποιήσεις push"
 msgid "{0} (development)"
 msgstr "{0} (ανάπτυξη)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} λογαριασμοί"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {Απομένει #} other {Απομένουν #}}"
@@ -352,6 +358,10 @@ msgstr "Ο λογαριασμός μεταφέρθηκε"
 msgid "Account removed"
 msgstr "Ο λογαριασμός αφαιρέθηκε"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Ο λογαριασμός επαναφέρθηκε"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Ο λογαριασμός έχει προγραμματιστεί για διαγραφή"
@@ -359,6 +369,10 @@ msgstr "Ο λογαριασμός έχει προγραμματιστεί για
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Ρυθμίσεις λογαριασμού"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Ο λογαριασμός αποσύρθηκε"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Τύπος λογαριασμού"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Ο λογαριασμός ενημερώθηκε"
 
@@ -378,6 +393,7 @@ msgstr "Ο λογαριασμός ενημερώθηκε"
 msgid "Account verified"
 msgstr "Ο λογαριασμός επαληθεύτηκε"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Λογαριασμοί"
@@ -397,6 +413,7 @@ msgstr "Δραστηριότητα"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Αποκλείστηκε η πλοήγηση σε μη αξιόπιστ�
 msgid "Blocks"
 msgstr "Αποκλείει"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Υπηρεσίες επισήμανσης Bluesky"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Πίνακας"
@@ -991,6 +1012,7 @@ msgstr "Εκκαθάριση αναζήτησης"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Κλείσιμο"
 
@@ -1174,6 +1196,7 @@ msgstr "Αντιγραφή όλων"
 msgid "Could not add the name"
 msgstr "Δεν ήταν δυνατή η προσθήκη του ονόματος"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Δεν ήταν δυνατή η αλλαγή του λογαριασμού"
@@ -1258,6 +1281,7 @@ msgstr "Δεν ήταν δυνατή η έναρξη σύνδεσης"
 msgid "Could not unlink provider"
 msgstr "Δεν ήταν δυνατή η αποσύνδεση παρόχου"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Γνωστοί {known} · Συνδεδεμένοι {linked} · Πλέγ�
 msgid "Label is required"
 msgstr "Η ετικέτα είναι υποχρεωτική"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Υπηρεσία επισήμανσης"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Υπηρεσίες επισήμανσης"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Δεν έχει οριστεί"
 msgid "Nothing found"
 msgstr "Δεν βρέθηκε τίποτα"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Τίποτα από τον λογαριασμό δεν διατίθεται και οι αναμεταδότες ενημερώνονται. Ο λογαριασμός και ό,τι δημοσίευσε παραμένουν και μπορεί να γίνει επαναφορά του."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Προϋπολογισμός αναμεταδότη αυτή την ώρα {0} / {1}, σήμερα {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Ο αναμεταδότης δεν γνωρίζει αυτόν τον διακομιστή"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Ο αναμεταδότης ακολουθεί αυτόν τον διακομιστή"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Ο αναμεταδότης έχει αποκλείσει αυτόν τον διακομιστή"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Ο αναμεταδότης είναι αδρανής προς αυτόν τον διακομιστή"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Ο αναμεταδότης βλέπει αυτόν τον διακομιστή εκτός σύνδεσης"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Υπηρεσία αναμετάδοσης"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Κατάσταση αναμεταδότη άγνωστη"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Ο αναμεταδότης περιορίζει αυτόν τον διακομιστή"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "Αφαίρεση φίλτρου {0}"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "Αφαίρεση {alias}"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "Αφαίρεση {labeler}"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Παραίτηση"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Παραίτηση από το παιχνίδι;"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "Επαναφορά {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Ετικέτες"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Πάρτε ένα όνομα"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Απόσυρση"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "Απόσυρση {0}"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "Απόσυρση {0};"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Αποσυρμένος"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

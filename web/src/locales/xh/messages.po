@@ -155,6 +155,12 @@ msgstr "{0} · izaziso ze-push"
 msgid "{0} (development)"
 msgstr "{0} (uphuhliso)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "Ii-akhawunti {0} / {1}"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {# eseleyo} other {# eziseleyo}}"
@@ -352,6 +358,10 @@ msgstr "I-akhawunti ifudusiwe"
 msgid "Account removed"
 msgstr "I-akhawunti isusiwe"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "I-akhawunti ibuyiselwe"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Iakhawunti icwangciselwe ukucinywa"
@@ -359,6 +369,10 @@ msgstr "Iakhawunti icwangciselwe ukucinywa"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Iisetingi ze-akhawunti"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "I-akhawunti inqumanyisiwe"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Uhlobo lwe-akhawunti"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "I-akhawunti ihlaziyiwe"
 
@@ -378,6 +393,7 @@ msgstr "I-akhawunti ihlaziyiwe"
 msgid "Account verified"
 msgstr "I-akhawunti iqinisekisiwe"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Ii-akhawunti"
@@ -397,6 +413,7 @@ msgstr "Umsebenzi"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Kuvalwe ukuya kwikhonkco elingathenjwayo"
 msgid "Blocks"
 msgstr "Iyavimba"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Abafaki-leyibhile be-Bluesky"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Ibhodi"
@@ -991,6 +1012,7 @@ msgstr "Cima ukukhangela"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Vala"
 
@@ -1174,6 +1196,7 @@ msgstr "Kotshela konke"
 msgid "Could not add the name"
 msgstr "Ayikwazanga ukongeza igama"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Akukwazekanga ukutshintsha i-akhawunti"
@@ -1258,6 +1281,7 @@ msgstr "Ayikwazanga ukuqalisa ukudibanisa"
 msgid "Could not unlink provider"
 msgstr "Ayikwazanga ukungadibanisi umboneleli"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Eyaziwayo {known} · Edibeneyo {linked} · I-mesh yosasazo {mesh}"
 msgid "Label is required"
 msgstr "Ileyibheli iyafuneka"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Umfaki-leyibhile"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Abafaki-leyibhile"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Akumiselwanga"
 msgid "Nothing found"
 msgstr "Akukho nto ifumanekileyo"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Akukho nto ye-akhawunti enikezelwayo kwaye izidlulisi ziyaxelelwa. I-akhawunti nezinto eyazipapashayo ziyahlala, kwaye inokubuyiselwa."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Isabelo sokudlulisa sale yure {0} / {1}, namhlanje {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Isidlulisi asiyazi le seva"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Isidlulisi silandela le seva"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Isidlulisi siyivalile le seva"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Isidlulisi asisebenzi kule seva"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Isidlulisi sibona le seva ingekho kwi-intanethi"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Inkonzo yokudlulisa"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Imeko kwisidlulisi ayaziwa"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Isidlulisi sinciphisa isantya sale seva"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "Susa isihluzi se-{0}"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "Susa {alias}"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "Susa {labeler}"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Rhoxa"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Rhoxa kumdlalo?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "Buyisela {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Iiletile"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Thatha igama"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Nqumamisa"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "Nqumamisa {0}"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "Nqumamisa {0}?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Inqumanyisiwe"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

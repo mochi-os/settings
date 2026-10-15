@@ -155,6 +155,12 @@ msgstr "{0} · පුෂ්"
 msgid "{0} (development)"
 msgstr "{0} (සංවර්ධනය)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "ගිණුම් {0} / {1}"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {# ක් ඉතිරිව ඇත} other {# ක් ඉතිරිව ඇත}}"
@@ -352,6 +358,10 @@ msgstr "ගිණුම ගෙන යන ලදී"
 msgid "Account removed"
 msgstr "ගිණුම ඉවත් කරන ලදී"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "ගිණුම ප්‍රතිසාධනය කරන ලදී"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "ගිණුම මැකීමට කාලසටහන් කර ඇත"
@@ -359,6 +369,10 @@ msgstr "ගිණුම මැකීමට කාලසටහන් කර ඇ�
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "ගිණුම් සැකසීම්"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "ගිණුම අත්හිටුවන ලදී"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "ගිණුම් වර්ගය"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "ගිණුම යාවත්කාලීන කරන ලදී"
 
@@ -378,6 +393,7 @@ msgstr "ගිණුම යාවත්කාලීන කරන ලදී"
 msgid "Account verified"
 msgstr "ගිණුම සත්‍යාපනය කරන ලදී"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "ගිණුම්"
@@ -397,6 +413,7 @@ msgstr "ක්‍රියාකාරකම"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "විශ්වාස නොකළ සබැඳියකට සංචා
 msgid "Blocks"
 msgstr "අවහිර කරයි"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Bluesky ලේබල්කරුවන්"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "පුවරුව"
@@ -991,6 +1012,7 @@ msgstr "සෙවුම හිස් කරන්න"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "වසන්න"
 
@@ -1174,6 +1196,7 @@ msgstr "සියල්ල පිටපත් කරන්න"
 msgid "Could not add the name"
 msgstr "නම එක් කළ නොහැකි විය"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "ගිණුම වෙනස් කළ නොහැකි විය"
@@ -1258,6 +1281,7 @@ msgstr "සම්බන්ධ කිරීම ආරම්භ කළ නොහ�
 msgid "Could not unlink provider"
 msgstr "සැපයුම්කරු විසන්ධි කළ නොහැකි විය"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "දන්නා {known} · සම්බන්ධිත {linked} · ව�
 msgid "Label is required"
 msgstr "ලේබලය අවශ්‍යයි"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "ලේබල්කරු"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "ලේබල්කරුවන්"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "සකසා නැත"
 msgid "Nothing found"
 msgstr "කිසිවක් හමු නොවීය"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "ගිණුමෙන් කිසිවක් සපයනු නොලබන අතර රිලේ වෙත දැනුම් දෙනු ලැබේ. ගිණුම සහ එය පළ කළ දෑ පවතින අතර එය ප්‍රතිසාධනය කළ හැක."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "රිලේ අයවැය මෙම පැයේ {0} / {1}, අද {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "රිලේ මෙම සේවාදායකය නොදනී"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "රිලේ මෙම සේවාදායකය අනුගමනය කරයි"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "රිලේ මෙම සේවාදායකය තහනම් කර ඇත"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "රිලේ මෙම සේවාදායකය කෙරෙහි අක්‍රියයි"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "රිලේ මෙම සේවාදායකය නොබැඳි ලෙස දකී"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "රිලේ සේවාව"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "රිලේ හි තත්ත්වය නොදන්නා"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "රිලේ මෙම සේවාදායකය සීමා කරයි"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "{0} පෙරහන ඉවත් කරන්න"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "{alias} ඉවත් කරන්න"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "{labeler} ඉවත් කරන්න"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "ඉල්ලා අස්වන්න"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "ක්‍රීඩාවෙන් ඉල්ලා අස්වන්නද?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "{0} ප්‍රතිසාධනය කරන්න"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "ටැග"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "නමක් ගන්න"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "අත්හිටුවන්න"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "{0} අත්හිටුවන්න"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "{0} අත්හිටුවන්නද?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "අත්හිටුවා ඇත"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

@@ -155,6 +155,12 @@ msgstr "{0} · पुश"
 msgid "{0} (development)"
 msgstr "{0} (विकास)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} खाता"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {# बाँचल} other {# बाँचल}}"
@@ -352,6 +358,10 @@ msgstr "खाता खिसकावल गइल"
 msgid "Account removed"
 msgstr "खाता हटा दिहल गइल"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "खाता बहाल कइल गइल"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "खाता मेटावे खातिर निर्धारित बा"
@@ -359,6 +369,10 @@ msgstr "खाता मेटावे खातिर निर्धारि
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "खाता सेटिंग"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "खाता टेकडाउन कइल गइल"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "खाता प्रकार"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "खाता अद्यतन कइल गइल"
 
@@ -378,6 +393,7 @@ msgstr "खाता अद्यतन कइल गइल"
 msgid "Account verified"
 msgstr "खाता सत्यापित कइल गइल"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "खाता"
@@ -397,6 +413,7 @@ msgstr "गतिविधि"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "अविश्वसनीय लिंक प नेविगेशन
 msgid "Blocks"
 msgstr "ब्लॉक"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Bluesky लेबलर"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "बोर्ड"
@@ -991,6 +1012,7 @@ msgstr "खोज साफ करीं"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "बंद करीं"
 
@@ -1174,6 +1196,7 @@ msgstr "सब कॉपी करीं"
 msgid "Could not add the name"
 msgstr "नाम ना जोड़ल जा सकल"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "खाता ना बदलल जा सकल"
@@ -1258,6 +1281,7 @@ msgstr "जोड़ल शुरू ना कर सकल"
 msgid "Could not unlink provider"
 msgstr "प्रदाता ना हटा सकल"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "ज्ञात {known} · जुड़ल {linked} · प्रसा�
 msgid "Label is required"
 msgstr "लेबल जरूरी बा"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "लेबलर"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "लेबलर"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "सेट नइखे"
 msgid "Nothing found"
 msgstr "कुछुओ ना मिलल"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "खाता के कुछुओ परोसल ना जाला आ रिले के बता दिहल जाला। खाता आ जवन ऊ प्रकाशित कइले बा, ऊ रहेला, आ ओकरा के बहाल कइल जा सकेला।"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "रिले बजट एह घंटा {0} / {1}, आज {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "रिले एह सर्वर के ना जानेला"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "रिले एह सर्वर के फॉलो कर रहल बा"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "रिले एह सर्वर पर प्रतिबंध लगा देले बा"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "रिले एह सर्वर के प्रति निष्क्रिय बा"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "रिले एह सर्वर के ऑफ़लाइन देखत बा"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "रिले सेवा"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "रिले के स्थिति अनजान"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "रिले एह सर्वर के गति सीमित कर रहल बा"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "{0} फिल्टर हटाईं"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "{alias} हटाईं"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "{labeler} हटाईं"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "हार मानीं"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "खेल में हार मानीं?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "{0} बहाल करीं"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "टैग सब"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "नाम लीं"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "टेकडाउन करीं"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "{0} के टेकडाउन करीं"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "{0} के टेकडाउन करीं?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "टेकडाउन भइल"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

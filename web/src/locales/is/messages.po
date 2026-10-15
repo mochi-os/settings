@@ -155,6 +155,12 @@ msgstr "{0} · ýting"
 msgid "{0} (development)"
 msgstr "{0} (þróun)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "Reikningar: {0} / {1}"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {# eftir} other {# eftir}}"
@@ -352,6 +358,10 @@ msgstr "Reikningur fluttur"
 msgid "Account removed"
 msgstr "Reikningur fjarlægður"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Reikningur endurheimtur"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Reikningur áætlaður til eyðingar"
@@ -359,6 +369,10 @@ msgstr "Reikningur áætlaður til eyðingar"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Reikningsstillingar"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Reikningur tekinn niður"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Tegund reiknings"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Reikningur uppfærður"
 
@@ -378,6 +393,7 @@ msgstr "Reikningur uppfærður"
 msgid "Account verified"
 msgstr "Reikningur staðfestur"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Reikningar"
@@ -397,6 +413,7 @@ msgstr "Virkni"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Blokkaði leiðsögn á ótraustan tengil"
 msgid "Blocks"
 msgstr "Lokar"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Bluesky-merkjarar"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Tafla"
@@ -991,6 +1012,7 @@ msgstr "Hreinsa leit"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Loka"
 
@@ -1174,6 +1196,7 @@ msgstr "Afrita allt"
 msgid "Could not add the name"
 msgstr "Ekki tókst að bæta við nafninu"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Ekki tókst að breyta reikningnum"
@@ -1258,6 +1281,7 @@ msgstr "Tókst ekki að hefja tengingu"
 msgid "Could not unlink provider"
 msgstr "Tókst ekki að aftengja þjónustuveitu"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Þekktir {known} · Tengdir {linked} · Útsendingar-mesh {mesh}"
 msgid "Label is required"
 msgstr "Merkimiða er skylt"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Merkjari"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Merkjarar"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Ekki stillt"
 msgid "Nothing found"
 msgstr "Ekkert fundið"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Ekkert af reikningnum er birt og endurvörpum er tilkynnt um það. Reikningurinn og það sem hann birti verða áfram, og hægt er að endurheimta hann."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Endurvarpskvóti þessa klukkustund {0} / {1}, í dag {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Endurvarpinn þekkir ekki þennan þjón"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Endurvarpinn fylgir þessum þjóni"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Endurvarpinn hefur bannað þennan þjón"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Endurvarpinn er aðgerðalaus gagnvart þessum þjóni"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Endurvarpinn sér þennan þjón sem ótengdan"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Endurvarpsþjónusta"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Staða endurvarpans óþekkt"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Endurvarpinn takmarkar þennan þjón"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "Fjarlægja síu {0}"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "Fjarlægja {alias}"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "Fjarlægja {labeler}"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Gefast upp"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Gefast upp í leik?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "Endurheimta {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Merki"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Taktu nafn"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Taka niður"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "Taka {0} niður"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "Taka {0} niður?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Tekinn niður"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

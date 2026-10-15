@@ -24,10 +24,11 @@ export interface NetworkAccount extends Account {
   // which may move to it - and where it has moved to.
   aliases?: string[]
   moved?: string
-  // A hosted Bluesky account's identifier, and whether the user has kept a
-  // recovery key for it.
+  // A hosted Bluesky account's identifier, whether the user has kept a
+  // recovery key for it, and the labellers it reads beside the server's.
   did?: string
   recovery?: boolean
+  labelers?: string[]
 }
 
 // A handle, or a name under one, with the address it has on each network.
@@ -104,6 +105,15 @@ export interface NetworkState {
     hour: { used: number; limit: number }
     day: { used: number; limit: number }
   }
+  // The server's standing with the relay: whether it follows this server,
+  // and how many accounts it admits.
+  relay?: {
+    host: string
+    status: string
+    accounts?: number
+    limit?: number
+    sequence?: number
+  }
 }
 
 export interface SystemNetworks {
@@ -111,10 +121,21 @@ export interface SystemNetworks {
   networks: Record<string, NetworkState>
 }
 
+// An account on a handle, as the registry lists it: a Bluesky account has its
+// identifier, and its status where the owner has taken it down.
+export interface RegistryAccount {
+  id: string
+  network: string
+  identifier: string
+  did?: string
+  status?: string
+}
+
 export interface RegistryHandle extends Handle {
   user: string
   username: string
   holder: string
+  accounts?: RegistryAccount[]
 }
 
 export interface SystemHandles {

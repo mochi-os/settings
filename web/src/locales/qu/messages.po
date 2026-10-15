@@ -155,6 +155,12 @@ msgstr "{0} · push willakuy"
 msgid "{0} (development)"
 msgstr "{0} (wiñachiy)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} cuentakuna"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {# puchun} other {# puchun}}"
@@ -352,6 +358,10 @@ msgstr "Cuenta astasqa"
 msgid "Account removed"
 msgstr "Cuenta qichusqa"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Cuenta kutichisqa"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Cuenta wischunapaq churasqa"
@@ -359,6 +369,10 @@ msgstr "Cuenta wischunapaq churasqa"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Cuenta wakichiykuna"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Cuenta hark'asqa"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Cuenta laya"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Cuenta musuqchasqa"
 
@@ -378,6 +393,7 @@ msgstr "Cuenta musuqchasqa"
 msgid "Account verified"
 msgstr "Cuenta takyachisqa"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Cuentakuna"
@@ -397,6 +413,7 @@ msgstr "Kuyuriy"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Mana iñikuq t'inkiman yaykuy hark'asqa"
 msgid "Blocks"
 msgstr "Hark'aykuna"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Bluesky etiqueta churaqkuna"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Tabla"
@@ -991,6 +1012,7 @@ msgstr "Maskayta pichay"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Wichq'ay"
 
@@ -1174,6 +1196,7 @@ msgstr "Llapan copiay"
 msgid "Could not add the name"
 msgstr "Sutita mana yapayta atikurqanchu"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Mana cuentata hukchayta atinchu"
@@ -1258,6 +1281,7 @@ msgstr "T'inkiyta mana qallariyta atikurqanchu"
 msgid "Could not unlink provider"
 msgstr "Proveedorta mana desvinculayta atikurqanchu"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Riqsisqa {known} · T'inkichisqa {linked} · Ch'eqechiy llika {mesh}"
 msgid "Label is required"
 msgstr "Etiqueta necesitakun"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Etiqueta churaq"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Etiqueta churaqkuna"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Mana churasqa"
 msgid "Nothing found"
 msgstr "Mana imapas tarisqachu"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Cuentamanta imapas mana qusqachu, relaykunamantaq willakun. Cuentapas qillqasqankunapas kachkanmi, kutichiytapas atikunmi."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Relay presupuesto kay horapi {0} / {1}, kunan p'unchaw {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Relayqa kay servidorta mana riqsinchu"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Relayqa kay servidorta qatipachkan"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Relayqa kay servidorta qarqurqan"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Relayqa kay servidorwan mana llamk'achkanchu"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Relayqa kay servidorta mana conectasqata rikun"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Relay servicio"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Relaypi kayninqa mana riqsisqa"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Relayqa kay servidorta pisiyachichkan"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "{0} filtrota qichuy"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "{alias} qichuy"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "{labeler} qichuy"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Saqirakapuy"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "¿Pukllayta saqirakapunkichu?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "{0}-ta kutichiy"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Unanchakuna"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Huk sutita hap'iy"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Hark'ay"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "{0}-ta hark'ay"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "{0}-ta hark'aychu?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Hark'asqa"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

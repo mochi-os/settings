@@ -155,6 +155,12 @@ msgstr "{0} · push jakinarazpenak"
 msgid "{0} (development)"
 msgstr "{0} (garapena)"
 
+#. placeholder {0}: formatNumber(network.relay.accounts ?? 0)
+#. placeholder {1}: formatNumber(network.relay.limit)
+#: src/features/system/status.tsx
+msgid "{0} / {1} accounts"
+msgstr "{0} / {1} kontu"
+
 #: src/features/user/login.tsx
 msgid "{count, plural, one {# remaining} other {# remaining}}"
 msgstr "{count, plural, one {# geratzen da} other {# geratzen dira}}"
@@ -352,6 +358,10 @@ msgstr "Kontua lekuz aldatu da"
 msgid "Account removed"
 msgstr "Kontua kendua"
 
+#: src/features/system/handles.tsx
+msgid "Account restored"
+msgstr "Kontua leheneratua"
+
 #: src/features/user/close-account.tsx
 msgid "Account scheduled for deletion"
 msgstr "Kontua ezabatzeko programatuta"
@@ -359,6 +369,10 @@ msgstr "Kontua ezabatzeko programatuta"
 #: src/features/user/connected-accounts.tsx
 msgid "Account settings"
 msgstr "Kontuaren ezarpenak"
+
+#: src/features/system/handles.tsx
+msgid "Account taken down"
+msgstr "Kontua erretiratua"
 
 #: src/features/user/networks.tsx
 msgid "Account to move to"
@@ -371,6 +385,7 @@ msgstr "Kontu mota"
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Account updated"
 msgstr "Kontua eguneratua"
 
@@ -378,6 +393,7 @@ msgstr "Kontua eguneratua"
 msgid "Account verified"
 msgstr "Kontua egiaztatua"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Accounts"
 msgstr "Kontuak"
@@ -397,6 +413,7 @@ msgstr "Jarduera"
 #: ../../../lib/web/src/components/entity/entity-field-editor.tsx
 #: ../../../lib/web/src/features/access/access-dialog.tsx
 #: ../../../lib/web/src/features/accounts/account-add.tsx
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Add"
@@ -786,6 +803,10 @@ msgstr "Konfiantzazkoa ez den estekarako nabigazioa blokeatu da"
 msgid "Blocks"
 msgstr "Blokeak"
 
+#: src/features/system/settings.tsx
+msgid "Bluesky labellers"
+msgstr "Bluesky etiketatzaileak"
+
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Board"
 msgstr "Taula"
@@ -991,6 +1012,7 @@ msgstr "Garbitu bilaketa"
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
 msgid "Close"
 msgstr "Itxi"
 
@@ -1174,6 +1196,7 @@ msgstr "Kopiatu dena"
 msgid "Could not add the name"
 msgstr "Ezin izan da izena gehitu"
 
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the account"
 msgstr "Ezin izan da kontua aldatu"
@@ -1258,6 +1281,7 @@ msgstr "Ezin izan da estekatzea hasi"
 msgid "Could not unlink provider"
 msgstr "Ezin izan da hornitzailea desestekatu"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not update the account"
@@ -2505,6 +2529,15 @@ msgstr "Ezagunak {known} · Konektatuak {linked} · Igorpen mesh {mesh}"
 msgid "Label is required"
 msgstr "Etiketa beharrezkoa da"
 
+#: src/features/user/networks.tsx
+msgid "Labeller"
+msgstr "Etiketatzailea"
+
+#: src/features/user/networks.tsx
+#: src/features/user/networks.tsx
+msgid "Labellers"
+msgstr "Etiketatzaileak"
+
 #: src/features/system/documents.tsx
 #: src/features/user/preferences.tsx
 #: src/features/user/preferences.tsx
@@ -3185,6 +3218,10 @@ msgstr "Ezarri gabe"
 msgid "Nothing found"
 msgstr "Ez da ezer aurkitu"
 
+#: src/features/system/handles.tsx
+msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
+msgstr "Kontutik ez da ezer zerbitzatzen eta erreleei jakinarazten zaie. Kontua eta argitaratu duena geratzen dira, eta leheneratu daiteke."
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/notifications.tsx
@@ -3645,8 +3682,36 @@ msgid "Relay budget {0} / {1} this hour, {2} / {3} today"
 msgstr "Errele-aurrekontua ordu honetan {0} / {1}, gaur {2} / {3}"
 
 #: src/features/system/status.tsx
+msgid "Relay does not know this server"
+msgstr "Erreleak ez du zerbitzari hau ezagutzen"
+
+#: src/features/system/status.tsx
+msgid "Relay following this server"
+msgstr "Erreleak zerbitzari hau jarraitzen du"
+
+#: src/features/system/status.tsx
+msgid "Relay has banned this server"
+msgstr "Erreleak zerbitzari hau debekatu du"
+
+#: src/features/system/status.tsx
+msgid "Relay idle towards this server"
+msgstr "Errelea inaktibo dago zerbitzari honekiko"
+
+#: src/features/system/status.tsx
+msgid "Relay sees this server offline"
+msgstr "Erreleak zerbitzari hau lineaz kanpo ikusten du"
+
+#: src/features/system/status.tsx
 msgid "Relay service"
 msgstr "Errele-zerbitzua"
+
+#: src/features/system/status.tsx
+msgid "Relay standing unknown"
+msgstr "Errelearen egoera ezezaguna"
+
+#: src/features/system/status.tsx
+msgid "Relay throttling this server"
+msgstr "Erreleak zerbitzari hau mugatzen du"
 
 #: src/features/system/handles.tsx
 #: src/features/system/handles.tsx
@@ -3698,6 +3763,10 @@ msgstr "Kendu {0} iragazkia"
 #: src/features/user/networks.tsx
 msgid "Remove {alias}"
 msgstr "Kendu {alias}"
+
+#: src/features/user/networks.tsx
+msgid "Remove {labeler}"
+msgstr "Kendu {labeler}"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
@@ -3855,6 +3924,11 @@ msgstr "Amore eman"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Jokoan amore eman?"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Restore {0}"
+msgstr "Leheneratu {0}"
 
 #: ../../../lib/web/src/components/attachment-composer.tsx
 msgid "Retry"
@@ -4413,6 +4487,24 @@ msgstr "Etiketak"
 #: src/features/system/handles.tsx
 msgid "Take a name"
 msgstr "Hartu izen bat"
+
+#: src/features/system/handles.tsx
+msgid "Take down"
+msgstr "Erretiratu"
+
+#. placeholder {0}: account.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}"
+msgstr "Erretiratu {0}"
+
+#. placeholder {0}: takingDown.identifier
+#: src/features/system/handles.tsx
+msgid "Take down {0}?"
+msgstr "{0} erretiratu?"
+
+#: src/features/system/handles.tsx
+msgid "Taken down"
+msgstr "Erretiratua"
 
 #: src/features/domains/index.tsx
 #: src/features/domains/index.tsx

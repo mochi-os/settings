@@ -3,7 +3,8 @@
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import type { ReactNode } from 'react'
-import { plural } from '@lingui/core/macro'
+import { i18n } from '@lingui/core'
+import { msg, plural } from '@lingui/core/macro'
 import { Trans, useLingui } from '@lingui/react/macro'
 import {
   Button,
@@ -183,6 +184,16 @@ function OtherNetworks() {
                     {t`Relay budget ${formatNumber(budget.hour.used)} / ${formatNumber(budget.hour.limit)} this hour, ${formatNumber(budget.day.used)} / ${formatNumber(budget.day.limit)} today`}
                   </>
                 )}
+                {network.relay && network.state !== 'disabled' && (
+                  <>
+                    {' · '}
+                    {relayStanding(network.relay)}
+                    {network.relay.limit
+                      ? ', ' +
+                        t`${formatNumber(network.relay.accounts ?? 0)} / ${formatNumber(network.relay.limit)} accounts`
+                      : ''}
+                  </>
+                )}
               </StatusValue>
             </FieldRow>
           )
@@ -193,6 +204,28 @@ function OtherNetworks() {
 }
 
 const NETWORK_ORDER = ['fediverse', 'bluesky', 'xmpp', 'matrix']
+
+// The relay's standing towards this server, in the owner's words: the states
+// the relay reports for a host it knows, the answer that it does not, and
+// no answer at all.
+function relayStanding(relay: { status: string }): string {
+  switch (relay.status) {
+    case 'active':
+      return i18n._(msg`Relay following this server`)
+    case 'idle':
+      return i18n._(msg`Relay idle towards this server`)
+    case 'offline':
+      return i18n._(msg`Relay sees this server offline`)
+    case 'throttled':
+      return i18n._(msg`Relay throttling this server`)
+    case 'banned':
+      return i18n._(msg`Relay has banned this server`)
+    case 'HostNotFound':
+      return i18n._(msg`Relay does not know this server`)
+    default:
+      return i18n._(msg`Relay standing unknown`)
+  }
+}
 
 function StatusValue({ children }: { children: ReactNode }) {
   return <span className='text-sm tabular-nums'>{children}</span>
