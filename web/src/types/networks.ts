@@ -55,6 +55,21 @@ export interface NetworksData {
   accounts: NetworkAccount[]
   providers: NetworkProvider[]
   name: string
+  // What the user has blocked on other networks - domains and people by
+  // their id there - and the people muted.
+  blocks?: Block[]
+  mutes?: Mute[]
+}
+
+export interface Block {
+  domain?: string
+  actor?: string
+  created: number
+}
+
+export interface Mute {
+  actor: string
+  created: number
 }
 
 export interface Availability {

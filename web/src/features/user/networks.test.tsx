@@ -3,13 +3,13 @@
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import type { NetworksData } from '@/types/networks'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { Networks, PasswordDialog } from './networks'
 import { suggestHandle } from '@/lib/handles'
-import type { NetworksData } from '@/types/networks'
+import { Networks, PasswordDialog } from './networks'
 
 const state = vi.hoisted(() => ({
   get: vi.fn(),
@@ -109,6 +109,11 @@ const data: NetworksData = {
     },
   ],
   name: 'Alice Example',
+  blocks: [
+    { domain: 'spam.example', created: 3 },
+    { actor: 'https://remote.example/u/troll', created: 4 },
+  ],
+  mutes: [{ actor: 'https://remote.example/u/loud', created: 5 }],
 }
 
 function show(answer: NetworksData = data) {
@@ -226,7 +231,9 @@ describe('Networks', () => {
   })
 
   it('links an account at the remote server when its provider says oauth', async () => {
-    state.post.mockResolvedValue({ url: '/_/auth/oauth/mastodon/start?state=x' })
+    state.post.mockResolvedValue({
+      url: '/_/auth/oauth/mastodon/start?state=x',
+    })
     show()
     await screen.findByText('Handle on example.com')
     await act(async () => {
@@ -273,12 +280,12 @@ describe('Networks', () => {
         </I18nProvider>
       </QueryClientProvider>
     )
-    expect(
-      (screen.getByLabelText('Server') as HTMLInputElement).value
-    ).toBe('https://example.com')
-    expect(
-      (screen.getByLabelText('Address') as HTMLInputElement).value
-    ).toBe('@alice@example.com')
+    expect((screen.getByLabelText('Server') as HTMLInputElement).value).toBe(
+      'https://example.com'
+    )
+    expect((screen.getByLabelText('Address') as HTMLInputElement).value).toBe(
+      '@alice@example.com'
+    )
     await act(async () => {
       fireEvent.change(screen.getByLabelText('Device'), {
         target: { value: 'Laptop' },
@@ -298,5 +305,54 @@ describe('Networks', () => {
       ((await screen.findByLabelText('Password')) as HTMLInputElement).value
     ).toBe('mochi-secret')
     expect(screen.queryByRole('button', { name: 'Make password' })).toBeNull()
+  })
+
+  it('lists what is blocked and muted, lifts one, and blocks a domain', async () => {
+    state.post.mockResolvedValue({})
+    show()
+    await screen.findByText('spam.example')
+    expect(screen.getByText('https://remote.example/u/troll')).toBeTruthy()
+    expect(screen.getByText('https://remote.example/u/loud')).toBeTruthy()
+    await act(async () => {
+      fireEvent.click(
+        screen.getByRole('button', {
+          name: 'Unmute https://remote.example/u/loud',
+        })
+      )
+    })
+    await waitFor(() =>
+      expect(state.post).toHaveBeenCalledWith(
+        '-/user/networks/mute/remove',
+        { actor: 'https://remote.example/u/loud' },
+        expect.anything()
+      )
+    )
+    await act(async () => {
+      fireEvent.click(
+        screen.getByRole('button', { name: 'Unblock spam.example' })
+      )
+    })
+    await waitFor(() =>
+      expect(state.post).toHaveBeenCalledWith(
+        '-/user/networks/block/remove',
+        { target: 'spam.example' },
+        expect.anything()
+      )
+    )
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText('Domain to block'), {
+        target: { value: 'worse.example' },
+      })
+    })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Block' }))
+    })
+    await waitFor(() =>
+      expect(state.post).toHaveBeenCalledWith(
+        '-/user/networks/block/add',
+        { target: 'worse.example' },
+        expect.anything()
+      )
+    )
   })
 })

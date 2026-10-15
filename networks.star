@@ -31,6 +31,9 @@ def action_networks_data(a):
         "accounts": [account for account in (mochi.account.list() or []) if network_account(account)],
         "providers": linkable,
         "name": a.user.identity.name,
+        # What the user has blocked and muted on other networks (phase 16).
+        "blocks": (mochi.account.block.list() or []) if networks else [],
+        "mutes": (mochi.account.mute.list() or []) if networks else [],
     })
 
 def action_networks_handle_available(a):
@@ -195,3 +198,39 @@ def action_networks_account_password(a):
         a.error.label(400, "errors.value_too_long", field="name", maximum=100)
         return
     a.json({"password": mochi.account.password(account["id"], name)})
+
+# === Moderation (the federation plan, phase 16) ===
+#
+# What the user has blocked or muted on other networks: domains and people
+# blocked, people muted. A person is blocked, muted or reported from their
+# comment in feeds; this page lists and lifts them, and takes a domain.
+
+def action_networks_block_add(a):
+    """Block a domain, or a person by their id on their network."""
+    target = a.input("target", "").strip()
+    if not target:
+        a.error.label(400, "errors.target_is_required")
+        return
+    if len(target) > 2000:
+        a.error.label(400, "errors.value_too_long", field="target", maximum=2000)
+        return
+    mochi.account.block.add(target)
+    a.json({"blocks": mochi.account.block.list() or []})
+
+def action_networks_block_remove(a):
+    """Lift a block on a domain or a person."""
+    target = a.input("target", "").strip()
+    if not target:
+        a.error.label(400, "errors.target_is_required")
+        return
+    mochi.account.block.remove(target)
+    a.json({"blocks": mochi.account.block.list() or []})
+
+def action_networks_mute_remove(a):
+    """Unmute a person."""
+    actor = a.input("actor", "").strip()
+    if not actor:
+        a.error.label(400, "errors.target_is_required")
+        return
+    mochi.account.mute.remove(actor)
+    a.json({"mutes": mochi.account.mute.list() or []})

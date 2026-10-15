@@ -3,14 +3,14 @@
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { requestHelpers } from '@mochi/web'
-import endpoints from '@/api/endpoints'
 import type {
   AccountKey,
   Availability,
   NetworkAccount,
   NetworksData,
 } from '@/types/networks'
+import { requestHelpers } from '@mochi/web'
+import endpoints from '@/api/endpoints'
 
 const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
@@ -103,11 +103,11 @@ export function useAccountUpdate() {
       profile?: boolean
       automated?: boolean
     }) =>
-    requestHelpers.post<NetworkAccount>(
-      endpoints.networks.accountUpdate,
-      data,
-      NO_GLOBAL_ERROR_TOAST_CONFIG
-    )
+      requestHelpers.post<NetworkAccount>(
+        endpoints.networks.accountUpdate,
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      )
   )
 }
 
@@ -173,4 +173,36 @@ export function useAccountPassword() {
       ),
     gcTime: 0,
   })
+}
+
+// The user's moderation on other networks: a domain or a person blocked, a
+// block or a mute lifted. Each refetches the page's data, which carries them.
+export function useBlockAdd() {
+  return useNetworksMutation((target: string) =>
+    requestHelpers.post(
+      endpoints.networks.blockAdd,
+      { target },
+      NO_GLOBAL_ERROR_TOAST_CONFIG
+    )
+  )
+}
+
+export function useBlockRemove() {
+  return useNetworksMutation((target: string) =>
+    requestHelpers.post(
+      endpoints.networks.blockRemove,
+      { target },
+      NO_GLOBAL_ERROR_TOAST_CONFIG
+    )
+  )
+}
+
+export function useMuteRemove() {
+  return useNetworksMutation((actor: string) =>
+    requestHelpers.post(
+      endpoints.networks.muteRemove,
+      { actor },
+      NO_GLOBAL_ERROR_TOAST_CONFIG
+    )
+  )
 }

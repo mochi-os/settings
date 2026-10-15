@@ -6,6 +6,14 @@
 // The Networks page: the user's handles, the hosted account each network makes
 // of a handle, and the accounts linked on other servers, all in one place.
 import { useEffect, useMemo, useState } from 'react'
+import type {
+  Block,
+  Availability,
+  Handle,
+  Mute,
+  NetworkAccount,
+  NetworkProvider,
+} from '@/types/networks'
 import { i18n } from '@lingui/core'
 import { msg } from '@lingui/core/macro'
 import { Trans, useLingui } from '@lingui/react/macro'
@@ -67,6 +75,8 @@ import {
   Trash2,
   Zap,
 } from 'lucide-react'
+import { suggestHandle } from '@/lib/handles'
+import { networkLabel } from '@/lib/networks'
 import {
   useAccountCreate,
   useAccountKeys,
@@ -77,19 +87,14 @@ import {
   useAccountRemove,
   useAccountTest,
   useAccountUpdate,
+  useBlockAdd,
+  useBlockRemove,
   useHandleAvailable,
   useHandleRelease,
   useHandleReserve,
+  useMuteRemove,
   useNetworksData,
 } from '@/hooks/use-networks'
-import { suggestHandle } from '@/lib/handles'
-import { networkLabel } from '@/lib/networks'
-import type {
-  Availability,
-  Handle,
-  NetworkAccount,
-  NetworkProvider,
-} from '@/types/networks'
 
 // Why a name cannot be reserved, in the user's words.
 function availabilityReason(reason: string): string {
@@ -346,16 +351,16 @@ function AddNameDialog({
               autoComplete='off'
               onChange={(e) =>
                 setSuffix(
-                  e.target.value.trim().toLowerCase().replace(/[^a-z0-9]/g, '')
+                  e.target.value
+                    .trim()
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]/g, '')
                 )
               }
             />
           </div>
           <div className='min-h-5'>
-            <AvailabilityNote
-              result={result}
-              checking={checking && !!suffix}
-            />
+            <AvailabilityNote result={result} checking={checking && !!suffix} />
           </div>
         </div>
         <ResponsiveDialogFooter>
@@ -618,7 +623,9 @@ function RenameDialog({
             <Trans>Cancel</Trans>
           </Button>
           <Button
-            disabled={update.isPending || label.trim() === (account.label || '')}
+            disabled={
+              update.isPending || label.trim() === (account.label || '')
+            }
             onClick={() => void handleSave()}
           >
             {update.isPending ? (
@@ -846,7 +853,11 @@ export function PasswordDialog({
               <Trans>Server</Trans>
             </Label>
             <div className='flex gap-2'>
-              <Input id='password-server' readOnly value={serverAddress(account)} />
+              <Input
+                id='password-server'
+                readOnly
+                value={serverAddress(account)}
+              />
               <Button
                 variant='outline'
                 onClick={() => void copy(serverAddress(account))}
@@ -860,7 +871,11 @@ export function PasswordDialog({
               <Trans>Address</Trans>
             </Label>
             <div className='flex gap-2'>
-              <Input id='password-address' readOnly value={account.identifier} />
+              <Input
+                id='password-address'
+                readOnly
+                value={account.identifier}
+              />
               <Button
                 variant='outline'
                 onClick={() => void copy(account.identifier)}
@@ -1036,6 +1051,120 @@ function AccountRow({
   )
 }
 
+// What the user has blocked and muted on other networks (phase 16): a
+// domain blocked here, a person blocked or muted from their comment in feeds,
+// each lifted here.
+function ModerationSection({
+  blocks,
+  mutes,
+}: {
+  blocks: Block[]
+  mutes: Mute[]
+}) {
+  const { t } = useLingui()
+  const add = useBlockAdd()
+  const removeBlock = useBlockRemove()
+  const removeMute = useMuteRemove()
+  const [domain, setDomain] = useState('')
+  const [busy, setBusy] = useState<string | null>(null)
+
+  const run = async (
+    key: string,
+    call: () => Promise<unknown>,
+    done: string
+  ) => {
+    setBusy(key)
+    try {
+      await call()
+      toast.success(done)
+    } catch (err) {
+      toast.error(getErrorMessage(err, t`Could not change the block`))
+    } finally {
+      setBusy(null)
+    }
+  }
+
+  const rows: { key: string; label: string; kind: 'block' | 'mute' }[] = [
+    ...blocks.map((b) => ({
+      key: b.domain ?? b.actor ?? '',
+      label: b.domain ?? b.actor ?? '',
+      kind: 'block' as const,
+    })),
+    ...mutes.map((m) => ({
+      key: m.actor,
+      label: m.actor,
+      kind: 'mute' as const,
+    })),
+  ]
+
+  return (
+    <Section title={t`Blocked and muted`} className='mb-4'>
+      <form
+        className='flex gap-2 py-2'
+        onSubmit={(event) => {
+          event.preventDefault()
+          const target = domain.trim()
+          if (!target) return
+          void run('add', () => add.mutateAsync(target), t`Blocked`).then(() =>
+            setDomain('')
+          )
+        }}
+      >
+        <Input
+          value={domain}
+          onChange={(event) => setDomain(event.target.value)}
+          placeholder='example.social'
+          aria-label={t`Domain to block`}
+          autoComplete='off'
+        />
+        <Button
+          type='submit'
+          variant='outline'
+          disabled={busy === 'add' || !domain.trim()}
+        >
+          {busy === 'add' ? (
+            <Loader2 className='size-4 animate-spin' />
+          ) : (
+            <Plus className='size-4' />
+          )}
+          <Trans>Block</Trans>
+        </Button>
+      </form>
+      {rows.map((row) => {
+        const label = row.label
+        return (
+          <FieldRow
+            key={`${row.kind}:${row.key}`}
+            inline
+            label={row.label}
+            description={row.kind === 'mute' ? t`Muted` : t`Blocked`}
+          >
+            <Button
+              variant='ghost'
+              size='sm'
+              icon={<Trash2 className='h-4 w-4' />}
+              aria-label={
+                row.kind === 'mute' ? t`Unmute ${label}` : t`Unblock ${label}`
+              }
+              disabled={busy === row.key}
+              onClick={() =>
+                void run(
+                  row.key,
+                  () =>
+                    row.kind === 'mute'
+                      ? removeMute.mutateAsync(row.key)
+                      : removeBlock.mutateAsync(row.key),
+                  row.kind === 'mute' ? t`Unmuted` : t`Unblocked`
+                )
+              }
+            />
+          </FieldRow>
+        )
+      })}
+    </Section>
+  )
+}
+
 export function Networks() {
   const { t } = useLingui()
   usePageTitle(t`Networks`)
@@ -1072,7 +1201,9 @@ export function Networks() {
     handles
       .filter(
         (h) =>
-          h.kind === 'handle' && h.parent === parent.name && h.domain === parent.domain
+          h.kind === 'handle' &&
+          h.parent === parent.name &&
+          h.domain === parent.domain
       )
       .sort((a, b) => naturalCompare(a.name, b.name))
   const mayReserve =
@@ -1174,7 +1305,11 @@ export function Networks() {
         icon={<Share2 className='size-4 md:size-5' />}
         actions={
           (data?.providers.length ?? 0) > 0 && (
-            <Button variant='outline' size='sm' onClick={() => setLinking(true)}>
+            <Button
+              variant='outline'
+              size='sm'
+              onClick={() => setLinking(true)}
+            >
               <Link2 className='me-2 h-4 w-4' />
               <Trans>Link an account</Trans>
             </Button>
@@ -1195,7 +1330,9 @@ export function Networks() {
             {mayReserve && (
               <HandleChooser
                 domains={data.domains}
-                suggestion={parents.length === 0 ? suggestHandle(data.name) : ''}
+                suggestion={
+                  parents.length === 0 ? suggestHandle(data.name) : ''
+                }
                 onReserved={() => void refetch()}
               />
             )}
@@ -1216,7 +1353,7 @@ export function Networks() {
             ))}
             {accounts.length > 0 && (
               <>
-                <h2 className='mb-2 mt-6 text-base font-medium'>
+                <h2 className='mt-6 mb-2 text-base font-medium'>
                   <Trans>Accounts</Trans>
                 </h2>
                 <Table>
@@ -1259,6 +1396,10 @@ export function Networks() {
                 </Table>
               </>
             )}
+            <ModerationSection
+              blocks={data.blocks ?? []}
+              mutes={data.mutes ?? []}
+            />
           </>
         )}
       </Main>
@@ -1327,7 +1468,9 @@ export function Networks() {
           onOpenChange={(open) => {
             if (!open) setRemoving(null)
           }}
-          title={removing.hosted ? t`Remove this account?` : t`Unlink this account?`}
+          title={
+            removing.hosted ? t`Remove this account?` : t`Unlink this account?`
+          }
           desc={
             removing.hosted
               ? t`"${removing.identifier}" will be removed with everything it published and its followers.`
