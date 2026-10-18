@@ -24,6 +24,8 @@ const state = vi.hoisted(() => ({
   error: vi.fn(),
   // The promise the add form's submit handler awaits.
   added: null as Promise<void> | null,
+  providers: null as unknown[] | null,
+  accounts: null as unknown[] | null,
 }))
 
 const claude = {
@@ -48,8 +50,10 @@ vi.mock('@mochi/web', async (original) => {
       post: state.post,
     },
     useAccounts: () => ({
-      providers: [{ type: 'claude', label: 'Claude', fields: [] }],
-      accounts: [claude],
+      providers: state.providers ?? [
+        { type: 'claude', label: 'Claude', fields: [] },
+      ],
+      accounts: state.accounts ?? [claude],
       isLoading: false,
       providersError: null,
       accountsError: null,
@@ -107,7 +111,13 @@ const messages = (spy: ReturnType<typeof vi.fn>) =>
 
 describe('Adding an account', () => {
   beforeEach(() => {
-    for (const spy of [state.add, state.update, state.post, state.success, state.error])
+    for (const spy of [
+      state.add,
+      state.update,
+      state.post,
+      state.success,
+      state.error,
+    ])
       spy.mockReset()
     state.added = null
   })
@@ -182,5 +192,40 @@ describe('Account settings', () => {
     })
     expect(state.update).toHaveBeenCalledTimes(1)
     await act(async () => finish())
+  })
+})
+
+describe('Notify by default', () => {
+  it("is never offered on a network's account, whose switch turns it off", () => {
+    state.providers = [
+      { type: 'email', capabilities: ['notify'], fields: [] },
+      {
+        type: 'matrix',
+        capabilities: ['network', 'chat', 'notify'],
+        fields: [],
+      },
+    ]
+    state.accounts = [
+      {
+        ...claude,
+        id: 'e1',
+        type: 'email',
+        label: '',
+        identifier: 'a@example.com',
+      },
+      {
+        ...claude,
+        id: 'm1',
+        type: 'matrix',
+        label: '',
+        identifier: '@a:example.org',
+      },
+    ]
+    show()
+    expect(
+      screen.getAllByRole('switch', { name: 'Notify by default' })
+    ).toHaveLength(1)
+    state.providers = null
+    state.accounts = null
   })
 })

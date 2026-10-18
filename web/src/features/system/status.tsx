@@ -2,12 +2,13 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { i18n } from '@lingui/core'
 import { msg, plural } from '@lingui/core/macro'
 import { Trans, useLingui } from '@lingui/react/macro'
 import {
   Button,
+  ConfirmDialog,
   CopyButton,
   DataChip,
   FieldRow,
@@ -29,13 +30,16 @@ import {
   usePageTitle,
   formatSystemTimestamp,
 } from '@mochi/web'
-import { Activity, Download, Loader2 } from 'lucide-react'
+import { Activity, Download, KeyRound, Loader2 } from 'lucide-react'
+import { networkLabel } from '@/lib/networks'
 import { peerDisplayName, hyphenateFingerprint } from '@/lib/peer'
 import { useStepUp } from '@/lib/use-step-up'
+import {
+  useSystemKeyReplace,
+  useSystemNetworks,
+} from '@/hooks/use-system-networks'
 import { useSystemPeers, type PeerEntry } from '@/hooks/use-system-peers'
 import { useSystemSettingsData } from '@/hooks/use-system-settings'
-import { useSystemNetworks } from '@/hooks/use-system-networks'
-import { networkLabel } from '@/lib/networks'
 import {
   useInstallSystemUpdate,
   useSystemUpdate,
@@ -110,6 +114,7 @@ export function SystemStatus() {
         </Section>
         <NetworkStatus />
         <OtherNetworks />
+        <MatrixKeys />
       </Main>
     </>
   )
@@ -204,6 +209,71 @@ function OtherNetworks() {
 }
 
 const NETWORK_ORDER = ['fediverse', 'bluesky', 'xmpp', 'matrix']
+
+// Each Matrix domain's signing key, which the owner can replace.
+function MatrixKeys() {
+  const { t } = useLingui()
+  const { data } = useSystemNetworks()
+  const replace = useSystemKeyReplace()
+  const stepUp = useStepUp()
+  const [replacing, setReplacing] = useState<string | null>(null)
+  const keys = data?.development ? (data.networks.matrix?.keys ?? []) : []
+  if (keys.length === 0) return null
+
+  const sorted = [...keys].sort((a, b) => naturalCompare(a.domain, b.domain))
+  const confirm = (domain: string) =>
+    stepUp.request(async (token) => {
+      try {
+        await replace.mutateAsync({ domain, token })
+        toast.success(t`Server key replaced`)
+      } catch (e) {
+        toast.error(getErrorMessage(e, t`Failed to replace the server key`))
+      }
+    })
+  return (
+    <Section title={t`Matrix server keys`}>
+      <div className='divide-y-0'>
+        {sorted.map((entry) => (
+          <FieldRow key={entry.domain} label={entry.domain}>
+            <div className='flex items-center gap-2'>
+              <span className='font-mono text-sm'>{entry.key}</span>
+              <Button
+                variant='outline'
+                size='sm'
+                onClick={() => setReplacing(entry.domain)}
+                loading={
+                  replace.isPending &&
+                  replace.variables?.domain === entry.domain
+                }
+              >
+                <Trans>Replace</Trans>
+              </Button>
+            </div>
+          </FieldRow>
+        ))}
+      </div>
+      {stepUp.dialog}
+      {replacing && (
+        <ConfirmDialog
+          open
+          onOpenChange={(open) => {
+            if (!open) setReplacing(null)
+          }}
+          title={t`Replace the Matrix server key for ${replacing}?`}
+          desc={t`Other servers fetch the new key. What the old one signed stays valid.`}
+          confirmText={t`Replace`}
+          icon={<KeyRound className='size-4' />}
+          destructive
+          handleConfirm={() => {
+            const domain = replacing
+            setReplacing(null)
+            confirm(domain)
+          }}
+        />
+      )}
+    </Section>
+  )
+}
 
 // The relay's standing towards this server, in the owner's words: the states
 // the relay reports for a host it knows, the answer that it does not, and
@@ -330,9 +400,7 @@ function NetworkStatus() {
           {network.holepunch &&
             network.holepunch.success + network.holepunch.failure > 0 && (
               <FieldRow label={t`Hole punch`}>
-                <StatusValue>
-                  {holepunchLabel}
-                </StatusValue>
+                <StatusValue>{holepunchLabel}</StatusValue>
               </FieldRow>
             )}
           {network.relaying?.active && (

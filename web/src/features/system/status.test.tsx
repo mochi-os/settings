@@ -2,15 +2,16 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
+import type { SystemNetworks } from '@/types/networks'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { SystemStatus } from './status'
-import type { SystemNetworks } from '@/types/networks'
 
 const state = vi.hoisted(() => ({
   networks: null as SystemNetworks | null,
+  replace: vi.fn(),
 }))
 
 vi.mock('@mochi/web', async (original) => ({
@@ -65,10 +66,19 @@ vi.mock('@/hooks/use-system-networks', () => ({
     error: null,
     refetch: vi.fn(),
   }),
+  useSystemKeyReplace: () => ({
+    mutateAsync: state.replace,
+    isPending: false,
+    variables: undefined,
+  }),
 }))
 
+// The step-up passes straight through with a token.
 vi.mock('@/lib/use-step-up', () => ({
-  useStepUp: () => ({ request: vi.fn(), dialog: null }),
+  useStepUp: () => ({
+    request: (run: (token: string) => Promise<void>) => run('t1'),
+    dialog: null,
+  }),
 }))
 
 function show(networks: SystemNetworks) {
@@ -126,7 +136,7 @@ describe('Status: other networks', () => {
     ).toBeTruthy()
   })
 
-  it("says when the relay does not know the server, or gave no answer", () => {
+  it('says when the relay does not know the server, or gave no answer', () => {
     show({
       development: true,
       networks: {
@@ -144,5 +154,48 @@ describe('Status: other networks', () => {
   it('shows nothing of the networks where the server does not offer them', () => {
     show({ development: false, networks: {} })
     expect(screen.queryByText('Other networks')).toBeNull()
+  })
+})
+
+describe('Status: Matrix server keys', () => {
+  beforeEach(() => {
+    i18n.load('en', {})
+    i18n.activate('en')
+    state.replace = vi.fn().mockResolvedValue({ key: 'ed25519:new' })
+  })
+
+  const matrix = (keys: { domain: string; key: string }[]) => ({
+    development: true,
+    networks: { matrix: { state: 'working' as const, reason: '', keys } },
+  })
+
+  it("lists each domain's key and replaces one once confirmed, with the step-up's token", async () => {
+    show(
+      matrix([
+        { domain: 'b.example', key: 'ed25519:bbbb' },
+        { domain: 'a.example', key: 'ed25519:aaaa' },
+      ])
+    )
+    expect(screen.getByText('Matrix server keys')).toBeInTheDocument()
+    expect(screen.getByText('ed25519:aaaa')).toBeInTheDocument()
+    const rows = screen.getAllByText(/\.example$/).map((e) => e.textContent)
+    expect(rows).toEqual(['a.example', 'b.example'])
+    fireEvent.click(screen.getAllByRole('button', { name: 'Replace' })[1])
+    expect(state.replace).not.toHaveBeenCalled()
+    expect(
+      await screen.findByText('Replace the Matrix server key for b.example?')
+    ).toBeInTheDocument()
+    const buttons = screen.getAllByRole('button', { name: /Replace/ })
+    fireEvent.click(buttons[buttons.length - 1])
+    await waitFor(() => expect(state.replace).toHaveBeenCalledTimes(1))
+    expect(state.replace).toHaveBeenCalledWith({
+      domain: 'b.example',
+      token: 't1',
+    })
+  })
+
+  it('shows no keys where Matrix has none', () => {
+    show(matrix([]))
+    expect(screen.queryByText('Matrix server keys')).toBeNull()
   })
 })

@@ -114,6 +114,8 @@ export interface NetworkState {
     limit?: number
     sequence?: number
   }
+  // Each Matrix domain's signing key, by its id.
+  keys?: { domain: string; key: string }[]
 }
 
 export interface SystemNetworks {

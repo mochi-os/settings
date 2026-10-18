@@ -5,13 +5,29 @@
 # Mochi Application Interface Exception - see license.txt and license-exception.md.
 #
 # The owner's view of the other networks: each network's state for the Status
-# page, and the table of every handle with its holder.
+# page, each Matrix domain's signing key, and the table of every handle with
+# its holder.
 
 def action_system_networks(a):
     """Each network's state: working, unavailable with the reason, or disabled."""
     if not require_admin(a):
         return
     a.json(mochi.server.networks())
+
+def action_system_networks_key_replace(a):
+    """Replace the Matrix signing key of one of the server's domains: other
+    servers fetch the new one, and what the old one signed stays verifiable."""
+    if not require_admin(a):
+        return
+    if not mochi.user.session.reauthenticate(a.input("token", "")):
+        a.error.label(400, "errors.reauthentication_required")
+        return
+    domain = a.input("domain", "")
+    matrix = (mochi.server.networks().get("networks") or {}).get("matrix") or {}
+    if not domain or domain not in [k.get("domain") for k in matrix.get("keys") or []]:
+        a.error.label(404, "errors.domain_not_found")
+        return
+    a.json({"key": mochi.server.key.replace(domain)})
 
 def action_system_handles_list(a):
     """Every handle on the server with its holder."""

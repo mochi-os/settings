@@ -82,6 +82,7 @@ const endpoints = {
   system: {
     peers: '-/system/peers',
     networks: '-/system/networks',
+    networksKeyReplace: '-/system/networks/key/replace',
     handlesList: '-/system/handles/list',
     handlesRelease: '-/system/handles/release',
     accountTakedown: '-/system/accounts/takedown',

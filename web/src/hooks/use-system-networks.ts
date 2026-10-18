@@ -3,9 +3,9 @@
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import type { SystemHandles, SystemNetworks } from '@/types/networks'
 import { requestHelpers } from '@mochi/web'
 import endpoints from '@/api/endpoints'
-import type { SystemHandles, SystemNetworks } from '@/types/networks'
 
 export function useSystemNetworks() {
   return useQuery({
@@ -21,6 +21,23 @@ export function useSystemHandles() {
     queryKey: ['system', 'handles'],
     queryFn: () =>
       requestHelpers.get<SystemHandles>(endpoints.system.handlesList),
+  })
+}
+
+// Replacing a Matrix domain's signing key changes the key the Status page
+// shows.
+export function useSystemKeyReplace() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (data: { domain: string; token: string }) =>
+      requestHelpers.post<{ key: string }>(
+        endpoints.system.networksKeyReplace,
+        data,
+        { mochi: { showGlobalErrorToast: false } }
+      ),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ['system', 'networks'] })
+    },
   })
 }
 

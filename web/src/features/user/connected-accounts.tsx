@@ -4,6 +4,7 @@
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import { useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
+import type { OAuthProvider } from '@/types/account'
 import { i18n } from '@lingui/core'
 import { msg } from '@lingui/core/macro'
 import { Trans, useLingui } from '@lingui/react/macro'
@@ -70,10 +71,9 @@ import {
   Zap,
 } from 'lucide-react'
 import endpoints from '@/api/endpoints'
+import { useStepUp } from '@/lib/use-step-up'
 import { useOauthLink } from '@/hooks/use-account'
 import { OAUTH_PROVIDERS, useOauthResult } from '@/hooks/use-oauth-result'
-import type { OAuthProvider } from '@/types/account'
-import { useStepUp } from '@/lib/use-step-up'
 
 const APP_BASE = getAppPath()
 
@@ -398,15 +398,19 @@ function AccountRow({
         )}
       </TableCell>
 
-      {/* Notify by default */}
+      {/* Notify by default: never on a network's account, whose switch
+          turns the account itself on or off. */}
       <TableCell>
-        {provider?.capabilities?.includes('notify') && (
-          <Switch
-            checked={account.enabled > 0}
-            onCheckedChange={(checked) => onToggleEnabled(account.id, checked)}
-            aria-label={t`Notify by default`}
-          />
-        )}
+        {provider?.capabilities?.includes('notify') &&
+          !provider.capabilities.includes('network') && (
+            <Switch
+              checked={account.enabled > 0}
+              onCheckedChange={(checked) =>
+                onToggleEnabled(account.id, checked)
+              }
+              aria-label={t`Notify by default`}
+            />
+          )}
       </TableCell>
 
       {/* Added */}
