@@ -136,6 +136,23 @@ describe('Status: other networks', () => {
     ).toBeTruthy()
   })
 
+  it('says a listener could not open its port', () => {
+    show({
+      development: true,
+      networks: {
+        fediverse: { state: 'working', reason: '' },
+        bluesky: { state: 'disabled', reason: '' },
+        xmpp: { state: 'unavailable', reason: 'port' },
+        matrix: { state: 'disabled', reason: '' },
+      },
+    })
+    expect(
+      screen.getByText(
+        'Unavailable · A port it listens on is in use by another program'
+      )
+    ).toBeTruthy()
+  })
+
   it('says when the relay does not know the server, or gave no answer', () => {
     show({
       development: true,

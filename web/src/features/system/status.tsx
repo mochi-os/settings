@@ -128,6 +128,8 @@ function useUnavailableReason() {
     switch (reason) {
       case 'domain':
         return t`No domain is configured`
+      case 'port':
+        return t`A port it listens on is in use by another program`
     }
     return reason
   }
