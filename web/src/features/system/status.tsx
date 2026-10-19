@@ -114,6 +114,7 @@ export function SystemStatus() {
         </Section>
         <NetworkStatus />
         <OtherNetworks />
+        <XmppRooms />
         <MatrixKeys />
       </Main>
     </>
@@ -211,6 +212,33 @@ function OtherNetworks() {
 }
 
 const NETWORK_ORDER = ['fediverse', 'bluesky', 'xmpp', 'matrix']
+
+// Each XMPP domain's room service: working, or unavailable where its name
+// does not lead to this server, which other servers then cannot reach.
+function XmppRooms() {
+  const { t } = useLingui()
+  const { data } = useSystemNetworks()
+  const rooms = data?.development ? (data.networks.xmpp?.rooms ?? []) : []
+  if (rooms.length === 0) return null
+  const sorted = [...rooms].sort((a, b) => naturalCompare(a.host, b.host))
+  return (
+    <Section title={t`XMPP rooms`}>
+      <div className='divide-y-0'>
+        {sorted.map((entry) => (
+          <FieldRow key={entry.host} label={entry.host}>
+            <StatusValue>
+              {entry.state === 'working' ? (
+                <Trans>Working</Trans>
+              ) : (
+                t`Unavailable · Its name does not lead to this server`
+              )}
+            </StatusValue>
+          </FieldRow>
+        ))}
+      </div>
+    </Section>
+  )
+}
 
 // Each Matrix domain's signing key, which the owner can replace.
 function MatrixKeys() {

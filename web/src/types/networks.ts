@@ -116,6 +116,9 @@ export interface NetworkState {
   }
   // Each Matrix domain's signing key, by its id.
   keys?: { domain: string; key: string }[]
+  // XMPP: each domain's room service, unavailable where its name does not
+  // lead to this server.
+  rooms?: { host: string; state: 'working' | 'unavailable'; reason: '' | 'dns' }[]
 }
 
 export interface SystemNetworks {
