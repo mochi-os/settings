@@ -22,6 +22,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
   Input,
+  SearchInput,
   Label,
   Select,
   SelectContent,
@@ -55,7 +56,6 @@ import {
   MoreHorizontal,
   Pencil,
   Plus,
-  Search,
   Trash2,
   UserCheck,
   UserPlus,
@@ -718,13 +718,14 @@ export function SystemUsers() {
         }
         actions={
           <div className='flex w-full items-center gap-2 md:w-auto md:gap-4'>
-            <div className='relative min-w-0 flex-1 md:flex-none'>
-              <Search className='text-muted-foreground absolute start-2.5 top-2.5 h-4 w-4' />
-              <Input
+            <div className='min-w-0 flex-1 md:flex-none'>
+              <SearchInput
+                type='search'
+                aria-label={t`Search`}
                 placeholder={t`Search users...`}
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className='w-full ps-8 md:w-64'
+                onValueChange={setSearch}
+                className='w-full md:w-64'
               />
             </div>
             <CreateUserDialog onSuccess={() => refetch()} />
