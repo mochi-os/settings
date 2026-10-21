@@ -75,6 +75,7 @@ const endpoints = {
     accountKeysReplace: '-/user/networks/account/keys/replace',
     accountKeysRecovery: '-/user/networks/account/keys/recovery',
     accountPassword: '-/user/networks/account/password',
+    accountHome: '-/user/networks/account/home',
     blockAdd: '-/user/networks/block/add',
     blockRemove: '-/user/networks/block/remove',
     muteRemove: '-/user/networks/mute/remove',

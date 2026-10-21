@@ -12,6 +12,7 @@ import type {
   Handle,
   Mute,
   NetworkAccount,
+  NetworkFeed,
   NetworkProvider,
 } from '@/types/networks'
 import { i18n } from '@lingui/core'
@@ -59,12 +60,14 @@ import {
   usePageTitle,
 } from '@mochi/web'
 import {
+  ArrowDownToLine,
   ArrowRightLeft,
   Bot,
   Check,
   Copy,
   Eye,
   EyeOff,
+  House,
   KeyRound,
   Link2,
   LogIn,
@@ -86,6 +89,7 @@ import {
   useAccountKeys,
   useAccountKeysRecovery,
   useAccountKeysReplace,
+  useAccountHome,
   useAccountLabelers,
   useAccountLink,
   useAccountMove,
@@ -400,6 +404,7 @@ function HandleCard({
   onToggle,
   onRelease,
   onAddName,
+  onArrive,
   busy,
 }: {
   handle: Handle
@@ -413,6 +418,7 @@ function HandleCard({
   ) => void
   onRelease: (handle: Handle) => void
   onAddName: (handle: Handle) => void
+  onArrive: (handle: Handle) => void
   busy: string | null
 }) {
   const { t } = useLingui()
@@ -443,6 +449,12 @@ function HandleCard({
               <Plus className='me-2 h-4 w-4' />
               <Trans>Add a name</Trans>
             </DropdownMenuItem>
+            {networks.includes('bluesky') && !hosted(handle, 'bluesky') && (
+              <DropdownMenuItem onClick={() => onArrive(handle)}>
+                <ArrowDownToLine className='me-2 h-4 w-4' />
+                <Trans>Move a Bluesky account here</Trans>
+              </DropdownMenuItem>
+            )}
             <DropdownMenuItem onClick={() => onRelease(handle)}>
               <Trash2 className='me-2 h-4 w-4' />
               <Trans>Release</Trans>
@@ -733,6 +745,85 @@ export function AliasesDialog({
 // The labellers a hosted Bluesky account reads beside the server's: each a
 // labelling service on Bluesky by its identifier, whose labels then hide or
 // warn on what the account reads (phase 19).
+// Choosing where posts made from other apps signed in to an account land:
+// one of the user's public feeds, a new one named after the account, or none
+// (decision 42).
+export function HomeDialog({
+  account,
+  feeds,
+  onOpenChange,
+}: {
+  account: NetworkAccount
+  feeds: NetworkFeed[]
+  onOpenChange: (open: boolean) => void
+}) {
+  const { t } = useLingui()
+  const choices = feeds
+    .filter((f) => f.privacy === 'public')
+    .sort((a, b) => naturalCompare(a.name, b.name))
+  const [choice, setChoice] = useState(
+    choices.some((f) => f.id === account.home) ? account.home! : 'none'
+  )
+  const update = useAccountHome()
+  const save = async () => {
+    try {
+      await update.mutateAsync(
+        choice === 'new'
+          ? { id: account.id, feed: '', create: 'true' }
+          : { id: account.id, feed: choice === 'none' ? '' : choice }
+      )
+      toast.success(t`Home feed saved`)
+      onOpenChange(false)
+    } catch (error) {
+      toast.error(getErrorMessage(error, t`Could not save the home feed`))
+    }
+  }
+  return (
+    <ResponsiveDialog open onOpenChange={onOpenChange}>
+      <ResponsiveDialogContent className='sm:max-w-[425px]'>
+        <ResponsiveDialogHeader>
+          <ResponsiveDialogTitle>
+            <Trans>Home feed</Trans>
+          </ResponsiveDialogTitle>
+        </ResponsiveDialogHeader>
+        <div className='py-2'>
+          <Select value={choice} onValueChange={setChoice}>
+            <SelectTrigger aria-label={t`Home feed`}>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value='none'>
+                <Trans context='feed'>None</Trans>
+              </SelectItem>
+              {choices.map((f) => (
+                <SelectItem key={f.id} value={f.id}>
+                  {f.name}
+                </SelectItem>
+              ))}
+              <SelectItem value='new'>
+                <Trans>A new feed</Trans>
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <ResponsiveDialogFooter>
+          <Button variant='outline' onClick={() => onOpenChange(false)}>
+            <Trans>Cancel</Trans>
+          </Button>
+          <Button disabled={update.isPending} onClick={() => void save()}>
+            {update.isPending ? (
+              <Loader2 className='size-4 animate-spin' />
+            ) : (
+              <Check className='size-4' />
+            )}
+            <Trans>Save</Trans>
+          </Button>
+        </ResponsiveDialogFooter>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
+  )
+}
+
 export function LabelersDialog({
   account,
   onOpenChange,
@@ -1182,8 +1273,20 @@ export function PasswordDialog({
   )
 }
 
+// Whether an account has a home feed: a hosted fediverse or Bluesky account
+// of a person, which other apps sign in to and post from.
+function homed(account: NetworkAccount) {
+  return (
+    !!account.hosted &&
+    account.kind !== 'group' &&
+    (account.type === 'fediverse' || account.type === 'bluesky')
+  )
+}
+
 function AccountRow({
   account,
+  feeds,
+  onHome,
   onRename,
   onKeys,
   onPassword,
@@ -1197,6 +1300,8 @@ function AccountRow({
   busy,
 }: {
   account: NetworkAccount
+  feeds: NetworkFeed[]
+  onHome: (account: NetworkAccount) => void
   onRename: (account: NetworkAccount) => void
   onKeys: (account: NetworkAccount) => void
   onPassword: (account: NetworkAccount) => void
@@ -1211,6 +1316,9 @@ function AccountRow({
 }) {
   const { t } = useLingui()
   const chat = account.type === 'xmpp' || account.type === 'matrix'
+  const home = account.home
+    ? feeds.find((f) => f.id === account.home)
+    : undefined
   return (
     <TableRow>
       <TableCell className='font-medium'>{account.identifier}</TableCell>
@@ -1226,6 +1334,14 @@ function AccountRow({
           <span className='text-destructive'>{account.error}</span>
         ) : account.moved ? (
           <Trans>Moved to {account.moved}</Trans>
+        ) : account.home && !home ? (
+          <span className='text-destructive'>
+            <Trans>The home feed has been deleted</Trans>
+          </span>
+        ) : home && home.privacy !== 'public' ? (
+          <span className='text-destructive'>
+            <Trans>The home feed is private</Trans>
+          </span>
         ) : account.hosted && account.type === 'bluesky' && !account.recovery ? (
           <span className='text-destructive'>
             <Trans>No recovery key</Trans>
@@ -1262,6 +1378,12 @@ function AccountRow({
                   <LogIn className='me-2 h-4 w-4' />
                   <Trans>Sign in from another app</Trans>
                 </DropdownMenuItem>
+                {homed(account) && (
+                  <DropdownMenuItem onClick={() => onHome(account)}>
+                    <House className='me-2 h-4 w-4' />
+                    <Trans>Home feed</Trans>
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuItem onClick={() => onKeys(account)}>
                   <KeyRound className='me-2 h-4 w-4' />
                   <Trans context='cryptographic'>Keys</Trans>
@@ -1455,6 +1577,7 @@ export function Networks() {
   const [renaming, setRenaming] = useState<NetworkAccount | null>(null)
   const [aliasesFor, setAliasesFor] = useState<NetworkAccount | null>(null)
   const [labelersFor, setLabelersFor] = useState<NetworkAccount | null>(null)
+  const [homeFor, setHomeFor] = useState<NetworkAccount | null>(null)
   const [movingFor, setMovingFor] = useState<NetworkAccount | null>(null)
   const [keysFor, setKeysFor] = useState<NetworkAccount | null>(null)
   const [offering, setOffering] = useState(false)
@@ -1511,6 +1634,27 @@ export function Networks() {
         setOffering(true)
         setKeysFor(made)
       }
+    } catch (err) {
+      toast.error(getErrorMessage(err, t`Could not create the account`))
+    } finally {
+      setBusy(null)
+    }
+  }
+
+  // A Bluesky account moving here from another server: the account waits
+  // for it, and the moving app is given a password minted for it.
+  const handleArrive = async (handle: Handle) => {
+    const key = `${handle.name}/bluesky`
+    setBusy(key)
+    try {
+      const made = await create.mutateAsync({
+        network: 'bluesky',
+        handle: handle.name,
+        domain: handle.domain,
+        arriving: 'true',
+      })
+      toast.success(t`Ready for the Bluesky account to arrive`)
+      if (made?.id) setPasswordFor(made)
     } catch (err) {
       toast.error(getErrorMessage(err, t`Could not create the account`))
     } finally {
@@ -1630,6 +1774,7 @@ export function Networks() {
                 }
                 onRelease={setReleasing}
                 onAddName={setAdding}
+                onArrive={(h) => void handleArrive(h)}
                 busy={busy}
               />
             ))}
@@ -1664,6 +1809,8 @@ export function Networks() {
                       <AccountRow
                         key={account.id}
                         account={account}
+                        feeds={data.feeds ?? []}
+                        onHome={setHomeFor}
                         onRename={setRenaming}
                         onKeys={setKeysFor}
                         onPassword={setPasswordFor}
@@ -1718,6 +1865,15 @@ export function Networks() {
           account={aliasesFor}
           onOpenChange={(open) => {
             if (!open) setAliasesFor(null)
+          }}
+        />
+      )}
+      {homeFor && data && (
+        <HomeDialog
+          account={homeFor}
+          feeds={data.feeds ?? []}
+          onOpenChange={(open) => {
+            if (!open) setHomeFor(null)
           }}
         />
       )}

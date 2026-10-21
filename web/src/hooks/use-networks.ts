@@ -66,7 +66,12 @@ export function useHandleRelease() {
 
 export function useAccountCreate() {
   return useNetworksMutation(
-    (data: { network: string; handle: string; domain: string }) =>
+    (data: {
+      network: string
+      handle: string
+      domain: string
+      arriving?: string
+    }) =>
       requestHelpers.post<NetworkAccount>(
         endpoints.networks.accountCreate,
         data,
@@ -124,6 +129,17 @@ export function useAccountAliases() {
 }
 
 // The labellers a hosted Bluesky account reads, by identifier (phase 19).
+export function useAccountHome() {
+  return useNetworksMutation(
+    (data: { id: string; feed: string; create?: string }) =>
+      requestHelpers.post<NetworkAccount>(
+        endpoints.networks.accountHome,
+        data,
+        NO_GLOBAL_ERROR_TOAST_CONFIG
+      )
+  )
+}
+
 export function useAccountLabelers() {
   return useNetworksMutation((data: { id: string; labelers: string[] }) =>
     requestHelpers.post<NetworkAccount>(

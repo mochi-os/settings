@@ -8,6 +8,8 @@ import type { Account, ProviderField } from '@mochi/web'
 // it: the connected-account fields and what the network adds.
 export interface NetworkAccount extends Account {
   hosted?: boolean
+  // "group" for a forum's community account (phase 20).
+  kind?: string
   server?: string
   domain?: string
   url?: string
@@ -29,6 +31,16 @@ export interface NetworkAccount extends Account {
   did?: string
   recovery?: boolean
   labelers?: string[]
+  // A hosted fediverse or Bluesky account's home feed, where posts made from
+  // other apps signed in to it land.
+  home?: string
+}
+
+// One of the user's feeds, as a home feed is chosen from them.
+export interface NetworkFeed {
+  id: string
+  name: string
+  privacy: string
 }
 
 // A handle, or a name under one, with the address it has on each network.
@@ -68,6 +80,7 @@ export interface NetworksData {
   // their id there - and the people muted.
   blocks?: Block[]
   mutes?: Mute[]
+  feeds?: NetworkFeed[]
 }
 
 export interface Block {
