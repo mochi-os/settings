@@ -11,6 +11,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { suggestHandle } from '@/lib/handles'
 import {
   AliasesDialog,
+  HomeDialog,
   LabelersDialog,
   MoveDialog,
   Networks,
@@ -511,6 +512,92 @@ describe('Networks', () => {
           id: 'b1',
           labelers: JSON.stringify(['did:plc:bbbbbbbbbbbbbbbbbbbbbbbb']),
         },
+        expect.anything()
+      )
+    )
+  })
+
+  it("flags a hosted account's home feed once it is deleted or private", async () => {
+    const homed = (home: string, privacy: string) => ({
+      ...data,
+      accounts: [{ ...data.accounts[0], home }],
+      feeds: [{ id: 'feed1', name: 'Notes', privacy }],
+    })
+    const { unmount } = show(homed('gone', 'public'))
+    expect(
+      await screen.findByText('The home feed has been deleted')
+    ).toBeTruthy()
+    unmount()
+    const again = show(homed('feed1', 'private'))
+    expect(await screen.findByText('The home feed is private')).toBeTruthy()
+    again.unmount()
+    show(homed('feed1', 'public'))
+    expect(await screen.findByText('example.com', { selector: 'td' })).toBeTruthy()
+    expect(screen.queryByText(/The home feed/)).toBeNull()
+  })
+
+  it("chooses a hosted account's home feed among the public feeds, or a new one", async () => {
+    state.post.mockResolvedValue({})
+    const client = new QueryClient()
+    const feeds = [
+      { id: 'feed2', name: 'Travel', privacy: 'public' },
+      { id: 'feed1', name: 'notes', privacy: 'public' },
+      { id: 'feed3', name: 'Diary', privacy: 'private' },
+    ]
+    const onOpenChange = vi.fn()
+    render(
+      <QueryClientProvider client={client}>
+        <I18nProvider i18n={i18n}>
+          <HomeDialog
+            account={{ ...data.accounts[0], home: 'feed2' }}
+            feeds={feeds}
+            onOpenChange={onOpenChange}
+          />
+        </I18nProvider>
+      </QueryClientProvider>
+    )
+    // The chosen feed is shown, and only public feeds are offered, by name.
+    expect(screen.getByRole('combobox').textContent).toBe('Travel')
+    fireEvent.click(screen.getByRole('combobox'))
+    await screen.findByRole('option', { name: 'notes' })
+    expect(
+      screen.getAllByRole('option').map((option) => option.textContent)
+    ).toEqual(['None', 'notes', 'Travel', 'A new feed'])
+    fireEvent.click(screen.getByRole('option', { name: 'notes' }))
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Save' }))
+    })
+    await waitFor(() =>
+      expect(state.post).toHaveBeenCalledWith(
+        '-/user/networks/account/home',
+        { id: 'f1', feed: 'feed1' },
+        expect.anything()
+      )
+    )
+    expect(onOpenChange).toHaveBeenCalledWith(false)
+
+    fireEvent.click(screen.getByRole('combobox'))
+    fireEvent.click(await screen.findByRole('option', { name: 'A new feed' }))
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Save' }))
+    })
+    await waitFor(() =>
+      expect(state.post).toHaveBeenLastCalledWith(
+        '-/user/networks/account/home',
+        { id: 'f1', feed: '', create: 'true' },
+        expect.anything()
+      )
+    )
+
+    fireEvent.click(screen.getByRole('combobox'))
+    fireEvent.click(await screen.findByRole('option', { name: 'None' }))
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Save' }))
+    })
+    await waitFor(() =>
+      expect(state.post).toHaveBeenLastCalledWith(
+        '-/user/networks/account/home',
+        { id: 'f1', feed: '' },
         expect.anything()
       )
     )

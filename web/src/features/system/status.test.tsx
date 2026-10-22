@@ -216,3 +216,54 @@ describe('Status: Matrix server keys', () => {
     expect(screen.queryByText('Matrix server keys')).toBeNull()
   })
 })
+
+describe('Status: XMPP rooms', () => {
+  beforeEach(() => {
+    i18n.load('en', {})
+    i18n.activate('en')
+  })
+
+  it('shows each room service working, or unavailable with the reason, in order', () => {
+    show({
+      development: true,
+      networks: {
+        xmpp: {
+          state: 'working' as const,
+          reason: '',
+          rooms: [
+            { host: 'rooms.b.example', state: 'unavailable' as const, reason: 'dns' },
+            { host: 'rooms.a.example', state: 'working' as const, reason: '' },
+          ],
+        },
+      },
+    })
+    expect(screen.getByText('XMPP rooms')).toBeInTheDocument()
+    const rows = screen.getAllByText(/^rooms\./).map((e) => e.textContent)
+    expect(rows).toEqual(['rooms.a.example', 'rooms.b.example'])
+    expect(
+      screen.getByText('Unavailable · Its name does not lead to this server')
+    ).toBeInTheDocument()
+  })
+
+  it('shows no section where XMPP has no room services', () => {
+    show({
+      development: true,
+      networks: { xmpp: { state: 'working' as const, reason: '', rooms: [] } },
+    })
+    expect(screen.queryByText('XMPP rooms')).toBeNull()
+  })
+
+  it('shows no section outside development, as the other networks', () => {
+    show({
+      development: false,
+      networks: {
+        xmpp: {
+          state: 'working' as const,
+          reason: '',
+          rooms: [{ host: 'rooms.a.example', state: 'working' as const, reason: '' as const }],
+        },
+      },
+    })
+    expect(screen.queryByText('XMPP rooms')).toBeNull()
+  })
+})

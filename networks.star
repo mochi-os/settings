@@ -34,7 +34,14 @@ def action_networks_data(a):
         # What the user has blocked and muted on other networks (phase 16).
         "blocks": (mochi.account.block.list() or []) if networks else [],
         "mutes": (mochi.account.mute.list() or []) if networks else [],
+        # The feeds a hosted account's home feed is chosen from (decision 42).
+        "feeds": networks_feeds() if networks else [],
     })
+
+def networks_feeds():
+    """The user's feeds, as the feeds app lists them: none when it is not
+    installed."""
+    return [{"id": f["id"], "name": f["name"], "privacy": f["privacy"]} for f in (mochi.service.call("feeds", "list") or [])]
 
 def action_networks_handle_available(a):
     """Whether a name may be reserved, with the reason when not"""
@@ -77,6 +84,9 @@ def action_networks_account_create(a):
     domain = a.input("domain")
     if domain:
         fields["domain"] = domain
+    # A Bluesky account that waits for one moving here from another server.
+    if network == "bluesky" and a.input("arriving") == "true":
+        fields["arriving"] = "true"
     a.json(mochi.account.add(network, **fields))
 
 def action_networks_account_link(a):
@@ -233,6 +243,26 @@ def action_networks_account_keys_recovery(a):
     if not account:
         return
     a.json(mochi.account.key.recovery(account["id"]))
+
+def action_networks_account_home(a):
+    """Choose a hosted account's home feed, where posts made from other apps
+    signed in to it land (decision 42): one of the user's public feeds, a new
+    one named after the account and publishing to it alone, or none."""
+    account = networks_account(a)
+    if not account:
+        return
+    if not account.get("hosted") or account.get("type") not in ("fediverse", "bluesky") or account.get("kind") == "group":
+        return a.error.label(400, "errors.account_not_hosted")
+    feed = a.input("feed", "")
+    if a.input("create", "") == "true":
+        made = mochi.service.call("feeds", "create", account.get("label") or account.get("name") or account.get("identifier"), "public", account["id"])
+        if not made:
+            return a.error.label(500, "errors.feed_not_created")
+        feed = made["id"]
+    elif feed and feed not in [f["id"] for f in networks_feeds() if f["privacy"] == "public"]:
+        return a.error.label(400, "errors.feed_not_public")
+    mochi.account.update(account["id"], home=feed)
+    a.json(mochi.account.get(account["id"]))
 
 def action_networks_account_password(a):
     """Mint a password for signing in to a hosted account from another app,
