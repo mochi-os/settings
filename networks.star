@@ -114,6 +114,13 @@ def action_networks_account_link(a):
             return a.error.label(400, "errors.field_required", field=field.get("label") or name)
     if provider["link"].get("flow") == "oauth":
         fields["target"] = a.input("target", "/settings/user/networks")
+        # A native app's consent returns to the app by its scheme, and the
+        # link is landed at the exchange against its PKCE challenge.
+        scheme = a.input("scheme")
+        challenge = a.input("challenge")
+        if scheme or challenge:
+            fields["scheme"] = scheme or ""
+            fields["challenge"] = challenge or ""
     a.json(mochi.account.link(type, **fields))
 
 def networks_account(a):
