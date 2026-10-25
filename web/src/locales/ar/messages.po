@@ -33,7 +33,9 @@ msgstr "سيُحرَّر \"{0}\" والأسماء التي تحته ليأخذه
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "ستتم إزالة \"{0}\" مع كل ما نشره ومتابعيه."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "سيتم تسجيل خروج \"{0}\" ولن يتمكن من تسجيل الدخول مرة أخرى حتى تتم إزالة التعليق."
@@ -89,6 +91,12 @@ msgstr "(أنت)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[غير محدد]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, zero {{clients} عميل مسجّل الدخول} one {{clients} عميل مسجّل الدخول} two {{clients} عميلان مسجّلا الدخول} few {{clients} عملاء مسجّلين الدخول} many {{clients} عميلًا مسجّلًا الدخول} other {{clients} عميل مسجّل الدخول}} · {1, plural, zero {{accounts} حساب} one {{accounts} حساب} two {{accounts} حسابان} few {{accounts} حسابات} many {{accounts} حسابًا} other {{accounts} حساب}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "هناك تسجيل جارٍ بالفعل."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "يتيح لك مفتاح الاسترداد نقل الحساب أو التراجع عمّا فعله خادم مخترق. يحل محل أي مفتاح سابق ويُعرض مرة واحدة فقط."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "بشأن"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "مطلق (تاريخ ووقت)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "إساءة"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "هل أنت متأكد أنك تريد الاستسلام؟ سيفوز {
 msgid "Ascending"
 msgstr "تصاعدي"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "بلغ حد الطلبات"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "في البحر"
@@ -783,17 +805,41 @@ msgstr "تم تحديث البانر"
 msgid "Binary file not shown"
 msgstr "الملف الثنائي غير معروض"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "حظر"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "حظر {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "حظر {0}؟"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "حظر {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "حظر الخادم {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "محظور"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "محظور"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "تم حظر الانتقال إلى رابط غير موثوق"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "يحظر"
 
@@ -1147,6 +1196,11 @@ msgstr "أكّد أنك أنت"
 msgid "Connected"
 msgstr "متصل"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "متصل"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "تعذّر إضافة الاسم"
 msgid "Could not change the account"
 msgstr "تعذّر تغيير الحساب"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "تعذر تغيير الحظر"
@@ -1293,6 +1348,10 @@ msgstr "تعذّر استبدال المفاتيح"
 msgid "Could not reserve the handle"
 msgstr "تعذّر حجز المعرّف"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "تعذر حل التقرير"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "تعذّر الإبطال"
@@ -1360,6 +1419,7 @@ msgstr "إنشاء مستخدم"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "غير متصل"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "تجاهل"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "مرفوض"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "تم إنشاء النطاق"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "تم حذف النطاق"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "النطاق أو الشخص المراد حظره"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "فشل التحقق من الرمز"
 msgid "Failed to verify domain"
 msgstr "فشل التحقق من النطاق"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "الإخفاقات"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "الفيدرالية"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "الأصدقاء"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "من"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "من"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "من"
 
@@ -2564,6 +2656,7 @@ msgstr "المفاتيح"
 msgid "Keys replaced"
 msgstr "تم استبدال المفاتيح"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "آخر بث"
 msgid "Last edited {0}"
 msgstr "آخر تعديل {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "آخر إخفاق"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "آخر تسجيل دخول"
@@ -2623,6 +2720,10 @@ msgstr "آخر تسجيل دخول"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "آخر ظهور"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "آخر نجاح"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "آخر استخدام"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "التخطيط"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "قانوني"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "اسم تحت {0}"
 msgid "Name updated"
 msgstr "تم تحديث الاسم"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "لعبة جديدة"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "التالي"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "المحاولة التالية"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "لا توجد رموز استرداد"
 msgid "No recovery key"
 msgstr "لا يوجد مفتاح استرداد"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "لا توجد تقارير في الانتظار."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "لم يتم حل أي تقارير."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "لم يتم العثور على نتائج."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "لم يتم تكوين مسارات"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "لا توجد خوادم بعد."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "لم تتم المقارنة: يتجاوز حد الحجم"
 msgid "Not connected"
 msgstr "غير متصل"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "غير متصل"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "غير محدد"
 msgid "Nothing found"
 msgstr "لم يتم العثور على شيء"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "لا يصل أي شيء من {0} إلى أي أحد على هذا الخادم، ولا يرسل إليه أحد من هنا."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "لا يوجد شيء محظور."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "لا يُقدَّم أي شيء من الحساب ويتم إبلاغ المرحّلات. يبقى الحساب وما نشره، ويمكن استعادته."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "لا يصل أي شيء يرسله هذا الشخص إلى أي أحد على هذا الخادم، ولم يعد يتابع أي أحد هنا."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "مفعّل"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "عذراً! الصفحة غير موجودة!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "مفتوحة"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "خيارات"
 msgid "Other"
 msgstr "أخرى"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "أخرى"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "تعرف الخوادم الأخرى المفتاح الجديد من م
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "إعدادات أخرى"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "النتيجة"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "قيد الانتظار"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "الأشخاص"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "شخص"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "إمكانية الوصول"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "جاهز لوصول حساب Bluesky"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "مُستلم"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "رد"
 msgid "Reply to {0}..."
 msgstr "الرد على {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "التقرير"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "إجراءات التقرير"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "تم رفض التقرير"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "التقارير"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "طلب التحقق من النطاق"
@@ -4005,6 +4190,11 @@ msgstr "الاستسلام"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "الاستسلام في اللعبة؟"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "محلولة"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "إبطال تسجيل الدخول هذا؟"
 msgid "Role"
 msgstr "الدور"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "غرفة"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "تم إنشاء المسار"
@@ -4115,6 +4310,11 @@ msgstr "تم نسخ URL RSS إلى الحافظة"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "مخالفة القواعد"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "إرسال رسالة"
 msgid "Serif"
 msgstr "سيريف"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "المصادر"
 msgid "Spacious"
 msgstr "واسع"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "بريد عشوائي"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "تقسيم"
@@ -4473,6 +4682,7 @@ msgstr "بدأ"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "تم إعادة توليد الملخص"
 msgid "Sunday"
 msgstr "الأحد"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "تعليق"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "تعليق المستخدم"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "تعليق المستخدم؟"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "معلق"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "معلق"
 
@@ -4935,10 +5154,12 @@ msgstr "غير متاح · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "غير متاح · اسمه لا يؤدي إلى هذا الخادم"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "إلغاء حظر {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "أُلغي الحظر"
@@ -5079,6 +5300,7 @@ msgstr "افتراضيات المستخدم"
 msgid "User deleted"
 msgstr "تم حذف المستخدم"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "تم تعليق المستخدم"
@@ -5172,6 +5394,12 @@ msgstr "عناصر تحكم العرض"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "التسجيل الصوتي غير مدعوم في هذا المتصفح"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "في الانتظار"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

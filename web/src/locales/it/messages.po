@@ -33,7 +33,9 @@ msgstr "\"{0}\" e i nomi sotto di esso saranno liberati e chiunque potrà prende
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" verrà rimosso insieme a tutto ciò che ha pubblicato e ai suoi follower."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" verrà disconnesso e non potrà accedere di nuovo finché la sospensione non sarà rimossa."
@@ -89,6 +91,12 @@ msgstr "(tu)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[non impostato]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} client connesso} many {{clients} di client connessi} other {{clients} client connessi}} · {1, plural, one {{accounts} account} many {{accounts} di account} other {{accounts} account}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Una registrazione è già in corso."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Una chiave di recupero ti permette di spostare l'account o di annullare ciò che ha fatto un server compromesso. Sostituisce qualsiasi chiave precedente e viene mostrata una sola volta."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Riguarda"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Assoluto (data e ora)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Abuso"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Sei sicuro di voler abbandonare? {opponentName} vincerà la partita."
 msgid "Ascending"
 msgstr "Crescente"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Al limite di richieste"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "In mare"
@@ -783,17 +805,41 @@ msgstr "Banner aggiornato"
 msgid "Binary file not shown"
 msgstr "File binario non mostrato"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Blocca"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "Blocca {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "Blocca {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "Blocca {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Blocca il server {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Bloccato"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Bloccato"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Navigazione verso link non attendibile bloccata"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Blocca"
 
@@ -1147,6 +1196,11 @@ msgstr "Conferma la tua identità"
 msgid "Connected"
 msgstr "Connesso"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "Connesso"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "Impossibile aggiungere il nome"
 msgid "Could not change the account"
 msgstr "Impossibile modificare l'account"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Impossibile modificare il blocco"
@@ -1293,6 +1348,10 @@ msgstr "Impossibile sostituire le chiavi"
 msgid "Could not reserve the handle"
 msgstr "Impossibile riservare il nome utente"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Impossibile risolvere la segnalazione"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Impossibile revocare"
@@ -1360,6 +1419,7 @@ msgstr "Crea utente"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "Disconnesso"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Ignora"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Archiviato"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "Dominio creato"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Dominio eliminato"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Dominio o persona da bloccare"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "Impossibile verificare il codice"
 msgid "Failed to verify domain"
 msgstr "Impossibile verificare il dominio"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Errori"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Federazione"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverso"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "Amici"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "Da"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Da"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "Da"
 
@@ -2564,6 +2656,7 @@ msgstr "Chiavi"
 msgid "Keys replaced"
 msgstr "Chiavi sostituite"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "Ultima trasmissione"
 msgid "Last edited {0}"
 msgstr "Ultima modifica {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Ultimo errore"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Ultimo accesso"
@@ -2623,6 +2720,10 @@ msgstr "Ultimo accesso"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Visto l'ultima volta"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Ultimo successo"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "Ultimo utilizzo"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Layout"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Legale"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "Nome sotto {0}"
 msgid "Name updated"
 msgstr "Nome aggiornato"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "Nuova partita"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Avanti"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Prossimo tentativo"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "Nessun codice di recupero"
 msgid "No recovery key"
 msgstr "Nessuna chiave di recupero"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Nessuna segnalazione in attesa."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Nessuna segnalazione risolta."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "Nessun risultato trovato."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Nessuna rotta configurata"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Ancora nessun server."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "Non confrontato: oltre il limite di dimensione"
 msgid "Not connected"
 msgstr "Non connesso"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Non connesso"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "Non impostato"
 msgid "Nothing found"
 msgstr "Nessun risultato"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Nulla di ciò che proviene da {0} raggiunge qualcuno su questo server, e nessuno qui vi invia nulla."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Nulla è bloccato."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Nulla dell'account viene servito e i servizi di inoltro vengono avvisati. L'account e ciò che ha pubblicato restano, e può essere ripristinato."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Nulla di ciò che invia raggiunge qualcuno su questo server, e non segue più nessuno qui."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "Attivo"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Oops! Pagina non trovata!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Aperte"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "Opzioni"
 msgid "Other"
 msgstr "Altro"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Altro"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "Gli altri server apprendono la nuova chiave dal documento dell'account. 
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Altre impostazioni"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Esito"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "In sospeso"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Persone"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Persona"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "Raggiungibilità"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Pronto per l'arrivo dell'account Bluesky"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Ricevuto"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "Rispondi"
 msgid "Reply to {0}..."
 msgstr "Rispondi a {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Segnalazione"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Azioni sulla segnalazione"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Segnalazione archiviata"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Segnalazioni"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Richiedi verifica del dominio"
@@ -4005,6 +4190,11 @@ msgstr "Abbandona"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Abbandonare la partita?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Risolte"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "Revocare questo accesso?"
 msgid "Role"
 msgstr "Ruolo"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Stanza"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Rotta creata"
@@ -4115,6 +4310,11 @@ msgstr "URL RSS copiato negli appunti"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Violazione delle regole"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "Invia messaggio"
 msgid "Serif"
 msgstr "Serif"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "Sorgenti"
 msgid "Spacious"
 msgstr "Spazioso"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Spam"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Dividi"
@@ -4473,6 +4682,7 @@ msgstr "Iniziato"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "Riepilogo rigenerato"
 msgid "Sunday"
 msgstr "Domenica"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Sospendi"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Sospendi utente"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Sospendi utente?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Sospeso"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Sospeso"
 
@@ -4935,10 +5154,12 @@ msgstr "Non disponibile · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Non disponibile · Il suo nome non porta a questo server"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Sblocca {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Sbloccato"
@@ -5079,6 +5300,7 @@ msgstr "Impostazioni predefinite utente"
 msgid "User deleted"
 msgstr "Utente eliminato"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Utente sospeso"
@@ -5172,6 +5394,12 @@ msgstr "Controlli di visualizzazione"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "La registrazione vocale non è supportata in questo browser"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "In attesa"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

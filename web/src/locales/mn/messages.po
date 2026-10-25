@@ -33,7 +33,9 @@ msgstr "\"{0}\" болон түүний доорх нэрс чөлөөлөгдө
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" нь нийтэлсэн бүх зүйл болон дагагчдынхаа хамт устгагдана."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" гарах бөгөөд түр зогсоолтыг арилгах хүртэл дахин нэвтэрч чадахгүй."
@@ -89,6 +91,12 @@ msgstr "(та)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[тогтоогоогүй]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} нэвтэрсэн клиент} other {{clients} нэвтэрсэн клиент}} · {1, plural, one {{accounts} бүртгэл} other {{accounts} бүртгэл}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Бичлэг аль хэдийн явагдаж байна."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Сэргээх түлхүүр нь бүртгэлийг шилжүүлэх эсвэл халдлагад өртсөн серверийн хийсэн зүйлийг буцаах боломж олгоно. Энэ нь өмнөх аливаа түлхүүрийг орлох бөгөөд зөвхөн нэг удаа харагдана."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Хэний тухай"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Үнэмлэхүй (огноо ба цаг)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Зүй бус үйлдэл"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Бууж өгөхдөө итгэлтэй байна уу? {opponentName}
 msgid "Ascending"
 msgstr "Өсөхөөр"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Хүсэлтийн хязгаарт хүрсэн"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Далайд"
@@ -783,17 +805,41 @@ msgstr "Баннер шинэчлэгдсэн"
 msgid "Binary file not shown"
 msgstr "Хоёртын файлыг харуулахгүй"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Блоклох"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "{0}-г блоклох"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "{0}-г блоклох уу?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "{name}-г блоклох"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "{host} серверийг блоклох"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Хориглосон"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Хориглосон"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Найдвартай биш холбоос руу шилжихийг блоклосон"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Блокууд"
 
@@ -1147,6 +1196,11 @@ msgstr "Энэ та мөн эсэхийг баталгаажуулна уу"
 msgid "Connected"
 msgstr "Холбогдсон"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "Холбогдсон"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "Нэрийг нэмж чадсангүй"
 msgid "Could not change the account"
 msgstr "Бүртгэлийг өөрчилж чадсангүй"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Хориглолтыг өөрчилж чадсангүй"
@@ -1293,6 +1348,10 @@ msgstr "Түлхүүрүүдийг сольж чадсангүй"
 msgid "Could not reserve the handle"
 msgstr "Хэрэглэгчийн нэрийг нөөцөлж чадсангүй"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Гомдлыг шийдвэрлэж чадсангүй"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Хүчингүй болгож чадсангүй"
@@ -1360,6 +1419,7 @@ msgstr "Хэрэглэгч үүсгэх"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "Салгагдсан"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Болих"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Хэрэгсэхгүй болгосон"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "Домэйн үүсгэсэн"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Домэйн устгасан"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Хориглох домэйн эсвэл хүн"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "Код баталгаажуулж чадсангүй"
 msgid "Failed to verify domain"
 msgstr "Домэйн баталгаажуулж чадсангүй"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Амжилтгүй"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Федераци"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Федиверс"
@@ -2309,6 +2391,16 @@ msgstr "Найзууд"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "From"
 msgstr "Эхлэх"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Хэнээс"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "From"
+msgstr "Хаанаас"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -2564,6 +2656,7 @@ msgstr "Түлхүүрүүд"
 msgid "Keys replaced"
 msgstr "Түлхүүрүүд солигдлоо"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "Сүүлийн цацалт"
 msgid "Last edited {0}"
 msgstr "Сүүлд засварласан {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Сүүлийн амжилтгүй"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Сүүлд нэвтэрсэн"
@@ -2623,6 +2720,10 @@ msgstr "Сүүлд нэвтэрсэн"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Сүүлд харагдсан"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Сүүлийн амжилттай"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "Сүүлд ашигласан"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Зохион байгуулалт"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Хууль эрх зүйн"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "{0}-ийн доорх нэр"
 msgid "Name updated"
 msgstr "Нэр шинэчлэгдсэн"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "Шинэ тоглоом"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Дараах"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Дараагийн оролдлого"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "Сэргээх код алга"
 msgid "No recovery key"
 msgstr "Сэргээх түлхүүр алга"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Хүлээгдэж буй гомдол алга."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Шийдвэрлэсэн гомдол алга."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "Үр дүн олдсонгүй."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Зам тохируулаагүй"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Одоогоор сервер алга."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "Харьцуулаагүй: хэмжээний хязгаараас хэ
 msgid "Not connected"
 msgstr "Холбогдоогүй"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Холбогдоогүй"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "Тохируулаагүй"
 msgid "Nothing found"
 msgstr "Юу ч олдсонгүй"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "{0}-аас ирсэн юу ч энэ серверийн хэнд ч хүрэхгүй бөгөөд эндээс хэн ч түүн рүү илгээхгүй."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Юу ч хориглогдоогүй байна."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Бүртгэлээс юу ч үйлчлэгдэхгүй бөгөөд дамжуулагчдад мэдэгдэнэ. Бүртгэл болон түүний нийтэлсэн зүйлс хадгалагдах бөгөөд сэргээх боломжтой."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Түүний илгээсэн юу ч энэ серверийн хэнд ч хүрэхгүй бөгөөд тэр энд хэний ч дагагч байхаа больсон."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "Асаалттай"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Уучлаарай! Хуудас олдсонгүй!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Нээлттэй"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "Сонголтууд"
 msgid "Other"
 msgstr "Бусад"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Бусад"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "Бусад серверүүд шинэ түлхүүрийг бүртгэ
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Бусад тохиргоо"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Үр дүн"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "Хүлээгдэж буй"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Хүмүүс"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Хүн"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "Хүрэх боломж"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Bluesky бүртгэлийг хүлээн авахад бэлэн"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Хүлээн авсан"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "Хариулах"
 msgid "Reply to {0}..."
 msgstr "{0}-д хариу..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Гомдол"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Гомдлын үйлдлүүд"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Гомдлыг хэрэгсэхгүй болгосон"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Гомдол"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Домэйны баталгаажуулалт шаардах"
@@ -4005,6 +4190,11 @@ msgstr "Тэрсэх"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Тоглоомоос тэрсэх үү?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Шийдвэрлэсэн"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "Энэ нэвтрэлтийг хүчингүй болгох уу?"
 msgid "Role"
 msgstr "Үүрэг"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Өрөө"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Маршрут үүсгэгдсэн"
@@ -4115,6 +4310,11 @@ msgstr "RSS URL түр санах ой руу хуулагдсан"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Дүрэм зөрчсөн"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "Зурвас илгээх"
 msgid "Serif"
 msgstr "Сериф"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "Эх сурвалжууд"
 msgid "Spacious"
 msgstr "Уужим"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Спам"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Хуваах"
@@ -4473,6 +4682,7 @@ msgstr "Эхэлсэн"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "Хураангуй дахин үүсгэгдсэн"
 msgid "Sunday"
 msgstr "Ням гараг"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Түр зогсоох"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Хэрэглэгчийг түр зогсоох"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Хэрэглэгчийг түр зогсоох?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Түр зогсоосон"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Түр зогсоосон"
 
@@ -4935,10 +5154,12 @@ msgstr "Боломжгүй · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Боломжгүй · Түүний нэр энэ сервер рүү чиглэдэггүй"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "{label}-н хориглолтыг цуцлах"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Хориглолт цуцлагдсан"
@@ -5079,6 +5300,7 @@ msgstr "Хэрэглэгчийн анхдагч"
 msgid "User deleted"
 msgstr "Хэрэглэгч устгагдсан"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Хэрэглэгчийг түр зогсоосон"
@@ -5172,6 +5394,12 @@ msgstr "Хяналт үзэх"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Энэ хөтөч дуу бичихийг дэмждэггүй"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "Хүлээгдэж буй"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

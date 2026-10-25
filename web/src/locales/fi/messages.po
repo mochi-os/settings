@@ -33,7 +33,9 @@ msgstr "\"{0}\" ja sen alla olevat nimet vapautetaan kenen tahansa otettaviksi. 
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" poistetaan yhdessä kaiken sen julkaiseman ja sen seuraajien kanssa."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" kirjataan ulos eikä voi kirjautua uudelleen, ennen kuin käyttökielto on poistettu."
@@ -89,6 +91,12 @@ msgstr "(sinä)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[ei asetettu]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} asiakasohjelma kirjautuneena} other {{clients} asiakasohjelmaa kirjautuneena}} · {1, plural, one {{accounts} tili} other {{accounts} tiliä}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Tallennus on jo käynnissä."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Palautusavaimella voit siirtää tilin tai kumota sen, mitä vaarantunut palvelin teki. Se korvaa aiemman avaimen ja näytetään vain kerran."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Kohde"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absoluuttinen (päivämäärä ja kellonaika)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Väärinkäyttö"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Haluatko varmasti luovuttaa? {opponentName} voittaa pelin."
 msgid "Ascending"
 msgstr "Nouseva"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Pyyntöraja saavutettu"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Merellä"
@@ -783,17 +805,41 @@ msgstr "Banneri päivitetty"
 msgid "Binary file not shown"
 msgstr "Binääritiedostoa ei näytetä"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Estä"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "Estä {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "Estetäänkö {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "Estä {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Estä palvelin {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Estetty"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Estetty"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Estetty siirtyminen epäluotettavaan linkkiin"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Estää"
 
@@ -1147,6 +1196,11 @@ msgstr "Vahvista henkilöllisyytesi"
 msgid "Connected"
 msgstr "Yhdistetty"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "Yhdistetty"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "Nimeä ei voitu lisätä"
 msgid "Could not change the account"
 msgstr "Tilin muuttaminen epäonnistui"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Estoa ei voitu muuttaa"
@@ -1293,6 +1348,10 @@ msgstr "Avaimia ei voitu korvata"
 msgid "Could not reserve the handle"
 msgstr "Käyttäjätunnusta ei voitu varata"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Ilmoitusta ei voitu ratkaista"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Mitätöinti epäonnistui"
@@ -1360,6 +1419,7 @@ msgstr "Luo käyttäjä"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "Ei yhteyttä"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Hylkää"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Hylätty"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "Verkkotunnus luotu"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Verkkotunnus poistettu"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Estettävä verkkotunnus tai henkilö"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "Koodin vahvistus epäonnistui"
 msgid "Failed to verify domain"
 msgstr "Verkkotunnuksen vahvistus epäonnistui"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Epäonnistumiset"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Federaatio"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediversumi"
@@ -2309,6 +2391,16 @@ msgstr "Kaverit"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "From"
 msgstr "Lähettäjä"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Lähettäjä"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "From"
+msgstr "Lähde"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -2564,6 +2656,7 @@ msgstr "Avaimet"
 msgid "Keys replaced"
 msgstr "Avaimet korvattu"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "Viimeisin lähetys"
 msgid "Last edited {0}"
 msgstr "Viimeksi muokattu {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Viimeisin epäonnistuminen"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Viimeisin kirjautuminen"
@@ -2623,6 +2720,10 @@ msgstr "Viimeisin kirjautuminen"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Viimeksi nähty"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Viimeisin onnistuminen"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "Viimeksi käytetty"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Asettelu"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Oikeudellinen"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "Nimi tunnuksen {0} alla"
 msgid "Name updated"
 msgstr "Nimi päivitetty"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "Uusi peli"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Seuraava"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Seuraava yritys"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "Ei palautuskoodeja"
 msgid "No recovery key"
 msgstr "Ei palautusavainta"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Odottavia ilmoituksia ei ole."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Ilmoituksia ei ole ratkaistu."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "Tuloksia ei löytynyt."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Reittejä ei ole määritetty"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Ei vielä palvelimia."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "Ei verrattu: ylittää kokorajan"
 msgid "Not connected"
 msgstr "Ei yhdistetty"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Ei yhdistetty"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "Ei asetettu"
 msgid "Nothing found"
 msgstr "Mitään ei löytynyt"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Mikään kohteesta {0} ei tavoita ketään tällä palvelimella, eikä kukaan täältä lähetä sinne mitään."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Mitään ei ole estetty."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Tililtä ei tarjoilla mitään, ja välittäjille ilmoitetaan. Tili ja sen julkaisemat sisällöt säilyvät, ja tili voidaan palauttaa."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Mikään, mitä tämä henkilö lähettää, ei tavoita ketään tällä palvelimella, eikä hän enää seuraa ketään täällä."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "Päällä"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Hups! Sivua ei löytynyt!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Avoimet"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "Vaihtoehdot"
 msgid "Other"
 msgstr "Muu"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Muu"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "Muut palvelimet saavat uuden avaimen tilin asiakirjasta. Mitään vanhal
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Muut asetukset"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Lopputulos"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "Odottaa"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Henkilöt"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Henkilö"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "Tavoitettavuus"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Valmiina Bluesky-tilin saapumiseen"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Vastaanotettu"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "Vastaa"
 msgid "Reply to {0}..."
 msgstr "Vastaa käyttäjälle {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Ilmoitus"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Ilmoituksen toiminnot"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Ilmoitus hylätty"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Ilmoitukset"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Vaadi verkkotunnuksen vahvistus"
@@ -4005,6 +4190,11 @@ msgstr "Luovuta"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Luovutatko pelin?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Ratkaistut"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "Mitätöidäänkö tämä kirjautuminen?"
 msgid "Role"
 msgstr "Rooli"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Huone"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Reitti luotu"
@@ -4115,6 +4310,11 @@ msgstr "RSS-URL kopioitu leikepöydälle"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Sääntörikkomus"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "Lähetä viesti"
 msgid "Serif"
 msgstr "Pääteviivallinen"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "Lähteet"
 msgid "Spacious"
 msgstr "Tilava"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Roskaposti"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Rinnakkain"
@@ -4473,6 +4682,7 @@ msgstr "Aloitettu"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "Yhteenveto luotu uudelleen"
 msgid "Sunday"
 msgstr "Sunnuntai"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Keskeytä"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Keskeytä käyttäjä"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Keskeytä käyttäjä?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Keskeytetty"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Keskeytetty"
 
@@ -4935,10 +5154,12 @@ msgstr "Ei saatavilla · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Ei saatavilla · Sen nimi ei johda tälle palvelimelle"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Poista esto: {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Esto poistettu"
@@ -5079,6 +5300,7 @@ msgstr "Käyttäjän oletukset"
 msgid "User deleted"
 msgstr "Käyttäjä poistettu"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Käyttäjä keskeytetty"
@@ -5172,6 +5394,12 @@ msgstr "Näkymän hallinta"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Äänitallennusta ei tueta tässä selaimessa"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "Jonossa"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

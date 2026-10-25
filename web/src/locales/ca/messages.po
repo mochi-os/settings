@@ -33,7 +33,9 @@ msgstr "\"{0}\" i els noms que en depenen quedaran lliures perquè qualsevol els
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" s'eliminarà amb tot el que ha publicat i els seus seguidors."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "Es tancarà la sessió de \"{0}\" i no podrà tornar a iniciar sessió fins que no se'n retiri la suspensió."
@@ -89,6 +91,12 @@ msgstr "(tu)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[no definit]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} client amb sessió iniciada} many {{clients} de clients amb sessió iniciada} other {{clients} clients amb sessió iniciada}} · {1, plural, one {{accounts} compte} many {{accounts} de comptes} other {{accounts} comptes}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Ja hi ha un enregistrament en curs."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Una clau de recuperació et permet traslladar el compte o desfer el que hagi fet un servidor compromès. Substitueix qualsevol clau anterior i només es mostra una vegada."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Sobre"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absolut (data i hora)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Abús"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Segur que vols rendir-te? {opponentName} guanyarà la partida."
 msgid "Ascending"
 msgstr "Ascendent"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Ha arribat al límit de sol·licituds"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "En alta mar"
@@ -783,17 +805,41 @@ msgstr "Bàner actualitzat"
 msgid "Binary file not shown"
 msgstr "El fitxer binari no es mostra"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Bloqueja"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "Bloqueja {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "Bloqueja {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "Bloqueja {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Bloqueja el servidor {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Blocat"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Blocat"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "S'ha bloquejat la navegació a un enllaç no fiable"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Blocs"
 
@@ -1147,6 +1196,11 @@ msgstr "Confirmeu que sou vós"
 msgid "Connected"
 msgstr "Connectat"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "Connectat"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "No s'ha pogut afegir el nom"
 msgid "Could not change the account"
 msgstr "No s'ha pogut canviar el compte"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "No s'ha pogut canviar el bloqueig"
@@ -1293,6 +1348,10 @@ msgstr "No s'han pogut substituir les claus"
 msgid "Could not reserve the handle"
 msgstr "No s'ha pogut reservar l'identificador"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "No s'ha pogut resoldre l'informe"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "No s'ha pogut revocar"
@@ -1360,6 +1419,7 @@ msgstr "Crea un usuari"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "Desconnectat"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Descarta"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Descartat"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "Domini creat"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Domini suprimit"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Domini o persona a blocar"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "No s'ha pogut verificar el codi"
 msgid "Failed to verify domain"
 msgstr "No s'ha pogut verificar el domini"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Errors"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Federació"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fedivers"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "Amics"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "De"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "De"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "De"
 
@@ -2564,6 +2656,7 @@ msgstr "Claus"
 msgid "Keys replaced"
 msgstr "Claus substituïdes"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "Última difusió"
 msgid "Last edited {0}"
 msgstr "Última edició {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Últim error"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Últim inici de sessió"
@@ -2623,6 +2720,10 @@ msgstr "Últim inici de sessió"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Vist per última vegada"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Últim èxit"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "Últim ús"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Disposició"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Legal"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "Nom sota {0}"
 msgid "Name updated"
 msgstr "Nom actualitzat"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "Joc nou"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Següent"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Proper intent"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "Sense codis de recuperació"
 msgid "No recovery key"
 msgstr "Sense clau de recuperació"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "No hi ha cap informe pendent."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "No s'ha resolt cap informe."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "No s'ha trobat cap resultat."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Cap ruta configurada"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Encara no hi ha cap servidor."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "No s'ha comparat: supera el límit de mida"
 msgid "Not connected"
 msgstr "No connectat"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "No connectat"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "No establert"
 msgid "Nothing found"
 msgstr "No s'ha trobat res"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Res de {0} no arriba a ningú d'aquest servidor, i ningú d'aquí no hi envia res."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "No hi ha res blocat."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "No se serveix res del compte i s'avisa els repetidors. El compte i el que ha publicat es mantenen, i es pot restaurar."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Res del que envia aquesta persona no arriba a ningú d'aquest servidor, i ja no segueix ningú d'aquí."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "Activat"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Vaja! Pàgina no trobada!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Oberts"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "Opcions"
 msgid "Other"
 msgstr "Altres"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Altres"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "Els altres servidors obtenen la clau nova del document del compte. Tot e
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Altres paràmetres"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Resultat"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "Pendent"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Persones"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Persona"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "Accessibilitat"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "A punt perquè arribi el compte de Bluesky"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Rebut"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "Respon"
 msgid "Reply to {0}..."
 msgstr "Respon a {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Informe"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Accions de l'informe"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Informe descartat"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Informes"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Cal verificació del domini"
@@ -4005,6 +4190,11 @@ msgstr "Abandona"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Vols abandonar la partida?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Resolts"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "Vols revocar aquest inici de sessió?"
 msgid "Role"
 msgstr "Rol"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Sala"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Ruta creada"
@@ -4115,6 +4310,11 @@ msgstr "URL RSS copiat al porta-retalls"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Infracció de les regles"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "Envia missatge"
 msgid "Serif"
 msgstr "Serif"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "Orígens"
 msgid "Spacious"
 msgstr "Espaiós"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Brossa"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Divideix"
@@ -4473,6 +4682,7 @@ msgstr "Iniciat"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "Resum regenerat"
 msgid "Sunday"
 msgstr "Diumenge"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Suspèn"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Suspèn l'usuari"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Suspèn l'usuari?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Suspès"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Suspès"
 
@@ -4935,10 +5154,12 @@ msgstr "No disponible · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "No disponible · El seu nom no porta a aquest servidor"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Desbloca {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Desblocat"
@@ -5079,6 +5300,7 @@ msgstr "Valors per defecte de l'usuari"
 msgid "User deleted"
 msgstr "Usuari eliminat"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Usuari suspès"
@@ -5172,6 +5394,12 @@ msgstr "Controls de visualització"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "L'enregistrament de veu no és compatible amb aquest navegador"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "En cua"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

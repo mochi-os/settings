@@ -33,7 +33,9 @@ msgstr "\"{0}\" এবং এর অধীনের নামগুলো যে
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" এর প্রকাশিত সবকিছু এবং অনুসারীসহ সরিয়ে ফেলা হবে।"
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\"-কে সাইন আউট করা হবে এবং স্থগিতাদেশ না তোলা পর্যন্ত তিনি আবার সাইন ইন করতে পারবেন না।"
@@ -89,6 +91,12 @@ msgstr "(আপনি)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[সেট নয়]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients}টি ক্লায়েন্ট সাইন ইন করা আছে} other {{clients}টি ক্লায়েন্ট সাইন ইন করা আছে}} · {1, plural, one {{accounts}টি অ্যাকাউন্ট} other {{accounts}টি অ্যাকাউন্ট}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "একটি রেকর্ডিং ইতিমধ্যে চলছ
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "রিকভারি কী দিয়ে আপনি অ্যাকাউন্টটি সরিয়ে নিতে পারেন বা কোনো আপসকৃত সার্ভারের করা কাজ বাতিল করতে পারেন। এটি আগের যেকোনো কী প্রতিস্থাপন করে এবং একবারই দেখানো হয়।"
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "কার সম্পর্কে"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "নিরঙ্কুশ (তারিখ এবং সময়)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "অপব্যবহার"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "আপনি কি নিশ্চিত যে আপনি হার 
 msgid "Ascending"
 msgstr "ঊর্ধ্বক্রম"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "অনুরোধের সীমায় পৌঁছেছে"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "সমুদ্রে"
@@ -783,19 +805,43 @@ msgstr "ব্যানার আপডেট হয়েছে"
 msgid "Binary file not shown"
 msgstr "বাইনারি ফাইল দেখানো হয়নি"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "ব্লক করুন"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "{0}-কে ব্লক করুন"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "{0}-কে ব্লক করবেন?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "{name}-কে ব্লক করুন"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "সার্ভার {host} ব্লক করুন"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Blocked"
 msgstr "ব্লক করা"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Blocked"
+msgstr "ব্লক করা হয়েছে"
 
 #: src/features/user/networks.tsx
 msgid "Blocked and muted"
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "অবিশ্বস্ত লিঙ্কে নেভিগেশন ব্লক করা হয়েছে"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "ব্লক করে"
 
@@ -1147,6 +1196,11 @@ msgstr "এটি যে আপনি তা নিশ্চিত করুন"
 msgid "Connected"
 msgstr "সংযুক্ত"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "সংযুক্ত"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "নাম যোগ করা যায়নি"
 msgid "Could not change the account"
 msgstr "অ্যাকাউন্ট পরিবর্তন করা যায়নি"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "ব্লক পরিবর্তন করা যায়নি"
@@ -1293,6 +1348,10 @@ msgstr "কী প্রতিস্থাপন করা যায়নি"
 msgid "Could not reserve the handle"
 msgstr "হ্যান্ডেল রিজার্ভ করা যায়নি"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "রিপোর্টটির সমাধান করা যায়নি"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "প্রত্যাহার করা যায়নি"
@@ -1360,6 +1419,7 @@ msgstr "ব্যবহারকারী তৈরি করুন"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "সংযোগ বিচ্ছিন্ন"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "বাতিল করুন"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "খারিজ করা হয়েছে"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "ডোমেইন তৈরি করা হয়েছে"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "ডোমেইন মুছে ফেলা হয়েছে"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "ব্লক করার ডোমেইন বা ব্যক্তি"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "কোড যাচাই করতে ব্যর্থ"
 msgid "Failed to verify domain"
 msgstr "ডোমেইন যাচাই করতে ব্যর্থ"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "ব্যর্থতা"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "ফেডারেশন"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "বন্ধুরা"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "থেকে"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "প্রেরক"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "থেকে"
 
@@ -2564,6 +2656,7 @@ msgstr "কী"
 msgid "Keys replaced"
 msgstr "কী প্রতিস্থাপিত হয়েছে"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "সর্বশেষ সম্প্রচার"
 msgid "Last edited {0}"
 msgstr "সর্বশেষ সম্পাদিত {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "সর্বশেষ ব্যর্থতা"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "সর্বশেষ লগইন"
@@ -2623,6 +2720,10 @@ msgstr "সর্বশেষ লগইন"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "সর্বশেষ দেখা"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "সর্বশেষ সাফল্য"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "সর্বশেষ ব্যবহৃত"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "লেআউট"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "আইনি"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "{0}-এর অধীনে নাম"
 msgid "Name updated"
 msgstr "নাম আপডেট করা হয়েছে"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "নতুন গেম"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "পরবর্তী"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "পরবর্তী চেষ্টা"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "কোনো রিকভারি কোড নেই"
 msgid "No recovery key"
 msgstr "কোনো রিকভারি কী নেই"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "কোনো রিপোর্ট অপেক্ষায় নেই।"
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "কোনো রিপোর্টের সমাধান হয়নি।"
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "কোনো ফলাফল পাওয়া যায়নি।"
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "কোনো রুট কনফিগার করা নেই"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "এখনও কোনো সার্ভার নেই।"
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "তুলনা করা হয়নি: আকারের সীম�
 msgid "Not connected"
 msgstr "সংযুক্ত নয়"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "সংযুক্ত নয়"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "সেট করা নেই"
 msgid "Nothing found"
 msgstr "কিছুই পাওয়া যায়নি"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "{0} থেকে কিছুই এই সার্ভারের কারও কাছে পৌঁছায় না, এবং এখান থেকে কেউ সেখানে কিছু পাঠায় না।"
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "কিছুই ব্লক করা নেই।"
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "অ্যাকাউন্টের কিছুই পরিবেশন করা হয় না এবং রিলেগুলোকে জানানো হয়। অ্যাকাউন্ট এবং এটি যা প্রকাশ করেছে তা থেকে যায়, এবং এটি পুনরুদ্ধার করা যায়।"
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "এই ব্যক্তি যা পাঠান তার কিছুই এই সার্ভারের কারও কাছে পৌঁছায় না, এবং তিনি এখানে আর কারও অনুসারী নন।"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "চালু"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "ওহ! পৃষ্ঠাটি পাওয়া যায়নি!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "খোলা"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "অপশন"
 msgid "Other"
 msgstr "অন্যান্য"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "অন্যান্য"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "অন্য সার্ভারগুলো অ্যাকাউন�
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "অন্যান্য সেটিংস"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "ফলাফল"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "মুলতুবি"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "ব্যক্তিরা"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "ব্যক্তি"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "পৌঁছানোর যোগ্যতা"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Bluesky অ্যাকাউন্টটি আসার জন্য প্রস্তুত"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "প্রাপ্ত"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "উত্তর দিন"
 msgid "Reply to {0}..."
 msgstr "{0} কে উত্তর দিন..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "রিপোর্ট"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "রিপোর্টের কাজ"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "রিপোর্ট খারিজ করা হয়েছে"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "রিপোর্ট"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "ডোমেইন যাচাইকরণ প্রয়োজন"
@@ -4005,6 +4190,11 @@ msgstr "পদত্যাগ"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "গেম থেকে পদত্যাগ করবেন?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "সমাধান হয়েছে"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "এই সাইন-ইন প্রত্যাহার করবে�
 msgid "Role"
 msgstr "ভূমিকা"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "রুম"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "রুট তৈরি হয়েছে"
@@ -4115,6 +4310,11 @@ msgstr "RSS URL ক্লিপবোর্ডে কপি করা হয়�
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "নিয়ম লঙ্ঘন"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "বার্তা পাঠান"
 msgid "Serif"
 msgstr "সেরিফ"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "উৎস"
 msgid "Spacious"
 msgstr "প্রশস্ত"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "স্প্যাম"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "ভাগ করুন"
@@ -4473,6 +4682,7 @@ msgstr "শুরু হয়েছে"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "সারসংক্ষেপ পুনরায় তৈরি হয
 msgid "Sunday"
 msgstr "রবিবার"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "স্থগিত করুন"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "ব্যবহারকারী স্থগিত করুন"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "ব্যবহারকারী স্থগিত করুন?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "স্থগিত"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "স্থগিত"
 
@@ -4935,10 +5154,12 @@ msgstr "অনুপলব্ধ · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "অনুপলব্ধ · এর নাম এই সার্ভারে পৌঁছায় না"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "{label}-কে আনব্লক করুন"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "আনব্লক করা হয়েছে"
@@ -5079,6 +5300,7 @@ msgstr "ব্যবহারকারী ডিফল্ট"
 msgid "User deleted"
 msgstr "ব্যবহারকারী মুছে ফেলা হয়েছে"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "ব্যবহারকারী স্থগিত করা হয়েছে"
@@ -5172,6 +5394,12 @@ msgstr "কন্ট্রোল দেখুন"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "এই ব্রাউজারে ভয়েস রেকর্ডিং সমর্থিত নয়"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "সারিতে"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

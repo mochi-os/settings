@@ -33,7 +33,9 @@ msgstr "\"{0}\" và các tên bên dưới sẽ được giải phóng để b�
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" sẽ bị xoá cùng mọi thứ đã đăng và người theo dõi."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" sẽ bị đăng xuất và không thể đăng nhập lại cho đến khi lệnh đình chỉ được gỡ bỏ."
@@ -89,6 +91,12 @@ msgstr "(bạn)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[chưa đặt]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, other {{clients} ứng dụng khách đã đăng nhập}} · {1, plural, other {{accounts} tài khoản}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Đang có một bản ghi âm được thực hiện."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Khoá khôi phục cho phép bạn chuyển tài khoản hoặc hoàn tác những gì một máy chủ bị xâm nhập đã làm. Khoá này thay thế mọi khoá trước đó và chỉ hiển thị một lần."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Đối tượng"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Tuyệt đối (ngày và giờ)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Lạm dụng"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Bạn có chắc muốn xin thua không? {opponentName} sẽ thắng vá
 msgid "Ascending"
 msgstr "Tăng dần"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Đã chạm giới hạn yêu cầu"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Trên biển"
@@ -783,17 +805,41 @@ msgstr "Đã cập nhật banner"
 msgid "Binary file not shown"
 msgstr "Không hiển thị tệp nhị phân"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Chặn"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "Chặn {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "Chặn {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "Chặn {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Chặn máy chủ {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Đã chặn"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Đã chặn"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Đã chặn điều hướng tới liên kết không tin cậy"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Chặn"
 
@@ -1147,6 +1196,11 @@ msgstr "Xác nhận đó là bạn"
 msgid "Connected"
 msgstr "Đã kết nối"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "Đã kết nối"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "Không thể thêm tên"
 msgid "Could not change the account"
 msgstr "Không thể thay đổi tài khoản"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Không thể thay đổi việc chặn"
@@ -1293,6 +1348,10 @@ msgstr "Không thể thay khoá"
 msgid "Could not reserve the handle"
 msgstr "Không thể đặt trước biệt danh"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Không thể xử lý báo cáo"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Không thể thu hồi"
@@ -1360,6 +1419,7 @@ msgstr "Tạo người dùng"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "Đã ngắt kết nối"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Bỏ qua"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Đã bỏ qua"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "Đã tạo tên miền"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Đã xoá tên miền"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Tên miền hoặc người cần chặn"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "Không xác minh mã được"
 msgid "Failed to verify domain"
 msgstr "Không xác minh tên miền được"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Thất bại"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Liên hợp"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "Bạn bè"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "Từ"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Người gửi"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "Từ"
 
@@ -2564,6 +2656,7 @@ msgstr "Khóa"
 msgid "Keys replaced"
 msgstr "Đã thay khoá"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "Bản phát gần nhất"
 msgid "Last edited {0}"
 msgstr "Lần chỉnh sửa cuối {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Lần thất bại gần nhất"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Đăng nhập gần nhất"
@@ -2623,6 +2720,10 @@ msgstr "Đăng nhập gần nhất"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Lần cuối nhìn thấy"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Lần thành công gần nhất"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "Sử dụng gần nhất"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Bố cục"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Pháp lý"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "Tên dưới {0}"
 msgid "Name updated"
 msgstr "Đã cập nhật tên"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "Trò chơi mới"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Tiếp"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Lần thử tiếp theo"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "Không có mã khôi phục"
 msgid "No recovery key"
 msgstr "Không có khoá khôi phục"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Không có báo cáo nào đang chờ."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Chưa có báo cáo nào được xử lý."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "Không tìm thấy kết quả nào."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Chưa cấu hình tuyến"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Chưa có máy chủ nào."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "Không so sánh: vượt quá giới hạn kích thước"
 msgid "Not connected"
 msgstr "Chưa kết nối"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Chưa kết nối"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "Chưa đặt"
 msgid "Nothing found"
 msgstr "Không tìm thấy gì"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Không có gì từ {0} đến được với ai trên máy chủ này, và không ai ở đây gửi gì đến đó."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Không có gì bị chặn."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Không nội dung nào của tài khoản được phục vụ và các trình chuyển tiếp được thông báo. Tài khoản và những gì đã đăng vẫn được giữ, và có thể khôi phục."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Không có gì người này gửi đến được với ai trên máy chủ này, và người này không còn theo dõi ai ở đây nữa."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "Bật"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Rất tiếc! Không tìm thấy trang!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Đang mở"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "Tuỳ chọn"
 msgid "Other"
 msgstr "Khác"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Khác"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "Các máy chủ khác lấy khoá mới từ tài liệu của tài kho�
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Cài đặt khác"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Kết quả"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "Đang chờ"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Mọi người"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Người"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "Khả năng tiếp cận"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Sẵn sàng đón tài khoản Bluesky"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Đã nhận"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "Trả lời"
 msgid "Reply to {0}..."
 msgstr "Trả lời {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Báo cáo"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Thao tác báo cáo"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Đã bỏ qua báo cáo"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Báo cáo"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Yêu cầu xác minh tên miền"
@@ -4005,6 +4190,11 @@ msgstr "Đầu hàng"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Đầu hàng trận đấu?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Đã xử lý"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "Thu hồi lần đăng nhập này?"
 msgid "Role"
 msgstr "Vai trò"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Phòng"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Đã tạo tuyến"
@@ -4115,6 +4310,11 @@ msgstr "Đã sao chép URL RSS vào clipboard"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Vi phạm quy tắc"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "Gửi tin nhắn"
 msgid "Serif"
 msgstr "Có chân"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "Nguồn"
 msgid "Spacious"
 msgstr "Rộng rãi"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Spam"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Chia"
@@ -4473,6 +4682,7 @@ msgstr "Đã bắt đầu"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "Đã tạo lại tóm tắt"
 msgid "Sunday"
 msgstr "Chủ nhật"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Đình chỉ"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Đình chỉ người dùng"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Đình chỉ người dùng?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Đã đình chỉ"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Đã đình chỉ"
 
@@ -4935,10 +5154,12 @@ msgstr "Không khả dụng · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Không khả dụng · Tên của nó không dẫn đến máy chủ này"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Bỏ chặn {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Đã bỏ chặn"
@@ -5079,6 +5300,7 @@ msgstr "Mặc định người dùng"
 msgid "User deleted"
 msgstr "Đã xóa người dùng"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Người dùng bị tạm dừng"
@@ -5172,6 +5394,12 @@ msgstr "Điều khiển xem"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Trình duyệt này không hỗ trợ ghi âm giọng nói"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "Trong hàng đợi"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

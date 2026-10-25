@@ -33,7 +33,9 @@ msgstr "\"{0}\" і імёны пад ім будуць вызвалены, ка�
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" будзе выдалены разам з усім, што ён апублікаваў, і яго падпісчыкамі."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" будзе выведзены з сеанса і не зможа ўвайсці зноў, пакуль прыпыненне не будзе знята."
@@ -89,6 +91,12 @@ msgstr "(вы)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[не зададзена]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} кліент увайшоў} few {{clients} кліенты ўвайшлі} many {{clients} кліентаў увайшло} other {{clients} кліента ўвайшло}} · {1, plural, one {{accounts} уліковы запіс} few {{accounts} уліковыя запісы} many {{accounts} уліковых запісаў} other {{accounts} уліковага запісу}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Запіс ужо ідзе."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Ключ аднаўлення дазваляе перанесці ўліковы запіс або адмяніць тое, што зрабіў скампраметаваны сервер. Ён замяняе любы ранейшы ключ і паказваецца толькі адзін раз."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "На каго"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Абсалютны (дата і час)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Злоўжыванне"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Вы ўпэўнены, што хочаце здацца? {opponentName} 
 msgid "Ascending"
 msgstr "Па ўзрастанні"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Дасягнуты ліміт запытаў"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "У моры"
@@ -783,17 +805,41 @@ msgstr "Банер абноўлены"
 msgid "Binary file not shown"
 msgstr "Двайковы файл не паказваецца"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Заблакаваць"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "Заблакаваць {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "Заблакаваць {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "Заблакаваць {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Заблакаваць сервер {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Заблакавана"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Заблакавана"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Заблакаваны пераход па ненадзейнай спасылцы"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Блокі"
 
@@ -1147,6 +1196,11 @@ msgstr "Пацвердзіце, што гэта вы"
 msgid "Connected"
 msgstr "Падключана"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "Падключана"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "Не ўдалося дадаць імя"
 msgid "Could not change the account"
 msgstr "Не ўдалося змяніць уліковы запіс"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Не ўдалося змяніць блакаванне"
@@ -1293,6 +1348,10 @@ msgstr "Не ўдалося замяніць ключы"
 msgid "Could not reserve the handle"
 msgstr "Не ўдалося зарэзерваваць імя карыстальніка"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Не ўдалося вырашыць скаргу"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Не ўдалося адклікаць"
@@ -1360,6 +1419,7 @@ msgstr "Стварыць карыстальніка"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "Адключана"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Закрыць"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Адхілена"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "Дамен створаны"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Дамен выдалены"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Дамен або чалавек для блакавання"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "Не ўдалося праверыць код"
 msgid "Failed to verify domain"
 msgstr "Не ўдалося праверыць дамен"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Збоі"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Федэрацыя"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Федыверс"
@@ -2309,6 +2391,16 @@ msgstr "Сябры"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "From"
 msgstr "Ад"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Ад каго"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "From"
+msgstr "Адкуль"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -2564,6 +2656,7 @@ msgstr "Ключы"
 msgid "Keys replaced"
 msgstr "Ключы заменены"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "Апошняя трансляцыя"
 msgid "Last edited {0}"
 msgstr "Апошняе рэдагаванне {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Апошні збой"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Апошні ўваход"
@@ -2623,6 +2720,10 @@ msgstr "Апошні ўваход"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Апошні раз бачылі"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Апошні поспех"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "Апошняе выкарыстанне"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Разметка"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Юрыдычнае"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "Імя пад {0}"
 msgid "Name updated"
 msgstr "Імя абноўлена"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "Новая гульня"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Далей"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Наступная спроба"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "Кодаў аднаўлення няма"
 msgid "No recovery key"
 msgstr "Ключа аднаўлення няма"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Няма скаргаў у чаканні."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Няма вырашаных скаргаў."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "Вынікі не знойдзены."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Маршруты не настроены"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Сервераў пакуль няма."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "Не параўнана: перавышае ліміт памеру"
 msgid "Not connected"
 msgstr "Не падключана"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Не падключана"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "Не ўсталявана"
 msgid "Nothing found"
 msgstr "Нічога не знойдзена"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Нішто з {0} не даходзіць ні да каго на гэтым серверы, і ніхто адсюль нічога туды не адпраўляе."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Нічога не заблакавана."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "З уліковага запісу нічога не аддаецца, і рэле атрымліваюць паведамленне. Уліковы запіс і ўсё, што ён апублікаваў, застаюцца, і яго можна аднавіць."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Нішто, што адпраўляе гэты чалавек, не даходзіць ні да каго на гэтым серверы, і гэты чалавек больш ні на каго тут не падпісаны."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "Укл."
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Вой! Старонка не знойдзена!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Адкрытыя"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "Параметры"
 msgid "Other"
 msgstr "Іншае"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Іншае"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "Іншыя серверы даведваюцца пра новы клю�
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Іншыя налады"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Вынік"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "У чаканні"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Людзі"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Чалавек"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "Дасяжнасць"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Гатова да прыбыцця ўліковага запісу Bluesky"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Атрымана"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "Адказаць"
 msgid "Reply to {0}..."
 msgstr "Адказаць {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Скарга"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Дзеянні са скаргай"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Скаргу адхілена"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Скаргі"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Патрабаваць пацверджання дамена"
@@ -4005,6 +4190,11 @@ msgstr "Здацца"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Здацца ў гульні?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Вырашаныя"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "Адклікаць гэты ўваход?"
 msgid "Role"
 msgstr "Роля"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Пакой"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Маршрут створаны"
@@ -4115,6 +4310,11 @@ msgstr "URL RSS скапіраваны ў буфер абмену"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Парушэнне правіл"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "Адправіць паведамленне"
 msgid "Serif"
 msgstr "З засечкамі"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "Крыніцы"
 msgid "Spacious"
 msgstr "Прасторны"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Спам"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Падзяліць"
@@ -4473,6 +4682,7 @@ msgstr "Пачата"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "Зводка перагенеравана"
 msgid "Sunday"
 msgstr "Нядзеля"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Прыпыніць"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Прыпыніць карыстальніка"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Прыпыніць карыстальніка?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Прыпынена"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Прыпынена"
 
@@ -4935,10 +5154,12 @@ msgstr "Недаступна · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Недаступна · Яго імя не вядзе да гэтага сервера"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Разблакаваць {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Разблакавана"
@@ -5079,6 +5300,7 @@ msgstr "Значэнні карыстальніка па змаўчанні"
 msgid "User deleted"
 msgstr "Карыстальнік выдалены"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Карыстальнік прыпынены"
@@ -5172,6 +5394,12 @@ msgstr "Элементы кіравання выглядам"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Запіс голасу не падтрымліваецца ў гэтым браўзеры"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "У чарзе"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

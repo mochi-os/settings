@@ -33,7 +33,9 @@ msgstr "\"{0}\" ja selle all olevad nimed vabastatakse, et igaüks saaks need v�
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" eemaldatakse koos kõige selle kaudu avaldatu ja selle jälgijatega."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" logitakse välja ega saa uuesti sisse logida, kuni peatamine on eemaldatud."
@@ -89,6 +91,12 @@ msgstr "(sina)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[määramata]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} klient sisse logitud} other {{clients} klienti sisse logitud}} · {1, plural, one {{accounts} konto} other {{accounts} kontot}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Salvestamine on juba pooleli."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Taastevõti võimaldab teil konto teisaldada või tühistada selle, mida ohustatud server tegi. See asendab kõik varasemad võtmed ja kuvatakse ainult üks kord."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Kelle kohta"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absoluutne (kuupäev ja kellaaeg)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Kuritarvitamine"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Kas oled kindel, et soovid alla anda? {opponentName} võidab mängu."
 msgid "Ascending"
 msgstr "Kasvav"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Päringute piir on täis"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Merel"
@@ -783,17 +805,41 @@ msgstr "Bänner uuendatud"
 msgid "Binary file not shown"
 msgstr "Binaarfaili ei kuvata"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Blokeeri"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "Blokeeri {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "Kas blokeerida {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "Blokeeri {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Blokeeri server {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Blokeeritud"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Blokeeritud"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Liikumine usaldamata lingile blokeeritud"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Blokid"
 
@@ -1147,6 +1196,11 @@ msgstr "Kinnitage, et see olete teie"
 msgid "Connected"
 msgstr "Ühendatud"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "Ühendatud"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "Nime lisamine ebaõnnestus"
 msgid "Could not change the account"
 msgstr "Kontot ei õnnestunud muuta"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Blokeeringut ei saanud muuta"
@@ -1293,6 +1348,10 @@ msgstr "Võtmete asendamine ebaõnnestus"
 msgid "Could not reserve the handle"
 msgstr "Kasutajanime broneerimine ebaõnnestus"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Raportit ei õnnestunud lahendada"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Äravõtmine ebaõnnestus"
@@ -1360,6 +1419,7 @@ msgstr "Loo kasutaja"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "Ühendus puudub"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Sulge"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Tagasi lükatud"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "Domeen loodud"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Domeen kustutatud"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Blokeeritav domeen või inimene"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "Koodi kontrollimine ebaõnnestus"
 msgid "Failed to verify domain"
 msgstr "Domeeni kontrollimine ebaõnnestus"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Nurjumised"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Föderatsioon"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2309,6 +2391,16 @@ msgstr "Sõbrad"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "From"
 msgstr "Saatja"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Saatja"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "From"
+msgstr "Kust"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -2564,6 +2656,7 @@ msgstr "Võtmed"
 msgid "Keys replaced"
 msgstr "Võtmed asendatud"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "Viimane edastus"
 msgid "Last edited {0}"
 msgstr "Viimati muudetud {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Viimane nurjumine"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Viimane sisselogimine"
@@ -2623,6 +2720,10 @@ msgstr "Viimane sisselogimine"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Viimati nähtud"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Viimane õnnestumine"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "Viimati kasutatud"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Paigutus"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Õiguslik"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "Nimi {0} all"
 msgid "Name updated"
 msgstr "Nimi uuendatud"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "Uus mäng"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Edasi"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Järgmine katse"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "Taastekoode pole"
 msgid "No recovery key"
 msgstr "Taastevõtit pole"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Ootel raporteid pole."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Ühtegi raportit pole lahendatud."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "Tulemusi ei leitud."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Marsruute pole seadistatud"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Servereid veel pole."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "Võrdlemata: üle suuruspiirangu"
 msgid "Not connected"
 msgstr "Pole ühendatud"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Pole ühendatud"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "Pole määratud"
 msgid "Nothing found"
 msgstr "Midagi ei leitud"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Miski domeenilt {0} ei jõua kellenigi selles serveris ja keegi siit ei saada sinna midagi."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Midagi pole blokeeritud."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Kontost ei serveerita midagi ja releesid teavitatakse. Konto ja see, mida see avaldas, jäävad alles ning selle saab taastada."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Miski, mida see inimene saadab, ei jõua kellenigi selles serveris ja ta ei jälgi siin enam kedagi."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "Sees"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Oih! Lehte ei leitud!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Avatud"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "Valikud"
 msgid "Other"
 msgstr "Muu"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Muu"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "Teised serverid saavad uue võtme konto dokumendist. Miski, mis on vana 
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Muud seaded"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Tulemus"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "Ootel"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Inimesed"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Inimene"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "Kättesaadavus"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Valmis Bluesky konto saabumiseks"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Vastu võetud"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "Vasta"
 msgid "Reply to {0}..."
 msgstr "Vasta kasutajale {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Raport"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Raporti toimingud"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Raport tagasi lükatud"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Raportid"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Nõua domeeni kinnitamist"
@@ -4005,6 +4190,11 @@ msgstr "Anna alla"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Kas anda mäng alla?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Lahendatud"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "Kas võtta see sisselogimine ära?"
 msgid "Role"
 msgstr "Roll"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Jututuba"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Marsruut loodud"
@@ -4115,6 +4310,11 @@ msgstr "RSS URL kopeeritud lõikepuhvrisse"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Reeglite rikkumine"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "Saada sõnum"
 msgid "Serif"
 msgstr "Seriif"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "Allikad"
 msgid "Spacious"
 msgstr "Avar"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Rämps"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Kõrvuti"
@@ -4473,6 +4682,7 @@ msgstr "Alustatud"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "Kokkuvõte taasloodud"
 msgid "Sunday"
 msgstr "Pühapäev"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Peata"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Peata kasutaja"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Peata kasutaja?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Peatatud"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Peatatud"
 
@@ -4935,10 +5154,12 @@ msgstr "Pole saadaval · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Pole saadaval · Selle nimi ei vii sellesse serverisse"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Tühista blokeering: {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Blokeering tühistatud"
@@ -5079,6 +5300,7 @@ msgstr "Kasutaja vaikeväärtused"
 msgid "User deleted"
 msgstr "Kasutaja kustutatud"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Kasutaja peatatud"
@@ -5172,6 +5394,12 @@ msgstr "Vaate juhtelemendid"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Häälsalvestust ei toetata selles brauseris"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "Järjekorras"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

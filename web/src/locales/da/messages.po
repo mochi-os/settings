@@ -33,7 +33,9 @@ msgstr "\"{0}\" og navnene under det bliver frigivet, så alle kan tage dem. Der
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" fjernes sammen med alt, hvad den har udgivet, og dens følgere."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" bliver logget ud og kan ikke logge ind igen, før suspenderingen er ophævet."
@@ -89,6 +91,12 @@ msgstr "(dig)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[ikke angivet]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} klient logget ind} other {{clients} klienter logget ind}} · {1, plural, one {{accounts} konto} other {{accounts} konti}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "En optagelse er allerede i gang."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "En gendannelsesnøgle lader dig flytte kontoen eller fortryde, hvad en kompromitteret server har gjort. Den erstatter enhver tidligere nøgle og vises kun én gang."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Om"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absolut (dato og klokkeslæt)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Misbrug"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Er du sikker på, at du vil opgive? {opponentName} vinder spillet."
 msgid "Ascending"
 msgstr "Stigende"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Grænse for forespørgsler nået"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Til søs"
@@ -783,17 +805,41 @@ msgstr "Banner opdateret"
 msgid "Binary file not shown"
 msgstr "Binær fil vises ikke"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Bloker"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "Bloker {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "Bloker {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "Bloker {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Bloker serveren {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Blokeret"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Blokeret"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Blokerede navigation til upålideligt link"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Blokerer"
 
@@ -1147,6 +1196,11 @@ msgstr "Bekræft, at det er dig"
 msgid "Connected"
 msgstr "Forbundet"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "Forbundet"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "Kunne ikke tilføje navnet"
 msgid "Could not change the account"
 msgstr "Kunne ikke ændre kontoen"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Blokeringen kunne ikke ændres"
@@ -1293,6 +1348,10 @@ msgstr "Kunne ikke erstatte nøglerne"
 msgid "Could not reserve the handle"
 msgstr "Kunne ikke reservere brugernavnet"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Rapporten kunne ikke løses"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Kunne ikke tilbagekalde"
@@ -1360,6 +1419,7 @@ msgstr "Opret bruger"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "Afbrudt"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Afvis"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Afvist"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "Domæne oprettet"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Domæne slettet"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Domæne eller person der skal blokeres"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "Kunne ikke verificere kode"
 msgid "Failed to verify domain"
 msgstr "Kunne ikke verificere domæne"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Fejl"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Føderation"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverset"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "Venner"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "Fra"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Fra"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "Fra"
 
@@ -2564,6 +2656,7 @@ msgstr "Nøgler"
 msgid "Keys replaced"
 msgstr "Nøgler erstattet"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "Seneste udsendelse"
 msgid "Last edited {0}"
 msgstr "Senest redigeret {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Seneste fejl"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Seneste login"
@@ -2623,6 +2720,10 @@ msgstr "Seneste login"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Sidst set"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Seneste succes"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "Sidst brugt"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Layout"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Juridisk"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "Navn under {0}"
 msgid "Name updated"
 msgstr "Navn opdateret"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "Nyt spil"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Næste"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Næste forsøg"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "Ingen gendannelseskoder"
 msgid "No recovery key"
 msgstr "Ingen gendannelsesnøgle"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Ingen rapporter venter."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Ingen rapporter er blevet løst."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "Ingen resultater fundet."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Ingen ruter konfigureret"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Ingen servere endnu."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "Ikke sammenlignet: over størrelsesgrænsen"
 msgid "Not connected"
 msgstr "Ikke forbundet"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Ikke forbundet"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "Ikke angivet"
 msgid "Nothing found"
 msgstr "Intet fundet"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Intet fra {0} når nogen på denne server, og ingen her sender noget til den."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Intet er blokeret."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Intet fra kontoen leveres, og relæerne får besked. Kontoen og det, den har udgivet, bliver, og den kan gendannes."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Intet, som personen sender, når nogen på denne server, og personen følger ikke længere nogen her."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "Til"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Ups! Siden blev ikke fundet!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Åbne"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "Indstillinger"
 msgid "Other"
 msgstr "Andet"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Andet"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "Andre servere får den nye nøgle fra kontoens dokument. Alt, der er sig
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Andre indstillinger"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Resultat"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "Afventer"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Personer"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Person"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "Tilgængelighed"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Klar til at Bluesky-kontoen ankommer"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Modtaget"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "Svar"
 msgid "Reply to {0}..."
 msgstr "Svar til {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Rapport"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Rapporthandlinger"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Rapport afvist"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Rapporter"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Kræv domæneverificering"
@@ -4005,6 +4190,11 @@ msgstr "Giv op"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Giv op i spillet?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Løste"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "Tilbagekald dette login?"
 msgid "Role"
 msgstr "Rolle"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Rum"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Rute oprettet"
@@ -4115,6 +4310,11 @@ msgstr "RSS-URL kopieret til udklipsholderen"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Regelbrud"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "Send besked"
 msgid "Serif"
 msgstr "Serif"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "Kilder"
 msgid "Spacious"
 msgstr "Rummeligt"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Spam"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Opdel"
@@ -4473,6 +4682,7 @@ msgstr "Startet"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "Resumé genereret igen"
 msgid "Sunday"
 msgstr "Søndag"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Suspendér"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Suspendér bruger"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Suspendér bruger?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Suspenderet"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Suspenderet"
 
@@ -4935,10 +5154,12 @@ msgstr "Ikke tilgængelig · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Ikke tilgængelig · Navnet fører ikke til denne server"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Fjern blokering af {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Blokering fjernet"
@@ -5079,6 +5300,7 @@ msgstr "Brugerstandarder"
 msgid "User deleted"
 msgstr "Bruger slettet"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Bruger suspenderet"
@@ -5172,6 +5394,12 @@ msgstr "Vis kontroller"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Stemmeoptagelse understøttes ikke i denne browser"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "I kø"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

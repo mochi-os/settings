@@ -33,7 +33,9 @@ msgstr "\"{0}\" و ئەو ناوانەی لە ژێریدان ئازاد دەکر
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" لەگەڵ هەموو ئەوەی بڵاوی کردووەتەوە و شوێنکەوتووانی لادەبرێت."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" دەردەچێت و ناتوانێت دووبارە بچێتە ژوورەوە تا ڕاگرتنەکە لادەبرێت."
@@ -89,6 +91,12 @@ msgstr "(تۆ)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[دانەنراوە]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} ئەپ چووەتە ژوورەوە} other {{clients} ئەپ چوونەتە ژوورەوە}} · {1, plural, one {{accounts} هەژمار} other {{accounts} هەژمار}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "تۆمارکردنێک پێشتر بەردەوامە."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "کلیلی گەڕاندنەوە ڕێگەت پێدەدات هەژمارەکە بگوازیتەوە یان ئەوەی ڕاژەکارێکی تێکشکاو کردوویەتی هەڵبوەشێنیتەوە. جێگەی هەر کلیلێکی پێشوو دەگرێتەوە و تەنها یەک جار پیشان دەدرێت."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "دەربارەی"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "ڕاستەوخۆ (بەروار و کات)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "خراپ بەکارهێنان"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "ئایا دڵنیایت لە دەستلەکارکێشانەوە؟ {oppon
 msgid "Ascending"
 msgstr "سەرکەوتوو"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "گەیشتووەتە سنووری داواکارییەکان"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "لە دەریادا"
@@ -783,17 +805,41 @@ msgstr "بانەر نوێکرایەوە"
 msgid "Binary file not shown"
 msgstr "فایلی دووانەیی پیشان نەدراوە"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "بلۆککردن"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "بلۆککردنی {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "{0} بلۆک بکرێت؟"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "بلۆککردنی {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "بلۆککردنی ڕاژەکاری {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "بلۆک کراوە"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "بلۆک کراوە"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "ڕێگەنەدرا بە چوون بۆ بەستەری نامتمانە"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "بلۆکەکان"
 
@@ -1147,6 +1196,11 @@ msgstr "دڵنیای بکەرەوە کە خۆتیت"
 msgid "Connected"
 msgstr "پەیوەستکراو"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "پەیوەستکراو"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "نەتوانرا ناوەکە زیاد بکرێت"
 msgid "Could not change the account"
 msgstr "نەتوانرا هەژمارەکە بگۆڕدرێت"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "بلۆکەکە نەگۆڕدرا"
@@ -1293,6 +1348,10 @@ msgstr "نەتوانرا کلیلەکان بگۆڕدرێن"
 msgid "Could not reserve the handle"
 msgstr "نەتوانرا ناوی بەکارهێنەر تەرخان بکرێت"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "نەتوانرا ڕاپۆرتەکە چارەسەر بکرێت"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "نەتوانرا هەڵبوەشێنرێتەوە"
@@ -1360,6 +1419,7 @@ msgstr "دروستکردنی بەکارهێنەر"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "پەیوەست نییە"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "لابردن"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "ڕەتکرایەوە"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "دۆمەین دروستکرا"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "دۆمەین سڕایەوە"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "دۆمەین یان کەس بۆ بلۆککردن"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "پشتڕاستکردنەوەی کۆد سەرکەوتوو نەبوو"
 msgid "Failed to verify domain"
 msgstr "پشتڕاستکردنەوەی دۆمەین سەرکەوتوو نەبوو"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "شکستەکان"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "فیدراسیۆن"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "هاوڕێکان"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "لە"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "نێرەر"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "لە"
 
@@ -2564,6 +2656,7 @@ msgstr "کلیلەکان"
 msgid "Keys replaced"
 msgstr "کلیلەکان گۆڕدران"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "دوایین بڵاوکردنەوە"
 msgid "Last edited {0}"
 msgstr "دواین جار دەستکاری کرا {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "دوایین شکست"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "دواین چوونەژوورەوە"
@@ -2623,6 +2720,10 @@ msgstr "دواین چوونەژوورەوە"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "دوایین جار بینرا"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "دوایین سەرکەوتن"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "دواین جار بەکار هاتووە"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "ڕێکخستن"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "یاسایی"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "ناو لە ژێر {0}"
 msgid "Name updated"
 msgstr "ناو نوێ کرایەوە"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "یاری نوێ"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "دواتر"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "هەوڵی داهاتوو"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "هیچ کۆدی گەڕانەوە نییە"
 msgid "No recovery key"
 msgstr "هیچ کلیلی گەڕاندنەوە نییە"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "هیچ ڕاپۆرتێک چاوەڕوان نییە."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "هیچ ڕاپۆرتێک چارەسەر نەکراوە."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "هیچ ئەنجامێک نەدۆزرایەوە."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "هیچ ڕێگایەک ڕێکنەخراوە"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "هێشتا هیچ ڕاژەکارێک نییە."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "بەراورد نەکراوە: لە سنووری قەبارە زیاتر
 msgid "Not connected"
 msgstr "پەیوەست نەکراوە"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "پەیوەست نەکراوە"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "دانەنراوە"
 msgid "Nothing found"
 msgstr "هیچ نەدۆزرایەوە"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "هیچ شتێک لە {0} ناگاتە هیچ کەسێک لەسەر ئەم ڕاژەکارە، و هیچ کەسێک لێرەوە هیچی بۆ نانێرێت."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "هیچ شتێک بلۆک نەکراوە."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "هیچ شتێک لە هەژمارەکە پێشکەش ناکرێت و ڕاژەکارەکانی گواستنەوە ئاگادار دەکرێنەوە. هەژمارەکە و ئەوەی بڵاوی کردۆتەوە دەمێننەوە، و دەتوانرێت بگەڕێندرێتەوە."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "هیچ شتێک کە ئەم کەسە دەینێرێت ناگاتە هیچ کەسێک لەسەر ئەم ڕاژەکارە، و ئیتر لێرە شوێنکەوتووی هیچ کەسێک نییە."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "کارا"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "ئۆه! پەڕە نەدۆزرایەوە!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "کراوە"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "هەڵبژاردەکان"
 msgid "Other"
 msgstr "هیتر"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "هیتر"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "ڕاژەکارەکانی تر کلیلە نوێیەکە لە بەڵگە�
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "ڕێکخستنە هیتر"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "ئەنجام"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "چاوەڕوان"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "خەڵک"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "کەس"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "گەیشتن"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "ئامادەیە بۆ گەیشتنی هەژماری Bluesky"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "وەرگیراو"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "وەڵام"
 msgid "Reply to {0}..."
 msgstr "وەڵامدانەوەی {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "ڕاپۆرت"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "کردارەکانی ڕاپۆرت"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "ڕاپۆرت ڕەتکرایەوە"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "ڕاپۆرتەکان"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "ڕاستکردنەوەی دۆمەین پێویستە"
@@ -4005,6 +4190,11 @@ msgstr "دەستلەکارکێشانەوە"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "دەست لە یاری بکێشیتەوە؟"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "چارەسەرکراو"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "ئەم چوونەژوورەوەیە هەڵبوەشێنرێتەوە؟"
 msgid "Role"
 msgstr "ڕۆڵ"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "ژوور"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "ڕێگا دروستکرا"
@@ -4115,6 +4310,11 @@ msgstr "URLی RSS لەبەر کرایەوە بۆ کلیپ بۆرد"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "پێشێلکردنی ڕێسا"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "نامە بنێرە"
 msgid "Serif"
 msgstr "سێریف"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "سەرچاوەکان"
 msgid "Spacious"
 msgstr "فراوان"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "سپام"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "دابەشکردن"
@@ -4473,6 +4682,7 @@ msgstr "دەستپێکرا"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "پوختە دووبارە دروستکرایەوە"
 msgid "Sunday"
 msgstr "یەکشەممە"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "ڕاگرتن"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "بەکارهێنەر ڕابگرە"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "بەکارهێنەر ڕابگرە؟"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "ڕاگیراوە"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "ڕاگیراوە"
 
@@ -4935,10 +5154,12 @@ msgstr "بەردەست نییە · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "بەردەست نییە · ناوەکەی ناگاتە ئەم ڕاژەکارە"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "بلۆکی {label} لاببە"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "بلۆک لابرا"
@@ -5079,6 +5300,7 @@ msgstr "بنەڕەتی بەکارهێنەر"
 msgid "User deleted"
 msgstr "بەکارهێنەر سڕایەوە"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "بەکارهێنەر ڕاگیرا"
@@ -5172,6 +5394,12 @@ msgstr "کۆنترۆڵەکانی بینین"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "تۆمارکردنی دەنگ لەم وێبگەڕەدا پشتگیری ناکرێت"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "لە ڕیزدا"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

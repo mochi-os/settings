@@ -33,7 +33,9 @@ msgstr "\"{0}\" u l-ismijiet taħtu se jinħelsu biex kulħadd ikun jista' jieħ
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" se jitneħħa flimkien ma' dak kollu li ppubblika u mas-segwaċi tiegħu."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" se jinħareġ u ma jkunx jista' jerġa' jidħol sakemm titneħħa s-sospensjoni."
@@ -89,6 +91,12 @@ msgstr "(int)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[mhux issettjat]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} klijent li daħal} two {{clients} klijenti li daħlu} few {{clients} klijenti li daħlu} many {{clients} klijent li daħlu} other {{clients} klijent li daħlu}} · {1, plural, one {{accounts} kont} two {{accounts} kontijiet} few {{accounts} kontijiet} many {{accounts} kont} other {{accounts} kont}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Diġà għaddejja reġistrazzjoni."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Ċavetta ta' rkupru tħallik tmexxi l-kont jew tħassar dak li għamel server kompromess. Tissostitwixxi kwalunkwe ċavetta preċedenti u tintwera darba biss."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Dwar"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Assolut (data u ħin)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Abbuż"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Żgur trid tirriżenja? {opponentName} tirbaħ il-logħba."
 msgid "Ascending"
 msgstr "Axxendenti"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Laħaq il-limitu tat-talbiet"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Fuq il-baħar"
@@ -783,17 +805,41 @@ msgstr "Banner aġġornat"
 msgid "Binary file not shown"
 msgstr "Il-fajl binarju mhux muri"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Imblokka"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "Imblokka lil {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "Imblokka lil {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "Imblokka lil {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Imblokka s-server {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Imblukkat"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Imblukkat"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Navigazzjoni mblokkata lejn link mhux fdat"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Jimblokka"
 
@@ -1147,6 +1196,11 @@ msgstr "Ikkonferma li int"
 msgid "Connected"
 msgstr "Konness"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "Konness"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "Ma setax jiżdied l-isem"
 msgid "Could not change the account"
 msgstr "Il-kont ma setax jinbidel"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "L-imblukkar ma setax jinbidel"
@@ -1293,6 +1348,10 @@ msgstr "Ma setgħux jinbidlu ċ-ċwievet"
 msgid "Could not reserve the handle"
 msgstr "Ma setax jiġi riżervat l-isem tal-utent"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Ir-rapport ma setax jiġi solvut"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Ma setax jiġi rrevokat"
@@ -1360,6 +1419,7 @@ msgstr "Oħloq utent"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "Skonness"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Warrab"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Imwarrab"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "Dominju maħluq"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Dominju mħassar"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Dominju jew persuna li għandhom jiġu mblukkati"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "Ma rnexxiex jiġi vverifikat il-kodiċi"
 msgid "Failed to verify domain"
 msgstr "Ma rnexxiex jiġi vverifikat id-dominju"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Fallimenti"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Federazzjoni"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "Ħbieb"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "Minn"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Minn"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "Minn"
 
@@ -2564,6 +2656,7 @@ msgstr "Ċwievet"
 msgid "Keys replaced"
 msgstr "Ċwievet mibdula"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "L-aħħar xandira"
 msgid "Last edited {0}"
 msgstr "Editjat l-aħħar {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "L-aħħar falliment"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "L-aħħar login"
@@ -2623,6 +2720,10 @@ msgstr "L-aħħar login"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "L-aħħar li deher"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "L-aħħar suċċess"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "Użat l-aħħar"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Tqassim"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Legali"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "Isem taħt {0}"
 msgid "Name updated"
 msgstr "Isem aġġornat"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "Logħba ġdida"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Li jmiss"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "It-tentattiv li jmiss"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "L-ebda kodiċi ta' rkupru"
 msgid "No recovery key"
 msgstr "L-ebda ċavetta ta' rkupru"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "L-ebda rapport ma qed jistenna."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "L-ebda rapport ma ġie solvut."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "Ma nstabu l-ebda riżultati."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "L-ebda routes ikkonfigurati"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Għad m'hemm l-ebda server."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "Mhux imqabbel: jaqbeż il-limitu tad-daqs"
 msgid "Not connected"
 msgstr "Mhux konness"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Mhux konness"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "Mhux issettjat"
 msgid "Nothing found"
 msgstr "Ma nstab xejn"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Xejn minn {0} ma jasal għand ħadd fuq dan is-server, u ħadd minn hawn ma jibagħtlu xejn."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Xejn mhu mblukkat."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Xejn mill-kont ma jiġi servut u r-relays jiġu infurmati. Il-kont u dak li ppubblika jibqgħu, u jista' jiġi restawrat."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Xejn minn dak li tibgħat din il-persuna ma jasal għand ħadd fuq dan is-server, u m'għadha ssegwi lil ħadd hawn."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "Mixgħul"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Oops! Paġna Mhux Misjuba!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Miftuħin"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "Għażliet"
 msgid "Other"
 msgstr "Oħra"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Oħra"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "Is-servers l-oħra jsiru jafu ċ-ċavetta l-ġdida mid-dokument tal-kont
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Settings oħra"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Riżultat"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "Pendenti"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Nies"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Persuna"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "Aċċessibbiltà"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Lest biex jasal il-kont Bluesky"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Riċevut"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "Wieġeb"
 msgid "Reply to {0}..."
 msgstr "Wieġeb lil {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Rapport"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Azzjonijiet tar-rapport"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Rapport imwarrab"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Rapporti"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Eħtieġ verifika tad-dominju"
@@ -4005,6 +4190,11 @@ msgstr "Irriżenja"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Tirriżenja l-logħba?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Solvuti"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "Tirrevoka dan id-dħul?"
 msgid "Role"
 msgstr "Rwol"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Kamra"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Route inħoloq"
@@ -4115,6 +4310,11 @@ msgstr "URL ta' RSS ikkupjat fil-clipboard"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Ksur tar-regoli"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "Ibgħat messaġġ"
 msgid "Serif"
 msgstr "Serif"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "Sorsi"
 msgid "Spacious"
 msgstr "Wiesa'"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Spam"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Aqsam"
@@ -4473,6 +4682,7 @@ msgstr "Inbeda"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "Sommarju riġenerat"
 msgid "Sunday"
 msgstr "Il-Ħadd"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Issospendi"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Issospendi utent"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Issospendi utent?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Sospiż"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Sospiż"
 
@@ -4935,10 +5154,12 @@ msgstr "Mhux disponibbli · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Mhux disponibbli · Ismu ma jwassalx għal dan is-server"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Neħħi l-imblukkar ta' {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "L-imblukkar tneħħa"
@@ -5079,6 +5300,7 @@ msgstr "Defaults tal-utent"
 msgid "User deleted"
 msgstr "Utent imħassar"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Utent sospiż"
@@ -5172,6 +5394,12 @@ msgstr "Ara l-kontrolli"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Ir-reġistrazzjoni tal-vuċi mhijiex appoġġjata f'dan il-brawżer"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "Qed jistennew"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

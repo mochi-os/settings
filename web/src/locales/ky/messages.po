@@ -33,7 +33,9 @@ msgstr "\"{0}\" жана анын астындагы аттар бошотула
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" өзү жарыялаган нерселердин баары жана жазылуучулары менен бирге өчүрүлөт."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" системадан чыгарылат жана токтотуу алынмайынча кайра кире албайт."
@@ -89,6 +91,12 @@ msgstr "(сиз)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[орнотулган эмес]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} кирген клиент} other {{clients} кирген клиент}} · {1, plural, one {{accounts} аккаунт} other {{accounts} аккаунт}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Жазуу мурунтан эле жүрүп жатат."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Калыбына келтирүү ачкычы аккаунтту көчүрүүгө же бузулган сервер жасаган аракеттерди жокко чыгарууга мүмкүндүк берет. Ал мурунку ар кандай ачкычты алмаштырат жана бир гана жолу көрсөтүлөт."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Ким жөнүндө"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Абсолюттук (күн жана убакыт)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Кыянаттык"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Багынууну каалайсызбы? Оюнду {opponentName} у�
 msgid "Ascending"
 msgstr "Өсүү тартибинде"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Суроо чегине жетти"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Деңизде"
@@ -783,19 +805,43 @@ msgstr "Баннер жаңыланды"
 msgid "Binary file not shown"
 msgstr "Экилик файл көрсөтүлбөйт"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Бөгөттөө"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "{0} бөгөттөө"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "{0} бөгөттөө?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "{name} бөгөттөө"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "{host} серверин бөгөттөө"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Blocked"
 msgstr "Бөгөттөлгөн"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Blocked"
+msgstr "Бөгөттөлдү"
 
 #: src/features/user/networks.tsx
 msgid "Blocked and muted"
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Ишенимсиз шилтемеге өтүү бөгөттөлдү"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Блоктор"
 
@@ -1147,6 +1196,11 @@ msgstr "Бул сиз экениңизди ырастаңыз"
 msgid "Connected"
 msgstr "Байланышты"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "Байланышты"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "Атты кошуу мүмкүн болбоду"
 msgid "Could not change the account"
 msgstr "Аккаунтту өзгөртүү мүмкүн болбоду"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Бөгөттөөнү өзгөртүү мүмкүн болгон жок"
@@ -1293,6 +1348,10 @@ msgstr "Ачкычтарды алмаштыруу мүмкүн болбоду"
 msgid "Could not reserve the handle"
 msgstr "Колдонуучу атын ээлеп коюу мүмкүн болбоду"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Билдирүүнү чечүү мүмкүн болгон жок"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Кайтарып алуу мүмкүн болбоду"
@@ -1360,6 +1419,7 @@ msgstr "Колдонуучу түзүү"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "Ажыратылды"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Четке кагуу"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Четке кагылды"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "Домен түзүлдү"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Домен жок кылынды"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Бөгөттөлө турган домен же адам"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "Кодду текшерүү ишке ашкан жок"
 msgid "Failed to verify domain"
 msgstr "Доменди текшерүү ишке ашкан жок"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Ийгиликсиздиктер"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Федерация"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Федиверс"
@@ -2309,6 +2391,16 @@ msgstr "Достор"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "From"
 msgstr "Кимден"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Кимден"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "From"
+msgstr "Кайдан"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -2564,6 +2656,7 @@ msgstr "Ачкычтар"
 msgid "Keys replaced"
 msgstr "Ачкычтар алмаштырылды"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "Акыркы берүү"
 msgid "Last edited {0}"
 msgstr "Акыркы түзөтүлдү {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Акыркы ийгиликсиздик"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Акыркы кирүү"
@@ -2623,6 +2720,10 @@ msgstr "Акыркы кирүү"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Акыркы жолу көрүлгөн"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Акыркы ийгилик"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "Акыркы колдонулду"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Жайгашуу"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Укуктук"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "{0} астындагы ат"
 msgid "Name updated"
 msgstr "Аты жаңыртылды"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "Жаңы оюн"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Кийинки"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Кийинки аракет"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "Калыбына келтирүү коддору жок"
 msgid "No recovery key"
 msgstr "Калыбына келтирүү ачкычы жок"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Күтүп жаткан билдирүүлөр жок."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Чечилген билдирүүлөр жок."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "Натыйжалар табылган жок."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Маршруттар конфигурацияланган эмес"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Азырынча серверлер жок."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "Салыштырылган жок: өлчөм чегинен ашат"
 msgid "Not connected"
 msgstr "Туташкан эмес"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Байланышкан эмес"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "Орнотулган эмес"
 msgid "Nothing found"
 msgstr "Эч нерсе табылган жок"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "{0} тараптан эч нерсе бул сервердеги эч кимге жетпейт, ал эми бул жердеги эч ким ага жөнөтпөйт."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Эч нерсе бөгөттөлгөн эмес."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Аккаунттан эч нерсе берилбейт жана релелерге билдирилет. Аккаунт жана анын жарыялагандары сакталат, аны калыбына келтирүүгө болот."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Анын жөнөткөнү бул сервердеги эч кимге жетпейт жана ал мындан ары бул жерде эч кимдин жазылуучусу эмес."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "Күйүк"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Аттиң! Барак табылган жок!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Ачык"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "Параметрлер"
 msgid "Other"
 msgstr "Башка"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Башка"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "Башка серверлер жаңы ачкычты аккаунтту
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Башка жөндөөлөр"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Натыйжа"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "Күтүүдө"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Адамдар"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Адам"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "Жеткиликтүүлүк"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Bluesky аккаунтунун келишине даяр"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Алынды"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "Жооп"
 msgid "Reply to {0}..."
 msgstr "{0}-га жооп..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Билдирүү"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Билдирүү аракеттери"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Билдирүү четке кагылды"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Билдирүүлөр"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Домен текшерүүсүн талап кылуу"
@@ -4005,6 +4190,11 @@ msgstr "Баш тартуу"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Оюндан баш тартасызбы?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Чечилген"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "Бул кирүүнү кайтарып аласызбы?"
 msgid "Role"
 msgstr "Роль"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Бөлмө"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Маршрут түзүлдү"
@@ -4115,6 +4310,11 @@ msgstr "RSS URL алмашуу буферине көчүрүлдү"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Эрежени бузуу"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "Билдирүү жөнөтүү"
 msgid "Serif"
 msgstr "Серифтүү"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "Булактар"
 msgid "Spacious"
 msgstr "Кенен"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Спам"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Бөлүү"
@@ -4473,6 +4682,7 @@ msgstr "Башталды"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "Жыйынтык кайра түзүлдү"
 msgid "Sunday"
 msgstr "Жекшемби"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Токтотуп туруу"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Колдонуучуну токтотуп туруу"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Колдонуучуну токтотуп туруу?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Токтотулду"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Токтотулду"
 
@@ -4935,10 +5154,12 @@ msgstr "Жеткиликсиз · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Жеткиликсиз · Анын аталышы бул серверге алып барбайт"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "{label} бөгөтүн алуу"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Бөгөт алынды"
@@ -5079,6 +5300,7 @@ msgstr "Колдонуучу демейкилери"
 msgid "User deleted"
 msgstr "Колдонуучу өчүрүлдү"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Колдонуучу токтотулду"
@@ -5172,6 +5394,12 @@ msgstr "Көрүү башкаруусу"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Үн жазуу бул браузерде колдоого алынбайт"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "Күтүүдө"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

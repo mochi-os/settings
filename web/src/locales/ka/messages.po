@@ -33,7 +33,9 @@ msgstr "„{0}“ და მის ქვეშ არსებული სა�
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "„{0}“ წაიშლება მის მიერ გამოქვეყნებულ ყველაფერთან და მის გამომწერებთან ერთად."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" გამოვა სისტემიდან და ვეღარ შევა, სანამ შეჩერება არ მოიხსნება."
@@ -89,6 +91,12 @@ msgstr "(თქვენ)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[არ არის მითითებული]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} შესული კლიენტი} other {{clients} შესული კლიენტი}} · {1, plural, one {{accounts} ანგარიში} other {{accounts} ანგარიში}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "ჩაწერა უკვე მიმდინარეობს."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "აღდგენის გასაღები საშუალებას გაძლევთ გადაიტანოთ ანგარიში ან გააუქმოთ ის, რაც კომპრომეტირებულმა სერვერმა გააკეთა. ის ცვლის ნებისმიერ წინა გასაღებს და ნაჩვენები იქნება მხოლოდ ერთხელ."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "ვის შესახებ"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "აბსოლუტური (თარიღი და დრო)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "ბოროტად გამოყენება"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "დარწმუნებული ხართ, რომ გსუ�
 msgid "Ascending"
 msgstr "ზრდადობით"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "მოთხოვნების ლიმიტს მიაღწია"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "ზღვაზე"
@@ -783,17 +805,41 @@ msgstr "ბანერი განახლდა"
 msgid "Binary file not shown"
 msgstr "ორობითი ფაილი არ არის ნაჩვენები"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "დაბლოკვა"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "{0}-ის დაბლოკვა"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "დაიბლოკოს {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "{name}-ის დაბლოკვა"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "სერვერ {host}-ის დაბლოკვა"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "დაბლოკილი"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "დაბლოკილი"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "დაბლოკილია უსანდო ბმულზე ნავიგაცია"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "ბლოკები"
 
@@ -1147,6 +1196,11 @@ msgstr "დაადასტურეთ, რომ ეs თქვენ ხა
 msgid "Connected"
 msgstr "დაკავშირებულია"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "დაკავშირებულია"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "სახელის დამატება ვერ მოხერ
 msgid "Could not change the account"
 msgstr "ანგარიშის შეცვლა ვერ მოხერხდა"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "ბლოკის შეცვლა ვერ მოხერხდა"
@@ -1293,6 +1348,10 @@ msgstr "გასაღებების ჩანაცვლება ვე�
 msgid "Could not reserve the handle"
 msgstr "მომხმარებლის სახელის დაჯავშნა ვერ მოხერხდა"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "საჩივრის გადაწყვეტა ვერ მოხერხდა"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "გაწვევა ვერ მოხერხდა"
@@ -1360,6 +1419,7 @@ msgstr "მომხმარებლის შექმნა"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "გათიშულია"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "დახურვა"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "უარყოფილი"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "დომენი შეიქმნა"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "დომენი წაიშალა"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "დასაბლოკი დომენი ან პიროვნება"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "კოდის დადასტურება ვერ მოხე
 msgid "Failed to verify domain"
 msgstr "დომენის დადასტურება ვერ მოხერხდა"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "წარუმატებლობები"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "ფედერაცია"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2309,6 +2391,16 @@ msgstr "მეგობრები"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "From"
 msgstr "ვისგან"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "ვისგან"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "From"
+msgstr "საიდან"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -2564,6 +2656,7 @@ msgstr "გასაღებები"
 msgid "Keys replaced"
 msgstr "გასაღებები ჩანაცვლდა"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "ბოლო მაუწყებლობა"
 msgid "Last edited {0}"
 msgstr "ბოლოს რედაქტირდა {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "ბოლო წარუმატებლობა"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "ბოლო შესვლა"
@@ -2623,6 +2720,10 @@ msgstr "ბოლო შესვლა"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "ბოლოს ნანახი"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "ბოლო წარმატება"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "ბოლოს გამოყენებული"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "განლაგება"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "სამართლებრივი"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "სახელი {0}-ის ქვეშ"
 msgid "Name updated"
 msgstr "სახელი განახლდა"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "ახალი თამაში"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "შემდეგი"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "შემდეგი მცდელობა"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "აღდგენის კოდები არ არის"
 msgid "No recovery key"
 msgstr "აღდგენის გასაღები არ არის"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "მომლოდინე საჩივრები არ არის."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "გადაწყვეტილი საჩივრები არ არის."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "შედეგები ვერ მოიძებნა."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "მარშრუტები არ არის კონფიგურირებული"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "სერვერები ჯერ არ არის."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "არ შედარებულა: აღემატება ზ�
 msgid "Not connected"
 msgstr "არ არის დაკავშირებული"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "არ არის დაკავშირებული"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "არ არის დაყენებული"
 msgid "Nothing found"
 msgstr "არაფერი მოიძებნა"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "{0}-დან არაფერი აღწევს ამ სერვერზე არავისთან და აქედან მას არავინ არაფერს უგზავნის."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "არაფერია დაბლოკილი."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "ანგარიშიდან არაფერი მიეწოდება და რელეებს ეცნობებათ. ანგარიში და მისი გამოქვეყნებული მასალა რჩება და მისი აღდგენა შესაძლებელია."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "მის მიერ გაგზავნილი არაფერი აღწევს ამ სერვერზე არავისთან და ის აქ აღარ არის არავის გამომწერი."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "ჩართული"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "უპს! გვერდი ვერ მოიძებნა!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "ღია"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "ვარიანტები"
 msgid "Other"
 msgstr "სხვა"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "სხვა"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "სხვა სერვერები ახალ გასაღე
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "სხვა პარამეტრები"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "შედეგი"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "მოლოდინში"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "ადამიანები"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "პიროვნება"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "მიწვდომადობა"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "მზადაა Bluesky ანგარიშის მისაღებად"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "მიღებული"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "პასუხი"
 msgid "Reply to {0}..."
 msgstr "პასუხი {0}-ს..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "საჩივარი"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "საჩივრის მოქმედებები"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "საჩივარი უარყოფილია"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "საჩივრები"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "დომენის გადამოწმების მოთხოვნა"
@@ -4005,6 +4190,11 @@ msgstr "ჩაბარება"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "თამაშის ჩაბარება?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "გადაწყვეტილი"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "გაიწვიოს ეს შესვლა?"
 msgid "Role"
 msgstr "როლი"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "ოთახი"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "მარშრუტი შეიქმნა"
@@ -4115,6 +4310,11 @@ msgstr "RSS URL დაკოპირდა"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "წესების დარღვევა"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "შეტყობინების გაგზავნა"
 msgid "Serif"
 msgstr "სერიფი"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "წყაროები"
 msgid "Spacious"
 msgstr "ფართო"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "სპამი"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "გაყოფა"
@@ -4473,6 +4682,7 @@ msgstr "დაიწყო"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "შემაჯამებელი თავიდან გენე�
 msgid "Sunday"
 msgstr "კვირა"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "შეჩერება"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "მომხმარებლის შეჩერება"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "მომხმარებლის შეჩერება?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "შეჩერებული"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "შეჩერებული"
 
@@ -4935,10 +5154,12 @@ msgstr "მიუწვდომელია · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "მიუწვდომელია · მისი სახელი ამ სერვერისკენ არ მიდის"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "{label}-ის განბლოკვა"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "განბლოკილია"
@@ -5079,6 +5300,7 @@ msgstr "მომხმარებლის ნაგულისხმევ�
 msgid "User deleted"
 msgstr "მომხმარებელი წაიშალა"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "მომხმარებელი შეჩერებულია"
@@ -5172,6 +5394,12 @@ msgstr "ხედის მართვა"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "ხმის ჩაწერა ამ ბრაუზერში მხარდაჭერილი არ არის"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "მომლოდინე"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

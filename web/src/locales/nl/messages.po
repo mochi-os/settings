@@ -33,7 +33,9 @@ msgstr "\"{0}\" en de namen eronder worden vrijgegeven, zodat iedereen ze kan ne
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" wordt verwijderd, samen met alles wat het heeft gepubliceerd en zijn volgers."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" wordt afgemeld en kan pas weer inloggen als de schorsing is opgeheven."
@@ -89,6 +91,12 @@ msgstr "(jij)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[niet ingesteld]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} client ingelogd} other {{clients} clients ingelogd}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Er loopt al een opname."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Met een herstelsleutel kun je het account verplaatsen of ongedaan maken wat een gecompromitteerde server heeft gedaan. Hij vervangt een eventuele eerdere sleutel en wordt maar één keer getoond."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Over"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absoluut (datum en tijd)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Misbruik"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Weet je zeker dat je wilt opgeven? {opponentName} wint de partij."
 msgid "Ascending"
 msgstr "Oplopend"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Aanvraaglimiet bereikt"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Op zee"
@@ -783,17 +805,41 @@ msgstr "Banner bijgewerkt"
 msgid "Binary file not shown"
 msgstr "Binair bestand wordt niet weergegeven"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Blokkeren"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "{0} blokkeren"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "{0} blokkeren?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "{name} blokkeren"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Server {host} blokkeren"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Geblokkeerd"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Geblokkeerd"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Navigatie naar niet-vertrouwde link geblokkeerd"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Blokkeert"
 
@@ -1147,6 +1196,11 @@ msgstr "Bevestig dat jij het bent"
 msgid "Connected"
 msgstr "Verbonden"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "Verbonden"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "Kan de naam niet toevoegen"
 msgid "Could not change the account"
 msgstr "Kan het account niet wijzigen"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "De blokkering kon niet worden gewijzigd"
@@ -1293,6 +1348,10 @@ msgstr "Kan de sleutels niet vervangen"
 msgid "Could not reserve the handle"
 msgstr "Kan de gebruikersnaam niet reserveren"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "De melding kon niet worden afgehandeld"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Kan niet intrekken"
@@ -1360,6 +1419,7 @@ msgstr "Gebruiker aanmaken"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "Verbinding verbroken"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Sluiten"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Afgewezen"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "Domein aangemaakt"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Domein verwijderd"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Te blokkeren domein of persoon"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "Code verifiëren mislukt"
 msgid "Failed to verify domain"
 msgstr "Domein verifiëren mislukt"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Mislukt"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Federatie"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "Vrienden"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "Van"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Van"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "Van"
 
@@ -2564,6 +2656,7 @@ msgstr "Sleutels"
 msgid "Keys replaced"
 msgstr "Sleutels zijn vervangen"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "Laatste uitzending"
 msgid "Last edited {0}"
 msgstr "Laatst bewerkt {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Laatst mislukt"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Laatste login"
@@ -2623,6 +2720,10 @@ msgstr "Laatste login"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Laatst gezien"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Laatst gelukt"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "Laatst gebruikt"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Lay-out"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Juridisch"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "Naam onder {0}"
 msgid "Name updated"
 msgstr "Naam bijgewerkt"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "Nieuw spel"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Volgende"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Volgende poging"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "Geen herstelcodes"
 msgid "No recovery key"
 msgstr "Geen herstelsleutel"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Er wachten geen meldingen."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Er zijn geen afgehandelde meldingen."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "Geen resultaten gevonden."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Geen routes geconfigureerd"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Nog geen servers."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "Niet vergeleken: boven de groottelimiet"
 msgid "Not connected"
 msgstr "Niet verbonden"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Niet verbonden"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "Niet ingesteld"
 msgid "Nothing found"
 msgstr "Niets gevonden"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Niets van {0} bereikt iemand op deze server, en niemand hier stuurt er iets naartoe."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Er is niets geblokkeerd."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Niets van het account wordt nog aangeboden en de relais worden op de hoogte gebracht. Het account en wat het heeft gepubliceerd blijven bewaard, en het kan worden hersteld."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Niets wat deze persoon stuurt bereikt iemand op deze server, en deze persoon volgt hier niemand meer."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "Aan"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Oeps! Pagina niet gevonden!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Open"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "Opties"
 msgid "Other"
 msgstr "Overig"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Overig"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "Andere servers halen de nieuwe sleutel uit het document van het account.
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Overige instellingen"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Uitkomst"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "In afwachting"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Mensen"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Persoon"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "Bereikbaarheid"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Klaar voor de komst van het Bluesky-account"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Ontvangen"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "Antwoorden"
 msgid "Reply to {0}..."
 msgstr "Reactie op {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Melding"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Meldingsacties"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Melding afgewezen"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Meldingen"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Domeinverificatie vereisen"
@@ -4005,6 +4190,11 @@ msgstr "Opgeven"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Spel opgeven?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Afgehandeld"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "Deze aanmelding intrekken?"
 msgid "Role"
 msgstr "Rol"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Ruimte"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Route aangemaakt"
@@ -4115,6 +4310,11 @@ msgstr "RSS-URL gekopieerd naar het klembord"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Regelovertreding"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "Bericht versturen"
 msgid "Serif"
 msgstr "Schreefletter"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "Bronnen"
 msgid "Spacious"
 msgstr "Ruim"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Spam"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Splitsen"
@@ -4473,6 +4682,7 @@ msgstr "Gestart"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "Samenvatting opnieuw gegenereerd"
 msgid "Sunday"
 msgstr "Zondag"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Schorsen"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Gebruiker schorsen"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Gebruiker schorsen?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Geschorst"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Geschorst"
 
@@ -4935,10 +5154,12 @@ msgstr "Niet beschikbaar · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Niet beschikbaar · De naam verwijst niet naar deze server"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "{label} deblokkeren"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Gedeblokkeerd"
@@ -5079,6 +5300,7 @@ msgstr "Standaardinstellingen gebruiker"
 msgid "User deleted"
 msgstr "Gebruiker verwijderd"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Gebruiker geschorst"
@@ -5172,6 +5394,12 @@ msgstr "Weergavebediening"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Spraakopname wordt niet ondersteund in deze browser"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "Wachtend"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

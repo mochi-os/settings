@@ -33,7 +33,9 @@ msgstr "\"{0}\" او د هغه لاندې نومونه به آزاد شي څو �
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" به د هغو ټولو شیانو سره چې خپاره کړي یې دي او د خپلو پیروانو سره لرې شي."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" به وویستل شي او تر هغه چې ځنډول لرې نشي بیا ننوتلی نشي."
@@ -89,6 +91,12 @@ msgstr "(تاسو)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[نه دی ټاکل شوی]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} ننوتی اپلیکیشن} other {{clients} ننوتي اپلیکیشنونه}} · {1, plural, one {{accounts} حساب} other {{accounts} حسابونه}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "ثبت لا دمخه روان دی."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "د بیا رغونې کیلي تاسو ته اجازه درکوي چې حساب ولیږدوئ یا هغه څه بیرته واړوئ چې یو نفوذ شوي سرور کړي وو. دا هره پخوانۍ کیلي ځای ناستې کوي او یوازې یو ځل ښودل کیږي."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "په اړه"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "مطلق (نېټه او وخت)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "ناوړه ګټه اخیستنه"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "ایا تاسو ډاډه یاست چې غواړئ استعفا ورکړ�
 msgid "Ascending"
 msgstr "د کم څخه ډېر"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "د غوښتنو حد ته رسېدلی"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "په سمندر کې"
@@ -783,17 +805,41 @@ msgstr "بانر نوی شو"
 msgid "Binary file not shown"
 msgstr "دوه‌ییزه دوتنه نه ښودل کېږي"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "بلاک کړئ"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "{0} بلاک کړئ"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "{0} بلاک کړئ؟"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "{name} بلاک کړئ"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "سرور {host} بلاک کړئ"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "بند شوی"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "بند شوی"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "نه باور لرونکي لینک ته نیویګیشن بنده شوه"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "بلاکونه"
 
@@ -1147,6 +1196,11 @@ msgstr "تایید کړئ چې تاسو یاست"
 msgid "Connected"
 msgstr "وصل شو"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "وصل شو"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "نوم اضافه نشو"
 msgid "Could not change the account"
 msgstr "حساب بدل نه شو"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "بندول بدل نه شول"
@@ -1293,6 +1348,10 @@ msgstr "کیلۍ بدلې نشوې"
 msgid "Could not reserve the handle"
 msgstr "مستعار نوم ریزرو نشو"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "راپور حل نه شو"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "بیرته نشي اخیستل کیدلی"
@@ -1360,6 +1419,7 @@ msgstr "کاروونکی جوړ کړئ"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "پرېکړل شوی"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "وتړئ"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "رد شوی"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "ډومین جوړ شو"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "ډومین ړنګ شو"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "د بندولو لپاره ډومین یا کس"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "د کوډ تصدیق پاتې راغلل"
 msgid "Failed to verify domain"
 msgstr "د ډومین تصدیق پاتې راغلل"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "ناکامۍ"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "فدراسیون"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "ملګري"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "له"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "له"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "له"
 
@@ -2564,6 +2656,7 @@ msgstr "کیلۍ"
 msgid "Keys replaced"
 msgstr "کیلۍ بدلې شوې"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "وروستۍ خپرونه"
 msgid "Last edited {0}"
 msgstr "وروستی سمون {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "وروستۍ ناکامي"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "وروستی لاګ ان"
@@ -2623,6 +2720,10 @@ msgstr "وروستی لاګ ان"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "وروستی ځل لیدل شوی"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "وروستۍ بریا"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "وروستی کارونه"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "ترتیب"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "حقوقي"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "د {0} لاندې نوم"
 msgid "Name updated"
 msgstr "نوم تازه شو"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "نوې لوبه"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "بل"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "بله هڅه"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "هیڅ بیرته راګرځولو کوډونه نشته"
 msgid "No recovery key"
 msgstr "د بیا رغونې کیلي نشته"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "هېڅ راپور په تمه کې نه دی."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "هېڅ راپور نه دی حل شوی."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "هیڅ پایلې ونه موندل شوې."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "هیڅ لارې نه دي تنظیم شوې"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "تر اوسه هېڅ سرور نشته."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "پرتله نه شو: د اندازې له حد څخه زیات"
 msgid "Not connected"
 msgstr "وصل نه دی"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "وصل نه دی"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "نه دی ټاکل شوی"
 msgid "Nothing found"
 msgstr "هیڅ نه موندل شو"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "له {0} څخه هېڅ شی پر دې سرور هېچا ته نه رسېږي، او له دې ځایه هېڅوک هغه ته څه نه لېږي."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "هېڅ شی بند شوی نه دی."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "د حساب هېڅ شی نه وړاندې کېږي او لېږدوونکو ته خبر ورکول کېږي. حساب او هغه څه چې ده خپاره کړي پاتې کېږي، او بېرته راګرځول کېدای شي."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "دا کس چې هر څه لېږي پر دې سرور هېچا ته نه رسېږي، او نور دلته د هېچا پیروونکی نه دی."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "فعال"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "اوه! پاڼه ونه موندل شوه!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "پرانیستي"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "اختیارونه"
 msgid "Other"
 msgstr "نور"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "نور"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "نور سرورونه نوې کیلي د حساب له سند څخه ز�
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "نور تنظیمات"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "پایله"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "په تمه"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "خلک"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "کس"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "لاسرسی"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "د Bluesky حساب د راتګ لپاره چمتو"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "ترلاسه شوی"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "ځواب"
 msgid "Reply to {0}..."
 msgstr "{0} ته ځواب ووایاست..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "راپور"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "د راپور کړنې"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "راپور رد شو"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "راپورونه"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "د ډومین تایید اړین دی"
@@ -4005,6 +4190,11 @@ msgstr "تسلیمیدل"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "لوبه تسلیم کړو؟"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "حل شوي"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "دا ننوتل بیرته اخلئ؟"
 msgid "Role"
 msgstr "رول"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "خونه"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "لاره جوړه شوه"
@@ -4115,6 +4310,11 @@ msgstr "د RSS URL کلیپبورډ ته کاپي شو"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "د قواعدو سرغړونه"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "پیغام ولېږئ"
 msgid "Serif"
 msgstr "سيريف"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "سرچینې"
 msgid "Spacious"
 msgstr "پراخه"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "سپام"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "وېشل"
@@ -4473,6 +4682,7 @@ msgstr "پیل شو"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "لنډیز بیا جوړ شو"
 msgid "Sunday"
 msgstr "یکشنبه"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "ودرول"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "کاروونکی ودرول"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "کاروونکی ودرول؟"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "ودرول شو"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "ودرول شو"
 
@@ -4935,10 +5154,12 @@ msgstr "نه شته · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "نه شته · د هغه نوم دې سرور ته نه رسېږي"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "{label} پرانیستل"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "پرانیستل شو"
@@ -5079,6 +5300,7 @@ msgstr "د کاروونکي اصلي تنظیمات"
 msgid "User deleted"
 msgstr "کاروونکی حذف شو"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "کاروونکی ودرول شو"
@@ -5172,6 +5394,12 @@ msgstr "د کنټرول لیدل"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "په دې براوزر کې غږ ثبتول ملاتړ نه لري"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "په کتار کې"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

@@ -33,7 +33,9 @@ msgstr "\"{0}\" û navên di bin wê de dê bên azadkirin da ku her kes bikarib
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" dê bi her tiştê ku weşandiye û şopînerên xwe re bê rakirin."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" wê were derxistin û nikare dîsa têkeve heta ku rawestandin neyê rakirin."
@@ -89,6 +91,12 @@ msgstr "(tu)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[neyî sazkirin]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} klîent têketî} other {{clients} klîent têketî}} · {1, plural, one {{accounts} hesab} other {{accounts} hesab}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Tomarkirinek jixwe didome."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Mifteya vegerê dihêle tu hesabê veguhezînî an tiştê ku serverek binpêkirî kiriye betal bikî. Ew şûna her mifteyeke berê digire û tenê carekê tê nîşandan."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Derbarê"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Mutleq (dîrok û saet)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Îstîsmar"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Tu bawer î ku dixwazî teslîm bibî? {opponentName} dê di lîstikê d
 msgid "Ascending"
 msgstr "Hilkişandî"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Gihîşt sînorê daxwazan"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Li deryayê"
@@ -783,17 +805,41 @@ msgstr "Banner hat nûkirin"
 msgid "Binary file not shown"
 msgstr "Pelê binar nayê nîşandan"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Asteng bike"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "{0} asteng bike"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "{0} asteng bike?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "{name} asteng bike"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Serverê {host} asteng bike"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Astengkirî"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Astengkirî"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Gihîştin bo girêdaneke nebawer hat astengkirin"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Blok"
 
@@ -1147,6 +1196,11 @@ msgstr "Pejirîne ku ev tu yî"
 msgid "Connected"
 msgstr "Girêdayî"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "Girêdayî"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "Nav nehat zêdekirin"
 msgid "Could not change the account"
 msgstr "Hesab nehat guhertin"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Astengî nehat guhertin"
@@ -1293,6 +1348,10 @@ msgstr "Mifte nehatin guhertin"
 msgid "Could not reserve the handle"
 msgstr "Navê bikarhêner nehat rezervekirin"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Rapor nehat çareserkirin"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Nehat vekişandin"
@@ -1360,6 +1419,7 @@ msgstr "Bikarhêner çêbike"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "Veqetandî"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Red bike"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Redkirî"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "Domain hat çêkirin"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Domain hat jêbirin"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Domên an kesê ku were astengkirin"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "Rastandina kodê neserkeftî bû"
 msgid "Failed to verify domain"
 msgstr "Rastandina domanê neserkeftî bû"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Têkçûn"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Federasyon"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "Heval"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "Ji"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Ji"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "Ji"
 
@@ -2564,6 +2656,7 @@ msgstr "Mifte"
 msgid "Keys replaced"
 msgstr "Mifte hatin guhertin"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "Weşana dawî"
 msgid "Last edited {0}"
 msgstr "Lê hat sererastkirin {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Têkçûna dawî"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Têketina dawîn"
@@ -2623,6 +2720,10 @@ msgstr "Têketina dawîn"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Cara dawî hat dîtin"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Serkeftina dawî"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "Bikaranîna dawîn"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Bargeh"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Hiqûqî"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "Nav di bin {0} de"
 msgid "Name updated"
 msgstr "Nav hate nûkirin"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "Lîstika nû"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Pêştir"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Hewldana din"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "Tu kodên vegerê tune"
 msgid "No recovery key"
 msgstr "Mifteya vegerê tune"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Ti rapor li bendê nîn in."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Ti rapor nehatine çareserkirin."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "Tu encam nehatin dîtin."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Tu rê nehatine mîhengkirin"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Hîn ti server nîn in."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "Nehat berawirdkirin: ji sînorê mezinahiyê zêdetir e"
 msgid "Not connected"
 msgstr "Ne girêdayî ye"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Ne girêdayî"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "Nehatiye danîn"
 msgid "Nothing found"
 msgstr "Tiştek nehat dîtin"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Tiştek ji {0} nagihîje kesî li ser vî serverî, û kes ji vir jê re naşîne."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Tiştek nehatiye astengkirin."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Tiştek ji hesabê nayê pêşkêşkirin û relê têne agahdarkirin. Hesab û tiştên ku weşandine dimînin, û dikare were vegerandin."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Tiştê ku ew dişîne nagihîje kesî li ser vî serverî, û ew êdî li vir şopînerê kesî nîne."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "Vekirî"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Wey! Rûpel nehat dîtin!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Vekirî"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "Vebijêrk"
 msgid "Other"
 msgstr "Yên din"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Yên din"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "Serverên din mifteya nû ji belgeya hesabê fêr dibin. Her tiştê ku 
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Mîhengên din"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Encam"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "Li bendê"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Mirov"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Kes"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "Gihîştinbarî"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Amade ye ji bo hatina hesabê Bluesky"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Hate stendin"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "Bersiv"
 msgid "Reply to {0}..."
 msgstr "Bersiv ji {0} re..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Rapor"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Çalakiyên raporê"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Rapor hat redkirin"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Rapor"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Verastkirina domainê pêwîst e"
@@ -4005,6 +4190,11 @@ msgstr "Dest jê berde"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Dest ji lîstikê berde?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Çareserkirî"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "Vê têketinê vekişîne?"
 msgid "Role"
 msgstr "Rol"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Ode"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Rê hate afirandin"
@@ -4115,6 +4310,11 @@ msgstr "URL ya RSS hate kopîkirin"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Binpêkirina qaîdeyan"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "Peyamê bişîne"
 msgid "Serif"
 msgstr "Serîf"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "Çavkanî"
 msgid "Spacious"
 msgstr "Berfireh"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Spam"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Parçe bike"
@@ -4473,6 +4682,7 @@ msgstr "Dest pê kir"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "Kurte ji nû ve hat çêkirin"
 msgid "Sunday"
 msgstr "Yekşem"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Sekinandin"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Bikarhêner biseknîne"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Bikarhêner biseknîne?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Sekinandî"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Sekinandî"
 
@@ -4935,10 +5154,12 @@ msgstr "Ne berdest e · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Ne berdest e · Navê wê nagihîje vê serverê"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Astengiya {label} rake"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Astengî rakirî"
@@ -5079,6 +5300,7 @@ msgstr "Standardên bikarhêner"
 msgid "User deleted"
 msgstr "Bikarhêner hat jêbirin"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Bikarhêner hat sekinandin"
@@ -5172,6 +5394,12 @@ msgstr "Kontrolên dîtinê"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Tomarkirina dengî di vê gerokê de nayê destekkirin"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "Li bendê"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

@@ -33,7 +33,9 @@ msgstr "\"{0}\" och namnen under det frigörs så att vem som helst kan ta dem. 
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "Kontot \"{0}\" tas bort tillsammans med allt det har publicerat och dess följare."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" loggas ut och kan inte logga in igen förrän avstängningen har hävts."
@@ -89,6 +91,12 @@ msgstr "(du)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[ej angivet]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} inloggad klient} other {{clients} inloggade klienter}} · {1, plural, one {{accounts} konto} other {{accounts} konton}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "En inspelning pågår redan."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Med en återställningsnyckel kan du flytta kontot eller ångra det som en komprometterad server har gjort. Den ersätter eventuell tidigare nyckel och visas bara en gång."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Gäller"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absolut (datum och tid)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Missbruk"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Är du säker på att du vill ge upp? {opponentName} kommer att vinna pa
 msgid "Ascending"
 msgstr "Stigande"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Vid gränsen för förfrågningar"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Till sjöss"
@@ -783,17 +805,41 @@ msgstr "Banner uppdaterad"
 msgid "Binary file not shown"
 msgstr "Binär fil visas inte"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Blockera"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "Blockera {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "Blockera {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "Blockera {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Blockera servern {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Blockerad"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Blockerad"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Blockerade navigering till opålitlig länk"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Blockerar"
 
@@ -1147,6 +1196,11 @@ msgstr "Bekräfta att det är du"
 msgid "Connected"
 msgstr "Ansluten"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "Ansluten"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "Det gick inte att lägga till namnet"
 msgid "Could not change the account"
 msgstr "Det gick inte att ändra kontot"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Blockeringen kunde inte ändras"
@@ -1293,6 +1348,10 @@ msgstr "Det gick inte att ersätta nycklarna"
 msgid "Could not reserve the handle"
 msgstr "Det gick inte att reservera aliaset"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Rapporten kunde inte hanteras"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Kunde inte återkalla"
@@ -1360,6 +1419,7 @@ msgstr "Skapa användare"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "Frånkopplad"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Avfärda"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Avfärdad"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "Domän skapad"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Domän raderad"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Domän eller person att blockera"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "Kunde inte verifiera kod"
 msgid "Failed to verify domain"
 msgstr "Kunde inte verifiera domän"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Misslyckanden"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Federation"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediversum"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "Vänner"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "Från"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Från"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "Från"
 
@@ -2564,6 +2656,7 @@ msgstr "Nycklar"
 msgid "Keys replaced"
 msgstr "Nycklarna har ersatts"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "Senaste utsändning"
 msgid "Last edited {0}"
 msgstr "Senast redigerad {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Senaste misslyckande"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Senaste inloggning"
@@ -2623,6 +2720,10 @@ msgstr "Senaste inloggning"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Senast sedd"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Senaste lyckade"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "Senast använd"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Layout"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Juridiskt"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "Namn under {0}"
 msgid "Name updated"
 msgstr "Namn uppdaterat"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "Nytt spel"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Nästa"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Nästa försök"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "Inga återställningskoder"
 msgid "No recovery key"
 msgstr "Ingen återställningsnyckel"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Inga rapporter väntar."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Inga rapporter har hanterats."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "Inga resultat hittades."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Inga rutter konfigurerade"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Inga servrar ännu."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "Inte jämförd: över storleksgränsen"
 msgid "Not connected"
 msgstr "Inte ansluten"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Inte ansluten"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "Ej inställd"
 msgid "Nothing found"
 msgstr "Inget hittades"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Ingenting från {0} når någon på den här servern, och ingen här skickar något dit."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Ingenting är blockerat."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Inget av kontot levereras och reläerna underrättas. Kontot och det som det har publicerat finns kvar, och kontot kan återställas."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Ingenting som personen skickar når någon på den här servern, och personen följer inte längre någon här."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "På"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Hoppsan! Sidan hittades inte!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Öppna"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "Alternativ"
 msgid "Other"
 msgstr "Övrigt"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Övrigt"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "Andra servrar hämtar den nya nyckeln från kontots dokument. Allt som s
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Övriga inställningar"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Resultat"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "Väntar"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Personer"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Person"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "Nåbarhet"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Redo för att Bluesky-kontot ska komma"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Mottagen"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "Svara"
 msgid "Reply to {0}..."
 msgstr "Svara {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Rapport"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Rapportåtgärder"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Rapporten avfärdad"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Rapporter"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Kräv domänverifiering"
@@ -4005,6 +4190,11 @@ msgstr "Ge upp"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Ge upp partiet?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Hanterade"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "Återkalla den här inloggningen?"
 msgid "Role"
 msgstr "Roll"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Rum"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Rutt skapad"
@@ -4115,6 +4310,11 @@ msgstr "RSS-URL kopierad till urklipp"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Regelbrott"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "Skicka meddelande"
 msgid "Serif"
 msgstr "Serif"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "Källor"
 msgid "Spacious"
 msgstr "Rymlig"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Skräppost"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Sida vid sida"
@@ -4473,6 +4682,7 @@ msgstr "Startad"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "Sammanfattning återskapad"
 msgid "Sunday"
 msgstr "Söndag"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Stäng av"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Stäng av användare"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Stäng av användare?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Avstängd"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Avstängd"
 
@@ -4935,10 +5154,12 @@ msgstr "Otillgänglig · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Otillgänglig · Namnet leder inte till den här servern"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Avblockera {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Avblockerad"
@@ -5079,6 +5300,7 @@ msgstr "Användarstandard"
 msgid "User deleted"
 msgstr "Användare borttagen"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Användare avstängd"
@@ -5172,6 +5394,12 @@ msgstr "Visningskontroller"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Röstinspelning stöds inte i den här webbläsaren"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "I kö"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

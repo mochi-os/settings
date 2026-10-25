@@ -15,8 +15,11 @@ import { Route as AuthenticatedDomainsRouteImport } from './routes/_authenticate
 import { Route as AuthenticatedDocumentPrivacyRouteImport } from './routes/_authenticated/document/privacy'
 import { Route as AuthenticatedDocumentRulesRouteImport } from './routes/_authenticated/document/rules'
 import { Route as AuthenticatedDocumentTermsRouteImport } from './routes/_authenticated/document/terms'
+import { Route as AuthenticatedSystemBlocksRouteImport } from './routes/_authenticated/system/blocks'
 import { Route as AuthenticatedSystemDocumentsRouteImport } from './routes/_authenticated/system/documents'
+import { Route as AuthenticatedSystemFederationRouteImport } from './routes/_authenticated/system/federation'
 import { Route as AuthenticatedSystemHandlesRouteImport } from './routes/_authenticated/system/handles'
+import { Route as AuthenticatedSystemReportsRouteImport } from './routes/_authenticated/system/reports'
 import { Route as AuthenticatedSystemSettingsRouteImport } from './routes/_authenticated/system/settings'
 import { Route as AuthenticatedSystemStatusRouteImport } from './routes/_authenticated/system/status'
 import { Route as AuthenticatedSystemUsersRouteImport } from './routes/_authenticated/system/users'
@@ -63,16 +66,34 @@ const AuthenticatedDocumentTermsRoute =
     path: '/document/terms',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedSystemBlocksRoute =
+  AuthenticatedSystemBlocksRouteImport.update({
+    id: '/system/blocks',
+    path: '/system/blocks',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedSystemDocumentsRoute =
   AuthenticatedSystemDocumentsRouteImport.update({
     id: '/system/documents',
     path: '/system/documents',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedSystemFederationRoute =
+  AuthenticatedSystemFederationRouteImport.update({
+    id: '/system/federation',
+    path: '/system/federation',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedSystemHandlesRoute =
   AuthenticatedSystemHandlesRouteImport.update({
     id: '/system/handles',
     path: '/system/handles',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSystemReportsRoute =
+  AuthenticatedSystemReportsRouteImport.update({
+    id: '/system/reports',
+    path: '/system/reports',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedSystemSettingsRoute =
@@ -158,8 +179,11 @@ export interface FileRoutesByFullPath {
   '/document/privacy': typeof AuthenticatedDocumentPrivacyRoute
   '/document/rules': typeof AuthenticatedDocumentRulesRoute
   '/document/terms': typeof AuthenticatedDocumentTermsRoute
+  '/system/blocks': typeof AuthenticatedSystemBlocksRoute
   '/system/documents': typeof AuthenticatedSystemDocumentsRoute
+  '/system/federation': typeof AuthenticatedSystemFederationRoute
   '/system/handles': typeof AuthenticatedSystemHandlesRoute
+  '/system/reports': typeof AuthenticatedSystemReportsRoute
   '/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/system/status': typeof AuthenticatedSystemStatusRoute
   '/system/users': typeof AuthenticatedSystemUsersRoute
@@ -180,8 +204,11 @@ export interface FileRoutesByTo {
   '/document/privacy': typeof AuthenticatedDocumentPrivacyRoute
   '/document/rules': typeof AuthenticatedDocumentRulesRoute
   '/document/terms': typeof AuthenticatedDocumentTermsRoute
+  '/system/blocks': typeof AuthenticatedSystemBlocksRoute
   '/system/documents': typeof AuthenticatedSystemDocumentsRoute
+  '/system/federation': typeof AuthenticatedSystemFederationRoute
   '/system/handles': typeof AuthenticatedSystemHandlesRoute
+  '/system/reports': typeof AuthenticatedSystemReportsRoute
   '/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/system/status': typeof AuthenticatedSystemStatusRoute
   '/system/users': typeof AuthenticatedSystemUsersRoute
@@ -204,8 +231,11 @@ export interface FileRoutesById {
   '/_authenticated/document/privacy': typeof AuthenticatedDocumentPrivacyRoute
   '/_authenticated/document/rules': typeof AuthenticatedDocumentRulesRoute
   '/_authenticated/document/terms': typeof AuthenticatedDocumentTermsRoute
+  '/_authenticated/system/blocks': typeof AuthenticatedSystemBlocksRoute
   '/_authenticated/system/documents': typeof AuthenticatedSystemDocumentsRoute
+  '/_authenticated/system/federation': typeof AuthenticatedSystemFederationRoute
   '/_authenticated/system/handles': typeof AuthenticatedSystemHandlesRoute
+  '/_authenticated/system/reports': typeof AuthenticatedSystemReportsRoute
   '/_authenticated/system/settings': typeof AuthenticatedSystemSettingsRoute
   '/_authenticated/system/status': typeof AuthenticatedSystemStatusRoute
   '/_authenticated/system/users': typeof AuthenticatedSystemUsersRoute
@@ -228,8 +258,11 @@ export interface FileRouteTypes {
     | '/document/privacy'
     | '/document/rules'
     | '/document/terms'
+    | '/system/blocks'
     | '/system/documents'
+    | '/system/federation'
     | '/system/handles'
+    | '/system/reports'
     | '/system/settings'
     | '/system/status'
     | '/system/users'
@@ -250,8 +283,11 @@ export interface FileRouteTypes {
     | '/document/privacy'
     | '/document/rules'
     | '/document/terms'
+    | '/system/blocks'
     | '/system/documents'
+    | '/system/federation'
     | '/system/handles'
+    | '/system/reports'
     | '/system/settings'
     | '/system/status'
     | '/system/users'
@@ -273,8 +309,11 @@ export interface FileRouteTypes {
     | '/_authenticated/document/privacy'
     | '/_authenticated/document/rules'
     | '/_authenticated/document/terms'
+    | '/_authenticated/system/blocks'
     | '/_authenticated/system/documents'
+    | '/_authenticated/system/federation'
     | '/_authenticated/system/handles'
+    | '/_authenticated/system/reports'
     | '/_authenticated/system/settings'
     | '/_authenticated/system/status'
     | '/_authenticated/system/users'
@@ -338,6 +377,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDocumentTermsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/system/blocks': {
+      id: '/_authenticated/system/blocks'
+      path: '/system/blocks'
+      fullPath: '/system/blocks'
+      preLoaderRoute: typeof AuthenticatedSystemBlocksRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/system/documents': {
       id: '/_authenticated/system/documents'
       path: '/system/documents'
@@ -345,11 +391,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSystemDocumentsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/system/federation': {
+      id: '/_authenticated/system/federation'
+      path: '/system/federation'
+      fullPath: '/system/federation'
+      preLoaderRoute: typeof AuthenticatedSystemFederationRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/system/handles': {
       id: '/_authenticated/system/handles'
       path: '/system/handles'
       fullPath: '/system/handles'
       preLoaderRoute: typeof AuthenticatedSystemHandlesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/system/reports': {
+      id: '/_authenticated/system/reports'
+      path: '/system/reports'
+      fullPath: '/system/reports'
+      preLoaderRoute: typeof AuthenticatedSystemReportsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/system/settings': {
@@ -452,8 +512,11 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDocumentPrivacyRoute: typeof AuthenticatedDocumentPrivacyRoute
   AuthenticatedDocumentRulesRoute: typeof AuthenticatedDocumentRulesRoute
   AuthenticatedDocumentTermsRoute: typeof AuthenticatedDocumentTermsRoute
+  AuthenticatedSystemBlocksRoute: typeof AuthenticatedSystemBlocksRoute
   AuthenticatedSystemDocumentsRoute: typeof AuthenticatedSystemDocumentsRoute
+  AuthenticatedSystemFederationRoute: typeof AuthenticatedSystemFederationRoute
   AuthenticatedSystemHandlesRoute: typeof AuthenticatedSystemHandlesRoute
+  AuthenticatedSystemReportsRoute: typeof AuthenticatedSystemReportsRoute
   AuthenticatedSystemSettingsRoute: typeof AuthenticatedSystemSettingsRoute
   AuthenticatedSystemStatusRoute: typeof AuthenticatedSystemStatusRoute
   AuthenticatedSystemUsersRoute: typeof AuthenticatedSystemUsersRoute
@@ -475,8 +538,11 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDocumentPrivacyRoute: AuthenticatedDocumentPrivacyRoute,
   AuthenticatedDocumentRulesRoute: AuthenticatedDocumentRulesRoute,
   AuthenticatedDocumentTermsRoute: AuthenticatedDocumentTermsRoute,
+  AuthenticatedSystemBlocksRoute: AuthenticatedSystemBlocksRoute,
   AuthenticatedSystemDocumentsRoute: AuthenticatedSystemDocumentsRoute,
+  AuthenticatedSystemFederationRoute: AuthenticatedSystemFederationRoute,
   AuthenticatedSystemHandlesRoute: AuthenticatedSystemHandlesRoute,
+  AuthenticatedSystemReportsRoute: AuthenticatedSystemReportsRoute,
   AuthenticatedSystemSettingsRoute: AuthenticatedSystemSettingsRoute,
   AuthenticatedSystemStatusRoute: AuthenticatedSystemStatusRoute,
   AuthenticatedSystemUsersRoute: AuthenticatedSystemUsersRoute,

@@ -33,7 +33,9 @@ msgstr "\"{0}\" dan nama-nama di bawahnya akan dibebaskan untuk diambil oleh ses
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" akan dialih keluar bersama semua yang diterbitkannya dan pengikutnya."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" akan dilog keluar dan tidak boleh log masuk semula sehingga penggantungan ditarik balik."
@@ -89,6 +91,12 @@ msgstr "(anda)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[tidak ditetapkan]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, other {{clients} klien log masuk}} · {1, plural, other {{accounts} akaun}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Rakaman sudah sedang berjalan."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Kunci pemulihan membolehkan anda memindahkan akaun atau membatalkan perkara yang dilakukan oleh pelayan yang telah dikompromi. Ia menggantikan mana-mana kunci terdahulu dan hanya dipaparkan sekali."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Mengenai"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Mutlak (tarikh dan masa)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Penyalahgunaan"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Adakah anda pasti mahu mengaku kalah? {opponentName} akan memenangi perm
 msgid "Ascending"
 msgstr "Menaik"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Mencapai had permintaan"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Di laut"
@@ -783,17 +805,41 @@ msgstr "Sepanduk dikemas kini"
 msgid "Binary file not shown"
 msgstr "Fail binari tidak ditunjukkan"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Sekat"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "Sekat {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "Sekat {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "Sekat {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Sekat pelayan {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Disekat"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Disekat"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Navigasi ke pautan tidak dipercayai disekat"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Sekat"
 
@@ -1147,6 +1196,11 @@ msgstr "Sahkan ini anda"
 msgid "Connected"
 msgstr "Disambungkan"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "Disambungkan"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "Tidak dapat menambah nama"
 msgid "Could not change the account"
 msgstr "Tidak dapat menukar akaun"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Sekatan tidak dapat diubah"
@@ -1293,6 +1348,10 @@ msgstr "Tidak dapat menggantikan kunci"
 msgid "Could not reserve the handle"
 msgstr "Tidak dapat menempah nama pengguna"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Laporan tidak dapat diselesaikan"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Tidak dapat menarik balik"
@@ -1360,6 +1419,7 @@ msgstr "Cipta pengguna"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "Terputus"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Tutup"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Ditolak"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "Domain dicipta"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Domain dipadam"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Domain atau orang untuk disekat"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "Gagal mengesahkan kod"
 msgid "Failed to verify domain"
 msgstr "Gagal mengesahkan domain"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Kegagalan"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Persekutuan"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "Rakan"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "Daripada"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Daripada"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "Daripada"
 
@@ -2564,6 +2656,7 @@ msgstr "Kunci"
 msgid "Keys replaced"
 msgstr "Kunci digantikan"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "Siaran terakhir"
 msgid "Last edited {0}"
 msgstr "Terakhir disunting {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Kegagalan terakhir"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Log masuk terakhir"
@@ -2623,6 +2720,10 @@ msgstr "Log masuk terakhir"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Kali terakhir dilihat"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Kejayaan terakhir"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "Terakhir digunakan"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Susun atur"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Undang-undang"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "Nama di bawah {0}"
 msgid "Name updated"
 msgstr "Nama dikemas kini"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "Permainan baharu"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Seterusnya"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Percubaan seterusnya"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "Tiada kod pemulihan"
 msgid "No recovery key"
 msgstr "Tiada kunci pemulihan"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Tiada laporan yang menunggu."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Tiada laporan yang telah diselesaikan."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "Tiada keputusan dijumpai."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Tiada laluan dikonfigurasikan"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Belum ada pelayan."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "Tidak dibandingkan: melebihi had saiz"
 msgid "Not connected"
 msgstr "Tidak disambungkan"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Tidak disambungkan"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "Tidak ditetapkan"
 msgid "Nothing found"
 msgstr "Tiada apa-apa dijumpai"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Tiada apa-apa daripada {0} sampai kepada sesiapa di pelayan ini, dan tiada sesiapa di sini menghantar kepadanya."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Tiada apa-apa yang disekat."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Tiada apa-apa daripada akaun dihidangkan dan geganti dimaklumkan. Akaun dan apa yang diterbitkannya kekal, dan ia boleh dipulihkan."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Tiada apa-apa yang dihantarnya sampai kepada sesiapa di pelayan ini, dan dia bukan lagi pengikut sesiapa di sini."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "Hidup"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Alamak! Halaman Tidak Dijumpai!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Terbuka"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "Pilihan"
 msgid "Other"
 msgstr "Lain-lain"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Lain-lain"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "Pelayan lain mengetahui kunci baharu daripada dokumen akaun. Apa-apa yan
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Tetapan lain"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Hasil"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3523,6 +3680,11 @@ msgstr "Tertunggak"
 
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
+msgstr "Orang"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
 msgstr "Orang"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
@@ -3673,6 +3835,10 @@ msgstr "Kebolehcapaian"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Sedia untuk ketibaan akaun Bluesky"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Diterima"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "Balas"
 msgid "Reply to {0}..."
 msgstr "Balas kepada {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Laporan"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Tindakan laporan"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Laporan ditolak"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Laporan"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Memerlukan pengesahan domain"
@@ -4005,6 +4190,11 @@ msgstr "Letak jawatan"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Letak jawatan permainan?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Diselesaikan"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "Tarik balik log masuk ini?"
 msgid "Role"
 msgstr "Peranan"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Bilik"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Laluan dicipta"
@@ -4115,6 +4310,11 @@ msgstr "URL RSS disalin ke papan keratan"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Pelanggaran peraturan"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "Hantar mesej"
 msgid "Serif"
 msgstr "Serif"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "Sumber"
 msgid "Spacious"
 msgstr "Luas"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Spam"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Pisah"
@@ -4473,6 +4682,7 @@ msgstr "Dimulakan"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "Ringkasan dijana semula"
 msgid "Sunday"
 msgstr "Ahad"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Gantung"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Gantung pengguna"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Gantung pengguna?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Digantung"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Digantung"
 
@@ -4935,10 +5154,12 @@ msgstr "Tidak tersedia · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Tidak tersedia · Namanya tidak menghala ke pelayan ini"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Nyahsekat {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Dinyahsekat"
@@ -5079,6 +5300,7 @@ msgstr "Lalai pengguna"
 msgid "User deleted"
 msgstr "Pengguna dipadam"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Pengguna digantung"
@@ -5172,6 +5394,12 @@ msgstr "Kawalan paparan"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Rakaman suara tidak disokong dalam pelayar ini"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "Menunggu"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

@@ -33,7 +33,9 @@ msgstr "\"{0}\" እና በሥሩ ያሉት ስሞች ማንም እንዲወስ�
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" ካተመው ሁሉ እና ከተከታዮቹ ጋር ይወገዳል።"
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" ከመለያው ይወጣል፣ እገዳው እስኪነሳ ድረስም እንደገና መግባት አይችልም።"
@@ -89,6 +91,12 @@ msgstr "(እርስዎ)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[አልተዘጋጀም]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} መተግበሪያ ገብቷል} other {{clients} መተግበሪያዎች ገብተዋል}} · {1, plural, one {{accounts} መለያ} other {{accounts} መለያዎች}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "ቀረጻ አስቀድሞ በሂደት ላይ ነው።"
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "የመልሶ ማግኛ ቁልፍ መለያውን እንዲያንቀሳቅሱ ወይም የተጠለፈ ሰርቨር ያደረገውን እንዲቀለብሱ ያስችልዎታል። ማንኛውንም የቀድሞ ቁልፍ ይተካል እና አንድ ጊዜ ብቻ ይታያል።"
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "ስለ"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "ፍጹም (ቀንና ሰዓት)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "በደል"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "በእርግጥ መልቀቅ ይፈልጋሉ? {opponentName} ጨዋታ�
 msgid "Ascending"
 msgstr "ከታች ወደ ላይ"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "የጥያቄ ገደቡ ላይ ደርሷል"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "በባሕር ላይ"
@@ -783,17 +805,41 @@ msgstr "ባነር ተዘምኗል"
 msgid "Binary file not shown"
 msgstr "ሁለትዮሽ ፋይል አይታይም"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "አግድ"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "{0}ን አግድ"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "{0} ይታገድ?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "{name}ን አግድ"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "{host} ሰርቨርን አግድ"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "ታግዷል"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "ታግዷል"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "ወደማይታመን አገናኝ ማሰስ ተከልክሏል"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "ይገድባል"
 
@@ -1147,6 +1196,11 @@ msgstr "እርስዎ መሆንዎን ያረጋግጡ"
 msgid "Connected"
 msgstr "ተገናኝቷል"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "ተገናኝቷል"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "ስሙን ማከል አልተቻለም"
 msgid "Could not change the account"
 msgstr "መለያውን መቀየር አልተቻለም"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "እገዳውን መቀየር አልተቻለም"
@@ -1293,6 +1348,10 @@ msgstr "ቁልፎቹን መተካት አልተቻለም"
 msgid "Could not reserve the handle"
 msgstr "የተጠቃሚ ስሙን መያዝ አልተቻለም"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "ሪፖርቱን መፍታት አልተቻለም"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "መሻር አልተቻለም"
@@ -1360,6 +1419,7 @@ msgstr "ተጠቃሚ ፍጠር"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "ተቋርጧል"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "ዝጋ"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "ውድቅ ተደርጓል"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "ዶሜን ተፈጥሯል"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "ዶሜን ተሰርዟል"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "የሚታገድ ዶሜን ወይም ሰው"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "ኮድ ማረጋገጥ አልተሳካም"
 msgid "Failed to verify domain"
 msgstr "ዶሜን ማረጋገጥ አልተሳካም"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "ውድቀቶች"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "ፌዴሬሽን"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "ጓደኞች"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "ከ"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "ላኪ"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "ከ"
 
@@ -2564,6 +2656,7 @@ msgstr "ቁልፎች"
 msgid "Keys replaced"
 msgstr "ቁልፎች ተተክተዋል"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "የመጨረሻ ስርጭት"
 msgid "Last edited {0}"
 msgstr "መጨረሻ የተሻሻለበት {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "የመጨረሻ ውድቀት"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "መጨረሻ የገባበት"
@@ -2623,6 +2720,10 @@ msgstr "መጨረሻ የገባበት"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "መጨረሻ የታየው"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "የመጨረሻ ስኬት"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "መጨረሻ የተጠቀመው"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "አቀማመጥ"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "ሕጋዊ"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "በ{0} ስር ያለ ስም"
 msgid "Name updated"
 msgstr "ስም ተዘምኗል"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "አዲስ ጨዋታ"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "ቀጣይ"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "ቀጣይ ሙከራ"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "ምንም የመልሶ ማግኛ ኮዶች የሉም"
 msgid "No recovery key"
 msgstr "ምንም የመልሶ ማግኛ ቁልፍ የለም"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "በመጠባበቅ ላይ ያሉ ሪፖርቶች የሉም።"
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "የተፈቱ ሪፖርቶች የሉም።"
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "ምንም ውጤቶች አልተገኙም።"
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "ምንም መንገዶች አልተዋቀሩም"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "እስካሁን ምንም ሰርቨሮች የሉም።"
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "አልተነጻጸረም፦ ከመጠን ገደብ በላይ ነው"
 msgid "Not connected"
 msgstr "አልተገናኘም"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "አልተገናኘም"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "አልተዋቀረም"
 msgid "Nothing found"
 msgstr "ምንም አልተገኘም"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "ከ{0} የሚመጣ ምንም ነገር በዚህ ሰርቨር ላይ ማንንም አይደርስም፣ እዚህ ያለ ማንም ወደ እሱ ምንም አይልክም።"
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "ምንም የታገደ ነገር የለም።"
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "ከመለያው ምንም ነገር አይቀርብም፣ ማስተላለፊያዎቹም ይነገራቸዋል። መለያውና ያተመው ይቆያሉ፣ ወደነበረበትም መመለስ ይቻላል።"
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "ይህ ሰው የሚልከው ምንም ነገር በዚህ ሰርቨር ላይ ማንንም አይደርስም፣ ከእንግዲህም እዚህ የማንም ተከታይ አይሆንም።"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "በርቷል"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "ኦህ! ገጽ አልተገኘም!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "ክፍት"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "አማራጮች"
 msgid "Other"
 msgstr "ሌላ"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "ሌላ"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "ሌሎች ሰርቨሮች አዲሱን ቁልፍ ከመለያው ሰነ�
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "ሌሎች ቅንብሮች"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "ውጤት"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "በመጠባበቅ ላይ"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "ሰዎች"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "ሰው"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "ተደራሽነት"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "የBluesky መለያው እንዲደርስ ዝግጁ ነው"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "ተቀብሏል"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "ምላሽ ስጥ"
 msgid "Reply to {0}..."
 msgstr "ለ {0} መልስ..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "ሪፖርት"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "የሪፖርት እርምጃዎች"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "ሪፖርቱ ውድቅ ተደርጓል"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "ሪፖርቶች"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "የጎራ ማረጋገጫን ይጠይቁ"
@@ -4005,6 +4190,11 @@ msgstr "ለቀቅ"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "ጨዋታ ይለቀቅ?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "የተፈቱ"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "ይህ መግቢያ ይሻር?"
 msgid "Role"
 msgstr "ሚና"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "ክፍል"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "መንገድ ተፈጥሯል"
@@ -4115,6 +4310,11 @@ msgstr "RSS ዩአርኤል ወደ ቅንጥብ ሰሌዳ ተቀድቷል"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "የደንብ ጥሰት"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "መልዕክት ይላኩ"
 msgid "Serif"
 msgstr "ሰሪፍ"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "ምንጮች"
 msgid "Spacious"
 msgstr "ሰፊ"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "ስፓም"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "ይከፋፍሉ"
@@ -4473,6 +4682,7 @@ msgstr "ጀምሯል"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "ማጠቃለያ እንደገና ተፈጥሯል"
 msgid "Sunday"
 msgstr "እሁድ"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "ያቁሙ"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "ተጠቃሚን ያቁሙ"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "ተጠቃሚ ይታገድ?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "ቆሟል"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "ቆሟል"
 
@@ -4935,10 +5154,12 @@ msgstr "የማይገኝ · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "የማይገኝ · ስሙ ወደዚህ አገልጋይ አይመራም"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "{label}ን እገዳ አንሳ"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "እገዳ ተነስቷል"
@@ -5079,6 +5300,7 @@ msgstr "የተጠቃሚ ነባሪዎች"
 msgid "User deleted"
 msgstr "ተጠቃሚ ተሰርዟል"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "ተጠቃሚ ታግዷል"
@@ -5172,6 +5394,12 @@ msgstr "የእይታ መቆጣጠሪያዎች"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "በዚህ አሳሽ ውስጥ የድምፅ ቀረጻ አይደገፍም"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "በሰልፍ ላይ"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

@@ -33,7 +33,9 @@ msgstr "\"{0}\" àti àwọn orúkọ tó wà lábẹ́ rẹ̀ ni a ó tú síl�
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "A ó yọ \"{0}\" kúrò pẹ̀lú gbogbo ohun tí ó ti tẹ̀jáde àti àwọn olùtẹ̀lé rẹ̀."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "A ó jáde \"{0}\" kúrò, kò sì ní lè wọlé mọ́ títí tí a ó fi mú ìdádúró náà kúrò."
@@ -89,6 +91,12 @@ msgstr "(ìwọ)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[kò sí]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, other {{clients} app tí ó ti wọlé}} · {1, plural, other {àkáǹtì {accounts}}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Gbigbasilẹ ti n lọ lọwọ tẹlẹ."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Kọ́kọ́rọ́ ìmúpadàbọ̀sípò jẹ́ kí o lè gbé àkáǹtì náà lọ tàbí kí o yí ohun tí sáfà tí a ti gbógun tì ṣe padà. Ó máa rọ́pò kọ́kọ́rọ́ èyíkéyìí tó ti wà tẹ́lẹ̀, a ó sì fi hàn lẹ́ẹ̀kan ṣoṣo."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Nípa"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Pípé (ọjọ́ àti àkókò)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Ìlòkulò"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Ǹjẹ́ ó dájú pé o fẹ́ jọ̀wọ́? {opponentName} yóò ṣ�
 msgid "Ascending"
 msgstr "Gòkè"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Ó ti dé òpin ìbéèrè rẹ̀"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Lórí òkun"
@@ -783,17 +805,41 @@ msgstr "A ti ṣe àtúnṣe banner"
 msgid "Binary file not shown"
 msgstr "Fáìlì binary kò hàn"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Dènà"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "Dènà {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "Dènà {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "Dènà {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Dènà sáfà {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Ti dínà"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Ti dínà"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "A dí ìrìnnà sí ọ̀nà tí a kò gbẹ́kẹ̀lé"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Dí"
 
@@ -1147,6 +1196,11 @@ msgstr "Jẹ́rìí sí pé ìwọ ni"
 msgid "Connected"
 msgstr "Tí a so pọ̀"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "Tí a so pọ̀"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "Kò lè fi orúkọ náà kún"
 msgid "Could not change the account"
 msgstr "Kò ṣeé ṣe láti yí àkáǹtì padà"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Kò lè yí ìdínà padà"
@@ -1293,6 +1348,10 @@ msgstr "Kò lè rọ́pò àwọn kọ́kọ́rọ́ náà"
 msgid "Could not reserve the handle"
 msgstr "Kò lè gba ìnagijẹ náà sílẹ̀"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Kò lè yanjú ìròyìn náà"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Kò lè gbà padà"
@@ -1360,6 +1419,7 @@ msgstr "Dá olùmúlò"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "Ti ge asopọ̀"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Mú kúrò"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Ti mú kúrò"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "A ti dá domain"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "A ti pa domain rẹ́"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Domain tàbí ènìyàn láti dínà"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "Kò lè jẹ́rìí kóòdù"
 msgid "Failed to verify domain"
 msgstr "Kò lè jẹ́rìí domain"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Àwọn ìkùnà"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Àjọṣepọ̀"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "Àwọn ọ̀rẹ́"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "Láti"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Láti"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "Láti"
 
@@ -2564,6 +2656,7 @@ msgstr "Àwọn kọ́kọ́rọ́"
 msgid "Keys replaced"
 msgstr "A ti rọ́pò àwọn kọ́kọ́rọ́"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "Ìgbóhùnsáfẹ́fẹ́ tó kẹ́yìn"
 msgid "Last edited {0}"
 msgstr "Tí a ṣàtúnṣe kẹ́yìn {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Ìkùnà tó kẹ́yìn"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Ìwọlé tí ó kẹ́yìn"
@@ -2623,6 +2720,10 @@ msgstr "Ìwọlé tí ó kẹ́yìn"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Tí a rí kẹ́yìn"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Àṣeyọrí tó kẹ́yìn"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "Tí a kẹ́yìn lò"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Àtòjọ"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Òfin"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "Orúkọ lábẹ́ {0}"
 msgid "Name updated"
 msgstr "A ti ṣe imudojúìwọ̀n orúkọ"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "Eré tuntun"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Tó kàn"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Ìgbìyànjú tó kàn"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "Kò sí kóòdù ìgbàpadà"
 msgid "No recovery key"
 msgstr "Kò sí kọ́kọ́rọ́ ìmúpadàbọ̀sípò"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Kò sí ìròyìn tó ń dúró."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Kò sí ìròyìn tí a ti yanjú."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "A kò rí àbájáde kankan."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "A kò ṣètò ọ̀nà kankan"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Kò tíì sí sáfà."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "Kò ṣe àfiwé: kọjá ààlà ìwọ̀n"
 msgid "Not connected"
 msgstr "Kò so pọ̀"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Kò so pọ̀"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "A kò ṣètò"
 msgid "Nothing found"
 msgstr "A kò rí ohunkóhun"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Kò sí ohunkóhun láti {0} tó ń dé ọ̀dọ̀ ẹnikẹ́ni lórí sáfà yìí, kò sì sí ẹnikẹ́ni níbí tó ń fi nǹkan ránṣẹ́ sí i."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Kò sí ohun tí a dínà."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Kò sí nǹkan kan láti inú àkáǹtì tí a ń pèsè, a sì ń sọ fún àwọn àfisẹ́. Àkáǹtì náà àti ohun tí ó tẹ̀jáde wà síbẹ̀, a sì lè mú un padà bọ̀ sípò."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Kò sí ohun tí ènìyàn yìí ń fi ránṣẹ́ tó ń dé ọ̀dọ̀ ẹnikẹ́ni lórí sáfà yìí, kò sì jẹ́ olùtẹ̀lé ẹnikẹ́ni níbí mọ́."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "Ṣíṣí"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Aàá! A Kò Rí Ojú-ìwé!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Ṣíṣí"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "Àwọn àṣàyàn"
 msgid "Other"
 msgstr "Mìíràn"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Mìíràn"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "Àwọn sáfà mìíràn ń mọ kọ́kọ́rọ́ tuntun láti inú ì
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Àwọn ètò mìíràn"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Àbájáde"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "Ń dúró"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Àwọn ènìyàn"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Ènìyàn"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "Lílè dé"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Ó ti ṣetán fún dídé àkáǹtì Bluesky"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Gba"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "Dáhùn"
 msgid "Reply to {0}..."
 msgstr "Dáhùn {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Ìròyìn"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Àwọn ìṣe ìròyìn"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "A ti mú ìròyìn kúrò"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Àwọn ìròyìn"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Nílò ìjẹ́rìí domain"
@@ -4005,6 +4190,11 @@ msgstr "Fi sílẹ̀"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Fi eré sílẹ̀?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Ti yanjú"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "Gba ìwọlé yìí padà?"
 msgid "Role"
 msgstr "Ipa"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Yàrá"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Route ti dá"
@@ -4115,6 +4310,11 @@ msgstr "A ti ṣàdàkọ URL RSS sí clipboard"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Rírú òfin"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "Fi ìránṣẹ́ ránṣẹ́"
 msgid "Serif"
 msgstr "Serif"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "Àwọn orísun"
 msgid "Spacious"
 msgstr "Àáyè"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Spam"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Pínyà"
@@ -4473,6 +4682,7 @@ msgstr "Ti bẹ̀rẹ̀"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "Ìṣàkójọ ti tún ṣe"
 msgid "Sunday"
 msgstr "Ọjọ́ Àìkú"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Dádúró"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Dá user dúró"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Dá user dúró?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Ti dádúró"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Ti dádúró"
 
@@ -4935,10 +5154,12 @@ msgstr "Kò sí · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Kò sí · Orúkọ rẹ̀ kò tọ́ka sí olùpín yìí"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Yọ ìdínà {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Ti yọ ìdínà"
@@ -5079,6 +5300,7 @@ msgstr "Àwọn àìyípadà user"
 msgid "User deleted"
 msgstr "User ti pa rẹ́"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "A ti dáwọ́ olùṣàmúlò dúró"
@@ -5172,6 +5394,12 @@ msgstr "Àwọn ìṣàkóso ìwòye"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Aṣàwákiri yìí kò ṣe àtìlẹ́yìn fún gbigbasilẹ ohùn"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "Nínú ìlà"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

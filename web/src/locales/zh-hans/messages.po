@@ -33,7 +33,9 @@ msgstr "“{0}”及其下的名称将被释放，任何人都可以使用。它
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "“{0}”将连同其发布的所有内容和关注者一起被移除。"
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "“{0}”将被退出登录，在解除暂停前无法再次登录。"
@@ -89,6 +91,12 @@ msgstr "(你)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[未设置]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, other {{clients} 个已登录的客户端}} · {1, plural, other {{accounts} 个账户}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "已有录音正在进行。"
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "恢复密钥可让你迁移账户，或撤销被入侵的服务器所做的操作。它会替换之前的任何恢复密钥，且只显示一次。"
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "举报对象"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "绝对(日期和时间)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "滥用"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "确定要认输吗?{opponentName} 将赢得比赛。"
 msgid "Ascending"
 msgstr "升序"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "已达请求上限"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "海上"
@@ -783,17 +805,41 @@ msgstr "已更新横幅"
 msgid "Binary file not shown"
 msgstr "未显示二进制文件"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "屏蔽"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "屏蔽 {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "屏蔽 {0}？"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "屏蔽{name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "屏蔽服务器 {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "已屏蔽"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "已屏蔽"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "已阻止跳转到不可信链接"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "阻止"
 
@@ -1147,6 +1196,11 @@ msgstr "确认是您本人"
 msgid "Connected"
 msgstr "已连接"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Connected"
+msgstr "已连接"
+
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/connected-accounts.tsx
@@ -1225,6 +1279,7 @@ msgstr "无法添加名称"
 msgid "Could not change the account"
 msgstr "无法更改账户"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "无法更改屏蔽"
@@ -1293,6 +1348,10 @@ msgstr "无法替换密钥"
 msgid "Could not reserve the handle"
 msgstr "无法预留用户识别符"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "无法处理该举报"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "无法撤销"
@@ -1360,6 +1419,7 @@ msgstr "创建用户"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1661,8 +1721,14 @@ msgstr "已断开"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "关闭"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "已驳回"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1710,6 +1776,10 @@ msgstr "已创建域名"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "已删除域名"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "要屏蔽的域名或个人"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -2242,6 +2312,18 @@ msgstr "验证码校验失败"
 msgid "Failed to verify domain"
 msgstr "验证域名失败"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "失败次数"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "联邦"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "联邦宇宙"
@@ -2307,6 +2389,16 @@ msgid "Friends"
 msgstr "好友"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "来自"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "举报人"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "来自"
 
@@ -2564,6 +2656,7 @@ msgstr "密钥"
 msgid "Keys replaced"
 msgstr "密钥已替换"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2615,6 +2708,10 @@ msgstr "最后广播"
 msgid "Last edited {0}"
 msgstr "上次编辑于 {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "上次失败"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "最后登录"
@@ -2623,6 +2720,10 @@ msgstr "最后登录"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "最后看到"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "上次成功"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2633,6 +2734,11 @@ msgstr "最后使用"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "布局"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "法律"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -3004,6 +3110,7 @@ msgstr "{0} 下的名称"
 msgid "Name updated"
 msgstr "名称已更新"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3055,6 +3162,12 @@ msgstr "新游戏"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "下一步"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "下次尝试"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3185,6 +3298,14 @@ msgstr "无恢复码"
 msgid "No recovery key"
 msgstr "无恢复密钥"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "没有待处理的举报。"
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "没有已处理的举报。"
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3197,6 +3318,10 @@ msgstr "未找到结果。"
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "未配置路由"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "暂无服务器。"
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3271,6 +3396,11 @@ msgstr "未比较：超过大小限制"
 msgid "Not connected"
 msgstr "未连接"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "未连接"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3284,9 +3414,22 @@ msgstr "未设置"
 msgid "Nothing found"
 msgstr "未找到任何内容"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "来自 {0} 的任何内容都不会送达此服务器上的任何人，这里也没有人向它发送内容。"
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "没有屏蔽任何内容。"
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "该账户的任何内容都不再提供，并会通知中继。账户及其发布的内容会保留，且可以恢复。"
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "此人发送的任何内容都不会送达此服务器上的任何人，并且此人不再关注这里的任何人。"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3330,6 +3473,11 @@ msgstr "开启"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "抱歉!页面未找到!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "待处理"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3395,6 +3543,11 @@ msgstr "选项"
 msgid "Other"
 msgstr "其他"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "其他"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3413,6 +3566,10 @@ msgstr "其他服务器会从账户文档中获取新密钥。用旧密钥签名
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "其他设置"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "结果"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3524,6 +3681,11 @@ msgstr "待处理"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "人员"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "个人"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3673,6 +3835,10 @@ msgstr "可达性"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "已准备好接收 Bluesky 账号"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "已收到"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3942,6 +4108,25 @@ msgstr "回复"
 msgid "Reply to {0}..."
 msgstr "回复 {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "举报内容"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "举报操作"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "已驳回举报"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "举报"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "要求域名验证"
@@ -4005,6 +4190,11 @@ msgstr "认输"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "认输?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "已处理"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4074,6 +4264,11 @@ msgstr "撤销此登录？"
 msgid "Role"
 msgstr "角色"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "房间"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "已创建路由"
@@ -4115,6 +4310,11 @@ msgstr "RSS URL 已复制到剪贴板"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS：{0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "违反规则"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4305,6 +4505,10 @@ msgstr "发送消息"
 msgid "Serif"
 msgstr "衬线体"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4459,6 +4663,11 @@ msgstr "来源"
 msgid "Spacious"
 msgstr "宽松"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "垃圾信息"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "分割"
@@ -4473,6 +4682,7 @@ msgstr "已开始"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4517,19 +4727,28 @@ msgstr "摘要已重新生成"
 msgid "Sunday"
 msgstr "星期日"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "暂停"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "暂停用户"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "暂停用户吗?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "已暂停"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "已暂停"
 
@@ -4935,10 +5154,12 @@ msgstr "不可用 · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "不可用 · 其名称未指向此服务器"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "取消屏蔽 {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "已取消屏蔽"
@@ -5079,6 +5300,7 @@ msgstr "用户默认值"
 msgid "User deleted"
 msgstr "用户已删除"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "用户已暂停"
@@ -5172,6 +5394,12 @@ msgstr "视图控制"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "此浏览器不支持语音录制"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "队列中"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
