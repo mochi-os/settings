@@ -33,7 +33,9 @@ msgstr "\"{0}\" နှင့် ၎င်းအောက်ရှိ အမည�
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" ကို ၎င်းထုတ်ဝေခဲ့သမျှနှင့် ၎င်း၏ နောက်လိုက်များနှင့်အတူ ဖယ်ရှားပါမည်။"
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" ကို ထွက်ခွာစေမည်ဖြစ်ပြီး ရပ်ဆိုင်းမှု ဖယ်ရှားသည်အထိ ပြန်လည်ဝင်ရောက်နိုင်မည် မဟုတ်ပါ။"
@@ -89,6 +91,12 @@ msgstr "(သင်)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[မသတ်မှတ်ရသေး]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, other {ဝင်ရောက်ထားသော ကလိုင်းယင့် {clients} ခု}} · {1, plural, other {အကောင့် {accounts} ခု}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "အသံဖမ်းယူမှု လုပ်ဆောင်နေ�
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "ပြန်လည်ရယူရေးသော့ဖြင့် အကောင့်ကို ရွှေ့နိုင်သည် သို့မဟုတ် ထိုးဖောက်ခံရသော ဆာဗာက ပြုလုပ်ခဲ့သည်များကို ပြန်ဖျက်နိုင်သည်။ ၎င်းသည် ယခင်သော့မှန်သမျှကို အစားထိုးပြီး တစ်ကြိမ်သာ ပြသပါမည်။"
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "မည်သူ့အကြောင်း"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "အပြည့်အစုံ (ရက်စွဲနှင့် အချိန်)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "အလွဲသုံးစားမှု"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "လက်လျှော့မှာသေချာပါသလား? {
 msgid "Ascending"
 msgstr "ငယ်စဉ်ကြီးလိုက်"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "တောင်းဆိုမှု ကန့်သတ်ချက်သို့ ရောက်နေပြီ"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "ပင်လယ်ပြင်တွင်"
@@ -783,17 +805,41 @@ msgstr "ပိုစတာ ပြောင်းပြီး"
 msgid "Binary file not shown"
 msgstr "ဘိုင်နရီဖိုင်ကို မပြထားပါ"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "ပိတ်ဆို့မည်"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "{0} ကို ပိတ်ဆို့မည်"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "{0} ကို ပိတ်ဆို့မလား?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "{name} ကို ပိတ်ဆို့မည်"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "ဆာဗာ {host} ကို ပိတ်ဆို့မည်"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "ပိတ်ဆို့ထားသည်"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "ပိတ်ဆို့ထားသည်"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "မယုံကြည်ရသော လင့်ခ်သို့ သွားရောက်ခြင်းကို ပိတ်ဆို့ထားသည်"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "ပိတ်ဆို့မှုများ"
 
@@ -1068,6 +1117,10 @@ msgstr "ကုဒ်များ ကူးယူပြီး"
 msgid "Collapse"
 msgstr "ခေါက်သိမ်းရန်"
 
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Collapse all"
+msgstr "အားလုံး ခေါက်သိမ်းရန်"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Collapse sidebar"
 msgstr "ဘေးဘား ခေါက်မည်"
@@ -1140,6 +1193,11 @@ msgstr "သင်ဖြစ်ကြောင်း အတည်ပြုပါ"
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
+msgid "Connected"
+msgstr "ချိတ်ဆက်ပြီး"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "Connected"
 msgstr "ချိတ်ဆက်ပြီး"
 
@@ -1221,6 +1279,7 @@ msgstr "အမည် ထည့်၍ မရပါ"
 msgid "Could not change the account"
 msgstr "အကောင့်ကို ပြောင်း၍ မရပါ"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "ပိတ်ဆို့မှုကို ပြောင်း၍မရပါ"
@@ -1289,6 +1348,10 @@ msgstr "သော့များကို အစားထိုး၍ မရပ�
 msgid "Could not reserve the handle"
 msgstr "သုံးစွဲသူအမည်ကို ကြိုတင်ယူထား၍ မရပါ"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "အစီရင်ခံစာကို ဖြေရှင်း၍မရပါ"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "ရုပ်သိမ်း၍ မရပါ"
@@ -1356,6 +1419,7 @@ msgstr "သုံးစွဲသူ ဖန်တီးမည်"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1657,8 +1721,14 @@ msgstr "ချိတ်ဆက်မှု ပြတ်တောက်ပြီ�
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "ပိတ်မည်"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "ပယ်ပြီး"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1706,6 +1776,10 @@ msgstr "ဒိုမိန်း ဖန်တီးပြီး"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "ဒိုမိန်း ဖျက်ပြီး"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "ပိတ်ဆို့ရန် ဒိုမိန်း သို့မဟုတ် လူ"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -1895,6 +1969,10 @@ msgstr "example.com သို့မဟုတ် *.example.com"
 #: ../../../lib/web/src/components/tree-row.tsx
 msgid "Expand"
 msgstr "ချဲ့ရန်"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Expand all"
+msgstr "အားလုံး ချဲ့ရန်"
 
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Expand sidebar"
@@ -2234,6 +2312,18 @@ msgstr "ကုဒ် အတည်ပြု၍ မရပါ"
 msgid "Failed to verify domain"
 msgstr "ဒိုမိန်း အတည်ပြု၍ မရပါ"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "မအောင်မြင်မှုများ"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "ဖက်ဒရေးရှင်း"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2301,6 +2391,16 @@ msgstr "သူငယ်ချင်းများ"
 #: ../../../lib/web/src/components/travelling-picker.tsx
 msgid "From"
 msgstr "မှ"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "မည်သူ့ထံမှ"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "From"
+msgstr "မည်သည့်နေရာမှ"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 #: ../../../lib/web/src/lib/preference-utils.ts
@@ -2556,6 +2656,7 @@ msgstr "သော့များ"
 msgid "Keys replaced"
 msgstr "သော့များ အစားထိုးပြီး"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2607,6 +2708,10 @@ msgstr "နောက်ဆုံး ထုတ်လွှင့်မှု"
 msgid "Last edited {0}"
 msgstr "နောက်ဆုံး တည်းဖြတ်ခဲ့သည် {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "နောက်ဆုံး မအောင်မြင်မှု"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "နောက်ဆုံး ဝင်ရောက်ခဲ့သည်"
@@ -2615,6 +2720,10 @@ msgstr "နောက်ဆုံး ဝင်ရောက်ခဲ့သည်"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "နောက်ဆုံးတွေ့"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "နောက်ဆုံး အောင်မြင်မှု"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2625,6 +2734,11 @@ msgstr "နောက်ဆုံး အသုံးပြုခဲ့သည်"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "အပြင်အဆင်"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "ဥပဒေရေးရာ"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -2674,6 +2788,10 @@ msgstr "လင့်များ"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "List"
 msgstr "စာရင်း"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Load diff"
+msgstr "ကွာခြားချက်များ တင်ရန်"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Load more"
@@ -2992,6 +3110,7 @@ msgstr "{0} အောက်ရှိ အမည်"
 msgid "Name updated"
 msgstr "အမည် ပြင်ဆင်ပြီးပါပြီ"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3043,6 +3162,12 @@ msgstr "ဂိမ်းအသစ်"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "ရှေ့သို့"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "နောက်တစ်ကြိမ် ကြိုးစားမှု"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3173,6 +3298,14 @@ msgstr "ပြန်လည်ရယူရေး ကုဒ် များ မရ
 msgid "No recovery key"
 msgstr "ပြန်လည်ရယူရေးသော့ မရှိပါ"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "စောင့်ဆိုင်းနေသော အစီရင်ခံစာ မရှိပါ။"
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "ဖြေရှင်းပြီးသော အစီရင်ခံစာ မရှိပါ။"
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3185,6 +3318,10 @@ msgstr "ရလဒ်များ မတွေ့ပါ။"
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "လမ်းကြောင်းများ မသတ်မှတ်ထားပါ"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "ဆာဗာ မရှိသေးပါ။"
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3259,6 +3396,11 @@ msgstr "နှိုင်းယှဉ်မထားပါ - အရွယ်အ
 msgid "Not connected"
 msgstr "ချိတ်ဆက်မထားပါ"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "ချိတ်ဆက်မထား"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3272,9 +3414,22 @@ msgstr "မသတ်မှတ်ထားပါ"
 msgid "Nothing found"
 msgstr "ဘာမှ မတွေ့ပါ"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "{0} မှ မည်သည့်အရာမျှ ဤဆာဗာပေါ်ရှိ မည်သူ့ထံမျှ မရောက်ပါ၊ ဤနေရာမှ မည်သူမျှလည်း ၎င်းထံ မပို့ပါ။"
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "ပိတ်ဆို့ထားသည့်အရာ မရှိပါ။"
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "အကောင့်မှ မည်သည့်အရာကိုမျှ ပေးပို့မည် မဟုတ်ဘဲ ထပ်ဆင့်ပို့ဆာဗာများကို အသိပေးမည်။ အကောင့်နှင့် ၎င်းထုတ်ဝေခဲ့သည်များ ကျန်ရှိနေပြီး ပြန်လည်ရယူနိုင်သည်။"
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "ဤသူ ပို့သည့် မည်သည့်အရာမျှ ဤဆာဗာပေါ်ရှိ မည်သူ့ထံမျှ မရောက်ပါ၊ ဤသူသည် ဤနေရာတွင် မည်သူ၏ နောက်လိုက်မျှ မဟုတ်တော့ပါ။"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3318,6 +3473,11 @@ msgstr "ဖွင့်"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "အိုး! စာမျက်နှာ မတွေ့ပါ!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "ဖွင့်ထား"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3383,6 +3543,11 @@ msgstr "ရွေးချယ်စရာများ"
 msgid "Other"
 msgstr "အခြား"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "အခြား"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3401,6 +3566,10 @@ msgstr "အခြားဆာဗာများသည် အကောင့်�
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "အခြား ဆက်တင်များ"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "ရလဒ်"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3512,6 +3681,11 @@ msgstr "ဆိုင်းငံ့ထား"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "လူများ"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "လူ"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3661,6 +3835,10 @@ msgstr "ရောက်ရှိနိုင်မှု"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Bluesky အကောင့် ရောက်ရှိရန် အသင့်ဖြစ်ပါပြီ"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "လက်ခံရရှိ"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3930,6 +4108,25 @@ msgstr "ပြန်ကြား"
 msgid "Reply to {0}..."
 msgstr "{0} သို့ ပြန်ကြား..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "အစီရင်ခံစာ"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "အစီရင်ခံစာ လုပ်ဆောင်ချက်များ"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "အစီရင်ခံစာကို ပယ်ပြီးပါပြီ"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "အစီရင်ခံစာများ"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "ဒိုမိန်း အတည်ပြုခြင်း လိုအပ်"
@@ -3993,6 +4190,11 @@ msgstr "ရှုံးကြောင်းပြော"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "ဂိမ်း ရှုံးကြောင်းပြောမလား?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "ဖြေရှင်းပြီး"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4062,6 +4264,11 @@ msgstr "ဤဝင်ရောက်မှုကို ရုပ်သိမ်�
 msgid "Role"
 msgstr "ရာထူး"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "အခန်း"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "လမ်းကြောင်း ဖန်တီးပြီးပါပြီ"
@@ -4103,6 +4310,11 @@ msgstr "RSS URL ကို ကလစ်ဘုတ် သို့ ကူးယူ�
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS - {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "စည်းမျဉ်း ချိုးဖောက်မှု"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4293,6 +4505,10 @@ msgstr "မက်ဆေ့ပို့မည်"
 msgid "Serif"
 msgstr "ဆာရစ်ဖ်"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4447,6 +4663,11 @@ msgstr "မူရင်းများ"
 msgid "Spacious"
 msgstr "ကျယ်ပြန့်သော"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "စပမ်း"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "ခွဲခြားမည်"
@@ -4461,6 +4682,7 @@ msgstr "စတင်ပြီး"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4505,19 +4727,28 @@ msgstr "အကျဉ်းချုပ် ပြန်လည်ထုတ်လ�
 msgid "Sunday"
 msgstr "တနင်္ဂနွေ"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "ဆိုင်းငံ့မည်"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "သုံးစွဲသူကို ဆိုင်းငံ့မည်"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "သုံးစွဲသူကို ဆိုင်းငံ့မည်?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "ဆိုင်းငံ့ထား"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "ဆိုင်းငံ့ထား"
 
@@ -4923,10 +5154,12 @@ msgstr "မရနိုင်ပါ · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "မရနိုင်ပါ · ၎င်း၏အမည်သည် ဤဆာဗာသို့ မညွှန်ပါ"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "{label} ၏ ပိတ်ဆို့မှုကို ဖြုတ်ရန်"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "ပိတ်ဆို့မှု ဖြုတ်ပြီးပါပြီ"
@@ -5067,6 +5300,7 @@ msgstr "သုံးစွဲသူ၏ ပုံသေတန်ဖိုးမ�
 msgid "User deleted"
 msgstr "သုံးစွဲသူ ဖျက်ပြီး"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "သုံးစွဲသူ ဆိုင်းငံ့ပြီး"
@@ -5160,6 +5394,12 @@ msgstr "ထိန်းချုပ်မှုများ ကြည့်ရ�
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "ဤဘရောက်ဇာတွင် အသံဖမ်းယူခြင်းကို မထောက်ပံ့ပါ"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "စောင့်ဆိုင်းနေ"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

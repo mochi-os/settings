@@ -33,7 +33,9 @@ msgstr "\"{0}\" ແລະ ຊື່ທີ່ຢູ່ພາຍໃຕ້ມັນ
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" ຈະຖືກລຶບອອກພ້ອມກັບທຸກຢ່າງທີ່ມັນໄດ້ເຜີຍແຜ່ ແລະ ຜູ້ຕິດຕາມຂອງມັນ."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" ຈະຖືກອອກຈາກລະບົບ ແລະບໍ່ສາມາດເຂົ້າສູ່ລະບົບໄດ້ອີກຈົນກວ່າຈະປົດການໂຈະ."
@@ -89,6 +91,12 @@ msgstr "(ທ່ານ)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[ບໍ່ໄດ້ຕັ້ງຄ່າ]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, other {{clients} ໄຄລເອັນທີ່ເຂົ້າສູ່ລະບົບ}} · {1, plural, other {{accounts} ບັນຊີ}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "ການບັນທຶກກຳລັງດຳເນີນຢູ່ແ
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "ກະແຈກູ້ຄືນຊ່ວຍໃຫ້ທ່ານຍ້າຍບັນຊີ ຫຼື ຍົກເລີກສິ່ງທີ່ເຊີບເວີທີ່ຖືກບຸກລຸກໄດ້ເຮັດ. ມັນຈະແທນທີ່ກະແຈກ່ອນໜ້າ ແລະ ຈະສະແດງພຽງຄັ້ງດຽວ."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "ກ່ຽວກັບ"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "ສົມບູນ (ວັນທີ ແລະ ເວລາ)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "ການລ່ວງລະເມີດ"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "ທ່ານແນ່ໃຈບໍວ່າຕ້ອງການຍອມ
 msgid "Ascending"
 msgstr "ຈາກໜ້ອຍຫາຫຼາຍ"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "ຮອດຂີດຈຳກັດຄຳຂໍແລ້ວ"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "ຢູ່ທະເລ"
@@ -783,17 +805,41 @@ msgstr "ອັບເດດປ້າຍແລ້ວ"
 msgid "Binary file not shown"
 msgstr "ບໍ່ສະແດງໄຟລ໌ຖານສອງ"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "ບລັອກ"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "ບລັອກ {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "ບລັອກ {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "ບລັອກ {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "ບລັອກເຊີບເວີ {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "ຖືກບລັອກ"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "ຖືກບລັອກ"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "ບລັອກການນຳທາງໄປຫາລິ້ງທີ່ບໍ່ເຊື່ອຖື"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "ບລັອກ"
 
@@ -1068,6 +1117,10 @@ msgstr "ສຳເນົາລະຫັດແລ້ວ"
 msgid "Collapse"
 msgstr "ຍຸບ"
 
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Collapse all"
+msgstr "ຍຸບທັງໝົດ"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Collapse sidebar"
 msgstr "ຫຍໍ້ແຖບຂ້າງ"
@@ -1140,6 +1193,11 @@ msgstr "ຢືນຢັນວ່າແມ່ນທ່ານ"
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
+msgid "Connected"
+msgstr "ເຊື່ອມຕໍ່ແລ້ວ"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "Connected"
 msgstr "ເຊື່ອມຕໍ່ແລ້ວ"
 
@@ -1221,6 +1279,7 @@ msgstr "ບໍ່ສາມາດເພີ່ມຊື່ໄດ້"
 msgid "Could not change the account"
 msgstr "ບໍ່ສາມາດປ່ຽນບັນຊີໄດ້"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "ບໍ່ສາມາດປ່ຽນການບລັອກໄດ້"
@@ -1289,6 +1348,10 @@ msgstr "ບໍ່ສາມາດແທນທີ່ກະແຈໄດ້"
 msgid "Could not reserve the handle"
 msgstr "ບໍ່ສາມາດຈອງຊື່ຜູ້ໃຊ້ໄດ້"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "ບໍ່ສາມາດແກ້ໄຂລາຍງານໄດ້"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "ບໍ່ສາມາດຖອນໄດ້"
@@ -1356,6 +1419,7 @@ msgstr "ສ້າງຜູ້ໃຊ້"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1657,8 +1721,14 @@ msgstr "ຕັດການເຊື່ອມຕໍ່ແລ້ວ"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "ປິດ"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "ປະຕິເສດແລ້ວ"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1706,6 +1776,10 @@ msgstr "ສ້າງໂດເມນແລ້ວ"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "ລົບໂດເມນແລ້ວ"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "ໂດເມນ ຫຼື ຄົນທີ່ຈະບລັອກ"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -1895,6 +1969,10 @@ msgstr "example.com ຫຼື *.example.com"
 #: ../../../lib/web/src/components/tree-row.tsx
 msgid "Expand"
 msgstr "ຂະຫຍາຍ"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Expand all"
+msgstr "ຂະຫຍາຍທັງໝົດ"
 
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Expand sidebar"
@@ -2234,6 +2312,18 @@ msgstr "ຢືນຢັນລະຫັດລົ້ມເຫຼວ"
 msgid "Failed to verify domain"
 msgstr "ຢືນຢັນໂດເມນລົ້ມເຫຼວ"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "ຄວາມລົ້ມເຫຼວ"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "ສະຫະພັນ"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2299,6 +2389,16 @@ msgid "Friends"
 msgstr "ໝູ່"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "ຈາກ"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "ຈາກ"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "ຈາກ"
 
@@ -2556,6 +2656,7 @@ msgstr "ກະແຈ"
 msgid "Keys replaced"
 msgstr "ແທນທີ່ກະແຈແລ້ວ"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2607,6 +2708,10 @@ msgstr "ການອອກອາກາດຫຼ້າສຸດ"
 msgid "Last edited {0}"
 msgstr "ແກ້ໄຂຄັ້ງສຸດທ້າຍ {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "ລົ້ມເຫຼວຫຼ້າສຸດ"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "ເຂົ້າສູ່ລະບົບຄັ້ງສຸດທ້າຍ"
@@ -2615,6 +2720,10 @@ msgstr "ເຂົ້າສູ່ລະບົບຄັ້ງສຸດທ້າຍ
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "ເຫັນຫຼ້າສຸດ"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "ສຳເລັດຫຼ້າສຸດ"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2625,6 +2734,11 @@ msgstr "ໃຊ້ຄັ້ງສຸດທ້າຍ"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "ຮູບແບບ"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "ກົດໝາຍ"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -2674,6 +2788,10 @@ msgstr "ລິ້ງ"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "List"
 msgstr "ລາຍຊື່"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Load diff"
+msgstr "ໂຫຼດຄວາມແຕກຕ່າງ"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Load more"
@@ -2992,6 +3110,7 @@ msgstr "ຊື່ພາຍໃຕ້ {0}"
 msgid "Name updated"
 msgstr "ອັບເດດຊື່ແລ້ວ"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3043,6 +3162,12 @@ msgstr "ເກມໃໝ່"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "ຕໍ່ໄປ"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "ຄວາມພະຍາຍາມຕໍ່ໄປ"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3173,6 +3298,14 @@ msgstr "ບໍ່ມີລະຫັດກູ້ຄືນ"
 msgid "No recovery key"
 msgstr "ບໍ່ມີກະແຈກູ້ຄືນ"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "ບໍ່ມີລາຍງານທີ່ລໍຖ້າຢູ່."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "ບໍ່ມີລາຍງານທີ່ແກ້ໄຂແລ້ວ."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3185,6 +3318,10 @@ msgstr "ບໍ່ພົບຜົນ."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "ບໍ່ມີເສັ້ນທາງທີ່ຕັ້ງຄ່າໄວ້"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "ຍັງບໍ່ມີເຊີບເວີ."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3259,6 +3396,11 @@ msgstr "ບໍ່ໄດ້ປຽບທຽບ: ເກີນຂີດຈຳກັ�
 msgid "Not connected"
 msgstr "ບໍ່ໄດ້ເຊື່ອມຕໍ່"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "ບໍ່ໄດ້ເຊື່ອມຕໍ່"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3272,9 +3414,22 @@ msgstr "ບໍ່ໄດ້ຕັ້ງຄ່າ"
 msgid "Nothing found"
 msgstr "ບໍ່ພົບຫຍັງ"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "ບໍ່ມີຫຍັງຈາກ {0} ໄປຮອດໃຜໃນເຊີບເວີນີ້, ແລະ ບໍ່ມີໃຜຢູ່ທີ່ນີ້ສົ່ງໄປຫາມັນ."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "ບໍ່ມີຫຍັງຖືກບລັອກ."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "ບໍ່ມີສິ່ງໃດຂອງບັນຊີຖືກໃຫ້ບໍລິການ ແລະ ຣີເລຈະໄດ້ຮັບແຈ້ງ. ບັນຊີ ແລະ ສິ່ງທີ່ມັນເຜີຍແຜ່ຍັງຄົງຢູ່ ແລະ ສາມາດກູ້ຄືນໄດ້."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "ບໍ່ມີຫຍັງທີ່ບຸກຄົນນີ້ສົ່ງໄປຮອດໃຜໃນເຊີບເວີນີ້, ແລະ ບຸກຄົນນີ້ບໍ່ໄດ້ເປັນຜູ້ຕິດຕາມຂອງໃຜຢູ່ທີ່ນີ້ອີກຕໍ່ໄປ."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3318,6 +3473,11 @@ msgstr "ເປີດ"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "ອຸບຍ! ບໍ່ພົບໜ້າ!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "ເປີດຢູ່"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3383,6 +3543,11 @@ msgstr "ຕົວເລືອກ"
 msgid "Other"
 msgstr "ອື່ນໆ"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "ອື່ນໆ"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3401,6 +3566,10 @@ msgstr "ເຊີບເວີອື່ນຈະຮູ້ກະແຈໃໝ່ຈ
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "ການຕັ້ງຄ່າອື່ນໆ"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "ຜົນລັບ"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3512,6 +3681,11 @@ msgstr "ກຳລັງລໍຖ້າ"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "ບຸກຄົນ"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "ຄົນ"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3661,6 +3835,10 @@ msgstr "ການເຂົ້າເຖິງໄດ້"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "ພ້ອມສຳລັບການມາຮອດຂອງບັນຊີ Bluesky"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "ໄດ້ຮັບແລ້ວ"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3930,6 +4108,25 @@ msgstr "ຕອບ"
 msgid "Reply to {0}..."
 msgstr "ຕອບ {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "ລາຍງານ"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "ການດຳເນີນການລາຍງານ"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "ປະຕິເສດລາຍງານແລ້ວ"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "ລາຍງານ"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "ຕ້ອງການການຢືນຢັນໂດເມນ"
@@ -3993,6 +4190,11 @@ msgstr "ຍອມແພ້"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "ຍອມແພ້ເກມ?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "ແກ້ໄຂແລ້ວ"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4062,6 +4264,11 @@ msgstr "ຖອນການເຂົ້າສູ່ລະບົບນີ້ບໍ
 msgid "Role"
 msgstr "ບົດບາດ"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "ຫ້ອງ"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "ສ້າງເສັ້ນທາງແລ້ວ"
@@ -4103,6 +4310,11 @@ msgstr "ຄັດລອກ RSS URL ໄປຄລິບບອດແລ້ວ"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "ການລະເມີດກົດລະບຽບ"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4293,6 +4505,10 @@ msgstr "ສົ່ງຂໍ້ຄວາມ"
 msgid "Serif"
 msgstr "ເຊຣິບ"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4447,6 +4663,11 @@ msgstr "ແຫຼ່ງ"
 msgid "Spacious"
 msgstr "ກວ້າງຂວາງ"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "ສະແປມ"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "ແຍກ"
@@ -4461,6 +4682,7 @@ msgstr "ເລີ່ມແລ້ວ"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4505,19 +4727,28 @@ msgstr "ສະຫຼຸບຖືກສ້າງໃໝ່"
 msgid "Sunday"
 msgstr "ວັນອາທິດ"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "ໂຈະ"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "ໂຈະຜູ້ໃຊ້"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "ໂຈະຜູ້ໃຊ້?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "ໂຈະແລ້ວ"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "ໂຈະແລ້ວ"
 
@@ -4923,10 +5154,12 @@ msgstr "ບໍ່ພ້ອມໃຊ້ງານ · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "ບໍ່ພ້ອມໃຊ້ງານ · ຊື່ຂອງມັນບໍ່ໄດ້ນຳໄປສູ່ເຊີບເວີນີ້"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "ຍົກເລີກການບລັອກ {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "ຍົກເລີກການບລັອກແລ້ວ"
@@ -5067,6 +5300,7 @@ msgstr "ຄ່າເລີ່ມຕົ້ນຜູ້ໃຊ້"
 msgid "User deleted"
 msgstr "ຜູ້ໃຊ້ຖືກລົບ"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "ຜູ້ໃຊ້ຖືກໂຈະ"
@@ -5160,6 +5394,12 @@ msgstr "ການຄວບຄຸມການເບິ່ງ"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "ຕົວທ່ອງເວັບນີ້ບໍ່ຮອງຮັບການບັນທຶກສຽງ"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "ກຳລັງລໍຖ້າ"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

@@ -33,7 +33,9 @@ msgstr "\"{0}\" און די נעמען אונטער אים וועלן באַפֿ
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" וועט אַראָפּגענומען ווערן מיט אַלץ וואָס עס האָט פֿאַרעפֿנטלעכט און זײַנע נאָכפֿאָלגער."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" וועט ווערן אַרויסגעלאָגט און וועט נישט קענען אַרייַנלאָגן ווידער ביז די סוספּענדירונג ווערט אַראָפּגענומען."
@@ -89,6 +91,12 @@ msgstr "(דו)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[נישט געשטעלט]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} אַרײַנגעמעלדטער קליענט} other {{clients} אַרײַנגעמעלדטע קליענטן}} · {1, plural, one {{accounts} קאָנטע} other {{accounts} קאָנטעס}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "אַ רעקאָרדירונג גייט שוין אָן."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "מיט אַ צוריקשטעל־שליסל קענט איר אַריבערפֿירן די קאָנטע אָדער אָפּמאַכן וואָס אַן אײַנגעבראָכענער סערווער האָט געטאָן. ער פֿאַרבײַט יעדן פֿריִערדיקן שליסל און ווערט געוויזן נאָר איין מאָל."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "וועגן"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "אַבסאָלוט (דאַטע און צײַט)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "מיסברויך"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "זענט איר זיכער איר ווילט רעזיגנירן? {oppone
 msgid "Ascending"
 msgstr "אַרויפֿגייענדיק"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "בײַם גרענעץ פֿון בקשות"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "אויפֿן ים"
@@ -783,17 +805,41 @@ msgstr "באַנער באַנײַט"
 msgid "Binary file not shown"
 msgstr "בינארע טעקע ווערט נישט געוויזן"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "בלאָקירן"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "בלאָקיר {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "בלאָקירן {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "בלאָקיר {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "בלאָקיר סערווער {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "בלאָקירט"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "בלאָקירט"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "געבלאָקירט נאַוויגאַציע צו אומגעטרויטן לינק"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "בלאָקירט"
 
@@ -1068,6 +1117,10 @@ msgstr "קאָדן קאָפּירט"
 msgid "Collapse"
 msgstr "צונויפֿקלאַפּן"
 
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Collapse all"
+msgstr "צונויפֿקלאַפּן אַלץ"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Collapse sidebar"
 msgstr "צונויפֿקלאַפּן סײַדבאַר"
@@ -1140,6 +1193,11 @@ msgstr "באַשטעטיק אַז דאָס זײַט איר"
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
+msgid "Connected"
+msgstr "פֿאַרבונדן"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "Connected"
 msgstr "פֿאַרבונדן"
 
@@ -1221,6 +1279,7 @@ msgstr "האָט נישט געקאָנט צולייגן דעם נאָמען"
 msgid "Could not change the account"
 msgstr "ניט געלונגען צו ענדערן די קאָנטע"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "מען האָט נישט געקענט ענדערן די בלאָקירונג"
@@ -1289,6 +1348,10 @@ msgstr "האָט נישט געקאָנט פֿאַרבײַטן די שליסלע�
 msgid "Could not reserve the handle"
 msgstr "האָט נישט געקאָנט רעזערווירן דעם צונאָמען"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "מען האָט נישט געקענט באַהאַנדלען דעם באַריכט"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "האָט נישט געקאָנט צוריקנעמען"
@@ -1356,6 +1419,7 @@ msgstr "באַשאַפֿן באַניצער"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1657,8 +1721,14 @@ msgstr "אפגעשניטן"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "אַראָפּזאָגן"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "אַראָפּגעזאָגט"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1706,6 +1776,10 @@ msgstr "דאָמיין באַשאַפֿן"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "דאָמיין אויסגעמעקט"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "דאָמיין אָדער מענטש צו בלאָקירן"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -1895,6 +1969,10 @@ msgstr "example.com אָדער *.example.com"
 #: ../../../lib/web/src/components/tree-row.tsx
 msgid "Expand"
 msgstr "אויסשפּרייטן"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Expand all"
+msgstr "אויסשפּרייטן אַלץ"
 
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Expand sidebar"
@@ -2234,6 +2312,18 @@ msgstr "ניט געלונגען צו פֿאַרזיכערן קאָד"
 msgid "Failed to verify domain"
 msgstr "ניט געלונגען צו פֿאַרזיכערן דאָמען"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "דורכפֿאַלן"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "פֿעדעראַציע"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2299,6 +2389,16 @@ msgid "Friends"
 msgstr "חברים"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "פֿון"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "פֿון"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "פֿון"
 
@@ -2556,6 +2656,7 @@ msgstr "שליסלען"
 msgid "Keys replaced"
 msgstr "שליסלען פֿאַרבײַט"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2607,6 +2708,10 @@ msgstr "לעצטע בראָדקאַסט"
 msgid "Last edited {0}"
 msgstr "לעצט רעדאַקטירט {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "לעצטער דורכפֿאַל"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "לעצטער אַרײַנקום"
@@ -2615,6 +2720,10 @@ msgstr "לעצטער אַרײַנקום"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "לעצט געזען"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "לעצטע הצלחה"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2625,6 +2734,11 @@ msgstr "לעצט באַניצט"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "אויסשטעל"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "געזעצלעך"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -2674,6 +2788,10 @@ msgstr "לינקס"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "List"
 msgstr "רשימה"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Load diff"
+msgstr "לאָדן חילוקים"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Load more"
@@ -2992,6 +3110,7 @@ msgstr "נאָמען אונטער {0}"
 msgid "Name updated"
 msgstr "נאָמען דערפֿרישט"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3043,6 +3162,12 @@ msgstr "נײַ שפּיל"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "ווײַטער"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "קומענדיקער פּרוּוו"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3173,6 +3298,14 @@ msgstr "קיין אומקער קאָדן"
 msgid "No recovery key"
 msgstr "קיין צוריקשטעל־שליסל"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "קיין באַריכטן וואַרטן נישט."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "קיין באַריכטן זענען נישט באַהאַנדלט געוואָרן."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3185,6 +3318,10 @@ msgstr "קיין רעזולטאַטן ניט געפֿונען."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "קיין וועגן קאָנפֿיגורירט"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "נאָך נישטאָ קיין סערווערס."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3259,6 +3396,11 @@ msgstr "נישט פֿאַרגליכן: איבער דער גרייס־גרענע�
 msgid "Not connected"
 msgstr "נישט פֿאַרבונדן"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "נישט פֿאַרבונדן"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3272,9 +3414,22 @@ msgstr "ניט געשטעלט"
 msgid "Nothing found"
 msgstr "גאָרניט ניט געפֿונען"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "גאָרנישט פֿון {0} דערגרייכט קיינעם אויף דעם סערווער, און קיינער דאָ שיקט אים גאָרנישט."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "גאָרנישט איז נישט בלאָקירט."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "גאָרנישט פֿון דער קאָנטע ווערט סערווירט און די רעלעס ווערן געמאָלדן. די קאָנטע און וואָס זי האָט פּובליקירט בלײַבן, און מע קען זי צוריקשטעלן."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "גאָרנישט וואָס דער מענטש שיקט דערגרייכט קיינעם אויף דעם סערווער, און דער מענטש פֿאָלגט מער נישט קיינעם דאָ."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3318,6 +3473,11 @@ msgstr "אָן"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "אױ! זײַטל ניט געפֿונען!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "אָפֿענע"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3383,6 +3543,11 @@ msgstr "אָפּציעס"
 msgid "Other"
 msgstr "אַנדער"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "אַנדער"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3401,6 +3566,10 @@ msgstr "אַנדערע סערווערס דערוויסן זיך וועגן דע�
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "אַנדערע אײַנשטעלונגען"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "רעזולטאַט"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3512,6 +3681,11 @@ msgstr "וואַרטנדיק"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "מענטשן"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "מענטש"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3661,6 +3835,10 @@ msgstr "דערגרייכבארקייט"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "גרייט פאַר דעם אָנקום פון דעם Bluesky־חשבון"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "באַקומען"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3930,6 +4108,25 @@ msgstr "ענטפֿער"
 msgid "Reply to {0}..."
 msgstr "ענטפֿער צו {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "באַריכט"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "באַריכט־אַקציעס"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "באַריכט אַראָפּגעזאָגט"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "באַריכטן"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "פֿאָדער דאָמיין באַשטעטיקונג"
@@ -3993,6 +4190,11 @@ msgstr "רעזיגנירן"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "רעזיגנירן שפּיל?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "באַהאַנדלטע"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4062,6 +4264,11 @@ msgstr "צוריקנעמען דאָס דאָזיקע אַרײַנמעלדן?"
 msgid "Role"
 msgstr "ראָלע"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "צימער"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "וועג באַשאַפֿן"
@@ -4103,6 +4310,11 @@ msgstr "RSS URL קאָפּירט צו קלעמברעט"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "בראָך פֿון כּללים"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4293,6 +4505,10 @@ msgstr "שיק אַ מעלדונג"
 msgid "Serif"
 msgstr "סעריף"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4447,6 +4663,11 @@ msgstr "מקורים"
 msgid "Spacious"
 msgstr "ברייט"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "ספּאַם"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "טייל"
@@ -4461,6 +4682,7 @@ msgstr "אָנגעהויבן"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4505,19 +4727,28 @@ msgstr "סך־הכּל ווידער געשאַפֿן"
 msgid "Sunday"
 msgstr "זונטיק"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "סוספּענדיר"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "סוספּענדיר באַניצער"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "סוספּענדיר באַניצער?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "סוספּענדירט"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "סוספּענדירט"
 
@@ -4923,10 +5154,12 @@ msgstr "נישט פֿאַראַן · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "נישט פֿאַראַן · איר נאָמען פֿירט נישט צו דעם סערווער"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "אָפּבלאָקירן {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "אָפּבלאָקירט"
@@ -5067,6 +5300,7 @@ msgstr "באַניצער־פֿאָרויסבאַשטימטן"
 msgid "User deleted"
 msgstr "באַניצער אויסגעמעקט"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "באַניצער סוספּענדירט"
@@ -5160,6 +5394,12 @@ msgstr "בליק־קאָנטראָלן"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "קול רעקאָרדירונג ווערט נישט געשטיצט אין דעם בלעטערער"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "אין ריי"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

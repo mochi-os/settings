@@ -33,7 +33,9 @@ msgstr "\"{0}\" chaymanta uranpi kaq sutikunapas kacharisqa kanqa, pipas hap'ina
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" qichusqa kanqa, tukuy publicasqanwan qatiqninkunawanpas."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" lloqsichisqa kanqa hinaspa mana yaykuyta atinqachu sayachiy qichusqa kanankama."
@@ -89,6 +91,12 @@ msgstr "(qam)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[mana churasqa]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} yaykusqa cliente} other {{clients} yaykusqa clientekuna}} · {1, plural, one {{accounts} cuenta} other {{accounts} cuentakuna}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Huk grabacionqa ñam ruwakuchkanña."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Kutichinapaq clavewanqa cuentata astayta atinki, utaq waqllisqa servidorpa ruwasqanta paskayta. Ñawpaq clavekunata tikran, huk kutillataq rikuchikun."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Pimanta"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absoluto (p'unchaw hinaspa hora)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Abuso"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "¿Saqirakapuyta munankichu? {opponentName} pukllayta atipanqa."
 msgid "Ascending"
 msgstr "Wicharispa"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Mañakuykunap limitenman chayasqa"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Mama quchapi"
@@ -783,17 +805,41 @@ msgstr "Banner musuqchasqa"
 msgid "Binary file not shown"
 msgstr "Archivo binario mana rikuchisqachu"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Hark'ay"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "{0}-ta hark'ay"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "¿{0}-ta hark'ankichu?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "{name}-ta hark'ay"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "{host} servidorta hark'ay"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Hark'asqa"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Hark'asqa"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Mana iñikuq t'inkiman yaykuy hark'asqa"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Hark'aykuna"
 
@@ -1068,6 +1117,10 @@ msgstr "Códigos copiasqa"
 msgid "Collapse"
 msgstr "Pisichay"
 
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Collapse all"
+msgstr "Llapanta pisichay"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Collapse sidebar"
 msgstr "Waqta barrata pisichay"
@@ -1140,6 +1193,11 @@ msgstr "Qan kasqaykita takyachiy"
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
+msgid "Connected"
+msgstr "T'inkisqa"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "Connected"
 msgstr "T'inkisqa"
 
@@ -1221,6 +1279,7 @@ msgstr "Sutita mana yapayta atikurqanchu"
 msgid "Could not change the account"
 msgstr "Mana cuentata hukchayta atinchu"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Hark'ayta manam tikray atikunchu"
@@ -1289,6 +1348,10 @@ msgstr "Clavekunata mana tikrayta atikurqanchu"
 msgid "Could not reserve the handle"
 msgstr "Identificadorta mana reservayta atikurqanchu"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Reporteta manam allichay atikunchu"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Mana qichuy atirqachu"
@@ -1356,6 +1419,7 @@ msgstr "Apaykachaq kamariy"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1657,8 +1721,14 @@ msgstr "Mana t'inkisqa"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Mana kasuy"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Mana kasusqa"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1706,6 +1776,10 @@ msgstr "Dominio kamarisqa"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Dominio wischusqa"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Hark'anapaq dominio utaq runa"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -1895,6 +1969,10 @@ msgstr "example.com utaq *.example.com"
 #: ../../../lib/web/src/components/tree-row.tsx
 msgid "Expand"
 msgstr "Mast'ariy"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Expand all"
+msgstr "Llapanta mast'ariy"
 
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Expand sidebar"
@@ -2234,6 +2312,18 @@ msgstr "Mana códigota takyachiyta atinchu"
 msgid "Failed to verify domain"
 msgstr "Mana dominiota takyachiyta atinchu"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Pantaykuna"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Federación"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2299,6 +2389,16 @@ msgid "Friends"
 msgstr "Masikuna"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "Maymanta"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Maymanta"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "Maymanta"
 
@@ -2556,6 +2656,7 @@ msgstr "Llavekuna"
 msgid "Keys replaced"
 msgstr "Clavekuna tikrasqa"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2607,6 +2708,10 @@ msgstr "Qhipa ch'eqechiy"
 msgid "Last edited {0}"
 msgstr "Qhipa hukchasqa {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Qhipa pantay"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Qhipa yaykuy"
@@ -2615,6 +2720,10 @@ msgstr "Qhipa yaykuy"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Qhipa rikusqa"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Qhipa allin lluqsiy"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2625,6 +2734,11 @@ msgstr "Qhipa llamk'achisqa"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Churana"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Legal"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -2674,6 +2788,10 @@ msgstr "T'inkikuna"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "List"
 msgstr "Lista"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Load diff"
+msgstr "Hukchasqakunata cargay"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Load more"
@@ -2992,6 +3110,7 @@ msgstr "{0} uranpi suti"
 msgid "Name updated"
 msgstr "Suti musuqchasqa"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3043,6 +3162,12 @@ msgstr "Musuq pukllay"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Qatiqnin"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Qatiq intento"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3173,6 +3298,14 @@ msgstr "Mana recuperación códigokuna"
 msgid "No recovery key"
 msgstr "Mana kutichinapaq clave"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Manam ima reportepas suyachkanchu."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Manam ima reportepas allichasqachu."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3185,6 +3318,10 @@ msgstr "Mana resultadokuna tarisqachu."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Mana ñankuna wakichisqachu"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Manaraq servidorkuna kanchu."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3259,6 +3396,11 @@ msgstr "Manam tupachisqachu: sayay saywata pasan"
 msgid "Not connected"
 msgstr "Mana t'inkisqachu"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Mana t'inkisqachu"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3272,9 +3414,22 @@ msgstr "Mana churasqa"
 msgid "Nothing found"
 msgstr "Mana imapas tarisqachu"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "{0}-manta manam imapas kay servidorpi pimanpas chayanchu, kaymantaqa pipas manam chayman kachanchu."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Manam imapas hark'asqachu."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Cuentamanta imapas mana qusqachu, relaykunamantaq willakun. Cuentapas qillqasqankunapas kachkanmi, kutichiytapas atikunmi."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Kay runa kachasqanqa manam kay servidorpi pimanpas chayanchu, manataq kaypi pipa qatiqninpas kanñachu."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3318,6 +3473,11 @@ msgstr "Activasqa"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "¡Ay! ¡Página mana tarisqachu!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Kichasqa"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3383,6 +3543,11 @@ msgstr "Akllanakuna"
 msgid "Other"
 msgstr "Huk"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Huk"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3401,6 +3566,10 @@ msgstr "Huk servidorkunaqa musuq claveta cuentapa documentonmanta yachanku. Mawk
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Huk wakichiykuna"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Resultado"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3512,6 +3681,11 @@ msgstr "Suyakuchkan"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Runakuna"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Runa"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3661,6 +3835,10 @@ msgstr "Chayana atiy"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Bluesky cuenta chayamunanpaq listo"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Chaskisqa"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3930,6 +4108,25 @@ msgstr "Kutichiy"
 msgid "Reply to {0}..."
 msgstr "{0}-man kutichiy..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Reporte"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Reporte ruraykuna"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Reporte mana kasusqa"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Reportekuna"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Dominio takyachiyta necesitay"
@@ -3993,6 +4190,11 @@ msgstr "Saqirakapuy"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "¿Pukllayta saqirakapunkichu?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Allichasqa"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4062,6 +4264,11 @@ msgstr "Kay yaykuyta qichunkichu?"
 msgid "Role"
 msgstr "Rol"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Sala"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Ñan kamarisqa"
@@ -4103,6 +4310,11 @@ msgstr "RSS URL clipboardman copiasqa"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Kamachiy p'akiy"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4293,6 +4505,10 @@ msgstr "Willakuyta apachiy"
 msgid "Serif"
 msgstr "Serif"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4447,6 +4663,11 @@ msgstr "Pukyukuna"
 msgid "Spacious"
 msgstr "Mast'arisqa"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Spam"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "T'aqasqa"
@@ -4461,6 +4682,7 @@ msgstr "Qallarisqa"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4505,19 +4727,28 @@ msgstr "Pisi willariy kutimanta kamarisqa"
 msgid "Sunday"
 msgstr "Intichaw"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Sayachiy"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Apaykachaqta sayachiy"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "¿Apaykachaqta sayachinkichu?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Sayachisqa"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Sayachisqa"
 
@@ -4923,10 +5154,12 @@ msgstr "Mana kanchu · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Mana kanchu · Sutinqa mana kay servidorman pusanchu"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "{label} hark'ayta kichay"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Hark'ay kichasqa"
@@ -5067,6 +5300,7 @@ msgstr "Apaykachaq predeterminadokuna"
 msgid "User deleted"
 msgstr "Apaykachaq wischusqa"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Apaykachaq sayachisqa"
@@ -5160,6 +5394,12 @@ msgstr "Vista controlkuna"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Kay navegadorpiqa manam kunka grabay atikunchu"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "Filapi"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

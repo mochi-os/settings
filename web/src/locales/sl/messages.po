@@ -33,7 +33,9 @@ msgstr "Vzdevek \"{0}\" in imena pod njim bodo sproščeni, da jih lahko prevzam
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "Račun \"{0}\" bo odstranjen skupaj z vsem, kar je objavil, in s sledilci."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" bo odjavljen in se ne bo mogel znova prijaviti, dokler začasna prekinitev ne bo odpravljena."
@@ -89,6 +91,12 @@ msgstr "(vi)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[ni nastavljeno]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} prijavljen odjemalec} two {{clients} prijavljena odjemalca} few {{clients} prijavljeni odjemalci} other {{clients} prijavljenih odjemalcev}} · {1, plural, one {{accounts} račun} two {{accounts} računa} few {{accounts} računi} other {{accounts} računov}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Snemanje že poteka."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Ključ za obnovitev vam omogoča, da račun premaknete ali razveljavite, kar je storil ogroženi strežnik. Nadomesti vsak prejšnji ključ in je prikazan samo enkrat."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "O kom"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absolutno (datum in čas)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Zloraba"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Ali ste prepričani, da se želite predati? {opponentName} bo zmagal igr
 msgid "Ascending"
 msgstr "Naraščajoče"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Na omejitvi zahtev"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Na morju"
@@ -783,17 +805,41 @@ msgstr "Pasica posodobljena"
 msgid "Binary file not shown"
 msgstr "Binarna datoteka ni prikazana"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Blokiraj"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "Blokiraj {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "Blokiraj {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "Blokiraj {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Blokiraj strežnik {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Blokirano"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Blokirano"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Blokirana navigacija do nezaupanja vredne povezave"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Bloki"
 
@@ -1068,6 +1117,10 @@ msgstr "Kode kopirane"
 msgid "Collapse"
 msgstr "Strni"
 
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Collapse all"
+msgstr "Strni vse"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Collapse sidebar"
 msgstr "Strni stransko vrstico"
@@ -1140,6 +1193,11 @@ msgstr "Potrdite, da ste to vi"
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
+msgid "Connected"
+msgstr "Povezano"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "Connected"
 msgstr "Povezano"
 
@@ -1221,6 +1279,7 @@ msgstr "Imena ni bilo mogoče dodati"
 msgid "Could not change the account"
 msgstr "Računa ni bilo mogoče spremeniti"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Blokade ni bilo mogoče spremeniti"
@@ -1289,6 +1348,10 @@ msgstr "Ključev ni bilo mogoče zamenjati"
 msgid "Could not reserve the handle"
 msgstr "Vzdevka ni bilo mogoče rezervirati"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Prijave ni bilo mogoče rešiti"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Ni bilo mogoče odvzeti"
@@ -1356,6 +1419,7 @@ msgstr "Ustvari uporabnika"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1657,8 +1721,14 @@ msgstr "Prekinjena povezava"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Opusti"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Zavrnjeno"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1706,6 +1776,10 @@ msgstr "Domena ustvarjena"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Domena izbrisana"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Domena ali oseba za blokiranje"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -1895,6 +1969,10 @@ msgstr "example.com ali *.example.com"
 #: ../../../lib/web/src/components/tree-row.tsx
 msgid "Expand"
 msgstr "Razširi"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Expand all"
+msgstr "Razširi vse"
 
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Expand sidebar"
@@ -2234,6 +2312,18 @@ msgstr "Neuspešno preverjanje kode"
 msgid "Failed to verify domain"
 msgstr "Neuspešno preverjanje domene"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Neuspehi"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Federacija"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverzum"
@@ -2299,6 +2389,16 @@ msgid "Friends"
 msgstr "Prijatelji"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "Od"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Od"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "Od"
 
@@ -2556,6 +2656,7 @@ msgstr "Ključi"
 msgid "Keys replaced"
 msgstr "Ključi zamenjani"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2607,6 +2708,10 @@ msgstr "Zadnje oddajanje"
 msgid "Last edited {0}"
 msgstr "Zadnje urejanje {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Zadnji neuspeh"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Zadnja prijava"
@@ -2615,6 +2720,10 @@ msgstr "Zadnja prijava"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Nazadnje viden"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Zadnji uspeh"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2625,6 +2734,11 @@ msgstr "Zadnja uporaba"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Postavitev"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Pravno"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -2674,6 +2788,10 @@ msgstr "Povezave"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "List"
 msgstr "Seznam"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Load diff"
+msgstr "Naloži razlike"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Load more"
@@ -2992,6 +3110,7 @@ msgstr "Ime pod {0}"
 msgid "Name updated"
 msgstr "Ime posodobljeno"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3043,6 +3162,12 @@ msgstr "Nova igra"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Naprej"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Naslednji poskus"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3173,6 +3298,14 @@ msgstr "Brez obnovitvenih kod"
 msgid "No recovery key"
 msgstr "Brez ključa za obnovitev"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Nobena prijava ne čaka."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Nobena prijava ni bila rešena."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3185,6 +3318,10 @@ msgstr "Ni najdenih rezultatov."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Ni nastavljenih poti"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Strežnikov še ni."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3259,6 +3396,11 @@ msgstr "Ni primerjano: presega omejitev velikosti"
 msgid "Not connected"
 msgstr "Ni povezano"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Ni povezano"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3272,9 +3414,22 @@ msgstr "Ni nastavljeno"
 msgid "Nothing found"
 msgstr "Nič ni najdeno"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Nič od {0} ne doseže nikogar na tem strežniku in nihče od tukaj mu ničesar ne pošilja."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Nič ni blokirano."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Iz računa se ne streže nič, releji pa so obveščeni. Račun in to, kar je objavil, ostaneta, in ga je mogoče obnoviti."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Nič, kar ta oseba pošlje, ne doseže nikogar na tem strežniku, in tukaj ne sledi več nikomur."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3318,6 +3473,11 @@ msgstr "Vklopljeno"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Ups! Strani ni bilo mogoče najti!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Odprte"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3383,6 +3543,11 @@ msgstr "Možnosti"
 msgid "Other"
 msgstr "Drugo"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Drugo"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3401,6 +3566,10 @@ msgstr "Drugi strežniki izvejo za novi ključ iz dokumenta računa. Nič, kar j
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Druge nastavitve"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Izid"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3512,6 +3681,11 @@ msgstr "V obdelavi"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Ljudje"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Oseba"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3661,6 +3835,10 @@ msgstr "Dosegljivost"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Pripravljeno na prihod računa Bluesky"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Prejeto"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3930,6 +4108,25 @@ msgstr "Odgovori"
 msgid "Reply to {0}..."
 msgstr "Odgovori uporabniku {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Prijava"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Dejanja prijave"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Prijava zavrnjena"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Prijave"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Zahtevaj preverjanje domene"
@@ -3993,6 +4190,11 @@ msgstr "Odstopi"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Odstopi od igre?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Rešene"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4062,6 +4264,11 @@ msgstr "Želite odvzeti to prijavo?"
 msgid "Role"
 msgstr "Vloga"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Soba"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Pot ustvarjena"
@@ -4103,6 +4310,11 @@ msgstr "RSS URL kopiran v odložišče"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Kršitev pravil"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4293,6 +4505,10 @@ msgstr "Pošlji sporočilo"
 msgid "Serif"
 msgstr "Serifna"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4447,6 +4663,11 @@ msgstr "Viri"
 msgid "Spacious"
 msgstr "Prostorno"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Spam"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Razdeli"
@@ -4461,6 +4682,7 @@ msgstr "Začeto"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4505,19 +4727,28 @@ msgstr "Povzetek ponovno ustvarjen"
 msgid "Sunday"
 msgstr "Nedelja"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Začasno ustavi"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Začasno ustavi uporabnika"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Začasno ustavi uporabnika?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Začasno ustavljeno"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Začasno ustavljeno"
 
@@ -4923,10 +5154,12 @@ msgstr "Ni na voljo · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Ni na voljo · Njegovo ime ne vodi do tega strežnika"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Odblokiraj {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Odblokirano"
@@ -5067,6 +5300,7 @@ msgstr "Privzete vrednosti uporabnika"
 msgid "User deleted"
 msgstr "Uporabnik izbrisan"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Uporabnik začasno ustavljen"
@@ -5160,6 +5394,12 @@ msgstr "Kontrole pogleda"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Snemanje glasu v tem brskalniku ni podprto"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "V čakalni vrsti"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

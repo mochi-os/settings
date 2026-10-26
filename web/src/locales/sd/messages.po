@@ -33,7 +33,9 @@ msgstr "\"{0}\" ۽ ان جي هيٺان نالا آزاد ڪيا ويندا ته
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" کي ان جي شايع ڪيل هر شيءِ ۽ ان جي پوئلڳن سميت هٽايو ويندو."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" کي سائن آئوٽ ڪيو ويندو ۽ معطلي ختم ٿيڻ تائين ٻيهر سائن ان نه ڪري سگهندو."
@@ -89,6 +91,12 @@ msgstr "(توهان)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[نه مقرر]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} سائن ان ٿيل ڪلائنٽ} other {{clients} سائن ان ٿيل ڪلائنٽس}} · {1, plural, one {{accounts} اڪائونٽ} other {{accounts} اڪائونٽس}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "رڪارڊنگ اڳ ۾ ئي جاري آهي."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "بحالي ڪنجي توهان کي اڪائونٽ منتقل ڪرڻ يا ڪنهن هيڪ ٿيل سرور جو ڪيل ڪم واپس ڪرڻ ڏئي ٿي. اها ڪنهن به اڳوڻي ڪنجي جي جاءِ وٺي ٿي ۽ صرف هڪ ڀيرو ڏيکاري ويندي آهي."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "بابت"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "مطلق (تاريخ ۽ وقت)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "بدسلوڪي"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "ڇا توهان پڪ سان دستبردار ٿيڻ چاهيو ٿا؟ {o
 msgid "Ascending"
 msgstr "گهٽ کان وڌيڪ"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "درخواستن جي حد تي پهچي ويو"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "سمنڊ ۾"
@@ -783,17 +805,41 @@ msgstr "بينر اپڊيٽ ٿيو"
 msgid "Binary file not shown"
 msgstr "بائنري فائل نه ڏيکاري وئي"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "بلاڪ ڪريو"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "{0} کي بلاڪ ڪريو"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "{0} کي بلاڪ ڪريو؟"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "{name} کي بلاڪ ڪريو"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "سرور {host} بلاڪ ڪريو"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "بلاڪ ٿيل"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "بلاڪ ٿيل"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "غير قابل اعتماد لنڪ ڏانهن ناقابل اعتماد ناقابل تشريح روڪي"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "بلاڪ"
 
@@ -1068,6 +1117,10 @@ msgstr "ڪوڊ ڪاپي ٿيا"
 msgid "Collapse"
 msgstr "سُيڪيڙيو"
 
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Collapse all"
+msgstr "سڀ سُيڪيڙيو"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Collapse sidebar"
 msgstr "سائڊبار کي سُڪيڙيو"
@@ -1140,6 +1193,11 @@ msgstr "تصديق ڪريو ته اهو توهان آهيو"
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
+msgid "Connected"
+msgstr "ڳنڍيل"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "Connected"
 msgstr "ڳنڍيل"
 
@@ -1221,6 +1279,7 @@ msgstr "نالو شامل نه ٿي سگهيو"
 msgid "Could not change the account"
 msgstr "اڪائونٽ تبديل نه ٿي سگهيو"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "بلاڪ تبديل نه ٿي سگهيو"
@@ -1289,6 +1348,10 @@ msgstr "ڪنجيون بدلائي نه سگهيون"
 msgid "Could not reserve the handle"
 msgstr "هينڊل مخصوص نه ٿي سگهيو"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "رپورٽ حل نه ٿي سگهي"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "رد نه ٿي سگهيو"
@@ -1356,6 +1419,7 @@ msgstr "صارف ٺاهيو"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1657,8 +1721,14 @@ msgstr "ڳنڍيل ناهي"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "رد ڪريو"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "رد ٿيل"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1706,6 +1776,10 @@ msgstr "ڊومين ٺاهيو ويو"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "ڊومين ختم ڪيو ويو"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "بلاڪ ڪرڻ لاءِ ڊومين يا ماڻهو"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -1895,6 +1969,10 @@ msgstr "example.com يا *.example.com"
 #: ../../../lib/web/src/components/tree-row.tsx
 msgid "Expand"
 msgstr "پکيڙيو"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Expand all"
+msgstr "سڀ پکيڙيو"
 
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Expand sidebar"
@@ -2234,6 +2312,18 @@ msgstr "ڪوڊ جي تصديق ڪرڻ ۾ ناڪام"
 msgid "Failed to verify domain"
 msgstr "ڊومين جي تصديق ڪرڻ ۾ ناڪام"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "ناڪاميون"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "فيڊريشن"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2299,6 +2389,16 @@ msgid "Friends"
 msgstr "دوست"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "کان"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "کان"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "کان"
 
@@ -2556,6 +2656,7 @@ msgstr "چاٻيون"
 msgid "Keys replaced"
 msgstr "ڪنجيون بدلايون ويون"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2607,6 +2708,10 @@ msgstr "آخري نشريات"
 msgid "Last edited {0}"
 msgstr "{0} آخري ڀيرو ترميم ٿيو"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "آخري ناڪامي"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "آخري لاگ ان"
@@ -2615,6 +2720,10 @@ msgstr "آخري لاگ ان"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "آخري ڀيرو ڏٺو ويو"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "آخري ڪاميابي"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2625,6 +2734,11 @@ msgstr "آخري ڀيرو استعمال ٿيو"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "ليئوٽ"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "قانوني"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -2674,6 +2788,10 @@ msgstr "لنڪس"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "List"
 msgstr "لسٽ"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Load diff"
+msgstr "فرق لوڊ ڪريو"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Load more"
@@ -2992,6 +3110,7 @@ msgstr "{0} هيٺ نالو"
 msgid "Name updated"
 msgstr "نالو اپڊيٽ ٿيو"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3043,6 +3162,12 @@ msgstr "نئين گيم"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "اڳيون"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "اڳيون ڪوشش"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3173,6 +3298,14 @@ msgstr "ڪي بحالي ڪوڊ نه آهن"
 msgid "No recovery key"
 msgstr "ڪا بحالي ڪنجي ناهي"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "ڪا به رپورٽ انتظار ۾ ناهي."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "ڪا به رپورٽ حل نه ڪئي وئي آهي."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3185,6 +3318,10 @@ msgstr "ڪو نتيجو نه مليو."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "ڪي رستا ترتيب نه ڏنا ويا"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "اڃا ڪو سرور ناهي."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3259,6 +3396,11 @@ msgstr "ڀيٽ نه ڪئي وئي: سائيز جي حد کان وڌيڪ"
 msgid "Not connected"
 msgstr "ڳنڍيل ناهي"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "ڳنڍيل ناهي"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3272,9 +3414,22 @@ msgstr "سيٽ نه ٿيل"
 msgid "Nothing found"
 msgstr "ڪجهه نه مليو"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "{0} کان ڪجهه به هن سرور تي ڪنهن تائين نٿو پهچي، ۽ هتان ڪو به ان ڏانهن ڪجهه نٿو موڪلي."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "ڪجهه به بلاڪ ٿيل ناهي."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "اڪائونٽ مان ڪجهه به پيش نه ڪيو ويندو ۽ ريليز کي ٻڌايو ويندو. اڪائونٽ ۽ جيڪو ان شايع ڪيو سو رهندو، ۽ ان کي بحال ڪري سگهجي ٿو."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "هن ماڻهوءَ جو موڪليل ڪجهه به هن سرور تي ڪنهن تائين نٿو پهچي، ۽ هاڻي هتي ڪنهن جي به فالوورز ۾ شامل ناهي."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3318,6 +3473,11 @@ msgstr "آن"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "افسوس! صفحو نه مليو!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "کليل"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3383,6 +3543,11 @@ msgstr "اختيار"
 msgid "Other"
 msgstr "ٻيو"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "ٻيو"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3401,6 +3566,10 @@ msgstr "ٻيا سرور نئين ڪنجي اڪائونٽ جي دستاويز م�
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "ٻيون سيٽنگون"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "نتيجو"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3511,6 +3680,11 @@ msgstr "زير التوا"
 
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
+msgstr "ماڻهو"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
 msgstr "ماڻهو"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
@@ -3661,6 +3835,10 @@ msgstr "پهچ"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Bluesky اڪائونٽ جي اچڻ لاءِ تيار"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "وصول ٿيو"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3930,6 +4108,25 @@ msgstr "جواب"
 msgid "Reply to {0}..."
 msgstr "{0} کي جواب ڏيو..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "رپورٽ"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "رپورٽ جا عمل"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "رپورٽ رد ڪئي وئي"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "رپورٽون"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "ڊومين تصديق گهرجي"
@@ -3993,6 +4190,11 @@ msgstr "هار مڃيو"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "گيم هار مڃجي؟"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "حل ٿيل"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4062,6 +4264,11 @@ msgstr "هي سائن ان رد ڪريو؟"
 msgid "Role"
 msgstr "ڪردار"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "ڪمرو"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "رستو ٺاهيو ويو"
@@ -4103,6 +4310,11 @@ msgstr "RSS URL ڪلپ بورڊ تي ڪاپي ٿيو"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "ضابطن جي خلاف ورزي"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4293,6 +4505,10 @@ msgstr "پيغام موڪليو"
 msgid "Serif"
 msgstr "سيرف"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4447,6 +4663,11 @@ msgstr "ماخذ"
 msgid "Spacious"
 msgstr "ڪشادو"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "اسپام"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "ورهايو"
@@ -4461,6 +4682,7 @@ msgstr "شروع ٿيل"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4505,19 +4727,28 @@ msgstr "خلاصو ٻيهر ٺاهيو ويو"
 msgid "Sunday"
 msgstr "آچر"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "معطل ڪريو"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "صارف معطل ڪريو"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "صارف معطل ڪريو؟"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "معطل ٿيل"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "معطل ٿيل"
 
@@ -4923,10 +5154,12 @@ msgstr "دستياب نه آھي · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "دستياب نه آھي · ان جو نالو هن سرور تائين نٿو وٺي وڃي"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "{label} کي ان بلاڪ ڪريو"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "ان بلاڪ ٿيل"
@@ -5067,6 +5300,7 @@ msgstr "صارف ڊفالٽ"
 msgid "User deleted"
 msgstr "صارف حذف ڪيو ويو"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "صارف معطل ڪيو ويو"
@@ -5160,6 +5394,12 @@ msgstr "ڏيک ڪنٽرول"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "هن برائوزر ۾ آواز جي رڪارڊنگ جي سهولت ناهي"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "قطار ۾"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

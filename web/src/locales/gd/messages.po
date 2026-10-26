@@ -33,7 +33,9 @@ msgstr "Thèid \"{0}\" agus na h-ainmean fodha a shaoradh airson duine sam bith 
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "Thèid \"{0}\" a thoirt air falbh còmhla ris gach rud a dh'fhoillsich e agus an luchd-leantainn aige."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "Thèid \"{0}\" a chlàradh a-mach agus chan urrainn dha clàradh a-steach a-rithist gus an tèid an casg a thogail."
@@ -89,6 +91,12 @@ msgstr "(thusa)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[gun shuidheachadh]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} chliant air clàradh a-steach} two {{clients} chliant air clàradh a-steach} few {{clients} cliantan air clàradh a-steach} other {{clients} cliant air clàradh a-steach}} · {1, plural, one {{accounts} chunntas} two {{accounts} chunntas} few {{accounts} cunntasan} other {{accounts} cunntas}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Tha clàradh a' dol air adhart mu thràth."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Le iuchair aisig, is urrainn dhut an cunntas a ghluasad no na rinn frithealaiche a chaidh a bhriseadh a neo-dhèanamh. Thèid i an àite iuchair sam bith roimhpe agus cha tèid a sealltainn ach aon turas."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Mu"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Iomlan (ceann-là agus àm)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Droch-dhìol"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "A bheil thu cinnteach gu bheil thu airson dreuchd a leigeil dhìot? Buan
 msgid "Ascending"
 msgstr "A' dìreadh"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Ràinig e crìoch nan iarrtasan"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Aig muir"
@@ -783,17 +805,41 @@ msgstr "Bratach air ùrachadh"
 msgid "Binary file not shown"
 msgstr "Cha dèid am faidhle dà-fhillte a shealltainn"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Bac"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "Bac {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "Bac {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "Bac {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Bac am frithealaiche {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Air a bhacadh"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Air a bhacadh"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Chaidh seòladaireachd gu ceangal neo-earbsach a bhacadh"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Blocaichean"
 
@@ -1068,6 +1117,10 @@ msgstr "Còdan air an copaigeadh"
 msgid "Collapse"
 msgstr "Lùb a-steach"
 
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Collapse all"
+msgstr "Lùb a-steach na h-uile"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Collapse sidebar"
 msgstr "Lùb am bàr-thaobh"
@@ -1140,6 +1193,11 @@ msgstr "Dearbhaich gur tusa a th' ann"
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
+msgid "Connected"
+msgstr "Ceangailte"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "Connected"
 msgstr "Ceangailte"
 
@@ -1221,6 +1279,7 @@ msgstr "Cha b' urrainn an t-ainm a chur ris"
 msgid "Could not change the account"
 msgstr "Cha b' urrainn dhuinn an cunntas atharrachadh"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Cha b’ urrainn dhuinn am bacadh atharrachadh"
@@ -1289,6 +1348,10 @@ msgstr "Cha b' urrainn na h-iuchraichean a chur 'nan àite"
 msgid "Could not reserve the handle"
 msgstr "Cha b' urrainn an t-ainm-cleachdaiche a ghlèidheadh"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Cha b' urrainn dhuinn an aithisg fhuasgladh"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Cha b' urrainn a chùl-ghairm"
@@ -1356,6 +1419,7 @@ msgstr "Cruthaich cleachdaiche"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1657,8 +1721,14 @@ msgstr "Gun cheangal"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Leig seachad"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Air leigeil seachad"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1706,6 +1776,10 @@ msgstr "Àrainn air a cruthachadh"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Àrainn air a sguabadh às"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Àrainn no neach ri bacadh"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -1895,6 +1969,10 @@ msgstr "example.com no *.example.com"
 #: ../../../lib/web/src/components/tree-row.tsx
 msgid "Expand"
 msgstr "Leudaich"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Expand all"
+msgstr "Leudaich na h-uile"
 
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Expand sidebar"
@@ -2234,6 +2312,18 @@ msgstr "Cha b' urrainn an còd a dhearbhadh"
 msgid "Failed to verify domain"
 msgstr "Cha b' urrainn an àrainn a dhearbhadh"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Fàilligidhean"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Co-chaidreachas"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2299,6 +2389,16 @@ msgid "Friends"
 msgstr "Caraidean"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "O"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "O"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "O"
 
@@ -2556,6 +2656,7 @@ msgstr "Iuchraichean"
 msgid "Keys replaced"
 msgstr "Iuchraichean air an cur 'nan àite"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2607,6 +2708,10 @@ msgstr "An craoladh mu dheireadh"
 msgid "Last edited {0}"
 msgstr "Air a dheasachadh mu dheireadh {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Am fàilligeadh mu dheireadh"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Clàradh mu dheireadh"
@@ -2615,6 +2720,10 @@ msgstr "Clàradh mu dheireadh"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Air fhaicinn mu dheireadh"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "An soirbheachas mu dheireadh"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2625,6 +2734,11 @@ msgstr "Cleachdadh mu dheireadh"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Cruth"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Laghail"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -2674,6 +2788,10 @@ msgstr "Ceanglaichean"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "List"
 msgstr "Liosta"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Load diff"
+msgstr "Luchdaich na h-atharraichidhean"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Load more"
@@ -2992,6 +3110,7 @@ msgstr "Ainm fo {0}"
 msgid "Name updated"
 msgstr "Chaidh an t-ainm ùrachadh"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3043,6 +3162,12 @@ msgstr "Geama ùr"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Air adhart"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "An ath oidhirp"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3173,6 +3298,14 @@ msgstr "Chan eil còdaichean ath-shlànachaidh"
 msgid "No recovery key"
 msgstr "Gun iuchair aisig"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Chan eil aithisg sam bith a' feitheamh."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Cha deach aithisg sam bith fhuasgladh."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3185,6 +3318,10 @@ msgstr "Cha deach toraidhean a lorg."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Cha deach slighean a chur air dòigh"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Chan eil frithealaiche ann fhathast."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3259,6 +3396,11 @@ msgstr "Cha deach a choimeas: thar crìoch a' mheud"
 msgid "Not connected"
 msgstr "Gun cheangal"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Gun cheangal"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3272,9 +3414,22 @@ msgstr "Cha deach a shuidheachadh"
 msgid "Nothing found"
 msgstr "Cha deach dad a lorg"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Cha ruig dad o {0} duine sam bith air an fhrithealaiche seo, agus cha chuir duine sam bith an-seo dad thuige."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Chan eil dad air a bhacadh."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Cha tèid dad dhen chunntas a fhrithealadh agus thèid innse dha na h-ath-sheachadain. Fanaidh an cunntas agus na dh'fhoillsich e, agus gabhaidh e aiseag."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Cha ruig dad a chuireas an neach seo duine sam bith air an fhrithealaiche seo, agus chan eil an neach seo a' leantainn duine sam bith an-seo tuilleadh."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3318,6 +3473,11 @@ msgstr "Air"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Och! Cha deach an duilleag a lorg!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Fosgailte"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3383,6 +3543,11 @@ msgstr "Roghainnean"
 msgid "Other"
 msgstr "Eile"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Eile"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3401,6 +3566,10 @@ msgstr "Gheibh frithealaichean eile an iuchair ùr à sgrìobhainn a' chunntais.
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Roghainnean eile"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Toradh"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3512,6 +3681,11 @@ msgstr "Ri làimhseachadh"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Daoine"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Neach"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3661,6 +3835,10 @@ msgstr "Ruigsinneachd"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Deiseil airson ’s gun ruig an cunntas Bluesky"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Air fhaighinn"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3930,6 +4108,25 @@ msgstr "Freagair"
 msgid "Reply to {0}..."
 msgstr "Freagair {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Aithisg"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Gnìomhan na h-aithisge"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Chaidh an aithisg a leigeil seachad"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Aithisgean"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Iarr dearbhadh raon-ainm"
@@ -3993,6 +4190,11 @@ msgstr "Leig seachad"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "An leig thu seachad an geama?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Air am fuasgladh"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4062,6 +4264,11 @@ msgstr "A bheil thu airson an clàradh a-steach seo a chùl-ghairm?"
 msgid "Role"
 msgstr "Dreuchd"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Rùm"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Chaidh an t-slighe a chruthachadh"
@@ -4103,6 +4310,11 @@ msgstr "Chaidh URL RSS a lethbhreacadh dhan stòr-bhòrd"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Briseadh riaghailt"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4293,6 +4505,10 @@ msgstr "Cuir teachdaireachd"
 msgid "Serif"
 msgstr "Serif"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4447,6 +4663,11 @@ msgstr "Tùsan"
 msgid "Spacious"
 msgstr "Farsaing"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Spama"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Sgaradh"
@@ -4461,6 +4682,7 @@ msgstr "Air tòiseachadh"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4505,19 +4727,28 @@ msgstr "Geàrr-iomradh ath-ghineadh"
 msgid "Sunday"
 msgstr "Didòmhnaich"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Cuir an cois"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Cuir cleachdaiche an cois"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Cuir cleachdaiche an cois?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "An cois"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "An cois"
 
@@ -4923,10 +5154,12 @@ msgstr "Cha eil ri làimh · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Cha eil ri làimh · Chan eil an t-ainm aige a’ treòrachadh chun an fhrithealaiche seo"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Dì-bhac {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Air a dhì-bhacadh"
@@ -5067,6 +5300,7 @@ msgstr "Bunaitichean cleachdaiche"
 msgid "User deleted"
 msgstr "Cleachdaiche sguabte às"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Cleachdaiche air a chur an cois"
@@ -5160,6 +5394,12 @@ msgstr "Smachdan seallaidh"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Chan eil taic ri clàradh gutha sa bhrabhsair seo"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "Sa chiutha"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

@@ -33,7 +33,9 @@ msgstr "Ang \"{0}\" at ang mga pangalan sa ilalim nito ay palalayain para makuha
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "Aalisin ang \"{0}\" kasama ang lahat ng nai-publish nito at ang mga follower nito."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "Mala-log out ang \"{0}\" at hindi makakapag-log in muli hanggang maalis ang suspensyon."
@@ -89,6 +91,12 @@ msgstr "(ikaw)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[hindi naitakda]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} client na naka-sign in} other {{clients} na client na naka-sign in}} · {1, plural, one {{accounts} account} other {{accounts} na account}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "May kasalukuyan nang pagre-record."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Sa key sa pagbawi, maaari mong ilipat ang account o bawiin ang ginawa ng isang na-compromise na server. Papalitan nito ang anumang naunang key at isang beses lang itong ipapakita."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Tungkol sa"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absolute (petsa at oras)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Pang-aabuso"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Sigurado ka bang gusto mong sumuko? Mananalo si {opponentName} sa laro."
 msgid "Ascending"
 msgstr "Pataas"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Nasa limitasyon ng request"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Sa dagat"
@@ -783,17 +805,41 @@ msgstr "Na-update ang banner"
 msgid "Binary file not shown"
 msgstr "Hindi ipinapakita ang binary na file"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "I-block"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "I-block si {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "I-block ang {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "I-block si {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "I-block ang server na {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Naka-block"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Naka-block"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Hinarang ang pag-navigate sa di-pinagkakatiwalaang link"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Hinaharangan"
 
@@ -1068,6 +1117,10 @@ msgstr "Nakopya ang mga code"
 msgid "Collapse"
 msgstr "I-collapse"
 
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Collapse all"
+msgstr "I-collapse lahat"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Collapse sidebar"
 msgstr "I-collapse ang sidebar"
@@ -1140,6 +1193,11 @@ msgstr "Kumpirmahin na ikaw ito"
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
+msgid "Connected"
+msgstr "Konektado"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "Connected"
 msgstr "Konektado"
 
@@ -1221,6 +1279,7 @@ msgstr "Hindi naidagdag ang pangalan"
 msgid "Could not change the account"
 msgstr "Hindi mabago ang account"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Hindi mabago ang block"
@@ -1289,6 +1348,10 @@ msgstr "Hindi napalitan ang mga key"
 msgid "Could not reserve the handle"
 msgstr "Hindi nareserba ang palayaw"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Hindi maresolba ang report"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Hindi mabawi"
@@ -1356,6 +1419,7 @@ msgstr "Gumawa ng user"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1657,8 +1721,14 @@ msgstr "Nadiskonekta"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "I-dismiss"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Na-dismiss"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1706,6 +1776,10 @@ msgstr "Nagawa ang domain"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Nadelete ang domain"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Domain o tao na iba-block"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -1895,6 +1969,10 @@ msgstr "example.com o *.example.com"
 #: ../../../lib/web/src/components/tree-row.tsx
 msgid "Expand"
 msgstr "Palawakin"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Expand all"
+msgstr "Palawakin lahat"
 
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Expand sidebar"
@@ -2234,6 +2312,18 @@ msgstr "Nabigong i-verify ang code"
 msgid "Failed to verify domain"
 msgstr "Nabigong i-verify ang domain"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Mga pagkabigo"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Pederasyon"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2299,6 +2389,16 @@ msgid "Friends"
 msgstr "Mga kaibigan"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "Mula sa"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Mula sa"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "Mula sa"
 
@@ -2556,6 +2656,7 @@ msgstr "Mga susi"
 msgid "Keys replaced"
 msgstr "Napalitan ang mga key"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2607,6 +2708,10 @@ msgstr "Huling broadcast"
 msgid "Last edited {0}"
 msgstr "Huling na-edit {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Huling pagkabigo"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Huling login"
@@ -2615,6 +2720,10 @@ msgstr "Huling login"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Huling nakita"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Huling tagumpay"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2625,6 +2734,11 @@ msgstr "Huling ginamit"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Layout"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Legal"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -2674,6 +2788,10 @@ msgstr "Mga link"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "List"
 msgstr "Listahan"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Load diff"
+msgstr "I-load ang diff"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Load more"
@@ -2992,6 +3110,7 @@ msgstr "Pangalan sa ilalim ng {0}"
 msgid "Name updated"
 msgstr "Na-update ang pangalan"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3043,6 +3162,12 @@ msgstr "Bagong laro"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Susunod"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Susunod na pagsubok"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3173,6 +3298,14 @@ msgstr "Walang recovery code"
 msgid "No recovery key"
 msgstr "Walang key sa pagbawi"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Walang naghihintay na report."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Walang naresolbang report."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3185,6 +3318,10 @@ msgstr "Walang nakitang resulta."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Walang naka-configure na route"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Wala pang server."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3259,6 +3396,11 @@ msgstr "Hindi ikinumpara: lampas sa limitasyon ng laki"
 msgid "Not connected"
 msgstr "Hindi konektado"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Hindi konektado"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3272,9 +3414,22 @@ msgstr "Hindi naka-set"
 msgid "Nothing found"
 msgstr "Walang nakita"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Walang anumang mula sa {0} ang nakakarating sa sinuman sa server na ito, at walang sinuman dito ang nagpapadala rito."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Walang naka-block."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Walang inihahain mula sa account at sinasabihan ang mga relay. Nananatili ang account at ang mga inilathala nito, at maaari itong ibalik."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Walang anumang ipinapadala ng taong ito ang nakakarating sa sinuman sa server na ito, at hindi na siya follower ng sinuman dito."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3318,6 +3473,11 @@ msgstr "Naka-on"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Ay! Hindi Nahanap ang Pahina!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Bukas"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3383,6 +3543,11 @@ msgstr "Mga Opsyon"
 msgid "Other"
 msgstr "Iba pa"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Iba pa"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3401,6 +3566,10 @@ msgstr "Nalalaman ng ibang server ang bagong key mula sa dokumento ng account. H
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Iba pang mga setting"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Kalalabasan"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3512,6 +3681,11 @@ msgstr "Nakabinbin"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Mga Tao"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Tao"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3661,6 +3835,10 @@ msgstr "Naaabot"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Handa na para sa pagdating ng Bluesky account"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Natanggap"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3930,6 +4108,25 @@ msgstr "Tumugon"
 msgid "Reply to {0}..."
 msgstr "Sagutin si {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Report"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Mga aksyon sa report"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Na-dismiss ang report"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Mga Report"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Kailanganin ang domain verification"
@@ -3993,6 +4190,11 @@ msgstr "Sumuko"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Sumuko sa laro?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Naresolba"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4062,6 +4264,11 @@ msgstr "Bawiin ang pag-sign in na ito?"
 msgid "Role"
 msgstr "Tungkulin"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Kuwarto"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Nalikha ang route"
@@ -4103,6 +4310,11 @@ msgstr "Nakopya ang RSS URL sa clipboard"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Paglabag sa patakaran"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4293,6 +4505,10 @@ msgstr "Ipadala ang mensahe"
 msgid "Serif"
 msgstr "Serif"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4447,6 +4663,11 @@ msgstr "Mga source"
 msgid "Spacious"
 msgstr "Maluwag"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Spam"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Hatiin"
@@ -4461,6 +4682,7 @@ msgstr "Nagsimula"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4505,19 +4727,28 @@ msgstr "Muling nabuo ang buod"
 msgid "Sunday"
 msgstr "Linggo"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "I-suspend"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "I-suspend ang user"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "I-suspend ang user?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Suspendido"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Suspendido"
 
@@ -4923,10 +5154,12 @@ msgstr "Hindi available · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Hindi available · Hindi humahantong sa server na ito ang pangalan nito"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "I-unblock si {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Na-unblock"
@@ -5067,6 +5300,7 @@ msgstr "Mga user default"
 msgid "User deleted"
 msgstr "Natanggal ang user"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Sinuspinde ang user"
@@ -5160,6 +5394,12 @@ msgstr "Mga view control"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Hindi suportado ang voice recording sa browser na ito"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "Nakapila"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

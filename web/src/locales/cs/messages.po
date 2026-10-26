@@ -33,7 +33,9 @@ msgstr "\"{0}\" a jména pod ním budou uvolněna, aby si je mohl vzít kdokoli.
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" bude odstraněn se vším, co zveřejnil, i se svými sledujícími."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "Uživatel \"{0}\" bude odhlášen a nebude se moci znovu přihlásit, dokud nebude pozastavení ukončeno."
@@ -89,6 +91,12 @@ msgstr "(vy)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[neuvedeno]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} přihlášený klient} few {{clients} přihlášení klienti} many {{clients} přihlášeného klienta} other {{clients} přihlášených klientů}} · {1, plural, one {{accounts} účet} few {{accounts} účty} many {{accounts} účtu} other {{accounts} účtů}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Nahrávání již probíhá."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Klíč pro obnovení vám umožní přesunout účet nebo vrátit zpět to, co provedl kompromitovaný server. Nahradí jakýkoli dřívější klíč a zobrazí se jen jednou."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Koho se týká"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Absolutní (datum a čas)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Zneužití"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Opravdu se chcete vzdát? {opponentName} vyhraje hru."
 msgid "Ascending"
 msgstr "Vzestupně"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Dosažen limit požadavků"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Na moři"
@@ -783,17 +805,41 @@ msgstr "Banner aktualizován"
 msgid "Binary file not shown"
 msgstr "Binární soubor se nezobrazuje"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Blokovat"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "Blokovat {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "Blokovat {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "Blokovat {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Blokovat server {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Zablokováno"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Zablokováno"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Navigace na nedůvěryhodný odkaz zablokována"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Blokuje"
 
@@ -1068,6 +1117,10 @@ msgstr "Kódy zkopírovány"
 msgid "Collapse"
 msgstr "Sbalit"
 
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Collapse all"
+msgstr "Sbalit vše"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Collapse sidebar"
 msgstr "Sbalit postranní panel"
@@ -1140,6 +1193,11 @@ msgstr "Potvrďte, že jste to vy"
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
+msgid "Connected"
+msgstr "Připojeno"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "Connected"
 msgstr "Připojeno"
 
@@ -1221,6 +1279,7 @@ msgstr "Jméno se nepodařilo přidat"
 msgid "Could not change the account"
 msgstr "Účet se nepodařilo změnit"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Blokování se nepodařilo změnit"
@@ -1289,6 +1348,10 @@ msgstr "Klíče se nepodařilo nahradit"
 msgid "Could not reserve the handle"
 msgstr "Uživatelské jméno se nepodařilo rezervovat"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Hlášení se nepodařilo vyřešit"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Odvolání se nezdařilo"
@@ -1356,6 +1419,7 @@ msgstr "Vytvořit uživatele"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1657,8 +1721,14 @@ msgstr "Odpojeno"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Zavřít"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Zamítnuto"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1706,6 +1776,10 @@ msgstr "Doména vytvořena"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Doména smazána"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Doména nebo osoba k zablokování"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -1895,6 +1969,10 @@ msgstr "example.com nebo *.example.com"
 #: ../../../lib/web/src/components/tree-row.tsx
 msgid "Expand"
 msgstr "Rozbalit"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Expand all"
+msgstr "Rozbalit vše"
 
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Expand sidebar"
@@ -2234,6 +2312,18 @@ msgstr "Nepodařilo se ověřit kód"
 msgid "Failed to verify domain"
 msgstr "Nepodařilo se ověřit doménu"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Selhání"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Federace"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverzum"
@@ -2299,6 +2389,16 @@ msgid "Friends"
 msgstr "Přátelé"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "Od"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Od"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "Od"
 
@@ -2556,6 +2656,7 @@ msgstr "Klíče"
 msgid "Keys replaced"
 msgstr "Klíče nahrazeny"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2607,6 +2708,10 @@ msgstr "Poslední vysílání"
 msgid "Last edited {0}"
 msgstr "Naposledy upraveno {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Poslední selhání"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Poslední přihlášení"
@@ -2615,6 +2720,10 @@ msgstr "Poslední přihlášení"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Naposledy viděn"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Poslední úspěch"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2625,6 +2734,11 @@ msgstr "Naposledy použito"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Rozvržení"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Právní"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -2674,6 +2788,10 @@ msgstr "Odkazy"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "List"
 msgstr "Seznam"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Load diff"
+msgstr "Načíst změny"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Load more"
@@ -2992,6 +3110,7 @@ msgstr "Jméno pod {0}"
 msgid "Name updated"
 msgstr "Jméno aktualizováno"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3043,6 +3162,12 @@ msgstr "Nová hra"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Další"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Další pokus"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3173,6 +3298,14 @@ msgstr "Žádné obnovovací kódy"
 msgid "No recovery key"
 msgstr "Žádný klíč pro obnovení"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Žádná hlášení nečekají."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Žádná hlášení nebyla vyřešena."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3185,6 +3318,10 @@ msgstr "Žádné výsledky nenalezeny."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Žádné nakonfigurované trasy"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Zatím žádné servery."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3259,6 +3396,11 @@ msgstr "Neporovnáno: přesahuje limit velikosti"
 msgid "Not connected"
 msgstr "Nepřipojeno"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Nepřipojeno"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3272,9 +3414,22 @@ msgstr "Nenastaveno"
 msgid "Nothing found"
 msgstr "Nic nenalezeno"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Nic z {0} se nedostane k nikomu na tomto serveru a nikdo odsud tam nic neposílá."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Nic není zablokováno."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Z účtu se nic neposkytuje a relé jsou informována. Účet a to, co publikoval, zůstávají a lze jej obnovit."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Nic, co tato osoba pošle, se nedostane k nikomu na tomto serveru, a tato osoba už tu nikoho nesleduje."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3318,6 +3473,11 @@ msgstr "Zapnuto"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Jejda! Stránka nenalezena!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Otevřená"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3383,6 +3543,11 @@ msgstr "Možnosti"
 msgid "Other"
 msgstr "Ostatní"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Ostatní"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3401,6 +3566,10 @@ msgstr "Ostatní servery se o novém klíči dozvědí z dokumentu účtu. Nic, 
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Další nastavení"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Výsledek"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3512,6 +3681,11 @@ msgstr "Čeká"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Lidé"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Osoba"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3661,6 +3835,10 @@ msgstr "Dosažitelnost"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Připraveno na příchod účtu Bluesky"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Přijato"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3930,6 +4108,25 @@ msgstr "Odpovědět"
 msgid "Reply to {0}..."
 msgstr "Odpovědět {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Hlášení"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Akce hlášení"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Hlášení zamítnuto"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Hlášení"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Vyžadovat ověření domény"
@@ -3993,6 +4190,11 @@ msgstr "Vzdát"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Vzdát hru?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Vyřešená"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4062,6 +4264,11 @@ msgstr "Odvolat toto přihlášení?"
 msgid "Role"
 msgstr "Role"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Místnost"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Trasa vytvořena"
@@ -4103,6 +4310,11 @@ msgstr "URL RSS zkopírována do schránky"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Porušení pravidel"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4293,6 +4505,10 @@ msgstr "Odeslat zprávu"
 msgid "Serif"
 msgstr "Patkové"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4447,6 +4663,11 @@ msgstr "Zdroje"
 msgid "Spacious"
 msgstr "Prostorné"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Spam"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Rozdělit"
@@ -4461,6 +4682,7 @@ msgstr "Zahájeno"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4505,19 +4727,28 @@ msgstr "Souhrn znovu vygenerován"
 msgid "Sunday"
 msgstr "Neděle"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Pozastavit"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Pozastavit uživatele"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Pozastavit uživatele?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Pozastaveno"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Pozastaveno"
 
@@ -4923,10 +5154,12 @@ msgstr "Nedostupné · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Nedostupné · Jeho název nevede na tento server"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Odblokovat {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Odblokováno"
@@ -5067,6 +5300,7 @@ msgstr "Výchozí nastavení uživatele"
 msgid "User deleted"
 msgstr "Uživatel smazán"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Uživatel pozastaven"
@@ -5160,6 +5394,12 @@ msgstr "Zobrazit ovládací prvky"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Nahrávání hlasu není v tomto prohlížeči podporováno"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "Ve frontě"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

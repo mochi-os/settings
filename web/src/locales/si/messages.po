@@ -33,7 +33,9 @@ msgstr "\"{0}\" සහ එය යටතේ ඇති නම් ඕනෑම ක�
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" එය ප්‍රකාශ කළ සියල්ල සහ එහි අනුගාමිකයින් සමඟ ඉවත් කෙරේ."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" වෙතින් නික්මෙන අතර අත්හිටුවීම ඉවත් කරන තෙක් නැවත පිවිසිය නොහැක."
@@ -89,6 +91,12 @@ msgstr "(ඔබ)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[සකසා නැත]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} පුරනය වූ සේවාලාභියා} other {{clients} පුරනය වූ සේවාලාභීන්}} · {1, plural, one {{accounts} ගිණුම} other {{accounts} ගිණුම්}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "පටිගත කිරීමක් දැනටමත් සිදු
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "ප්‍රතිසාධන යතුරකින් ඔබට ගිණුම ගෙන යාමට හෝ අවදානමට ලක් වූ සේවාදායකයක් කළ දේ අහෝසි කිරීමට හැකිය. එය ඕනෑම පෙර යතුරක් ප්‍රතිස්ථාපනය කරන අතර එක් වරක් පමණක් පෙන්වයි."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "ගැන"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "නිරපේක්ෂ (දිනය සහ වේලාව)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "අපයෝජනය"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "ඔබට ඉල්ලා අස්වීමට අවශ්‍ය බ�
 msgid "Ascending"
 msgstr "ආරෝහණ"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "ඉල්ලීම් සීමාවට ළඟා වී ඇත"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "මුහුදේ"
@@ -783,17 +805,41 @@ msgstr "බැනරය යාවත්කාලීන කළා"
 msgid "Binary file not shown"
 msgstr "ද්විමය ගොනුව නොපෙන්වයි"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "අවහිර කරන්න"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "{0} අවහිර කරන්න"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "{0} අවහිර කරන්නද?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "{name} අවහිර කරන්න"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "සේවාදායකය {host} අවහිර කරන්න"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "අවහිර කළා"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "අවහිර කළා"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "විශ්වාස නොකළ සබැඳියකට සංචාලනය අවහිර කරන ලදී"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "අවහිර කරයි"
 
@@ -1068,6 +1117,10 @@ msgstr "කේත පිටපත් කරන ලදී"
 msgid "Collapse"
 msgstr "හකුළන්න"
 
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Collapse all"
+msgstr "සියල්ල හකුළන්න"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Collapse sidebar"
 msgstr "පැති තීරුව හකුළන්න"
@@ -1140,6 +1193,11 @@ msgstr "එය ඔබ බව තහවුරු කරන්න"
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
+msgid "Connected"
+msgstr "සම්බන්ධිතයි"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "Connected"
 msgstr "සම්බන්ධිතයි"
 
@@ -1221,6 +1279,7 @@ msgstr "නම එක් කළ නොහැකි විය"
 msgid "Could not change the account"
 msgstr "ගිණුම වෙනස් කළ නොහැකි විය"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "අවහිරය වෙනස් කළ නොහැකි විය"
@@ -1289,6 +1348,10 @@ msgstr "යතුරු ප්‍රතිස්ථාපනය කළ නොහ
 msgid "Could not reserve the handle"
 msgstr "අන්වර්ථ නාමය වෙන් කළ නොහැකි විය"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "වාර්තාව විසඳිය නොහැකි විය"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "අහෝසි කළ නොහැකි විය"
@@ -1356,6 +1419,7 @@ msgstr "පරිශීලකයෙකු නිර්මාණය කරන්�
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1657,8 +1721,14 @@ msgstr "විසන්ධියි"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "ඉවත ලන්න"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "ඉවත ලන ලදී"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1706,6 +1776,10 @@ msgstr "වසම සාදන ලදී"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "වසම මකන ලදී"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "අවහිර කළ යුතු වසම හෝ පුද්ගලයා"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -1895,6 +1969,10 @@ msgstr "example.com හෝ *.example.com"
 #: ../../../lib/web/src/components/tree-row.tsx
 msgid "Expand"
 msgstr "විහිදන්න"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Expand all"
+msgstr "සියල්ල විහිදන්න"
 
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Expand sidebar"
@@ -2234,6 +2312,18 @@ msgstr "කේතය සත්‍යාපනය කිරීමට අසමත
 msgid "Failed to verify domain"
 msgstr "වසම සත්‍යාපනය කිරීමට අසමත් විය"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "අසාර්ථකවීම්"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "ෆෙඩරේෂන්"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2299,6 +2389,16 @@ msgid "Friends"
 msgstr "මිතුරන්"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "සිට"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "සිට"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "සිට"
 
@@ -2556,6 +2656,7 @@ msgstr "යතුරු"
 msgid "Keys replaced"
 msgstr "යතුරු ප්‍රතිස්ථාපනය කරන ලදී"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2607,6 +2708,10 @@ msgstr "අවසන් විකාශය"
 msgid "Last edited {0}"
 msgstr "අවසන් වරට සංස්කරණය කළේ {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "අවසන් අසාර්ථකවීම"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "අවසන් පිවිසුම"
@@ -2615,6 +2720,10 @@ msgstr "අවසන් පිවිසුම"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "අවසන් වරට දුටුවේ"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "අවසන් සාර්ථකත්වය"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2625,6 +2734,11 @@ msgstr "අවසන් වරට භාවිත කළ"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "පිරිසැලසුම"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "නීතිමය"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -2674,6 +2788,10 @@ msgstr "සබැඳි"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "List"
 msgstr "ලැයිස්තුව"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Load diff"
+msgstr "වෙනස්කම් පූරණය කරන්න"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Load more"
@@ -2992,6 +3110,7 @@ msgstr "{0} යටතේ නම"
 msgid "Name updated"
 msgstr "නම යාවත්කාලීන කරන ලදී"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3043,6 +3162,12 @@ msgstr "නව ක්‍රීඩාවක්"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "ඊළඟ"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "ඊළඟ උත්සාහය"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3173,6 +3298,14 @@ msgstr "ප්‍රතිසාධන කේත නැත"
 msgid "No recovery key"
 msgstr "ප්‍රතිසාධන යතුරක් නැත"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "රැඳී සිටින වාර්තා නැත."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "කිසිදු වාර්තාවක් විසඳා නැත."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3185,6 +3318,10 @@ msgstr "ප්‍රතිඵල හමු නොවීය."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "මාර්ග සැකසී නැත"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "තවම සේවාදායක නැත."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3259,6 +3396,11 @@ msgstr "සංසන්දනය නොකළේය: ප්‍රමාණ ස�
 msgid "Not connected"
 msgstr "සම්බන්ධ නැත"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "සම්බන්ධ නැත"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3272,9 +3414,22 @@ msgstr "සකසා නැත"
 msgid "Nothing found"
 msgstr "කිසිවක් හමු නොවීය"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "{0} වෙතින් කිසිවක් මෙම සේවාදායකයේ කිසිවෙකුට ළඟා නොවන අතර, මෙහි කිසිවෙකු එයට කිසිවක් නොයවයි."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "කිසිවක් අවහිර කර නැත."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "ගිණුමෙන් කිසිවක් සපයනු නොලබන අතර රිලේ වෙත දැනුම් දෙනු ලැබේ. ගිණුම සහ එය පළ කළ දෑ පවතින අතර එය ප්‍රතිසාධනය කළ හැක."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "මෙම පුද්ගලයා යවන කිසිවක් මෙම සේවාදායකයේ කිසිවෙකුට ළඟා නොවන අතර, මෙම පුද්ගලයා තවදුරටත් මෙහි කිසිවෙකු අනුගමනය නොකරයි."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3318,6 +3473,11 @@ msgstr "සක්‍රීයයි"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "අහෝ! පිටුව හමු නොවීය!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "විවෘත"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3383,6 +3543,11 @@ msgstr "විකල්ප"
 msgid "Other"
 msgstr "වෙනත්"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "වෙනත්"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3401,6 +3566,10 @@ msgstr "අනෙකුත් සේවාදායක නව යතුර ග�
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "වෙනත් සැකසුම්"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "ප්‍රතිඵලය"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3512,6 +3681,11 @@ msgstr "පොරොත්තුවෙන්"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "පුද්ගලයන්"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "පුද්ගලයා"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3661,6 +3835,10 @@ msgstr "ළඟාවීමේ හැකියාව"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Bluesky ගිණුම පැමිණීමට සූදානම්"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "ලැබුණු"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3930,6 +4108,25 @@ msgstr "පිළිතුර"
 msgid "Reply to {0}..."
 msgstr "{0} ට පිළිතුරු දෙන්න..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "වාර්තාව"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "වාර්තා ක්‍රියා"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "වාර්තාව ඉවත ලන ලදී"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "වාර්තා"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "වසම් සත්‍යාපනය අවශ්‍ය කරන්න"
@@ -3993,6 +4190,11 @@ msgstr "ඉල්ලා අස්වන්න"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "ක්‍රීඩාවෙන් ඉල්ලා අස්වන්නද?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "විසඳූ"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4062,6 +4264,11 @@ msgstr "මෙම පුරනය වීම අහෝසි කරන්නද?"
 msgid "Role"
 msgstr "භූමිකාව"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "කාමරය"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "මාර්ගය නිර්මාණය කරන ලදී"
@@ -4103,6 +4310,11 @@ msgstr "RSS URL ක්ලිප්බෝඩ් වෙත පිටපත් ක�
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "නීති උල්ලංඝනය"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4293,6 +4505,10 @@ msgstr "පණිවිඩය යවන්න"
 msgid "Serif"
 msgstr "සෙරිෆ්"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4447,6 +4663,11 @@ msgstr "මූලාරම්භ"
 msgid "Spacious"
 msgstr "විශාල"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "ස්පෑම්"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "බෙදන්න"
@@ -4461,6 +4682,7 @@ msgstr "ආරම්භ විය"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4505,19 +4727,28 @@ msgstr "සාරාංශය නැවත උත්පාදනය කරන �
 msgid "Sunday"
 msgstr "ඉරිදා"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "අත්හිටුවන්න"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "පරිශීලකයා අත්හිටුවන්න"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "පරිශීලකයා අත්හිටුවන්න?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "අත්හිටුවන ලදී"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "අත්හිටුවන ලදී"
 
@@ -4923,10 +5154,12 @@ msgstr "ලබා ගත නොහැක · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "ලබා ගත නොහැක · එහි නම මෙම සේවාදායකයට යොමු නොවේ"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "{label} අවහිරය ඉවත් කරන්න"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "අවහිරය ඉවත් කළා"
@@ -5067,6 +5300,7 @@ msgstr "පරිශීලක පෙරනිමි"
 msgid "User deleted"
 msgstr "පරිශීලකයා මකා දමන ලදී"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "පරිශීලකයා තහනම් කළා"
@@ -5160,6 +5394,12 @@ msgstr "පාලන බලන්න"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "මෙම බ්‍රව්සරයේ හඬ පටිගත කිරීමට සහාය නැත"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "පෝලිමේ"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

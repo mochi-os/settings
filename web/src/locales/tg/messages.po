@@ -33,7 +33,9 @@ msgstr "\"{0}\" ва номҳои зери он озод карда мешава
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" бо ҳар чизе ки нашр кардааст ва пайравонаш хориҷ карда мешавад."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "\"{0}\" аз ҳисоб бароварда мешавад ва то бекор кардани боздошт дубора ворид шуда наметавонад."
@@ -89,6 +91,12 @@ msgstr "(шумо)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[таъин нашудааст]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {{clients} барномаи воридшуда} other {{clients} барномаи воридшуда}} · {1, plural, one {{accounts} ҳисоб} other {{accounts} ҳисоб}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Сабт аллакай идома дорад."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Калиди барқарорсозӣ ба шумо имкон медиҳад, ки ҳисобро интиқол диҳед ё амалҳои сервери рахнашударо бекор кунед. Он ҳар калиди пешинаро иваз мекунад ва танҳо як бор нишон дода мешавад."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Дар бораи"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Мутлақ (сана ва вақт)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Сӯиистифода"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Шумо мутмаин ҳастед, ки мехоҳед таслим �
 msgid "Ascending"
 msgstr "Афзоишёбанда"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Ба ҳадди дархостҳо расид"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "Дар баҳр"
@@ -783,17 +805,41 @@ msgstr "Баннер навсозӣ шуд"
 msgid "Binary file not shown"
 msgstr "Файли дуӣ нишон дода намешавад"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Манъ кардан"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "{0}-ро манъ кардан"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "{0}-ро манъ кардан?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "{name}-ро манъ кардан"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Сервери {host}-ро манъ кардан"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "Баста шуд"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "Баста шуд"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "Гузариш ба пайванди беэътимод манъ шуд"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Блокҳо"
 
@@ -1068,6 +1117,10 @@ msgstr "Кодҳо нусхабардорӣ шуданд"
 msgid "Collapse"
 msgstr "Печондан"
 
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Collapse all"
+msgstr "Ҳамаро печондан"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Collapse sidebar"
 msgstr "Ҷамъ кардани панели канорӣ"
@@ -1140,6 +1193,11 @@ msgstr "Тасдиқ кунед, ки ин шумо ҳастед"
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
+msgid "Connected"
+msgstr "Пайваст шуда"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "Connected"
 msgstr "Пайваст шуда"
 
@@ -1221,6 +1279,7 @@ msgstr "Номро илова карда натавонист"
 msgid "Could not change the account"
 msgstr "Ҳисобро тағйир додан нашуд"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Бастанро тағйир додан нашуд"
@@ -1289,6 +1348,10 @@ msgstr "Калидҳоро иваз карда натавонист"
 msgid "Could not reserve the handle"
 msgstr "Тахаллусро захира карда натавонист"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Гузоришро ҳал кардан нашуд"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Бозхонд карда натавонист"
@@ -1356,6 +1419,7 @@ msgstr "Эҷоди корбар"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1657,8 +1721,14 @@ msgstr "Ҷудо шуда"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Пӯшидан"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "Рад шуд"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1706,6 +1776,10 @@ msgstr "Домен эҷод шуд"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "Домен нест карда шуд"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Домен ё шахс барои бастан"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -1895,6 +1969,10 @@ msgstr "example.com ё *.example.com"
 #: ../../../lib/web/src/components/tree-row.tsx
 msgid "Expand"
 msgstr "Васеъ кардан"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Expand all"
+msgstr "Ҳамаро васеъ кардан"
 
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Expand sidebar"
@@ -2234,6 +2312,18 @@ msgstr "Тасдиқи рамз ба анҷом нарасид"
 msgid "Failed to verify domain"
 msgstr "Тасдиқи домен ба анҷом нарасид"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Нокомиҳо"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Федератсия"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Федиверс"
@@ -2299,6 +2389,16 @@ msgid "Friends"
 msgstr "Дӯстон"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "Аз"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Аз"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "Аз"
 
@@ -2556,6 +2656,7 @@ msgstr "Калидҳо"
 msgid "Keys replaced"
 msgstr "Калидҳо иваз шуданд"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2607,6 +2708,10 @@ msgstr "Пахши охирин"
 msgid "Last edited {0}"
 msgstr "Бори охирин таҳрир шуд {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Нокомии охирин"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Бори охирин воридшавӣ"
@@ -2615,6 +2720,10 @@ msgstr "Бори охирин воридшавӣ"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Бори охир дида шуд"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Муваффақияти охирин"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2625,6 +2734,11 @@ msgstr "Бори охирин истифода шуд"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Тарҳбандӣ"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Ҳуқуқӣ"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -2674,6 +2788,10 @@ msgstr "Пайвандҳо"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "List"
 msgstr "Рӯйхат"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Load diff"
+msgstr "Бор кардани фарқҳо"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Load more"
@@ -2992,6 +3110,7 @@ msgstr "Ном зери {0}"
 msgid "Name updated"
 msgstr "Ном навсозӣ шуд"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3043,6 +3162,12 @@ msgstr "Бозии нав"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Баъдӣ"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Кӯшиши навбатӣ"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3173,6 +3298,14 @@ msgstr "Ягон рамзи барқарорсозӣ нест"
 msgid "No recovery key"
 msgstr "Калиди барқарорсозӣ нест"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Ягон гузориш интизор нест."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Ягон гузориш ҳал нашудааст."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3185,6 +3318,10 @@ msgstr "Ягон натиҷа ёфт нашуд."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Ягон масир танзим нашудааст"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Ҳоло серверҳо нестанд."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3259,6 +3396,11 @@ msgstr "Муқоиса нашуд: аз ҳадди андоза зиёд"
 msgid "Not connected"
 msgstr "Пайваст нашуда"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Пайваст нашуда"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3272,9 +3414,22 @@ msgstr "Танзим нашудааст"
 msgid "Nothing found"
 msgstr "Чизе ёфт нашуд"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Ҳеҷ чиз аз {0} ба касе дар ин сервер намерасад ва ҳеҷ кас аз ин ҷо ба он чизе намефиристад."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Ҳеҷ чиз баста нашудааст."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Аз ҳисоб чизе пешниҳод намешавад ва ба релеҳо хабар дода мешавад. Ҳисоб ва он чи нашр кардааст боқӣ мемонанд ва онро барқарор кардан мумкин аст."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Ҳеҷ чизе, ки ин шахс мефиристад, ба касе дар ин сервер намерасад ва ӯ дигар обуначии касе дар ин ҷо нест."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3318,6 +3473,11 @@ msgstr "Фаъол"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Эҳ! Саҳифа ёфт нашуд!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "Кушода"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3383,6 +3543,11 @@ msgstr "Вариантҳо"
 msgid "Other"
 msgstr "Дигар"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Дигар"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3401,6 +3566,10 @@ msgstr "Серверҳои дигар калиди навро аз ҳуҷҷат�
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Танзимоти дигар"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Натиҷа"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3512,6 +3681,11 @@ msgstr "Дар интизор"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Одамон"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Шахс"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3661,6 +3835,10 @@ msgstr "Дастрасӣ"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "Барои омадани ҳисоби Bluesky омода аст"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "Қабулшуда"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3930,6 +4108,25 @@ msgstr "Ҷавоб"
 msgid "Reply to {0}..."
 msgstr "Ҷавоб ба {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Гузориш"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Амалҳои гузориш"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "Гузориш рад шуд"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Гузоришҳо"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Талаб кардани тасдиқи домен"
@@ -3993,6 +4190,11 @@ msgstr "Таслим"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "Аз бозӣ таслим шудан?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "Ҳалшуда"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4062,6 +4264,11 @@ msgstr "Ин воридшавиро бозхонд кунед?"
 msgid "Role"
 msgstr "Нақш"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Ҳуҷра"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "Масир эҷод шуд"
@@ -4103,6 +4310,11 @@ msgstr "URL-и RSS ба буфер нусха карда шуд"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Вайрон кардани қоидаҳо"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4293,6 +4505,10 @@ msgstr "Паём фиристодан"
 msgid "Serif"
 msgstr "Сериф"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4447,6 +4663,11 @@ msgstr "Манбаъҳо"
 msgid "Spacious"
 msgstr "Васеъ"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Спам"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Тақсим"
@@ -4461,6 +4682,7 @@ msgstr "Оғоз шуд"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4505,19 +4727,28 @@ msgstr "Хулоса аз нав сохта шуд"
 msgid "Sunday"
 msgstr "Якшанбе"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Боздоштан"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Корбарро боздоштан"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Корбарро боздоштан?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "Боздошта шуд"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "Боздошта шуд"
 
@@ -4923,10 +5154,12 @@ msgstr "Дастрас нест · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Дастрас нест · Номи он ба ин сервер намебарад"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "{label}-ро кушодан"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "Кушода шуд"
@@ -5067,6 +5300,7 @@ msgstr "Пешфарзҳои корбар"
 msgid "User deleted"
 msgstr "Корбар нест карда шуд"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "Корбар боздошта шуд"
@@ -5160,6 +5394,12 @@ msgstr "Назоратҳои намоиш"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Сабти овоз дар ин браузер дастгирӣ намешавад"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "Дар навбат"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx

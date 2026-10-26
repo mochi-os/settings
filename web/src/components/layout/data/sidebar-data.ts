@@ -22,6 +22,9 @@ import {
   Bell,
   FileText,
   Share2,
+  Flag,
+  Ban,
+  Network,
 } from 'lucide-react'
 
 export function useFilteredSidebarData(
@@ -108,6 +111,21 @@ export function useFilteredSidebarData(
               title: t`Handles`,
               url: APP_ROUTES.SETTINGS.SYSTEM.HANDLES,
               icon: AtSign,
+            },
+            {
+              title: t`Reports`,
+              url: APP_ROUTES.SETTINGS.SYSTEM.REPORTS,
+              icon: Flag,
+            },
+            {
+              title: t`Blocks`,
+              url: APP_ROUTES.SETTINGS.SYSTEM.BLOCKS,
+              icon: Ban,
+            },
+            {
+              title: t`Federation`,
+              url: APP_ROUTES.SETTINGS.SYSTEM.FEDERATION,
+              icon: Network,
             },
           ]
         : []),

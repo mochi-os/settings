@@ -33,7 +33,9 @@ msgstr "Za a saki \"{0}\" da sunayen da ke ƙarƙashinsa domin kowa ya iya ɗauk
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "Za a cire \"{0}\" tare da duk abin da ya wallafa da mabiyansa."
 
+#. placeholder {0}: pending.username
 #. placeholder {0}: user.username
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "\"{0}\" will be signed out and unable to sign in again until the suspension is removed."
 msgstr "Za a fitar da \"{0}\" kuma ba zai iya shiga ba har sai an cire dakatarwar."
@@ -89,6 +91,12 @@ msgstr "(kai)"
 #: ../../../lib/web/src/components/entity/entity-tree-view.tsx
 msgid "[not set]"
 msgstr "[ba a saita ba]"
+
+#. placeholder {0}: sessions?.clients ?? 0
+#. placeholder {1}: sessions?.accounts ?? 0
+#: src/features/system/federation.tsx
+msgid "{0, plural, one {{clients} client signed in} other {{clients} clients signed in}} · {1, plural, one {{accounts} account} other {{accounts} accounts}}"
+msgstr "{0, plural, one {Manhaja {clients} ta shiga} other {Manhajoji {clients} sun shiga}} · {1, plural, one {Asusu {accounts}} other {Asusai {accounts}}}"
 
 #. placeholder {0}: relaying?.reservations.maximum ?? 0
 #. placeholder {1}: relaying?.circuits ?? 0
@@ -311,9 +319,19 @@ msgstr "Ana ci gaba da yin rikodi tuni."
 msgid "A recovery key lets you move the account or undo what a compromised server did. It replaces any earlier one and is shown once."
 msgstr "Maɓallin dawowa yana ba ka damar matsar da asusun ko soke abin da sabar da aka kutsa ta yi. Yana maye gurbin kowane maɓalli na baya kuma ana nuna shi sau ɗaya kawai."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "About"
+msgstr "Game da"
+
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Absolute (date and time)"
 msgstr "Cikakke (kwanan wata da lokaci)"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Abuse"
+msgstr "Cin zarafi"
 
 #: ../../../lib/web/src/components/game/game-draw-offer-banner.tsx
 msgid "Accept"
@@ -695,6 +713,10 @@ msgstr "Kana da tabbacin kana son mika wuya? {opponentName} zai lashe wasan."
 msgid "Ascending"
 msgstr "Hawa sama"
 
+#: src/features/system/federation.tsx
+msgid "At its request limit"
+msgstr "Ya kai iyakar buƙatunsa"
+
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "At sea"
 msgstr "A teku"
@@ -783,17 +805,41 @@ msgstr "An sabunta banner"
 msgid "Binary file not shown"
 msgstr "Ba a nuna fayil ɗin binary ba"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 msgid "Block"
 msgstr "Toshe"
+
+#. placeholder {0}: person.name
+#: src/features/system/reports.tsx
+msgid "Block {0}"
+msgstr "Toshe {0}"
+
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Block {0}?"
+msgstr "A toshe {0}?"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/components/member-list.tsx
 msgid "Block {name}"
 msgstr "Toshe {name}"
 
+#: src/features/system/reports.tsx
+msgid "Block server {host}"
+msgstr "Toshe sabar {host}"
+
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
+#: src/features/system/reports.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
+msgid "Blocked"
+msgstr "An toshe"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Blocked"
 msgstr "An toshe"
 
@@ -812,6 +858,9 @@ msgid "Blocked navigation to untrusted link"
 msgstr "An toshe motsi zuwa ga link da ba a amince da shi ba"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/blocks.tsx
+#: src/features/system/blocks.tsx
 msgid "Blocks"
 msgstr "Yana toshe"
 
@@ -1068,6 +1117,10 @@ msgstr "An kwafi codes"
 msgid "Collapse"
 msgstr "Naɗe"
 
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Collapse all"
+msgstr "Naɗe duka"
+
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Collapse sidebar"
 msgstr "Rufe sidebar"
@@ -1140,6 +1193,11 @@ msgstr "Tabbatar da cewa kai ne"
 #: src/features/system/status.tsx
 #: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
+msgid "Connected"
+msgstr "An haɗa"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "Connected"
 msgstr "An haɗa"
 
@@ -1221,6 +1279,7 @@ msgstr "Ba a iya ƙara sunan ba"
 msgid "Could not change the account"
 msgstr "Ba a iya canza asusun ba"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Could not change the block"
 msgstr "Ba a iya canza toshewar ba"
@@ -1289,6 +1348,10 @@ msgstr "Ba a iya maye gurbin maɓallan ba"
 msgid "Could not reserve the handle"
 msgstr "Ba a iya keɓe sunan mai amfani ba"
 
+#: src/features/system/reports.tsx
+msgid "Could not resolve the report"
+msgstr "Ba a iya warware rahoton ba"
+
 #: src/features/user/sessions.tsx
 msgid "Could not revoke"
 msgstr "Ba a iya janyewa ba"
@@ -1356,6 +1419,7 @@ msgstr "Ƙirƙira mai amfani"
 #: ../../../lib/web/src/components/entity/entity-activity-list.tsx
 #: ../../../lib/web/src/components/entity/entity-view-options-bar.tsx
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
@@ -1657,8 +1721,14 @@ msgstr "An cire haɗi"
 
 #: ../../../lib/web/src/components/restore-banner.tsx
 #: ../../../lib/web/src/components/restore-banner.tsx
+#: src/features/system/reports.tsx
 msgid "Dismiss"
 msgstr "Kau da shi"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
+msgid "Dismissed"
+msgstr "An kau da shi"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/display.tsx
@@ -1706,6 +1776,10 @@ msgstr "An ƙirƙiri domain"
 #: src/features/domains/index.tsx
 msgid "Domain deleted"
 msgstr "An share domain"
+
+#: src/features/system/blocks.tsx
+msgid "Domain or person to block"
+msgstr "Yanki ko mutumin da za a toshe"
 
 #: src/features/user/networks.tsx
 msgid "Domain to block"
@@ -1895,6 +1969,10 @@ msgstr "example.com ko *.example.com"
 #: ../../../lib/web/src/components/tree-row.tsx
 msgid "Expand"
 msgstr "Faɗaɗa"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Expand all"
+msgstr "Faɗaɗa duka"
 
 #: ../../../lib/web/src/components/layout/app-sidebar.tsx
 msgid "Expand sidebar"
@@ -2234,6 +2312,18 @@ msgstr "An gaza tabbatar da code"
 msgid "Failed to verify domain"
 msgstr "An gaza tabbatar da domain"
 
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Failures"
+msgstr "Gazawa"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Federation"
+msgstr "Tarayya"
+
 #: src/lib/networks.ts
 msgid "Fediverse"
 msgstr "Fediverse"
@@ -2299,6 +2389,16 @@ msgid "Friends"
 msgstr "Abokai"
 
 #: ../../../lib/web/src/components/travelling-picker.tsx
+msgid "From"
+msgstr "Daga"
+
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "From"
+msgstr "Daga"
+
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
 msgid "From"
 msgstr "Daga"
 
@@ -2556,6 +2656,7 @@ msgstr "Maɓallai"
 msgid "Keys replaced"
 msgstr "An maye gurbin maɓallai"
 
+#: src/features/system/blocks.tsx
 #: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
@@ -2607,6 +2708,10 @@ msgstr "Watsa na ƙarshe"
 msgid "Last edited {0}"
 msgstr "An gyara ta ƙarshe {0}"
 
+#: src/features/system/federation.tsx
+msgid "Last failure"
+msgstr "Gazawa ta ƙarshe"
+
 #: src/features/system/users.tsx
 msgid "Last login"
 msgstr "Login na ƙarshe"
@@ -2615,6 +2720,10 @@ msgstr "Login na ƙarshe"
 #: src/features/user/connected-accounts.tsx
 msgid "Last seen"
 msgstr "Ganin ƙarshe"
+
+#: src/features/system/federation.tsx
+msgid "Last success"
+msgstr "Nasara ta ƙarshe"
 
 #: src/features/user/login.tsx
 #: src/features/user/login.tsx
@@ -2625,6 +2734,11 @@ msgstr "Amfani na ƙarshe"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "Layout"
 msgstr "Tsari"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Legal"
+msgstr "Na shari'a"
 
 #: src/features/user/networks.tsx
 msgid "Letters and digits only, starting with a letter, 3 to 20 characters"
@@ -2674,6 +2788,10 @@ msgstr "Hanyoyin haɗi"
 #: ../../../lib/web/src/components/entity/entity-view-sheet.tsx
 msgid "List"
 msgstr "Jeri"
+
+#: ../../../lib/web/src/components/diff-viewer.tsx
+msgid "Load diff"
+msgstr "Saukar da canje-canje"
 
 #: ../../../lib/web/src/components/ui/load-more.tsx
 msgid "Load more"
@@ -2992,6 +3110,7 @@ msgstr "Suna ƙarƙashin {0}"
 msgid "Name updated"
 msgstr "An sabunta suna"
 
+#: src/features/system/reports.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3043,6 +3162,12 @@ msgstr "Sabon wasa"
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Na gaba"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Next attempt"
+msgstr "Ƙoƙari na gaba"
 
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
 #: ../../../lib/web/src/components/ui/image-lightbox.tsx
@@ -3173,6 +3298,14 @@ msgstr "Babu recovery codes"
 msgid "No recovery key"
 msgstr "Babu maɓallin dawowa"
 
+#: src/features/system/reports.tsx
+msgid "No reports are waiting."
+msgstr "Babu rahotannin da ke jira."
+
+#: src/features/system/reports.tsx
+msgid "No reports have been resolved."
+msgstr "Ba a warware wani rahoto ba."
+
 #: ../../../lib/web/src/components/inline-entity-search.tsx
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "No results found"
@@ -3185,6 +3318,10 @@ msgstr "Ba a sami sakamako ba."
 #: src/features/domains/index.tsx
 msgid "No routes configured"
 msgstr "Ba a saita routes ba"
+
+#: src/features/system/federation.tsx
+msgid "No servers yet."
+msgstr "Babu sabobi tukuna."
 
 #: ../../../lib/web/src/components/timezone-select.tsx
 msgid "No time zone found."
@@ -3259,6 +3396,11 @@ msgstr "Ba a kwatanta ba: ya wuce iyakar girma"
 msgid "Not connected"
 msgstr "Ba a haɗa ba"
 
+#: src/features/system/federation.tsx
+msgctxt "xmpp link"
+msgid "Not connected"
+msgstr "Ba a haɗa ba"
+
 #: ../../../lib/web/src/components/attachment-image.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Not found"
@@ -3272,9 +3414,22 @@ msgstr "Ba a saita ba"
 msgid "Nothing found"
 msgstr "Ba a sami komai ba"
 
+#. placeholder {0}: pending.name
+#: src/features/system/reports.tsx
+msgid "Nothing from {0} reaches anyone on this server, and no one here sends to it."
+msgstr "Babu abin da ke fitowa daga {0} da ke isa ga kowa a wannan sabar, kuma babu wanda ke nan da ke aika masa da komai."
+
+#: src/features/system/blocks.tsx
+msgid "Nothing is blocked."
+msgstr "Babu abin da aka toshe."
+
 #: src/features/system/handles.tsx
 msgid "Nothing of the account is served and the relays are told. The account and what it published stay, and it can be restored."
 msgstr "Ba a ba da komai na asusun ba kuma ana sanar da masu watsawa. Asusun da abin da ya wallafa suna nan, kuma ana iya maido da shi."
+
+#: src/features/system/reports.tsx
+msgid "Nothing they send reaches anyone on this server, and they are no longer anyone's follower here."
+msgstr "Babu abin da wannan mutumin ke aikawa da ke isa ga kowa a wannan sabar, kuma wannan mutumin ba mabiyin kowa ba ne a nan yanzu."
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/user/connected-accounts.tsx
@@ -3318,6 +3473,11 @@ msgstr "Kunna"
 #: ../../../lib/web/src/features/errors/not-found-error.tsx
 msgid "Oops! Page Not Found!"
 msgstr "Kai! Ba a Sami Shafi Ba!"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Open"
+msgstr "A buɗe"
 
 #: ../../../lib/web/src/components/layout/nav-group.tsx
 msgid "Open actions"
@@ -3383,6 +3543,11 @@ msgstr "Zaɓuɓɓuka"
 msgid "Other"
 msgstr "Sauran"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Other"
+msgstr "Sauran"
+
 #: src/features/system/settings.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -3401,6 +3566,10 @@ msgstr "Sauran sabobi suna samun sabon maɓallin daga takardar asusun. Duk abin 
 #: src/features/system/settings.tsx
 msgid "Other settings"
 msgstr "Sauran saituna"
+
+#: src/features/system/reports.tsx
+msgid "Outcome"
+msgstr "Sakamako"
 
 #: ../../../lib/web/src/components/member-list.tsx
 #: ../../../lib/web/src/features/access/access-list.tsx
@@ -3512,6 +3681,11 @@ msgstr "Jiran"
 #: ../../../lib/web/src/components/person-picker.tsx
 msgid "People"
 msgstr "Mutane"
+
+#: src/features/system/blocks.tsx
+msgctxt "block kind"
+msgid "Person"
+msgstr "Mutum"
 
 #: ../../../lib/web/src/components/comment-composer.tsx
 #: ../../../lib/web/src/features/errors/general-error.tsx
@@ -3661,6 +3835,10 @@ msgstr "Samun dama"
 #: src/features/user/networks.tsx
 msgid "Ready for the Bluesky account to arrive"
 msgstr "A shirye don isowar asusun Bluesky"
+
+#: src/features/system/reports.tsx
+msgid "Received"
+msgstr "An karɓa"
 
 #: ../../../lib/web/src/components/search-entity-page.tsx
 msgid "Recommended"
@@ -3930,6 +4108,25 @@ msgstr "Amsa"
 msgid "Reply to {0}..."
 msgstr "Amsa ga {0}..."
 
+#: src/features/system/reports.tsx
+msgctxt "report"
+msgid "Report"
+msgstr "Rahoto"
+
+#: src/features/system/reports.tsx
+msgid "Report actions"
+msgstr "Ayyukan rahoto"
+
+#: src/features/system/reports.tsx
+msgid "Report dismissed"
+msgstr "An kau da rahoto"
+
+#: src/components/layout/data/sidebar-data.ts
+#: src/features/system/reports.tsx
+#: src/features/system/reports.tsx
+msgid "Reports"
+msgstr "Rahotanni"
+
 #: src/features/system/settings.tsx
 msgid "Require domain verification"
 msgstr "Buƙaci tabbatar da domain"
@@ -3993,6 +4190,11 @@ msgstr "Yi murabus"
 #: ../../../lib/web/src/components/game/game-end-dialogs.tsx
 msgid "Resign game?"
 msgstr "A yi murabus daga wasa?"
+
+#: src/features/system/reports.tsx
+msgctxt "reports"
+msgid "Resolved"
+msgstr "An warware"
 
 #. placeholder {0}: account.identifier
 #: src/features/system/handles.tsx
@@ -4062,6 +4264,11 @@ msgstr "A janye wannan shiga?"
 msgid "Role"
 msgstr "Matsayi"
 
+#: src/features/system/reports.tsx
+msgctxt "chat"
+msgid "Room"
+msgstr "Daki"
+
 #: src/features/domains/index.tsx
 msgid "Route created"
 msgstr "An ƙirƙira hanya"
@@ -4103,6 +4310,11 @@ msgstr "An kwafi URL ɗin RSS zuwa clipboard"
 #: src/features/user/notifications.tsx
 msgid "RSS: {0}"
 msgstr "RSS: {0}"
+
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Rule violation"
+msgstr "Karya ƙa'ida"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Saturday"
@@ -4293,6 +4505,10 @@ msgstr "Aika saƙo"
 msgid "Serif"
 msgstr "Serif"
 
+#: src/features/system/blocks.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/user/networks.tsx
 msgid "Server"
@@ -4447,6 +4663,11 @@ msgstr "Tushe"
 msgid "Spacious"
 msgstr "Faffaka"
 
+#: src/features/system/reports.tsx
+msgctxt "report category"
+msgid "Spam"
+msgstr "Tarkacen saƙo"
+
 #: ../../../lib/web/src/components/diff-viewer.tsx
 msgid "Split"
 msgstr "Raba"
@@ -4461,6 +4682,7 @@ msgstr "An fara"
 
 #: src/components/layout/data/sidebar-data.ts
 #: src/features/domains/index.tsx
+#: src/features/system/federation.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
@@ -4505,19 +4727,28 @@ msgstr "An sake samar da taƙaitawa"
 msgid "Sunday"
 msgstr "Lahadi"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend"
 msgstr "Dakatarwa"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user"
 msgstr "Dakatar da mai amfani"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "Suspend user?"
 msgstr "Dakatar da mai amfani?"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
+msgid "Suspended"
+msgstr "An dakatar"
+
+#: src/features/system/reports.tsx
+msgctxt "report outcome"
 msgid "Suspended"
 msgstr "An dakatar"
 
@@ -4923,10 +5154,12 @@ msgstr "Ba ya samuwa · {0}"
 msgid "Unavailable · Its name does not lead to this server"
 msgstr "Ba ya samuwa · Sunansa ba ya kaiwa zuwa wannan uwar garken"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblock {label}"
 msgstr "Buɗe {label}"
 
+#: src/features/system/blocks.tsx
 #: src/features/user/networks.tsx
 msgid "Unblocked"
 msgstr "An buɗe"
@@ -5067,6 +5300,7 @@ msgstr "Defaults na mai amfani"
 msgid "User deleted"
 msgstr "An share mai amfani"
 
+#: src/features/system/reports.tsx
 #: src/features/system/users.tsx
 msgid "User suspended"
 msgstr "An dakatar da mai amfani"
@@ -5160,6 +5394,12 @@ msgstr "Sarrafa kallo"
 #: ../../../lib/web/src/lib/shell-errors.ts
 msgid "Voice recording is not supported in this browser"
 msgstr "Ba a goyon bayan rikodin murya a wannan burauzar ba"
+
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+#: src/features/system/federation.tsx
+msgid "Waiting"
+msgstr "A jerin gwano"
 
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
 #: ../../../lib/web/src/components/entity/entity-object-detail-panel.tsx
