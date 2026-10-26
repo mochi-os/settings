@@ -141,17 +141,17 @@ export function SystemHandles() {
                 )}
                 {handles.map((handle) => (
                   <TableRow key={`${handle.domain}/${handle.name}`}>
-                    <TableCell className='font-medium'>
+                    <TableCell className='align-top font-medium'>
                       {handle.parent ? (
                         <span className='ps-4'>{handle.name}</span>
                       ) : (
                         handle.name
                       )}
                     </TableCell>
-                    <TableCell className='text-muted-foreground'>
+                    <TableCell className='text-muted-foreground align-top'>
                       {handle.domain}
                     </TableCell>
-                    <TableCell>
+                    <TableCell className='align-top'>
                       {handle.kind === 'community' ? (
                         <Trans>Community</Trans>
                       ) : handle.parent ? (
@@ -160,7 +160,7 @@ export function SystemHandles() {
                         <Trans>Handle</Trans>
                       )}
                     </TableCell>
-                    <TableCell>
+                    <TableCell className='align-top'>
                       <div>{handle.holder || handle.username}</div>
                       {handle.holder && (
                         <div className='text-muted-foreground text-sm'>
@@ -168,7 +168,7 @@ export function SystemHandles() {
                         </div>
                       )}
                     </TableCell>
-                    <TableCell className='text-sm'>
+                    <TableCell className='align-top text-sm'>
                       {[...(handle.accounts ?? [])]
                         .sort((a, b) => naturalCompare(a.identifier, b.identifier))
                         .map((account) => (
@@ -185,13 +185,13 @@ export function SystemHandles() {
                           </div>
                         ))}
                     </TableCell>
-                    <TableCell className='text-muted-foreground tabular-nums'>
+                    <TableCell className='text-muted-foreground align-top tabular-nums'>
                       {formatSystemTimestamp(
                         handle.created,
                         String(handle.created)
                       )}
                     </TableCell>
-                    <TableCell className='text-end'>
+                    <TableCell className='align-top text-end'>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button

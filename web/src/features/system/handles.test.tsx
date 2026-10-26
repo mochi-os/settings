@@ -179,6 +179,14 @@ describe('System handles', () => {
     expect(screen.getByText('Name under alice')).toBeTruthy()
     expect(screen.getAllByText('Handle')).toHaveLength(2)
     expect(screen.getByText('Take a name')).toBeTruthy()
+    // Rows are top-aligned, so a two-line holder leaves the other cells at
+    // the top rather than floating mid-row.
+    const cells = document.querySelectorAll('tbody td')
+    expect(cells.length).toBe(28)
+    for (const cell of cells) {
+      expect(cell.className).toContain('align-top')
+      expect(cell.className).not.toContain('align-middle')
+    }
   })
 
   it('says when nothing is reserved', () => {
