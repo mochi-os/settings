@@ -371,7 +371,7 @@ function SettingField({
               <Switch
                 checked={localValue === 'true'}
                 onCheckedChange={handleToggle}
-                disabled={isSaving}
+                loading={isSaving}
               />
               {!isDefault && (
                 <Tooltip>

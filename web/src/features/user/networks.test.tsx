@@ -218,6 +218,30 @@ describe('Networks', () => {
     expect(made?.[1]).toEqual({ id: 'b1' })
   })
 
+  it('keeps a network switch busy, not unavailable, while its account is made', async () => {
+    let finish: (value: unknown) => void = () => {}
+    state.post.mockReturnValue(new Promise((resolve) => (finish = resolve)))
+    show()
+    await screen.findByText('Handle on example.com')
+    await act(async () => {
+      fireEvent.click(screen.getAllByRole('switch')[1])
+    })
+    const toggle = screen.getAllByRole('switch')[1]
+    expect(toggle).toHaveAttribute('aria-busy', 'true')
+    expect(toggle).not.toBeDisabled()
+    // A second click while the first is saved sends nothing more.
+    await act(async () => {
+      fireEvent.click(toggle)
+    })
+    expect(state.post).toHaveBeenCalledTimes(1)
+    await act(async () => {
+      finish({ id: 'x1', type: 'xmpp', identifier: 'alice@example.com' })
+    })
+    // Bluesky's switch then opens the recovery key dialog over the page, so
+    // the switch is checked as the element it was.
+    await waitFor(() => expect(toggle).not.toHaveAttribute('aria-busy'))
+  })
+
   it("says when a Bluesky account's recovery key has not been kept", async () => {
     show({
       ...data,

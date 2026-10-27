@@ -107,7 +107,7 @@ function IdentitySection() {
               id='identity-public'
               checked={data.identity.privacy === 'public'}
               onCheckedChange={handleTogglePublic}
-              disabled={updateIdentity.isPending}
+              loading={updateIdentity.isPending}
             />
           </div>
         </div>

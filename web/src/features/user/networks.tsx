@@ -478,7 +478,7 @@ function HandleCard({
             >
               <Switch
                 checked={!!account}
-                disabled={busy === key}
+                loading={busy === key}
                 aria-label={t`${network} for ${name}`}
                 onCheckedChange={() => onToggle(row, type, account)}
               />
