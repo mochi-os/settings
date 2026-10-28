@@ -158,5 +158,6 @@ export interface RegistryHandle extends Handle {
 
 export interface SystemHandles {
   handles: RegistryHandle[]
+  count: number
   domains: string[]
 }

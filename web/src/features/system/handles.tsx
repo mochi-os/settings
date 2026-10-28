@@ -5,19 +5,28 @@
 //
 // The owner's table of every handle with its holder, where the owner releases
 // handles and takes names, the protected ones included.
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
+import { plural } from '@lingui/core/macro'
 import { Trans, useLingui } from '@lingui/react/macro'
 import {
+  Badge,
   Button,
   ConfirmDialog,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  EmptyState,
   GeneralError,
+  Input,
   ListSkeleton,
   Main,
   PageHeader,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
   Table,
   TableBody,
   TableCell,
@@ -28,13 +37,18 @@ import {
   getErrorMessage,
   naturalCompare,
   toast,
+  useDebounce,
+  useFormat,
   usePageTitle,
 } from '@mochi/web'
 import {
   AtSign,
   Ban,
+  ChevronLeft,
+  ChevronRight,
   MoreHorizontal,
   RotateCcw,
+  Search,
   Trash2,
 } from 'lucide-react'
 import { HandleChooser } from '@/features/user/networks'
@@ -48,12 +62,40 @@ import type { RegistryAccount, RegistryHandle } from '@/types/networks'
 
 export function SystemHandles() {
   const { t } = useLingui()
+  const { formatNumber } = useFormat()
   usePageTitle(t`Handles`)
-  const { data, isLoading, error, refetch } = useSystemHandles()
+  const [search, setSearch] = useState('')
+  const [limit, setLimit] = useState(25)
+  const [offset, setOffset] = useState(0)
+  const debouncedSearch = useDebounce(search, 300)
+
+  // A new search starts at the first page, set during render, not in an
+  // effect: an effect runs after the render that already asked for the old
+  // page of the new search.
+  const [previous, setPrevious] = useState(debouncedSearch)
+  if (debouncedSearch !== previous) {
+    setPrevious(debouncedSearch)
+    setOffset(0)
+  }
+
+  const { data, isLoading, error, refetch } = useSystemHandles(
+    limit,
+    offset,
+    debouncedSearch
+  )
   const release = useSystemHandleRelease()
   const takedown = useSystemAccountTakedown()
   const [releasing, setReleasing] = useState<RegistryHandle | null>(null)
   const [takingDown, setTakingDown] = useState<RegistryAccount | null>(null)
+
+  // Releasing the last handle of a page leaves offset past the end, and the
+  // empty state replaces the pagination, so there would be no Previous to
+  // click: step back to the last page that still has rows.
+  if (data && offset > 0 && offset >= data.count) {
+    setOffset(
+      Math.max(0, Math.floor(Math.max(0, data.count - 1) / limit) * limit)
+    )
+  }
 
   // Taking a Bluesky account down keeps it and its records but serves
   // nothing of it and tells the relays; restoring undoes that.
@@ -67,13 +109,6 @@ export function SystemHandles() {
     }
   }
 
-  const handles = [...(data?.handles ?? [])].sort(
-    (a, b) =>
-      naturalCompare(a.domain, b.domain) ||
-      naturalCompare(a.parent || a.name, b.parent || b.name) ||
-      naturalCompare(a.name, b.name)
-  )
-
   const handleRelease = async (handle: RegistryHandle) => {
     try {
       await release.mutateAsync({ name: handle.name, domain: handle.domain })
@@ -83,11 +118,43 @@ export function SystemHandles() {
     }
   }
 
+  // The server answers the page in the table's order: by domain, a name
+  // under a handle after its handle, then by name.
+  const handles = data?.handles ?? []
+  // A heading names each domain, where the server has more than one.
+  const headings = (data?.domains.length ?? 0) > 1
+
+  // The page's place in the list, for the pagination line.
+  const count = data?.count ?? 0
+  const first = formatNumber(offset + 1)
+  const last = formatNumber(Math.min(offset + limit, count))
+  const total = formatNumber(count)
+
   return (
     <>
       <PageHeader
-        title={t`Handles`}
+        title={
+          <div className='flex items-center gap-2'>
+            <Trans>Handles</Trans>
+            {data && (
+              <span className='text-muted-foreground font-normal'>
+                ({formatNumber(count)})
+              </span>
+            )}
+          </div>
+        }
         icon={<AtSign className='size-4 md:size-5' />}
+        actions={
+          <div className='relative w-full md:w-auto'>
+            <Search className='text-muted-foreground absolute start-2.5 top-2.5 h-4 w-4' />
+            <Input
+              placeholder={t`Search handles...`}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className='w-full ps-8 md:w-64'
+            />
+          </div>
+        }
       />
       <Main>
         {error ? (
@@ -104,138 +171,114 @@ export function SystemHandles() {
                 onReserved={() => void refetch()}
               />
             )}
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>
-                    <Trans>Name</Trans>
-                  </TableHead>
-                  <TableHead>
-                    <Trans>Domain</Trans>
-                  </TableHead>
-                  <TableHead>
-                    <Trans>Kind</Trans>
-                  </TableHead>
-                  <TableHead>
-                    <Trans>Holder</Trans>
-                  </TableHead>
-                  <TableHead>
-                    <Trans>Accounts</Trans>
-                  </TableHead>
-                  <TableHead>
-                    <Trans>Created</Trans>
-                  </TableHead>
-                  <TableHead className='w-16'></TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {handles.length === 0 && (
-                  <TableRow>
-                    <TableCell
-                      colSpan={7}
-                      className='text-muted-foreground text-center'
-                    >
-                      <Trans>No handles have been reserved.</Trans>
-                    </TableCell>
-                  </TableRow>
+            {handles.length === 0 ? (
+              <EmptyState
+                icon={AtSign}
+                title={
+                  debouncedSearch
+                    ? t`No handles match your search`
+                    : t`No handles have been reserved.`
+                }
+                className='p-4'
+              />
+            ) : (
+              <>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>
+                        <Trans>Name</Trans>
+                      </TableHead>
+                      <TableHead>
+                        <Trans>Holder</Trans>
+                      </TableHead>
+                      <TableHead>
+                        <Trans>Networks</Trans>
+                      </TableHead>
+                      <TableHead>
+                        <Trans>Created</Trans>
+                      </TableHead>
+                      <TableHead className='w-16'></TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {handles.map((handle, index) => (
+                      <Fragment key={`${handle.domain}/${handle.name}`}>
+                        {headings &&
+                          handle.domain !== handles[index - 1]?.domain && (
+                            <TableRow>
+                              <TableCell
+                                colSpan={5}
+                                className='bg-muted/50 align-top font-medium'
+                              >
+                                {handle.domain}
+                              </TableCell>
+                            </TableRow>
+                          )}
+                        <HandleRow
+                          handle={handle}
+                          onRelease={() => setReleasing(handle)}
+                          onTakedown={(account) => setTakingDown(account)}
+                          onRestore={(account) =>
+                            void handleTakedown(account, false)
+                          }
+                        />
+                      </Fragment>
+                    ))}
+                  </TableBody>
+                </Table>
+
+                {count > limit && (
+                  <div className='mt-4 flex flex-wrap items-center justify-between gap-2 py-4'>
+                    <div className='text-muted-foreground flex items-center gap-2 text-sm'>
+                      <span>
+                        {plural(count, {
+                          one: `Showing ${first}–${last} of ${total} handle`,
+                          other: `Showing ${first}–${last} of ${total} handles`,
+                        })}
+                      </span>
+                      <Select
+                        value={String(limit)}
+                        onValueChange={(v) => {
+                          setLimit(Number(v))
+                          setOffset(0)
+                        }}
+                      >
+                        <SelectTrigger className='h-8 w-20'>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value='10'>10</SelectItem>
+                          <SelectItem value='25'>25</SelectItem>
+                          <SelectItem value='50'>50</SelectItem>
+                          <SelectItem value='100'>100</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className='flex items-center gap-2'>
+                      <Button
+                        variant='outline'
+                        size='sm'
+                        onClick={() => setOffset(Math.max(0, offset - limit))}
+                        disabled={offset === 0}
+                      >
+                        <ChevronLeft className='me-1 h-4 w-4 rtl:rotate-180' />
+                        <Trans>Previous</Trans>
+                      </Button>
+                      <Button
+                        variant='outline'
+                        size='sm'
+                        onClick={() => setOffset(offset + limit)}
+                        disabled={offset + limit >= count}
+                      >
+                        <Trans>Next</Trans>
+                        <ChevronRight className='ms-1 h-4 w-4 rtl:rotate-180' />
+                      </Button>
+                    </div>
+                  </div>
                 )}
-                {handles.map((handle) => (
-                  <TableRow key={`${handle.domain}/${handle.name}`}>
-                    <TableCell className='align-top font-medium'>
-                      {handle.parent ? (
-                        <span className='ps-4'>{handle.name}</span>
-                      ) : (
-                        handle.name
-                      )}
-                    </TableCell>
-                    <TableCell className='text-muted-foreground align-top'>
-                      {handle.domain}
-                    </TableCell>
-                    <TableCell className='align-top'>
-                      {handle.kind === 'community' ? (
-                        <Trans>Community</Trans>
-                      ) : handle.parent ? (
-                        <Trans>Name under {handle.parent}</Trans>
-                      ) : (
-                        <Trans>Handle</Trans>
-                      )}
-                    </TableCell>
-                    <TableCell className='align-top'>
-                      <div>{handle.holder || handle.username}</div>
-                      {handle.holder && (
-                        <div className='text-muted-foreground text-sm'>
-                          {handle.username}
-                        </div>
-                      )}
-                    </TableCell>
-                    <TableCell className='align-top text-sm'>
-                      {[...(handle.accounts ?? [])]
-                        .sort((a, b) => naturalCompare(a.identifier, b.identifier))
-                        .map((account) => (
-                          <div key={account.id}>
-                            {networkLabel(account.network)}
-                            {' · '}
-                            {account.identifier}
-                            {account.status === 'takendown' && (
-                              <span className='text-destructive'>
-                                {' · '}
-                                <Trans>Taken down</Trans>
-                              </span>
-                            )}
-                          </div>
-                        ))}
-                    </TableCell>
-                    <TableCell className='text-muted-foreground align-top tabular-nums'>
-                      {formatSystemTimestamp(
-                        handle.created,
-                        String(handle.created)
-                      )}
-                    </TableCell>
-                    <TableCell className='align-top text-end'>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button
-                            variant='ghost'
-                            size='sm'
-                            icon={<MoreHorizontal className='h-4 w-4' />}
-                            aria-label={t`Handle actions`}
-                          />
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align='end'>
-                          {(handle.accounts ?? [])
-                            .filter((account) => account.did)
-                            .map((account) =>
-                              account.status === 'takendown' ? (
-                                <DropdownMenuItem
-                                  key={account.id}
-                                  onClick={() =>
-                                    void handleTakedown(account, false)
-                                  }
-                                >
-                                  <RotateCcw className='me-2 h-4 w-4' />
-                                  <Trans>Restore {account.identifier}</Trans>
-                                </DropdownMenuItem>
-                              ) : (
-                                <DropdownMenuItem
-                                  key={account.id}
-                                  onClick={() => setTakingDown(account)}
-                                >
-                                  <Ban className='me-2 h-4 w-4' />
-                                  <Trans>Take down {account.identifier}</Trans>
-                                </DropdownMenuItem>
-                              )
-                            )}
-                          <DropdownMenuItem onClick={() => setReleasing(handle)}>
-                            <Trash2 className='me-2 h-4 w-4' />
-                            <Trans>Release</Trans>
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+              </>
+            )}
           </>
         )}
       </Main>
@@ -276,5 +319,109 @@ export function SystemHandles() {
         />
       )}
     </>
+  )
+}
+
+// One handle: its name, indented under the handle it belongs to, a badge for
+// a community; its holder; the networks it has accounts on, a taken-down one
+// in the destructive colour; when it was reserved; and the owner's actions.
+function HandleRow({
+  handle,
+  onRelease,
+  onTakedown,
+  onRestore,
+}: {
+  handle: RegistryHandle
+  onRelease: () => void
+  onTakedown: (account: RegistryAccount) => void
+  onRestore: (account: RegistryAccount) => void
+}) {
+  const { t } = useLingui()
+  const accounts = [...(handle.accounts ?? [])]
+    .map((account) => ({ account, label: networkLabel(account.network) }))
+    .sort((a, b) => naturalCompare(a.label, b.label))
+  return (
+    <TableRow>
+      <TableCell className='align-top font-medium'>
+        <div
+          className={`flex flex-wrap items-center gap-2 ${handle.parent ? 'ps-4' : ''}`}
+        >
+          <span>{handle.name}</span>
+          {handle.kind === 'community' && (
+            <Badge variant='secondary'>
+              <Trans>Community</Trans>
+            </Badge>
+          )}
+        </div>
+      </TableCell>
+      <TableCell className='align-top'>
+        <div>{handle.holder || handle.username}</div>
+        {handle.holder && (
+          <div className='text-muted-foreground text-sm'>{handle.username}</div>
+        )}
+      </TableCell>
+      <TableCell className='align-top'>
+        <div className='flex flex-wrap gap-x-3'>
+          {accounts.map(({ account, label }) => (
+            <span
+              key={account.id}
+              className={
+                account.status === 'takendown' ? 'text-destructive' : undefined
+              }
+            >
+              {label}
+              {account.status === 'takendown' && (
+                <span className='sr-only'>
+                  {' '}
+                  <Trans>Taken down</Trans>
+                </span>
+              )}
+            </span>
+          ))}
+        </div>
+      </TableCell>
+      <TableCell className='text-muted-foreground align-top tabular-nums'>
+        {formatSystemTimestamp(handle.created, String(handle.created))}
+      </TableCell>
+      <TableCell className='text-end align-top'>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant='ghost'
+              size='sm'
+              icon={<MoreHorizontal className='h-4 w-4' />}
+              aria-label={t`Handle actions`}
+            />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align='end'>
+            {accounts
+              .filter(({ account }) => account.did)
+              .map(({ account }) =>
+                account.status === 'takendown' ? (
+                  <DropdownMenuItem
+                    key={account.id}
+                    onClick={() => onRestore(account)}
+                  >
+                    <RotateCcw className='me-2 h-4 w-4' />
+                    <Trans>Restore {account.identifier}</Trans>
+                  </DropdownMenuItem>
+                ) : (
+                  <DropdownMenuItem
+                    key={account.id}
+                    onClick={() => onTakedown(account)}
+                  >
+                    <Ban className='me-2 h-4 w-4' />
+                    <Trans>Take down {account.identifier}</Trans>
+                  </DropdownMenuItem>
+                )
+              )}
+            <DropdownMenuItem onClick={onRelease}>
+              <Trash2 className='me-2 h-4 w-4' />
+              <Trans>Release</Trans>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </TableCell>
+    </TableRow>
   )
 }
