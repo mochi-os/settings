@@ -1283,6 +1283,13 @@ function homed(account: NetworkAccount) {
   )
 }
 
+// Whether a hosted account has keys of its own: a fediverse account signs
+// with one, a Bluesky account has its signing and rotation keys. Matrix signs
+// per domain and XMPP per device, so theirs have none.
+function keyed(account: NetworkAccount) {
+  return account.type === 'fediverse' || account.type === 'bluesky'
+}
+
 function AccountRow({
   account,
   feeds,
@@ -1384,10 +1391,12 @@ function AccountRow({
                     <Trans>Home feed</Trans>
                   </DropdownMenuItem>
                 )}
-                <DropdownMenuItem onClick={() => onKeys(account)}>
-                  <KeyRound className='me-2 h-4 w-4' />
-                  <Trans context='cryptographic'>Keys</Trans>
-                </DropdownMenuItem>
+                {keyed(account) && (
+                  <DropdownMenuItem onClick={() => onKeys(account)}>
+                    <KeyRound className='me-2 h-4 w-4' />
+                    <Trans context='cryptographic'>Keys</Trans>
+                  </DropdownMenuItem>
+                )}
                 {account.type === 'fediverse' && (
                   <>
                     <DropdownMenuItem onClick={() => onAutomated(account)}>

@@ -148,6 +148,54 @@ describe('Networks', () => {
     state.navigate.mockReset()
   })
 
+  it('offers Keys only on the hosted accounts that have keys of their own', async () => {
+    const hosted = (id: string, type: string, identifier: string) => ({
+      ...data.accounts[0],
+      id,
+      type,
+      identifier,
+    })
+    show({
+      ...data,
+      networks: ['fediverse', 'bluesky', 'matrix', 'xmpp'],
+      accounts: [
+        hosted('f1', 'fediverse', '@alice@example.com'),
+        hosted('b1', 'bluesky', 'alice.example.com'),
+        hosted('x1', 'matrix', '@alice:example.com'),
+        hosted('j1', 'xmpp', 'alice@example.com'),
+        data.accounts[1],
+      ],
+    })
+    await screen.findByText('Handle on example.com')
+    // Each account's menu, found by its row's identifier; it opens on
+    // pointer down, as Radix listens for it.
+    const keys = async (identifier: string) => {
+      const row = [...document.querySelectorAll('tbody tr')].find(
+        (tr) => tr.querySelector('td')?.textContent === identifier
+      )!
+      const trigger = row.querySelector<HTMLElement>(
+        'button[aria-label="Account actions"]'
+      )!
+      await act(async () => {
+        fireEvent.pointerDown(trigger, { button: 0, ctrlKey: false })
+      })
+      await screen.findByRole('menuitem', { name: 'Profile' })
+      const offered = !!screen.queryByRole('menuitem', { name: 'Keys' })
+      await act(async () => {
+        fireEvent.keyDown(document.activeElement!, { key: 'Escape' })
+      })
+      await waitFor(() =>
+        expect(screen.queryByRole('menuitem', { name: 'Profile' })).toBeNull()
+      )
+      return offered
+    }
+    expect(await keys('@alice@example.com')).toBe(true)
+    expect(await keys('alice.example.com')).toBe(true)
+    expect(await keys('@alice:example.com')).toBe(false)
+    expect(await keys('alice@example.com')).toBe(false)
+    expect(await keys('@alice@mastodon.social')).toBe(false)
+  })
+
   it('suggests a handle from the name within the rule', () => {
     expect(suggestHandle('Alice Example')).toBe('aliceexample')
     expect(suggestHandle('Zoë 99')).toBe('zoe99')
