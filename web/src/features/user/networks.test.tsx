@@ -3,10 +3,18 @@
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import type { NetworksData } from '@/types/networks'
+import type { NetworkFailure, NetworksData } from '@/types/networks'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { useFormat } from '@mochi/web'
+import {
+  act,
+  fireEvent,
+  render,
+  renderHook,
+  screen,
+  waitFor,
+} from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { suggestHandle } from '@/lib/handles'
 import {
@@ -194,6 +202,55 @@ describe('Networks', () => {
     expect(await keys('@alice:example.com')).toBe(false)
     expect(await keys('alice@example.com')).toBe(false)
     expect(await keys('@alice@mastodon.social')).toBe(false)
+  })
+
+  it('words why a linked account is not working, and when it tries again', async () => {
+    const failing = (failure?: NetworkFailure, error?: string) => ({
+      ...data,
+      accounts: [{ ...data.accounts[1], failure, error }],
+    })
+    const retry = Date.UTC(2026, 9, 28, 14, 5) / 1000
+    const { result } = renderHook(() => useFormat())
+    const time = result.current.formatTime(new Date(retry * 1000))
+    let view = show(
+      failing(
+        { reason: 'status', status: 504, retry },
+        'the server answered 504: failed to WebSocket dial'
+      )
+    )
+    expect(
+      await screen.findByText('The server answered with error 504')
+    ).toBeTruthy()
+    expect(screen.getByText(`Trying again at ${time}`)).toBeTruthy()
+    expect(screen.queryByText(/WebSocket/)).toBeNull()
+    view.unmount()
+    const worded: [string, string][] = [
+      ['unreachable', "The server can't be reached"],
+      ['closed', 'The server ended the connection'],
+      ['blocked', 'Connections to the server are blocked'],
+      [
+        'signed_out',
+        "The server no longer accepts this account's sign-in; link it again",
+      ],
+      ['failed', 'The connection to the server failed'],
+      ['unknown', 'The connection to the server failed'],
+    ]
+    for (const [reason, text] of worded) {
+      view = show(failing({ reason }, 'the raw error'))
+      expect(await screen.findByText(text)).toBeTruthy()
+      expect(screen.queryByText(/Trying again/)).toBeNull()
+      expect(screen.queryByText('the raw error')).toBeNull()
+      view.unmount()
+    }
+    // A session that ended with no error has no text at all.
+    view = show(failing({ reason: 'closed' }))
+    expect(
+      await screen.findByText('The server ended the connection')
+    ).toBeTruthy()
+    view.unmount()
+    // A server too old to say why answers only the text.
+    show(failing(undefined, 'the stream ended'))
+    expect(await screen.findByText('the stream ended')).toBeTruthy()
   })
 
   it('suggests a handle from the name within the rule', () => {

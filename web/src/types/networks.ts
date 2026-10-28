@@ -16,6 +16,10 @@ export interface NetworkAccount extends Account {
   name?: string
   avatar?: string
   connected?: boolean
+  // Why a linked account is not working: a reason the page words, the status
+  // its server answered with, and when it tries again, in seconds. A server
+  // too old to answer it gives only error, the text itself.
+  failure?: NetworkFailure
   error?: string
   // Shown on the user's profile page, with a rel="me" link.
   profile?: boolean
@@ -34,6 +38,12 @@ export interface NetworkAccount extends Account {
   // A hosted fediverse or Bluesky account's home feed, where posts made from
   // other apps signed in to it land.
   home?: string
+}
+
+export interface NetworkFailure {
+  reason: string
+  status?: number
+  retry?: number
 }
 
 // One of the user's feeds, as a home feed is chosen from them.

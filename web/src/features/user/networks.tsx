@@ -1290,6 +1290,49 @@ function keyed(account: NetworkAccount) {
   return account.type === 'fediverse' || account.type === 'bluesky'
 }
 
+// Why a linked account is not working, in the user's language, and when it
+// tries again.
+function AccountFailure({ account }: { account: NetworkAccount }) {
+  const { t } = useLingui()
+  const { formatTime } = useFormat()
+  const failure = account.failure
+  if (!failure) {
+    return <span className='text-destructive'>{account.error}</span>
+  }
+  const status = String(failure.status ?? '')
+  let reason
+  switch (failure.reason) {
+    case 'unreachable':
+      reason = t`The server can't be reached`
+      break
+    case 'status':
+      reason = t`The server answered with error ${status}`
+      break
+    case 'closed':
+      reason = t`The server ended the connection`
+      break
+    case 'blocked':
+      reason = t`Connections to the server are blocked`
+      break
+    case 'signed_out':
+      reason = t`The server no longer accepts this account's sign-in; link it again`
+      break
+    default:
+      reason = t`The connection to the server failed`
+  }
+  const time = failure.retry ? formatTime(new Date(failure.retry * 1000)) : ''
+  return (
+    <span className='text-destructive'>
+      {reason}
+      {time ? (
+        <span className='text-muted-foreground block text-xs'>
+          {t`Trying again at ${time}`}
+        </span>
+      ) : null}
+    </span>
+  )
+}
+
 function AccountRow({
   account,
   feeds,
@@ -1337,8 +1380,8 @@ function AccountRow({
         </Badge>
       </TableCell>
       <TableCell className='text-muted-foreground text-sm'>
-        {account.error ? (
-          <span className='text-destructive'>{account.error}</span>
+        {account.failure || account.error ? (
+          <AccountFailure account={account} />
         ) : account.moved ? (
           <Trans>Moved to {account.moved}</Trans>
         ) : account.home && !home ? (
