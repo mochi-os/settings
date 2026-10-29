@@ -42,7 +42,10 @@ vi.mock('@mochi/web', async (original) => ({
         font: 'theme',
         font_size: 'theme',
       },
-      themes: [theme('app1:blue', 'Blue', 250), theme('app1:amber', 'Amber', 70)],
+      themes: [
+        theme('app1:blue', 'Blue', 250),
+        theme('app1:amber', 'Amber', 70),
+      ],
       presets: {},
       default_theme: 'app1:blue',
     },
@@ -50,7 +53,7 @@ vi.mock('@mochi/web', async (original) => ({
     error: null,
     refetch: vi.fn(),
   }),
-  useSetPreference: () => ({ mutate: state.set, isPending: false }),
+  useSetPreference: () => ({ mutateAsync: state.set, isPending: false }),
   useUnsetPreferences: () => ({ mutate: state.unset, isPending: false }),
 }))
 
@@ -81,7 +84,7 @@ const selected = (button: HTMLElement) =>
 
 describe('Display theme', () => {
   beforeEach(() => {
-    state.set.mockReset()
+    state.set.mockReset().mockResolvedValue(undefined)
     state.unset.mockReset()
     state.colour.mockReset()
   })
@@ -93,7 +96,7 @@ describe('Display theme', () => {
     expect(selected(card('Blue'))).toBe(false)
   })
 
-  it('choosing the default theme makes it the user\'s own choice', () => {
+  it("choosing the default theme makes it the user's own choice", () => {
     state.theme = ''
     show()
     openThemes('Default')
@@ -108,7 +111,8 @@ describe('Display theme', () => {
   it('deselecting a chosen theme clears the choice and applies the default', () => {
     state.theme = 'app1:amber'
     state.unset.mockImplementation(
-      (_keys: string[], options: { onSuccess: () => void }) => options.onSuccess()
+      (_keys: string[], options: { onSuccess: () => void }) =>
+        options.onSuccess()
     )
     show()
     openThemes('Amber')

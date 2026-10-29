@@ -123,35 +123,39 @@ export function UserPreferences() {
   const showLanguagePicker = (languagesData?.languages?.length ?? 1) > 1
 
   const handleChange = (key: string, value: string) => {
-    setPreference.mutate(
-      { [key]: value },
-      {
-        onSuccess: () => {
-          if (
-            (localeKeys as readonly string[]).includes(key) ||
-            key === 'timezone'
-          ) {
-            const updated = {
-              ...currentLocale,
-              [key]: value,
-            } as LocalePreferences
-            shellSetLocale(updated)
-          }
-          if (key === 'language') {
-            setStoredLanguage(value)
-            // Broadcast to the shell so every open iframe re-activates its
-            // Lingui catalog without a page reload. "auto" is stored as the
-            // server-side preference but iframes need a concrete tag, so
-            // resolve it locally before broadcasting.
-            shellSetLanguage(value === 'auto' ? detectLanguage() : value)
-          }
-          toast.success(t`Preference updated`)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to update preference`))
-        },
-      }
-    )
+    // The error comes from the promise, not from onError: a second pick on
+    // this hook, or leaving the page, drops the first call's callbacks, while
+    // the value it showed is still put back.
+    void setPreference
+      .mutateAsync(
+        { [key]: value },
+        {
+          onSuccess: () => {
+            if (
+              (localeKeys as readonly string[]).includes(key) ||
+              key === 'timezone'
+            ) {
+              const updated = {
+                ...currentLocale,
+                [key]: value,
+              } as LocalePreferences
+              shellSetLocale(updated)
+            }
+            if (key === 'language') {
+              setStoredLanguage(value)
+              // Broadcast to the shell so every open iframe re-activates its
+              // Lingui catalog without a page reload. "auto" is stored as the
+              // server-side preference but iframes need a concrete tag, so
+              // resolve it locally before broadcasting.
+              shellSetLanguage(value === 'auto' ? detectLanguage() : value)
+            }
+            toast.success(t`Preference updated`)
+          },
+        }
+      )
+      .catch((error) => {
+        toast.error(getErrorMessage(error, t`Failed to update preference`))
+      })
   }
 
   const handleReset = () => {

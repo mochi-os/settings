@@ -4,11 +4,12 @@
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
+import { toast } from '@mochi/web'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { UserLinks } from './links'
 
-const mutate = vi.fn()
+const mutateAsync = vi.fn()
 const preferences: Record<string, string> = {}
 
 vi.mock('@/hooks/use-preferences', () => ({
@@ -18,7 +19,7 @@ vi.mock('@/hooks/use-preferences', () => ({
     error: null,
     refetch: vi.fn(),
   }),
-  useSetPreference: () => ({ mutate, isPending: false }),
+  useSetPreference: () => ({ mutateAsync, isPending: false }),
 }))
 
 function show() {
@@ -31,7 +32,7 @@ function show() {
 
 describe('UserLinks', () => {
   beforeEach(() => {
-    mutate.mockReset()
+    mutateAsync.mockReset().mockResolvedValue(undefined)
     for (const key of Object.keys(preferences)) delete preferences[key]
   })
 
@@ -83,8 +84,8 @@ describe('UserLinks', () => {
     fireEvent.click(screen.getAllByRole('combobox')[0])
     const option = await screen.findByRole('option', { name: 'Google Maps' })
     fireEvent.click(option)
-    await waitFor(() => expect(mutate).toHaveBeenCalled())
-    expect(mutate.mock.calls[0][0]).toEqual({ maps: 'google' })
+    await waitFor(() => expect(mutateAsync).toHaveBeenCalled())
+    expect(mutateAsync.mock.calls[0][0]).toEqual({ maps: 'google' })
   })
 
   it('writes the chosen tracker as the flights preference', async () => {
@@ -92,7 +93,21 @@ describe('UserLinks', () => {
     fireEvent.click(screen.getAllByRole('combobox')[1])
     const option = await screen.findByRole('option', { name: 'FlightAware' })
     fireEvent.click(option)
-    await waitFor(() => expect(mutate).toHaveBeenCalled())
-    expect(mutate.mock.calls[0][0]).toEqual({ flights: 'flightaware' })
+    await waitFor(() => expect(mutateAsync).toHaveBeenCalled())
+    expect(mutateAsync.mock.calls[0][0]).toEqual({ flights: 'flightaware' })
+  })
+
+  // The pick shows before the server answers and goes back if refused. The
+  // error is taken from the request's own promise, which settles even when a
+  // later pick or leaving the page has dropped this call's callbacks.
+  it('says so when the server refuses a pick', async () => {
+    const error = vi.spyOn(toast, 'error')
+    mutateAsync.mockRejectedValue({ response: { status: 500 } })
+    show()
+    fireEvent.click(screen.getAllByRole('combobox')[0])
+    fireEvent.click(await screen.findByRole('option', { name: 'Google Maps' }))
+    await waitFor(() =>
+      expect(error).toHaveBeenCalledWith('Failed to update preference')
+    )
   })
 })

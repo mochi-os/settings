@@ -44,23 +44,27 @@ export function UserLinks() {
   const { raw: currentLocale } = useLocale()
 
   const handleChange = (key: 'maps' | 'flights', value: string) => {
-    setPreference.mutate(
-      { [key]: value },
-      {
-        onSuccess: () => {
-          // The shell carries the link preferences with the locale block, so
-          // every open app learns the change without a reload.
-          shellSetLocale({
-            ...currentLocale,
-            [key]: value,
-          } as LocalePreferences)
-          toast.success(t`Preference updated`)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to update preference`))
-        },
-      }
-    )
+    // The error comes from the promise, not from onError: a second pick on
+    // this hook, or leaving the page, drops the first call's callbacks, while
+    // the value it showed is still put back.
+    void setPreference
+      .mutateAsync(
+        { [key]: value },
+        {
+          onSuccess: () => {
+            // The shell carries the link preferences with the locale block, so
+            // every open app learns the change without a reload.
+            shellSetLocale({
+              ...currentLocale,
+              [key]: value,
+            } as LocalePreferences)
+            toast.success(t`Preference updated`)
+          },
+        }
+      )
+      .catch((error) => {
+        toast.error(getErrorMessage(error, t`Failed to update preference`))
+      })
   }
 
   return (

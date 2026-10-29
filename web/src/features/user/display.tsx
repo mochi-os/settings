@@ -120,31 +120,43 @@ export function UserDisplay() {
   ] as const
 
   const handleChange = (key: string, value: string) => {
-    setPreference.mutate(
-      { [key]: value },
-      {
-        onSuccess: () => {
-          if (key === 'appearance') {
-            setTheme(value === 'auto' ? 'system' : (value as 'light' | 'dark'))
-          }
-          if ((themeOverrideKeys as readonly string[]).includes(key) && data) {
-            const updated = { ...prefsFromData(data.preferences), [key]: value }
-            setColorTheme(
-              colorThemeFromSelections(
-                data.themes,
-                data.preferences.theme || data.default_theme,
-                updated,
-                data.presets
+    // The error comes from the promise, not from onError: a second pick on
+    // this hook, or leaving the page, drops the first call's callbacks, while
+    // the value it showed is still put back.
+    void setPreference
+      .mutateAsync(
+        { [key]: value },
+        {
+          onSuccess: () => {
+            if (key === 'appearance') {
+              setTheme(
+                value === 'auto' ? 'system' : (value as 'light' | 'dark')
               )
-            )
-          }
-          toast.success(t`Preference updated`)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to update preference`))
-        },
-      }
-    )
+            }
+            if (
+              (themeOverrideKeys as readonly string[]).includes(key) &&
+              data
+            ) {
+              const updated = {
+                ...prefsFromData(data.preferences),
+                [key]: value,
+              }
+              setColorTheme(
+                colorThemeFromSelections(
+                  data.themes,
+                  data.preferences.theme || data.default_theme,
+                  updated,
+                  data.presets
+                )
+              )
+            }
+            toast.success(t`Preference updated`)
+          },
+        }
+      )
+      .catch((error) => {
+        toast.error(getErrorMessage(error, t`Failed to update preference`))
+      })
   }
 
   const handleThemeChange = (theme: ThemeInfo | null) => {
@@ -172,34 +184,36 @@ export function UserDisplay() {
       })
       return
     }
-    setPreference.mutate(
-      { theme: theme.id },
-      {
-        onSuccess: () => {
-          setColorTheme(
-            colorThemeFromSelections(
-              data?.themes,
-              theme.id,
-              data
-                ? prefsFromData(data.preferences)
-                : {
-                    density: 'theme',
-                    radius: 'theme',
-                    card: 'theme',
-                    background: 'theme',
-                    font: 'theme',
-                    font_size: 'theme',
-                  },
-              data?.presets
+    // The error comes from the promise, as in handleChange.
+    void setPreference
+      .mutateAsync(
+        { theme: theme.id },
+        {
+          onSuccess: () => {
+            setColorTheme(
+              colorThemeFromSelections(
+                data?.themes,
+                theme.id,
+                data
+                  ? prefsFromData(data.preferences)
+                  : {
+                      density: 'theme',
+                      radius: 'theme',
+                      card: 'theme',
+                      background: 'theme',
+                      font: 'theme',
+                      font_size: 'theme',
+                    },
+                data?.presets
+              )
             )
-          )
-          toast.success(t`Theme updated`)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to update theme`))
-        },
-      }
-    )
+            toast.success(t`Theme updated`)
+          },
+        }
+      )
+      .catch((error) => {
+        toast.error(getErrorMessage(error, t`Failed to update theme`))
+      })
   }
 
   const handleReset = () => {
