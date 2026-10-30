@@ -267,7 +267,7 @@ describe('Networks', () => {
     // it has its own rows, labelled with the name.
     await screen.findByText('Handle on example.com')
     expect(screen.getByText('alice')).toBeTruthy()
-    expect(screen.getByText('alice_news on Fediverse')).toBeTruthy()
+    expect(screen.getByText('alice_news on ActivityPub')).toBeTruthy()
     expect(screen.getByText('@alice_news@example.com')).toBeTruthy()
     // The address under the handle's switch, and the account's row.
     expect(screen.getAllByText('@alice@example.com')).toHaveLength(2)

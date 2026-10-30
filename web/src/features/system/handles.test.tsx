@@ -137,7 +137,7 @@ describe('System handles', () => {
           .querySelectorAll('td')[2]
           .querySelectorAll(':scope > div > span'),
       ].map((span) => span.textContent)
-    expect(networks(rows[0])).toEqual(['Bluesky', 'Fediverse'])
+    expect(networks(rows[0])).toEqual(['ActivityPub', 'Bluesky'])
     expect(screen.queryByText(/@alice@example.com/)).toBeNull()
     // A taken-down account's network is in the destructive colour, and
     // says so to a screen reader.

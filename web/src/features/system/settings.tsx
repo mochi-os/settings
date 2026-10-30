@@ -76,7 +76,7 @@ function useSettingLabels(): Record<string, string> {
     description: t`Server description`,
     signup_enabled: t`Allow new signups`,
     handles: t`Handles each user may reserve`,
-    fediverse: t`Host accounts on the fediverse`,
+    fediverse: t`Host accounts on ActivityPub`,
     bluesky: t`Host accounts on Bluesky`,
     labelers: t`Bluesky labellers`,
     xmpp: t`Host accounts on XMPP`,

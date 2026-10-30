@@ -132,7 +132,7 @@ describe('System settings', () => {
     show()
     expect(screen.getByText('Other networks')).toBeTruthy()
     expect(screen.getByText('Handles each user may reserve')).toBeTruthy()
-    expect(screen.getByText('Host accounts on the fediverse')).toBeTruthy()
+    expect(screen.getByText('Host accounts on ActivityPub')).toBeTruthy()
     // Bluesky's labellers sit with the networks, named for what they are.
     expect(screen.getByText('Bluesky labellers')).toBeTruthy()
     // The server description sits with the operator's details.
