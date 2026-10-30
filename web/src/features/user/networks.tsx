@@ -470,9 +470,13 @@ function HandleCard({
           const { name } = row
           const network = networkLabel(type)
           return (
+            // The row holds only a switch, so its label and address take the
+            // width, rather than wrap in a form's label column, and the
+            // switch sits at the end, under the card's menu.
             <FieldRow
               key={key}
               inline
+              className='sm:grid-cols-[minmax(0,1fr)_auto]'
               label={row === handle ? network : t`${name} on ${network}`}
               description={row.addresses[type]}
             >

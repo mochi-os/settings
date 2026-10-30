@@ -276,6 +276,11 @@ describe('Networks', () => {
     expect(switches).toHaveLength(4)
     expect(switches[0]).toHaveAttribute('aria-checked', 'true')
     expect(switches[1]).toHaveAttribute('aria-checked', 'false')
+    // Each row gives its label the width and puts the switch at the end, not
+    // in a form's fixed label column, where a long name wrapped.
+    const row = screen.getByText('alice_news on ActivityPub').closest('dl')
+    expect(row?.className).toContain('sm:grid-cols-[minmax(0,1fr)_auto]')
+    expect(row?.className).not.toContain('300px')
     expect(screen.getByText('@alice@mastodon.social')).toBeTruthy()
     expect(screen.getByText('Hosted')).toBeTruthy()
     expect(screen.getByText('Linked')).toBeTruthy()
