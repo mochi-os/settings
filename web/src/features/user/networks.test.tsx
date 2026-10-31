@@ -14,6 +14,7 @@ import {
   renderHook,
   screen,
   waitFor,
+  within,
 } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { suggestHandle } from '@/lib/handles'
@@ -131,6 +132,14 @@ const data: NetworksData = {
   mutes: [{ actor: 'https://remote.example/u/loud', created: 5 }],
 }
 
+// The row of the page showing an address: a handle's network or an account.
+function rowOf(address: string) {
+  return screen
+    .getAllByText(address)
+    .map((node) => node.closest<HTMLElement>('[data-slot="network-row"]'))
+    .find((row) => !!row)!
+}
+
 function show(answer: NetworksData = data) {
   state.get.mockResolvedValue(answer)
   const client = new QueryClient({
@@ -178,9 +187,7 @@ describe('Networks', () => {
     // Each account's menu, found by its row's identifier; it opens on
     // pointer down, as Radix listens for it.
     const keys = async (identifier: string) => {
-      const row = [...document.querySelectorAll('tbody tr')].find(
-        (tr) => tr.querySelector('td')?.textContent === identifier
-      )!
+      const row = rowOf(identifier)
       const trigger = row.querySelector<HTMLElement>(
         'button[aria-label="Account actions"]'
       )!
@@ -261,6 +268,83 @@ describe('Networks', () => {
     expect(suggestHandle('x'.repeat(30))).toBe('x'.repeat(20))
   })
 
+  it('lists every account once, with Remove only where there is no switch', async () => {
+    show({
+      ...data,
+      accounts: [
+        data.accounts[0],
+        data.accounts[1],
+        // A forum's community, whose handle has no card.
+        {
+          ...data.accounts[0],
+          id: 'g1',
+          kind: 'group',
+          name: 'Books',
+          identifier: '@books@example.com',
+        },
+        // The handle's account on a network the server no longer offers.
+        {
+          ...data.accounts[0],
+          id: 'x1',
+          type: 'xmpp',
+          identifier: 'alice@example.com',
+        },
+      ],
+      handles: {
+        ...data.handles,
+        handles: [
+          { ...alice, addresses: { ...alice.addresses, xmpp: 'alice@example.com' } },
+          news,
+        ],
+      },
+    })
+    await screen.findByText('Handle on example.com')
+    // The menu a row offers, opened on pointer down as Radix listens for it.
+    const items = async (address: string) => {
+      const trigger = within(rowOf(address)).getByRole('button', {
+        name: 'Account actions',
+      })
+      await act(async () => {
+        fireEvent.pointerDown(trigger, { button: 0, ctrlKey: false })
+      })
+      await screen.findByRole('menuitem', { name: 'Profile' })
+      const names = screen
+        .getAllByRole('menuitem')
+        .map((item) => item.textContent)
+      await act(async () => {
+        fireEvent.keyDown(document.activeElement!, { key: 'Escape' })
+      })
+      await waitFor(() =>
+        expect(screen.queryByRole('menuitem', { name: 'Profile' })).toBeNull()
+      )
+      return names
+    }
+    // A hosted account in its handle's card is removed by its switch.
+    expect(await items('@alice@example.com')).not.toContain('Remove')
+    expect(await items('@alice@mastodon.social')).toContain('Remove')
+    // The community under Communities, by its name, removed from its menu.
+    expect(screen.getByText('Communities')).toBeTruthy()
+    expect(screen.getByText('Books on ActivityPub')).toBeTruthy()
+    expect(await items('@books@example.com')).toContain('Remove')
+    // The account on a network no longer offered stays in its handle's card,
+    // its switch on, so that it can still be removed.
+    const xmpp = rowOf('alice@example.com')
+    expect(within(xmpp).getByText('XMPP')).toBeTruthy()
+    expect(within(xmpp).getByRole('switch')).toHaveAttribute(
+      'aria-checked',
+      'true'
+    )
+    // Each address once.
+    for (const address of [
+      '@alice@example.com',
+      '@alice@mastodon.social',
+      '@books@example.com',
+      'alice@example.com',
+    ]) {
+      expect(screen.getAllByText(address)).toHaveLength(1)
+    }
+  })
+
   it('shows each handle with a switch per network and the accounts together', async () => {
     show()
     // The card is titled with the handle and says what it is; the name under
@@ -269,21 +353,43 @@ describe('Networks', () => {
     expect(screen.getByText('alice')).toBeTruthy()
     expect(screen.getByText('alice_news on ActivityPub')).toBeTruthy()
     expect(screen.getByText('@alice_news@example.com')).toBeTruthy()
-    // The address under the handle's switch, and the account's row.
-    expect(screen.getAllByText('@alice@example.com')).toHaveLength(2)
+    // Each account is listed once: the hosted one in its handle's row, with
+    // its menu beside its switch, and no table of accounts repeating it.
+    expect(screen.getAllByText('@alice@example.com')).toHaveLength(1)
     expect(screen.getByText('alice.example.com')).toBeTruthy()
     const switches = screen.getAllByRole('switch')
     expect(switches).toHaveLength(4)
     expect(switches[0]).toHaveAttribute('aria-checked', 'true')
     expect(switches[1]).toHaveAttribute('aria-checked', 'false')
-    // Each row gives its label the width and puts the switch at the end, not
-    // in a form's fixed label column, where a long name wrapped.
-    const row = screen.getByText('alice_news on ActivityPub').closest('dl')
-    expect(row?.className).toContain('sm:grid-cols-[minmax(0,1fr)_auto]')
-    expect(row?.className).not.toContain('300px')
-    expect(screen.getByText('@alice@mastodon.social')).toBeTruthy()
-    expect(screen.getByText('Hosted')).toBeTruthy()
-    expect(screen.getByText('Linked')).toBeTruthy()
+    const hosted = rowOf('@alice@example.com')
+    expect(within(hosted).getByRole('switch')).toBe(switches[0])
+    expect(
+      within(hosted).getByRole('button', { name: 'Account actions' })
+    ).toBeTruthy()
+    // A network with no account yet has its switch and no menu.
+    expect(
+      within(rowOf('alice.example.com')).queryByRole('button', {
+        name: 'Account actions',
+      })
+    ).toBeNull()
+    expect(screen.queryByRole('table')).toBeNull()
+    expect(screen.queryByText('Hosted')).toBeNull()
+    // Each row gives its label the width, the controls at the row's end.
+    expect(
+      screen.getByText('alice_news on ActivityPub').parentElement?.className
+    ).toContain('flex-1')
+    // The linked account under Linked accounts, by its name on its network,
+    // with the way to link another.
+    expect(screen.getByText('Linked accounts')).toBeTruthy()
+    expect(screen.getByText('Alice on Mastodon')).toBeTruthy()
+    const linked = rowOf('@alice@mastodon.social')
+    expect(
+      within(linked).getByRole('button', { name: 'Account actions' })
+    ).toBeTruthy()
+    expect(within(linked).queryByRole('switch')).toBeNull()
+    expect(screen.getByRole('button', { name: 'Link an account' })).toBeTruthy()
+    // No forum community, so no Communities card.
+    expect(screen.queryByText('Communities')).toBeNull()
     // The limit is reached, so no chooser.
     expect(screen.queryByText('Choose a handle')).toBeNull()
   })
@@ -666,7 +772,7 @@ describe('Networks', () => {
     expect(await screen.findByText('The home feed is private')).toBeTruthy()
     again.unmount()
     show(homed('feed1', 'public'))
-    expect(await screen.findByText('example.com', { selector: 'td' })).toBeTruthy()
+    await screen.findByText('Handle on example.com')
     expect(screen.queryByText(/The home feed/)).toBeNull()
   })
 
