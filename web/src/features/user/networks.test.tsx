@@ -293,7 +293,10 @@ describe('Networks', () => {
       handles: {
         ...data.handles,
         handles: [
-          { ...alice, addresses: { ...alice.addresses, xmpp: 'alice@example.com' } },
+          {
+            ...alice,
+            addresses: { ...alice.addresses, xmpp: 'alice@example.com' },
+          },
           news,
         ],
       },
@@ -363,15 +366,19 @@ describe('Networks', () => {
     expect(switches[1]).toHaveAttribute('aria-checked', 'false')
     const hosted = rowOf('@alice@example.com')
     expect(within(hosted).getByRole('switch')).toBe(switches[0])
+    // The menu comes last, after the switch.
+    const menu = within(hosted).getByRole('button', { name: 'Account actions' })
+    expect(switches[0].nextElementSibling).toBe(menu)
+    expect(menu.nextElementSibling).toBeNull()
+    // A network with no account yet has its switch and no menu, and keeps the
+    // menu's place so its switch lines up with the others.
+    const off = rowOf('alice.example.com')
     expect(
-      within(hosted).getByRole('button', { name: 'Account actions' })
-    ).toBeTruthy()
-    // A network with no account yet has its switch and no menu.
-    expect(
-      within(rowOf('alice.example.com')).queryByRole('button', {
-        name: 'Account actions',
-      })
+      within(off).queryByRole('button', { name: 'Account actions' })
     ).toBeNull()
+    const place = within(off).getByRole('switch').nextElementSibling
+    expect(place).toHaveAttribute('aria-hidden', 'true')
+    expect(place?.className).toContain('w-9')
     expect(screen.queryByRole('table')).toBeNull()
     expect(screen.queryByText('Hosted')).toBeNull()
     // Each row gives its label the width, the controls at the row's end.

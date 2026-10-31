@@ -509,15 +509,18 @@ function HandleCard({
               address={row.addresses[type]}
               status={account ? accountStatus(account, feeds) : null}
             >
-              {account && (
-                <AccountMenu account={account} actions={actions} busy={busy} />
-              )}
               <Switch
                 checked={!!account}
                 loading={busy === key}
                 aria-label={t`${network} for ${name}`}
                 onCheckedChange={() => onToggle(row, type, account)}
               />
+              {account ? (
+                <AccountMenu account={account} actions={actions} busy={busy} />
+              ) : (
+                // The menu's width, so the switches line up
+                <span aria-hidden='true' className='w-9' />
+              )}
             </NetworkRow>
           )
         })
