@@ -93,14 +93,20 @@ export interface NetworksData {
   feeds?: NetworkFeed[]
 }
 
+// A person blocked or muted carries the name and address their network gives,
+// for the page to show in place of their id.
 export interface Block {
   domain?: string
   actor?: string
+  name?: string
+  address?: string
   created: number
 }
 
 export interface Mute {
   actor: string
+  name?: string
+  address?: string
   created: number
 }
 

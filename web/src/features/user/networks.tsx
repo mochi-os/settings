@@ -1659,15 +1659,26 @@ function ModerationSection({
     }
   }
 
-  const rows: { key: string; label: string; kind: 'block' | 'mute' }[] = [
+  // A person by their name, with their address beneath; their id only where
+  // their network gave neither.
+  const person = (p: { actor?: string; name?: string; address?: string }) => ({
+    label: p.name || p.address || p.actor || '',
+    address: p.name && p.address ? p.address : '',
+  })
+  const rows: {
+    key: string
+    label: string
+    address: string
+    kind: 'block' | 'mute'
+  }[] = [
     ...blocks.map((b) => ({
       key: b.domain ?? b.actor ?? '',
-      label: b.domain ?? b.actor ?? '',
+      ...(b.domain ? { label: b.domain, address: '' } : person(b)),
       kind: 'block' as const,
     })),
     ...mutes.map((m) => ({
       key: m.actor,
-      label: m.actor,
+      ...person(m),
       kind: 'mute' as const,
     })),
   ]
@@ -1712,7 +1723,10 @@ function ModerationSection({
             key={`${row.kind}:${row.key}`}
             inline
             label={row.label}
-            description={row.kind === 'mute' ? t`Muted` : t`Blocked`}
+            description={
+              (row.address ? row.address + ' · ' : '') +
+              (row.kind === 'mute' ? t`Muted` : t`Blocked`)
+            }
           >
             <Button
               variant='ghost'

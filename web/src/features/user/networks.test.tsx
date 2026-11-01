@@ -127,9 +127,14 @@ const data: NetworksData = {
   name: 'Alice Example',
   blocks: [
     { domain: 'spam.example', created: 3 },
-    { actor: 'https://remote.example/u/troll', created: 4 },
+    {
+      actor: 'https://remote.example/u/troll',
+      name: 'Troll',
+      address: '@troll@remote.example',
+      created: 4,
+    },
   ],
-  mutes: [{ actor: 'https://remote.example/u/loud', created: 5 }],
+  mutes: [{ actor: 'https://remote.example/u/loud', name: 'Loud', created: 5 }],
 }
 
 // The row of the page showing an address: a handle's network or an account.
@@ -613,14 +618,14 @@ describe('Networks', () => {
     state.post.mockResolvedValue({})
     show()
     await screen.findByText('spam.example')
-    expect(screen.getByText('https://remote.example/u/troll')).toBeTruthy()
-    expect(screen.getByText('https://remote.example/u/loud')).toBeTruthy()
+    // People by their names, with their addresses beneath, never their ids.
+    expect(screen.getByText('Troll')).toBeTruthy()
+    expect(screen.getByText('@troll@remote.example · Blocked')).toBeTruthy()
+    expect(screen.getByText('Loud')).toBeTruthy()
+    expect(screen.queryByText('https://remote.example/u/troll')).toBeNull()
+    expect(screen.queryByText('https://remote.example/u/loud')).toBeNull()
     await act(async () => {
-      fireEvent.click(
-        screen.getByRole('button', {
-          name: 'Unmute https://remote.example/u/loud',
-        })
-      )
+      fireEvent.click(screen.getByRole('button', { name: 'Unmute Loud' }))
     })
     await waitFor(() =>
       expect(state.post).toHaveBeenCalledWith(
