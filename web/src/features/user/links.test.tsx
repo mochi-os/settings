@@ -10,6 +10,12 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { UserLinks } from './links'
 
 const mutateAsync = vi.fn()
+const shell = vi.hoisted(() => ({ setLocale: vi.fn() }))
+
+vi.mock('@mochi/web', async (original) => ({
+  ...(await original<typeof import('@mochi/web')>()),
+  shellSetLocale: shell.setLocale,
+}))
 const preferences: Record<string, string> = {}
 
 vi.mock('@/hooks/use-preferences', () => ({
@@ -33,6 +39,7 @@ function show() {
 describe('UserLinks', () => {
   beforeEach(() => {
     mutateAsync.mockReset().mockResolvedValue(undefined)
+    shell.setLocale.mockReset()
     for (const key of Object.keys(preferences)) delete preferences[key]
   })
 
@@ -109,5 +116,28 @@ describe('UserLinks', () => {
     await waitFor(() =>
       expect(error).toHaveBeenCalledWith('Failed to update preference')
     )
+  })
+
+  // The page's locale only moves once the shell echoes a change back, and
+  // TanStack drops a pick's own callbacks once a second pick goes through the
+  // same hook. Two picks saved close together must each reach the shell, and
+  // the second must not send the block from before the first.
+  it('sends the shell both of two picks saved close together', async () => {
+    let landFirst = () => {}
+    mutateAsync.mockImplementationOnce(
+      () => new Promise<void>((resolve) => (landFirst = resolve))
+    )
+    show()
+    fireEvent.click(screen.getAllByRole('combobox')[0])
+    fireEvent.click(await screen.findByRole('option', { name: 'Google Maps' }))
+    fireEvent.click(screen.getAllByRole('combobox')[1])
+    fireEvent.click(await screen.findByRole('option', { name: 'FlightAware' }))
+    await waitFor(() => expect(shell.setLocale).toHaveBeenCalledTimes(1))
+    landFirst()
+    await waitFor(() => expect(shell.setLocale).toHaveBeenCalledTimes(2))
+    expect(shell.setLocale.mock.lastCall?.[0]).toMatchObject({
+      maps: 'google',
+      flights: 'flightaware',
+    })
   })
 })

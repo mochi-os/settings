@@ -23,10 +23,8 @@ import {
   useUnitLabels,
   toast,
   usePageTitle,
-  shellSetLocale,
   shellSetLanguage,
   setStoredLanguage,
-  useLocale,
   detectDateFormat,
   detectTimeFormat,
   detectWeekStart,
@@ -39,6 +37,7 @@ import {
   type LocalePreferences,
 } from '@mochi/web'
 import { RotateCcw, Sliders } from 'lucide-react'
+import { useLocaleBroadcast } from '@/hooks/use-locale-broadcast'
 import {
   usePreferencesData,
   useSetPreference,
@@ -70,7 +69,7 @@ export function UserPreferences() {
   const setPreference = useSetPreference()
   const unsetPreferences = useUnsetPreferences()
   const [showReset, setShowReset] = useState(false)
-  const { raw: currentLocale } = useLocale()
+  const broadcast = useLocaleBroadcast()
 
   const localeKeys = [
     'date_format',
@@ -123,39 +122,31 @@ export function UserPreferences() {
   const showLanguagePicker = (languagesData?.languages?.length ?? 1) > 1
 
   const handleChange = (key: string, value: string) => {
-    // The error comes from the promise, not from onError: a second pick on
-    // this hook, or leaving the page, drops the first call's callbacks, while
-    // the value it showed is still put back.
-    void setPreference
-      .mutateAsync(
-        { [key]: value },
-        {
-          onSuccess: () => {
-            if (
-              (localeKeys as readonly string[]).includes(key) ||
-              key === 'timezone'
-            ) {
-              const updated = {
-                ...currentLocale,
-                [key]: value,
-              } as LocalePreferences
-              shellSetLocale(updated)
-            }
-            if (key === 'language') {
-              setStoredLanguage(value)
-              // Broadcast to the shell so every open iframe re-activates its
-              // Lingui catalog without a page reload. "auto" is stored as the
-              // server-side preference but iframes need a concrete tag, so
-              // resolve it locally before broadcasting.
-              shellSetLanguage(value === 'auto' ? detectLanguage() : value)
-            }
-            toast.success(t`Preference updated`)
-          },
+    // Both outcomes come from the promise, not from per-call callbacks: a
+    // second pick on this hook, or leaving the page, drops the first call's
+    // callbacks, while its save still lands or is put back.
+    void setPreference.mutateAsync({ [key]: value }).then(
+      () => {
+        if (
+          (localeKeys as readonly string[]).includes(key) ||
+          key === 'timezone'
+        ) {
+          broadcast.change(key as keyof LocalePreferences, value)
         }
-      )
-      .catch((error) => {
+        if (key === 'language') {
+          setStoredLanguage(value)
+          // Broadcast to the shell so every open iframe re-activates its
+          // Lingui catalog without a page reload. "auto" is stored as the
+          // server-side preference but iframes need a concrete tag, so
+          // resolve it locally before broadcasting.
+          shellSetLanguage(value === 'auto' ? detectLanguage() : value)
+        }
+        toast.success(t`Preference updated`)
+      },
+      (error) => {
         toast.error(getErrorMessage(error, t`Failed to update preference`))
-      })
+      }
+    )
   }
 
   const handleReset = () => {
@@ -174,7 +165,7 @@ export function UserPreferences() {
           units: 'auto',
           timezone: 'auto',
         }
-        shellSetLocale(reset)
+        broadcast.send(reset)
         setStoredLanguage('auto')
         shellSetLanguage(detectLanguage())
         toast.success(t`Preferences reset to defaults`)

@@ -120,43 +120,35 @@ export function UserDisplay() {
   ] as const
 
   const handleChange = (key: string, value: string) => {
-    // The error comes from the promise, not from onError: a second pick on
-    // this hook, or leaving the page, drops the first call's callbacks, while
-    // the value it showed is still put back.
-    void setPreference
-      .mutateAsync(
-        { [key]: value },
-        {
-          onSuccess: () => {
-            if (key === 'appearance') {
-              setTheme(
-                value === 'auto' ? 'system' : (value as 'light' | 'dark')
-              )
-            }
-            if (
-              (themeOverrideKeys as readonly string[]).includes(key) &&
-              data
-            ) {
-              const updated = {
-                ...prefsFromData(data.preferences),
-                [key]: value,
-              }
-              setColorTheme(
-                colorThemeFromSelections(
-                  data.themes,
-                  data.preferences.theme || data.default_theme,
-                  updated,
-                  data.presets
-                )
-              )
-            }
-            toast.success(t`Preference updated`)
-          },
+    // Both outcomes come from the promise, not from per-call callbacks: a
+    // second pick on this hook, or leaving the page, drops the first call's
+    // callbacks, while its save still lands or is put back. `data` is the
+    // render this pick was made in, which already shows any earlier pick.
+    void setPreference.mutateAsync({ [key]: value }).then(
+      () => {
+        if (key === 'appearance') {
+          setTheme(value === 'auto' ? 'system' : (value as 'light' | 'dark'))
         }
-      )
-      .catch((error) => {
+        if ((themeOverrideKeys as readonly string[]).includes(key) && data) {
+          const updated = {
+            ...prefsFromData(data.preferences),
+            [key]: value,
+          }
+          setColorTheme(
+            colorThemeFromSelections(
+              data.themes,
+              data.preferences.theme || data.default_theme,
+              updated,
+              data.presets
+            )
+          )
+        }
+        toast.success(t`Preference updated`)
+      },
+      (error) => {
         toast.error(getErrorMessage(error, t`Failed to update preference`))
-      })
+      }
+    )
   }
 
   const handleThemeChange = (theme: ThemeInfo | null) => {
@@ -184,36 +176,32 @@ export function UserDisplay() {
       })
       return
     }
-    // The error comes from the promise, as in handleChange.
-    void setPreference
-      .mutateAsync(
-        { theme: theme.id },
-        {
-          onSuccess: () => {
-            setColorTheme(
-              colorThemeFromSelections(
-                data?.themes,
-                theme.id,
-                data
-                  ? prefsFromData(data.preferences)
-                  : {
-                      density: 'theme',
-                      radius: 'theme',
-                      card: 'theme',
-                      background: 'theme',
-                      font: 'theme',
-                      font_size: 'theme',
-                    },
-                data?.presets
-              )
-            )
-            toast.success(t`Theme updated`)
-          },
-        }
-      )
-      .catch((error) => {
+    // Both outcomes come from the promise, as in handleChange.
+    void setPreference.mutateAsync({ theme: theme.id }).then(
+      () => {
+        setColorTheme(
+          colorThemeFromSelections(
+            data?.themes,
+            theme.id,
+            data
+              ? prefsFromData(data.preferences)
+              : {
+                  density: 'theme',
+                  radius: 'theme',
+                  card: 'theme',
+                  background: 'theme',
+                  font: 'theme',
+                  font_size: 'theme',
+                },
+            data?.presets
+          )
+        )
+        toast.success(t`Theme updated`)
+      },
+      (error) => {
         toast.error(getErrorMessage(error, t`Failed to update theme`))
-      })
+      }
+    )
   }
 
   const handleReset = () => {

@@ -5,7 +5,13 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { fireEvent, render, screen, within } from '@testing-library/react'
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useApplyDisplayPreferences } from '@/hooks/use-preferences'
 import { UserDisplay } from './display'
@@ -101,11 +107,28 @@ describe('Display theme', () => {
     show()
     openThemes('Default')
     fireEvent.click(card('Blue'))
-    expect(state.set).toHaveBeenCalledWith(
-      { theme: 'app1:blue' },
-      expect.anything()
-    )
+    expect(state.set).toHaveBeenCalledWith({ theme: 'app1:blue' })
     expect(state.unset).not.toHaveBeenCalled()
+  })
+
+  // A pick's own callbacks are dropped by TanStack once a second pick goes
+  // through the same hook, so the theme is applied from each save's promise.
+  // Both picks land here, and each is applied in turn.
+  it('applies every chosen theme once its save lands, not only the last', async () => {
+    state.theme = ''
+    let landFirst = () => {}
+    state.set.mockImplementationOnce(
+      () => new Promise<void>((resolve) => (landFirst = resolve))
+    )
+    show()
+    openThemes('Default')
+    fireEvent.click(card('Amber'))
+    fireEvent.click(card('Blue'))
+    await waitFor(() => expect(state.colour).toHaveBeenCalledTimes(1))
+    expect(JSON.stringify(state.colour.mock.lastCall?.[0])).toContain('250')
+    landFirst()
+    await waitFor(() => expect(state.colour).toHaveBeenCalledTimes(2))
+    expect(JSON.stringify(state.colour.mock.lastCall?.[0])).toContain('70')
   })
 
   it('deselecting a chosen theme clears the choice and applies the default', () => {
