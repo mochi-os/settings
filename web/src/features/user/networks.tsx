@@ -552,7 +552,9 @@ function LinkDialog({
   const handleLink = async () => {
     try {
       const answer = await link.mutateAsync({ type, ...fields })
-      if (answer.url) {
+      // An OAuth provider answers its consent's address; a form provider
+      // answers the account, whose url is its profile.
+      if (provider?.link.flow === 'oauth' && answer.url) {
         shellNavigateTop(answer.url)
         return
       }

@@ -567,6 +567,72 @@ describe('Networks', () => {
     )
   })
 
+  it('closes the dialog when a form link answers the account and its profile', async () => {
+    state.post.mockResolvedValue({
+      id: 'b2',
+      type: 'bluesky',
+      label: '',
+      identifier: 'alice.bsky.social',
+      created: 4,
+      verified: 1,
+      enabled: 1,
+      default: '',
+      hosted: false,
+      url: 'https://bsky.app/profile/did:plc:abcdefghijklmnopqrstuvwx',
+    })
+    show({
+      ...data,
+      providers: [
+        {
+          type: 'bluesky',
+          capabilities: ['social'],
+          link: {
+            flow: 'form',
+            fields: [
+              {
+                name: 'handle',
+                label: 'Handle',
+                type: 'text',
+                required: true,
+                placeholder: 'alice.bsky.social',
+              },
+              {
+                name: 'password',
+                label: 'App password',
+                type: 'password',
+                required: true,
+                placeholder: 'xxxx-xxxx-xxxx-xxxx',
+              },
+            ],
+          },
+        },
+      ],
+    })
+    await screen.findByText('Handle on example.com')
+    await act(async () => {
+      fireEvent.click(
+        screen.getAllByRole('button', { name: 'Link an account' })[0]
+      )
+    })
+    const password = await screen.findByLabelText('App password')
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText('Handle'), {
+        target: { value: 'alice.bsky.social' },
+      })
+      fireEvent.change(password, { target: { value: 'abcd-efgh-ijkl-mnop' } })
+    })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Link' }))
+    })
+    await waitFor(() =>
+      expect(state.success).toHaveBeenCalledWith('Account linked')
+    )
+    expect(state.navigate).not.toHaveBeenCalled()
+    await waitFor(() =>
+      expect(screen.queryByLabelText('App password')).toBeNull()
+    )
+  })
+
   it('says so where the server offers no networks', async () => {
     show({ ...data, offered: false, networks: [], providers: [] })
     expect(
