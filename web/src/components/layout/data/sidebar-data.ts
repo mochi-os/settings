@@ -90,6 +90,11 @@ export function useFilteredSidebarData(
     title: t({ message: 'System', context: 'administration section' }),
     items: [
       {
+        title: t`Status`,
+        url: APP_ROUTES.SETTINGS.SYSTEM.STATUS,
+        icon: Activity,
+      },
+      {
         title: t`System settings`,
         url: APP_ROUTES.SETTINGS.SYSTEM.SETTINGS,
         icon: Settings,
@@ -100,11 +105,6 @@ export function useFilteredSidebarData(
         icon: FileText,
       },
       { title: t`Users`, url: APP_ROUTES.SETTINGS.SYSTEM.USERS, icon: Users },
-      {
-        title: t`Status`,
-        url: APP_ROUTES.SETTINGS.SYSTEM.STATUS,
-        icon: Activity,
-      },
       ...(hasNetworks
         ? [
             {

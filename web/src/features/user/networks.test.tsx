@@ -3,10 +3,19 @@
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import type { NetworksData } from '@/types/networks'
+import type { NetworkFailure, NetworksData } from '@/types/networks'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { useFormat } from '@mochi/web'
+import {
+  act,
+  fireEvent,
+  render,
+  renderHook,
+  screen,
+  waitFor,
+  within,
+} from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { suggestHandle } from '@/lib/handles'
 import {
@@ -123,6 +132,14 @@ const data: NetworksData = {
   mutes: [{ actor: 'https://remote.example/u/loud', created: 5 }],
 }
 
+// The row of the page showing an address: a handle's network or an account.
+function rowOf(address: string) {
+  return screen
+    .getAllByText(address)
+    .map((node) => node.closest<HTMLElement>('[data-slot="network-row"]'))
+    .find((row) => !!row)!
+}
+
 function show(answer: NetworksData = data) {
   state.get.mockResolvedValue(answer)
   const client = new QueryClient({
@@ -148,6 +165,101 @@ describe('Networks', () => {
     state.navigate.mockReset()
   })
 
+  it('offers Keys only on the hosted accounts that have keys of their own', async () => {
+    const hosted = (id: string, type: string, identifier: string) => ({
+      ...data.accounts[0],
+      id,
+      type,
+      identifier,
+    })
+    show({
+      ...data,
+      networks: ['fediverse', 'bluesky', 'matrix', 'xmpp'],
+      accounts: [
+        hosted('f1', 'fediverse', '@alice@example.com'),
+        hosted('b1', 'bluesky', 'alice.example.com'),
+        hosted('x1', 'matrix', '@alice:example.com'),
+        hosted('j1', 'xmpp', 'alice@example.com'),
+        data.accounts[1],
+      ],
+    })
+    await screen.findByText('Handle on example.com')
+    // Each account's menu, found by its row's identifier; it opens on
+    // pointer down, as Radix listens for it.
+    const keys = async (identifier: string) => {
+      const row = rowOf(identifier)
+      const trigger = row.querySelector<HTMLElement>(
+        'button[aria-label="Account actions"]'
+      )!
+      await act(async () => {
+        fireEvent.pointerDown(trigger, { button: 0, ctrlKey: false })
+      })
+      await screen.findByRole('menuitem', { name: 'Profile' })
+      const offered = !!screen.queryByRole('menuitem', { name: 'Keys' })
+      await act(async () => {
+        fireEvent.keyDown(document.activeElement!, { key: 'Escape' })
+      })
+      await waitFor(() =>
+        expect(screen.queryByRole('menuitem', { name: 'Profile' })).toBeNull()
+      )
+      return offered
+    }
+    expect(await keys('@alice@example.com')).toBe(true)
+    expect(await keys('alice.example.com')).toBe(true)
+    expect(await keys('@alice:example.com')).toBe(false)
+    expect(await keys('alice@example.com')).toBe(false)
+    expect(await keys('@alice@mastodon.social')).toBe(false)
+  })
+
+  it('words why a linked account is not working, and when it tries again', async () => {
+    const failing = (failure?: NetworkFailure, error?: string) => ({
+      ...data,
+      accounts: [{ ...data.accounts[1], failure, error }],
+    })
+    const retry = Date.UTC(2026, 9, 28, 14, 5) / 1000
+    const { result } = renderHook(() => useFormat())
+    const time = result.current.formatTime(new Date(retry * 1000))
+    let view = show(
+      failing(
+        { reason: 'status', status: 504, retry },
+        'the server answered 504: failed to WebSocket dial'
+      )
+    )
+    expect(
+      await screen.findByText('The server answered with error 504')
+    ).toBeTruthy()
+    expect(screen.getByText(`Trying again at ${time}`)).toBeTruthy()
+    expect(screen.queryByText(/WebSocket/)).toBeNull()
+    view.unmount()
+    const worded: [string, string][] = [
+      ['unreachable', "The server can't be reached"],
+      ['closed', 'The server ended the connection'],
+      ['blocked', 'Connections to the server are blocked'],
+      [
+        'signed_out',
+        "The server no longer accepts this account's sign-in; link it again",
+      ],
+      ['failed', 'The connection to the server failed'],
+      ['unknown', 'The connection to the server failed'],
+    ]
+    for (const [reason, text] of worded) {
+      view = show(failing({ reason }, 'the raw error'))
+      expect(await screen.findByText(text)).toBeTruthy()
+      expect(screen.queryByText(/Trying again/)).toBeNull()
+      expect(screen.queryByText('the raw error')).toBeNull()
+      view.unmount()
+    }
+    // A session that ended with no error has no text at all.
+    view = show(failing({ reason: 'closed' }))
+    expect(
+      await screen.findByText('The server ended the connection')
+    ).toBeTruthy()
+    view.unmount()
+    // A server too old to say why answers only the text.
+    show(failing(undefined, 'the stream ended'))
+    expect(await screen.findByText('the stream ended')).toBeTruthy()
+  })
+
   it('suggests a handle from the name within the rule', () => {
     expect(suggestHandle('Alice Example')).toBe('aliceexample')
     expect(suggestHandle('Zoë 99')).toBe('zoe99')
@@ -156,24 +268,135 @@ describe('Networks', () => {
     expect(suggestHandle('x'.repeat(30))).toBe('x'.repeat(20))
   })
 
+  it('lists every account once, with Remove only where there is no switch', async () => {
+    show({
+      ...data,
+      accounts: [
+        data.accounts[0],
+        data.accounts[1],
+        // A forum's community, whose handle has no card.
+        {
+          ...data.accounts[0],
+          id: 'g1',
+          kind: 'group',
+          name: 'Books',
+          identifier: '@books@example.com',
+        },
+        // The handle's account on a network the server no longer offers.
+        {
+          ...data.accounts[0],
+          id: 'x1',
+          type: 'xmpp',
+          identifier: 'alice@example.com',
+        },
+      ],
+      handles: {
+        ...data.handles,
+        handles: [
+          {
+            ...alice,
+            addresses: { ...alice.addresses, xmpp: 'alice@example.com' },
+          },
+          news,
+        ],
+      },
+    })
+    await screen.findByText('Handle on example.com')
+    // The menu a row offers, opened on pointer down as Radix listens for it.
+    const items = async (address: string) => {
+      const trigger = within(rowOf(address)).getByRole('button', {
+        name: 'Account actions',
+      })
+      await act(async () => {
+        fireEvent.pointerDown(trigger, { button: 0, ctrlKey: false })
+      })
+      await screen.findByRole('menuitem', { name: 'Profile' })
+      const names = screen
+        .getAllByRole('menuitem')
+        .map((item) => item.textContent)
+      await act(async () => {
+        fireEvent.keyDown(document.activeElement!, { key: 'Escape' })
+      })
+      await waitFor(() =>
+        expect(screen.queryByRole('menuitem', { name: 'Profile' })).toBeNull()
+      )
+      return names
+    }
+    // A hosted account in its handle's card is removed by its switch.
+    expect(await items('@alice@example.com')).not.toContain('Remove')
+    expect(await items('@alice@mastodon.social')).toContain('Remove')
+    // The community under Communities, by its name, removed from its menu.
+    expect(screen.getByText('Communities')).toBeTruthy()
+    expect(screen.getByText('Books on ActivityPub')).toBeTruthy()
+    expect(await items('@books@example.com')).toContain('Remove')
+    // The account on a network no longer offered stays in its handle's card,
+    // its switch on, so that it can still be removed.
+    const xmpp = rowOf('alice@example.com')
+    expect(within(xmpp).getByText('XMPP')).toBeTruthy()
+    expect(within(xmpp).getByRole('switch')).toHaveAttribute(
+      'aria-checked',
+      'true'
+    )
+    // Each address once.
+    for (const address of [
+      '@alice@example.com',
+      '@alice@mastodon.social',
+      '@books@example.com',
+      'alice@example.com',
+    ]) {
+      expect(screen.getAllByText(address)).toHaveLength(1)
+    }
+  })
+
   it('shows each handle with a switch per network and the accounts together', async () => {
     show()
     // The card is titled with the handle and says what it is; the name under
     // it has its own rows, labelled with the name.
     await screen.findByText('Handle on example.com')
     expect(screen.getByText('alice')).toBeTruthy()
-    expect(screen.getByText('alice_news on Fediverse')).toBeTruthy()
+    expect(screen.getByText('alice_news on ActivityPub')).toBeTruthy()
     expect(screen.getByText('@alice_news@example.com')).toBeTruthy()
-    // The address under the handle's switch, and the account's row.
-    expect(screen.getAllByText('@alice@example.com')).toHaveLength(2)
+    // Each account is listed once: the hosted one in its handle's row, with
+    // its menu beside its switch, and no table of accounts repeating it.
+    expect(screen.getAllByText('@alice@example.com')).toHaveLength(1)
     expect(screen.getByText('alice.example.com')).toBeTruthy()
     const switches = screen.getAllByRole('switch')
     expect(switches).toHaveLength(4)
     expect(switches[0]).toHaveAttribute('aria-checked', 'true')
     expect(switches[1]).toHaveAttribute('aria-checked', 'false')
-    expect(screen.getByText('@alice@mastodon.social')).toBeTruthy()
-    expect(screen.getByText('Hosted')).toBeTruthy()
-    expect(screen.getByText('Linked')).toBeTruthy()
+    const hosted = rowOf('@alice@example.com')
+    expect(within(hosted).getByRole('switch')).toBe(switches[0])
+    // The menu comes last, after the switch.
+    const menu = within(hosted).getByRole('button', { name: 'Account actions' })
+    expect(switches[0].nextElementSibling).toBe(menu)
+    expect(menu.nextElementSibling).toBeNull()
+    // A network with no account yet has its switch and no menu, and keeps the
+    // menu's place so its switch lines up with the others.
+    const off = rowOf('alice.example.com')
+    expect(
+      within(off).queryByRole('button', { name: 'Account actions' })
+    ).toBeNull()
+    const place = within(off).getByRole('switch').nextElementSibling
+    expect(place).toHaveAttribute('aria-hidden', 'true')
+    expect(place?.className).toContain('w-9')
+    expect(screen.queryByRole('table')).toBeNull()
+    expect(screen.queryByText('Hosted')).toBeNull()
+    // Each row gives its label the width, the controls at the row's end.
+    expect(
+      screen.getByText('alice_news on ActivityPub').parentElement?.className
+    ).toContain('flex-1')
+    // The linked account under Linked accounts, by its name on its network,
+    // with the way to link another.
+    expect(screen.getByText('Linked accounts')).toBeTruthy()
+    expect(screen.getByText('Alice on Mastodon')).toBeTruthy()
+    const linked = rowOf('@alice@mastodon.social')
+    expect(
+      within(linked).getByRole('button', { name: 'Account actions' })
+    ).toBeTruthy()
+    expect(within(linked).queryByRole('switch')).toBeNull()
+    expect(screen.getByRole('button', { name: 'Link an account' })).toBeTruthy()
+    // No forum community, so no Communities card.
+    expect(screen.queryByText('Communities')).toBeNull()
     // The limit is reached, so no chooser.
     expect(screen.queryByText('Choose a handle')).toBeNull()
   })
@@ -216,6 +439,30 @@ describe('Networks', () => {
       (call) => call[0] === '-/user/networks/account/keys/recovery'
     )
     expect(made?.[1]).toEqual({ id: 'b1' })
+  })
+
+  it('keeps a network switch busy, not unavailable, while its account is made', async () => {
+    let finish: (value: unknown) => void = () => {}
+    state.post.mockReturnValue(new Promise((resolve) => (finish = resolve)))
+    show()
+    await screen.findByText('Handle on example.com')
+    await act(async () => {
+      fireEvent.click(screen.getAllByRole('switch')[1])
+    })
+    const toggle = screen.getAllByRole('switch')[1]
+    expect(toggle).toHaveAttribute('aria-busy', 'true')
+    expect(toggle).not.toBeDisabled()
+    // A second click while the first is saved sends nothing more.
+    await act(async () => {
+      fireEvent.click(toggle)
+    })
+    expect(state.post).toHaveBeenCalledTimes(1)
+    await act(async () => {
+      finish({ id: 'x1', type: 'xmpp', identifier: 'alice@example.com' })
+    })
+    // Bluesky's switch then opens the recovery key dialog over the page, so
+    // the switch is checked as the element it was.
+    await waitFor(() => expect(toggle).not.toHaveAttribute('aria-busy'))
   })
 
   it("says when a Bluesky account's recovery key has not been kept", async () => {
@@ -532,7 +779,7 @@ describe('Networks', () => {
     expect(await screen.findByText('The home feed is private')).toBeTruthy()
     again.unmount()
     show(homed('feed1', 'public'))
-    expect(await screen.findByText('example.com', { selector: 'td' })).toBeTruthy()
+    await screen.findByText('Handle on example.com')
     expect(screen.queryByText(/The home feed/)).toBeNull()
   })
 

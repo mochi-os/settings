@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#sem} other {#sem}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {Affichage de {first}–{last} sur {total} identifiant} other {Affichage de {first}–{last} sur {total} identifiants}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · appli"
 msgid "{name} · push"
 msgstr "{name} · push"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} sur {network}"
@@ -419,11 +424,6 @@ msgstr "Compte mis à jour"
 msgid "Account verified"
 msgstr "Compte vérifié"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Comptes"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Servir de relais pour les serveurs injoignables"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "« {0} » ajouté"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adresse"
@@ -1160,6 +1159,10 @@ msgstr "Commentaires"
 msgid "Comments ({0})"
 msgstr "Commentaires ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Communautés"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Communauté"
@@ -1210,6 +1213,10 @@ msgstr "Comptes connectés"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Connexion..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Les connexions au serveur sont bloquées"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Ne correspond pas au motif requis"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domaine"
@@ -2324,10 +2330,6 @@ msgstr "Échecs"
 msgid "Federation"
 msgstr "Fédération"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fédiverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Grouper par"
 msgid "Group: {0}"
 msgstr "Groupe : {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Identifiant"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Flux d'accueil enregistré"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Héberger des comptes sur ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Héberger des comptes sur Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Héberger des comptes sur Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Héberger des comptes sur le fédiverse"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Héberger des comptes sur XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Hébergé"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Clés remplacées"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Type"
@@ -2766,13 +2761,13 @@ msgstr "Lier le compte"
 msgid "Link an account"
 msgstr "Lier un compte"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Lié"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} lié"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Comptes liés"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Ma clé d'accès"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Nom"
@@ -3101,11 +3095,6 @@ msgstr "Le nom est obligatoire"
 msgid "Name must be 1000 characters or less"
 msgstr "Le nom doit comporter 1000 caractères ou moins"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Nom sous {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Nom mis à jour"
@@ -3114,7 +3103,6 @@ msgstr "Nom mis à jour"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Réseau"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Erreur réseau"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Nouvelle catégorie"
 msgid "New game"
 msgstr "Nouvelle partie"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Suivant"
@@ -3260,6 +3250,10 @@ msgstr "Aucun groupe disponible"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Aucun identifiant n'a été réservé."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Aucun identifiant ne correspond à votre recherche"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Préférences"
 msgid "Preferences reset to defaults"
 msgstr "Préférences réinitialisées par défaut"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Précédent"
@@ -4386,6 +4381,10 @@ msgstr "Rechercher une destination…"
 msgid "Search for origin..."
 msgstr "Rechercher une origine…"
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Rechercher des identifiants..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Rechercher des objets…"
@@ -4689,7 +4688,6 @@ msgstr "Démarré"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Statut"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "La demande de caméra est restée sans réponse"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "La connexion au serveur a échoué"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "L'identifiant dont dépend ce nom ne vous appartient pas"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Le contenu demandé est introuvable."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Le serveur a répondu avec l'erreur {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Le serveur est injoignable"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Le serveur n'a pas autorisé la liaison"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Le serveur a fermé la connexion"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Le serveur n'accepte plus la connexion de ce compte ; liez-le à nouveau"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Essayez d'ajuster vos termes de recherche"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Réessayer"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Nouvelle tentative à {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "ID client X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "Secret client X"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

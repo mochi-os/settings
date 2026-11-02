@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#мин} other {#мин}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#нед} other {#нед}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {Приказ {first}–{last} од {total} надимка} few {Приказ {first}–{last} од {total} надимка} other {Приказ {first}–{last} од {total} надимака}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · апликација"
 msgid "{name} · push"
 msgstr "{name} · пуш"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} на {network}"
@@ -419,11 +424,6 @@ msgstr "Налог ажуриран"
 msgid "Account verified"
 msgstr "Налог верификован"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Налози"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Ради као релеј за недоступне сервере"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "Додато „{0}“"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Адреса"
@@ -1160,6 +1159,10 @@ msgstr "Коментари"
 msgid "Comments ({0})"
 msgstr "Коментари ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Заједнице"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Заједница"
@@ -1210,6 +1213,10 @@ msgstr "Повезани налози"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Повезивање..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Везе са сервером су блокиране"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Не одговара траженом обрасцу"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Домен"
@@ -2324,10 +2330,6 @@ msgstr "Неуспеси"
 msgid "Federation"
 msgstr "Федерација"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Федиверс"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Групиши по"
 msgid "Group: {0}"
 msgstr "Група: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Надимак"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Почетни фид је сачуван"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Хостуј налоге на мрежи ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Хостуј налоге на мрежи Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Хостуј налоге на мрежи Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Хостуј налоге на федиверсу"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Хостуј налоге на мрежи XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Хостован"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Кључеви су замењени"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Врста"
@@ -2766,13 +2761,13 @@ msgstr "Повежи налог"
 msgid "Link an account"
 msgstr "Повежи налог"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Повезан"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Повезано {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Повезани налози"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Мој приступни кључ"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Назив"
@@ -3101,11 +3095,6 @@ msgstr "Име је обавезно"
 msgid "Name must be 1000 characters or less"
 msgstr "Назив мора имати 1000 знакова или мање"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Име под {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Име ажурирано"
@@ -3114,7 +3103,6 @@ msgstr "Име ажурирано"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Мрежа"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Грешка мреже"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Нова категорија"
 msgid "New game"
 msgstr "Нова игра"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Следеће"
@@ -3260,6 +3250,10 @@ msgstr "Нема доступних група"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Ниједан надимак није резервисан."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Ниједан надимак не одговара вашој претрази"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Поставке"
 msgid "Preferences reset to defaults"
 msgstr "Поставке враћене на подразумеване"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Претходно"
@@ -4386,6 +4381,10 @@ msgstr "Претражи одредиште..."
 msgid "Search for origin..."
 msgstr "Претражи порекло..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Претражи надимке..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Претражи објекте..."
@@ -4689,7 +4688,6 @@ msgstr "Започето"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Статус"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "На захтев за камеру није одговорено"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Повезивање са сервером није успело"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Надимак под којим је ово име није ваш"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Тражени садржај није пронађен."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Сервер је одговорио грешком {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Сервер није доступан"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Сервер није дозволио повезивање"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Сервер је прекинуо везу"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Сервер више не прихвата пријаву овог налога; поново га повежите"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Покушај прилагодити речи за претрагу"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Покушај поново"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Нови покушај у {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "ID клијента X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "Тајна клијента X"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

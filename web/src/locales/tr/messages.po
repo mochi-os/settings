@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#dk} other {#dk}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#hf} other {#hf}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {{total} rumuzdan {first}–{last} arası gösteriliyor} other {{total} rumuzdan {first}–{last} arası gösteriliyor}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · uygulama"
 msgid "{name} · push"
 msgstr "{name} · anlık bildirim"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{network} üzerinde {name}"
@@ -419,11 +424,6 @@ msgstr "Hesap güncellendi"
 msgid "Account verified"
 msgstr "Hesap doğrulandı"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Hesaplar"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Erişilemeyen sunucular için aktarıcı olarak çalış"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" eklendi"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adres"
@@ -1160,6 +1159,10 @@ msgstr "Yorumlar"
 msgid "Comments ({0})"
 msgstr "Yorumlar ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Topluluklar"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Topluluk"
@@ -1210,6 +1213,10 @@ msgstr "Bağlı hesaplar"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Bağlanıyor..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Sunucuya bağlantılar engellendi"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Gerekli kalıpla eşleşmiyor"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Alan adı"
@@ -2324,10 +2330,6 @@ msgstr "Başarısızlıklar"
 msgid "Federation"
 msgstr "Federasyon"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Şuna göre grupla"
 msgid "Group: {0}"
 msgstr "Grup: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Rumuz"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Ana akış kaydedildi"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "ActivityPub üzerinde hesap barındır"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Bluesky üzerinde hesap barındır"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Matrix üzerinde hesap barındır"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Fediverse üzerinde hesap barındır"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "XMPP üzerinde hesap barındır"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Barındırılan"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Anahtarlar değiştirildi"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Tür"
@@ -2766,13 +2761,13 @@ msgstr "Hesabı bağla"
 msgid "Link an account"
 msgstr "Hesap bağla"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Bağlı"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Bağlandı {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Bağlı hesaplar"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Geçiş anahtarım"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Ad"
@@ -3101,11 +3095,6 @@ msgstr "Ad gerekli"
 msgid "Name must be 1000 characters or less"
 msgstr "Ad 1000 karakter veya daha az olmalı"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "{0} altındaki ad"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Ad güncellendi"
@@ -3114,7 +3103,6 @@ msgstr "Ad güncellendi"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Ağ"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Ağ hatası"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Yeni kategori"
 msgid "New game"
 msgstr "Yeni oyun"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "İleri"
@@ -3260,6 +3250,10 @@ msgstr "Grup yok"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Hiç rumuz ayrılmamış."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Aramanızla eşleşen rumuz yok"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Tercihler"
 msgid "Preferences reset to defaults"
 msgstr "Tercihler varsayılana sıfırlandı"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Önceki"
@@ -4386,6 +4381,10 @@ msgstr "Hedef ara..."
 msgid "Search for origin..."
 msgstr "Kaynak ara..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Rumuzlarda ara..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Nesnelerde ara..."
@@ -4689,7 +4688,6 @@ msgstr "Başladı"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Durum"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Kamera isteği yanıtlanmadı"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Sunucuya bağlantı başarısız oldu"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Bu adın bağlı olduğu rumuz size ait değil"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "İstenen içerik bulunamadı."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Sunucu {status} hatasıyla yanıt verdi"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Sunucuya ulaşılamıyor"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Sunucu bağlantıya izin vermedi"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Sunucu bağlantıyı sonlandırdı"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Sunucu bu hesabın oturum açmasını artık kabul etmiyor; hesabı yeniden bağlayın"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Arama terimlerini ayarlamayı dene"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Tekrar dene"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Yeniden deneme saati: {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "X istemci kimliği"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X istemci gizli anahtarı"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

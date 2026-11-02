@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#мүн} other {#мүн}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#жума} other {#жума}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {{total} колдонуучу атынын {first}–{last} көрсөтүлүүдө} other {{total} колдонуучу атынын {first}–{last} көрсөтүлүүдө}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · колдонмо"
 msgid "{name} · push"
 msgstr "{name} · пуш"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{network} тармагындагы {name}"
@@ -419,11 +424,6 @@ msgstr "Аккаунт жаңыланды"
 msgid "Account verified"
 msgstr "Аккаунт текшерилди"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Аккаунттар"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Жеткиликсиз серверлер үчүн ретранслятор катары иштөө"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" кошулду"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Дарек"
@@ -1160,6 +1159,10 @@ msgstr "Комментарийлер"
 msgid "Comments ({0})"
 msgstr "Комментарийлер ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Коомчулуктар"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Коомчулук"
@@ -1210,6 +1213,10 @@ msgstr "Байланышкан аккаунттар"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Туташтырылууда..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Серверге байланыштар бөгөттөлгөн"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Талап кылынган үлгүгө дал келбейт"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Домен"
@@ -2324,10 +2330,6 @@ msgstr "Ийгиликсиздиктер"
 msgid "Federation"
 msgstr "Федерация"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Федиверс"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Топтоштуруу"
 msgid "Group: {0}"
 msgstr "Топ: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Колдонуучу аты"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Башкы тасма сакталды"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "ActivityPub тармагында аккаунттарды жайгаштыруу"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Bluesky тармагында аккаунттарды жайгаштыруу"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Matrix тармагында аккаунттарды жайгаштыруу"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Федиверсте аккаунттарды жайгаштыруу"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "XMPP тармагында аккаунттарды жайгаштыруу"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Ушул серверде"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Ачкычтар алмаштырылды"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Түрү"
@@ -2766,13 +2761,13 @@ msgstr "Эсеп байланыштыруу"
 msgid "Link an account"
 msgstr "Аккаунтту байланыштыруу"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Байланыштырылган"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} байланыштырылды"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Байланыштырылган аккаунттар"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Менин кирүү ачкычым"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Аты"
@@ -3101,11 +3095,6 @@ msgstr "Аты талап кылынат"
 msgid "Name must be 1000 characters or less"
 msgstr "Аты 1000 символдон ашпашы керек"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "{0} астындагы ат"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Аты жаңыртылды"
@@ -3114,7 +3103,6 @@ msgstr "Аты жаңыртылды"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Тармак"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Тармак катасы"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Жаңы категория"
 msgid "New game"
 msgstr "Жаңы оюн"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Кийинки"
@@ -3260,6 +3250,10 @@ msgstr "Топтор жеткиликсиз"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Эч бир колдонуучу аты ээлеп коюлган эмес."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Колдонуучу аттары издөөңүзгө дал келген жок"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Жөндөөлөр"
 msgid "Preferences reset to defaults"
 msgstr "Жөндөөлөр демейки маанилерге кайтарылды"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Мурунку"
@@ -4386,6 +4381,10 @@ msgstr "Багытты издөө..."
 msgid "Search for origin..."
 msgstr "Башталышты издөө..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Колдонуучу аттарын издөө..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Объекттерди издөө..."
@@ -4689,7 +4688,6 @@ msgstr "Башталды"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Абалы"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Камера сурамына жооп берилген жок"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Серверге байланышуу ишке ашкан жок"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Бул ат таандык болгон колдонуучу аты сиздики эмес"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Суралган мазмун табылган жок."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Сервер {status} катасы менен жооп берди"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Серверге жетүү мүмкүн эмес"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Сервер байланыштырууга уруксат берген жок"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Сервер байланышты үздү"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Сервер бул аккаунттун кирүүсүн мындан ары кабыл албайт; аны кайра байланыштырыңыз"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Издөө сөздөрүңүздү тууралап көрүңүз"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Кайра аракет кылуу"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Саат {time} кайра аракет кылынат"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "X кардар ID"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X кардар сыры"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

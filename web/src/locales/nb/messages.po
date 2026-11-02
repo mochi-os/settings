@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#u} other {#u}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {Viser {first}–{last} av {total} brukernavn} other {Viser {first}–{last} av {total} brukernavn}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · app"
 msgid "{name} · push"
 msgstr "{name} · push-varsler"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} på {network}"
@@ -419,11 +424,6 @@ msgstr "Konto oppdatert"
 msgid "Account verified"
 msgstr "Konto bekreftet"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Kontoer"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Fungere som relé for utilgjengelige tjenere"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "La til «{0}»"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adresse"
@@ -1160,6 +1159,10 @@ msgstr "Kommentarer"
 msgid "Comments ({0})"
 msgstr "Kommentarer ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Fellesskap"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Fellesskap"
@@ -1210,6 +1213,10 @@ msgstr "Tilkoblede kontoer"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Kobler til..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Tilkoblinger til serveren er blokkert"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Samsvarer ikke med det påkrevde mønsteret"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domene"
@@ -2324,10 +2330,6 @@ msgstr "Feil"
 msgid "Federation"
 msgstr "Føderasjon"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverset"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Grupper etter"
 msgid "Group: {0}"
 msgstr "Gruppe: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Brukernavn"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Hjemmestrømmen er lagret"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Vær vert for kontoer på ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Vær vert for kontoer på Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Vær vert for kontoer på Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Vær vert for kontoer på fediverset"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Vær vert for kontoer på XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Hostet"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Nøkler erstattet"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Type"
@@ -2766,13 +2761,13 @@ msgstr "Koble til konto"
 msgid "Link an account"
 msgstr "Koble til en konto"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Tilkoblet"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} koblet"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Tilkoblede kontoer"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Min passnøkkel"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Navn"
@@ -3101,11 +3095,6 @@ msgstr "Navn er påkrevd"
 msgid "Name must be 1000 characters or less"
 msgstr "Navn må være 1000 tegn eller kortere"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Navn under {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Navn oppdatert"
@@ -3114,7 +3103,6 @@ msgstr "Navn oppdatert"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Nettverk"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Nettverksfeil"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Ny kategori"
 msgid "New game"
 msgstr "Nytt spill"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Neste"
@@ -3260,6 +3250,10 @@ msgstr "Ingen grupper tilgjengelig"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Ingen brukernavn er reservert."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Ingen brukernavn matcher søket ditt"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Preferanser"
 msgid "Preferences reset to defaults"
 msgstr "Preferanser tilbakestilt til standard"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Forrige"
@@ -4386,6 +4381,10 @@ msgstr "Søk etter destinasjon ..."
 msgid "Search for origin..."
 msgstr "Søk etter opprinnelse ..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Søk i brukernavn ..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Søk i objekter ..."
@@ -4689,7 +4688,6 @@ msgstr "Startet"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Status"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Kameraforespørselen ble ikke besvart"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Tilkoblingen til serveren mislyktes"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Brukernavnet dette navnet hører under, er ikke ditt"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Fant ikke det forespurte innholdet."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Serveren svarte med feil {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Serveren kan ikke nås"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Serveren tillot ikke koblingen"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Serveren avsluttet tilkoblingen"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Serveren godtar ikke lenger innloggingen for denne kontoen; koble den til på nytt"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Prøv å justere søkeordene"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Prøv igjen"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Prøver igjen kl. {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "X-klient-ID"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X-klienthemmelighet"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

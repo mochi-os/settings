@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#ደ} other {#ደ}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#ሳ} other {#ሳ}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {ከ{total} የተጠቃሚ ስም {first}–{last} እየታየ ነው} other {ከ{total} የተጠቃሚ ስሞች {first}–{last} እየታዩ ነው}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · መተግበሪያ"
 msgid "{name} · push"
 msgstr "{name} · ግፋ"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} በ{network} ላይ"
@@ -419,11 +424,6 @@ msgstr "መለያ ተዘምኗል"
 msgid "Account verified"
 msgstr "መለያ ተረጋግጧል"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "መለያዎች"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "ለማይደረሱ አገልጋዮች እንደ ማስተላለፊያ ይሥራ"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" ተጨምሯል"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "አድራሻ"
@@ -1160,6 +1159,10 @@ msgstr "አስተያየቶች"
 msgid "Comments ({0})"
 msgstr "አስተያየቶች ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "ማህበረሰቦች"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "ማህበረሰብ"
@@ -1210,6 +1213,10 @@ msgstr "የተገናኙ መለያዎች"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "በመገናኘት ላይ..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "ከአገልጋዩ ጋር የሚደረጉ ግንኙነቶች ታግደዋል"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "ከሚያስፈልገው ስርዓተ ጥለት ጋር አይዛመድም"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "ዶሜን"
@@ -2324,10 +2330,6 @@ msgstr "ውድቀቶች"
 msgid "Federation"
 msgstr "ፌዴሬሽን"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "በቡድን ይመድቡ"
 msgid "Group: {0}"
 msgstr "ቡድን፦ {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "የተጠቃሚ ስም"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "መነሻ ፊድ ተቀምጧል"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "በActivityPub ላይ መለያዎችን አስተናግድ"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "በBluesky ላይ መለያዎችን አስተናግድ"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "በMatrix ላይ መለያዎችን አስተናግድ"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "በFediverse ላይ መለያዎችን አስተናግድ"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "በXMPP ላይ መለያዎችን አስተናግድ"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "የተስተናገደ"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "ቁልፎች ተተክተዋል"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "አይነት"
@@ -2766,13 +2761,13 @@ msgstr "መለያ አገናኝ"
 msgid "Link an account"
 msgstr "መለያ አገናኝ"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "ተገናኝቷል"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} ተገናኝቷል"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "የተገናኙ መለያዎች"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "የእኔ ፓስኪ"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "ስም"
@@ -3101,11 +3095,6 @@ msgstr "ስም ያስፈልጋል"
 msgid "Name must be 1000 characters or less"
 msgstr "ስም 1000 ቁምፊዎች ወይም ከዚያ ያነሰ መሆን አለበት"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "በ{0} ስር ያለ ስም"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "ስም ተዘምኗል"
@@ -3114,7 +3103,6 @@ msgstr "ስም ተዘምኗል"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "አውታረ መረብ"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "የአውታረ መረብ ስህተት"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "አዲስ ምድብ"
 msgid "New game"
 msgstr "አዲስ ጨዋታ"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "ቀጣይ"
@@ -3260,6 +3250,10 @@ msgstr "ምንም ቡድኖች የሉም"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "ምንም የተጠቃሚ ስሞች አልተያዙም።"
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "ከፍለጋዎ ጋር የሚዛመዱ የተጠቃሚ ስሞች የሉም"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "ምርጫዎች"
 msgid "Preferences reset to defaults"
 msgstr "ምርጫዎች ወደ ነባሪዎች ተመልሰዋል"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "ቀዳሚ"
@@ -4386,6 +4381,10 @@ msgstr "መድረሻ ይፈልጉ..."
 msgid "Search for origin..."
 msgstr "መነሻ ይፈልጉ..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "የተጠቃሚ ስሞችን ይፈልጉ..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "ነገሮችን ይፈልጉ..."
@@ -4689,7 +4688,6 @@ msgstr "ጀምሯል"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "ሁኔታ"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "የካሜራ ጥያቄው መልስ አላገኘም"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "ከአገልጋዩ ጋር ያለው ግንኙነት አልተሳካም"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "ይህ ስም የሚገኝበት የተጠቃሚ ስም የእርስዎ አይደለም"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "የተጠየቀው ይዘት ሊገኝ አልቻለም።"
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "አገልጋዩ በስህተት {status} መለሰ"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "አገልጋዩ ሊደረስበት አልቻለም"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "ሰርቨሩ ግንኙነቱን አልፈቀደም"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "አገልጋዩ ግንኙነቱን አቋረጠ"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "አገልጋዩ የዚህን መለያ መግቢያ ከእንግዲህ አይቀበልም፤ እንደገና ያገናኙት"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "የፍለጋ ቃላትዎን ማስተካከል ይሞክሩ"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "እንደገና ይሞክሩ"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "በ{time} እንደገና ይሞከራል"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "የX ደንበኛ መታወቂያ"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "የX ደንበኛ ሚስጥር"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

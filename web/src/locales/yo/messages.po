@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#ìṣ} other {#ìṣ}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#ọs} other {#ọs}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, other {Ń fi {first}–{last} hàn nínú ìnagijẹ {total}}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · app"
 msgid "{name} · push"
 msgstr "{name} · ìfitónilétí push"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} lórí {network}"
@@ -419,11 +424,6 @@ msgstr "A ti ṣe àtúnyẹ̀wò àkáǹtì"
 msgid "Account verified"
 msgstr "A ti fọwọ́sí àkáǹtì"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Àwọn àkáǹtì"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Ṣiṣẹ́ gẹ́gẹ́ bí atagbé fún àwọn olùpèsè tí kò ṣeé dé"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "A ti fi \"{0}\" kún"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Àdírẹ́sì"
@@ -1160,6 +1159,10 @@ msgstr "Àwọn àlàyé"
 msgid "Comments ({0})"
 msgstr "Àwọn ọ̀rọ̀ ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Àwọn àwùjọ"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Àwùjọ"
@@ -1210,6 +1213,10 @@ msgstr "Àwọn àkáǹtì tí a so pọ̀"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Ń so pọ̀..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "A ti dínà àwọn ìsopọ̀ sí olupin náà"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Kò bá àpẹẹrẹ tí a béèrè mu"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domain"
@@ -2324,10 +2330,6 @@ msgstr "Àwọn ìkùnà"
 msgid "Federation"
 msgstr "Àjọṣepọ̀"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Ṣàkójọ nípa"
 msgid "Group: {0}"
 msgstr "Ẹgbẹ́: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Ìnagijẹ"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "A ti fi fíìdì ilé pamọ́"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Gba àwọn àkáǹtì lálejò lórí ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Gba àwọn àkáǹtì lálejò lórí Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Gba àwọn àkáǹtì lálejò lórí Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Gba àwọn àkáǹtì lálejò lórí fediverse"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Gba àwọn àkáǹtì lálejò lórí XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Gbàlejò níbí"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "A ti rọ́pò àwọn kọ́kọ́rọ́"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Irú"
@@ -2766,13 +2761,13 @@ msgstr "Ìjápọ̀ àkántì"
 msgid "Link an account"
 msgstr "So àkáǹtì kan pọ̀"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "A ti so pọ̀"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} so pọ̀"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Àwọn àkáǹtì tí a so pọ̀"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Kọ́kọ́rọ́-ìwọlé mi"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Orúkọ"
@@ -3101,11 +3095,6 @@ msgstr "A nílò orúkọ"
 msgid "Name must be 1000 characters or less"
 msgstr "Orúkọ gbọ́dọ̀ jẹ́ lẹ́tà 1000 tàbí kéré"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Orúkọ lábẹ́ {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "A ti ṣe imudojúìwọ̀n orúkọ"
@@ -3114,7 +3103,6 @@ msgstr "A ti ṣe imudojúìwọ̀n orúkọ"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Nẹ́tíwọ́kì"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Àṣìṣe nẹ́tíwọ́kì"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Ẹ̀ka tuntun"
 msgid "New game"
 msgstr "Eré tuntun"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Tó kàn"
@@ -3260,6 +3250,10 @@ msgstr "Kò sí ẹgbẹ́ tó wà"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Kò sí ìnagijẹ tí a ti gbà sílẹ̀."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Kò sí ìnagijẹ tó bámu ìwákiri rẹ"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Àwọn ààyò"
 msgid "Preferences reset to defaults"
 msgstr "A ti pa àwọn ìfẹ́ padà sí àìyípadà"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Tó kọjá"
@@ -4386,6 +4381,10 @@ msgstr "Wá ibi tí o ń lọ..."
 msgid "Search for origin..."
 msgstr "Wá ibi tí o ti wá..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Wá àwọn ìnagijẹ..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Wá àwọn nǹkan..."
@@ -4689,7 +4688,6 @@ msgstr "Ti bẹ̀rẹ̀"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Ìpò"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "A kò dáhùn ìbéèrè kámẹ́rà náà"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Ìsopọ̀ sí olupin náà kùnà"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Ìnagijẹ tí orúkọ yìí wà lábẹ́ rẹ̀ kì í ṣe tìrẹ"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "A kò rí àkóónú tí o béèrè fún."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Olupin náà dáhùn pẹ̀lú àṣìṣe {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "A kò lè dé ọ̀dọ̀ olupin náà"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Sáfà kò gba ìsopọ̀ náà láàyè"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Olupin náà pa ìsopọ̀ náà"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Olupin náà kò gba ìwọlé àkáǹtì yìí mọ́; tún so ó pọ̀"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Gbìyànjú láti ṣàtúnṣe àwọn ọ̀rọ̀ ìwákiri rẹ"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Gbìyànjú lẹ́ẹ̀kan sí i"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "A ó tún gbìyànjú ní {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "ID oníbàárà X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "Àṣírí oníbàárà X"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

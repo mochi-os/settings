@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#dk} other {#dk}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#wk} other {#wk}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {Inaonyesha {first}–{last} kati ya jina la utani {total}} other {Inaonyesha {first}–{last} kati ya majina ya utani {total}}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · programu"
 msgid "{name} · push"
 msgstr "{name} · arifa za push"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} kwenye {network}"
@@ -419,11 +424,6 @@ msgstr "Akaunti imesasishwa"
 msgid "Account verified"
 msgstr "Akaunti imethibitishwa"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Akaunti"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Fanya kazi kama kipeperushi kwa seva zisizofikika"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "Imeongezwa \"{0}\""
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Anwani"
@@ -1160,6 +1159,10 @@ msgstr "Maoni"
 msgid "Comments ({0})"
 msgstr "Maoni ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Jumuiya"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Jumuiya"
@@ -1210,6 +1213,10 @@ msgstr "Akaunti zilizounganishwa"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Inaunganisha..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Miunganisho kwenye seva imezuiwa"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Hailingani na muundo unaohitajika"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Kikoa"
@@ -2324,10 +2330,6 @@ msgstr "Kushindwa"
 msgid "Federation"
 msgstr "Shirikisho"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Panga kwa makundi"
 msgid "Group: {0}"
 msgstr "Kikundi: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Jina la utani"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Mlisho mkuu umehifadhiwa"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Pangisha akaunti kwenye ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Pangisha akaunti kwenye Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Pangisha akaunti kwenye Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Pangisha akaunti kwenye fediverse"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Pangisha akaunti kwenye XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Imepangishwa"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Funguo zimebadilishwa"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Aina"
@@ -2766,13 +2761,13 @@ msgstr "Unganisha akaunti"
 msgid "Link an account"
 msgstr "Unganisha akaunti"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Imeunganishwa"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Imeunganisha {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Akaunti zilizounganishwa"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Pasiki yangu"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Jina"
@@ -3101,11 +3095,6 @@ msgstr "Jina linahitajika"
 msgid "Name must be 1000 characters or less"
 msgstr "Jina lazima liwe na herufi 1000 au chini"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Jina chini ya {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Jina limesasishwa"
@@ -3114,7 +3103,6 @@ msgstr "Jina limesasishwa"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Mtandao"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Hitilafu ya mtandao"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Kategoria mpya"
 msgid "New game"
 msgstr "Mchezo mpya"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Inayofuata"
@@ -3260,6 +3250,10 @@ msgstr "Hakuna vikundi vinavyopatikana"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Hakuna majina ya utani yaliyotengwa."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Hakuna majina ya utani yanayolingana na utafutaji wako"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Mapendeleo"
 msgid "Preferences reset to defaults"
 msgstr "Mapendeleo yamewekwa upya kwa chaguo-msingi"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Iliyotangulia"
@@ -4386,6 +4381,10 @@ msgstr "Tafuta marudio..."
 msgid "Search for origin..."
 msgstr "Tafuta chanzo..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Tafuta majina ya utani..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Tafuta vitu..."
@@ -4689,7 +4688,6 @@ msgstr "Imeanza"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Hali"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Ombi la kamera halikujibiwa"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Muunganisho kwenye seva umeshindwa"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Jina la utani ambalo jina hili liko chini yake si lako"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Maudhui yaliyoombwa hayakupatikana."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Seva imejibu kwa hitilafu {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Seva haifikiki"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Seva haikuruhusu muunganisho"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Seva imekatisha muunganisho"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Seva haikubali tena kuingia kwa akaunti hii; iunganishe tena"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Jaribu kurekebisha maneno yako ya utafutaji"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Jaribu tena"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Itajaribu tena saa {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "Kitambulisho cha mteja cha X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "Siri ya mteja ya X"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

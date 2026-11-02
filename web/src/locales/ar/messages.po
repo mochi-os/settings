@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#د} other {#د}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#أ} other {#أ}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, zero {عرض {first}–{last} من أصل {total} معرّف} one {عرض {first}–{last} من أصل {total} معرّف} two {عرض {first}–{last} من أصل {total} معرّفَين} few {عرض {first}–{last} من أصل {total} معرّفات} many {عرض {first}–{last} من أصل {total} معرّفًا} other {عرض {first}–{last} من أصل {total} معرّف}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · تطبيق"
 msgid "{name} · push"
 msgstr "{name} · إشعارات فورية"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} على {network}"
@@ -419,11 +424,6 @@ msgstr "تم تحديث الحساب"
 msgid "Account verified"
 msgstr "تم التحقق من الحساب"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "الحسابات"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "العمل كمُرحِّل للخوادم غير القابلة للوصول"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "تمت إضافة \"{0}\""
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "العنوان"
@@ -1160,6 +1159,10 @@ msgstr "التعليقات"
 msgid "Comments ({0})"
 msgstr "التعليقات ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "المجتمعات"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "مجتمع"
@@ -1210,6 +1213,10 @@ msgstr "الحسابات المتصلة"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "جارٍ الاتصال..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "الاتصالات بالخادم محظورة"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "لا يطابق النمط المطلوب"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "النطاق"
@@ -2324,10 +2330,6 @@ msgstr "الإخفاقات"
 msgid "Federation"
 msgstr "الفيدرالية"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "تجميع حسب"
 msgid "Group: {0}"
 msgstr "المجموعة: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "المعرّف"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "تم حفظ موجز التغذية الرئيسي"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "استضافة حسابات على ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "استضافة حسابات على Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "استضافة حسابات على Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "استضافة حسابات على Fediverse"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "استضافة حسابات على XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "مستضاف"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "تم استبدال المفاتيح"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "النوع"
@@ -2766,13 +2761,13 @@ msgstr "ربط الحساب"
 msgid "Link an account"
 msgstr "ربط حساب"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "مرتبط"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "تم ربط {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "الحسابات المرتبطة"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "مفتاح المرور الخاص بي"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "الاسم"
@@ -3101,11 +3095,6 @@ msgstr "الاسم مطلوب"
 msgid "Name must be 1000 characters or less"
 msgstr "يجب ألا يتجاوز الاسم 1000 حرف"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "اسم تحت {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "تم تحديث الاسم"
@@ -3114,7 +3103,6 @@ msgstr "تم تحديث الاسم"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "الشبكة"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "خطأ في الشبكة"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "فئة جديدة"
 msgid "New game"
 msgstr "لعبة جديدة"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "التالي"
@@ -3260,6 +3250,10 @@ msgstr "لا توجد مجموعات متاحة"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "لم يتم حجز أي معرّف."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "لا توجد معرّفات تطابق بحثك"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "التفضيلات"
 msgid "Preferences reset to defaults"
 msgstr "تمت إعادة تعيين التفضيلات إلى الافتراضي"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "السابق"
@@ -4386,6 +4381,10 @@ msgstr "البحث عن وجهة..."
 msgid "Search for origin..."
 msgstr "البحث عن منشأ..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "البحث عن معرّفات..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "البحث عن عناصر..."
@@ -4689,7 +4688,6 @@ msgstr "بدأ"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "الحالة"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "لم تتم الإجابة على طلب الكاميرا"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "فشل الاتصال بالخادم"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "المعرّف الذي يقع تحته هذا الاسم ليس لك"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "تعذر العثور على المحتوى المطلوب."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "ردّ الخادم بالخطأ {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "تعذّر الوصول إلى الخادم"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "لم يسمح الخادم بالربط"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "أنهى الخادم الاتصال"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "لم يعد الخادم يقبل تسجيل الدخول لهذا الحساب؛ أعد ربطه"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "حاول تعديل مصطلحات البحث"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "حاول مرة أخرى"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "إعادة المحاولة في {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "معرف عميل X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "السر الخاص بعميل X"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

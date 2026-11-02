@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#mnt} other {#mnt}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#mk} other {#mk}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {Ana nuna {first}–{last} na sunan mai amfani {total}} other {Ana nuna {first}–{last} na sunayen mai amfani {total}}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · manhaja"
 msgid "{name} · push"
 msgstr "{name} · tura"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} a kan {network}"
@@ -419,11 +424,6 @@ msgstr "An sabunta asusu"
 msgid "Account verified"
 msgstr "An tabbatar da asusu"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Asusai"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Yi aiki a matsayin mai gudanarwa don sabar da ba a iya kaiwa"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "An ƙara \"{0}\""
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adireshi"
@@ -1160,6 +1159,10 @@ msgstr "Sharhi"
 msgid "Comments ({0})"
 msgstr "Sharhi ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Al'ummomi"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Al'umma"
@@ -1210,6 +1213,10 @@ msgstr "Asusai da aka haɗa"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Ana haɗawa..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "An toshe haɗi zuwa sabar"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Bai dace da tsarin da ake buƙata ba"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Yanki"
@@ -2324,10 +2330,6 @@ msgstr "Gazawa"
 msgid "Federation"
 msgstr "Tarayya"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Haɗa bisa"
 msgid "Group: {0}"
 msgstr "Rukuni: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Sunan mai amfani"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "An ajiye babban jerin labarai"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Karɓi baƙuncin asusu a ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Karɓi baƙuncin asusu a Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Karɓi baƙuncin asusu a Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Karɓi baƙuncin asusu a fediverse"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Karɓi baƙuncin asusu a XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "A wannan sabar"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "An maye gurbin maɓallai"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Nau'i"
@@ -2766,13 +2761,13 @@ msgstr "Haɗa account"
 msgid "Link an account"
 msgstr "Haɗa asusu"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "An haɗa"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "An haɗa {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Asusan da aka haɗa"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Maɓallin shiga nawa"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Suna"
@@ -3101,11 +3095,6 @@ msgstr "Ana buƙatar suna"
 msgid "Name must be 1000 characters or less"
 msgstr "Suna dole ya kasance haruffa 1000 ko ƙasa"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Suna ƙarƙashin {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "An sabunta suna"
@@ -3114,7 +3103,6 @@ msgstr "An sabunta suna"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Hanyar sadarwa"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Kuskuren hanyar sadarwa"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Sabon rukuni"
 msgid "New game"
 msgstr "Sabon wasa"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Na gaba"
@@ -3260,6 +3250,10 @@ msgstr "Babu ƙungiyoyi"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Ba a keɓe wani sunan mai amfani ba."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Babu sunayen mai amfani da suka yi daidai da binciken ka"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Abubuwan da kake so"
 msgid "Preferences reset to defaults"
 msgstr "An mayar da abubuwan da kake so zuwa asali"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Na baya"
@@ -4386,6 +4381,10 @@ msgstr "Bincika makoma..."
 msgid "Search for origin..."
 msgstr "Bincika tushe..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Bincika sunayen mai amfani..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Bincika abubuwa..."
@@ -4689,7 +4688,6 @@ msgstr "An fara"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Matsayi"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Ba a amsa buƙatar kyamara ba"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Haɗi zuwa sabar ya gaza"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Sunan mai amfani da wannan suna ke ƙarƙashinsa ba naka ba ne"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Ba a iya samun abun cikin da aka nema ba."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Sabar ta amsa da kuskure {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Ba a iya kaiwa sabar ba"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Sabar ba ta ba da izinin haɗin ba"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Sabar ta katse haɗin"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Sabar ba ta ƙara karɓar shigar wannan asusun; sake haɗa shi"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Gwada gyara kalmomin bincike"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Sake gwadawa"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Za a sake gwadawa da ƙarfe {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "ID na abokin ciniki na X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "Sirrin abokin ciniki na X"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

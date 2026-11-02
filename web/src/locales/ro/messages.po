@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#săpt} other {#săpt}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {Se afișează {first}–{last} din {total} pseudonim} few {Se afișează {first}–{last} din {total} pseudonime} other {Se afișează {first}–{last} din {total} de pseudonime}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · aplicație"
 msgid "{name} · push"
 msgstr "{name} · notificări push"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} pe {network}"
@@ -419,11 +424,6 @@ msgstr "Cont actualizat"
 msgid "Account verified"
 msgstr "Cont verificat"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Conturi"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Acționează ca releu pentru serverele inaccesibile"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "S-a adăugat „{0}”"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adresă"
@@ -1160,6 +1159,10 @@ msgstr "Comentarii"
 msgid "Comments ({0})"
 msgstr "Comentarii ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Comunități"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Comunitate"
@@ -1210,6 +1213,10 @@ msgstr "Conturi conectate"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Se conectează..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Conexiunile cu serverul sunt blocate"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Nu corespunde modelului necesar"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domeniu"
@@ -2324,10 +2330,6 @@ msgstr "Eșecuri"
 msgid "Federation"
 msgstr "Federație"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fedivers"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Grupează după"
 msgid "Group: {0}"
 msgstr "Grup: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Pseudonim"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Feed-ul principal a fost salvat"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Găzduiește conturi pe ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Găzduiește conturi pe Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Găzduiește conturi pe Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Găzduiește conturi în fedivers"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Găzduiește conturi pe XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Găzduit"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Chei înlocuite"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Tip"
@@ -2766,13 +2761,13 @@ msgstr "Conectează contul"
 msgid "Link an account"
 msgstr "Conectează un cont"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Conectat"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Conectat {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Conturi conectate"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Cheia mea de acces"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Nume"
@@ -3101,11 +3095,6 @@ msgstr "Numele este obligatoriu"
 msgid "Name must be 1000 characters or less"
 msgstr "Numele trebuie să aibă cel mult 1000 de caractere"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Nume sub {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Nume actualizat"
@@ -3114,7 +3103,6 @@ msgstr "Nume actualizat"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Rețea"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Eroare de rețea"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Categorie nouă"
 msgid "New game"
 msgstr "Joc nou"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Următor"
@@ -3260,6 +3250,10 @@ msgstr "Niciun grup disponibil"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Nu a fost rezervat niciun pseudonim."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Niciun pseudonim nu corespunde căutării"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Preferințe"
 msgid "Preferences reset to defaults"
 msgstr "Preferințe resetate la valorile implicite"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Anterior"
@@ -4386,6 +4381,10 @@ msgstr "Caută o destinație..."
 msgid "Search for origin..."
 msgstr "Caută o origine..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Caută pseudonime..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Caută obiecte..."
@@ -4689,7 +4688,6 @@ msgstr "Început"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Stare"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Solicitarea camerei nu a primit răspuns"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Conexiunea cu serverul a eșuat"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Pseudonimul sub care se află acest nume nu este al tău"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Conținutul solicitat nu a putut fi găsit."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Serverul a răspuns cu eroarea {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Serverul nu poate fi accesat"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Serverul nu a permis conectarea"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Serverul a închis conexiunea"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Serverul nu mai acceptă autentificarea acestui cont; conectați-l din nou"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Încearcă să ajustezi termenii de căutare"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Încearcă din nou"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Se reîncearcă la {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "ID client X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "Secret client X"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

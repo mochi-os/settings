@@ -16,11 +16,21 @@ export function useSystemNetworks() {
   })
 }
 
-export function useSystemHandles() {
+// A page of the registry a search matches; the release and takedown
+// mutations refresh every page under the same key.
+export function useSystemHandles(
+  limit: number,
+  offset: number,
+  search: string
+) {
   return useQuery({
-    queryKey: ['system', 'handles'],
+    queryKey: ['system', 'handles', limit, offset, search],
     queryFn: () =>
-      requestHelpers.get<SystemHandles>(endpoints.system.handlesList),
+      requestHelpers.post<SystemHandles>(endpoints.system.handlesList, {
+        limit,
+        offset,
+        search,
+      }),
   })
 }
 

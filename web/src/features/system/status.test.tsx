@@ -121,7 +121,7 @@ describe('Status: other networks', () => {
       },
     })
     expect(screen.getByText('Other networks')).toBeTruthy()
-    expect(screen.getByText('Fediverse')).toBeTruthy()
+    expect(screen.getByText('ActivityPub')).toBeTruthy()
     expect(screen.getByText('Working')).toBeTruthy()
     expect(
       screen.getByText('Unavailable · No domain is configured')

@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#vk} other {#vk}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {Näytetään {first}–{last} / {total} käyttäjätunnus} other {Näytetään {first}–{last} / {total} käyttäjätunnusta}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · sovellus"
 msgid "{name} · push"
 msgstr "{name} · push-ilmoitukset"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} verkossa {network}"
@@ -419,11 +424,6 @@ msgstr "Tili päivitetty"
 msgid "Account verified"
 msgstr "Tili vahvistettu"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Tilit"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Toimi välittäjänä tavoittamattomille palvelimille"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "Lisätty \"{0}\""
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Osoite"
@@ -1160,6 +1159,10 @@ msgstr "Kommentit"
 msgid "Comments ({0})"
 msgstr "Kommentit ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Yhteisöt"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Yhteisö"
@@ -1210,6 +1213,10 @@ msgstr "Yhdistetyt tilit"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Yhdistetään..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Yhteydet palvelimeen on estetty"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Ei vastaa vaadittua kaavaa"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Verkkotunnus"
@@ -2324,10 +2330,6 @@ msgstr "Epäonnistumiset"
 msgid "Federation"
 msgstr "Federaatio"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediversumi"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Ryhmittele"
 msgid "Group: {0}"
 msgstr "Ryhmä: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Käyttäjätunnus"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Kotisyöte tallennettu"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Isännöi tilejä ActivityPubissa"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Isännöi tilejä Blueskyssa"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Isännöi tilejä Matrixissa"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Isännöi tilejä fediversumissa"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Isännöi tilejä XMPP:ssä"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Isännöity"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Avaimet korvattu"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Tyyppi"
@@ -2766,13 +2761,13 @@ msgstr "Linkitä tili"
 msgid "Link an account"
 msgstr "Yhdistä tili"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Linkitetty"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} liitetty"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Linkitetyt tilit"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Oma avainkoodini"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Nimi"
@@ -3101,11 +3095,6 @@ msgstr "Nimi vaaditaan"
 msgid "Name must be 1000 characters or less"
 msgstr "Nimen on oltava enintään 1000 merkkiä"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Nimi tunnuksen {0} alla"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Nimi päivitetty"
@@ -3114,7 +3103,6 @@ msgstr "Nimi päivitetty"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Verkko"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Verkkovirhe"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Uusi kategoria"
 msgid "New game"
 msgstr "Uusi peli"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Seuraava"
@@ -3260,6 +3250,10 @@ msgstr "Ei saatavilla olevia ryhmiä"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Käyttäjätunnuksia ei ole varattu."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Yksikään käyttäjätunnus ei vastaa hakuasi"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Mieltymykset"
 msgid "Preferences reset to defaults"
 msgstr "Mieltymykset palautettu oletuksiin"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Edellinen"
@@ -4386,6 +4381,10 @@ msgstr "Hae määränpäätä..."
 msgid "Search for origin..."
 msgstr "Hae lähtöpaikkaa..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Hae käyttäjätunnuksia..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Hae kohteita..."
@@ -4689,7 +4688,6 @@ msgstr "Aloitettu"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Tila"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Kamerapyyntöön ei vastattu"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Yhteys palvelimeen epäonnistui"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Käyttäjätunnus, jonka alla tämä nimi on, ei ole sinun"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Pyydettyä sisältöä ei löytynyt."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Palvelin vastasi virheellä {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Palvelinta ei tavoiteta"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Palvelin ei sallinut yhdistämistä"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Palvelin katkaisi yhteyden"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Palvelin ei enää hyväksy tämän tilin kirjautumista; yhdistä tili uudelleen"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Kokeile muuttaa hakuehtoja"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Yritä uudelleen"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Yritetään uudelleen klo {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "X-asiakastunnus"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X-asiakassalaisuus"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

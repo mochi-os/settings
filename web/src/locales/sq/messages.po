@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#javë} other {#javë}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {Duke shfaqur {first}–{last} nga {total} pseudonim} other {Duke shfaqur {first}–{last} nga {total} pseudonime}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · aplikacion"
 msgid "{name} · push"
 msgstr "{name} · njoftime push"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} në {network}"
@@ -419,11 +424,6 @@ msgstr "Llogaria u përditësua"
 msgid "Account verified"
 msgstr "Llogaria u verifikua"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Llogaritë"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Vepro si rele për serverët e paarritshëm"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "U shtua \"{0}\""
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adresa"
@@ -1160,6 +1159,10 @@ msgstr "Komentet"
 msgid "Comments ({0})"
 msgstr "Komentet ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Komunitetet"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Komuniteti"
@@ -1210,6 +1213,10 @@ msgstr "Llogaritë e lidhura"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Po lidhet..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Lidhjet me serverin janë të bllokuara"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Nuk përputhet me modelin e kërkuar"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domeni"
@@ -2324,10 +2330,6 @@ msgstr "Dështime"
 msgid "Federation"
 msgstr "Federimi"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Grupo sipas"
 msgid "Group: {0}"
 msgstr "Grupi: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Pseudonimi"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Feed-i kryesor u ruajt"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Streho llogari në ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Streho llogari në Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Streho llogari në Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Streho llogari në fediverse"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Streho llogari në XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "I strehuar"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Çelësat u zëvendësuan"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Lloji"
@@ -2766,13 +2761,13 @@ msgstr "Lidh llogarinë"
 msgid "Link an account"
 msgstr "Lidh një llogari"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "I lidhur"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "U lidh {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Llogaritë e lidhura"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Kyçi im"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Emri"
@@ -3101,11 +3095,6 @@ msgstr "Emri është i detyrueshëm"
 msgid "Name must be 1000 characters or less"
 msgstr "Emri duhet të jetë 1000 karaktere ose më pak"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Emër nën {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Emri u përditësua"
@@ -3114,7 +3103,6 @@ msgstr "Emri u përditësua"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Rrjeti"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Gabim rrjeti"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Kategori e re"
 msgid "New game"
 msgstr "Lojë e re"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Tjetri"
@@ -3260,6 +3250,10 @@ msgstr "Asnjë grup i disponueshëm"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Nuk është rezervuar asnjë pseudonim."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Asnjë pseudonim nuk përputhet me kërkimin tuaj"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Preferencat"
 msgid "Preferences reset to defaults"
 msgstr "Preferencat u rivendosën në parazgjedhjet"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "I mëparshmi"
@@ -4386,6 +4381,10 @@ msgstr "Kërko destinacionin..."
 msgid "Search for origin..."
 msgstr "Kërko origjinën..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Kërko pseudonime..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Kërko objekte..."
@@ -4689,7 +4688,6 @@ msgstr "Filluar"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Statusi"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Kërkesa për kamerë nuk mori përgjigje"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Lidhja me serverin dështoi"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Pseudonimi nën të cilin ndodhet ky emër nuk është i juaji"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Përmbajtja e kërkuar nuk u gjet."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Serveri u përgjigj me gabimin {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Serveri nuk mund të arrihet"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Serveri nuk e lejoi lidhjen"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Serveri e mbylli lidhjen"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Serveri nuk e pranon më hyrjen e kësaj llogarie; lidheni përsëri"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Provo të rregullosh termat e kërkimit"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Provo përsëri"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Riprovim në orën {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "ID-ja e klientit X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "Sekreti i klientit X"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#মি} other {#মি}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#সপ্তা} other {#সপ্তা}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {{total}টি হ্যান্ডেলের মধ্যে {first}–{last} দেখানো হচ্ছে} other {{total}টি হ্যান্ডেলের মধ্যে {first}–{last} দেখানো হচ্ছে}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · অ্যাপ"
 msgid "{name} · push"
 msgstr "{name} · পুশ"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{network}-এ {name}"
@@ -419,11 +424,6 @@ msgstr "অ্যাকাউন্ট আপডেট হয়েছে"
 msgid "Account verified"
 msgstr "অ্যাকাউন্ট যাচাই করা হয়েছে"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "অ্যাকাউন্টগুলি"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "অনুপলব্ধ সার্ভারের জন্য রিলে হিসেবে কাজ করুন"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" যোগ করা হয়েছে"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "ঠিকানা"
@@ -1160,6 +1159,10 @@ msgstr "মন্তব্য"
 msgid "Comments ({0})"
 msgstr "মন্তব্য ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "কমিউনিটিগুলি"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "কমিউনিটি"
@@ -1210,6 +1213,10 @@ msgstr "সংযুক্ত অ্যাকাউন্ট"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "সংযোগ করা হচ্ছে..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "সার্ভারের সাথে সংযোগ ব্লক করা আছে"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "প্রয়োজনীয় প্যাটার্নের সঙ্গে মেলে না"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "ডোমেইন"
@@ -2324,10 +2330,6 @@ msgstr "ব্যর্থতা"
 msgid "Federation"
 msgstr "ফেডারেশন"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "গ্রুপ অনুসারে"
 msgid "Group: {0}"
 msgstr "গোষ্ঠী: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "হ্যান্ডেল"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "হোম ফিড সংরক্ষিত হয়েছে"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "ActivityPub-এ অ্যাকাউন্ট হোস্ট করুন"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Bluesky-তে অ্যাকাউন্ট হোস্ট করুন"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Matrix-এ অ্যাকাউন্ট হোস্ট করুন"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Fediverse-এ অ্যাকাউন্ট হোস্ট করুন"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "XMPP-তে অ্যাকাউন্ট হোস্ট করুন"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "হোস্ট করা"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "কী প্রতিস্থাপিত হয়েছে"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "ধরন"
@@ -2766,13 +2761,13 @@ msgstr "অ্যাকাউন্ট লিঙ্ক করুন"
 msgid "Link an account"
 msgstr "অ্যাকাউন্ট লিঙ্ক করুন"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "লিঙ্ক করা"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} লিঙ্ক করা হয়েছে"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "লিঙ্ক করা অ্যাকাউন্টগুলি"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "আমার পাসকি"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "নাম"
@@ -3101,11 +3095,6 @@ msgstr "নাম প্রয়োজন"
 msgid "Name must be 1000 characters or less"
 msgstr "নাম অবশ্যই ১০০০ অক্ষর বা তার কম হতে হবে"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "{0}-এর অধীনে নাম"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "নাম আপডেট করা হয়েছে"
@@ -3114,7 +3103,6 @@ msgstr "নাম আপডেট করা হয়েছে"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "নেটওয়ার্ক"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "নেটওয়ার্ক ত্রুটি"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "নতুন বিভাগ"
 msgid "New game"
 msgstr "নতুন গেম"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "পরবর্তী"
@@ -3260,6 +3250,10 @@ msgstr "কোনো গ্রুপ উপলব্ধ নেই"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "কোনো হ্যান্ডেল রিজার্ভ করা হয়নি।"
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "আপনার অনুসন্ধানের সাথে কোনো হ্যান্ডেল মিলছে না"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "পছন্দসমূহ"
 msgid "Preferences reset to defaults"
 msgstr "পছন্দগুলি ডিফল্টে রিসেট করা হয়েছে"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "পূর্ববর্তী"
@@ -4386,6 +4381,10 @@ msgstr "গন্তব্য অনুসন্ধান করুন..."
 msgid "Search for origin..."
 msgstr "উৎস অনুসন্ধান করুন..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "হ্যান্ডেল অনুসন্ধান করুন..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "অবজেক্ট অনুসন্ধান করুন..."
@@ -4689,7 +4688,6 @@ msgstr "শুরু হয়েছে"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "স্ট্যাটাস"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "ক্যামেরা অনুরোধের উত্তর দেওয়া হয়নি"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "সার্ভারের সাথে সংযোগ ব্যর্থ হয়েছে"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "এই নামটি যে হ্যান্ডেলের অধীনে, সেটি আপনার নয়"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "অনুরোধ করা কনটেন্ট খুঁজে পাওয়া যায়নি।"
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "সার্ভার ত্রুটি {status} দিয়ে উত্তর দিয়েছে"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "সার্ভারে পৌঁছানো যাচ্ছে না"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "সার্ভার লিঙ্কের অনুমতি দেয়নি"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "সার্ভার সংযোগ বন্ধ করে দিয়েছে"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "সার্ভার আর এই অ্যাকাউন্টের সাইন-ইন গ্রহণ করে না; এটি পুনরায় লিঙ্ক করুন"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "আপনার অনুসন্ধান শর্তাবলী স
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "আবার চেষ্টা করুন"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "{time}-এ আবার চেষ্টা করা হবে"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "X ক্লায়েন্ট ID"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X ক্লায়েন্ট সিক্রেট"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

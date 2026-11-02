@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#मि} other {#मि}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#आठ} other {#आठ}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {{total} वापरकर्तानावापैकी {first}–{last} दर्शवित आहे} other {{total} वापरकर्तानावांपैकी {first}–{last} दर्शवित आहे}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · अॅप"
 msgid "{name} · push"
 msgstr "{name} · पुश"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{network} वर {name}"
@@ -419,11 +424,6 @@ msgstr "खाते अद्ययावत केले"
 msgid "Account verified"
 msgstr "खाते सत्यापित केले"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "खाती"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "पोहोचता न येणाऱ्या सर्व्हरसाठी रिले म्हणून कार्य करा"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" जोडले"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "पत्ता"
@@ -1160,6 +1159,10 @@ msgstr "टिप्पण्या"
 msgid "Comments ({0})"
 msgstr "टिप्पण्या ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "समुदाय"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "समुदाय"
@@ -1210,6 +1213,10 @@ msgstr "कनेक्ट केलेली खाती"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "कनेक्ट होत आहे..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "सर्व्हरशी कनेक्शन ब्लॉक केलेले आहेत"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "आवश्यक नमुन्याशी जुळत नाही"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "डोमेन"
@@ -2324,10 +2330,6 @@ msgstr "अपयश"
 msgid "Federation"
 msgstr "फेडरेशन"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "यानुसार गट करा"
 msgid "Group: {0}"
 msgstr "गट: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "वापरकर्तानाव"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "होम फीड जतन केले"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "ActivityPub वर खाती होस्ट करा"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Bluesky वर खाती होस्ट करा"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Matrix वर खाती होस्ट करा"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Fediverse वर खाती होस्ट करा"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "XMPP वर खाती होस्ट करा"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "होस्ट केलेले"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "की बदलल्या"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "प्रकार"
@@ -2766,13 +2761,13 @@ msgstr "खाते लिंक करा"
 msgid "Link an account"
 msgstr "खाते लिंक करा"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "जोडलेले"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} लिंक केले"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "जोडलेली खाती"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "माझी पासकी"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "नाव"
@@ -3101,11 +3095,6 @@ msgstr "नाव आवश्यक आहे"
 msgid "Name must be 1000 characters or less"
 msgstr "नाव 1000 अक्षरे किंवा कमी असावे"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "{0} अंतर्गत नाव"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "नाव अद्यतनित केले"
@@ -3114,7 +3103,6 @@ msgstr "नाव अद्यतनित केले"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "नेटवर्क"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "नेटवर्क त्रुटी"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "नवीन कॅटेगरी"
 msgid "New game"
 msgstr "नवीन गेम"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "पुढे"
@@ -3260,6 +3250,10 @@ msgstr "गट उपलब्ध नाहीत"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "कोणतीही वापरकर्तानावे राखीव केलेली नाहीत."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "तुमच्या शोधाशी जुळणारी वापरकर्तानावे नाहीत"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "प्राधान्ये"
 msgid "Preferences reset to defaults"
 msgstr "प्राधान्ये डीफॉल्टवर रीसेट केली"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "मागील"
@@ -4386,6 +4381,10 @@ msgstr "गंतव्यस्थान शोधा..."
 msgid "Search for origin..."
 msgstr "मूळ शोधा..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "वापरकर्तानावे शोधा..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "ऑब्जेक्ट्स शोधा..."
@@ -4689,7 +4688,6 @@ msgstr "सुरू केले"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "स्थिती"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "कॅमेरा विनंतीला उत्तर मिळाले नाही"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "सर्व्हरशी कनेक्शन अयशस्वी झाले"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "हे नाव ज्या वापरकर्तानावाखाली आहे ते तुमचे नाही"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "विनंती केलेली सामग्री आढळली नाही."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "सर्व्हरने त्रुटी {status} सह उत्तर दिले"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "सर्व्हरपर्यंत पोहोचता येत नाही"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "सर्व्हरने लिंकला परवानगी दिली नाही"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "सर्व्हरने कनेक्शन बंद केले"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "सर्व्हर आता या खात्याचे साइन-इन स्वीकारत नाही; ते पुन्हा जोडा"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "तुमच्या शोध शब्दांना समायो
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "पुन्हा प्रयत्न करा"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "{time} वाजता पुन्हा प्रयत्न केला जाईल"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "X क्लायंट ID"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X क्लायंट सीक्रेट"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

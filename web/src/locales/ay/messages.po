@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#sem} other {#sem}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {{first}–{last} uñstayasa, {total} apnaqiri sutita} other {{first}–{last} uñstayasa, {total} apnaqiri sutinakata}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · aplicación"
 msgid "{name} · push"
 msgstr "{name} · push yatiyawi"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} {network} ukana"
@@ -419,11 +424,6 @@ msgstr "Cuenta machaqachata"
 msgid "Account verified"
 msgstr "Cuenta chiqanchata"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Cuentanaka"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Jan puriñjam servidoranakatakix relay ukham irnaqaña"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" yapxatata"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Dirección"
@@ -1160,6 +1159,10 @@ msgstr "Comentarionaka"
 msgid "Comments ({0})"
 msgstr "Comentarionaka ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Ayllunaka"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Ayllu"
@@ -1210,6 +1213,10 @@ msgstr "Chikacht'at cuentanaka"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Chikacht'asiskiwa..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Servidorar chikacht'äwinakax jark'atawa"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Wakisir patrón ukampix janiw kikipkiti"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Dominio"
@@ -2324,10 +2330,6 @@ msgstr "Pantjasiwinaka"
 msgid "Federation"
 msgstr "Federación"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Akham tamachaña"
 msgid "Group: {0}"
 msgstr "Tama: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Apnaqiri suti"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Utan feed imatawa"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "ActivityPub ukan cuentanak utjayaña"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Bluesky ukan cuentanak utjayaña"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Matrix ukan cuentanak utjayaña"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "fediverse ukan cuentanak utjayaña"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "XMPP ukan cuentanak utjayaña"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Aka servidoran"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Llavenakax turkatawa"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Kasta"
@@ -2766,13 +2761,13 @@ msgstr "Cuenta chinuña"
 msgid "Link an account"
 msgstr "Mä cuenta chikachaña"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Chinuta"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} chinutawa"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Chinuta cuentanaka"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Mantañ llawija"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Suti"
@@ -3101,11 +3095,6 @@ msgstr "Suti wakisiwa"
 msgid "Name must be 1000 characters or less"
 msgstr "Sutix 1000 qillqanaka jan ukax juk'ampi jisk'äñapawa"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "{0} manqhankir suti"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Suti machaqachata"
@@ -3114,7 +3103,6 @@ msgstr "Suti machaqachata"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Red"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Red pantjasiwi"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Machaqa kasta"
 msgid "New game"
 msgstr "Machaqa anata"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Arkiri"
@@ -3260,6 +3250,10 @@ msgstr "Jan tamanak utjki"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Janiw kuna apnaqiri sutis reservatäkiti."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Thaqhawimampi kikip apnaqiri sutinakax janiw utjkiti"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Ajllinaka"
 msgid "Preferences reset to defaults"
 msgstr "Preferencianak default ukar kutiyata"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Nayrïri"
@@ -4386,6 +4381,10 @@ msgstr "Destino thaqhama..."
 msgid "Search for origin..."
 msgstr "Mistuñ chiqa thaqhama..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Apnaqiri sutinak thaqhama..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Objetonak thaqhama..."
@@ -4689,7 +4688,6 @@ msgstr "Qalltata"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Estado"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Cámara mayiwix janiw jaysatäkiti"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Servidoramp chikacht'äwix pantjasiwa"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Aka sutin apnaqiri sutipax janiw jumankkiti"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Mayit contenidox janiw jikxataskiti."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Servidorax {status} pantjampiw jaysäna"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Servidorax janiw puriñjamäkiti"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Servidorax janiw chikachañ jaysakiti"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Servidorax chikacht'äwi tukuyäna"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Servidorax janiw aka cuentan mantäwip katuqxiti; wasitat chinum"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Thaqhañ arunakam mayjt'ayañ yant'am"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Wasitat yant'am"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "{time} ukjax wasitat yant'aniwa"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "X cliente ID"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X cliente imantata"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#น} other {#น}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#สัป} other {#สัป}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, other {แสดง {first}–{last} จาก {total} ชื่อแฝง}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · แอป"
 msgid "{name} · push"
 msgstr "{name} · พุช"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} บน {network}"
@@ -419,11 +424,6 @@ msgstr "อัปเดตบัญชีแล้ว"
 msgid "Account verified"
 msgstr "ยืนยันบัญชีแล้ว"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "บัญชี"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "ทำหน้าที่เป็นตัวส่งต่อสำหรับเซิร์ฟเวอร์ที่เข้าถึงไม่ได้"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "เพิ่ม\"{0}\"แล้ว"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "ที่อยู่"
@@ -1160,6 +1159,10 @@ msgstr "ความคิดเห็น"
 msgid "Comments ({0})"
 msgstr "ความคิดเห็น ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "ชุมชน"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "ชุมชน"
@@ -1210,6 +1213,10 @@ msgstr "บัญชีที่เชื่อมต่อ"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "กำลังเชื่อมต่อ..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "การเชื่อมต่อไปยังเซิร์ฟเวอร์ถูกบล็อก"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "ไม่ตรงกับรูปแบบที่กำหนด"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "โดเมน"
@@ -2324,10 +2330,6 @@ msgstr "ล้มเหลว"
 msgid "Federation"
 msgstr "เฟเดอเรชัน"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "จัดกลุ่มตาม"
 msgid "Group: {0}"
 msgstr "กลุ่ม: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "ชื่อแฝง"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "บันทึกฟีดหลักแล้ว"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "โฮสต์บัญชีบน ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "โฮสต์บัญชีบน Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "โฮสต์บัญชีบน Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "โฮสต์บัญชีบน fediverse"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "โฮสต์บัญชีบน XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "โฮสต์ที่นี่"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "แทนที่คีย์แล้ว"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "ประเภท"
@@ -2766,13 +2761,13 @@ msgstr "เชื่อมโยงบัญชี"
 msgid "Link an account"
 msgstr "เชื่อมโยงบัญชี"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "เชื่อมโยงแล้ว"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "เชื่อมโยง {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "บัญชีที่เชื่อมโยง"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "พาสคีย์ของฉัน"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "ชื่อ"
@@ -3101,11 +3095,6 @@ msgstr "ต้องระบุชื่อ"
 msgid "Name must be 1000 characters or less"
 msgstr "ชื่อต้องไม่เกิน 1000 ตัวอักษร"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "ชื่อภายใต้ {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "อัปเดตชื่อแล้ว"
@@ -3114,7 +3103,6 @@ msgstr "อัปเดตชื่อแล้ว"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "เครือข่าย"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "ข้อผิดพลาดของเครือข่าย"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "หมวดหมู่ใหม่"
 msgid "New game"
 msgstr "เกมใหม่"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "ถัดไป"
@@ -3260,6 +3250,10 @@ msgstr "ไม่มีกลุ่มที่ใช้งานได้"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "ไม่มีชื่อแฝงที่ถูกจอง"
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "ไม่มีชื่อแฝงที่ตรงกับการค้นหาของคุณ"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "การตั้งค่า"
 msgid "Preferences reset to defaults"
 msgstr "รีเซ็ตการตั้งค่าเป็นค่าเริ่มต้นแล้ว"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "ก่อนหน้า"
@@ -4386,6 +4381,10 @@ msgstr "ค้นหาปลายทาง..."
 msgid "Search for origin..."
 msgstr "ค้นหาต้นทาง..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "ค้นหาชื่อแฝง..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "ค้นหาออบเจ็กต์..."
@@ -4689,7 +4688,6 @@ msgstr "เริ่มแล้ว"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "สถานะ"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "คำขอกล้องไม่ได้รับการตอบกลับ"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "การเชื่อมต่อกับเซิร์ฟเวอร์ล้มเหลว"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "ชื่อแฝงที่ชื่อนี้อยู่ภายใต้ไม่ใช่ของคุณ"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "ไม่พบเนื้อหาที่ร้องขอ"
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "เซิร์ฟเวอร์ตอบกลับด้วยข้อผิดพลาด {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "เข้าถึงเซิร์ฟเวอร์ไม่ได้"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "เซิร์ฟเวอร์ไม่อนุญาตการเชื่อมโยง"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "เซิร์ฟเวอร์ยุติการเชื่อมต่อ"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "เซิร์ฟเวอร์ไม่ยอมรับการลงชื่อเข้าใช้ของบัญชีนี้อีกต่อไป โปรดเชื่อมโยงใหม่"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "ลองปรับคำค้นหาของคุณ"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "ลองอีกครั้ง"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "จะลองอีกครั้งเวลา {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "ID ไคลเอ็นต์ X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "ความลับไคลเอ็นต์ X"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

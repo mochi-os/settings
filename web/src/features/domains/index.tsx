@@ -990,7 +990,7 @@ function DomainDetails({
                 <Switch
                   checked={domain.verified === 1}
                   onCheckedChange={handleToggleVerified}
-                  disabled={updateDomain.isPending}
+                  loading={updateDomain.isPending}
                 />
               </FieldRow>
               {domain.token && (
@@ -1044,7 +1044,7 @@ function DomainDetails({
                 <Switch
                   checked={domain.tls === 1}
                   onCheckedChange={handleToggleTls}
-                  disabled={updateDomain.isPending}
+                  loading={updateDomain.isPending}
                 />
               </FieldRow>
             </div>

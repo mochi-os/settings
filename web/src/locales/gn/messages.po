@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#arap} other {#arap}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {Ojehechauka {first}–{last} {total} puruhára réra apytégui} other {Ojehechauka {first}–{last} {total} puruhára réra apytégui}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · app"
 msgid "{name} · push"
 msgstr "{name} · momarandu"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} {network}-pe"
@@ -419,11 +424,6 @@ msgstr "Mba'ete oñembohekopyahúma"
 msgid "Account verified"
 msgstr "Mba'ete jehechajeypyre"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Mba'etekuéra"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Omba'apo relay ramo mohendaha ojehupyty'ỹvape"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "Oñembojuajúma \"{0}\""
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Dirección"
@@ -1160,6 +1159,10 @@ msgstr "Comentariokuéra"
 msgid "Comments ({0})"
 msgstr "Comentariokuéra ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Atykuéra"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Aty"
@@ -1210,6 +1213,10 @@ msgstr "Mba'etekuéra oñembojuajúva"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Ojoajúhína..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Ñembojuaju mohendahápe ojejoko"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Ndojojái pe patrón ojejeruréva ndive"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Dominio"
@@ -2324,10 +2330,6 @@ msgstr "Jejavykuéra"
 msgid "Federation"
 msgstr "Federación"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Embyaty rupive"
 msgid "Group: {0}"
 msgstr "Atypy: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Puruhára réra"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Marandu syry ñepyrũ oñeñongatúma"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Eguereko mba'etekuéra ActivityPub-pe"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Eguereko mba'etekuéra Bluesky-pe"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Eguereko mba'etekuéra Matrix-pe"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Eguereko mba'etekuéra fediverse-pe"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Eguereko mba'etekuéra XMPP-pe"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Ko mohendahápe"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Llavekuéra oñembyekoviáma"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Mba'éichagua"
@@ -2766,13 +2761,13 @@ msgstr "Embojuaju mba'ete"
 msgid "Link an account"
 msgstr "Ejoaju peteĩ mba'ete"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Ojejuaju"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Oñembojuaju {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Mba'etekuéra ojejuajúva"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Che jeike rape"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Téra"
@@ -3101,11 +3095,6 @@ msgstr "Téra tekotevẽ"
 msgid "Name must be 1000 characters or less"
 msgstr "Téra oguerekova'erã 1000 tai térã sa'ive"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Téra {0} guýpe"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Téra oñembohekopyahu"
@@ -3114,7 +3103,6 @@ msgstr "Téra oñembohekopyahu"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Ñanduti"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Jejavy ñanduti rehegua"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Categoría pyahu"
 msgid "New game"
 msgstr "Ñembosarái pyahu"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Tenondeve"
@@ -3260,6 +3250,10 @@ msgstr "Ndaipóri atypy oĩva"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Ndaipóri puruhára réra oñereservava'ekue."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Ndaipóri puruhára réra ojuajúva ne ñehekáre"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Jeporavo"
 msgid "Preferences reset to defaults"
 msgstr "Jeporavo oñembojevy ypyguápe"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Mboyvegua"
@@ -4386,6 +4381,10 @@ msgstr "Eheka destino..."
 msgid "Search for origin..."
 msgstr "Eheka origen..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Eheka puruhára rérakuéra..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Eheka mba'ekuéra..."
@@ -4689,7 +4688,6 @@ msgstr "Oñepyrũma"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Mba'éichapa"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Cámara jerure ndojehechái mbohovái"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Ñembojuaju mohendahápe ndoikoporãi"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Puruhára réra ko téra oĩháme ndaha'éi nde mba'e"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Ndaikatúi ojejuhu tetepy ojejeruréva."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Mohendaha ombohovái jejavy {status} reheve"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Mohendaha ndaikatúi ojehupyty"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Mohendaha nomoneĩri juajuha"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Mohendaha omohu'ã ñembojuaju"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Mohendaha nomoneĩvéima ko mba'ete jeike; embojoaju jey"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Eha'ã emohenda ne jeheka ñe'ẽ"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Eha'ã jey"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Oñeha'ã jeýta {time}-pe"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "X cliente ID"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X cliente ñemigua"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

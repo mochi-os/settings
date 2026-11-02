@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#ġim} other {#ġim}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {Qed juri {first}–{last} minn {total} isem tal-utent} two {Qed juri {first}–{last} minn {total} ismijiet tal-utent} few {Qed juri {first}–{last} minn {total} ismijiet tal-utent} many {Qed juri {first}–{last} minn {total} isem tal-utent} other {Qed juri {first}–{last} minn {total} isem tal-utent}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · applikazzjoni"
 msgid "{name} · push"
 msgstr "{name} · notifika push"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} fuq {network}"
@@ -419,11 +424,6 @@ msgstr "Kont aġġornat"
 msgid "Account verified"
 msgstr "Kont ivverifikat"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Kontijiet"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Aġixxi bħala relay għal servers li ma jistgħux jintlaħqu"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "Miżjud \"{0}\""
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Indirizz"
@@ -1160,6 +1159,10 @@ msgstr "Kummenti"
 msgid "Comments ({0})"
 msgstr "Kummenti ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Komunitajiet"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Komunità"
@@ -1210,6 +1213,10 @@ msgstr "Kontijiet konnessi"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Qed jgħaqqad..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Il-konnessjonijiet mas-server huma mblukkati"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Ma jaqbilx mal-mudell meħtieġ"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Dominju"
@@ -2324,10 +2330,6 @@ msgstr "Fallimenti"
 msgid "Federation"
 msgstr "Federazzjoni"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Iggrupp skont"
 msgid "Group: {0}"
 msgstr "Grupp: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Isem tal-utent"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Il-feed ewlieni ġie ssejvjat"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Ospita kontijiet fuq ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Ospita kontijiet fuq Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Ospita kontijiet fuq Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Ospita kontijiet fuq il-fediverse"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Ospita kontijiet fuq XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Ospitat"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Ċwievet mibdula"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Tip"
@@ -2766,13 +2761,13 @@ msgstr "Orbot kont"
 msgid "Link an account"
 msgstr "Illinkja kont"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Illinkjat"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Marbut {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Kontijiet illinkjati"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Iċ-ċavetta tal-aċċess tiegħi"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Isem"
@@ -3101,11 +3095,6 @@ msgstr "L-isem huwa meħtieġ"
 msgid "Name must be 1000 characters or less"
 msgstr "L-isem irid ikun ta' 1000 karattru jew inqas"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Isem taħt {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Isem aġġornat"
@@ -3114,7 +3103,6 @@ msgstr "Isem aġġornat"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Netwerk"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Żball tan-network"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Kategorija ġdida"
 msgid "New game"
 msgstr "Logħba ġdida"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Li jmiss"
@@ -3260,6 +3250,10 @@ msgstr "L-ebda gruppi disponibbli"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Ma ġie riżervat l-ebda isem tal-utent."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "L-ebda ismijiet tal-utent ma jaqblu mat-tiftixa tiegħek"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Preferenzi"
 msgid "Preferences reset to defaults"
 msgstr "Preferenzi reset għal default"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Preċedenti"
@@ -4386,6 +4381,10 @@ msgstr "Fittex destinazzjoni..."
 msgid "Search for origin..."
 msgstr "Fittex oriġini..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Fittex ismijiet tal-utent..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Fittex oġġetti..."
@@ -4689,7 +4688,6 @@ msgstr "Inbeda"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Status"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "It-talba għall-kamera ma twiġbitx"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Il-konnessjoni mas-server falliet"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "L-isem tal-utent li taħtu jinsab dan l-isem mhuwiex tiegħek"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Il-kontenut mitlub ma setax jinstab."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Is-server wieġeb bl-iżball {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Is-server ma jistax jintlaħaq"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Is-server ma ppermettiex ir-rabta"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Is-server temm il-konnessjoni"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Is-server m'għadux jaċċetta d-dħul ta' dan il-kont; erġa' llinkjah"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Ipprova taġġusta t-termini tat-tfittxija tiegħek"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Erġa' pprova"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Tentattiv ieħor fil-{time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "ID tal-klijent X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "Sigriet tal-klijent X"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

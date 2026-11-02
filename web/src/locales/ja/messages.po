@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#分} other {#分}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#週間} other {#週間}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, other {{total}件のハンドルのうち{first}–{last}件を表示中}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · アプリ"
 msgid "{name} · push"
 msgstr "{name} · プッシュ"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{network} の {name}"
@@ -419,11 +424,6 @@ msgstr "アカウントを更新しました"
 msgid "Account verified"
 msgstr "アカウントを確認しました"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "アカウント"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "到達できないサーバーの中継役を務める"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "「{0}」を追加しました"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "アドレス"
@@ -1160,6 +1159,10 @@ msgstr "コメント"
 msgid "Comments ({0})"
 msgstr "コメント ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "コミュニティ"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "コミュニティ"
@@ -1210,6 +1213,10 @@ msgstr "連携アカウント"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "接続中..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "サーバーへの接続はブロックされています"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "必要なパターンと一致しません"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "ドメイン"
@@ -2324,10 +2330,6 @@ msgstr "失敗回数"
 msgid "Federation"
 msgstr "連合"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "フェディバース"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "グループ化"
 msgid "Group: {0}"
 msgstr "グループ: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "ハンドル"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "ホームフィードを保存しました"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "ActivityPub でアカウントをホスト"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Bluesky でアカウントをホスト"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Matrix でアカウントをホスト"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "フェディバースでアカウントをホスト"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "XMPP でアカウントをホスト"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "ホスティング"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "キーを置き換えました"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "種類"
@@ -2766,13 +2761,13 @@ msgstr "アカウントをリンク"
 msgid "Link an account"
 msgstr "アカウントをリンク"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "リンク済み"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label}をリンクしました"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "リンク済みのアカウント"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "マイパスキー"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "名前"
@@ -3101,11 +3095,6 @@ msgstr "名前が必要です"
 msgid "Name must be 1000 characters or less"
 msgstr "名前は1000文字以下にしてください"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "{0} の下の名前"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "名前を更新しました"
@@ -3114,7 +3103,6 @@ msgstr "名前を更新しました"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "ネットワーク"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "ネットワークエラー"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "新しいカテゴリー"
 msgid "New game"
 msgstr "新しいゲーム"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "次へ"
@@ -3260,6 +3250,10 @@ msgstr "利用可能なグループがありません"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "予約されたハンドルはありません。"
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "検索に一致するハンドルはありません"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "環境設定"
 msgid "Preferences reset to defaults"
 msgstr "設定をデフォルトに戻しました"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "前へ"
@@ -4386,6 +4381,10 @@ msgstr "目的地を検索…"
 msgid "Search for origin..."
 msgstr "出発地を検索…"
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "ハンドルを検索..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "オブジェクトを検索…"
@@ -4689,7 +4688,6 @@ msgstr "開始済み"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "ステータス"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "カメラの要求に応答がありませんでした"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "サーバーへの接続に失敗しました"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "この名前が属するハンドルはあなたのものではありません"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "リクエストされたコンテンツが見つかりませんでした。"
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "サーバーがエラー {status} で応答しました"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "サーバーに到達できません"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "サーバーがリンクを許可しませんでした"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "サーバーが接続を終了しました"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "サーバーがこのアカウントのサインインを受け付けなくなりました。再リンクしてください"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "検索語を変えてみてください"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "再試行"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "{time} に再試行します"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "Xクライアント ID"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "Xクライアントシークレット"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

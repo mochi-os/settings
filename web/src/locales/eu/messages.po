@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#ast} other {#ast}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {{total} erabiltzaile-izenetik {first}–{last} erakusten} other {{total} erabiltzaile-izenetik {first}–{last} erakusten}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · aplikazioa"
 msgid "{name} · push"
 msgstr "{name} · push jakinarazpenak"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} {network} sarean"
@@ -419,11 +424,6 @@ msgstr "Kontua eguneratua"
 msgid "Account verified"
 msgstr "Kontua egiaztatua"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Kontuak"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Jardun erreleboa gisa iritsi ezin diren zerbitzarientzat"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" gehitu da"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Helbidea"
@@ -1160,6 +1159,10 @@ msgstr "Iruzkinak"
 msgid "Comments ({0})"
 msgstr "Iruzkinak ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Komunitateak"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Komunitatea"
@@ -1210,6 +1213,10 @@ msgstr "Konektatutako kontuak"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Konektatzen..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Zerbitzarirako konexioak blokeatuta daude"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Ez dator bat beharrezko ereduarekin"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domeinua"
@@ -2324,10 +2330,6 @@ msgstr "Hutsegiteak"
 msgid "Federation"
 msgstr "Federazioa"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fedibertso"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Taldekatu honen arabera"
 msgid "Group: {0}"
 msgstr "Taldea: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Erabiltzaile-izena"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Hasierako jarioa gorde da"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Ostatatu kontuak ActivityPub-en"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Ostatatu kontuak Bluesky-n"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Ostatatu kontuak Matrix-en"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Ostatatu kontuak fedibertsoan"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Ostatatu kontuak XMPP-n"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Ostatatua"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Gakoak ordeztu dira"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Mota"
@@ -2766,13 +2761,13 @@ msgstr "Lotu kontua"
 msgid "Link an account"
 msgstr "Estekatu kontu bat"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Estekatuta"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Lotuta: {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Estekatutako kontuak"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Nire sarbide-gakoa"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Izena"
@@ -3101,11 +3095,6 @@ msgstr "Izena beharrezkoa da"
 msgid "Name must be 1000 characters or less"
 msgstr "Izenak 1000 karaktere edo gutxiago izan behar ditu"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "{0} azpiko izena"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Izena eguneratu da"
@@ -3114,7 +3103,6 @@ msgstr "Izena eguneratu da"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Sarea"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Sareko errorea"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Kategoria berria"
 msgid "New game"
 msgstr "Joko berria"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Hurrengoa"
@@ -3260,6 +3250,10 @@ msgstr "Ez dago talde erabilgarririk"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Ez da erabiltzaile-izenik erreserbatu."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Ez dago zure bilaketarekin bat datorren erabiltzaile-izenik"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Hobespenak"
 msgid "Preferences reset to defaults"
 msgstr "Hobespenak lehenetsietara berrezarri dira"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Aurrekoa"
@@ -4386,6 +4381,10 @@ msgstr "Bilatu helburua..."
 msgid "Search for origin..."
 msgstr "Bilatu jatorria..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Bilatu erabiltzaile-izenak..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Bilatu objektuak..."
@@ -4689,7 +4688,6 @@ msgstr "Hasita"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Egoera"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Kamera eskaerak ez du erantzunik jaso"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Zerbitzarirako konexioak huts egin du"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Izen hau dagoen erabiltzaile-izena ez da zurea"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Eskatutako edukia ezin izan da aurkitu."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Zerbitzariak {status} errorearekin erantzun du"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Ezin da zerbitzarira iritsi"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Zerbitzariak ez du estekatzea onartu"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Zerbitzariak konexioa amaitu du"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Zerbitzariak jada ez du kontu honen saio-hasiera onartzen; estekatu berriro"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Saiatu zure bilaketa-terminoak doitzen"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Saiatu berriro"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Berriro saiatuko da ordu honetan: {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "X bezero IDa"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X bezero-sekretua"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

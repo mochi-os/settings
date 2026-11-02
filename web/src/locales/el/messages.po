@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#λ} other {#λ}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#εβδ} other {#εβδ}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {Εμφάνιση {first}–{last} από {total} όνομα χρήστη} other {Εμφάνιση {first}–{last} από {total} ονόματα χρήστη}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · εφαρμογή"
 msgid "{name} · push"
 msgstr "{name} · ειδοποιήσεις push"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} στο {network}"
@@ -419,11 +424,6 @@ msgstr "Ο λογαριασμός ενημερώθηκε"
 msgid "Account verified"
 msgstr "Ο λογαριασμός επαληθεύτηκε"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Λογαριασμοί"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Λειτουργία ως αναμεταδότης για μη προσβάσιμους διακομιστές"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "Προστέθηκε \"{0}\""
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Διεύθυνση"
@@ -1160,6 +1159,10 @@ msgstr "Σχόλια"
 msgid "Comments ({0})"
 msgstr "Σχόλια ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Κοινότητες"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Κοινότητα"
@@ -1210,6 +1213,10 @@ msgstr "Συνδεδεμένοι λογαριασμοί"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Σύνδεση..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Οι συνδέσεις στον διακομιστή είναι αποκλεισμένες"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Δεν ταιριάζει με το απαιτούμενο μοτίβο"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Τομέας"
@@ -2324,10 +2330,6 @@ msgstr "Αποτυχίες"
 msgid "Federation"
 msgstr "Ομοσπονδία"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Ομαδοποίηση κατά"
 msgid "Group: {0}"
 msgstr "Ομάδα: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Όνομα χρήστη"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Η αρχική ροή αποθηκεύτηκε"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Φιλοξενία λογαριασμών στο ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Φιλοξενία λογαριασμών στο Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Φιλοξενία λογαριασμών στο Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Φιλοξενία λογαριασμών στο Fediverse"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Φιλοξενία λογαριασμών στο XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Φιλοξενούμενος"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Τα κλειδιά αντικαταστάθηκαν"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Τύπος"
@@ -2766,13 +2761,13 @@ msgstr "Σύνδεση λογαριασμού"
 msgid "Link an account"
 msgstr "Σύνδεση λογαριασμού"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Συνδεδεμένο"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Συνδέθηκε {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Συνδεδεμένοι λογαριασμοί"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Το κλειδί πρόσβασής μου"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Όνομα"
@@ -3101,11 +3095,6 @@ msgstr "Το όνομα είναι υποχρεωτικό"
 msgid "Name must be 1000 characters or less"
 msgstr "Το όνομα πρέπει να είναι 1000 χαρακτήρες ή λιγότεροι"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Όνομα κάτω από το {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Το όνομα ενημερώθηκε"
@@ -3114,7 +3103,6 @@ msgstr "Το όνομα ενημερώθηκε"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Δίκτυο"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Σφάλμα δικτύου"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Νέα κατηγορία"
 msgid "New game"
 msgstr "Νέο παιχνίδι"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Επόμενο"
@@ -3260,6 +3250,10 @@ msgstr "Δεν υπάρχουν διαθέσιμες ομάδες"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Δεν έχουν δεσμευτεί ονόματα χρήστη."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Κανένα όνομα χρήστη δεν ταιριάζει με την αναζήτησή σας"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Προτιμήσεις"
 msgid "Preferences reset to defaults"
 msgstr "Οι προτιμήσεις επαναφέρθηκαν στις προεπιλογές"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Προηγούμενο"
@@ -4386,6 +4381,10 @@ msgstr "Αναζήτηση για προορισμό..."
 msgid "Search for origin..."
 msgstr "Αναζήτηση για αφετηρία..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Αναζήτηση ονομάτων χρήστη..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Αναζήτηση αντικειμένων..."
@@ -4689,7 +4688,6 @@ msgstr "Ξεκίνησε"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Κατάσταση"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Το αίτημα κάμερας δεν απαντήθηκε"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Η σύνδεση με τον διακομιστή απέτυχε"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Το όνομα χρήστη κάτω από το οποίο βρίσκεται αυτό το όνομα δεν είναι δικό σας"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Το περιεχόμενο που ζητήσατε δεν βρέθηκε."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Ο διακομιστής απάντησε με σφάλμα {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Δεν είναι δυνατή η πρόσβαση στον διακομιστή"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Ο διακομιστής δεν επέτρεψε τη σύνδεση"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Ο διακομιστής τερμάτισε τη σύνδεση"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Ο διακομιστής δεν δέχεται πλέον την είσοδο αυτού του λογαριασμού· συνδέστε τον ξανά"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Δοκιμάστε να προσαρμόσετε τους όρους α�
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Δοκιμάστε ξανά"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Νέα προσπάθεια στις {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "Αναγνωριστικό πελάτη X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "Μυστικό πελάτη X"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

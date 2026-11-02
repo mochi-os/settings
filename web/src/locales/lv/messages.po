@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#ned} other {#ned}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, zero {Tiek rādīti {first}–{last} no {total} lietotājvārdiem} one {Tiek rādīti {first}–{last} no {total} lietotājvārda} other {Tiek rādīti {first}–{last} no {total} lietotājvārdiem}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · lietotne"
 msgid "{name} · push"
 msgstr "{name} · push paziņojumi"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} tīklā {network}"
@@ -419,11 +424,6 @@ msgstr "Konts atjaunināts"
 msgid "Account verified"
 msgstr "Konts verificēts"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Konti"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Darboties kā retranslators nesasniedzamiem serveriem"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "Pievienots \"{0}\""
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adrese"
@@ -1160,6 +1159,10 @@ msgstr "Komentāri"
 msgid "Comments ({0})"
 msgstr "Komentāri ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Kopienas"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Kopiena"
@@ -1210,6 +1213,10 @@ msgstr "Savienotie konti"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Notiek savienošana..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Savienojumi ar serveri ir bloķēti"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Neatbilst prasītajam šablonam"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domēns"
@@ -2324,10 +2330,6 @@ msgstr "Kļūmes"
 msgid "Federation"
 msgstr "Federācija"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Grupēt pēc"
 msgid "Group: {0}"
 msgstr "Grupa: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Lietotājvārds"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Sākuma plūsma saglabāta"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Mitināt kontus ActivityPub tīklā"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Mitināt kontus Bluesky tīklā"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Mitināt kontus Matrix tīklā"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Mitināt kontus fediverse tīklos"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Mitināt kontus XMPP tīklā"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Mitināts"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Atslēgas aizstātas"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Veids"
@@ -2766,13 +2761,13 @@ msgstr "Saistīt kontu"
 msgid "Link an account"
 msgstr "Saistīt kontu"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Saistīts"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Saistīts {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Saistītie konti"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Mana piekļuves atslēga"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Nosaukums"
@@ -3101,11 +3095,6 @@ msgstr "Vārds ir obligāts"
 msgid "Name must be 1000 characters or less"
 msgstr "Nosaukums nedrīkst pārsniegt 1000 rakstzīmes"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Vārds zem {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Vārds atjaunināts"
@@ -3114,7 +3103,6 @@ msgstr "Vārds atjaunināts"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Tīkls"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Tīkla kļūda"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Jauna kategorija"
 msgid "New game"
 msgstr "Jauna spēle"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Tālāk"
@@ -3260,6 +3250,10 @@ msgstr "Nav pieejamu grupu"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Neviens lietotājvārds nav rezervēts."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Meklējumam neatbilst neviens lietotājvārds"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Preferences"
 msgid "Preferences reset to defaults"
 msgstr "Preferences atiestatītas uz noklusējumu"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Iepriekšējais"
@@ -4386,6 +4381,10 @@ msgstr "Meklēt galamērķi..."
 msgid "Search for origin..."
 msgstr "Meklēt izcelsmi..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Meklēt lietotājvārdus..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Meklēt objektus..."
@@ -4689,7 +4688,6 @@ msgstr "Sākts"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Statuss"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Uz kameras pieprasījumu netika atbildēts"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Savienojums ar serveri neizdevās"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Lietotājvārds, kuram pieder šis vārds, nav jūsu"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Pieprasīto saturu neizdevās atrast."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Serveris atbildēja ar kļūdu {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Serveris nav sasniedzams"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Serveris neatļāva saistīšanu"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Serveris pārtrauca savienojumu"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Serveris vairs nepieņem šī konta pierakstīšanos; saistiet to atkārtoti"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Mēģiniet pielāgot meklēšanas vārdus"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Mēģināt vēlreiz"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Atkārtots mēģinājums plkst. {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "X klienta ID"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X klienta noslēpums"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

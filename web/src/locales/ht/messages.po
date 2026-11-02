@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#sem} other {#sem}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {Ap montre {first}–{last} nan {total} non itilizatè} other {Ap montre {first}–{last} nan {total} non itilizatè}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · aplikasyon"
 msgid "{name} · push"
 msgstr "{name} · push"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} sou {network}"
@@ -419,11 +424,6 @@ msgstr "Kont mete ajou"
 msgid "Account verified"
 msgstr "Kont verifye"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Kont yo"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Aji kòm relè pou sèvè ki pa aksesib"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "Ajoute \"{0}\""
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Adrès"
@@ -1160,6 +1159,10 @@ msgstr "Kòmantè"
 msgid "Comments ({0})"
 msgstr "Kòmantè ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Kominote yo"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Kominote"
@@ -1210,6 +1213,10 @@ msgstr "Kont konekte"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Konekte..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Koneksyon ak sèvè a bloke"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Li pa koresponn ak modèl ki mande a"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domèn"
@@ -2324,10 +2330,6 @@ msgstr "Echèk"
 msgid "Federation"
 msgstr "Federasyon"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Gwoupe pa"
 msgid "Group: {0}"
 msgstr "Gwoup: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Non itilizatè"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Fil lakay anrejistre"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Ebèje kont sou ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Ebèje kont sou Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Ebèje kont sou Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Ebèje kont sou fediverse la"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Ebèje kont sou XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Ebèje"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Kle yo ranplase"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Kalite"
@@ -2766,13 +2761,13 @@ msgstr "Lye kont"
 msgid "Link an account"
 msgstr "Lye yon kont"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Lye"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Lye {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Kont ki lye yo"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Kle aksè mwen"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Non"
@@ -3101,11 +3095,6 @@ msgstr "Non obligatwa"
 msgid "Name must be 1000 characters or less"
 msgstr "Non dwe gen 1000 karaktè oswa mwens"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Non anba {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Non mete ajou"
@@ -3114,7 +3103,6 @@ msgstr "Non mete ajou"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Rezo"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Erè rezo"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Nouvo kategori"
 msgid "New game"
 msgstr "Nouvo jwèt"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Pwochen"
@@ -3260,6 +3250,10 @@ msgstr "Pa gen gwoup disponib"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Pa gen okenn non itilizatè ki rezève."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Pa gen non itilizatè ki koresponn ak rechèch ou"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Preferans"
 msgid "Preferences reset to defaults"
 msgstr "Preferans reset nan default"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Anvan"
@@ -4386,6 +4381,10 @@ msgstr "Chèche pou destinasyon..."
 msgid "Search for origin..."
 msgstr "Chèche pou orijin..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Chèche non itilizatè..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Chèche objè..."
@@ -4689,7 +4688,6 @@ msgstr "Kòmanse"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Estati"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Demann kamera a pa jwenn repons"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Koneksyon ak sèvè a echwe"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Non itilizatè ki gen non sa a anba li a pa pou ou"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Nou pa t ka jwenn kontni ou te mande a."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Sèvè a reponn ak erè {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Sèvè a pa aksesib"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Sèvè a pa t pèmèt lyen an"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Sèvè a fèmen koneksyon an"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Sèvè a pa aksepte idantifikasyon kont sa a ankò; lye l ankò"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Eseye ajiste tèm rechèch ou"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Eseye ankò"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "N ap eseye ankò a {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "ID kliyan X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "Sekrè kliyan X"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

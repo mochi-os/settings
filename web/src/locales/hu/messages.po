@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#p} other {#p}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#hét} other {#hét}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {{total} felhasználónévből {first}–{last} megjelenítése} other {{total} felhasználónévből {first}–{last} megjelenítése}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · alkalmazás"
 msgid "{name} · push"
 msgstr "{name} · push értesítés"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} itt: {network}"
@@ -419,11 +424,6 @@ msgstr "Fiók frissítve"
 msgid "Account verified"
 msgstr "Fiók ellenőrizve"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Fiókok"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Működjön továbbítóként az elérhetetlen kiszolgálókhoz"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "Hozzáadva: „{0}”"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Cím"
@@ -1160,6 +1159,10 @@ msgstr "Megjegyzések"
 msgid "Comments ({0})"
 msgstr "Megjegyzések ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Közösségek"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Közösség"
@@ -1210,6 +1213,10 @@ msgstr "Csatlakoztatott fiókok"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Csatlakozás…"
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "A kiszolgálóval való kapcsolatok le vannak tiltva"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Nem felel meg a megadott mintának"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Tartomány"
@@ -2324,10 +2330,6 @@ msgstr "Hibák"
 msgid "Federation"
 msgstr "Föderáció"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverzum"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Csoportosítás"
 msgid "Group: {0}"
 msgstr "Csoport: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Felhasználónév"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Kezdő hírfolyam mentve"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Fiókok üzemeltetése a ActivityPub hálózaton"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Fiókok üzemeltetése a Bluesky hálózaton"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Fiókok üzemeltetése a Matrix hálózaton"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Fiókok üzemeltetése a fediverzumon"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Fiókok üzemeltetése az XMPP hálózaton"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Itt tárolt"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Kulcsok lecserélve"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Típus"
@@ -2766,13 +2761,13 @@ msgstr "Fiók összekapcsolása"
 msgid "Link an account"
 msgstr "Fiók összekapcsolása"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Összekapcsolva"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} csatolva"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Összekapcsolt fiókok"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Hozzáférési kulcsom"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Név"
@@ -3101,11 +3095,6 @@ msgstr "A név kötelező"
 msgid "Name must be 1000 characters or less"
 msgstr "A név legfeljebb 1000 karakter lehet"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Név ez alatt: {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Név frissítve"
@@ -3114,7 +3103,6 @@ msgstr "Név frissítve"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Hálózat"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Hálózati hiba"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Új kategória"
 msgid "New game"
 msgstr "Új játék"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Következő"
@@ -3260,6 +3250,10 @@ msgstr "Nincsenek elérhető csoportok"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Nincs lefoglalt felhasználónév."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "A keresésnek nincs egyező felhasználóneve"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Preferenciák"
 msgid "Preferences reset to defaults"
 msgstr "Preferenciák alapértelmezettre állítva"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Előző"
@@ -4386,6 +4381,10 @@ msgstr "Cél keresése..."
 msgid "Search for origin..."
 msgstr "Kiindulási pont keresése..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Felhasználónevek keresése..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Objektumok keresése..."
@@ -4689,7 +4688,6 @@ msgstr "Elindítva"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Állapot"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "A kamerakérésre nem érkezett válasz"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "A kapcsolódás a kiszolgálóhoz sikertelen"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "A felhasználónév, amely alá ez a név tartozik, nem az Öné"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "A kért tartalom nem található."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "A kiszolgáló {status} hibával válaszolt"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "A kiszolgáló nem érhető el"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "A kiszolgáló nem engedélyezte az összekapcsolást"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "A kiszolgáló bontotta a kapcsolatot"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "A kiszolgáló már nem fogadja el ennek a fióknak a bejelentkezését; kapcsolja újra össze"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Próbálja módosítani a keresési kifejezéseket"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Próbálja újra"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Újrapróbálkozás ekkor: {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "X kliensazonosító"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X klienstitok"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

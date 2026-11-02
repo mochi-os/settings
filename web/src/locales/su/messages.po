@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#mnt} other {#mnt}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#mgg} other {#mgg}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, other {Némbongkeun {first}–{last} ti {total} landihan}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · aplikasi"
 msgid "{name} · push"
 msgstr "{name} · béwara"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} dina {network}"
@@ -419,11 +424,6 @@ msgstr "Akun diropéa"
 msgid "Account verified"
 msgstr "Akun diverifikasi"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Akun"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Jadi relay pikeun server nu teu kahontal"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "Ditambahkeun \"{0}\""
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Alamat"
@@ -1160,6 +1159,10 @@ msgstr "Koméntar"
 msgid "Comments ({0})"
 msgstr "Koméntar ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Komunitas"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Komunitas"
@@ -1210,6 +1213,10 @@ msgstr "Akun tersambung"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Nyambungkeun..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Sambungan ka server diblokir"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Teu cocog jeung pola nu diperlukeun"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Doméin"
@@ -2324,10 +2330,6 @@ msgstr "Gagal"
 msgid "Federation"
 msgstr "Féderasi"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Kelompokkeun dumasar"
 msgid "Group: {0}"
 msgstr "Grup: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Landihan"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Feed utama disimpen"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Nyayogikeun akun di ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Nyayogikeun akun di Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Nyayogikeun akun di Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Nyayogikeun akun di fediverse"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Nyayogikeun akun di XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Dihosting"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Konci diganti"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Jenis"
@@ -2766,13 +2761,13 @@ msgstr "Hubungkeun akun"
 msgid "Link an account"
 msgstr "Hubungkeun akun"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Kahubungkeun"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Disambungkeun {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Akun anu kahubungkeun"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Konci akses kuring"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Ngaran"
@@ -3101,11 +3095,6 @@ msgstr "Ngaran kudu diisi"
 msgid "Name must be 1000 characters or less"
 msgstr "Ngaran kudu 1000 karakter atawa kurang"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Ngaran di handapeun {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Ngaran diropéa"
@@ -3114,7 +3103,6 @@ msgstr "Ngaran diropéa"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Jaringan"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Kasalahan jaringan"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Kategori anyar"
 msgid "New game"
 msgstr "Game anyar"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Salajengna"
@@ -3260,6 +3250,10 @@ msgstr "Teu aya grup"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Teu aya landihan anu dipesen."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Euweuh landihan cocog jeung paluruh anjeun"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Préferénsi"
 msgid "Preferences reset to defaults"
 msgstr "Préferénsi disetel ulang ka baku"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Saméméhna"
@@ -4386,6 +4381,10 @@ msgstr "Paluruh tujuan..."
 msgid "Search for origin..."
 msgstr "Paluruh asal..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Paluruh landihan..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Paluruh objék..."
@@ -4689,7 +4688,6 @@ msgstr "Dimimitian"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Status"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Paménta kaméra teu diwaler"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Sambungan ka server gagal"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Landihan anu ngawengku ngaran ieu sanés milik anjeun"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Eusi anu dipénta teu kapanggih."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Server ngawalon ku kasalahan {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Server teu tiasa dihontal"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Server henteu ngidinan tumbu"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Server mungkas sambungan"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Server geus teu narima deui prosés asup akun ieu; hubungkeun deui"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Cobian luyukeun istilah pamilarian anjeun"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Cobian deui"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Nyobian deui jam {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "ID klien X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "Rusiah klien X"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

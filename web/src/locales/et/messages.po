@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#min} other {#min}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#näd} other {#näd}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {Näidatakse {first}–{last}, kokku {total} kasutajanimi} other {Näidatakse {first}–{last}, kokku {total} kasutajanime}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · rakendus"
 msgid "{name} · push"
 msgstr "{name} · tõuketeade"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} võrgus {network}"
@@ -419,11 +424,6 @@ msgstr "Konto uuendatud"
 msgid "Account verified"
 msgstr "Konto kinnitatud"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Kontod"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Toimi releena kättesaamatute serverite jaoks"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "Lisatud \"{0}\""
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Aadress"
@@ -1160,6 +1159,10 @@ msgstr "Kommentaarid"
 msgid "Comments ({0})"
 msgstr "Kommentaarid ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Kogukonnad"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Kogukond"
@@ -1210,6 +1213,10 @@ msgstr "Ühendatud kontod"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Ühendamine..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Ühendused serveriga on blokeeritud"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Ei vasta nõutud mustrile"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Domeen"
@@ -2324,10 +2330,6 @@ msgstr "Nurjumised"
 msgid "Federation"
 msgstr "Föderatsioon"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Rühmita"
 msgid "Group: {0}"
 msgstr "Rühm: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Kasutajanimi"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Koduvoog salvestati"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Majuta ActivityPubi kontosid"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Majuta Bluesky kontosid"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Majuta Matrixi kontosid"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Majuta fediverse'i kontosid"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Majuta XMPP kontosid"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Majutatud"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Võtmed asendatud"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Tüüp"
@@ -2766,13 +2761,13 @@ msgstr "Lingi konto"
 msgid "Link an account"
 msgstr "Seo konto"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Seotud"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Lingitud {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Seotud kontod"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Minu pääsuvõti"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Nimi"
@@ -3101,11 +3095,6 @@ msgstr "Nimi on kohustuslik"
 msgid "Name must be 1000 characters or less"
 msgstr "Nimi peab olema 1000 märki või vähem"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Nimi {0} all"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Nimi uuendatud"
@@ -3114,7 +3103,6 @@ msgstr "Nimi uuendatud"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Võrk"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Võrguviga"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Uus kategooria"
 msgid "New game"
 msgstr "Uus mäng"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Edasi"
@@ -3260,6 +3250,10 @@ msgstr "Saadaolevaid gruppe pole"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Ühtegi kasutajanime pole broneeritud."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Otsingule vastavaid kasutajanimesid pole"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Eelistused"
 msgid "Preferences reset to defaults"
 msgstr "Eelistused taastati vaikeväärtustele"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Eelmine"
@@ -4386,6 +4381,10 @@ msgstr "Otsi sihtkohta..."
 msgid "Search for origin..."
 msgstr "Otsi lähtekohta..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Otsi kasutajanimesid..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Otsi objekte..."
@@ -4689,7 +4688,6 @@ msgstr "Alustatud"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Olek"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Kaamera päringule ei vastatud"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Ühendus serveriga ebaõnnestus"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Kasutajanimi, mille all see nimi on, ei kuulu teile"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Soovitud sisu ei õnnestunud leida."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Server vastas veaga {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Server pole kättesaadav"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Server ei lubanud sidumist"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Server katkestas ühenduse"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Server ei aktsepteeri enam selle konto sisselogimist; seo konto uuesti"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Proovi otsingusõnu kohandada"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Proovi uuesti"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Uus katse kell {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "X kliendi ID"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X kliendi saladus"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

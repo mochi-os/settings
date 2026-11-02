@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#mzu} other {#mzu}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#vk} other {#vk}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, one {Kukhonjiswa {first}–{last} kusidlaliso esingu-{total}} other {Kukhonjiswa {first}–{last} kuzidlaliso ezingu-{total}}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · i-app"
 msgid "{name} · push"
 msgstr "{name} · i-push"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} ku-{network}"
@@ -419,11 +424,6 @@ msgstr "I-akhawunti ibuyekeziwe"
 msgid "Account verified"
 msgstr "I-akhawunti iqinisekisiwe"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "Ama-akhawunti"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "Sebenza njengomdluliseli kumaseva angafinyeleleki"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "Kwengezwe okuthi \"{0}\""
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "Ikheli"
@@ -1160,6 +1159,10 @@ msgstr "Imibono"
 msgid "Comments ({0})"
 msgstr "Amazwana ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "Imiphakathi"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "Umphakathi"
@@ -1210,6 +1213,10 @@ msgstr "Ama-akhawunti axhunyiwe"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "Iyaxhuma..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "Uxhumano neseva luvinjiwe"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "Ayihambisani nephethini edingekayo"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "Idomeyini"
@@ -2324,10 +2330,6 @@ msgstr "Ukwehluleka"
 msgid "Federation"
 msgstr "Inhlangano"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "Hlanganisa nge"
 msgid "Group: {0}"
 msgstr "Iqembu: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "Isidlaliso"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "Ifidi yasekhaya ilondoloziwe"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "Singatha ama-akhawunti ku-ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Singatha ama-akhawunti ku-Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Singatha ama-akhawunti ku-Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Singatha ama-akhawunti ku-fediverse"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "Singatha ama-akhawunti ku-XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "Isingathiwe"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "Okhiye bashintshiwe"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "Uhlobo"
@@ -2766,13 +2761,13 @@ msgstr "Xhuma i-akhawunti"
 msgid "Link an account"
 msgstr "Xhuma i-akhawunti"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "Kuxhunyiwe"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "Kuxhunyiwe i-{label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "Ama-akhawunti axhunyiwe"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "Ukhiye wami wokungena"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "Igama"
@@ -3101,11 +3095,6 @@ msgstr "Kudingeka igama"
 msgid "Name must be 1000 characters or less"
 msgstr "Igama kufanele libe nezinhlamvu ezingu-1000 noma ngaphansi"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "Igama ngaphansi kuka-{0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "Igama libuyekeziwe"
@@ -3114,7 +3103,6 @@ msgstr "Igama libuyekeziwe"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "Inethiwekhi"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "Iphutha lenethiwekhi"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "Isigaba esisha"
 msgid "New game"
 msgstr "Umdlalo omusha"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "Okulandelayo"
@@ -3260,6 +3250,10 @@ msgstr "Awekho amaqembu atholakalayo"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "Asikho isidlaliso esibhukhiwe."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "Azikho izidlaliso ezifanele usesho lwakho"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "Okuthandwayo"
 msgid "Preferences reset to defaults"
 msgstr "Okuthandayo kusethelwe kabusha kokuzenzakalelayo"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "Okwedlule"
@@ -4386,6 +4381,10 @@ msgstr "Sesha indawo oya kuyo..."
 msgid "Search for origin..."
 msgstr "Sesha indawo yokuqala..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "Sesha izidlaliso..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Sesha izinto..."
@@ -4689,7 +4688,6 @@ msgstr "Kuqalile"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "Isimo"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "Isicelo sekhamera asiphendulwanga"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "Uxhumano neseva luhlulekile"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "Isidlaliso eli gama elingaphansi kwaso akusona esakho"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "Okuqukethwe okuceliwe akutholakalanga."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "Iseva iphendule ngephutha {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "Iseva ayifinyeleleki"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "Iseva ayizange ivumele ukuxhuma"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "Iseva iqede uxhumano"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "Iseva ayisakwamukeli ukungena kwale akhawunti; phinda uyixhume"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "Zama ukulungisa amatemu okusesha kwakho"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "Zama futhi"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "Kuzozanywa futhi ngo-{time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "I-ID yeklayenti le-X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "Imfihlo yeklayenti le-X"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

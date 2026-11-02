@@ -30,10 +30,23 @@ def action_system_networks_key_replace(a):
     a.json({"key": mochi.server.key.replace(domain)})
 
 def action_system_handles_list(a):
-    """Every handle on the server with its holder."""
+    """A page of the handles on the server a search matches, with their
+    holders, how many it matches and the server's domains."""
     if not require_admin(a):
         return
-    a.json({"handles": mochi.handle.registry(), "domains": mochi.handle.domains()})
+    limit = parse_int(a.input("limit"), 25)
+    offset = parse_int(a.input("offset"), 0)
+    # Bound to a sane window, as the users list is.
+    if limit < 1 or limit > 100:
+        limit = 25
+    if offset < 0:
+        offset = 0
+    search = a.input("search") or ""
+    a.json({
+        "handles": mochi.handle.registry(search=search, limit=limit, offset=offset),
+        "count": mochi.handle.count(search=search),
+        "domains": mochi.handle.domains(),
+    })
 
 def action_system_handles_release(a):
     """Release any handle: its accounts and the names under it go with it."""

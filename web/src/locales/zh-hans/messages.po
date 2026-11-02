@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#分钟} other {#分钟}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#周} other {#周}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, other {显示 {total} 个用户识别符中的 {first}–{last}}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · 应用"
 msgid "{name} · push"
 msgstr "{name} · 推送"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{network} 上的 {name}"
@@ -419,11 +424,6 @@ msgstr "账户已更新"
 msgid "Account verified"
 msgstr "账户已验证"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "账户"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "为无法访问的服务器充当中继"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "已添加 \"{0}\""
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "地址"
@@ -1160,6 +1159,10 @@ msgstr "评论"
 msgid "Comments ({0})"
 msgstr "评论 ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "社区"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "社区"
@@ -1210,6 +1213,10 @@ msgstr "已连接的账户"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "正在连接..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "与服务器的连接已被屏蔽"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "与所需的模式不匹配"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "域名"
@@ -2324,10 +2330,6 @@ msgstr "失败次数"
 msgid "Federation"
 msgstr "联邦"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "联邦宇宙"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "分组方式"
 msgid "Group: {0}"
 msgstr "群组：{0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "用户识别符"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "已保存主信息流"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "在 ActivityPub 上托管账户"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "在 Bluesky 上托管账户"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "在 Matrix 上托管账户"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "在联邦宇宙上托管账户"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "在 XMPP 上托管账户"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "托管"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "密钥已替换"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "类型"
@@ -2766,13 +2761,13 @@ msgstr "关联账户"
 msgid "Link an account"
 msgstr "关联账户"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "已关联"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "已关联 {label}"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "已关联的账户"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "我的通行密钥"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "名称"
@@ -3101,11 +3095,6 @@ msgstr "姓名为必填项"
 msgid "Name must be 1000 characters or less"
 msgstr "名称不能超过 1000 个字符"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "{0} 下的名称"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "名称已更新"
@@ -3114,7 +3103,6 @@ msgstr "名称已更新"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "网络"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "网络错误"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "新类别"
 msgid "New game"
 msgstr "新游戏"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "下一步"
@@ -3260,6 +3250,10 @@ msgstr "无可用群组"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "尚未预留任何用户识别符。"
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "没有用户识别符与你的搜索匹配"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "偏好设置"
 msgid "Preferences reset to defaults"
 msgstr "偏好已重置为默认值"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "上一步"
@@ -4386,6 +4381,10 @@ msgstr "搜索目的地..."
 msgid "Search for origin..."
 msgstr "搜索起点..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "搜索用户识别符..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "搜索对象..."
@@ -4689,7 +4688,6 @@ msgstr "已开始"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "状态"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "相机请求未获回应"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "连接服务器失败"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "此名称所属的用户识别符不属于你"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "找不到请求的内容。"
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "服务器返回错误 {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "无法访问服务器"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "服务器不允许关联"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "服务器断开了连接"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "服务器不再接受此账户的登录；请重新关联"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "尝试调整您的搜索词"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "重试"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "将于 {time} 重试"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "X 客户端 ID"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X 客户端密钥"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

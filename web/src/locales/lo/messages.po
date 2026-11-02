@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#ນທ} other {#ນທ}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#ອທ} other {#ອທ}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, other {ກຳລັງສະແດງ {first}–{last} ຈາກ {total} ຊື່ຜູ້ໃຊ້}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · ແອັບ"
 msgid "{name} · push"
 msgstr "{name} · ການແຈ້ງເຕືອນແບບພຸຊ"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{name} ຢູ່ {network}"
@@ -419,11 +424,6 @@ msgstr "ອັບເດດບັນຊີແລ້ວ"
 msgid "Account verified"
 msgstr "ບັນຊີຢືນຢັນແລ້ວ"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "ບັນຊີ"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "ເຮັດວຽກເປັນຕົວສົ່ງຕໍ່ສຳລັບເຊີບເວີທີ່ເຂົ້າບໍ່ໄດ້"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "ເພີ່ມ \"{0}\" ແລ້ວ"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "ທີ່ຢູ່"
@@ -1160,6 +1159,10 @@ msgstr "ຄຳເຫັນ"
 msgid "Comments ({0})"
 msgstr "ຄຳເຫັນ ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "ຊຸມຊົນ"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "ຊຸມຊົນ"
@@ -1210,6 +1213,10 @@ msgstr "ບັນຊີທີ່ເຊື່ອມຕໍ່"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "ກຳລັງເຊື່ອມຕໍ່..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "ການເຊື່ອມຕໍ່ຫາເຊີບເວີຖືກບລັອກ"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "ບໍ່ກົງກັບຮູບແບບທີ່ຕ້ອງການ"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "ໂດເມນ"
@@ -2324,10 +2330,6 @@ msgstr "ຄວາມລົ້ມເຫຼວ"
 msgid "Federation"
 msgstr "ສະຫະພັນ"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "ຈັດກຸ່ມຕາມ"
 msgid "Group: {0}"
 msgstr "ກຸ່ມ: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "ຊື່ຜູ້ໃຊ້"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "ບັນທຶກຟີດຫຼັກແລ້ວ"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "ໃຫ້ບໍລິການບັນຊີໃນ ActivityPub"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "ໃຫ້ບໍລິການບັນຊີໃນ Bluesky"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "ໃຫ້ບໍລິການບັນຊີໃນ Matrix"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "ໃຫ້ບໍລິການບັນຊີໃນ fediverse"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "ໃຫ້ບໍລິການບັນຊີໃນ XMPP"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "ຢູ່ໃນເຊີບເວີນີ້"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "ແທນທີ່ກະແຈແລ້ວ"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "ປະເພດ"
@@ -2766,13 +2761,13 @@ msgstr "ເຊື່ອມຕໍ່ບັນຊີ"
 msgid "Link an account"
 msgstr "ເຊື່ອມຕໍ່ບັນຊີ"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "ເຊື່ອມຕໍ່ແລ້ວ"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "ເຊື່ອມຕໍ່ {label} ແລ້ວ"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "ບັນຊີທີ່ເຊື່ອມຕໍ່"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "ກະແຈຜ່ານຂອງຂ້ອຍ"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "ຊື່"
@@ -3101,11 +3095,6 @@ msgstr "ຕ້ອງການຊື່"
 msgid "Name must be 1000 characters or less"
 msgstr "ຊື່ຕ້ອງມີ 1000 ຕົວອັກສອນຫຼືໜ້ອຍກວ່າ"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "ຊື່ພາຍໃຕ້ {0}"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "ອັບເດດຊື່ແລ້ວ"
@@ -3114,7 +3103,6 @@ msgstr "ອັບເດດຊື່ແລ້ວ"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "ເຄືອຂ່າຍ"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "ຂໍ້ຜິດພາດເຄືອຂ່າຍ"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "ໝວດໃໝ່"
 msgid "New game"
 msgstr "ເກມໃໝ່"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "ຕໍ່ໄປ"
@@ -3260,6 +3250,10 @@ msgstr "ບໍ່ມີກຸ່ມທີ່ມີຢູ່"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "ບໍ່ມີຊື່ຜູ້ໃຊ້ທີ່ຖືກຈອງ."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "ບໍ່ມີຊື່ຜູ້ໃຊ້ທີ່ກົງກັບການຄົ້ນຫາຂອງທ່ານ"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "ການຕັ້ງຄ່າ"
 msgid "Preferences reset to defaults"
 msgstr "ຣີເຊັດການຕັ້ງຄ່າເປັນຄ່າເລີ່ມຕົ້ນແລ້ວ"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "ກ່ອນໜ້າ"
@@ -4386,6 +4381,10 @@ msgstr "ຄົ້ນຫາປາຍທາງ..."
 msgid "Search for origin..."
 msgstr "ຄົ້ນຫາຕົ້ນທາງ..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "ຄົ້ນຫາຊື່ຜູ້ໃຊ້..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "ຄົ້ນຫາວັດຖຸ..."
@@ -4689,7 +4688,6 @@ msgstr "ເລີ່ມແລ້ວ"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "ສະຖານະ"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "ຄຳຮ້ອງຂໍກ້ອງບໍ່ໄດ້ຮັບການຕອບ"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "ການເຊື່ອມຕໍ່ຫາເຊີບເວີລົ້ມເຫຼວ"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "ຊື່ຜູ້ໃຊ້ທີ່ຊື່ນີ້ຢູ່ພາຍໃຕ້ບໍ່ແມ່ນຂອງທ່ານ"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "ບໍ່ພົບເນື້ອຫາທີ່ຮ້ອງຂໍ."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "ເຊີບເວີຕອບກັບດ້ວຍຂໍ້ຜິດພາດ {status}"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "ບໍ່ສາມາດເຂົ້າເຖິງເຊີບເວີໄດ້"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "ເຊີບເວີບໍ່ອະນຸຍາດການເຊື່ອມຕໍ່"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "ເຊີບເວີໄດ້ຕັດການເຊື່ອມຕໍ່"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "ເຊີບເວີບໍ່ຍອມຮັບການເຂົ້າສູ່ລະບົບຂອງບັນຊີນີ້ອີກແລ້ວ; ກະລຸນາເຊື່ອມໂຍງຄືນໃໝ່"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "ລອງປັບປ່ຽນຄຳຄົ້ນຫາຂອງທ່າ
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "ລອງອີກຄັ້ງ"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "ຈະລອງໃໝ່ເວລາ {time}"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "ID ລູກຄ້າ X"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "ຄວາມລັບລູກຄ້າ X"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

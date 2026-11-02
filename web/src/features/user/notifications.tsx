@@ -272,7 +272,8 @@ function BrowserPushButton({ onChanged }: { onChanged: () => void }) {
       <Trans>Browser notifications</Trans>
       <Switch
         checked={subscribed}
-        disabled={busy || denied}
+        disabled={denied}
+        loading={busy}
         onCheckedChange={onCheckedChange}
       />
     </Label>

@@ -5,7 +5,7 @@
 //
 // The Networks page: the user's handles, the hosted account each network makes
 // of a handle, and the accounts linked on other servers, all in one place.
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import type {
   Block,
   Availability,
@@ -19,7 +19,6 @@ import { i18n } from '@lingui/core'
 import { msg } from '@lingui/core/macro'
 import { Trans, useLingui } from '@lingui/react/macro'
 import {
-  Badge,
   Button,
   ConfirmDialog,
   DropdownMenu,
@@ -396,11 +395,46 @@ function AddNameDialog({
 
 // One handle with the names under it: a switch per network, each naming the
 // address switching it on creates.
+// The hosted account a handle has on a network, if any.
+function handleAccount(
+  accounts: NetworkAccount[],
+  handle: Handle,
+  network: string
+) {
+  return accounts.find(
+    (a) =>
+      a.hosted &&
+      a.type === network &&
+      a.identifier === handle.addresses[network]
+  )
+}
+
+// The networks a handle card has rows for: those the server offers, then any
+// a handle still has an account on since the server stopped offering it, so
+// that the account stays listed and can be removed.
+function handleNetworks(
+  networks: string[],
+  accounts: NetworkAccount[],
+  handles: Handle[]
+) {
+  const extra = accounts
+    .filter(
+      (a) =>
+        a.hosted &&
+        !networks.includes(a.type) &&
+        handles.some((h) => h.addresses[a.type] === a.identifier)
+    )
+    .map((a) => a.type)
+  return [...networks, ...new Set(extra)]
+}
+
 function HandleCard({
   handle,
   children,
   networks,
   accounts,
+  feeds,
+  actions,
   onToggle,
   onRelease,
   onAddName,
@@ -411,6 +445,8 @@ function HandleCard({
   children: Handle[]
   networks: string[]
   accounts: NetworkAccount[]
+  feeds: NetworkFeed[]
+  actions: AccountActions
   onToggle: (
     handle: Handle,
     network: string,
@@ -425,10 +461,7 @@ function HandleCard({
   const { domain } = handle
   const rows = [handle, ...children]
   const hosted = (h: Handle, network: string) =>
-    accounts.find(
-      (a) =>
-        a.hosted && a.type === network && a.identifier === h.addresses[network]
-    )
+    handleAccount(accounts, h, network)
   return (
     <Section
       title={handle.name}
@@ -464,25 +497,31 @@ function HandleCard({
       }
     >
       {rows.map((row) =>
-        networks.map((type) => {
+        handleNetworks(networks, accounts, rows).map((type) => {
           const account = hosted(row, type)
           const key = `${row.name}/${type}`
           const { name } = row
           const network = networkLabel(type)
           return (
-            <FieldRow
+            <NetworkRow
               key={key}
-              inline
               label={row === handle ? network : t`${name} on ${network}`}
-              description={row.addresses[type]}
+              address={row.addresses[type]}
+              status={account ? accountStatus(account, feeds) : null}
             >
               <Switch
                 checked={!!account}
-                disabled={busy === key}
+                loading={busy === key}
                 aria-label={t`${network} for ${name}`}
                 onCheckedChange={() => onToggle(row, type, account)}
               />
-            </FieldRow>
+              {account ? (
+                <AccountMenu account={account} actions={actions} busy={busy} />
+              ) : (
+                // The menu's width, so the switches line up
+                <span aria-hidden='true' className='w-9' />
+              )}
+            </NetworkRow>
           )
         })
       )}
@@ -1283,24 +1322,110 @@ function homed(account: NetworkAccount) {
   )
 }
 
-function AccountRow({
-  account,
-  feeds,
-  onHome,
-  onRename,
-  onKeys,
-  onPassword,
-  onTest,
-  onProfile,
-  onAutomated,
-  onAliases,
-  onLabelers,
-  onMove,
-  onRemove,
-  busy,
-}: {
-  account: NetworkAccount
+// Whether a hosted account has keys of its own: a fediverse account signs
+// with one, a Bluesky account has its signing and rotation keys. Matrix signs
+// per domain and XMPP per device, so theirs have none.
+function keyed(account: NetworkAccount) {
+  return account.type === 'fediverse' || account.type === 'bluesky'
+}
+
+// Why a linked account is not working, in the user's language, and when it
+// tries again.
+function AccountFailure({ account }: { account: NetworkAccount }) {
+  const { t } = useLingui()
+  const { formatTime } = useFormat()
+  const failure = account.failure
+  if (!failure) {
+    return <span className='text-destructive'>{account.error}</span>
+  }
+  const status = String(failure.status ?? '')
+  let reason
+  switch (failure.reason) {
+    case 'unreachable':
+      reason = t`The server can't be reached`
+      break
+    case 'status':
+      reason = t`The server answered with error ${status}`
+      break
+    case 'closed':
+      reason = t`The server ended the connection`
+      break
+    case 'blocked':
+      reason = t`Connections to the server are blocked`
+      break
+    case 'signed_out':
+      reason = t`The server no longer accepts this account's sign-in; link it again`
+      break
+    default:
+      reason = t`The connection to the server failed`
+  }
+  const time = failure.retry ? formatTime(new Date(failure.retry * 1000)) : ''
+  return (
+    <span className='text-destructive'>
+      {reason}
+      {time ? (
+        <span className='text-muted-foreground block text-xs'>
+          {t`Trying again at ${time}`}
+        </span>
+      ) : null}
+    </span>
+  )
+}
+
+// What an account's row says of it beyond its address, where anything needs
+// saying: why a linked account is not working, a move, a home feed gone or
+// private, a missing recovery key, a chat account's connection, or the server
+// a linked account is on.
+function accountStatus(
+  account: NetworkAccount,
   feeds: NetworkFeed[]
+): ReactNode {
+  const chat = account.type === 'xmpp' || account.type === 'matrix'
+  const home = account.home
+    ? feeds.find((f) => f.id === account.home)
+    : undefined
+  if (account.failure || account.error) {
+    return <AccountFailure account={account} />
+  }
+  if (account.moved) {
+    return <Trans>Moved to {account.moved}</Trans>
+  }
+  if (account.home && !home) {
+    return (
+      <span className='text-destructive'>
+        <Trans>The home feed has been deleted</Trans>
+      </span>
+    )
+  }
+  if (home && home.privacy !== 'public') {
+    return (
+      <span className='text-destructive'>
+        <Trans>The home feed is private</Trans>
+      </span>
+    )
+  }
+  if (account.hosted && account.type === 'bluesky' && !account.recovery) {
+    return (
+      <span className='text-destructive'>
+        <Trans>No recovery key</Trans>
+      </span>
+    )
+  }
+  if (account.hosted) {
+    return null
+  }
+  if (chat) {
+    return account.connected ? (
+      <Trans>Connected</Trans>
+    ) : (
+      <Trans>Not connected</Trans>
+    )
+  }
+  return account.server || null
+}
+
+// What can be done with an account, from its row.
+interface AccountActions {
   onHome: (account: NetworkAccount) => void
   onRename: (account: NetworkAccount) => void
   onKeys: (account: NetworkAccount) => void
@@ -1312,137 +1437,192 @@ function AccountRow({
   onLabelers: (account: NetworkAccount) => void
   onMove: (account: NetworkAccount) => void
   onRemove: (account: NetworkAccount) => void
+}
+
+// An account's menu. One a handle card shows is removed by switching it off,
+// so its menu has no Remove.
+function AccountMenu({
+  account,
+  actions,
+  busy,
+  removable = false,
+}: {
+  account: NetworkAccount
+  actions: AccountActions
   busy: string | null
+  removable?: boolean
 }) {
   const { t } = useLingui()
-  const chat = account.type === 'xmpp' || account.type === 'matrix'
-  const home = account.home
-    ? feeds.find((f) => f.id === account.home)
-    : undefined
   return (
-    <TableRow>
-      <TableCell className='font-medium'>{account.identifier}</TableCell>
-      <TableCell>{account.label || account.name || ''}</TableCell>
-      <TableCell>{networkLabel(account.type)}</TableCell>
-      <TableCell>
-        <Badge variant='outline'>
-          {account.hosted ? <Trans>Hosted</Trans> : <Trans>Linked</Trans>}
-        </Badge>
-      </TableCell>
-      <TableCell className='text-muted-foreground text-sm'>
-        {account.error ? (
-          <span className='text-destructive'>{account.error}</span>
-        ) : account.moved ? (
-          <Trans>Moved to {account.moved}</Trans>
-        ) : account.home && !home ? (
-          <span className='text-destructive'>
-            <Trans>The home feed has been deleted</Trans>
-          </span>
-        ) : home && home.privacy !== 'public' ? (
-          <span className='text-destructive'>
-            <Trans>The home feed is private</Trans>
-          </span>
-        ) : account.hosted && account.type === 'bluesky' && !account.recovery ? (
-          <span className='text-destructive'>
-            <Trans>No recovery key</Trans>
-          </span>
-        ) : !account.hosted && chat ? (
-          account.connected ? (
-            <Trans>Connected</Trans>
-          ) : (
-            <Trans>Not connected</Trans>
-          )
-        ) : (
-          account.server
-        )}
-      </TableCell>
-      <TableCell className='text-end'>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant='ghost'
-              size='sm'
-              loading={busy === account.id}
-              icon={<MoreHorizontal className='h-4 w-4' />}
-              aria-label={t`Account actions`}
-            />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align='end'>
-            <DropdownMenuItem onClick={() => onRename(account)}>
-              <Pencil className='me-2 h-4 w-4' />
-              <Trans>Profile</Trans>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant='ghost'
+          size='sm'
+          loading={busy === account.id}
+          icon={<MoreHorizontal className='h-4 w-4' />}
+          aria-label={t`Account actions`}
+        />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align='end'>
+        <DropdownMenuItem onClick={() => actions.onRename(account)}>
+          <Pencil className='me-2 h-4 w-4' />
+          <Trans>Profile</Trans>
+        </DropdownMenuItem>
+        {account.hosted ? (
+          <>
+            <DropdownMenuItem onClick={() => actions.onPassword(account)}>
+              <LogIn className='me-2 h-4 w-4' />
+              <Trans>Sign in from another app</Trans>
             </DropdownMenuItem>
-            {account.hosted ? (
+            {homed(account) && (
+              <DropdownMenuItem onClick={() => actions.onHome(account)}>
+                <House className='me-2 h-4 w-4' />
+                <Trans>Home feed</Trans>
+              </DropdownMenuItem>
+            )}
+            {keyed(account) && (
+              <DropdownMenuItem onClick={() => actions.onKeys(account)}>
+                <KeyRound className='me-2 h-4 w-4' />
+                <Trans context='cryptographic'>Keys</Trans>
+              </DropdownMenuItem>
+            )}
+            {account.type === 'fediverse' && (
               <>
-                <DropdownMenuItem onClick={() => onPassword(account)}>
-                  <LogIn className='me-2 h-4 w-4' />
-                  <Trans>Sign in from another app</Trans>
+                <DropdownMenuItem onClick={() => actions.onAutomated(account)}>
+                  <Bot className='me-2 h-4 w-4' />
+                  {account.automated ? (
+                    <Trans>Mark as a person</Trans>
+                  ) : (
+                    <Trans>Mark as automated</Trans>
+                  )}
                 </DropdownMenuItem>
-                {homed(account) && (
-                  <DropdownMenuItem onClick={() => onHome(account)}>
-                    <House className='me-2 h-4 w-4' />
-                    <Trans>Home feed</Trans>
-                  </DropdownMenuItem>
-                )}
-                <DropdownMenuItem onClick={() => onKeys(account)}>
-                  <KeyRound className='me-2 h-4 w-4' />
-                  <Trans context='cryptographic'>Keys</Trans>
+                <DropdownMenuItem onClick={() => actions.onAliases(account)}>
+                  <UserRoundPlus className='me-2 h-4 w-4' />
+                  <Trans>Aliases</Trans>
                 </DropdownMenuItem>
-                {account.type === 'fediverse' && (
-                  <>
-                    <DropdownMenuItem onClick={() => onAutomated(account)}>
-                      <Bot className='me-2 h-4 w-4' />
-                      {account.automated ? (
-                        <Trans>Mark as a person</Trans>
-                      ) : (
-                        <Trans>Mark as automated</Trans>
-                      )}
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => onAliases(account)}>
-                      <UserRoundPlus className='me-2 h-4 w-4' />
-                      <Trans>Aliases</Trans>
-                    </DropdownMenuItem>
-                    {!account.moved && (
-                      <DropdownMenuItem onClick={() => onMove(account)}>
-                        <ArrowRightLeft className='me-2 h-4 w-4' />
-                        <Trans>Move to another account</Trans>
-                      </DropdownMenuItem>
-                    )}
-                  </>
-                )}
-                {account.type === 'bluesky' && (
-                  <DropdownMenuItem onClick={() => onLabelers(account)}>
-                    <Tags className='me-2 h-4 w-4' />
-                    <Trans>Labellers</Trans>
+                {!account.moved && (
+                  <DropdownMenuItem onClick={() => actions.onMove(account)}>
+                    <ArrowRightLeft className='me-2 h-4 w-4' />
+                    <Trans>Move to another account</Trans>
                   </DropdownMenuItem>
                 )}
               </>
-            ) : (
-              <DropdownMenuItem onClick={() => onTest(account)}>
-                <Zap className='me-2 h-4 w-4' />
-                <Trans>Test</Trans>
+            )}
+            {account.type === 'bluesky' && (
+              <DropdownMenuItem onClick={() => actions.onLabelers(account)}>
+                <Tags className='me-2 h-4 w-4' />
+                <Trans>Labellers</Trans>
               </DropdownMenuItem>
             )}
-            <DropdownMenuItem onClick={() => onProfile(account)}>
-              {account.profile ? (
-                <EyeOff className='me-2 h-4 w-4' />
-              ) : (
-                <Eye className='me-2 h-4 w-4' />
-              )}
-              {account.profile ? (
-                <Trans>Hide from profile</Trans>
-              ) : (
-                <Trans>Show on profile</Trans>
-              )}
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => onRemove(account)}>
-              <Trash2 className='me-2 h-4 w-4' />
-              <Trans>Remove</Trans>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </TableCell>
-    </TableRow>
+          </>
+        ) : (
+          <DropdownMenuItem onClick={() => actions.onTest(account)}>
+            <Zap className='me-2 h-4 w-4' />
+            <Trans>Test</Trans>
+          </DropdownMenuItem>
+        )}
+        <DropdownMenuItem onClick={() => actions.onProfile(account)}>
+          {account.profile ? (
+            <EyeOff className='me-2 h-4 w-4' />
+          ) : (
+            <Eye className='me-2 h-4 w-4' />
+          )}
+          {account.profile ? (
+            <Trans>Hide from profile</Trans>
+          ) : (
+            <Trans>Show on profile</Trans>
+          )}
+        </DropdownMenuItem>
+        {removable && (
+          <DropdownMenuItem onClick={() => actions.onRemove(account)}>
+            <Trash2 className='me-2 h-4 w-4' />
+            <Trans>Remove</Trans>
+          </DropdownMenuItem>
+        )}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}
+
+// A row of a card on this page: what it is, its address and anything to say
+// of it, with its controls at the end of the row.
+function NetworkRow({
+  label,
+  address,
+  status,
+  children,
+}: {
+  label: string
+  address?: string
+  status?: ReactNode
+  children: ReactNode
+}) {
+  return (
+    <div
+      data-slot='network-row'
+      className='flex min-h-9 items-center gap-4 py-2'
+    >
+      <div className='flex min-w-0 flex-1 flex-col'>
+        <span className='text-muted-foreground text-sm leading-snug font-medium'>
+          {label}
+        </span>
+        {address && (
+          <span className='text-muted-foreground/70 mt-1 text-xs leading-normal break-all'>
+            {address}
+          </span>
+        )}
+        {status && (
+          <span className='text-muted-foreground mt-1 text-xs'>{status}</span>
+        )}
+      </div>
+      <div className='flex shrink-0 items-center gap-2'>{children}</div>
+    </div>
+  )
+}
+
+// A card of accounts no handle card shows: those linked on other servers, or
+// a forum's communities. Each is removed from its menu.
+function AccountsCard({
+  title,
+  action,
+  accounts,
+  feeds,
+  actions,
+  busy,
+}: {
+  title: string
+  action?: ReactNode
+  accounts: NetworkAccount[]
+  feeds: NetworkFeed[]
+  actions: AccountActions
+  busy: string | null
+}) {
+  const { t } = useLingui()
+  return (
+    <Section title={title} className='mb-4' action={action}>
+      {accounts.length > 0
+        ? accounts.map((account) => {
+            const network = networkLabel(account.type)
+            const name = account.label || account.name || ''
+            return (
+              <NetworkRow
+                key={account.id}
+                label={name ? t`${name} on ${network}` : network}
+                address={account.identifier}
+                status={accountStatus(account, feeds)}
+              >
+                <AccountMenu
+                  account={account}
+                  actions={actions}
+                  busy={busy}
+                  removable
+                />
+              </NetworkRow>
+            )
+          })
+        : null}
+    </Section>
   )
 }
 
@@ -1708,6 +1888,35 @@ export function Networks() {
     }
   }
 
+  const actions: AccountActions = {
+    onHome: setHomeFor,
+    onRename: setRenaming,
+    onKeys: setKeysFor,
+    onPassword: setPasswordFor,
+    onTest: (a) => void handleTest(a),
+    onProfile: (a) => void handleProfile(a),
+    onAutomated: (a) => void handleAutomated(a),
+    onAliases: setAliasesFor,
+    onLabelers: setLabelersFor,
+    onMove: setMovingFor,
+    onRemove: setRemoving,
+  }
+
+  // Each account is listed once: a hosted one in its handle's card, a linked
+  // one under Linked accounts, and the rest, a forum's communities, under
+  // Communities.
+  const carded = new Set(
+    parents.flatMap((parent) => {
+      const rows = [parent, ...childrenOf(parent)]
+      return handleNetworks(networks, accounts, rows).flatMap((type) =>
+        rows.map((row) => handleAccount(accounts, row, type)?.id ?? '')
+      )
+    })
+  )
+  const linked = accounts.filter((a) => !a.hosted)
+  const communities = accounts.filter((a) => a.hosted && !carded.has(a.id))
+  const linkable = (data?.providers.length ?? 0) > 0
+
   const handleTest = async (account: NetworkAccount) => {
     setBusy(account.id)
     try {
@@ -1729,18 +1938,6 @@ export function Networks() {
       <PageHeader
         title={t`Networks`}
         icon={<Share2 className='size-4 md:size-5' />}
-        actions={
-          (data?.providers.length ?? 0) > 0 && (
-            <Button
-              variant='outline'
-              size='sm'
-              onClick={() => setLinking(true)}
-            >
-              <Link2 className='me-2 h-4 w-4' />
-              <Trans>Link an account</Trans>
-            </Button>
-          )
-        }
       />
       <Main>
         {error ? (
@@ -1769,6 +1966,8 @@ export function Networks() {
                 children={childrenOf(handle)}
                 networks={networks}
                 accounts={accounts}
+                feeds={data.feeds ?? []}
+                actions={actions}
                 onToggle={(h, network, account) =>
                   void handleToggle(h, network, account)
                 }
@@ -1778,55 +1977,35 @@ export function Networks() {
                 busy={busy}
               />
             ))}
-            {accounts.length > 0 && (
-              <>
-                <h2 className='mt-6 mb-2 text-base font-medium'>
-                  <Trans>Accounts</Trans>
-                </h2>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>
-                        <Trans>Address</Trans>
-                      </TableHead>
-                      <TableHead>
-                        <Trans>Name</Trans>
-                      </TableHead>
-                      <TableHead>
-                        <Trans>Network</Trans>
-                      </TableHead>
-                      <TableHead>
-                        <Trans>Kind</Trans>
-                      </TableHead>
-                      <TableHead>
-                        <Trans>Status</Trans>
-                      </TableHead>
-                      <TableHead className='w-16'></TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {accounts.map((account) => (
-                      <AccountRow
-                        key={account.id}
-                        account={account}
-                        feeds={data.feeds ?? []}
-                        onHome={setHomeFor}
-                        onRename={setRenaming}
-                        onKeys={setKeysFor}
-                        onPassword={setPasswordFor}
-                        onTest={(a) => void handleTest(a)}
-                        onProfile={(a) => void handleProfile(a)}
-                        onAutomated={(a) => void handleAutomated(a)}
-                        onAliases={setAliasesFor}
-                        onLabelers={setLabelersFor}
-                        onMove={setMovingFor}
-                        onRemove={setRemoving}
-                        busy={busy}
-                      />
-                    ))}
-                  </TableBody>
-                </Table>
-              </>
+            {(linkable || linked.length > 0) && (
+              <AccountsCard
+                title={t`Linked accounts`}
+                accounts={linked}
+                feeds={data.feeds ?? []}
+                actions={actions}
+                busy={busy}
+                action={
+                  linkable && (
+                    <Button
+                      variant='outline'
+                      size='sm'
+                      onClick={() => setLinking(true)}
+                    >
+                      <Link2 className='me-2 h-4 w-4' />
+                      <Trans>Link an account</Trans>
+                    </Button>
+                  )
+                }
+              />
+            )}
+            {communities.length > 0 && (
+              <AccountsCard
+                title={t`Communities`}
+                accounts={communities}
+                feeds={data.feeds ?? []}
+                actions={actions}
+                busy={busy}
+              />
             )}
             <ModerationSection
               blocks={data.blocks ?? []}

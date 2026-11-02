@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#분} other {#분}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#주} other {#주}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, other {핸들 {total}개 중 {first}–{last}개 표시 중}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · 앱"
 msgid "{name} · push"
 msgstr "{name} · 푸시"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{network}의 {name}"
@@ -419,11 +424,6 @@ msgstr "계정이 업데이트되었어요"
 msgid "Account verified"
 msgstr "계정이 인증되었어요"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "계정"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "연결할 수 없는 서버의 중계 역할 수행"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\"이(가) 추가되었어요"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "주소"
@@ -1160,6 +1159,10 @@ msgstr "댓글"
 msgid "Comments ({0})"
 msgstr "댓글 ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "커뮤니티"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "커뮤니티"
@@ -1210,6 +1213,10 @@ msgstr "연결된 계정"
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "연결 중..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "서버 연결이 차단되어 있습니다"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "필요한 패턴과 일치하지 않습니다"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "도메인"
@@ -2324,10 +2330,6 @@ msgstr "실패 횟수"
 msgid "Federation"
 msgstr "연합"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "페디버스"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "그룹화 기준"
 msgid "Group: {0}"
 msgstr "그룹: {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "핸들"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "홈 피드를 저장했습니다"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "ActivityPub 계정 호스팅"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Bluesky 계정 호스팅"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Matrix 계정 호스팅"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "페디버스 계정 호스팅"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "XMPP 계정 호스팅"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "호스팅"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "키가 교체되었어요"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "종류"
@@ -2766,13 +2761,13 @@ msgstr "계정 연결"
 msgid "Link an account"
 msgstr "계정 연결"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "연결됨"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} 연결됨"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "연결된 계정"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "내 패스키"
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "이름"
@@ -3101,11 +3095,6 @@ msgstr "이름은 필수예요"
 msgid "Name must be 1000 characters or less"
 msgstr "이름은 1000자 이하여야 해요"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "{0} 아래의 이름"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "이름이 업데이트되었어요"
@@ -3114,7 +3103,6 @@ msgstr "이름이 업데이트되었어요"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "네트워크"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "네트워크 오류"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "새 카테고리"
 msgid "New game"
 msgstr "새 게임"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "다음"
@@ -3260,6 +3250,10 @@ msgstr "이용 가능한 그룹이 없어요"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "예약된 핸들이 없습니다."
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "검색과 일치하는 핸들이 없어요"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "환경설정"
 msgid "Preferences reset to defaults"
 msgstr "환경설정이 기본값으로 재설정되었어요"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "이전"
@@ -4386,6 +4381,10 @@ msgstr "도착지 검색..."
 msgid "Search for origin..."
 msgstr "출발지 검색..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "핸들 검색..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "개체 검색..."
@@ -4689,7 +4688,6 @@ msgstr "시작됨"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "상태"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "카메라 요청에 응답이 없었습니다"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "서버 연결에 실패했습니다"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "이 이름이 속한 핸들은 본인 소유가 아닙니다"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "요청한 콘텐츠를 찾을 수 없습니다."
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "서버가 {status} 오류로 응답했습니다"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "서버에 연결할 수 없습니다"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "서버가 연결을 허용하지 않았어요"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "서버가 연결을 종료했습니다"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "서버가 이 계정의 로그인을 더 이상 허용하지 않습니다. 다시 연결하세요"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "검색어를 조정해 보세요"
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "다시 시도"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "{time}에 다시 시도합니다"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "X 클라이언트 ID"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X 클라이언트 비밀"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"

@@ -189,6 +189,10 @@ msgstr "{count, plural, one {#မိ} other {#မိ}}"
 msgid "{count, plural, one {#w} other {#w}}"
 msgstr "{count, plural, one {#ပတ်} other {#ပတ်}}"
 
+#: src/features/system/handles.tsx
+msgid "{count, plural, one {Showing {first}–{last} of {total} handle} other {Showing {first}–{last} of {total} handles}}"
+msgstr "{count, plural, other {သုံးစွဲသူအမည် {total} ထဲမှ {first}–{last} ကို ပြသနေသည်}}"
+
 #: ../../../lib/web/src/components/calendar/time-grid.tsx
 #: ../../../lib/web/src/components/calendar/tooltip.ts
 msgid "{day}, {from} to {to}"
@@ -220,6 +224,7 @@ msgstr "{name} · အက်ပ်"
 msgid "{name} · push"
 msgstr "{name} · တွန်းပို့"
 
+#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "{name} on {network}"
 msgstr "{network} ပေါ်ရှိ {name}"
@@ -419,11 +424,6 @@ msgstr "အကောင့် ပြောင်းပြီး"
 msgid "Account verified"
 msgstr "အကောင့် အတည်ပြုပြီး"
 
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
-msgid "Accounts"
-msgstr "အကောင့်များ"
-
 #: src/features/system/settings.tsx
 msgid "Act as a relay for unreachable servers"
 msgstr "မရောက်ရှိနိုင်သော ဆာဗာများအတွက် ထပ်ဆင့်ပို့ဆောင်ရန်"
@@ -565,7 +565,6 @@ msgid "Added \"{0}\""
 msgstr "\"{0}\" ထည့်ပြီး"
 
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Address"
 msgstr "လိပ်စာ"
@@ -1160,6 +1159,10 @@ msgstr "မှတ်ချက်များ"
 msgid "Comments ({0})"
 msgstr "မှတ်ချက်များ ({0})"
 
+#: src/features/user/networks.tsx
+msgid "Communities"
+msgstr "အသိုင်းအဝိုင်းများ"
+
 #: src/features/system/handles.tsx
 msgid "Community"
 msgstr "အသိုင်းအဝိုင်း"
@@ -1210,6 +1213,10 @@ msgstr "ချိတ်ဆက်ထားသော အကောင့်မျ�
 #: ../../../lib/web/src/lib/chat-ui.ts
 msgid "Connecting..."
 msgstr "ချိတ်ဆက်နေသည်..."
+
+#: src/features/user/networks.tsx
+msgid "Connections to the server are blocked"
+msgstr "ဆာဗာသို့ ချိတ်ဆက်မှုများကို ပိတ်ဆို့ထားသည်"
 
 #: ../../../lib/web/src/lib/handle-server-error.ts
 msgid "Content not found."
@@ -1764,7 +1771,6 @@ msgid "Does not match the required pattern"
 msgstr "လိုအပ်သော ပုံစံနှင့် မကိုက်ညီပါ"
 
 #: src/features/domains/index.tsx
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Domain"
 msgstr "ဒိုမိန်း"
@@ -2324,10 +2330,6 @@ msgstr "မအောင်မြင်မှုများ"
 msgid "Federation"
 msgstr "ဖက်ဒရေးရှင်း"
 
-#: src/lib/networks.ts
-msgid "Fediverse"
-msgstr "Fediverse"
-
 #: ../../../lib/web/src/components/entity/entity-create-object-dialog.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
 #: ../../../lib/web/src/components/entity/entity-object-attachments.tsx
@@ -2461,7 +2463,6 @@ msgstr "အလိုက် အုပ်စုဖွဲ့ရန်"
 msgid "Group: {0}"
 msgstr "အုပ်စု- {0}"
 
-#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 msgid "Handle"
 msgstr "သုံးစွဲသူအမည်"
@@ -2528,6 +2529,10 @@ msgid "Home feed saved"
 msgstr "ပင်မ ဖိဒ်ကို သိမ်းပြီးပါပြီ"
 
 #: src/features/system/settings.tsx
+msgid "Host accounts on ActivityPub"
+msgstr "ActivityPub တွင် အကောင့်များကို လက်ခံထားရှိမည်"
+
+#: src/features/system/settings.tsx
 msgid "Host accounts on Bluesky"
 msgstr "Bluesky တွင် အကောင့်များကို လက်ခံထားရှိမည်"
 
@@ -2536,16 +2541,8 @@ msgid "Host accounts on Matrix"
 msgstr "Matrix တွင် အကောင့်များကို လက်ခံထားရှိမည်"
 
 #: src/features/system/settings.tsx
-msgid "Host accounts on the fediverse"
-msgstr "Fediverse တွင် အကောင့်များကို လက်ခံထားရှိမည်"
-
-#: src/features/system/settings.tsx
 msgid "Host accounts on XMPP"
 msgstr "XMPP တွင် အကောင့်များကို လက်ခံထားရှိမည်"
-
-#: src/features/user/networks.tsx
-msgid "Hosted"
-msgstr "ဤဆာဗာတွင်"
 
 #: src/features/system/settings.tsx
 msgid "Hostname announced to other servers"
@@ -2657,8 +2654,6 @@ msgid "Keys replaced"
 msgstr "သော့များ အစားထိုးပြီး"
 
 #: src/features/system/blocks.tsx
-#: src/features/system/handles.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Kind"
 msgstr "အမျိုးအစား"
@@ -2766,13 +2761,13 @@ msgstr "အကောင့် ချိတ်ဆက်"
 msgid "Link an account"
 msgstr "အကောင့် ချိတ်ဆက်မည်"
 
-#: src/features/user/networks.tsx
-msgid "Linked"
-msgstr "ချိတ်ဆက်ထား"
-
 #: src/hooks/use-oauth-result.ts
 msgid "Linked {label}"
 msgstr "{label} ကို ချိတ်ဆက်ပြီး"
+
+#: src/features/user/networks.tsx
+msgid "Linked accounts"
+msgstr "ချိတ်ဆက်ထားသော အကောင့်များ"
 
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Links"
@@ -3070,7 +3065,6 @@ msgstr "ကျွန်ုပ်၏ ဝင်ရောက်ခွင့်သ�
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/notifications.tsx
 msgid "Name"
 msgstr "အမည်"
@@ -3101,11 +3095,6 @@ msgstr "အမည် လိုအပ်သည်"
 msgid "Name must be 1000 characters or less"
 msgstr "အမည်သည် စာလုံး ၁၀၀၀ သို့မဟုတ် ထိုထက်နည်းရမည်"
 
-#. placeholder {0}: handle.parent
-#: src/features/system/handles.tsx
-msgid "Name under {0}"
-msgstr "{0} အောက်ရှိ အမည်"
-
 #: src/features/user/account.tsx
 msgid "Name updated"
 msgstr "အမည် ပြင်ဆင်ပြီးပါပြီ"
@@ -3114,7 +3103,6 @@ msgstr "အမည် ပြင်ဆင်ပြီးပါပြီ"
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
 #: src/features/system/status.tsx
-#: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Network"
 msgstr "ကွန်ရက်"
@@ -3125,6 +3113,7 @@ msgid "Network error"
 msgstr "ကွန်ရက် အမှား"
 
 #: src/components/layout/data/sidebar-data.ts
+#: src/features/system/handles.tsx
 #: src/features/user/networks.tsx
 #: src/features/user/networks.tsx
 msgid "Networks"
@@ -3159,6 +3148,7 @@ msgstr "အမျိုးအစား အသစ်"
 msgid "New game"
 msgstr "ဂိမ်းအသစ်"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Next"
 msgstr "ရှေ့သို့"
@@ -3260,6 +3250,10 @@ msgstr "အုပ်စုများ မရရှိနိုင်ပါ"
 #: src/features/system/handles.tsx
 msgid "No handles have been reserved."
 msgstr "ကြိုတင်ယူထားသော သုံးစွဲသူအမည် မရှိပါ။"
+
+#: src/features/system/handles.tsx
+msgid "No handles match your search"
+msgstr "သင့်ရှာဖွေချက်နှင့် ကိုက်ညီသော သုံးစွဲသူအမည်များ မရှိပါ"
 
 #: src/features/user/interests.tsx
 msgid "No interests yet"
@@ -3726,6 +3720,7 @@ msgstr "ဦးစားပေးချက်များ"
 msgid "Preferences reset to defaults"
 msgstr "ဦးစားပေးချက်များ ပုံသေတန်ဖိုးများသို့ ပြန်ထား"
 
+#: src/features/system/handles.tsx
 #: src/features/system/users.tsx
 msgid "Previous"
 msgstr "နောက်သို့"
@@ -4386,6 +4381,10 @@ msgstr "ဦးတည်ရာ ရှာဖွေ..."
 msgid "Search for origin..."
 msgstr "မူလနေရာ ရှာဖွေ..."
 
+#: src/features/system/handles.tsx
+msgid "Search handles..."
+msgstr "သုံးစွဲသူအမည်များ ရှာဖွေ..."
+
 #: ../../../lib/web/src/components/entity/entity-object-links.tsx
 msgid "Search objects..."
 msgstr "Object များ ရှာဖွေ..."
@@ -4689,7 +4688,6 @@ msgstr "စတင်ပြီး"
 #: src/features/system/status.tsx
 #: src/features/system/users.tsx
 #: src/features/user/connected-accounts.tsx
-#: src/features/user/networks.tsx
 msgid "Status"
 msgstr "အခြေအနေ"
 
@@ -4895,6 +4893,10 @@ msgid "The camera request was not answered"
 msgstr "ကင်မရာ တောင်းဆိုမှုကို မဖြေကြားခဲ့ပါ"
 
 #: src/features/user/networks.tsx
+msgid "The connection to the server failed"
+msgstr "ဆာဗာသို့ ချိတ်ဆက်မှု မအောင်မြင်ပါ"
+
+#: src/features/user/networks.tsx
 msgid "The handle this name sits under is not yours"
 msgstr "ဤအမည်ရှိရာ သုံးစွဲသူအမည်သည် သင့်ပိုင် မဟုတ်ပါ"
 
@@ -4919,8 +4921,24 @@ msgid "The requested content could not be found."
 msgstr "တောင်းဆိုထားသော အကြောင်းအရာကို ရှာမတွေ့ပါ။"
 
 #: src/features/user/networks.tsx
+msgid "The server answered with error {status}"
+msgstr "ဆာဗာက အမှား {status} ဖြင့် ပြန်ဖြေသည်"
+
+#: src/features/user/networks.tsx
+msgid "The server can't be reached"
+msgstr "ဆာဗာသို့ မရောက်ရှိနိုင်ပါ"
+
+#: src/features/user/networks.tsx
 msgid "The server did not allow the link"
 msgstr "ဆာဗာက ချိတ်ဆက်မှုကို ခွင့်မပြုခဲ့ပါ"
+
+#: src/features/user/networks.tsx
+msgid "The server ended the connection"
+msgstr "ဆာဗာက ချိတ်ဆက်မှုကို အဆုံးသတ်လိုက်သည်"
+
+#: src/features/user/networks.tsx
+msgid "The server no longer accepts this account's sign-in; link it again"
+msgstr "ဆာဗာက ဤအကောင့်၏ ဝင်ရောက်မှုကို လက်မခံတော့ပါ၊ ပြန်လည်ချိတ်ဆက်ပါ"
 
 #: ../../../lib/web/src/lib/api-response-interceptors.ts
 msgid "The server returned a web page instead of data."
@@ -5089,6 +5107,10 @@ msgstr "သင်၏ ရှာဖွေစကားလုံးများက�
 #: ../../../lib/web/src/features/errors/general-error.tsx
 msgid "Try again"
 msgstr "ပြန်ကြိုးစားပါ"
+
+#: src/features/user/networks.tsx
+msgid "Trying again at {time}"
+msgstr "{time} တွင် ထပ်မံကြိုးစားမည်"
 
 #: ../../../lib/web/src/lib/preference-utils.ts
 msgid "Tuesday"
@@ -5446,10 +5468,6 @@ msgstr "X ကလိုင်းယင့် ID"
 #: src/features/system/settings.tsx
 msgid "X client secret"
 msgstr "X ကလိုင်းယင့် လျှို့ဝှက်ချက်"
-
-#: src/lib/networks.ts
-msgid "XMPP"
-msgstr "XMPP"
 
 #: src/features/system/status.tsx
 msgid "XMPP rooms"
