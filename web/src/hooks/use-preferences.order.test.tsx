@@ -43,6 +43,7 @@ function server() {
     font_size: 'theme',
   }
   const answers: (() => void)[] = []
+  const refusals: (() => void)[] = []
   vi.spyOn(apiClient, 'get').mockImplementation(async () => ({
     data: {
       preferences: { ...saved },
@@ -57,10 +58,18 @@ function server() {
     },
   }))
   vi.spyOn(apiClient, 'post').mockImplementation((_url, body) => {
+    const before = { ...saved }
     Object.assign(saved, body)
-    return new Promise((resolve) => answers.push(() => resolve({ data: {} })))
+    return new Promise((resolve, reject) => {
+      answers.push(() => resolve({ data: {} }))
+      refusals.push(() => {
+        // A refused save leaves the server as it was.
+        for (const key of Object.keys(body as object)) saved[key] = before[key]
+        reject({ response: { status: 500 } })
+      })
+    })
   })
-  return answers
+  return Object.assign(answers, { refusals })
 }
 
 const hue = () => String(colour.mock.lastCall?.[0]?.hue)
@@ -115,5 +124,51 @@ describe('display picks answered out of order', () => {
     await waitFor(() => expect(queryClient.isFetching()).toBe(0))
     expect(colour.mock.calls.length).toBeGreaterThan(before)
     expect(hue()).toBe('317')
+  })
+
+  // The page applies the preferences again when the earlier save answers.
+  // If the later pick is refused in the same moment, its rollback is already
+  // in the cache but not yet rendered, and the refused theme must not come
+  // back on screen.
+  it('never applies a refused pick when an earlier save answers in the same moment', async () => {
+    const answers = server()
+    const queryClient = new QueryClient()
+    const { result } = renderHook(
+      () => {
+        useApplyDisplayPreferences()
+        return {
+          save: useSetPreference(),
+          reapply: useReapplyDisplayPreferences(),
+        }
+      },
+      {
+        wrapper: ({ children }: { children: ReactNode }) => (
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
+        ),
+      }
+    )
+    await waitFor(() => expect(hue()).toBe('250'))
+    for (const [index, id] of ['app1:amber', 'app1:green'].entries()) {
+      act(() => {
+        void result.current.save
+          .mutateAsync({ theme: id })
+          .then(result.current.reapply, () => {})
+      })
+      await waitFor(() => expect(answers).toHaveLength(index + 1))
+    }
+    expect(hue()).toBe('143')
+
+    const from = colour.mock.calls.length
+    act(() => {
+      answers.refusals[1]()
+      answers[0]()
+    })
+    await waitFor(() => expect(queryClient.isMutating()).toBe(0))
+    await waitFor(() => expect(queryClient.isFetching()).toBe(0))
+    const after = colour.mock.calls.slice(from).map(([ct]) => String(ct?.hue))
+    expect(after).not.toContain('143')
+    expect(hue()).toBe('71')
   })
 })

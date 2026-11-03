@@ -14,6 +14,7 @@ import {
   within,
 } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import endpoints from '@/api/endpoints'
 import { useApplyDisplayPreferences } from '@/hooks/use-preferences'
 import { UserDisplay } from './display'
 
@@ -38,24 +39,7 @@ vi.mock('@mochi/web', async (original) => ({
   ...(await original<typeof import('@mochi/web')>()),
   useTheme: () => ({ setTheme: vi.fn(), setColorTheme: state.colour }),
   usePreferencesData: () => ({
-    data: {
-      preferences: {
-        appearance: 'auto',
-        theme: state.theme,
-        density: 'theme',
-        radius: 'theme',
-        card: 'theme',
-        background: 'theme',
-        font: 'theme',
-        font_size: 'theme',
-      },
-      themes: [
-        theme('app1:blue', 'Blue', 250),
-        theme('app1:amber', 'Amber', 70),
-      ],
-      presets: {},
-      default_theme: 'app1:blue',
-    },
+    data: preferencesData(),
     isLoading: false,
     error: null,
     refetch: vi.fn(),
@@ -64,9 +48,34 @@ vi.mock('@mochi/web', async (original) => ({
   useUnsetPreferences: () => ({ mutate: state.unset, isPending: false }),
 }))
 
+// What the server holds. The page reads it through the hook above, and the
+// save's follow-up reads it from the query cache, so show() puts it in both.
+function preferencesData() {
+  return {
+    preferences: {
+      appearance: 'auto',
+      theme: state.theme,
+      density: 'theme',
+      radius: 'theme',
+      card: 'theme',
+      background: 'theme',
+      font: 'theme',
+      font_size: 'theme',
+    },
+    themes: [theme('app1:blue', 'Blue', 250), theme('app1:amber', 'Amber', 70)],
+    presets: {},
+    default_theme: 'app1:blue',
+  }
+}
+
 function show() {
+  const queryClient = new QueryClient()
+  queryClient.setQueryData(
+    ['user', 'preferences', endpoints.user.preferences],
+    preferencesData()
+  )
   render(
-    <QueryClientProvider client={new QueryClient()}>
+    <QueryClientProvider client={queryClient}>
       <I18nProvider i18n={i18n}>
         <UserDisplay />
       </I18nProvider>

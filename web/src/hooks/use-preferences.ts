@@ -2,7 +2,8 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 import {
   useTheme,
   usePreferencesData as usePreferencesDataCommon,
@@ -11,6 +12,9 @@ import {
 } from '@mochi/web'
 import endpoints from '@/api/endpoints'
 import { colorThemeFromSelections, prefsFromData } from '@/lib/color-theme'
+
+// The key lib/web's usePreferencesData reads this endpoint under.
+const PREFERENCES_KEY = ['user', 'preferences', endpoints.user.preferences]
 
 export function usePreferencesData() {
   return usePreferencesDataCommon(endpoints.user.preferences)
@@ -67,17 +71,13 @@ export function useApplyDisplayPreferences() {
 // were when the pick was made, keeps the last pick on screen whatever order
 // the answers come back in.
 export function useReapplyDisplayPreferences() {
-  const { data } = usePreferencesData()
+  const queryClient = useQueryClient()
   const { setTheme, setColorTheme } = useTheme()
-  const latest = useRef(data)
 
-  useEffect(() => {
-    latest.current = data
-  }, [data])
-
+  // Read from the cache when called, not from a render: a rollback written
+  // a moment ago, or after the page has gone, is already there.
   return useCallback(() => {
-    if (latest.current) {
-      applyDisplay(latest.current, { setTheme, setColorTheme })
-    }
-  }, [setTheme, setColorTheme])
+    const data = queryClient.getQueryData<Preferences>(PREFERENCES_KEY)
+    if (data) applyDisplay(data, { setTheme, setColorTheme })
+  }, [queryClient, setTheme, setColorTheme])
 }
