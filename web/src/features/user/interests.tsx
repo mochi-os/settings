@@ -21,6 +21,7 @@ import {
   interestColor,
 } from '@mochi/web'
 import { Loader2, Search, Star, Trash2, RefreshCw } from 'lucide-react'
+import { interestLink } from '@/lib/interests'
 import {
   useInterests,
   useInterestSet,
@@ -30,7 +31,6 @@ import {
   type Interest,
   type SearchResult,
 } from '@/hooks/use-interests'
-import { interestLink } from '@/lib/interests'
 
 function InterestRow({
   interest,
@@ -112,10 +112,10 @@ function InterestRow({
   const name = interest.label
 
   const handleRemove = () => {
-    removeInterest.mutate(interest.qid, {
-      onError: (error) => {
-        toast.error(getErrorMessage(error, t`Failed to remove interest`))
-      },
+    // From the promise, not a per-call onError: the row unmounts on the
+    // click, and React Query drops an unmounted caller's callbacks.
+    void removeInterest.mutateAsync(interest.qid).catch((error: unknown) => {
+      toast.error(getErrorMessage(error, t`Failed to remove interest`))
     })
   }
 

@@ -3,7 +3,7 @@
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { requestHelpers } from '@mochi/web'
+import { optimistic, requestHelpers } from '@mochi/web'
 import endpoints from '@/api/endpoints'
 
 interface Interest {
@@ -51,13 +51,26 @@ export function useInterestSet() {
   })
 }
 
+// The row goes on the click and comes back if the server refuses. The caller
+// says so from the promise: the row it would say it from is gone by then.
 export function useInterestRemove() {
   const queryClient = useQueryClient()
+  const patch = optimistic(queryClient, (qid: string) => [
+    {
+      filters: { queryKey: ['interests'], exact: true },
+      update: (old: InterestsResponse) => ({
+        ...old,
+        interests: old.interests.filter((interest) => interest.qid !== qid),
+      }),
+    },
+  ])
   return useMutation({
     mutationFn: (qid: string) =>
       requestHelpers.post<{ ok: boolean }>(endpoints.user.interestsRemove, {
         qid,
       }),
+    onMutate: patch.onMutate,
+    onError: (_error, _qid, context) => patch.rollback(context),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['interests'] })
     },
