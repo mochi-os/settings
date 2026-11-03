@@ -205,8 +205,10 @@ export function useAccountKeysRecovery() {
     // The private half is shown once and never kept, so the result is not
     // retained past the call either.
     gcTime: 0,
+    // The whole list, not only the keys: each account's recovery flag is
+    // there, and its "No recovery key" warning stayed until a reload.
     onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ['networks', 'keys'] })
+      void queryClient.invalidateQueries({ queryKey: ['networks'] })
     },
   })
 }
