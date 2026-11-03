@@ -104,6 +104,7 @@ import {
   useMuteRemove,
   useNetworksData,
 } from '@/hooks/use-networks'
+import { useLinkResult } from '@/hooks/use-oauth-result'
 
 // Why a name cannot be reserved, in the user's words.
 function availabilityReason(reason: string): string {
@@ -126,27 +127,6 @@ function availabilityReason(reason: string): string {
       return i18n._(msg`You have reached your limit of handles`)
   }
   return i18n._(msg`That name is not available`)
-}
-
-// A linked account's remote server returns the browser to this page with the
-// account's id, or with why the link did not happen.
-function useLinkResult() {
-  const { t } = useLingui()
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const linked = params.get('linked')
-    const errored = params.get('link_error')
-    if (!linked && !errored) return
-    setTimeout(() => {
-      if (linked) {
-        toast.success(t`Account linked`)
-      } else if (errored === 'access_denied') {
-        toast.error(t`The server did not allow the link`)
-      } else {
-        toast.error(t`Could not link the account`)
-      }
-    }, 0)
-  }, [t])
 }
 
 // The check an input runs as the user types, and its answer.
