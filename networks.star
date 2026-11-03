@@ -87,7 +87,13 @@ def action_networks_account_create(a):
     # A Bluesky account that waits for one moving here from another server.
     if network == "bluesky" and a.input("arriving") == "true":
         fields["arriving"] = "true"
-    a.json(mochi.account.add(network, **fields))
+    made = mochi.account.add(network, **fields)
+    # The account as the list shows it, over what adding it answered: the
+    # sign-in dialog opened straight after names its server from the domain,
+    # which the add's own answer does not carry.
+    answer = dict(made or {})
+    answer.update(mochi.account.get(answer.get("id", "")) or {})
+    a.json(answer)
 
 def action_networks_account_link(a):
     """Link an existing account: a form provider signs in and answers the
