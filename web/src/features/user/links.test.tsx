@@ -118,26 +118,48 @@ describe('UserLinks', () => {
     )
   })
 
-  // The page's locale only moves once the shell echoes a change back, and
-  // TanStack drops a pick's own callbacks once a second pick goes through the
-  // same hook. Two picks saved close together must each reach the shell, and
-  // the second must not send the block from before the first.
-  it('sends the shell both of two picks saved close together', async () => {
-    let landFirst = () => {}
-    mutateAsync.mockImplementationOnce(
-      () => new Promise<void>((resolve) => (landFirst = resolve))
-    )
+  // TanStack drops a pick's own callbacks once a second pick goes through
+  // the same hook, so each save tells the shell from its own promise. The
+  // shell re-reads the locale from the server on that message and ignores
+  // the values sent, so what matters is that every accepted save sends one,
+  // in whatever order the answers come.
+  it('tells the shell once per accepted save, whatever order they answer in', async () => {
+    const success = vi.spyOn(toast, 'success')
+    success.mockClear()
+    const lands: (() => void)[] = []
+    mutateAsync
+      .mockImplementationOnce(
+        () => new Promise<void>((resolve) => lands.push(resolve))
+      )
+      .mockImplementationOnce(
+        () => new Promise<void>((resolve) => lands.push(resolve))
+      )
+    show()
+    const pick = async (box: number, name: string) => {
+      fireEvent.click(screen.getAllByRole('combobox')[box])
+      fireEvent.click(await screen.findByRole('option', { name }))
+    }
+    await pick(0, 'Google Maps')
+    await pick(1, 'FlightAware')
+    await pick(0, 'OpenStreetMap')
+    // Answered third, first, second.
+    await waitFor(() => expect(success).toHaveBeenCalledTimes(1))
+    lands[0]()
+    await waitFor(() => expect(success).toHaveBeenCalledTimes(2))
+    lands[1]()
+    await waitFor(() => expect(success).toHaveBeenCalledTimes(3))
+    expect(shell.setLocale).toHaveBeenCalledTimes(3)
+  })
+
+  it('does not tell the shell about a refused save', async () => {
+    const error = vi.spyOn(toast, 'error')
+    mutateAsync.mockRejectedValue({ response: { status: 500 } })
     show()
     fireEvent.click(screen.getAllByRole('combobox')[0])
     fireEvent.click(await screen.findByRole('option', { name: 'Google Maps' }))
-    fireEvent.click(screen.getAllByRole('combobox')[1])
-    fireEvent.click(await screen.findByRole('option', { name: 'FlightAware' }))
-    await waitFor(() => expect(shell.setLocale).toHaveBeenCalledTimes(1))
-    landFirst()
-    await waitFor(() => expect(shell.setLocale).toHaveBeenCalledTimes(2))
-    expect(shell.setLocale.mock.lastCall?.[0]).toMatchObject({
-      maps: 'google',
-      flights: 'flightaware',
-    })
+    await waitFor(() =>
+      expect(error).toHaveBeenCalledWith('Failed to update preference')
+    )
+    expect(shell.setLocale).not.toHaveBeenCalled()
   })
 })

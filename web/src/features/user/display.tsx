@@ -39,6 +39,7 @@ import {
 import { colorThemeFromSelections, prefsFromData } from '@/lib/color-theme'
 import {
   usePreferencesData,
+  useReapplyDisplayPreferences,
   useSetPreference,
   useUnsetPreferences,
 } from '@/hooks/use-preferences'
@@ -107,42 +108,19 @@ export function UserDisplay() {
   const setPreference = useSetPreference()
   const unsetPreferences = useUnsetPreferences()
   const { setTheme, setColorTheme } = useTheme()
+  const reapplyDisplay = useReapplyDisplayPreferences()
   const [themeSheetOpen, setThemeSheetOpen] = useState(false)
   const [showReset, setShowReset] = useState(false)
-
-  const themeOverrideKeys = [
-    'density',
-    'radius',
-    'card',
-    'background',
-    'font',
-    'font_size',
-  ] as const
 
   const handleChange = (key: string, value: string) => {
     // Both outcomes come from the promise, not from per-call callbacks: a
     // second pick on this hook, or leaving the page, drops the first call's
-    // callbacks, while its save still lands or is put back. `data` is the
-    // render this pick was made in, which already shows any earlier pick.
+    // callbacks, while its save still lands or is put back. What is applied
+    // is the preferences as they are when the save answers, not this pick,
+    // so an older answer arriving last cannot bring back an older pick.
     void setPreference.mutateAsync({ [key]: value }).then(
       () => {
-        if (key === 'appearance') {
-          setTheme(value === 'auto' ? 'system' : (value as 'light' | 'dark'))
-        }
-        if ((themeOverrideKeys as readonly string[]).includes(key) && data) {
-          const updated = {
-            ...prefsFromData(data.preferences),
-            [key]: value,
-          }
-          setColorTheme(
-            colorThemeFromSelections(
-              data.themes,
-              data.preferences.theme || data.default_theme,
-              updated,
-              data.presets
-            )
-          )
-        }
+        reapplyDisplay()
         toast.success(t`Preference updated`)
       },
       (error) => {
@@ -179,23 +157,7 @@ export function UserDisplay() {
     // Both outcomes come from the promise, as in handleChange.
     void setPreference.mutateAsync({ theme: theme.id }).then(
       () => {
-        setColorTheme(
-          colorThemeFromSelections(
-            data?.themes,
-            theme.id,
-            data
-              ? prefsFromData(data.preferences)
-              : {
-                  density: 'theme',
-                  radius: 'theme',
-                  card: 'theme',
-                  background: 'theme',
-                  font: 'theme',
-                  font_size: 'theme',
-                },
-            data?.presets
-          )
-        )
+        reapplyDisplay()
         toast.success(t`Theme updated`)
       },
       (error) => {

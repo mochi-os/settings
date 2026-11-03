@@ -15,11 +15,13 @@ import {
   getErrorMessage,
   mapService,
   naturalCompare,
+  shellSetLocale,
   toast,
+  useLocale,
   usePageTitle,
+  type LocalePreferences,
 } from '@mochi/web'
 import { ExternalLink } from 'lucide-react'
-import { useLocaleBroadcast } from '@/hooks/use-locale-broadcast'
 import { usePreferencesData, useSetPreference } from '@/hooks/use-preferences'
 import { ComboSelect } from '@/components/combo-select'
 
@@ -39,7 +41,7 @@ export function UserLinks() {
   usePageTitle(t({ message: 'Links', context: 'external links' }))
   const { data, isLoading, error, refetch } = usePreferencesData()
   const setPreference = useSetPreference()
-  const broadcast = useLocaleBroadcast()
+  const { raw: currentLocale } = useLocale()
 
   const handleChange = (key: 'maps' | 'flights', value: string) => {
     // Both outcomes come from the promise, not from per-call callbacks: a
@@ -48,8 +50,14 @@ export function UserLinks() {
     void setPreference.mutateAsync({ [key]: value }).then(
       () => {
         // The shell carries the link preferences with the locale block, so
-        // every open app learns the change without a reload.
-        broadcast.change(key, value)
+        // every open app learns the change without a reload. The shell
+        // re-reads the block from the server on this message and ignores the
+        // values sent, so what is sent, and the order saves answer in, cannot
+        // put an older value on screen.
+        shellSetLocale({
+          ...currentLocale,
+          [key]: value,
+        } as LocalePreferences)
         toast.success(t`Preference updated`)
       },
       (error) => {

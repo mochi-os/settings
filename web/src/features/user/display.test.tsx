@@ -5,6 +5,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
+import { toast } from '@mochi/web'
 import {
   fireEvent,
   render,
@@ -111,10 +112,14 @@ describe('Display theme', () => {
     expect(state.unset).not.toHaveBeenCalled()
   })
 
-  // A pick's own callbacks are dropped by TanStack once a second pick goes
-  // through the same hook, so the theme is applied from each save's promise.
-  // Both picks land here, and each is applied in turn.
-  it('applies every chosen theme once its save lands, not only the last', async () => {
+  // The shell re-reads its own theme from the server each time the page
+  // applies one, so every save that lands applies the preferences again,
+  // once the server has them. What is applied is the preferences as they
+  // are then, not the pick, so the order the answers come in does not
+  // matter. Both answers still confirm.
+  it('applies the preferences again as each save lands', async () => {
+    const success = vi.spyOn(toast, 'success')
+    success.mockClear()
     state.theme = ''
     let landFirst = () => {}
     state.set.mockImplementationOnce(
@@ -124,11 +129,14 @@ describe('Display theme', () => {
     openThemes('Default')
     fireEvent.click(card('Amber'))
     fireEvent.click(card('Blue'))
-    await waitFor(() => expect(state.colour).toHaveBeenCalledTimes(1))
-    expect(JSON.stringify(state.colour.mock.lastCall?.[0])).toContain('250')
+    await waitFor(() => expect(success).toHaveBeenCalledTimes(1))
+    expect(state.colour).toHaveBeenCalledTimes(1)
     landFirst()
-    await waitFor(() => expect(state.colour).toHaveBeenCalledTimes(2))
-    expect(JSON.stringify(state.colour.mock.lastCall?.[0])).toContain('70')
+    await waitFor(() => expect(success).toHaveBeenCalledTimes(2))
+    expect(success).toHaveBeenCalledWith('Theme updated')
+    expect(state.colour).toHaveBeenCalledTimes(2)
+    // The preferences say no theme was chosen, so the server default shows.
+    expect(JSON.stringify(state.colour.mock.lastCall?.[0])).toContain('250')
   })
 
   it('deselecting a chosen theme clears the choice and applies the default', () => {
