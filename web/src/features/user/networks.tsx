@@ -1634,8 +1634,10 @@ function ModerationSection({
     try {
       await call()
       toast.success(done)
+      return true
     } catch (err) {
       toast.error(getErrorMessage(err, t`Could not change the block`))
+      return false
     } finally {
       setBusy(null)
     }
@@ -1673,8 +1675,9 @@ function ModerationSection({
           event.preventDefault()
           const target = domain.trim()
           if (!target) return
-          void run('add', () => add.mutateAsync(target), t`Blocked`).then(() =>
-            setDomain('')
+          // A refused block keeps what was typed.
+          void run('add', () => add.mutateAsync(target), t`Blocked`).then(
+            (blocked) => blocked && setDomain('')
           )
         }}
       >

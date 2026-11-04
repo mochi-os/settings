@@ -729,6 +729,40 @@ describe('Networks', () => {
     )
   })
 
+  // A refused block keeps what was typed; one the server takes clears it.
+  it.each([
+    ['refused', true],
+    ['taken', false],
+  ])('a block %s keeps the domain typed: %s', async (outcome, kept) => {
+    state.post.mockImplementation((path: string) =>
+      path === '-/user/networks/block/add' && outcome === 'refused'
+        ? Promise.reject(new Error('Not a domain or a person'))
+        : Promise.resolve({})
+    )
+    show()
+    await screen.findByText('spam.example')
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText('Domain to block'), {
+        target: { value: 'foo' },
+      })
+    })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Block' }))
+    })
+    await waitFor(() =>
+      expect(state.post).toHaveBeenCalledWith(
+        '-/user/networks/block/add',
+        { target: 'foo' },
+        expect.anything()
+      )
+    )
+    await waitFor(() =>
+      expect(
+        (screen.getByLabelText('Domain to block') as HTMLInputElement).value
+      ).toBe(kept ? 'foo' : '')
+    )
+  })
+
   it("sets a hosted account's aliases, one added and one removed", async () => {
     state.post.mockResolvedValue({})
     const client = new QueryClient()
