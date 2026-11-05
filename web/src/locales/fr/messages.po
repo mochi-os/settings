@@ -28,7 +28,9 @@ msgstr "\"{0}\" et les noms qui en dépendent seront libérés et pourront être
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "\"{0}\" et les noms qui en dépendent seront libérés et pourront être pris par n'importe qui. Leurs comptes, tout ce qu'ils ont publié et leurs abonnés seront supprimés."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" sera supprimé avec tout ce qu'il a publié et ses abonnés."
@@ -45,8 +47,11 @@ msgstr "\"{0}\" sera déconnecté et ne pourra pas se reconnecter tant que la su
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" sera déconnecté sur tous les appareils et devra se reconnecter."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "\"{0}\" sera dissocié. Ce qui a été publié par son intermédiaire reste sur {1}."
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "Compte ailleurs"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Compte lié"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "Impossible de lier le compte"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "Impossible de lier le compte"
 
@@ -4049,6 +4054,7 @@ msgstr "Supprimer le lien"
 msgid "Remove suspension"
 msgstr "Lever la suspension"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "Supprimer ce compte ?"
@@ -4928,7 +4934,7 @@ msgstr "Le serveur a répondu avec l'erreur {status}"
 msgid "The server can't be reached"
 msgstr "Le serveur est injoignable"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "Le serveur n'a pas autorisé la liaison"
 
@@ -5224,6 +5230,7 @@ msgstr "Navigateur inconnu"
 msgid "Unknown theme"
 msgstr "Thème inconnu"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "Délier le fournisseur"
 msgid "Unlink provider?"
 msgstr "Délier le fournisseur ?"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "Dissocier ce compte ?"

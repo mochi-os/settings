@@ -28,7 +28,9 @@ msgstr "\"{0}\" 및 그 아래의 이름이 해제되어 누구나 가져갈 수
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "\"{0}\" 및 그 아래의 이름이 해제되어 누구나 가져갈 수 있게 됩니다. 해당 계정과 그 계정들이 게시한 모든 내용, 팔로워가 삭제됩니다."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\"이(가) 삭제되며, 게시한 모든 내용과 팔로워도 함께 삭제됩니다."
@@ -45,8 +47,11 @@ msgstr "\"{0}\" 사용자는 로그아웃되며 정지가 해제될 때까지 �
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" 사용자는 모든 기기에서 로그아웃되며 다시 로그인해야 합니다."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "\"{0}\"의 연결이 해제됩니다. 이를 통해 게시된 내용은 {1}에 남습니다."
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "다른 곳의 계정"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "계정이 연결되었습니다"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "계정을 연결할 수 없었어요"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "계정을 연결할 수 없었어요"
 
@@ -4049,6 +4054,7 @@ msgstr "링크 제거"
 msgid "Remove suspension"
 msgstr "정지 해제"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "이 계정을 제거할까요?"
@@ -4928,7 +4934,7 @@ msgstr "서버가 {status} 오류로 응답했습니다"
 msgid "The server can't be reached"
 msgstr "서버에 연결할 수 없습니다"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "서버가 연결을 허용하지 않았어요"
 
@@ -5224,6 +5230,7 @@ msgstr "알 수 없는 브라우저"
 msgid "Unknown theme"
 msgstr "알 수 없는 테마"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "제공자 연결 해제"
 msgid "Unlink provider?"
 msgstr "공급자 연결을 해제할까요?"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "이 계정의 연결을 해제할까요?"

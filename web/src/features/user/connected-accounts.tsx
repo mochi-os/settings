@@ -457,16 +457,37 @@ function AccountRow({
           </DropdownMenuContent>
         </DropdownMenu>
 
+        {/* An account on another network says what removing it does, as the
+            Networks page does: a hosted one goes from its network with
+            everything it published, a linked one is only unlinked. */}
         <ConfirmDialog
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
-          title={isOauth ? t`Revoke access?` : t`Remove account?`}
+          title={
+            isOauth
+              ? t`Revoke access?`
+              : account.hosted === true
+                ? t`Remove this account?`
+                : account.hosted === false
+                  ? t`Unlink this account?`
+                  : t`Remove account?`
+          }
           desc={
             isOauth
               ? t`This will revoke the calendar access of "${displayName}". Signing in with ${getProviderLabel(account.type)} stays until you unlink it on the Login page.`
-              : t`This will remove the connected account "${displayName}".`
+              : account.hosted === true
+                ? t`"${account.identifier}" will be removed with everything it published and its followers.`
+                : account.hosted === false
+                  ? t`"${account.identifier}" will be unlinked. What was published through it stays on ${account.server ?? ''}.`
+                  : t`This will remove the connected account "${displayName}".`
           }
-          confirmText={isOauth ? t`Revoke access` : t`Remove`}
+          confirmText={
+            isOauth
+              ? t`Revoke access`
+              : account.hosted === false
+                ? t`Unlink`
+                : t`Remove`
+          }
           icon={<Trash2 className='size-4' />}
           destructive
           handleConfirm={handleDelete}

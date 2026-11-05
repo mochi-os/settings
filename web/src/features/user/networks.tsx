@@ -104,6 +104,7 @@ import {
   useMuteRemove,
   useNetworksData,
 } from '@/hooks/use-networks'
+import { useLinkResult } from '@/hooks/use-oauth-result'
 
 // Why a name cannot be reserved, in the user's words.
 function availabilityReason(reason: string): string {
@@ -126,27 +127,6 @@ function availabilityReason(reason: string): string {
       return i18n._(msg`You have reached your limit of handles`)
   }
   return i18n._(msg`That name is not available`)
-}
-
-// A linked account's remote server returns the browser to this page with the
-// account's id, or with why the link did not happen.
-function useLinkResult() {
-  const { t } = useLingui()
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const linked = params.get('linked')
-    const errored = params.get('link_error')
-    if (!linked && !errored) return
-    setTimeout(() => {
-      if (linked) {
-        toast.success(t`Account linked`)
-      } else if (errored === 'access_denied') {
-        toast.error(t`The server did not allow the link`)
-      } else {
-        toast.error(t`Could not link the account`)
-      }
-    }, 0)
-  }, [t])
 }
 
 // The check an input runs as the user types, and its answer.
@@ -552,7 +532,9 @@ function LinkDialog({
   const handleLink = async () => {
     try {
       const answer = await link.mutateAsync({ type, ...fields })
-      if (answer.url) {
+      // An OAuth provider answers its consent's address; a form provider
+      // answers the account, whose url is its profile.
+      if (provider?.link.flow === 'oauth' && answer.url) {
         shellNavigateTop(answer.url)
         return
       }
@@ -1652,22 +1634,35 @@ function ModerationSection({
     try {
       await call()
       toast.success(done)
+      return true
     } catch (err) {
       toast.error(getErrorMessage(err, t`Could not change the block`))
+      return false
     } finally {
       setBusy(null)
     }
   }
 
-  const rows: { key: string; label: string; kind: 'block' | 'mute' }[] = [
+  // A person by their name, with their address beneath; their id only where
+  // their network gave neither.
+  const person = (p: { actor?: string; name?: string; address?: string }) => ({
+    label: p.name || p.address || p.actor || '',
+    address: p.name && p.address ? p.address : '',
+  })
+  const rows: {
+    key: string
+    label: string
+    address: string
+    kind: 'block' | 'mute'
+  }[] = [
     ...blocks.map((b) => ({
       key: b.domain ?? b.actor ?? '',
-      label: b.domain ?? b.actor ?? '',
+      ...(b.domain ? { label: b.domain, address: '' } : person(b)),
       kind: 'block' as const,
     })),
     ...mutes.map((m) => ({
       key: m.actor,
-      label: m.actor,
+      ...person(m),
       kind: 'mute' as const,
     })),
   ]
@@ -1680,8 +1675,9 @@ function ModerationSection({
           event.preventDefault()
           const target = domain.trim()
           if (!target) return
-          void run('add', () => add.mutateAsync(target), t`Blocked`).then(() =>
-            setDomain('')
+          // A refused block keeps what was typed.
+          void run('add', () => add.mutateAsync(target), t`Blocked`).then(
+            (blocked) => blocked && setDomain('')
           )
         }}
       >
@@ -1712,7 +1708,10 @@ function ModerationSection({
             key={`${row.kind}:${row.key}`}
             inline
             label={row.label}
-            description={row.kind === 'mute' ? t`Muted` : t`Blocked`}
+            description={
+              (row.address ? row.address + ' · ' : '') +
+              (row.kind === 'mute' ? t`Muted` : t`Blocked`)
+            }
           >
             <Button
               variant='ghost'

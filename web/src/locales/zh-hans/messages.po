@@ -28,7 +28,9 @@ msgstr "“{0}”及其下的名称将被释放，任何人都可以使用。持
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "“{0}”及其下的名称将被释放，任何人都可以使用。它们的账户、所发布的全部内容及关注者都会被移除。"
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "“{0}”将连同其发布的所有内容和关注者一起被移除。"
@@ -45,8 +47,11 @@ msgstr "“{0}”将被退出登录，在解除暂停前无法再次登录。"
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "“{0}”将在所有设备上退出登录，需要重新登录。"
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "“{0}”将被解除关联。通过它发布的内容仍保留在 {1} 上。"
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "其他位置的账户"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "账户已关联"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "无法关联账户"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "无法关联账户"
 
@@ -4049,6 +4054,7 @@ msgstr "移除链接"
 msgid "Remove suspension"
 msgstr "解除停用"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "移除此账户？"
@@ -4928,7 +4934,7 @@ msgstr "服务器返回错误 {status}"
 msgid "The server can't be reached"
 msgstr "无法访问服务器"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "服务器不允许关联"
 
@@ -5224,6 +5230,7 @@ msgstr "未知浏览器"
 msgid "Unknown theme"
 msgstr "未知主题"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "解除提供商关联"
 msgid "Unlink provider?"
 msgstr "解除提供方关联?"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "解除此账户的关联？"

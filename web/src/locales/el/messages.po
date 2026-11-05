@@ -28,7 +28,9 @@ msgstr "Το \"{0}\" και τα ονόματα κάτω από αυτό θα α
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "Το \"{0}\" και τα ονόματα κάτω από αυτό θα αποδεσμευτούν, ώστε να μπορεί να τα πάρει οποιοσδήποτε. Οι λογαριασμοί τους, όλα όσα δημοσίευσαν και οι ακόλουθοί τους θα αφαιρεθούν."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "Το \"{0}\" θα αφαιρεθεί μαζί με όλα όσα δημοσίευσε και τους ακολούθους του."
@@ -45,8 +47,11 @@ msgstr "Ο χρήστης \"{0}\" θα αποσυνδεθεί και δεν θα
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "Ο χρήστης \"{0}\" θα αποσυνδεθεί από κάθε συσκευή και θα πρέπει να συνδεθεί ξανά."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "Το \"{0}\" θα αποσυνδεθεί. Όσα δημοσιεύτηκαν μέσω αυτού παραμένουν στο {1}."
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "Λογαριασμός αλλού"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Ο λογαριασμός συνδέθηκε"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "Δεν ήταν δυνατή η σύνδεση λογαριασμού"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "Δεν ήταν δυνατή η σύνδεση του λογαριασμού"
 
@@ -4049,6 +4054,7 @@ msgstr "Αφαίρεση συνδέσμου"
 msgid "Remove suspension"
 msgstr "Άρση αναστολής"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "Αφαίρεση αυτού του λογαριασμού;"
@@ -4928,7 +4934,7 @@ msgstr "Ο διακομιστής απάντησε με σφάλμα {status}"
 msgid "The server can't be reached"
 msgstr "Δεν είναι δυνατή η πρόσβαση στον διακομιστή"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "Ο διακομιστής δεν επέτρεψε τη σύνδεση"
 
@@ -5224,6 +5230,7 @@ msgstr "Άγνωστο πρόγραμμα περιήγησης"
 msgid "Unknown theme"
 msgstr "Άγνωστο θέμα"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "Αποσύνδεση παρόχου"
 msgid "Unlink provider?"
 msgstr "Αποσύνδεση παρόχου;"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "Αποσύνδεση αυτού του λογαριασμού;"

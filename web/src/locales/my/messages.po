@@ -28,7 +28,9 @@ msgstr "\"{0}\" နှင့် ၎င်းအောက်ရှိ အမည�
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "\"{0}\" နှင့် ၎င်းအောက်ရှိ အမည်များကို မည်သူမဆို ယူနိုင်ရန် လွှတ်ပေးပါမည်။ ၎င်းတို့၏ အကောင့်များ၊ ထိုအကောင့်များ ထုတ်ဝေခဲ့သမျှနှင့် ၎င်းတို့၏ နောက်လိုက်များကို ဖယ်ရှားပါမည်။"
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" ကို ၎င်းထုတ်ဝေခဲ့သမျှနှင့် ၎င်း၏ နောက်လိုက်များနှင့်အတူ ဖယ်ရှားပါမည်။"
@@ -45,8 +47,11 @@ msgstr "\"{0}\" ကို ထွက်ခွာစေမည်ဖြစ်ပြ
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" ကို စက်တိုင်းတွင် ထွက်ခွာစေမည်ဖြစ်ပြီး ပြန်လည်ဝင်ရောက်ရမည်ဖြစ်သည်။"
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "\"{0}\" ၏ ချိတ်ဆက်မှုကို ဖြုတ်ပါမည်။ ၎င်းမှတစ်ဆင့် ထုတ်ဝေခဲ့သည်များသည် {1} တွင် ဆက်ရှိနေပါမည်။"
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "အခြားနေရာရှိ အကောင့်"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "အကောင့် ချိတ်ဆက်ပြီး"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "အကောင့် ချိတ်ဆက်၍ မရပါ"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "အကောင့် ချိတ်ဆက်၍ မရပါ"
 
@@ -4049,6 +4054,7 @@ msgstr "လင့်ခ် ဖယ်ရှားရန်"
 msgid "Remove suspension"
 msgstr "ဆိုင်းငံ့ထား ဖယ်ရှား"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "ဤအကောင့်ကို ဖယ်ရှားမလား?"
@@ -4928,7 +4934,7 @@ msgstr "ဆာဗာက အမှား {status} ဖြင့် ပြန်ဖ
 msgid "The server can't be reached"
 msgstr "ဆာဗာသို့ မရောက်ရှိနိုင်ပါ"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "ဆာဗာက ချိတ်ဆက်မှုကို ခွင့်မပြုခဲ့ပါ"
 
@@ -5224,6 +5230,7 @@ msgstr "မသိရသော ဘရောက်ဇာ"
 msgid "Unknown theme"
 msgstr "အမည်မသိ အပြင်အဆင်"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "ဝန်ဆောင်မှုပေးသူကို ဆက်စ�
 msgid "Unlink provider?"
 msgstr "ချိတ်ဆက်မှုကို ဖြုတ်မှာလား?"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "ဤအကောင့်၏ ချိတ်ဆက်မှုကို ဖြုတ်မလား?"

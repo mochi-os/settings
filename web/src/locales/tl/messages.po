@@ -28,7 +28,9 @@ msgstr "Ang \"{0}\" at ang mga pangalan sa ilalim nito ay palalayain para makuha
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "Ang \"{0}\" at ang mga pangalan sa ilalim nito ay palalayain para makuha ng kahit sino. Aalisin ang kanilang mga account, lahat ng nai-publish ng mga ito, at ang kanilang mga follower."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "Aalisin ang \"{0}\" kasama ang lahat ng nai-publish nito at ang mga follower nito."
@@ -45,8 +47,11 @@ msgstr "Mala-log out ang \"{0}\" at hindi makakapag-log in muli hanggang maalis 
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "Mala-log out ang \"{0}\" sa bawat device at kailangang mag-log in muli."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "Ia-unlink ang \"{0}\". Mananatili sa {1} ang nai-publish sa pamamagitan nito."
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "Account sa ibang lugar"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Naka-link na ang account"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "Hindi na-link ang account"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "Hindi na-link ang account"
 
@@ -4049,6 +4054,7 @@ msgstr "Alisin ang link"
 msgid "Remove suspension"
 msgstr "Alisin ang suspension"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "Alisin ang account na ito?"
@@ -4928,7 +4934,7 @@ msgstr "Sumagot ang server ng kamalian {status}"
 msgid "The server can't be reached"
 msgstr "Hindi maabot ang server"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "Hindi pinayagan ng server ang pag-link"
 
@@ -5224,6 +5230,7 @@ msgstr "Hindi kilalang browser"
 msgid "Unknown theme"
 msgstr "Hindi kilalang tema"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "Tanggalin ang link sa provider"
 msgid "Unlink provider?"
 msgstr "I-unlink ang provider?"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "I-unlink ang account na ito?"

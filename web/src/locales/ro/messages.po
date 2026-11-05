@@ -28,7 +28,9 @@ msgstr "Pseudonimul \"{0}\" și numele de sub el vor fi eliberate, oricine le va
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "Pseudonimul \"{0}\" și numele de sub el vor fi eliberate, oricine le va putea lua. Conturile lor, tot ce au publicat acestea și urmăritorii lor vor fi eliminate."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "Contul \"{0}\" va fi eliminat împreună cu tot ce a publicat și cu urmăritorii săi."
@@ -45,8 +47,11 @@ msgstr "\"{0}\" va fi deconectat și nu se va putea autentifica din nou până c
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" va fi deconectat pe toate dispozitivele și va trebui să se autentifice din nou."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "Contul \"{0}\" va fi deconectat. Ce s-a publicat prin el rămâne pe {1}."
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "Cont în altă parte"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Cont conectat"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "Nu s-a putut conecta contul"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "Contul nu a putut fi conectat"
 
@@ -4049,6 +4054,7 @@ msgstr "Elimină linkul"
 msgid "Remove suspension"
 msgstr "Ridică suspendarea"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "Elimini acest cont?"
@@ -4928,7 +4934,7 @@ msgstr "Serverul a răspuns cu eroarea {status}"
 msgid "The server can't be reached"
 msgstr "Serverul nu poate fi accesat"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "Serverul nu a permis conectarea"
 
@@ -5224,6 +5230,7 @@ msgstr "Browser necunoscut"
 msgid "Unknown theme"
 msgstr "Temă necunoscută"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "Deconectează furnizorul"
 msgid "Unlink provider?"
 msgstr "Deconectezi furnizorul?"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "Deconectezi acest cont?"

@@ -28,7 +28,9 @@ msgstr "«{0}»-ը և դրա տակ գտնվող անունները կազատվ
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "«{0}»-ը և դրա տակ գտնվող անունները կազատվեն, և ցանկացած մեկը կկարողանա վերցնել դրանք։ Դրանց հաշիվները, այդ հաշիվների հրապարակած ամեն ինչը և դրանց հետևորդները կհեռացվեն։"
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "«{0}»-ը կհեռացվի իր հրապարակած ամեն ինչի և հետևորդների հետ միասին։"
@@ -45,8 +47,11 @@ msgstr "\"{0}\"-ը դուրս կգրվի և չի կարողանա նորից մ�
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\"-ը դուրս կգրվի բոլոր սարքերից և պետք է նորից մուտք գործի."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "«{0}»-ի կապը կհանվի։ Դրա միջոցով հրապարակվածը կմնա {1}-ում։"
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "Հաշիվ այլ տեղում"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Հաշիվը կապակցվեց"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "Չհաջողվեց կապել հաշիվը"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "Չհաջողվեց կապել հաշիվը"
 
@@ -4049,6 +4054,7 @@ msgstr "Հեռացնել հղումը"
 msgid "Remove suspension"
 msgstr "Վերացնել կասեցումը"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "Հեռացնե՞լ այս հաշիվը։"
@@ -4928,7 +4934,7 @@ msgstr "Սերվերը պատասխանեց {status} սխալով"
 msgid "The server can't be reached"
 msgstr "Սերվերն անհասանելի է"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "Սերվերը թույլ չտվեց կապակցումը"
 
@@ -5224,6 +5230,7 @@ msgstr "Անհայտ բրաուզեր"
 msgid "Unknown theme"
 msgstr "Անհայտ թեմա"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "Անջատել մատակարարին"
 msgid "Unlink provider?"
 msgstr "Ապակապակցե՞լ մատակարարը:"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "Ապակապակցե՞լ այս հաշիվը։"

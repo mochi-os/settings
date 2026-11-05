@@ -28,7 +28,9 @@ msgstr "\"{0}\" và các tên bên dưới sẽ được giải phóng để b�
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "\"{0}\" và các tên bên dưới sẽ được giải phóng để bất kỳ ai cũng có thể lấy. Tài khoản của chúng, mọi thứ chúng đã đăng và người theo dõi của chúng sẽ bị xoá."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" sẽ bị xoá cùng mọi thứ đã đăng và người theo dõi."
@@ -45,8 +47,11 @@ msgstr "\"{0}\" sẽ bị đăng xuất và không thể đăng nhập lại cho
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" sẽ bị đăng xuất trên mọi thiết bị và phải đăng nhập lại."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "\"{0}\" sẽ bị gỡ liên kết. Những gì đã đăng qua tài khoản này vẫn ở trên {1}."
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "Tài khoản ở nơi khác"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Đã liên kết tài khoản"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "Không thể liên kết tài khoản"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "Không thể liên kết tài khoản"
 
@@ -4049,6 +4054,7 @@ msgstr "Xóa liên kết"
 msgid "Remove suspension"
 msgstr "Gỡ đình chỉ"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "Xoá tài khoản này?"
@@ -4928,7 +4934,7 @@ msgstr "Máy chủ trả về lỗi {status}"
 msgid "The server can't be reached"
 msgstr "Không thể truy cập máy chủ"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "Máy chủ không cho phép liên kết"
 
@@ -5224,6 +5230,7 @@ msgstr "Trình duyệt không xác định"
 msgid "Unknown theme"
 msgstr "Giao diện không xác định"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "Gỡ liên kết nhà cung cấp"
 msgid "Unlink provider?"
 msgstr "Gỡ liên kết nhà cung cấp?"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "Gỡ liên kết tài khoản này?"

@@ -28,7 +28,9 @@ msgstr "Pseudonim \"{0}\" i nazwy pod nim zostaną zwolnione, by każdy mógł j
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "Pseudonim \"{0}\" i nazwy pod nim zostaną zwolnione, by każdy mógł je zająć. Ich konta zostaną usunięte wraz ze wszystkim, co opublikowały, i z obserwującymi."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "Konto \"{0}\" zostanie usunięte wraz ze wszystkim, co opublikowało, i z obserwującymi."
@@ -45,8 +47,11 @@ msgstr "Użytkownik \"{0}\" zostanie wylogowany i nie będzie mógł zalogować 
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "Użytkownik \"{0}\" zostanie wylogowany na każdym urządzeniu i będzie musiał zalogować się ponownie."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "Konto \"{0}\" zostanie odłączone. To, co za jego pośrednictwem opublikowano, pozostanie na serwerze {1}."
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "Konto gdzie indziej"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Konto połączono"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "Nie można połączyć konta"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "Nie udało się połączyć konta"
 
@@ -4049,6 +4054,7 @@ msgstr "Usuń link"
 msgid "Remove suspension"
 msgstr "Usuń zawieszenie"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "Usunąć to konto?"
@@ -4928,7 +4934,7 @@ msgstr "Serwer odpowiedział błędem {status}"
 msgid "The server can't be reached"
 msgstr "Serwer jest nieosiągalny"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "Serwer nie zezwolił na połączenie"
 
@@ -5224,6 +5230,7 @@ msgstr "Nieznana przeglądarka"
 msgid "Unknown theme"
 msgstr "Nieznany motyw"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "Odłącz dostawcę"
 msgid "Unlink provider?"
 msgstr "Odłączyć dostawcę?"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "Odłączyć to konto?"

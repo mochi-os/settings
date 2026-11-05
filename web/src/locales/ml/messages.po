@@ -28,7 +28,9 @@ msgstr "\"{0}\"-ഉം അതിനു കീഴിലുള്ള പേരു�
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "\"{0}\"-ഉം അതിനു കീഴിലുള്ള പേരുകളും ആർക്കും എടുക്കാവുന്ന വിധത്തിൽ സ്വതന്ത്രമാക്കപ്പെടും. അവയുടെ അക്കൗണ്ടുകൾ, ആ അക്കൗണ്ടുകൾ പ്രസിദ്ധീകരിച്ചതെല്ലാം, അവയുടെ ഫോളോവർമാർ എന്നിവ നീക്കം ചെയ്യപ്പെടും."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\", അത് പ്രസിദ്ധീകരിച്ച എല്ലാ ഉള്ളടക്കവും ഫോളോവർമാരും സഹിതം നീക്കം ചെയ്യപ്പെടും."
@@ -45,8 +47,11 @@ msgstr "\"{0}\" സൈൻ ഔട്ട് ചെയ്യപ്പെടും, 
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" എല്ലാ ഉപകരണത്തിലും സൈൻ ഔട്ട് ചെയ്യപ്പെടും, വീണ്ടും സൈൻ ഇൻ ചെയ്യേണ്ടിവരും."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "\"{0}\" അൺലിങ്ക് ചെയ്യപ്പെടും. അതിലൂടെ പ്രസിദ്ധീകരിച്ചവ {1}-ൽ തുടരും."
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "മറ്റൊരിടത്തുള്ള അക്കൗണ്ട്"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "അക്കൗണ്ട് ലിങ്ക് ചെയ്തു"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "അക്കൗണ്ട് ലിങ്ക് ചെയ്യാൻ കഴിഞ്ഞില്ല"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "അക്കൗണ്ട് ലിങ്ക് ചെയ്യാൻ കഴിഞ്ഞില്ല"
 
@@ -4049,6 +4054,7 @@ msgstr "ലിങ്ക് നീക്കം ചെയ്യുക"
 msgid "Remove suspension"
 msgstr "സസ്പെൻഷൻ നീക്കം ചെയ്യുക"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "ഈ അക്കൗണ്ട് നീക്കം ചെയ്യണോ?"
@@ -4928,7 +4934,7 @@ msgstr "സെർവർ {status} എന്ന പിശകോടെ മറുപ
 msgid "The server can't be reached"
 msgstr "സെർവറിൽ എത്താനാകുന്നില്ല"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "സെർവർ ലിങ്ക് അനുവദിച്ചില്ല"
 
@@ -5224,6 +5230,7 @@ msgstr "അജ്ഞാത ബ്രൗസർ"
 msgid "Unknown theme"
 msgstr "അജ്ഞാത തീം"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "ദാതാവിനെ അൺലിങ്ക് ചെയ്യുക"
 msgid "Unlink provider?"
 msgstr "പ്രൊവൈഡർ അൺലിങ്ക് ചെയ്യണോ?"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "ഈ അക്കൗണ്ട് അൺലിങ്ക് ചെയ്യണോ?"

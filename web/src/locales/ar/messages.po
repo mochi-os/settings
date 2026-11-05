@@ -28,7 +28,9 @@ msgstr "سيُحرَّر \"{0}\" والأسماء التي تحته ليأخذه
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "سيُحرَّر \"{0}\" والأسماء التي تحته ليأخذها أي شخص. وستُزال حساباتها وكل ما نشرته ومتابعوها."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "ستتم إزالة \"{0}\" مع كل ما نشره ومتابعيه."
@@ -45,8 +47,11 @@ msgstr "سيتم تسجيل خروج \"{0}\" ولن يتمكن من تسجيل �
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "سيتم تسجيل خروج \"{0}\" من جميع الأجهزة وسيتعين عليه تسجيل الدخول مرة أخرى."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "سيُفك ربط \"{0}\". ما نُشر من خلاله يبقى على {1}."
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "حساب في مكان آخر"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "تم ربط الحساب"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "تعذّر ربط الحساب"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "تعذّر ربط الحساب"
 
@@ -4049,6 +4054,7 @@ msgstr "إزالة الرابط"
 msgid "Remove suspension"
 msgstr "رفع التعليق"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "إزالة هذا الحساب؟"
@@ -4928,7 +4934,7 @@ msgstr "ردّ الخادم بالخطأ {status}"
 msgid "The server can't be reached"
 msgstr "تعذّر الوصول إلى الخادم"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "لم يسمح الخادم بالربط"
 
@@ -5224,6 +5230,7 @@ msgstr "متصفح غير معروف"
 msgid "Unknown theme"
 msgstr "سمة غير معروفة"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "فك ربط المزوّد"
 msgid "Unlink provider?"
 msgstr "فك ربط المزود؟"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "فك ربط هذا الحساب؟"

@@ -28,7 +28,9 @@ msgstr "\"{0}\" ಮತ್ತು ಅದರ ಅಡಿಯಲ್ಲಿರುವ ಹ�
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "\"{0}\" ಮತ್ತು ಅದರ ಅಡಿಯಲ್ಲಿರುವ ಹೆಸರುಗಳನ್ನು ಯಾರು ಬೇಕಾದರೂ ಪಡೆಯುವಂತೆ ಬಿಡುಗಡೆ ಮಾಡಲಾಗುತ್ತದೆ. ಅವುಗಳ ಖಾತೆಗಳು, ಆ ಖಾತೆಗಳು ಪ್ರಕಟಿಸಿದ ಎಲ್ಲವೂ ಮತ್ತು ಅವುಗಳ ಅನುಯಾಯಿಗಳನ್ನು ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" ಅನ್ನು ಅದು ಪ್ರಕಟಿಸಿದ ಎಲ್ಲದರ ಮತ್ತು ಅದರ ಅನುಯಾಯಿಗಳ ಜೊತೆಗೆ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ."
@@ -45,8 +47,11 @@ msgstr "\"{0}\" ಅನ್ನು ಸೈನ್ ಔಟ್ ಮಾಡಲಾಗುತ�
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" ಅನ್ನು ಪ್ರತಿ ಸಾಧನದಲ್ಲೂ ಸೈನ್ ಔಟ್ ಮಾಡಲಾಗುತ್ತದೆ ಮತ್ತು ಮತ್ತೆ ಸೈನ್ ಇನ್ ಮಾಡಬೇಕಾಗುತ್ತದೆ."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "\"{0}\" ಅನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡಲಾಗುತ್ತದೆ. ಅದರ ಮೂಲಕ ಪ್ರಕಟಿಸಿದ್ದು {1} ನಲ್ಲಿ ಉಳಿಯುತ್ತದೆ."
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "ಬೇರೆಡೆ ಇರುವ ಖಾತೆ"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "ಖಾತೆ ಲಿಂಕ್ ಆಗಿದೆ"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "ಖಾತೆಯನ್ನು ಲಿಂಕ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "ಖಾತೆಯನ್ನು ಲಿಂಕ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ"
 
@@ -4049,6 +4054,7 @@ msgstr "ಲಿಂಕ್ ತೆಗೆದುಹಾಕಿ"
 msgid "Remove suspension"
 msgstr "ಸಸ್ಪೆನ್ಶನ್ ತೆಗೆದುಹಾಕಿ"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "ಈ ಖಾತೆಯನ್ನು ತೆಗೆದುಹಾಕಬೇಕೆ?"
@@ -4928,7 +4934,7 @@ msgstr "ಸರ್ವರ್ ದೋಷ {status} ನೊಂದಿಗೆ ಉತ್ತ
 msgid "The server can't be reached"
 msgstr "ಸರ್ವರ್ ತಲುಪಲಾಗುತ್ತಿಲ್ಲ"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "ಸರ್ವರ್ ಲಿಂಕ್ ಅನ್ನು ಅನುಮತಿಸಲಿಲ್ಲ"
 
@@ -5224,6 +5230,7 @@ msgstr "ಅಜ್ಞಾತ ಬ್ರೌಸರ್"
 msgid "Unknown theme"
 msgstr "ಅಜ್ಞಾತ ಥೀಮ್"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "ಪೂರೈಕೆದಾರನನ್ನು ಅನ್‌ಲಿಂಕ್ �
 msgid "Unlink provider?"
 msgstr "ಒದಗಿಸುವವರನ್ನು ಲಿಂಕ್ ಬೇರ್ಪಡಿಸಬೇಕೆ?"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "ಈ ಖಾತೆಯನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡಬೇಕೆ?"

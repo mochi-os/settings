@@ -229,3 +229,44 @@ describe('Notify by default', () => {
     state.accounts = null
   })
 })
+
+// Removing an account on another network says what it does, as the Networks
+// page does: a hosted one goes with everything it published, a linked one is
+// only unlinked; any other account keeps the plain wording.
+describe('Removing an account', () => {
+  const remove = (account: Record<string, unknown>) => {
+    state.accounts = [account]
+    state.providers = [{ type: String(account.type), label: 'Provider', fields: [] }]
+    show()
+    fireEvent.keyDown(screen.getByRole('button', { name: 'Actions' }), {
+      key: 'Enter',
+    })
+    fireEvent.click(screen.getByRole('menuitem', { name: /Remove/ }))
+  }
+
+  beforeEach(() => {
+    state.accounts = null
+    state.providers = null
+  })
+
+  it('warns that a hosted account goes with everything it published', () => {
+    remove({ ...claude, id: 'h1', type: 'fediverse', identifier: '@me@here.example', hosted: true })
+    expect(
+      screen.getByText('"@me@here.example" will be removed with everything it published and its followers.')
+    ).toBeTruthy()
+    expect(screen.getByText('Remove this account?')).toBeTruthy()
+  })
+
+  it('says a linked account is only unlinked, and where its posts stay', () => {
+    remove({ ...claude, id: 'l1', type: 'mastodon', identifier: '@me@mastodon.social', hosted: false, server: 'mastodon.social' })
+    expect(
+      screen.getByText('"@me@mastodon.social" will be unlinked. What was published through it stays on mastodon.social.')
+    ).toBeTruthy()
+    expect(screen.getByRole('button', { name: /Unlink/ })).toBeTruthy()
+  })
+
+  it('keeps the plain wording for any other account', () => {
+    remove(claude)
+    expect(screen.getByText('This will remove the connected account "Work Claude".')).toBeTruthy()
+  })
+})

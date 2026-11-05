@@ -127,9 +127,14 @@ const data: NetworksData = {
   name: 'Alice Example',
   blocks: [
     { domain: 'spam.example', created: 3 },
-    { actor: 'https://remote.example/u/troll', created: 4 },
+    {
+      actor: 'https://remote.example/u/troll',
+      name: 'Troll',
+      address: '@troll@remote.example',
+      created: 4,
+    },
   ],
-  mutes: [{ actor: 'https://remote.example/u/loud', created: 5 }],
+  mutes: [{ actor: 'https://remote.example/u/loud', name: 'Loud', created: 5 }],
 }
 
 // The row of the page showing an address: a handle's network or an account.
@@ -562,6 +567,72 @@ describe('Networks', () => {
     )
   })
 
+  it('closes the dialog when a form link answers the account and its profile', async () => {
+    state.post.mockResolvedValue({
+      id: 'b2',
+      type: 'bluesky',
+      label: '',
+      identifier: 'alice.bsky.social',
+      created: 4,
+      verified: 1,
+      enabled: 1,
+      default: '',
+      hosted: false,
+      url: 'https://bsky.app/profile/did:plc:abcdefghijklmnopqrstuvwx',
+    })
+    show({
+      ...data,
+      providers: [
+        {
+          type: 'bluesky',
+          capabilities: ['social'],
+          link: {
+            flow: 'form',
+            fields: [
+              {
+                name: 'handle',
+                label: 'Handle',
+                type: 'text',
+                required: true,
+                placeholder: 'alice.bsky.social',
+              },
+              {
+                name: 'password',
+                label: 'App password',
+                type: 'password',
+                required: true,
+                placeholder: 'xxxx-xxxx-xxxx-xxxx',
+              },
+            ],
+          },
+        },
+      ],
+    })
+    await screen.findByText('Handle on example.com')
+    await act(async () => {
+      fireEvent.click(
+        screen.getAllByRole('button', { name: 'Link an account' })[0]
+      )
+    })
+    const password = await screen.findByLabelText('App password')
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText('Handle'), {
+        target: { value: 'alice.bsky.social' },
+      })
+      fireEvent.change(password, { target: { value: 'abcd-efgh-ijkl-mnop' } })
+    })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Link' }))
+    })
+    await waitFor(() =>
+      expect(state.success).toHaveBeenCalledWith('Account linked')
+    )
+    expect(state.navigate).not.toHaveBeenCalled()
+    await waitFor(() =>
+      expect(screen.queryByLabelText('App password')).toBeNull()
+    )
+  })
+
   it('says so where the server offers no networks', async () => {
     show({ ...data, offered: false, networks: [], providers: [] })
     expect(
@@ -613,14 +684,14 @@ describe('Networks', () => {
     state.post.mockResolvedValue({})
     show()
     await screen.findByText('spam.example')
-    expect(screen.getByText('https://remote.example/u/troll')).toBeTruthy()
-    expect(screen.getByText('https://remote.example/u/loud')).toBeTruthy()
+    // People by their names, with their addresses beneath, never their ids.
+    expect(screen.getByText('Troll')).toBeTruthy()
+    expect(screen.getByText('@troll@remote.example · Blocked')).toBeTruthy()
+    expect(screen.getByText('Loud')).toBeTruthy()
+    expect(screen.queryByText('https://remote.example/u/troll')).toBeNull()
+    expect(screen.queryByText('https://remote.example/u/loud')).toBeNull()
     await act(async () => {
-      fireEvent.click(
-        screen.getByRole('button', {
-          name: 'Unmute https://remote.example/u/loud',
-        })
-      )
+      fireEvent.click(screen.getByRole('button', { name: 'Unmute Loud' }))
     })
     await waitFor(() =>
       expect(state.post).toHaveBeenCalledWith(
@@ -655,6 +726,40 @@ describe('Networks', () => {
         { target: 'worse.example' },
         expect.anything()
       )
+    )
+  })
+
+  // A refused block keeps what was typed; one the server takes clears it.
+  it.each([
+    ['refused', true],
+    ['taken', false],
+  ])('a block %s keeps the domain typed: %s', async (outcome, kept) => {
+    state.post.mockImplementation((path: string) =>
+      path === '-/user/networks/block/add' && outcome === 'refused'
+        ? Promise.reject(new Error('Not a domain or a person'))
+        : Promise.resolve({})
+    )
+    show()
+    await screen.findByText('spam.example')
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText('Domain to block'), {
+        target: { value: 'foo' },
+      })
+    })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Block' }))
+    })
+    await waitFor(() =>
+      expect(state.post).toHaveBeenCalledWith(
+        '-/user/networks/block/add',
+        { target: 'foo' },
+        expect.anything()
+      )
+    )
+    await waitFor(() =>
+      expect(
+        (screen.getByLabelText('Domain to block') as HTMLInputElement).value
+      ).toBe(kept ? 'foo' : '')
     )
   })
 

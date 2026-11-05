@@ -28,7 +28,9 @@ msgstr "Псевдонім \"{0}\" та імена під ним буде зві
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "Псевдонім \"{0}\" та імена під ним буде звільнено, і їх зможе зайняти будь-хто. Їхні облікові записи, усе, що в них опубліковано, і їхніх підписників буде видалено."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "Обліковий запис \"{0}\" буде видалено разом з усім, що в ньому опубліковано, і його підписниками."
@@ -45,8 +47,11 @@ msgstr "\"{0}\" буде виведено із системи й не зможе
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" буде виведено із системи на всіх пристроях і доведеться увійти знову."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "Обліковий запис \"{0}\" буде від'єднано. Опубліковане через нього залишиться на сервері {1}."
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "Обліковий запис деінде"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Обліковий запис пов'язано"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "Не вдалося прив'язати обліковий запис"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "Не вдалося пов'язати обліковий запис"
 
@@ -4049,6 +4054,7 @@ msgstr "Видалити посилання"
 msgid "Remove suspension"
 msgstr "Зняти призупинення"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "Видалити цей обліковий запис?"
@@ -4928,7 +4934,7 @@ msgstr "Сервер відповів помилкою {status}"
 msgid "The server can't be reached"
 msgstr "Сервер недоступний"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "Сервер не дозволив пов'язування"
 
@@ -5224,6 +5230,7 @@ msgstr "Невідомий браузер"
 msgid "Unknown theme"
 msgstr "Невідома тема"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "Від’єднати провайдера"
 msgid "Unlink provider?"
 msgstr "Відвʼязати провайдера?"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "Від'єднати цей обліковий запис?"

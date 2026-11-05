@@ -32,8 +32,8 @@ def action_networks_data(a):
         "providers": linkable,
         "name": a.user.identity.name,
         # What the user has blocked and muted on other networks (phase 16).
-        "blocks": (mochi.account.block.list() or []) if networks else [],
-        "mutes": (mochi.account.mute.list() or []) if networks else [],
+        "blocks": moderation_people(mochi.account.block.list() or []) if networks else [],
+        "mutes": moderation_people(mochi.account.mute.list() or []) if networks else [],
         # The feeds a hosted account's home feed is chosen from (decision 42).
         "feeds": networks_feeds() if networks else [],
     })
@@ -87,7 +87,13 @@ def action_networks_account_create(a):
     # A Bluesky account that waits for one moving here from another server.
     if network == "bluesky" and a.input("arriving") == "true":
         fields["arriving"] = "true"
-    a.json(mochi.account.add(network, **fields))
+    made = mochi.account.add(network, **fields)
+    # The account as the list shows it, over what adding it answered: the
+    # sign-in dialog opened straight after names its server from the domain,
+    # which the add's own answer does not carry.
+    answer = dict(made or {})
+    answer.update(mochi.account.get(answer.get("id", "")) or {})
+    a.json(answer)
 
 def action_networks_account_link(a):
     """Link an existing account: a form provider signs in and answers the
@@ -295,6 +301,21 @@ def action_networks_account_password(a):
 # blocked, people muted. A person is blocked, muted or reported from their
 # comment in feeds; this page lists and lifts them, and takes a domain.
 
+def moderation_people(rows):
+    """Blocks or mutes as the page lists them: a person's name and address
+    beside their id, from the lookup core caches, so the page never shows the
+    id alone. A domain block is left as it is."""
+    out = []
+    for row in rows:
+        row = dict(row)
+        actor = row.get("actor", "") or ""
+        if actor:
+            found = mochi.account.resolve(actor) or {}
+            row["name"] = str(found.get("name", "") or "")[:200]
+            row["address"] = str(found.get("address", "") or "")[:300]
+        out.append(row)
+    return out
+
 def action_networks_block_add(a):
     """Block a domain, or a person by their id on their network."""
     target = a.input("target", "").strip()
@@ -305,7 +326,7 @@ def action_networks_block_add(a):
         a.error.label(400, "errors.value_too_long", field="target", maximum=2000)
         return
     mochi.account.block.add(target)
-    a.json({"blocks": mochi.account.block.list() or []})
+    a.json({"blocks": moderation_people(mochi.account.block.list() or [])})
 
 def action_networks_block_remove(a):
     """Lift a block on a domain or a person."""
@@ -314,7 +335,7 @@ def action_networks_block_remove(a):
         a.error.label(400, "errors.target_is_required")
         return
     mochi.account.block.remove(target)
-    a.json({"blocks": mochi.account.block.list() or []})
+    a.json({"blocks": moderation_people(mochi.account.block.list() or [])})
 
 def action_networks_mute_remove(a):
     """Unmute a person."""
@@ -323,4 +344,4 @@ def action_networks_mute_remove(a):
         a.error.label(400, "errors.target_is_required")
         return
     mochi.account.mute.remove(actor)
-    a.json({"mutes": mochi.account.mute.list() or []})
+    a.json({"mutes": moderation_people(mochi.account.mute.list() or [])})

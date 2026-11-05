@@ -28,7 +28,9 @@ msgstr "\"{0}\" ਅਤੇ ਇਸਦੇ ਅਧੀਨ ਨਾਮ ਮੁਕਤ ਕ�
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "\"{0}\" ਅਤੇ ਇਸਦੇ ਅਧੀਨ ਨਾਮ ਮੁਕਤ ਕਰ ਦਿੱਤੇ ਜਾਣਗੇ ਤਾਂ ਜੋ ਕੋਈ ਵੀ ਉਹਨਾਂ ਨੂੰ ਲੈ ਸਕੇ। ਉਹਨਾਂ ਦੇ ਖਾਤੇ, ਉਹਨਾਂ ਖਾਤਿਆਂ ਵੱਲੋਂ ਪ੍ਰਕਾਸ਼ਿਤ ਕੀਤਾ ਸਭ ਕੁਝ ਅਤੇ ਉਹਨਾਂ ਦੇ ਫਾਲੋਅਰ ਹਟਾ ਦਿੱਤੇ ਜਾਣਗੇ।"
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" ਨੂੰ ਇਸ ਵੱਲੋਂ ਪ੍ਰਕਾਸ਼ਿਤ ਕੀਤੀ ਹਰ ਚੀਜ਼ ਅਤੇ ਇਸਦੇ ਫਾਲੋਅਰਾਂ ਸਮੇਤ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ।"
@@ -45,8 +47,11 @@ msgstr "\"{0}\" ਨੂੰ ਸਾਈਨ ਆਊਟ ਕਰ ਦਿੱਤਾ ਜਾ�
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" ਨੂੰ ਹਰ ਡਿਵਾਈਸ 'ਤੇ ਸਾਈਨ ਆਊਟ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ ਅਤੇ ਦੁਬਾਰਾ ਸਾਈਨ ਇਨ ਕਰਨਾ ਪਵੇਗਾ।"
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "\"{0}\" ਨੂੰ ਅਨਲਿੰਕ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ। ਇਸ ਰਾਹੀਂ ਪ੍ਰਕਾਸ਼ਿਤ ਕੀਤੀ ਸਮੱਗਰੀ {1} 'ਤੇ ਰਹੇਗੀ।"
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "ਕਿਤੇ ਹੋਰ ਖਾਤਾ"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "ਖਾਤਾ ਲਿੰਕ ਹੋ ਗਿਆ"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "ਖਾਤਾ ਲਿੰਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "ਖਾਤਾ ਲਿੰਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ"
 
@@ -4049,6 +4054,7 @@ msgstr "ਲਿੰਕ ਹਟਾਓ"
 msgid "Remove suspension"
 msgstr "ਸਸਪੈਂਸ਼ਨ ਹਟਾਓ"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "ਕੀ ਇਹ ਖਾਤਾ ਹਟਾਉਣਾ ਹੈ?"
@@ -4928,7 +4934,7 @@ msgstr "ਸਰਵਰ ਨੇ ਗਲਤੀ {status} ਨਾਲ ਜਵਾਬ ਦਿ�
 msgid "The server can't be reached"
 msgstr "ਸਰਵਰ ਤੱਕ ਪਹੁੰਚਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "ਸਰਵਰ ਨੇ ਲਿੰਕ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਦਿੱਤੀ"
 
@@ -5224,6 +5230,7 @@ msgstr "ਅਣਜਾਣ ਬ੍ਰਾਊਜ਼ਰ"
 msgid "Unknown theme"
 msgstr "ਅਣਜਾਣ ਥੀਮ"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "ਪ੍ਰਦਾਤਾ ਅਨਲਿੰਕ ਕਰੋ"
 msgid "Unlink provider?"
 msgstr "ਪ੍ਰਦਾਤਾ ਨੂੰ ਅਨ-ਲਿੰਕ ਕਰੋ?"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "ਕੀ ਇਸ ਖਾਤੇ ਨੂੰ ਅਨਲਿੰਕ ਕਰਨਾ ਹੈ?"

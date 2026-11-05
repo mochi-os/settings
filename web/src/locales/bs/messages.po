@@ -28,7 +28,9 @@ msgstr "\"{0}\" i imena ispod njega bit će oslobođeni da ih bilo ko može uzet
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "\"{0}\" i imena ispod njega bit će oslobođeni da ih bilo ko može uzeti. Njihovi računi, sve što su objavili i njihovi pratioci bit će uklonjeni."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" bit će uklonjen zajedno sa svime što je objavio i svojim pratiocima."
@@ -45,8 +47,11 @@ msgstr "\"{0}\" će biti odjavljen i neće se moći ponovo prijaviti dok se susp
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" će biti odjavljen na svim uređajima i morat će se ponovo prijaviti."
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "\"{0}\" bit će razvezan. Ono što je objavljeno putem njega ostaje na {1}."
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "Račun negdje drugdje"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "Račun povezan"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "Nije moguće povezati račun"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "Nije moguće povezati račun"
 
@@ -4049,6 +4054,7 @@ msgstr "Ukloni vezu"
 msgid "Remove suspension"
 msgstr "Ukloni suspenziju"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "Ukloniti ovaj račun?"
@@ -4928,7 +4934,7 @@ msgstr "Server je odgovorio greškom {status}"
 msgid "The server can't be reached"
 msgstr "Server nije dostupan"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "Server nije dozvolio povezivanje"
 
@@ -5224,6 +5230,7 @@ msgstr "Nepoznat preglednik"
 msgid "Unknown theme"
 msgstr "Nepoznata tema"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "Odspoji provajdera"
 msgid "Unlink provider?"
 msgstr "Razvezati pružatelja?"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "Razvezati ovaj račun?"

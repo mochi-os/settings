@@ -28,7 +28,9 @@ msgstr "\"{0}\" اور اس کے تحت نام آزاد کر دیے جائیں �
 msgid "\"{0}\" and the names under it will be freed for anyone to take. Their accounts, everything those published and their followers are removed."
 msgstr "\"{0}\" اور اس کے تحت نام آزاد کر دیے جائیں گے تاکہ کوئی بھی انہیں لے سکے۔ ان کے اکاؤنٹس، ان کا شائع کیا ہوا سب کچھ اور ان کے فالوورز ہٹا دیے جائیں گے۔"
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be removed with everything it published and its followers."
 msgstr "\"{0}\" کو اس کے شائع کردہ تمام مواد اور اس کے فالوورز سمیت ہٹا دیا جائے گا۔"
@@ -45,8 +47,11 @@ msgstr "\"{0}\" کو سائن آؤٹ کر دیا جائے گا اور معطلی
 msgid "\"{0}\" will be signed out on every device and will have to sign in again."
 msgstr "\"{0}\" کو ہر آلے پر سائن آؤٹ کر دیا جائے گا اور دوبارہ سائن اِن کرنا ہوگا۔"
 
+#. placeholder {0}: account.identifier
 #. placeholder {0}: removing.identifier
+#. placeholder {1}: account.server ?? ''
 #. placeholder {1}: removing.server ?? ''
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "\"{0}\" will be unlinked. What was published through it stays on {1}."
 msgstr "\"{0}\" کا لنک ختم کر دیا جائے گا۔ اس کے ذریعے جو شائع ہوا وہ {1} پر رہے گا۔"
@@ -375,7 +380,7 @@ msgid "Account elsewhere"
 msgstr "کہیں اور موجود اکاؤنٹ"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 #: src/hooks/use-oauth-result.ts
 msgid "Account linked"
 msgstr "اکاؤنٹ منسلک ہو گیا"
@@ -1318,7 +1323,7 @@ msgid "Could not link account"
 msgstr "اکاؤنٹ لنک نہیں ہو سکا"
 
 #: src/features/user/networks.tsx
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "Could not link the account"
 msgstr "اکاؤنٹ منسلک نہیں ہو سکا"
 
@@ -4049,6 +4054,7 @@ msgstr "لنک ہٹائیں"
 msgid "Remove suspension"
 msgstr "معطلی ہٹائیں"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Remove this account?"
 msgstr "یہ اکاؤنٹ ہٹائیں؟"
@@ -4928,7 +4934,7 @@ msgstr "سرور نے خرابی {status} کے ساتھ جواب دیا"
 msgid "The server can't be reached"
 msgstr "سرور تک رسائی نہیں ہو سکتی"
 
-#: src/features/user/networks.tsx
+#: src/hooks/use-oauth-result.ts
 msgid "The server did not allow the link"
 msgstr "سرور نے لنک کی اجازت نہیں دی"
 
@@ -5224,6 +5230,7 @@ msgstr "نامعلوم براؤزر"
 msgid "Unknown theme"
 msgstr "نامعلوم تھیم"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/login.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink"
@@ -5237,6 +5244,7 @@ msgstr "فراہم کنندہ کو منقطع کریں"
 msgid "Unlink provider?"
 msgstr "فراہم کنندہ سے منقطع کریں؟"
 
+#: src/features/user/connected-accounts.tsx
 #: src/features/user/networks.tsx
 msgid "Unlink this account?"
 msgstr "اس اکاؤنٹ کا لنک ختم کریں؟"
