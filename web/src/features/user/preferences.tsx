@@ -39,6 +39,7 @@ import {
   type LocalePreferences,
 } from '@mochi/web'
 import { RotateCcw, Sliders } from 'lucide-react'
+import { useLatestSave } from '@/hooks/use-latest-save'
 import {
   usePreferencesData,
   useSetPreference,
@@ -71,6 +72,7 @@ export function UserPreferences() {
   const unsetPreferences = useUnsetPreferences()
   const [showReset, setShowReset] = useState(false)
   const { raw: currentLocale } = useLocale()
+  const latest = useLatestSave()
 
   const localeKeys = [
     'date_format',
@@ -123,40 +125,49 @@ export function UserPreferences() {
   const showLanguagePicker = (languagesData?.languages?.length ?? 1) > 1
 
   const handleChange = (key: string, value: string) => {
-    setPreference.mutate(
-      { [key]: value },
-      {
-        onSuccess: () => {
-          if (
-            (localeKeys as readonly string[]).includes(key) ||
-            key === 'timezone'
-          ) {
-            const updated = {
-              ...currentLocale,
-              [key]: value,
-            } as LocalePreferences
-            shellSetLocale(updated)
-          }
-          if (key === 'language') {
-            setStoredLanguage(value)
-            // Broadcast to the shell so every open iframe re-activates its
-            // Lingui catalog without a page reload. "auto" is stored as the
-            // server-side preference but iframes need a concrete tag, so
-            // resolve it locally before broadcasting.
-            shellSetLanguage(value === 'auto' ? detectLanguage() : value)
-          }
-          toast.success(t`Preference updated`)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to update preference`))
-        },
+    // Both outcomes come from the promise, not from per-call callbacks: a
+    // second pick on this hook, or leaving the page, drops the first call's
+    // callbacks, while its save still lands or is put back.
+    const ticket = latest.ticket(key)
+    void setPreference.mutateAsync({ [key]: value }).then(
+      () => {
+        if (
+          (localeKeys as readonly string[]).includes(key) ||
+          key === 'timezone'
+        ) {
+          // The shell re-reads the locale from the server on this message
+          // and ignores the values sent, so the order saves answer in cannot
+          // put an older value on screen.
+          const updated = {
+            ...currentLocale,
+            [key]: value,
+          } as LocalePreferences
+          shellSetLocale(updated)
+        }
+        // The language is different: the shell takes the value sent and
+        // hands it to every open app. The ticket keeps an older pick whose
+        // answer arrives last from replacing a newer one.
+        if (key === 'language' && latest.claim(ticket)) {
+          setStoredLanguage(value)
+          // Broadcast to the shell so every open iframe re-activates its
+          // Lingui catalog without a page reload. "auto" is stored as the
+          // server-side preference but iframes need a concrete tag, so
+          // resolve it locally before broadcasting.
+          shellSetLanguage(value === 'auto' ? detectLanguage() : value)
+        }
+        toast.success(t`Preference updated`)
+      },
+      (error) => {
+        toast.error(getErrorMessage(error, t`Failed to update preference`))
       }
     )
   }
 
   const handleReset = () => {
     if (!data) return
-    // Reset only the regional keys, leaving display prefs alone.
+    // Reset only the regional keys, leaving display prefs alone. It counts as
+    // a language pick, so an older one answered after it cannot undo it.
+    const ticket = latest.ticket('language')
     unsetPreferences.mutate([...REGIONAL_PREF_KEYS], {
       onSuccess: () => {
         // Same broadcast handleChange makes per key: unset means "auto" for
@@ -171,8 +182,10 @@ export function UserPreferences() {
           timezone: 'auto',
         }
         shellSetLocale(reset)
-        setStoredLanguage('auto')
-        shellSetLanguage(detectLanguage())
+        if (latest.claim(ticket)) {
+          setStoredLanguage('auto')
+          shellSetLanguage(detectLanguage())
+        }
         toast.success(t`Preferences reset to defaults`)
         setShowReset(false)
       },

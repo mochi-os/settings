@@ -44,21 +44,24 @@ export function UserLinks() {
   const { raw: currentLocale } = useLocale()
 
   const handleChange = (key: 'maps' | 'flights', value: string) => {
-    setPreference.mutate(
-      { [key]: value },
-      {
-        onSuccess: () => {
-          // The shell carries the link preferences with the locale block, so
-          // every open app learns the change without a reload.
-          shellSetLocale({
-            ...currentLocale,
-            [key]: value,
-          } as LocalePreferences)
-          toast.success(t`Preference updated`)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to update preference`))
-        },
+    // Both outcomes come from the promise, not from per-call callbacks: a
+    // second pick on this hook, or leaving the page, drops the first call's
+    // callbacks, while its save still lands or is put back.
+    void setPreference.mutateAsync({ [key]: value }).then(
+      () => {
+        // The shell carries the link preferences with the locale block, so
+        // every open app learns the change without a reload. The shell
+        // re-reads the block from the server on this message and ignores the
+        // values sent, so what is sent, and the order saves answer in, cannot
+        // put an older value on screen.
+        shellSetLocale({
+          ...currentLocale,
+          [key]: value,
+        } as LocalePreferences)
+        toast.success(t`Preference updated`)
+      },
+      (error) => {
+        toast.error(getErrorMessage(error, t`Failed to update preference`))
       }
     )
   }

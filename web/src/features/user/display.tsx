@@ -39,6 +39,7 @@ import {
 import { colorThemeFromSelections, prefsFromData } from '@/lib/color-theme'
 import {
   usePreferencesData,
+  useReapplyDisplayPreferences,
   useSetPreference,
   useUnsetPreferences,
 } from '@/hooks/use-preferences'
@@ -107,42 +108,23 @@ export function UserDisplay() {
   const setPreference = useSetPreference()
   const unsetPreferences = useUnsetPreferences()
   const { setTheme, setColorTheme } = useTheme()
+  const reapplyDisplay = useReapplyDisplayPreferences()
   const [themeSheetOpen, setThemeSheetOpen] = useState(false)
   const [showReset, setShowReset] = useState(false)
 
-  const themeOverrideKeys = [
-    'density',
-    'radius',
-    'card',
-    'background',
-    'font',
-    'font_size',
-  ] as const
-
   const handleChange = (key: string, value: string) => {
-    setPreference.mutate(
-      { [key]: value },
-      {
-        onSuccess: () => {
-          if (key === 'appearance') {
-            setTheme(value === 'auto' ? 'system' : (value as 'light' | 'dark'))
-          }
-          if ((themeOverrideKeys as readonly string[]).includes(key) && data) {
-            const updated = { ...prefsFromData(data.preferences), [key]: value }
-            setColorTheme(
-              colorThemeFromSelections(
-                data.themes,
-                data.preferences.theme || data.default_theme,
-                updated,
-                data.presets
-              )
-            )
-          }
-          toast.success(t`Preference updated`)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to update preference`))
-        },
+    // Both outcomes come from the promise, not from per-call callbacks: a
+    // second pick on this hook, or leaving the page, drops the first call's
+    // callbacks, while its save still lands or is put back. What is applied
+    // is the preferences as they are when the save answers, not this pick,
+    // so an older answer arriving last cannot bring back an older pick.
+    void setPreference.mutateAsync({ [key]: value }).then(
+      () => {
+        reapplyDisplay()
+        toast.success(t`Preference updated`)
+      },
+      (error) => {
+        toast.error(getErrorMessage(error, t`Failed to update preference`))
       }
     )
   }
@@ -172,32 +154,14 @@ export function UserDisplay() {
       })
       return
     }
-    setPreference.mutate(
-      { theme: theme.id },
-      {
-        onSuccess: () => {
-          setColorTheme(
-            colorThemeFromSelections(
-              data?.themes,
-              theme.id,
-              data
-                ? prefsFromData(data.preferences)
-                : {
-                    density: 'theme',
-                    radius: 'theme',
-                    card: 'theme',
-                    background: 'theme',
-                    font: 'theme',
-                    font_size: 'theme',
-                  },
-              data?.presets
-            )
-          )
-          toast.success(t`Theme updated`)
-        },
-        onError: (error) => {
-          toast.error(getErrorMessage(error, t`Failed to update theme`))
-        },
+    // Both outcomes come from the promise, as in handleChange.
+    void setPreference.mutateAsync({ theme: theme.id }).then(
+      () => {
+        reapplyDisplay()
+        toast.success(t`Theme updated`)
+      },
+      (error) => {
+        toast.error(getErrorMessage(error, t`Failed to update theme`))
       }
     )
   }
