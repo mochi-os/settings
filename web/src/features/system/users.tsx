@@ -721,7 +721,7 @@ export function SystemUsers() {
             <div className='relative min-w-0 flex-1 md:flex-none'>
               <Search className='text-muted-foreground absolute start-2.5 top-2.5 h-4 w-4' />
               <Input
-                placeholder={t`Search users...`}
+                placeholder={t`Search users`}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className='w-full ps-8 md:w-64'

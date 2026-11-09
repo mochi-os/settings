@@ -290,7 +290,7 @@ function AddRouteDialog({
                   className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:ring-1 focus-visible:outline-none'
                 >
                   <option value='' disabled className='text-muted-foreground'>
-                    <Trans>Select an app...</Trans>
+                    <Trans>Select an app</Trans>
                   </option>
                   {apps?.map((app) => (
                     <option key={app.id} value={app.id}>
@@ -307,7 +307,7 @@ function AddRouteDialog({
                   className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:ring-1 focus-visible:outline-none'
                 >
                   <option value='' disabled className='text-muted-foreground'>
-                    <Trans>Select an entity...</Trans>
+                    <Trans>Select an entity</Trans>
                   </option>
                   {entities?.map((entity) => (
                     <option key={entity.id} value={entity.id}>
@@ -487,7 +487,7 @@ function EditRouteDialog({
                   className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:ring-1 focus-visible:outline-none'
                 >
                   <option value='' disabled className='text-muted-foreground'>
-                    <Trans>Select an app...</Trans>
+                    <Trans>Select an app</Trans>
                   </option>
                   {apps?.map((app) => (
                     <option key={app.id} value={app.id}>
@@ -504,7 +504,7 @@ function EditRouteDialog({
                   className='border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors focus-visible:ring-1 focus-visible:outline-none'
                 >
                   <option value='' disabled className='text-muted-foreground'>
-                    <Trans>Select an entity...</Trans>
+                    <Trans>Select an entity</Trans>
                   </option>
                   {entities?.map((entity) => (
                     <option key={entity.id} value={entity.id}>
@@ -665,7 +665,7 @@ function AddDelegationDialog({
                   onChange={(e) => handleSearchChange(e.target.value)}
                   onFocus={() => setShowResults(true)}
                   onBlur={() => setTimeout(() => setShowResults(false), 200)}
-                  placeholder={t`Search for a user...`}
+                  placeholder={t`Search for a user`}
                   autoComplete='off'
                 />
                 {showResults && searchQuery.length >= 2 && (

@@ -893,7 +893,7 @@ export function LabelersDialog({
               value={identifier}
               onChange={(e) => setIdentifier(e.target.value)}
               aria-label={t`Labeller`}
-              placeholder='did:plc:...'
+              placeholder='did:plc:'
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && identifier.trim()) {
                   e.preventDefault()
