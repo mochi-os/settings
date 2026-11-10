@@ -292,7 +292,7 @@ function InterestSearch() {
             blurTimerRef.current = setTimeout(() => setShowResults(false), 200)
           }}
           onFocus={() => results.length > 0 && setShowResults(true)}
-          placeholder={t`Search topics to add...`}
+          placeholder={t`Search topics to add`}
           className='ps-9'
         />
       </div>

@@ -48,7 +48,7 @@ export function ComboSelect({
     renderValue(value, displayValue)
   ) : (
     <span className='truncate text-start'>
-      {displayValue || t`Select...`}
+      {displayValue || t`Select`}
     </span>
   )
 

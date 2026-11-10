@@ -120,7 +120,7 @@ describe('Domains', () => {
     show()
     expand()
     fireEvent.click(screen.getByRole('button', { name: 'Add delegation' }))
-    const field = screen.getByPlaceholderText('Search for a user...')
+    const field = screen.getByPlaceholderText('Search for a user')
     fireEvent.focus(field)
     fireEvent.change(field, { target: { value: 'ad' } })
     const ada = screen.getByText('ada@example.com').closest('button')!

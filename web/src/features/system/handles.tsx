@@ -148,7 +148,7 @@ export function SystemHandles() {
           <div className='relative w-full md:w-auto'>
             <Search className='text-muted-foreground absolute start-2.5 top-2.5 h-4 w-4' />
             <Input
-              placeholder={t`Search handles...`}
+              placeholder={t`Search handles`}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className='w-full ps-8 md:w-64'

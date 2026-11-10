@@ -96,7 +96,7 @@ describe('interest search', () => {
   })
 
   function type(value: string) {
-    fireEvent.change(screen.getByPlaceholderText('Search topics to add...'), {
+    fireEvent.change(screen.getByPlaceholderText('Search topics to add'), {
       target: { value },
     })
   }

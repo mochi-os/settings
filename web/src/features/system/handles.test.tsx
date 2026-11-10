@@ -266,7 +266,7 @@ describe('System handles', () => {
     })
     expect(lastCall()).toEqual([25, 25, ''])
     await act(async () => {
-      fireEvent.change(screen.getAllByPlaceholderText('Search handles...')[0], {
+      fireEvent.change(screen.getAllByPlaceholderText('Search handles')[0], {
         target: { value: 'ali' },
       })
     })
@@ -349,7 +349,7 @@ describe('System handles', () => {
     show(page([]))
     expect(screen.getByText('No handles have been reserved.')).toBeTruthy()
     await act(async () => {
-      fireEvent.change(screen.getAllByPlaceholderText('Search handles...')[0], {
+      fireEvent.change(screen.getAllByPlaceholderText('Search handles')[0], {
         target: { value: 'zzz' },
       })
     })
