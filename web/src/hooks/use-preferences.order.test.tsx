@@ -44,24 +44,28 @@ function server() {
   }
   const answers: (() => void)[] = []
   const refusals: (() => void)[] = []
-  vi.spyOn(apiClient, 'get').mockImplementation(async () => ({
-    data: {
-      preferences: { ...saved },
-      themes: [
-        theme('app1:blue', 250),
-        theme('app1:amber', 71),
-        theme('app1:green', 143),
-        theme('app1:red', 317),
-      ],
-      presets: {},
-      default_theme: 'app1:blue',
-    },
-  }))
+  // Only data is read; the rest of the response is left out, as before.
+  vi.spyOn(apiClient, 'get').mockImplementation(
+    async () =>
+      ({
+        data: {
+          preferences: { ...saved },
+          themes: [
+            theme('app1:blue', 250),
+            theme('app1:amber', 71),
+            theme('app1:green', 143),
+            theme('app1:red', 317),
+          ],
+          presets: {},
+          default_theme: 'app1:blue',
+        },
+      }) as never
+  )
   vi.spyOn(apiClient, 'post').mockImplementation((_url, body) => {
     const before = { ...saved }
     Object.assign(saved, body)
     return new Promise((resolve, reject) => {
-      answers.push(() => resolve({ data: {} }))
+      answers.push(() => resolve({ data: {} } as never))
       refusals.push(() => {
         // A refused save leaves the server as it was.
         for (const key of Object.keys(body as object)) saved[key] = before[key]
