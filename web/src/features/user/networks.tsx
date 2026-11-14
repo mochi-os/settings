@@ -1167,17 +1167,42 @@ function serverAddress(account: NetworkAccount): string {
 
 export function PasswordDialog({
   account,
+  feeds,
   onOpenChange,
 }: {
   account: NetworkAccount
+  feeds: NetworkFeed[]
   onOpenChange: (open: boolean) => void
 }) {
   const { t } = useLingui()
   const mint = useAccountPassword()
+  const update = useAccountHome()
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
+  // A Bluesky app posts as the account, and its posts land in the account's
+  // home feed (decision 42), which an app given a password is never asked
+  // for: an account with none chooses one here, as the consent page has an
+  // app signing in there choose.
+  const homeless =
+    account.type === 'bluesky' && !!account.hosted && !account.home
+  const choices = feeds
+    .filter((f) => f.privacy === 'public')
+    .sort((a, b) => naturalCompare(a.name, b.name))
+  const [home, setHome] = useState(choices[0]?.id ?? 'new')
 
   const handleMint = async () => {
+    if (homeless) {
+      try {
+        await update.mutateAsync(
+          home === 'new'
+            ? { id: account.id, feed: '', create: 'true' }
+            : { id: account.id, feed: home }
+        )
+      } catch (error) {
+        toast.error(getErrorMessage(error, t`Could not save the home feed`))
+        return
+      }
+    }
     try {
       const made = await mint.mutateAsync({ id: account.id, name: name.trim() })
       setPassword(made.password)
@@ -1268,6 +1293,28 @@ export function PasswordDialog({
                 autoComplete='off'
                 onChange={(e) => setName(e.target.value)}
               />
+              {homeless && (
+                <>
+                  <Label htmlFor='password-home' className='mt-2'>
+                    <Trans>Home feed</Trans>
+                  </Label>
+                  <Select value={home} onValueChange={setHome}>
+                    <SelectTrigger id='password-home'>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {choices.map((f) => (
+                        <SelectItem key={f.id} value={f.id}>
+                          {f.name}
+                        </SelectItem>
+                      ))}
+                      <SelectItem value='new'>
+                        <Trans>A new feed</Trans>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </>
+              )}
             </div>
           )}
         </div>
@@ -1277,10 +1324,10 @@ export function PasswordDialog({
           </Button>
           {!password && (
             <Button
-              disabled={!name.trim() || mint.isPending}
+              disabled={!name.trim() || mint.isPending || update.isPending}
               onClick={() => void handleMint()}
             >
-              {mint.isPending ? (
+              {mint.isPending || update.isPending ? (
                 <Loader2 className='size-4 animate-spin' />
               ) : (
                 <KeyRound className='size-4' />
@@ -2086,6 +2133,7 @@ export function Networks() {
       {passwordFor && (
         <PasswordDialog
           account={passwordFor}
+          feeds={data?.feeds ?? []}
           onOpenChange={(open) => {
             if (!open) setPasswordFor(null)
           }}
