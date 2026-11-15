@@ -41,6 +41,7 @@ import {
 import { RotateCcw, Sliders } from 'lucide-react'
 import { useLatestSave } from '@/hooks/use-latest-save'
 import {
+  languagesQuery,
   usePreferencesData,
   useSetPreference,
   useUnsetPreferences,
@@ -90,17 +91,7 @@ export function UserPreferences() {
     data: languagesData,
     error: languagesError,
     refetch: refetchLanguages,
-  } = useQuery<{ languages: string[] }>({
-    queryKey: ['_', 'languages'],
-    queryFn: async () => {
-      const response = await fetch('/_/languages')
-      if (!response.ok) {
-        throw new Error(`/_/languages: ${response.status}`)
-      }
-      return (await response.json()) as { languages: string[] }
-    },
-    staleTime: 5 * 60 * 1000,
-  })
+  } = useQuery(languagesQuery())
   const languageOptions = useMemo(() => {
     // Native names and Latin-first ordering come from lib/web's language
     // picker: Intl.DisplayNames lacks data for several installed locales and

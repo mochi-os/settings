@@ -3,7 +3,12 @@
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import { useCallback } from 'react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+  queryOptions,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query'
 import type {
   AccountData,
   AuthMethodsResponse,
@@ -24,6 +29,7 @@ import type {
 import { useLingui } from '@lingui/react/macro'
 import { requestHelpers } from '@mochi/web'
 import endpoints from '@/api/endpoints'
+import { fresh } from '@/lib/fresh'
 
 const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
@@ -68,11 +74,18 @@ export function useAgentName(): (agent: string | undefined) => string {
   }
 }
 
-export function useAccountData() {
-  return useQuery({
+// Each query's options are shared by its hook and the route loaders that start
+// it, so a loader's answer is the one the hook mounts on.
+export function accountDataQuery() {
+  return queryOptions({
     queryKey: ['account', 'data'],
     queryFn: () => requestHelpers.get<AccountData>(endpoints.user.account),
+    staleTime: fresh.layout,
   })
+}
+
+export function useAccountData() {
+  return useQuery(accountDataQuery())
 }
 
 export function useUpdateIdentity() {
@@ -90,12 +103,17 @@ export function useUpdateIdentity() {
   })
 }
 
-export function useSessions() {
-  return useQuery({
+export function sessionsQuery() {
+  return queryOptions({
     queryKey: ['account', 'sessions'],
     queryFn: () =>
       requestHelpers.get<SessionsResponse>(endpoints.user.accountSessions),
+    staleTime: fresh.page,
   })
+}
+
+export function useSessions() {
+  return useQuery(sessionsQuery())
 }
 
 export function useRevokeToken() {
@@ -134,12 +152,17 @@ export function useRevokeSession() {
 // Login methods
 // ============================================================================
 
-export function useMethods() {
-  return useQuery({
+export function methodsQuery() {
+  return queryOptions({
     queryKey: ['account', 'methods'],
     queryFn: () =>
       requestHelpers.get<MethodsResponse>(endpoints.user.accountMethods),
+    staleTime: fresh.page,
   })
+}
+
+export function useMethods() {
+  return useQuery(methodsQuery())
 }
 
 export function useSetMethod() {
@@ -169,12 +192,17 @@ export function useSetMethod() {
 // Passkeys
 // ============================================================================
 
-export function usePasskeys() {
-  return useQuery({
+export function passkeysQuery() {
+  return queryOptions({
     queryKey: ['account', 'passkeys'],
     queryFn: () =>
       requestHelpers.get<PasskeysResponse>(endpoints.user.accountPasskeys),
+    staleTime: fresh.page,
   })
+}
+
+export function usePasskeys() {
+  return useQuery(passkeysQuery())
 }
 
 export function usePasskeyRegisterBegin() {
@@ -248,12 +276,17 @@ export function usePasskeyDelete() {
 // TOTP
 // ============================================================================
 
-export function useTotpStatus() {
-  return useQuery({
+export function totpQuery() {
+  return queryOptions({
     queryKey: ['account', 'totp'],
     queryFn: () =>
       requestHelpers.get<TotpStatusResponse>(endpoints.user.accountTotp),
+    staleTime: fresh.page,
   })
+}
+
+export function useTotpStatus() {
+  return useQuery(totpQuery())
 }
 
 // Answers the new TOTP secret, so it runs as a secret mutation.
@@ -307,14 +340,19 @@ export function useTotpDisable() {
 // Recovery codes
 // ============================================================================
 
-export function useRecoveryStatus() {
-  return useQuery({
+export function recoveryQuery() {
+  return queryOptions({
     queryKey: ['account', 'recovery'],
     queryFn: () =>
       requestHelpers.get<RecoveryStatusResponse>(
         endpoints.user.accountRecovery
       ),
+    staleTime: fresh.page,
   })
+}
+
+export function useRecoveryStatus() {
+  return useQuery(recoveryQuery())
 }
 
 // Answers the new recovery codes, so it runs as a secret mutation.
@@ -340,20 +378,30 @@ export function useRecoveryGenerate() {
 // OAuth (third-party sign-in linking)
 // ============================================================================
 
-export function useOauthIdentities() {
-  return useQuery({
+export function oauthQuery() {
+  return queryOptions({
     queryKey: ['account', 'oauth'],
     queryFn: () =>
       requestHelpers.get<OAuthIdentitiesResponse>(endpoints.user.accountOauth),
+    staleTime: fresh.page,
+  })
+}
+
+export function useOauthIdentities() {
+  return useQuery(oauthQuery())
+}
+
+export function authMethodsQuery() {
+  return queryOptions({
+    queryKey: ['auth', 'methods'],
+    queryFn: () =>
+      requestHelpers.get<AuthMethodsResponse>(endpoints.user.authMethods),
+    staleTime: fresh.page,
   })
 }
 
 export function useAuthMethods() {
-  return useQuery({
-    queryKey: ['auth', 'methods'],
-    queryFn: () =>
-      requestHelpers.get<AuthMethodsResponse>(endpoints.user.authMethods),
-  })
+  return useQuery(authMethodsQuery())
 }
 
 // Starts linking a provider's sign-in through this app's own action: the

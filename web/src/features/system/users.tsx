@@ -72,6 +72,7 @@ import {
   useActivateUser,
   useUserSessions,
   useRevokeUserSessions,
+  systemUsersOpening,
 } from '@/hooks/use-system-users'
 
 function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
@@ -638,11 +639,12 @@ export function SystemUsers() {
   const { t } = useLingui()
   const { formatNumber } = useFormat()
   usePageTitle(t`Users`)
-  const [search, setSearch] = useState('')
-  const [limit, setLimit] = useState(25)
-  const [offset, setOffset] = useState(0)
-  const [sort, setSort] = useState<SortColumn>('username')
-  const [order, setOrder] = useState<SortOrder>('asc')
+  // The page the route's loader asked for, so the first one shows its answer.
+  const [search, setSearch] = useState<string>(systemUsersOpening.search)
+  const [limit, setLimit] = useState<number>(systemUsersOpening.limit)
+  const [offset, setOffset] = useState<number>(systemUsersOpening.offset)
+  const [sort, setSort] = useState<SortColumn>(systemUsersOpening.sort)
+  const [order, setOrder] = useState<SortOrder>(systemUsersOpening.order)
 
   const debouncedSearch = useDebounce(search, 300)
   const { data: accountData } = useAccountData()

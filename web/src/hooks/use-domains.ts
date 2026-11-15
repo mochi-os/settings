@@ -2,7 +2,12 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+  queryOptions,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query'
 import type {
   DomainsData,
   DomainDetails,
@@ -12,16 +17,24 @@ import type {
 } from '@/types/domains'
 import { naturalCompare, requestHelpers, useDebounce } from '@mochi/web'
 import endpoints from '@/api/endpoints'
+import { fresh } from '@/lib/fresh'
 
 const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
 } as const
 
-export function useDomainsData() {
-  return useQuery({
+// Shared by the hook and the loaders that start it: the layout's, for the
+// sidebar's Domains entry, and the domains page's.
+export function domainsQuery() {
+  return queryOptions({
     queryKey: ['domains'],
     queryFn: () => requestHelpers.get<DomainsData>(endpoints.domains.data),
+    staleTime: fresh.layout,
   })
+}
+
+export function useDomainsData() {
+  return useQuery(domainsQuery())
 }
 
 export function useCreateDomain() {

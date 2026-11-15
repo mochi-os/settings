@@ -2,9 +2,15 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+  queryOptions,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query'
 import { optimistic, requestHelpers } from '@mochi/web'
 import endpoints from '@/api/endpoints'
+import { fresh } from '@/lib/fresh'
 
 interface Interest {
   qid: string
@@ -32,12 +38,18 @@ interface SearchResponse {
 
 export type { Interest, SearchResult }
 
-export function useInterests() {
-  return useQuery({
+// Shared by the hook and the interests page's loader.
+export function interestsQuery() {
+  return queryOptions({
     queryKey: ['interests'],
     queryFn: () =>
       requestHelpers.get<InterestsResponse>(endpoints.user.interests),
+    staleTime: fresh.page,
   })
+}
+
+export function useInterests() {
+  return useQuery(interestsQuery())
 }
 
 export function useInterestSet() {

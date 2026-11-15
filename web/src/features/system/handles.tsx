@@ -57,6 +57,7 @@ import {
   useSystemAccountTakedown,
   useSystemHandleRelease,
   useSystemHandles,
+  systemHandlesOpening,
 } from '@/hooks/use-system-networks'
 import type { RegistryAccount, RegistryHandle } from '@/types/networks'
 
@@ -64,9 +65,10 @@ export function SystemHandles() {
   const { t } = useLingui()
   const { formatNumber } = useFormat()
   usePageTitle(t`Handles`)
-  const [search, setSearch] = useState('')
-  const [limit, setLimit] = useState(25)
-  const [offset, setOffset] = useState(0)
+  // The page the route's loader asked for, so the first one shows its answer.
+  const [search, setSearch] = useState(systemHandlesOpening.search)
+  const [limit, setLimit] = useState(systemHandlesOpening.limit)
+  const [offset, setOffset] = useState(systemHandlesOpening.offset)
   const debouncedSearch = useDebounce(search, 300)
 
   // A new search starts at the first page, set during render, not in an

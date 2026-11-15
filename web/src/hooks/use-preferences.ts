@@ -3,9 +3,10 @@
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import { useCallback, useEffect } from 'react'
-import { useQueryClient } from '@tanstack/react-query'
+import { queryOptions, useQueryClient } from '@tanstack/react-query'
 import {
   useTheme,
+  preferencesQuery,
   usePreferencesData as usePreferencesDataCommon,
   useSetPreference as useSetPreferenceCommon,
   useUnsetPreferences as useUnsetPreferencesCommon,
@@ -13,8 +14,28 @@ import {
 import endpoints from '@/api/endpoints'
 import { colorThemeFromSelections, prefsFromData } from '@/lib/color-theme'
 
-// The key lib/web's usePreferencesData reads this endpoint under.
-const PREFERENCES_KEY = ['user', 'preferences', endpoints.user.preferences]
+// The user's preferences, which the layout applies on every page and the
+// display, preferences and links pages edit. The loaders that start them use
+// the options the hook below reads them with.
+export function userPreferencesQuery() {
+  return preferencesQuery(endpoints.user.preferences)
+}
+
+// Languages installed across all apps' labels/<lang>.conf files, which the
+// preferences page offers. Shared by the page and its route's loader.
+export function languagesQuery() {
+  return queryOptions<{ languages: string[] }>({
+    queryKey: ['_', 'languages'],
+    queryFn: async () => {
+      const response = await fetch('/_/languages')
+      if (!response.ok) {
+        throw new Error(`/_/languages: ${response.status}`)
+      }
+      return (await response.json()) as { languages: string[] }
+    },
+    staleTime: 5 * 60 * 1000,
+  })
+}
 
 export function usePreferencesData() {
   return usePreferencesDataCommon(endpoints.user.preferences)
@@ -77,7 +98,7 @@ export function useReapplyDisplayPreferences() {
   // Read from the cache when called, not from a render: a rollback written
   // a moment ago, or after the page has gone, is already there.
   return useCallback(() => {
-    const data = queryClient.getQueryData<Preferences>(PREFERENCES_KEY)
+    const data = queryClient.getQueryData(userPreferencesQuery().queryKey)
     if (data) applyDisplay(data, { setTheme, setColorTheme })
   }, [queryClient, setTheme, setColorTheme])
 }
