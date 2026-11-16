@@ -173,11 +173,13 @@ def action_user_account_token_revoke(a):
     if not hash:
         a.error.label(400, "errors.missing_token")
         return
+    # Each kind on its own: core answers a list as a tuple, and an empty one
+    # with `or []` as a list, which a tuple cannot be added to.
     known = False
-    for token in (mochi.token.list(kind="signin") or []) + (mochi.token.list(kind="password") or []):
-        if token.get("hash") == hash:
-            known = True
-            break
+    for kind in ["signin", "password"]:
+        for token in mochi.token.list(kind=kind) or []:
+            if token.get("hash") == hash:
+                known = True
     if not known:
         a.error.label(404, "errors.not_found")
         return
