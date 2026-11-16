@@ -648,6 +648,7 @@ describe('Networks', () => {
         <I18nProvider i18n={i18n}>
           <PasswordDialog
             account={{ ...data.accounts[0], domain: 'example.com' }}
+            feeds={[{ id: 'feed1', name: 'notes', privacy: 'public' }]}
             onOpenChange={() => {}}
           />
         </I18nProvider>
@@ -678,6 +679,61 @@ describe('Networks', () => {
       ((await screen.findByLabelText('Password')) as HTMLInputElement).value
     ).toBe('mochi-secret')
     expect(screen.queryByRole('button', { name: 'Make password' })).toBeNull()
+  })
+
+  it("asks for a hosted Bluesky account's home feed with its first password, and saves it first", async () => {
+    state.post.mockResolvedValue({ password: 'mochi-secret' })
+    const feeds = [
+      { id: 'feed2', name: 'Travel', privacy: 'public' },
+      { id: 'feed1', name: 'notes', privacy: 'public' },
+      { id: 'feed3', name: 'Diary', privacy: 'private' },
+    ]
+    const bluesky = {
+      ...data.accounts[0],
+      id: 'b1',
+      type: 'bluesky',
+      identifier: 'alice.example.com',
+      domain: 'example.com',
+    }
+    const dialog = (account: typeof bluesky & { home?: string }) =>
+      render(
+        <QueryClientProvider client={new QueryClient()}>
+          <I18nProvider i18n={i18n}>
+            <PasswordDialog
+              account={account}
+              feeds={feeds}
+              onOpenChange={() => {}}
+            />
+          </I18nProvider>
+        </QueryClientProvider>
+      )
+    const first = dialog(bluesky)
+    // THE POINT: the public feeds are offered by name, or a new one.
+    fireEvent.click(screen.getByLabelText('Home feed'))
+    await screen.findByRole('option', { name: 'notes' })
+    expect(
+      screen.getAllByRole('option').map((option) => option.textContent)
+    ).toEqual(['notes', 'Travel', 'A new feed'])
+    fireEvent.click(screen.getByRole('option', { name: 'Travel' }))
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText('Device'), {
+        target: { value: 'Phone' },
+      })
+    })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Make password' }))
+    })
+    await screen.findByLabelText('Password')
+    // THE POINT: the home feed is saved, then the password made.
+    expect(state.post.mock.calls.map((call) => [call[0], call[1]])).toEqual([
+      ['-/user/networks/account/home', { id: 'b1', feed: 'feed2' }],
+      ['-/user/networks/account/password', { id: 'b1', name: 'Phone' }],
+    ])
+    first.unmount()
+
+    // An account with a home feed, or a fediverse account, is not asked.
+    dialog({ ...bluesky, home: 'feed1' })
+    expect(screen.queryByLabelText('Home feed')).toBeNull()
   })
 
   it('lists what is blocked and muted, lifts one, and blocks a domain', async () => {
