@@ -18,8 +18,8 @@ import {
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import {
-  apiClient,
   documentQuery,
+  getApiBasepath,
   getAppPath,
   useAccounts,
   useAuthStore,
@@ -99,32 +99,40 @@ vi.mock('@mochi/web', async (original) => ({
 let asked: string[] = []
 let held: (() => void)[] = []
 let holding = true
-const original = apiClient.defaults.adapter
+
+// Where a request for url goes, as the client resolves it against the page:
+// path and query.
+function at(url: string) {
+  const target = new URL(url, `${window.location.origin}${getApiBasepath()}`)
+  return `${target.pathname}${target.search}`
+}
 
 // An answer each query can read; the rest answer {}.
 const answers: Record<string, unknown> = {
-  [endpoints.user.preferences]: {
+  [at(endpoints.user.preferences)]: {
     preferences: { appearance: 'auto' },
     themes: [],
     presets: {},
     default_theme: '',
   },
+  [at('/_/languages')]: { languages: ['en'] },
 }
 
-// The library's client sends every request through its adapter, so one put in
-// its place sees them all: the app's own and the library's hooks'.
-const adapter = (config: { method?: string; url?: string; data?: unknown }) => {
-  const body = typeof config.data === 'string' ? ` ${config.data}` : ''
-  asked.push(`${config.method?.toUpperCase()} ${config.url}${body}`)
-  return new Promise((resolve) => {
+// The library's client sends every request by fetch, as do the few core
+// routes a page reads with fetch itself, so one stub in its place sees them
+// all: the app's own and the library's hooks'.
+function fetched(input: string | URL, init?: RequestInit) {
+  const target = at(String(input))
+  const method = (init?.method ?? 'GET').toUpperCase()
+  const body = typeof init?.body === 'string' ? ` ${init.body}` : ''
+  asked.push(`${method} ${target}${body}`)
+  return new Promise<Response>((resolve) => {
     const answer = () =>
-      resolve({
-        data: answers[config.url ?? ''] ?? {},
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config,
-      })
+      resolve(
+        new Response(JSON.stringify(answers[target] ?? {}), {
+          headers: { 'Content-Type': 'application/json' },
+        })
+      )
     if (holding) held.push(answer)
     else answer()
   })
@@ -136,29 +144,16 @@ function release() {
   held = []
 }
 
-// The few core routes a page reads with fetch rather than the client.
-function fetched(url: string) {
-  asked.push(`GET ${url}`)
-  return new Promise((resolve) => {
-    const answer = () =>
-      resolve({ ok: true, json: async () => ({ languages: ['en'] }) })
-    if (holding) held.push(answer)
-    else answer()
-  })
-}
-
 beforeEach(() => {
   asked = []
   held = []
   holding = true
-  apiClient.defaults.adapter = adapter as never
   vi.stubGlobal('fetch', fetched)
   i18n.loadAndActivate({ locale: 'en', messages: {} })
   useAuthStore.setState({ isInitialized: true, isAuthenticated: true })
 })
 
 afterEach(() => {
-  apiClient.defaults.adapter = original
   vi.unstubAllGlobals()
 })
 
@@ -174,13 +169,15 @@ type Hooks = () => unknown
 interface Case {
   name: string
   run: (queryClient: QueryClient) => unknown
-  // What the loader asks for, as the adapter records it.
+  // What the loader asks for, as the stub records it.
   requests: string[]
   // The page's own hooks, mounted on the loader's answers.
   usePage: Hooks
 }
 
-const GET = (url: string) => `GET ${url}`
+const GET = (url: string) => `GET ${at(url)}`
+const POST = (url: string, body: object) =>
+  `POST ${at(url)} ${JSON.stringify(body)}`
 
 // Call a route's loader or beforeLoad as the router does, with what each
 // reads.
@@ -229,7 +226,7 @@ const cases: Case[] = [
   ).map(([name, route]) => ({
     name: `the ${name} document`,
     run: load(route),
-    requests: [`POST -/document/get {"name":"${name}"}`],
+    requests: [POST('-/document/get', { name })],
     usePage: () => useQuery(documentQuery(name)),
   })),
   {
@@ -272,7 +269,7 @@ const cases: Case[] = [
     name: 'handles',
     run: load(handles),
     requests: [
-      `POST ${endpoints.system.handlesList} {"limit":25,"offset":0,"search":""}`,
+      POST(endpoints.system.handlesList, { limit: 25, offset: 0, search: '' }),
     ],
     usePage: () => useSystemHandles(25, 0, ''),
   },
@@ -315,7 +312,13 @@ const cases: Case[] = [
     run: load(users),
     requests: [
       GET(endpoints.user.account),
-      `POST ${endpoints.system.usersList} {"limit":25,"offset":0,"search":"","sort":"username","order":"asc"}`,
+      POST(endpoints.system.usersList, {
+        limit: 25,
+        offset: 0,
+        search: '',
+        sort: 'username',
+        order: 'asc',
+      }),
     ],
     usePage: () => {
       useAccountData()
