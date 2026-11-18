@@ -15,16 +15,29 @@ def network_account(account):
     """Whether a connected account is one on another network"""
     return account.get("type") in NETWORK_TYPES
 
+def networks_linkable():
+    """The providers an existing account on another network is linked through"""
+    return [p for p in (mochi.account.providers() or []) if p.get("type") in NETWORK_TYPES and p.get("link")]
+
+def networks_offered(networks, linkable):
+    """Whether the server offers networks: it hosts accounts on one, or an
+    existing account may be linked through a provider"""
+    return len(networks) > 0 or len(linkable) > 0
+
+def action_networks_offered(a):
+    """Whether the server offers networks, as the page's data answers it, for
+    the sidebar every settings page shows, without building the page"""
+    a.json({"offered": networks_offered(mochi.account.networks() or [], networks_linkable())})
+
 def action_networks_data(a):
     """Everything the page shows: whether the server offers networks, the
     networks it hosts accounts on, the domains the user may reserve on, their
     handles, their accounts on the networks and the providers an existing
     account is linked through."""
     networks = mochi.account.networks() or []
-    providers = [p for p in (mochi.account.providers() or []) if p.get("type") in NETWORK_TYPES]
-    linkable = [p for p in providers if p.get("link")]
+    linkable = networks_linkable()
     a.json({
-        "offered": len(networks) > 0 or len(linkable) > 0,
+        "offered": networks_offered(networks, linkable),
         "networks": networks,
         "domains": mochi.handle.domains() if networks else [],
         "handles": mochi.handle.list() if networks else {"handles": [], "limit": 0, "counted": 0, "unlimited": False},

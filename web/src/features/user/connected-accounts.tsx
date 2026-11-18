@@ -5,6 +5,7 @@
 import { useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import type { OAuthProvider } from '@/types/account'
+import type { Device } from '@/types/notifications'
 import { i18n } from '@lingui/core'
 import { msg } from '@lingui/core/macro'
 import { Trans, useLingui } from '@lingui/react/macro'
@@ -73,6 +74,7 @@ import {
 import endpoints from '@/api/endpoints'
 import { useStepUp } from '@/lib/use-step-up'
 import { useOauthLink } from '@/hooks/use-account'
+import { notificationDevicesQuery } from '@/hooks/use-notifications'
 import { OAUTH_PROVIDERS, useOauthResult } from '@/hooks/use-oauth-result'
 
 const APP_BASE = getAppPath()
@@ -81,15 +83,9 @@ const APP_BASE = getAppPath()
 // each new build.
 const ANDROID_CLIENT = 'https://packages.mochi-os.org/android/mochi.apk'
 
-// A phone or tablet the user runs Mochi on. Its push account hangs off it, so
-// the account is shown here as the device's transport rather than as a row of
-// its own, and forgetting the device takes the account with it.
-interface Device {
-  id: string
-  label: string
-  created: number
-  seen: number
-}
+// A phone or tablet the user runs Mochi on (Device). Its push account hangs
+// off it, so the account is shown here as the device's transport rather than
+// as a row of its own, and forgetting the device takes the account with it.
 
 function DevicesTable({
   devices,
@@ -531,11 +527,7 @@ export function ConnectedAccounts() {
   const accounts = Array.isArray(accountsData) ? accountsData : []
 
   const queryClient = useQueryClient()
-  const devicesQuery = useQuery({
-    queryKey: ['notifications', 'devices'],
-    queryFn: () =>
-      requestHelpers.get<Device[]>(endpoints.notifications.devices),
-  })
+  const devicesQuery = useQuery(notificationDevicesQuery())
   const devices = Array.isArray(devicesQuery.data) ? devicesQuery.data : []
   const deviceIds = new Set(devices.map((d) => d.id))
   // An account bound to a listed device is that device's, shown in its row.

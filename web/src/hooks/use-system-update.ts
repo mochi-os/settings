@@ -2,9 +2,15 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+  queryOptions,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query'
 import { requestHelpers } from '@mochi/web'
 import endpoints from '@/api/endpoints'
+import { fresh } from '@/lib/fresh'
 
 export type SystemUpdateInfo = {
   available: boolean
@@ -16,12 +22,18 @@ export type SystemUpdateInfo = {
   pending: string
 }
 
-export function useSystemUpdate() {
-  return useQuery({
+// Shared by the hook and the status page's loader.
+export function systemUpdateQuery() {
+  return queryOptions({
     queryKey: ['system', 'update'],
     queryFn: () =>
       requestHelpers.get<SystemUpdateInfo>(endpoints.system.update),
+    staleTime: fresh.page,
   })
+}
+
+export function useSystemUpdate() {
+  return useQuery(systemUpdateQuery())
 }
 
 export function useInstallSystemUpdate() {

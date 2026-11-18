@@ -4,13 +4,14 @@
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import type { ReactNode } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { renderHook, waitFor } from '@testing-library/react'
+import { act, renderHook, waitFor } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import {
   useExportData,
   useOauthLink,
   useRecoveryGenerate,
   useTotpSetup,
+  useUpdateIdentity,
 } from './use-account'
 
 const post = vi.fn()
@@ -94,4 +95,30 @@ describe('secret mutations', () => {
       )
     })
   }
+})
+
+describe('useUpdateIdentity', () => {
+  // The privacy switch reads the identity, so it moves when clicked, not
+  // once the server has answered and the account has been read again, and
+  // goes back when the change is refused.
+  it('shows the change at once, and puts it back when refused', async () => {
+    client = new QueryClient()
+    client.setQueryData(['account', 'data'], {
+      identity: { name: 'Ada', privacy: 'public' },
+      role: 'user',
+    })
+    let refuse: (error: Error) => void = () => {}
+    post.mockImplementation(() => new Promise((_, reject) => (refuse = reject)))
+    const { result } = renderHook(() => useUpdateIdentity(), { wrapper })
+    const privacy = () =>
+      client.getQueryData<{ identity: { privacy: string } }>([
+        'account',
+        'data',
+      ])?.identity.privacy
+
+    act(() => result.current.mutate({ privacy: 'private' }))
+    await waitFor(() => expect(privacy()).toBe('private'))
+    await act(async () => refuse(new Error('refused')))
+    await waitFor(() => expect(privacy()).toBe('public'))
+  })
 })

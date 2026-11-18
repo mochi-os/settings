@@ -28,6 +28,7 @@ vi.mock('@mochi/web', async (original) => ({
 }))
 
 vi.mock('@/hooks/use-system-networks', () => ({
+  systemHandlesOpening: { limit: 25, offset: 0, search: '' },
   useSystemHandles: (limit: number, offset: number, search: string) => {
     state.calls.push([limit, offset, search])
     return { data: state.data, isLoading: false, error: null, refetch: vi.fn() }

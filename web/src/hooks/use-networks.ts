@@ -2,7 +2,12 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+  queryOptions,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query'
 import type {
   AccountKey,
   Availability,
@@ -11,16 +16,39 @@ import type {
 } from '@/types/networks'
 import { requestHelpers } from '@mochi/web'
 import endpoints from '@/api/endpoints'
+import { fresh } from '@/lib/fresh'
 
 const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
 } as const
 
-export function useNetworksData() {
-  return useQuery({
+// Shared by the hook and the Networks page's loader.
+export function networksQuery() {
+  return queryOptions({
     queryKey: ['networks'],
     queryFn: () => requestHelpers.get<NetworksData>(endpoints.networks.data),
+    staleTime: fresh.page,
   })
+}
+
+export function useNetworksData() {
+  return useQuery(networksQuery())
+}
+
+// Whether the server offers networks, for the sidebar's Networks entry, which
+// every page shows: its own small action rather than the whole page's data.
+// Under the page's key, so each change the page makes refetches it too.
+export function networksOfferedQuery() {
+  return queryOptions({
+    queryKey: ['networks', 'offered'],
+    queryFn: () =>
+      requestHelpers.get<{ offered: boolean }>(endpoints.networks.offered),
+    staleTime: fresh.layout,
+  })
+}
+
+export function useNetworksOffered() {
+  return useQuery(networksOfferedQuery())
 }
 
 // Each change refetches the page's data: a handle reserved, an account made or

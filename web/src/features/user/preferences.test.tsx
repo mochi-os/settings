@@ -25,7 +25,12 @@ vi.mock('@mochi/web', async (original) => ({
   shellSetLocale: state.setLocale,
 }))
 
-vi.mock('@/hooks/use-preferences', () => ({
+vi.mock('@/hooks/use-preferences', async (importOriginal) => ({
+  // The installed languages are read as the page reads them, from the fetch
+  // stubbed below.
+  languagesQuery: (
+    await importOriginal<typeof import('@/hooks/use-preferences')>()
+  ).languagesQuery,
   usePreferencesData: () => ({
     data: {
       preferences: { language: 'auto', timezone: 'auto' },

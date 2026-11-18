@@ -2,7 +2,12 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+  queryOptions,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query'
 import type {
   ReportOutcome,
   SystemBlocks,
@@ -11,15 +16,22 @@ import type {
 } from '@/types/moderation'
 import { requestHelpers } from '@mochi/web'
 import endpoints from '@/api/endpoints'
+import { fresh } from '@/lib/fresh'
 
-export function useSystemReports(state: 'open' | 'resolved') {
-  return useQuery({
+// Each query's options are shared by its hook and the page's loader.
+export function systemReportsQuery(state: 'open' | 'resolved') {
+  return queryOptions({
     queryKey: ['system', 'reports', state],
     queryFn: () =>
       requestHelpers.get<SystemReports>(
         `${endpoints.system.reportsList}?state=${state}`
       ),
+    staleTime: fresh.page,
   })
+}
+
+export function useSystemReports(state: 'open' | 'resolved') {
+  return useQuery(systemReportsQuery(state))
 }
 
 // Resolving a report moves it from the open list to the resolved one, and a
@@ -44,12 +56,17 @@ export function useSystemReportResolve() {
   })
 }
 
-export function useSystemBlocks() {
-  return useQuery({
+export function systemBlocksQuery() {
+  return queryOptions({
     queryKey: ['system', 'blocks'],
     queryFn: () =>
       requestHelpers.get<SystemBlocks>(endpoints.system.blocksList),
+    staleTime: fresh.page,
   })
+}
+
+export function useSystemBlocks() {
+  return useQuery(systemBlocksQuery())
 }
 
 export function useSystemBlockChange(action: 'add' | 'remove') {
@@ -69,10 +86,14 @@ export function useSystemBlockChange(action: 'add' | 'remove') {
   })
 }
 
-export function useSystemHosts() {
-  return useQuery({
+export function systemHostsQuery() {
+  return queryOptions({
     queryKey: ['system', 'hosts'],
     queryFn: () => requestHelpers.get<SystemHosts>(endpoints.system.hosts),
-    refetchInterval: 10000,
+    staleTime: fresh.page,
   })
+}
+
+export function useSystemHosts() {
+  return useQuery({ ...systemHostsQuery(), refetchInterval: 10000 })
 }

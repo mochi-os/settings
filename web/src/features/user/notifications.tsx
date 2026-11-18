@@ -4,6 +4,13 @@
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
 import { useState, useMemo } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
+import type {
+  Account,
+  Category,
+  DestinationRow,
+  DestinationsAvailable,
+  Topic,
+} from '@/types/notifications'
 import { useNavigate, useSearch } from '@tanstack/react-router'
 import { i18n } from '@lingui/core'
 import { msg, plural } from '@lingui/core/macro'
@@ -57,6 +64,10 @@ import {
   X,
 } from 'lucide-react'
 import endpoints from '@/api/endpoints'
+import {
+  notificationCategoriesQuery,
+  notificationTopicsQuery,
+} from '@/hooks/use-notifications'
 
 type TabId = 'categories' | 'topics'
 
@@ -64,67 +75,12 @@ type TabId = 'categories' | 'topics'
 // "clear this topic's category". The sentinel exists only between the two.
 const UNASSIGNED = 'unassigned'
 
-interface DestinationRow {
-  type: string
-  target: string
-}
-
-interface Category {
-  id: string
-  label: string
-  // Read-time translated label for the seeded categories; label is the
-  // stored value. Render display, edit label.
-  display?: string
-  default: number
-  created: number
-  destinations: DestinationRow[]
-}
-
-interface Account {
-  id: string
-  type: string
-  label: string
-  identifier?: string
-  enabled: number
-  // The device a push account was registered from, or "" for none.
-  device?: string
-}
-
-interface Feed {
-  id: string
-  name: string
-  enabled: number
-}
-
-interface Device {
-  id: string
-  label: string
-  created: number
-  seen: number
-}
-
-interface DestinationsAvailable {
-  accounts: Account[]
-  feeds: Feed[]
-  devices: Device[]
-}
-
 // Push accounts are per-device: a browser's Web Push subscription, a phone's
 // FCM or UnifiedPush registration.
 function isPushAccount(acc: Account): boolean {
   return (
     acc.type === 'browser' || acc.type === 'unifiedpush' || acc.type === 'fcm'
   )
-}
-
-interface Topic {
-  app: { id: string; name: string }
-  topic: string
-  object: string
-  name: string
-  label: string
-  category: string | null
-  created: number
 }
 
 // Mochi entity IDs are 49–51 alphanumeric chars starting with a digit;
@@ -296,23 +252,7 @@ function CategoriesTab({
   // The category whose test notification is in flight.
   const [testing, setTesting] = useState<string | null>(null)
 
-  const { data, error, refetch } = useQuery({
-    queryKey: ['notifications', 'categories'],
-    queryFn: async () => {
-      const [cats, dests] = await Promise.all([
-        requestHelpers.get<Category[]>(endpoints.notifications.categories),
-        requestHelpers.get<DestinationsAvailable>(
-          endpoints.notifications.destinations
-        ),
-      ])
-      return {
-        categories: cats ?? [],
-        available:
-          dests ??
-          ({ accounts: [], feeds: [], devices: [] } as DestinationsAvailable),
-      }
-    },
-  })
+  const { data, error, refetch } = useQuery(notificationCategoriesQuery())
   const load = async () => {
     await queryClient.invalidateQueries({ queryKey: ['notifications'] })
   }
@@ -842,16 +782,7 @@ function TopicsTab() {
   const { t } = useLingui()
   const queryClient = useQueryClient()
 
-  const { data, error, refetch } = useQuery({
-    queryKey: ['notifications', 'topics'],
-    queryFn: async () => {
-      const [loadedTopics, loadedCategories] = await Promise.all([
-        requestHelpers.get<Topic[]>(endpoints.notifications.topics),
-        requestHelpers.get<Category[]>(endpoints.notifications.categories),
-      ])
-      return { topics: loadedTopics ?? [], categories: loadedCategories ?? [] }
-    },
-  })
+  const { data, error, refetch } = useQuery(notificationTopicsQuery())
   const topics = data?.topics
   const categories = data?.categories
   const load = async () => {

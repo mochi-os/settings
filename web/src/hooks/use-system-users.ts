@@ -2,11 +2,16 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import {
+  queryOptions,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query'
 import type { User, SessionsData } from '@/types/users'
 import { useQueryWithError, requestHelpers } from '@mochi/web'
 import endpoints from '@/api/endpoints'
 import { type SystemUsersResponse, systemUsersApi } from '@/api/system-users'
+import { fresh } from '@/lib/fresh'
 
 const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
@@ -34,6 +39,31 @@ const systemUserKeys = {
     [...systemUserKeys.all(), 'sessions', uid] as const,
 }
 
+// The page of users the users page opens on, which its loader asks for: the
+// first, unsearched, by username.
+export const systemUsersOpening = {
+  limit: 25,
+  offset: 0,
+  search: '',
+  sort: 'username',
+  order: 'asc',
+} as const
+
+// Shared by the hook and the users page's loader.
+export function systemUsersQuery(
+  limit: number,
+  offset: number,
+  search: string,
+  sort: string,
+  order: string
+) {
+  return queryOptions<SystemUsersResponse, Error>({
+    queryKey: systemUserKeys.list(limit, offset, search, sort, order),
+    queryFn: () => systemUsersApi.list(limit, offset, search, sort, order),
+    staleTime: fresh.page,
+  })
+}
+
 export function useSystemUsersData(
   limit: number,
   offset: number,
@@ -41,10 +71,9 @@ export function useSystemUsersData(
   sort: string,
   order: string
 ) {
-  return useQueryWithError<SystemUsersResponse, Error>({
-    queryKey: systemUserKeys.list(limit, offset, search, sort, order),
-    queryFn: () => systemUsersApi.list(limit, offset, search, sort, order),
-  })
+  return useQueryWithError<SystemUsersResponse, Error>(
+    systemUsersQuery(limit, offset, search, sort, order)
+  )
 }
 
 export const useCreateUser = () => {

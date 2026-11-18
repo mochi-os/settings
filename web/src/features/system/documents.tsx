@@ -36,6 +36,7 @@ import {
 import { Check, FileText, RotateCcw, X } from 'lucide-react'
 import { useStepUp } from '@/lib/use-step-up'
 import {
+  systemDocumentLanguage,
   useSystemDocumentsData,
   useSystemDocument,
   useSetSystemDocument,
@@ -177,17 +178,16 @@ export function SystemDocuments() {
     }
   }, [documents])
 
-  const fallbackLanguage = i18n.locale?.split('-')[0]?.toLowerCase() ?? 'en'
-  const language: string =
-    search.language ??
-    (languagesByName[tab].includes(fallbackLanguage) ? fallbackLanguage : 'en')
+  // As the route's loader reads it, which starts this document's query.
+  const language =
+    search.language ?? systemDocumentLanguage(documents, tab, i18n.locale)
 
   // The index says which pairs exist; the body of the one on screen is its own
   // query, so switching tab or language fetches ~7 KB rather than re-reading
   // every document in every language.
   const { data: current, isLoading: currentLoading } = useSystemDocument(
     tab,
-    language
+    language ?? ''
   )
 
   // Switching document or language replaces the editor, and leaving the page

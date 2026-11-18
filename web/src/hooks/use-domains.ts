@@ -2,26 +2,45 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+  queryOptions,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query'
 import type {
+  Domain,
   DomainsData,
   DomainDetails,
   UserSearchResult,
   App,
   Entity,
 } from '@/types/domains'
-import { naturalCompare, requestHelpers, useDebounce } from '@mochi/web'
+import {
+  naturalCompare,
+  optimistic,
+  requestHelpers,
+  useDebounce,
+} from '@mochi/web'
 import endpoints from '@/api/endpoints'
+import { fresh } from '@/lib/fresh'
 
 const NO_GLOBAL_ERROR_TOAST_CONFIG = {
   mochi: { showGlobalErrorToast: false },
 } as const
 
-export function useDomainsData() {
-  return useQuery({
+// Shared by the hook and the loaders that start it: the layout's, for the
+// sidebar's Domains entry, and the domains page's.
+export function domainsQuery() {
+  return queryOptions({
     queryKey: ['domains'],
     queryFn: () => requestHelpers.get<DomainsData>(endpoints.domains.data),
+    staleTime: fresh.layout,
   })
+}
+
+export function useDomainsData() {
+  return useQuery(domainsQuery())
 }
 
 export function useCreateDomain() {
@@ -50,8 +69,40 @@ export function useDomainDetails(domain: string) {
   })
 }
 
+// A domain shows the change on the click, so its Verified and TLS switches
+// move at once, and go back if the server refuses.
 export function useUpdateDomain() {
   const queryClient = useQueryClient()
+  const patch = optimistic(
+    queryClient,
+    (data: { domain: string; verified?: boolean; tls?: boolean }) => {
+      const changed = (old: Domain): Domain => ({
+        ...old,
+        ...(data.verified === undefined
+          ? {}
+          : { verified: data.verified ? 1 : 0 }),
+        ...(data.tls === undefined ? {} : { tls: data.tls ? 1 : 0 }),
+      })
+      return [
+        {
+          filters: { queryKey: ['domains'], exact: true },
+          update: (old: DomainsData) => ({
+            ...old,
+            domains: old.domains.map((row) =>
+              row.domain === data.domain ? changed(row) : row
+            ),
+          }),
+        },
+        {
+          filters: { queryKey: ['domains', data.domain], exact: true },
+          update: (old: DomainDetails) => ({
+            ...old,
+            domain: changed(old.domain),
+          }),
+        },
+      ]
+    }
+  )
   return useMutation({
     mutationFn: (data: { domain: string; verified?: boolean; tls?: boolean }) =>
       requestHelpers.post(
@@ -59,6 +110,8 @@ export function useUpdateDomain() {
         data,
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
+    onMutate: patch.onMutate,
+    onError: (_error, _data, context) => patch.rollback(context),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ['domains'] })
       queryClient.invalidateQueries({ queryKey: ['domains', variables.domain] })

@@ -470,6 +470,40 @@ describe('Networks', () => {
     await waitFor(() => expect(toggle).not.toHaveAttribute('aria-busy'))
   })
 
+  // A network switch moves when clicked, not once the account is made and
+  // the list read again, and goes back when the server refuses.
+  it('moves a network switch on at once, and back when the account cannot be made', async () => {
+    let refuse: (error: Error) => void = () => {}
+    state.post.mockReturnValue(new Promise((_, reject) => (refuse = reject)))
+    show()
+    await screen.findByText('Handle on example.com')
+    const toggle = screen.getAllByRole('switch')[1]
+    expect(toggle).toHaveAttribute('aria-checked', 'false')
+    await act(async () => {
+      fireEvent.click(toggle)
+    })
+    expect(toggle).toHaveAttribute('aria-checked', 'true')
+    await act(async () => refuse(new Error('refused')))
+    await waitFor(() => expect(toggle).toHaveAttribute('aria-checked', 'false'))
+  })
+
+  it('moves a network switch off once its removal is confirmed', async () => {
+    let finish: (value: unknown) => void = () => {}
+    state.post.mockReturnValue(new Promise((resolve) => (finish = resolve)))
+    show()
+    await screen.findByText('Handle on example.com')
+    const toggle = screen.getAllByRole('switch')[0]
+    await act(async () => {
+      fireEvent.click(toggle)
+    })
+    expect(toggle).toHaveAttribute('aria-checked', 'true')
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Remove' }))
+    })
+    expect(toggle).toHaveAttribute('aria-checked', 'false')
+    await act(async () => finish({ removed: true }))
+  })
+
   it("says when a Bluesky account's recovery key has not been kept", async () => {
     show({
       ...data,

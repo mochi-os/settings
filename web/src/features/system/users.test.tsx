@@ -13,6 +13,13 @@ const request = vi.fn()
 const idle = { mutate: vi.fn(), isPending: false }
 
 vi.mock('@/hooks/use-system-users', () => ({
+  systemUsersOpening: {
+    limit: 25,
+    offset: 0,
+    search: '',
+    sort: 'username',
+    order: 'asc',
+  },
   useSystemUsersData: () => ({
     data: { users: [], count: 0 },
     isLoading: false,

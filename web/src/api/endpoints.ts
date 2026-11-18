@@ -61,6 +61,7 @@ const endpoints = {
   },
   networks: {
     data: '-/user/networks/data',
+    offered: '-/user/networks/offered',
     handleAvailable: '-/user/networks/handle/available',
     handleReserve: '-/user/networks/handle/reserve',
     handleRelease: '-/user/networks/handle/release',

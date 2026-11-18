@@ -2,9 +2,10 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // This file is part of Mochi, licensed under the GNU AGPL v3 with the
 // Mochi Application Interface Exception - see license.txt and license-exception.md.
-import { useQuery } from '@tanstack/react-query'
+import { queryOptions, useQuery } from '@tanstack/react-query'
 import { requestHelpers } from '@mochi/web'
 import endpoints from '@/api/endpoints'
+import { fresh } from '@/lib/fresh'
 
 export interface PeerEntry {
   peer: string
@@ -46,10 +47,15 @@ interface SystemPeersData {
   counts: ServerCounts
 }
 
-export function useSystemPeers() {
-  return useQuery({
+// Shared by the hook and the status page's loader.
+export function systemPeersQuery() {
+  return queryOptions({
     queryKey: ['system', 'peers'],
     queryFn: () => requestHelpers.get<SystemPeersData>(endpoints.system.peers),
-    refetchInterval: 5000,
+    staleTime: fresh.page,
   })
+}
+
+export function useSystemPeers() {
+  return useQuery({ ...systemPeersQuery(), refetchInterval: 5000 })
 }
