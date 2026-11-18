@@ -420,6 +420,7 @@ function HandleCard({
   onAddName,
   onArrive,
   busy,
+  moving,
 }: {
   handle: Handle
   children: Handle[]
@@ -436,6 +437,8 @@ function HandleCard({
   onAddName: (handle: Handle) => void
   onArrive: (handle: Handle) => void
   busy: string | null
+  /** Where a switch was moved to, by its row or its account, while that goes. */
+  moving: { key: string; on: boolean } | null
 }) {
   const { t } = useLingui()
   const { domain } = handle
@@ -490,8 +493,14 @@ function HandleCard({
               status={account ? accountStatus(account, feeds) : null}
             >
               <Switch
-                checked={!!account}
-                loading={busy === key}
+                checked={
+                  moving &&
+                  (moving.key === key ||
+                    (!!account && moving.key === account.id))
+                    ? moving.on
+                    : !!account
+                }
+                loading={busy === key || (!!account && busy === account.id)}
                 aria-label={t`${network} for ${name}`}
                 onCheckedChange={() => onToggle(row, type, account)}
               />
@@ -1809,6 +1818,12 @@ export function Networks() {
   const [offering, setOffering] = useState(false)
   const [passwordFor, setPasswordFor] = useState<NetworkAccount | null>(null)
   const [removing, setRemoving] = useState<NetworkAccount | null>(null)
+  // Where a network switch was moved to while its account is made or
+  // removed: it moves when clicked, or for a removal once that is confirmed,
+  // and shows what the server holds once the list is read again.
+  const [moving, setMoving] = useState<{ key: string; on: boolean } | null>(
+    null
+  )
   const [busy, setBusy] = useState<string | null>(null)
 
   const networks = data?.networks ?? []
@@ -1848,6 +1863,7 @@ export function Networks() {
     }
     const key = `${handle.name}/${network}`
     setBusy(key)
+    setMoving({ key, on: true })
     try {
       const made = await create.mutateAsync({
         network,
@@ -1860,10 +1876,12 @@ export function Networks() {
         setOffering(true)
         setKeysFor(made)
       }
+      await refetch()
     } catch (err) {
       toast.error(getErrorMessage(err, t`Could not create the account`))
     } finally {
       setBusy(null)
+      setMoving(null)
     }
   }
 
@@ -1890,13 +1908,16 @@ export function Networks() {
 
   const handleRemove = async (account: NetworkAccount) => {
     setBusy(account.id)
+    setMoving({ key: account.id, on: false })
     try {
       await remove.mutateAsync(account.id)
       toast.success(t`Account removed`)
+      await refetch()
     } catch (err) {
       toast.error(getErrorMessage(err, t`Could not remove the account`))
     } finally {
       setBusy(null)
+      setMoving(null)
     }
   }
 
@@ -2021,6 +2042,7 @@ export function Networks() {
                 onAddName={setAdding}
                 onArrive={(h) => void handleArrive(h)}
                 busy={busy}
+                moving={moving}
               />
             ))}
             {(linkable || linked.length > 0) && (

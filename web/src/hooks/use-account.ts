@@ -27,7 +27,7 @@ import type {
   RecoveryGenerateResponse,
 } from '@/types/account'
 import { useLingui } from '@lingui/react/macro'
-import { requestHelpers } from '@mochi/web'
+import { optimistic, requestHelpers } from '@mochi/web'
 import endpoints from '@/api/endpoints'
 import { fresh } from '@/lib/fresh'
 
@@ -88,8 +88,22 @@ export function useAccountData() {
   return useQuery(accountDataQuery())
 }
 
+// The identity shows the change on the click, so the privacy switch moves at
+// once, and goes back if the server refuses.
 export function useUpdateIdentity() {
   const queryClient = useQueryClient()
+  const patch = optimistic(
+    queryClient,
+    (data: { name?: string; privacy?: 'public' | 'private' }) => [
+      {
+        filters: { queryKey: ['account', 'data'], exact: true },
+        update: (old: AccountData) => ({
+          ...old,
+          identity: { ...old.identity, ...data },
+        }),
+      },
+    ]
+  )
   return useMutation({
     mutationFn: (data: { name?: string; privacy?: 'public' | 'private' }) =>
       requestHelpers.post<{ ok: boolean }>(
@@ -97,6 +111,8 @@ export function useUpdateIdentity() {
         data,
         NO_GLOBAL_ERROR_TOAST_CONFIG
       ),
+    onMutate: patch.onMutate,
+    onError: (_error, _data, context) => patch.rollback(context),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['account', 'data'] })
     },
