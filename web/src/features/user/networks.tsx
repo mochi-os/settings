@@ -82,6 +82,7 @@ import {
 } from 'lucide-react'
 import { suggestHandle } from '@/lib/handles'
 import { networkLabel } from '@/lib/networks'
+import { useStepUp } from '@/lib/use-step-up'
 import {
   useAccountAliases,
   useAccountCreate,
@@ -105,7 +106,6 @@ import {
   useNetworksData,
 } from '@/hooks/use-networks'
 import { useLinkResult } from '@/hooks/use-oauth-result'
-import { useStepUp } from '@/lib/use-step-up'
 
 // Why a name cannot be reserved, in the user's words.
 function availabilityReason(reason: string): string {

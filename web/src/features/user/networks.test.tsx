@@ -687,6 +687,66 @@ describe('Networks', () => {
     )
   })
 
+  it('links a Lemmy account with no step-up, as it is no way to sign in', async () => {
+    state.post.mockResolvedValue({
+      id: 'l2',
+      type: 'lemmy',
+      label: '',
+      identifier: '@bob@lemmy.world',
+      created: 4,
+      verified: 1,
+      enabled: 1,
+      default: '',
+      hosted: false,
+    })
+    show({
+      ...data,
+      providers: [
+        {
+          type: 'lemmy',
+          capabilities: ['social'],
+          link: {
+            flow: 'form',
+            fields: [
+              { name: 'server', label: 'Server', type: 'text', required: true },
+              {
+                name: 'password',
+                label: 'Password',
+                type: 'password',
+                required: true,
+              },
+            ],
+          },
+        },
+      ],
+    })
+    await screen.findByText('Handle on example.com')
+    await act(async () => {
+      fireEvent.click(
+        screen.getAllByRole('button', { name: 'Link an account' })[0]
+      )
+    })
+    const password = await screen.findByLabelText('Password')
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText('Server'), {
+        target: { value: 'lemmy.world' },
+      })
+      fireEvent.change(password, { target: { value: 'pw' } })
+    })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Link' }))
+    })
+    await waitFor(() =>
+      expect(state.success).toHaveBeenCalledWith('Account linked')
+    )
+    expect(state.stepUp).not.toHaveBeenCalled()
+    expect(state.post).toHaveBeenCalledWith(
+      '-/user/networks/account/link',
+      { type: 'lemmy', server: 'lemmy.world', password: 'pw' },
+      expect.anything()
+    )
+  })
+
   it('says so where the server offers no networks', async () => {
     show({ ...data, offered: false, networks: [], providers: [] })
     expect(
