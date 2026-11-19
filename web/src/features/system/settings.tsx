@@ -101,8 +101,8 @@ const NETWORK_SETTINGS = [
   'fediverse',
   'bluesky',
   'labelers',
-  'xmpp',
   'matrix',
+  'xmpp',
 ]
 
 function formatSettingName(

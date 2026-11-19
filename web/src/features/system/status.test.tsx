@@ -122,6 +122,16 @@ describe('Status: other networks', () => {
     })
     expect(screen.getByText('Other networks')).toBeTruthy()
     expect(screen.getByText('ActivityPub')).toBeTruthy()
+    // Alphabetically by the networks' names, whatever order the server sends.
+    const order = ['ActivityPub', 'Bluesky', 'Matrix', 'XMPP'].map((name) =>
+      screen.getByText(name)
+    )
+    for (let i = 1; i < order.length; i++) {
+      expect(
+        order[i - 1].compareDocumentPosition(order[i]) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      ).toBeTruthy()
+    }
     expect(screen.getByText('Working')).toBeTruthy()
     expect(
       screen.getByText('Unavailable · No domain is configured')

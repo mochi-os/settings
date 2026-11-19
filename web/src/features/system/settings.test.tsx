@@ -47,7 +47,11 @@ vi.mock('@/hooks/use-system-settings', () => ({
         }),
         setting('fcm.service_account', '', { pattern: 'text' }),
         setting('handles', '1', { pattern: 'natural' }),
+        // In the server's own order, which the page does not keep.
+        setting('xmpp', 'true', { pattern: '^(true|false)$' }),
+        setting('matrix', 'true', { pattern: '^(true|false)$' }),
         setting('fediverse', 'true', { pattern: '^(true|false)$' }),
+        setting('bluesky', 'true', { pattern: '^(true|false)$' }),
         setting('labelers', '', { pattern: 'line' }),
         setting('description', '', { pattern: 'line' }),
       ],
@@ -135,6 +139,21 @@ describe('System settings', () => {
     expect(screen.getByText('Host accounts on ActivityPub')).toBeTruthy()
     // Bluesky's labellers sit with the networks, named for what they are.
     expect(screen.getByText('Bluesky labellers')).toBeTruthy()
+    // The switches read alphabetically by the networks' names, the labellers
+    // after Bluesky's.
+    const order = [
+      'Host accounts on ActivityPub',
+      'Host accounts on Bluesky',
+      'Bluesky labellers',
+      'Host accounts on Matrix',
+      'Host accounts on XMPP',
+    ].map((text) => screen.getByText(text))
+    for (let i = 1; i < order.length; i++) {
+      expect(
+        order[i - 1].compareDocumentPosition(order[i]) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      ).toBeTruthy()
+    }
     // The server description sits with the operator's details.
     expect(screen.getByText('Operator')).toBeTruthy()
     expect(screen.getByText('Server description')).toBeTruthy()

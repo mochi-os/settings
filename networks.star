@@ -9,7 +9,7 @@
 # mochi.account.*; core keeps the rules and the credentials.
 
 # The provider types an account on another network has, hosted or linked.
-NETWORK_TYPES = ["fediverse", "bluesky", "xmpp", "matrix", "mastodon", "lemmy"]
+NETWORK_TYPES = ["fediverse", "bluesky", "matrix", "xmpp", "mastodon", "lemmy"]
 
 def network_account(account):
     """Whether a connected account is one on another network"""

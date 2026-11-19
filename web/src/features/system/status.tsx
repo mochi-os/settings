@@ -211,7 +211,7 @@ function OtherNetworks() {
   )
 }
 
-const NETWORK_ORDER = ['fediverse', 'bluesky', 'xmpp', 'matrix']
+const NETWORK_ORDER = ['fediverse', 'bluesky', 'matrix', 'xmpp']
 
 // Each XMPP domain's room service: working, or unavailable where its name
 // does not lead to this server, which other servers then cannot reach.
