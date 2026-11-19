@@ -15,6 +15,7 @@ const state = vi.hoisted(() => ({
   resolve: vi.fn(),
   navigate: vi.fn(),
   stepUp: vi.fn(),
+  username: 'admin@example.com',
 }))
 
 vi.mock('@mochi/web', async (original) => ({
@@ -33,6 +34,10 @@ vi.mock('@/routes/_authenticated/system/reports', () => ({
 
 vi.mock('@/lib/use-step-up', () => ({
   useStepUp: () => ({ request: state.stepUp, dialog: null }),
+}))
+
+vi.mock('@/hooks/use-account', () => ({
+  useAccountData: () => ({ data: { identity: { username: state.username } } }),
 }))
 
 vi.mock('@/hooks/use-system-moderation', () => ({
@@ -96,6 +101,7 @@ describe('System reports', () => {
     i18n.load('en', {})
     i18n.activate('en')
     state.search = { state: 'open' }
+    state.username = 'admin@example.com'
     state.resolve.mockReset()
     state.resolve.mockResolvedValue({})
     state.navigate.mockReset()
@@ -233,6 +239,18 @@ describe('System reports', () => {
     expect(
       await screen.findByRole('menuitem', {
         name: 'Block server spam.example',
+      })
+    ).toBeTruthy()
+    expect(screen.queryByRole('menuitem', { name: 'Suspend user' })).toBeNull()
+  })
+
+  it('offers no suspension of the administrator signed in', async () => {
+    state.username = 'alice@example.com'
+    show([flag])
+    await open(screen.getByRole('button', { name: 'Report actions' }))
+    expect(
+      await screen.findByRole('menuitem', {
+        name: 'Block server remote.example',
       })
     ).toBeTruthy()
     expect(screen.queryByRole('menuitem', { name: 'Suspend user' })).toBeNull()

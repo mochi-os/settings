@@ -41,6 +41,7 @@ import {
 import { Ban, Flag, MoreHorizontal, X } from 'lucide-react'
 import { networkLabel } from '@/lib/networks'
 import { useStepUp } from '@/lib/use-step-up'
+import { useAccountData } from '@/hooks/use-account'
 import {
   useSystemReportResolve,
   useSystemReports,
@@ -140,6 +141,10 @@ export function SystemReports() {
   const resolve = useSystemReportResolve()
   const stepUp = useStepUp()
   const outcomeLabel = useOutcomeLabel()
+  // The administrator is never suspended from a report about their own
+  // account: the server refuses it, as the Users page does.
+  const { data: accountData } = useAccountData()
+  const currentUsername = accountData?.identity?.username
   const [pending, setPending] = useState<Pending | null>(null)
 
   const setState = (next: ReportState) =>
@@ -370,7 +375,8 @@ export function SystemReports() {
                               </DropdownMenuItem>
                             ))}
                             {report.account &&
-                              report.account.status !== 'suspended' && (
+                              report.account.status !== 'suspended' &&
+                              report.account.username !== currentUsername && (
                                 <DropdownMenuItem
                                   onClick={() =>
                                     setPending({
