@@ -708,12 +708,19 @@ describe('Networks', () => {
           link: {
             flow: 'form',
             fields: [
-              { name: 'server', label: 'Server', type: 'text', required: true },
+              {
+                name: 'server',
+                label: 'Server',
+                type: 'text',
+                required: true,
+                placeholder: '',
+              },
               {
                 name: 'password',
                 label: 'Password',
                 type: 'password',
                 required: true,
+                placeholder: '',
               },
             ],
           },
