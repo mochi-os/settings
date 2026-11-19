@@ -348,6 +348,20 @@ describe('Networks', () => {
       'aria-checked',
       'true'
     )
+    // It says why nothing reaches it; an account on an offered network doesn't.
+    expect(
+      within(xmpp).getByText('Turned off by the server administrator')
+    ).toBeTruthy()
+    expect(
+      within(rowOf('@alice@example.com')).queryByText(
+        'Turned off by the server administrator'
+      )
+    ).toBeNull()
+    expect(
+      within(rowOf('@books@example.com')).queryByText(
+        'Turned off by the server administrator'
+      )
+    ).toBeNull()
     // Each address once.
     for (const address of [
       '@alice@example.com',
@@ -967,7 +981,10 @@ describe('Networks', () => {
         '-/user/networks/account/aliases',
         {
           id: 'f1',
-          aliases: JSON.stringify(['@alice@old.example', '@alice@older.example']),
+          aliases: JSON.stringify([
+            '@alice@old.example',
+            '@alice@older.example',
+          ]),
         },
         expect.anything()
       )

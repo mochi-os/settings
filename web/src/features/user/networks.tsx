@@ -491,7 +491,7 @@ function HandleCard({
               key={key}
               label={row === handle ? network : t`${name} on ${network}`}
               address={row.addresses[type]}
-              status={account ? accountStatus(account, feeds) : null}
+              status={account ? accountStatus(account, feeds, networks) : null}
             >
               <Switch
                 checked={
@@ -1431,9 +1431,19 @@ function AccountFailure({ account }: { account: NetworkAccount }) {
 // a linked account is on.
 function accountStatus(
   account: NetworkAccount,
-  feeds: NetworkFeed[]
+  feeds: NetworkFeed[],
+  networks: string[]
 ): ReactNode {
   const chat = account.type === 'xmpp' || account.type === 'matrix'
+  // A hosted account stays listed, so it can be removed, after the server
+  // stops offering its network; nothing reaches it until it is offered again.
+  if (account.hosted && !networks.includes(account.type)) {
+    return (
+      <span className='text-destructive'>
+        <Trans>Turned off by the server administrator</Trans>
+      </span>
+    )
+  }
   const home = account.home
     ? feeds.find((f) => f.id === account.home)
     : undefined
@@ -1614,7 +1624,7 @@ function NetworkRow({
   return (
     <div
       data-slot='network-row'
-      className='flex min-h-9 items-center gap-4 py-2'
+      className='flex min-h-9 items-start gap-4 py-2'
     >
       <div className='flex min-w-0 flex-1 flex-col'>
         <span className='text-muted-foreground text-sm leading-snug font-medium'>
@@ -1629,7 +1639,9 @@ function NetworkRow({
           <span className='text-muted-foreground mt-1 text-xs'>{status}</span>
         )}
       </div>
-      <div className='flex shrink-0 items-center gap-2'>{children}</div>
+      {/* The label's first line high, so the switch and the menu sit level
+          with the label however many lines the address and status add. */}
+      <div className='flex h-5 shrink-0 items-center gap-2'>{children}</div>
     </div>
   )
 }
@@ -1641,6 +1653,7 @@ function AccountsCard({
   action,
   accounts,
   feeds,
+  networks,
   actions,
   busy,
 }: {
@@ -1648,6 +1661,7 @@ function AccountsCard({
   action?: ReactNode
   accounts: NetworkAccount[]
   feeds: NetworkFeed[]
+  networks: string[]
   actions: AccountActions
   busy: string | null
 }) {
@@ -1663,7 +1677,7 @@ function AccountsCard({
                 key={account.id}
                 label={name ? t`${name} on ${network}` : network}
                 address={account.identifier}
-                status={accountStatus(account, feeds)}
+                status={accountStatus(account, feeds, networks)}
               >
                 <AccountMenu
                   account={account}
@@ -2065,6 +2079,7 @@ export function Networks() {
                 title={t`Linked accounts`}
                 accounts={linked}
                 feeds={data.feeds ?? []}
+                networks={networks}
                 actions={actions}
                 busy={busy}
                 action={
@@ -2086,6 +2101,7 @@ export function Networks() {
                 title={t`Communities`}
                 accounts={communities}
                 feeds={data.feeds ?? []}
+                networks={networks}
                 actions={actions}
                 busy={busy}
               />
