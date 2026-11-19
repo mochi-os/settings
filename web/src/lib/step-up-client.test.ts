@@ -5,13 +5,17 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { stepUpClient } from './step-up-client'
 
-const state = vi.hoisted(() => ({ post: vi.fn() }))
+const state = vi.hoisted(() => ({ post: vi.fn(), get: vi.fn() }))
 
 vi.mock('@mochi/web', async (original) => {
   const actual = await original<typeof import('@mochi/web')>()
   return {
     ...actual,
-    requestHelpers: { ...actual.requestHelpers, post: state.post },
+    requestHelpers: {
+      ...actual.requestHelpers,
+      post: state.post,
+      get: state.get,
+    },
   }
 })
 
@@ -46,5 +50,30 @@ describe('OAuth step-up verification', () => {
     await vi.advanceTimersByTimeAsync(60_000)
     expect(await outcome).toBe('oauth-cancelled')
     expect(state.post.mock.calls.length).toBe(polled)
+  })
+})
+
+describe('OAuth step-up providers', () => {
+  it('offers only the providers the server can confirm an identity through', async () => {
+    state.get.mockImplementation((url: string) =>
+      Promise.resolve(
+        url.includes('methods')
+          ? { methods: { oauth: { state: 'allowed' } } }
+          : {
+              identities: [
+                { provider: 'google', verify: true },
+                { provider: 'mastodon', verify: true },
+                { provider: 'bluesky', verify: false },
+                // A core that does not say keeps offering it.
+                { provider: 'github' },
+              ],
+            }
+      )
+    )
+    expect(await stepUpClient.oauthProviders?.()).toEqual([
+      'google',
+      'mastodon',
+      'github',
+    ])
   })
 })

@@ -119,9 +119,17 @@ export const stepUpClient: StepUpClient = {
         map.oauth.state !== 'disabled')
     if (!acceptable) return []
     const { identities } = await requestHelpers.get<{
-      identities: Array<{ provider: string }>
+      identities: Array<{ provider: string; verify?: boolean }>
     }>(endpoints.user.accountOauth)
-    return Array.from(new Set((identities ?? []).map((i) => i.provider)))
+    // Only the providers the server can confirm an identity through; a core
+    // that does not say lists them all.
+    return Array.from(
+      new Set(
+        (identities ?? [])
+          .filter((i) => i.verify !== false)
+          .map((i) => i.provider)
+      )
+    )
   },
   oauthVerify: async (provider, signal) => {
     const verifier = randomVerifier()
