@@ -23,9 +23,9 @@ export function systemReportsQuery(state: 'open' | 'resolved') {
   return queryOptions({
     queryKey: ['system', 'reports', state],
     queryFn: () =>
-      requestHelpers.get<SystemReports>(
-        `${endpoints.system.reportsList}?state=${state}`
-      ),
+      requestHelpers.get<SystemReports>(endpoints.system.reportsList, {
+        params: { state },
+      }),
     staleTime: fresh.page,
   })
 }

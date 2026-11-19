@@ -71,9 +71,9 @@ export function systemDocumentQuery(name: string, language: string) {
   return queryOptions({
     queryKey: ['system', 'document', name, language],
     queryFn: () =>
-      requestHelpers.get<SystemDocument>(
-        `${endpoints.system.documentGet}?name=${encodeURIComponent(name)}&language=${encodeURIComponent(language)}`
-      ),
+      requestHelpers.get<SystemDocument>(endpoints.system.documentGet, {
+        params: { name, language },
+      }),
     staleTime: fresh.page,
   })
 }

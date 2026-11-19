@@ -27,7 +27,7 @@
 		"networks.star",
 		"notifications.star"
 	],
-	"require": {"version": {"minimum": "2.0.12"}},
+	"require": {"version": {"minimum": "2.0.16"}},
 
 	"icons": [
 		{"action": "", "label": "app.name", "file": "images/icon.svg"}
@@ -38,22 +38,22 @@
 		"assets": {"files": "web/dist/assets"},
 		"images": {"files": "web/dist/images"},
 
-		"-/user/account/data": {"function": "action_user_account"},
+		"-/user/account/data": {"function": "action_user_account", "read": true},
 		"-/user/account/export": {"function": "action_user_account_export"},
 		"-/user/account/close": {"function": "action_user_account_close"},
 		"-/user/account/code": {"function": "action_user_account_code"},
 		"-/user/account/code/verify": {"function": "action_user_account_code_verify"},
-		"-/user/account/export/download": {"function": "action_user_account_export_download", "public": true},
-		"-/user/account/identity": {"function": "action_user_account_identity"},
+		"-/user/account/export/download": {"function": "action_user_account_export_download", "public": true, "read": true},
+		"-/user/account/identity": {"function": "action_user_account_identity", "read": true},
 		"-/user/account/identity/update": {"function": "action_user_account_identity_update"},
-		"-/user/account/sessions": {"function": "action_user_account_sessions"},
+		"-/user/account/sessions": {"function": "action_user_account_sessions", "read": true},
 		"-/user/account/token/revoke": {"function": "action_user_account_token_revoke"},
 		"-/user/account/session/revoke": {"function": "action_user_account_session_revoke"},
 
-		"-/user/account/methods": {"function": "action_user_account_methods"},
+		"-/user/account/methods": {"function": "action_user_account_methods", "read": true},
 		"-/user/account/methods/set": {"function": "action_user_account_methods_set"},
 
-		"-/user/account/passkeys": {"function": "action_user_account_passkeys"},
+		"-/user/account/passkeys": {"function": "action_user_account_passkeys", "read": true},
 		"-/user/account/passkey/register/begin": {"function": "action_user_account_passkey_register_begin"},
 		"-/user/account/passkey/register/finish": {"function": "action_user_account_passkey_register_finish"},
 		"-/user/account/passkey/verify/begin": {"function": "action_user_account_passkey_verify_begin"},
@@ -61,22 +61,22 @@
 		"-/user/account/passkey/rename": {"function": "action_user_account_passkey_rename"},
 		"-/user/account/passkey/delete": {"function": "action_user_account_passkey_delete"},
 
-		"-/user/account/totp": {"function": "action_user_account_totp"},
+		"-/user/account/totp": {"function": "action_user_account_totp", "read": true},
 		"-/user/account/totp/setup": {"function": "action_user_account_totp_setup"},
 		"-/user/account/totp/verify": {"function": "action_user_account_totp_verify"},
 		"-/user/account/totp/disable": {"function": "action_user_account_totp_disable"},
 
-		"-/user/account/recovery": {"function": "action_user_account_recovery"},
+		"-/user/account/recovery": {"function": "action_user_account_recovery", "read": true},
 		"-/user/account/recovery/generate": {"function": "action_user_account_recovery_generate"},
 
-		"-/user/account/oauth": {"function": "action_user_account_oauth"},
+		"-/user/account/oauth": {"function": "action_user_account_oauth", "read": true},
 		"-/user/account/oauth/link": {"function": "action_user_account_oauth_link"},
 		"-/user/account/oauth/unlink": {"function": "action_user_account_oauth_unlink"},
 		"-/user/account/oauth/verify/begin": {"function": "action_user_account_oauth_verify_begin"},
 		"-/user/account/oauth/verify/finish": {"function": "action_user_account_oauth_verify_finish"},
 
-		"-/user/networks/data": {"function": "action_networks_data"},
-		"-/user/networks/offered": {"function": "action_networks_offered"},
+		"-/user/networks/data": {"function": "action_networks_data", "read": true},
+		"-/user/networks/offered": {"function": "action_networks_offered", "read": true},
 		"-/user/networks/handle/available": {"function": "action_networks_handle_available"},
 		"-/user/networks/handle/reserve": {"function": "action_networks_handle_reserve"},
 		"-/user/networks/handle/release": {"function": "action_networks_handle_release"},
@@ -97,35 +97,35 @@
 		"-/user/networks/account/home": {"function": "action_networks_account_home"},
 
 
-		"-/user/preferences/data": {"function": "action_user_preferences"},
+		"-/user/preferences/data": {"function": "action_user_preferences", "read": true},
 		"-/user/preferences/set": {"function": "action_user_preferences_set"},
 		"-/user/preferences/unset": {"function": "action_user_preferences_unset"},
 		"-/user/preferences/reset": {"function": "action_user_preferences_reset"},
 
-		"-/user/interests": {"function": "action_interests_list"},
+		"-/user/interests": {"function": "action_interests_list", "read": true},
 		"-/user/interests/set": {"function": "action_interests_set"},
 		"-/user/interests/remove": {"function": "action_interests_remove"},
 		"-/user/interests/search": {"function": "action_interests_search"},
 		"-/user/interests/summary": {"function": "action_interests_summary"},
 
 
-		"-/system/peers": {"function": "action_system_peers"},
-		"-/system/networks": {"function": "action_system_networks"},
-		"-/system/handles/list": {"function": "action_system_handles_list"},
+		"-/system/peers": {"function": "action_system_peers", "read": true},
+		"-/system/networks": {"function": "action_system_networks", "read": true},
+		"-/system/handles/list": {"function": "action_system_handles_list", "read": true},
 		"-/system/handles/release": {"function": "action_system_handles_release"},
 		"-/system/networks/key/replace": {"function": "action_system_networks_key_replace"},
 		"-/system/accounts/takedown": {"function": "action_system_account_takedown"},
-		"-/system/reports/list": {"function": "action_system_reports_list"},
+		"-/system/reports/list": {"function": "action_system_reports_list", "read": true},
 		"-/system/reports/resolve": {"function": "action_system_reports_resolve"},
-		"-/system/blocks/list": {"function": "action_system_blocks_list"},
+		"-/system/blocks/list": {"function": "action_system_blocks_list", "read": true},
 		"-/system/blocks/add": {"function": "action_system_blocks_add"},
 		"-/system/blocks/remove": {"function": "action_system_blocks_remove"},
-		"-/system/hosts": {"function": "action_system_hosts"},
-		"-/system/settings/list": {"function": "action_system_settings_list"},
+		"-/system/hosts": {"function": "action_system_hosts", "read": true},
+		"-/system/settings/list": {"function": "action_system_settings_list", "read": true},
 		"-/system/settings/set": {"function": "action_system_settings_set"},
 
-		"-/system/documents/list": {"function": "action_system_documents_list"},
-		"-/system/document/get": {"function": "action_system_document_get"},
+		"-/system/documents/list": {"function": "action_system_documents_list", "read": true},
+		"-/system/document/get": {"function": "action_system_document_get", "read": true},
 		"-/system/document/set": {"function": "action_system_document_set"},
 
 		"-/document/get": {"function": "action_document_get", "public": true},
@@ -133,7 +133,8 @@
 		"document/terms": {"file": "web/dist/index.html"},
 		"document/privacy": {"file": "web/dist/index.html"},
 
-		"-/system/update": {"function": "action_system_update"},
+		"-/system/update": {"function": "action_system_update", "read": true},
+		"-/system/update/install": {"function": "action_system_update_install"},
 
 
 		"-/system/users/list": {"function": "action_system_users_list"},
@@ -145,9 +146,9 @@
 		"-/system/users/sessions": {"function": "action_system_users_sessions"},
 		"-/system/users/sessions/revoke": {"function": "action_system_users_sessions_revoke"},
 
-		"-/domains/data": {"function": "action_domains"},
+		"-/domains/data": {"function": "action_domains", "read": true},
 		"-/domains/create": {"function": "action_domains_create"},
-		"-/domains/get": {"function": "action_domains_get"},
+		"-/domains/get": {"function": "action_domains_get", "read": true},
 		"-/domains/update": {"function": "action_domains_update"},
 		"-/domains/delete": {"function": "action_domains_delete"},
 		"-/domains/verify": {"function": "action_domains_verify"},
@@ -156,13 +157,13 @@
 		"-/domains/route/delete": {"function": "action_domains_route_delete"},
 		"-/domains/delegation/create": {"function": "action_domains_delegation_create"},
 		"-/domains/delegation/delete": {"function": "action_domains_delegation_delete"},
-		"-/domains/user/search": {"function": "action_domains_user_search"},
-		"-/domains/apps": {"function": "action_domains_apps"},
-		"-/domains/entities": {"function": "action_domains_entities"},
+		"-/domains/user/search": {"function": "action_domains_user_search", "read": true},
+		"-/domains/apps": {"function": "action_domains_apps", "read": true},
+		"-/domains/entities": {"function": "action_domains_entities", "read": true},
 
-		"-/accounts/providers": {"function": "action_accounts_providers"},
-		"-/accounts/list": {"function": "action_accounts_list"},
-		"-/accounts/get": {"function": "action_accounts_get"},
+		"-/accounts/providers": {"function": "action_accounts_providers", "read": true},
+		"-/accounts/list": {"function": "action_accounts_list", "read": true},
+		"-/accounts/get": {"function": "action_accounts_get", "read": true},
 		"-/accounts/add": {"function": "action_accounts_add"},
 		"-/accounts/update": {"function": "action_accounts_update"},
 		"-/accounts/remove": {"function": "action_accounts_remove"},
@@ -171,16 +172,16 @@
 		"-/accounts/vapid": {"function": "action_accounts_vapid"},
 		"-/accounts/default": {"function": "action_accounts_default"},
 
-		"-/notifications/categories": {"function": "action_notifications_categories"},
+		"-/notifications/categories": {"function": "action_notifications_categories", "read": true},
 		"-/notifications/categories/create": {"function": "action_notifications_categories_create"},
 		"-/notifications/categories/update": {"function": "action_notifications_categories_update"},
 		"-/notifications/categories/delete": {"function": "action_notifications_categories_delete"},
 		"-/notifications/categories/test": {"function": "action_notifications_categories_test"},
-		"-/notifications/topics": {"function": "action_notifications_topics"},
+		"-/notifications/topics": {"function": "action_notifications_topics", "read": true},
 		"-/notifications/topics/set/category": {"function": "action_notifications_topics_set_category"},
 		"-/notifications/topics/delete": {"function": "action_notifications_topics_delete"},
-		"-/notifications/destinations": {"function": "action_notifications_destinations"},
-		"-/notifications/devices": {"function": "action_notifications_devices"},
+		"-/notifications/destinations": {"function": "action_notifications_destinations", "read": true},
+		"-/notifications/devices": {"function": "action_notifications_devices", "read": true},
 		"-/notifications/devices/remove": {"function": "action_notifications_devices_remove"}
 	}
 }

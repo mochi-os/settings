@@ -33,6 +33,11 @@ const state = vi.hoisted(() => ({
   success: vi.fn(),
   error: vi.fn(),
   navigate: vi.fn(),
+  stepUp: vi.fn((run: (token: string) => void) => run('proof')),
+}))
+
+vi.mock('@/lib/use-step-up', () => ({
+  useStepUp: () => ({ request: state.stepUp, dialog: null }),
 }))
 
 vi.mock('@mochi/web', async (original) => {
@@ -168,6 +173,7 @@ describe('Networks', () => {
     state.success.mockReset()
     state.error.mockReset()
     state.navigate.mockReset()
+    state.stepUp.mockClear()
   })
 
   it('offers Keys only on the hosted accounts that have keys of their own', async () => {
@@ -591,10 +597,14 @@ describe('Networks', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Continue' }))
     })
     await waitFor(() => expect(state.navigate).toHaveBeenCalled())
+    // A Mastodon account becomes a way to sign in, so the link carries the
+    // step-up's proof.
+    expect(state.stepUp).toHaveBeenCalled()
     expect(state.post.mock.calls[0][0]).toBe('-/user/networks/account/link')
     expect(state.post.mock.calls[0][1]).toEqual({
       type: 'mastodon',
       server: 'mastodon.social',
+      token: 'proof',
     })
     expect(state.navigate).toHaveBeenCalledWith(
       '/_/auth/oauth/mastodon/start?state=x'
@@ -661,9 +671,86 @@ describe('Networks', () => {
     await waitFor(() =>
       expect(state.success).toHaveBeenCalledWith('Account linked')
     )
+    expect(state.post).toHaveBeenCalledWith(
+      '-/user/networks/account/link',
+      {
+        type: 'bluesky',
+        handle: 'alice.bsky.social',
+        password: 'abcd-efgh-ijkl-mnop',
+        token: 'proof',
+      },
+      expect.anything()
+    )
     expect(state.navigate).not.toHaveBeenCalled()
     await waitFor(() =>
       expect(screen.queryByLabelText('App password')).toBeNull()
+    )
+  })
+
+  it('links a Lemmy account with no step-up, as it is no way to sign in', async () => {
+    state.post.mockResolvedValue({
+      id: 'l2',
+      type: 'lemmy',
+      label: '',
+      identifier: '@bob@lemmy.world',
+      created: 4,
+      verified: 1,
+      enabled: 1,
+      default: '',
+      hosted: false,
+    })
+    show({
+      ...data,
+      providers: [
+        {
+          type: 'lemmy',
+          capabilities: ['social'],
+          link: {
+            flow: 'form',
+            fields: [
+              {
+                name: 'server',
+                label: 'Server',
+                type: 'text',
+                required: true,
+                placeholder: '',
+              },
+              {
+                name: 'password',
+                label: 'Password',
+                type: 'password',
+                required: true,
+                placeholder: '',
+              },
+            ],
+          },
+        },
+      ],
+    })
+    await screen.findByText('Handle on example.com')
+    await act(async () => {
+      fireEvent.click(
+        screen.getAllByRole('button', { name: 'Link an account' })[0]
+      )
+    })
+    const password = await screen.findByLabelText('Password')
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText('Server'), {
+        target: { value: 'lemmy.world' },
+      })
+      fireEvent.change(password, { target: { value: 'pw' } })
+    })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Link' }))
+    })
+    await waitFor(() =>
+      expect(state.success).toHaveBeenCalledWith('Account linked')
+    )
+    expect(state.stepUp).not.toHaveBeenCalled()
+    expect(state.post).toHaveBeenCalledWith(
+      '-/user/networks/account/link',
+      { type: 'lemmy', server: 'lemmy.world', password: 'pw' },
+      expect.anything()
     )
   })
 

@@ -15,6 +15,7 @@ const state = vi.hoisted(() => ({
   resolve: vi.fn(),
   navigate: vi.fn(),
   stepUp: vi.fn(),
+  username: 'admin@example.com',
 }))
 
 vi.mock('@mochi/web', async (original) => ({
@@ -33,6 +34,10 @@ vi.mock('@/routes/_authenticated/system/reports', () => ({
 
 vi.mock('@/lib/use-step-up', () => ({
   useStepUp: () => ({ request: state.stepUp, dialog: null }),
+}))
+
+vi.mock('@/hooks/use-account', () => ({
+  useAccountData: () => ({ data: { identity: { username: state.username } } }),
 }))
 
 vi.mock('@/hooks/use-system-moderation', () => ({
@@ -96,6 +101,7 @@ describe('System reports', () => {
     i18n.load('en', {})
     i18n.activate('en')
     state.search = { state: 'open' }
+    state.username = 'admin@example.com'
     state.resolve.mockReset()
     state.resolve.mockResolvedValue({})
     state.navigate.mockReset()
@@ -115,6 +121,44 @@ describe('System reports', () => {
     ).toBeTruthy()
     // An id that is no address is not offered as a link.
     expect(screen.queryByText('stanza-1')).toBeNull()
+  })
+
+  // A long address, word or name wraps in its cell rather than widening the
+  // table past the page, which scrolled the row's menu out of sight.
+  it('wraps long addresses, text and names rather than widening the table', () => {
+    const address =
+      'https://wasabi.example/~01a1e555768774c292047655754458df/01a1eacf7202764394a43ff4cecb8d44'
+    show([
+      {
+        ...flag,
+        objects: [address],
+        comment: 'x'.repeat(200),
+        content: 'y'.repeat(200),
+      },
+    ])
+    const link = screen.getByRole('link', { name: address }).parentElement!
+    expect(link.className).toContain('break-all')
+    expect(link.className).not.toContain('truncate')
+    expect(screen.getByText('x'.repeat(200)).className).toContain(
+      'wrap-anywhere'
+    )
+    expect(screen.getByText('y'.repeat(200)).className).toContain(
+      'wrap-anywhere'
+    )
+    // The cell is nowrap by default; the report's text undoes it.
+    const body = link.parentElement!
+    expect(body.className).toContain('whitespace-normal')
+    expect(body.className).toContain('min-w-48')
+    for (const text of [
+      'remote.example',
+      '@alice@example.com',
+      'alice@example.com',
+    ]) {
+      const cell = screen.getByText(text)
+      expect(cell.className).toContain('max-w-xs')
+      expect(cell.className).toContain('break-words')
+      expect(cell.className).toContain('whitespace-normal')
+    }
   })
 
   it("offers to block the reporter's server, never someone here", async () => {
@@ -195,6 +239,18 @@ describe('System reports', () => {
     expect(
       await screen.findByRole('menuitem', {
         name: 'Block server spam.example',
+      })
+    ).toBeTruthy()
+    expect(screen.queryByRole('menuitem', { name: 'Suspend user' })).toBeNull()
+  })
+
+  it('offers no suspension of the administrator signed in', async () => {
+    state.username = 'alice@example.com'
+    show([flag])
+    await open(screen.getByRole('button', { name: 'Report actions' }))
+    expect(
+      await screen.findByRole('menuitem', {
+        name: 'Block server remote.example',
       })
     ).toBeTruthy()
     expect(screen.queryByRole('menuitem', { name: 'Suspend user' })).toBeNull()

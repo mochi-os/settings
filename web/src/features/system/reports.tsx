@@ -41,12 +41,17 @@ import {
 import { Ban, Flag, MoreHorizontal, X } from 'lucide-react'
 import { networkLabel } from '@/lib/networks'
 import { useStepUp } from '@/lib/use-step-up'
+import { useAccountData } from '@/hooks/use-account'
 import {
   useSystemReportResolve,
   useSystemReports,
 } from '@/hooks/use-system-moderation'
 
 type ReportState = 'open' | 'resolved'
+
+// A name or address keeps its line, unless it is longer than the bound: then
+// it wraps within it, so no name widens the table past the page.
+const bounded = 'max-w-xs break-words whitespace-normal'
 
 // What an administrator is about to do to a report, confirmed first: block the
 // person it is about or the server of either party, or suspend the user it is
@@ -91,23 +96,27 @@ function useOutcomeLabel() {
 }
 
 // What a report says: its category, the reporter's words, the reported text
-// where the server holds it, and links to what was complained of.
+// where the server holds it, and links to what was complained of. It all
+// wraps, breaking a long address or word where it must, so the column takes
+// the room the others leave rather than widening the table past the page.
 function ReportBody({ report }: { report: Report }) {
   const category = useCategoryLabel()(report.category)
   const links = report.objects.filter((object) => object.startsWith('https://'))
   return (
-    <div className='space-y-1'>
+    <div className='min-w-48 space-y-1 whitespace-normal'>
       {category && <Badge variant='outline'>{category}</Badge>}
       {report.comment && (
-        <div className='whitespace-pre-wrap'>{report.comment}</div>
+        <div className='wrap-anywhere whitespace-pre-wrap'>
+          {report.comment}
+        </div>
       )}
       {report.content && (
-        <blockquote className='text-muted-foreground border-s-2 ps-2 whitespace-pre-wrap'>
+        <blockquote className='text-muted-foreground border-s-2 ps-2 wrap-anywhere whitespace-pre-wrap'>
           {report.content}
         </blockquote>
       )}
       {links.map((link) => (
-        <div key={link} className='truncate text-sm'>
+        <div key={link} className='text-sm break-all'>
           <a
             href={link}
             target='_blank'
@@ -132,6 +141,10 @@ export function SystemReports() {
   const resolve = useSystemReportResolve()
   const stepUp = useStepUp()
   const outcomeLabel = useOutcomeLabel()
+  // The administrator is never suspended from a report about their own
+  // account: the server refuses it, as the Users page does.
+  const { data: accountData } = useAccountData()
+  const currentUsername = accountData?.identity?.username
   const [pending, setPending] = useState<Pending | null>(null)
 
   const setState = (next: ReportState) =>
@@ -262,13 +275,17 @@ export function SystemReports() {
                       )}
                     </TableCell>
                     <TableCell>{networkLabel(report.network)}</TableCell>
-                    <TableCell>{reporter.name}</TableCell>
+                    <TableCell>
+                      <div className={bounded}>{reporter.name}</div>
+                    </TableCell>
                     <TableCell>
                       {person ? (
                         <>
-                          <div>{person.name}</div>
+                          <div className={bounded}>{person.name}</div>
                           {report.account && (
-                            <div className='text-muted-foreground text-sm'>
+                            <div
+                              className={`text-muted-foreground text-sm ${bounded}`}
+                            >
                               {report.account.username}
                               {report.account.status === 'suspended' && (
                                 <>
@@ -282,7 +299,7 @@ export function SystemReports() {
                       ) : (
                         report.room && (
                           <>
-                            <div>{report.room.name}</div>
+                            <div className={bounded}>{report.room.name}</div>
                             <div className='text-muted-foreground text-sm'>
                               <Trans context='chat'>Room</Trans>
                             </div>
@@ -290,7 +307,7 @@ export function SystemReports() {
                         )
                       )}
                     </TableCell>
-                    <TableCell className='max-w-md'>
+                    <TableCell>
                       <ReportBody report={report} />
                     </TableCell>
                     {state === 'resolved' ? (
@@ -358,7 +375,8 @@ export function SystemReports() {
                               </DropdownMenuItem>
                             ))}
                             {report.account &&
-                              report.account.status !== 'suspended' && (
+                              report.account.status !== 'suspended' &&
+                              report.account.username !== currentUsername && (
                                 <DropdownMenuItem
                                   onClick={() =>
                                     setPending({

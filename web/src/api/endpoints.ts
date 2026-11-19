@@ -108,6 +108,7 @@ const endpoints = {
     usersSessions: '-/system/users/sessions',
     usersSessionsRevoke: '-/system/users/sessions/revoke',
     update: '-/system/update',
+    install: '-/system/update/install',
   },
   notifications: {
     categories: '-/notifications/categories',
