@@ -135,7 +135,7 @@ export const stepUpClient: StepUpClient = {
     // popup opens, so null is not failure: poll for the proof either way, and
     // use popup.closed for fast cancellation only when a handle exists. The
     // dialog aborts `signal` when it is dismissed, which ends the polling.
-    const popup = window.open(url, 'mochi-oauth-stepup', 'width=520,height=680')
+    const popup = window.open(url, 'mochi-oauth-stepup', 'width=520,height=680') // method-ok: the provider's sign-in page, which returns to core
     signal.addEventListener('abort', () => popup?.close(), { once: true })
     const deadline = Date.now() + 120_000
     let closedAt = 0

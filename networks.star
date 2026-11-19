@@ -131,6 +131,11 @@ def action_networks_account_link(a):
             fields[name] = value
         elif field.get("required"):
             return a.error.label(400, "errors.field_required", field=field.get("label") or name)
+    # A Mastodon or Bluesky link becomes a way to sign in, so core asks for the
+    # step-up proof the client obtained first.
+    token = a.input("token")
+    if token:
+        fields["token"] = token
     if provider["link"].get("flow") == "oauth":
         fields["target"] = a.input("target", "/settings/user/networks")
         # A native app's consent returns to the app by its scheme, and the

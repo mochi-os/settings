@@ -105,6 +105,7 @@ import {
   useNetworksData,
 } from '@/hooks/use-networks'
 import { useLinkResult } from '@/hooks/use-oauth-result'
+import { useStepUp } from '@/lib/use-step-up'
 
 // Why a name cannot be reserved, in the user's words.
 function availabilityReason(reason: string): string {
@@ -533,14 +534,27 @@ function LinkDialog({
   const [type, setType] = useState(providers[0]?.type ?? '')
   const [fields, setFields] = useState<Record<string, string>>({})
   const link = useAccountLink()
+  const stepUp = useStepUp()
   const provider = providers.find((p) => p.type === type)
   const complete = (provider?.link.fields ?? []).every(
     (f) => !f.required || (fields[f.name] ?? '').trim() !== ''
   )
 
-  const handleLink = async () => {
+  // A Mastodon or Bluesky account becomes a way to sign in once linked, so
+  // linking one asks for the step-up first, as linking a sign-in provider does.
+  const handleLink = () => {
+    if (type === 'mastodon' || type === 'bluesky') {
+      stepUp.request((token) => void submit(token))
+      return
+    }
+    void submit()
+  }
+
+  const submit = async (token?: string) => {
     try {
-      const answer = await link.mutateAsync({ type, ...fields })
+      const answer = await link.mutateAsync(
+        token ? { type, ...fields, token } : { type, ...fields }
+      )
       // An OAuth provider answers its consent's address; a form provider
       // answers the account, whose url is its profile.
       if (provider?.link.flow === 'oauth' && answer.url) {
@@ -609,7 +623,7 @@ function LinkDialog({
           </Button>
           <Button
             disabled={!provider || !complete || link.isPending}
-            onClick={() => void handleLink()}
+            onClick={handleLink}
           >
             {link.isPending ? (
               <Loader2 className='size-4 animate-spin' />
@@ -623,6 +637,7 @@ function LinkDialog({
             )}
           </Button>
         </ResponsiveDialogFooter>
+        {stepUp.dialog}
       </ResponsiveDialogContent>
     </ResponsiveDialog>
   )
