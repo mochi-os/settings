@@ -18,6 +18,7 @@ import {
 } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { suggestHandle } from '@/lib/handles'
+import { networkSwitchId } from '@/lib/networks'
 import {
   AliasesDialog,
   HomeDialog,
@@ -33,7 +34,15 @@ const state = vi.hoisted(() => ({
   success: vi.fn(),
   error: vi.fn(),
   navigate: vi.fn(),
+  external: vi.fn(),
   stepUp: vi.fn((run: (token: string) => void) => run('proof')),
+}))
+
+// The page header's back button asks the router whether there is history to
+// go back through; a page opened from another app has none.
+vi.mock('@tanstack/react-router', async (original) => ({
+  ...(await original<typeof import('@tanstack/react-router')>()),
+  useRouter: () => ({ history: { canGoBack: () => false, back: () => {} } }),
 }))
 
 vi.mock('@/lib/use-step-up', () => ({
@@ -46,6 +55,7 @@ vi.mock('@mochi/web', async (original) => {
     ...actual,
     toast: { success: state.success, error: state.error },
     shellNavigateTop: state.navigate,
+    shellNavigateExternal: state.external,
     requestHelpers: {
       ...actual.requestHelpers,
       get: state.get,
@@ -173,6 +183,7 @@ describe('Networks', () => {
     state.success.mockReset()
     state.error.mockReset()
     state.navigate.mockReset()
+    state.external.mockReset()
     state.stepUp.mockClear()
   })
 
@@ -589,6 +600,87 @@ describe('Networks', () => {
       )
     )
     expect(await screen.findByText('Available')).toBeTruthy()
+  })
+
+  // An app's Set up button opens the page at a network, with the app's page
+  // to come back to.
+  const arrive = (query: string) =>
+    window.history.replaceState(null, '', `/settings/user/networks?${query}`)
+
+  it('takes someone an app sent to set up a hosted network to its switch, and back', async () => {
+    arrive('network=bluesky&back=%2Ffeeds%2Fabc%2Fsettings')
+    try {
+      show()
+      await screen.findByText('Handle on example.com')
+      await waitFor(() =>
+        expect(document.activeElement?.id).toBe(
+          networkSwitchId(alice, 'bluesky')
+        )
+      )
+      // The network is acted on once; the way back stays for the page.
+      expect(window.location.search).toBe('?back=%2Ffeeds%2Fabc%2Fsettings')
+      await act(async () => {
+        fireEvent.click(screen.getByRole('button', { name: 'Back' }))
+      })
+      expect(state.external).toHaveBeenCalledWith('/feeds/abc/settings')
+    } finally {
+      arrive('')
+    }
+  })
+
+  it('takes someone with no handle yet to the handle field', async () => {
+    arrive('network=fediverse&back=%2Ffeeds%2Fabc')
+    state.post.mockResolvedValue({ available: true, reason: '' })
+    try {
+      show({
+        ...data,
+        handles: { handles: [], limit: 1, counted: 0, unlimited: false },
+        accounts: [],
+      })
+      await screen.findByText('Choose a handle')
+      await waitFor(() =>
+        expect(document.activeElement?.id).toBe('handle-name')
+      )
+    } finally {
+      arrive('')
+    }
+  })
+
+  it('opens the link form for a network the server only links, keeping the way back through the consent', async () => {
+    arrive('network=fediverse&back=%2Ffeeds%2Fabc')
+    state.post.mockResolvedValue({
+      url: '/_/auth/oauth/mastodon/start?state=x',
+    })
+    try {
+      show({ ...data, networks: ['bluesky'] })
+      const server = await screen.findByLabelText('Server')
+      await act(async () => {
+        fireEvent.change(server, { target: { value: 'mastodon.social' } })
+      })
+      await act(async () => {
+        fireEvent.click(screen.getByRole('button', { name: 'Continue' }))
+      })
+      await waitFor(() => expect(state.navigate).toHaveBeenCalled())
+      expect(state.post.mock.calls[0][1]).toEqual({
+        type: 'mastodon',
+        server: 'mastodon.social',
+        token: 'proof',
+        target: '/settings/user/networks?back=%2Ffeeds%2Fabc',
+      })
+    } finally {
+      arrive('')
+    }
+  })
+
+  it('ignores a way back that would leave the server', async () => {
+    arrive('network=bluesky&back=%2F%2Fevil.example')
+    try {
+      show()
+      await screen.findByText('Handle on example.com')
+      expect(screen.queryByRole('button', { name: 'Back' })).toBeNull()
+    } finally {
+      arrive('')
+    }
   })
 
   it('links an account at the remote server when its provider says oauth', async () => {

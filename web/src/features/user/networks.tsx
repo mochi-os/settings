@@ -5,7 +5,7 @@
 //
 // The Networks page: the user's handles, the hosted account each network makes
 // of a handle, and the accounts linked on other servers, all in one place.
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import type {
   Block,
   Availability,
@@ -51,7 +51,9 @@ import {
   TableHeader,
   TableRow,
   getErrorMessage,
+  localPath,
   naturalCompare,
+  shellNavigateExternal,
   shellNavigateTop,
   toast,
   useDebounce,
@@ -81,7 +83,7 @@ import {
   Zap,
 } from 'lucide-react'
 import { suggestHandle } from '@/lib/handles'
-import { networkLabel } from '@/lib/networks'
+import { arrival, networkLabel, networkSwitchId } from '@/lib/networks'
 import { useStepUp } from '@/lib/use-step-up'
 import {
   useAccountAliases,
@@ -494,6 +496,7 @@ function HandleCard({
               status={account ? accountStatus(account, feeds, networks) : null}
             >
               <Switch
+                id={networkSwitchId(row, type)}
                 checked={
                   moving &&
                   (moving.key === key ||
@@ -523,15 +526,25 @@ function HandleCard({
 // asks; a server's consent takes the browser away and brings it back.
 function LinkDialog({
   providers,
+  initial,
+  target,
   onOpenChange,
   onLinked,
 }: {
   providers: NetworkProvider[]
+  /** The network chosen when the dialog opens; the first offered if none. */
+  initial?: string
+  /** Where a server's consent returns the browser; this page if none. */
+  target?: string
   onOpenChange: (open: boolean) => void
   onLinked: () => void
 }) {
   const { t } = useLingui()
-  const [type, setType] = useState(providers[0]?.type ?? '')
+  const [type, setType] = useState(
+    providers.some((p) => p.type === initial)
+      ? (initial as string)
+      : (providers[0]?.type ?? '')
+  )
   const [fields, setFields] = useState<Record<string, string>>({})
   const link = useAccountLink()
   const stepUp = useStepUp()
@@ -552,9 +565,12 @@ function LinkDialog({
 
   const submit = async (token?: string) => {
     try {
-      const answer = await link.mutateAsync(
-        token ? { type, ...fields, token } : { type, ...fields }
-      )
+      const answer = await link.mutateAsync({
+        type,
+        ...fields,
+        ...(token ? { token } : {}),
+        ...(target ? { target } : {}),
+      })
       // An OAuth provider answers its consent's address; a form provider
       // answers the account, whose url is its profile.
       if (provider?.link.flow === 'oauth' && answer.url) {
@@ -1835,7 +1851,8 @@ export function Networks() {
   const test = useAccountTest()
   const shown = useAccountUpdate()
 
-  const [linking, setLinking] = useState(false)
+  // The link dialog, open on a network ('' for the first offered) or closed.
+  const [linking, setLinking] = useState<string | null>(null)
   const [adding, setAdding] = useState<Handle | null>(null)
   const [releasing, setReleasing] = useState<Handle | null>(null)
   const [renaming, setRenaming] = useState<NetworkAccount | null>(null)
@@ -1854,6 +1871,14 @@ export function Networks() {
     null
   )
   const [busy, setBusy] = useState<string | null>(null)
+  // Where an app sent the user from to set up a network, and which network.
+  const [from] = useState(() => {
+    const params = new URLSearchParams(window.location.search)
+    return {
+      back: localPath(params.get('back')),
+      network: params.get('network'),
+    }
+  })
 
   const networks = data?.networks ?? []
   const accounts = useMemo(
@@ -2013,6 +2038,39 @@ export function Networks() {
   const communities = accounts.filter((a) => a.hosted && !carded.has(a.id))
   const linkable = (data?.providers.length ?? 0) > 0
 
+  // Arrived from an app to set up a network: the page goes to that network's
+  // place once loaded, and its back button returns to the app.
+  const arrived = useRef(false)
+  useEffect(() => {
+    if (arrived.current || !data || !from.network) return
+    arrived.current = true
+    const params = new URLSearchParams(window.location.search)
+    params.delete('network')
+    const query = params.toString()
+    window.history.replaceState(
+      window.history.state,
+      '',
+      window.location.pathname +
+        (query ? `?${query}` : '') +
+        window.location.hash
+    )
+    const place = arrival(
+      from.network,
+      data.networks,
+      data.providers,
+      parents[0]
+    )
+    if (place?.kind === 'switch') {
+      const element = document.getElementById(place.id)
+      element?.scrollIntoView({ block: 'center' })
+      element?.focus()
+    } else if (place?.kind === 'handle') {
+      document.getElementById('handle-name')?.focus()
+    } else if (place?.kind === 'link') {
+      setLinking(place.type)
+    }
+  }, [data, from.network, parents])
+
   const handleTest = async (account: NetworkAccount) => {
     setBusy(account.id)
     try {
@@ -2034,6 +2092,14 @@ export function Networks() {
       <PageHeader
         title={t`Networks`}
         icon={<Share2 className='size-4 md:size-5' />}
+        back={
+          from.back
+            ? {
+                label: t`Back`,
+                onFallback: () => shellNavigateExternal(from.back as string),
+              }
+            : undefined
+        }
       />
       <Main>
         {error ? (
@@ -2087,7 +2153,7 @@ export function Networks() {
                     <Button
                       variant='outline'
                       size='sm'
-                      onClick={() => setLinking(true)}
+                      onClick={() => setLinking('')}
                     >
                       <Link2 className='me-2 h-4 w-4' />
                       <Trans>Link an account</Trans>
@@ -2114,10 +2180,18 @@ export function Networks() {
         )}
       </Main>
 
-      {linking && data && (
+      {linking !== null && data && (
         <LinkDialog
           providers={data.providers}
-          onOpenChange={setLinking}
+          initial={linking}
+          target={
+            from.back
+              ? `/settings/user/networks?${new URLSearchParams({ back: from.back })}`
+              : undefined
+          }
+          onOpenChange={(open) => {
+            if (!open) setLinking(null)
+          }}
           onLinked={() => void refetch()}
         />
       )}
